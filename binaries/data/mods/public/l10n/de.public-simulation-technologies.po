@@ -8,14 +8,14 @@
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # Paul Müller <paulbochynek@web.de>, 2015
 # qwertz, 2015
-# Raymond Vetter, 2014-2015
+# Raymond Vetter, 2014-2016
 # Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-17 17:48+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -799,7 +799,7 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Außenposten überleben in neutralem Territorium doppelt so lange."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
+msgid "Territory decay rate -50% for outposts."
 msgstr "Territorialer Zerfall -50% für Außenposten."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
@@ -842,7 +842,7 @@ msgstr "Pferdewagen"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Fische werden gesalzen, um sie länger haltbar zu machen."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1468,15 +1468,11 @@ msgstr "Das Wunder zieht viele mehr Menschen Ihrer Zivilisation an."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "Increase the population bonus of the wonder by 40."
-msgstr ""
+msgstr "Erhöht den Bevölkerungsbonus von Wunder um 40."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Glorreiche Expansion"
-
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1534,7 +1530,7 @@ msgid "Improvement to projectile accuracy"
 msgstr "Verbesserung der Zielgenauigkeit"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
+msgid "Bolt shooter accuracy increased 25%."
 msgstr "Treffsicherheit des Bolzengeschützes um 25% erhöht."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
@@ -1570,8 +1566,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Unbewegliche Belagerungswaffen werden schneller zusammen- und auseinandergebaut"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Stationäre Belagerungswaffen werden 25% schneller auf-/abgebaut"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1748,6 +1744,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr "Benötigt 3 Händler"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2327,9 +2342,9 @@ msgstr "Bogenschießtradition"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Die Maurya-Inder bauten hölzerne Stadtmauern, da Holz eine reichlich vorkommende natürliche Ressource in Indien ist. Folglich haben die Stadtmauern der Maurya-Inder -20% Trefferpunkte, werden aber 20% schneller gebaut."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

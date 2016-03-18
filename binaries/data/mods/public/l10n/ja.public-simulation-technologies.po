@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:56+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-14 09:20+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -795,8 +795,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "中立地帯の前哨地の寿命が2倍になります。"
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "前哨地の領外劣化が50%鈍化します。"
+msgid "Territory decay rate -50% for outposts."
+msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -1470,10 +1470,6 @@ msgstr ""
 msgid "Glorious Expansion"
 msgstr "威信の伝播"
 
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
-
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
@@ -1530,8 +1526,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "射撃精度の向上"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "弩砲の命中精度が25%向上します。"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1566,8 +1562,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "据置式の攻城兵器の組立と解体が速くなります"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "据置式の攻城兵器の組立と解体が25%速くなります"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1744,6 +1740,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "ボナ・デア"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2323,9 +2338,9 @@ msgstr "弓術の伝統"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "マウリヤ朝は城壁を木で建設しました。木はインドでは豊富な自然資源でした。このため、マウリヤ朝の城壁は耐久力は20%低いですが、20%速く建設できます。"
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

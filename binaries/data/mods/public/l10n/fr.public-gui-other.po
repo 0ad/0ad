@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 14:17+0000\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-15 18:02+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -330,7 +330,7 @@ msgstr "%(previousAmounts)s et %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
@@ -389,36 +389,40 @@ msgstr "Vous avez été banni(e)"
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Nom de joueur déjà utilisé. Si vous avez été déconnecté(e), réessayez dans quelques secondes"
 
-#: gui/common/network.js:63
+#: gui/common/network.js:61
+msgid "Server full"
+msgstr "Serveur complet"
+
+#: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valeur invalide %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:75
+#: gui/common/network.js:76
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Motif : %(reason)s."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Lost connection to the server."
 msgstr "Connexion au serveur perdue."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Disconnected"
 msgstr "Déconnecté"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Impossible de bannir %(name)s."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Impossible d'éjecter %(name)s."
 
-#: gui/common/network.js:118
+#: gui/common/network.js:119
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Utilisateurs : %(users)s"
@@ -2164,6 +2168,14 @@ msgstr "Autoriser les spectateurs à rejoindre la partie après son lancement"
 msgid "Late Observer Joins"
 msgstr "Spectateurs tardifs"
 
+#: gui/options/options.jsongeneralSetting[11].tooltip
+msgid "Prevent further observer from joining if the limit is reached"
+msgstr "Empêche le spectateur suivant de rejoindre la partie si la limite est atteinte"
+
+#: gui/options/options.jsongeneralSetting[11].label
+msgid "Observer Limit"
+msgstr "Limite de spectateurs"
+
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
 msgstr "Gain audio principal"
@@ -2509,16 +2521,21 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Un navire de guerre intermédiaire de type \"trirème\"."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- The only ship of its kind."
-msgstr "- Le seul navire de ce genre."
+msgid ""
+"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Ne peut éperonner, comme les autres trirèmes, mais a plus de points de vie et d'armure."
-
-#: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- Peut transporter jusqu'à 40 unités sur l'eau."
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Increases firepower with garrissoned infantry."
+msgstr "- Augmenter la puissance de feu en embarquant de l'infanterie."
+
+#: gui/text/tips/celtic_war_barge.txt:10
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- Ne peut éperonner, comme les autres trirèmes, mais a plus de points de vie et d'armure."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2567,16 +2584,20 @@ msgid "- Fish the seas for a bountiful harvest."
 msgstr "- Les poissons des mers fournissent d'abondantes ressources."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr "- Les bateaux de pêche transportent de grandes quantités de nourriture par voyage."
+msgid "- Fishing boats carry a large amount of food per trip."
+msgstr "- Les bateaux de pêche transportent de grandes quantités de nourriture à chaque voyage."
 
 #: gui/text/tips/fishing.txt:6
-msgid ""
-"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
-"rate."
-msgstr "- Mettez une unité de soutien en garnison à bord pour doubler la vitesse de récolte des bateaux de pêche."
+msgid "- Fishing is faster than gathering food on fields."
+msgstr "- La pêche est plus rapide que la culture des champs."
 
 #: gui/text/tips/fishing.txt:8
+msgid ""
+"- Garrison a support unit aboard to double the fishing boat's gathering "
+"rate."
+msgstr "- Mettez une unité de soutien en garnison à bord pour doubler le taux de pêche du bateau."
+
+#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "- Attention ! Les poissons ne sont pas une ressource illimitée !"
 
@@ -2749,10 +2770,14 @@ msgid ""
 msgstr "- Le plus lourd des navires de guerre standard. Disponible pour : Rome, Carthage, les Égyptiens et les Séleucides."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Garrison ballistas to increase fire power."
-msgstr "Y mettre des balistes en garnison pour augmenter la puissance de feu."
+msgid "- Transports up to 50 units."
+msgstr "- Peut transporter jusqu'à 50 unités sur l'eau."
 
 #: gui/text/tips/quinquereme.txt:6
+msgid "- Increases firepower with garrissoned catapults."
+msgstr "- Augmenter la puissance de feu en embarquant des catapultes."
+
+#: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr "Peut éperonner et couler les navires ennemis (PAS ENCORE IMPLÉMENTÉ)"
 

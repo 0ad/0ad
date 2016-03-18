@@ -8,12 +8,13 @@
 # Любомир Василев, 2016
 # Radoslav Mitev <darkinaatrox@gmail.com>, 2016
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Любомир Василев, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-14 21:50+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -797,7 +798,7 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Аванпостовете оцеляват два пъти по-дълго в неутрална територия."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
+msgid "Territory decay rate -50% for outposts."
 msgstr "Свиването на територията се забавя с -50% за аванпостовете."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
@@ -840,7 +841,7 @@ msgstr "Конски каруци"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Осоляването помага рибата да се запази за по-дълго."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1157,7 +1158,7 @@ msgstr "Тъкачен стан"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr "Отключване на възстановяване на здравето за всички единици."
+msgstr "Отключете възстановяването на здравето за всички единици."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -1466,15 +1467,11 @@ msgstr "Чудото привлича още много хора към Ваша
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "Increase the population bonus of the wonder by 40."
-msgstr ""
+msgstr "Увеличете максималното население на чудото с 40."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Славно разрастване"
-
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1532,8 +1529,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Подобрение в точността на метателните оръжия"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "Точността на хвърляча на стрели се увеличава с 25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr "Точността на хвърляча на стрели се увеличава с 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1568,8 +1565,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Неподвижните обсадни оръжия се сглобяват и разглобяват по-бързо"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Неподвижните обсадни оръжия се опаковат/разопаковат 25% по-бързо"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr "-25% време за опаковане/разопаковане за неподвижните обсадни оръжия."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1709,11 +1706,11 @@ msgstr "Бранителните единици (експертите) нося�
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the barracks."
-msgstr "Отключва възможността да се обучават експерти в казармите."
+msgstr "Отключете възможността да обучавате експерти в казармите."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "Отключване на експертните единици"
+msgstr "Отключете експертните единици"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
@@ -1746,6 +1743,25 @@ msgstr "Тесмофо̀рия"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Бона Деа"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr "Разширяването на търговията води до постоянно установяване на търговците и семействата им в чужди държави, позволявайки им да се възползват от богатствата на тези държави."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr "Играчът може да използва местата за събиране на ресурси на съюзниците си."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr "Диаспора"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr "Изисква 3-ма търговци"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -1791,7 +1807,7 @@ msgstr "Повишаване на всички пехотни граждани-�
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr "Напреднала цивилна пехота"
+msgstr "Напреднали граждани-пехотинци"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
@@ -2325,9 +2341,9 @@ msgstr "Традиции в стрелбата"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Маурците строели градските си стени с дървесина, изобилен ресурс в Индия. Съответно, маурските градски стени имат -20% здраве, но се строят 20% по-бързо."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr "Маурците строели градските си стени с дървесина, изобилен ресурс в Индия. Съответно, маурските градски стени имат -20% здраве и -20% време за строеж."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2490,7 +2506,7 @@ msgstr "Елинска метрополия"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "Бързината на обучаване на експерти и обсадни оръжия в крепостта се увеличава драстично, ако се групират в партиди или батальони."
+msgstr "Бързината на обучаване на експерти и строене на обсадни оръжия в крепостта се увеличава драстично, ако се групират в партиди или батальони."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -2537,7 +2553,7 @@ msgstr "Традиционната армия на селевкидите."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr "Отключете Пиконосецът „сребърен щит“ и Колесницата с коси."
+msgstr "Отключете Пиконосеца от „Сребърни щитове“ и Колесницата с коси."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:48+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-14 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "Askar Berkuda Serangan Jauh"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Ranged"
 msgstr "Serangan Jauh"
 
@@ -368,9 +368,15 @@ msgstr "Pelontar"
 msgid "Ship"
 msgstr "Kapal"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Light Warship"
 msgstr "Kapal Perang Kecil"
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
+msgid ""
+"Garrison up to 20 units for transport. Garrison increases the firepower up "
+"to 10 arrows."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -408,25 +414,31 @@ msgstr "Dagangan diantara pelabuhan. Garison Pedagang untuk tambahan keuntungan 
 msgid "Trader"
 msgstr "Pedagang"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Heavy Warship"
 msgstr "Kapal Perang Besar"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
-msgid "Garrison with catapults to increase ranged fire power."
-msgstr "Garison dengan tarbil untuk tambah kuasa serangan berapi jarak jauh."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
+msgid "Garrison up to 10 catapults to increase fire power."
+msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
 msgstr "Kapal Perang Sederhana"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Kapal Perang"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Sederhana"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+msgid ""
+"Garrison up to 30 units for transport. Garrison increases the firepower up "
+"to 13 arrows."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -463,8 +475,8 @@ msgid "Inspiration Aura"
 msgstr "Aura Inspirasi"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster"
-msgstr "Lelaki berhampiran bekerja 10% lebih pantas"
+msgid "Nearby males work 10% faster."
+msgstr ""
 
 #: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
@@ -787,8 +799,8 @@ msgid "Naval Architect Aura"
 msgstr "Aura Arkitek Laut"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "Ships are built +20% faster during his lifespan."
-msgstr "Kapal yang dibina +20% lebih pantas ketika hayat beliau."
+msgid "-20% build time for ships during his lifespan."
+msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistocles"
@@ -962,8 +974,8 @@ msgid "Caratacos"
 msgstr "Caratacos"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "Let all units heal at 1 HP per second"
-msgstr "Semua unit sembuh pada kadar 1 HP per saat"
+msgid "+1 HP per second healing rate for all units."
+msgstr ""
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:18
 msgid "Cunobelin"
@@ -2121,8 +2133,8 @@ msgid "Patriot Aura"
 msgstr "Aura Patriot"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 20% faster in her vision range."
-msgstr "Unit Mesir berperang 20% lebih pantas dalam jangkauan beliau"
+msgid "Egyptian units fight 25% faster in her vision range."
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid "Cleopatra VII"

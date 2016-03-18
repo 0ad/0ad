@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Haommin <tfs.msimangu@gmail.com>, 2014-2015
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-16 11:17+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Es pot construir per reclamar extensions grans de territori. Recluta ciutadans. Permet refugiar 20 unitats."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "CentreCívic"
@@ -47,7 +47,7 @@ msgstr "Augmenta el límit de població."
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:20
@@ -65,13 +65,13 @@ msgstr "Aura de curació"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Cura les unitats properes a 1 punt de salut per segon."
+msgstr "Cura les unitats properes a 1 PS per segon."
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Recluta guaridors. S'hi poden refugiar fins a 20 unitats per curar-les ràpidament (3 punts de salut per segon). Investiga millores de curació i religioses."
+msgstr "Recluta guaridors. S'hi poden refugiar fins a 20 unitats per curar-les ràpidament (3 PS per segon). Investiga millores de curació i religioses."
 
 #: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -213,7 +213,7 @@ msgid ""
 "improvements for these resources."
 msgstr "Punt de descàrrega per a la fusta, la pedra i el metall. Investiga millores per a la recollida d'aquests recursos."
 
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Magatzem"
@@ -326,11 +326,11 @@ msgstr "Aquest és un edifici especial únic d'una civilització particular."
 
 #: simulation/templates/template_structure_wonder.xml:20
 msgid "Wonder Aura"
-msgstr ""
+msgstr "Aura de meravella"
 
 #: simulation/templates/template_structure_wonder.xml:21
 msgid "+10 maximum population cap."
-msgstr ""
+msgstr "Afegeix 10 al límit de població."
 
 #: simulation/templates/template_structure_wonder.xml:57
 msgid "Wonder"
@@ -619,8 +619,8 @@ msgstr "Bonificació agrícola"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Boosts nearby farming with +25%."
-msgstr "Els horts propers produeixen un 25 més."
+msgid "Boosts nearby farming with +25% gathering rate."
+msgstr "Els horts propers produeixen un 25% més ràpid."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -738,7 +738,7 @@ msgstr "Recluta mercenaris ibers. Investiga millores per a aquests mercenaris."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Ambaixada italiana"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -778,11 +778,11 @@ msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Repairing ship Aura"
-msgstr ""
+msgstr "Aura de reparació de vaixells"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr ""
+msgstr "Repara el vaixell refugiat a 3 PS per segon."
 
 #: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
@@ -910,7 +910,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
-msgstr ""
+msgstr "Totes les unitats dins del camp de visió del monument lluiten millor. Rang d'efecte: 50 metres. Els edificis dins del territori del monument no perden salut."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1056,7 +1056,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:11
 msgid "All traders in range +20% walk speed."
-msgstr ""
+msgstr "Augmenta un 20% la velocitat dels mercaders propers."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
@@ -1070,7 +1070,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "El famós pilar d'Aixoka. Augmenta la velocitat dels mercaders. Els edificis dins del territori del monument no perden salut."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1336,21 +1336,21 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Estructura barata semblant a una caserna que es pot construir en territori neutral, però no té influència sobre el territori.\n- Recluta mercenaris.\n- Distància mínima a altres assentaments militars: 100 metres."
 
-#: simulation/templates/structures/ptol_military_colony.xml:24
-#: simulation/templates/structures/sele_military_colony.xml:24
+#: simulation/templates/structures/ptol_military_colony.xml:25
+#: simulation/templates/structures/sele_military_colony.xml:25
 msgid "Colony"
 msgstr "Colònia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:46
-#: simulation/templates/structures/sele_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Military Colony"
 msgstr "Colònia militar"
 
-#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/ptol_military_colony.xml:48
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/structures/ptol_military_colony.xml:50
+#: simulation/templates/structures/ptol_military_colony.xml:51
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1388,15 +1388,15 @@ msgstr "Temple d'Edfú"
 msgid "Triumphal Arch"
 msgstr "Arc de triomf"
 
-#: simulation/templates/structures/rome_army_camp.xml:58
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
 msgstr "Campament atrinxerat"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:64
+#: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1602,11 +1602,11 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:48
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/sele_military_colony.xml:50
+#: simulation/templates/structures/sele_military_colony.xml:51
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

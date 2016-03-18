@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:48+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-14 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "Кавалерист дальнього бою"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Ranged"
 msgstr "Дальній бій"
 
@@ -373,9 +373,15 @@ msgstr "Пращник"
 msgid "Ship"
 msgstr "Корабель"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Light Warship"
 msgstr "Легкий бойовий корабель"
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
+msgid ""
+"Garrison up to 20 units for transport. Garrison increases the firepower up "
+"to 10 arrows."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -413,25 +419,31 @@ msgstr "Торгує з верфями. Розмістіть Торговця д
 msgid "Trader"
 msgstr "Торговець"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Heavy Warship"
 msgstr "Важкий бойовий корабель"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
-msgid "Garrison with catapults to increase ranged fire power."
-msgstr "Розмістіть катапульти, щоб збільшити діапазон вогневої міці."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
+msgid "Garrison up to 10 catapults to increase fire power."
+msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
 msgstr "Середній бойовий корабель"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Військовий корабель"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Посередньо"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+msgid ""
+"Garrison up to 30 units for transport. Garrison increases the firepower up "
+"to 13 arrows."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -468,8 +480,8 @@ msgid "Inspiration Aura"
 msgstr "Аура натхнення"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster"
-msgstr "Чоловіки поблизу працюють на 10% швидше"
+msgid "Nearby males work 10% faster."
+msgstr ""
 
 #: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
@@ -792,8 +804,8 @@ msgid "Naval Architect Aura"
 msgstr "Аура кораблебудівника"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "Ships are built +20% faster during his lifespan."
-msgstr "Кораблі будуються на +20% швидше впродовж його життя."
+msgid "-20% build time for ships during his lifespan."
+msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistocles"
@@ -967,8 +979,8 @@ msgid "Caratacos"
 msgstr "Каратак"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "Let all units heal at 1 HP per second"
-msgstr "Дозволяє всім підрозділам зцілюватися на 1 ОЗ в секунду"
+msgid "+1 HP per second healing rate for all units."
+msgstr ""
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:18
 msgid "Cunobelin"
@@ -2126,8 +2138,8 @@ msgid "Patriot Aura"
 msgstr "Патріотична аура"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 20% faster in her vision range."
-msgstr "Єгипетські підрозділи б’ються на 20% швидше в діапазоні її зору."
+msgid "Egyptian units fight 25% faster in her vision range."
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid "Cleopatra VII"

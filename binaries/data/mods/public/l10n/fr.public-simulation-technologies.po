@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 13:51+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-15 17:58+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -799,7 +799,7 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Les avants-postes survivent deux fois plus longtemps en territoire neutre."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
+msgid "Territory decay rate -50% for outposts."
 msgstr "-50% de détérioration hors territoire pour les avant-postes."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
@@ -1474,10 +1474,6 @@ msgstr "Augmenter le bonus de population de la merveille de 40."
 msgid "Glorious Expansion"
 msgstr "Expansion glorieuse"
 
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
-
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
@@ -1534,8 +1530,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Amélioration de la précision du projectile"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "La précision de tir des balistes augmente de 25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr "La précision de tir des balistes augmente de 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1570,8 +1566,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Les armes de sièges immobiles sont assemblées et dessassemblées plus rapidement"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Les armes de siège immobiles se montent et démontent 25% plus rapidement."
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr "-25% de temps de montage et de démontage pour les engins de siège immobiles."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1627,7 +1623,7 @@ msgstr "Les progrès en artisanat rendent le commerce plus profitable."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr "+10% de gain pour les marchands."
+msgstr "+10% de gain pour les commerçants."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
@@ -1635,7 +1631,7 @@ msgstr "Artisanat"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% gain."
-msgstr "+15% de gain pour les marchands."
+msgstr "+15% de gain pour les commerçants."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1748,6 +1744,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bonne Déesse"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr "Le développement du commerce amène à l'établissement permanent de commerçants et de leurs familles dans des pays étrangers, leur permettant ainsi d'exploiter les biens de ces pays."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr "Le joueur peut utiliser les dépôts de ressources de ses alliés."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr "Diaspora"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr "Nécessite 3 commerçants"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2327,9 +2342,9 @@ msgstr "Tradition d'archerie"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Les Maurya bâtissaient les murs de leurs villes en bois, une ressource naturelle abondante en Inde. En conséquence, les murs d'enceinte Maurya ont -20% points de santé, mais se construisent 20% plus rapidement."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr "Les Maurya bâtissaient les murs de leurs villes en bois, une ressource naturelle abondante en Inde. Par conséquent, les murs d'enceinte Maurya ont -20% de santé, et -20% de temps de construction."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-14 08:38+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -336,7 +336,7 @@ msgstr "%(previousAmounts)s oraz %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
@@ -395,36 +395,40 @@ msgstr "Zostałeś zbanowany"
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr ""
 
-#: gui/common/network.js:63
+#: gui/common/network.js:61
+msgid "Server full"
+msgstr ""
+
+#: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Błędna wartość %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:75
+#: gui/common/network.js:76
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Powód: %(reason)s."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Lost connection to the server."
 msgstr "Utracone połączenie z serwerem."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Disconnected"
 msgstr "Rozłączono"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Nie można zbanować %(name)s."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Nie można wyrzucić %(name)s."
 
-#: gui/common/network.js:118
+#: gui/common/network.js:119
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Gracze: %(users)s"
@@ -2181,6 +2185,14 @@ msgstr ""
 msgid "Late Observer Joins"
 msgstr ""
 
+#: gui/options/options.jsongeneralSetting[11].tooltip
+msgid "Prevent further observer from joining if the limit is reached"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[11].label
+msgid "Observer Limit"
+msgstr ""
+
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
 msgstr "Całkowita głośność dźwięków w grze"
@@ -2526,16 +2538,21 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Średni trójrzędowiec, okręt wojenny."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- The only ship of its kind."
-msgstr "- Statek jedyny w swoim rodzaju."
+msgid ""
+"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Nie potrafi taranować podobnie jak inne triremy, ale ma lepszy pancerz i trudniej go zniszczyć."
-
-#: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- Może przewozić przez wodę do 40 innych jednostek."
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Increases firepower with garrissoned infantry."
+msgstr ""
+
+#: gui/text/tips/celtic_war_barge.txt:10
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- Nie potrafi taranować podobnie jak inne triremy, ale ma lepszy pancerz i trudniej go zniszczyć."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2584,16 +2601,20 @@ msgid "- Fish the seas for a bountiful harvest."
 msgstr "- Pozwala łowić na morzach zbierając przy tym obfite zbiory."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr "- Łodzie rybackie przewożą dużą ilość jedzenia w trakcie pojedynczego rejsu."
+msgid "- Fishing boats carry a large amount of food per trip."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:6
-msgid ""
-"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
-"rate."
-msgstr "- Umieść jednostkę wsparcia na pokładzie aby podwoić szybkość połowów."
+msgid "- Fishing is faster than gathering food on fields."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:8
+msgid ""
+"- Garrison a support unit aboard to double the fishing boat's gathering "
+"rate."
+msgstr ""
+
+#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "- Uważaj! Ryby nie są źródłem nieskończonym!"
 
@@ -2766,10 +2787,14 @@ msgid ""
 msgstr "- Najcięższy standardowy okręt wojenny. Dostępny dla: Rzymian, Kartagińczyków, Ptolemeuszy i Seleucydów."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Garrison ballistas to increase fire power."
-msgstr "- Umieść wewnątrz balisty aby zwiększyć siłę ognia."
+msgid "- Transports up to 50 units."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
+msgid "- Increases firepower with garrissoned catapults."
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr "Posiada ogromną siłę ataku, która zatapia statki wroga (NIE ZAIMPLEMENTOWANE)."
 

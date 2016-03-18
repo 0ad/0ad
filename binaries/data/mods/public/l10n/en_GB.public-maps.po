@@ -7,12 +7,13 @@
 # Laurene Albrand, 2015
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2015
+# Martin <mhilgendrf@aol.com>, 2016
 # Martin <mhilgendrf@aol.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-15 19:01+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-15 11:03+0000\n"
 "Last-Translator: Martin <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -175,6 +176,16 @@ msgstr "Players start in either northern France or southern Britain while the En
 msgid "English Channel"
 msgstr "English Channel"
 
+#: maps/random/flood.jsonsettings.Description
+msgid ""
+"A great flood has moved across the valley enabling ships and troops to "
+"battle in chest deep waters."
+msgstr "A great flood has moved across the valley enabling ships and troops to battle in chest deep waters."
+
+#: maps/random/flood.jsonsettings.Name
+msgid "Flood"
+msgstr "Flood"
+
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
 msgstr "Players start in a ready-made fortress with piles of resources."
@@ -222,6 +233,16 @@ msgstr "Each player starts in a coastal area between forested hills and the Casp
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Hyrcanian Shores"
+
+#: maps/random/island_stronghold.jsonsettings.Description
+msgid ""
+"Teams start off with nearly adjacent town centers on a small island, "
+"offering a fortified base from which to expand."
+msgstr "Teams start off with nearly adjacent town centers on a small island, offering a fortified base from which to expand."
+
+#: maps/random/island_stronghold.jsonsettings.Name
+msgid "Island Stronghold"
+msgstr "Island Stronghold"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -1821,6 +1842,16 @@ msgstr "All players start on one bank of the river, with minimal harvestable met
 #: maps/skirmishes/Gambia River (3).xml:Name:42
 msgid "Gambia River (3)"
 msgstr "Gambia River (3)"
+
+#: maps/skirmishes/Golden Island (2).xml:Description:40
+msgid ""
+"A ring of land borders a resource-rich island in the Mediterranean. Players "
+"can access the center via a narrow strip of land or via boat."
+msgstr "A ring of land borders a resource-rich island in the Mediterranean. Players can access the center via a narrow strip of land or via boat."
+
+#: maps/skirmishes/Golden Island (2).xml:Name:40
+msgid "Golden Island (2)"
+msgstr "Golden Island (2)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""

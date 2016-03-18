@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-03-13 09:40+0000\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-14 10:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,6 @@ msgid "All Maps"
 msgstr "Всі мапи"
 
 #: gui/gamesetup/gamesetup.js:136 gui/gamesetup/gamesetup.js:1384
-#: gui/gamesetup/mapselection.js:16
 msgctxt "map"
 msgid "Random"
 msgstr "Випадково"
@@ -228,47 +227,6 @@ msgstr "Назва гри вже використовується."
 msgid "%(playername)s's game"
 msgstr "гра гравця %(playername)s"
 
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
-msgid "Skirmish"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:16
-msgid "Scenario"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:19 gui/gamesetup/gamesetup.xml:(tooltip):139
-#: gui/gamesetup/mapsettings.xml:(tooltip):38
-#: gui/gamesetup/settings/mapType.xml:(tooltip):13
-msgid "Select a map type."
-msgstr "Виберіть тип мапи."
-
-#: gui/gamesetup/mapselection.js:20 gui/gamesetup/gamesetup.xml:(caption):110
-#: gui/gamesetup/mapsettings.xml:(caption):7
-#: gui/gamesetup/settings/mapType.xml:(caption):5
-msgid "Map Type:"
-msgstr "Тип мапи:"
-
-#: gui/gamesetup/mapselection.js:33 gui/gamesetup/gamesetup.xml:(tooltip):147
-#: gui/gamesetup/mapsettings.xml:(tooltip):46
-msgid "Select a map filter."
-msgstr "Виберіть фільтр мапи."
-
-#: gui/gamesetup/mapselection.js:34 gui/gamesetup/gamesetup.xml:(caption):113
-#: gui/gamesetup/mapsettings.xml:(caption):10
-msgid "Map Filter:"
-msgstr "Фільтр мапи:"
-
-#: gui/gamesetup/mapselection.js:47 gui/gamesetup/gamesetup.xml:(tooltip):156
-#: gui/gamesetup/mapsettings.xml:(tooltip):55
-msgid "Select a map to play on."
-msgstr "Виберіть мапу для гри."
-
-#: gui/gamesetup/mapselection.js:48 gui/gamesetup/gamesetup.xml:(caption):116
-#: gui/gamesetup/mapsettings.xml:(caption):13
-msgid "Select Map:"
-msgstr "Виберіть мапу:"
-
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
@@ -314,7 +272,6 @@ msgid "Loading map data. Please wait..."
 msgstr "Завантаження даних мапи. Будь ласка зачекайте..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):45
-#: gui/gamesetup/players.xml:(caption):8
 msgid "Player Name"
 msgstr "Ім'я Гравця"
 
@@ -323,27 +280,34 @@ msgid "Color"
 msgstr "Колір"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
-#: gui/gamesetup/players.xml:(caption):11
 msgid "Player Placement"
 msgstr "Розміщення гравця"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
-#: gui/gamesetup/players.xml:(caption):14
 msgid "Civilization"
 msgstr "Цивілізація"
 
 #: gui/gamesetup/gamesetup.xml:(caption):69
-#: gui/gamesetup/players.xml:(caption):29
 msgid "Team"
 msgstr "Команда"
 
+#: gui/gamesetup/gamesetup.xml:(caption):110
+msgid "Map Type:"
+msgstr "Тип мапи:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):113
+msgid "Map Filter:"
+msgstr "Фільтр мапи:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):116
+msgid "Select Map:"
+msgstr "Виберіть мапу:"
+
 #: gui/gamesetup/gamesetup.xml:(caption):119
-#: gui/gamesetup/mapsettings.xml:(caption):19
 msgid "Number of Players:"
 msgstr "Кількість гравців:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):122
-#: gui/gamesetup/mapsettings.xml:(caption):22
 msgid "Map Size:"
 msgstr "Розмір мапи:"
 
@@ -413,7 +377,6 @@ msgid "Rated Game:"
 msgstr "Оцінена Гра:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):63
-#: gui/gamesetup/players.xml:(tooltip):23
 msgid "View civilization info"
 msgstr "Інформація про цивілізацію"
 
@@ -422,32 +385,38 @@ msgid "Pick a color."
 msgstr "Виберіть колір."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
-#: gui/gamesetup/players.xml:(tooltip):38
 msgid "Select player."
 msgstr "Виберіть гравця."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):91
-#: gui/gamesetup/players.xml:(tooltip):47
 msgid "Configure AI settings."
 msgstr "Налаштувати параметри ШІ."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):94
-#: gui/gamesetup/players.xml:(tooltip):50
 msgid "Select player's civilization."
 msgstr "Виберіть цивілізацію гравця."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):98
-#: gui/gamesetup/players.xml:(tooltip):54
 msgid "Select player's team."
 msgstr "Виберіть команду гравця."
 
+#: gui/gamesetup/gamesetup.xml:(tooltip):139
+msgid "Select a map type."
+msgstr "Виберіть тип мапи."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):147
+msgid "Select a map filter."
+msgstr "Виберіть фільтр мапи."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):156
+msgid "Select a map to play on."
+msgstr "Виберіть мапу для гри."
+
 #: gui/gamesetup/gamesetup.xml:(tooltip):166
-#: gui/gamesetup/mapsettings.xml:(tooltip):65
 msgid "Select number of players."
 msgstr "Виберіть кількість гравців."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):170
-#: gui/gamesetup/mapsettings.xml:(tooltip):70
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Виберіть розмір мапи. (Великі можуть зменшити продуктивність.)"
 
@@ -540,10 +509,6 @@ msgstr "Налаштуйте свій сервер."
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "Ім'я серверу:"
-
-#: gui/gamesetup/mapsettings.xml:(caption):16
-msgid "Other Settings"
-msgstr ""
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

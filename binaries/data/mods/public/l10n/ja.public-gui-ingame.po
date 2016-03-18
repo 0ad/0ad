@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-14 10:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "降伏します"
 msgid "Destroy everything currently selected?"
 msgstr "現在選択中のすべてを破壊しますか？"
 
-#: gui/session/menu.js:177 gui/session/unit_actions.js:711
+#: gui/session/menu.js:177 gui/session/unit_actions.js:717
 msgid "Delete"
 msgstr "削除"
 
@@ -375,60 +375,60 @@ msgstr "%(player)sはあなたに%(player2)sしました。"
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)sは%(player2)sと中立になりました。"
 
-#: gui/session/messages.js:455
+#: gui/session/messages.js:457
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr ""
 
-#: gui/session/messages.js:463
+#: gui/session/messages.js:465
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr ""
 
-#: gui/session/messages.js:467
+#: gui/session/messages.js:469
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr ""
 
-#: gui/session/messages.js:473
+#: gui/session/messages.js:475
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr ""
 
-#: gui/session/messages.js:602
+#: gui/session/messages.js:604
 msgid "Unknown Player"
 msgstr "不明なプレイヤー"
 
-#: gui/session/messages.js:609
+#: gui/session/messages.js:611
 msgid "You have been defeated."
 msgstr "あなたは敗北しました。"
 
-#: gui/session/messages.js:610
+#: gui/session/messages.js:612
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)sは敗北しました。"
 
-#: gui/session/messages.js:641
+#: gui/session/messages.js:643
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)sは%(player2)sに%(amounts)sを贈りました。"
 
-#: gui/session/messages.js:643
+#: gui/session/messages.js:645
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
 
-#: gui/session/messages.js:658
+#: gui/session/messages.js:660
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "家畜が%(attacker)sに攻撃されました！"
 
-#: gui/session/messages.js:659
+#: gui/session/messages.js:661
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)sが攻撃してきました！"
 
-#: gui/session/messages.js:702
+#: gui/session/messages.js:704
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -493,9 +493,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s："
 
-#: gui/session/selection_details.js:190 gui/session/unit_actions.js:323
-#: gui/session/unit_actions.js:330 gui/session/unit_actions.js:340
-#: gui/session/unit_actions.js:546
+#: gui/session/selection_details.js:190 gui/session/unit_actions.js:329
+#: gui/session/unit_actions.js:336 gui/session/unit_actions.js:346
+#: gui/session/unit_actions.js:552
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "増加: %(gain)s"
@@ -564,60 +564,60 @@ msgstr "%(resource)sを購入"
 msgid "Sell %(resource)s"
 msgstr "%(resource)sを売却"
 
-#: gui/session/selection_panels.js:354 gui/session/selection_panels.js:1129
+#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1133
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)sが必要"
 
-#: gui/session/selection_panels.js:475
+#: gui/session/selection_panels.js:479
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)sを外に出す"
 
-#: gui/session/selection_panels.js:476
+#: gui/session/selection_panels.js:480
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:540
+#: gui/session/selection_panels.js:544
 msgid "Lock Gate"
 msgstr "門を閉ざす"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:550
 msgid "Unlock Gate"
 msgstr "門を開く"
 
-#: gui/session/selection_panels.js:653
+#: gui/session/selection_panels.js:657
 msgid "Pack"
 msgstr "梱包"
 
-#: gui/session/selection_panels.js:655
+#: gui/session/selection_panels.js:659
 msgid "Unpack"
 msgstr "展開"
 
-#: gui/session/selection_panels.js:657
+#: gui/session/selection_panels.js:661
 msgid "Cancel Packing"
 msgstr "梱包をキャンセル"
 
-#: gui/session/selection_panels.js:659
+#: gui/session/selection_panels.js:663
 msgid "Cancel Unpacking"
 msgstr "展開をキャンセル"
 
-#: gui/session/selection_panels.js:734
+#: gui/session/selection_panels.js:738
 msgid "Insufficient population capacity:"
 msgstr "人口上限の不足:"
 
-#: gui/session/selection_panels.js:735
+#: gui/session/selection_panels.js:739
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:846
+#: gui/session/selection_panels.js:850
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "不足：%(number)s棟"
 
-#: gui/session/selection_panels.js:1117 gui/session/session.js:791
+#: gui/session/selection_panels.js:1121 gui/session/session.js:791
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "耐久力："
@@ -812,88 +812,104 @@ msgstr "注：タイムワープモードは開発者用オプションであり
 msgid "Time warp mode"
 msgstr "タイムワープモード"
 
-#: gui/session/unit_actions.js:321
+#: gui/session/unit_actions.js:327
 msgid "Origin trade market."
 msgstr "起点となる交易市場。"
 
-#: gui/session/unit_actions.js:327
+#: gui/session/unit_actions.js:333
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "別の市場を右クリックして、交易市場の終点をセットします。"
 
-#: gui/session/unit_actions.js:330
+#: gui/session/unit_actions.js:336
 msgid "Destination trade market."
 msgstr "終点となる交易市場。"
 
-#: gui/session/unit_actions.js:335
+#: gui/session/unit_actions.js:341
 msgid "Right-click to set as origin trade market"
 msgstr "右クリックして、起点となる交易市場をセットします"
 
-#: gui/session/unit_actions.js:340
+#: gui/session/unit_actions.js:346
 msgid "Right-click to set as destination trade market."
 msgstr "右クリックして、終点となる交易市場をセットします。"
 
-#: gui/session/unit_actions.js:372 gui/session/unit_actions.js:508
+#: gui/session/unit_actions.js:378 gui/session/unit_actions.js:514
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "現在の駐屯: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:544
+#: gui/session/unit_actions.js:550
 msgid "Right-click to establish a default route for new traders."
 msgstr "右クリックして新しい商人のためのデフォルトルートを確立しましょう。"
 
-#: gui/session/unit_actions.js:548
+#: gui/session/unit_actions.js:554
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "期待される増加: %(gain)s"
 
-#: gui/session/unit_actions.js:680 gui/session/unit_actions.js:916
+#: gui/session/unit_actions.js:686 gui/session/unit_actions.js:950
 msgid "Unload All"
 msgstr "全員外に出す"
 
-#: gui/session/unit_actions.js:699
+#: gui/session/unit_actions.js:705
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "戦場の霧内にあるため、このエンティティを破壊できません"
 
-#: gui/session/unit_actions.js:705
+#: gui/session/unit_actions.js:711
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "半分に満たない占領ポイントしか所持していないため、このエンティティを破壊できません"
 
-#: gui/session/unit_actions.js:737
+#: gui/session/unit_actions.js:743
 msgid "Stop"
 msgstr "停止"
 
-#: gui/session/unit_actions.js:755
+#: gui/session/unit_actions.js:761
 msgid "Garrison"
 msgstr "駐屯"
 
-#: gui/session/unit_actions.js:776
+#: gui/session/unit_actions.js:782
 msgid "Unload"
 msgstr "外に出す"
 
-#: gui/session/unit_actions.js:792
+#: gui/session/unit_actions.js:798
 msgid "Repair"
 msgstr "修理"
 
-#: gui/session/unit_actions.js:809
+#: gui/session/unit_actions.js:815
 msgid "Focus on Rally Point"
 msgstr "集合地点に移動"
 
-#: gui/session/unit_actions.js:832
+#: gui/session/unit_actions.js:838
 msgid "Back to Work"
 msgstr "仕事に戻す"
 
-#: gui/session/unit_actions.js:848
+#: gui/session/unit_actions.js:854
 msgid "Guard"
 msgstr "護衛"
 
-#: gui/session/unit_actions.js:865
+#: gui/session/unit_actions.js:871
 msgid "Remove guard"
 msgstr "護衛解除"
 
-#: gui/session/unit_actions.js:881
+#: gui/session/unit_actions.js:887
 msgid "Select trading goods"
 msgstr "交易品を選択"
+
+#: gui/session/unit_actions.js:907
+msgid "Press to prevent allies from using this dropsite"
+msgstr ""
+
+#: gui/session/unit_actions.js:911
+msgid "Press to allow allies to use this dropsite"
+msgstr ""
+
+#: gui/session/unit_actions.js:970
+msgid "You are allowed to use this dropsite"
+msgstr ""
+
+#: gui/session/unit_actions.js:974
+msgid "The use of this dropsite is prohibited"
+msgstr ""
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"

@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Ghenadi Avricenco <gplushentr@gmx.us>, 2014
+# Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Swyter <Swyterzone@gmail.com>, 2014-2015
 # vega93 <arkadas_llisa@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-18 07:39+0000\n"
+"Last-Translator: Luis Torrecilla <l_torrecilla@yahoo.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +37,7 @@ msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Constrúyelo para conseguir grandes extensiones de territorio. Recluta ciudadanos. Guarnición: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "CentroCívico"
@@ -49,7 +50,7 @@ msgstr "Incrementa el límite de población."
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:20
@@ -215,7 +216,7 @@ msgid ""
 "improvements for these resources."
 msgstr "Deposita madera, piedra y metal en esta estructura. Investiga mejoras de recolección para estos recursos."
 
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Almacén de recursos"
@@ -328,11 +329,11 @@ msgstr "Éste es un edificio especial, único para una civilización específica
 
 #: simulation/templates/template_structure_wonder.xml:20
 msgid "Wonder Aura"
-msgstr ""
+msgstr "Aura de la maravilla"
 
 #: simulation/templates/template_structure_wonder.xml:21
 msgid "+10 maximum population cap."
-msgstr ""
+msgstr "Amplia a +10 el límite de población."
 
 #: simulation/templates/template_structure_wonder.xml:57
 msgid "Wonder"
@@ -621,8 +622,8 @@ msgstr "Bonificación de cultivo"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Boosts nearby farming with +25%."
-msgstr "Potencia los cultivos cercanos un +25%."
+msgid "Boosts nearby farming with +25% gathering rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -740,7 +741,7 @@ msgstr "Recluta mercenarios íberos. Investiga mejoras para estos mercenarios."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Embajada italiana"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -1058,7 +1059,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:11
 msgid "All traders in range +20% walk speed."
-msgstr ""
+msgstr "Todos los comerciantes en el área caminan un +20% más rápido"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
@@ -1338,21 +1339,21 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Edificio de acuartelamiento barato, edificable en territorio neutral, aunque no aumenta tu territorio de influencia. \n- Recluta mercenarios.  \n- Distancia mínima a otros asentamientos militares: 100 metros."
 
-#: simulation/templates/structures/ptol_military_colony.xml:24
-#: simulation/templates/structures/sele_military_colony.xml:24
+#: simulation/templates/structures/ptol_military_colony.xml:25
+#: simulation/templates/structures/sele_military_colony.xml:25
 msgid "Colony"
 msgstr "Colonia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:46
-#: simulation/templates/structures/sele_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Military Colony"
 msgstr "Colonia militar"
 
-#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/ptol_military_colony.xml:48
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/structures/ptol_military_colony.xml:50
+#: simulation/templates/structures/ptol_military_colony.xml:51
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1390,15 +1391,15 @@ msgstr "Templo de Edfu"
 msgid "Triumphal Arch"
 msgstr "Arco del triunfo"
 
-#: simulation/templates/structures/rome_army_camp.xml:58
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
 msgstr "Campamento atrincherado del ejército"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:64
+#: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1604,11 +1605,11 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:48
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/sele_military_colony.xml:50
+#: simulation/templates/structures/sele_military_colony.xml:51
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

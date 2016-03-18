@@ -9,6 +9,7 @@
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # Marco tom Suden, 2015
+# Martin <mhilgendrf@aol.com>, 2016
 # Martin <mhilgendrf@aol.com>, 2015-2016
 # Matthias Meger <JSoko@online.de>, 2016
 # Maximilian <camellion@gmx.de>, 2014
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-17 17:53+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -329,7 +330,7 @@ msgstr "%(previousAmounts)s und %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
@@ -349,7 +350,7 @@ msgstr ""
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Schlechte Verbindung zum Server (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
@@ -362,7 +363,7 @@ msgstr "Unbekannter Grund"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Der Host hat das Spiel beendet"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -388,36 +389,40 @@ msgstr "Du wurdest gebannt"
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr ""
 
-#: gui/common/network.js:63
+#: gui/common/network.js:61
+msgid "Server full"
+msgstr "Server ist voll"
+
+#: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Unzulässiger Wert %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:75
+#: gui/common/network.js:76
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Grund: %(reason)s."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Lost connection to the server."
 msgstr "Verbindung zum Server verloren."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Disconnected"
 msgstr "Verbindung getrennt"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Kann %(name)s nicht bannen."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Kann %(name)s nicht kicken."
 
-#: gui/common/network.js:118
+#: gui/common/network.js:119
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Benutzer: %(users)s"
@@ -779,7 +784,7 @@ msgstr "Klassen:"
 #: gui/credits/credits.js:32
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1036,7 +1041,7 @@ msgstr "MM yyyy"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Unbekannte Zivilisation"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1372,7 +1377,7 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Programmierung"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
@@ -1380,7 +1385,7 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Übersetzer"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1501,11 +1506,11 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Zurücksetzen auf letzte gespeicherte Einstellungen"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Speichert Einstellungen"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1639,7 +1644,7 @@ msgstr "Bug melden"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Das Spiel übersetzen"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
@@ -1923,11 +1928,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "Sound"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Musik"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1993,23 +1998,23 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonContent[0].Title
 msgid "Czech"
-msgstr ""
+msgstr "Tschechisch"
 
 #: gui/credits/texts/translators.jsonContent[1].Title
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: gui/credits/texts/translators.jsonContent[2].Title
 msgid "English (UK)"
-msgstr ""
+msgstr "Englisch (Großbritannien)"
 
 #: gui/credits/texts/translators.jsonContent[3].Title
 msgid "Spanish"
-msgstr ""
+msgstr "Spanisch"
 
 #: gui/credits/texts/translators.jsonContent[4].Title
 msgid "French"
-msgstr ""
+msgstr "Französisch"
 
 #: gui/credits/texts/translators.jsonContent[5].Title
 msgid "Gaelic"
@@ -2017,15 +2022,15 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonContent[6].Title
 msgid "Galician"
-msgstr ""
+msgstr "Indonesisch"
 
 #: gui/credits/texts/translators.jsonContent[7].Title
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesisch"
 
 #: gui/credits/texts/translators.jsonContent[8].Title
 msgid "Italian"
-msgstr ""
+msgstr "Italienisch"
 
 #: gui/credits/texts/translators.jsonContent[9].Title
 msgid "Dutch"
@@ -2033,19 +2038,19 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonContent[10].Title
 msgid "Polish"
-msgstr ""
+msgstr "Polisch"
 
 #: gui/credits/texts/translators.jsonContent[11].Title
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugiesisch (Brasilien)"
 
 #: gui/credits/texts/translators.jsonContent[12].Title
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "Portugiesisch (Portugal)"
 
 #: gui/credits/texts/translators.jsonContent[13].Title
 msgid "Russian"
-msgstr ""
+msgstr "Russisch"
 
 #: gui/credits/texts/translators.jsonContent[14].Title
 msgid "Slovak"
@@ -2053,7 +2058,7 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonContent[15].Title
 msgid "Turkish"
-msgstr ""
+msgstr "Türkisch"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2112,7 +2117,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Netzwerk Warnungen"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2161,6 +2166,14 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[11].tooltip
+msgid "Prevent further observer from joining if the limit is reached"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[11].label
+msgid "Observer Limit"
 msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
@@ -2221,15 +2234,15 @@ msgstr "Nachbearbeitung"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Wenig"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Mittel"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Hoch"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2279,7 +2292,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Aktiviere Wasser Effekte"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2508,16 +2521,21 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "– Ein mittelschweres Kriegsschiff."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- The only ship of its kind."
-msgstr "– Einzigartiger Schiffstyp."
+msgid ""
+"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "– Kann nicht wie andere Trieren rammen, hat aber mehr Trefferpunkte und Rüstung."
-
-#: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
 msgstr "– Kann bis zu 40 Einheiten transportieren."
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Increases firepower with garrissoned infantry."
+msgstr ""
+
+#: gui/text/tips/celtic_war_barge.txt:10
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "– Kann nicht wie andere Trieren rammen, hat aber mehr Trefferpunkte und Rüstung."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2566,16 +2584,20 @@ msgid "- Fish the seas for a bountiful harvest."
 msgstr "- Erwirtschafte reichen Ertrag durch Fischen."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr "– Fischerboote holen auf jedem Fischzug große Mengen an Nahrung."
+msgid "- Fishing boats carry a large amount of food per trip."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:6
-msgid ""
-"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
-"rate."
-msgstr "– Schicke eine Unterstützungseinheit an Bord, um doppelt so schnell zu fischen."
+msgid "- Fishing is faster than gathering food on fields."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:8
+msgid ""
+"- Garrison a support unit aboard to double the fishing boat's gathering "
+"rate."
+msgstr ""
+
+#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "– Vorsicht! Fisch ist keine unendliche Ressource!"
 
@@ -2748,10 +2770,14 @@ msgid ""
 msgstr "– Das stärkste verfügbare Kriegsschiff. Verfügbar für: Rom, Karthago, Ptolemäer und Seleukiden."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Garrison ballistas to increase fire power."
-msgstr "– Quartiere Ballisten ein, um die Feuerkraft zu erhöhen."
+msgid "- Transports up to 50 units."
+msgstr "– Kann bis zu 50 Einheiten transportieren."
 
 #: gui/text/tips/quinquereme.txt:6
+msgid "- Increases firepower with garrissoned catapults."
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr "– Hat einen Rammangriff, der feindliche Schiffe versenkt (NOCH NICHT IMPLEMENTIERT)."
 

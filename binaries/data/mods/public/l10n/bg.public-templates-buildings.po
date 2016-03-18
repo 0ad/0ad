@@ -10,13 +10,14 @@
 # Stefan Blue <stefan7202@abv.bg>, 2016
 # AccountKiller, 2015
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
+# Любомир Василев, 2016
 # Симон Болоканов <sbolokanov@abv.bg>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-15 13:52+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +42,7 @@ msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Постройте, за да присвоите голяма територия и обучавате граждани. Гарнизон: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "ЦивиленЦентър"
@@ -54,7 +55,7 @@ msgstr "Увеличете максималното население."
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:20
@@ -220,7 +221,7 @@ msgid ""
 "improvements for these resources."
 msgstr "Място за събиране на дърва, камъни и метал. Проучва подобрения за събирането на тези ресурси."
 
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Склад"
@@ -333,11 +334,11 @@ msgstr "Това е специална сграда, различна за вс�
 
 #: simulation/templates/template_structure_wonder.xml:20
 msgid "Wonder Aura"
-msgstr ""
+msgstr "Чудодейна аура"
 
 #: simulation/templates/template_structure_wonder.xml:21
 msgid "+10 maximum population cap."
-msgstr ""
+msgstr "+10 максимално население."
 
 #: simulation/templates/template_structure_wonder.xml:57
 msgid "Wonder"
@@ -626,8 +627,8 @@ msgstr "Земеделски бонус"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Boosts nearby farming with +25%."
-msgstr "Увеличава земеделието наоколо с +25%."
+msgid "Boosts nearby farming with +25% gathering rate."
+msgstr "+25% скорост на събиране на храна от земеделието наоколо."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -745,7 +746,7 @@ msgstr "Предлага иберийски наемници. Проучва п�
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Италианско посолство"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -785,11 +786,11 @@ msgstr "Махсабах"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Repairing ship Aura"
-msgstr ""
+msgstr "Аурата на поправката на кораби"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr ""
+msgstr "Лекува корабът на гарнизон с 3 ЖТ в секунда."
 
 #: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
@@ -917,7 +918,7 @@ msgstr "Гур Ороигарри"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
-msgstr ""
+msgstr "Всички единици в околностите на този паметник ще се бият по-усилено. Радиус на ефекта: 50 метра. Сградите в територията на паметника не преминават под чуждо влияние."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1063,7 +1064,7 @@ msgstr "Упараксана"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:11
 msgid "All traders in range +20% walk speed."
-msgstr ""
+msgstr "+20% скорост на придвижване за всички търговци в обхвата."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
@@ -1077,7 +1078,7 @@ msgstr "Шасана стамбха Ашока"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Известният стълб на Ашока. Увеличава скоростта на придвижване на търговците. Сградите в територията на паметника не преминават под чуждо влияние."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1343,21 +1344,21 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Евтина казармоподобна сграда, която може да се строи на неутрална територия, но не влияе на териториите.\n— Обучава наемници;\n— Минимално отстояние от други военни постройки: 100 метра."
 
-#: simulation/templates/structures/ptol_military_colony.xml:24
-#: simulation/templates/structures/sele_military_colony.xml:24
+#: simulation/templates/structures/ptol_military_colony.xml:25
+#: simulation/templates/structures/sele_military_colony.xml:25
 msgid "Colony"
 msgstr "Колония"
 
-#: simulation/templates/structures/ptol_military_colony.xml:46
-#: simulation/templates/structures/sele_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Military Colony"
 msgstr "Военна колония"
 
-#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/ptol_military_colony.xml:48
 msgid "Klēroukhía"
 msgstr "Клероукхѝя"
 
-#: simulation/templates/structures/ptol_military_colony.xml:50
+#: simulation/templates/structures/ptol_military_colony.xml:51
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1395,15 +1396,15 @@ msgstr "Храм на Едфу"
 msgid "Triumphal Arch"
 msgstr "Триумфална арка"
 
-#: simulation/templates/structures/rome_army_camp.xml:58
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
 msgstr "Укрепен военен лагер"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
 msgstr "Каструм валум"
 
-#: simulation/templates/structures/rome_army_camp.xml:64
+#: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1609,11 +1610,11 @@ msgstr "Библиотикон"
 msgid "Empórion"
 msgstr "Емпо̀рион"
 
-#: simulation/templates/structures/sele_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:48
 msgid "Klēroukhia"
 msgstr "Клероукхия"
 
-#: simulation/templates/structures/sele_military_colony.xml:50
+#: simulation/templates/structures/sele_military_colony.xml:51
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

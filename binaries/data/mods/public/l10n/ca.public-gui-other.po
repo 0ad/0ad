@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-16 13:12+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,7 +321,7 @@ msgstr "%(previousAmounts)s i %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
@@ -331,22 +331,22 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)s)"
-msgstr ""
+msgstr "S'està perdent la connexió al servidor (%(seconds)s)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)s)"
-msgstr ""
+msgstr "%(player)s està perdent la connexió (%(seconds)s)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Mala connexió al servidor (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Mala connexió amb %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -354,7 +354,7 @@ msgstr "Motiu desconegut"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "L'amfitrió ha acabat la partida"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -378,38 +378,42 @@ msgstr "Heu estat bloquejat"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "El nom d'usuari ja està en ús. Si us heu desconnectat, torneu-ho a provar en uns segons"
 
-#: gui/common/network.js:63
+#: gui/common/network.js:61
+msgid "Server full"
+msgstr "El servidor està ple"
+
+#: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valor invàlid %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:75
+#: gui/common/network.js:76
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Motiu: %(reason)s."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Lost connection to the server."
 msgstr "S'ha perdut la connexió amb el servidor."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Disconnected"
 msgstr "Desconnectat"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "No s'ha pogut bloquejar %(name)s."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "No s'ha pogut expulsar %(name)s."
 
-#: gui/common/network.js:118
+#: gui/common/network.js:119
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Usuaris: %(users)s"
@@ -771,7 +775,7 @@ msgstr "Classes:"
 #: gui/credits/credits.js:32
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -819,7 +823,7 @@ msgstr "Atura"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Restablir les opcions esborrarà la vostra configuració. Voleu continuar?"
 
 #: gui/options/options.js:274 gui/options/options.js:338
 #: gui/savedgames/load.js:89
@@ -828,7 +832,7 @@ msgstr "Advertència"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Hi ha canvis sense desar, segur que voleu tancar aquesta finestra?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -966,7 +970,7 @@ msgstr "Suprimeix la gravació"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Segur que voleu suprimir permanentment la gravació?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1028,7 +1032,7 @@ msgstr "aaaa-MM"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Civilització desconeguda"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1356,23 +1360,23 @@ msgstr "Tanca"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Crèdits del 0 A.D."
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Crèdits especials"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Programació"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Art"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Traductors"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1380,7 +1384,7 @@ msgstr "Altres"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donators"
-msgstr ""
+msgstr "Donants"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1477,7 +1481,7 @@ msgstr "Configuració de la sala multijugador"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Restableix"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1489,15 +1493,15 @@ msgstr "Desa"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Restableix les opcions als valors per defecte"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Reverteix a una configuració desada"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Desa els canvis"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1631,11 +1635,11 @@ msgstr "Informa d'errors"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Traduïu el joc"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Crèdits"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1747,7 +1751,7 @@ msgstr "Feu clic per obrir la pàgina de traducció del 0 A.D. al vostre navegad
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Feu clic per veure els crèdits del 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1883,15 +1887,15 @@ msgstr "Continua"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Direcció artística"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Encarregat de so"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Compositor"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -1899,53 +1903,53 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Mapping"
-msgstr ""
+msgstr "Disseny de mapes"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Scripts de mapes aleatoris"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "Art 2D"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "Art 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "So"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Recapte de Pledgie 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Recapte de Pledgie 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "IndieGoGO 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Campanya IndieGoGO del 2013\nMés de 1000 donants (!), incloent:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Cap"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Referències històriques"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Comunitat i gestió"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1953,99 +1957,99 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Agraïments especials a"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "In memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Fundador del 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Directors del projecte"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Codirectors de disseny"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Agraïments especials a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "I gràcies a tota la comunitat per fer possible el 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "No s'ha maltractat cap historiador en el desenvolupament d'aquest projecte."
 
 #: gui/credits/texts/translators.jsonContent[0].Title
 msgid "Czech"
-msgstr ""
+msgstr "Txec"
 
 #: gui/credits/texts/translators.jsonContent[1].Title
 msgid "German"
-msgstr ""
+msgstr "Alemany"
 
 #: gui/credits/texts/translators.jsonContent[2].Title
 msgid "English (UK)"
-msgstr ""
+msgstr "Anglès (Regne Unit)"
 
 #: gui/credits/texts/translators.jsonContent[3].Title
 msgid "Spanish"
-msgstr ""
+msgstr "Espanyol"
 
 #: gui/credits/texts/translators.jsonContent[4].Title
 msgid "French"
-msgstr ""
+msgstr "Francès"
 
 #: gui/credits/texts/translators.jsonContent[5].Title
 msgid "Gaelic"
-msgstr ""
+msgstr "Gaèlic"
 
 #: gui/credits/texts/translators.jsonContent[6].Title
 msgid "Galician"
-msgstr ""
+msgstr "Gallec"
 
 #: gui/credits/texts/translators.jsonContent[7].Title
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesi"
 
 #: gui/credits/texts/translators.jsonContent[8].Title
 msgid "Italian"
-msgstr ""
+msgstr "Italià"
 
 #: gui/credits/texts/translators.jsonContent[9].Title
 msgid "Dutch"
-msgstr ""
+msgstr "Holandès"
 
 #: gui/credits/texts/translators.jsonContent[10].Title
 msgid "Polish"
-msgstr ""
+msgstr "Polonès"
 
 #: gui/credits/texts/translators.jsonContent[11].Title
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portuguès (Brasil)"
 
 #: gui/credits/texts/translators.jsonContent[12].Title
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "Portuguès (Portugal)"
 
 #: gui/credits/texts/translators.jsonContent[13].Title
 msgid "Russian"
-msgstr ""
+msgstr "Rus"
 
 #: gui/credits/texts/translators.jsonContent[14].Title
 msgid "Slovak"
-msgstr ""
+msgstr "Eslovac"
 
 #: gui/credits/texts/translators.jsonContent[15].Title
 msgid "Turkish"
-msgstr ""
+msgstr "Turc"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2100,11 +2104,11 @@ msgstr "Indicadors de funció detallats"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Mostra quin jugador té una mala connexió en el mode multijugador."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Advertències de connexió"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2149,11 +2153,19 @@ msgstr "Desa les opcions de la partida"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Permet que s'afegeixin observadors un cop ha començat la partida"
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Incorporació tardana d'observadors"
+
+#: gui/options/options.jsongeneralSetting[11].tooltip
+msgid "Prevent further observer from joining if the limit is reached"
+msgstr "Evita que s'afegeixin observadors si s'arriba al límit"
+
+#: gui/options/options.jsongeneralSetting[11].label
+msgid "Observer Limit"
+msgstr "Límit d'observadors"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2213,15 +2225,15 @@ msgstr "Postprocessament gràfic"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Baix"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Mitjà"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Alt"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2267,11 +2279,11 @@ msgstr "Partícules"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Quan està desactivat, utilitza els paràmetres més baixos per renderitzar l'aigua. Fa que els altres ajustaments siguin irrellevants."
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Activa els efectes d'aigua"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2500,16 +2512,21 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Un vaixell de guerra mitjà de tipus trirrem."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- The only ship of its kind."
-msgstr "- L'únic vaixell d'aquesta mena."
+msgid ""
+"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+msgstr "- Disponible per a les faccions celtes (bretons, gals), l'Imperi Maurya i els ibers."
 
 #: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- No pot envestir, com els altres trirrems, però té més salut i armadura."
-
-#: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- Pot transportar fins a 40 unitats per l'aigua."
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Increases firepower with garrissoned infantry."
+msgstr "- Augmenta la potència de foc amb infanteria refugiada."
+
+#: gui/text/tips/celtic_war_barge.txt:10
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- No pot envestir, com els altres trirrems, però té més salut i armadura."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2558,16 +2575,20 @@ msgid "- Fish the seas for a bountiful harvest."
 msgstr "- Pesqueu al mar per obtenir menjar abundant."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of Food per trip."
+msgid "- Fishing boats carry a large amount of food per trip."
 msgstr "- Les barques de pesca poden portar una gran quantitat de menjar a cada viatge."
 
 #: gui/text/tips/fishing.txt:6
+msgid "- Fishing is faster than gathering food on fields."
+msgstr "- La pesca és més ràpida que l'agricultura."
+
+#: gui/text/tips/fishing.txt:8
 msgid ""
-"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
+"- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
 msgstr "- Embarqueu-hi una unitat de suport per doblar la velocitat de recollida del peix."
 
-#: gui/text/tips/fishing.txt:8
+#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "- Compte! Els peixos no són un recurs infinit!"
 
@@ -2740,10 +2761,14 @@ msgid ""
 msgstr "- El vaixell de guerra estàndard més pesat. Disponible a: Roma, Cartago, Egipte ptolemaic i Imperi Selèucida."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Garrison ballistas to increase fire power."
-msgstr "- Embarqueu-hi balistes per augmentar la potència de foc."
+msgid "- Transports up to 50 units."
+msgstr "- Transporta fins a 50 unitats."
 
 #: gui/text/tips/quinquereme.txt:6
+msgid "- Increases firepower with garrissoned catapults."
+msgstr "- Augmenta la potència de foc amb catapultes refugiades."
+
+#: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr "- Té un atac d'envestida que enfonsa els vaixells enemics (PER IMPLEMENTAR)."
 

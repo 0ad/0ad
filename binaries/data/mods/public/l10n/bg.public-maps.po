@@ -10,12 +10,13 @@
 # radochrist <ruzor@mail.bg>, 2014
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Любомир Василев, 2016
 # Симон Болоканов <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-03-12 10:16+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-14 21:48+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -178,6 +179,16 @@ msgstr "Играчите започват в северна Франция ил�
 msgid "English Channel"
 msgstr "Ла Манш"
 
+#: maps/random/flood.jsonsettings.Description
+msgid ""
+"A great flood has moved across the valley enabling ships and troops to "
+"battle in chest deep waters."
+msgstr "Огромно наводнение е заляло долината, позволявайки на кораби и во̀ини да се бият в дълбоката до гърди вода."
+
+#: maps/random/flood.jsonsettings.Name
+msgid "Flood"
+msgstr "Наводнение"
+
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
 msgstr "Играчите започват в предварително изградени крепости, в които има купчини ресурси."
@@ -225,6 +236,16 @@ msgstr "Всички играчи започват в крайбрежна ме�
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Хиркански брегове"
+
+#: maps/random/island_stronghold.jsonsettings.Description
+msgid ""
+"Teams start off with nearly adjacent town centers on a small island, "
+"offering a fortified base from which to expand."
+msgstr "Отборите започват с почти съседни селищни центрове на малък остров, предлагащ укрепена база, от която да се разпрострат."
+
+#: maps/random/island_stronghold.jsonsettings.Name
+msgid "Island Stronghold"
+msgstr "Островна крепост"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -1738,7 +1759,7 @@ msgstr "Корсика и Сардиния (4)"
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Description:42
 msgid "A \"small island\"-style map set in the Aegean Sea."
-msgstr "Карта стил „малък остров“, разположена в Егейско море."
+msgstr "Карта в стил „малък остров“, разположена в Егейско море."
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Name:42
 msgid "Cycladic Archipelago (2)"
@@ -1749,7 +1770,7 @@ msgid ""
 "A \"small island\"-style map set in the Aegean Sea.\n"
 "\n"
 "Map size: Very Large"
-msgstr "Карта стил „малък остров“, разположена в Егейско море.\nГолемина на картата: Много голяма"
+msgstr "Карта в стил „малък остров“, разположена в Егейско море.\n\nРазмер на картата: много голям"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[0].Name:41
 msgid "Samos"
@@ -1824,6 +1845,16 @@ msgstr "Всички играчи започват на единия бряг н
 #: maps/skirmishes/Gambia River (3).xml:Name:42
 msgid "Gambia River (3)"
 msgstr "Река Гамбия (3)"
+
+#: maps/skirmishes/Golden Island (2).xml:Description:40
+msgid ""
+"A ring of land borders a resource-rich island in the Mediterranean. Players "
+"can access the center via a narrow strip of land or via boat."
+msgstr "Пръстен от земя загражда богат на ресурси остров в Средиземноморието. Играчите могат да стигнат до средата по тясна ивица земя или чрез лодка."
+
+#: maps/skirmishes/Golden Island (2).xml:Name:40
+msgid "Golden Island (2)"
+msgstr "Златен остров (2)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""

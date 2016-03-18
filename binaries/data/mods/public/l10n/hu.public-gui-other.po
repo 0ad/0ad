@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-16 22:11+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -324,7 +324,7 @@ msgstr "%(previousAmounts)s és %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
@@ -334,22 +334,22 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)s)"
-msgstr ""
+msgstr "Kapcsolat elvesztése a kiszolgálóhoz (%(seconds)s)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)s)"
-msgstr ""
+msgstr "%(player)s elveszti a kapcsolatot (%(seconds)s)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Rossz kapcsolat a kiszolgálóhoz (%(milliseconds)s ms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Rossz kapcsolat %(player)s játékoshoz (%(milliseconds)s ms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -357,7 +357,7 @@ msgstr "Ismeretlen ok"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "A játékgazda befejezte a játékot"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -381,38 +381,42 @@ msgstr "Kitiltottak."
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "A játékosnév használatban van. Ha szétkapcsolódtál, próbáld meg néhány másodperc múlva."
 
-#: gui/common/network.js:63
+#: gui/common/network.js:61
+msgid "Server full"
+msgstr "Kiszolgáló tele"
+
+#: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[érvénytelen érték: %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:75
+#: gui/common/network.js:76
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Ez okból: %(reason)s."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Lost connection to the server."
 msgstr "A szerverkapcsolat megszakadt."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Disconnected"
 msgstr "Lekapcsolódott"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "%(name)s -t nem lehet kitiltani."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "%(name)s -t nem lehet kirúgni."
 
-#: gui/common/network.js:118
+#: gui/common/network.js:119
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Felhasználók: %(users)s"
@@ -745,8 +749,8 @@ msgstr "Gyógyulás:"
 #: gui/common/tooltips.js:459
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] "HP"
-msgstr[1] "HP"
+msgstr[0] "ÉP"
+msgstr[1] "ÉP"
 
 #: gui/common/tooltips.js:482
 #, javascript-format
@@ -774,7 +778,7 @@ msgstr "Osztályok:"
 #: gui/credits/credits.js:32
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -822,7 +826,7 @@ msgstr "Megszakít"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "A beállítások helyreállítása törli a mentett beállításaid. Folytatni szeretnéd?"
 
 #: gui/options/options.js:274 gui/options/options.js:338
 #: gui/savedgames/load.js:89
@@ -831,7 +835,7 @@ msgstr "Figyelmeztetés"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Mentetlen módosításaid vannak, szeretnéd bezárni ezt az ablakot?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -969,7 +973,7 @@ msgstr "Visszajátszás törlése"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Biztosan véglegesen törölni akarod ezt a visszajátszást?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1031,7 +1035,7 @@ msgstr "éééé-HH"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Ismeretlen civilizáció"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1121,7 +1125,7 @@ msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "A mentett játék véglegesen törlődik. Biztos benne?"
+msgstr "A mentett játék véglegesen törlődik. Biztos vagy benne?"
 
 #: gui/savedgames/load.js:125 gui/savedgames/save.js:88
 msgid "DELETE"
@@ -1129,7 +1133,7 @@ msgstr "TÖRLÉS"
 
 #: gui/savedgames/save.js:58
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "A mentett játék véglegesen felülíródik. Biztos benne?"
+msgstr "A mentett játék véglegesen felülíródik. Biztos vagy benne?"
 
 #: gui/savedgames/save.js:58
 msgid "OVERWRITE SAVE"
@@ -1359,23 +1363,23 @@ msgstr "Bezárás"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. stáblista"
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Különleges köszönet"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Programozás"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Művészet"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Fordítók"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1383,7 +1387,7 @@ msgstr "Egyéb"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donators"
-msgstr ""
+msgstr "Adományozók"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1480,7 +1484,7 @@ msgstr "Váró beállításai"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Helyreállítás"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1492,15 +1496,15 @@ msgstr "Mentés"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Visszaállítja a felhasználói beállításokat a játék alapértékeire"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Visszaállítja az előző mentett beállításokra"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Menti a változtatásokat"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1634,11 +1638,11 @@ msgstr "Hiba bejelentése"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "A játék fordítása"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Stáblista"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1750,7 +1754,7 @@ msgstr "Kattints a 0 A.D. fordítási oldal böngészőben való megnyitásához
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Kattints a 0 A.D. stáblistájának megtekintéséhez."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1886,169 +1890,169 @@ msgstr "Tovább"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Művészeti vezető"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Hangmenedzser"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Zeneszerző"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Művészeti menedzserek"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Mapping"
-msgstr ""
+msgstr "Térképkészítés"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Véletlenszerű térkép parancsfájlok"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D művészet"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D művészet"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "Hang"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Zene"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "1. adománygyűjtés"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "2. adománygyűjtés"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "IndieGoGO 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "2013-as Indiegogo kampány\nTöbb mint 1000 adományozó (!), többek között:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Vezető"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Történelmi hivatkozások"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Közösség és vezetőség"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Programozói menedzserek"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Különleges köszönet"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "In Memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. alapító"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Projektvezetők"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Társvezető dizájnerek"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Különleges köszönet:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "És köszönet az egész közösségnek, a 0 A.D. lehetővé tételéhez."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Egyetlen történésznek sem esett bántódása a projekt fejlesztése során."
 
 #: gui/credits/texts/translators.jsonContent[0].Title
 msgid "Czech"
-msgstr ""
+msgstr "cseh"
 
 #: gui/credits/texts/translators.jsonContent[1].Title
 msgid "German"
-msgstr ""
+msgstr "német"
 
 #: gui/credits/texts/translators.jsonContent[2].Title
 msgid "English (UK)"
-msgstr ""
+msgstr "angol (UK)"
 
 #: gui/credits/texts/translators.jsonContent[3].Title
 msgid "Spanish"
-msgstr ""
+msgstr "spanyol"
 
 #: gui/credits/texts/translators.jsonContent[4].Title
 msgid "French"
-msgstr ""
+msgstr "francia"
 
 #: gui/credits/texts/translators.jsonContent[5].Title
 msgid "Gaelic"
-msgstr ""
+msgstr "gael"
 
 #: gui/credits/texts/translators.jsonContent[6].Title
 msgid "Galician"
-msgstr ""
+msgstr "galiciai"
 
 #: gui/credits/texts/translators.jsonContent[7].Title
 msgid "Indonesian"
-msgstr ""
+msgstr "indonéz"
 
 #: gui/credits/texts/translators.jsonContent[8].Title
 msgid "Italian"
-msgstr ""
+msgstr "olasz"
 
 #: gui/credits/texts/translators.jsonContent[9].Title
 msgid "Dutch"
-msgstr ""
+msgstr "hollan"
 
 #: gui/credits/texts/translators.jsonContent[10].Title
 msgid "Polish"
-msgstr ""
+msgstr "lengyel"
 
 #: gui/credits/texts/translators.jsonContent[11].Title
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "portugál (Brazília)"
 
 #: gui/credits/texts/translators.jsonContent[12].Title
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "portugál (Portugália)"
 
 #: gui/credits/texts/translators.jsonContent[13].Title
 msgid "Russian"
-msgstr ""
+msgstr "orosz"
 
 #: gui/credits/texts/translators.jsonContent[14].Title
 msgid "Slovak"
-msgstr ""
+msgstr "szlovák"
 
 #: gui/credits/texts/translators.jsonContent[15].Title
 msgid "Turkish"
-msgstr ""
+msgstr "török"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2103,11 +2107,11 @@ msgstr "Részletes eszköztippek"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Jelenítse meg melyik játékosnak van rossz kapcsolata a többjátékos játékokban."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Hálózati figyelmeztetések"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2152,11 +2156,19 @@ msgstr "Állandó játszma beállítások"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Megfigyelők csatlakozásának engedélyezése a játék megkezdése után."
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Késő megfigyelő csatlakozások"
+
+#: gui/options/options.jsongeneralSetting[11].tooltip
+msgid "Prevent further observer from joining if the limit is reached"
+msgstr "További megfigyelők csatlakozásának megakadályozása, a korlát elérésekor"
+
+#: gui/options/options.jsongeneralSetting[11].label
+msgid "Observer Limit"
+msgstr "Megfigyelő korlát"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2216,15 +2228,15 @@ msgstr "Utófeldolgozás"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Alacsony"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Magas"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2270,11 +2282,11 @@ msgstr "Részecskék"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Ha kikapcsolt, akkor a legalacsonyabb beállítások kerülnek használatra a víz rendereléséhez. Ez a többi beállítást hatástalanná teszi."
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Vízeffektek bekapcsolása"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2340,7 +2352,7 @@ msgstr "Függőleges szinkronizáció futtatása a képtörés javítására. A 
 
 #: gui/options/options.jsongraphicsSetting[15].label
 msgid "VSync"
-msgstr "VSync"
+msgstr "Függőleges szinkron"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Limit FPS to 50 in all menus, to save power."
@@ -2503,16 +2515,21 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Közepes triérész-osztályú hadihajó."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- The only ship of its kind."
-msgstr "- Az egyetlen hajó a maga fajtájából."
+msgid ""
+"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+msgstr "- Elérhető a kelta népeknek (britonok, gallok), maurjáknak és az ibériaiknak."
 
 #: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- A többi triérésztől eltérően nem tud döfni de nagyobb az életereje és a páncélzata."
-
-#: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- 40 egységet tud szállítani vízen."
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Increases firepower with garrissoned infantry."
+msgstr "- Növeli a tűzerejét a beszállásolt gyalogsággal."
+
+#: gui/text/tips/celtic_war_barge.txt:10
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- A többi triérésztől eltérően nem tud döfni de nagyobb az életereje és a páncélzata."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2561,16 +2578,20 @@ msgid "- Fish the seas for a bountiful harvest."
 msgstr "- Halássz a tengereken a remek zsákmányért."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of Food per trip."
+msgid "- Fishing boats carry a large amount of food per trip."
 msgstr "- A halászhajók nagy mennyiségű élelmet képesek magukkal vinni."
 
 #: gui/text/tips/fishing.txt:6
-msgid ""
-"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
-"rate."
-msgstr "- Hajózz be egy támogató egységet, hogy megkettőzd a hajó gyűjtési sebességét."
+msgid "- Fishing is faster than gathering food on fields."
+msgstr "- A halászat gyorsabb, mint az élelem gyűjtése a mezőkről."
 
 #: gui/text/tips/fishing.txt:8
+msgid ""
+"- Garrison a support unit aboard to double the fishing boat's gathering "
+"rate."
+msgstr "- Szállásolj be egy támogató egységet a fedélzetre, hogy megkettőzd a hajó gyűjtési sebességét."
+
+#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "- Vigyázz! A halak nem tartanak ki örökké!"
 
@@ -2743,10 +2764,14 @@ msgid ""
 msgstr "- A legkeményebb szabványos hadihajó. Elérhető Róma, Karthágó, a ptolemaioszok és a szeleukidák számára."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Garrison ballistas to increase fire power."
-msgstr "- Ballisztikusokat behajózva fokozni lehet a tűzerejét."
+msgid "- Transports up to 50 units."
+msgstr "- 50 egységet tud szállítani."
 
 #: gui/text/tips/quinquereme.txt:6
+msgid "- Increases firepower with garrissoned catapults."
+msgstr "- Növeli a tűzerejét a beszállásolt katapultokkal."
+
+#: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr "- Faltörő kosával el tudja süllyeszteni az ellenséges hajókat (NINCS MÉG IMPLEMENTÁLVA)."
 

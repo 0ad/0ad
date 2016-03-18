@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:00+0100\n"
+"PO-Revision-Date: 2016-03-17 21:28+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -322,7 +322,7 @@ msgstr "%(previousAmounts)s a %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
@@ -332,22 +332,22 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)s)"
-msgstr ""
+msgstr "Ztrácí spojení se serverem (%(seconds)s)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)s)"
-msgstr ""
+msgstr "%(player)s ztrácí spojení (%(seconds)s)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Špatné spojení se serverem (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Špatné spojení s %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -355,7 +355,7 @@ msgstr "Neznámý důvod"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Server skončil hru"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -381,36 +381,40 @@ msgstr "Byl jste zakázán"
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr ""
 
-#: gui/common/network.js:63
+#: gui/common/network.js:61
+msgid "Server full"
+msgstr "Plný server"
+
+#: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Neplatná hodnota %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:75
+#: gui/common/network.js:76
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Důvod: %(reason)s."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Lost connection to the server."
 msgstr "Spojení se serverem ztraceno."
 
-#: gui/common/network.js:76
+#: gui/common/network.js:77
 msgid "Disconnected"
 msgstr "Odpojeno"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Nepodařilo se zakázat %(name)s."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:85
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Nepodařilo se vykopnout %(name)s."
 
-#: gui/common/network.js:118
+#: gui/common/network.js:119
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Uživatelé: %(users)s"
@@ -781,7 +785,7 @@ msgstr "Třídy:"
 #: gui/credits/credits.js:32
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1040,7 +1044,7 @@ msgstr "rrrr-MM"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Neznámá civilizace"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1368,23 +1372,23 @@ msgstr "Zavřít"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Zásluhy o 0 A.D."
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Zvláštní zásluhy"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Programování"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Umění"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Překladatelé"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1392,7 +1396,7 @@ msgstr "Různé"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donators"
-msgstr ""
+msgstr "Dárci"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1489,7 +1493,7 @@ msgstr "Nastavení zájmové skupiny"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Nastavit znovu"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1501,15 +1505,15 @@ msgstr "Uložit"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Nastavit znovu nastavení na výchozí herní hodnoty"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Vrátí do předtím uloženého stavu nastavení"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Uloží změny"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1643,11 +1647,11 @@ msgstr "Nahlásit chybu"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Překládat hru"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Zásluhy"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1759,7 +1763,7 @@ msgstr "Klepněte pro otevření překladatelské stránky 0 A.D. ve svém prohl
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Klepněte pro zobrazení zásluh o 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1895,43 +1899,43 @@ msgstr "Pokračovat"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Hlavní umělec"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Zvukař"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Skladatel"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Umělečtí vedoucí"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Mapping"
-msgstr ""
+msgstr "Mapy"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Skripty náhodných map"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "Dvojrozměrné umění"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "Trojrozměrné umění"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "Zvuk"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Hudba"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1953,111 +1957,111 @@ msgstr ""
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Dějepisné odkazy"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Společenství a správa"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Programátoři"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Zvláštní poděkování"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "Posmrtně"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Zakladatel 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Projektoví vedoucí"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Návrháři"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Zvláštní poděkování:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "A poděkování celému společenství za umožnění 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Během vývoje tohoto projektu nebyli napadeni žádní dějepisci."
 
 #: gui/credits/texts/translators.jsonContent[0].Title
 msgid "Czech"
-msgstr ""
+msgstr "Český"
 
 #: gui/credits/texts/translators.jsonContent[1].Title
 msgid "German"
-msgstr ""
+msgstr "Německý"
 
 #: gui/credits/texts/translators.jsonContent[2].Title
 msgid "English (UK)"
-msgstr ""
+msgstr "Anglický (Spojené království)"
 
 #: gui/credits/texts/translators.jsonContent[3].Title
 msgid "Spanish"
-msgstr ""
+msgstr "Španělský"
 
 #: gui/credits/texts/translators.jsonContent[4].Title
 msgid "French"
-msgstr ""
+msgstr "Francouzský"
 
 #: gui/credits/texts/translators.jsonContent[5].Title
 msgid "Gaelic"
-msgstr ""
+msgstr "Gaelský"
 
 #: gui/credits/texts/translators.jsonContent[6].Title
 msgid "Galician"
-msgstr ""
+msgstr "Galicijský"
 
 #: gui/credits/texts/translators.jsonContent[7].Title
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonézský"
 
 #: gui/credits/texts/translators.jsonContent[8].Title
 msgid "Italian"
-msgstr ""
+msgstr "Italský"
 
 #: gui/credits/texts/translators.jsonContent[9].Title
 msgid "Dutch"
-msgstr ""
+msgstr "Holandský"
 
 #: gui/credits/texts/translators.jsonContent[10].Title
 msgid "Polish"
-msgstr ""
+msgstr "Polský"
 
 #: gui/credits/texts/translators.jsonContent[11].Title
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugalský (Brazílie)"
 
 #: gui/credits/texts/translators.jsonContent[12].Title
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "Portugalský (Portugalsko)"
 
 #: gui/credits/texts/translators.jsonContent[13].Title
 msgid "Russian"
-msgstr ""
+msgstr "Ruský"
 
 #: gui/credits/texts/translators.jsonContent[14].Title
 msgid "Slovak"
-msgstr ""
+msgstr "Slovenský"
 
 #: gui/credits/texts/translators.jsonContent[15].Title
 msgid "Turkish"
-msgstr ""
+msgstr "Turecký"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2112,11 +2116,11 @@ msgstr "Podrobné nástrojové rady"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Ukázat, který hráč má ve hrách pro více hráčů špatné spojení."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Síťová varování"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2166,6 +2170,14 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
 msgstr ""
+
+#: gui/options/options.jsongeneralSetting[11].tooltip
+msgid "Prevent further observer from joining if the limit is reached"
+msgstr "Zabránit dalšímu pozorovateli v připojení se, pokud je dosaženo hranice počtu pozorovatelů"
+
+#: gui/options/options.jsongeneralSetting[11].label
+msgid "Observer Limit"
+msgstr "Omezení počtu pozorovatelů"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2225,15 +2237,15 @@ msgstr "Následné zpracování"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Nízký"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Střední"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Vysoký"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2283,7 +2295,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Zapnout vodní efekty"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2512,16 +2524,21 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Středně těžká válečná loď."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid "- The only ship of its kind."
-msgstr "- Jediná loď svého druhu."
+msgid ""
+"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Nemůže provést čelní útok klounem, jako je to u jiných trojveslic, má ale větší zdraví a brnění."
-
-#: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- Může po vodě přepravovat až 40 jednotek."
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Increases firepower with garrissoned infantry."
+msgstr ""
+
+#: gui/text/tips/celtic_war_barge.txt:10
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- Nemůže provést čelní útok klounem, jako je to u jiných trojveslic, má ale větší zdraví a brnění."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -2570,16 +2587,20 @@ msgid "- Fish the seas for a bountiful harvest."
 msgstr "- Lovte ryby na mořích pro bohatý úlovek."
 
 #: gui/text/tips/fishing.txt:4
-msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr "- Rybářské lodě uvezou velké množství jídla."
+msgid "- Fishing boats carry a large amount of food per trip."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:6
-msgid ""
-"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
-"rate."
-msgstr "- Naloďte podpůrnou jednotkou na palubu rybářské lodi a zdvojnásobte její rychlost lovu ryb."
+msgid "- Fishing is faster than gathering food on fields."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:8
+msgid ""
+"- Garrison a support unit aboard to double the fishing boat's gathering "
+"rate."
+msgstr ""
+
+#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "- Pozor! Rybolov není nevyčerpatelný zdroj!"
 
@@ -2752,10 +2773,14 @@ msgid ""
 msgstr " - Nejtěžší dostupná válečná loď. Dostupná pro: Řím, Karthágo, Ptolemaiovce a Seleukovce."
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "- Garrison ballistas to increase fire power."
-msgstr "- Umístěte dovnitř balisty pro zvýšení síly palby."
+msgid "- Transports up to 50 units."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
+msgid "- Increases firepower with garrissoned catapults."
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
 msgstr "- Může provádět útok klounem, kterým potopí nepřátelské lodě (JEŠTĚ NEBYLO PŘIDÁNO)."
 

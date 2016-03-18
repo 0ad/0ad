@@ -10,14 +10,14 @@
 # Max Klaversma <maxklaversma@gmail.com>, 2014
 # niektb <niektb95@gmail.com>, 2014-2015
 # TheBuG <Ruben.bilo@gmail.com>, 2014
-# Sander Deryckere, 2014
+# Sander Deryckere, 2014,2016
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-29 21:00+0000\n"
-"Last-Translator: Anique van Berne <avanberne@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-17 10:27+0000\n"
+"Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgstr "Hoge bergen in de Alpen, met diepe valleien er tussen."
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
-msgstr "Alpine vallei"
+msgstr "Alpenvallei"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -179,6 +179,16 @@ msgstr "Spelers starten in noord Frankrijk of zuid Engeland, met het kanaal als 
 msgid "English Channel"
 msgstr "Engels Kanaal"
 
+#: maps/random/flood.jsonsettings.Description
+msgid ""
+"A great flood has moved across the valley enabling ships and troops to "
+"battle in chest deep waters."
+msgstr "Een overstroming heeft de vallei onder water gezet, eilanden kunnen zowel per ship als te voet bereikt worden."
+
+#: maps/random/flood.jsonsettings.Name
+msgid "Flood"
+msgstr "Overstoming"
+
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
 msgstr "Spelers starten in een groot fort, met stapels grondstoffen."
@@ -226,6 +236,16 @@ msgstr "Iedere speler start aan de kust tussen beboste heuvels en de Kaspische Z
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Hyrcanische kusten"
+
+#: maps/random/island_stronghold.jsonsettings.Description
+msgid ""
+"Teams start off with nearly adjacent town centers on a small island, "
+"offering a fortified base from which to expand."
+msgstr "Teams starten met beschavingscentra dicht bij elkaar, op een klein eiland. Dit biedt een versterkte basis om verder uit te breiden."
+
+#: maps/random/island_stronghold.jsonsettings.Name
+msgid "Island Stronghold"
+msgstr "Eilandfort"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -434,7 +454,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr "[color=\"red\"]BELANGRIJKE OPMERKING: COMPUTERGESTUURDE SPELERS WERKEN NIET OP DEZE MAP[/color]\n\nVerdedig je basis tegen eindeloze golven aan vijanden. Gebruik je vrouwelijke burgers om grondstoffen te verzamelen in het centrum van de kaart voordat de ander spelers ze geroofd hebben en probeer zo je basis op te bouwen. De laatst overgebleven speler is de winnaar."
+msgstr "[color=\"red\"]BELANGRIJKE OPMERKING: COMPUTERGESTUURDE SPELERS WERKEN NIET OP DEZE KAART[/color]\n\nVerdedig je basis tegen eindeloze golven aan vijanden. Gebruik je vrouwelijke burgers om grondstoffen te verzamelen in het centrum van de kaart voordat de ander spelers ze geroofd hebben en probeer zo je basis op te bouwen. De laatst overgebleven speler is de winnaar."
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -1656,11 +1676,11 @@ msgstr "Akropolisbaai (2)"
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
 "resources."
-msgstr "Een kaart gevuld met niet te beklimmen bergen en een groot aantal natuurlijke bronnen."
+msgstr "Een kaart gevuld met onbegaanbare bergen en een groot aantal natuurlijke bronnen."
 
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
-msgstr "Alpine Bergen (3)"
+msgstr "Alpenbergen (3)"
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
 msgid ""
@@ -1671,7 +1691,7 @@ msgstr "Hoge pieken en valleien van de Alpen.\n\nElke speler start de wedstrijd 
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
 msgid "Alpine Valleys (2)"
-msgstr "Alpine vallei (2)"
+msgstr "Alpenvallei (2)"
 
 #: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
@@ -1825,6 +1845,16 @@ msgstr "Spelers starten op een oever van de rivier, met een minimum aan metaal. 
 #: maps/skirmishes/Gambia River (3).xml:Name:42
 msgid "Gambia River (3)"
 msgstr "Gambië rivier (3)"
+
+#: maps/skirmishes/Golden Island (2).xml:Description:40
+msgid ""
+"A ring of land borders a resource-rich island in the Mediterranean. Players "
+"can access the center via a narrow strip of land or via boat."
+msgstr "Een ring van landen grenst in de Middellandse Zee aan een eiland met veel grondstoffen. Spelers kunnen het eiland bereiken via een dunne landtong of per boot."
+
+#: maps/skirmishes/Golden Island (2).xml:Name:40
+msgid "Golden Island (2)"
+msgstr "Gouden eiland (2)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""

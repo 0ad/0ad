@@ -10,14 +10,14 @@
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # Peter Dosh <peter.dosh@hotmail.com>, 2015
 # qwertz, 2015
-# Raymond Vetter, 2014-2015
+# Raymond Vetter, 2014-2016
 # Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-17 17:52+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +124,7 @@ msgstr "Berittener Fernkämpfer"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Ranged"
 msgstr "Fernkämpfer"
 
@@ -376,9 +376,15 @@ msgstr "Schleuderer"
 msgid "Ship"
 msgstr "Schiff"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Light Warship"
 msgstr "Leichtes Kriegsschiff"
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
+msgid ""
+"Garrison up to 20 units for transport. Garrison increases the firepower up "
+"to 10 arrows."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -416,25 +422,31 @@ msgstr "Handelt zwischen Häfen. Quartiere einen Händler für höheren Profit e
 msgid "Trader"
 msgstr "Händler"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Heavy Warship"
 msgstr "Schweres Kriegsschiff"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
-msgid "Garrison with catapults to increase ranged fire power."
-msgstr "Stationiere mit Katapulten, um die Feuerkraft zu erhöhen."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
+msgid "Garrison up to 10 catapults to increase fire power."
+msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
 msgstr "Mittelschweres Kriegsschiff"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Kriegsschiff"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Mittel"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+msgid ""
+"Garrison up to 30 units for transport. Garrison increases the firepower up "
+"to 13 arrows."
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -471,8 +483,8 @@ msgid "Inspiration Aura"
 msgstr "Inspirationsaura"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster"
-msgstr "In der Nähe befindliche Männer arbeiten 10% schneller"
+msgid "Nearby males work 10% faster."
+msgstr "In der Nähe befindliche Männer arbeiten 10% schneller."
 
 #: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
@@ -795,7 +807,7 @@ msgid "Naval Architect Aura"
 msgstr "Flottenkonstrukteur"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "Ships are built +20% faster during his lifespan."
+msgid "-20% build time for ships during his lifespan."
 msgstr "Schiffe werden während seiner Lebensdauer 20% schneller gebaut."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
@@ -970,8 +982,8 @@ msgid "Caratacos"
 msgstr "Caratacus"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "Let all units heal at 1 HP per second"
-msgstr "Lässt alle Einheiten 1 Trefferpunkt pro Sekunde regenerieren."
+msgid "+1 HP per second healing rate for all units."
+msgstr ""
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:18
 msgid "Cunobelin"
@@ -2129,8 +2141,8 @@ msgid "Patriot Aura"
 msgstr "Patriotenaura"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 20% faster in her vision range."
-msgstr "Ägyptische Einheiten kämpfen 20% schneller in ihrem Sichtbereich."
+msgid "Egyptian units fight 25% faster in her vision range."
+msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid "Cleopatra VII"

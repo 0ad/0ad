@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-17 10:23+0000\n"
+"Last-Translator: Thadah <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgstr "%(nick)s joan da."
 #: gui/lobby/lobby.js:141
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s orain %(newnick)s bezala ezagutzen da."
 
 #: gui/lobby/lobby.js:209
 msgctxt "map size"
@@ -107,23 +107,23 @@ msgstr "Jokalariak:"
 
 #: gui/lobby/lobby.js:634
 msgid "The game has already started."
-msgstr ""
+msgstr "Jokoa jadanik hasita dago."
 
 #: gui/lobby/lobby.js:635
 msgid "Do you want to join as observer?"
-msgstr ""
+msgstr "Ikuskatzaile bezala sartu nahi zara?"
 
 #: gui/lobby/lobby.js:636
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmazioa"
 
 #: gui/lobby/lobby.js:638
 msgid "No"
-msgstr ""
+msgstr "Ez"
 
 #: gui/lobby/lobby.js:638
 msgid "Yes"
-msgstr ""
+msgstr "Bai"
 
 #: gui/lobby/lobby.js:657
 #, javascript-format
@@ -189,7 +189,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:948
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Mesedez ez ezazu spam-ik egin. 30 segundu blokeatua izan zara."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -225,7 +225,7 @@ msgstr "Mesedez irakurri Zerbitzuaren Baldintzak"
 
 #: gui/lobby/prelobby.js:135
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Mesedez irakurri Zerbitzuaren Baldintzak"
 
 #: gui/lobby/prelobby.js:141
 msgid "Please agree to the Terms of Service and Terms of Use"
@@ -389,7 +389,7 @@ msgstr "Pasahitza: "
 
 #: gui/lobby/prelobby.xml:(caption):59
 msgid "Registration"
-msgstr ""
+msgstr "Izen ematea"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
@@ -558,7 +558,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr " 6. Zerbitzua ez spameatzea."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
