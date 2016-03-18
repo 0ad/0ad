@@ -4,16 +4,16 @@ var tGrass = ["cliff volcanic light", "ocean_rock_a", "ocean_rock_b"];
 var tGrassA = "cliff volcanic light";
 var tGrassB = "ocean_rock_a";
 var tGrassC = "ocean_rock_b";
-var tCliff = ["cliff volcanic coarse", "cave_walls"]
+var tCliff = ["cliff volcanic coarse", "cave_walls"];
 var tDirt = ["ocean_rock_a", "ocean_rock_b"];
 var tRoad = "road1";
 var tRoadWild = "road1";
 var tShoreBlend = "temp_grass_plants";
 var tShore = "temp_plants_bog";
 var tWater = "temp_mud_a";
-var tLava1 = "LavaTest05"
-var tLava2 = "LavaTest04"
-var tLava3 = "LavaTest03"
+var tLava1 = "LavaTest05";
+var tLava2 = "LavaTest04";
+var tLava3 = "LavaTest03";
 
 // gaia entities
 var oTree = "gaia/flora_tree_dead";
@@ -137,19 +137,24 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	var hillSize = PI * radius * radius;
+
 	// create starting trees
+	var hillSize = PI * radius * radius;
 	var num = floor(hillSize / 60);
-	var tAngle = randFloat(-PI/3, 4*PI/3);
-	var tDist = randFloat(12, 13);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oTree, num, num, 0,3)],
-		false, clBaseResource, tX, tZ
-	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+	var tries = 10;
+	for (var x = 0; x < tries; ++x) 
+	{
+		var tAngle = randFloat(-PI/3, 4*PI/3);
+		var tDist = randFloat(12, 13);
+		var tX = round(fx + tDist * cos(tAngle));
+		var tZ = round(fz + tDist * sin(tAngle));
+		group = new SimpleGroup(
+			[new SimpleObject(oTree, num, num, 0, 3)],
+			false, clBaseResource, tX, tZ
+		);
+		if (createObjectGroup(group, 0, avoidClasses(clBaseResource, 2)))
+			break;
+	}
 }
 
 RMS.SetProgress(15);
@@ -160,7 +165,7 @@ var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 var ix = round(fx);
 var iz = round(fz);
-var div = scaleByMapSize(1,8)
+var div = scaleByMapSize(1,8);
 var placer = new ClumpPlacer(mapArea * 0.067 / div, 0.7, 0.05, 100, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tCliff],		// terrains
