@@ -234,7 +234,7 @@ for (let i = 0; i < teams.length; ++i)
 		let bbDist = 10;
 		let bbX = round(fx + bbDist * cos(bbAngle));
 		let bbZ = round(fz + bbDist * sin(bbAngle));
-		group = new SimpleGroup(
+		let group = new SimpleGroup(
 			[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
 			true, clBaseResource, bbX, bbZ
 		);
