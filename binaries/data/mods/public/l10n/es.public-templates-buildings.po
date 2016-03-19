@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-18 07:39+0000\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-18 08:44+0000\n"
 "Last-Translator: Luis Torrecilla <l_torrecilla@yahoo.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -327,19 +327,11 @@ msgstr "Edificio especial"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Éste es un edificio especial, único para una civilización específica."
 
-#: simulation/templates/template_structure_wonder.xml:20
-msgid "Wonder Aura"
-msgstr "Aura de la maravilla"
-
-#: simulation/templates/template_structure_wonder.xml:21
-msgid "+10 maximum population cap."
-msgstr "Amplia a +10 el límite de población."
-
-#: simulation/templates/template_structure_wonder.xml:57
+#: simulation/templates/template_structure_wonder.xml:46
 msgid "Wonder"
 msgstr "Maravilla"
 
-#: simulation/templates/template_structure_wonder.xml:58
+#: simulation/templates/template_structure_wonder.xml:47
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -623,7 +615,7 @@ msgstr "Bonificación de cultivo"
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25% gathering rate."
-msgstr ""
+msgstr "Potencia los cultivos cercanos con una tasa de recolección +25%."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -913,7 +905,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
-msgstr ""
+msgstr "Todas las unidades dentro de la visión de este monumento lucharán con más fuerza. Alcance del efecto: 50 metros. Los edificios en el territorio del monumento no se deterioran."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1073,7 +1065,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "El famoso pilar de Ashoka. Aumenta la velocidad al caminar de los comerciantes. Los edificios en el territorio del monumento no se deterioran."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"

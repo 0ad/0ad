@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-16 22:11+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-18 08:36+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -333,13 +333,13 @@ msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
-msgstr "Kapcsolat elvesztése a kiszolgálóhoz (%(seconds)s)"
+msgid "Losing connection to server (%(seconds)ss)"
+msgstr ""
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
-msgstr "%(player)s elveszti a kapcsolatot (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
+msgstr ""
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -775,7 +775,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Osztályok:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1386,8 +1386,8 @@ msgid "Miscellaneous"
 msgstr "Egyéb"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
-msgstr "Adományozók"
+msgid "Donors"
+msgstr ""
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1905,8 +1905,8 @@ msgid "Artistic managers"
 msgstr "Művészeti menedzserek"
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
-msgstr "Térképkészítés"
+msgid "Map Making"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
@@ -1989,70 +1989,6 @@ msgstr "És köszönet az egész közösségnek, a 0 A.D. lehetővé tételéhez
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "Egyetlen történésznek sem esett bántódása a projekt fejlesztése során."
-
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr "cseh"
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr "német"
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr "angol (UK)"
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr "spanyol"
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr "francia"
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr "gael"
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr "galiciai"
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr "indonéz"
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr "olasz"
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr "hollan"
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr "lengyel"
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr "portugál (Brazília)"
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr "portugál (Portugália)"
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr "orosz"
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr "szlovák"
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
-msgstr "török"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2516,16 +2452,16 @@ msgstr "- Közepes triérész-osztályú hadihajó."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
-msgstr "- Elérhető a kelta népeknek (britonok, gallok), maurjáknak és az ibériaiknak."
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- 40 egységet tud szállítani vízen."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
-msgstr "- Növeli a tűzerejét a beszállásolt gyalogsággal."
+msgid "- Increases firepower with garrisoned infantry."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2768,8 +2704,8 @@ msgid "- Transports up to 50 units."
 msgstr "- 50 egységet tud szállítani."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
-msgstr "- Növeli a tűzerejét a beszállásolt katapultokkal."
+msgid "- Increases firepower with garrisoned catapults."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

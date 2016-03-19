@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-17 10:39+0000\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-19 08:43+0000\n"
 "Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -338,13 +338,13 @@ msgstr ","
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
-msgstr "Verbinding met de server gaat verloren (%(seconds)s)."
+msgid "Losing connection to server (%(seconds)ss)"
+msgstr "Verbinding met de server gaat verloren (%(seconds)ss)."
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
-msgstr "%(player)s is de verbinding met de server aan het verliezen (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
+msgstr "%(player)s is de verbinding met de server aan het verliezen (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -780,7 +780,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Klasses:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1391,8 +1391,8 @@ msgid "Miscellaneous"
 msgstr "Diversen"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
-msgstr "Donoren"
+msgid "Donors"
+msgstr "Donors"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1910,7 +1910,7 @@ msgid "Artistic managers"
 msgstr "Artistieke managers"
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
+msgid "Map Making"
 msgstr "Kaartmakers"
 
 #: gui/credits/texts/art.jsonContent[2].Title
@@ -1994,70 +1994,6 @@ msgstr "En bedankt aan de hele 0 A.D. gemeenschap om dit project mogelijk te mak
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "Er werden geen geschiedkundigen gefolterd bij het maken van dit project."
-
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr "Tsjechisch"
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr "Duits"
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr "Engels (UK)"
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr "Spaans"
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr "Frans"
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr "Gaelisch"
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr "Galicisch"
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr "Indonesisch"
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr "Italiaans"
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr "Nederlands"
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr "Pools"
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr "Portugees (Brazilië)"
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr "Portugees (Portugal)"
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr "Russisch"
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr "Slovaaks"
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
-msgstr "Turks"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2521,7 +2457,7 @@ msgstr "- Een medium \"trireme\"-klasse oorlogsschip."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
 msgstr "- Beschikbaar voor de Keltische beschavingen (Britten en Galliërs), de Mauryadynastie en Iberiërs."
 
 #: gui/text/tips/celtic_war_barge.txt:6
@@ -2529,7 +2465,7 @@ msgid "- Can transport up to 40 units across the waters."
 msgstr "- Kan tot 40 eenheden over het water vervoeren."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
+msgid "- Increases firepower with garrisoned infantry."
 msgstr "- Verhoog de vuurkracht m.b.v. extra infanteriebemanning."
 
 #: gui/text/tips/celtic_war_barge.txt:10
@@ -2773,7 +2709,7 @@ msgid "- Transports up to 50 units."
 msgstr "- Kan tot 50 eenheden vervoeren."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
+msgid "- Increases firepower with garrisoned catapults."
 msgstr "- Verhoog de vuurkracht m.b.v. extra katapulten."
 
 #: gui/text/tips/quinquereme.txt:8

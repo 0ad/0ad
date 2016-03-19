@@ -6,14 +6,15 @@
 # Fabrizio Marana, 2015
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
-# Martin <mhilgendrf@aol.com>, 2016
-# Martin <mhilgendrf@aol.com>, 2015-2016
+# pilino1234 <mhilgendrf@aol.com>, 2016
+# pilino1234 <mhilgendrf@aol.com>, 2015-2016
+# pilino1234 <mhilgendrf@aol.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-15 11:06+0000\n"
-"Last-Translator: Martin <mhilgendrf@aol.com>\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-18 19:59+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -328,13 +329,13 @@ msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
-msgstr "Losing connection to server (%(seconds)s)"
+msgid "Losing connection to server (%(seconds)ss)"
+msgstr "Losing connection to server (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
-msgstr "%(player)s losing connection (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
+msgstr "%(player)s losing connection (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -770,7 +771,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Classes:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1381,8 +1382,8 @@ msgid "Miscellaneous"
 msgstr "Miscellaneous"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
-msgstr "Donators"
+msgid "Donors"
+msgstr "Donors"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1900,7 +1901,7 @@ msgid "Artistic managers"
 msgstr "Artistic managers"
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
+msgid "Map Making"
 msgstr "Map Making"
 
 #: gui/credits/texts/art.jsonContent[2].Title
@@ -1984,70 +1985,6 @@ msgstr "And thanks to the entire community for making 0 A.D. possible."
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "No historians were harmed during the development of this project."
-
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr "Czech"
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr "German"
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr "English (UK)"
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr "Spanish"
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr "French"
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr "Gaelic"
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr "Galician"
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr "Indonesian"
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr "Italian"
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr "Dutch"
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr "Polish"
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr "Portuguese (Brazil)"
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr "Portuguese (Portugal)"
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr "Russian"
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr "Slovak"
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
-msgstr "Turkish"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2511,15 +2448,15 @@ msgstr "- A medium \"trireme\"-class warship."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
-msgstr "- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
+msgstr "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- Can transport up to 40 units across the waters."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
+msgid "- Increases firepower with garrisoned infantry."
 msgstr "- Increases firepower with garrisoned infantry."
 
 #: gui/text/tips/celtic_war_barge.txt:10
@@ -2763,8 +2700,8 @@ msgid "- Transports up to 50 units."
 msgstr "- Transports up to 50 units."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
-msgstr "- Increases firepower with garrissoned catapults."
+msgid "- Increases firepower with garrisoned catapults."
+msgstr "- Increases firepower with garrisoned catapults."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

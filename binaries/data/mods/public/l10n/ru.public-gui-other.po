@@ -10,6 +10,7 @@
 # dr&mx <dronmax@gmail.com>, 2014
 # grin.sv <grin.sv@gmail.com>, 2015
 # Igor Kustov, 2014
+# Ivan Fyodorov <fyodorovvanya@gmail.com>, 2016
 # Ivan Seleznev <evan.roda@gmail.com>, 2015
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
@@ -24,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-15 14:12+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-18 20:36+0000\n"
+"Last-Translator: Ivan Fyodorov <fyodorovvanya@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -347,13 +348,13 @@ msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
-msgstr "Потеря соединения с сервером (%(seconds)s)"
+msgid "Losing connection to server (%(seconds)ss)"
+msgstr "Потеря соединения с сервером (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
-msgstr "%(player)s теряет соединение (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
+msgstr "%(player)s потерял соединение (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -395,7 +396,7 @@ msgstr "Вас заблокировали"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Название игрока уже используется. Если вы потеряете соединение, переподключитесь чуть позже."
 
 #: gui/common/network.js:61
 msgid "Server full"
@@ -658,7 +659,7 @@ msgstr[3] "метра"
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:211 gui/common/tooltips.js:224
 #, javascript-format
@@ -673,12 +674,12 @@ msgstr[3] "%(range)s %(meters)s"
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 
 #: gui/common/tooltips.js:237
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:238
 msgid "Repair Rate:"
@@ -695,7 +696,7 @@ msgstr "рабочий"
 #: gui/common/tooltips.js:248
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:249
 msgid "Build Rate:"
@@ -807,10 +808,10 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Классы:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1059,7 +1060,7 @@ msgstr[3] ""
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_menu.js:242
 msgid "yyyy-MM-dd HH:mm"
@@ -1083,7 +1084,7 @@ msgstr "%(playerName)s (%(civ)s)"
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, повержен)"
 
 #: gui/replaymenu/replay_menu.js:340
 #, javascript-format
@@ -1095,7 +1096,7 @@ msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, повержен)"
 
 #: gui/replaymenu/replay_menu.js:358
 msgid "No Team"
@@ -1399,11 +1400,11 @@ msgstr "Закрыть"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. Кредиты"
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Особые кредиты"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
@@ -1422,8 +1423,8 @@ msgid "Miscellaneous"
 msgstr "Разное"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
-msgstr "Пожертвования"
+msgid "Donors"
+msgstr "жертвователи"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1678,7 +1679,7 @@ msgstr "Перевести игру"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Кредиты"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1790,7 +1791,7 @@ msgstr "Открыть страницу перевода 0 A.D. в браузе�
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Нажмите, чтобы увидеть 0 A.D. кредиты."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1930,7 +1931,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "звуковой менеджер"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
@@ -1938,19 +1939,19 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Художественные руководители"
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
-msgstr ""
+msgid "Map Making"
+msgstr "Изготовление карт"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Случайные скрипты карт."
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D Арт."
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
@@ -1958,7 +1959,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "Звук"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
@@ -1976,23 +1977,23 @@ msgstr ""
 msgid ""
 "IndieGoGO 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "IndieGoGO 2013 кампания\nБолее 1000 жертвователей (!), включая:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Глава"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "исторические рекомендации"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Сообщество и управление"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "менеджеры по программированию"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
@@ -2020,75 +2021,11 @@ msgstr "Специальное спасибо:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "И спасибо всему сообществу за то что создание 0 A.D. стало возможным."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "В ходе разработки проекта никто из историков не пострадал."
-
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr "Чешский"
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr "Немецкий"
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr "Английский (СК)"
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr "Испанский"
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr "Французский"
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr "Гаэльский"
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr "Индонезийский"
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr "Итальянский"
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr "Голландский"
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr "Польский"
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr "Португальский (Бразилия)"
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr "Португальский (Португалия)"
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr "Русский"
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr "Словацкий"
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
-msgstr "Турецкий"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2143,11 +2080,11 @@ msgstr "Подробные подсказки"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Показать, какой игрок имеет плохое соединение в многопользовательских играх."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Сетевые предупреждения"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2192,19 +2129,19 @@ msgstr "Сохранять настройки матча"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Разрешить наблюдателям присоединиться к игре после того, как она началась"
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Поздний наблюдатель присоединяется."
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
-msgstr ""
+msgstr "Предотвращение дальнейшего наблюдателя от присоединения, если предел достигнут"
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "наблюдательский лимит"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2318,7 +2255,7 @@ msgstr "Частицы"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Когда Выкл., Используйте самые низкие настройки возможных для визуализации воды. Это делает другие настройки незначимыми"
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
@@ -2552,16 +2489,16 @@ msgstr "- Военный корабль средних размеров клас
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
-msgstr ""
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
+msgstr "Доступно для Кельтских Фракциях"
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
 msgstr "- Может перевозить по воде до 40 юнитов."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
-msgstr ""
+msgid "- Increases firepower with garrisoned infantry."
+msgstr "Повышение огневой мощи с гарнизоном пехоты."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2615,11 +2552,11 @@ msgstr "- Ловите рыбу в море для богатого улова."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Рыболовные суда могут перевозить больше пищи за одну поездку."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Рыбалка быстрее, чем сбор пищи на полях."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
@@ -2801,11 +2738,11 @@ msgstr "- Самый тяжёлый военный корабль. Доступ�
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "транспортирует до 50 единиц."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
-msgstr ""
+msgid "- Increases firepower with garrisoned catapults."
+msgstr "Повышение огневой мощи с гарнизонных катапульт."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

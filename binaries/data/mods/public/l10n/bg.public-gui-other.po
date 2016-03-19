@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-15 15:22+0000\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-18 13:35+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Отваряне на страницата"
 #: gui/common/functions_global_object.js:84
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr "Кадри/с: %(fps)4s"
+msgstr "Кадри/сек: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -330,13 +330,13 @@ msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
-msgstr "Губене на връзка към сървъра (%(seconds)s)"
+msgid "Losing connection to server (%(seconds)ss)"
+msgstr "Губене на връзка към сървъра (%(seconds)s сек)"
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
-msgstr "%(player)s губи връзка (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
+msgstr "%(player)s губи връзка (%(seconds)s сек)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -772,7 +772,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Класове:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s — %(name)s"
@@ -1003,8 +1003,8 @@ msgstr "Всички"
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] "< %(max)s минута"
-msgstr[1] "< %(max)s минути"
+msgstr[0] "< %(max)s мин"
+msgstr[1] "< %(max)s мин"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1012,8 +1012,8 @@ msgstr[1] "< %(max)s минути"
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] "> %(min)s минута"
-msgstr[1] "> %(min)s минути"
+msgstr[0] "> %(min)s мин"
+msgstr[1] "> %(min)s мин"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
@@ -1202,7 +1202,7 @@ msgstr "Крепости"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr "Градски центрове"
+msgstr "Селищни центрове"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
@@ -1300,7 +1300,7 @@ msgstr "Приход от търговия"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr "Съотношение на\nвегетарианците"
+msgstr "Процент\nвегетарианци"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
@@ -1310,7 +1310,7 @@ msgstr "Феминизация"
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr "Съотношение на\nубийства / смъртност"
+msgstr "Съотношение\nубийства / смъртност"
 
 #: gui/summary/layout.js:127
 msgid ""
@@ -1383,7 +1383,7 @@ msgid "Miscellaneous"
 msgstr "Разни"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
+msgid "Donors"
 msgstr "Дарители"
 
 #: gui/locale/locale.xml:(caption):14
@@ -1446,7 +1446,7 @@ msgstr "Използвани речникови файлове:"
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr "Авт. разпознаване"
+msgstr "Автоматично"
 
 #: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
@@ -1759,7 +1759,7 @@ msgstr "Гледане на записи"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr "Филтриране на съвместими повторения"
+msgstr "Само съвместими повторения"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -1779,7 +1779,7 @@ msgstr "Играчи:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
-msgstr "Подсказка"
+msgstr "Разкриване на резултатите"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Main Menu"
@@ -1797,7 +1797,7 @@ msgstr "Обобщение"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr "Пускане на повторението"
+msgstr "Пускане"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
@@ -1902,8 +1902,8 @@ msgid "Artistic managers"
 msgstr "Управители графика"
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
-msgstr "Карти"
+msgid "Map Making"
+msgstr "Създаване на карти"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
@@ -1987,70 +1987,6 @@ msgstr "Както и благодарности на цялата общнос�
 msgid "No historians were harmed during the development of this project."
 msgstr "Нито един историк не беше наранен по време на разработката на този проект."
 
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr "Чешки"
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr "Немски"
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr "Английски (Великобритания)"
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr "Испански"
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr "Френски"
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr "Келтски"
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr "Галисийски"
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr "Индонезийски"
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr "Италиански"
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr "Нидерландски"
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr "Полски"
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr "Португалски (Бразилия)"
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr "Португалски (Португалия)"
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr "Руски"
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr "Словашки"
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
-msgstr "Турски"
-
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Брой запазени съобщения, които да бъдат заредени при влизане в чакалнята"
@@ -2081,7 +2017,7 @@ msgstr "Самостоятелните игри ще бъдат спрени н�
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Background Pause"
-msgstr "Пауза при преминаване на заден план"
+msgstr "Пауза на заден план"
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid ""
@@ -2091,7 +2027,7 @@ msgstr "Ако изключите този екран, може да пропу�
 
 #: gui/options/options.jsongeneralSetting[2].label
 msgid "Disable Welcome Screen"
-msgstr "Изключване на приветстващия прозорец"
+msgstr "Без приветстващ прозорец"
 
 #: gui/options/options.jsongeneralSetting[3].tooltip
 msgid ""
@@ -2116,7 +2052,7 @@ msgstr "Показване на броя на кадрите в секунда �
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "FPS Overlay"
-msgstr "Слой за кадри/с"
+msgstr "Слой за кадри/сек"
 
 #: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show current system time in top right corner."
@@ -2149,7 +2085,7 @@ msgstr "Запазване и възстановяване на настройк
 
 #: gui/options/options.jsongeneralSetting[9].label
 msgid "Persist Match Settings"
-msgstr "Запазване на настройките на срещата"
+msgstr "Помнене на настройките на срещата"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
@@ -2197,7 +2133,7 @@ msgstr "Сила на звука на действията, извършвани
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Gain"
-msgstr "Сила на звука на действията"
+msgstr "Сила на действията"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
@@ -2205,7 +2141,7 @@ msgstr "Сила на звука на потребителския интерф�
 
 #: gui/options/options.jsonsoundSetting[4].label
 msgid "UI Gain"
-msgstr "Сила на звука на потр. интерфейс"
+msgstr "Сила на потр. интерфейс"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
@@ -2357,12 +2293,12 @@ msgstr "Ограничаване на кадрите в секунда до 50 �
 
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "Limit FPS in Menus"
-msgstr "Ограничаване на кадрите/с в менютата"
+msgstr "Огранич. на к/сек в менютата"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  Благодарим Ви, че инсталирахте 0 A.D. Изгряващи империи!"
+msgstr "[font=\"sans-bold-20\"]  Благодарим Ви, че инсталирахте 0 A.D. — Изгряващи империи!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -2471,7 +2407,7 @@ msgstr "— Експертни копиеносци и експертни кон
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr "— За разлика от повечето експерти,  тези се обучават в храма, вместо в крепостта."
+msgstr "— За разлика от повечето експерти, тези се обучават в храма, вместо в крепостта."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -2513,15 +2449,15 @@ msgstr "— Среден клас триера."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
-msgstr "— Наличен за келтските фракции (бритони, гали), маурите и иберийците."
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
+msgstr "— Наличен за келтските фракции (брити, гали), маурите и иберийците."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
 msgstr "— Може да транспортира до 40 единици по вода."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
+msgid "- Increases firepower with garrisoned infantry."
 msgstr "— Увеличена огнева мощ при наличие на пехотни единици на борда."
 
 #: gui/text/tips/celtic_war_barge.txt:10
@@ -2530,7 +2466,7 @@ msgstr "— Не може да блъска с нос како другите т
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "ГРАДСКИ ЦЕНТРОВЕ"
+msgstr "СЕЛИЩНИ ЦЕНТРОВЕ"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
@@ -2765,7 +2701,7 @@ msgid "- Transports up to 50 units."
 msgstr "— Може да превозва до 50 единици."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
+msgid "- Increases firepower with garrisoned catapults."
 msgstr "— Увеличена огнева мощ при наличие на катапулти на борда."
 
 #: gui/text/tips/quinquereme.txt:8
@@ -2941,7 +2877,7 @@ msgstr "СВИВАНЕ НА ТЕРИТОРИЯТА"
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "— Това се случва когато сградите не са свързани със съюзнически градски център."
+msgstr "— Това се случва когато сградите не са свързани със съюзнически селищен център."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""

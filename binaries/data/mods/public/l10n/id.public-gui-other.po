@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-14 08:38+0000\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-18 08:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -324,12 +324,12 @@ msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
+msgid "Losing connection to server (%(seconds)ss)"
 msgstr ""
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
 msgstr ""
 
 #: gui/common/network.js:28
@@ -757,7 +757,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Kelas:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr ""
@@ -1366,7 +1366,7 @@ msgid "Miscellaneous"
 msgstr "Lain-lain"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
+msgid "Donors"
 msgstr ""
 
 #: gui/locale/locale.xml:(caption):14
@@ -1885,7 +1885,7 @@ msgid "Artistic managers"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
+msgid "Map Making"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[2].Title
@@ -1968,70 +1968,6 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
 msgstr ""
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
@@ -2496,7 +2432,7 @@ msgstr "- Kapal perang kelas trireme sedang."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
@@ -2504,7 +2440,7 @@ msgid "- Can transport up to 40 units across the waters."
 msgstr "- Dapat membawa hingga 40 unit melintasi perairan."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
+msgid "- Increases firepower with garrisoned infantry."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:10
@@ -2748,7 +2684,7 @@ msgid "- Transports up to 50 units."
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
+msgid "- Increases firepower with garrisoned catapults."
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:8

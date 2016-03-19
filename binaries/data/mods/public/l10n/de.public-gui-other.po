@@ -9,8 +9,8 @@
 # Leonard König <leonard.r.koenig@gmail.com>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # Marco tom Suden, 2015
-# Martin <mhilgendrf@aol.com>, 2016
-# Martin <mhilgendrf@aol.com>, 2015-2016
+# pilino1234 <mhilgendrf@aol.com>, 2016
+# pilino1234 <mhilgendrf@aol.com>, 2015-2016
 # Matthias Meger <JSoko@online.de>, 2016
 # Maximilian <camellion@gmx.de>, 2014
 # nautilusx, 2016
@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-17 17:53+0000\n"
+"POT-Creation-Date: 2016-03-18 09:00+0100\n"
+"PO-Revision-Date: 2016-03-18 19:41+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -339,12 +339,12 @@ msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
-msgid "Losing connection to server (%(seconds)s)"
+msgid "Losing connection to server (%(seconds)ss)"
 msgstr ""
 
 #: gui/common/network.js:22
 #, javascript-format
-msgid "%(player)s losing connection (%(seconds)s)"
+msgid "%(player)s losing connection (%(seconds)ss)"
 msgstr ""
 
 #: gui/common/network.js:28
@@ -781,7 +781,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Klassen:"
 
-#: gui/credits/credits.js:32
+#: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1369,7 +1369,7 @@ msgstr "Schließen"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. Credits"
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
@@ -1392,8 +1392,8 @@ msgid "Miscellaneous"
 msgstr "Verschiedenes"
 
 #: gui/credits/credits.xml:(caption):59
-msgid "Donators"
-msgstr ""
+msgid "Donors"
+msgstr "Spender"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1648,7 +1648,7 @@ msgstr "Das Spiel übersetzen"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1911,7 +1911,7 @@ msgid "Artistic managers"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
-msgid "Mapping"
+msgid "Map Making"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[2].Title
@@ -1986,7 +1986,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Spezieller Dank an:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
@@ -1995,70 +1995,6 @@ msgstr ""
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[0].Title
-msgid "Czech"
-msgstr "Tschechisch"
-
-#: gui/credits/texts/translators.jsonContent[1].Title
-msgid "German"
-msgstr "Deutsch"
-
-#: gui/credits/texts/translators.jsonContent[2].Title
-msgid "English (UK)"
-msgstr "Englisch (Großbritannien)"
-
-#: gui/credits/texts/translators.jsonContent[3].Title
-msgid "Spanish"
-msgstr "Spanisch"
-
-#: gui/credits/texts/translators.jsonContent[4].Title
-msgid "French"
-msgstr "Französisch"
-
-#: gui/credits/texts/translators.jsonContent[5].Title
-msgid "Gaelic"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[6].Title
-msgid "Galician"
-msgstr "Indonesisch"
-
-#: gui/credits/texts/translators.jsonContent[7].Title
-msgid "Indonesian"
-msgstr "Indonesisch"
-
-#: gui/credits/texts/translators.jsonContent[8].Title
-msgid "Italian"
-msgstr "Italienisch"
-
-#: gui/credits/texts/translators.jsonContent[9].Title
-msgid "Dutch"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[10].Title
-msgid "Polish"
-msgstr "Polisch"
-
-#: gui/credits/texts/translators.jsonContent[11].Title
-msgid "Portuguese (Brazil)"
-msgstr "Portugiesisch (Brasilien)"
-
-#: gui/credits/texts/translators.jsonContent[12].Title
-msgid "Portuguese (Portugal)"
-msgstr "Portugiesisch (Portugal)"
-
-#: gui/credits/texts/translators.jsonContent[13].Title
-msgid "Russian"
-msgstr "Russisch"
-
-#: gui/credits/texts/translators.jsonContent[14].Title
-msgid "Slovak"
-msgstr ""
-
-#: gui/credits/texts/translators.jsonContent[15].Title
-msgid "Turkish"
-msgstr "Türkisch"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2166,7 +2102,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Späte Beobachter Beitretungen:"
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
@@ -2174,7 +2110,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "Beobachter Limit"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2522,7 +2458,7 @@ msgstr "– Ein mittelschweres Kriegsschiff."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
-"- Available to the Celtic Factions (Birtons, Gauls), Mauryans and Iberians."
+"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
@@ -2530,7 +2466,7 @@ msgid "- Can transport up to 40 units across the waters."
 msgstr "– Kann bis zu 40 Einheiten transportieren."
 
 #: gui/text/tips/celtic_war_barge.txt:8
-msgid "- Increases firepower with garrissoned infantry."
+msgid "- Increases firepower with garrisoned infantry."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:10
@@ -2595,7 +2531,7 @@ msgstr ""
 msgid ""
 "- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
-msgstr ""
+msgstr "– Schicke eine Unterstützungseinheit an Bord, um doppelt so schnell zu fischen."
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
@@ -2774,7 +2710,7 @@ msgid "- Transports up to 50 units."
 msgstr "– Kann bis zu 50 Einheiten transportieren."
 
 #: gui/text/tips/quinquereme.txt:6
-msgid "- Increases firepower with garrissoned catapults."
+msgid "- Increases firepower with garrisoned catapults."
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:8

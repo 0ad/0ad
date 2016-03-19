@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-17 10:04+0000\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-19 08:48+0000\n"
 "Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -691,42 +691,42 @@ msgstr "%(category)s rekruteerlimiet van %(limit)s bereikt"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limiet van %(limit)s bereikt"
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:48
 msgid "Food"
 msgstr "voedsel"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:49
 msgid "Wood"
 msgstr "hout"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:50
 msgid "Metal"
 msgstr "metaal"
 
-#: simulation/components/Player.js:47
+#: simulation/components/Player.js:51
 msgid "Stone"
 msgstr "steen"
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Onvoldoende grondstoffen - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Onvoldoende grondstoffen - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Onvoldoende grondstoffen - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -746,28 +746,28 @@ msgstr "Kan geen vrije ruimte vinden om gerekruteerde eenheden los te laten."
 msgid "You need to select a building that trains units."
 msgstr "Je moet een gebouw selecteren om eenheden te rekruteren."
 
-#: simulation/helpers/Commands.js:120
+#: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
 msgstr "(Valsspelen - Bestuur alle eenheden)"
 
-#: simulation/helpers/Commands.js:553
+#: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
 msgstr "(Valsspelen - promoveer eenheden)"
 
-#: simulation/helpers/Commands.js:672
+#: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Aanvraag voor een aanval tegen %(_player_)s."
 
-#: simulation/helpers/Commands.js:699
+#: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
 msgstr "Kan de extra bemanning niet toevoegen."
 
-#: simulation/helpers/Commands.js:713
+#: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
 msgstr "Sommige eenheden kunnen niet terug aan het werk"
 
-#: simulation/helpers/Commands.js:969
+#: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
 msgstr "Er is niet voldaan aan de technologie vereisten voor dit gebouw."
 
@@ -969,10 +969,10 @@ msgstr "Petra Bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra is de standaard 0AD bot. Geef problemen alsjeblieft door aan Wildfire Games (zie de link in het hoofdmenu).\n\nDe AI heeft een voor- of nadeel op het opslaan van grondstoffen (verzamelsnelheid of handelswinst) die varieert van 0.5 bij Zandbak tot 1.6 bij Heel Moeilijk (Medium = 1.0). Daarnaast breidt ze op Zandbak niveau niet uit en valt ze niet aan."
+msgstr "Petra is de standaard 0 A.D. bot. Geef problemen alsjeblieft door aan Wildfire Games (zie de link in het hoofdmenu).\n\nDe AI heeft een voor- of nadeel op het opslaan van grondstoffen (verzamelsnelheid of handelswinst) die varieert van 0.5 bij Zandbak tot 1.6 bij Heel Moeilijk (Medium = 1.0). Daarnaast breidt ze op Zandbak niveau niet uit en valt ze niet aan."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

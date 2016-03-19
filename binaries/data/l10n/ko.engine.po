@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
 "PO-Revision-Date: 2016-01-08 09:20+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (건축모드)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "건축모드"
 
@@ -157,7 +157,7 @@ msgstr ""
 msgid "Saved game to '%s'"
 msgstr "'%s'에 게임이 저장됨"
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "'%s'로 스크린샷이 저장됨"

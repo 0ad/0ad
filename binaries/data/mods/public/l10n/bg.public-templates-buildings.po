@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-15 13:52+0000\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-18 14:34+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgstr "Селище"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr "Постройте градски център на това място, за да разширите територията си."
+msgstr "Постройте селищен център на това място, за да разширите територията си."
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -332,19 +332,11 @@ msgstr "Специална сграда"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Това е специална сграда, различна за всяка цивилизация."
 
-#: simulation/templates/template_structure_wonder.xml:20
-msgid "Wonder Aura"
-msgstr "Чудодейна аура"
-
-#: simulation/templates/template_structure_wonder.xml:21
-msgid "+10 maximum population cap."
-msgstr "+10 максимално население."
-
-#: simulation/templates/template_structure_wonder.xml:57
+#: simulation/templates/template_structure_wonder.xml:46
 msgid "Wonder"
 msgstr "Чудо"
 
-#: simulation/templates/template_structure_wonder.xml:58
+#: simulation/templates/template_structure_wonder.xml:47
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -490,7 +482,7 @@ msgstr "Тѐатрон"
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr "Еленѝзен (Елинизация): +20% териториално влияние за всички сгради докато съществува тѐатрона."
+msgstr "Еленѝзен (Елинизация): +20% териториално влияние за всички сгради докато съществува тѐатронът."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -1363,7 +1355,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Това е птолемейската разширителна постройка, подобна на градските центрове в другите фракции. Тя е по-слаба и завзема по-малко територия, но е по-евтина и се строи по-бързо.\n— Обучава войници-заселници от различни националности;\n— Минимално отстояние от други военни колонии: 120 метра."
+msgstr "Това е птолемейската разширителна постройка, подобна на селищните центрове в другите фракции. Тя е по-слаба и завзема по-малко територия, но е по-евтина и се строи по-бързо.\n— Обучава войници-заселници от различни националности;\n— Минимално отстояние от други военни колонии: 120 метра."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1619,7 +1611,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Това е селевкидската разширителна постройка, подобна на градските центрове в другите факции. Тя е по-слаба и завзема по-малко територия, но е по-евтина и се строи по-бързо.\n— Обучава войници-заселници от различни националности;\n— Минимално отстояние от други военни колонии: 120 метра."
+msgstr "Това е селевкидската разширителна постройка, подобна на селищните центрове в другите факции. Тя е по-слаба и завзема по-малко територия, но е по-евтина и се строи по-бързо.\n— Обучава войници-заселници от различни националности;\n— Минимално отстояние от други военни колонии: 120 метра."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1659,4 +1651,4 @@ msgstr "Сиссѝтион"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Обучавайте спартански герои и Експертни спартиатски хоплити."
+msgstr "Обучавайте спартански герои и експертни спартиатски хоплити."

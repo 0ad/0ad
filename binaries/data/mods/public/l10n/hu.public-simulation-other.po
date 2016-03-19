@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-17 11:35+0000\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-19 08:43+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -688,42 +688,42 @@ msgstr "%(category)s kiképzési korlátja elérve: %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s korlátja elérve: %(limit)s"
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:48
 msgid "Food"
 msgstr "Élelem"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:49
 msgid "Wood"
 msgstr "Fa"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:50
 msgid "Metal"
 msgstr "Fém"
 
-#: simulation/components/Player.js:47
+#: simulation/components/Player.js:51
 msgid "Stone"
 msgstr "Kő"
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -743,28 +743,28 @@ msgstr "Nem található szabad hely a kiképzett egységek elhelyezéséhez"
 msgid "You need to select a building that trains units."
 msgstr "Ki kell választanod egy épületet, amely egységeket képez ki."
 
-#: simulation/helpers/Commands.js:120
+#: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
 msgstr "(Csalás - összes egység irányítása)"
 
-#: simulation/helpers/Commands.js:553
+#: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:672
+#: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:699
+#: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
 msgstr "Az egységek nem engedhetők ki"
 
-#: simulation/helpers/Commands.js:713
+#: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:969
+#: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -966,10 +966,10 @@ msgstr "Petra bot"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük a hibákat a Wildfire Games számára jelentsd (lásd a hivatkozást a főmenüben).\n\nA MI változó bónusz/büntetés rendszert alkalmaz a nyersanyagok készletezésére (gyűjtésre és kereskedésre is) a homokozótól (0,5) a nagyon nehéz (1,6) szintig (közepes = 1,0). Továbbá a homokozó szinten nincs terjeszkedés és támadás."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
