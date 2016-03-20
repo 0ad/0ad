@@ -5244,7 +5244,8 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
 
 	let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	cmpTrader.PerformTrade(currentMarket);
-	if (!cmpTrader.GetGoods().amount.traderGain)
+	let amount = cmpTrader.GetGoods().amount;
+	if (!amount || !amount.traderGain)
 	{
 		this.StopTrading();
 		return;

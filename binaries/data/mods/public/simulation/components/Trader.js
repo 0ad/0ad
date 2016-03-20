@@ -75,7 +75,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		return false;
 	if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
 		return false;
-	var marketsChanged = true;
+
 	if (source)
 	{
 		// Establish a trade route with both markets in one go.
@@ -98,7 +98,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		// If we have only one market and target is different from it,
 		// set the target as second one
 		if (target == this.markets[0])
-			marketsChanged = false;
+			return false;
 		else
 		{
 			this.index = 0;
@@ -113,12 +113,9 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		this.index = 0;
 		this.markets = [target];
 	}
-	if (marketsChanged)
-	{
-		// Drop carried goods
-		this.goods.amount = null;
-	}
-	return marketsChanged;
+	// Drop carried goods if markets were changed
+	this.goods.amount = null;
+	return true;
 };
 
 Trader.prototype.GetFirstMarket = function()
