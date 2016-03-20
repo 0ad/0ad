@@ -133,7 +133,7 @@ const g_VictoryColor = "orange";
 /**
  * Placeholder item for the map-dropdownlist.
  */
-const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]";
+const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map type", "Random") + "[/color]";
 
 /**
  * Placeholder item for the civ-dropdownlists.
@@ -1381,7 +1381,7 @@ function setMapDescription()
 	gameDescription += translate("Victory Condition:") + " " + victoryTitle + ".\n\n";
 	gameDescription += mapDescription;
 
-	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
+	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map selection", "Random") : translate(getMapDisplayName(mapName));
 	Engine.GetGUIObjectByName("mapInfoDescription").caption = gameDescription;
 	setMapPreviewImage("mapPreview", getMapPreview(mapName));
 }
