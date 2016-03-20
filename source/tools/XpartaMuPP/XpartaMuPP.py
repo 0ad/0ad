@@ -55,7 +55,7 @@ class LeaderboardList():
       stats['highestRating'] = str(player.first().highest_rating)
 
     playerID = player.first().id
-    players = db.query(Player).order_by(Player.rating.desc()).all()
+    players = db.query(Player).filter(Player.rating != -1).order_by(Player.rating.desc()).all()
 
     for rank, user in enumerate(players):
       if (user.jid.lower() == JID.lower()):
@@ -248,11 +248,8 @@ class LeaderboardList():
         JIDs for sending.
     """
     board = {}
-    players = db.query(Player).order_by(Player.rating.desc()).limit(100).all()
+    players = db.query(Player).filter(Player.rating != -1).order_by(Player.rating.desc()).limit(100).all()
     for rank, player in enumerate(players):
-      # Don't send uninitialized ratings.
-      if player.rating == -1:
-        continue
       board[player.jid] = {'name': '@'.join(player.jid.split('@')[:-1]), 'rating': str(player.rating)}
     return board
   def getRatingList(self, nicks):
