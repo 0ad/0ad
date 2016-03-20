@@ -131,9 +131,9 @@ addElements(shuffleArray([
 			g_TileClasses.rock, 10,
 			g_TileClasses.water, 3
 		],
-		"sizes": ["tiny"],
+		"sizes": ["normal"],
 		"mixes": ["same"],
-		"amounts": ["scarce"]
+		"amounts": ["normal"]
 	},
 	{
 		"func": addAnimals,
@@ -142,13 +142,13 @@ addElements(shuffleArray([
 			g_TileClasses.forest, 2,
 			g_TileClasses.metal, 2,
 			g_TileClasses.mountain, 1,
-			g_TileClasses.player, 20,
+			g_TileClasses.player, 12,
 			g_TileClasses.rock, 2,
 			g_TileClasses.water, 3
 		],
-		"sizes": ["tiny"],
+		"sizes": ["small", "normal"],
 		"mixes": ["same"],
-		"amounts": ["scarce"]
+		"amounts": ["normal", "many"]
 	},
 	{
 		"func": addStragglerTrees,

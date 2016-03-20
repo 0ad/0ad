@@ -210,25 +210,9 @@ function createBase(player, walls)
 	var painter = new LayeredPainter([g_Terrains.roadWild, g_Terrains.road], [1]);
 	createArea(placer, painter, null);
 
-	// Custom base terrain function
-
-	// Create animals
-	for (var j = 0; j < 2; ++j)
-	{
-		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 7;
-		var aX = round(fx + aDist * cos(aAngle));
-		var aZ = round(fz + aDist * sin(aAngle));
-		var group = new SimpleGroup(
-			[new SimpleObject(g_Gaia.chicken, 5, 5, 0, 2)],
-			true, g_TileClasses.baseResource, aX, aZ
-		);
-		createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
-	}
-
-	// Create berry bushes
+	// Create initial berry bushes at random angle
 	var bbAngle = randFloat(0, TWO_PI);
-	var bbDist = 12;
+	var bbDist = 10;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
@@ -237,7 +221,7 @@ function createBase(player, walls)
 	);
 	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
 
-	// Create metal mine
+	// Create metal mine at a different angle
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI / 3)
 		mAngle = randFloat(0, TWO_PI);
@@ -251,7 +235,7 @@ function createBase(player, walls)
 	);
 	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
 
-	// Create stone mines
+	// Create stone mine beside metal
 	mAngle += randFloat(PI / 8, PI / 4);
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
@@ -261,20 +245,45 @@ function createBase(player, walls)
 	);
 	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
 
+	// Create initial chicken
+	for (var j = 0; j < 2; ++j)
+	{
+		for (var tries = 0; tries < 10; ++tries)
+		{
+			var aAngle = randFloat(0, TWO_PI);
+			var aDist = 9;
+			var aX = round(fx + aDist * cos(aAngle));
+			var aZ = round(fz + aDist * sin(aAngle));
+
+			var group = new SimpleGroup(
+				[new SimpleObject(g_Gaia.chicken, 5, 5, 0, 2)],
+				true, g_TileClasses.baseResource, aX, aZ
+			);
+
+			if (createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4)))
+				break;
+		}
+	}
+
 	var hillSize = PI * g_MapInfo.mapRadius * g_MapInfo.mapRadius;
 
 	// Create starting trees
-	var num = 5;
-	var tAngle = randFloat(0, TWO_PI);
-	var tDist = randFloat(12, 13);
-	var tX = round(fx + tDist * cos(tAngle));
-	var tZ = round(fz + tDist * sin(tAngle));
+	var num = 25;
+	for (var tries = 0; tries < 10; ++tries)
+	{
+		var tAngle = randFloat(0, TWO_PI);
+		var tDist = randFloat(12, 13);
+		var tX = round(fx + tDist * cos(tAngle));
+		var tZ = round(fz + tDist * sin(tAngle));
+	
+		group = new SimpleGroup(
+			[new SimpleObject(g_Gaia.tree1, num, num, 0, 3)],
+			false, g_TileClasses.baseResource, tX, tZ
+		);
 
-	group = new SimpleGroup(
-		[new SimpleObject(g_Gaia.tree1, num, num, 0, 3)],
-		false, g_TileClasses.baseResource, tX, tZ
-	);
-	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
+		if (createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4)))
+			break;
+	}
 
 	// Create grass tufts
 	var num = hillSize / 250;
@@ -288,7 +297,7 @@ function createBase(player, walls)
 			[new SimpleObject(g_Decoratives.grassShort, 2, 5, 0, 1, -PI / 8, PI / 8)],
 			false, g_TileClasses.baseResource, gX, gZ
 		);
-		createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
+		createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4));
 	}
 }
 
