@@ -353,7 +353,10 @@ function updatePlayerList()
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
 	playersBox.list = nickList;
-	playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+
+	// To reduce rating-server load, only send the GUI event if the selection actually changed
+	if (playersBox.selected != playersBox.list.indexOf(g_SelectedPlayer))
+		playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
 }
 
 /**
