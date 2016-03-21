@@ -14,6 +14,11 @@ const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefin
 const g_ShowTimestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 
 /**
+ * Mute clients who exceed the rate of 1 message per second for this time
+ */
+const g_SpamBlockTimeframe = 5;
+
+/**
  * Mute spammers for this time.
  */
 const g_SpamBlockDuration = 30;
@@ -918,9 +923,13 @@ function updateSpamMonitor(msg)
 		return;
 
 	if (g_SpamMonitor[msg.from])
-		++g_SpamMonitor[msg.from][0];
+		++g_SpamMonitor[msg.from].count;
 	else
-		g_SpamMonitor[msg.from] = [1, Math.floor(Date.now() / 1000), 0];
+		g_SpamMonitor[msg.from] = {
+			"count": 1,
+			"lastSend": Math.floor(Date.now() / 1000),
+			"lastBlock": 0
+		};
 }
 
 /**
@@ -938,26 +947,32 @@ function isSpam(text, from)
 
 	// Initialize if not already in the database.
 	if (!g_SpamMonitor[from])
-		g_SpamMonitor[from] = [1, time, 0];
+		g_SpamMonitor[from] = {
+			"count": 1,
+			"lastSend": time,
+			"lastBlock": 0
+		};
 
 	// Block blank lines.
 	if (!text.trim())
 		return true;
 
 	// Block users who are still within their spam block period.
-	if (g_SpamMonitor[from][2] + g_SpamBlockDuration >= time)
+	if (g_SpamMonitor[from].lastBlock + g_SpamBlockDuration >= time)
 		return true;
 
 	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked.
-	if (g_SpamMonitor[from][0] == 6)
+	if (g_SpamMonitor[from].count == g_SpamBlockTimeframe + 1)
 	{
-		g_SpamMonitor[from][2] = time;
+		g_SpamMonitor[from].lastBlock = time;
+
 		if (from == g_Username)
 			addChatMessage({
 				"from": "system",
 				"text": translate("Please do not spam. You have been blocked for thirty seconds."),
 				"time": Date.now() / 1000
 			});
+
 		return true;
 	}
 
@@ -973,11 +988,11 @@ function checkSpamMonitor()
 	var time = Math.floor(Date.now() / 1000);
 	for (let i in g_SpamMonitor)
 	{
-		let stats = g_SpamMonitor[i];
-		if (stats[1] + 5 <= time)
+		// Reset the spam-status after being silent long enough
+		if (g_SpamMonitor[i].lastSend + g_SpamBlockTimeframe <= time)
 		{
-			stats[1] = time;
-			stats[0] = 0;
+			g_SpamMonitor[i].count = 0;
+			g_SpamMonitor[i].lastSend = time;
 		}
 	}
 }
