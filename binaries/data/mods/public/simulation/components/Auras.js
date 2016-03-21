@@ -79,6 +79,9 @@ Auras.prototype.Init = function()
 			aura.affectedPlayers = this.template[name].AffectedPlayers.split(/\s+/);
 		this.auras[name] = aura;
 	}
+	// In case of autogarrisoning, this component can be called before ownership is set.
+	// So it needs to be completely initialised from the start.
+	this.Clean();
 };
 
 Auras.prototype.GetModifierIdentifier = function(name, mod)
