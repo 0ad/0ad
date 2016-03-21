@@ -248,13 +248,13 @@ Trigger.prototype.OnGlobalResearchFinished = function(msg)
 Trigger.prototype.OnGlobalCinemaPathEnded = function(msg)
 {
 	this.CallEvent("CinemaPathEnded", msg);
-}
+};
 
 // Handles "OnCinemaQueueEnded" event.
 Trigger.prototype.OnGlobalCinemaQueueEnded = function(msg)
 {
 	this.CallEvent("CinemaQueueEnded", msg);
-}
+};
 
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
 {
