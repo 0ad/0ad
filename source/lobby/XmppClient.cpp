@@ -592,8 +592,7 @@ void XmppClient::GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHan
 		scriptInterface.SetProperty(ret, "level", message.level);
 	if (!message.data.empty())
 		scriptInterface.SetProperty(ret, "data", message.data);
-	if (!message.datetime.empty())
-		scriptInterface.SetProperty(ret, "datetime", message.datetime);
+	scriptInterface.SetProperty(ret, "time", message.time);
 
 	m_GuiMessageQueue.pop_front();
 }
@@ -655,9 +654,7 @@ void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Me
 	message.level = L"room-message";
 	message.from = wstring_from_utf8(msg.from().resource().to_string());
 	message.text = wstring_from_utf8(msg.body().to_string());
-	if (msg.when())
-		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format
-		message.datetime = msg.when()->stamp().to_string();
+	message.time = ComputeTimestamp(msg);
 	PushGuiMessage(message);
 }
 
@@ -674,9 +671,7 @@ void XmppClient::handleMessage(const glooxwrapper::Message& msg, glooxwrapper::M
 	message.level = L"private-message";
 	message.from = wstring_from_utf8(msg.from().username().to_string());
 	message.text = wstring_from_utf8(msg.body().to_string());
-	if (msg.when())
-		//See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format
-		message.datetime = msg.when()->stamp().to_string();
+	message.time = ComputeTimestamp(msg);
 	PushGuiMessage(message);
 }
 
@@ -769,6 +764,7 @@ void XmppClient::CreateGUIMessage(const std::string& type, const std::string& le
 	message.level = wstring_from_utf8(level);
 	message.text = wstring_from_utf8(text);
 	message.data = wstring_from_utf8(data);
+	message.time = time(NULL);
 	PushGuiMessage(message);
 }
 
@@ -937,6 +933,28 @@ void XmppClient::GetRole(const std::string& nick, std::string& role)
 /*****************************************************
  * Utilities                                         *
  *****************************************************/
+
+/**
+ * Compute the POSIX timestamp of a message. Uses message datetime when possible, current time otherwise.
+ *
+ * @param msg The message on which to base the computation
+ * @returns POSIX GMT/UTC seconds since Jan. 1st 1970
+ */
+time_t XmppClient::ComputeTimestamp(const glooxwrapper::Message& msg)
+{
+	if (!msg.when())
+		return time(NULL);
+
+	glooxwrapper::string timestampStr = msg.when()->stamp();
+	struct tm timestamp = {0};
+
+	// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format
+	void * res = strptime(timestampStr.c_str(), "%Y-%m-%dT%H:%M:%SZ", &timestamp);
+	if (res == NULL)
+		LOGERROR("Recived delayed message with corrupted timestamp %s", timestampStr.to_string());
+
+	return mktime(&timestamp) - timezone;
+}
 
 /**
  * Convert a gloox presence type to string.

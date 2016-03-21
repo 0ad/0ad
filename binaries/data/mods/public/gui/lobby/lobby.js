@@ -111,10 +111,20 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 			Engine.GetGUIObjectByName("hostButton").enabled = false;
-			addChatMessage({ "from": "system", "text": translate("Disconnected.") + msg.text, "color": g_SystemColor });
+			addChatMessage({
+				"from": "system",
+				"text": translate("Disconnected.") + msg.text,
+				"color": g_SystemColor,
+				"time": msg.time
+			});
 		},
 		"error": msg => {
-			addChatMessage({ "from": "system", "text": msg.text, "color": g_SystemColor });
+			addChatMessage({
+				"from": "system",
+				"text": msg.text,
+				"color": g_SystemColor,
+				"time": msg.time
+			});
 		}
 	},
 	"chat": {
@@ -124,14 +134,16 @@ var g_NetMessageTypes = {
 		"join": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": msg.text }),
-				"isSpecial": true
+				"isSpecial": true,
+				"time": msg.time
 			});
 			Engine.SendGetRatingList();
 		},
 		"leave": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": msg.text }),
-				"isSpecial": true
+				"isSpecial": true,
+				"time": msg.time
 			});
 		},
 		"presence": msg => {
@@ -142,14 +154,15 @@ var g_NetMessageTypes = {
 					"oldnick": msg.text,
 					"newnick": msg.data
 				}),
-				"isSpecial": true
+				"isSpecial": true,
+				"time": msg.time
 			});
 		},
 		"room-message": msg => {
 			addChatMessage({
 				"from": escapeText(msg.from),
 				"text": escapeText(msg.text),
-				"datetime": msg.datetime
+				"time": msg.time
 			});
 		},
 		"private-message": msg => {
@@ -157,7 +170,7 @@ var g_NetMessageTypes = {
 				addChatMessage({
 					"from": "(Private) " + escapeText(msg.from), // TODO: placeholder
 					"text": escapeText(msg.text.trim()), // some XMPP clients send trailing whitespace
-					"datetime": msg.datetime
+					"time": msg.time
 				});
 		}
 	},
@@ -658,7 +671,8 @@ function joinSelectedGame()
 			"text": sprintf(
 				translate("This game's address '%(ip)s' does not appear to be valid."),
 				{ "ip": game.ip }
-			)
+			),
+			"time": Date.now() / 1000
 		});
 		return;
 	}
@@ -769,7 +783,8 @@ function handleSpecialCommand(text)
 	default:
 		addChatMessage({
 			"from": "system",
-			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd })
+			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd }),
+			"time": Date.now() / 1000
 		});
 	}
 	return true;
@@ -791,13 +806,10 @@ function addChatMessage(msg)
 		if (g_Username != msg.from)
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
 
-		// Run spam test if it's not a historical message
-		if (!msg.datetime)
-		{
-			updateSpamMonitor(msg.from);
-			if (isSpam(msg.text, msg.from))
-				return;
-		}
+		updateSpamMonitor(msg);
+
+		if (isSpam(msg.text, msg.from))
+			return;
 	}
 
 	var formatted = ircFormat(msg);
@@ -907,14 +919,18 @@ function ircFormat(msg)
 /**
  * Update the spam monitor.
  *
- * @param {string} from - User to update.
+ * @param {Object} msg - Message containing user to update.
  */
-function updateSpamMonitor(from)
+function updateSpamMonitor(msg)
 {
-	if (g_SpamMonitor[from])
-		++g_SpamMonitor[from][0];
+	// Ignore historical messages
+	if (msg.time < Date.now() / 1000 - g_SpamBlockDuration)
+		return;
+
+	if (g_SpamMonitor[msg.from])
+		++g_SpamMonitor[msg.from][0];
 	else
-		g_SpamMonitor[from] = [1, Math.floor(Date.now() / 1000), 0];
+		g_SpamMonitor[msg.from] = [1, Math.floor(Date.now() / 1000), 0];
 }
 
 /**
@@ -947,7 +963,11 @@ function isSpam(text, from)
 	{
 		g_SpamMonitor[from][2] = time;
 		if (from == g_Username)
-			addChatMessage({ "from": "system", "text": translate("Please do not spam. You have been blocked for thirty seconds.") });
+			addChatMessage({
+				"from": "system",
+				"text": translate("Please do not spam. You have been blocked for thirty seconds."),
+				"time": Date.now() / 1000
+			});
 		return true;
 	}
 
