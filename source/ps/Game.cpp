@@ -169,6 +169,8 @@ int CGame::LoadVisualReplayData()
 
 bool CGame::StartVisualReplay(const std::string& replayPath)
 {
+	debug_printf("Starting to replay %s\n", replayPath.c_str());
+
 	m_IsVisualReplay = true;
 	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 
