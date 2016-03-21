@@ -891,23 +891,13 @@ function ircFormat(msg)
 	if (!g_ShowTimestamp)
 		return formattedMessage;
 
-	var time;
-	if (msg.datetime)
-	{
-		let dTime = msg.datetime.split("T");
-		let parserDate = dTime[0].split("-");
-		let parserTime = dTime[1].split(":");
-		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
-		// Date takes Year, Month, Day, Hour, Minute, Second
-		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
-	}
-	else
-		time = new Date(Date.now());
+	// Convert from UTC to localtime
+	 var time = msg.time - new Date().getTimezoneOffset() * 60;
 
 	// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
 	// For a list of symbols that you can use, see:
 	// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-	var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
+	var timeString = Engine.FormatMillisecondsIntoDateString(time * 1000, translate("HH:mm"));
 
 	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
 	var timePrefixString = '[font="' + g_SenderFont + '"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
