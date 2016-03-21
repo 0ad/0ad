@@ -79,6 +79,7 @@
 			<object type="button" style="ModernButtonRed" size="0 0 100% 25">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 				<action on="Press">
+					Engine.SendGetBoardList();
 					Engine.GetGUIObjectByName("leaderboard").hidden = false;
 					Engine.GetGUIObjectByName("fade").hidden = false;
 					displayProfile("leaderboard");
