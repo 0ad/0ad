@@ -525,11 +525,11 @@ function updateChatAddressees()
 	// Add playernames for private messages
 	for (let guid of sortGUIDsByPlayerID())
 	{
+		if (guid == Engine.GetPlayerGUID())
+			continue;
+
 		let username = g_PlayerAssignments[guid].name;
 		let playerIndex = g_PlayerAssignments[guid].player;
-
-		if (playerIndex == Engine.GetPlayerID())
-			continue;
 
 		// Don't provide option for PM from observer to player
 		if (g_IsObserver && !isPlayerObserver(playerIndex))
