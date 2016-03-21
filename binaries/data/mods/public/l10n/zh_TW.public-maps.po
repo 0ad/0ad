@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-18 09:42+0000\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-03-20 09:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,23 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: maps/random/adeath_canyon.jsonsettings.Description
+msgid ""
+"Even and odd players start on a different side of a deep but resourceful "
+"canyon"
+msgstr ""
+
+#: maps/random/adeath_canyon.jsonsettings.Name
+msgid "ADeath Canyon"
+msgstr ""
+
 #: maps/random/aegean_sea.jsonsettings.Description
+#: maps/scenarios/Isthmus2.xml:Description:40
 msgid "Players start on two sides of a sea with scattered islands."
 msgstr "玩家在有著零碎島嶼的海洋的兩邊開始遊戲。"
 
 #: maps/random/aegean_sea.jsonsettings.Name
+#: maps/scenarios/Isthmus2.xml:Name:40
 msgid "Aegean Sea"
 msgstr "愛琴海"
 
@@ -50,11 +62,11 @@ msgstr "阿爾卑斯大峽谷"
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr ""
+msgstr "從高聳的懸崖俯瞰底下的地形。在懸崖上有豐富的資源，但小心敵人可能會突襲您。"
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
-msgstr ""
+msgstr "伏擊"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -178,11 +190,11 @@ msgstr "深森林"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr ""
+msgstr "隔壁省份已臣服於您的統治。您可以指揮他們以獲得勝利。"
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
-msgstr ""
+msgstr "帝國"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
@@ -198,11 +210,11 @@ msgstr "英吉利海峽"
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
 "battle in chest deep waters."
-msgstr ""
+msgstr "大洪水淹到了山谷，讓船隻與部隊在及胸的深水中戰鬥。"
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
-msgstr ""
+msgstr "洪水"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -214,11 +226,11 @@ msgstr "要塞"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
-msgstr ""
+msgstr "荒涼、未知的景致等待著勇敢的探險者。"
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
-msgstr ""
+msgstr "邊疆"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -256,11 +268,11 @@ msgid ""
 " bountiful resources far from the front lines, teams may choose to support "
 "their exposed teammates financially, or retreat to more fertile, but less "
 "defensible ground."
-msgstr ""
+msgstr "緊緊相依的山有著狹窄的通道，在該處可進行緊湊的防禦戰鬥。遠離前線就有著豐富的資源，隊伍可以選擇在財政上相互支援向外拓展，或是撤退至較肥沃，但不易防守的地方。"
 
 #: maps/random/hells_pass.jsonsettings.Name
 msgid "Hell's Pass"
-msgstr ""
+msgstr "地獄通道"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -276,11 +288,11 @@ msgstr "赫卡尼亞海岸"
 msgid ""
 "Teams start off with nearly adjacent town centers on a small island, "
 "offering a fortified base from which to expand."
-msgstr ""
+msgstr "團隊從一個小島上鄰近的城鎮中心開始，可供擴大至較大的基地。"
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
-msgstr ""
+msgstr "要塞島嶼"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -323,11 +335,11 @@ msgstr "拉齊奧"
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
-msgstr ""
+msgstr "高聳的懸崖保護者每個玩家的主要基地。冒險地進入未知的地方是危險但必要的。"
 
 #: maps/random/lions_den.jsonsettings.Name
 msgid "Lion's Den"
-msgstr ""
+msgstr "猛獅巢穴"
 
 #: maps/random/lorraine_plain.jsonsettings.Description
 msgid ""
@@ -499,11 +511,11 @@ msgid ""
 "Teams start off with nearly adjacent town centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr ""
+msgstr "隊伍從鄰近的城鎮中心開始，其提供了較容易的軍事與建築合作。隨著各人領土的拓展，後方將需要依靠隊友的保護。"
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
-msgstr ""
+msgstr "要塞"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
@@ -586,6 +598,11 @@ msgstr "有一波敵人來襲！"
 #: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "第一波攻擊將會在15分鐘後到來！"
+
+#: maps/scenarios/Cinema_Demo.js:12
+#, javascript-format
+msgid "Cutscene starts in %(time)s"
+msgstr ""
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -672,7 +689,9 @@ msgstr "在希臘阿卡迪亞的春日時分。若春雨下的不夠，一年之
 #: maps/scenarios/Walls.xml:PlayerData[0].Name:31
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:42
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
+#: maps/scenarios/test.xml:PlayerData[1].Name:40 maps/skirmishes/Acropolis Bay
+#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Acropolis Fortress
+#: (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
@@ -740,7 +759,9 @@ msgstr "玩家 1"
 #: maps/scenarios/WallTest.xml:PlayerData[1].Name:31
 #: maps/scenarios/Walls.xml:PlayerData[1].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:42
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
+#: maps/scenarios/test.xml:PlayerData[2].Name:40 maps/skirmishes/Acropolis Bay
+#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Acropolis Fortress
+#: (2).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
@@ -955,6 +976,22 @@ msgstr "宗教團體"
 msgid "Strategic Campaign Proof of Concept"
 msgstr "驗證戰略性戰役的想法"
 
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr ""
+
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
 msgstr "戰鬥展示"
@@ -994,7 +1031,9 @@ msgstr "軍隊入侵"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: Oasis.xml:PlayerData[2].Name:31
+#: maps/scenarios/Two_Seas.xml:PlayerData[3].Name:40 maps/skirmishes/Acropolis
+#: Fortress (2).xml:PlayerData[3].Name:40 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
@@ -1049,7 +1088,9 @@ msgstr "一個小型的沙漠地圖。每個玩家都在一個散佈於荒涼沙
 #: maps/scenarios/Gold_Rush.xml:PlayerData[3].Name:31
 #: maps/scenarios/Necropolis.xml:PlayerData[3].Name:41 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[3].Name:31 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[3].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[3].Name:31
+#: maps/scenarios/Two_Seas.xml:PlayerData[4].Name:40 maps/skirmishes/Acropolis
+#: Fortress (2).xml:PlayerData[4].Name:40 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Greek Acropolis
@@ -1162,6 +1203,16 @@ msgstr "拉科尼亞的伯羅奔尼撒山谷，斯巴達人的家園。\n\n馬�
 #: maps/scenarios/Laconia 01.xml:Name:31
 msgid "Laconia"
 msgstr "拉科尼亞"
+
+#: maps/scenarios/Malta2.xml:Description:40
+msgid ""
+"Romanian conquest of Malta Island.\n"
+"Malta has been colonized by carthaganians and greeks, who both live peacefully and established commercial exchanges years ago. Romans wants to take malta to establish a new military base and create new mediteranean commercial routes. The roman conquest start from Gozo Island (northern island)."
+msgstr ""
+
+#: maps/scenarios/Malta2.xml:Name:40
+msgid "Malta Island"
+msgstr ""
 
 #: maps/scenarios/Migration.xml:Description:31
 msgid ""
@@ -1639,6 +1690,34 @@ msgstr "多人遊戲地圖。一個熱帶天堂。"
 msgid "Tropical Island"
 msgstr "熱帶島嶼"
 
+#: maps/scenarios/Two_Seas.xml:Description:40 maps/skirmishes/Two Seas
+#: (6).xml:Description:41
+msgid ""
+"A large tropic map with two seas to the East and to the West. Good for two "
+"teams of three players or three teams of two players."
+msgstr "東西方共有兩個海的大型熱帶地圖。適合兩個各有三個人的隊伍或是三個各有兩個人的隊伍。"
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[1].Name:40
+msgid "Capital 1"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[2].Name:40
+msgid "Capital 2"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[5].Name:40
+msgid "Player 5"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[6].Name:40
+msgid "Player 6"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:Name:40 maps/skirmishes/Two Seas
+#: (6).xml:Name:41
+msgid "Two Seas (6)"
+msgstr "兩海 (6)"
+
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
 msgstr "單位展示"
@@ -1650,7 +1729,7 @@ msgstr "遊戲裡的每一個單位。"
 #: maps/scenarios/WallTest.xml:Description:31
 #: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
 #: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:41
+#: (4).xml:Description:41 maps/skirmishes/test.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "給您的地圖個有趣的描述。"
 
@@ -1674,7 +1753,7 @@ msgstr "我們是軍團"
 msgid "A quick battle demo map using Roman legionnaires."
 msgstr "使用羅馬軍團進行快速戰鬥的展示地圖。"
 
-#: maps/scenarios/_default.xml:Name:32
+#: maps/scenarios/_default.xml:Name:32 maps/skirmishes/test.xml:Name:40
 msgid "Unnamed map"
 msgstr "未命名的地圖"
 
@@ -1717,6 +1796,19 @@ msgstr "基本經濟概覽"
 msgid "Base Temperate Map"
 msgstr "基礎溫帶地圖"
 
+#: maps/scenarios/test.xml:Description:40
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
+msgid ""
+"The high peaks and valleys of the Alps.\n"
+"\n"
+"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
+msgstr "阿爾卑斯山的高聳山峰及山谷。\n\n每個玩家都在一個安全的綠色山谷開始遊戲。其間是變幻莫測的阿爾卑斯山脈。"
+
+#: maps/scenarios/test.xml:Name:40
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
+msgid "Alpine Valleys (2)"
+msgstr "阿爾卑斯山谷 (2)"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:41
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
@@ -1728,6 +1820,19 @@ msgstr "每個玩家都在一個大型平臺，又稱衛城，之上開始遊戲
 msgid "Acropolis Bay (2)"
 msgstr "衛城海灣 (2)"
 
+#: maps/skirmishes/Acropolis Fortress (2).xml:Description:40
+#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
+msgid ""
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr "其中三方會發現自己安全的位於一個大型的岩石高原，或稱衛城，之上，而第四個則會被一條河流的分支隔開來。\n\n探索這片土地，尋找無主的寶藏及爭奪新的資源。"
+
+#: maps/skirmishes/Acropolis Fortress (2).xml:Name:40 maps/skirmishes/Greek
+#: Acropolis (4).xml:Name:41
+msgid "Greek Acropolis (4)"
+msgstr "雅典衛城 (4)"
+
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Description:40
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
@@ -1737,17 +1842,6 @@ msgstr "一張充滿無法越過的高山與大量天然資源的地圖。"
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
 msgstr "阿爾卑斯山 (3)"
-
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
-msgid ""
-"The high peaks and valleys of the Alps.\n"
-"\n"
-"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr "阿爾卑斯山的高聳山峰及山谷。\n\n每個玩家都在一個安全的綠色山谷開始遊戲。其間是變幻莫測的阿爾卑斯山脈。"
-
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
-msgid "Alpine Valleys (2)"
-msgstr "阿爾卑斯山谷 (2)"
 
 #: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
@@ -1771,6 +1865,14 @@ msgid ""
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers."
 msgstr "一個未開發且樹木叢生的小島，佈滿了叢林、黃金、與些許的神祕感...山脈、海洋及密林造就了一個充滿活力且快節奏的 3 人地圖，潛藏著許多小規模戰鬥與游擊戰，甚或是困難的防禦性戰鬥或侵略性的部隊調動。"
+
+#: maps/skirmishes/Basic Tutorial.xml:Description:41
+msgid "The first steps of playing 0 A.D."
+msgstr ""
+
+#: maps/skirmishes/Basic Tutorial.xml:Name:41
+msgid "Basic Tutorial"
+msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
@@ -1844,6 +1946,14 @@ msgstr "提洛島"
 msgid "Cycladic Archipelago (3)"
 msgstr "基克拉迪群島 (3)"
 
+#: maps/skirmishes/Cyprus.xml:Description:40
+msgid "Version Beta"
+msgstr ""
+
+#: maps/skirmishes/Cyprus.xml:Name:40
+msgid "Cyprus"
+msgstr ""
+
 #: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""
 "A deep rocky canyon slicing through the desert.\n"
@@ -1906,11 +2016,11 @@ msgstr "甘比亞河 (3)"
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of land or via boat."
-msgstr ""
+msgstr "地中海中資源豐富的環狀島嶼。玩家可以透過狹長的陸地或是船隻造訪地圖中心。"
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
-msgstr ""
+msgstr "黃金島嶼 (2)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""
@@ -1934,17 +2044,6 @@ msgstr "雙方皆發現自己安全的位於一個大型的岩石高原，或稱
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:41
 msgid "Greek Acropolis (2)"
 msgstr "雅典衛城 (2)"
-
-#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
-msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
-"\n"
-"Scout the lands to find free treasures and to secure new resources.."
-msgstr "其中三方會發現自己安全的位於一個大型的岩石高原，或稱衛城，之上，而第四個則會被一條河流的分支隔開來。\n\n探索這片土地，尋找無主的寶藏及爭奪新的資源。"
-
-#: maps/skirmishes/Greek Acropolis (4).xml:Name:41
-msgid "Greek Acropolis (4)"
-msgstr "雅典衛城 (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Name:42
 msgid "Greek Acropolis Night (2)"
@@ -2187,16 +2286,6 @@ msgstr "四個文明皆發現自己安全的位於一個大型的岩石高原，
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr "托斯卡尼衛城 (4)"
-
-#: maps/skirmishes/Two Seas (6).xml:Description:41
-msgid ""
-"A large tropic map with two seas to the East and to the West. Good for two "
-"teams of three players or three teams of two players."
-msgstr "東西方共有兩個海的大型熱帶地圖。適合兩個各有三個人的隊伍或是三個各有兩個人的隊伍。"
-
-#: maps/skirmishes/Two Seas (6).xml:Name:41
-msgid "Two Seas (6)"
-msgstr "兩海 (6)"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:42
 msgid ""

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:36+0000\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-20 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -331,12 +331,12 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "S'està perdent la connexió al servidor (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s està perdent la connexió (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -1384,7 +1384,7 @@ msgstr "Altres"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donors"
-msgstr ""
+msgstr "Donants"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1530,8 +1530,8 @@ msgid "Status: $status."
 msgstr "Estat: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XIX: Syllepsis"
-msgstr "Alfa XIX: Syllepsis"
+msgid "Alpha XX: Timosthenes"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1903,7 +1903,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Disseny de mapes"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
@@ -2450,7 +2450,7 @@ msgstr "- Un vaixell de guerra mitjà de tipus trirrem."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr ""
+msgstr "- Disponible per a les faccions celtes (bretons, gals), l'Imperi Maurya i els ibers."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2458,7 +2458,7 @@ msgstr "- Pot transportar fins a 40 unitats per l'aigua."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "- Augmenta la potència de foc amb infanteria refugiada."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2702,7 +2702,7 @@ msgstr "- Transporta fins a 50 unitats."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "- Augmenta la potència de foc amb catapultes refugiades."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

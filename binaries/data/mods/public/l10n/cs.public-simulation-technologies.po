@@ -9,12 +9,13 @@
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2014
 # fri, 2014-2016
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
+# Robin Kriebel <kriebel.robin@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-17 21:05+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 21:05+0000\n"
+"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1466,12 +1467,16 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr "Div přitahuje k vaší kultuře spoustu dalších lidí."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "Increase the population bonus of the wonder by 40."
-msgstr "Zvyšte populační výhodu divu o 40."
+msgid "+50 maximum population cap."
+msgstr "+50 k populačnímu limitu"
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Oslňující rozšíření"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr "Povýšení léčitele"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""

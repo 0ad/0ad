@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2014-2015
+# Jeff Huang <s8321414@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-20 07:06+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,25 +141,25 @@ msgstr "[font=\"sans-14\"]在一個多人遊戲中，只有主持人可以更改
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "首先，選取您要遊玩的地圖類型："
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]隨機地圖[font=\"sans-14\"] — 由指令稿自動建立的地圖"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]劇情地圖[font=\"sans-14\"] — 由地圖設計者建立且有著固定文明的地圖"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]小規模戰鬥地圖[font=\"sans-14\"] — 由地圖設計者建立，但可選取文明的地圖"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -168,7 +168,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "地圖可進一步過濾。預設的地圖是一般均可遊玩的地圖。海洋地圖是所有玩家均無法利用陸地到達其他玩家的領土的地圖，而展示地圖則是僅供測試用途（通常並非用於一般遊玩）。「所有地圖」過濾器則會在一份清單中同時顯示所有地圖。"
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -177,7 +177,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "最後更改設定。對於隨機地圖來說，包含了玩家人數，地圖大小，等等。對於劇情來說，您只能選擇誰控制什麼玩家（決定了您在地圖上的起始點等等）。這個選項可以是人類玩家、電腦玩家或是沒有任何玩家（對手將會閒置）。"
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -565,7 +565,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
 "reports from the same user."
-msgstr ""
+msgstr "• 隨機使用者 ID（在 Windows 中儲存在 %APPDATA%\\0ad\\config\\user.cfg ，Unix 系統下則是 $HOME/.config/0ad/config/user.cfg），允許我們偵測來自同一使用者的回報。"
 
 #: gui/manual/userreport.txt:6
 msgid ""

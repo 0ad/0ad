@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-14 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 10:41+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -392,7 +392,7 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Hanya prajurit ternama yang memiliki perisai bermuka perak, sebagaimana resimen 'Perisai Perak' di pasukan Iskandar Agung yang terkenal."
+msgstr "Hanya prajurit ternama yang memiliki perisai berlapis perak, sebagaimana resimen 'Perisai Perak' di pasukan Iskandar Agung yang terkenal."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -628,7 +628,7 @@ msgstr "Penggunaan besi dibanding perunggu meningkatkan kekuatan senjata."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr "Pelatihan menambah kerusakan unit infanteri jarak jauh."
+msgstr "Latihan meningkatkan serangan unit infanteri jarak jauh."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -727,7 +727,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Meningkatkan tingkat pertahanan sebanyak 2 dari menara defensif."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -751,7 +751,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr "Menambahkan jarak maksimum menara penjagaan menjadi 8 meter."
+msgstr "Meningkatkan jarak maksimum menara penjagaan menjadi 8 meter."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -869,7 +869,7 @@ msgstr "Nutrisi ekstra untuk pertanian."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr "Pekerja +25% tingkat pertanian."
+msgstr "Pekerja bertani +25% lebih cepat."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -881,7 +881,7 @@ msgstr "Alat yang dibawa kuda untuk memindah rumput."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr ""
+msgstr "Memperlengkapi pekerja dengan bajak besi. +15% tingkat pertanian."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -893,7 +893,7 @@ msgstr "Latihlah pekerjamu untuk mempercepat panen ternak"
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr "Pekerja +15% tingkat pertanian."
+msgstr "Pekerja bertani +15% lebih cepat."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -916,12 +916,12 @@ msgstr "Jala Ikan"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr "Menambah angka pengumpulan kayu dari pohon."
+msgstr "Meningkatkan tingkat pengumpulan kayu dari pohon."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr "Pekerja +15% tingkat perkayuan untuk pohon."
+msgstr "Pekerja menebang pohon +15% lebih cepat"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -943,12 +943,12 @@ msgstr "Kapak Lebih Kuat"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr "Menambah angka pengumpulan batu."
+msgstr "Meningkatkan tingkat pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Memaksa budak untuk membantu pekerja menambang batu. +15% tingkat pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -982,11 +982,11 @@ msgstr "Doûloi"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "Menambah angka pengumpulan logam."
+msgstr "Meningkatkan tingkat pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "Bangun terowongan tambang. +15% angka pengumpulan logam."
+msgstr "Bangun terowongan tambang. +15% tingkat pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -1011,7 +1011,7 @@ msgstr "Penambangan Laureion"
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Beli budak untuk membantu pekerja menambang batu. +50% angka pengumpulan batu."
+msgstr "Beli budak untuk membantu pekerja menambang batu. +50% tingkat pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1025,7 +1025,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
-msgstr "+15% angka pengumpulan logam."
+msgstr "+15% tingkat pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1041,7 +1041,7 @@ msgstr "Keranjang untuk membawa makanan yang dipetik."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr "Lengkapi pemetik Anda dengan keranjang anyam. +50% angka pemetikan buah."
+msgstr "Memperlengkapi pemetik Anda dengan keranjang anyaman. +50% tingkat pemetikan buah."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1062,7 +1062,7 @@ msgstr "Hidup sesuai kondisi yang ada"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing range of all healers."
-msgstr "Menambah jarak penyembuhan semua tabib."
+msgstr "Meningkatkan jarak penyembuhan semua tabib."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
@@ -1092,12 +1092,12 @@ msgstr "Akadḗmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "Menambah Angka Penyembuhan semua tabib."
+msgstr "Meningkatkan Tingkat Penyembuhan semua tabib."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "Tabib +25% tingkat penyembuhan."
+msgstr "Tabib menyembuhkan +25% lebih cepat."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -1125,7 +1125,7 @@ msgstr "Unit tersimpan di kuil lebih cepat sembuh."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr "Kuil +50% tingkat penyembuhan garnisun."
+msgstr "Kuil menyembuhkan garnisun +50% lebih cepat."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
@@ -1317,14 +1317,14 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Majukan dari kota ramai menjadi metropolis sebenarnya, penuh dengan keajaiban teknologi mutakhir. Ini adalah fase kota besar Athena, domana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
+msgstr "Majukan dari kota ramai menjadi metropolis sebenarnya, penuh dengan keajaiban teknologi modern. Ini adalah fase kota besar Athena, dimana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers."
-msgstr "Majukan ke Fase Kota Besar, yang membuka lebih banyak bangunan dan unit. Luas wilayah Balai Kota meningkat +50% lagi. Bonus Burung Hantu Perak memberikan tambahan +10% tingkat pengumpulan logam pada seluruh pekerja."
+msgstr "Majukan ke Fase Kota Besar, yang membuka lebih banyak bangunan dan unit. Luas wilayah Pusat Peradaban meningkat +50% lagi. Bonus Burung Hantu Perak memberikan tambahan +10% tingkat pengumpulan logam pada seluruh pekerja."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1359,14 +1359,14 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Majukan dari desa kecil ke kota ramai, siap untuk berkembang secara cepat. Ini adalah fase kota kecil Athena, dimana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr " Advance to City Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by another +50%. Silver Owls civ bonus grants an extra +10% metal gather rate to all workers. "
+msgstr "Majukan ke fase kota kecil, untuk membuka lebih banyak bangunan dan unit. Luas wilayah Pusat Peradaban meningkat +30%. Bonus peradaban 'Burung Hantu Perak' mendapat ekstra +10% tingkat pengumpulan logam untuk semua pekerja."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1466,11 +1466,15 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr "Keajaiban menarik lebih banyak orang ke peradaban anda."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "Increase the population bonus of the wonder by 40."
+msgid "+50 maximum population cap."
 msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
+msgstr ""
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
@@ -1609,7 +1613,7 @@ msgstr "Kafilah Dagang"
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr "Menambah kecepatan pedagang sehingga menambah pemasukan"
+msgstr "Meningkatkan tingkat kecepatan pedagang sehingga meningkatkan pemasukan."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
@@ -1788,7 +1792,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Naikkan pangkat semua prajurit rakyat menjadi Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging -25%. Membuka teknologi Prajurit Rakyat Berkuda Elit."
+msgstr "Naikkan pangkat semua kavaleri rakyat Anda menjadi Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging -25%. Membuka teknologi Kavaleri Rakyat Elit."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -1803,7 +1807,7 @@ msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Tingkatkan semua prajurit rakyat infanteri ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Rakyat Infanteri Elit."
+msgstr "Tingkatkan semua prajurit rakyat infanteri Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Rakyat Infanteri Elit."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
@@ -1820,7 +1824,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Tingkatkan semua prajurit rakyat berkuda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging -25% lagi."
+msgstr "Tingkatkan semua kavaleri rakyat Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging -25% lagi."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1835,7 +1839,7 @@ msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "Tingkatkan semua prajurit rakyat infanteri ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
+msgstr "Tingkatkan semua prajurit rakyat infanteri Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
@@ -2005,7 +2009,7 @@ msgstr "Penjelajahan"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr "Meningkatkan waktu rakit majemuk kapal di Galangan."
+msgstr "Meningkatkan waktu secara siknifikan kecepatan buat majemuk kapal di Galangan."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
@@ -2095,7 +2099,7 @@ msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Tingkatkan semua prajurit bayaran Kelt ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Kelt Elit."
+msgstr "Tingkatkan semua prajurit bayaran Kelt Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Kelt Elit."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2110,7 +2114,7 @@ msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Tingkatkan semua prajurit bayaran Iberia ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Iberia Elit."
+msgstr "Tingkatkan semua prajurit bayaran Iberia Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Iberia Elit."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2125,7 +2129,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Tingkatkan semua prajurit bayaran Italia ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Italia Elit."
+msgstr "Tingkatkan semua prajurit bayaran Italia Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Italia Elit."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2139,7 +2143,7 @@ msgstr "Tingkatkan semua prajurit bayaran Kelt ke pangkat Elit."
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Tingkatkan semua prajurit bayaran Kelt ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
+msgstr "Tingkatkan semua prajurit bayaran Kelt Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2153,7 +2157,7 @@ msgstr "Tingkatkan semua prajurit bayaran Iberia ke pangkat Elit."
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Tingkatkan semua prajurit bayaran Iberia ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
+msgstr "Tingkatkan semua prajurit bayaran Iberia Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2168,7 +2172,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Tingkatkan semua prajurit bayaran Italia ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
+msgstr "Tingkatkan semua prajurit bayaran Italia Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2187,7 +2191,7 @@ msgstr "Pembangunan Kayu"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Latihan tombak menambahkan serangan infanteri penombak."
+msgstr "Latihan tombak meningkatkan serangan infanteri penombak."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."

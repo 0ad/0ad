@@ -9,13 +9,14 @@
 # leper <leper@wildfiregames.com>, 2014-2016
 # qwertz, 2014-2015
 # Raymond Vetter, 2014-2016
+# viegelinsch, 2016
 # Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-18 09:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-03-20 22:49+0000\n"
+"Last-Translator: viegelinsch\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,11 +24,23 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: maps/random/adeath_canyon.jsonsettings.Description
+msgid ""
+"Even and odd players start on a different side of a deep but resourceful "
+"canyon"
+msgstr "Gerade und ungerade Anzahl an Spieler beginnen auf der anderen Seite einer Tiefe, welche ressourcenreiche Schlucht ist."
+
+#: maps/random/adeath_canyon.jsonsettings.Name
+msgid "ADeath Canyon"
+msgstr "Eine Todesschlucht"
+
 #: maps/random/aegean_sea.jsonsettings.Description
+#: maps/scenarios/Isthmus2.xml:Description:40
 msgid "Players start on two sides of a sea with scattered islands."
 msgstr "Die Spieler beginnen auf zwei Seiten eines Meeres mit verstreuten Inseln."
 
 #: maps/random/aegean_sea.jsonsettings.Name
+#: maps/scenarios/Isthmus2.xml:Name:40
 msgid "Aegean Sea"
 msgstr "Ägäis"
 
@@ -53,11 +66,11 @@ msgstr "Alpental"
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr ""
+msgstr "Hohe Felsvorspünge ragen aus dem Geläde empor. Ertragreiche Rohstoffe können auf den Klippen gefunden werden, aber mach dich auf Feinde, die einen Hinterhalt planen, gefasst."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
-msgstr ""
+msgstr "Ambush"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -181,11 +194,11 @@ msgstr "Tiefer Wald"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr ""
+msgstr "Eine Nachbarprovinz hat dir die Treue geschworen und folgt deinen Befehlen. Es liegt in deiner Hand, sie zum Sieg zu führen."
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
-msgstr ""
+msgstr "Empire"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
@@ -201,7 +214,7 @@ msgstr "Ärmelkanal"
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
 "battle in chest deep waters."
-msgstr ""
+msgstr "Eine große Flut überschwemmte das Tal, was es Schiffen und Truppen ermöglicht, in brusthohen Gewässern zu kämpfen."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -217,11 +230,11 @@ msgstr "Festung"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
-msgstr ""
+msgstr "Eine wilde unbekannte Landschaft erwartet verfeindete Entdecker."
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
-msgstr ""
+msgstr "Frontier"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -259,11 +272,11 @@ msgid ""
 " bountiful resources far from the front lines, teams may choose to support "
 "their exposed teammates financially, or retreat to more fertile, but less "
 "defensible ground."
-msgstr ""
+msgstr "Ein enger Pfad zwischen steilen Bergen begünstigt enge defensive Kämpfe. Mit weit von der Front entfernten ertragreichen Rohstoffen können sich die Teams aussuchen, ob sie ihre ausgesetzten Teamkameraden finanziell unterstützen, oder sich auf fruchtbareres aber weniger verteidigbares Land begeben."
 
 #: maps/random/hells_pass.jsonsettings.Name
 msgid "Hell's Pass"
-msgstr ""
+msgstr "Hell's Pass"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -279,7 +292,7 @@ msgstr "Hyrkanische Gestade"
 msgid ""
 "Teams start off with nearly adjacent town centers on a small island, "
 "offering a fortified base from which to expand."
-msgstr ""
+msgstr "Teams beginnen mit nahezu direkt benachbarten Stadtzentren auf einer kleinen Insel, was ihnen eine befestigte Basis bietet, von der aus sie sich ausbreiten können."
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
@@ -326,11 +339,11 @@ msgstr "Latium"
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
-msgstr ""
+msgstr "Hohe Klippen schützen das Hauptquartier jedes Spielers. Sich in das Unbekannte zu wagen, kann riskant aber notwendig sein."
 
 #: maps/random/lions_den.jsonsettings.Name
 msgid "Lion's Den"
-msgstr ""
+msgstr "Lion's Den"
 
 #: maps/random/lorraine_plain.jsonsettings.Description
 msgid ""
@@ -502,11 +515,11 @@ msgid ""
 "Teams start off with nearly adjacent town centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr ""
+msgstr "Teams beginnen mit nahezu direkt benachbarten Stadtzentren, was eine leichte Kooperation im Militär und beim Bau ermöglicht. Mit kleinen Teilen privates Territoritum müssen sich Teamkameraden aufeinander verlassen, um ihre Rückseite zu verteidigen."
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
-msgstr ""
+msgstr "Stronghold"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
@@ -589,6 +602,11 @@ msgstr "Ein gegnerische Welle greift an!"
 #: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "Die erste Welle startet in 15 Minuten!"
+
+#: maps/scenarios/Cinema_Demo.js:12
+#, javascript-format
+msgid "Cutscene starts in %(time)s"
+msgstr "Schnittscene stat bei %(time)s"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -675,7 +693,9 @@ msgstr "Frühlingszeit in Arkadien, Griechenland. Der Frühlingsregen hat die Ba
 #: maps/scenarios/Walls.xml:PlayerData[0].Name:31
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:42
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
+#: maps/scenarios/test.xml:PlayerData[1].Name:40 maps/skirmishes/Acropolis Bay
+#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Acropolis Fortress
+#: (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
@@ -743,7 +763,9 @@ msgstr "Spieler 1"
 #: maps/scenarios/WallTest.xml:PlayerData[1].Name:31
 #: maps/scenarios/Walls.xml:PlayerData[1].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:42
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
+#: maps/scenarios/test.xml:PlayerData[2].Name:40 maps/skirmishes/Acropolis Bay
+#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Acropolis Fortress
+#: (2).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
@@ -958,6 +980,22 @@ msgstr "Religiöse Institutionen"
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Machbarkeitsnachweis einer strategischen Kampagne"
 
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr "Demo-Karte für filmische Kamerabewegungen."
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr "Xerxes I."
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr "Yuu"
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr "Kino Demo"
+
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
 msgstr "Schlachtdemo"
@@ -997,7 +1035,9 @@ msgstr "Invasionstruppen"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: Oasis.xml:PlayerData[2].Name:31
+#: maps/scenarios/Two_Seas.xml:PlayerData[3].Name:40 maps/skirmishes/Acropolis
+#: Fortress (2).xml:PlayerData[3].Name:40 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
@@ -1052,7 +1092,9 @@ msgstr "Eine kleine Wüstenkarte. Jeder Spieler startet in der Nähe einer Oase,
 #: maps/scenarios/Gold_Rush.xml:PlayerData[3].Name:31
 #: maps/scenarios/Necropolis.xml:PlayerData[3].Name:41 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[3].Name:31 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[3].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[3].Name:31
+#: maps/scenarios/Two_Seas.xml:PlayerData[4].Name:40 maps/skirmishes/Acropolis
+#: Fortress (2).xml:PlayerData[4].Name:40 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Greek Acropolis
@@ -1165,6 +1207,16 @@ msgstr "Das peloponnesische Tal von Lakonien, Heimat der Spartaner\n\nDie Makedo
 #: maps/scenarios/Laconia 01.xml:Name:31
 msgid "Laconia"
 msgstr "Lakonien"
+
+#: maps/scenarios/Malta2.xml:Description:40
+msgid ""
+"Romanian conquest of Malta Island.\n"
+"Malta has been colonized by carthaganians and greeks, who both live peacefully and established commercial exchanges years ago. Romans wants to take malta to establish a new military base and create new mediteranean commercial routes. The roman conquest start from Gozo Island (northern island)."
+msgstr "Römische Eroberung der Insel Malta.\nMalta wurde von Karthagern und Griechen kolonisiert. Beide lebten friedlich zusammen und schufen wirtschaftlichen Austausch für Jahre. Die Römer wollten Malta erobern um eine neue Militärbasis zu errichten und neue Handelsrouten im Mittelmeerraum zu etablieren. Die römische Eroberung startete von der Insel Gozo (nördliche Insel)."
+
+#: maps/scenarios/Malta2.xml:Name:40
+msgid "Malta Island"
+msgstr "Insel Malta"
 
 #: maps/scenarios/Migration.xml:Description:31
 msgid ""
@@ -1642,6 +1694,34 @@ msgstr "Mehrspielerkarte. Ein tropisches Paradies."
 msgid "Tropical Island"
 msgstr "Tropisches Eiland"
 
+#: maps/scenarios/Two_Seas.xml:Description:40 maps/skirmishes/Two Seas
+#: (6).xml:Description:41
+msgid ""
+"A large tropic map with two seas to the East and to the West. Good for two "
+"teams of three players or three teams of two players."
+msgstr "Eine große tropische Karte mit zwei Meeresarmen im Osten und Westen. Gut für zwei Teams mit drei Spielern oder drei Teams mit zwei Spielern."
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[1].Name:40
+msgid "Capital 1"
+msgstr "Hauptstadt 1"
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[2].Name:40
+msgid "Capital 2"
+msgstr "Hauptstadt 2"
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[5].Name:40
+msgid "Player 5"
+msgstr "Spieler 5"
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[6].Name:40
+msgid "Player 6"
+msgstr "Spieler 6"
+
+#: maps/scenarios/Two_Seas.xml:Name:40 maps/skirmishes/Two Seas
+#: (6).xml:Name:41
+msgid "Two Seas (6)"
+msgstr "Zwei Meere (6)"
+
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
 msgstr "Einheitendemo"
@@ -1653,7 +1733,7 @@ msgstr "Jede Einheit im Spiel."
 #: maps/scenarios/WallTest.xml:Description:31
 #: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
 #: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:41
+#: (4).xml:Description:41 maps/skirmishes/test.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "Gib deiner Karte eine interessante Beschreibung."
 
@@ -1677,7 +1757,7 @@ msgstr "Wir sind Legion"
 msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Eine schnelle Schlacht-Demokarte mit römischen Legionären."
 
-#: maps/scenarios/_default.xml:Name:32
+#: maps/scenarios/_default.xml:Name:32 maps/skirmishes/test.xml:Name:40
 msgid "Unnamed map"
 msgstr "Unbenannte Karte"
 
@@ -1720,6 +1800,19 @@ msgstr "Einstiegstutorial Wirtschaft"
 msgid "Base Temperate Map"
 msgstr "Gemäßigte Standardkarte"
 
+#: maps/scenarios/test.xml:Description:40
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
+msgid ""
+"The high peaks and valleys of the Alps.\n"
+"\n"
+"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
+msgstr "Die hohen Gipfel und Täler der Alpen.\n\nJeder Spieler beginnt das Spiel in einem sicheren grünen Tal. Dazwischen liegt die tückische Gebirgskette der Alpen."
+
+#: maps/scenarios/test.xml:Name:40
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
+msgid "Alpine Valleys (2)"
+msgstr "Alpentäler (2)"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:41
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
@@ -1731,6 +1824,19 @@ msgstr "Jeder Spieler beginnt das Spiel auf einem großen flachen Plateau, auch 
 msgid "Acropolis Bay (2)"
 msgstr "Acropolisbucht (2)"
 
+#: maps/skirmishes/Acropolis Fortress (2).xml:Description:40
+#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
+msgid ""
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr "Drei Fraktionen haben sich sicher oben auf großen Felsplateau oder Akropolen niedergelassen, während die Vierte von ihren Feinden durch einen Fluss getrennt ist.\n\nErkunde das Land, um kostenlose Schätze zu finden und dir neue Ressourcen zu sichern."
+
+#: maps/skirmishes/Acropolis Fortress (2).xml:Name:40 maps/skirmishes/Greek
+#: Acropolis (4).xml:Name:41
+msgid "Greek Acropolis (4)"
+msgstr "Griechische Akropolis (4)"
+
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Description:40
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
@@ -1740,17 +1846,6 @@ msgstr "Eine Karte mit unwegsamen Bergen und eine große Anzahl von natürlichen
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
 msgstr "Alpine Berge (3)"
-
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
-msgid ""
-"The high peaks and valleys of the Alps.\n"
-"\n"
-"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr "Die hohen Gipfel und Täler der Alpen.\n\nJeder Spieler beginnt das Spiel in einem sicheren grünen Tal. Dazwischen liegt die tückische Gebirgskette der Alpen."
-
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
-msgid "Alpine Valleys (2)"
-msgstr "Alpentäler (2)"
 
 #: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
@@ -1774,6 +1869,14 @@ msgid ""
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers."
 msgstr "Eine wilde Insel, voll mit Wäldern, Gold und Geheimnissen … Berge, Seen und dichte Wälder tragen zu einer dynamischen, flotten 3-Spieler-Karte bei mit viel Potential für Geplänkel und Guerilla-Taktik genauso wie für harte defensive Kämpfe oder aggressive Manöver."
+
+#: maps/skirmishes/Basic Tutorial.xml:Description:41
+msgid "The first steps of playing 0 A.D."
+msgstr "Die ersten Schritte 0 A.D. zu spielen."
+
+#: maps/skirmishes/Basic Tutorial.xml:Name:41
+msgid "Basic Tutorial"
+msgstr "Einstiegstutorial"
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
@@ -1847,6 +1950,14 @@ msgstr "Delos"
 msgid "Cycladic Archipelago (3)"
 msgstr "Kykladischer Archipel (3)"
 
+#: maps/skirmishes/Cyprus.xml:Description:40
+msgid "Version Beta"
+msgstr "Beta-Version"
+
+#: maps/skirmishes/Cyprus.xml:Name:40
+msgid "Cyprus"
+msgstr "Zypern"
+
 #: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""
 "A deep rocky canyon slicing through the desert.\n"
@@ -1909,7 +2020,7 @@ msgstr "Der Gambia (3)"
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of land or via boat."
-msgstr ""
+msgstr "Ein Landring grenzt an einer rohstoffreichen Insel im Mittelmeer an. Spieler können die Mitte mit einer engen Landzunge oder mit einem Boot erreichen."
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -1937,17 +2048,6 @@ msgstr "Zwei Fraktionen haben sich sicher oben auf großen Felsplateaus oder Akr
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:41
 msgid "Greek Acropolis (2)"
 msgstr "Griechische Akropolis (2)"
-
-#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
-msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
-"\n"
-"Scout the lands to find free treasures and to secure new resources.."
-msgstr "Drei Fraktionen haben sich sicher oben auf großen Felsplateau oder Akropolen niedergelassen, während die Vierte von ihren Feinden durch einen Fluss getrennt ist.\n\nErkunde das Land, um kostenlose Schätze zu finden und dir neue Ressourcen zu sichern."
-
-#: maps/skirmishes/Greek Acropolis (4).xml:Name:41
-msgid "Greek Acropolis (4)"
-msgstr "Griechische Akropolis (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Name:42
 msgid "Greek Acropolis Night (2)"
@@ -2190,16 +2290,6 @@ msgstr "Vier Fraktionen haben sich sicher oben auf großen Felsplateaus oder Akr
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr "Toskanische Akropolis (4)"
-
-#: maps/skirmishes/Two Seas (6).xml:Description:41
-msgid ""
-"A large tropic map with two seas to the East and to the West. Good for two "
-"teams of three players or three teams of two players."
-msgstr "Eine große tropische Karte mit zwei Meeresarmen im Osten und Westen. Gut für zwei Teams mit drei Spielern oder drei Teams mit zwei Spielern."
-
-#: maps/skirmishes/Two Seas (6).xml:Name:41
-msgid "Two Seas (6)"
-msgstr "Zwei Meere (6)"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:42
 msgid ""

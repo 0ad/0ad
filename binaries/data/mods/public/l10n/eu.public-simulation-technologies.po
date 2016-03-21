@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Thadah <juchuf@gmail.com>, 2015
+# Thadah <juchuf@gmail.com>, 2015-2016
 # Osoitz <oelkoro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-14 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-21 07:50+0000\n"
+"Last-Translator: Thadah <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -396,7 +396,7 @@ msgstr "Aldezkariek +2 Armadura Mailak, baina baita +10 Metal Kostua."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
-msgstr ""
+msgstr "Zilarrezko Ezkutuak"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
@@ -566,7 +566,7 @@ msgstr "Guarda unitateek ezohiko adorea eta ausardia dute batailan. Aldezkariak 
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
-msgstr ""
+msgstr "Heroitasuna"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
@@ -1462,11 +1462,15 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "Increase the population bonus of the wonder by 40."
+msgid "+50 maximum population cap."
 msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
+msgstr ""
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription

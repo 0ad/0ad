@@ -4,6 +4,7 @@
 # 
 # Translators:
 # BAHIDJ Ryadh <haryadh@live.fr>, 2014
+# François Poirotte <clicky@erebot.net>, 2016
 # gorius <gorius05@gmail.com>, 2014
 # Moul <ma.azimi@laposte.net>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-15 17:58+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-19 12:16+0000\n"
+"Last-Translator: François Poirotte <clicky@erebot.net>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1467,12 +1468,16 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr "La merveille attire beaucoup plus de personnes vers votre civilisation."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "Increase the population bonus of the wonder by 40."
-msgstr "Augmenter le bonus de population de la merveille de 40."
+msgid "+50 maximum population cap."
+msgstr "+50 de population à la limite maximale."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Expansion glorieuse"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr "Promotion du guérisseur"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 19:41+0000\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-20 12:31+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -340,12 +340,12 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Verbindung zum Server geht verloren (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s verliert die Verbindung (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -355,7 +355,7 @@ msgstr "Schlechte Verbindung zum Server (%(milliseconds)sms)"
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Schlechte Verbindung nach %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -387,7 +387,7 @@ msgstr "Du wurdest gebannt"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Spielername bereits in Verwendung. Falls du getrennt wurdest, versuch es in ein paar Sekunden erneut"
 
 #: gui/common/network.js:61
 msgid "Server full"
@@ -832,7 +832,7 @@ msgstr "Abbrechen"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Die Zurücksetzung der Optionen wird deine gespeicherte Einstellungen löschen. Willst du fortfahren?"
 
 #: gui/options/options.js:274 gui/options/options.js:338
 #: gui/savedgames/load.js:89
@@ -841,7 +841,7 @@ msgstr "Warnung"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Du hast ungespeicherte Änderungen, willst du dieses Fenster schließen?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -979,7 +979,7 @@ msgstr "Wiederholung löschen"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Bist du sicher, dass du diese Wiederholung dauerhaft löschen willst?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1373,7 +1373,7 @@ msgstr "0 A.D. Credits"
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Special Credits"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
@@ -1381,7 +1381,7 @@ msgstr "Programmierung"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Grafik"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
@@ -1490,7 +1490,7 @@ msgstr "Lobbyeinstellungen"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1502,7 +1502,7 @@ msgstr "Speichern"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Setze Benutzereinstellungen zum Spiel Standard zurück"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
@@ -1539,8 +1539,8 @@ msgid "Status: $status."
 msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XIX: Syllepsis"
-msgstr "Alpha XIX: Syllepsis"
+msgid "Alpha XX: Timosthenes"
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1760,7 +1760,7 @@ msgstr "Anklicken, um die Übersetzerseite von 0 A.D. im Browser zu öffnen."
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Klicke, um 0 A.D. Credits anzusehen."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1896,35 +1896,35 @@ msgstr "Fortfahren"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Grafikführung"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Sound Manager"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Komposition"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Grafik-Manager"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Kartenerstellung"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Zufallskartenskripte"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D-Grafik"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D-Grafik"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
@@ -1936,53 +1936,53 @@ msgstr "Musik"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "1. Pledgie-Spendenaktion"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "2. Pledgie-Spendenaktion"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "IndieGoGO 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Indiegogo-Kampangie in 2013\nÜber 1000 Spender (!), inklusive:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Führung"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Geschichtliche Verweise"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Gemeinschaft und Management"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Programmierungs-Manager"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Besonderes Dankeschön an"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "Zum Andenken an"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. Gründer"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Projektleiter"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Unterstützendes Design"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -1990,11 +1990,11 @@ msgstr "Spezieller Dank an:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Und danke an die gesamte Gemeinschaft, dafür, dass sie 0 A.D. möglich gemacht haben."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Bei der Entwicklung dieses Spiels wurden keine Historiker verletzt."
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2049,7 +2049,7 @@ msgstr "Detaillierte Kurzinfo"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Zeigt an, welche Spieler eine schlechte Verbindung in Multiplayer-Spielen hat."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
@@ -2098,7 +2098,7 @@ msgstr "Spieleinstellungen behalten"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Erlaube Beobachter dem Spiel nach dem Start beizutreten."
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
@@ -2106,7 +2106,7 @@ msgstr "Späte Beobachter Beitretungen:"
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
-msgstr ""
+msgstr "Verhindert weitere Beobachter vom Beitreten, wenn die Grenze erreicht ist"
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
@@ -2224,7 +2224,7 @@ msgstr "Partikel"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Wenn AUS wird die niedrigst möglichen Einstellungen verwendet, um Wasser zu rendern. Das macht andere Einstellungen irrelevant."
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
@@ -2459,7 +2459,7 @@ msgstr "– Ein mittelschweres Kriegsschiff."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr ""
+msgstr "– Steht den keltischen Fraktionen (Briten, Galliern), Maurya-Indern und Iberern zur Verfügung."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2467,7 +2467,7 @@ msgstr "– Kann bis zu 40 Einheiten transportieren."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "– Erhöht die Feuerkraft mit einquartierter Infanterie."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2521,11 +2521,11 @@ msgstr "- Erwirtschafte reichen Ertrag durch Fischen."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "– Fischerboote holen auf jedem Fischzug große Mengen an Nahrung."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "– Das Fischen ist schneller als die Nahrungssuche auf den Feldern."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
@@ -2711,7 +2711,7 @@ msgstr "– Kann bis zu 50 Einheiten transportieren."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "– Erhöht die Feuerkraft mit einquartierten Katapulten."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

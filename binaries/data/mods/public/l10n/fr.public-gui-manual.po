@@ -5,15 +5,16 @@
 # Translators:
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
+# François Poirotte <clicky@erebot.net>, 2016
 # Marco tom Suden, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
 # Toto AD <ad@imw.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-19 12:00+0000\n"
+"Last-Translator: François Poirotte <clicky@erebot.net>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,25 +146,25 @@ msgstr "[font=\"sans-14\"]Dans une partie multijoueur, seul l'hôte peut modifie
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "Pour commencer, sélectionnez le type de carte auquel vous souhaitez jouer :"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Carte aléatoire[font=\"sans-14\"] — Une carte est créée automatiquemt à partir d'un script"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scénario[font=\"sans-14\"] — Une carte créée par des concepteurs de cartes et où les civilisations sont imposées"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Escarmouche[font=\"sans-14\"] — Une carte créée par des concepteurs de cartes, mais où les civilisations peuvent être choisies"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -172,7 +173,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Les cartes peuvent ensuite être davantage filtrées. Les cartes par défaut sont librement jouables. Les cartes navales sont des cartes où certains adversaires ne peuvent être atteints par les terres. Les cartes de démonstration sont des cartes prévues à des fins de test (offrant généralement peu d'intérêt de jeu). Le filtre \"Toutes les cartes\" affiche toutes les cartes regroupées en une seule liste."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -181,7 +182,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Pour finir, changez les paramètres. Pour les cartes aléatoires, cela comprend le nombre de joueurs, la taille de la carte, etc. Pour les scénarios, vous pouvez uniquement choisir qui est contrôlé par chaque joueur (pour décider l'emplacement initial sur la carte, etc.). Vous pouvez opter pour un joueur humain, une IA ou aucun joueur du tout (l'ennemi restera oisif)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."

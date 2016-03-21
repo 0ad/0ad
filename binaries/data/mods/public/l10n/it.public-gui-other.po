@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Claudio <claudiudurneac97@yahoo.it>, 2016
 # Daniele Tricoli <eriol@mornie.org>, 2015
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Fabio Pedretti <fabio.ped@libero.it>, 2015-2016
@@ -16,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:36+0000\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-20 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -334,22 +335,22 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Perdendo connessione al server (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s sta perdendo la connessione  (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Cattiva connessione al server (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Cattiva connessione a %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -357,7 +358,7 @@ msgstr "Motivo sconosciuto"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "L'host ha finito la partita."
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -381,7 +382,7 @@ msgstr "Sei stato bannato"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Nome del giocatore in uso. Se sarai disconnesso ,riprova tra pochi secondi."
 
 #: gui/common/network.js:61
 msgid "Server full"
@@ -826,7 +827,7 @@ msgstr "Annullato"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Resettare le opzioni cancellerà le tue impostazioni salvate. Vuoi continuare ?"
 
 #: gui/options/options.js:274 gui/options/options.js:338
 #: gui/savedgames/load.js:89
@@ -835,7 +836,7 @@ msgstr "Attenzione"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Hai cambiamenti non salvati , vuoi chiudere questa finestra ?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -973,7 +974,7 @@ msgstr "Cancella replay"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Sei sicuro di voler eliminare questa registrazione permanentemente ?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1363,11 +1364,11 @@ msgstr "Chiudi"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. credits."
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Ringraziamenti speciali"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
@@ -1375,7 +1376,7 @@ msgstr "Programmazione"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "arte"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
@@ -1387,7 +1388,7 @@ msgstr "Miscellanea"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donors"
-msgstr ""
+msgstr "donatori"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1533,8 +1534,8 @@ msgid "Status: $status."
 msgstr "Stato: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XIX: Syllepsis"
-msgstr "Alpha XIX: Syllepsis"
+msgid "Alpha XX: Timosthenes"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1642,7 +1643,7 @@ msgstr "Traduci il gioco"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Ringraziamenti"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1754,7 +1755,7 @@ msgstr "Clicca per aprire la pagina di traduzione di 0 A.D. nel browser."
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Clicca per vedere i ringraziamenti di 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1890,35 +1891,35 @@ msgstr "Continua"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Leader Artistico."
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Manager del suono."
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Compositore."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Manager Artistici."
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Creazione della Mappa."
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Caratteri mappa casuale."
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D Art."
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D Art."
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
@@ -1944,7 +1945,7 @@ msgstr "Raccolta fondi IndieGoGO 2013\nOltre 1000 donatori (!), tra cui:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Capo"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -1956,7 +1957,7 @@ msgstr "Comunità e Gestione"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Manager di programmazione."
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
@@ -1968,15 +1969,15 @@ msgstr "In Memoria"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Fondatore 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Leader del proggeto."
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Co-lead DESIGNERS"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -1984,11 +1985,11 @@ msgstr "Ringraziamenti speciali a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "E grazie all'intera comunità per aver reso 0 A.D. possibile"
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Nessuno storico è stato ferito durante lo sviluppo di questo progetto ."
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2043,11 +2044,11 @@ msgstr "Informazioni Dettagliate"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Mostra quale giocatore ha una connessione lenta in giochi multiplayer."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Problemi di connesione."
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2092,19 +2093,19 @@ msgstr "Impostazioni Partita Persistenti"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Consenti agli osservatori di unirsi dopo che la partita è iniziata."
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Osservatore in ritardo si unisce."
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
-msgstr ""
+msgstr "Vieta ad altri osservatori di unirsi se il limite è raggiunto."
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "Limite osservatore."
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2218,7 +2219,7 @@ msgstr "Particelle"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Quando è OFF , usa l'impostazione più bassa per rendere l'acqua.Questo rende le altre impostazioni irrilevanti."
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
@@ -2453,7 +2454,7 @@ msgstr "- Una \"trireme\", classe intermedia di nave da guerra."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr ""
+msgstr "Disponibile per le fazioni Celtiche (Britanni, Galli) Mauritani e Iberici"
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2461,7 +2462,7 @@ msgstr "- Può trasportare fino a 40 unità attraverso le acque."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Aumenta la potenza di fuoco con unità di fanteria all'interno."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2515,17 +2516,17 @@ msgstr "- Pesca nei mari per un raccolto abbondante."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Le navi da pesca trasportano una gran quantità di cibo per ogni viaggio."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Pescare è più veloce che raccogliere cibo nei campi."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
 "- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Acquartiera una Unità di Supporto a bordo per raddoppiare il tasso di raccolta delle barche da pesca."
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
@@ -2701,11 +2702,11 @@ msgstr "- La più pesante nave da guerra. Disponibile per: Roma, Cartagine, Tolo
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "Trasporta fino a 50 unità"
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Aumenta la potenza di fuoco se ci sono catapulte all'interno."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

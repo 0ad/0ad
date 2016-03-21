@@ -6,7 +6,7 @@
 # efrasiyab1 <ado.ender@gmail.com>, 2014
 # coolland <coolland10@gmail.com>, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
-# Hüseyin Cem ARAS <hcemaras@gmail.com>, 2015
+# Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # Kudret <kudretemre@hotmail.com.tr>, 2014
 # TurkishPower <oyun_38@hotmail.com.tr>, 2014
 # receb, 2014
@@ -14,13 +14,13 @@
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # utkugun <utkugundogan@gmail.com>, 2014-2015
 # Volkan Gezer <volkangezer@gmail.com>, 2014
-# yakup <mutouk@yandex.ru>, 2014-2015
+# yakup <mutouk@yandex.ru>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-14 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 14:14+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1472,12 +1472,16 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr "Harikalar uygarlığınıza daha da fazla insan çeker."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "Increase the population bonus of the wonder by 40."
+msgid "+50 maximum population cap."
 msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Şanlı Genişleme"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1767,7 +1771,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "3 Tüccar Gerekli"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""

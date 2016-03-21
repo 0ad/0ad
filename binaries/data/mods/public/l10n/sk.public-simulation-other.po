@@ -9,13 +9,14 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# SuroX <peter.surovcik@gmail.com>, 2016
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-19 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-03-20 13:23+0000\n"
+"Last-Translator: SuroX <peter.surovcik@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -745,15 +746,15 @@ msgstr "Nie je možné nájsť voľné miesto na uloženie vytrénovaných jedno
 
 #: simulation/helpers/Cheat.js:63
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Musíš označiť budovu, ktorá bude trénovať jednotky."
 
 #: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Cheat - kontrola všetkých jednotiek)"
 
 #: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Cheat - kontrola povýšených jednotiek)"
 
 #: simulation/helpers/Commands.js:678
 #, javascript-format
@@ -762,11 +763,11 @@ msgstr "Žiada sa útok na %(_player_)s."
 
 #: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Nieje možné odpojiť jednotku."
 
 #: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "Niektoré jednotky sa nemôžu vrátiť do práce."
 
 #: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
@@ -973,7 +974,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra je základný 0 A.D. AI bot. Poprosím o nahlásenie problémov do Wildfire Games (Pozri  link v hlavnom menu).\n\nUmelá inteligencia má bonus/znevýhodnenie na hromadení zdrojov (buď zber alebo obchodný zisk) v hodnotách 0.5 pre Sandbox až po 1,6 pre Veľmi ťažkú obtiažnosť (Medium = 1.0). Navyše, Sandbox level neexpanduje a neútočí. "
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

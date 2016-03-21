@@ -9,13 +9,13 @@
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # juanda097 <juanda097@openmailbox.org>, 2014
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
-# Swyter <Swyterzone@gmail.com>, 2014-2015
+# Swyter <Swyterzone@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-19 18:23+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,25 +147,25 @@ msgstr "[font=\"sans-14\"]En una partida multijugador sólo el anfitrión puede 
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "Elige primero el tipo de mapa que quieras jugar:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa aleatorio[font=\"sans-14\"] — Un mapa artificial creado de forma automática por un script"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa de escenario[font=\"sans-14\"] — Un mapa creado por una persona y que viene con civilizaciones prefijadas"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa de escaramuza[font=\"sans-14\"] — Un mapa creado por una persona donde el jugador es libre de elegir facción"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -174,7 +174,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Los mapas se pueden filtrar aún más. Los mapas originales suelen ser los más divertidos. En los mapas navales no se puede acceder a muchos enemigos por tierra, y los mapas de demostración son sólo de prueba (no para jugar). Al filtrar los mapas por «todos» tendrás acceso a cualquier mapa que no se muestre de cualquier otra forma."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -183,7 +183,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Y por último el cambio de configuraciones. Para mapas aleatorios se incluye el número de jugadores, el tamaño del mapa, etc. Para escenarios solo puedes seleccionar quien controla cada jugador (decidir donde inicias en el mapa, etc). Las opciones son un jugador humano, IA o sin jugador asignado (las unidades existentes atacarán enemigos que estén a su alcance, pero no se crearán nuevas unidades ni atacarán a nadie)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."

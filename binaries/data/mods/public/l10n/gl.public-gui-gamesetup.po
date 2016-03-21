@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:00+0100\n"
-"PO-Revision-Date: 2016-03-14 10:27+0000\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-20 08:15+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -88,6 +88,7 @@ msgid "All Maps"
 msgstr "Todos os mapas"
 
 #: gui/gamesetup/gamesetup.js:136 gui/gamesetup/gamesetup.js:1384
+#: gui/gamesetup/mapselection.js:16
 msgctxt "map"
 msgid "Random"
 msgstr "Aleatorio"
@@ -219,6 +220,47 @@ msgstr "O nome da partida xa está en uso."
 msgid "%(playername)s's game"
 msgstr "Partida de %(playername)s"
 
+#: gui/gamesetup/mapselection.js:16
+msgctxt "map"
+msgid "Skirmish"
+msgstr ""
+
+#: gui/gamesetup/mapselection.js:16
+msgid "Scenario"
+msgstr ""
+
+#: gui/gamesetup/mapselection.js:19 gui/gamesetup/gamesetup.xml:(tooltip):139
+#: gui/gamesetup/mapsettings.xml:(tooltip):38
+#: gui/gamesetup/settings/mapType.xml:(tooltip):13
+msgid "Select a map type."
+msgstr "Escoller un tipo de mapa."
+
+#: gui/gamesetup/mapselection.js:20 gui/gamesetup/gamesetup.xml:(caption):110
+#: gui/gamesetup/mapsettings.xml:(caption):7
+#: gui/gamesetup/settings/mapType.xml:(caption):5
+msgid "Map Type:"
+msgstr "Tipo de mapa:"
+
+#: gui/gamesetup/mapselection.js:33 gui/gamesetup/gamesetup.xml:(tooltip):147
+#: gui/gamesetup/mapsettings.xml:(tooltip):46
+msgid "Select a map filter."
+msgstr "Escoller un filtro de mapas."
+
+#: gui/gamesetup/mapselection.js:34 gui/gamesetup/gamesetup.xml:(caption):113
+#: gui/gamesetup/mapsettings.xml:(caption):10
+msgid "Map Filter:"
+msgstr "Filtro:"
+
+#: gui/gamesetup/mapselection.js:47 gui/gamesetup/gamesetup.xml:(tooltip):156
+#: gui/gamesetup/mapsettings.xml:(tooltip):55
+msgid "Select a map to play on."
+msgstr "Escoller un mapa no que xogar."
+
+#: gui/gamesetup/mapselection.js:48 gui/gamesetup/gamesetup.xml:(caption):116
+#: gui/gamesetup/mapsettings.xml:(caption):13
+msgid "Select Map:"
+msgstr "Mapa:"
+
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
@@ -264,6 +306,7 @@ msgid "Loading map data. Please wait..."
 msgstr "Cargando os datos dos mapas…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):45
+#: gui/gamesetup/players.xml:(caption):8
 msgid "Player Name"
 msgstr "Nome do xogador"
 
@@ -272,34 +315,27 @@ msgid "Color"
 msgstr "Cor"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/players.xml:(caption):11
 msgid "Player Placement"
 msgstr "Controlador"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/players.xml:(caption):14
 msgid "Civilization"
 msgstr "Civilización"
 
 #: gui/gamesetup/gamesetup.xml:(caption):69
+#: gui/gamesetup/players.xml:(caption):29
 msgid "Team"
 msgstr "Equipo"
 
-#: gui/gamesetup/gamesetup.xml:(caption):110
-msgid "Map Type:"
-msgstr "Tipo de mapa:"
-
-#: gui/gamesetup/gamesetup.xml:(caption):113
-msgid "Map Filter:"
-msgstr "Filtro:"
-
-#: gui/gamesetup/gamesetup.xml:(caption):116
-msgid "Select Map:"
-msgstr "Mapa:"
-
 #: gui/gamesetup/gamesetup.xml:(caption):119
+#: gui/gamesetup/mapsettings.xml:(caption):19
 msgid "Number of Players:"
 msgstr "Xogadores:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):122
+#: gui/gamesetup/mapsettings.xml:(caption):22
 msgid "Map Size:"
 msgstr "Tamaño:"
 
@@ -369,6 +405,7 @@ msgid "Rated Game:"
 msgstr "Cualificación:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):63
+#: gui/gamesetup/players.xml:(tooltip):23
 msgid "View civilization info"
 msgstr "Ver a información da civilización."
 
@@ -377,38 +414,32 @@ msgid "Pick a color."
 msgstr "Escoller unha cor."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
+#: gui/gamesetup/players.xml:(tooltip):38
 msgid "Select player."
 msgstr "Escoller un xogador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):91
+#: gui/gamesetup/players.xml:(tooltip):47
 msgid "Configure AI settings."
 msgstr "Configurar a intelixencia artificial."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):94
+#: gui/gamesetup/players.xml:(tooltip):50
 msgid "Select player's civilization."
 msgstr "Escoller a civilización do xogador."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):98
+#: gui/gamesetup/players.xml:(tooltip):54
 msgid "Select player's team."
 msgstr "Escoller o equipo do xogador."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):139
-msgid "Select a map type."
-msgstr "Escoller un tipo de mapa."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):147
-msgid "Select a map filter."
-msgstr "Escoller un filtro de mapas."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):156
-msgid "Select a map to play on."
-msgstr "Escoller un mapa no que xogar."
-
 #: gui/gamesetup/gamesetup.xml:(tooltip):166
+#: gui/gamesetup/mapsettings.xml:(tooltip):65
 msgid "Select number of players."
 msgstr "Selecciona o número de xogadores."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):170
+#: gui/gamesetup/mapsettings.xml:(tooltip):70
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Escoller o tamaño do mapa. Canto máis grande, peor será o rendemento."
 
@@ -501,6 +532,10 @@ msgstr "Configurar o seu computador como anfitrión."
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "Nome do servidor:"
+
+#: gui/gamesetup/mapsettings.xml:(caption):16
+msgid "Other Settings"
+msgstr ""
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
