@@ -479,7 +479,7 @@ function updateLeaderboard()
 	{
 		list_name.push(boardList[i].name);
 		list_rating.push(boardList[i].rating);
-		list_rank.push(i+1);
+		list_rank.push(+i+1);
 		list.push(boardList[i].name);
 	}
 
