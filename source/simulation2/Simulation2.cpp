@@ -586,6 +586,9 @@ CSimulation2::~CSimulation2()
 
 void CSimulation2::EnableOOSLog()
 {
+	if (m->m_EnableOOSLog)
+		return;
+
 	m->m_EnableOOSLog = true;
 	debug_printf("Writing ooslogs to %s\n", m->m_OOSLogPath.string8().c_str());
 }
@@ -593,6 +596,11 @@ void CSimulation2::EnableOOSLog()
 void CSimulation2::EnableSerializationTest()
 {
 	m->m_EnableSerializationTest = true;
+}
+
+void CSimulation2::SetCurrentDisplayedPlayer(int playerID)
+{
+	m->m_SimContext.SetCurrentDisplayedPlayer(playerID);
 }
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)

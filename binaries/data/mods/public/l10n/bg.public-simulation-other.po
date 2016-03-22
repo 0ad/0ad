@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
-# Lyubomir Vasilev, 2016
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Любомир Василев, 2016
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Любомир Василев, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-02-27 21:19+0000\n"
-"Last-Translator: Lyubomir Vasilev\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-19 08:43+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,85 +65,85 @@ msgstr "Започвам атака срещу %(_player_)s."
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Току-що изпратих войска срещу %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "След като прегрупирам войската си, ще се присъединя към теб срещу %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:46
+#: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Правя последни подготовки и ще нападна %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Не мога да помогна срещу %(_player_)s засега, тъй като подготвям друго нападение срещу %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:53
+#: simulation/ai/petra/chatHelper.js:52
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr "Съжалявам, но в момента нямам достатъчно войници, но следващото ми нападение ще е насочено към %(_player_)s."
+msgstr "Съжалявам, в момента нямам достатъчно во̀йни, но следващото ми нападение ще е насочено към %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Ето подарък за %(_player_)s, използвай го добре."
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Виждам, че си в лошо положение, %(_player_)s, Надявам се това да помогне."
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr "Мога да ти помогна този път, %(_player_)s, Но се опитай да събираш повече ресурси в бъдеще."
+msgstr "Мога да ти помогна този път, %(_player_)s, но се опитай да събираш повече ресурси в бъдеще."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Имам нужда от %(resource)s, можеш ли да ми помогнеш? Ще ти се издължа."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Бих участвал по-пълноценно в нашите общи военни усилия, ако ми осигуриш малко %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:101
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Ако имаш %(resource)s в излишък, това би ми помогнало да заздравя армията си."
 
-#: simulation/ai/petra/chatHelper.js:118
+#: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Уредих нов търговски път с %(_player_)s. Търгуването ще бъде печелившо за всички нас."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:117
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Създаден е нов търговски път до %(_player_)s. Ето твоя дял от печалбата"
 
-#: simulation/ai/petra/chatHelper.js:136
+#: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Преминавам в %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:138
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Достигнах %(phase)s."
@@ -157,17 +158,17 @@ msgstr "Внимание: Това е урок за напреднали, кой
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr "Да започваме! Първо обучете партида (щракване с натиснат Шифт) от 5 жени в градския център."
+msgstr "Да започваме! Първо, обучете партида (щракване с натиснат Shift) от 5 жени в СЦ (селищния център)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr "Сега наредете на жените да събират боровинки, на конника да улови пилетата и на гражданите-воини да събират дърва."
+msgstr "Сега наредете на жените да събират боровинки, на конника да улови пилетата и на гражданите-во̀ини да събират дърва."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr "Сега поставете сборната точка на градския център върху боровинките."
+msgstr "Сега поставете сборната точка на селишния център върху боровинките."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
@@ -185,7 +186,7 @@ msgstr "Когато жените бъдат обучени, използвай�
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr "Поставете сборната точката на градския център върху близките дървета и обучете още прашкари. За сега обучете 6."
+msgstr "Поставете сборната точката на селищния център върху близките дървета и обучете още прашкари. За сега обучете 6."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
@@ -199,13 +200,13 @@ msgstr "Щракнете с натиснат клавиш Шифт, за да д
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr "След като всички граждани-воини бъдат обучени, поставете сборната точка обратно върху боровинките."
+msgstr "След като всички граждани-во̀ини бъдат обучени, поставете сборната точка обратно върху боровинките."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr "Изпратете един гражданин-воин да събира камък и още двама да построят склад до дърветата на юг."
+msgstr "Изпратете един гражданин-во̀ин да събира камък и още двама да построят склад до дърветата на юг."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
@@ -214,7 +215,7 @@ msgstr "Добавете още 5 жени на опашката."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr "Използвайте жена, за да направите поле до градския център."
+msgstr "Използвайте жена, за да направите поле до селищния център."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
@@ -297,7 +298,7 @@ msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr "Пренасочете 3 жени от дървесината и 3 жени от камъка към земеделие. Жените са евтини за обучение в началото на играта, но по-нататък ще можете да обучавате повече граждани-воини, а с тях ще постигнете по-добра производителност."
+msgstr "Пренасочете 3 жени от дървесината и 3 жени от камъка към земеделие. Жените са евтини за обучение в началото на играта, но по-нататък ще можете да обучавате повече граждани-во̀ини, а с тях ще постигнете по-добра производителност."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
@@ -331,7 +332,7 @@ msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr "След като достигнете следващата епоха, използвайте гражданин-воин, за да поставите основата за казарма. След това използвайте жените, които не събират храна или не строят къщи, за да я построите."
+msgstr "След като достигнете следващата епоха, използвайте гражданин-во̀ин, за да поставите основата за казарма. След това използвайте жените, които не събират храна или не строят къщи, за да я построите."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
@@ -381,7 +382,7 @@ msgstr "— Използвайте всичките си ресурси. Тру�
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr "— Използвайте правилните единици за всяка задача. Жените събират храна, конниците ловуват, гражданите-воини вършат всичко останало."
+msgstr "— Използвайте правилните единици за всяка задача. Жените събират храна, конниците ловуват, гражданите-во̀ини вършат всичко останало."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
@@ -392,7 +393,7 @@ msgstr "— Не се страхувайте да пренасочвате ед�
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr "— Стройте достатъчно къщи. Градският Ви център трябва да бъде колкото се може по-зает."
+msgstr "— Стройте достатъчно къщи. Селищният Ви център трябва да бъде колкото се може по-зает."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -424,13 +425,13 @@ msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr "Изберете гражданин-воин и щракнете с десния бутон върху някое дърво близо до градския център, за да започне да събира дървесина. Гражданите-воини събират дървесина по-бързо от жените."
+msgstr "Изберете гражданин-во̀ин и щракнете с десния бутон върху някое дърво близо до селищния център, за да започне да събира дървесина. Гражданите-воини събират дървесина по-бързо от жените."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr "Изберете градския център. Задържайки Шифт, щракнете веднъж с ляв бутон върху иконката на хоплит (2-рата в редицата), за да започне обучаването на 5 хоплити."
+msgstr "Изберете селищния център. Задържайки Шифт, щракнете веднъж с ляв бутон върху иконката на хоплит (2-рата в редицата), за да започне обучаването на 5 хоплити."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
@@ -449,13 +450,13 @@ msgstr "Изберете новообучените хоплити и им да�
 msgid ""
 "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
 "in the row) in the Civil Center."
-msgstr "Обучете група от 5 стрелци като щракнете, задържайки Шифт, върху иконката на стрелец (3-та подред) в градския център."
+msgstr "Обучете група от 5 стрелци като щракнете, задържайки Шифт, върху иконката на стрелец (3-та подред) в селищния център."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
 msgid ""
 "Build a farmstead in an open space beside the Civil Center using any idle "
 "builders."
-msgstr "Постройте ферма някъде около градския център като използвате някой от свободните строители."
+msgstr "Постройте ферма някъде около селищния център като използвате някой от свободните строители."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:39
 msgid ""
@@ -476,26 +477,26 @@ msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr "Обучете 5 хоплити от градския център. Изберете градския център, и докато е избран, щракнете с десен бутон върху някое близко дърво. Така единиците, излизащи от градския център, автоматично ще събират дървесина."
+msgstr "Обучете 5 хоплити от селищния център. Изберете градския център, и докато е избран, щракнете с десен бутон върху някое близко дърво. Така единиците, излизащи от градския център, автоматично ще събират дървесина."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr "Наредете на бездействащите стрелци да построят наблюдателница на североизточния край на територията Ви. Това ще е петата сграда от Селищната фаза, която ще сте построили, така че ще можете да преминете към фазата „Малък град“."
+msgstr "Наредете на бездействащите копиехвъргачи да построят аванпост на североизточния край на територията Ви. Това ще е петата сграда от Селската фаза, която ще сте построили, така че ще можете да преминете към Градската фаза."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Изберете градския център отново и преминете към фазата „Малък град“ като щракнете върху иконата „II“. Това ще Ви позволи да строите сгради от тази фаза."
+msgstr "Изберете селищния център отново и преминете към Градската фаза, като щракнете върху иконката „II“. Това ще Ви позволи да строите сгради от тази фаза."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr "Започнете обучаването на 5 жени в градския център и поставете сборната му точка върху фермата (като щракнете с десен бутон върху нея)."
+msgstr "Започнете обучаването на 5 жени в селищния център и поставете сборната му точка върху фермата (като щракнете с десен бутон върху нея)."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
@@ -507,13 +508,13 @@ msgstr "Постройте казарма наблизо. Когато дост�
 msgid ""
 "Prepare for an attack by an enemy player. Build more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr "Пригответе се за нападението на вражески играч. Обучете повече войници в казармата и накарайте бездействащите да построят защитна кула близо до наблюдателницата."
+msgstr "Пригответе се за нападението на вражески играч. Обучете повече войници в казармата и накарайте бездействащите да построят защитна кула близо до аванпоста."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr "Постройте ковачница и проучете технологията за обучение на пехотинци (иконката с меч), за да подобрите разсичащата атака на пехотинците."
+msgstr "Постройте ковачница и проучете технологията за трениране на пехотинци (иконката с меч), за да подобрите разсичащата атака на пехотинците."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
@@ -529,20 +530,20 @@ msgstr "Врагът беше отблъснат. Сега постройте п
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr "След като вече всички изисквания за фазата „Голям град“ са изпълнени, изберете градския център и преминете към новата фаза."
+msgstr "След като вече всички изисквания за Мегаполисната фаза са изпълнени, изберете селищния център и преминете към новата фаза."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr "Вече сте във фазата „Голям град“. Постройте крепост наблизо и я използвайте, за да построите 2 тарана."
+msgstr "Вече сте в Мегаполисната фаза. Постройте крепост наблизо и я използвайте, за да построите 2 тарана."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr "Спрете всички войници, които събират ресурси, и ги разделете на малки групи, които да потърсят вражеския градски център на картата. Нека жените продължат да събират ресурси."
+msgstr "Спрете всички войници, които събират ресурси, и ги разделете на малки групи, които да потърсят вражеския селищен център на картата. Нека жените продължат да събират ресурси."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
@@ -622,8 +623,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)s е прекалено близо до %(category)s, трябва да е поне на %(distance)s метър"
-msgstr[1] "%(name)s е прекалено близо до %(category)s, трябва да е поне на %(distance)s метра"
+msgstr[0] "%(name)s — прекалено близо до %(category)s, трябва да е поне на %(distance)s метър"
+msgstr[1] "%(name)s — прекалено близо до %(category)s, трябва да е поне на %(distance)s метра"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -631,8 +632,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s прекалено далече от %(category)s, трябва да бъде в рамките на %(distance)s метър"
-msgstr[1] "%(name)s прекалено далече от %(category)s, трябва да бъде в рамките на %(distance)s метра"
+msgstr[0] "%(name)s — прекалено далече от %(category)s, трябва да бъде в рамките на %(distance)s метър"
+msgstr[1] "%(name)s — прекалено далече от %(category)s, трябва да бъде в рамките на %(distance)s метра"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -662,12 +663,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "вражеска"
 
-#: simulation/components/CeasefireManager.js:103
+#: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Можете да нападате след %(time)s"
 
-#: simulation/components/CeasefireManager.js:118
+#: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
 msgstr "Можете да нападате сега!"
 
@@ -686,42 +687,42 @@ msgstr "Достигнато е ограничението за обучаван
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Достигнато е ограничението на %(category)s (%(limit)s)"
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:48
 msgid "Food"
 msgstr "Храна"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:49
 msgid "Wood"
 msgstr "Дървесина"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:50
 msgid "Metal"
 msgstr "Метал"
 
-#: simulation/components/Player.js:47
+#: simulation/components/Player.js:51
 msgid "Stone"
 msgstr "Камък"
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Недостатъчно ресурси — %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Недостатъчно ресурси — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Недостатъчно ресурси — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -737,12 +738,32 @@ msgstr "Опашката за производство е пълна."
 msgid "Can't find free space to spawn trained units"
 msgstr "Няма свободно място за обучените единици"
 
-#: simulation/helpers/Commands.js:675
+#: simulation/helpers/Cheat.js:63
+msgid "You need to select a building that trains units."
+msgstr "Трябва да изберете сграда, която обучава единици."
+
+#: simulation/helpers/Commands.js:126
+msgid "(Cheat - control all units)"
+msgstr "(Измама — управляване на всички единици)"
+
+#: simulation/helpers/Commands.js:559
+msgid "(Cheat - promoted units)"
+msgstr "(Измама — повишени единици)"
+
+#: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Предложено е нападение срещу %(_player_)s."
 
-#: simulation/helpers/Commands.js:965
+#: simulation/helpers/Commands.js:715
+msgid "Unable to ungarrison unit(s)"
+msgstr "Неуспешно пускане от гарнизон"
+
+#: simulation/helpers/Commands.js:729
+msgid "Some unit(s) can't go back to work"
+msgstr "Има единица (или единици), която не може да се върне обратно към работата си."
+
+#: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
 msgstr "Не са изпълнени технологичните изисквания на сградата."
 
@@ -931,7 +952,7 @@ msgstr "Много голяма"
 
 #: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
-msgstr "Много голяма (8 играчи)"
+msgstr "Много голяма (8-на играчи)"
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 #: simulation/data/settings/map_sizes.jsonData[6].LongName
@@ -944,10 +965,10 @@ msgstr "Петра бот"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра е изкуственият интелект по подразбиране на 0AD. Моля, докладвайте за проблеми на Wildfire Games (вижте връзката в главното меню).\n\nИзкуственият интелект бива затруднен или подкрепен при трупането на ресурси (скорост на събиране или коефициенти при търгуване), като множителят може да бъде от 0,5 за трудност „пясъчник“ до 1,6 за много голямата трудност (при средна трудност той е 1,0). Освен това при трудност „пясъчник“ изкуственият интелект няма да разширява територията си или да напада."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

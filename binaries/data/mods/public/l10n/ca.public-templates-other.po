@@ -5,13 +5,13 @@
 # Translators:
 # Catalanoic <catalanoic@gmail.com>, 2015
 # Guillem Poy <guplem@gmail.com>, 2015
-# Haommin <tfs.msimangu@gmail.com>, 2014-2015
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-16 09:20+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,11 +117,11 @@ msgstr "tresor"
 msgid "A treasure that can be quickly gathered."
 msgstr "Un tresor que es pot recollir ràpidament."
 
-#: simulation/templates/template_structure.xml:57
+#: simulation/templates/template_structure.xml:58
 msgid "Structure"
 msgstr "Estructura"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "Unitat"
 
@@ -972,6 +972,10 @@ msgstr "Es converteix en una casa de +5 de límit de població en les civilitzac
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
 msgstr "Marcador"
+
+#: simulation/templates/special/player.xml:53
+msgid "Player"
+msgstr "Jugador"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5

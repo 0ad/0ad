@@ -32,7 +32,7 @@ Barter.prototype.Schema =
 Barter.prototype.Init = function()
 {
 	this.priceDifferences = {};
-	for each (var resource in RESOURCES)
+	for (var resource of RESOURCES)
 		this.priceDifferences[resource] = 0;
 	this.restoreTimer = undefined;
 };
@@ -40,7 +40,7 @@ Barter.prototype.Init = function()
 Barter.prototype.GetPrices = function()
 {
 	var prices = { "buy": {}, "sell": {} };
-	for each (var resource in RESOURCES)
+	for (var resource of RESOURCES)
 	{
 		prices["buy"][resource] = TRUE_PRICES[resource] * (100 + CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
 		prices["sell"][resource] = TRUE_PRICES[resource] * (100 - CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
@@ -53,7 +53,7 @@ Barter.prototype.PlayerHasMarket = function(playerEntity)
 	var cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = cmpRangeManager.GetEntitiesByPlayer(cmpPlayer.GetPlayerID());
-	for each (var entity in entities)
+	for (var entity of entities)
 	{
 		var cmpFoundation = Engine.QueryInterface(entity, IID_Foundation);
 		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
@@ -123,7 +123,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 Barter.prototype.ProgressTimeout = function(data)
 {
 	var needRestore = false;
-	for each (var resource in RESOURCES)
+	for (var resource of RESOURCES)
 	{
 		// Calculate value to restore, it should be limited to [-DIFFERENCE_RESTORE; DIFFERENCE_RESTORE] interval
 		var differenceRestore = Math.min(DIFFERENCE_RESTORE, Math.max(-DIFFERENCE_RESTORE, this.priceDifferences[resource]));

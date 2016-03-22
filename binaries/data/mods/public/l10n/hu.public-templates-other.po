@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Balázs Meskó <meskobalazs@gmail.com>, 2016
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014-2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2016-01-17 19:50+0000\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-03-12 18:53+0100\n"
+"PO-Revision-Date: 2016-03-16 22:21+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -118,11 +119,11 @@ msgstr "Kincs"
 msgid "A treasure that can be quickly gathered."
 msgstr "Egy kincs, amely gyorsan begyűjthető."
 
-#: simulation/templates/template_structure.xml:57
+#: simulation/templates/template_structure.xml:58
 msgid "Structure"
 msgstr "Épület"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "Egység"
 
@@ -973,6 +974,10 @@ msgstr "Átváltozik egy 5 személyes házzá azoknál a civilizációknál, aho
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
 msgstr "Jelölő"
+
+#: simulation/templates/special/player.xml:53
+msgid "Player"
+msgstr "Játékos"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5

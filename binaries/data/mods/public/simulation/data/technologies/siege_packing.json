@@ -6,7 +6,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "military_engineers.png",
 	"researchTime": 40,
-	"tooltip": "Immobile siege weapons pack/unpack 25% faster",
+	"tooltip": "-25% pack and unpack time for immobile siege weapons.",
 	"modifications": [{"value": "Pack/Time", "multiply": 0.75}],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

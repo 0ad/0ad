@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Archie Mc <archiemc1@gmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
-# Marinus Savoritias <savoritias@gmail.com>, 2015
+# Marinus Savoritias <savoritias@gmail.com>, 2015-2016
 # TitanJack <titanjack.com@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-18 09:01+0100\n"
-"PO-Revision-Date: 2015-12-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-19 22:37+0000\n"
+"Last-Translator: Archie Mc <archiemc1@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr "Ορυχείο Μετάλλου"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "Ένα κοίτασμα ορυκτού που παρέχει πρόσβαση σε σπάνιες μορφές απο πολύτιμα μέταλλα."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -117,11 +118,11 @@ msgstr "Θησαυρός"
 msgid "A treasure that can be quickly gathered."
 msgstr "Ενας θησαυρός που μπορεί να μαζευτεί γρήγορα."
 
-#: simulation/templates/template_structure.xml:57
+#: simulation/templates/template_structure.xml:58
 msgid "Structure"
 msgstr "Κατασκευή"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "Μονάδα"
 
@@ -376,7 +377,7 @@ msgstr "Λαγός"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Ρινόκερος"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -440,11 +441,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr ""
+msgstr "Φυλλοβόλος θάμνος"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
-msgstr ""
+msgstr "Ακακία"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
@@ -483,7 +484,7 @@ msgstr "Νεκρό Δέντρο"
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
+msgstr "Ευρωπαϊκή Οξιά"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
@@ -507,7 +508,7 @@ msgstr "Βελανιδιά Δέντρο"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "Μεγάλη Βελανιδιά"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
@@ -515,7 +516,7 @@ msgstr "Ελιά Δέντρο"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
-msgstr ""
+msgstr "Φοίνικας"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
@@ -524,11 +525,11 @@ msgstr "Τροπικός Φοίνικας"
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine Tree"
-msgstr ""
+msgstr "Πεύκο"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr ""
+msgstr "Λεύκα"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
@@ -725,7 +726,7 @@ msgstr ""
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "Στοά"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
@@ -942,7 +943,7 @@ msgstr "Πίνακας"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr ""
+msgstr "Ορθογώνιο Τραπέζι"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
@@ -973,12 +974,16 @@ msgstr ""
 msgid "Marker"
 msgstr ""
 
+#: simulation/templates/special/player.xml:53
+msgid "Player"
+msgstr "Παίκτης"
+
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "Λιθοβόλος"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5

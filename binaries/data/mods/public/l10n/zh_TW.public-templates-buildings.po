@@ -4,13 +4,13 @@
 # 
 # Translators:
 # DanSnow <dododavid006@gmail.com>, 2014
-# Jeff Huang <s8321414@gmail.com>, 2014-2015
+# Jeff Huang <s8321414@gmail.com>, 2014-2016
 # Mysterelee <8161525@qq.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 13:27+0000\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 06:21+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "建造以擴大領土範圍。訓練市民。駐軍：20。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "城鎮中心"
@@ -49,10 +49,10 @@ msgstr "增加人口上限。"
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:28
+#: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
 msgstr "村莊"
 
@@ -78,7 +78,7 @@ msgstr "訓練醫療者。可駐守最多20個單位以更快的速率治療他�
 #: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:31
+#: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/structures/brit_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
@@ -126,20 +126,20 @@ msgstr "建造在中立或自己的領土上以偵查該區域的地圖。在中
 msgid "Outpost"
 msgstr "前哨"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:27
 msgid "Stone Wall"
 msgstr "石牆"
 
-#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wall.xml:28
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:30
+#: simulation/templates/template_structure_defense_wall_gate.xml:33
 msgid "City Gate"
 msgstr "城門"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:31
+#: simulation/templates/template_structure_defense_wall_gate.xml:34
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "允許單位通過城市的牆。可以鎖住以避免通過。"
@@ -162,11 +162,11 @@ msgstr "長的城牆區段可以被轉換為閘門。"
 msgid "Convert Stone Wall into City Gate"
 msgstr "將石牆轉換為城門"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:55
+#: simulation/templates/template_structure_defense_wall_tower.xml:58
 msgid "Wall Turret"
 msgstr "城牆塔樓"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:56
+#: simulation/templates/template_structure_defense_wall_tower.xml:59
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "射出箭矢。在城牆中駐軍以對抗攻擊者。"
 
@@ -215,7 +215,7 @@ msgid ""
 "improvements for these resources."
 msgstr "存放木頭、石頭及金屬。研究這些資源的採集改進技術。"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "倉庫"
@@ -250,7 +250,7 @@ msgstr "軍營"
 msgid "Research weapons and armor improvements."
 msgstr "研究改善武器與盔甲"
 
-#: simulation/templates/template_structure_military_blacksmith.xml:31
+#: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
 msgstr "兵工廠"
@@ -297,14 +297,14 @@ msgstr "資源建築物"
 msgid "Resource"
 msgstr "資源"
 
-#: simulation/templates/template_structure_resource_corral.xml:27
+#: simulation/templates/template_structure_resource_corral.xml:19
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
 msgstr "畜養動物以獲得食物。在這裡畜養動物以緩慢獲得食物或其他獎勵。(尚未實作)"
 
-#: simulation/templates/template_structure_resource_corral.xml:28
-#: simulation/templates/template_structure_resource_corral.xml:26
+#: simulation/templates/template_structure_resource_corral.xml:20
+#: simulation/templates/template_structure_resource_corral.xml:18
 msgid "Corral"
 msgstr "畜欄"
 
@@ -326,11 +326,11 @@ msgstr "特殊的建築物"
 msgid "This is a special building unique to a particular civilization."
 msgstr "只有特定的文明才有此特殊的建築物。"
 
-#: simulation/templates/template_structure_wonder.xml:39
+#: simulation/templates/template_structure_wonder.xml:46
 msgid "Wonder"
 msgstr "奇觀"
 
-#: simulation/templates/template_structure_wonder.xml:40
+#: simulation/templates/template_structure_wonder.xml:47
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -511,15 +511,15 @@ msgstr "城牆"
 msgid "Pýrgos"
 msgstr "箭塔"
 
-#: simulation/templates/structures/athen_wonder.xml:17
-#: simulation/templates/structures/mace_wonder.xml:17
-#: simulation/templates/structures/spart_wonder.xml:17
+#: simulation/templates/structures/athen_wonder.xml:9
+#: simulation/templates/structures/mace_wonder.xml:9
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Naós Parthenṓn"
 msgstr "Naós Parthenṓn"
 
-#: simulation/templates/structures/athen_wonder.xml:19
-#: simulation/templates/structures/mace_wonder.xml:19
-#: simulation/templates/structures/spart_wonder.xml:19
+#: simulation/templates/structures/athen_wonder.xml:11
+#: simulation/templates/structures/mace_wonder.xml:11
+#: simulation/templates/structures/spart_wonder.xml:11
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
@@ -613,8 +613,8 @@ msgstr "耕種獎勵"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Boosts nearby farming with +25%."
-msgstr "加速鄰近的耕種速率+25%。"
+msgid "Boosts nearby farming with +25% gathering rate."
+msgstr "鄰近的耕種速率加速 +25%。"
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -626,8 +626,8 @@ msgstr "旋轉研磨機"
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:35
-#: simulation/templates/structures/gaul_rotarymill.xml:35
+#: simulation/templates/structures/brit_rotarymill.xml:36
+#: simulation/templates/structures/gaul_rotarymill.xml:36
 msgid "Increase nearby farming output +25%."
 msgstr "增加鄰近的耕種輸出+25%。"
 
@@ -731,7 +731,7 @@ msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
 msgstr "雇用伊比利傭兵。為這些傭兵研究改進的科技。"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
-msgid "Italiote Embassy"
+msgid "Italian Embassy"
 msgstr "義大利大使館"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
@@ -771,14 +771,22 @@ msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
+msgid "Repairing ship Aura"
+msgstr "船隻修復靈氣"
+
+#: simulation/templates/structures/cart_super_dock.xml:11
+msgid "Heals garrisoned ship at 3 HP per second."
+msgstr "每秒治療駐守的船隻 3 HP。"
+
+#: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
 msgstr "海軍造船廠"
 
-#: simulation/templates/structures/cart_super_dock.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:22
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:14
+#: simulation/templates/structures/cart_super_dock.xml:25
 msgid "Construct and repair mighty warships."
 msgstr "建造及修復強力戰艦。"
 
@@ -807,7 +815,7 @@ msgstr "Mijdil-šaʿar"
 msgid "Homah"
 msgstr "Homah"
 
-#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr "Ba'al Hammon 的神廟"
 
@@ -872,7 +880,7 @@ msgstr "Baserri"
 msgid "Soro"
 msgstr "Soro"
 
-#: simulation/templates/structures/iber_fortress.xml:16
+#: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
 msgstr "卡斯楚"
 
@@ -892,11 +900,11 @@ msgstr "崇敬紀念碑"
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:41
+#: simulation/templates/structures/iber_monument.xml:42
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
-" meters."
-msgstr "所有在這座紀念碑視野內的單位將會變得更難打。影響範圍：50公尺。"
+" meters. Buildings in the territory of the monument do not decay."
+msgstr "所有在這座紀念碑視野內的單位將會變得更難打。影響範圍：50 公尺。在紀念碑領土範圍內的建築物不會衰弱。"
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -922,7 +930,7 @@ msgstr "Zabal Horma"
 msgid "Biko Sarbide"
 msgstr "Biko Sarbide"
 
-#: simulation/templates/structures/iber_wonder.xml:17
+#: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
 msgstr "Cancho Roano"
 
@@ -951,9 +959,9 @@ msgstr "圖書館"
 msgid "Bibliothḗkē"
 msgstr "Bibliothḗkē"
 
-#: simulation/templates/structures/mace_library.xml:17
-#: simulation/templates/structures/ptol_library.xml:17
-#: simulation/templates/structures/sele_library.xml:17
+#: simulation/templates/structures/mace_library.xml:18
+#: simulation/templates/structures/ptol_library.xml:18
+#: simulation/templates/structures/sele_library.xml:18
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
@@ -1040,17 +1048,23 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:26
+#: simulation/templates/structures/maur_pillar_ashoka.xml:11
+msgid "All traders in range +20% walk speed."
+msgstr "在範圍內所有的貿易商人 +20% 走路速度。"
+
+#: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
 msgstr "阿育王法敕"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:27
+#: simulation/templates/structures/maur_pillar_ashoka.xml:39
 msgid "Śāsana Stambha Aśokā"
 msgstr "Śāsana Stambha Aśokā"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:29
-msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr "著名的阿育王法敕。現在只是個無用的建築物。"
+#: simulation/templates/structures/maur_pillar_ashoka.xml:42
+msgid ""
+"The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
+"in the territory of the monument do not decay."
+msgstr "著名的阿育王法敕。增加貿易商人的移動速度。在紀念碑領土範圍內的建築物不會衰弱。"
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1316,21 +1330,21 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "便宜的類軍營式的建築物，可以在中立的領土上建造，但對領土範圍則無任何影響。\n- 訓練傭兵。 \n- 與其他軍事殖民地的最小距離：100公尺。"
 
-#: simulation/templates/structures/ptol_military_colony.xml:24
-#: simulation/templates/structures/sele_military_colony.xml:24
+#: simulation/templates/structures/ptol_military_colony.xml:25
+#: simulation/templates/structures/sele_military_colony.xml:25
 msgid "Colony"
 msgstr "殖民地"
 
-#: simulation/templates/structures/ptol_military_colony.xml:46
-#: simulation/templates/structures/sele_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Military Colony"
 msgstr "軍事殖民地"
 
-#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/ptol_military_colony.xml:48
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/structures/ptol_military_colony.xml:50
+#: simulation/templates/structures/ptol_military_colony.xml:51
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1360,7 +1374,7 @@ msgstr "h-n-njwt"
 msgid "mktr"
 msgstr "mktr"
 
-#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Temple of Edfu"
 msgstr "埃德富神廟"
 
@@ -1368,15 +1382,15 @@ msgstr "埃德富神廟"
 msgid "Triumphal Arch"
 msgstr "凱旋門"
 
-#: simulation/templates/structures/rome_army_camp.xml:58
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
 msgstr "加固型軍營"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
 msgstr "軍營壁壘"
 
-#: simulation/templates/structures/rome_army_camp.xml:64
+#: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1536,7 +1550,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "磚牆"
 
-#: simulation/templates/structures/rome_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 
@@ -1582,11 +1596,11 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "市場"
 
-#: simulation/templates/structures/sele_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:48
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/sele_military_colony.xml:50
+#: simulation/templates/structures/sele_military_colony.xml:51
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

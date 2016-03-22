@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-07 17:36+0100\n"
-"PO-Revision-Date: 2015-12-08 12:54+0000\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-18 08:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Xây dựng để kiểm soát nhiều vùng lãnh thổ. Huấn luyện các công dân. Quân đồn trú: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Trung tâm đô thị"
@@ -48,10 +48,10 @@ msgstr "Gia tăng giới hạn dân số."
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_wooden_tower.xml:50
 #: simulation/templates/template_structure_economic_farmstead.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:28
+#: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
 msgstr "Làng"
 
@@ -77,7 +77,7 @@ msgstr "Huấn luyện các thầy thuốc. Quân đồn trú lên tới 20 đơ
 #: simulation/templates/template_structure_civic_temple.xml:45
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:31
+#: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/structures/brit_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
@@ -125,20 +125,20 @@ msgstr ""
 msgid "Outpost"
 msgstr "Tiền đồn"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:27
 msgid "Stone Wall"
 msgstr "Tường đá"
 
-#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wall.xml:28
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Dựng tường thành để phòng thù chắc chắn."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:30
+#: simulation/templates/template_structure_defense_wall_gate.xml:33
 msgid "City Gate"
 msgstr "Cổng thành"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:31
+#: simulation/templates/template_structure_defense_wall_gate.xml:34
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Cho phép các đơn vị đi qua tường thành. Có thể bị khóa để ngăn xâm nhập."
@@ -161,11 +161,11 @@ msgstr "Những đoạn tường thành dài có thể chuyển thành các cổ
 msgid "Convert Stone Wall into City Gate"
 msgstr "Chuyển tường đá thành cổng thành"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:55
+#: simulation/templates/template_structure_defense_wall_tower.xml:58
 msgid "Wall Turret"
 msgstr "Tường tháp pháo"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:56
+#: simulation/templates/template_structure_defense_wall_tower.xml:59
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Bắn cung. Quân đồn trú bảo vệ tường thành chống lại kẻ địch."
 
@@ -214,7 +214,7 @@ msgid ""
 "improvements for these resources."
 msgstr "Nơi lưu trữ nguồn tài nguyên gỗ, đá và kim loại. Nghiên cứu cải tiến việc khai thác các nguồn tài nguyên này. "
 
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
 msgid "Storehouse"
 msgstr "Nhà kho"
@@ -249,7 +249,7 @@ msgstr "Doanh trại"
 msgid "Research weapons and armor improvements."
 msgstr "Nghiên cứu cải tiến vũ khí và giáp."
 
-#: simulation/templates/template_structure_military_blacksmith.xml:31
+#: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
 msgstr "Lò rèn"
@@ -296,14 +296,14 @@ msgstr "Cấu trúc nguồn tài nguyên"
 msgid "Resource"
 msgstr "Nguồn tài nguyên"
 
-#: simulation/templates/template_structure_resource_corral.xml:27
+#: simulation/templates/template_structure_resource_corral.xml:19
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
 msgstr "Giă tăng đàn gia súc cung cấp thực phẩm. Việc thuần hóa động vật để kiếm thực phẩm hoặc những lợi ích khác (Chữa thực hiện xong)."
 
-#: simulation/templates/template_structure_resource_corral.xml:28
-#: simulation/templates/template_structure_resource_corral.xml:26
+#: simulation/templates/template_structure_resource_corral.xml:20
+#: simulation/templates/template_structure_resource_corral.xml:18
 msgid "Corral"
 msgstr "Chuồng"
 
@@ -325,11 +325,11 @@ msgstr "Công trình đặc biệt"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Đây là công trình đặc trưng riêng đối với mỗi nền văn minh."
 
-#: simulation/templates/template_structure_wonder.xml:39
+#: simulation/templates/template_structure_wonder.xml:46
 msgid "Wonder"
 msgstr "Kỳ quan"
 
-#: simulation/templates/template_structure_wonder.xml:40
+#: simulation/templates/template_structure_wonder.xml:47
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -510,15 +510,15 @@ msgstr "Teîkhos"
 msgid "Pýrgos"
 msgstr "Pýrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:17
-#: simulation/templates/structures/mace_wonder.xml:17
-#: simulation/templates/structures/spart_wonder.xml:17
+#: simulation/templates/structures/athen_wonder.xml:9
+#: simulation/templates/structures/mace_wonder.xml:9
+#: simulation/templates/structures/spart_wonder.xml:9
 msgid "Naós Parthenṓn"
 msgstr ""
 
-#: simulation/templates/structures/athen_wonder.xml:19
-#: simulation/templates/structures/mace_wonder.xml:19
-#: simulation/templates/structures/spart_wonder.xml:19
+#: simulation/templates/structures/athen_wonder.xml:11
+#: simulation/templates/structures/mace_wonder.xml:11
+#: simulation/templates/structures/spart_wonder.xml:11
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
@@ -612,7 +612,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Boosts nearby farming with +25%."
+msgid "Boosts nearby farming with +25% gathering rate."
 msgstr ""
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
@@ -625,8 +625,8 @@ msgstr "Rotary Mill"
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:35
-#: simulation/templates/structures/gaul_rotarymill.xml:35
+#: simulation/templates/structures/brit_rotarymill.xml:36
+#: simulation/templates/structures/gaul_rotarymill.xml:36
 msgid "Increase nearby farming output +25%."
 msgstr ""
 
@@ -730,8 +730,8 @@ msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
 msgstr "Thuê lính xứ Iberian. Nghiên cứu cải tiến những tên lính này."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
-msgid "Italiote Embassy"
-msgstr "Sứ quán xứ Italia"
+msgid "Italian Embassy"
+msgstr ""
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -770,14 +770,22 @@ msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
+msgid "Repairing ship Aura"
+msgstr ""
+
+#: simulation/templates/structures/cart_super_dock.xml:11
+msgid "Heals garrisoned ship at 3 HP per second."
+msgstr ""
+
+#: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
 msgstr "Cảng tàu chiến"
 
-#: simulation/templates/structures/cart_super_dock.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:22
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:14
+#: simulation/templates/structures/cart_super_dock.xml:25
 msgid "Construct and repair mighty warships."
 msgstr "Chế tạo và sửa những chiến thuyền vĩ đại."
 
@@ -806,7 +814,7 @@ msgstr ""
 msgid "Homah"
 msgstr ""
 
-#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:9
 msgid "Temple of Ba'al Hammon"
 msgstr ""
 
@@ -871,7 +879,7 @@ msgstr ""
 msgid "Soro"
 msgstr ""
 
-#: simulation/templates/structures/iber_fortress.xml:16
+#: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
 msgstr ""
 
@@ -891,10 +899,10 @@ msgstr ""
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:41
+#: simulation/templates/structures/iber_monument.xml:42
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
-" meters."
+" meters. Buildings in the territory of the monument do not decay."
 msgstr ""
 
 #: simulation/templates/structures/iber_outpost.xml:5
@@ -921,7 +929,7 @@ msgstr ""
 msgid "Biko Sarbide"
 msgstr ""
 
-#: simulation/templates/structures/iber_wonder.xml:17
+#: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
 msgstr ""
 
@@ -950,9 +958,9 @@ msgstr "Thư viện"
 msgid "Bibliothḗkē"
 msgstr ""
 
-#: simulation/templates/structures/mace_library.xml:17
-#: simulation/templates/structures/ptol_library.xml:17
-#: simulation/templates/structures/sele_library.xml:17
+#: simulation/templates/structures/mace_library.xml:18
+#: simulation/templates/structures/ptol_library.xml:18
+#: simulation/templates/structures/sele_library.xml:18
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
@@ -1039,17 +1047,23 @@ msgstr ""
 msgid "Uparaksana"
 msgstr ""
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:26
+#: simulation/templates/structures/maur_pillar_ashoka.xml:11
+msgid "All traders in range +20% walk speed."
+msgstr ""
+
+#: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
 msgstr "Edict Pillar of Ashoka"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:27
+#: simulation/templates/structures/maur_pillar_ashoka.xml:39
 msgid "Śāsana Stambha Aśokā"
 msgstr ""
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:29
-msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr "Cột trụ nổi tiếng của vua Ashoka. Ngày này là một công trình vô giá trị."
+#: simulation/templates/structures/maur_pillar_ashoka.xml:42
+msgid ""
+"The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
+"in the territory of the monument do not decay."
+msgstr ""
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1315,21 +1329,21 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Công tình tương tự doanh trại giá rẻ thứ có thể xây trong lãnh thổ trung lập nhưng không gây tác động lãnh thổ.\n- Huấn luyện lính đánh thuê.\n- Khoảng cách so với những Military Settlement khác: 100m."
 
-#: simulation/templates/structures/ptol_military_colony.xml:24
-#: simulation/templates/structures/sele_military_colony.xml:24
+#: simulation/templates/structures/ptol_military_colony.xml:25
+#: simulation/templates/structures/sele_military_colony.xml:25
 msgid "Colony"
 msgstr "Thuộc địa"
 
-#: simulation/templates/structures/ptol_military_colony.xml:46
-#: simulation/templates/structures/sele_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:47
 msgid "Military Colony"
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:47
+#: simulation/templates/structures/ptol_military_colony.xml:48
 msgid "Klēroukhía"
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:50
+#: simulation/templates/structures/ptol_military_colony.xml:51
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1359,7 +1373,7 @@ msgstr ""
 msgid "mktr"
 msgstr ""
 
-#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:9
 msgid "Temple of Edfu"
 msgstr ""
 
@@ -1367,15 +1381,15 @@ msgstr ""
 msgid "Triumphal Arch"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:58
+#: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
 msgstr ""
 
-#: simulation/templates/structures/rome_army_camp.xml:64
+#: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1535,7 +1549,7 @@ msgstr ""
 msgid "Murus Latericius"
 msgstr "Murus Latericius"
 
-#: simulation/templates/structures/rome_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:9
 msgid "Aedes Iovis Optimi Maximi"
 msgstr ""
 
@@ -1581,11 +1595,11 @@ msgstr ""
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:47
+#: simulation/templates/structures/sele_military_colony.xml:48
 msgid "Klēroukhia"
 msgstr ""
 
-#: simulation/templates/structures/sele_military_colony.xml:50
+#: simulation/templates/structures/sele_military_colony.xml:51
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

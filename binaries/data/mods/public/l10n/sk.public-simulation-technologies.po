@@ -6,14 +6,14 @@
 # Levi Taule <levi.taule@gmail.com>, 2015
 # Mário Bulejko, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
-# SuroX <peter.surovcik@gmail.com>, 2014
+# SuroX <peter.surovcik@gmail.com>, 2014,2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-31 13:25+0000\n"
-"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 13:25+0000\n"
+"Last-Translator: SuroX <peter.surovcik@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -797,8 +797,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Rozhľadne vydržia na neutrálnom území dvojnásobne dlhú dobu."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "Územný rozpad rozhľadní -50%."
+msgid "Territory decay rate -50% for outposts."
+msgstr "Rýchlosť rozpadu teritória - 50% pre rozhľadne."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -839,8 +839,8 @@ msgid "Horse-drawn Carts"
 msgstr "Koňmi ťahané vozíky"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
-msgstr "Solenie umožňuje uchovať ryby dlhšie."
+msgid "Salting allows to preserve fish longer."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1466,11 +1466,15 @@ msgstr "Div sveta priláka oveľa viac ľudí k tvojej civilizácii."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr "+50 maximálna populácia."
+msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Slávna expanzia"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1528,8 +1532,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Zlepšenie presnosti striel"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "Presnosť vrhačov šípov zvýšená o 25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1564,8 +1568,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Nepohyblivé obliehacie zbrane budú môcť byť zmontované a rozmontované rýchlejšie."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Nepohyblivé zbrane na obliehanie sa budú skladať/rozkladať o 25% rýchlejšie"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1742,6 +1746,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2321,9 +2344,9 @@ msgstr "Lukostrelecká tradícia"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Maurovia budovali svoje mestské hradby z dreva, v Indii sa hojne vyskytujúcej prírodnej suroviny. Maurské mestské hradby preto majú -20% zdravia, ale stavajú sa o 20% rýchlejšie."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

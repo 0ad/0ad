@@ -27,8 +27,6 @@ XML2_VERSION="libxml2-2.9.3"
 SDL2_VERSION="SDL2-2.0.4"
 BOOST_VERSION="boost_1_60_0"
 WXWIDGETS_VERSION="wxWidgets-3.0.2"
-JPEG_VERSION="jpegsrc.v8d"
-JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # libpng was included as part of X11 but that's removed from Mountain Lion
 # (also the Snow Leopard version was ancient 1.2)
 PNG_VERSION="libpng-1.6.21"
@@ -330,7 +328,7 @@ fi
 popd > /dev/null
 
 # --------------------------------------------------------------
-# TODO: This build takes ages, anything we can exlude?
+# TODO: This build takes ages, anything we can exclude?
 echo -e "Building wxWidgets..."
 
 LIB_VERSION="${WXWIDGETS_VERSION}"
@@ -355,7 +353,7 @@ then
   mkdir -p build-release
   pushd build-release
 
-  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libjpeg=builtin --with-png=builtin --without-libtiff --without-sdl --without-x --disable-webview --disable-webkit --disable-webviewwebkit --disable-webviewie"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-png=builtin --without-libtiff --without-sdl --without-x --disable-webview --disable-webkit --disable-webviewwebkit --disable-webviewie"
   # wxWidgets configure now defaults to targeting 10.5, if not specified,
   # but that conflicts with our flags
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
@@ -365,36 +363,6 @@ then
   # Force libc++ in CPPFLAGS as well, since CXXFLAGS isn't enough here
   (patch -p0 -d.. -i../../patches/wxwidgets-webkit-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" CPPFLAGS="-stdlib=libc++" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
-  popd
-  touch .already-built
-else
-  already_built
-fi
-popd > /dev/null
-
-# --------------------------------------------------------------
-echo -e "Building libjpg..."
-
-LIB_VERSION="${JPEG_VERSION}"
-LIB_ARCHIVE="$LIB_VERSION.tar.gz"
-LIB_DIRECTORY="${JPEG_DIR}"
-LIB_URL="http://www.ijg.org/files/"
-
-mkdir -p libjpg
-pushd libjpg > /dev/null
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
-then
-  INSTALL_DIR="$(pwd)"
-
-  rm -f .already-built
-  download_lib $LIB_URL $LIB_ARCHIVE
-
-  rm -rf $LIB_DIRECTORY bin include lib share
-  tar -xf $LIB_ARCHIVE
-  pushd $LIB_DIRECTORY
-
-  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=$INSTALL_DIR --enable-shared=no && make ${JOBS} && make install) || die "libjpg build failed"
   popd
   touch .already-built
 else

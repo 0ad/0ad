@@ -6,7 +6,7 @@
 # efrasiyab1 <ado.ender@gmail.com>, 2014
 # coolland <coolland10@gmail.com>, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
-# Hüseyin Cem ARAS <hcemaras@gmail.com>, 2015
+# Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # Kudret <kudretemre@hotmail.com.tr>, 2014
 # TurkishPower <oyun_38@hotmail.com.tr>, 2014
 # receb, 2014
@@ -14,13 +14,13 @@
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # utkugun <utkugundogan@gmail.com>, 2014-2015
 # Volkan Gezer <volkangezer@gmail.com>, 2014
-# yakup <mutouk@yandex.ru>, 2014-2015
+# yakup <mutouk@yandex.ru>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-28 20:22+0000\n"
-"Last-Translator: Hüseyin Cem ARAS <hcemaras@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 14:14+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -804,8 +804,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Karakollar tarafsız bölgede iki kat daha uzun hayatta kalır."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "İleri karakollarda -50% bölgesel zayıflık."
+msgid "Territory decay rate -50% for outposts."
+msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -846,8 +846,8 @@ msgid "Horse-drawn Carts"
 msgstr "Atlı Arabalar"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
-msgstr "Tuzlama, balıklar için daha uzun koruma sağlar."
+msgid "Salting allows to preserve fish longer."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1473,11 +1473,15 @@ msgstr "Harikalar uygarlığınıza daha da fazla insan çeker."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr "+50 en fazla nüfus kapasitesi."
+msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Şanlı Genişleme"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1535,8 +1539,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Nişan isabeti iyileştirme"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "Mızrak atıcıların hassasiyeti %25 arttı"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1571,8 +1575,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Sabit kuşatma silahları daha hızlı kurulur ve toplanır"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Sabit kuşatma silahları %25 daha hızlı kurulur/toplanır"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1749,6 +1753,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr "3 Tüccar Gerekli"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2328,9 +2351,9 @@ msgstr "Okçuluk Geleneği"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Mauryalılar şehir duvarlarını Hindistan'da çok bulunan bir kaynak olan ahşaptan inşa ederlerdi. Sonuç olarak, şehir duvarları -20% daha az dayanaklıdır ama 20% daha hızlı inşa edilir."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

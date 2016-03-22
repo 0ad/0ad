@@ -14,6 +14,11 @@ const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefin
 const g_ShowTimestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 
 /**
+ * Mute clients who exceed the rate of 1 message per second for this time
+ */
+const g_SpamBlockTimeframe = 5;
+
+/**
  * Mute spammers for this time.
  */
 const g_SpamBlockDuration = 30;
@@ -111,10 +116,20 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 			Engine.GetGUIObjectByName("hostButton").enabled = false;
-			addChatMessage({ "from": "system", "text": translate("Disconnected.") + msg.text, "color": g_SystemColor });
+			addChatMessage({
+				"from": "system",
+				"text": translate("Disconnected.") + msg.text,
+				"color": g_SystemColor,
+				"time": msg.time
+			});
 		},
 		"error": msg => {
-			addChatMessage({ "from": "system", "text": msg.text, "color": g_SystemColor });
+			addChatMessage({
+				"from": "system",
+				"text": msg.text,
+				"color": g_SystemColor,
+				"time": msg.time
+			});
 		}
 	},
 	"chat": {
@@ -124,14 +139,16 @@ var g_NetMessageTypes = {
 		"join": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": msg.text }),
-				"isSpecial": true
+				"isSpecial": true,
+				"time": msg.time
 			});
 			Engine.SendGetRatingList();
 		},
 		"leave": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": msg.text }),
-				"isSpecial": true
+				"isSpecial": true,
+				"time": msg.time
 			});
 		},
 		"presence": msg => {
@@ -142,14 +159,15 @@ var g_NetMessageTypes = {
 					"oldnick": msg.text,
 					"newnick": msg.data
 				}),
-				"isSpecial": true
+				"isSpecial": true,
+				"time": msg.time
 			});
 		},
 		"room-message": msg => {
 			addChatMessage({
 				"from": escapeText(msg.from),
 				"text": escapeText(msg.text),
-				"datetime": msg.datetime
+				"time": msg.time
 			});
 		},
 		"private-message": msg => {
@@ -157,7 +175,7 @@ var g_NetMessageTypes = {
 				addChatMessage({
 					"from": "(Private) " + escapeText(msg.from), // TODO: placeholder
 					"text": escapeText(msg.text.trim()), // some XMPP clients send trailing whitespace
-					"datetime": msg.datetime
+					"time": msg.time
 				});
 		}
 	},
@@ -189,7 +207,6 @@ function init(attribs)
 
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
-	Engine.SendGetBoardList();
 
 	// When rejoining the lobby after a game, we don't need to process presence changes
 	Engine.LobbyClearPresenceUpdates();
@@ -354,7 +371,10 @@ function updatePlayerList()
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
 	playersBox.list = nickList;
-	playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+
+	// To reduce rating-server load, only send the GUI event if the selection actually changed
+	if (playersBox.selected != playersBox.list.indexOf(g_SelectedPlayer))
+		playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
 }
 
 /**
@@ -479,7 +499,7 @@ function updateLeaderboard()
 	{
 		list_name.push(boardList[i].name);
 		list_rating.push(boardList[i].rating);
-		list_rank.push(i+1);
+		list_rank.push(+i+1);
 		list.push(boardList[i].name);
 	}
 
@@ -579,8 +599,8 @@ function updateGameList()
  */
 function updateGameSelection()
 {
-	var selected = Engine.GetGUIObjectByName("gamesBox").selected;
-	if (selected == -1)
+	let game = selectedGame();
+	if (!game)
 	{
 		Engine.GetGUIObjectByName("gameInfo").hidden = true;
 		Engine.GetGUIObjectByName("joinGameButton").hidden = true;
@@ -594,9 +614,8 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
-	var game = g_GameList[selected];
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
-	Engine.GetGUIObjectByName("sgNbPlayers").caption = game.nbp + "/" + game.tnbp;
+	Engine.GetGUIObjectByName("sgNbPlayers").caption = translate("Players:") + " " + game.nbp + "/" + game.tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = game.players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(game.mapSize);
 	let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
@@ -607,23 +626,68 @@ function updateGameSelection()
 	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
+function selectedGame()
+{
+	let gamesBox = Engine.GetGUIObjectByName("gamesBox");
+	if (gamesBox.selected < 0)
+		return undefined;
+
+	return g_GameList[gamesBox.list_data[gamesBox.selected]];
+}
+
 /**
- * Start the joining process on the currectly selected game.
+ * Immediately rejoin and join gamesetups. Otherwise confirm late-observer join attempt.
+ */
+function joinButton()
+{
+	let game = selectedGame();
+	if (!game)
+		return;
+
+	let username = g_UserRating ? g_Username + " (" + g_UserRating + ")" : g_Username;
+
+	if (game.state == "init" || game.players.split(", ").indexOf(username) > -1)
+		joinSelectedGame();
+	else
+		messageBox(
+			400, 200,
+			translate("The game has already started.") + "\n" +
+				translate("Do you want to join as observer?"),
+			translate("Confirmation"),
+			0,
+			[translate("No"), translate("Yes")],
+			[null, joinSelectedGame]
+		);
+}
+
+/**
+ * Attempt to join the selected game without asking for confirmation.
  */
 function joinSelectedGame()
 {
-	var gamesBox = Engine.GetGUIObjectByName("gamesBox");
-	if (gamesBox.selected < 0)
+	let game = selectedGame();
+	if (!game)
 		return;
 
-	var ipAddress = g_GameList[gamesBox.list_data[gamesBox.selected]].ip;
-	if (ipAddress.split('.').length != 4)
+	if (game.ip.split('.').length != 4)
 	{
-		addChatMessage({ "from": "system", "text": sprintf(translate("This game's address '%(ip)s' does not appear to be valid."), { "ip": ipAddress }) });
+		addChatMessage({
+			"from": "system",
+			"text": sprintf(
+				translate("This game's address '%(ip)s' does not appear to be valid."),
+				{ "ip": game.ip }
+			),
+			"time": Date.now() / 1000
+		});
 		return;
 	}
 
-	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "join", "name": g_Username, "ip": ipAddress, "rating": g_UserRating });
+	Engine.PushGuiPage("page_gamesetup_mp.xml", {
+		"multiplayerGameType": "join",
+		"ip": game.ip,
+		"name": g_Username,
+		"rating": g_UserRating
+	});
 }
 
 /**
@@ -631,7 +695,11 @@ function joinSelectedGame()
  */
 function hostGame()
 {
-	Engine.PushGuiPage("page_gamesetup_mp.xml", { "multiplayerGameType": "host", "name": g_Username, "rating": g_UserRating });
+	Engine.PushGuiPage("page_gamesetup_mp.xml", {
+		"multiplayerGameType": "host",
+		"name": g_Username,
+		"rating": g_UserRating
+	});
 }
 
 /**
@@ -720,7 +788,8 @@ function handleSpecialCommand(text)
 	default:
 		addChatMessage({
 			"from": "system",
-			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd })
+			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd }),
+			"time": Date.now() / 1000
 		});
 	}
 	return true;
@@ -742,13 +811,10 @@ function addChatMessage(msg)
 		if (g_Username != msg.from)
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
 
-		// Run spam test if it's not a historical message
-		if (!msg.datetime)
-		{
-			updateSpamMonitor(msg.from);
-			if (isSpam(msg.text, msg.from))
-				return;
-		}
+		updateSpamMonitor(msg);
+
+		if (isSpam(msg.text, msg.from))
+			return;
 	}
 
 	var formatted = ircFormat(msg);
@@ -830,23 +896,13 @@ function ircFormat(msg)
 	if (!g_ShowTimestamp)
 		return formattedMessage;
 
-	var time;
-	if (msg.datetime)
-	{
-		let dTime = msg.datetime.split("T");
-		let parserDate = dTime[0].split("-");
-		let parserTime = dTime[1].split(":");
-		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
-		// Date takes Year, Month, Day, Hour, Minute, Second
-		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
-	}
-	else
-		time = new Date(Date.now());
+	// Convert from UTC to localtime
+	 var time = msg.time - new Date().getTimezoneOffset() * 60;
 
 	// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
 	// For a list of symbols that you can use, see:
 	// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-	var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
+	var timeString = Engine.FormatMillisecondsIntoDateString(time * 1000, translate("HH:mm"));
 
 	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
 	var timePrefixString = '[font="' + g_SenderFont + '"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
@@ -858,14 +914,22 @@ function ircFormat(msg)
 /**
  * Update the spam monitor.
  *
- * @param {string} from - User to update.
+ * @param {Object} msg - Message containing user to update.
  */
-function updateSpamMonitor(from)
+function updateSpamMonitor(msg)
 {
-	if (g_SpamMonitor[from])
-		++g_SpamMonitor[from][0];
+	// Ignore historical messages
+	if (msg.time < Date.now() / 1000 - g_SpamBlockDuration)
+		return;
+
+	if (g_SpamMonitor[msg.from])
+		++g_SpamMonitor[msg.from].count;
 	else
-		g_SpamMonitor[from] = [1, Math.floor(Date.now() / 1000), 0];
+		g_SpamMonitor[msg.from] = {
+			"count": 1,
+			"lastSend": Math.floor(Date.now() / 1000),
+			"lastBlock": 0
+		};
 }
 
 /**
@@ -883,22 +947,32 @@ function isSpam(text, from)
 
 	// Initialize if not already in the database.
 	if (!g_SpamMonitor[from])
-		g_SpamMonitor[from] = [1, time, 0];
+		g_SpamMonitor[from] = {
+			"count": 1,
+			"lastSend": time,
+			"lastBlock": 0
+		};
 
 	// Block blank lines.
 	if (!text.trim())
 		return true;
 
 	// Block users who are still within their spam block period.
-	if (g_SpamMonitor[from][2] + g_SpamBlockDuration >= time)
+	if (g_SpamMonitor[from].lastBlock + g_SpamBlockDuration >= time)
 		return true;
 
 	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked.
-	if (g_SpamMonitor[from][0] == 6)
+	if (g_SpamMonitor[from].count == g_SpamBlockTimeframe + 1)
 	{
-		g_SpamMonitor[from][2] = time;
+		g_SpamMonitor[from].lastBlock = time;
+
 		if (from == g_Username)
-			addChatMessage({ "from": "system", "text": translate("Please do not spam. You have been blocked for thirty seconds.") });
+			addChatMessage({
+				"from": "system",
+				"text": translate("Please do not spam. You have been blocked for thirty seconds."),
+				"time": Date.now() / 1000
+			});
+
 		return true;
 	}
 
@@ -914,11 +988,11 @@ function checkSpamMonitor()
 	var time = Math.floor(Date.now() / 1000);
 	for (let i in g_SpamMonitor)
 	{
-		let stats = g_SpamMonitor[i];
-		if (stats[1] + 5 <= time)
+		// Reset the spam-status after being silent long enough
+		if (g_SpamMonitor[i].lastSend + g_SpamBlockTimeframe <= time)
 		{
-			stats[1] = time;
-			stats[0] = 0;
+			g_SpamMonitor[i].count = 0;
+			g_SpamMonitor[i].lastSend = time;
 		}
 	}
 }

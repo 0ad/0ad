@@ -23,6 +23,14 @@ function ProcessCommand(player, cmd)
 	if (cmd.entities)
 		data.entities = FilterEntityList(cmd.entities, player, data.controlAllUnits);
 
+	// Allow focusing the camera on recent commands
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGuiInterface.PushNotification({
+		"type": "playercommand",
+		"players": [player],
+		"cmd": cmd
+	});
+
 	// Note: checks of UnitAI targets are not robust enough here, as ownership
 	//	can change after the order is issued, they should be checked by UnitAI
 	//	when the specific behavior (e.g. attack, garrison) is performed.
@@ -76,11 +84,9 @@ var g_Commands = {
 	"diplomacy": function(player, cmd, data)
 	{
 		let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
-		if (cmpCeasefireManager && cmpCeasefireManager.IsCeasefireActive())
-		{
-			warn("Can't change diplomacy of player " + player + " while ceasefire is active.");
+		if (data.cmpPlayer.GetLockTeams() ||
+		        cmpCeasefireManager && cmpCeasefireManager.IsCeasefireActive())
 			return;
-		}
 
 		switch(cmd.to)
 		{
@@ -684,6 +690,16 @@ var g_Commands = {
 	{
 		// Currently nothing. Triggers can read it anyway, and send this
 		// message to any component you like.
+	},
+
+	"set-dropsite-sharing": function(player, cmd, data)
+	{
+		for (let ent of data.entities)
+		{
+			let cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
+			if (cmpResourceDropsite && cmpResourceDropsite.IsSharable())
+				cmpResourceDropsite.SetSharing(cmd.shared);
+		}
 	},
 };
 

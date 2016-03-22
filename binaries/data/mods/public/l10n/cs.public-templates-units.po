@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-01-30 16:51+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-17 21:26+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr "Jezdectvo bojující na dálku"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Ranged"
 msgstr "Bojovník bojující na dálku"
 
@@ -282,13 +282,13 @@ msgstr "Ulovte, a pak sesbírejte jídlo z tohoto hojného mořského zdroje."
 
 #: simulation/templates/template_unit_hero.xml:10
 msgid "Garrisoned Capture Aura"
-msgstr ""
+msgstr "Aura zajetí posádky"
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
-"When garrisoned in a structure, the hero gives it a bonus of +2 capture "
-"points recovery rate."
-msgstr "Když je posádkou v budově, hrdina jí dává navíc +2 z kořistních bodů na rychlosti zotavení."
+"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
+"capture points recovery rate."
+msgstr "Když je posádkou v budově nebo při obléhání, hrdina dává navíc +2 z kořistních bodů na rychlosti zotavení."
 
 #: simulation/templates/template_unit_hero.xml:40
 #: simulation/templates/template_unit_hero.xml:38
@@ -370,9 +370,15 @@ msgstr "Prakovník"
 msgid "Ship"
 msgstr "Loď"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Light Warship"
 msgstr "Lehká válečná loď"
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
+msgid ""
+"Garrison up to 20 units for transport. Garrison increases the firepower up "
+"to 10 arrows."
+msgstr "Obsaďte uvnitř až 20 jednotkami pro zvýšení palebné síly až na 10 šípů."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -410,25 +416,31 @@ msgstr "Obchoduje mezi přístavy. Obsaďte obchodníkem kvůli vyššímu zisku
 msgid "Trader"
 msgstr "Obchodník"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Heavy Warship"
 msgstr "Velká válečná loď"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
-msgid "Garrison with catapults to increase ranged fire power."
-msgstr "Obsaďte katapulty pro zvětšení dosahu síly vrhaného ohně."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
+msgid "Garrison up to 10 catapults to increase fire power."
+msgstr "Obsaďte až 10 katapulty pro zvětšení palebné síly."
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
 msgstr "Střední válečná loď"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Válečná loď"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Střední"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+msgid ""
+"Garrison up to 30 units for transport. Garrison increases the firepower up "
+"to 13 arrows."
+msgstr "Obsaďte uvnitř až 30 jednotkami pro zvýšení palebné sílaž na 13 šípů."
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -465,8 +477,8 @@ msgid "Inspiration Aura"
 msgstr "Aura inspirace"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster"
-msgstr "Muži poblíž pracují o 10% rychleji"
+msgid "Nearby males work 10% faster."
+msgstr "Muži poblíž pracují o 10% rychleji."
 
 #: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
@@ -789,8 +801,8 @@ msgid "Naval Architect Aura"
 msgstr "Aura námořního stavitele"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "Ships are built +20% faster during his lifespan."
-msgstr "Lodě jsou po dobu jeho života stavěny o +20% rychleji."
+msgid "-20% build time for ships during his lifespan."
+msgstr "Lodě jsou po dobu jeho života stavěny o -20% rychleji."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistocles"
@@ -964,8 +976,8 @@ msgid "Caratacos"
 msgstr "Caratacus"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "Let all units heal at 1 HP per second"
-msgstr "Nechte všechny jednotky, aby se uzdravovaly rychlostí 1 zdravotní bod za sekundu"
+msgid "+1 HP per second healing rate for all units."
+msgstr "+1 léčicích bodů za sekundu na rychlosti léčení pro všechny jednotky."
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:18
 msgid "Cunobelin"
@@ -1059,6 +1071,31 @@ msgstr "Italická jízda"
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr "Ḥayyāl Romaḥ Raḫūv"
+
+#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:16
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
+#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:15
+#: simulation/templates/units/cart_infantry_archer_b.xml:17
+#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
+#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
+#: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/merc_thrace_swordsman.xml:26
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
+#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
+#: simulation/templates/units/samnite_skirmisher.xml:9
+#: simulation/templates/units/samnite_spearman.xml:10
+#: simulation/templates/units/samnite_swordsman.xml:8
+#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
+#: simulation/templates/units/thrace_black_cloak.xml:23
+msgid "Mercenary"
+msgstr "Žoldnéř"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
@@ -1798,14 +1835,6 @@ msgstr "Thrácký žoldnéřský bojovník s mečem"
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
-#: simulation/templates/units/merc_thrace_swordsman.xml:26
-#: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/samnite_swordsman.xml:8
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
-#: simulation/templates/units/thrace_black_cloak.xml:23
-msgid "Mercenary"
-msgstr "Žoldnéř"
-
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
 msgstr "Mankar Cirya"
@@ -2106,8 +2135,8 @@ msgid "Patriot Aura"
 msgstr "Aura vlastence"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 20% faster in her vision range."
-msgstr "Egyptské jednotky bojují o 20% rychleji v dosahu jeho pohledu."
+msgid "Egyptian units fight 25% faster in her vision range."
+msgstr "Egyptské jednotky bojují o 25% rychleji v dosahu jejího pohledu."
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid "Cleopatra VII"

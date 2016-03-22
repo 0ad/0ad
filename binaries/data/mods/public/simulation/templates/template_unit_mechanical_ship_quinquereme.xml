@@ -23,6 +23,7 @@
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>1</DefaultArrowCount>
+    <MaxArrowCount>10</MaxArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Catapult</GarrisonArrowClasses>
   </BuildingAI>
@@ -52,7 +53,7 @@
   </Health>
   <Identity>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Garrison with catapults to increase ranged fire power.</Tooltip>
+    <Tooltip>Garrison up to 10 catapults to increase fire power.</Tooltip>
     <Classes datatype="tokens">Warship Heavy Ranged</Classes>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

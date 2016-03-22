@@ -5,12 +5,12 @@
 # Translators:
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2014
-# Haommin <tfs.msimangu@gmail.com>, 2014-2015
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-14 10:45+0000\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-19 17:00+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -795,8 +795,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Els destacaments en territori neutral duren el doble."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "Els destacaments es converteixen un 50% més lentament en territori neutral."
+msgid "Territory decay rate -50% for outposts."
+msgstr "Els destacaments perden salut un 50% més lent."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -837,7 +837,7 @@ msgid "Horse-drawn Carts"
 msgstr "Carros tirats per cavalls"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
+msgid "Salting allows to preserve fish longer."
 msgstr "Salar el peix fa que es conservi més temps."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
@@ -1470,6 +1470,10 @@ msgstr "Afegeix 50 al límit de població."
 msgid "Glorious Expansion"
 msgstr "Expansió gloriosa"
 
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr "Ascens del guaridor"
+
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
@@ -1526,8 +1530,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Millora de la precisió dels projectils"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "La precisió del tirador de projectils augmenta un 25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr "La precisió del tirador de projectils augmenta un 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1562,8 +1566,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Les màquines de setge immòbils es munten i es desmunten més ràpid"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Les màquines de setge immòbils es munten i es desmunten un 25% més ràpid"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr "El temps de muntatge i desmuntatge de les màquines de setge es redueix un 25%."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1740,6 +1744,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr "L'extensió del comerç porta a l'assentament permanent dels mercaders i les seves famílies als països estrangers, per explotar-ne la riquesa."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr "El jugador pot utilitzar els punts de descàrrega dels seus aliats."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr "Diàspora"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr "Necessita 3 mercaders"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2319,9 +2342,9 @@ msgstr "Tradició de tir amb arc"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Les muralles de les ciutats de l'Imperi Maurya eren de fusta, un recurs natural abundant a l'Índia. Per això, les muralles de la ciutat de l'Imperi Maurya tenen un 20% menys de salut, però es construeixen un 20% més ràpid."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr "Les muralles de les ciutats de l'Imperi Maurya eren de fusta, un recurs natural abundant a l'Índia. Per això, les muralles de la ciutat de l'Imperi Maurya tenen un 20% menys de salut i es construeixen un 20% més ràpid."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

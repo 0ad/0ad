@@ -21,19 +21,17 @@ Trader.prototype.Schema =
 
 Trader.prototype.Init = function()
 {
-	this.firstMarket = INVALID_ENTITY;
-	this.secondMarket = INVALID_ENTITY;
-	// Gain from one pass between markets
-	this.gain = null;
+	this.markets = [];
+	this.index = -1;
 	// Selected resource for trading
 	this.requiredGoods = undefined;
 	// Currently carried goods
 	this.goods = { "type": null, "amount": null, "origin": null };
 };
 
-Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
+Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 {
-	var gain = CalculateTraderGain(firstMarket, secondMarket, this.template, this.entity);
+	let gain = CalculateTraderGain(currentMarket, nextMarket, this.template, this.entity);
 	if (!gain)	// One of our markets must have been destroyed
 		return null;
 
@@ -67,11 +65,6 @@ Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 	return gain;
 };
 
-Trader.prototype.GetGain = function()
-{
-	return this.gain;
-};
-
 // Set target as target market.
 // Return true if at least one of markets was changed.
 Trader.prototype.SetTargetMarket = function(target, source)
@@ -82,7 +75,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		return false;
 	if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
 		return false;
-	var marketsChanged = true;
+
 	if (source)
 	{
 		// Establish a trade route with both markets in one go.
@@ -91,57 +84,53 @@ Trader.prototype.SetTargetMarket = function(target, source)
 			return false;
 		if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
 			return false;
-
-		this.firstMarket = source;
-		this.secondMarket = INVALID_ENTITY;
+		this.markets = [source];
 	}
-
-	if (this.secondMarket)
+	if (this.markets.length >= 2)
 	{
 		// If we already have both markets - drop them
 		// and use the target as first market
-		this.firstMarket = target;
-		this.secondMarket = INVALID_ENTITY;
+		this.index = 0;
+		this.markets = [target];
 	}
-	else if (this.firstMarket)
+	else if (this.markets.length == 1)
 	{
 		// If we have only one market and target is different from it,
 		// set the target as second one
-		if (target == this.firstMarket)
-			marketsChanged = false;
+		if (target == this.markets[0])
+			return false;
 		else
 		{
-			this.secondMarket = target;
-			this.gain = this.CalculateGain(this.firstMarket, this.secondMarket);
+			this.index = 0;
+			this.markets.push(target);
+			this.goods.amount = this.CalculateGain(this.markets[0], this.markets[1]);
 		}
 	}
 	else
 	{
 		// Else we don't have target markets at all,
 		// set the target as first market
-		this.firstMarket = target;
+		this.index = 0;
+		this.markets = [target];
 	}
-	if (marketsChanged)
-	{
-		// Drop carried goods
-		this.goods.amount = null;
-	}
-	return marketsChanged;
+	// Drop carried goods if markets were changed
+	this.goods.amount = null;
+	return true;
 };
 
 Trader.prototype.GetFirstMarket = function()
 {
-	return this.firstMarket;
+	return this.markets[0] || null;
 };
 
 Trader.prototype.GetSecondMarket = function()
 {
-	return this.secondMarket;
+	return this.markets[1] || null;
 };
 
 Trader.prototype.HasBothMarkets = function()
 {
-	return this.firstMarket && this.secondMarket;
+	return this.markets.length >= 2;
 };
 
 Trader.prototype.GetRequiredGoods = function()
@@ -186,34 +175,44 @@ Trader.prototype.CanTrade = function(target)
 
 Trader.prototype.PerformTrade = function(currentMarket)
 {
+	let previousMarket = this.markets[(this.index+this.markets.length) % this.markets.length];
+	if (previousMarket != currentMarket)  // Inconsistent markets
+	{
+		this.goods.amount = null;
+		return;
+	}
+
+	this.index = ++this.index % this.markets.length;
+	let nextMarket = this.markets[(this.index+this.markets.length) % this.markets.length];
+
 	if (this.goods.amount && this.goods.amount.traderGain)
 	{
-		var cmpPlayer = QueryOwnerInterface(this.entity);
+		let cmpPlayer = QueryOwnerInterface(this.entity);
 		if (cmpPlayer)
 			cmpPlayer.AddResource(this.goods.type, this.goods.amount.traderGain);
 
-		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
 			cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.traderGain);
 
 		if (this.goods.amount.market1Gain)
 		{
-			var cmpPlayer = QueryOwnerInterface(this.firstMarket);
+			cmpPlayer = QueryOwnerInterface(previousMarket);
 			if (cmpPlayer)
 				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market1Gain);
 
-			var cmpStatisticsTracker = QueryOwnerInterface(this.firstMarket, IID_StatisticsTracker);
+			cmpStatisticsTracker = QueryOwnerInterface(previousMarket, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market1Gain);
 		}
 
 		if (this.goods.amount.market2Gain)
 		{
-			var cmpPlayer = QueryOwnerInterface(this.secondMarket);
+			cmpPlayer = QueryOwnerInterface(nextMarket);
 			if (cmpPlayer)
 				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market2Gain);
 
-			var cmpStatisticsTracker = QueryOwnerInterface(this.secondMarket, IID_StatisticsTracker);
+			cmpStatisticsTracker = QueryOwnerInterface(nextMarket, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market2Gain);
 		}
@@ -226,7 +225,7 @@ Trader.prototype.PerformTrade = function(currentMarket)
 	var nextGoods = this.GetRequiredGoods();
 	if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
 	{
-		var cmpPlayer = QueryOwnerInterface(this.entity);
+		let cmpPlayer = QueryOwnerInterface(this.entity);
 		if (cmpPlayer)
 			nextGoods = cmpPlayer.GetNextTradingGoods();
 
@@ -234,7 +233,7 @@ Trader.prototype.PerformTrade = function(currentMarket)
 			nextGoods = "metal";
 	}
 	this.goods.type = nextGoods;
-	this.goods.amount = this.CalculateGain(this.firstMarket, this.secondMarket);
+	this.goods.amount = this.CalculateGain(currentMarket, nextMarket);
 	this.goods.origin = currentMarket;
 };
 
@@ -243,23 +242,14 @@ Trader.prototype.GetGoods = function()
 	return this.goods;
 };
 
-Trader.prototype.GetNextMarket = function()
-{
-	if (this.goods.amount && this.goods.origin == this.firstMarket)
-		return this.secondMarket;
-
-	if (this.goods.amount && this.goods.origin != this.secondMarket)
-		this.goods.amount = null;   // leftover from previous trading
-	return this.firstMarket;
-};
-
 Trader.prototype.StopTrading = function()
 {
+	this.index = -1;
+	this.markets = [];
 	// Drop carried goods
 	this.goods.amount = null;
 	// Reset markets
-	this.firstMarket = INVALID_ENTITY;
-	this.secondMarket = INVALID_ENTITY;
+	this.markets = [];
 };
 
 // Get range in which deals with market are available,
@@ -277,7 +267,7 @@ Trader.prototype.GetRange = function()
 Trader.prototype.OnGarrisonedUnitsChanged = function()
 {
 	if (this.HasBothMarkets())
-		this.gain = this.CalculateGain(this.firstMarket, this.secondMarket);
+		this.goods.amount = this.CalculateGain(this.markets[0], this.markets[1]);
 };
 
 Engine.RegisterComponentType(IID_Trader, "Trader", Trader);

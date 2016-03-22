@@ -10,13 +10,12 @@
 		"pers": "Paradise"
 	},
 	"description": "The wonder attracts many more people to your civilization.",
-	"cost": { "food": 2000, "wood": 3000, "stone": 500, "metal": 500 },
+	"cost": { "food": 3000, "wood": 3000, "stone": 500, "metal": 500 },
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "special_treasure.png",
 	"researchTime": 40,
-	"tooltip": "Increase the population bonus of the wonder by 40.",
-	"modifications": [{ "value": "Auras/Aura1/Modifications/Player/MaxPopulation/Add", "add": 40 }],
-	"affects": ["Wonder"],
+	"tooltip": "+50 maximum population cap.",
+	"modifications": [{ "value": "Player/MaxPopulation", "add": 50 }],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

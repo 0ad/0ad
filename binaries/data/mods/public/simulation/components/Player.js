@@ -3,6 +3,9 @@ function Player() {}
 Player.prototype.Schema =
 	"<element name='SharedLosTech' a:help='Allies will share los when this technology is researched. Leave empty to never share LOS.'>" +
 		"<text/>" +
+	"</element>" +
+	"<element name='SharedDropsitesTech' a:help='Allies will share dropsites when this technology is researched. Leave empty to never share dropsites.'>" +
+		"<text/>" +
 	"</element>";
 
 Player.prototype.Init = function()
@@ -31,6 +34,7 @@ Player.prototype.Init = function()
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
+	this.sharedDropsites = false;
 	this.formations = [];
 	this.startCam = undefined;
 	this.controlAllUnits = false;
@@ -79,7 +83,11 @@ Player.prototype.SetCiv = function(civcode)
 	// But in Atlas, the map designers can change civs at any time
 	var playerID = this.GetPlayerID();
 	if (oldCiv && playerID && oldCiv != civcode)
-		Engine.BroadcastMessage(MT_CivChanged, {"player": playerID, "from": oldCiv, "to": civcode});
+		Engine.BroadcastMessage(MT_CivChanged, {
+			"player": playerID,
+			"from": oldCiv,
+			"to": civcode
+		});
 };
 
 Player.prototype.GetCiv = function()
@@ -211,7 +219,7 @@ Player.prototype.GetResourceCounts = function()
  */
 Player.prototype.AddResource = function(type, amount)
 {
-	this.resourceCount[type] += (+amount);
+	this.resourceCount[type] += +amount;
 };
 
 /**
@@ -221,7 +229,7 @@ Player.prototype.AddResources = function(amounts)
 {
 	for (var type in amounts)
 	{
-		this.resourceCount[type] += (+amounts[type]);
+		this.resourceCount[type] += +amounts[type];
 	}
 };
 
@@ -249,7 +257,7 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 		var i = 0;
 		for (var type in amountsNeeded)
 		{
-			i++;
+			++i;
 			parameters["resourceType"+i] = this.resourceNames[type];
 			parameters["resourceAmount"+i] = amountsNeeded[type];
 		}
@@ -401,9 +409,8 @@ Player.prototype.GetDiplomacy = function()
 
 Player.prototype.SetDiplomacy = function(dipl)
 {
-	// Should we check for teamsLocked here?
 	this.diplomacy = dipl;
-	Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
 };
 
 Player.prototype.SetDiplomacyIndex = function(idx, value)
@@ -419,41 +426,12 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 	if (this.state != "active" || cmpPlayer.state != "active")
 		return;
 
-	// You can have alliances with other players,
-	if (this.teamsLocked)
-	{
-		// but can't stab your team members in the back
-		if (this.team == -1 || this.team != cmpPlayer.GetTeam())
-		{
-			// Break alliance or declare war
-			if (Math.min(this.diplomacy[idx],cmpPlayer.diplomacy[this.playerID]) > value)
-			{
-				this.diplomacy[idx] = value;
-				cmpPlayer.SetDiplomacyIndex(this.playerID, value);
-			}
-			else
-			{
-				this.diplomacy[idx] = value;
-			}
-			Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
-		}
-	}
-	else
-	{
-		// Break alliance or declare war (worsening of relations is mutual)
-		if (Math.min(this.diplomacy[idx],cmpPlayer.diplomacy[this.playerID]) > value)
-		{
-			// This is duplicated because otherwise we get too much recursion
-			this.diplomacy[idx] = value;
-			cmpPlayer.SetDiplomacyIndex(this.playerID, value);
-		}
-		else
-		{
-			this.diplomacy[idx] = value;
-		}
+	this.diplomacy[idx] = value;
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
 
-		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
-	}
+	// Mutual worsening of relations
+	if (cmpPlayer.diplomacy[this.playerID] > value)
+		cmpPlayer.SetDiplomacyIndex(this.playerID, value);
 };
 
 Player.prototype.UpdateSharedLos = function()
@@ -499,12 +477,17 @@ Player.prototype.GetStartingCameraRot = function()
 
 Player.prototype.SetStartingCamera = function(pos, rot)
 {
-	this.startCam = {"position": pos, "rotation": rot};
+	this.startCam = { "position": pos, "rotation": rot };
 };
 
 Player.prototype.HasStartingCamera = function()
 {
-	return (this.startCam !== undefined);
+	return this.startCam !== undefined;
+};
+
+Player.prototype.HasSharedDropsites = function()
+{
+	return this.sharedDropsites;
 };
 
 Player.prototype.SetControlAllUnits = function(c)
@@ -644,8 +627,6 @@ Player.prototype.OnPlayerDefeated = function(msg)
 {
 	this.state = "defeated";
 
-	// TODO: Tribute all resources to this player's active allies (if any)
-
 	// Reassign all player's entities to Gaia
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
@@ -682,6 +663,8 @@ Player.prototype.OnResearchFinished = function(msg)
 {
 	if (msg.tech == this.template.SharedLosTech)
 		this.UpdateSharedLos();
+	else if (msg.tech == this.template.SharedDropsitesTech)
+		this.sharedDropsites = true;
 };
 
 Player.prototype.OnDiplomacyChanged = function()
@@ -723,7 +706,7 @@ Player.prototype.TributeResource = function(player, amounts)
 
 	cmpPlayer.AddResources(amounts);
 
-	var total = Object.keys(amounts).reduce(function (sum, type){ return sum + amounts[type]; }, 0);
+	var total = Object.keys(amounts).reduce((sum, type) => sum + amounts[type], 0);
 	var cmpOurStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
 	if (cmpOurStatisticsTracker)
 		cmpOurStatisticsTracker.IncreaseTributesSentCounter(total);
@@ -731,12 +714,20 @@ Player.prototype.TributeResource = function(player, amounts)
 	if (cmpTheirStatisticsTracker)
 		cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
 
-	var notification = {"type": "tribute", "players": [player], "donator": this.playerID, "amounts": amounts};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (cmpGUIInterface)
-		cmpGUIInterface.PushNotification(notification);
+		cmpGUIInterface.PushNotification({
+			"type": "tribute",
+			"players": [player],
+			"donator": this.playerID,
+			"amounts": amounts
+		});
 
-	Engine.BroadcastMessage(MT_TributeExchanged, {"to": player, "from": this.playerID, "amounts": amounts});
+	Engine.BroadcastMessage(MT_TributeExchanged, {
+		"to": player,
+		"from": this.playerID,
+		"amounts": amounts
+	});
 };
 
 Player.prototype.AddDisabledTemplate = function(template)
@@ -744,15 +735,22 @@ Player.prototype.AddDisabledTemplate = function(template)
 	this.disabledTemplates[template] = true;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+	cmpGuiInterface.PushNotification({
+		"type": "resetselectionpannel",
+		"players": [this.GetPlayerID()]
+	});
 };
 
 Player.prototype.RemoveDisabledTemplate = function(template)
 {
 	this.disabledTemplates[template] = false;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+	cmpGuiInterface.PushNotification({
+		"type": "resetselectionpannel",
+		"players": [this.GetPlayerID()]
+	});
 };
 
 Player.prototype.SetDisabledTemplates = function(templates)
@@ -761,8 +759,12 @@ Player.prototype.SetDisabledTemplates = function(templates)
 	for (let template of templates)
 		this.disabledTemplates[template] = true;
 	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+	cmpGuiInterface.PushNotification({
+		"type": "resetselectionpannel",
+		"players": [this.GetPlayerID()]
+	});
 };
 
 Player.prototype.GetDisabledTemplates = function()

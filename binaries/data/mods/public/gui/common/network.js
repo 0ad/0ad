@@ -14,12 +14,12 @@ var g_NetworkWarnings = {};
 var g_NetworkWarningTexts = {
 
 	"server-timeout": (msg, username) =>
-		sprintf(translate("Losing connection to server (%(seconds)s)"), {
+		sprintf(translate("Losing connection to server (%(seconds)ss)"), {
 			"seconds": Math.ceil(msg.lastReceivedTime / 1000)
 		}),
 
 	"client-timeout": (msg, username) =>
-		sprintf(translate("%(player)s losing connection (%(seconds)s)"), {
+		sprintf(translate("%(player)s losing connection (%(seconds)ss)"), {
 			"player": username,
 			"seconds": Math.ceil(msg.lastReceivedTime / 1000)
 		}),
@@ -57,6 +57,8 @@ function getDisconnectReason(id)
 	case 4: return translate("Game has already started, no observers allowed");
 	case 5: return translate("You have been kicked");
 	case 6: return translate("You have been banned");
+	case 7: return translate("Playername in use. If you were disconnected, retry in few seconds");
+	case 8: return translate("Server full");
 	default:
 		warn("Unknown disconnect-reason ID received: " + id);
 		return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });

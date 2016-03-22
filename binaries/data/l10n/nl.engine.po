@@ -8,21 +8,21 @@
 # Ellen Roels, 2015
 # MathiasB, 2013
 # MathiasB, 2013
-# niektb <niektb95@gmail.com>, 2014
+# niektb <niektb95@gmail.com>, 2014,2016
 # niektb <niektb95@gmail.com>, 2014
 # tnt, 2013
 # Sander Deryckere, 2013
 # Sander Deryckere, 2013-2014
-# Sander Deryckere, 2014
+# Sander Deryckere, 2014,2016
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
 # tnt, 2013
 # Yannick Vanroy <yannickvanroy94@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-16 16:47+0000\n"
-"Last-Translator: Reginas - <reginas@hotmail.nl>\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-17 09:38+0000\n"
+"Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,19 +32,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (op maat gemaakt)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "op maat gemaakt"
 
@@ -116,7 +116,7 @@ msgstr "Het systeem is afgesloten door de server"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr "Er is een I/O fout opgetreden"
+msgstr "Er is een I/O-fout opgetreden"
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
@@ -124,11 +124,11 @@ msgstr "De verbinding is geweigerd door de server"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr "Het ophalen van de servers hostname is mislukt"
+msgstr "Het ophalen van de server hostname is mislukt"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr "Het systeem heeft geen geheugen meer over"
+msgstr "Dit systeem heeft geen geheugen meer over"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
@@ -142,11 +142,11 @@ msgstr "De server biedt niet de juiste TLS beveiliging"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Verificatie mislukt. Verkeerde wachtwoord of de gebruiker bestaat niet"
+msgstr "Verificatie mislukt. Verkeerd wachtwoord of de gebruiker bestaat niet"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr "De gebruiker of het systeem vraagt om een disconnect"
+msgstr "De gebruiker of het systeem vroeg om de verbinding te verbreken"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
@@ -169,7 +169,7 @@ msgstr "Gebruikersnaam bestaat al"
 msgid "Saved game to '%s'"
 msgstr "Spel opgeslagen als \"%s\""
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Screenshot weggeschreven naar \"%s\""
+msgstr "Screenshot opgeslagen in \"%s\""

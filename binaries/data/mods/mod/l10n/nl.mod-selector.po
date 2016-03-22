@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Michiel <mvdijk@mivadi.com>, 2014
-# niektb <niektb95@gmail.com>, 2014
-# Sander Deryckere, 2015
+# niektb <niektb95@gmail.com>, 2014,2016
+# Sander Deryckere, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-06-15 11:40+0000\n"
+"POT-Creation-Date: 2016-03-12 18:54+0100\n"
+"PO-Revision-Date: 2016-03-17 10:42+0000\n"
 "Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Versie"
 
 #: gui/modmod/modmod.js:36
 msgid "Type: Any"
-msgstr "Alle"
+msgstr "Type: Alle"
 
 #: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
@@ -47,15 +47,15 @@ msgstr "Filter"
 
 #: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
-msgstr "Mods geladen"
+msgstr "Bericht: Mods zijn geladen"
 
 #: gui/modmod/modmod.js:371
 msgid "All dependencies met"
-msgstr "Alle afhankelijkheden akkoord"
+msgstr "Aan alle afhankelijkheden zijn voldaan"
 
 #: gui/modmod/modmod.js:497
 msgid "No mod has been selected."
-msgstr "Geen mod geselecteerd"
+msgstr "Er werd geen mod geselecteerd."
 
 #: gui/modmod/modmod.xml:115
 msgid "Description"
@@ -67,15 +67,15 @@ msgstr "Aanpassingen"
 
 #: gui/modmod/modmod.xml:(caption):17
 msgid "Reset Filters"
-msgstr "Reset Filters"
+msgstr "Herstel filters"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Negate"
-msgstr "Ontkennen"
+msgstr "Selectie omkeren"
 
 #: gui/modmod/modmod.xml:(caption):58
 msgid "Sorting:"
-msgstr "Sortering:"
+msgstr "Sorteren op:"
 
 #: gui/modmod/modmod.xml:(caption):70
 msgid "Descending."
@@ -91,7 +91,7 @@ msgstr "Activeer"
 
 #: gui/modmod/modmod.xml:(caption):127
 msgid "Enabled Mods"
-msgstr "Mods Activieren"
+msgstr "Geactiveerde Mods"
 
 #: gui/modmod/modmod.xml:(caption):157
 msgid "Up"
@@ -127,11 +127,11 @@ msgstr "(Map)"
 
 #: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
 msgid "Mod Label"
-msgstr "Mod label"
+msgstr "Mod Label"
 
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Mod Type"
-msgstr "Mod type"
+msgstr "Mod Type"
 
 #: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
 msgid "Dependencies"

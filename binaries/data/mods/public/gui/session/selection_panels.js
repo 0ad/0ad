@@ -194,12 +194,14 @@ g_SelectionPanels.Command = {
 	},
 	"getItems": function(unitEntState)
 	{
-		var commands = [];
-		for (var c in g_EntityCommands)
+		let commands = [];
+
+		for (let c in g_EntityCommands)
 		{
 			var info = g_EntityCommands[c].getInfo(unitEntState);
 			if (!info)
 				continue;
+
 			info.name = c;
 			commands.push(info);
 		}
@@ -224,8 +226,9 @@ g_SelectionPanels.Command = {
 	},
 	"setGraphics": function(data)
 	{
-		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
+		let grayscale = data.button.enabled ? "" : "grayscale:";
+		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
 	},
 	"setPosition": function(data)
 	{
@@ -280,8 +283,9 @@ g_SelectionPanels.AllyCommand = {
 	},
 	"setGraphics": function(data)
 	{
-		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
-		data.button.enabled = data.item.count > 0;
+		data.button.enabled = data.item.count != undefined && data.item.count > 0;
+		let grayscale = data.button.enabled ? "" : "grayscale:";
+		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
 	},
 	"setPosition": function(data)
 	{

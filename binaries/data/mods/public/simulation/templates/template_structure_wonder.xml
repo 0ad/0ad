@@ -10,28 +10,17 @@
       <Crush>2</Crush>
     </Foundation>
   </Armour>
-  <Auras>
-    <Aura1>
-      <Type>global</Type>
-      <Affects>Player</Affects>
-      <Modifications>
-        <Player.MaxPopulation> <Add>10</Add> </Player.MaxPopulation>
-      </Modifications>
-      <AuraName>Wonder Aura</AuraName>
-      <AuraDescription>+10 maximum population cap.</AuraDescription>
-     </Aura1>
-  </Auras>
   <BuildRestrictions>
     <Category>Wonder</Category>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>2000</CapturePoints>
+    <CapturePoints>1500</CapturePoints>
     <RegenRate>5.0</RegenRate>
   </Capturable>
   <Cost>
     <BuildTime>1000</BuildTime>
     <Resources>
-      <food>1000</food>
+      <food>0</food>
       <wood>1000</wood>
       <stone>1000</stone>
       <metal>1000</metal>

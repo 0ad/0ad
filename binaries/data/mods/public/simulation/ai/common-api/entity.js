@@ -747,6 +747,14 @@ m.Entity = m.Class({
 
 	isBuilder: function() { return this.get("Builder") !== undefined; },
 	isGatherer: function() { return this.get("ResourceGatherer") !== undefined; },
+	canGather: function(type) {
+		if (!this.get("ResourceGatherer") || !this.get("ResourceGatherer/Rates"))
+			return false;
+		for (let r in this.get("ResourceGatherer/Rates"))
+			if (r.split('.')[0] === type)
+				return true;
+		return false;
+	},
 
 	isGarrisonHolder: function() { return this.get("GarrisonHolder") !== undefined; },
 	garrisoned: function() { return this._entity.garrisoned; },

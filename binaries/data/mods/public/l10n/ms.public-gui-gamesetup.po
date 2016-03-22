@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-28 10:20+0100\n"
-"PO-Revision-Date: 2016-02-10 09:29+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-20 08:15+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,197 +27,238 @@ msgstr "Tiada"
 msgid "AI will be disabled for this player."
 msgstr "AI akan dilumpuhkan untuk pemain ini."
 
-#: gui/gamesetup/gamesetup.js:32 gui/gamesetup/gamesetup.js:1274
-msgid "Default"
-msgstr "Lalai"
+#: gui/gamesetup/gamesetup.js:43
+msgid "Game settings have been changed"
+msgstr "Tetapan permainan telah berubah"
 
-#: gui/gamesetup/gamesetup.js:37
-msgid "Naval Maps"
-msgstr "Peta Laut"
+#: gui/gamesetup/gamesetup.js:44
+#, javascript-format
+msgid "%(username)s has joined"
+msgstr "%(username)s telah sertai"
 
-#: gui/gamesetup/gamesetup.js:42
-msgid "Demo Maps"
-msgstr "Peta Demo"
+#: gui/gamesetup/gamesetup.js:45
+#, javascript-format
+msgid "%(username)s has left"
+msgstr "%(username)s telah keluar"
 
-#: gui/gamesetup/gamesetup.js:47
-msgid "All Maps"
-msgstr "Semua Peta"
-
-#: gui/gamesetup/gamesetup.js:96 gui/gamesetup/gamesetup.js:1391
-msgctxt "map"
-msgid "Random"
-msgstr "Rawak"
-
-#: gui/gamesetup/gamesetup.js:101
-msgctxt "civilization"
-msgid "Random"
-msgstr "Rawak"
-
-#: gui/gamesetup/gamesetup.js:187
-msgid "Return to the lobby."
-msgstr "Kembali ke lobi."
-
-#: gui/gamesetup/gamesetup.js:187
-msgid "Return to the main menu."
-msgstr "Kembali ke menu utama."
-
-#: gui/gamesetup/gamesetup.js:454
-msgid "Yes"
-msgstr "Ya"
-
-#: gui/gamesetup/gamesetup.js:454
-msgid "No"
-msgstr "Tidak"
-
-#: gui/gamesetup/gamesetup.js:495
-msgctxt "team"
-msgid "None"
-msgstr "Tiada"
-
-#: gui/gamesetup/gamesetup.js:555
+#: gui/gamesetup/gamesetup.js:46
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s telah ditendang"
 
-#: gui/gamesetup/gamesetup.js:559
+#: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s telah disekat masuk"
 
-#: gui/gamesetup/gamesetup.js:1115
+#: gui/gamesetup/gamesetup.js:48
+#, javascript-format
+msgid "%(username)s %(message)s"
+msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:49
+#, javascript-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/gamesetup.js:52
+#, javascript-format
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s sudah sedia!"
+
+#: gui/gamesetup/gamesetup.js:55
+#, javascript-format
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s tidak sedia."
+
+#: gui/gamesetup/gamesetup.js:67 gui/gamesetup/gamesetup.js:1268
+msgid "Default"
+msgstr "Lalai"
+
+#: gui/gamesetup/gamesetup.js:72
+msgid "Naval Maps"
+msgstr "Peta Laut"
+
+#: gui/gamesetup/gamesetup.js:77
+msgid "Demo Maps"
+msgstr "Peta Demo"
+
+#: gui/gamesetup/gamesetup.js:82
+msgid "All Maps"
+msgstr "Semua Peta"
+
+#: gui/gamesetup/gamesetup.js:136 gui/gamesetup/gamesetup.js:1384
+#: gui/gamesetup/mapselection.js:16
+msgctxt "map"
+msgid "Random"
+msgstr "Rawak"
+
+#: gui/gamesetup/gamesetup.js:141
+msgctxt "civilization"
+msgid "Random"
+msgstr "Rawak"
+
+#: gui/gamesetup/gamesetup.js:227
+msgid "Return to the lobby."
+msgstr "Kembali ke lobi."
+
+#: gui/gamesetup/gamesetup.js:227
+msgid "Return to the main menu."
+msgstr "Kembali ke menu utama."
+
+#: gui/gamesetup/gamesetup.js:492
+msgid "Yes"
+msgstr "Ya"
+
+#: gui/gamesetup/gamesetup.js:492
+msgid "No"
+msgstr "Tidak"
+
+#: gui/gamesetup/gamesetup.js:531
+msgctxt "team"
+msgid "None"
+msgstr "Tiada"
+
+#: gui/gamesetup/gamesetup.js:1109
 msgid "You"
 msgstr "Anda"
 
-#: gui/gamesetup/gamesetup.js:1191
+#: gui/gamesetup/gamesetup.js:1185
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1340
+#: gui/gamesetup/gamesetup.js:1333
 msgid "Loading..."
 msgstr "Memuatkan..."
 
-#: gui/gamesetup/gamesetup.js:1383
+#: gui/gamesetup/gamesetup.js:1376
 msgid "Sorry, no description available."
 msgstr "Maaf, tiada keterangan tersedia."
 
-#: gui/gamesetup/gamesetup.js:1385
+#: gui/gamesetup/gamesetup.js:1378
 msgid "Randomly selects a map from the list"
 msgstr "Pilih peta secara rawak dari senarai"
 
-#: gui/gamesetup/gamesetup.js:1387
+#: gui/gamesetup/gamesetup.js:1380
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s pemain."
 
-#: gui/gamesetup/gamesetup.js:1388 gui/gamesetup/gamesetup.xml:(caption):290
+#: gui/gamesetup/gamesetup.js:1381 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "Syarat Menang:"
 
-#: gui/gamesetup/gamesetup.js:1459
+#: gui/gamesetup/gamesetup.js:1455
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1464
+#: gui/gamesetup/gamesetup.js:1460
 msgid "Unassigned"
 msgstr "Tidak diumpuk"
 
-#: gui/gamesetup/gamesetup.js:1622
-msgid "Unknown Player"
-msgstr "Pemain Tidak Diketahui"
-
-#: gui/gamesetup/gamesetup.js:1648 gui/gamesetup/gamesetup.js:1652
-#: gui/gamesetup/gamesetup.js:1660 gui/gamesetup/gamesetup.js:1679
+#: gui/gamesetup/gamesetup.js:1621
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1648
-#, javascript-format
-msgid "%(username)s has joined"
-msgstr "%(username)s telah sertai"
+#: gui/gamesetup/gamesetup.js:1628
+msgid "Unknown Player"
+msgstr "Pemain Tidak Diketahui"
 
-#: gui/gamesetup/gamesetup.js:1652
-#, javascript-format
-msgid "%(username)s has left"
-msgstr "%(username)s telah keluar"
-
-#: gui/gamesetup/gamesetup.js:1664
-#, javascript-format
-msgid "%(username)s %(message)s"
-msgstr "%(username)s %(message)s"
-
-#: gui/gamesetup/gamesetup.js:1665
-#, javascript-format
-msgid "<%(username)s>"
-msgstr "<%(username)s>"
-
-#: gui/gamesetup/gamesetup.js:1673
-#, javascript-format
-msgid "* %(username)s is ready!"
-msgstr "* %(username)s sudah sedia!"
-
-#: gui/gamesetup/gamesetup.js:1675
-#, javascript-format
-msgid "* %(username)s is not ready."
-msgstr "* %(username)s tidak sedia."
-
-#: gui/gamesetup/gamesetup.js:1679
-msgid "Game settings have been changed"
-msgstr "Tetapan permainan telah berubah"
-
-#: gui/gamesetup/gamesetup.js:1704
+#: gui/gamesetup/gamesetup.js:1670
 msgid "I'm not ready"
 msgstr "Saya tidak sedia"
 
-#: gui/gamesetup/gamesetup.js:1705
+#: gui/gamesetup/gamesetup.js:1671
 msgid "State that you are not ready to play."
 msgstr "Nyatakan anda tidak bersedia untuk main."
 
-#: gui/gamesetup/gamesetup.js:1710 gui/gamesetup/gamesetup.js:1788
+#: gui/gamesetup/gamesetup.js:1676 gui/gamesetup/gamesetup.js:1754
 msgid "I'm ready!"
 msgstr "Saya sedia!"
 
-#: gui/gamesetup/gamesetup.js:1711
+#: gui/gamesetup/gamesetup.js:1677
 msgid "State that you are ready to play!"
 msgstr "Nyatakan anda sudah sedia untuk main!"
 
-#: gui/gamesetup/gamesetup.js:1789
+#: gui/gamesetup/gamesetup.js:1755
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Nyatakan anda terima tetapan semasa dan sedia untuk main!"
 
-#: gui/gamesetup/gamesetup_mp.js:34
+#: gui/gamesetup/gamesetup_mp.js:35
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "Permainan %(name)s"
 
-#: gui/gamesetup/gamesetup_mp.js:60
+#: gui/gamesetup/gamesetup_mp.js:62
 msgid "Connecting to server..."
 msgstr "Menyambung ke pelayan..."
 
-#: gui/gamesetup/gamesetup_mp.js:79
+#: gui/gamesetup/gamesetup_mp.js:81
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Mesej rangkaian: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:146
+#: gui/gamesetup/gamesetup_mp.js:150
 msgid "Registering with server..."
 msgstr "Mendaftar dengan pelayan..."
 
-#: gui/gamesetup/gamesetup_mp.js:152
+#: gui/gamesetup/gamesetup_mp.js:156
 msgid "Game has already started, rejoining..."
 msgstr "Permainan sudah bermula, menyertai semula..."
 
-#: gui/gamesetup/gamesetup_mp.js:198
+#: gui/gamesetup/gamesetup_mp.js:207
 msgid "Game name already in use."
 msgstr "Nama permainan sudah digunakan."
 
-#: gui/gamesetup/gamesetup_mp.js:261
+#: gui/gamesetup/gamesetup_mp.js:272
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Permainan %(playername)s"
+
+#: gui/gamesetup/mapselection.js:16
+msgctxt "map"
+msgid "Skirmish"
+msgstr ""
+
+#: gui/gamesetup/mapselection.js:16
+msgid "Scenario"
+msgstr ""
+
+#: gui/gamesetup/mapselection.js:19 gui/gamesetup/gamesetup.xml:(tooltip):139
+#: gui/gamesetup/mapsettings.xml:(tooltip):38
+#: gui/gamesetup/settings/mapType.xml:(tooltip):13
+msgid "Select a map type."
+msgstr "Pilih jenis peta."
+
+#: gui/gamesetup/mapselection.js:20 gui/gamesetup/gamesetup.xml:(caption):110
+#: gui/gamesetup/mapsettings.xml:(caption):7
+#: gui/gamesetup/settings/mapType.xml:(caption):5
+msgid "Map Type:"
+msgstr "Jenis Peta:"
+
+#: gui/gamesetup/mapselection.js:33 gui/gamesetup/gamesetup.xml:(tooltip):147
+#: gui/gamesetup/mapsettings.xml:(tooltip):46
+msgid "Select a map filter."
+msgstr "Pilih penapis peta"
+
+#: gui/gamesetup/mapselection.js:34 gui/gamesetup/gamesetup.xml:(caption):113
+#: gui/gamesetup/mapsettings.xml:(caption):10
+msgid "Map Filter:"
+msgstr "Penapis Peta:"
+
+#: gui/gamesetup/mapselection.js:47 gui/gamesetup/gamesetup.xml:(tooltip):156
+#: gui/gamesetup/mapsettings.xml:(tooltip):55
+msgid "Select a map to play on."
+msgstr "Pilih satu peta untuk dimainkan."
+
+#: gui/gamesetup/mapselection.js:48 gui/gamesetup/gamesetup.xml:(caption):116
+#: gui/gamesetup/mapsettings.xml:(caption):13
+msgid "Select Map:"
+msgstr "Pilih Peta:"
 
 #: gui/loading/loading.js:49
 #, javascript-format
@@ -247,236 +288,217 @@ msgid "Cancel"
 msgstr "Batal"
 
 #: gui/aiconfig/aiconfig.xml:(caption):44
-#: gui/gamesetup/gamesetup.xml:(caption):407
+#: gui/gamesetup/gamesetup.xml:(caption):398
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):19
+#: gui/gamesetup/gamesetup.xml:(caption):20
 msgid "Match Setup"
 msgstr "Persediaan Lawan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):25
+#: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading"
 msgstr "Memuatkan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):29
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
 msgstr "Memuatkan data peta. Tungga sebentar..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):44
+#: gui/gamesetup/gamesetup.xml:(caption):45
+#: gui/gamesetup/players.xml:(caption):8
 msgid "Player Name"
 msgstr "Nama Pemain"
 
-#: gui/gamesetup/gamesetup.xml:(caption):47
+#: gui/gamesetup/gamesetup.xml:(caption):48
 msgid "Color"
 msgstr "Warna"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/players.xml:(caption):11
 msgid "Player Placement"
 msgstr "Penggantian Pemain"
 
-#: gui/gamesetup/gamesetup.xml:(caption):53
+#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/players.xml:(caption):14
 msgid "Civilization"
 msgstr "Tamadun"
 
-#: gui/gamesetup/gamesetup.xml:(caption):68
+#: gui/gamesetup/gamesetup.xml:(caption):69
+#: gui/gamesetup/players.xml:(caption):29
 msgid "Team"
 msgstr "Pasukan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):109
-msgid "Map Type:"
-msgstr "Jenis Peta:"
-
-#: gui/gamesetup/gamesetup.xml:(caption):112
-msgid "Map Filter:"
-msgstr "Penapis Peta:"
-
-#: gui/gamesetup/gamesetup.xml:(caption):115
-msgid "Select Map:"
-msgstr "Pilih Peta:"
-
-#: gui/gamesetup/gamesetup.xml:(caption):118
+#: gui/gamesetup/gamesetup.xml:(caption):119
+#: gui/gamesetup/mapsettings.xml:(caption):19
 msgid "Number of Players:"
 msgstr "Bilangan Pemain:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):121
+#: gui/gamesetup/gamesetup.xml:(caption):122
+#: gui/gamesetup/mapsettings.xml:(caption):22
 msgid "Map Size:"
 msgstr "Saiz Peta:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):200
+#: gui/gamesetup/gamesetup.xml:(caption):201
 msgid "Send"
 msgstr "Hantar"
 
-#: gui/gamesetup/gamesetup.xml:(caption):218
+#: gui/gamesetup/gamesetup.xml:(caption):219
 msgid "Cheats enabled."
 msgstr "Menipu dibenarkan."
 
-#: gui/gamesetup/gamesetup.xml:(caption):231
+#: gui/gamesetup/gamesetup.xml:(caption):232
 msgid "Start game!"
 msgstr "Mula permainan!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):249
+#: gui/gamesetup/gamesetup.xml:(caption):250
 msgid "Back"
 msgstr "Undur"
 
-#: gui/gamesetup/gamesetup.xml:(caption):263
-#: gui/gamesetup/gamesetup.xml:(caption):275
+#: gui/gamesetup/gamesetup.xml:(caption):264
+#: gui/gamesetup/gamesetup.xml:(caption):276
 msgid "More Options"
 msgstr "Lagi Pilihan"
 
-#: gui/gamesetup/gamesetup.xml:(caption):280
+#: gui/gamesetup/gamesetup.xml:(caption):281
 msgid "Game Speed:"
 msgstr "Kelajuan Permainan:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):300
+#: gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Population Cap:"
 msgstr "Had Populasi:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):310
+#: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Starting Resources:"
 msgstr "Sumber Mula:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):320
+#: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "Ceasefire:"
 msgstr "Genjatan Senjata:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):330
+#: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Revealed Map:"
 msgstr "Peta Didedah:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):340
+#: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Explored Map:"
 msgstr "Peta Dijelajah:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):350
+#: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Disable Treasures:"
 msgstr "Khazanah Disembunyikan:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):360
+#: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Teams Locked:"
 msgstr "Pasukan Dikunci:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):370
+#: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "Cheats:"
 msgstr "Menipu:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):380
+#: gui/gamesetup/gamesetup.xml:(caption):381
 msgid "Rated Game:"
 msgstr "Permainan Ditaraf:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):390
-msgid "Late Observer Joins:"
-msgstr "Pemerhati Lewat Sertai:"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):62
+#: gui/gamesetup/gamesetup.xml:(tooltip):63
+#: gui/gamesetup/players.xml:(tooltip):23
 msgid "View civilization info"
 msgstr "Lihat maklumat tamadun"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):77
+#: gui/gamesetup/gamesetup.xml:(tooltip):78
 msgid "Pick a color."
 msgstr "Ambil satu warna."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):80
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
+#: gui/gamesetup/players.xml:(tooltip):38
 msgid "Select player."
 msgstr "Pilih pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):90
+#: gui/gamesetup/gamesetup.xml:(tooltip):91
+#: gui/gamesetup/players.xml:(tooltip):47
 msgid "Configure AI settings."
 msgstr "Konfigur tetapan AI."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):93
+#: gui/gamesetup/gamesetup.xml:(tooltip):94
+#: gui/gamesetup/players.xml:(tooltip):50
 msgid "Select player's civilization."
 msgstr "Pilih tamadun pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):97
+#: gui/gamesetup/gamesetup.xml:(tooltip):98
+#: gui/gamesetup/players.xml:(tooltip):54
 msgid "Select player's team."
 msgstr "Pilih pasukan pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):138
-msgid "Select a map type."
-msgstr "Pilih jenis peta."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):146
-msgid "Select a map filter."
-msgstr "Pilih penapis peta"
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):155
-msgid "Select a map to play on."
-msgstr "Pilih satu peta untuk dimainkan."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):165
+#: gui/gamesetup/gamesetup.xml:(tooltip):166
+#: gui/gamesetup/mapsettings.xml:(tooltip):65
 msgid "Select number of players."
 msgstr "Pilih bilangan pemain."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):169
+#: gui/gamesetup/gamesetup.xml:(tooltip):170
+#: gui/gamesetup/mapsettings.xml:(tooltip):70
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Pilih saiz peta. (Saiz lebih besar akan mengurangkan prestasi.)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):232
+#: gui/gamesetup/gamesetup.xml:(tooltip):233
 msgid "Start a new game with the current settings."
 msgstr "Mulakan permainan baharu dengan tetapan semasa."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):264
+#: gui/gamesetup/gamesetup.xml:(tooltip):265
 msgid "See more game options"
 msgstr "Lihat lagi pilihan permainan"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):284
+#: gui/gamesetup/gamesetup.xml:(tooltip):285
 msgid "Select game speed."
 msgstr "Pilih kelajuan permainan."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):294
+#: gui/gamesetup/gamesetup.xml:(tooltip):295
 msgid "Select victory condition."
 msgstr "Pilih syarat menang."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):304
+#: gui/gamesetup/gamesetup.xml:(tooltip):305
 msgid "Select population cap."
 msgstr "Pilih had populasi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):314
+#: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select the game's starting resources."
 msgstr "Pilih sumber mula permainan."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):324
+#: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Set time where no attacks are possible."
 msgstr "Tetapkan masa yang mana tiada serangan dilakukan."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):334
+#: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid "Toggle revealed map (see everything)."
 msgstr "Togol peta didedah (lihat segalanya)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):344
+#: gui/gamesetup/gamesetup.xml:(tooltip):345
 msgid "Toggle explored map (see initial map)."
 msgstr "Togol peta dijelajah (lihat peta sebelum ini)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):354
+#: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Disable all treasures on the map."
 msgstr "Sembunyikan semua khazanah di dalam peta."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):364
+#: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Toggle locked teams."
 msgstr "Togol pasukan dikunci."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):374
+#: gui/gamesetup/gamesetup.xml:(tooltip):375
 msgid "Toggle the usability of cheats."
 msgstr "Togol kebolehgunaan menipu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):384
+#: gui/gamesetup/gamesetup.xml:(tooltip):385
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Togol jika permainan ini akan ditaraf untuk papan peneraju."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):394
-msgid "Allow observers to join after the game started."
-msgstr "Benarkan pemerhati sertai selepas permainan bermula."
-
-#: gui/gamesetup/gamesetup.xml:(tooltip):408
+#: gui/gamesetup/gamesetup.xml:(tooltip):399
 msgid "Close more game options window"
 msgstr "Tutup lagi tetingkap pilihan permainan"
 
@@ -509,6 +531,10 @@ msgstr "Tetapkan pelayan anda ke hos."
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "Nama pelayan:"
+
+#: gui/gamesetup/mapsettings.xml:(caption):16
+msgid "Other Settings"
+msgstr ""
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

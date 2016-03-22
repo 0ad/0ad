@@ -7,7 +7,7 @@
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014
 # gZen <gzen.tb@free.fr>, 2014
 # Nexus nexus <neocrysis@gmail.com>, 2016
-# Nicolas Auvray <na.itms76@gmail.com>, 2013-2015
+# Nicolas Auvray <na.itms76@gmail.com>, 2013-2016
 # Olivier <olivier.torrens@gmail.com>, 2013
 # PRIME Gildas <prime.gildas@gmail.com>, 2013
 # Ross1396, 2014
@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-14 18:52+0000\n"
-"Last-Translator: Nexus nexus <neocrysis@gmail.com>\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-02 17:08+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,19 +29,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (custom build)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "custom build"
 
@@ -105,11 +105,11 @@ msgstr "Erreur de flux"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr "La version d'entrée du flux n'est pas prise en charge"
+msgstr "La version du flux entrant n'est pas prise en charge"
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr "Le flux à été fermé par le serveur"
+msgstr "Le flux a été fermé par le serveur"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
@@ -121,17 +121,17 @@ msgstr "La connexion a été refusée par le serveur"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr "La résolution du nom d’hôte du serveur à échoué"
+msgstr "La résolution du nom d’hôte du serveur a échoué"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr "Le système ne dispose pas d'assez de mémoire"
+msgstr "Le système n'a plus assez de mémoire"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Le certificat du serveur n'a pas pu être vérifié ou la poignée de main TLS n'a pas réussi"
+msgstr "Le certificat du serveur n'a pas pu être vérifié, ou la poignée de main TLS n'a pas abouti"
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
@@ -159,14 +159,14 @@ msgstr "Toutes les informations nécessaires n’ont pas été fournies "
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr "Nom d’utilisateur déjà pris"
+msgstr "Nom d’utilisateur déjà utilisé"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Partie sauvegardée dans '%s'"
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Capture d'écran enregistrée sous '%s'"

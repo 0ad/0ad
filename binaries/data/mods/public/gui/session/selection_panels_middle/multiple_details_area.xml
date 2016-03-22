@@ -34,7 +34,7 @@
 	</object>
 
 	<!-- Capture bar -->
-	<object size="15 0 22 100%" type="image" name="captureMultiple" tooltip_style="sessionToolTipBold">
+	<object size="15 0 22 100%" type="image" name="captureMultiple" tooltip_style="sessionToolTip">
 		<translatableAttribute id="tooltip">Capture points</translatableAttribute>
 		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 		<repeat count="9">

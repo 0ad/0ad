@@ -6,7 +6,7 @@
       <Affects>Ship</Affects>
       <AffectedPlayers>Player MutualAlly</AffectedPlayers>
       <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
+        <UnitMotion.WalkSpeed> <Multiply>1.5</Multiply> </UnitMotion.WalkSpeed>
       </Modifications>
       <AuraName>Naval Commander Aura</AuraName>
       <AuraDescription>When garrisoned in a ship, his ship is +50% faster.</AuraDescription>
@@ -18,7 +18,7 @@
         <Cost.BuildTime> <Multiply>0.8</Multiply> </Cost.BuildTime>
       </Modifications>
       <AuraName>Naval Architect Aura</AuraName>
-      <AuraDescription>Ships are built +20% faster during his lifespan.</AuraDescription>
+      <AuraDescription>-20% build time for ships during his lifespan.</AuraDescription>
     </Aura2>
   </Auras>
   <Identity>

@@ -93,21 +93,21 @@ function getArmorTooltip(dmg)
 	let dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.hack,
+			"damage": dmg.hack.toFixed(1),
 			"damageType": g_TooltipTextFormats.unit[0] + translate("Hack") + g_TooltipTextFormats.unit[1],
 			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.hack) }) + '[/font]'
 		}));
 
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.pierce,
+			"damage": dmg.pierce.toFixed(1),
 			"damageType": g_TooltipTextFormats.unit[0] + translate("Pierce") + g_TooltipTextFormats.unit[1],
 			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.pierce) }) + '[/font]'
 		}));
 
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.crush,
+			"damage": dmg.crush.toFixed(1),
 			"damageType": g_TooltipTextFormats.unit[0] + translate("Crush") + g_TooltipTextFormats.unit[1],
 			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.crush) }) + '[/font]'
 		}));
@@ -455,7 +455,7 @@ function getHealerTooltip(template)
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.HP), {
 			"label": g_TooltipTextFormats.header[0] + translate("Heal:") + g_TooltipTextFormats.header[1],
 			"val": template.healer.HP,
-			// Translation: Short for Health Points (that are healed in one healing action)
+			// Translation: Short for hitpoints (that are healed in one healing action)
 			"unit": g_TooltipTextFormats.unit[0] + translatePlural("HP", "HP", template.healer.HP) + g_TooltipTextFormats.unit[1]
 		}),
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Range), {

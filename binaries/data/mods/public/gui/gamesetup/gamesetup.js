@@ -133,7 +133,7 @@ const g_VictoryColor = "orange";
 /**
  * Placeholder item for the map-dropdownlist.
  */
-const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map", "Random") + "[/color]";
+const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map type", "Random") + "[/color]";
 
 /**
  * Placeholder item for the civ-dropdownlists.
@@ -208,9 +208,7 @@ function init(attribs)
 
 	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
-
-	if (attribs.serverName)
-		g_ServerName = attribs.serverName;
+	g_ServerName = attribs.serverName || undefined;
 
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
@@ -301,7 +299,7 @@ function initMapFilters()
  */
 function resizeMoreOptionsWindow()
 {
-	// For singleplayer reduce the size of more options dialog by three options (cheats, rated game, observer late join = 90px)
+	// For singleplayer reduce the size of more options dialog by two options (cheats, rated game = 60px)
 	if (!g_IsNetworked)
 	{
 		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+160";
@@ -310,9 +308,8 @@ function resizeMoreOptionsWindow()
 	// For non-lobby multiplayergames reduce the size of the dialog by one option (rated game, 30px)
 	else if (!Engine.HasXmppClient())
 	{
-		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+220";
-		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 370 50%+70 396";
-		Engine.GetGUIObjectByName("optionObserverLateJoin").size = "14 338 94% 366";
+		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+190";
+		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 340 50%+70 366";
 	}
 }
 
@@ -427,8 +424,7 @@ function initRadioButtons()
 		"ExploreMap": "exploreMap",
 		"DisableTreasures": "disableTreasures",
 		"LockTeams": "lockTeams",
-		"CheatsEnabled": "enableCheats",
-		"ObserverLateJoin": "observerLateJoin"
+		"CheatsEnabled": "enableCheats"
 	};
 
 	Object.keys(options).forEach(attribute => {
@@ -504,7 +500,6 @@ function initMultiplayerSettings()
 	Engine.GetGUIObjectByName("chatPanel").hidden = !g_IsNetworked;
 	Engine.GetGUIObjectByName("optionCheats").hidden = !g_IsNetworked;
 	Engine.GetGUIObjectByName("optionRating").hidden = !Engine.HasXmppClient();
-	Engine.GetGUIObjectByName("optionObserverLateJoin").hidden = !g_IsNetworked;
 
 	Engine.GetGUIObjectByName("enableCheats").enabled = !Engine.IsRankedGame();
 	Engine.GetGUIObjectByName("lockTeams").enabled = !Engine.IsRankedGame();
@@ -514,7 +509,6 @@ function initMultiplayerSettings()
 
 	hideControl("enableCheats", "enableCheatsText");
 	hideControl("enableRating", "enableRatingText");
-	hideControl("observerLateJoin", "observerLateJoinText");
 }
 
 /**
@@ -1284,7 +1278,6 @@ function updateGUIObjects()
 	setGUIBoolean("exploreMap", "exploreMapText", !!mapSettings.ExploreMap);
 	setGUIBoolean("revealMap", "revealMapText", !!mapSettings.RevealMap);
 	setGUIBoolean("lockTeams", "lockTeamsText", !!mapSettings.LockTeams);
-	setGUIBoolean("observerLateJoin", "observerLateJoinText", !!mapSettings.ObserverLateJoin);
 	setGUIBoolean("enableRating", "enableRatingText", !!mapSettings.RatingEnabled);
 
 	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !mapSettings.CheatsEnabled;
@@ -1388,7 +1381,7 @@ function setMapDescription()
 	gameDescription += translate("Victory Condition:") + " " + victoryTitle + ".\n\n";
 	gameDescription += mapDescription;
 
-	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map", "Random") : translate(getMapDisplayName(mapName));
+	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map selection", "Random") : translate(getMapDisplayName(mapName));
 	Engine.GetGUIObjectByName("mapInfoDescription").caption = gameDescription;
 	setMapPreviewImage("mapPreview", getMapPreview(mapName));
 }

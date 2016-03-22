@@ -106,6 +106,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"teamsLocked": cmpPlayer.GetLockTeams(),
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
 			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
+			"hasSharedDropsites": cmpPlayer.HasSharedDropsites(),
 			"phase": phase,
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
@@ -516,7 +517,9 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	let cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
 	if (cmpResourceDropsite)
 		ret.resourceDropsite = {
-			"types": cmpResourceDropsite.GetTypes()
+			"types": cmpResourceDropsite.GetTypes(),
+			"sharable": cmpResourceDropsite.IsSharable(),
+			"shared": cmpResourceDropsite.IsShared()
 		};
 
 	let cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
@@ -1667,13 +1670,13 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 			"hasBothMarkets": cmpEntityTrader.HasBothMarkets()
 		};
 		if (cmpEntityTrader.HasBothMarkets())
-			result.gain = cmpEntityTrader.GetGain();
+			result.gain = cmpEntityTrader.GetGoods().amount;
 	}
 	else if (data.target === secondMarket)
 	{
 		result = {
 			"type": "is second",
-			"gain": cmpEntityTrader.GetGain(),
+			"gain": cmpEntityTrader.GetGoods().amount,
 		};
 	}
 	else if (!firstMarket)

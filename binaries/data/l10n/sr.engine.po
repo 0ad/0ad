@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Aca G. <martel.gilgames@gmail.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2014-2015
+# Tom Azurian <tomtanz@outlook.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-08 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-19 21:19+0000\n"
+"Last-Translator: Tom Azurian <tomtanz@outlook.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,19 +21,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (посебна верзија)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "посебна верзија"
 
@@ -46,15 +48,15 @@ msgstr "непознати подтип (видети белешке)"
 #: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
 #: lobby/XmppClient.cpp:1084
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
 msgid "No error"
-msgstr ""
+msgstr "Нема грешке"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Player already logged in"
-msgstr ""
+msgstr "Играч већ у игри"
 
 #: lobby/XmppClient.cpp:1008
 msgid "Forbidden"
@@ -87,7 +89,7 @@ msgstr "Сервис недоступан"
 #: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
 #: lobby/XmppClient.cpp:1097
 msgid "Unknown error"
-msgstr ""
+msgstr "Непозната грешка"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
@@ -103,11 +105,11 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr ""
+msgstr "Настала је I/O грешка"
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Сервер је одбио конекцију"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
@@ -115,7 +117,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Систем нема довољно меморије"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
@@ -125,7 +127,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Сервер није понудио одговарајућу TLS енкрипцију"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -133,30 +135,30 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Играч или систем су затражили дисконекцију"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "Нема активне конекције"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
-msgstr ""
+msgstr "Успех"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Све обавезне информације нису обезбеђене"
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "Корисничко име већ постоји"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Снимљене поѕиције у '%s'"
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Слика екрана снимљена у  '%s'"

@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Lene Raastad <lene.raastad.lr@gmail.com>, 2014
-# Ole Sannes Riiser <OLE-SR@online.no>, 2015
+# Ole Sannes Riiser <OLE-SR@online.no>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-11 09:36+0000\n"
+"POT-Creation-Date: 2016-03-18 09:01+0100\n"
+"PO-Revision-Date: 2016-03-19 08:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -23,35 +23,35 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Mat"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Tømmer"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metall"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Stein"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Jeg starter et massivt militærfelttog mot %(_player_)s, kom og bli med meg. "
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -63,85 +63,85 @@ msgstr "Jeg iverksetter et angrep mot %(_player_)s."
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Jeg har nettopp sendt en armé mot %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "La meg omgruppere armeen min, så er jeg på lag med deg mot %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:46
+#: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Jeg gjør de siste forberedelsene og vil angripe %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Jeg kan ikke hjelpe deg mot %(_player_)s for øyeblikket, da jeg har et forestående angrep på %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:53
+#: simulation/ai/petra/chatHelper.js:52
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Beklager, jeg har ikke nok soldater for øyeblikket, men målet for mitt neste angrep vil være %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Her er en gave til %(_player_)s, bruk den fornuftig."
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Jeg ser du er i en kinkig situasjon, %(_player_)s, jeg håper dette vil hjelpe. "
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "Jeg kan hjelpe deg denne gangen %(_player_)s, men prøv å samle sammen flere ressurser i fremtiden. "
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Jeg trenger %(resource)s, kan du hjelpe? Jeg skal gjøre opp for meg igjen. "
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Jeg ville deltatt mer effektivt i vår felles krigsinnsats hvis du kunne skaffe meg litt %(resource)s. "
 
-#: simulation/ai/petra/chatHelper.js:101
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Hvis du har noe %(resource)s til overs ville det hjelpe meg å styrke min hær. "
 
-#: simulation/ai/petra/chatHelper.js:118
+#: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Jeg har satt opp en ny rute med %(_player_)s. Handel vil være innbringende for oss alle. "
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:117
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "En ny handelsrute er satt opp med %(_player_)s. Ta din andel av inntektene. "
 
-#: simulation/ai/petra/chatHelper.js:136
+#: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Jeg avanserer til %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:138
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Jeg har nådd %(phase)s."
@@ -391,7 +391,7 @@ msgstr "- Ikke vær redd for å bytte enheter fra en ressurs til en annen. se pu
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "- Bygg nok bolighus, samfunnssenteret ditt bør holdes i arbeid så mye som mulig. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -621,8 +621,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s for nær %(category)s, må være minst %(distance)s meter unna"
+msgstr[1] "%(name)s for nær %(category)s, må være minst %(distance)s meter unna"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -630,8 +630,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s for langt unna %(category)s, må være nærmere enn %(distance)s meter"
+msgstr[1] "%(name)s for langt unna %(category)s, må være nærmere enn %(distance)s meter"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -661,12 +661,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "fiende"
 
-#: simulation/components/CeasefireManager.js:103
+#: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Du kan angripe om %(time)s"
 
-#: simulation/components/CeasefireManager.js:118
+#: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
 msgstr "Du kan angripe nå!"
 
@@ -685,42 +685,42 @@ msgstr "%(category)s treningsgrensen på %(limit)s nådd"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s grensen på %(limit)s nådd."
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:48
 msgid "Food"
 msgstr "Mat"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:49
 msgid "Wood"
 msgstr "Tømmer"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:50
 msgid "Metal"
 msgstr "Metall"
 
-#: simulation/components/Player.js:47
+#: simulation/components/Player.js:51
 msgid "Stone"
 msgstr "Stein"
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Utilstrekkelige ressurser - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Utilstrekkelige ressurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Utilstrekkelige ressurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -734,52 +734,72 @@ msgstr "Køen for trening/produksjon er full."
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
+msgstr "Kan ikke finne ledig rom for å frembringe trente enheter"
+
+#: simulation/helpers/Cheat.js:63
+msgid "You need to select a building that trains units."
 msgstr ""
 
-#: simulation/helpers/Commands.js:675
+#: simulation/helpers/Commands.js:126
+msgid "(Cheat - control all units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:559
+msgid "(Cheat - promoted units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
+msgstr "Angrep mot %(_player_)s forespurt."
+
+#: simulation/helpers/Commands.js:715
+msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:965
-msgid "The building's technology requirements are not met."
+#: simulation/helpers/Commands.js:729
+msgid "Some unit(s) can't go back to work"
 msgstr ""
+
+#: simulation/helpers/Commands.js:985
+msgid "The building's technology requirements are not met."
+msgstr "Bygningens teknologikrav er ikke oppfylt."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Spiller 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Spiller 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Spiller 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Spiller 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Spiller 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Spiller 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Spiller 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Spiller 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -815,77 +835,77 @@ msgstr "Sinnsyk (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Spol hurtig (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Spol hurtig (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Spol hurtig (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Beiseir alle motstandere"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Erobring"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Ødelegg alle fiendens bygninger"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Erobringsbygninger"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Drep alle fiendens enheter"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Erobringsenheter"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Bygg og forsvar et underverk for å vinne"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Underverk"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Veldig lav"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Lav"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Middels"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Høy"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Veldig Høy"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Dødskamp"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName
@@ -943,9 +963,9 @@ msgstr "Petra boten"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-15 09:01+0100\n"
-"PO-Revision-Date: 2016-01-15 08:47+0000\n"
+"POT-Creation-Date: 2016-03-14 09:01+0100\n"
+"PO-Revision-Date: 2016-03-14 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Ranged"
 msgstr ""
 
@@ -284,8 +284,8 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero.xml:11
 msgid ""
-"When garrisoned in a structure, the hero gives it a bonus of +2 capture "
-"points recovery rate."
+"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
+"capture points recovery rate."
 msgstr ""
 
 #: simulation/templates/template_unit_hero.xml:40
@@ -368,8 +368,14 @@ msgstr ""
 msgid "Ship"
 msgstr "കുപ്പല്‍"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Light Warship"
+msgstr ""
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
+msgid ""
+"Garrison up to 20 units for transport. Garrison increases the firepower up "
+"to 10 arrows."
 msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
@@ -408,24 +414,30 @@ msgstr ""
 msgid "Trader"
 msgstr "കച്ചവടക്കാരന്‍"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Heavy Warship"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
-msgid "Garrison with catapults to increase ranged fire power."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
+msgid "Garrison up to 10 catapults to increase fire power."
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Warship"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
+msgstr ""
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+msgid ""
+"Garrison up to 30 units for transport. Garrison increases the firepower up "
+"to 13 arrows."
 msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
@@ -463,7 +475,7 @@ msgid "Inspiration Aura"
 msgstr ""
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster"
+msgid "Nearby males work 10% faster."
 msgstr ""
 
 #: simulation/templates/template_unit_support_female_citizen.xml:56
@@ -787,7 +799,7 @@ msgid "Naval Architect Aura"
 msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "Ships are built +20% faster during his lifespan."
+msgid "-20% build time for ships during his lifespan."
 msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
@@ -962,7 +974,7 @@ msgid "Caratacos"
 msgstr ""
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "Let all units heal at 1 HP per second"
+msgid "+1 HP per second healing rate for all units."
 msgstr ""
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:18
@@ -1056,6 +1068,31 @@ msgstr "ഇറ്റാലിക്ക് കുതിരപ്പട"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
+msgstr ""
+
+#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:16
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
+#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:15
+#: simulation/templates/units/cart_infantry_archer_b.xml:17
+#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
+#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
+#: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/merc_thrace_swordsman.xml:26
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
+#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
+#: simulation/templates/units/samnite_skirmisher.xml:9
+#: simulation/templates/units/samnite_spearman.xml:10
+#: simulation/templates/units/samnite_swordsman.xml:8
+#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
+#: simulation/templates/units/thrace_black_cloak.xml:23
+msgid "Mercenary"
 msgstr ""
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
@@ -1796,14 +1833,6 @@ msgstr ""
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr ""
 
-#: simulation/templates/units/merc_thrace_swordsman.xml:26
-#: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/samnite_swordsman.xml:8
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:18
-#: simulation/templates/units/thrace_black_cloak.xml:23
-msgid "Mercenary"
-msgstr ""
-
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
 msgstr ""
@@ -2104,7 +2133,7 @@ msgid "Patriot Aura"
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 20% faster in her vision range."
+msgid "Egyptian units fight 25% faster in her vision range."
 msgstr ""
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20

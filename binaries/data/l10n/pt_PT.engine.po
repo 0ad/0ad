@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
 "PO-Revision-Date: 2016-02-26 17:47+0000\n"
 "Last-Translator: João Oliveira <jopebeol@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
@@ -27,19 +27,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (compilação personalizada)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "compilação personalizada"
 
@@ -164,7 +164,7 @@ msgstr "Nome de utilizador já existe"
 msgid "Saved game to '%s'"
 msgstr "Jogo guardado em '%s'"
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Captura de ecrã guardada em '%s'"

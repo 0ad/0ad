@@ -57,6 +57,8 @@ public:
 	void EnableOOSLog();
 	void EnableSerializationTest();
 
+	void SetCurrentDisplayedPlayer(int playerID);
+
 	/**
 	 * Load all scripts in the specified directory (non-recursively),
 	 * so they can register new component types and functions. This

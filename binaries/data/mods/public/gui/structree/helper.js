@@ -7,7 +7,7 @@ function loadTemplate(templateName)
 	{
 		// We need to clone the template because we want to perform some translations.
 		var data = clone(Engine.GetTemplate(templateName));
-		translateObjectKeys(data, ["GenericName", "Tooltip"]);
+		translateObjectKeys(data, ["GenericName", "SpecificName", "Tooltip"]);
 		
 		g_TemplateData[templateName] = data;
 	}

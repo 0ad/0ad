@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:50+0000\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-19 09:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -795,8 +795,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "在中立领土上可以存活比正常的前哨站多一倍的时间。"
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "前哨站领土范围减少 -50%。"
+msgid "Territory decay rate -50% for outposts."
+msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -837,7 +837,7 @@ msgid "Horse-drawn Carts"
 msgstr "马车"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
+msgid "Salting allows to preserve fish longer."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
@@ -1464,11 +1464,15 @@ msgstr "奇观会吸引更多的人加入您的文明。"
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr "最大人口容量+50 。"
+msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "光荣扩展"
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1526,8 +1530,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "改善炮弹的准确度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "弩射手准确度 25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1562,8 +1566,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "静止的攻城武器在组装及拆装时更快"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "静止的攻城武器组装/拆装快 25%"
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1740,6 +1744,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "良善女神"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2319,9 +2342,9 @@ msgstr "箭术传统"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "印度拥有丰富的天然资源,孔雀王朝以木头建造他们的城墙。因此,孔雀王朝的城墙生命值 -20% ,但建造快 20%。"
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

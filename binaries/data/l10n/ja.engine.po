@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Kanetaka Suto, 2013-2016
-# llen_llen, 2014
+# llen_llen, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-01-10 03:10+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-01 23:55+0000\n"
+"Last-Translator: llen_llen\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (custom build)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "カスタムビルド"
 
@@ -96,7 +96,7 @@ msgstr "ストリームエラー"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "受信したストリームのバージョンが未対応です"
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
@@ -116,17 +116,17 @@ msgstr "サーバーのホスト名の解決に失敗しました"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr "このシステムのメモリーが足りません"
+msgstr "このシステムのメモリが足りません"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "このサーバーは証明書の正当性が検証できなかったか、TLS ハンドシェイクが正しく完了しませんでした"
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "このサーバーは必要な TLS 暗号化を提供しませんでした"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -138,7 +138,7 @@ msgstr "ユーザーもしくはシステムが切断を要請しました"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "有効な接続がありません"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
@@ -157,7 +157,7 @@ msgstr "ユーザー名は既に存在します"
 msgid "Saved game to '%s'"
 msgstr "'%s'にゲームを保存"
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "'%s'にスクリーンショットを記録"

@@ -4,18 +4,20 @@
 # 
 # Translators:
 # Ivailo Monev <xakepa10@gmail.com>, 2014
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
-# Lyubomir Vasilev, 2016
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Любомир Василев, 2016
 # Radoslav Mitev <darkinaatrox@gmail.com>, 2016
 # radochrist <ruzor@mail.bg>, 2014
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
+# Любомир Василев, 2016
 # Симон Болоканов <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-02-07 22:21+0000\n"
-"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-03-20 09:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,11 +25,23 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: maps/random/adeath_canyon.jsonsettings.Description
+msgid ""
+"Even and odd players start on a different side of a deep but resourceful "
+"canyon"
+msgstr ""
+
+#: maps/random/adeath_canyon.jsonsettings.Name
+msgid "ADeath Canyon"
+msgstr ""
+
 #: maps/random/aegean_sea.jsonsettings.Description
+#: maps/scenarios/Isthmus2.xml:Description:40
 msgid "Players start on two sides of a sea with scattered islands."
 msgstr "Играчите започват от двете страни на море с разпръснати острови."
 
 #: maps/random/aegean_sea.jsonsettings.Name
+#: maps/scenarios/Isthmus2.xml:Name:40
 msgid "Aegean Sea"
 msgstr "Егейско море"
 
@@ -48,6 +62,16 @@ msgstr "Високи планини, граничещи с дълбоки дол
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
 msgstr "Алпийска долина"
+
+#: maps/random/ambush.jsonsettings.Description
+msgid ""
+"High bluffs overlook the terrain below. Bountiful resources await on the "
+"cliffs, but beware of enemies planning an ambush."
+msgstr "Високи отвесни скали се извисяват на терена отдолу. По скалите има примамливи ресурси, но внимавайте за врагове, тъй като може да Ви очакват в засада."
+
+#: maps/random/ambush.jsonsettings.Name
+msgid "Ambush"
+msgstr "Засада"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -113,7 +137,7 @@ msgstr "Кантабрийски възвишения"
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
-msgstr "Играчите започват в дълбоките каньони из картата."
+msgstr "Играчите започват в дълбоки каньони из картата."
 
 #: maps/random/canyon.jsonsettings.Name
 msgid "Canyon"
@@ -167,6 +191,16 @@ msgstr "Дълбока, тъмна гора в Древна Германия."
 msgid "Deep Forest"
 msgstr "Дълбока гора"
 
+#: maps/random/empire.jsonsettings.Description
+msgid ""
+"A neighboring province has pledged alegiance to your rule. It's up to you to"
+" command them to victory."
+msgstr "Съседна област е обявила предаността си към Вашето управление. Сега Вие трябва да ги поведете към победата."
+
+#: maps/random/empire.jsonsettings.Name
+msgid "Empire"
+msgstr "Империя"
+
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
 "Players start in either northern France or southern Britain while the "
@@ -177,6 +211,16 @@ msgstr "Играчите започват в северна Франция ил�
 msgid "English Channel"
 msgstr "Ла Манш"
 
+#: maps/random/flood.jsonsettings.Description
+msgid ""
+"A great flood has moved across the valley enabling ships and troops to "
+"battle in chest deep waters."
+msgstr "Огромно наводнение е заляло долината, позволявайки на кораби и во̀ини да се бият в дълбоката до гърди вода."
+
+#: maps/random/flood.jsonsettings.Name
+msgid "Flood"
+msgstr "Наводнение"
+
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
 msgstr "Играчите започват в предварително изградени крепости, в които има купчини ресурси."
@@ -184,6 +228,14 @@ msgstr "Играчите започват в предварително изгр
 #: maps/random/fortress.jsonsettings.Name
 msgid "Fortress"
 msgstr "Крепост"
+
+#: maps/random/frontier.jsonsettings.Description
+msgid "A wild, unknown landscape awaits rival explorers."
+msgstr "Един див и непознат пейзаж очаква своите съперничещи си откриватели."
+
+#: maps/random/frontier.jsonsettings.Name
+msgid "Frontier"
+msgstr "Граница"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -215,6 +267,18 @@ msgstr "Играчите започват по бреговете на зали�
 msgid "Gulf of Bothnia"
 msgstr "Ботнически залив"
 
+#: maps/random/hells_pass.jsonsettings.Description
+msgid ""
+"A narrow pass between steep mountains promotes tight, defensive combat. With"
+" bountiful resources far from the front lines, teams may choose to support "
+"their exposed teammates financially, or retreat to more fertile, but less "
+"defensible ground."
+msgstr "Тесен проход между стръмни планини насърчава стегнатата, защитна бойна тактика. С изобилие на ресурси далеч от фронта, отборите могат да изберат дали да подкрепят изложените си на опасност съотборници с ресурси, или да се оттеглят в по-плодородните, но по-незащитени земи."
+
+#: maps/random/hells_pass.jsonsettings.Name
+msgid "Hell's Pass"
+msgstr "Дяволски проход"
+
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
 "Each player starts in a coastal area between forested hills and the Caspian "
@@ -224,6 +288,16 @@ msgstr "Всички играчи започват в крайбрежна ме�
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Хиркански брегове"
+
+#: maps/random/island_stronghold.jsonsettings.Description
+msgid ""
+"Teams start off with nearly adjacent town centers on a small island, "
+"offering a fortified base from which to expand."
+msgstr "Отборите започват с почти съседни селищни центрове на малък остров, предлагащ укрепена база, от която да се разпрострат."
+
+#: maps/random/island_stronghold.jsonsettings.Name
+msgid "Island Stronghold"
+msgstr "Островна крепост"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -256,11 +330,21 @@ msgid ""
 "The Italian peninsula \n"
 "\n"
 " Latium is the region of central western Italy in which the city of Rome was founded and grew to be the capital city of the Roman Empire. Latium was originally a small triangle of fertile, volcanic soil on which resided the tribe of the Latins. It was located on the left bank (east and south) of the Tiber river, extending northward to the Anio river (a left-bank tributary of the Tiber) and southeastward to the Pomptina Palus (Pontine Marshes, now the Pontine Fields) as far south as the Circeian promontory. The right bank of the Tiber was occupied by the Etruscan city of Veii, and the other borders were occupied by Italic tribes. Subsequently Rome defeated Veii and then its Italic neighbors, expanding Latium to the Apennine Mountains in the northeast and to the opposite end of the marsh in the southeast. The modern descendant, the Italian Regione of Lazio, also called Latium in Latin, and occasionally in modern English, is somewhat larger still, but not as much as double the original Latium."
-msgstr "Апенинският полуостров\n\nЛацио е районът в западната част на средна Италия, където е бил основан Рим и където той се е разраснал до столица на Римската империя. Лацио поначало бил малък триъгълник от плодородна вулканична почва, в който живеело племето на Латините. Той бил разположен на левия бряг (изток и юг) на река Тибър, простирайки се на север до река Аниене (ляв приток на Тибър), на югоизток до Понтийските блата и далеч на юг до нос Чирчео. На десния бряг на река Тъбър бил разположен етруският град Вейи, а по останалите граници имало италийски племена. Впоследствие Рим победил Вейи и италийските си съседи, разширявайки Лацио до Апенинските планини на североизток и до далечния край на блатата на югоизток. Днешният италиански регион Лацио, наричан също Лациум по римско време, е още по-голям, но не чак два пъти спрямо първоначалния размер на древния Лацио."
+msgstr "Апенинският полуостров\n\nЛацио е районът в западната част на средна Италия, където е бил основан Рим и където той се е разраснал до столица на Римската империя. Лацио поначало бил малък триъгълник от плодородна вулканична почва, в който живеело племето на Латините. Той бил разположен на левия бряг (изток и юг) на река Тибър, простирайки се на север до река Аниене (ляв приток на Тибър), на югоизток до „Помптина палус“ (Понтийските блата, а в днешно време — Понтийските полета) и далеч на юг до нос Чирчео. На десния бряг на река Тъбър бил разположен етруският град Вейи, а по останалите граници имало италийски племена. Впоследствие Рим победил Вейи и италийските си съседи, разширявайки Лацио до Апенинските планини на североизток и до далечния край на блатата на югоизток. Днешният италиански регион Лацио, наричан също Лациум по римско време, е още по-голям, но не чак два пъти спрямо първоначалния размер на древния Лацио."
 
 #: maps/random/latium.jsonsettings.Name
 msgid "Latium"
 msgstr "Лацио"
+
+#: maps/random/lions_den.jsonsettings.Description
+msgid ""
+"High cliffs protect each player's main base. Venturing into the unknown can "
+"be risky, but necessary."
+msgstr "Високи скали защитават основната база на всеки от играчите. Навлизането в непозната територия може да бъде опасно, но е необходимо."
+
+#: maps/random/lions_den.jsonsettings.Name
+msgid "Lion's Den"
+msgstr "Леговището на лъва"
 
 #: maps/random/lorraine_plain.jsonsettings.Description
 msgid ""
@@ -427,6 +511,17 @@ msgstr "Множество малки острови, свързани един 
 msgid "Snowflake Searocks"
 msgstr "Снежинка от скали"
 
+#: maps/random/stronghold.jsonsettings.Description
+msgid ""
+"Teams start off with nearly adjacent town centers, offering easy military "
+"and construction cooperation. With slivers of personal territory, teammates "
+"must rely on each other to defend their rear."
+msgstr "Отборите започват с почти съседни селищни центрове, предлагащи лесна военна и строителна взаимопомощ. С ивици собствена територия, съотборниците трябва да разчитат един на друг, за да пазят гърбовете си."
+
+#: maps/random/stronghold.jsonsettings.Name
+msgid "Stronghold"
+msgstr "Крепост"
+
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
@@ -477,7 +572,7 @@ msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
 "[color=\"red\"]Warning: The starting resources should be set at least at "
 "Medium.[/color]"
-msgstr "Непозната карта… Играчите започват само с няколко войника и жени.[color=\"red\"]Внимание: Началните ресурси трябва да бъдат зададени на поне средно ниво.[/color]"
+msgstr "Непозната карта… Играчите започват само с няколко войници и жени.[color=\"red\"]Внимание: Началните ресурси трябва да бъдат зададени на поне средно ниво.[/color]"
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
@@ -508,6 +603,11 @@ msgstr "Вражеска вълна напада!"
 #: maps/random/survivalofthefittest_triggers.js:151
 msgid "The first wave will start in 15 minutes!"
 msgstr "Първата вълна започва след 15 минути!"
+
+#: maps/scenarios/Cinema_Demo.js:12
+#, javascript-format
+msgid "Cutscene starts in %(time)s"
+msgstr ""
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -594,7 +694,9 @@ msgstr "Пролет в Аркадия, Гърция. Пролетните дъ�
 #: maps/scenarios/Walls.xml:PlayerData[0].Name:31
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:42
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
+#: maps/scenarios/test.xml:PlayerData[1].Name:40 maps/skirmishes/Acropolis Bay
+#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Acropolis Fortress
+#: (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
@@ -662,7 +764,9 @@ msgstr "Играч 1"
 #: maps/scenarios/WallTest.xml:PlayerData[1].Name:31
 #: maps/scenarios/Walls.xml:PlayerData[1].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:42
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
+#: maps/scenarios/test.xml:PlayerData[2].Name:40 maps/skirmishes/Acropolis Bay
+#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Acropolis Fortress
+#: (2).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
@@ -833,7 +937,7 @@ msgstr "Демонстрация — мостове"
 
 #: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:42
 msgid "Campaign Map - Test"
-msgstr "Карта за кампания — Проба"
+msgstr "Карта за кампания — проба"
 
 #: maps/scenarios/Campaign Test Map.xml:Description:42
 msgid "A test map for potential Strategic Campaigns."
@@ -877,15 +981,31 @@ msgstr "Религиозни организации"
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Стратегическа кампания — Проба"
 
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr ""
+
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
-msgstr "Демонстрация — битки"
+msgstr "Демонстрация — битка"
 
 #: maps/scenarios/Combat_demo.xml:Description:30
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
-msgstr "Демонстрация на битка между малък брой далекобойни и близкобойни единици."
+msgstr "Демонстрация на битка между малък брой далекобойни и близкобойни пехотни единици."
 
 #: maps/scenarios/Combat_demo_(huge).xml:Name:77
 msgid "Combat Demo (Huge)"
@@ -916,7 +1036,9 @@ msgstr "Нахлуваща сила"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
+#: Oasis.xml:PlayerData[2].Name:31
+#: maps/scenarios/Two_Seas.xml:PlayerData[3].Name:40 maps/skirmishes/Acropolis
+#: Fortress (2).xml:PlayerData[3].Name:40 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
@@ -971,7 +1093,9 @@ msgstr "Малка пустинна карта. Всеки от играчите
 #: maps/scenarios/Gold_Rush.xml:PlayerData[3].Name:31
 #: maps/scenarios/Necropolis.xml:PlayerData[3].Name:41 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[3].Name:31 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[3].Name:31 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[3].Name:31
+#: maps/scenarios/Two_Seas.xml:PlayerData[4].Name:40 maps/skirmishes/Acropolis
+#: Fortress (2).xml:PlayerData[4].Name:40 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Greek Acropolis
@@ -1085,6 +1209,16 @@ msgstr "Долината Лакония в Пелопонес, дом на сп�
 msgid "Laconia"
 msgstr "Лакония"
 
+#: maps/scenarios/Malta2.xml:Description:40
+msgid ""
+"Romanian conquest of Malta Island.\n"
+"Malta has been colonized by carthaganians and greeks, who both live peacefully and established commercial exchanges years ago. Romans wants to take malta to establish a new military base and create new mediteranean commercial routes. The roman conquest start from Gozo Island (northern island)."
+msgstr ""
+
+#: maps/scenarios/Malta2.xml:Name:40
+msgid "Malta Island"
+msgstr ""
+
 #: maps/scenarios/Migration.xml:Description:31
 msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
@@ -1167,7 +1301,7 @@ msgstr "Коринт"
 
 #: maps/scenarios/Peloponnese.xml:Name:41
 msgid "Peloponnesian Wars"
-msgstr "Пелопонески войни"
+msgstr "Пелопонески войнѝ"
 
 #: maps/scenarios/Polynesia.xml:Description:42
 msgid "Demo map for new fancy water effects."
@@ -1333,7 +1467,7 @@ msgstr "Демонстрационна карта. Играйте с перси�
 
 #: maps/scenarios/Sandbox - Persians.xml:PlayerData[0].Name:41
 msgid "Achaemenids"
-msgstr "Ахеменидите"
+msgstr "Ахемениди"
 
 #: maps/scenarios/Sandbox - Persians.xml:Name:41
 msgid "Sandbox - The Persians"
@@ -1466,7 +1600,7 @@ msgstr "Оазисът Сиуа"
 
 #: maps/scenarios/Territory Demo.xml:Description:31
 msgid "A demo map showing the territory effects of each type of structure."
-msgstr "Демонстрационна карта, показваща териториалните ефекти на всички видове сгради."
+msgstr "Демонстрационна карта, показваща териториалните обхвати на всички видове сгради."
 
 #: maps/scenarios/Territory Demo.xml:Name:31
 msgid "Territory Demo"
@@ -1561,6 +1695,34 @@ msgstr "Карта за мрежова игра. Тропически рай."
 msgid "Tropical Island"
 msgstr "Тропически острови"
 
+#: maps/scenarios/Two_Seas.xml:Description:40 maps/skirmishes/Two Seas
+#: (6).xml:Description:41
+msgid ""
+"A large tropic map with two seas to the East and to the West. Good for two "
+"teams of three players or three teams of two players."
+msgstr "Голяма тропическа карта с две морета на изток и запад. Подходяща за два отбора от по трима играчи или три отбора от по двама играчи."
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[1].Name:40
+msgid "Capital 1"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[2].Name:40
+msgid "Capital 2"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[5].Name:40
+msgid "Player 5"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:PlayerData[6].Name:40
+msgid "Player 6"
+msgstr ""
+
+#: maps/scenarios/Two_Seas.xml:Name:40 maps/skirmishes/Two Seas
+#: (6).xml:Name:41
+msgid "Two Seas (6)"
+msgstr "Две морета (6)"
+
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
 msgstr "Демонстрация — единици"
@@ -1572,7 +1734,7 @@ msgstr "Всички единици от играта."
 #: maps/scenarios/WallTest.xml:Description:31
 #: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
 #: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:41
+#: (4).xml:Description:41 maps/skirmishes/test.xml:Description:40
 msgid "Give an interesting description of your map."
 msgstr "Измислете интересно описание за картата си."
 
@@ -1596,7 +1758,7 @@ msgstr "Ние сме легион"
 msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Карта за бърза демонстрационна битка с римски легионери."
 
-#: maps/scenarios/_default.xml:Name:32
+#: maps/scenarios/_default.xml:Name:32 maps/skirmishes/test.xml:Name:40
 msgid "Unnamed map"
 msgstr "Безименна карта"
 
@@ -1639,6 +1801,19 @@ msgstr "Начален икономически пътеводител"
 msgid "Base Temperate Map"
 msgstr "Основна умерена карта"
 
+#: maps/scenarios/test.xml:Description:40
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
+msgid ""
+"The high peaks and valleys of the Alps.\n"
+"\n"
+"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
+msgstr "Високите върхове и долини на Алпите.\n\nВсеки от играчите започва срещата в безопасна зелена долина. Между тях се простира огромната планинска верига Алпи."
+
+#: maps/scenarios/test.xml:Name:40
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
+msgid "Alpine Valleys (2)"
+msgstr "Алпийски долини (2)"
+
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:41
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
@@ -1650,6 +1825,19 @@ msgstr "Всеки играч започва срещата върху голя�
 msgid "Acropolis Bay (2)"
 msgstr "Заливът на акропола (2)"
 
+#: maps/skirmishes/Acropolis Fortress (2).xml:Description:40
+#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
+msgid ""
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr "Трима играчи започват върху големи скалисти плата, още наричани акрополи, а четвъртият е отделен от враговете си чрез река.\n\nПроучете земите за съкровища и допълнителни ресурси."
+
+#: maps/skirmishes/Acropolis Fortress (2).xml:Name:40 maps/skirmishes/Greek
+#: Acropolis (4).xml:Name:41
+msgid "Greek Acropolis (4)"
+msgstr "Гръцки акропол (4)"
+
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Description:40
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
@@ -1659,17 +1847,6 @@ msgstr "Карта с непроходими планини и изобилие 
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
 msgstr "Алпийски планини (3)"
-
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
-msgid ""
-"The high peaks and valleys of the Alps.\n"
-"\n"
-"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr "Високите върхове и долини на Алпите.\n\nВсеки от играчите започва срещата в безопасна зелена долина. Между тях се простира огромната планинска верига Алпи."
-
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
-msgid "Alpine Valleys (2)"
-msgstr "Алпийски долини (2)"
 
 #: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
@@ -1693,6 +1870,14 @@ msgid ""
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers."
 msgstr "Див остров с много гори, злато и загадки… планините, моретата и гъстите гори правят тази карта за 3-ма играчи много динамична и забързана, с много възможности за обстрел и засади, както и за защитни действия и нападателни маневри."
+
+#: maps/skirmishes/Basic Tutorial.xml:Description:41
+msgid "The first steps of playing 0 A.D."
+msgstr ""
+
+#: maps/skirmishes/Basic Tutorial.xml:Name:41
+msgid "Basic Tutorial"
+msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
@@ -1737,7 +1922,7 @@ msgstr "Корсика и Сардиния (4)"
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Description:42
 msgid "A \"small island\"-style map set in the Aegean Sea."
-msgstr "Карта стил „малък остров“, разположена в Егейско море."
+msgstr "Карта в стил „малък остров“, разположена в Егейско море."
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:Name:42
 msgid "Cycladic Archipelago (2)"
@@ -1748,7 +1933,7 @@ msgid ""
 "A \"small island\"-style map set in the Aegean Sea.\n"
 "\n"
 "Map size: Very Large"
-msgstr "Карта стил „малък остров“, разположена в Егейско море.\nГолемина на картата: Много голяма"
+msgstr "Карта в стил „малък остров“, разположена в Егейско море.\n\nРазмер на картата: много голям"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[0].Name:41
 msgid "Samos"
@@ -1765,6 +1950,14 @@ msgstr "Делос"
 #: maps/skirmishes/Cycladic Archipelago (3).xml:Name:41
 msgid "Cycladic Archipelago (3)"
 msgstr "Цикладските острови (3)"
+
+#: maps/skirmishes/Cyprus.xml:Description:40
+msgid "Version Beta"
+msgstr ""
+
+#: maps/skirmishes/Cyprus.xml:Name:40
+msgid "Cyprus"
+msgstr ""
 
 #: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""
@@ -1807,7 +2000,7 @@ msgid ""
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
 "\n"
 "Watch out for Romans passing by!"
-msgstr "Защитете своята галска наблюдателница от нападенията на коварните си съседи!\n\nВсеки от играчите започва с дървена ограда и няколко защитни кули върху нисък насип.\n\nВнимавайте за преминаващи римляни!"
+msgstr "Защитете своя галски аванпост от нападенията на коварните си съседи!\n\nВсеки от играчите започва с дървена ограда и няколко защитни кули върху нисък насип.\n\nВнимавайте за преминаващи римляни!"
 
 #: maps/skirmishes/Gallic Fields (3).xml:Name:41
 msgid "Gallic Fields (3)"
@@ -1823,6 +2016,16 @@ msgstr "Всички играчи започват на единия бряг н
 #: maps/skirmishes/Gambia River (3).xml:Name:42
 msgid "Gambia River (3)"
 msgstr "Река Гамбия (3)"
+
+#: maps/skirmishes/Golden Island (2).xml:Description:40
+msgid ""
+"A ring of land borders a resource-rich island in the Mediterranean. Players "
+"can access the center via a narrow strip of land or via boat."
+msgstr "Пръстен от земя загражда богат на ресурси остров в Средиземноморието. Играчите могат да стигнат до средата по тясна ивица земя или чрез лодка."
+
+#: maps/skirmishes/Golden Island (2).xml:Name:40
+msgid "Golden Island (2)"
+msgstr "Златен остров (2)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""
@@ -1846,17 +2049,6 @@ msgstr "Двама играчи започват върху големи ска�
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:41
 msgid "Greek Acropolis (2)"
 msgstr "Гръцки акропол (2)"
-
-#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
-msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
-"\n"
-"Scout the lands to find free treasures and to secure new resources.."
-msgstr "Трима играчи започват върху големи скалисти плата, още наричани акрополи, а четвъртият е отделен от враговете си чрез река.\n\nПроучете земите за съкровища и допълнителни ресурси."
-
-#: maps/skirmishes/Greek Acropolis (4).xml:Name:41
-msgid "Greek Acropolis (4)"
-msgstr "Гръцки акропол (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Name:42
 msgid "Greek Acropolis Night (2)"
@@ -2046,7 +2238,7 @@ msgstr "Оазисът Сиуа (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:42
 msgid "A demo Skirmish map."
-msgstr "Демо схватка"
+msgstr "Карта за демонстрация на схватката."
 
 #: maps/skirmishes/Skirmish Demo.xml:Name:42
 msgid "Skirmish Demo"
@@ -2099,16 +2291,6 @@ msgstr "Трима играчи започват върху големи ска�
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr "Тоскански акропол (4)"
-
-#: maps/skirmishes/Two Seas (6).xml:Description:41
-msgid ""
-"A large tropic map with two seas to the East and to the West. Good for two "
-"teams of three players or three teams of two players."
-msgstr "Голяма тропическа карта с две морета на изток и запад. Подходяща за два отбора от по трима играчи или три отбора от по двама играчи."
-
-#: maps/skirmishes/Two Seas (6).xml:Name:41
-msgid "Two Seas (6)"
-msgstr "Две морета (6)"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:42
 msgid ""

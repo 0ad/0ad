@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-04 09:00+0100\n"
-"PO-Revision-Date: 2016-01-04 09:54+0000\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-13 10:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -19,125 +19,149 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/lobby/lobby.js:44
+#: gui/lobby/lobby.js:49
 msgid "Online"
 msgstr "В мережі"
 
-#: gui/lobby/lobby.js:45
+#: gui/lobby/lobby.js:50
 msgid "Away"
 msgstr "Далеко"
 
-#: gui/lobby/lobby.js:46
+#: gui/lobby/lobby.js:51
 msgid "Busy"
 msgstr "Зайнятий"
 
-#: gui/lobby/lobby.js:47
+#: gui/lobby/lobby.js:52
 msgid "Offline"
 msgstr "Поза мережею"
 
-#: gui/lobby/lobby.js:48
+#: gui/lobby/lobby.js:53
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: gui/lobby/lobby.js:109
+#: gui/lobby/lobby.js:114
 msgid "Disconnected."
 msgstr "Від'єднано."
 
-#: gui/lobby/lobby.js:121
+#: gui/lobby/lobby.js:126
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s приєднався."
 
-#: gui/lobby/lobby.js:128
+#: gui/lobby/lobby.js:133
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s пішов."
 
-#: gui/lobby/lobby.js:136
+#: gui/lobby/lobby.js:141
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s тепер відомий як %(newnick)s."
 
-#: gui/lobby/lobby.js:204
+#: gui/lobby/lobby.js:209
 msgctxt "map size"
 msgid "Any"
 msgstr "Будь-який"
 
-#: gui/lobby/lobby.js:209
+#: gui/lobby/lobby.js:214
 msgctxt "player number"
 msgid "Any"
 msgstr "Будь-який"
 
-#: gui/lobby/lobby.js:213
+#: gui/lobby/lobby.js:218
 msgctxt "map"
 msgid "Any"
 msgstr "Будь-який"
 
-#: gui/lobby/lobby.js:385
+#: gui/lobby/lobby.js:390
 msgid "Moderator"
 msgstr "Модератор"
 
-#: gui/lobby/lobby.js:385
+#: gui/lobby/lobby.js:390
 msgid "Player"
 msgstr "Гравець"
 
-#: gui/lobby/lobby.js:386 gui/lobby/lobby.js:387 gui/lobby/lobby.js:388
-#: gui/lobby/lobby.js:389 gui/lobby/lobby.js:390 gui/lobby/lobby.js:391
+#: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
+#: gui/lobby/lobby.js:394 gui/lobby/lobby.js:395 gui/lobby/lobby.js:396
 msgid "N/A"
 msgstr "Н/Д"
 
-#: gui/lobby/lobby.js:414 gui/lobby/lobby.js:444
+#: gui/lobby/lobby.js:419 gui/lobby/lobby.js:449
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:425 gui/lobby/lobby.js:455
+#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:460
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:457
+#: gui/lobby/lobby.js:432 gui/lobby/lobby.js:462
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:617
+#: gui/lobby/lobby.js:598
+msgid "Players:"
+msgstr "Гравці:"
+
+#: gui/lobby/lobby.js:634
+msgid "The game has already started."
+msgstr ""
+
+#: gui/lobby/lobby.js:635
+msgid "Do you want to join as observer?"
+msgstr ""
+
+#: gui/lobby/lobby.js:636
+msgid "Confirmation"
+msgstr ""
+
+#: gui/lobby/lobby.js:638
+msgid "No"
+msgstr ""
+
+#: gui/lobby/lobby.js:638
+msgid "Yes"
+msgstr ""
+
+#: gui/lobby/lobby.js:657
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Адреса гри '%(ip)s' не є дійсною"
 
-#: gui/lobby/lobby.js:718
+#: gui/lobby/lobby.js:770
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "На жаль команда '%(cmd)s' не підтримується"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:792
+#: gui/lobby/lobby.js:844
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:794
+#: gui/lobby/lobby.js:846
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:798 gui/lobby/lobby.js:809 gui/lobby/lobby.js:819
+#: gui/lobby/lobby.js:850 gui/lobby/lobby.js:861 gui/lobby/lobby.js:871
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:800 gui/lobby/lobby.js:811 gui/lobby/lobby.js:821
+#: gui/lobby/lobby.js:852 gui/lobby/lobby.js:863 gui/lobby/lobby.js:873
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:805
+#: gui/lobby/lobby.js:857
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -147,24 +171,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:844
+#: gui/lobby/lobby.js:896
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:847
+#: gui/lobby/lobby.js:899
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:850
+#: gui/lobby/lobby.js:902
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:948
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Будь ласка не спамьте. Ви були заблоковані на тридцять секунд."
 
@@ -212,19 +236,19 @@ msgstr "Будь ласка погодьтеся з Умовами Послуг�
 msgid "Registered"
 msgstr "Зареєстрований"
 
-#: gui/lobby/prelobby.js:229
+#: gui/lobby/prelobby.js:231
 msgid "Register"
 msgstr "Зареєстрований"
 
-#: gui/lobby/prelobby.js:234 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:236 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
 msgstr "З’єднатися"
 
-#: gui/lobby/prelobby.js:244 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:246 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr "Умови Послуги"
 
-#: gui/lobby/prelobby.js:253 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:255 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr "Умови використання"
 
@@ -232,35 +256,35 @@ msgstr "Умови використання"
 msgid "Multiplayer Lobby"
 msgstr "Багатокористувацька Кімната"
 
-#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):301
+#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):298
 msgid "Current Rank:"
 msgstr "Поточний ранг:"
 
-#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):305
+#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):302
 msgid "Highest Rating:"
 msgstr "Найвищий рейтинг: "
 
-#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):309
+#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):306
 msgid "Total Games:"
 msgstr "Всього ігор:"
 
-#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):313
+#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):310
 msgid "Wins:"
 msgstr "Перемог:"
 
-#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):317
+#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):314
 msgid "Losses:"
 msgstr "Поразок:"
 
-#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):321
+#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):318
 msgid "Win Rate:"
 msgstr "Частота перемог:"
 
-#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):249
+#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):246
 msgid "Leaderboard"
 msgstr "Дошка пошани"
 
-#: gui/lobby/lobby.xml:(caption):88 gui/lobby/lobby.xml:(caption):284
+#: gui/lobby/lobby.xml:(caption):88 gui/lobby/lobby.xml:(caption):281
 msgid "User Profile Lookup"
 msgstr "Перегляд профілю користувача"
 
@@ -272,44 +296,40 @@ msgstr "Тип мапи:"
 msgid "Map Size:"
 msgstr "Розмір мапи:"
 
-#: gui/lobby/lobby.xml:(caption):146
-msgid "Players:"
-msgstr "Гравці:"
-
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):155
+#: gui/lobby/lobby.xml:(caption):152
 msgid "Join Game"
 msgstr "Приєднатися до гри"
 
-#: gui/lobby/lobby.xml:(caption):161
+#: gui/lobby/lobby.xml:(caption):158
 msgid "Host Game"
 msgstr "Створити гру"
 
-#: gui/lobby/lobby.xml:(caption):168
+#: gui/lobby/lobby.xml:(caption):165
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: gui/lobby/lobby.xml:(caption):223
+#: gui/lobby/lobby.xml:(caption):220
 msgid "Show full games"
 msgstr "Показати заповнені ігри"
 
-#: gui/lobby/lobby.xml:(caption):269 gui/lobby/lobby.xml:(caption):331
+#: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
 msgid "Back"
 msgstr "Повернутися"
 
-#: gui/lobby/lobby.xml:(caption):277
+#: gui/lobby/lobby.xml:(caption):274
 msgid "Update"
 msgstr "Оновити"
 
-#: gui/lobby/lobby.xml:(caption):287
+#: gui/lobby/lobby.xml:(caption):284
 msgid "Enter username:"
 msgstr "Введіть ім’я користувача:"
 
-#: gui/lobby/lobby.xml:(caption):293
+#: gui/lobby/lobby.xml:(caption):290
 msgid "View Profile"
 msgstr "Переглянути профіль"
 
-#: gui/lobby/lobby.xml:(caption):326
+#: gui/lobby/lobby.xml:(caption):323
 msgid "Player not found."
 msgstr "Гравця не знайдено."
 
@@ -317,34 +337,34 @@ msgstr "Гравця не знайдено."
 msgid "Status"
 msgstr "Стан"
 
-#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):180
-#: gui/lobby/lobby.xml:(heading):259
+#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):177
+#: gui/lobby/lobby.xml:(heading):256
 msgid "Name"
 msgstr "ім’я"
 
-#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):262
+#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):259
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: gui/lobby/lobby.xml:(heading):184
+#: gui/lobby/lobby.xml:(heading):181
 msgid "Map Name"
 msgstr "Назва мапи"
 
-#: gui/lobby/lobby.xml:(heading):187
+#: gui/lobby/lobby.xml:(heading):184
 msgctxt "map"
 msgid "Size"
 msgstr "Розмір"
 
-#: gui/lobby/lobby.xml:(heading):190
+#: gui/lobby/lobby.xml:(heading):187
 msgctxt "map"
 msgid "Type"
 msgstr "Тип"
 
-#: gui/lobby/lobby.xml:(heading):193
+#: gui/lobby/lobby.xml:(heading):190
 msgid "Players"
 msgstr "Гравці"
 
-#: gui/lobby/lobby.xml:(heading):256
+#: gui/lobby/lobby.xml:(heading):253
 msgid "Rank"
 msgstr "Ранг"
 

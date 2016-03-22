@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # anton.tsyganenko <anton-tsyganenko@yandex.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015
@@ -11,14 +12,14 @@
 # dr&mx <dronmax@gmail.com>, 2014
 # grin.sv <grin.sv@gmail.com>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
-# Vladislav Belov <thebvog@gmail.com>, 2015
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Woratiklis, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-09-24 00:02+0200\n"
-"PO-Revision-Date: 2015-09-27 12:41+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-19 09:55+0000\n"
+"Last-Translator: Alexander Olkhovskiy\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,391 +150,410 @@ msgid ""
 msgstr "[font=\"sans-14\"]В многопользовательской игре только хозяин может изменить параметры игры."
 
 #: gui/manual/intro.txt:31
+msgid "First, select what type of map you want to play:"
+msgstr "Сначала выберите тип карты, на которой вы хотите играть:"
+
+#: gui/manual/intro.txt:32
 msgid ""
-"First, select whether you want to play on a random map (created "
-"automatically from a random map script) or a scenario (created by a map "
-"designer). Scenarios can be filtered to show only some maps. The default "
-"maps are shown immediately, but custom maps are often not so select \"All "
-"maps\" to see a list of all available maps. Then select a map to play on. "
-"The \"Demo Maps\" are designed for testing particular gameplay features and "
-"are probably not generally useful."
-msgstr "Сначала выберите, хотите ли Вы играть на случайной карте (создаются автоматически скриптом случайной карты) или на карте сценария (создаются дизайнерами карт). Сценарии могут быть отфильтрованы. Карты по умолчанию показываются сразу. Чтобы увидеть все остальные карты, выберите «Все карты». «Демонстрационные карты» созданы для тестирования отдельных игровых возможностей и не предназначены для обычного игрового процесса."
+"• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
+"automatically from a script"
+msgstr "• [font=\"sans-bold-14\"]Случайная карта[font=\"sans-14\"] — карта, созданная автоматически на основе скрипта"
 
 #: gui/manual/intro.txt:33
+msgid ""
+"• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
+"map designers and with fixed civilisations"
+msgstr "• [font=\"sans-bold-14\"]Сценарий[font=\"sans-14\"] — карта, разработанная дизайнером карт, с фиксированными цивилизациями"
+
+#: gui/manual/intro.txt:34
+msgid ""
+"• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
+"map designers but where the civilisations can be chosen"
+msgstr "• [font=\"sans-bold-14\"]Схватка[font=\"sans-14\"] — карта, разработанная дизайнером карт, с возможностью выбора цивилизаций"
+
+#: gui/manual/intro.txt:36
+msgid ""
+"Then the maps can be futher filtered. The default maps are generally "
+"playable maps. Naval maps are maps where not all opponents can be reached "
+"over land and demo maps are maps used for testing purposes (generally not "
+"useful to play on). The \"All Maps\" filter shows all maps together in one "
+"list."
+msgstr "После этого, карты могут быть отфильтрованы дальше. Карты по-умолчанию обычно лучше всего подходят для игры. К морским относятся карты, на которых по крайней мере часть оппонентов нельзя достичь исключительно по суше; демо-карты предназначены для тестовых целей (и обычно не подходят для нормальной игры). Фильтр \"Все карты\" показывает все виды карт в общем списке."
+
+#: gui/manual/intro.txt:38
 msgid ""
 "Finally change the settings. For random maps this includes the number of "
 "players, the size of a map, etc. For scenarios you can only select who "
 "controls which player (decides where you start on the map etc). The options "
-"are either a human player, an AI or no player at all (existing units will "
-"attack enemies that come into sight, but no new units will be created, nor "
-"will the units be sent to attack anyone)."
-msgstr "В заключение измените настройки. В случае игры на случайной карте можно указать количество игроков, размер карты и т.д. Для сценариев можно только выбрать, кто и за какую фракцию будет играть (от этого зависит позиция игрока на карте в начале игры). В качестве игрока может быть назначен человек, ИИ или вообще никто (в этом случае существующие юниты фракции будут атаковать врагов в поле зрения, но не будет создаваться новых юнитов для фракции, а также юниты не могут самостоятельно отправиться атаковать кого-либо)."
+"are either a human player, an AI or no player at all (the opponent will just"
+" be idle)."
+msgstr "В заключение измените настройки. В случае игры на случайной карте можно указать количество игроков, размер карты и т.д. Для сценариев можно только выбрать, кто и за какую фракцию будет играть (от этого зависит позиция игрока на карте в начале игры). В качестве игрока может быть назначен человек, ИИ или вообще никто (игрок в этом случае не будет ничего делать)."
 
-#: gui/manual/intro.txt:35
+#: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
 msgstr "Когда готовы начать, нажмите кнопку «Начать игру»"
 
-#: gui/manual/intro.txt:37
+#: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Горячие клавиши:"
 
-#: gui/manual/intro.txt:38
+#: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Always"
 msgstr "[font=\"sans-bold-14\"]Глобально"
 
-#: gui/manual/intro.txt:39
+#: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
 msgstr "[font=\"sans-14\"]Alt + F4    Закрыть игру без  подтверждения"
 
-#: gui/manual/intro.txt:40
+#: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
 msgstr "Alt + Enter     Переключиться между полноэкранным и оконным режимами."
 
-#: gui/manual/intro.txt:41
+#: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
 msgstr "~ или F9     Показать/скрыть консоль"
 
-#: gui/manual/intro.txt:42
+#: gui/manual/intro.txt:47
 msgid "Alt + F: Show/hide frame counter (FPS)"
 msgstr "Alt + F     Показать/скрыть счётчик кадров"
 
-#: gui/manual/intro.txt:43
+#: gui/manual/intro.txt:48
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
 msgstr "F11     Включить/выключить профилировщик (также переключает режимы отображения информации)"
 
-#: gui/manual/intro.txt:44
+#: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
 msgstr "Shift + F11     Сохранить текущий профиль в файл \"logs/profile.txt\""
 
-#: gui/manual/intro.txt:45
+#: gui/manual/intro.txt:50
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
 msgstr "F2     Сделать скриншот (в формате PNG, местоположение будет показано в левом верхнем углу экрана после сохранения файла, а также продублировано в консоли/логах на тот случай, если Вы пропустите его)"
 
-#: gui/manual/intro.txt:46
+#: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
 msgstr "Shift + F2     Сделать огромный скриншот (6400px*4800px, в формате BMP, местоположение будет показано в левом верхнем углу экрана после сохранения файла, а также продублировано в консоли/логах, если Вы пропустите его)."
 
-#: gui/manual/intro.txt:48
+#: gui/manual/intro.txt:53
 msgid "[font=\"sans-bold-14\"]In Game"
 msgstr "[font=\"sans-bold-14\"]В игре"
 
-#: gui/manual/intro.txt:49
+#: gui/manual/intro.txt:54
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
 msgstr "[font=\"sans-14\"]Двойной клик \\[по юниту]: Выбрать всех юнитов этого же типа на экране (даже если они разного ранга)."
 
-#: gui/manual/intro.txt:50
+#: gui/manual/intro.txt:55
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
 msgstr "Тройной клик \\[по юниту]: Выбрать всех ваших юнитов того же типа и ранга на экране"
 
-#: gui/manual/intro.txt:51
+#: gui/manual/intro.txt:56
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr "Alt + Двойной клик [по юниту]: Выбрать всех юнитов этого же типа на всей карте (даже если они разного ранга)"
+msgstr "Alt + Двойной клик \\[по юниту]: Выбрать всех юнитов этого же типа на всей карте (даже если они разного ранга)"
 
-#: gui/manual/intro.txt:52
+#: gui/manual/intro.txt:57
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
 msgstr "Alt + Тройной клик \\[по юниту]     Выбрать всех юнитов этого же типа и ранга на всей карте"
 
-#: gui/manual/intro.txt:53
+#: gui/manual/intro.txt:58
 msgid "Shift + F5: Quicksave"
 msgstr "Shift + F5     Быстрое сохранение"
 
-#: gui/manual/intro.txt:54
+#: gui/manual/intro.txt:59
 msgid "Shift + F8: Quickload"
 msgstr "Shift + F8     Быстрая загрузка"
 
-#: gui/manual/intro.txt:55
+#: gui/manual/intro.txt:60
 msgid "F10: Open/close menu"
 msgstr "F10     Открыть / закрыть меню"
 
-#: gui/manual/intro.txt:56
+#: gui/manual/intro.txt:61
 msgid "F12: Show/hide time elapsed counter"
 msgstr "F12    Показать / спрятать счетчик прошедшего времени"
 
-#: gui/manual/intro.txt:57
+#: gui/manual/intro.txt:62
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
 msgstr "ESC     Закрыть все диалоговые окна (чат, меню) или снять выделение с юнитов"
 
-#: gui/manual/intro.txt:58
+#: gui/manual/intro.txt:63
 msgid "Enter/return: Open/send chat"
 msgstr "Enter / return     Открыть / отправить чат"
 
-#: gui/manual/intro.txt:59
+#: gui/manual/intro.txt:64
 msgid "T: Send team chat"
 msgstr "T     Отправить сообщение союзникам"
 
-#: gui/manual/intro.txt:60
+#: gui/manual/intro.txt:65
 msgid "Pause: Pause/resume the game"
 msgstr "Pause     Остановить / возобновить игру"
 
-#: gui/manual/intro.txt:61
+#: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected unit/units/building/buildings"
 msgstr "Delete     Уничтожить выбранных юнитов / здания"
 
-#: gui/manual/intro.txt:62
+#: gui/manual/intro.txt:67
 msgid ",: Select idle fighters"
 msgstr ",      Выбрать незанятых воинов"
 
-#: gui/manual/intro.txt:63
+#: gui/manual/intro.txt:68
 msgid ".: Select idle workers (including citizen soldiers)"
 msgstr ".      Выбрать незанятых рабочих (включая городских солдат)"
 
-#: gui/manual/intro.txt:64
+#: gui/manual/intro.txt:69
 msgid "H: Stop (halt) the currently selected units."
 msgstr "H    Остановить выбранных юнитов."
 
-#: gui/manual/intro.txt:65
+#: gui/manual/intro.txt:70
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
 msgstr "Ctrl + 1 (2-9, 0)      Создать отряд 1 (до кнопки 0) из выбранных юнитов / зданий"
 
-#: gui/manual/intro.txt:66
+#: gui/manual/intro.txt:71
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
 msgstr "1 (кнопки от 1 до 0)     Выбрать юнитов / здания, находящиеся в группе 1 (до 0)"
 
-#: gui/manual/intro.txt:67
+#: gui/manual/intro.txt:72
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
 msgstr "Shift + 1 (до 0)     Добавить группу 1 (до 0) к выбранным единицам / постройкам"
 
-#: gui/manual/intro.txt:68
+#: gui/manual/intro.txt:73
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
 msgstr "Ctrl + F5 (до F8)     Сохранение текущей позиции камеры, для возможности вернутся к ней обратно."
 
-#: gui/manual/intro.txt:69
+#: gui/manual/intro.txt:74
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
 msgstr "F5, F6, F7 и F8      Переместит камеру в указанное положение. Вернёт к последнему местоположению, если камера уже по указанному положению."
 
-#: gui/manual/intro.txt:70
+#: gui/manual/intro.txt:75
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
 msgstr "Z, X, C, V, B, N, M        При выбранных постройках добавит 1-го, 2-го, ... отображаемого юнита в очередь тренировки во всех выбранных постройках."
 
-#: gui/manual/intro.txt:72
+#: gui/manual/intro.txt:77
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Изменить настройки мыши"
 
-#: gui/manual/intro.txt:73
+#: gui/manual/intro.txt:78
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + Правый клик на здании      Гарнизон"
 
-#: gui/manual/intro.txt:74
+#: gui/manual/intro.txt:79
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Shift + Правый клик      Очерёдность точек передвижения / строительства / сбора и т.д."
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:80
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
 msgstr "Shift + ЛКМ при тренировке юнитов      Добавить юнитов в партию из пяти едениц"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:81
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Shift + ЛКМ или выделение ЛКМ         добавить юнита к выбранным"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:82
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + ЛКМ или выделение ЛКМ       Удалить юнита из выбранных"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:83
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + выделение юнитов ЛКМ    Выбрать только боевых юнитов"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:84
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + выделение юнитов ЛКМ: Выбрать только незанятых юнитов"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:85
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + Left Click на значке юнита / группы при нескольких выбранных юнитах      Исключить юнита из выборки"
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:86
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Нажатие ПКМ при выбранном здании       Установить точку сбора для юнитов созданных / освобожденных зданием. "
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:87
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + ПКМ с выбранными юнитами:"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:88
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- если курсор над союзной постройкой: Отправить в гарнизон"
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:89
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "- если курсор над недружественным юнитом или постройкой: Атаковать (вместо захвата или сбора)"
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:90
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- Иначе: Атаковать в движении (по-умолчанию все вражеские юниты и постройки атакуются по пути следования; используй Ctrl + Q + Правая кнопка мыши для атаки только юнитов)."
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Слои"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G      Показать / скрыть интерфейс"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:94
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D     Показать / скрыть слой разработки (с настройками разработчика)"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:95
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W     Переключить отображение каркаса (одно нажатие включает отображение каркасов поверх текстурированных моделей, второе — только каркасы, окрашенные текстурами, третье — возвращает в обычный текстурированный режим)"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:96
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S     Переключить режим отображения силуэтов юнитов (выключение может дать небольшой прирост производительности)"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:97
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z     Переключить небо"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Манипуляции камеры"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W или \\[up]:Нижняя часть экрана"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:101
 msgid "S or \\[down]: Pan screen down"
 msgstr "S или \\[down]: Нижняя часть экрана"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:102
 msgid "A or \\[left]: Pan screen left"
 msgstr "A или \\[left]: Левая части экрана"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:103
 msgid "D or \\[right]: Pan screen right"
 msgstr "D или \\[right]: Панорама правой части экрана"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:104
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W или \\[up]:Посмотреть выше"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:105
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S или \\[down]: Посмотреть  ниже"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:106
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A или \\[left]: Повернуть камеру по часовой стрелке"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:107
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D или \\[right]:Повернуть камеру против часовой стрелки"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:108
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q     Поворот камеры по часовой стрелке вокруг местности"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:109
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E    Поворот камеры против часовой стрелке вокруг местности"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:110
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + колесо мыши вверх      Поворот камеры по часовой стрелке вокруг местности"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:111
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + колесо мыши вниз      Поворот камеры против часовой стрелки вокруг местности"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:112
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr "F     Следить за выбранным юнитом (переместите камеру, чтобы прекратить слежение)"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:113
 msgid "R: Reset camera zoom/orientation"
 msgstr "R     Сброс камеры / ориентации"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:114
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+     Увеличить (удерживайте нажатой для непрерывного увеличения)"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:115
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "+     Уменьшить (удерживайте нажатой для непрерывного уменьшения)"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:116
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W     Переключение режимов отображения каркаса"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:117
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
 msgstr "Средняя кнопкы мыши или / (косая черта)     Держите нажатой и перемещайте мышь для панарамирования"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Размещение во время строительства"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[:  Повернуть строение на 15 градусов против часовой"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:121
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]     Поворот здания на 15 градусов по часовой стрелке"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:122
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Перемещение мыши при нажатой левой кнопке    Вращать постройку (основание будет помещено, как только кнопка будет отпущена)"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:124
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]При загрузке сохраненной игры"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:125
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete: удалить выбранную сохраненную игру с запросом подтверждения"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:126
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: не спрашивать подтверждение при удалении сохраненной игры"
 
@@ -553,9 +573,9 @@ msgstr "Следующие данные будут отправлены на с�
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
-"from the same user."
-msgstr "• Случайный идентификатор пользователя (сохраненный в %APPDATA%\\0ad\\config\\user.cfg в Windows, ~/.config/0ad/config/user.cfg в Unix), который позоляет определить повторные отчеты от данного пользователя."
+"$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
+"reports from the same user."
+msgstr "• Случайный идентификатор пользователя (хранящийся в %APPDATA%\\0ad\\config\\user.cfg в Windows, $HOME/.config/0ad/config/user.cfg в Unix), который позволяет определить повторные отчеты от того же пользователя."
 
 #: gui/manual/userreport.txt:6
 msgid ""

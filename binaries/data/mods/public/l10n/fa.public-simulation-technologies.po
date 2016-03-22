@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:50+0000\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-19 09:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -792,8 +792,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "برج های دیده بانی دو برابر بیشتر در مناطع بی طرف دوام می آورند."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "پوسیدگی برج های دیده بانی در بیرون از مرز ها -50% f کاهش می یابد."
+msgid "Territory decay rate -50% for outposts."
+msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -834,7 +834,7 @@ msgid "Horse-drawn Carts"
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
+msgid "Salting allows to preserve fish longer."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
@@ -1467,6 +1467,10 @@ msgstr ""
 msgid "Glorious Expansion"
 msgstr ""
 
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr ""
+
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
@@ -1523,8 +1527,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "تقویت دقت پرتابه ها"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "دقت ادوات محاصره پرتابی +25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1559,8 +1563,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "ادوات محاصره ی نامتحرک زودتر سرهم و باز می شوند."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "سرعت سرهم و باز شدن ادوات محاصره 25% f افزایش می یابد."
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1736,6 +1740,25 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
 msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
@@ -2316,9 +2339,9 @@ msgstr "سنت کمانداری"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "هندیان دیوار های شهر های خود را از چوب می ساختند چرا که این منبع در هند به وفور یافت می شد. به همین خاطر، دیوار های هندی -20% سلامتی کمتر دارند، اما 20% f هم سریع تر ساخته می شوند."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

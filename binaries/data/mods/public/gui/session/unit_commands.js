@@ -28,7 +28,7 @@ function setPanelObjectPosition(object, index, rowLength, vMargin = 1, hMargin =
  * (i.e. panels with rows of icons) for the currently selected unit.
  *
  * @param guiName Short identifier string of this panel. See g_SelectionPanels.
- * @param unitEntState Entity state of the (first) selected unit.
+ * @param unitEntState Entity state of the selected unit with the lowest id.
  * @param payerState Player state
  */
 function setupUnitPanel(guiName, unitEntState, playerState)
@@ -38,7 +38,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		error("unknown guiName used '" + guiName + "'");
 		return;
 	}
-	var selection = g_Selection.toList();
+	let selection = g_Selection.toList();
 
 	var items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
 
@@ -146,7 +146,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
  * Delegates to setupUnitPanel to set up individual subpanels,
  * appropriately activated depending on the selected unit's state.
  *
- * @param entState Entity state of the (first) selected unit.
+ * @param entState Entity state of the selected unit with the lowest id.
  * @param supplementalDetailsPanel Reference to the
  *        "supplementalSelectionDetails" GUI Object
  * @param commandsPanel Reference to the "commandsPanel" GUI Object

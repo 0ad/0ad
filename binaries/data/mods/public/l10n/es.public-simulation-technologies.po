@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Ghenadi Avricenco <gplushentr@gmx.us>, 2014
-# Swyter <Swyterzone@gmail.com>, 2014-2015
+# Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
+# Swyter <Swyterzone@gmail.com>, 2014-2016
 # vega93 <arkadas_llisa@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-21 19:57+0000\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-19 18:23+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -795,8 +796,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Las avanzadas perduran el doble de tiempo en territorio neutral."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "Reduce un -50% el deterioro de los puestos avanzados."
+msgid "Territory decay rate -50% for outposts."
+msgstr "Tasa de disminución del territorio -50% para los puestos de avanzada."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -837,8 +838,8 @@ msgid "Horse-drawn Carts"
 msgstr "Carros tirados por caballos"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
-msgstr "Sazonar viandas permite preservar mejor el pescado."
+msgid "Salting allows to preserve fish longer."
+msgstr "Salazón permite conservar el pescado más tiempo."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1470,6 +1471,10 @@ msgstr "Amplia a +50 el límite de población."
 msgid "Glorious Expansion"
 msgstr "Gloriosa expansión"
 
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
+msgstr "Mejora de sanadores"
+
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
@@ -1526,8 +1531,8 @@ msgid "Improvement to projectile accuracy"
 msgstr "Mejora la precisión de los proyectiles"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
-msgstr "La puntería del tirador aumenta en un 25%"
+msgid "Bolt shooter accuracy increased 25%."
+msgstr "La precisión del tirador aumenta un 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1562,8 +1567,8 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr "Las armas de asedio inmóviles se montan y desmontan mucho más rápido. "
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
-msgstr "Las armas de asedio inmóviles se des/montan un 25% más rápido."
+msgid "-25% pack and unpack time for immobile siege weapons."
+msgstr "-25% de tiempo para empaquetado y  desempaquetado de armas de asedio montadas."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1740,6 +1745,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr "La extensión del comercio conduce al establecimiento permanente de los comerciantes y sus familias en el extranjero, lo que les permite explotar la riqueza de estos países."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr "El jugador puede utilizar los puntos de entrega de sus aliados."
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr "Diáspora"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr "Requiere 3 comerciantes"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2319,9 +2343,9 @@ msgstr "Tradición arquera"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
-msgstr "Los maurianos construían las murallas de la ciudad de madera, un recurso natural abundante en la India. En consecuencia, las paredes de las ciudades maurianas tienen un -20% de resistencia, pero se construyen un 20% más rápido."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
+msgstr "Los Maurya construyeron sus paredes de la ciudad en madera, un recurso natural abundante en la India. En consecuencia, las paredes de la ciudad Maurya tienen un tiempo de construcción de -20% y -20% de salud."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

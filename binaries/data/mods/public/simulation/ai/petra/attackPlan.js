@@ -540,7 +540,8 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 		// find the actual queue we want
 		let queue = this.queue;
 		if (firstOrder[3].classes.indexOf("Siege") !== -1 ||
-			(gameState.civ() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 && firstOrder[3].classes.indexOf("Champion")))
+			(gameState.civ() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 &&
+			                              firstOrder[3].classes.indexOf("Champion") !== -1))
 			queue = this.queueSiege;
 		else if (firstOrder[3].classes.indexOf("Hero") !== -1)
 			queue = this.queueSiege;

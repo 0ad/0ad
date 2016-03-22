@@ -8,16 +8,17 @@
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 # Marco tom Suden, 2014
 # Marco tom Suden, 2014
-# Martin <mhilgendrf@aol.com>, 2016
-# Martin <mhilgendrf@aol.com>, 2015-2016
+# pilino1234 <mhilgendrf@aol.com>, 2016
+# pilino1234 <mhilgendrf@aol.com>, 2015-2016
+# pilino1234 <mhilgendrf@aol.com>, 2016
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2016-02-21 17:38+0000\n"
-"Last-Translator: Martin <mhilgendrf@aol.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-20 16:51+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -301,7 +302,7 @@ msgstr "Kroppsskydd förstärkt med brons skalor."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr ""
+msgstr "Fjäll kroppsrustning"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -312,7 +313,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr ""
+msgstr "Kroppsrustning gjord helt i brons. Endast de bästa soldaterna var utrustade med sådan rustning, eftersom den var mycket dyr och tidskrävande att tillverka."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -320,7 +321,7 @@ msgstr "Mästare +2 Hack rustningsnivå, men även +10 metallkostnad"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr ""
+msgstr "Skeppsrustning i brons"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
@@ -350,7 +351,7 @@ msgstr "Aspidískos"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr ""
+msgstr "De bästa sköldar har förstärkningar antingen på hörnen (Romerskt Scrutum) eller runt kanten (Grekiskt Aspis)"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
@@ -370,7 +371,7 @@ msgstr "Aspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr ""
+msgstr "Ett bronsskikt hamrad över ytan av skölden."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
@@ -395,7 +396,7 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "Endast de berömdaste soldaterna hade sköldar av silver, som det berömda 'silverskölds' regementet i Alexander den Stores armé."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -427,26 +428,26 @@ msgstr "Blyhölje för skeppsskrov"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Hypozomatan styrker skeppets struktur."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "Hypozomatan styrker skeppets struktur. +2 för alla rustningstyper för skepp."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Hypozomata förstärkning"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr ""
+msgstr "Trä förstärkningsbalkar för skeppsskrov."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Trä förstärkningsbalkar för skeppsskrov. +2 för alla rustningstyper för skepp."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -472,7 +473,7 @@ msgstr "Ett långt spjut specialtillverkat för kavalleri. "
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr ""
+msgstr "Utrusta ditt närstridskavalleri med bättre vapen. +2 hack attack för närstridskavalleri."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -547,33 +548,33 @@ msgstr "Järnvapen"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr ""
+msgstr "Träning ökar skada i distansattack."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "+20% attack för distansattack kavalleri"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "Distansattack Träning för Stridskavalleri"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Utrusta ditt distansattack kavalleri med bättre vapen. +20% attack för distansattack kavalleri."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr ""
+msgstr "Vaktenheter har ovanligt mod och tapperhet i strid."
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "Vaktenheter har ovanligt mod och tapperhet i strid. Mästare +2 attack."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
-msgstr ""
+msgstr "Hjältemod"
 
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
@@ -593,7 +594,7 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "Ofta bar en infaterist med sig ett sekundärt vapen utöver sitt primära vapen, som skulle dras när det primära vapnet inte funkade eller hade gått sönder."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
@@ -603,7 +604,7 @@ msgstr "+20% närstridsinfanteri attack."
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
-msgstr ""
+msgstr "Sidovapen"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
@@ -625,24 +626,24 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "Användning av järn istället för brons gav vapen extra kraft."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "Träning ökar skada av distanattack infanteri."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "+20% attack för distansattack infanteri."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "Irreguljär Distansattack Infanteri"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -664,7 +665,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Distansattack Infanteri Mästarklass"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -690,7 +691,7 @@ msgstr "Dýnamis"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "Hemlig stålbearbetningstekniker ger svärd utmärkande och vackra tecken. Inte bara det, men stålens hårdhet är enastående."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
@@ -698,35 +699,35 @@ msgstr "+2 attack för alla svärdenheter."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr ""
+msgstr "Stålbearbetning"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
-msgstr ""
+msgstr "Wootzstål"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr ""
+msgstr "Toledostål"
 
 #: simulation/data/technologies/attack_tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "Kreneleringar på bröstvärnen ger soldater en större räckvidd när de skall försvara en fästning."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsontooltip
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr ""
+msgstr "Bygg kreneleringar och lönnhål för att få 40% mer pilar skjutna per garnisonerad soldat."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "Kreneleringar"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "Förstärk fundamenten i förberedelse för en attack."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
@@ -738,7 +739,7 @@ msgstr "Stabilt Fundament"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Lönnhål tillåter att angripa motståndare vid tornets bas."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
@@ -766,7 +767,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to towers."
-msgstr ""
+msgstr "Postera vaktposter för att tillägga en pil till torn."
 
 #: simulation/data/technologies/attack_tower_watch.jsongenericName
 msgid "Sentries"
@@ -801,8 +802,8 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr "Utpostar överlever dubbelt så länge i neutralt territorium."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay -50% for Outposts."
-msgstr "-50% territorieförfall för utpostar."
+msgid "Territory decay rate -50% for outposts."
+msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -843,8 +844,8 @@ msgid "Horse-drawn Carts"
 msgstr "Hästdragna vagnar"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve the fishes longer."
-msgstr "Saltning gör att fisken kan sparas längre."
+msgid "Salting allows to preserve fish longer."
+msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1470,10 +1471,14 @@ msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr "+50 Befolkningsgräns"
+msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
+msgstr ""
+
+#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
+msgid "Healer Promotion"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
@@ -1532,7 +1537,7 @@ msgid "Improvement to projectile accuracy"
 msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt shooter accuracy increased 25%"
+msgid "Bolt shooter accuracy increased 25%."
 msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
@@ -1568,7 +1573,7 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsontooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
+msgid "-25% pack and unpack time for immobile siege weapons."
 msgstr ""
 
 #: simulation/data/technologies/siege_packing.jsongenericName
@@ -1746,6 +1751,25 @@ msgstr "Thesmophória"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
 msgstr "Bona Dea"
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+msgid "Requires 3 Traders"
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2325,8 +2349,8 @@ msgstr "Bågskyttetradition"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
+"resource in India. Consequently, Mauryan city walls have -20% health and "
+"-20% build time."
 msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName

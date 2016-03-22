@@ -226,6 +226,7 @@ function setTeamChat(teamChat = false)
 	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
 	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
 }
+
 /**
  * Opens chat-window or closes it and sends the userinput.
  */
@@ -356,7 +357,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 				let amounts = {};
 				for (let type of RESOURCES)
 					amounts[type] = 0;
-				amounts[resource] = 100 * multiplier,
+				amounts[resource] = 100 * multiplier;
 
 				button.tooltip = formatTributeTooltip(g_Players[i], resource, amounts[resource]);
 

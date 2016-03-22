@@ -18,38 +18,30 @@ function Map(size, baseHeight)
 	this.terrainObjects = new Array(size);
 	this.area = new Array(size);
 	
-	for (var i = 0; i < size; i++)
+	for (let i = 0; i < size; ++i)
 	{
 		this.texture[i] = new Uint16Array(size);	// uint16 - texture IDs
 		this.terrainObjects[i] = new Array(size);				// array of entities
 		this.area[i] = new Uint16Array(size);		// uint16 - area IDs
 		
-		for (var j = 0; j < size; j++)
-		{
+		for (let j = 0; j < size; ++j)
 			this.terrainObjects[i][j] = [];
-		}
 	}
 
 	// Create 2D array for heightmap
 	var mapSize;
 	if (TILE_CENTERED_HEIGHT_MAP)
-	{
 		mapSize = size;
-	}
 	else
-	{
 		mapSize = size+1;
-	}
 	
 	this.height = new Array(mapSize);
-	for (var i = 0; i < mapSize; i++)
+	for (let i = 0; i < mapSize; ++i)
 	{
 		this.height[i] = new Float32Array(mapSize);		// float32
 		
-		for (var j = 0; j < mapSize; j++)
-		{	// Initialize height map to baseHeight
+		for (let j = 0; j < mapSize; ++j)
 			this.height[i][j] = baseHeight;
-		}
 	}
 
 	// Create name <-> id maps for textures
@@ -68,24 +60,18 @@ function Map(size, baseHeight)
 
 Map.prototype.initTerrain = function(baseTerrain)
 {
-	// Initialize base terrain
 	var size = this.size;
-	for (var i = 0; i < size; i++)
-	{
-		for (var j = 0; j < size; j++)
-		{
+
+	for (let i = 0; i < size; ++i)
+		for (let j = 0; j < size; ++j)
 			baseTerrain.place(i, j);
-		}
-	}
 };
 
 // Return ID of texture (by name)
 Map.prototype.getTextureID = function(texture)
 {
 	if (texture in (this.nameToID))
-	{
 		return this.nameToID[texture];
-	}
 	
 	// Add new texture
 	var id = this.IDToName.length;
@@ -115,9 +101,8 @@ Map.prototype.validT = function(x, z, distance)
 			return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - distance - 1;
 	}
 	else
-	{	// Within map square
+		// Within map square
 		return x >= 0 && z >= 0 && x < this.size && z < this.size;
-	}
 };
 
 // Check bounds on tile map
@@ -130,13 +115,9 @@ Map.prototype.inMapBounds = function(x, z)
 Map.prototype.validH = function(x, z)
 {
 	if (TILE_CENTERED_HEIGHT_MAP)
-	{
 		return x >= 0 && z >= 0 && x < this.size && z < this.size;
-	}
 	else
-	{
 		return x >= 0 && z >= 0 && x <= this.size && z <= this.size;
-	}
 };
 
 // Check bounds on tile class
@@ -148,9 +129,7 @@ Map.prototype.validClass = function(c)
 Map.prototype.getTexture = function(x, z)
 {
 	if (!this.validT(x, z))
-	{
 		throw("getTexture: invalid tile position ("+x+", "+z+")");
-	}
 	
 	return this.IDToName[this.texture[x][z]];
 };
@@ -158,9 +137,7 @@ Map.prototype.getTexture = function(x, z)
 Map.prototype.setTexture = function(x, z, texture)
 {
 	if (!this.validT(x, z))
-	{
 		throw("setTexture: invalid tile position ("+x+", "+z+")");
-	}
 	
 	 this.texture[x][z] = this.getTextureID(texture);
 };
@@ -168,9 +145,7 @@ Map.prototype.setTexture = function(x, z, texture)
 Map.prototype.getHeight = function(x, z)
 {
 	if (!this.validH(x, z))
-	{
 		throw("getHeight: invalid vertex position ("+x+", "+z+")");
-	}
 	
 	return this.height[x][z];
 };
@@ -178,9 +153,7 @@ Map.prototype.getHeight = function(x, z)
 Map.prototype.setHeight = function(x, z, height)
 {
 	if (!this.validH(x, z))
-	{
 		throw("setHeight: invalid vertex position ("+x+", "+z+")");
-	}
 	
 	this.height[x][z] = height;
 };
@@ -188,9 +161,7 @@ Map.prototype.setHeight = function(x, z, height)
 Map.prototype.getTerrainObjects = function(x, z)
 {
 	if (!this.validT(x, z))
-	{
 		throw("getTerrainObjects: invalid tile position ("+x+", "+z+")");
-	}
 
 	return this.terrainObjects[x][z];
 };
@@ -198,9 +169,7 @@ Map.prototype.getTerrainObjects = function(x, z)
 Map.prototype.setTerrainObject = function(x, z, object)
 {
 	if (!this.validT(x, z, 2))
-	{
 		throw("setTerrainObject: invalid tile position ("+x+", "+z+")");
-	}
 
 	this.terrainObjects[x][z] = object;
 };
@@ -323,15 +292,10 @@ Map.prototype.getMapData = function()
 	// Terrain objects first (trees)
 	var size = this.size;
 	for (var x = 0; x < size; ++x)
-	{
 		for (var z = 0; z < size; ++z)
-		{
 			if (this.terrainObjects[x][z] !== undefined)
-			{
 				entities.push(this.terrainObjects[x][z]);
-			}
-		}
-	}
+
 	// Now other entities
 	for (var i = 0; i < this.objects.length; ++i)
 	{
@@ -339,12 +303,12 @@ Map.prototype.getMapData = function()
 		this.objects[i].rotation.y = PI/2 - this.objects[i].rotation.y;
 		entities.push(this.objects[i]);
 	}
-	data["entities"] = entities;
+	data.entities = entities;
 	
 	log("Number of entities: "+entities.length);
 	
 	// Terrain
-	data["size"] = this.size;
+	data.size = this.size;
 	
 	// Convert 2D heightmap array to flat array
 	//	Flat because it's easier to handle by the engine
@@ -356,51 +320,41 @@ Map.prototype.getMapData = function()
 		{
 			var intHeight;
 			if (TILE_CENTERED_HEIGHT_MAP)
-			{
 				intHeight = Math.floor((this.cornerHeight(x, z) + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
-			}
 			else
-			{
 				intHeight = Math.floor((this.height[x][z] + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
-			}
 			
 			// Prevent under/overflow in terrain data
 			if (intHeight > 0xFFFF)
-			{
 				intHeight = 0xFFFF;
-			}
 			else if (intHeight < 0)
-			{
 				intHeight = 0;
-			}
 			
 			height16[z*mapSize + x] = intHeight;
 		}
 	}
-	data["height"] = height16;
-	data["seaLevel"] = SEA_LEVEL;
+	data.height = height16;
+	data.seaLevel = SEA_LEVEL;
 	
 	// Get array of textures used in this map
 	var textureNames = [];
 	for (var name in this.nameToID)
-	{
 		textureNames.push(name);
-	}
-	data["textureNames"] = textureNames;
+	data.textureNames = textureNames;
 	
 	//  Convert 2D tile data to flat array
 	var tileIndex = new Uint16Array(size*size);		// uint16
 	var tilePriority = new Uint16Array(size*size);	// uint16
-	for (var x = 0; x < size; x++)
+	for (let x = 0; x < size; ++x)
 	{
-		for (var z = 0; z < size; z++)
+		for (let z = 0; z < size; ++z)
 		{
 			// TODO: For now just use the texture's index as priority, might want to do this another way
 			tileIndex[z*size + x] = this.texture[x][z];
 			tilePriority[z*size + x] = this.texture[x][z];
 		}
 	}
-	data["tileData"] = {"index": tileIndex, "priority": tilePriority};
+	data.tileData = { "index": tileIndex, "priority": tilePriority };
 	
 	return data;
 };

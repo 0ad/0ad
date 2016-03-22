@@ -270,7 +270,7 @@ function setDefaults()
 {
 	let btCaptions = [translate("No"), translate("Yes")];
 	let btCode = [null, function(){ reallySetDefaults(); }];
-	messageBox(500, 200, translate("Resetting the options will erase your saved settings. Do you want to continue ?"),
+	messageBox(500, 200, translate("Resetting the options will erase your saved settings. Do you want to continue?"),
 		translate("Warning"), 0, btCaptions, btCode);
 }
 
@@ -334,7 +334,7 @@ function closePage()
 	{
 		let btCaptions = [translate("No"), translate("Yes")];
 		let btCode = [null, function(){ closePageWithoutConfirmation(); }];
-		messageBox(500, 200, translate("You have unsaved changes, do you want to close this window ?"),
+		messageBox(500, 200, translate("You have unsaved changes, do you want to close this window?"),
 			translate("Warning"), 0, btCaptions, btCode);
 	}
 	else

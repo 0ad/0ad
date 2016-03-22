@@ -5,15 +5,16 @@
 # Translators:
 # EMMANUEL HOLDBROOK <cvvsell20@gmail.com>, 2015
 # iron4o <ironsmile@gmail.com>, 2013
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2016
-# Lyubomir Vasilev, 2016
-# Jordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Любомир Василев, 2016
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
+# Yordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-08 09:00+0100\n"
-"PO-Revision-Date: 2016-02-22 19:42+0000\n"
-"Last-Translator: Jordan Grigorov <yoreei.grigorov@gmail.com>\n"
+"POT-Creation-Date: 2016-03-12 18:52+0100\n"
+"PO-Revision-Date: 2016-03-18 08:16+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,19 +24,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:787
+#: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (персонализирана версия)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:792
+#: gui/scripting/ScriptFunctions.cpp:828
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:813
+#: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
 msgstr "персонализирана версия"
 
@@ -119,7 +120,7 @@ msgstr "Неуспешно установяване на сървърното и
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr "Тази система няма достатъчно памет"
+msgstr "Тази система няма достатъчно свободна памет"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
@@ -160,7 +161,7 @@ msgstr "Потребителското име вече съществува"
 msgid "Saved game to '%s'"
 msgstr "Играта е запазена в „%s“"
 
-#: ps/Util.cpp:244 ps/Util.cpp:377
+#: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Снимката е записана в „%s“"

@@ -220,10 +220,22 @@ var g_NotificationsTypes =
 	},
 	"attack": function(notification, player)
 	{
-		if (player != Engine.GetPlayerID())
+		if (player != g_ViewedPlayer)
 			return;
+
+		// Focus camera on attacks
+		if (g_FollowPlayer)
+		{
+			setCameraFollow(notification.target);
+
+			g_Selection.reset();
+			if (notification.target)
+				g_Selection.addList([notification.target]);
+		}
+
 		if (Engine.ConfigDB_GetValue("user", "gui.session.attacknotificationmessage") !== "true")
 			return;
+
 		addChatMessage({
 			"type": "attack",
 			"player": player,
@@ -241,6 +253,42 @@ var g_NotificationsTypes =
 		if (player != Engine.GetPlayerID())
 			return;
 		g_Selection.rebuildSelection({});
+	},
+	"playercommand": function(notification, player)
+	{
+		// For observers, focus the camera on units commanded by the selected player
+		if (!g_FollowPlayer || player != g_ViewedPlayer)
+			return;
+
+		let cmd = notification.cmd;
+
+		// Ignore boring animals
+		let entState = cmd.entities && cmd.entities[0] && GetEntityState(cmd.entities[0]);
+		if (entState && entState.identity && entState.identity.classes &&
+				entState.identity.classes.indexOf("Animal") != -1)
+			return;
+
+		// Focus the building to construct
+		if (cmd.type == "repair")
+		{
+			let targetState = GetEntityState(cmd.target);
+			if (targetState)
+				Engine.CameraMoveTo(targetState.position.x, targetState.position.z);
+		}
+		// Focus commanded entities, but don't lose previous focus when training units
+		else if (cmd.type != "train" && cmd.type != "research" && entState)
+			setCameraFollow(cmd.entities[0]);
+
+		// Select units affected by that command
+		let selection = [];
+		if (cmd.entities)
+			selection = cmd.entities;
+		if (cmd.target)
+			selection.push(cmd.target);
+
+		// Allow gaia in selection when gathering
+		g_Selection.reset();
+		g_Selection.addList(selection, false, cmd.type == "gather");
 	}
 };
 
@@ -310,29 +358,16 @@ function findGuidForPlayerID(playerID)
 }
 
 /**
- * Processes all pending simulation messages.
+ * Processes all pending notifications sent from the GUIInterface simulation component.
  */
 function handleNotifications()
 {
 	let notifications = Engine.GuiInterfaceCall("GetNotifications");
-
 	for (let notification of notifications)
 	{
-		if (!notification.type)
+		if (!notification.players || !notification.type || !g_NotificationsTypes[notification.type])
 		{
-			error("Notification without type found.\n"+uneval(notification));
-			continue;
-		}
-
-		if (!notification.players)
-		{
-			error("Notification without players found.\n"+uneval(notification));
-			continue;
-		}
-
-		if (!g_NotificationsTypes[notification.type])
-		{
-			error("Unknown notification type '" + notification.type + "' found.");
+			error("Invalid GUI notification: " + uneval(notification));
 			continue;
 		}
 
@@ -490,11 +525,11 @@ function updateChatAddressees()
 	// Add playernames for private messages
 	for (let guid of sortGUIDsByPlayerID())
 	{
+		if (guid == Engine.GetPlayerGUID())
+			continue;
+
 		let username = g_PlayerAssignments[guid].name;
 		let playerIndex = g_PlayerAssignments[guid].player;
-
-		if (playerIndex == Engine.GetPlayerID())
-			continue;
 
 		// Don't provide option for PM from observer to player
 		if (g_IsObserver && !isPlayerObserver(playerIndex))
@@ -664,7 +699,7 @@ function formatTributeMessage(msg)
 
 function formatAttackMessage(msg)
 {
-	if (msg.player != Engine.GetPlayerID())
+	if (msg.player != g_ViewedPlayer)
 		return "";
 
 	let message = msg.targetIsDomesticAnimal ?
@@ -682,7 +717,7 @@ function formatChatCommand(msg)
 		return "";
 
 	let isMe = msg.text.indexOf("/me ") == 0;
-	if (!isMe && !isChatAddressee(msg))
+	if (!isMe && !parseChatAddressee(msg))
 		return "";
 
 	isMe = msg.text.indexOf("/me ") == 0;
@@ -723,7 +758,7 @@ function formatChatCommand(msg)
  *
  * @param {Object} msg
  */
-function isChatAddressee(msg)
+function parseChatAddressee(msg)
 {
 	if (msg.text[0] != '/')
 		return true;

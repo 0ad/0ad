@@ -34,10 +34,7 @@ const g_InitialMineDistance = 14;
 const g_InitialTrees = 50;
 
 // Random terrain textures, exclude african biome
-let random_terrain;
-do
-	random_terrain = randomizeBiome();
-while (random_terrain == 6);
+let random_terrain = randomizeBiome([6]);
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -237,7 +234,7 @@ for (let i = 0; i < teams.length; ++i)
 		let bbDist = 10;
 		let bbX = round(fx + bbDist * cos(bbAngle));
 		let bbZ = round(fz + bbDist * sin(bbAngle));
-		group = new SimpleGroup(
+		let group = new SimpleGroup(
 			[new SimpleObject(oFruitBush, 5, 5, 0, 3)],
 			true, clBaseResource, bbX, bbZ
 		);

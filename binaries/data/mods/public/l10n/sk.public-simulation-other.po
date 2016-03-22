@@ -9,13 +9,14 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# SuroX <peter.surovcik@gmail.com>, 2016
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-01-11 09:01+0100\n"
-"PO-Revision-Date: 2016-01-14 18:28+0000\n"
-"Last-Translator: kecer <adam@kecer.net>\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-03-20 13:23+0000\n"
+"Last-Translator: SuroX <peter.surovcik@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,85 +69,85 @@ msgstr "Útočím na hráča %(_player_)s."
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Práve som poslal armádu hráčovi %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:44
+#: simulation/ai/petra/chatHelper.js:43
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Zhromaždím svoju armádu a pomôžem ti s útokom na hráča %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:46
+#: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Robím konečné prípravy a zaútočím na hráča %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Nemôžem ti pomôcť zaútočiť proti hráčovi %(_player_)s, pretože čoskoro chystám útok proti hráčovi %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:53
+#: simulation/ai/petra/chatHelper.js:52
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Prepáč, práve nemám dosť vojakov, ale môj ďalší útok bude smerovať na hráča %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Tu je dar pre hráča %(_player_)s, dobre ho využi."
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Vidím, že máš problémy, %(_player_)s. Dúfam, že toto ti pomôže."
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "Tentoraz ti môžem pomocť %(_player_)s, ale v budúcnosti sa pokús nazhromaždiť viac surovín."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Potrebujem %(resource)s, môžeš mi pomôcť? Vynahradím ti to."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "V našej spoločnej vojne by som sa účastnil oveľa efektívnejšie, ak by si mi mohol poskytnúť nejaké %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:101
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Ak máš nazvyš %(resource)s, pomohlo by mi to posilniť moju armádu."
 
-#: simulation/ai/petra/chatHelper.js:118
+#: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Vytvoril som novú obchodnú cestu s hráčom %(_player_)s. Obchodovanie bude prospešné pre nás všetkých."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:117
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Je vytvorená nová obchodná cesta s hráčom %(_player_)s. Vezmi si svoj podiel zisku."
 
-#: simulation/ai/petra/chatHelper.js:136
+#: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Postupujem do %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:138
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Postúpil som do %(phase)s."
@@ -668,12 +669,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "nepriateľské"
 
-#: simulation/components/CeasefireManager.js:103
+#: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Môžeš zaútočiť o %(time)s"
 
-#: simulation/components/CeasefireManager.js:118
+#: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
 msgstr "Teraz môžeš zaútočiť!"
 
@@ -692,42 +693,42 @@ msgstr "%(category)s limit tréningu %(limit)s bol dosiahnutý"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limit %(limit)s bol dosiahnutý"
 
-#: simulation/components/Player.js:44
+#: simulation/components/Player.js:48
 msgid "Food"
 msgstr "Jedlo"
 
-#: simulation/components/Player.js:45
+#: simulation/components/Player.js:49
 msgid "Wood"
 msgstr "Drevo"
 
-#: simulation/components/Player.js:46
+#: simulation/components/Player.js:50
 msgid "Metal"
 msgstr "Kov"
 
-#: simulation/components/Player.js:47
+#: simulation/components/Player.js:51
 msgid "Stone"
 msgstr "Kameň"
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Chýbajúce suroviny - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Chýbajúce suroviny - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Chýbajúce suroviny - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -743,12 +744,32 @@ msgstr "Produkčný front je plný."
 msgid "Can't find free space to spawn trained units"
 msgstr "Nie je možné nájsť voľné miesto na uloženie vytrénovaných jednotiek."
 
-#: simulation/helpers/Commands.js:675
+#: simulation/helpers/Cheat.js:63
+msgid "You need to select a building that trains units."
+msgstr "Musíš označiť budovu, ktorá bude trénovať jednotky."
+
+#: simulation/helpers/Commands.js:126
+msgid "(Cheat - control all units)"
+msgstr "(Cheat - kontrola všetkých jednotiek)"
+
+#: simulation/helpers/Commands.js:559
+msgid "(Cheat - promoted units)"
+msgstr "(Cheat - kontrola povýšených jednotiek)"
+
+#: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Žiada sa útok na %(_player_)s."
 
-#: simulation/helpers/Commands.js:965
+#: simulation/helpers/Commands.js:715
+msgid "Unable to ungarrison unit(s)"
+msgstr "Nieje možné odpojiť jednotku."
+
+#: simulation/helpers/Commands.js:729
+msgid "Some unit(s) can't go back to work"
+msgstr "Niektoré jednotky sa nemôžu vrátiť do práce."
+
+#: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požiadavky pre budovu nie sú splnené."
 
@@ -950,10 +971,10 @@ msgstr "Bot Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0AD AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a malus-bonus on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra je základný 0AD bot s umelou inteligenciou. Prosím, oznámte chyby Wildfire Games (viď link v hlavnom menu).\n\nUmelá inteligencia má penalizáciu na hromadenie zdrojov (buď v podobe zníženej tvorby alebo zárobku z predaja), ktorá sa líši od 0.5 v Pieskovisku po 1.6 pri veľmi ťažkej obtiažnosti (1.0 pre normálnu). Navyše, v Pieskovisku sa nerozširuje ani neútočí."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra je základný 0 A.D. AI bot. Poprosím o nahlásenie problémov do Wildfire Games (Pozri  link v hlavnom menu).\n\nUmelá inteligencia má bonus/znevýhodnenie na hromadení zdrojov (buď zber alebo obchodný zisk) v hodnotách 0.5 pre Sandbox až po 1,6 pre Veľmi ťažkú obtiažnosť (Medium = 1.0). Navyše, Sandbox level neexpanduje a neútočí. "
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

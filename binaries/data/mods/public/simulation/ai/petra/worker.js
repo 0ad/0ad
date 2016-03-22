@@ -311,7 +311,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				this.ent.gather(supply);
 				return true;
 			}
-			else if ((supply = this.buildAnyField(gameState, this.baseID)))
+			else if (this.ent.isBuilder() && (supply = this.buildAnyField(gameState, this.baseID)))
 			{
 				this.ent.repair(supply);
 				return true;
@@ -352,7 +352,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				this.ent.gather(supply);
 				return true;
 			}
-			if ((supply = this.buildAnyField(gameState, base.ID)))
+			if (this.ent.isBuilder() && (supply = this.buildAnyField(gameState, base.ID)))
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
 				this.ent.repair(supply);
@@ -376,8 +376,8 @@ m.Worker.prototype.startGathering = function(gameState)
 
 	// Okay may-be we haven't found any appropriate dropsite anywhere.
 	// Try to help building one if any accessible foundation available
-	var foundations = gameState.getOwnFoundations().toEntityArray();
-	var shouldBuild = foundations.some(function(foundation) {
+	let foundations = gameState.getOwnFoundations().toEntityArray();
+	let shouldBuild = this.ent.isBuilder() && foundations.some(function(foundation) {
 		if (!foundation || foundation.getMetadata(PlayerID, "access") !== access)
 			return false;
 		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
@@ -450,7 +450,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	// Okay so we haven't found any appropriate dropsite anywhere.
 	// Try to help building one if any non-accessible foundation available
-	shouldBuild = foundations.some(function(foundation) {
+	shouldBuild = this.ent.isBuilder() && foundations.some(function(foundation) {
 		if (!foundation || foundation.getMetadata(PlayerID, "access") === access)
 			return false;
 		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
@@ -724,11 +724,11 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 	var bestFarmEnt = false;
 	var bestFarmDist = 10000000;
 
-	for (var field of ownFields.values())
+	for (let field of ownFields.values())
 	{
 		if (m.IsSupplyFull(gameState, field))
 			continue;
-		var dist = API3.SquareVectorDistance(field.position(), this.ent.position());
+		let dist = API3.SquareVectorDistance(field.position(), this.ent.position());
 		if (dist < bestFarmDist)
 		{
 			bestFarmEnt = field;
@@ -781,13 +781,13 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 	var treasureFound;
 	var distmin = Math.min();
 	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
-	for (var treasure of gameState.ai.HQ.treasures.values())
+	for (let treasure of gameState.ai.HQ.treasures.values())
 	{
 		// let some time for the previous gatherer to reach the treasure befor trying again
-		var lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
+		let lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
 		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
 			continue;
-		var treasureAccess = treasure.getMetadata(PlayerID, "access");
+		let treasureAccess = treasure.getMetadata(PlayerID, "access");
 		if (!treasureAccess)
 		{
 			treasureAccess = gameState.ai.accessibility.getAccessValue(treasure.position());
@@ -798,7 +798,7 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
 		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
 			continue;
-		var dist = API3.SquareVectorDistance(this.ent.position(), treasure.position());
+		let dist = API3.SquareVectorDistance(this.ent.position(), treasure.position());
 		if (territoryOwner !== PlayerID && dist > 14000)  //  AI has no LOS, so restrict it a bit
 			continue;
 		if (dist > distmin)
@@ -825,13 +825,13 @@ m.Worker.prototype.moveAway = function(gameState)
 	var pos = this.ent.position();
 	var dist = Math.min();
 	var destination = pos;
-	for (var gatherer of gatherers.values())
+	for (let gatherer of gatherers.values())
 	{
 		if (!gatherer.position() || gatherer.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
 		if (gatherer.isIdle())
 			continue;
-		var distance = API3.SquareVectorDistance(pos, gatherer.position());
+		let distance = API3.SquareVectorDistance(pos, gatherer.position());
 		if (distance > dist)
 			continue;
 		dist = distance;

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2015-12-04 09:01+0100\n"
-"PO-Revision-Date: 2015-12-04 09:01+0100\n"
+"POT-Creation-Date: 2016-03-21 09:01+0100\n"
+"PO-Revision-Date: 2016-03-21 09:01+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -788,7 +788,7 @@ msgid "Outposts survive twice as long in neutral territory."
 msgstr ""
 
 #: simulation/data/technologies/decay_outpost.json:tooltip
-msgid "Territory decay -50% for Outposts."
+msgid "Territory decay rate -50% for outposts."
 msgstr ""
 
 #: simulation/data/technologies/decay_outpost.json:genericName
@@ -830,7 +830,7 @@ msgid "Horse-drawn Carts"
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.json:description
-msgid "Salting allows to preserve the fishes longer."
+msgid "Salting allows to preserve fish longer."
 msgstr ""
 
 #: simulation/data/technologies/gather_capacity_fishing.json:tooltip
@@ -1518,7 +1518,7 @@ msgid "Improvement to projectile accuracy"
 msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.json:tooltip
-msgid "Bolt shooter accuracy increased 25%"
+msgid "Bolt shooter accuracy increased 25%."
 msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.json:genericName
@@ -1554,7 +1554,7 @@ msgid "Immobile siege weapons are assembled and disassembled faster"
 msgstr ""
 
 #: simulation/data/technologies/siege_packing.json:tooltip
-msgid "Immobile siege weapons pack/unpack 25% faster"
+msgid "-25% pack and unpack time for immobile siege weapons."
 msgstr ""
 
 #: simulation/data/technologies/siege_packing.json:genericName
@@ -1729,6 +1729,25 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.json:specificName.rome
 msgid "Bona Dea"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.json:description
+msgid ""
+"The extension of trade leads to the permanent establishment of storekeepers "
+"and their families in foreign countries, allowing them to exploit these "
+"countries wealth."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.json:tooltip
+msgid "Player can use his allies dropsites."
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.json:genericName
+msgid "Diaspora"
+msgstr ""
+
+#: simulation/data/technologies/unlock_shared_dropsites.json:requirementsTooltip
+msgid "Requires 3 Traders"
 msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.json:description
@@ -2304,8 +2323,8 @@ msgstr ""
 #: simulation/data/technologies/mauryans/wooden_walls.json:description
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health, but "
-"build 20% faster."
+"resource in India. Consequently, Mauryan city walls have -20% health and -20"
+"% build time."
 msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.json:genericName

@@ -169,6 +169,8 @@ int CGame::LoadVisualReplayData()
 
 bool CGame::StartVisualReplay(const std::string& replayPath)
 {
+	debug_printf("Starting to replay %s\n", replayPath.c_str());
+
 	m_IsVisualReplay = true;
 	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 
@@ -345,6 +347,8 @@ void CGame::SetPlayerID(player_id_t playerID)
 	m_PlayerID = playerID;
 	if (m_TurnManager)
 		m_TurnManager->SetPlayerID(m_PlayerID);
+
+	m_Simulation2->SetCurrentDisplayedPlayer(g_Game->GetPlayerID());
 }
 
 void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedState)

@@ -24,14 +24,13 @@ m.chatLaunchAttack = function(gameState, player, type)
 	else
 		message = "/team " + markForTranslation("I have just sent an army against %(_player_)s.");
 
-	var chat = {
+	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": {"_player_": player}
-	};
-	Engine.PostCommand(PlayerID, chat);
+	});
 };
 
 m.chatAnswerRequestAttack = function(gameState, player, answer, other)
@@ -79,14 +78,13 @@ m.chatSentTribute = function(gameState, player)
 	else
 		message = "/team " + markForTranslation("I can help you this time %(_player_)s, but try to assemble more resources in the future.");
 
-	var chat = {
+	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": {"_player_": player}
-	};
-	Engine.PostCommand(PlayerID, chat);
+	});
 };
 
 m.chatRequestTribute = function(gameState, resource)
@@ -100,14 +98,13 @@ m.chatRequestTribute = function(gameState, resource)
 	else
 		message = "/team " + markForTranslation("If you have some %(resource)s excess, that would help me strengthen my army.");
 
-	var chat = {
+	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
 		"translateParameters": {"resource": "withinSentence"},
 		"parameters": {"resource": resourceNames[resource]}
-	};
-	Engine.PostCommand(PlayerID, chat);
+	});
 };
 
 m.chatNewTradeRoute = function(gameState, player)
@@ -119,14 +116,13 @@ m.chatNewTradeRoute = function(gameState, player)
 	else
 		message = "/team " + markForTranslation("A new trade route is set up with %(_player_)s. Take your share of the profits");
 
-	var chat = {
+	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": {"_player_": player}
-	};
-	Engine.PostCommand(PlayerID, chat);
+	});
 };
 
 m.chatNewPhase = function(gameState, phase, started)
@@ -137,14 +133,13 @@ m.chatNewPhase = function(gameState, phase, started)
 	else
 		message = "/allies " + markForTranslation("I have reached the %(phase)s.");
 	
-	var chat = {
+	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
 		"translateParameters": ["phase"],
 		"parameters": { "phase": phase }
-	};
-	Engine.PostCommand(PlayerID, chat);
+	});
 };
 
 return m;
