@@ -127,7 +127,6 @@ protected:
 	std::string StanzaErrorToString(gloox::StanzaError err) const;
 	std::string ConnectionErrorToString(gloox::ConnectionError err) const;
 	std::string RegistrationResultToString(gloox::RegistrationResult res) const;
-	time_t ComputeTimestamp(const glooxwrapper::Message& msg);
 
 public:
 	/* Messages */
@@ -139,7 +138,7 @@ public:
 		std::wstring data;
 		std::wstring from;
 		std::wstring message;
-		time_t time;
+		std::string datetime;
 	};
 	void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);

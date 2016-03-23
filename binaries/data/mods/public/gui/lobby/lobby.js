@@ -116,20 +116,10 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 			Engine.GetGUIObjectByName("hostButton").enabled = false;
-			addChatMessage({
-				"from": "system",
-				"text": translate("Disconnected.") + msg.text,
-				"color": g_SystemColor,
-				"time": msg.time
-			});
+			addChatMessage({ "from": "system", "text": translate("Disconnected.") + msg.text, "color": g_SystemColor });
 		},
 		"error": msg => {
-			addChatMessage({
-				"from": "system",
-				"text": msg.text,
-				"color": g_SystemColor,
-				"time": msg.time
-			});
+			addChatMessage({ "from": "system", "text": msg.text, "color": g_SystemColor });
 		}
 	},
 	"chat": {
@@ -139,16 +129,14 @@ var g_NetMessageTypes = {
 		"join": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": msg.text }),
-				"isSpecial": true,
-				"time": msg.time
+				"isSpecial": true
 			});
 			Engine.SendGetRatingList();
 		},
 		"leave": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": msg.text }),
-				"isSpecial": true,
-				"time": msg.time
+				"isSpecial": true
 			});
 		},
 		"presence": msg => {
@@ -159,15 +147,14 @@ var g_NetMessageTypes = {
 					"oldnick": msg.text,
 					"newnick": msg.data
 				}),
-				"isSpecial": true,
-				"time": msg.time
+				"isSpecial": true
 			});
 		},
 		"room-message": msg => {
 			addChatMessage({
 				"from": escapeText(msg.from),
 				"text": escapeText(msg.text),
-				"time": msg.time
+				"datetime": msg.datetime
 			});
 		},
 		"private-message": msg => {
@@ -175,7 +162,7 @@ var g_NetMessageTypes = {
 				addChatMessage({
 					"from": "(Private) " + escapeText(msg.from), // TODO: placeholder
 					"text": escapeText(msg.text.trim()), // some XMPP clients send trailing whitespace
-					"time": msg.time
+					"datetime": msg.datetime
 				});
 		}
 	},
@@ -676,8 +663,7 @@ function joinSelectedGame()
 			"text": sprintf(
 				translate("This game's address '%(ip)s' does not appear to be valid."),
 				{ "ip": game.ip }
-			),
-			"time": Date.now() / 1000
+			)
 		});
 		return;
 	}
@@ -788,8 +774,7 @@ function handleSpecialCommand(text)
 	default:
 		addChatMessage({
 			"from": "system",
-			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd }),
-			"time": Date.now() / 1000
+			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd })
 		});
 	}
 	return true;
@@ -811,10 +796,13 @@ function addChatMessage(msg)
 		if (g_Username != msg.from)
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
 
-		updateSpamMonitor(msg);
-
-		if (isSpam(msg.text, msg.from))
-			return;
+		// Run spam test if it's not a historical message
+		if (!msg.datetime)
+		{
+			updateSpamMonitor(msg.from);
+			if (isSpam(msg.text, msg.from))
+				return;
+		}
 	}
 
 	var formatted = ircFormat(msg);
@@ -896,13 +884,23 @@ function ircFormat(msg)
 	if (!g_ShowTimestamp)
 		return formattedMessage;
 
-	// Convert from UTC to localtime
-	 var time = msg.time - new Date().getTimezoneOffset() * 60;
+	var time;
+	if (msg.datetime)
+	{
+		let dTime = msg.datetime.split("T");
+		let parserDate = dTime[0].split("-");
+		let parserTime = dTime[1].split(":");
+		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
+		// Date takes Year, Month, Day, Hour, Minute, Second
+		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
+	}
+	else
+		time = new Date(Date.now());
 
 	// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
 	// For a list of symbols that you can use, see:
 	// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-	var timeString = Engine.FormatMillisecondsIntoDateString(time * 1000, translate("HH:mm"));
+	var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
 
 	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
 	var timePrefixString = '[font="' + g_SenderFont + '"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
@@ -914,18 +912,14 @@ function ircFormat(msg)
 /**
  * Update the spam monitor.
  *
- * @param {Object} msg - Message containing user to update.
+ * @param {string} from - User to update.
  */
-function updateSpamMonitor(msg)
+function updateSpamMonitor(from)
 {
-	// Ignore historical messages
-	if (msg.time < Date.now() / 1000 - g_SpamBlockDuration)
-		return;
-
-	if (g_SpamMonitor[msg.from])
-		++g_SpamMonitor[msg.from].count;
+	if (g_SpamMonitor[from])
+		++g_SpamMonitor[from].count;
 	else
-		g_SpamMonitor[msg.from] = {
+		g_SpamMonitor[from] = {
 			"count": 1,
 			"lastSend": Math.floor(Date.now() / 1000),
 			"lastBlock": 0
@@ -967,11 +961,7 @@ function isSpam(text, from)
 		g_SpamMonitor[from].lastBlock = time;
 
 		if (from == g_Username)
-			addChatMessage({
-				"from": "system",
-				"text": translate("Please do not spam. You have been blocked for thirty seconds."),
-				"time": Date.now() / 1000
-			});
+			addChatMessage({ "from": "system", "text": translate("Please do not spam. You have been blocked for thirty seconds.") });
 
 		return true;
 	}
