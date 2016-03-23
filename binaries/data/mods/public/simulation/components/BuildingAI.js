@@ -260,7 +260,9 @@ BuildingAI.prototype.GetArrowCount = function()
 	let count = this.GetDefaultArrowCount() +
 		Math.round(this.archersGarrisoned * this.GetGarrisonArrowMultiplier());
 
-	return Math.min(this.GetMaxArrowCount(), count);
+	if (count > this.GetMaxArrowCount())
+		return this.GetMaxArrowCount();
+	return count;
 };
 
 BuildingAI.prototype.SetUnitAITarget = function(ent)
