@@ -82,7 +82,7 @@ var features = [
 ];
 
 if (randElevation < 4)
-	features = features.push(
+	features.push(
     	{
     		"func": addLakes,
     		"avoid": [
@@ -101,7 +101,7 @@ if (randElevation < 4)
     );
 
 if (randElevation > 20)
-	features = features.push(
+	features.push(
     	{
     		"func": addValleys,
     		"avoid": [
