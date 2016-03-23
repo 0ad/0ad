@@ -257,15 +257,10 @@ BuildingAI.prototype.GetGarrisonArrowClasses = function()
  */
 BuildingAI.prototype.GetArrowCount = function()
 {
-	let count = this.GetDefaultArrowCount();
+	let count = this.GetDefaultArrowCount() +
+		Math.round(this.archersGarrisoned * this.GetGarrisonArrowMultiplier());
 
-	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-	if (cmpGarrisonHolder)
-		count += Math.round(this.archersGarrisoned * this.GetGarrisonArrowMultiplier());
-
-	if (this.GetMaxArrowCount() < count)
-		return this.GetMaxArrowCount();
-	return count;
+	return Math.min(this.GetMaxArrowCount(), count);
 };
 
 BuildingAI.prototype.SetUnitAITarget = function(ent)

@@ -698,6 +698,7 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 	}
 
 	// And destroy all remaining entities
+	var killedEntities = [];
 	for each (var entity in entities)
 	{
 		var entityIndex = this.entities.indexOf(entity);
@@ -707,9 +708,11 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 		if (cmpHealth)
 			cmpHealth.Kill();
 		this.entities.splice(entityIndex, 1);
+		killedEntities.push(entity);
 	}
 
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed" : entities });
+	if (killedEntities.length > 0)
+		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed" : killedEntities });
 	this.UpdateGarrisonFlag();
 };
 
