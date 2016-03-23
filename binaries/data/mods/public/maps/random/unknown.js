@@ -1804,13 +1804,13 @@ createAreas(
 
 var multiplier = sqrt(randFloat(0.5,1.2)*randFloat(0.5,1.2));
 // calculate desired number of trees for map (based on size)
-if (random_terrain == 6)
+if (random_terrain == g_BiomeSavanna)
 {
 	var MIN_TREES = floor(200*multiplier);
 	var MAX_TREES = floor(1250*multiplier);
 	var P_FOREST = randFloat(0.02, 0.05);
 }
-else if (random_terrain == 7)
+else if (random_terrain == g_BiomeTropic)
 {
 	var MIN_TREES = floor(1000*multiplier);
 	var MAX_TREES = floor(6000*multiplier);
@@ -1833,14 +1833,11 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
-if (random_terrain == 6)
-{
+if (random_terrain == g_BiomeSavanna)
 	var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
-}
 else
-{
 	var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-}
+
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
@@ -1862,7 +1859,7 @@ RMS.SetProgress(50);
 log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
 var numb = 1;
-if (random_terrain == 6)
+if (random_terrain == g_BiomeSavanna)
 	numb = 3
 for (var i = 0; i < sizes.length; i++)
 {
@@ -2014,10 +2011,9 @@ for (var i = 0; i < types.length; ++i)
 }
 
 var planetm = 1;
-if (random_terrain==7)
-{
+if (random_terrain == g_BiomeTropic)
 	planetm = 8;
-}
+
 //create small grass tufts
 log("Creating small grass tufts...");
 group = new SimpleGroup(

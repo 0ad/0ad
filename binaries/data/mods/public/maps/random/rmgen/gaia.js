@@ -320,7 +320,7 @@ function addDecoration(constraint, size, deviation, fill)
 	];
 
 	var baseCount = 1;
-	if (g_MapInfo.biome == 7)
+	if (g_MapInfo.biome == g_BiomeTropic)
 		baseCount = 8;
 
 	var counts = [
@@ -437,13 +437,13 @@ function addLakes(constraint, size, deviation, fill)
 {
 	var lakeTile = g_Terrains.water;
 
-	if (g_MapInfo.biome == 0 || g_MapInfo.biome == 1 || g_MapInfo.biome == 7)
+	if (g_MapInfo.biome == g_BiomeTemperate || g_MapInfo.biome == g_BiomeTropic)
 		lakeTile = g_Terrains.dirt;
 
-	if (g_MapInfo.biome == 5)
+	if (g_MapInfo.biome == g_BiomeMediterranean)
 		lakeTile = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 8)
+	if (g_MapInfo.biome == g_BiomeAutumn)
 		lakeTile = g_Terrains.shore;
 
 	addElevation(constraint, {
@@ -556,13 +556,13 @@ function addPlateaus(constraint, size, deviation, fill)
 {
 	var plateauTile = g_Terrains.dirt;
 
-	if (g_MapInfo.biome == 2)
+	if (g_MapInfo.biome == g_BiomeSnowy)
 		plateauTile = g_Terrains.tier1Terrain;
 
-	if (g_MapInfo.biome == 4 || g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeAlpine || g_MapInfo.biome == g_BiomeSavanna)
 		plateauTile = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 8)
+	if (g_MapInfo.biome == g_BiomeAutumn)
 		plateauTile = g_Terrains.tier4Terrain;
 
 	addElevation(constraint, {
@@ -732,31 +732,25 @@ function addValleys(constraint, size, deviation, fill)
 	var valleySlope = g_Terrains.tier1Terrain;
 	var valleyFloor = g_Terrains.tier4Terrain;
 
-	if (g_MapInfo.biome == 0)
-	{
-		valleySlope = g_Terrains.dirt;
-		valleyFloor = g_Terrains.tier2Terrain;
-	}
-
-	if (g_MapInfo.biome == 3)
+	if (g_MapInfo.biome == g_BiomeDesert)
 	{
 		valleySlope = g_Terrains.tier3Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (g_MapInfo.biome == 5)
+	if (g_MapInfo.biome == g_BiomeMediterranean)
 	{
 		valleySlope = g_Terrains.tier2Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (g_MapInfo.biome == 4 || g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeAlpine || g_MapInfo.biome == g_BiomeSavanna)
 		valleyFloor = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 7)
+	if (g_MapInfo.biome == g_BiomeTropic)
 		valleySlope = g_Terrains.dirt;
 
-	if (g_MapInfo.biome == 8)
+	if (g_MapInfo.biome == g_BiomeAutumn)
 		valleyFloor = g_Terrains.tier3Terrain;
 
 	addElevation(constraint, {
@@ -856,7 +850,7 @@ function addForests(constraint, size, deviation, fill)
 	fill = fill || 1;
 
 	// No forests for the african biome
-	if (g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeSavanna)
 		return;
 
 	var types = [
@@ -947,7 +941,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	fill = fill || 1;
 
 	// Ensure minimum distribution on african biome
-	if (g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeSavanna)
 	{
 		fill = Math.max(fill, 2);
 		size = Math.max(size, 1);
@@ -969,7 +963,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var maxDist = 5 * offset;
 
 	// More trees for the african biome
-	if (g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeSavanna)
 	{
 		min = 3 * offset;
 		max = 5 * offset;
@@ -982,7 +976,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		var treesMax = max;
 
 		// Don't clump fruit trees
-		if (i == 2 && (g_MapInfo.biome == 3 || g_MapInfo.biome == 5))
+		if (i == 2 && (g_MapInfo.biome == g_BiomeDesert || g_MapInfo.biome == g_BiomeMediterranean))
 			treesMax = 1;
 
 		min = Math.min(min, treesMax);

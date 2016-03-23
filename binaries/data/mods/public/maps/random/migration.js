@@ -295,13 +295,13 @@ createAreas(
 );
 
 // calculate desired number of trees for map (based on size)
-if (random_terrain == 6)
+if (random_terrain == g_BiomeSavanna)
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
 	var P_FOREST = 0.02;
 }
-else if (random_terrain == 7)
+else if (random_terrain == g_BiomeTropic)
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
