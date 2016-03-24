@@ -82,42 +82,38 @@ var features = [
 ];
 
 if (randElevation < 4)
-	features.push(
-    	{
-    		"func": addLakes,
-    		"avoid": [
-    			g_TileClasses.bluff, 7,
-    			g_TileClasses.hill, 2,
-    			g_TileClasses.mountain, 15,
-    			g_TileClasses.plateau, 10,
-    			g_TileClasses.player, 20,
-    			g_TileClasses.valley, 10,
-    			g_TileClasses.water, 25
-    		],
-    		"sizes": g_AllSizes,
-    		"mixes": g_AllMixes,
-    		"amounts": g_AllAmounts
-    	}
-    );
+	features.push({
+		"func": addLakes,
+		"avoid": [
+			g_TileClasses.bluff, 7,
+			g_TileClasses.hill, 2,
+			g_TileClasses.mountain, 15,
+			g_TileClasses.plateau, 10,
+			g_TileClasses.player, 20,
+			g_TileClasses.valley, 10,
+			g_TileClasses.water, 25
+		],
+		"sizes": g_AllSizes,
+		"mixes": g_AllMixes,
+		"amounts": g_AllAmounts
+	});
 
 if (randElevation > 20)
-	features.push(
-    	{
-    		"func": addValleys,
-    		"avoid": [
-    			g_TileClasses.bluff, 5,
-    			g_TileClasses.hill, 5,
-    			g_TileClasses.mountain, 25,
-    			g_TileClasses.plateau, 20,
-    			g_TileClasses.player, 40,
-    			g_TileClasses.valley, 15,
-    			g_TileClasses.water, 10
-    		],
-    		"sizes": g_AllSizes,
-    		"mixes": g_AllMixes,
-    		"amounts": g_AllAmounts
-    	}
-    );
+	features.push({
+		"func": addValleys,
+		"avoid": [
+			g_TileClasses.bluff, 5,
+			g_TileClasses.hill, 5,
+			g_TileClasses.mountain, 25,
+			g_TileClasses.plateau, 20,
+			g_TileClasses.player, 40,
+			g_TileClasses.valley, 15,
+			g_TileClasses.water, 10
+		],
+		"sizes": g_AllSizes,
+		"mixes": g_AllMixes,
+		"amounts": g_AllAmounts
+	});
 
 addElements(shuffleArray(features));
 RMS.SetProgress(50);
@@ -175,7 +171,8 @@ addElements(shuffleArray([
 	},
 	{
 		"func": addStone,
-		"avoid": [g_TileClasses.berries, 5,
+		"avoid": [
+			g_TileClasses.berries, 5,
 			g_TileClasses.bluff, 5,
 			g_TileClasses.forest, 3,
 			g_TileClasses.mountain, 2,

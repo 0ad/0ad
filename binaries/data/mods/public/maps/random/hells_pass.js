@@ -69,7 +69,8 @@ RMS.SetProgress(50);
 addElements([
 	{
 		"func": addLayeredPatches,
-		"avoid": [g_TileClasses.bluff, 2,
+		"avoid": [
+			g_TileClasses.bluff, 2,
 			g_TileClasses.dirt, 5,
 			g_TileClasses.forest, 2,
 			g_TileClasses.mountain, 2,
@@ -77,21 +78,22 @@ addElements([
 			g_TileClasses.player, 12,
 			g_TileClasses.spine, 5,
 			g_TileClasses.water, 3
-			],
+		],
 		"sizes": ["normal"],
 		"mixes": ["normal"],
 		"amounts": ["normal"]
 	},
 	{
 		"func": addDecoration,
-		"avoid": [g_TileClasses.bluff, 2,
+		"avoid": [
+			g_TileClasses.bluff, 2,
 			g_TileClasses.forest, 2,
 			g_TileClasses.mountain, 2,
 			g_TileClasses.plateau, 2,
 			g_TileClasses.player, 12,
 			g_TileClasses.spine, 5,
 			g_TileClasses.water, 3
-			],
+		],
 		"sizes": ["normal"],
 		"mixes": ["normal"],
 		"amounts": ["normal"]
@@ -102,7 +104,8 @@ RMS.SetProgress(60);
 addElements(shuffleArray([
 	{
 		"func": addMetal,
-		"avoid": [g_TileClasses.berries, 5,
+		"avoid": [
+			g_TileClasses.berries, 5,
 			g_TileClasses.bluff, 5,
 			g_TileClasses.forest, 3,
 			g_TileClasses.mountain, 2,
@@ -112,7 +115,7 @@ addElements(shuffleArray([
 			g_TileClasses.metal, 20,
 			g_TileClasses.spine, 5,
 			g_TileClasses.water, 3
-			],
+		],
 		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": g_AllAmounts
@@ -130,14 +133,15 @@ addElements(shuffleArray([
 			g_TileClasses.metal, 10,
 			g_TileClasses.spine, 5,
 			g_TileClasses.water, 3
-			],
+		],
 		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": g_AllAmounts
 	},
 	{
 		"func": addForests,
-		"avoid": [g_TileClasses.berries, 5,
+		"avoid": [
+			g_TileClasses.berries, 5,
 			g_TileClasses.bluff, 5,
 			g_TileClasses.forest, 18,
 			g_TileClasses.metal, 3,
@@ -147,7 +151,7 @@ addElements(shuffleArray([
 			g_TileClasses.rock, 3,
 			g_TileClasses.spine, 5,
 			g_TileClasses.water, 2
-			],
+		],
 		"sizes": g_AllSizes,
 		"mixes": g_AllMixes,
 		"amounts": ["few", "normal", "many", "tons"]
@@ -236,8 +240,6 @@ function placeBarriers()
 
 		var fx = fractionToTiles(0.5);
 		var fz = fractionToTiles(0.5);
-		var ix = round(fx);
-		var iz = round(fz);
 
 		var mStartCo = 0.07;
 		var mStopCo = 0.42;

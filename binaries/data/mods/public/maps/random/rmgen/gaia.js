@@ -13,7 +13,7 @@ const g_DefaultDeviation = 0.1;
  * Fill it with wood, mines, animals and decoratives.
  *
  * @param {Array} constraint - where to place them
- * @param {number} size - size of the bluffs (1.2 would be 120% of normal) 
+ * @param {number} size - size of the bluffs (1.2 would be 120% of normal)
  * @param {number} deviation - degree of deviation from the defined size (0.2 would be 20% plus/minus)
  * @param {number} fill - size of map to fill (1.5 would be 150% of normal)
  */
@@ -58,7 +58,6 @@ function addBluffs(constraint, size, deviation, fill)
 		var points = rendered[0].points;
 
 		var corners = findCorners(points);
-		var area = points.length;
 
 		// Seed an array the size of the bounding box
 		var bb = createBoundingBox(points, corners);
@@ -100,7 +99,7 @@ function addBluffs(constraint, size, deviation, fill)
 			continue;
 		}
 
-		// Create an entrance area area by using a small margin
+		// Create an entrance area by using a small margin
 		var margin = 0.08;
 		var ground = createTerrain(g_Terrains.mainTerrain);
 		var slopeLength = (1 - margin) * getDistance(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
@@ -208,7 +207,7 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": g_AllSizes,
 			"mixes": g_AllMixes,
-			"amounts":  ["normal", "many", "tons"]
+			"amounts": ["normal", "many", "tons"]
 		},
 		{
 			"func": addMetal,
@@ -224,7 +223,7 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": ["normal"],
 			"mixes": ["same"],
-			"amounts":  ["normal"]
+			"amounts": ["normal"]
 		},
 		{
 			"func": addStone,
@@ -352,7 +351,7 @@ function addDecoration(constraint, size, deviation, fill)
  * Create varying elevations.
  *
  * @param {Array} constraint - avoid/stay-classes
- * 
+ *
  * @param {Object} el - the element to be rendered, for example:
  *  "class": g_TileClasses.hill,
  *	"painter": [g_Terrains.mainTerrain, g_Terrains.mainTerrain],

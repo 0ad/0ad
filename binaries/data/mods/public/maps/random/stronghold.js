@@ -72,7 +72,8 @@ addElements(shuffleArray([
 	},
 	{
 		"func": addValleys,
-		"avoid": [g_TileClasses.bluff, 5,
+		"avoid": [
+			g_TileClasses.bluff, 5,
 			g_TileClasses.hill, 5,
 			g_TileClasses.mountain, 25,
 			g_TileClasses.plateau, 10,

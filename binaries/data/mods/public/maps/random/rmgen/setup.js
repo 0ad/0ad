@@ -184,7 +184,7 @@ function addBases(type, distance, groupedDistance)
  *
  * @param {Object} - contains id, angle, x, z
  * @param {boolean} - Whether or not iberian gets starting walls
- */ 
+ */
 function createBase(player, walls)
 {
 	// Get the x and z in tiles
@@ -331,7 +331,7 @@ function getTeams(numPlayers)
 
 /**
  * Chose a random pattern for placing the bases of the players.
- */ 
+ */
 function randomStartingPositionPattern()
 {
 	var formats = ["radial"];

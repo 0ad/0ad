@@ -142,7 +142,8 @@ addElements(shuffleArray([
 	{
 		"func": addBerries,
 		"avoid": [
-			g_TileClasses.bluff, 5, g_TileClasses.forest, 5,
+			g_TileClasses.bluff, 5,
+			g_TileClasses.forest, 5,
 			g_TileClasses.metal, 10,
 			g_TileClasses.mountain, 2,
 			g_TileClasses.player, 20,
