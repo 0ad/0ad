@@ -187,6 +187,11 @@ var g_MapData = {};
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
 
 /**
+ * Only send a lobby update if something actually changed.
+ */
+var g_LastGameStanza;
+
+/**
  * Initializes some globals without touching the GUI.
  *
  * @param {Object} attribs - context data sent by the lobby / mainmenu
@@ -1769,9 +1774,9 @@ function sendRegisterGameStanza()
 
 	let mapSize = g_GameAttributes.mapType == "random" ? Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
 	let victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
-	let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
+	let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name).sort();
 
-	Engine.SendRegisterGame({
+	let stanza = {
 		"name": g_ServerName,
 		"mapName": g_GameAttributes.map,
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
@@ -1781,5 +1786,12 @@ function sendRegisterGameStanza()
 		"nbp": Object.keys(g_PlayerAssignments).length || 1,
 		"tnbp": g_GameAttributes.settings.PlayerData.length,
 		"players": playerNames.join(", ")
-	});
+	};
+
+	// Only send the stanza if the relevant settings actually changed
+	if (g_LastGameStanza && Object.keys(stanza).every(prop => g_LastGameStanza[prop] == stanza[prop]))
+		return;
+
+	g_LastGameStanza = stanza;
+	Engine.SendRegisterGame(stanza);
 }
