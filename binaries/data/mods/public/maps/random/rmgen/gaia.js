@@ -23,6 +23,14 @@ function addBluffs(constraint, size, deviation, fill)
 	size = size || 1;
 	fill = fill || 1;
 
+	var constrastTerrain = g_Terrains.tier2Terrain;
+
+	if (g_MapInfo.biome == g_BiomeTropic)
+		constrastTerrain = g_Terrains.dirt;
+
+	if (g_MapInfo.biome == g_BiomeAutumn)
+		constrastTerrain = g_Terrains.tier3Terrain;
+
 	var count = fill * scaleByMapSize(15, 15);
 	var minSize = scaleByMapSize(5, 5);
 	var maxSize = scaleByMapSize(7, 7);
@@ -39,7 +47,7 @@ function addBluffs(constraint, size, deviation, fill)
 		var pElevation = Math.floor(elevation * offset);
 
 		var placer = new ChainPlacer(pMinSize, pMaxSize, pSpread, 0.5);
-		var terrainPainter = new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain, g_Terrains.tier2Terrain], [2, 3]);
+		var terrainPainter = new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain, constrastTerrain], [2, 3]);
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, pElevation, 2);
 		var rendered = createAreas(placer, [terrainPainter, elevationPainter, paintClass(g_TileClasses.bluff)], constraint, 1);
 
@@ -85,17 +93,17 @@ function addBluffs(constraint, size, deviation, fill)
 			++retries;
 		}
 
-		// Found a bluff that can't be accessed, so turn it into a plateau
-		if (retries == 5)
+		// Inaccessible, turn it into a plateau
+		if (bluffCat > 0)
+		{
 			removeBluff(points);
-
-		// If we couldn't find the slope lines, turn it into a plateau
-		if (bluffCat == 1)
 			continue;
+		}
 
+		// Create an entrance area area by using a small margin
+		var margin = 0.08;
 		var ground = createTerrain(g_Terrains.mainTerrain);
-
-		var slopeLength = getDistance(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
+		var slopeLength = (1 - margin) * getDistance(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
 
 		// Adjust the height of each point in the bluff
 		for (var p = 0; p < points.length; ++p)
@@ -993,6 +1001,8 @@ function addStragglerTrees(constraint, size, deviation, fill)
 
 /**
  * Determine if the endline of the bluff is within the tilemap.
+ *
+ * @returns {Number} 0 if the bluff is reachable, otherwise a positive number
  */
 function unreachableBluff(bb, corners, baseLine, endLine)
 {
@@ -1001,8 +1011,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 		return 1;
 
 	// If the end points aren't on the tilemap
-	if ((!g_Map.validT(endLine.x1, endLine.z1) || checkIfInClass(endLine.x1, endLine.z1, g_TileClasses.player)) &&
-		(!g_Map.validT(endLine.x2, endLine.z2) || checkIfInClass(endLine.x2, endLine.z2, g_TileClasses.player)))
+	if (!g_Map.validT(endLine.x1, endLine.z1) && !g_Map.validT(endLine.x2, endLine.z2))
 		return 2;
 
 	var minTilesInGroup = 1;
