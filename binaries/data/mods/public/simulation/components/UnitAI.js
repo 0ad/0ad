@@ -5807,7 +5807,7 @@ UnitAI.prototype.CanRepair = function(target)
 		return false;
 
 	// Verify that the target can be either built or repaired
-	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+	var cmpFoundation = QueryMiragedInterface(target, IID_Foundation);
 	var cmpRepairable = Engine.QueryInterface(target, IID_Repairable);
 	if (!cmpFoundation && !cmpRepairable)
 		return false;
