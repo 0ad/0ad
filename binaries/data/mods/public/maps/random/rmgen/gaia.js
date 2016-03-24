@@ -216,7 +216,7 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": ["normal"],
 			"mixes": ["same"],
-			"amounts":  ["normal", "many", "tons"]
+			"amounts":  ["normal"]
 		},
 		{
 			"func": addStone,
@@ -232,10 +232,11 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": ["normal"],
 			"mixes": ["same"],
-			"amounts": ["normal", "many", "tons"]
+			"amounts": ["normal"]
 		}
 	]));
 
+	let savanna = g_MapInfo.biome == g_BiomeSavanna;
 	addElements(shuffleArray([
 		{
 			"func": addStragglerTrees,
@@ -249,9 +250,9 @@ function addBluffs(constraint, size, deviation, fill)
 				g_TileClasses.water, 5
 			 ],
 			"stay": [g_TileClasses.bluff, 6],
-			"sizes": g_AllSizes,
-			"mixes": g_AllMixes,
-			"amounts": ["normal", "many", "tons"]
+			"sizes": savanna ? ["big"] : g_AllSizes,
+			"mixes": savanna ? ["varied"] : g_AllMixes,
+			"amounts": savanna ? ["tons"] : ["normal", "many", "tons"]
 		},
 		{
 			"func": addAnimals,

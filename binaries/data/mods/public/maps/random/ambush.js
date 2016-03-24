@@ -103,9 +103,11 @@ addElements(shuffleArray([
 		"mixes": ["same"],
 		"amounts": ["tons"]
 	},
+	// Forests on bluffs
 	{
 		"func": addForests,
 		"avoid": [
+			g_TileClasses.forest, 6,
 			g_TileClasses.metal, 3,
 			g_TileClasses.mountain, 5,
 			g_TileClasses.player, 20,
@@ -113,9 +115,25 @@ addElements(shuffleArray([
 			g_TileClasses.water, 2
 		],
 		"stay": [g_TileClasses.bluff, 5],
-		"sizes": ["big", "huge"],
+		"sizes": ["big"],
 		"mixes": ["normal"],
 		"amounts": ["tons"]
+	},
+	// Forests on mainland
+	{
+		"func": addForests,
+		"avoid": [
+			g_TileClasses.bluff, 10,
+			g_TileClasses.forest, 10,
+			g_TileClasses.metal, 3,
+			g_TileClasses.mountain, 5,
+			g_TileClasses.player, 20,
+			g_TileClasses.rock, 3,
+			g_TileClasses.water, 2
+		],
+		"sizes": ["small"],
+		"mixes": ["same"],
+		"amounts": ["normal"]
 	}
 ]));
 RMS.SetProgress(70);
@@ -133,7 +151,7 @@ addElements(shuffleArray([
 		],
 		"sizes": ["normal"],
 		"mixes": ["same"],
-		"amounts": ["normal"]
+		"amounts": ["few"]
 	},
 	{
 		"func": addAnimals,
@@ -146,8 +164,8 @@ addElements(shuffleArray([
 			g_TileClasses.rock, 2,
 			g_TileClasses.water, 3
 		],
-		"sizes": ["small", "normal"],
-		"mixes": ["same"],
+		"sizes": ["small"],
+		"mixes": ["similar"],
 		"amounts": ["normal", "many"]
 	},
 	{

@@ -268,16 +268,16 @@ function createBase(player, walls)
 	var hillSize = PI * g_MapInfo.mapRadius * g_MapInfo.mapRadius;
 
 	// Create starting trees
-	var num = 25;
+	var num = g_MapInfo.biome == g_BiomeSavanna ? 5 : 15;
 	for (var tries = 0; tries < 10; ++tries)
 	{
 		var tAngle = randFloat(0, TWO_PI);
 		var tDist = randFloat(12, 13);
 		var tX = round(fx + tDist * cos(tAngle));
 		var tZ = round(fz + tDist * sin(tAngle));
-	
+
 		group = new SimpleGroup(
-			[new SimpleObject(g_Gaia.tree1, num, num, 0, 3)],
+			[new SimpleObject(g_Gaia.tree1, num, num, 1, 3)],
 			false, g_TileClasses.baseResource, tX, tZ
 		);
 
