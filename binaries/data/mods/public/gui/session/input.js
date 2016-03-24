@@ -1353,7 +1353,7 @@ function addTrainingByPosition(position)
 	var playerState = simState.players[Engine.GetPlayerID()];
 	var selection = g_Selection.toList();
 
-	if (!selection.length)
+	if (!playerState || !selection.length)
 		return;
 
 	var trainableEnts = getAllTrainableEntitiesFromSelection();
