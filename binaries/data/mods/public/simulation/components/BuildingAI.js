@@ -230,7 +230,7 @@ BuildingAI.prototype.GetDefaultArrowCount = function()
 BuildingAI.prototype.GetMaxArrowCount = function()
 {
 	if (!this.template.MaxArrowCount)
-		return undefined;
+		return Infinity;
 
 	let maxArrowCount = +this.template.MaxArrowCount;
 	return Math.round(ApplyValueModificationsToEntity("BuildingAI/MaxArrowCount", maxArrowCount, this.entity));
@@ -260,9 +260,7 @@ BuildingAI.prototype.GetArrowCount = function()
 	let count = this.GetDefaultArrowCount() +
 		Math.round(this.archersGarrisoned * this.GetGarrisonArrowMultiplier());
 
-	if (count > this.GetMaxArrowCount())
-		return this.GetMaxArrowCount();
-	return count;
+	return Math.min(count, this.GetMaxArrowCount());
 };
 
 BuildingAI.prototype.SetUnitAITarget = function(ent)
