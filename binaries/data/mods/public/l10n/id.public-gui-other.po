@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-24 14:19+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,22 +325,22 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Kehilangan koneksi dengan server (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s kehilangan koneksi (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Koneksi buruk ke server (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Koneksi buruk ke %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -376,7 +376,7 @@ msgstr ""
 
 #: gui/common/network.js:61
 msgid "Server full"
-msgstr ""
+msgstr "Server penuh"
 
 #: gui/common/network.js:64
 #, javascript-format
@@ -415,7 +415,7 @@ msgstr "Pengguna: %(users)s"
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Sandbox"
 
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
@@ -490,7 +490,7 @@ msgstr "Tidak diketahui"
 #: gui/common/settings.js:331
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Standar"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:90
 #: gui/common/tooltips.js:124
@@ -638,7 +638,7 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:238
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Tinkat Perbaikan:"
 
 #: gui/common/tooltips.js:240 gui/common/tooltips.js:251
 msgid "health"
@@ -655,7 +655,7 @@ msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:249
 msgid "Build Rate:"
-msgstr ""
+msgstr "Tingkat Pembangunan:"
 
 #: gui/common/tooltips.js:294 gui/common/tooltips.js:295
 #: gui/common/tooltips.js:296 gui/common/tooltips.js:297
@@ -760,7 +760,7 @@ msgstr "Kelas:"
 #: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -817,7 +817,7 @@ msgstr "Peringatan"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Anda memiliki perubahan yang belum tersimpan, yakin anda ingin menutup jendela ini?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1007,15 +1007,15 @@ msgstr "%(min)s - %(max)s menit"
 
 #: gui/replaymenu/replay_menu.js:242
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:272
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Peradaban Tidak Diketahui"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1351,7 +1351,7 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Pemograman"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
@@ -1359,7 +1359,7 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Penerjemah"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1367,7 +1367,7 @@ msgstr "Lain-lain"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donors"
-msgstr ""
+msgstr "Penyumbang"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1514,7 +1514,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XX: Timosthenes"
-msgstr ""
+msgstr "Alpha XX: Timosthenes"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1886,7 +1886,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Pembuat Peta"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
@@ -1902,11 +1902,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "Suara"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Musik"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1918,9 +1918,9 @@ msgstr ""
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
-"IndieGoGO 2013 campaign\n"
+"Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Kampanye Indiegogo 2013\nLebih dari 1000 pendonor (!), termasuk:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -1928,7 +1928,7 @@ msgstr ""
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Referensi Sejarah"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
@@ -1940,19 +1940,19 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Terima kasih khusus untuk"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "Untuk Mengingat"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Penemu 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Pemimpin Proyek"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
@@ -1960,11 +1960,11 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Terima kasih khusus untuk:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Dan terima kasih untuk seluruh komunitas yang telah membuat \n0 A.D. mungkin."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -2495,7 +2495,7 @@ msgstr "- Tangkap ikan di lautan untuk hasil yang berlimpah."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "- Kapal nelayan membawa sejumlah besar Makanan tiap perjalanan."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
@@ -2689,7 +2689,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr ""
+msgstr "- Memiliki serangan tubruk yang menenggelamkan kapal musuh. (belum diimplementasikan)"
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"

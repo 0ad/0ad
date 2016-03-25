@@ -12,6 +12,7 @@
 # Ivan, 2014
 # Konstantin, 2014
 # Peter Seregin <peter01@myself.com>, 2015
+# sad2shade <sad.2.shade@gmail.com>, 2016
 # vadim s. sabinich <vadim@sabini.ch>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-18 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-22 17:56+0000\n"
+"Last-Translator: sad2shade <sad.2.shade@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "Ратуша"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
-msgstr "Дом увеличивает предел населения."
+msgstr "Увеличивает предел населения."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -624,7 +625,7 @@ msgstr "Фермерский бонус"
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25% gathering rate."
-msgstr ""
+msgstr "Увеличивает скорость сбора урожая на 20%."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -742,7 +743,7 @@ msgstr "Позволяет нанимать иберийских наёмник�
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Итальянское посольство"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -782,11 +783,11 @@ msgstr "Махсабах"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Repairing ship Aura"
-msgstr ""
+msgstr "Подготавливаем ауру корябля"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr ""
+msgstr "Лечит гарнизонные корабли на 3 единицы здоровья в секунду."
 
 #: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
@@ -914,7 +915,7 @@ msgstr "Гур Ороигарри"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
-msgstr ""
+msgstr "Все подразделения в зоне видимости монумента сражаются жестче. Эффективное расстояние: 50 метров. Строения на территории монумента не разрушаются."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1060,7 +1061,7 @@ msgstr "Упараксана"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:11
 msgid "All traders in range +20% walk speed."
-msgstr ""
+msgstr "Все торговцы в зоне действия передвигаются на 20% быстрее."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
@@ -1074,7 +1075,7 @@ msgstr "Сасана Стамбха Ашока"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Знаменитая колонна Ашока. Увеличивает скорость передвижения торговцев. Строения на территории монумента не разрушаются."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"

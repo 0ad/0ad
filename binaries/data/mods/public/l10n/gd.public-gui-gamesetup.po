@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2015
+# GunChleoc, 2014-2016
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 # Michael Bauer, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 08:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-24 10:46+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +75,7 @@ msgstr "* Chan eil %(username)s deiseil."
 
 #: gui/gamesetup/gamesetup.js:67 gui/gamesetup/gamesetup.js:1268
 msgid "Default"
-msgstr "Bun-roghainn"
+msgstr "Tùsail"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Naval Maps"
@@ -87,18 +87,17 @@ msgstr "Mapaichean taisbeanaidh"
 
 #: gui/gamesetup/gamesetup.js:82
 msgid "All Maps"
-msgstr "Na h‑uile mapa"
+msgstr "A h‑uile mapa"
 
-#: gui/gamesetup/gamesetup.js:136 gui/gamesetup/gamesetup.js:1384
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
+#: gui/gamesetup/gamesetup.js:136
+msgctxt "map type"
 msgid "Random"
-msgstr "Air thuaiream"
+msgstr "Tuaireamach"
 
 #: gui/gamesetup/gamesetup.js:141
 msgctxt "civilization"
 msgid "Random"
-msgstr "Air thuaiream"
+msgstr "Tuaireamach"
 
 #: gui/gamesetup/gamesetup.js:227
 msgid "Return to the lobby."
@@ -132,7 +131,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1333
 msgid "Loading..."
-msgstr "’Ga luchdadh..."
+msgstr "’Ga luchdadh…"
 
 #: gui/gamesetup/gamesetup.js:1376
 msgid "Sorry, no description available."
@@ -155,6 +154,11 @@ msgstr[3] "%(number)s cluicheadair. "
 msgid "Victory Condition:"
 msgstr "Cumha na buaidhe:"
 
+#: gui/gamesetup/gamesetup.js:1384
+msgctxt "map selection"
+msgid "Random"
+msgstr "Tuaireamach"
+
 #: gui/gamesetup/gamesetup.js:1455
 #, javascript-format
 msgid "AI: %(ai)s"
@@ -162,7 +166,7 @@ msgstr "IF: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1460
 msgid "Unassigned"
-msgstr "Gun sònrachadh"
+msgstr "Gun chluicheadair"
 
 #: gui/gamesetup/gamesetup.js:1621
 #, javascript-format
@@ -200,7 +204,7 @@ msgstr "An geam aig %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:62
 msgid "Connecting to server..."
-msgstr "A’ ceangal ris an fhrithealaiche ..."
+msgstr "A’ ceangal ris an fhrithealaiche…"
 
 #: gui/gamesetup/gamesetup_mp.js:81
 #, javascript-format
@@ -209,11 +213,11 @@ msgstr "Teachdaireachd-lìonraidh: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:150
 msgid "Registering with server..."
-msgstr "A’ clàradh leis an fhrithealaiche..."
+msgstr "A’ clàradh leis an fhrithealaiche…"
 
 #: gui/gamesetup/gamesetup_mp.js:156
 msgid "Game has already started, rejoining..."
-msgstr "Tha an geama air a thòiseachadh mar-thà, a’ gabhail pàirt ann a-rithist..."
+msgstr "Tha an geama air a thòiseachadh mar-thà, a’ gabhail pàirt ann a-rithist…"
 
 #: gui/gamesetup/gamesetup_mp.js:207
 msgid "Game name already in use."
@@ -223,47 +227,6 @@ msgstr "Tha ainm a’ gheama seo ’ga chleachdadh mu thràth."
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "An geama aig %(playername)s"
-
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
-msgid "Skirmish"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:16
-msgid "Scenario"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:19 gui/gamesetup/gamesetup.xml:(tooltip):139
-#: gui/gamesetup/mapsettings.xml:(tooltip):38
-#: gui/gamesetup/settings/mapType.xml:(tooltip):13
-msgid "Select a map type."
-msgstr "Tagh seòrsa a’ mhapa."
-
-#: gui/gamesetup/mapselection.js:20 gui/gamesetup/gamesetup.xml:(caption):110
-#: gui/gamesetup/mapsettings.xml:(caption):7
-#: gui/gamesetup/settings/mapType.xml:(caption):5
-msgid "Map Type:"
-msgstr "Seòrsa a’ mhapa:"
-
-#: gui/gamesetup/mapselection.js:33 gui/gamesetup/gamesetup.xml:(tooltip):147
-#: gui/gamesetup/mapsettings.xml:(tooltip):46
-msgid "Select a map filter."
-msgstr "Tagh criathrag nam mapa."
-
-#: gui/gamesetup/mapselection.js:34 gui/gamesetup/gamesetup.xml:(caption):113
-#: gui/gamesetup/mapsettings.xml:(caption):10
-msgid "Map Filter:"
-msgstr "Criathrag nam mapa:"
-
-#: gui/gamesetup/mapselection.js:47 gui/gamesetup/gamesetup.xml:(tooltip):156
-#: gui/gamesetup/mapsettings.xml:(tooltip):55
-msgid "Select a map to play on."
-msgstr "Tagh mapa airson cluich air."
-
-#: gui/gamesetup/mapselection.js:48 gui/gamesetup/gamesetup.xml:(caption):116
-#: gui/gamesetup/mapsettings.xml:(caption):13
-msgid "Select Map:"
-msgstr "Tagh mapa:"
 
 #: gui/loading/loading.js:49
 #, javascript-format
@@ -307,10 +270,9 @@ msgstr "’Ga luchdadh"
 
 #: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
-msgstr "A’ luchdadh dàta a’ mhapa. Fuirich greis..."
+msgstr "A’ luchdadh dàta a’ mhapa. Fuirich greis…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):45
-#: gui/gamesetup/players.xml:(caption):8
 msgid "Player Name"
 msgstr "Ainm a’ chluicheadair"
 
@@ -319,27 +281,34 @@ msgid "Color"
 msgstr "Dath"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
-#: gui/gamesetup/players.xml:(caption):11
 msgid "Player Placement"
 msgstr "Ionad a’ chluicheadair"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
-#: gui/gamesetup/players.xml:(caption):14
 msgid "Civilization"
 msgstr "Sìobhaltas"
 
 #: gui/gamesetup/gamesetup.xml:(caption):69
-#: gui/gamesetup/players.xml:(caption):29
 msgid "Team"
 msgstr "Sgioba"
 
+#: gui/gamesetup/gamesetup.xml:(caption):110
+msgid "Map Type:"
+msgstr "Seòrsa a’ mhapa:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):113
+msgid "Map Filter:"
+msgstr "Criathrag nam mapa:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):116
+msgid "Select Map:"
+msgstr "Tagh mapa:"
+
 #: gui/gamesetup/gamesetup.xml:(caption):119
-#: gui/gamesetup/mapsettings.xml:(caption):19
 msgid "Number of Players:"
 msgstr "Àireamh de chluicheadairean:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):122
-#: gui/gamesetup/mapsettings.xml:(caption):22
 msgid "Map Size:"
 msgstr "Meud a’ mhapa:"
 
@@ -409,7 +378,6 @@ msgid "Rated Game:"
 msgstr "Geama rangaichte:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):63
-#: gui/gamesetup/players.xml:(tooltip):23
 msgid "View civilization info"
 msgstr "Seall fiosrachadh an t‑sìobhaltais"
 
@@ -418,32 +386,38 @@ msgid "Pick a color."
 msgstr "Tagh dath."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
-#: gui/gamesetup/players.xml:(tooltip):38
 msgid "Select player."
 msgstr "Tagh cluicheadair."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):91
-#: gui/gamesetup/players.xml:(tooltip):47
 msgid "Configure AI settings."
 msgstr "Rèitich roghainnean na IF."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):94
-#: gui/gamesetup/players.xml:(tooltip):50
 msgid "Select player's civilization."
 msgstr "Tagh sìobhaltas a’ chluicheadair."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):98
-#: gui/gamesetup/players.xml:(tooltip):54
 msgid "Select player's team."
 msgstr "Tagh sgioba a’ chluicheadair."
 
+#: gui/gamesetup/gamesetup.xml:(tooltip):139
+msgid "Select a map type."
+msgstr "Tagh seòrsa a’ mhapa."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):147
+msgid "Select a map filter."
+msgstr "Tagh criathrag nam mapa."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):156
+msgid "Select a map to play on."
+msgstr "Tagh mapa airson cluich air."
+
 #: gui/gamesetup/gamesetup.xml:(tooltip):166
-#: gui/gamesetup/mapsettings.xml:(tooltip):65
 msgid "Select number of players."
 msgstr "Tagh an àireamh de chluicheadairean."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):170
-#: gui/gamesetup/mapsettings.xml:(tooltip):70
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Tagh meud a’ mhapa. (Dh’fhaoidte gum bi an geama nas slaodaiche le mapa mòr.)"
 
@@ -537,17 +511,13 @@ msgstr "Rèitich am frithealaiche agad airson òstadh."
 msgid "Server name:"
 msgstr "Ainm an fhrithealaiche:"
 
-#: gui/gamesetup/mapsettings.xml:(caption):16
-msgid "Other Settings"
-msgstr ""
-
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
 msgstr "Iomradh an latha:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr "\"Is uallach trom an t-amadan beartach.\" - Aischulos"
+msgstr "“Is uallach trom an t-amadan beartach.” - Aischulos"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -557,13 +527,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr "\"Bi nas fhearr seach coltas nas fhearr ort.\" - Aischulos, \"Seachdnar an aghaidh Thìba\""
+msgstr "“Bi nas fhearr seach coltas nas fhearr ort.” - Aischulos, “Seachdnar an aghaidh Thìba”"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr "\"Cha chreid sinn an duine air sgàth na bòide ach a' bhòid air sgàth an daoine.\" - Aischulos"
+msgstr "“Cha chreid sinn an duine air sgàth na bòide ach a’ bhòid air sgàth an daoine.” - Aischulos"
 
 #: gui/text/quotes.txt:5
 msgid ""
@@ -601,7 +571,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr "\"Frithealaich leisgeul sam bith aintighearna.\" - Aisop"
+msgstr "“Frithealaich leisgeul sam bith aintighearna.” - Aisop"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
@@ -613,7 +583,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr "\"Tha e furasta a bhith dàna aig astar sàbhailte.\" - Aisop"
+msgstr "“Tha e furasta a bhith dàna aig astar sàbhailte.” - Aisop"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
@@ -639,11 +609,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr "\"Is le dàil is maille a bhuannaichear rèis\" - Aisop"
+msgstr "“Is le dàil is maille a bhuannaichear rèis” - Aisop"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr "\"Bheir na diathan cobhair don fheadhainn a bheir cobhair dhaibh fhèin.\" - Aisop"
+msgstr "“Bheir na diathan cobhair don fheadhainn a bheir cobhair dhaibh fhèin.” - Aisop"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -683,11 +653,11 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr "\"Mur b’ Alasdair mi, bu mhiann leam gum bu Dhiogenes mi.\" - Alasdair Mòr"
+msgstr "“Mur b’ Alasdair mi, bu mhiann leam gum bu Dhiogenes mi.” - Alasdair Mòr"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr "\"Cha ghoid mi a’ bhuannachd.\" - Alasdair Mòr"
+msgstr "“Cha ghoid mi a’ bhuannachd.” - Alasdair Mòr"
 
 #: gui/text/quotes.txt:30
 msgid ""
@@ -700,17 +670,17 @@ msgstr ""
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
-msgstr "\"Don fhear as treasa!\" - Alasdair Mòr ri uchd a’ bhàis nuair a dh’fhaighnicheadh dha cò oighre a rìoghachd"
+msgstr "“Don fhear as treasa!” - Alasdair Mòr ri uchd a’ bhàis nuair a dh’fhaighnicheadh dha cò oighre a rìoghachd"
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr "\"Chan eil rud nach gabhadh dèanamh don fear a nì oidhirp\" - Alasdair Mòr"
+msgstr "“Chan eil rud nach gabhadh dèanamh don fear a nì oidhirp” - Alasdair Mòr"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr "\"Mur robh feise ’s cadal ann, cha mhothaichinn gu bheil mi bàsmhor.\" - Alasdair Mòr"
+msgstr "“Mur robh feise ’s cadal ann, cha mhothaichinn gu bheil mi bàsmhor.” - Alasdair Mòr"
 
 #: gui/text/quotes.txt:34
 msgid ""

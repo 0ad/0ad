@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-20 16:51+0000\n"
+"POT-Creation-Date: 2016-03-21 09:01+0100\n"
+"PO-Revision-Date: 2016-03-24 13:20+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -795,7 +795,7 @@ msgstr "Stadsmurar -20% byggtid, men även -1 krossning rustningsnivå."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
-msgstr ""
+msgstr "Stenskärv"
 
 #: simulation/data/technologies/decay_outpost.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
@@ -803,7 +803,7 @@ msgstr "Utpostar överlever dubbelt så länge i neutralt territorium."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "-50% territorieförfalltakt för utpostar."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -811,7 +811,7 @@ msgstr "Stengrunder"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
-msgstr ""
+msgstr "Föd upp boskap för mat."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
@@ -845,7 +845,7 @@ msgstr "Hästdragna vagnar"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Saltning gör att fisken kan sparas längre."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -861,7 +861,7 @@ msgstr "Låses upp i stadsfas. Behöver Fiskenät."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "Arbetare använder skottkärror. +5 transportkapacitet för alla resurser."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -893,7 +893,7 @@ msgstr "Järnplog"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "Träning för arbetare för att öka matinsamlingstakten för fält."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
@@ -901,7 +901,7 @@ msgstr "Arbetare +15% odlingstakt."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr ""
+msgstr "Skörd träning"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Using net improves the fishing productivity."
@@ -925,7 +925,7 @@ msgstr "Ökar träsamlings takt för träd."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr ""
+msgstr "Arbetare +15% takt för att hugga ner träd."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -933,7 +933,7 @@ msgstr "Yxhuvud i järn"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
-msgstr ""
+msgstr "Arbetare +50% takt för att hugga ner träd."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -952,7 +952,7 @@ msgstr "Ökar stensamlings takt."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Tvinga livegna att hjälpa dina arbetare i gruvor. +15% stensamlings takt."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -974,7 +974,7 @@ msgstr "Tjänare"
 
 #: simulation/data/technologies/gather_mining_servants.jsonrequirementsTooltip
 msgid "Hire servants to help mine stone. No requirements."
-msgstr ""
+msgstr "Anställ tjänare för att hjälpa i gruvorna. Inga krav."
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
@@ -990,11 +990,11 @@ msgstr "Öka metallsamlings takt."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr ""
+msgstr "Utveckla schaktgruvor. +15% metallsamlings takt."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
-msgstr ""
+msgstr "Schaktgruvor"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
-msgstr ""
+msgstr "Silverbrytning"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
@@ -1015,7 +1015,7 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr ""
+msgstr "Köp slavar för att hjälpa dina arbetare i gruvor. +50% stensamlings takt."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1033,19 +1033,19 @@ msgstr "+15% metallsamlings takt."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
-msgstr ""
+msgstr "Kil och Hammare"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsonrequirementsTooltip
 msgid "Equip your workers with helpful tools. No requirements."
-msgstr ""
+msgstr "Utrusta dina arbetare med verktyg. Inga krav."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
-msgstr ""
+msgstr "Korgar för att bära samlad mat."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr ""
+msgstr "Utrusta dina samlare med korgar. +50% matsamlings takt."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -1066,7 +1066,7 @@ msgstr "Levnadsförhållanden"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing range of all healers."
-msgstr ""
+msgstr "Ökar helningstakten för alla helare."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
@@ -1081,7 +1081,7 @@ msgstr "Helningsräckvidd"
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
 msgid "Olympic Pantheon"
-msgstr ""
+msgstr "Olympiskt Panteon"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -1101,11 +1101,11 @@ msgstr "Öka helningstakten av alla helare."
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr ""
+msgstr "Helare +25% helningtakt."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr ""
+msgstr "Helningstakt"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
@@ -1115,7 +1115,7 @@ msgstr "Sphágia"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr ""
+msgstr "Helningstakt 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
@@ -1125,11 +1125,11 @@ msgstr ""
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr ""
+msgstr "Enheter garnisonerade i tempel helas snabbare."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr ""
+msgstr "Tempel +50% garnisonerad helningstakt."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
@@ -1162,11 +1162,11 @@ msgstr "Vävstolen"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr ""
+msgstr "Lås upp hälsoregeneration för dina enheter."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "Organiska enheter kommer att långsamt regenerera hälsa."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1174,27 +1174,27 @@ msgstr "Slagfältsmedicin"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr ""
+msgstr "Använding av geometriskt murverk ökar stabiliteten av försvarsmurar."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr ""
+msgstr "Stadsmurar +2 krossnings rustningsnivå, men +10% byggtid."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
-msgstr ""
+msgstr "Geometriskt Murverk"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr ""
+msgstr "Närstridsinfanteri +1 hack attack."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr ""
+msgstr "Användning av järn istället för brons gav spjut extra genomborrnings kraft."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr ""
+msgstr "Alla spjutenheter +2 hack attack."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
@@ -1218,36 +1218,36 @@ msgstr ""
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
-msgstr ""
+msgstr "Tjänare vs. Kil och Hammare"
 
 #: simulation/data/technologies/pair_gather_02.jsongenericName
 msgid "Serfs vs. Shaft Mining"
-msgstr ""
+msgstr "Livegna vs. Schaktgruvor"
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
-msgstr ""
+msgstr "Slavar vs. Silverbrytning"
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
-msgstr ""
+msgstr "Järnyxor vs. Skottkärror"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
-msgstr ""
+msgstr "Helningsräckvidd och Takt"
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr ""
+msgstr "Helningsräckvidd och Takt #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr ""
+msgstr "Garnisonerad helning vs. Självhelning"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
-msgstr ""
+msgstr "Kvinnor vs. Befolkning"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1262,7 +1262,7 @@ msgstr ""
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr ""
+msgstr "Infanteri hack rustning vs. Spjutmän stick rustning"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1270,35 +1270,35 @@ msgstr ""
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
-msgstr ""
+msgstr "Attack vs. Kostnad"
 
 #: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
 msgid "Attack vs. Packing"
-msgstr ""
+msgstr "Attack vs. Packning"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr ""
+msgstr "Kostnad vs. Rustning"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
-msgstr ""
+msgstr "Nattvakt vs. Kreneleringar"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
-msgstr ""
+msgstr "Murar byggtid vs. Hälsa"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr ""
+msgstr "Avancera från en livlig stad till en veritabel metropol, full av moderna teknologiska under."
 
 #: simulation/data/technologies/phase_city.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%"
-msgstr ""
+msgstr "Avancera till Storstadsfasen, som låser upp mer strukturer och enheter. Territorieradius för samhällscenter ökar med +50% igen."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1308,7 +1308,7 @@ msgstr "Storstadsfasen"
 #: simulation/data/technologies/phase_city.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
+msgstr "Krävar 4 nya Stadsfas strukturer (förutom murar eller samhällscenter)"
 
 #: simulation/data/technologies/phase_city.jsonspecificName.mace
 #: simulation/data/technologies/phase_city.jsonspecificName.spart
@@ -1333,7 +1333,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr ""
+msgstr "Avancerar från en liten by till en livlig stad, redo att expandera fort."
 
 #: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
@@ -1475,10 +1475,6 @@ msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr ""
-
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
 msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription

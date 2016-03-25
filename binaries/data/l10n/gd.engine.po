@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-01-08 09:47+0000\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-24 09:09+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
-msgstr "%s (togail ghnàthaichte)"
+msgstr "%s (build gnàthaichte)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
@@ -131,11 +131,11 @@ msgstr "Cha do thairg am frithealaiche an crioptachadh TLS riatanach"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Dh'fhàillig leis an dearbhadh. Chan eil am facal-faire mar bu chòir no chan eil an cunntas ann"
+msgstr "Dh’fhàillig leis an dearbhadh. Chan eil am facal-faire mar bu chòir no chan eil an cunntas ann"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr "Dh'iarr an cleachdaiche no an siostam briseadh a' cheangail"
+msgstr "Dh’iarr an cleachdaiche no an siostam briseadh a’ cheangail"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
@@ -156,9 +156,9 @@ msgstr "Tha an t-ainm-cleachdaiche ann mar-thà"
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Chaidh an geama a shàbhaladh gu \"%s\""
+msgstr "Chaidh an geama a shàbhaladh gu “%s”"
 
 #: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Chaidh an glacadh-sgrìn a shàbhaladh gu \"%s\""
+msgstr "Chaidh an glacadh-sgrìn a shàbhaladh gu “%s”"

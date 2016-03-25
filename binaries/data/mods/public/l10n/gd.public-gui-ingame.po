@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 12:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-24 10:47+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,16 +158,16 @@ msgstr[3] "Tha %(inactiveString)s ann."
 
 #: gui/session/menu.js:522
 msgid "There are no land traders."
-msgstr "Chan eil neach-margaid tìre ann."
+msgstr "Chan eil neach-malairt tìre ann."
 
 #: gui/session/menu.js:530
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "Tha %(numberTrading)s neach-margaid a’ malart"
-msgstr[1] "Tha %(numberTrading)s luchd-margaid a’ malart"
-msgstr[2] "Tha %(numberTrading)s luchd-margaid a’ malart"
-msgstr[3] "Tha %(numberTrading)s luchd-margaid a’ malart"
+msgstr[0] "Tha %(numberTrading)s neach-malairt a’ malart"
+msgstr[1] "Tha %(numberTrading)s luchd-malairt a’ malart"
+msgstr[2] "Tha %(numberTrading)s luchd-malairt a’ malart"
+msgstr[3] "Tha %(numberTrading)s luchd-malairt a’ malart"
 
 #: gui/session/menu.js:539
 #, javascript-format
@@ -317,11 +317,11 @@ msgstr "Adhbhar: %(reason)s."
 
 #: gui/session/messages.js:65
 msgid "Waiting for other players to connect..."
-msgstr "A’ feitheamh gus an ceangal na cluicheadairean eile ris..."
+msgstr "A’ feitheamh gus an ceangal na cluicheadairean eile ris…"
 
 #: gui/session/messages.js:66
 msgid "Synchronising gameplay with other players..."
-msgstr "A’ sioncronachadh cluiche a’ gheama ris na cluicheadairean eile..."
+msgstr "A’ sioncronachadh cluiche a’ gheama ris na cluicheadairean eile…"
 
 #: gui/session/messages.js:75
 #, javascript-format
@@ -349,7 +349,7 @@ msgstr "Sgioba"
 
 #: gui/session/messages.js:88
 msgid "Observer"
-msgstr ""
+msgstr "Amharc"
 
 #: gui/session/messages.js:89
 msgid "Private"
@@ -403,22 +403,22 @@ msgstr "Tha %(player)s neo-phàirteach ri %(player2)s a-nis."
 #: gui/session/messages.js:503
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "A h-uile duine"
 
 #: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Caidreabhaich"
 
 #: gui/session/messages.js:515
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Nàimhdean"
 
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Amhairc"
 
 #: gui/session/messages.js:650
 msgid "Unknown Player"
@@ -684,7 +684,7 @@ msgstr "Seas"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Thoiribh ionnsaigh air nàimhdean faisg oirbh, rachaibh às dèidh an fheadhainn a nì sabaid ribh fhad 's a chì sibh iad"
+msgstr "Thoiribh ionnsaigh air nàimhdean faisg oirbh, rachaibh às dèidh an fheadhainn a nì sabaid ribh fhad ’s a chì sibh iad"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
@@ -775,7 +775,7 @@ msgstr "Thug thu buaidh air càch!"
 
 #: gui/session/session.js:451
 msgid "You have been defeated..."
-msgstr "Chaidh ruaig a chur ort..."
+msgstr "Chaidh ruaig a chur ort…"
 
 #: gui/session/session.js:459
 msgid "You have abandoned the game."
@@ -787,7 +787,7 @@ msgstr "Ceart ma-thà"
 
 #: gui/session/session.js:603
 msgid "Press OK to continue"
-msgstr "Briog air \"Ceart ma-thà\" gus leantainn air adhart"
+msgstr "Briog air “Ceart ma-thà” gus leantainn air adhart"
 
 #: gui/session/session.js:609
 msgid "Do you want to quit?"
@@ -931,19 +931,19 @@ msgstr "Tagh bathar malairt"
 
 #: gui/session/unit_actions.js:907
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Brùth ach nach cleachd na caidreabhaich an t-ionad-stòrais seo"
 
 #: gui/session/unit_actions.js:911
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Brùth ach am faod na caidreabhaich an t-ionad-stòrais seo a chleachdadh"
 
 #: gui/session/unit_actions.js:970
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Faodaidh tu an t-ionad-stòrais seo a chleachdadh"
 
 #: gui/session/unit_actions.js:974
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Chan fhaod thu an t-ionad-stòrais seo a chleachdadh"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1089,12 +1089,12 @@ msgstr "Briog gus leantainn air adhart leis a’ gheama"
 #: gui/session/session.xml:(caption):216
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Gu:"
 
 #: gui/session/session.xml:(caption):224
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Teacsa:"
 
 #: gui/session/session.xml:(caption):239
 msgid "Cancel"
@@ -1107,21 +1107,21 @@ msgstr "Cuir a-null"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr ""
+msgstr "Tagh faightear na teachdaireachd cabadaich"
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Sgrìobh an teachdaireachd ri a cur."
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Lean air a’ chluicheadair"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "Modh amhairc"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1199,7 +1199,7 @@ msgstr "Clàr-taice"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

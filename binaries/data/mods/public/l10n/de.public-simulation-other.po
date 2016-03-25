@@ -10,13 +10,13 @@
 # Thelxinoe, 2015
 # qwertz, 2015
 # Raymond Vetter, 2014-2016
-# Xaver, 2015
+# Xaver, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2016-03-20 12:33+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"PO-Revision-Date: 2016-03-23 09:42+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,7 +156,7 @@ msgstr "Ich habe die %(phase)s erreicht."
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr "Warnung: Das ist ein fortgeschrittenes Tutorial und läuft ziemlich schnell. Wenn du nicht mithalten kannst, starte es einfach neu und versuch's nochmal. Übung macht den Meister!"
+msgstr "Achtung: Das ist ein fortgeschrittenes Tutorial und läuft ziemlich schnell. Wenn du nicht mithalten kannst, starte es einfach neu und versuch's nochmal. Übung macht den Meister!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
@@ -259,7 +259,7 @@ msgstr "Bewege die Holzfäller zu den Bäumen in der Nähe des Lagerhauses, dami
 msgid ""
 "Make sure the workers from the berry bushes are used to gather from the "
 "field rather than standing idle when they run out."
-msgstr "Sende die Arbeiter von den Beerenbüschen auf das Feld zum Ernten, damit sie nicht untätig herumstehen, wenn die Büsche abgeerntet sind."
+msgstr "Stelle sicher, dass die Arbeiter von den Beerenbüschen zur Feldarbeit abgestellt werden und nicht untätig herumstehen, wenn die Büsche abgeerntet sind."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
@@ -267,7 +267,7 @@ msgstr "Gib ein weiteres Haus in Auftrag."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr "Reihe weitere 5 Bürgerinnen zur Ausbildung ein. Sie werden Holz abbauen."
+msgstr "Reihe weitere 5 Bürgerinnen zur Ausbildung ein. Sie sollen Holz abbauen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
@@ -302,7 +302,7 @@ msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr "Lass jetzt 3 Holz- und 3 Steinsammlerinnen Feldarbeit verrichten. Frauen sind anfangs billig in der Ausbildung, doch später im Spiel ist es am besten die Effizienz zu maximieren, indem mehr Bürgersoldaten trainiert werden."
+msgstr "Lass jetzt 3 Holz- und 3 Steinsammlerinnen Feldarbeit verrichten. Frauen sind anfangs billig in der Ausbildung, doch später im Spiel ist es besser die Effizienz zu maximieren, indem mehr Bürgersoldaten ausgebildet werden."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
@@ -397,7 +397,7 @@ msgstr "– Schrecke nicht davor zurück, Einheiten anderen Ressourcen zuzuweise
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr "Baue genug Wohnhäuser. Das Dorfzentrum sollte so viele Einheiten ausbilden wie möglich."
+msgstr "– Baue genug Wohnhäuser. Das Dorfzentrum sollte so viele Einheiten ausbilden wie möglich."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -488,7 +488,7 @@ msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr "Schicke die untätigen Scharmützler an die nordöstliche Grenze deines Territoriums, um einen Außenposten zu errichten. Dies ist das fünfte Gebäude der Dorfphase, anschließend kannst du in die Stadtphase aufsteigen."
+msgstr "Schicke die untätigen Plänkler an die nordöstliche Grenze deines Territoriums, um einen Außenposten zu errichten. Dies ist das fünfte Gebäude der Dorfphase, anschließend kannst du in die Stadtphase aufsteigen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
@@ -617,7 +617,7 @@ msgstr "%(name)s kann nicht in %(territoryType)s Territorium gebaut werden. Gül
 #: simulation/components/BuildRestrictions.js:238
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s muss an einer geeigneten Küstenlinie gebaut werden"
+msgstr "%(name)s muss an einem geeigneten Küstenstreifen gebaut werden"
 
 #: simulation/components/BuildRestrictions.js:262
 #, javascript-format

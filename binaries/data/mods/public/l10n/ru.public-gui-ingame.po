@@ -48,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 12:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-23 19:00+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,7 +292,7 @@ msgstr "Пауза"
 
 #: gui/session/menu.js:714 gui/session/menu.xml:(caption):17
 msgid "Manual"
-msgstr "Учебник"
+msgstr "Руководство"
 
 #: gui/session/menu.js:730
 msgid "The Developer Overlay was closed."
@@ -841,7 +841,7 @@ msgstr "ПОБЕДА!"
 #: gui/session/session.js:724
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "Реплей завершён. Вы хотите выйти?"
+msgstr "Повтор завершён. Вы хотите выйти?"
 
 #: gui/session/session.js:725
 msgctxt "replayFinished"
@@ -968,19 +968,19 @@ msgstr "Выбрать товары"
 
 #: gui/session/unit_actions.js:907
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Нажмите, чтобы не допустить использование этой точки сбора ресурсов союзниками"
 
 #: gui/session/unit_actions.js:911
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Нажмите, чтобы разрешить использование этой точки сбора ресурсов союзниками"
 
 #: gui/session/unit_actions.js:970
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Вам разрешено использовать эту точку сбора ресурсов"
 
 #: gui/session/unit_actions.js:974
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Использование этой точки сбора ресурсов запрещено"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1144,7 +1144,7 @@ msgstr "Отправить"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr ""
+msgstr "Выберите получателя сообщения"
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
@@ -1154,7 +1154,7 @@ msgstr "Введите сообщение для отправки."
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Следовать за игроком"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
@@ -1236,7 +1236,7 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "Альфа XX : Timosthenes"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

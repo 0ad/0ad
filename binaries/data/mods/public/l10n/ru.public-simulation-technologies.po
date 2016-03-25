@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-19 18:47+0000\n"
-"Last-Translator: Alexander Olkhovskiy\n"
+"POT-Creation-Date: 2016-03-21 09:01+0100\n"
+"PO-Revision-Date: 2016-03-23 18:54+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -753,7 +753,7 @@ msgstr "Бойницы позволяют поражать врагов у по�
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
-msgstr ""
+msgstr "Убирает минимальный радиус атаки оборонительной башни."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -813,7 +813,7 @@ msgstr "Заставы держатся вдвое дольше на нейтр�
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "Упадок территории -50% для застав."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -855,7 +855,7 @@ msgstr "Конные телеги"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Засолка позволяет хранить рыбу дольше."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1373,7 +1373,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Рост от небольшой деревни до шумного города, готовьтесь быстро расширяться. Этот этап Афинского города увеличивает скорость добычи металлов благодаря бонусу \"Серебряные совы\"."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1481,15 +1481,11 @@ msgstr "Чудо привлекает гораздо больше людей в 
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "Добавляет +50 к пределу населения."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Славное расширение"
-
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1548,7 +1544,7 @@ msgstr "Улучшение точности снаряда"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Точность аркбалист увеличивается на 25%"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1584,7 +1580,7 @@ msgstr "Неподвижные осадные орудия собираются 
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% к времени развертывания и свертывания неподвижных осадных орудий."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1767,7 +1763,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit these "
 "countries wealth."
-msgstr ""
+msgstr "Расширение торговли приводит к постоянному контакту владельцев магазинов и их семей в зарубежных странах, что позволяет им использовать богатства этих стран."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Player can use his allies dropsites."
@@ -1779,7 +1775,7 @@ msgstr "Диаспора"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "Требуется 3 торговца"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2361,7 +2357,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "Маурьи строили городские стены из дерева, самого распространённого ресурса, поэтому их стены имели -20% прочности, но строились на 20% быстрее."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

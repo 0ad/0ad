@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 12:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-24 03:20+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -323,7 +323,7 @@ msgstr "Regu"
 
 #: gui/session/messages.js:88
 msgid "Observer"
-msgstr ""
+msgstr "Pengamat"
 
 #: gui/session/messages.js:89
 msgid "Private"
@@ -362,17 +362,17 @@ msgstr "%(player)s sekarang netral dengan anda."
 #: gui/session/messages.js:134
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s sekarang bersekutu dengan %(player2)s."
 
 #: gui/session/messages.js:135
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s sekarang berperang dengan %(player2)s."
 
 #: gui/session/messages.js:136
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s sekarang berhubungan netral dengan %(player2)s."
 
 #: gui/session/messages.js:503
 msgctxt "chat addressee"
@@ -392,7 +392,7 @@ msgstr "Musuh"
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Pengamat"
 
 #: gui/session/messages.js:650
 msgid "Unknown Player"
@@ -410,7 +410,7 @@ msgstr "%(player)s telah kalah."
 #: gui/session/messages.js:689
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s telah mengirim %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:691
 #, javascript-format
@@ -507,7 +507,7 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
+msgstr[0] "Jumlah pembangun.\nMenugaskan orang lain pada fondasi ini akan mempercepat pembangunan sebesar %(speedup)s detik."
 
 #: gui/session/selection_details.js:207 gui/session/selection_details.js:215
 msgid "Number of builders."
@@ -649,7 +649,7 @@ msgstr "Diam"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Serang musuh yang dekat, fokus ke penyerang dan mengejar selama terlihat"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
@@ -661,7 +661,7 @@ msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Serang musuh yang dekat, kejar untuk jarak yang pendek dan kembali ke posisi awal"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
@@ -769,7 +769,7 @@ msgstr "MENANG!"
 #: gui/session/session.js:724
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Tayangan ulang telah selesai. Apakah anda yakin ingin keluar?"
 
 #: gui/session/session.js:725
 msgctxt "replayFinished"
@@ -896,19 +896,19 @@ msgstr "Pilih barang dagangan"
 
 #: gui/session/unit_actions.js:907
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Tekan untuk mencegah sekutu menggunakan tempat penyimpanan ini"
 
 #: gui/session/unit_actions.js:911
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Tekan untuk mengijinkan sekutu menggunakan tempat penyimpanan ini"
 
 #: gui/session/unit_actions.js:970
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Anda diijinkan untuk menggunakan tempat penyimpanan ini"
 
 #: gui/session/unit_actions.js:974
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Penggunaan tempat penyimpanan ini dilarang"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -973,7 +973,7 @@ msgstr "Simpan"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "Ringkasan"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"
@@ -1059,7 +1059,7 @@ msgstr "Ke:"
 #: gui/session/session.xml:(caption):224
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Teks:"
 
 #: gui/session/session.xml:(caption):239
 msgid "Cancel"
@@ -1072,7 +1072,7 @@ msgstr "Kirim"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr ""
+msgstr "Pilih penerima pesan"
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
@@ -1082,11 +1082,11 @@ msgstr "Ketik pesan untuk mengirim."
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Ikuti Pemain"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "Mode Pengamat"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1164,7 +1164,7 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
