@@ -245,7 +245,7 @@ function init(initData, hotloadData)
 	initMenuPosition();
 
 	// Populate player selection dropdown
-	let playerNames = ["Observer"];
+	let playerNames = [translate("Observer")];
 	let playerIDs = [-1];
 	for (let player in g_Players)
 	{
