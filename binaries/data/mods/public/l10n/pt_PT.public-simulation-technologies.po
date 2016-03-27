@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Danny Reese <danny@angolateam.org>, 2016
 # João Oliveira <jopebeol@gmail.com>, 2016
 # mogafi, 2014-2015
 # Tiago Martins <tiguhmartins@gmail.com>, 2014
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-21 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-25 14:40+0000\n"
+"Last-Translator: Danny Reese <danny@angolateam.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -796,7 +797,7 @@ msgstr "As atalaias duram o dobro do tempo em território neutro."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "Redução em 50% da deterioração das atalaias."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -838,7 +839,7 @@ msgstr "Carroças puxadas a cavalos"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Salgadeira permite preservar os peixes mais tempo. "
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1464,7 +1465,7 @@ msgstr "A maravilha atrai muitas mais pessoas para a sua civilização."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "A capacidade populacional aumenta +50."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1527,7 +1528,7 @@ msgstr "Desenvolve a pontaria dos projécteis"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Aumenta a pontaria dos projécteis em 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1563,7 +1564,7 @@ msgstr "A maquinaria de cerco estacionada monta-se e desmonta-se mais rapidament
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% de tempo para montar e desmontar máquinas de cerco."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1746,19 +1747,19 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit these "
 "countries wealth."
-msgstr ""
+msgstr "A extensão de comércio faz com que negociantes e as suas famílias se estabeleçam permanentamente em países estrangeiros, possibilitando a exploração das suas riquezas."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Player can use his allies dropsites."
-msgstr ""
+msgstr "O jogador pode usar os armazéns dos aliados."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "Diáspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "Requer 3 Comerciantes"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2340,7 +2341,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "Os Maurias constroem as muralhas citadinas em madeira porque é um recurso abundante na Índia. Assim, as muralhas citadinas têm -20% de resistência mas são construidas em -20% de tempo."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

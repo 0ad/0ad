@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-24 10:46+0000\n"
+"PO-Revision-Date: 2016-03-27 17:34+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -790,7 +790,7 @@ msgstr "???"
 
 #: gui/common/tooltips.js:536
 msgid "Classes:"
-msgstr "Clasaichean:"
+msgstr "Seòrsa:"
 
 #: gui/credits/credits.js:35
 #, javascript-format
@@ -1186,7 +1186,7 @@ msgstr "Ainm a’ chluicheadair"
 
 #: gui/summary/layout.js:5
 msgid "Economy score"
-msgstr "Sgòr an eaconamaidh"
+msgstr "Eaconamaidh"
 
 #: gui/summary/layout.js:6
 msgid "Military score"
@@ -1194,11 +1194,11 @@ msgstr "Sgòr an airm"
 
 #: gui/summary/layout.js:7
 msgid "Exploration score"
-msgstr "Sgòr an rùrachaidh"
+msgstr "Rùrachadh"
 
 #: gui/summary/layout.js:8
 msgid "Total score"
-msgstr "An sgòr iomlan"
+msgstr "Iomlan"
 
 #: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
@@ -1234,7 +1234,7 @@ msgstr "Mìorbhailean"
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Stats nan togalaichean (air an togail / call / sgrios)"
+msgstr "Stadastaireachd nan togalaichean (air an togail / call / sgrios)"
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
@@ -1250,7 +1250,7 @@ msgstr "Eachraidh"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
-msgstr "Làn-ghaisgeach"
+msgstr "Laoch"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
@@ -1262,7 +1262,7 @@ msgstr "Fir-mhalairt"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Stats nan aonad (air an trèanadh / call / marbhadh)"
+msgstr "Stadastaireachd nan aonad (air an trèanadh / call / marbhadh)"
 
 #: gui/summary/layout.js:76
 msgid "Food"
@@ -1282,11 +1282,11 @@ msgstr "Meatailt"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
-msgstr "Cìsean (cur / fhaighinn)"
+msgstr "Cìsean (chuir / fhuair)"
 
 #: gui/summary/layout.js:82
 msgid "Treasures collected"
-msgstr "Ulaidhean air an togail"
+msgstr "Ulaidhean a thog thu"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
@@ -1294,7 +1294,7 @@ msgstr "Spùinn"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
-msgstr "Stats nan stòrasan (air an cruinneachadh / cleachdadh)"
+msgstr "Stadastaireachd nan stòrasan (air an cruinneachadh / cleachdadh)"
 
 #: gui/summary/layout.js:103
 msgid "Food exchanged"
@@ -1324,7 +1324,7 @@ msgstr "Teachd a-steach"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr "Co-mheas nan\nglasraichear"
+msgstr "Glasraichearan"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
@@ -1334,17 +1334,17 @@ msgstr "Boireannaich"
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr "Co-mheas\nmarbhaidh / bàsachaidh"
+msgstr "Marbhadh / bàs"
 
 #: gui/summary/layout.js:127
 msgid ""
 "Map\n"
 "exploration"
-msgstr "Rùrachadh\na’ mhapa"
+msgstr "Rùrachadh"
 
 #: gui/summary/layout.js:128
 msgid "At peak"
-msgstr "Mullach"
+msgstr "As motha"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
@@ -1352,7 +1352,7 @@ msgstr "Deireadh"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
-msgstr "Stiùireadh a’ mhapa"
+msgstr "Smachd air a’ mhapa"
 
 #: gui/summary/layout.js:277
 msgid "Team total"
@@ -1565,11 +1565,11 @@ msgstr "RABHADH: Seo tionndadh leasachaidh tràth dhen gheama. Tha iomadh feart 
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr "Cuir fiosrachadh a-null"
+msgstr "Cuir fiosrachadh"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr "Na cuir fiosrachadh a-null"
+msgstr "Na cuir fiosrachadh"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
@@ -2293,7 +2293,7 @@ msgstr "Tog dubhar agus ceò a’ chogaidh gu rèidh"
 
 #: gui/options/options.jsongraphicsSetting[13].label
 msgid "Smooth LOS"
-msgstr "LOS rèidh"
+msgstr "Loidhne-amhairc rèidh"
 
 #: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Render Sky"
@@ -2451,7 +2451,7 @@ msgstr "- Innealan-sèiste astair a tha math an aghaidh thogalachan."
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr "- Gabhaidh an àrdachadh ach an cleachd iad clachan air teine a chuireas ris an èifeachdachd an aghaidh thogalaichean ’s aonadan."
+msgstr "- Gabhaidh an àrdachadh ach an cleachd iad clachan lasrach a chuireas ris an èifeachdachd an aghaidh thogalaichean ’s aonadan."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
@@ -2772,7 +2772,7 @@ msgstr "- Tha ionnsaigh astair aca a mheudaicheas le gach aonad a bhios ’na gh
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "SPÀRTAICH"
+msgstr "HOMOIOI"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
@@ -2982,7 +2982,7 @@ msgstr "- 7 iomairtean an aghaidh nan Ròmanach air a char as lugha rè ’Cogai
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Gluaisidh e gu luath is ’s urrainn dha suids a dhèanamh eadar claidheamh agus gath ’na theine."
+msgstr "- Gluaisidh e gu luath is ’s urrainn dha suids a dhèanamh eadar claidheamh agus gath lasrach."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
@@ -2992,7 +2992,7 @@ msgstr "- Is “Tactica Guerilla” an t-aura aige a leigeas le aonadan Ibèirea
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr "AILBHEANAN COGAIDH"
+msgstr "AILBHEANAN-COGAIDH"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."

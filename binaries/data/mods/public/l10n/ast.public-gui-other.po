@@ -3,19 +3,18 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Ano nym <degers@gmx.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-25 20:31+0000\n"
-"Last-Translator: Ano nym <degers@gmx.de>\n"
-"Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
+"PO-Revision-Date: 2016-03-21 09:12+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: ast\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
@@ -27,14 +26,12 @@ msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
@@ -45,11 +42,10 @@ msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
 msgid "Heroes"
-msgstr "Junaci"
+msgstr ""
 
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
@@ -129,21 +125,21 @@ msgstr ""
 #: gui/common/l10n.js:4
 msgctxt "firstWord"
 msgid "Food"
-msgstr "Hrana"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:6
 msgctxt "firstWord"
 msgid "Meat"
-msgstr "Meso"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:8
 msgctxt "firstWord"
 msgid "Metal"
-msgstr "Metal"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -157,21 +153,21 @@ msgstr ""
 #: gui/common/l10n.js:12
 msgctxt "firstWord"
 msgid "Rock"
-msgstr "Kamen"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr "Ruševine"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:16
 msgctxt "firstWord"
 msgid "Stone"
-msgstr "Kamen"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -185,56 +181,56 @@ msgstr ""
 #: gui/common/l10n.js:20
 msgctxt "firstWord"
 msgid "Tree"
-msgstr "Drvo"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr "Drvo"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:24
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr "Voće"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr "Žito"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:28
 msgctxt "firstWord"
 msgid "Fish"
-msgstr "Riba"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Hrana"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "Meso"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "Metal"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -248,21 +244,21 @@ msgstr ""
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr "Kamen"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr "Ruševine"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr "Kamen"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -276,35 +272,35 @@ msgstr ""
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "Drvo"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Drvo"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "Voće"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr "Žito"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr "Riba"
+msgstr ""
 
 #: gui/common/l10n.js:82
 #, javascript-format
@@ -323,7 +319,7 @@ msgstr ""
 #: gui/common/tooltips.js:445 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:540
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -398,7 +394,7 @@ msgstr ""
 
 #: gui/common/network.js:77
 msgid "Disconnected"
-msgstr "Veza Izgubljena"
+msgstr ""
 
 #: gui/common/network.js:85
 #, javascript-format
@@ -433,7 +429,7 @@ msgstr ""
 #: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "Osrednji"
+msgstr ""
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
@@ -457,7 +453,6 @@ msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/settings.js:166
 msgctxt "map"
@@ -530,7 +525,6 @@ msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:58 gui/common/tooltips.js:241
 #: gui/common/tooltips.js:252 gui/common/tooltips.js:469
@@ -538,7 +532,6 @@ msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:66
 #, javascript-format
@@ -546,14 +539,12 @@ msgid "%(arrowcount)s %(arrow)s"
 msgid_plural "%(arrowcount)s %(arrow)s"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:68
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:71
 #, javascript-format
@@ -625,7 +616,6 @@ msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:206
 #, javascript-format
@@ -640,7 +630,6 @@ msgid "%(range)s %(meters)s"
 msgid_plural "%(range)s %(meters)s"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:219
 #, javascript-format
@@ -741,7 +730,6 @@ msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:456
 msgid "Heal:"
@@ -753,7 +741,6 @@ msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: gui/common/tooltips.js:482
 #, javascript-format
@@ -786,7 +773,7 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr "Ništa"
+msgstr ""
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
@@ -798,7 +785,7 @@ msgstr ""
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "Yes"
-msgstr "Da"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
@@ -806,12 +793,12 @@ msgstr "Da"
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "No"
-msgstr "Ne"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
@@ -842,20 +829,20 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
-msgstr "onemogućen"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:88
 msgid "connecting to server"
-msgstr "spajanje na server"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:93
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr "prenošenje podataka s terminala na računalo (%f%%)"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:100
 msgid "upload succeeded"
-msgstr "prenošenje podataka s terminala na računalo je uspjelo"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:102
 #, javascript-format
@@ -869,7 +856,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:112
 msgid "unknown"
-msgstr "nepoznato"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:156
 #, javascript-format
@@ -886,15 +873,15 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:162
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Molim Vas da odaberte \"Pročitaj još\" za  dodatne informacije ili \"OK\" za nastavak."
+msgstr ""
 
 #: gui/pregame/mainmenu.js:163
 msgid "WARNING!"
-msgstr "UPOZORENJE!"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:165
 msgid "Read More"
-msgstr "Pročitaj više"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:258
 #, javascript-format
@@ -903,11 +890,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:289
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Jeste li sigurni da želite napustiti 0 A.D.?"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:289
 msgid "Confirmation"
-msgstr "Potvrda"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:299
 msgid ""
@@ -917,7 +904,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:75
 msgid "Error"
-msgstr "Greška"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:304
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -926,7 +913,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr "Tehnički detalji"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
@@ -934,7 +921,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:31
 msgid "You"
-msgstr "Vi"
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
@@ -960,7 +947,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
-msgstr "U redu."
+msgstr ""
 
 #: gui/replaymenu/replay_actions.js:75
 msgid "No summary data available."
@@ -1011,7 +998,6 @@ msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1021,7 +1007,6 @@ msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
@@ -1146,7 +1131,7 @@ msgstr ""
 
 #: gui/structree/draw.js:348
 msgid "Health:"
-msgstr "Zdravlje:"
+msgstr ""
 
 #: gui/structree/draw.js:368
 #, javascript-format
@@ -1194,7 +1179,7 @@ msgstr ""
 
 #: gui/summary/layout.js:24
 msgid "Economic"
-msgstr "Gospodarstvo"
+msgstr ""
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
@@ -1202,11 +1187,11 @@ msgstr ""
 
 #: gui/summary/layout.js:26
 msgid "Military"
-msgstr "Vojska"
+msgstr ""
 
 #: gui/summary/layout.js:27
 msgid "Fortresses"
-msgstr "Tvrđave"
+msgstr ""
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
@@ -1214,7 +1199,7 @@ msgstr ""
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr "Čuda"
+msgstr ""
 
 #: gui/summary/layout.js:32
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
@@ -1222,23 +1207,23 @@ msgstr ""
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
-msgstr "Pješaštvo"
+msgstr ""
 
 #: gui/summary/layout.js:51
 msgid "Worker"
-msgstr "Radnik"
+msgstr ""
 
 #: gui/summary/layout.js:52
 msgid "Cavalry"
-msgstr "konjica"
+msgstr ""
 
 #: gui/summary/layout.js:53
 msgid "Champion"
-msgstr "Prvak"
+msgstr ""
 
 #: gui/summary/layout.js:55
 msgid "Navy"
-msgstr "Mornarica"
+msgstr ""
 
 #: gui/summary/layout.js:56
 msgid "Traders"
@@ -1246,23 +1231,23 @@ msgstr ""
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "statistika jedinica (obučene/ izgubljene/ ubijene)"
+msgstr ""
 
 #: gui/summary/layout.js:76
 msgid "Food"
-msgstr "Hrana"
+msgstr ""
 
 #: gui/summary/layout.js:77
 msgid "Wood"
-msgstr "Drvo"
+msgstr ""
 
 #: gui/summary/layout.js:78
 msgid "Stone"
-msgstr "Kamen"
+msgstr ""
 
 #: gui/summary/layout.js:79
 msgid "Metal"
-msgstr "Metal"
+msgstr ""
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
@@ -1364,7 +1349,7 @@ msgstr ""
 #: gui/options/options.xml:(caption):88
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
-msgstr "Zatvori"
+msgstr ""
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
@@ -1417,11 +1402,11 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:(caption):65
 #: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
-msgstr "Odustani"
+msgstr ""
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Napredan"
+msgstr ""
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -1477,11 +1462,11 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):35
 msgid "Graphics Settings"
-msgstr "Grafičke Postavke"
+msgstr ""
 
 #: gui/options/options.xml:(caption):48
 msgid "Sound Settings"
-msgstr "Zvukovne Postavke"
+msgstr ""
 
 #: gui/options/options.xml:(caption):61
 msgid "Lobby Settings"
@@ -1497,7 +1482,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):83 gui/savedgames/save.xml:(caption):47
 msgid "Save"
-msgstr "Sačuvaj"
+msgstr ""
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
@@ -1517,25 +1502,25 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
-msgstr "Pomozite poboljšati 0 A.D."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:64
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Možete nam automatski poslati povratne informacije pomoću kojih ćemo  popraviti greške u programu i povećati učinkovitost i  sklad. "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Hvala Vam što pomažate  poboljšati 0 A.D.!"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
-msgstr "Mogućnost anonimnog slanja povratnih informacija je trenutno aktivna. "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
-msgstr "Status: $status."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XX: Timosthenes"
@@ -1545,15 +1530,15 @@ msgstr ""
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "Upozorenje: Ova igra je još u razvojnoj verziji. Mnoge značajke još nisu dodane."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr "Omogući povratne informacije. "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr "Onemogući povratne informacije. "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
@@ -1562,36 +1547,36 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
-msgstr "Povijest"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
-msgstr "Partije (igre)"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):222
 msgid "Campaigns"
-msgstr "Kampanje"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
-msgstr "Učitajte igru "
+msgstr ""
 
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):262
 msgid "Join Game"
-msgstr "Pridruži se igri "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
-msgstr "Budite domaćin igre"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
-msgstr "Predvorje igre"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
-msgstr "Opcije"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
@@ -1599,11 +1584,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
-msgstr "Urednik Scenarija "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
-msgstr "Zaslon dobrodošlice "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
@@ -1611,35 +1596,35 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
-msgstr "Naučite igrati"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
-msgstr "Jedan igrač"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
-msgstr "Više igrača"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
-msgstr "Alati & Opcije"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
-msgstr "Izlaz"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
-msgstr "web stranica"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
-msgstr "Chat"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
-msgstr "Prijavite grešku u programu "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
@@ -1651,11 +1636,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
-msgstr "Otvorite upute za igru 0 A.D."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -1663,11 +1648,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "Saznajte više o mnogim civilazacijama koje su predstavljene u 0 A.D."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
-msgstr "Kliknite ovdje kako bi počeli novu igru za jednog igrača."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):223
 msgid ""
@@ -1677,23 +1662,23 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
-msgstr "Kliknite ovdje kako bi učitali pohranjenu igru"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):263
 msgid "Joining an existing multiplayer game."
-msgstr "Pridružite se postojećoj igri s više igrača."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Budite domaćin igre.\\n\\nZahtijeva otvoreni UDP port 20595."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr "Pokreni multiplayer lobby."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
-msgstr "Prilagodi postavke igre."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
@@ -1711,7 +1696,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Pokaži zaslon za dobrodošlicu. Korisno ako ste ga greškom sakrili. "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
@@ -1725,33 +1710,33 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
-msgstr "Igrajte protiv računalnog igrača "
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Borite se protiv jednog ili više  ljudskih igrača"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):498
 msgid "Game options and scenario design tools."
-msgstr "Postavke igre i alati za oblikovanje vlastitog scenarija"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
-msgstr "Napušta igru."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Kliknite kako bi otvorili play0ad.com u svom web pregledniku."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):560
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "Kliknite kako bi otvorili  0 A.D. IRC chat u svom web pregledniku. (#0ad on webchat.quakenet.org)"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Kliknite kako bi posjetili 0 A.D. Trac kako bi prijavili nepravilnost, pad sistema ili grešku."
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):584
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -1855,7 +1840,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr "Pokaži ovu poruku u budućnosti"
+msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
@@ -1887,11 +1872,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):93
 msgid "Market"
-msgstr "Tržnica"
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Continue"
-msgstr "Nastavi"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2013,11 +1998,11 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "Start 0 A.D. in a window"
-msgstr "Pokrenite 0 A.D. u prozoru"
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[0].label
 msgid "Windowed Mode"
-msgstr "Program pokrenut u prozoru."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[1].tooltip
 msgid "Pause single player games when window loses focus"
@@ -2025,17 +2010,17 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Background Pause"
-msgstr "Pozadinska pauza."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr "Ako potpuno deaktivirate zaslon, mogli bi propustiti važne najave. Još uvijek ga možete pokrenuti  iz glavnog izbornika."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[2].label
 msgid "Disable Welcome Screen"
-msgstr "Deaktiviraj zaslon dobrodošlice "
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[3].tooltip
 msgid ""
@@ -2117,7 +2102,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Gain"
-msgstr "Pojačavanje glavnog zvuka"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2125,7 +2110,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Gain"
-msgstr "Pojačavanje glazbe"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2193,7 +2178,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[3].label
 msgid "Shadows"
-msgstr "Sjene"
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid "Smooth shadows"
@@ -2387,7 +2372,7 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr "KOVAČ"
+msgstr ""
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."

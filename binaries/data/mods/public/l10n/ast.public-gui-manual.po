@@ -3,52 +3,49 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# fri, 2014-2016
-# Robin Kriebel <kriebel.robin@gmail.com>, 2016
-# Vojtěch Valigura <Encounter@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-25 20:47+0000\n"
-"Last-Translator: fri\n"
-"Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
+"PO-Revision-Date: 2016-03-18 08:42+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: ast\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gui/manual/manual.xml:(caption):12
 msgid "Information"
-msgstr "Informace"
+msgstr ""
 
 #: gui/manual/manual.xml:(caption):20
 msgid "Close"
-msgstr "Zavřít"
+msgstr ""
 
 #: gui/manual/manual.xml:(caption):24
 msgid "View Online"
-msgstr "Na internetu"
+msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]Příručka ve hře 0 A.D."
+msgstr ""
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr "[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:3
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Děkujeme vám za to, že jste nainstalovali 0 A.D.! Tato stránka vám podá krátký přehled o funkcích, jež jsou dostupné v této nehotové, stále vyvíjené alfa verzi hry."
+msgstr ""
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr "[font=\"sans-bold-16\"]Nastavení grafiky"
+msgstr ""
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -58,11 +55,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Mezi režimem na celou obrazovku a okenním režimem se přepnete stisknutím Alt + Enter. V okenním režimu můžete měnit velikost okna. Pokud běží hra příliš pomalu, můžete změnit některá nastavení v souboru s nastavením: Hledejte binaries/data/config/default.cfg v umístění, kam byla hra nainstalována, což vám dá pokyny pro úpravy, a zkuste zákaz voleb týkajících se efektního zobrazení vody a stínů."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr "[font=\"sans-bold-16\"]Hraní hry"
+msgstr ""
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -70,43 +67,43 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]Ovládání a způsob hry by měly být známy uživatelům z tradičních her RTS. V současnosti chybí spousta funkcí a statistiky jsou špatně vyváženy – Pravděpodobně si budete muset počkat na to, až bude vydána beta verze poběží. Pak už to poběží dobře."
+msgstr ""
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
-msgstr "Základní ovládání:"
+msgstr ""
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Klepnutí levým tlačítkem myši pro výběr jednotek."
+msgstr ""
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Klepnutí levým tlačítkem myši a tažení pro výběr skupin jednotek."
+msgstr ""
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Klepnutí pravým tlačítkem myši pro poslání jednotek na cíl."
+msgstr ""
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• Klávesy šipek nebo klávesy WASD pro pohyb kamery."
+msgstr ""
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + klávesy šipek, nebo Shift + kolečko myši pro otáčení kamery."
+msgstr ""
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Kolečko myši, nebo klávesy \"+\" a \"-\" pro přibližování a oddalování."
+msgstr ""
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr "[font=\"sans-bold-16\"]Režimy"
+msgstr ""
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr "[font=\"sans-14\"]Hlavní nabídka nabízí přístup ke dvěma herním režimům:"
+msgstr ""
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -115,13 +112,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Hra pro jednoho hráče[font=\"sans-14\"] — Hrajte hru v režimu pískoviště proti jednomu nebo více protivníkům s umělou inteligencí. Umělá inteligence je ve vývoji a nemusí být vždy na úrovni novýchfunkcí, ale můžete si vyzkoušet hraní hry proti skutečnému protivníkovi, pokud nemůžete hrát s člověkem."
+msgstr ""
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Hra pro více hráčů[font=\"sans-14\"] — Hrajte proti lidským soupeřům na internetu."
+msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -129,39 +126,39 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Pro nastavení hry pro více hráčů musí jeden hráč vybrat možnost \"Pořádat hru\". Hra používá port UDP 20595, takže pořadatel musí pro její povolení nastavit NAT/firewall/atd. Jiní hráči potom mohou vybrat Připojit se ke hře a zadat adresu IP pořadatele."
+msgstr ""
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr "[font=\"sans-bold-16\"]Nastavení hry"
+msgstr ""
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]Ve hře pro více hráčů může měnit možnosti pro nastavení hry pouze hostitel."
+msgstr ""
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr "Nejprve, vyberte jaký typ mapy chcete hrát:"
+msgstr ""
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Náhodná Mapa[font=\"sans-14\"] — Mapa automaticky vytvořena skriptem"
+msgstr ""
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr "• [font=\"sans-bold-14\"]Mapa Scénáře[font=\"sans-14\"] — Mapa vytvořená návrháři s pevně přednastavenými civilizacemi"
+msgstr ""
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Mapa Potyčky[font=\"sans-14\"] — Mapa vytvořená návrháři, kde si  lze civilizaci vybrat"
+msgstr ""
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -170,7 +167,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "Potom lze mapy dále filtrovat. Výchozí mapy jsou všeobecně hratelné. Námořní mapy jsou mapami, kde ne všichni protivníci jsou dosažitelní po souši a ukázkové mapy se používají ke zkušebním účelům (obecně se moc hrát nedají). Filtr Všechny mapy ukazuje všechny mapy dohromady v jednom seznamu."
+msgstr ""
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -179,375 +176,375 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr "Nakonec změňte nastavení. U náhodných map jde o počet hráčů, velikost mapy atd. U scénářů můžete zvolit jen to, kdo ovládá kterého hráče (rozhoduje, kde na mapě začnete atd.). Možnosti jsou buď lidský hráč nebo umělá inteligence, nebo vůbec žádný hráč - protivník bude prostě zůstávat v nečinnosti."
+msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Až budete připraven začít, klepněte na tlačítko Spustit hru."
+msgstr ""
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr "[font=\"sans-bold-16\"]Klávesové zkratky:"
+msgstr ""
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr "[font=\"sans-bold-14\"]Vždy"
+msgstr ""
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: Ukončit hru, bez potvrzení"
+msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: Přepnout mezi režimem na celou obrazovku a okenním režimem"
+msgstr ""
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
-msgstr "~ nebo F9: Ukázat/Skrýt konzoli"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: Ukázat/Skrýt počítadlo snímků (FPS)"
+msgstr ""
 
 #: gui/manual/intro.txt:48
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr "F11: Povolit/Zakázat profilování ve skutečném čase (přepíná se přes zobrazení informací)"
+msgstr ""
 
 #: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11: Uložit data nynějšího profilu do \"logs/profile.txt\""
+msgstr ""
 
 #: gui/manual/intro.txt:50
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Sejmout snímek obrazovky (ve formátu .png, umístění je zobrazeno v levé horní části uživatelského rozhraní, jakmile byl soubor uložen, a lze je také vidět v konzoli/zápisech, pokud je tu propásnete)"
+msgstr ""
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Udělat obrovský snímek obrazovky (6400px*4800px, ve formátu .bmp, umístění je zobrazeno v levé horní části uživatelského rozhraní, jakmile byl soubor uložen, a lze je také vidět v konzoli/zápisech, pokud je tu propásnete)"
+msgstr ""
 
 #: gui/manual/intro.txt:53
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr "[font=\"sans-bold-14\"]Ve hře"
+msgstr ""
 
 #: gui/manual/intro.txt:54
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Dvojité kliknutí levým tlačítkem myši \\[na jednotku]: Vybrat všechny své jednotky tohoto typu na obrazovce (i když jde o jednotky různých hodností)"
+msgstr ""
 
 #: gui/manual/intro.txt:55
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr "Trojité kliknutí levým tlačítkem myši \\[na jednotku]: Vybrat všechny své na obrazovce se nacházející jednotky téhož typu"
+msgstr ""
 
 #: gui/manual/intro.txt:56
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr "Alt + dvojité kliknutí levým tlačítkem myši \\[na jednotku]: Vybrat všechny své stejné jednotky na mapě (i když jde o jednotky různých hodností)"
+msgstr ""
 
 #: gui/manual/intro.txt:57
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + trojité kliknutí levým tlačítkem myši \\[na jednotku]: Vybrat všechny své na celé mapě se nacházející jednotky téhož typu a hodnosti"
+msgstr ""
 
 #: gui/manual/intro.txt:58
 msgid "Shift + F5: Quicksave"
-msgstr "Shift + F5: Rychlé uložení"
+msgstr ""
 
 #: gui/manual/intro.txt:59
 msgid "Shift + F8: Quickload"
-msgstr "Shift + F8: Rychlé načtení"
+msgstr ""
 
 #: gui/manual/intro.txt:60
 msgid "F10: Open/close menu"
-msgstr "F10: Otevřít/Zavřít nabídku"
+msgstr ""
 
 #: gui/manual/intro.txt:61
 msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: Ukázat/Skrýt počítadlo uplynulého času"
+msgstr ""
 
 #: gui/manual/intro.txt:62
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: Zavřit všechny dialogy (rozhovor, menu) nebo zrušit výběr jednotek."
+msgstr ""
 
 #: gui/manual/intro.txt:63
 msgid "Enter/return: Open/send chat"
-msgstr "Enter: Otevřít rozhovor/Poslat zprávu"
+msgstr ""
 
 #: gui/manual/intro.txt:64
 msgid "T: Send team chat"
-msgstr "T: Poslat zprávu skupině"
+msgstr ""
 
 #: gui/manual/intro.txt:65
 msgid "Pause: Pause/resume the game"
-msgstr "Pause: Pozastavit hru/Pokračovat ve hře"
+msgstr ""
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected unit/units/building/buildings"
-msgstr "Delete: Smazat nyní vybranou jednotku/jednotky/stavbu/stavby"
+msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid ",: Select idle fighters"
-msgstr ",: Vybrat nečinné bojovníky"
+msgstr ""
 
 #: gui/manual/intro.txt:68
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Vybrat nečinné pracovníky (včetně občanských vojáků)"
+msgstr ""
 
 #: gui/manual/intro.txt:69
 msgid "H: Stop (halt) the currently selected units."
-msgstr "H: Zastavit nyní vybrané jednotky."
+msgstr ""
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (atd. až po Ctrl + 0): Vytvořit z vybraných jednotek/staveb skupinu 1 (až 0) "
+msgstr ""
 
 #: gui/manual/intro.txt:71
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (atd. až po 0): Vybrat jednotky/stavby ve skupině 1 (to 0)"
+msgstr ""
 
 #: gui/manual/intro.txt:72
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Shift + 1 (to 0): Přidat řízenou skupinu 1 (až 0) k vybraným jednotkám/stavbám"
+msgstr ""
 
 #: gui/manual/intro.txt:73
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (atd. až po F8): Označit nynější polohu kamery, aby se na ni dalo později skočit zpět."
+msgstr ""
 
 #: gui/manual/intro.txt:74
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5, F6, F7 a F8: Přesunout kameru na označenou polohu. Skočit zpět na poslední místo, pokud je kamera již nad označenou polohu."
+msgstr ""
 
 #: gui/manual/intro.txt:75
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Pokud jsou vybrány výcvikové stavby, přidat první, druhou (...) jednotku do výcvikové řady pro všechny vybrané budovy."
+msgstr ""
 
 #: gui/manual/intro.txt:77
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]Změnit činnost myši"
+msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + klepnutí pravým tlačítkem myši na budovu: Obsadit"
+msgstr ""
 
 #: gui/manual/intro.txt:79
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + klepnutí pravým tlačítkem myši: Zařadit příkaz pro přesun/stavbu/sběr/atd. do řady"
+msgstr ""
 
 #: gui/manual/intro.txt:80
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + klepnutí levým tlačítkem myši při výcviku jednotky/jednotek: Přidat jednotky ve skupinách po pěti"
+msgstr ""
 
 #: gui/manual/intro.txt:81
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + klepnutí levým tlačítkem myši nebo tažení levým tlačítkem myši nad jednotkou na mapě: Přidat jednotku do výběru"
+msgstr ""
 
 #: gui/manual/intro.txt:82
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + klepnutí levým tlačítkem myši nebo tažení levým tlačítkem myši nad jednotkou na mapě: Odstranit jednotku z výběru"
+msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + tažení levým tlačítkem myši nad jednotkami na mapě: Vybrat pouze vojenské jednotky"
+msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr "I + tažení levým tlačítkem myši nad jednotkami na mapě: Vybrat pouze nečinné jednotky"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + klepnutí levým tlačítkem myši na ikonu pro jednotku/skupinu, když je vybráno více jednotek: Zrušit výběr"
+msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Klepnutí pravým tlačítkem myši, když je vybrána stavba/stavby: Nastaví shromažďovací bod pro jednotky vytvořené/odvelené z té budovy."
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + klepnutí pravým tlačítkem myši, když jsou vybrány jednotky:"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "    - Když je ukazovátko myši nad budovou: Obsadit, ubytovat"
+msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "    - Když je ukazovátko myši nad jednotkou, která není spojenecká, nebo budovou: Zaútočit (místo zajmutí nebo sebrání)"
+msgstr ""
 
 #: gui/manual/intro.txt:90
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr "    - Jinak: Zaútočit (Ve výchozím nastavení jsou zaměřeny všechny nepřátelské jednotky a veškeré budovy nacházející se podél cesty. Použijte Ctrl + Q + klepnutí pravým tlačítkem myši, aby byly zaměřeny pouze jednotky). "
+msgstr ""
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr "[font=\"sans-bold-14\"]Vrstvy"
+msgstr ""
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"sans-14\"]Alt + G: Ukázat/Skrýt rozhraní"
+msgstr ""
 
 #: gui/manual/intro.txt:94
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Ukázat/Skrýt vývojářskou vrstvu (s vývojářskými možnostmi)"
+msgstr ""
 
 #: gui/manual/intro.txt:95
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr "Alt + W: Přepnout drátový režim (stisknout jednou pro pokrytí texturovaných modelů drátěnou kostrou, dvakrát pro získání drátěné sítě obarvené texturami, třikrát pro návrat do normálního texturovaného režimu)"
+msgstr ""
 
 #: gui/manual/intro.txt:96
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr "Alt + S: Přepnout obrysy jednotek (může mírně zlepšit výkon)"
+msgstr ""
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Přepnout oblohu"
+msgstr ""
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]Přizpůsobení kamery"
+msgstr ""
 
 #: gui/manual/intro.txt:100
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr "[font=\"sans-14\"]W nebo \\[šipka nahoru]: Pohybovat kamerou nahoru"
+msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "S or \\[down]: Pan screen down"
-msgstr "S nebo \\[šipka dolů]: Zabírat obrazovku v pohybu dolů"
+msgstr ""
 
 #: gui/manual/intro.txt:102
 msgid "A or \\[left]: Pan screen left"
-msgstr "A nebo \\[šipka vlevo]: Zabírat obrazovku v pohybu doleva"
+msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid "D or \\[right]: Pan screen right"
-msgstr "D nebo \\[šipka vpravo]: Zabírat obrazovku v pohybu doprava"
+msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr "Ctrl + W nebo \\[šipka nahoru]: Otáčet kamerou, aby pohled směřoval nahoru"
+msgstr ""
 
 #: gui/manual/intro.txt:105
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr "Ctrl + S nebo \\[šipka dolů]: Otáčet kamerou, aby pohled směřoval dolů"
+msgstr ""
 
 #: gui/manual/intro.txt:106
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A nebo \\[šipka vlevo]: Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny"
+msgstr ""
 
 #: gui/manual/intro.txt:107
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D nebo \\[šipka vpravo]: Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny"
+msgstr ""
 
 #: gui/manual/intro.txt:108
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr "Q: Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny"
+msgstr ""
 
 #: gui/manual/intro.txt:109
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr "E: Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny"
+msgstr ""
 
 #: gui/manual/intro.txt:110
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr "Shift + otáčení kolečkem myši nahoru: Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny"
+msgstr ""
 
 #: gui/manual/intro.txt:111
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Shift + otáčení kolečkem myši dolů: Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny"
+msgstr ""
 
 #: gui/manual/intro.txt:112
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr "F: Sledovat vybranou jednotku (pohnout kamerou kvůli zastavení sledování jednotky/jednotek)"
+msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid "R: Reset camera zoom/orientation"
-msgstr "R: Nastavit znovu přiblížení/natočení kamery"
+msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Přiblížit (podržet stisknuto pro nepřetržité přibližování)"
+msgstr ""
 
 #: gui/manual/intro.txt:115
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr "-: Oddálit (podržet stisknuto pro nepřetržité přibližování)"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr "Alt + W: Přepínat režimy drátěných modelů"
+msgstr ""
 
 #: gui/manual/intro.txt:117
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr "Prostřední tlačítko myši nebo / (lomítko dopředu): Podržet stisknuté a pohybovat myší pro pojíždění"
+msgstr ""
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr "[font=\"sans-bold-14\"]Během umísťování budovy"
+msgstr ""
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"sans-14\"]\\[: Otáčet stavbou o patnáct stupňů proti směru hodinových ručiček"
+msgstr ""
 
 #: gui/manual/intro.txt:121
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr "]: Otáčet stavbou o patnáct stupňů po směru hodinových ručiček"
+msgstr ""
 
 #: gui/manual/intro.txt:122
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr "Tažení levým tlačítkem myši: Otáčet stavbou pomocí myši (základ bude umístěn při uvolnění tlačítka myši)"
+msgstr ""
 
 #: gui/manual/intro.txt:124
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr "[font=\"sans-bold-14\"]Při načítání uložené hry"
+msgstr ""
 
 #: gui/manual/intro.txt:125
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr "[font=\"sans-14\"]Delete: Smazat vybranou uloženou hru a zeptat se na potvrzení"
+msgstr ""
 
 #: gui/manual/intro.txt:126
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr "Shift: Neptat se na potvrzení při mazání uložené hry"
+msgstr ""
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -556,42 +553,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "Jelikož je toto volně dostupná hra s otevřenými zdrojovým kódem, nemáme dostatek prostředků na její testování na širokém spektru systémů. Zároveň ale chceme dopřát maximální zážitek ze hry co možná nejvíce hráčům. Pokud povolíte automatické zasílání zpětné vazby, získáme tím data, která nám pomohou zjistit, na jaký hardware bychom se měli více zaměřit a pomůžete nám rovněž nalézt problémy v běhu hry."
+msgstr ""
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr "Následující data budou poslána našemu serveru:"
+msgstr ""
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
 "reports from the same user."
-msgstr "• ID náhodného uživatele (uloženo v %APPDATA%\\0ad\\config\\user.cfg na Windows, ~/.config/0ad/config/user.cfg na Unixu), kvůli rozpoznání opakovaných zpráv od téhož uživatele."
+msgstr ""
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• Verze hry a základní nastavení sestavení (optimalizační režim, procesorová architektura, časové razítko, verze překladače)."
+msgstr ""
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "Podrobnosti hardware: verze OS, verze ovladačů grafické karty, možnosti OpenGL, velikost obrazovky, podrobnosti CPU, velikost paměti."
+msgstr ""
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "• Podrobnosti k výkonu: snímek časových dat několik sekund poté, co jste spustili hru nebo změnili nastavení grafiky."
+msgstr ""
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "Pokaždé, když hru spustíte, bude použito jen několik kilobytů dat, takže bude síťová zátěž jen minimální."
+msgstr ""
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -600,4 +597,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Odeslaná data budeme ukládat na našem serveru a případně zveřejníme statistiky nebo uživatelsky neurčitelná data, abychom pomohli jiným vývojářům hry s podobnými otázkami. Budeme ukládat adresy IP, ze kterých data odešla, abychom pomohli rozpoznat zneužití této služby, ale nebudeme je zveřejňovat. Na uveřejněná data se lze podívat na http://feedback.wildfiregames.com/"
+msgstr ""
