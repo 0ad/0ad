@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Allan Nordhøy <epost@anotheragency.no>, 2016
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Ole Sannes Riiser <OLE-SR@online.no>, 2015
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-21 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-28 05:06+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -733,15 +734,15 @@ msgstr "Robuste fundamenter"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Fallgraver tillater angrep av motstandere ved tårnets base."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
-msgstr ""
+msgstr "Fjern minimumsrekkevidde for forsvarstårn."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "Fallgraver"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -797,7 +798,7 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "-50% territoriumsforfallstakt for utposter."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -839,7 +840,7 @@ msgstr "Heste-tegnet kart"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Foredling gjennom salting øker holdbarheten på fisken."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -871,7 +872,7 @@ msgstr "Arbeidere +25% jordbruks-hastighet."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
-msgstr ""
+msgstr "Kunstgjødsel"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid "A horse drawn instrument to turn the sod."
@@ -879,7 +880,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr ""
+msgstr "Utrust dine arbeidere med jernploger. +15% gårdsdriftshastighet."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -887,11 +888,11 @@ msgstr "Jern plog"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "Opptrening for arbeidere for å øke matinnsamlingshastigheten."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr ""
+msgstr "Arbeidere +15% jordbruks-hastighet."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -899,16 +900,16 @@ msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Using net improves the fishing productivity."
-msgstr ""
+msgstr "Bruk garn for å øke fiskefangsten."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "Bruk garn på dine fiskebåter. +30% økt fiske. Låser opp salting av fisk."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr ""
+msgstr "Fiskenett"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -919,7 +920,7 @@ msgstr "Øker hastigheten for innsamling av tømmer fra trær."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr ""
+msgstr "Arbeidere +15% tømmerinnsamlingsrate for trær."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -927,7 +928,7 @@ msgstr "Øksehoder av jern"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
-msgstr ""
+msgstr "Arbeidere +50% tømmerinnsamlingsrate for trær."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -935,7 +936,7 @@ msgstr "Skarpt øksehode"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Ax"
-msgstr ""
+msgstr "Sterkere øks"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 #: simulation/data/technologies/gather_mining_servants.jsondescription
@@ -960,7 +961,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
-msgstr ""
+msgstr "+15% steininnsamlingstakt."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -980,19 +981,19 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "Øker hastighet for sanking av metall."
+msgstr "Øker hastighet for utvinning av metall."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr ""
+msgstr "Utvikle sjaktgruver. +15 metallutvinningstakt."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
-msgstr ""
+msgstr "Sjaktgruve"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr ""
+msgstr "Treff en åre med verdifullt sølv. +50% metallutvinningstakt."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -1023,7 +1024,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
-msgstr ""
+msgstr "+15% metallutvinningstakt."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1035,23 +1036,23 @@ msgstr "Utstyr alle dine arbeidere med nyttige verktøy. Ingen krav."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
-msgstr ""
+msgstr "Kurver til matauk."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr ""
+msgstr "Utstyr dine mataukere med flettede kurver. +50% mataukshastighet."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr ""
+msgstr "Flettede kurver"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in barracks heal over time."
-msgstr ""
+msgstr "Enheter stasjonert i brakker heles over tid."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr ""
+msgstr "Enheter heles mens de er stasjonert i brakker."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1065,7 +1066,7 @@ msgstr "Øker helberedelsesavstanden til alle helberedere."
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +8 Healing Range."
-msgstr ""
+msgstr "Helere +8 helingsrekkevidde."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1075,7 +1076,7 @@ msgstr "Helbredelsesavstand"
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
 msgid "Olympic Pantheon"
-msgstr ""
+msgstr "Olympisk Pantheon"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -1085,7 +1086,7 @@ msgstr "Helberedelsesavstand 2"
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadḗmeia"
-msgstr ""
+msgstr "Akademia"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -1115,7 +1116,7 @@ msgstr "Helbredelseshastighet 2"
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 msgid "Hippocratic Oath"
-msgstr ""
+msgstr "Den hippokratiske ed"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
@@ -1127,16 +1128,16 @@ msgstr "Templer +50% helbredelseshastighet for stasjonerte enheter."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
-msgstr ""
+msgstr "Offergaver til gudene"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
 msgid "Olympic Games"
-msgstr ""
+msgstr "De olympiske leker"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.athen
 msgid "Eleusian Mysteries"
-msgstr ""
+msgstr "De eleusinske mysterier"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
@@ -1144,7 +1145,7 @@ msgid ""
 "settlement. Women of the household were taught from a young age how to weave"
 " on the loom, and subsequently spent a large  share of their lives working "
 "with it."
-msgstr ""
+msgstr "Vevstolen tillot framstilling av finere bekledning til bosettingens borgere. Kvinner i husholdet ble opplært fra barnsben til veving på vevstolen, og tilbragte senere store deler av sine liv i dets virke."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1152,15 +1153,15 @@ msgstr "Kvinnelige borgere +50% i helse."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "Vevstolen"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr ""
+msgstr "Lås opp helseregenerering for dine enheter."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "Organiske enheter vil heles sakte over tid ved lediggang."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1176,7 +1177,7 @@ msgstr "Byvegger +2 panser mot knusing men +10% byggetid."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
-msgstr ""
+msgstr "Geometrisk murverk"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
@@ -1184,7 +1185,7 @@ msgstr "Nærkampsinfanteri +1 huggeangrep."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr ""
+msgstr "Bruk av jern istedenfor bronse gav spydet ekstra gjennomtrengingskraft "
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
@@ -1192,7 +1193,7 @@ msgstr "Alle spydmenn får +2 i huggangrep."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr ""
+msgstr "Spydspisser av jern"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
@@ -1212,7 +1213,7 @@ msgstr "Stormestere mot deltids-soldater"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
-msgstr ""
+msgstr "Tjenere vs. kile og hammer"
 
 #: simulation/data/technologies/pair_gather_02.jsongenericName
 msgid "Serfs vs. Shaft Mining"
@@ -1220,11 +1221,11 @@ msgstr ""
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
-msgstr ""
+msgstr "Slaver vs. sølvgruvedrift"
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
-msgstr ""
+msgstr "Jernøkser vs. trillebår"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
@@ -1236,12 +1237,12 @@ msgstr "Helbredelsesavstand og hastighet #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr ""
+msgstr "Stasjonsheling vs. selvheling"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
-msgstr ""
+msgstr "Kvinner vs. befolkning"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
@@ -1315,14 +1316,14 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Framskrider fra en myldrende by til et ekte metropol, full av den moderne teknologiens undere. Dette er den athenske storby-fasen, der hastigheten for metall-sanking økes på grunn av sølvugle-bonusen."
+msgstr "Framskrider fra en myldrende by til et ekte metropol, full av den moderne teknologiens undere. Dette er den athenske storby-fasen, der hastigheten for metallutvinning økes på grunn av sølvugle-bonusen."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers."
-msgstr "Avanser til storby-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med enda +50%. 'Sølv-ugler' sivilisasjons-bonus sjenker ytterligere +10% metall sankebonus til alle arbeidere."
+msgstr "Avanser til storby-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med enda +50%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metallutvinningstakt til alle arbeidere."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1357,14 +1358,14 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Framskrider fra liten landsby til myldrende by til et ekte metropol, klar til rask ekspansjon. Dette er den athenske by-fasen, der hastigheten for metallutvinning økes på grunn av sølvugle-bonusen."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr "Avanser til by-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%. 'Sølv-ugler' sivilisasjons-bonus sjenker ytterligere +10% metall sankebonus til alle arbeidere."
+msgstr "Avanser til by-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metallutvinningstakt til alle arbeidere."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1420,11 +1421,11 @@ msgstr ""
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr ""
+msgstr "Hus +20% bonus befolkningsgrense."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "Hjemlig hage"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -1444,16 +1445,16 @@ msgstr ""
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 #: simulation/data/technologies/pop_wonder.jsonspecificName.pers
 msgid "Paradise"
-msgstr ""
+msgstr "Paradis"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
-msgstr ""
+msgstr "Husmassen hadde det med å øke når velstand og innbyggertall i bosettingene vokste."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
-msgstr ""
+msgstr "Herregårder"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
@@ -1461,11 +1462,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Underet tiltrekker seg mange flere folk til din sivilisasjon."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "+50 maksimalt befolkningsantall."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1480,7 +1481,7 @@ msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr ""
+msgstr "Alle spydenheter +2 stikkangrep og +4 rekkevidde."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
@@ -1500,7 +1501,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr ""
+msgstr "Forbedret panser på beleringsvåpen"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
@@ -1516,7 +1517,7 @@ msgstr "Avanserte teknologier forbedrer beleirings-effektiviteten"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr ""
+msgstr "Alle beleiringsmaskiner +25% knusningsskade."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1524,11 +1525,11 @@ msgstr "Avansert beleiring"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
-msgstr ""
+msgstr "Økt projektilspresisjon"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Boltriflepresisjon forbedret 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1536,11 +1537,11 @@ msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr ""
+msgstr "Beleiringsvåpen koster færre metallressurser"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
-msgstr ""
+msgstr "Beleiringsvåpen koster 20% mindre metall"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1560,40 +1561,40 @@ msgstr "Artilleri-instruktører"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr ""
+msgstr "Urørlige beleiringsvåpen pakkes opp og ned raskere"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% opp- og ned-pakkingstid for urørlige beleiringsvåpen."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
-msgstr ""
+msgstr "Militæringeniører"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
-msgstr ""
+msgstr "Al opp de raskeste hestene."
 
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr ""
+msgstr "+10% travhastighet for kavaleri."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "Kavaleriavl"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr ""
+msgstr "Tren hestene dine til å ri raskere."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr ""
+msgstr "Hastighetstrening for kavaleri"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
-msgstr ""
+msgstr "Økt forsvarsevne for handelsmenn."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
@@ -1607,32 +1608,32 @@ msgstr "Bytt konvoier"
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr ""
+msgstr "Øker handelsmenns hastighet, hvilket øker handelsoverskuddet."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr ""
+msgstr "Handelsmenn +25% ganghastighet, hvilket raskt øker handelsoverskuddet."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "Framdrift i handtverkskunsten øker handelsoverskuddet."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr ""
+msgstr "Handelsmenn +10% vinst."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
-msgstr ""
+msgstr "Håndtverkskunst"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% gain."
-msgstr ""
+msgstr "Handelsmenn +15% vinst."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
-msgstr ""
+msgstr "Avansert håndtverkskunst"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
@@ -1660,7 +1661,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Alt kavaleri -20% treningstid men også -10 i helse. Låser opp verneplikt."
+msgstr "Alt kavaleri -20% opptreningstid men også -10 i helse. Låser opp verneplikt."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1677,7 +1678,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Alt infanteri -10% treningstid men også -5 helse. Låser opp verneplikt."
+msgstr "Alt infanteri -10% opptreningstid men også -5 helse. Låser opp verneplikt."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -1694,7 +1695,7 @@ msgstr ""
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
-msgstr ""
+msgstr "Sjøarkitekter "
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1730,7 +1731,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
-msgstr ""
+msgstr "Fertilitetsfestival"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
@@ -1759,7 +1760,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "Krever 3 handelsmenn"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -1770,42 +1771,42 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid "Player sees what his allies see."
-msgstr ""
+msgstr "Spillere deler oversikten deres allierte har."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
-msgstr ""
+msgstr "Kartografi"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr ""
+msgstr "Oppgrader alle dine borger-soldatkavalerister til avansert rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Promoter alle dine borger-soldat kavalerister til avansert grad. Dette øker deres militære skikkethet men senker evnene til kjøtt-sanking med -25%. Låser opp teknologi for elite borgere-kavaleri."
+msgstr "La alle dine borgersoldat-kavalerister stige i gradene til avansert rang. Dette øker deres militære skikkethet men senker evnene til kjøtt-sanking med -25%. Låser opp teknologi for elite borgere-kavaleri."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr ""
+msgstr "Avansert borger-kavaleri"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr ""
+msgstr "Opgrader alle dine borger-soldatinfanterister til avansert rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Oppgrader alle dine borger-soldat infanterister til avansert grad. Dette øker deres militære skikkethet men senker hastigheten på ressurs-sanking med -25%. Låser opp teknologi for elite borger-infanteri."
+msgstr "Oppgrader alle dine borgersoldat-infanterister til avansert rang. Dette øker deres militære skikkethet men senker hastigheten på ressurs-sanking med -25%. Låser opp teknologi for eliteborger-infanteri."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr ""
+msgstr "Avansert borger-infanteri"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
@@ -1818,26 +1819,26 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Oppgrader alle dine borger-soldatkavalerister til eliterang. Dette øker deres militære skikkethet, men reduseres deres kjøttinnsamlingstakt med ytterligere -25%"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr ""
+msgstr "Eliteborger-kavaleri"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr ""
+msgstr "Oppgrader alle dine borger-soldatinfanterister til eliterang."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr ""
+msgstr "Oppgrader alle dine borger-soldatinfanterister til eliterang. Dette øker deres militære skikkethet men senker hastigheten på ressurs-sanking med ytterligere -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr ""
+msgstr "Eliteborgerinfanteri"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
@@ -1873,27 +1874,27 @@ msgstr "Tredoble vegger"
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "Keltiske leiesoldater har fått sin metallkost redusert."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsontooltip
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Hyr en keltisk leiesoldatskaptein for å redusere metallkost -20 for keltiske leiesoldater."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
-msgstr ""
+msgstr "Keltisk leiesoldatkaptein"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Hyr en Gallisk leiesoldatskaptein for å redusere metallkost -20 for galliske leiesoldater."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
-msgstr ""
+msgstr "Gallisk leiesoldatgeneral"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
@@ -1914,7 +1915,7 @@ msgstr ""
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Lei en Keltiberisk frilans-general for å redusere metallkost med -20 for iberiske frilansere."
+msgstr "Lei en Keltiberisk frilans-general for å redusere metallkost med -20 for Iberiske frilansere."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
@@ -1923,7 +1924,7 @@ msgstr "Keltiberisk frilans-general"
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "Italienske leiesoldater har fått sin metallkost redusert."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
 msgid ""
@@ -1947,11 +1948,11 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr ""
+msgstr "Keltisk leiesoldatkostnad vs. rekrutteringstid #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr ""
+msgstr "Keltisk leiesoldatkostnad vs. rekrutteringstid #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
@@ -1963,23 +1964,23 @@ msgstr "Kost for iberisk leiesoldat mot rekrutterings-tid #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "Italiensk leiesoldatkostnad vs. rekrutteringstid #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "Italiensk leiesoldatkostnad vs. rekrutteringstid #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "Kartagerne etablerte mange handelssentrum som kolonier og hersket til sist over 300 storbyer og byer bare i nord-Afrika."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr "Karthagerne var kolonister. Samfunnssenter, templer og hus -25% byggetid."
+msgstr "Kartagerne var kolonister. Samfunnssenter, templer og hus -25% byggetid."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -1990,11 +1991,11 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Ingen kjente den antikke geografien bedre en karthagerne - deres handelsreisende hadde oppdrag over alt. "
+msgstr "Ingen kjente den antikke geografien bedre en kartagerne - deres handelsreisende hadde oppdrag overalt. "
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Kartagerne var utforskere. Alle handelsmenn og skip får +25% synsrekkevidde. "
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
@@ -2003,11 +2004,11 @@ msgstr "Utforskning"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr ""
+msgstr "Betydelig økt byggningshastighet på skipsordrer av samme typer på verftet."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "Verftet har økt konstruksjonshastighetsbonus for skipordrer av samme type."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
@@ -2016,7 +2017,7 @@ msgstr ""
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr ""
+msgstr "Keltiske leiesoldater har redusert opptreningstid."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
@@ -2025,21 +2026,21 @@ msgstr "Allier deg med keltiske byer for å redusere rekrutteringstiden med -20%
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr ""
+msgstr "Keltisk allianse"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Underkast Galliske stammer for å redusere rekrutteringstid -20% for Keltiske leiesoldater."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
-msgstr ""
+msgstr "Gallisk hegemoni"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr "Iberiske leiesoldater har redusert treningstid."
+msgstr "Iberiske leiesoldater har redusert opptreningstid."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
@@ -2057,12 +2058,12 @@ msgstr "Regjer over Hispana for å redusere rekrutteringstiden med -20% for iber
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr ""
+msgstr "Iberisk hegemoni"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their train time decreased."
-msgstr ""
+msgstr "Italienske leiesoldater har redusert opptreningstid."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
 msgid ""
@@ -2086,18 +2087,18 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr ""
+msgstr "Oppgrader alle dine keltiske leiesoldater til avansert rang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Oppgrader alle dine keltiske leiesoldater til avansert grad. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med -25%.\nLåser opp teknologi for keltisk elite-leiesoldat."
+msgstr "Oppgrader alle dine keltiske leiesoldater til avansert rang. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med -25%.\nLåser opp teknologi for keltisk elite-leiesoldat."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
-msgstr ""
+msgstr "Avanserte Keltiske leiesoldater"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
@@ -2108,7 +2109,7 @@ msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Oppgrader alle dine iberiske leiesoldater til Avansert grad. Dette øker deres militære djervhet, men reduserer deres ressurs-sanking med -25%.\nLåser opp elite iberisk leisoldat-teknologi."
+msgstr "Oppgrader alle dine iberiske leiesoldater til Avansert rang. Dette øker deres militære djervhet, men reduserer deres ressurs-sanking med -25%.\nLåser opp elite iberisk leisoldat-teknologi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2123,7 +2124,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Oppgrader alle dine italiotiske leiesoldater til avansert grad. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med -25%.\nLåser opp italiotisk elite leisoldat-teknologi."
+msgstr "Oppgrader alle dine italiotiske leiesoldater til avansert rang. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med -25%.\nLåser opp italiotisk elite leisoldat-teknologi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2131,27 +2132,27 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr ""
+msgstr "Oppgrader alle dine keltiske leiesoldater til eliterang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Oppgrader alle dine keltiske leiesoldater til eliterang. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med ytterligere -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
-msgstr ""
+msgstr "Keltiske eliteleiesoldater"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Oppgrader alle dine iberiske leiesoldater til Elite grad."
+msgstr "Oppgrader alle dine iberiske leiesoldater til eliterang."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Oppgrader alle dine iberiske leiesoldater til Elite grad. Dette øker deres militære djervhet, men reduserer deres resurs-sanking med ytterligere -25%."
+msgstr "Oppgrader alle dine iberiske leiesoldater til eliterang. Dette øker deres militære djervhet, men reduserer deres resurs-sanking med ytterligere -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2177,7 +2178,7 @@ msgid ""
 "Celtic structures were mostly made of wood with rubble foundations. "
 "Consequently, their structures have less health than other cultures do, but "
 "they also construct faster."
-msgstr ""
+msgstr "Keltiske bygninger ble som oftest laget av tre med småsteinsfundament. Som følge av dette har deres bygninger mindre motstandsdyktighet enn andre kulturer, men de kan bygges raskere."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2185,7 +2186,7 @@ msgstr "Tre konstruksjon"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "Trening av spydenheter øker skaden infanterispyd forvolder."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2193,7 +2194,7 @@ msgstr "Spydmenn +2 i huggangrep."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr ""
+msgstr "Infanterispydkamp"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
@@ -2207,11 +2208,11 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
-msgstr ""
+msgstr "Hellenistisk arkitektur"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
-msgstr ""
+msgstr "Antatt dårligere"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2229,7 +2230,7 @@ msgstr "Spartanerne ble innlosjert og trent fra ung alder til å bli overlegne k
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% i helse for spyd-infanteri men også +10% treningstid."
+msgstr "+25% i helse for spyd-infanteri men også +10% opptreningstid."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2308,11 +2309,11 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "Det mauriske imperium innbefattet dusinvis av tidligere uavhengige kongedømmer over et areal på 5 millioner kvadratkilometer, med en befolkning på nær 60 millioner innbyggere. De mauriske regentene hadde tittelen Keiser over Keisere og hadde en stående hær på 600.000 infanterister, 9000 elefanter, 8000 krigsvogner og 30.000 kavalerister, den største hæren i sin tid."
+msgstr "Det mauriske imperium innbefattet dusinvis av tidligere uavhengige kongedømmer over et areal på 5 millioner kvadratkilometer, med en befolkning på nær 60 millioner innbyggere. De mauriske regentene hadde tittelen Keiser over Keisere og hadde en stående hær på 600.000 infanterister, 9000 elefanter, 8000 hestestridsvogner og 30.000 kavalerister, den største hæren i sin tid."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
-msgstr ""
+msgstr "Keiserens keiser"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
@@ -2329,12 +2330,12 @@ msgstr ""
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units train time -20%, but "
 "also -20% health."
-msgstr ""
+msgstr "Rekkevidde +10 meter for bueskyttere. Opptreningstid for bueskyttere -20%, men også -20% helsepoeng."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr ""
+msgstr "Bueskyttertradisjon"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
@@ -2387,7 +2388,7 @@ msgstr ""
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr ""
+msgstr "Alle persiske konstruksjoner +25% helse og overtakelsespoeng, men også +20% byggreisningstid."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2422,7 +2423,7 @@ msgstr ""
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "Betydelig økt treningstakt for soldater i kasernene ved opptrening i større grupper eller bataljoner."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
@@ -2440,17 +2441,17 @@ msgstr "Infanteri-verneplikt"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr "Alt kavaleri -20% treningstid men også -10 helse. Låser opp verneplikt for kavaleri."
+msgstr "Alt kavaleri -20% opptreningstid men også -10 helse. Låser opp verneplikt for kavaleri."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Infantry "
 "Conscription."
-msgstr "Alt kavaleri -10% treningstid men også -5 helse. Låser opp kavaleri-verneplikt."
+msgstr "Alt kavaleri -10% opptreningstid men også -5 helse. Låser opp kavaleri-verneplikt."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr ""
+msgstr "Romerne var mestre i krigens logistikk."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
@@ -2458,7 +2459,7 @@ msgstr ""
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
-msgstr ""
+msgstr "Romersk logistikk"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsondescription
 msgid ""
@@ -2470,11 +2471,11 @@ msgstr ""
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "+25% synsrekkevidde for alle enheter."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr ""
+msgstr "Sibyllinske bøker"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
@@ -2482,7 +2483,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
-msgstr ""
+msgstr "Tradisjonell hær vs. reformert hær"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -2494,7 +2495,7 @@ msgstr ""
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid ""
 "Civic centers +100% health and capture points and double default arrows."
-msgstr ""
+msgstr "Samfunnssentere får +100% helse og erobringspoeng, samt doble standardpiler."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2512,7 +2513,7 @@ msgstr "Raskere gruppetrening for fortene."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
-msgstr ""
+msgstr "Dafnes parade"
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
@@ -2523,7 +2524,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr ""
+msgstr "Alt kavaleri +20% helse."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -2543,7 +2544,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
-msgstr ""
+msgstr "Reformer hæren"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The traditional army of the Seleucids."
@@ -2551,7 +2552,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "Lås opp sølvskjoldet pikenér og sigdet hestestridsvogn"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Allan Nordhøy <epost@anotheragency.no>, 2016
 # Henrik Hovrud <henrik.h@online.no>, 2015
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014-2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-21 15:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-28 03:43+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -329,22 +330,22 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Mister tilkobling til tjeneren (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s mister tilkobling (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Dårlig tilkobling til tjeneren (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Dårlig tilkobling til %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -352,7 +353,7 @@ msgstr "Ukjent grunn"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Tjeneren har avsluttet spillet"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -376,11 +377,11 @@ msgstr "Du har blitt utestengt"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Spillernavn allerede i bruk. Hvis du ble frakoblet, prøv igjen om noen sekund"
 
 #: gui/common/network.js:61
 msgid "Server full"
-msgstr ""
+msgstr "Tjeneren er full"
 
 #: gui/common/network.js:64
 #, javascript-format
@@ -773,7 +774,7 @@ msgstr "Klasser:"
 #: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -821,7 +822,7 @@ msgstr "Avbryt"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Tilbakestilling av valg vil slette dine lagrede innstillinger. Ønsker du å fortsette?"
 
 #: gui/options/options.js:274 gui/options/options.js:338
 #: gui/savedgames/load.js:89
@@ -830,7 +831,7 @@ msgstr "Advarsel"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Du har endringer som ikke er lagret, ønsker du å lukke dette vinduet?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -930,7 +931,7 @@ msgstr "Deg"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
-msgstr "Du har ikke aktivert de samme modifikasjonene som omspillet. "
+msgstr "Du har ikke skrudd på de samme modifikasjonene som denne reprisen.. "
 
 #: gui/replaymenu/replay_actions.js:52
 #, javascript-format
@@ -944,11 +945,11 @@ msgstr "Aktive: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr "Dette omspillet er ikke kompatibelt med din versjon av spillet!"
+msgstr "Denne reprisen er ikke kompatibelt med din versjon av spillet!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr "Inkompatibelt omspill"
+msgstr "Inkompatibel reprise"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
@@ -964,11 +965,11 @@ msgstr "Poengsum ved spillets slutt."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr "Slett omspill"
+msgstr "Slett reprise"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne reprisen for godt?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1030,7 +1031,7 @@ msgstr "åååå-MM"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Ukjente sivilisasjoner"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1358,23 +1359,23 @@ msgstr "Lukk"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D bidragsytere"
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Spesielle æreshenvisninger"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Programmering"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Kunst"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Oversettere"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1382,7 +1383,7 @@ msgstr "Diverse"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donors"
-msgstr ""
+msgstr "Donorer"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1479,7 +1480,7 @@ msgstr "Lobby-innstillinger"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Tilbakestill"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1491,15 +1492,15 @@ msgstr "Lagre"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Tilbakestill brukerinnstillinger til deres spillforvalg"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Går tilbake til tidligere lagrede innstillinger"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Lagre endringer"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1529,7 +1530,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XX: Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1585,7 +1586,7 @@ msgstr "Valg"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr "Omspill"
+msgstr "Repriser"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1633,11 +1634,11 @@ msgstr "Rapporter en feil"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Oversett spillet"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Æreshenvisninger"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1749,7 +1750,7 @@ msgstr "Klikk for å åpne 0 A.D oversettelsesiden i din nettleser."
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Klikk for å se 0 A.D æreshenvisninger"
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1757,7 +1758,7 @@ msgstr "Spill spill på nytt"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr "Filtrer kompatible omspill"
+msgstr "Filtrer kompatible repriser"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -1795,7 +1796,7 @@ msgstr "Oppsummering"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr "Start omspill"
+msgstr "Start reprise"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
@@ -1885,105 +1886,105 @@ msgstr "Fortsett"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Leder for kunst"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Lydledelse"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Komponist"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Ledere for esoteriske henseender"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Kartografi"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Skript for tilfeldige kart"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D-kunst"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D-kunst"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr ""
+msgstr "Lyd"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Musikk"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie-kronerulling 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie-kronerulling 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Indiegogo-kampanje fra 2013\nOver 1000 donorer (!), inkludert:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Leder"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Historiske referanser"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Gemenskap og personalledelse"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Programmeringsledere"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Spesiell takk til"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "Vi minnes"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D Grunnlegger"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Prosjektledere"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Nestledende designere"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Spesiell takk til:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Og takk til hele gemenskapen for å gjøre 0 A.D mulig"
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Ingen historikere kom til skade under utviklingen av dette prosjektet."
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2038,11 +2039,11 @@ msgstr "Detaljerte pekertips"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Vis hvilken spiller som har dårlig tilkobling i flerspillermodus."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Nettverksadvarsler"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2087,19 +2088,19 @@ msgstr "Hold fast ved kampinnstillinger"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Tillat observatører å ta del i spilløkter etter at de har startet"
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Sen observatør finner seg til rette"
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
-msgstr ""
+msgstr "Forhindre ytterligere observatører fra å ta del i spillet når grensen er nådd"
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "Observatørgrense"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2159,15 +2160,15 @@ msgstr "Etterbehandling"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Lavt"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Mellomnivå"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Høyt"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2213,11 +2214,11 @@ msgstr "Partikler"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Når AV, bruk lavest mulige innstilling for å tegne vann. Dette tilsidesetter andre innstillinger."
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Skru på vanneffekter"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2448,7 +2449,7 @@ msgstr "- Et middels stort \"trireme\"-klasse krigsskip."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr ""
+msgstr "- Tilgjengelig for keltiske fraksjoner (Britoner, Gallere), Mauryanere og Iberere."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2456,7 +2457,7 @@ msgstr "- Kan transportere opp til 40 enheter over vannet."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "- Øker ildkraften til stasjonert infanteri."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2510,17 +2511,17 @@ msgstr "- Fisk i havet for rikelig fangst."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "- Fiskebåter kan føre med seg store mengder mat for hvert tokt."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "-Fiske er mer formålstjenlig enn sanking av mat på markene."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
 "- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Stasjoner en hjelpe-enhet ombord for å doble fiskebåtens fangst-hastighet."
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
@@ -2696,11 +2697,11 @@ msgstr "- Det tyngste standard krigsskipet. Tilgjengelig for: Roma, Karthago, Pt
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "- Frakter opptil 50 enheter."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "- Øker ildkraft med stasjonerte katapulter."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
@@ -2830,7 +2831,7 @@ msgstr "SYNTAGMA-FORMASJONEN"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr "- En formasjon for 'pikener'-stil infanteri."
+msgstr "- En formasjon for 'pikener'-oppstilt infanteri."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
@@ -2918,7 +2919,7 @@ msgstr "- Middels stort krigsskip."
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr "- Tilgjengelig for romere, karthagere, hellenske fraksjoner og persere."
+msgstr "- Tilgjengelig for romere, kartagere, hellenske fraksjoner og persere."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
@@ -2926,7 +2927,7 @@ msgstr "- Bra for transport eller kamp."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr "- Stasjoner tropper ombord for å øke skuddkraft."
+msgstr "- Stasjoner tropper ombord for å øke ildkraften."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
@@ -2976,7 +2977,7 @@ msgstr "Store udyr fra Afrika og India, trent til krig. "
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr "Høyt mat og metall forbruk, men veldig kraftig. Sterkest mot strukturer og kavaleri. "
+msgstr "Høy mat- og metall -kost, men veldig kraftig. Sterkest mot strukturer og kavaleri."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
