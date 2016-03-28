@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2015
+# GunChleoc, 2014-2016
 # GunChleoc, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-24 10:46+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +57,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]’S urrainn dhut leum a ghearradh eadar modh làn-sgrìn no uinneige ’s tu a’ brùthadh air Alt + Enter. Sa mhodh uinneige, ’s urrainn dhut meud na h-uinneige atharrachadh. Ma bhios an geama a’ ruith ro shlaodach, ’s urrainn dhut cuid a roghainnean atharrachadh san fhaidhle rèiteachaidh: lorg airson binaries/data/config/default.cfg san ionad far an deach an geama a stàladh a bheir mìneachaidhean seachad air deasachadh is feuch an cuir thu na roghainnean \"fancywater\" is \"shadows\" à comas."
+msgstr "[font=\"sans-14\"]’S urrainn dhut leum a ghearradh eadar modh làn-sgrìn no uinneige ’s tu a’ brùthadh air Alt + Enter. Sa mhodh uinneige, ’s urrainn dhut meud na h-uinneige atharrachadh. Ma bhios an geama a’ ruith ro shlaodach, ’s urrainn dhut cuid a roghainnean atharrachadh san fhaidhle rèiteachaidh: lorg airson binaries/data/config/default.cfg san ionad far an deach an geama a stàladh a bheir mìneachaidhean seachad air deasachadh is feuch an cuir thu na roghainnean “fancywater” is “shadows” à comas."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -97,7 +97,7 @@ msgstr "• Cleachd Ctrl + iuchraichean saighde no shift + cuibhle na luchaige g
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Cleachd cuibhle na luchaige no na h‑iuchraichean \"+\" is \"-\" airson sùmadh."
+msgstr "• Cleachd cuibhle na luchaige no na h‑iuchraichean “+” is “-” airson sùmadh."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -128,7 +128,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Feumaidh cluicheadair an roghainn \"Òstaich geama\" a thaghadh gus geama ioma-chluicheadair a shuidheachadh. Cleachdaidh an geama am port UDP 20595, mar sin feumaidh an t‑òstair a NAT/firewall/etc a rèiteachadh gus seo a cheadachadh. ’S urrainn dha chluicheadairean eile \"Gabh pàirt sa gheama\" a thaghadh an uairsin is an t‑seòladh IP aig an òstair a chur a-steach."
+msgstr "Feumaidh cluicheadair an roghainn “Òstaich geama” a thaghadh gus geama ioma-chluicheadair a shuidheachadh. Cleachdaidh an geama am port UDP 20595, mar sin feumaidh an t‑òstair a NAT/firewall/etc a rèiteachadh gus seo a cheadachadh. ’S urrainn dha chluicheadairean eile “Gabh pàirt sa gheama” a thaghadh an uairsin is an t‑seòladh IP aig an òstair a chur a-steach."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -142,25 +142,25 @@ msgstr "[font=\"sans-14\"]Ann an geama ioma-chluicheadair, chan urrainn ach dhan
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "An toiseach, tagh dè an seòrsa de mhapa a tha thu airson cluiche:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa tuaireamach[font=\"sans-14\"] — Mapa a chaidh a chruthachadh gu fèin-obrachail le sgriobt"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa cnàmh-sgeòil[font=\"sans-14\"] — Mapa a chaidh a chruthachadh le dealbhaichean mapa agus aig a bheil sìobhaltasan stèidhichte"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Mapa streupa[font=\"sans-14\"] — Mapa a chaidh a chruthachadh le dealbhaichean mapa agus far gabh na sìobhaltasan taghadh"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -169,7 +169,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "’S urrainn dhut barrachd criathraidh a dhèanamh air na mapaichean an uairsin. ’S e mapaichean a ghabhas cluiche a tha sna mapaichean tùsail san fharsaingeachd. ’S e mapaichean far nach ruig thu gach nàmhaid thar tìre a th’ anns na mapaichean mara agus tha na mapaichean taisbeanaidh ann a chum deuchainnean (cha bhi iad gu feum airson cluich mar as trice). Seallaich a’ chriathrag “A h-uile mapa” a h-uile mapa a tha ann air an aon liosta."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -178,11 +178,11 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Mu dheireadh thall, atharraich na roghainnean. airson mapaichean tuaireamach, gabhaidh seo a-steach an àireamh de chluicheadairean, meud a’ mhapa is msaa. Le cnàmh-sgeulan, chan urrainn dhut taghadh ach cò bhios a stiùireadh gach cluicheadair (suidhichidh seo càite an tòisich thu air a’ mhapa is msaa.). ’S e cluicheadair daonna, IF no gun chluicheadair (cha dèan an cluicheadair sin dad an uairsin) a tha sna roghainnean."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Nuair a bhios tu deiseil airson tòiseachadh, briog air a’ phutan \"Tòisich air geama\"."
+msgstr "Nuair a bhios tu deiseil airson tòiseachadh, briog air a’ phutan “Tòisich air geama.”"
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -216,7 +216,7 @@ msgstr "F11: Cuir am pròifilear fìor-ùine an comas/à comas (toglaichidh seo 
 
 #: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Shift + F11: Sàbhail dàta a’ phròifileir làithrich gu \"logs/profile.txt\""
+msgstr "Shift + F11: Sàbhail dàta a’ phròifileir làithrich gu “logs/profile.txt”"
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -340,7 +340,7 @@ msgstr "F5, F6, F7 is F8: Gluais an camara gu ionad comharraichte. Gearr leum ai
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Le togalach trèanaidh no dhà air a thaghadh. Cuir a’ chiad, an dàrna, ... aonad a chì thu air a’ chiudha trèanaidh sa h‑uile togalach a thagh thu."
+msgstr "Z, X, C, V, B, N, M: Le togalach trèanaidh no dhà air a thaghadh. Cuir a’ chiad, an dàrna, … aonad a chì thu air a’ chiudha trèanaidh sa h‑uile togalach a thagh thu."
 
 #: gui/manual/intro.txt:77
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -566,7 +566,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
 "reports from the same user."
-msgstr ""
+msgstr "• ID cleachdaiche air tuaiream (’ga ghlèidheadh ann an %APPDATA%\\0ad\\config\\user.cfg air Windows, $HOME/.config/0ad/config/user.cfg air Unix) ach am mothaich sinn nuair a thèid iomadh aithris on t-aon chleachdaiche a chur thugainn."
 
 #: gui/manual/userreport.txt:6
 msgid ""

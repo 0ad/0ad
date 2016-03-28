@@ -494,8 +494,10 @@ bool CNetServerWorker::RunStep()
 		CNetServerSession* session = new CNetServerSession(*this, event.peer);
 
 		// Prevent the local client of the host from timing out too quickly
+#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
 		if (session->GetIPAddress() == "127.0.0.1")
 			enet_peer_timeout(event.peer, 0, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
+#endif
 
 		m_Sessions.push_back(session);
 

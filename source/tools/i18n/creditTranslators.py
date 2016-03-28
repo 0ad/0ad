@@ -33,6 +33,8 @@ import json, os, glob, re
 
 # Credited languages - Keep in sync with source/tools/dist/remove-incomplete-translations.sh
 langs = {
+    'bg': 'Български',
+    'ca': 'Català',
     'cs': 'Ceština',
     'de': 'Deutsch',
     'en_GB': 'English (UK)',
@@ -40,14 +42,16 @@ langs = {
     'fr': 'Français',
     'gd': 'Gàidhlig',
     'gl': 'Galego',
+    'hu': 'Magyar',
     'id': 'Bahasa Indonesia',
     'it': 'Italiano',
     'nl': 'Nederlands',
     'pl': 'Polski',
-    'pt_PT': 'Português (Portugal)',
     'pt_BR': 'Português (Brasil)',
+    'pt_PT': 'Português (Portugal)',
     'ru': 'Русский',
     'sk': 'Slovenčina',
+    'sv': 'Svenska',
     'tr': 'Türkçe'}
 
 root = '../../../'

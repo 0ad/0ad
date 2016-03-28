@@ -49,15 +49,15 @@
 # tuxylord <s.balu@web.de>, 2014
 # wilhelm3 <isabusl@gmail.com>, 2014
 # Xaver, 2013
-# Xaver, 2015
+# Xaver, 2015-2016
 # xtother90, 2013
 # Yves_G, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 20:09+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"PO-Revision-Date: 2016-03-22 21:38+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -192,8 +192,8 @@ msgstr "%(openingGarrisonedString)s und %(inactiveString)s."
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] "Es ist %(inactiveString)s."
-msgstr[1] "Es sind %(inactiveString)s."
+msgstr[0] "Es gibt %(inactiveString)s."
+msgstr[1] "Es gibt %(inactiveString)s."
 
 #: gui/session/menu.js:522
 msgid "There are no land traders."
@@ -391,12 +391,12 @@ msgstr "Du befindest dich jetzt im Krieg mit %(player)s."
 #: gui/session/messages.js:126
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Du bist jetzt neutral mit %(player)s."
+msgstr "Du bist jetzt neutral gegenüber %(player)s."
 
 #: gui/session/messages.js:129
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s ist nun dein Verbündeter."
+msgstr "%(player)s ist jetzt dein Verbündeter."
 
 #: gui/session/messages.js:130
 #, javascript-format
@@ -406,22 +406,22 @@ msgstr "%(player)s ist jetzt im Krieg mit dir."
 #: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s ist jetzt neutral mit dir."
+msgstr "%(player)s ist jetzt neutral dir gegenüber."
 
 #: gui/session/messages.js:134
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s ist nun mit %(player2)s verbündet."
+msgstr "%(player)s ist jetzt mit %(player2)s verbündet."
 
 #: gui/session/messages.js:135
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s befindet sich nun mit %(player2)s im Krieg."
+msgstr "%(player)s befindet sich jetzt mit %(player2)s im Krieg."
 
 #: gui/session/messages.js:136
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s steht nun %(player2)s neutral gegenüber."
+msgstr "%(player)s steht jetzt %(player2)s neutral gegenüber."
 
 #: gui/session/messages.js:503
 msgctxt "chat addressee"
@@ -431,12 +431,12 @@ msgstr "Jeder"
 #: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Alliierte"
+msgstr "Verbündete"
 
 #: gui/session/messages.js:515
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr "Feind"
+msgstr "Feinde"
 
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
@@ -701,29 +701,29 @@ msgstr "Stellung halten"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Greife in der Nähe befindliche Gegner an, Fokus auf Angreifern und jagt, solange sichtbar"
+msgstr "Nahe Gegner angreifen, auf Angreifer fokussieren und jagen, solange sichtbar"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "Greife in der Nähe befindliche Gegner an"
+msgstr "Nahe Gegner angreifen"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Greife in der Nähe befindliche Gegner an, jage eine kurze Strecke und kehre zum ursprünglichen Ort zurück"
+msgstr "Nahe Gegner angreifen, eine kurze Strecke jagen und dann zum ursprünglichen Ort zurückkehren"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr "Fliehe, wenn angegriffen"
+msgstr "Wenn angegriffen, fliehen"
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Greife Gegner aus der Ferne an und bewege dich nicht"
+msgstr "Gegner aus der Ferne angreifen, aber nicht bewegen"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
@@ -1129,12 +1129,12 @@ msgstr "Wählen Chat-Nachricht Adressen"
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Gebe die Nachricht zum senden ein."
+msgstr "Gib die Nachricht zum Senden ein."
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr "Folge Spieler"
+msgstr "Spieler folgen"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
@@ -1142,7 +1142,7 @@ msgstr "Beobachter-Modus"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
-msgstr "Spieler zum Anschauen wählen"
+msgstr "Spieler zum Betrachten wählen"
 
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
@@ -1158,7 +1158,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr "Wähle zuerst eine Ware als Tauschobjekt und dann mit den Pfeiltasten die Ware zum Eintauschen (Shift setzt die gewählte Ressource auf 100% fest)."
+msgstr "Wähle zuerst eine Ware als Tauschobjekt und dann mit den Pfeiltasten die Ware zum Eintauschen (Umschalt setzt die gewählte Ressource auf 100% fest)."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

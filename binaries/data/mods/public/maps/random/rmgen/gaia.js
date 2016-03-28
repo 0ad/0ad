@@ -13,7 +13,7 @@ const g_DefaultDeviation = 0.1;
  * Fill it with wood, mines, animals and decoratives.
  *
  * @param {Array} constraint - where to place them
- * @param {number} size - size of the bluffs (1.2 would be 120% of normal) 
+ * @param {number} size - size of the bluffs (1.2 would be 120% of normal)
  * @param {number} deviation - degree of deviation from the defined size (0.2 would be 20% plus/minus)
  * @param {number} fill - size of map to fill (1.5 would be 150% of normal)
  */
@@ -22,6 +22,14 @@ function addBluffs(constraint, size, deviation, fill)
 	deviation = deviation || g_DefaultDeviation;
 	size = size || 1;
 	fill = fill || 1;
+
+	var constrastTerrain = g_Terrains.tier2Terrain;
+
+	if (g_MapInfo.biome == g_BiomeTropic)
+		constrastTerrain = g_Terrains.dirt;
+
+	if (g_MapInfo.biome == g_BiomeAutumn)
+		constrastTerrain = g_Terrains.tier3Terrain;
 
 	var count = fill * scaleByMapSize(15, 15);
 	var minSize = scaleByMapSize(5, 5);
@@ -39,7 +47,7 @@ function addBluffs(constraint, size, deviation, fill)
 		var pElevation = Math.floor(elevation * offset);
 
 		var placer = new ChainPlacer(pMinSize, pMaxSize, pSpread, 0.5);
-		var terrainPainter = new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain, g_Terrains.tier2Terrain], [2, 3]);
+		var terrainPainter = new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain, constrastTerrain], [2, 3]);
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, pElevation, 2);
 		var rendered = createAreas(placer, [terrainPainter, elevationPainter, paintClass(g_TileClasses.bluff)], constraint, 1);
 
@@ -50,7 +58,6 @@ function addBluffs(constraint, size, deviation, fill)
 		var points = rendered[0].points;
 
 		var corners = findCorners(points);
-		var area = points.length;
 
 		// Seed an array the size of the bounding box
 		var bb = createBoundingBox(points, corners);
@@ -85,17 +92,17 @@ function addBluffs(constraint, size, deviation, fill)
 			++retries;
 		}
 
-		// Found a bluff that can't be accessed, so turn it into a plateau
-		if (retries == 5)
+		// Inaccessible, turn it into a plateau
+		if (bluffCat > 0)
+		{
 			removeBluff(points);
-
-		// If we couldn't find the slope lines, turn it into a plateau
-		if (bluffCat == 1)
 			continue;
+		}
 
+		// Create an entrance area by using a small margin
+		var margin = 0.08;
 		var ground = createTerrain(g_Terrains.mainTerrain);
-
-		var slopeLength = getDistance(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
+		var slopeLength = (1 - margin) * getDistance(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
 
 		// Adjust the height of each point in the bluff
 		for (var p = 0; p < points.length; ++p)
@@ -200,7 +207,7 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": g_AllSizes,
 			"mixes": g_AllMixes,
-			"amounts":  ["normal", "many", "tons"]
+			"amounts": ["normal", "many", "tons"]
 		},
 		{
 			"func": addMetal,
@@ -216,7 +223,7 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": ["normal"],
 			"mixes": ["same"],
-			"amounts":  ["normal", "many", "tons"]
+			"amounts": ["normal"]
 		},
 		{
 			"func": addStone,
@@ -232,10 +239,11 @@ function addBluffs(constraint, size, deviation, fill)
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": ["normal"],
 			"mixes": ["same"],
-			"amounts": ["normal", "many", "tons"]
+			"amounts": ["normal"]
 		}
 	]));
 
+	let savanna = g_MapInfo.biome == g_BiomeSavanna;
 	addElements(shuffleArray([
 		{
 			"func": addStragglerTrees,
@@ -249,9 +257,9 @@ function addBluffs(constraint, size, deviation, fill)
 				g_TileClasses.water, 5
 			 ],
 			"stay": [g_TileClasses.bluff, 6],
-			"sizes": g_AllSizes,
-			"mixes": g_AllMixes,
-			"amounts": ["normal", "many", "tons"]
+			"sizes": savanna ? ["big"] : g_AllSizes,
+			"mixes": savanna ? ["varied"] : g_AllMixes,
+			"amounts": savanna ? ["tons"] : ["normal", "many", "tons"]
 		},
 		{
 			"func": addAnimals,
@@ -320,7 +328,7 @@ function addDecoration(constraint, size, deviation, fill)
 	];
 
 	var baseCount = 1;
-	if (g_MapInfo.biome == 7)
+	if (g_MapInfo.biome == g_BiomeTropic)
 		baseCount = 8;
 
 	var counts = [
@@ -343,7 +351,7 @@ function addDecoration(constraint, size, deviation, fill)
  * Create varying elevations.
  *
  * @param {Array} constraint - avoid/stay-classes
- * 
+ *
  * @param {Object} el - the element to be rendered, for example:
  *  "class": g_TileClasses.hill,
  *	"painter": [g_Terrains.mainTerrain, g_Terrains.mainTerrain],
@@ -437,13 +445,13 @@ function addLakes(constraint, size, deviation, fill)
 {
 	var lakeTile = g_Terrains.water;
 
-	if (g_MapInfo.biome == 0 || g_MapInfo.biome == 1 || g_MapInfo.biome == 7)
+	if (g_MapInfo.biome == g_BiomeTemperate || g_MapInfo.biome == g_BiomeTropic)
 		lakeTile = g_Terrains.dirt;
 
-	if (g_MapInfo.biome == 5)
+	if (g_MapInfo.biome == g_BiomeMediterranean)
 		lakeTile = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 8)
+	if (g_MapInfo.biome == g_BiomeAutumn)
 		lakeTile = g_Terrains.shore;
 
 	addElevation(constraint, {
@@ -556,13 +564,13 @@ function addPlateaus(constraint, size, deviation, fill)
 {
 	var plateauTile = g_Terrains.dirt;
 
-	if (g_MapInfo.biome == 2)
+	if (g_MapInfo.biome == g_BiomeSnowy)
 		plateauTile = g_Terrains.tier1Terrain;
 
-	if (g_MapInfo.biome == 4 || g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeAlpine || g_MapInfo.biome == g_BiomeSavanna)
 		plateauTile = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 8)
+	if (g_MapInfo.biome == g_BiomeAutumn)
 		plateauTile = g_Terrains.tier4Terrain;
 
 	addElevation(constraint, {
@@ -732,31 +740,25 @@ function addValleys(constraint, size, deviation, fill)
 	var valleySlope = g_Terrains.tier1Terrain;
 	var valleyFloor = g_Terrains.tier4Terrain;
 
-	if (g_MapInfo.biome == 0)
-	{
-		valleySlope = g_Terrains.dirt;
-		valleyFloor = g_Terrains.tier2Terrain;
-	}
-
-	if (g_MapInfo.biome == 3)
+	if (g_MapInfo.biome == g_BiomeDesert)
 	{
 		valleySlope = g_Terrains.tier3Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (g_MapInfo.biome == 5)
+	if (g_MapInfo.biome == g_BiomeMediterranean)
 	{
 		valleySlope = g_Terrains.tier2Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (g_MapInfo.biome == 4 || g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeAlpine || g_MapInfo.biome == g_BiomeSavanna)
 		valleyFloor = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 7)
+	if (g_MapInfo.biome == g_BiomeTropic)
 		valleySlope = g_Terrains.dirt;
 
-	if (g_MapInfo.biome == 8)
+	if (g_MapInfo.biome == g_BiomeAutumn)
 		valleyFloor = g_Terrains.tier3Terrain;
 
 	addElevation(constraint, {
@@ -856,7 +858,7 @@ function addForests(constraint, size, deviation, fill)
 	fill = fill || 1;
 
 	// No forests for the african biome
-	if (g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeSavanna)
 		return;
 
 	var types = [
@@ -947,7 +949,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	fill = fill || 1;
 
 	// Ensure minimum distribution on african biome
-	if (g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeSavanna)
 	{
 		fill = Math.max(fill, 2);
 		size = Math.max(size, 1);
@@ -969,7 +971,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var maxDist = 5 * offset;
 
 	// More trees for the african biome
-	if (g_MapInfo.biome == 6)
+	if (g_MapInfo.biome == g_BiomeSavanna)
 	{
 		min = 3 * offset;
 		max = 5 * offset;
@@ -982,7 +984,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		var treesMax = max;
 
 		// Don't clump fruit trees
-		if (i == 2 && (g_MapInfo.biome == 3 || g_MapInfo.biome == 5))
+		if (i == 2 && (g_MapInfo.biome == g_BiomeDesert || g_MapInfo.biome == g_BiomeMediterranean))
 			treesMax = 1;
 
 		min = Math.min(min, treesMax);
@@ -998,6 +1000,8 @@ function addStragglerTrees(constraint, size, deviation, fill)
 
 /**
  * Determine if the endline of the bluff is within the tilemap.
+ *
+ * @returns {Number} 0 if the bluff is reachable, otherwise a positive number
  */
 function unreachableBluff(bb, corners, baseLine, endLine)
 {
@@ -1006,8 +1010,7 @@ function unreachableBluff(bb, corners, baseLine, endLine)
 		return 1;
 
 	// If the end points aren't on the tilemap
-	if ((!g_Map.validT(endLine.x1, endLine.z1) || checkIfInClass(endLine.x1, endLine.z1, g_TileClasses.player)) &&
-		(!g_Map.validT(endLine.x2, endLine.z2) || checkIfInClass(endLine.x2, endLine.z2, g_TileClasses.player)))
+	if (!g_Map.validT(endLine.x1, endLine.z1) && !g_Map.validT(endLine.x2, endLine.z2))
 		return 2;
 
 	var minTilesInGroup = 1;

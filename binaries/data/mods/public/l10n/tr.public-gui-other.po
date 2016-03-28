@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 14:42+0000\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-22 21:57+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -331,22 +331,22 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Sunucuyla bağlantı kaybediliyor (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s bağlantıyı kaybediyor (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Sunucuya kötü bağlantı (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Kötü bağlantı %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -354,7 +354,7 @@ msgstr "Bilinmeyen sebep"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Bu oyunda konuk sona erdi"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -387,7 +387,7 @@ msgstr "Sunucu dolu"
 #: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Geçersiz değer %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:76
@@ -775,7 +775,7 @@ msgstr "Sınıflar:"
 #: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -823,7 +823,7 @@ msgstr "İptal"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
 #: gui/options/options.js:274 gui/options/options.js:338
 #: gui/savedgames/load.js:89
@@ -832,7 +832,7 @@ msgstr "Uyarı"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Kaydedilmemiş değişiklikler var, pencereyi kapatmak istiyor musun?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -946,11 +946,11 @@ msgstr "Aktif: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Bu tekrar oynatma senin oyun sürümünle uyumlu değil!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Uyumsuz tekrar oynatma"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
@@ -962,7 +962,7 @@ msgstr "Özet veri bulunmamaktadır."
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Oyunun sonundaki puanlar."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
@@ -1755,7 +1755,7 @@ msgstr "0 A.D. katkıcılarını görmek için tıklayın."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "Yeniden oynatma Oyunlar"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
@@ -1935,7 +1935,7 @@ msgstr ""
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
-"IndieGoGO 2013 campaign\n"
+"Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr ""
 

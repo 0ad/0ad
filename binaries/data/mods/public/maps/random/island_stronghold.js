@@ -33,8 +33,7 @@ const g_InitialMines = 1;
 const g_InitialMineDistance = 14;
 const g_InitialTrees = 50;
 
-// Random terrain textures, exclude african biome
-let random_terrain = randomizeBiome([6]);
+let random_terrain = randomizeBiome([g_BiomeSavanna]);
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -446,7 +445,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 4, clMetal, 4), stayClasses(clLand, 2)]
 );
 
-if (random_terrain == 3)
+if (random_terrain == g_BiomeDesert)
 {
 	log("Creating obelisks");
 	let group = new SimpleGroup(
@@ -462,7 +461,7 @@ if (random_terrain == 3)
 
 log("Creating dirt patches...");
 let sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-let numb = random_terrain == 6 ? 3 : 1;
+let numb = random_terrain == g_BiomeSavanna ? 3 : 1;
 
 for (let i = 0; i < sizes.length; ++i)
 {

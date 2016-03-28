@@ -1687,13 +1687,13 @@ for (var ix = 0; ix < mapSize; ix++)
 }
 
 // calculate desired number of trees for map (based on size)
-if (random_terrain == 6)
+if (random_terrain == g_BiomeSavanna)
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
 	var P_FOREST = 0.02;
 }
-else if (random_terrain == 7)
+else if (random_terrain == g_BiomeTropic)
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
@@ -1716,14 +1716,11 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
-if (random_terrain == 6)
-{
+if (random_terrain == g_BiomeSavanna)
 	var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
-}
-	else
-{
+else
 	var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-}
+
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
@@ -1882,10 +1879,9 @@ for (var i = 0; i < types.length; ++i)
 }
 
 var planetm = 1;
-if (random_terrain==7)
-{
+if (random_terrain == g_BiomeTropic)
 	planetm = 8;
-}
+
 //create small grass tufts
 log("Creating small grass tufts...");
 group = new SimpleGroup(

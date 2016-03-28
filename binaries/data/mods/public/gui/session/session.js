@@ -245,7 +245,7 @@ function init(initData, hotloadData)
 	initMenuPosition();
 
 	// Populate player selection dropdown
-	let playerNames = ["Observer"];
+	let playerNames = [translate("Observer")];
 	let playerIDs = [-1];
 	for (let player in g_Players)
 	{
@@ -589,7 +589,7 @@ function checkPlayerState()
 	g_GameEnded = true;
 
 	// Select observermode
-	Engine.GetGUIObjectByName("viewPlayer").selected = 0;
+	Engine.GetGUIObjectByName("viewPlayer").selected = playerState.state == "won" ? g_ViewedPlayer + 1 : 0;
 
 	let btCaptions;
 	let btCode;

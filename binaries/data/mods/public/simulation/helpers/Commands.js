@@ -1202,12 +1202,8 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 				lastTowerControlGroup = newTowerControlGroup;
 			}
 		}
-		else
-		{
-			// failed to build wall piece, abort
-			i = i + 1; // compensate for the -1 subtracted by lastBuiltPieceIndex below
+		else // failed to build wall piece, abort
 			break;
-		}
 	}
 
 	var lastBuiltPieceIndex = i - 1;

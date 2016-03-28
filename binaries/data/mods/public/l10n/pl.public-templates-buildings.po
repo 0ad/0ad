@@ -12,6 +12,7 @@
 # Leszek S, 2014
 # Lukasz B <boberstarosta@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
+# Marcin S <dzidek1003@o2.pl>, 2016
 # Michał Karol <michal.p.karol+transifex@gmail.com>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Night Shade <aleksandra.peter3590@gmail.com>, 2016
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-18 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-22 16:07+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,7 +327,7 @@ msgstr "Pole"
 
 #: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Zbieraj warzywa aby zwiększyć ilość jedzenia. Maksymalna ilość zbireaczy: 5."
+msgstr "Zbieraj warzywa aby zwiększyć ilość żywności. Maksymalna ilość zbireaczy: 5."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -625,7 +626,7 @@ msgstr "Premia rolnictwa"
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25% gathering rate."
-msgstr ""
+msgstr "Przyśpiesza uprawę roli na pobliskich polach. +25% do szybkości zbierania żywności."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -743,7 +744,7 @@ msgstr "Zatrudnij iberyjskich najemników. Przeprowadź badania pozwalające na 
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Italijska Ambasada"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -783,11 +784,11 @@ msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Repairing ship Aura"
-msgstr ""
+msgstr "Naprawa statku Aura "
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr ""
+msgstr "Zdrowie garnizonu statku podnosi się 3 HP na sekundę."
 
 #: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
@@ -915,7 +916,7 @@ msgstr "Pomnik Gur Origarri"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
-msgstr ""
+msgstr "Wszystkie jednostki w obrębie tego monumentu będą lepiej walczyć. Zasięg efektu: 50 metrów. Budynki wokół Monumentu nie ulegają rozpadowi."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1061,7 +1062,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:11
 msgid "All traders in range +20% walk speed."
-msgstr ""
+msgstr "Wszystkie podmioty w zakresie gospodarki +20 do prędkości chodzenia."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
@@ -1075,7 +1076,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Sławny Pomnik Asoki. Zwiększa szybkość chodzenia karawan . Budynki wokół Monumentu nie ulegają rozpadowi."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"

@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-23 21:18+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -767,10 +767,10 @@ msgstr "%(label)s %(speeds)s"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
+msgstr[2] "%(label)s %(val)s %(unit)s"
+msgstr[3] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:456
 msgid "Heal:"
@@ -1039,10 +1039,10 @@ msgstr "Любая"
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "< %(max)s мин"
+msgstr[1] "< %(max)s мин"
+msgstr[2] "< %(max)s мин"
+msgstr[3] "< %(max)s мин"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:106
@@ -1050,10 +1050,10 @@ msgstr[3] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "> %(min)s мин"
+msgstr[1] "> %(min)s мин"
+msgstr[2] "> %(min)s мин"
+msgstr[3] "> %(min)s мин"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:109
@@ -1400,11 +1400,11 @@ msgstr "Закрыть"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr "0 A.D. Кредиты"
+msgstr "Внесшие вклад в 0 A.D. "
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr "Особые кредиты"
+msgstr "Особый вклад"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
@@ -1571,7 +1571,7 @@ msgstr "Статус: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XX: Timosthenes"
-msgstr ""
+msgstr "Альфа XX : Timosthenes"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1679,7 +1679,7 @@ msgstr "Перевести игру"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr "Кредиты"
+msgstr "Внесшие вклад"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1783,7 +1783,7 @@ msgstr "Нажмите, чтобы открыть IRC-чат 0 A.D. в брау�
 
 #: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Нажмите чтобы посетить 0 A.D. Trac для отчетов о багах, крахах или ошибках."
+msgstr "Нажмите, чтобы посетить 0 A.D. Trac для отчета о баге, вылете или ошибке."
 
 #: gui/pregame/mainmenu.xml:(tooltip):584
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -1791,7 +1791,7 @@ msgstr "Открыть страницу перевода 0 A.D. в браузе�
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr "Нажмите, чтобы увидеть 0 A.D. кредиты."
+msgstr "Нажмите, чтобы увидеть список тех, кто внес вклад в 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1927,11 +1927,11 @@ msgstr "Продолжить"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Ведущий художник"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr "звуковой менеджер"
+msgstr "Звукорежиссер"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
@@ -1943,19 +1943,19 @@ msgstr "Художественные руководители"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr "Изготовление карт"
+msgstr "Создание карт"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr "Случайные скрипты карт."
+msgstr "Скрипты случайных карт"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr "2D Арт."
+msgstr "2D художники"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr "3D-моделлеры"
+msgstr "3D художники"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
@@ -1967,25 +1967,25 @@ msgstr "Музыка"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie Drive 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie Drive 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
-"IndieGoGO 2013 campaign\n"
+"Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr "IndieGoGO 2013 кампания\nБолее 1000 жертвователей (!), включая:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr "Глава"
+msgstr "Руководитель"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr "исторические рекомендации"
+msgstr "Исторические отсылки"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
@@ -1993,7 +1993,7 @@ msgstr "Сообщество и управление"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr "менеджеры по программированию"
+msgstr "Программные менеджеры"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
@@ -2013,7 +2013,7 @@ msgstr "Руководители проекта"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Со-ведущие дизайнеры"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -2021,7 +2021,7 @@ msgstr "Специальное спасибо:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "И спасибо всему сообществу за то что создание 0 A.D. стало возможным."
+msgstr "И спасибо всему сообществу за то, что создание 0 A.D. стало возможным."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -2029,7 +2029,7 @@ msgstr "В ходе разработки проекта никто из исто
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Количество сообщений, которые загружаются из памяти при входе в общий чат"
+msgstr "Количество сохраненных сообщений, которые загружаются при входе в общий чат"
 
 #: gui/options/options.jsonlobbySetting[0].label
 msgid "Chat Backlog"
@@ -2562,7 +2562,7 @@ msgstr "Рыбалка быстрее, чем сбор пищи на полях.
 msgid ""
 "- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Разместите на борту рыбацкой лодке юнитов-помощников, чтобы удвоить скорость лова. "
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"

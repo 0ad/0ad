@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-19 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-03-27 12:50+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +103,7 @@ msgstr "%(_player_)s, mhothaich mi gu bheil thu ann an droch-staing ’s tha mi 
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr "'S urrainn dhomh 'gad cuideachadh an turas seo, %(_player_)s, ach feuch gun cruinnich thu barrachd stòrasan o seo a-mach."
+msgstr "’S urrainn dhomh ’gad cuideachadh an turas seo, %(_player_)s, ach feuch gun cruinnich thu barrachd stòrasan o seo a-mach."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
@@ -489,7 +489,7 @@ msgstr "Cuir air na streupairean ’nan tàmh gearastan a thogail gu ear-thuath 
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Tagh an t-ionad sìobhalta a-rithist agus àrdaich gu linn nam bailtean ’s tu a’ briogadh air an ìomhaigh \"II\". Leigidh seo leat togalaichean aig linn nam bailtean a thogail."
+msgstr "Tagh an t-ionad sìobhalta a-rithist agus àrdaich gu linn nam bailtean ’s tu a’ briogadh air an ìomhaigh “II”. Leigidh seo leat togalaichean aig linn nam bailtean a thogail."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
@@ -535,7 +535,7 @@ msgstr "On a tha thu air riatanasan linn nam mòr-bhailtean a choileanadh a-nis,
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr "Nise on a tha thu ann an linn nam mòr-bhailtean, tog dùn am fagas agus cleachd e gus 2 reithe sèiste a thogail."
+msgstr "Nise on a tha thu ann an linn nam mòr-bhailtean, tog dùn am fagas agus cleachd e gus 2 reithe-sèiste a thogail."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
@@ -622,10 +622,10 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s mheatair air falbh air a' char as lugha"
-msgstr[1] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s mheatair air falbh air a' char as lugha"
-msgstr[2] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatairean air falbh air a' char as lugha"
-msgstr[3] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatair air falbh air a' char as lugha"
+msgstr[0] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s mheatair air falbh air a’ char as lugha"
+msgstr[1] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s mheatair air falbh air a’ char as lugha"
+msgstr[2] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatairean air falbh air a’ char as lugha"
+msgstr[3] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatair air falbh air a’ char as lugha"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -633,10 +633,10 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s mheatair a' char as motha"
-msgstr[1] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s mheatair a' char as motha"
-msgstr[2] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s meatairean a' char as motha"
-msgstr[3] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s meatair a' char as motha"
+msgstr[0] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s mheatair a’ char as motha"
+msgstr[1] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s mheatair a’ char as motha"
+msgstr[2] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s meatairean a’ char as motha"
+msgstr[3] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s meatair a’ char as motha"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -743,15 +743,15 @@ msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an trèanadh a shìoladh"
 
 #: simulation/helpers/Cheat.js:63
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Feumaidh tu togalach a thaghadh a thrèanaicheas aonadan."
 
 #: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Cealgaireachd – stiùirich a h‑uile aonad)"
 
 #: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Cealgaireachd – aonad air an àrdachadh)"
 
 #: simulation/helpers/Commands.js:678
 #, javascript-format
@@ -760,11 +760,11 @@ msgstr "Chaidh ionnsaigh an aghaidh %(_player_)s iarraidh."
 
 #: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Chan urrainn dhan aonad/dha na h-aonadan an gearastan falbh"
 
 #: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "Chan urrainn dhan a h-uile aonad tilleadh dhan obair"
 
 #: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
@@ -971,7 +971,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "’S e am bot tùsail aig 0 A.D. a th’ ann am Peadra. An aithris thu duilgheadas sam bith gu Wildfire Games (faic an ceangal air a’ phrìomh chlàr-taice)?\n\nTha sgeama buannachd ’s peanais aig an IF airson glèidheadh stòrasan (air reat a’ chruinneachaidh no air a’ mhalart) eadar 0.5 aig a’ Bhogsa-ghainmhich gu 1.6 airson Dùbhlanach (Meadhanach = 1.0). A bharrachd air sin, cha dèan leibheil a’ Bhogsa-ghainmhich leudachadh ’s cha doir e ionnsaigh."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
@@ -981,4 +981,4 @@ msgstr "IF Oideachaidh"
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr "Cha bu chòir dhut IF Oideachaidh a chleachdadh ach sa chnàmh-sgeul \"Bun-oideachadh\"."
+msgstr "Cha bu chòir dhut IF Oideachaidh a chleachdadh ach sa chnàmh-sgeul “Bun-oideachadh.”"

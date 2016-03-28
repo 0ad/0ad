@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 12:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-21 15:15+0000\n"
+"Last-Translator: Ole Sannes Riiser <OLE-SR@online.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -332,7 +332,7 @@ msgstr "Lag"
 
 #: gui/session/messages.js:88
 msgid "Observer"
-msgstr ""
+msgstr "Observatør"
 
 #: gui/session/messages.js:89
 msgid "Private"
@@ -386,22 +386,22 @@ msgstr "%(player)s er nå nøytral med %(player2)s."
 #: gui/session/messages.js:503
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "Alle"
 
 #: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Allierte"
 
 #: gui/session/messages.js:515
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Fiender"
 
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Observatører"
 
 #: gui/session/messages.js:650
 msgid "Unknown Player"
@@ -908,19 +908,19 @@ msgstr "Velg handelsvare"
 
 #: gui/session/unit_actions.js:907
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Trykk for å hindre allierte fra å bruke dette droppstedet"
 
 #: gui/session/unit_actions.js:911
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Trykk for å tillate allierte å bruke dette droppstedet"
 
 #: gui/session/unit_actions.js:970
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Du har tillatelse til å bruke dette droppstedet"
 
 #: gui/session/unit_actions.js:974
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Bruk av dette droppstedet er ikke tillatt"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1066,12 +1066,12 @@ msgstr "Klikk for å gjenoppta spillet"
 #: gui/session/session.xml:(caption):216
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Til:"
 
 #: gui/session/session.xml:(caption):224
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Tekst:"
 
 #: gui/session/session.xml:(caption):239
 msgid "Cancel"
@@ -1084,21 +1084,21 @@ msgstr "Send"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr ""
+msgstr "Velg chatbeskjedaddressat"
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Skriv beskjeden du skal sende."
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Følg spiller"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "Observatørmodus"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1176,7 +1176,7 @@ msgstr "Meny"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

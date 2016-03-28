@@ -262,7 +262,7 @@ createPatches(
 // create decoration
 var planetm = 1;
 
-if (random_terrain==7)
+if (random_terrain == g_BiomeTropic)
 	planetm = 8;
 
 createDecoration

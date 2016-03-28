@@ -50,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-21 07:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-23 13:25+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -377,7 +377,7 @@ msgstr "Drużyna"
 
 #: gui/session/messages.js:88
 msgid "Observer"
-msgstr ""
+msgstr "Obserwator"
 
 #: gui/session/messages.js:89
 msgid "Private"
@@ -431,22 +431,22 @@ msgstr "%(player)s jest teraz neutralny wobec %(player2)s."
 #: gui/session/messages.js:503
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "Wszyscy"
 
 #: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Spmirzeńcy"
 
 #: gui/session/messages.js:515
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Wrogowie"
 
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Obserwatorzy"
 
 #: gui/session/messages.js:650
 msgid "Unknown Player"
@@ -956,19 +956,19 @@ msgstr "Zaznacz towary handlowe"
 
 #: gui/session/unit_actions.js:907
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Naciśnij, aby zabronić sojusznikom korzystanie z tego terenu"
 
 #: gui/session/unit_actions.js:911
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Naciśnij, aby umożliwić sojusznikom aby skorzystali z tego terenu"
 
 #: gui/session/unit_actions.js:970
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Masz prawo do korzystania z tej zniżki"
 
 #: gui/session/unit_actions.js:974
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Użycie tego terenu jest zabronione"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1114,12 +1114,12 @@ msgstr "Kliknij by wznowić grę"
 #: gui/session/session.xml:(caption):216
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Do:"
 
 #: gui/session/session.xml:(caption):224
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Tekst:"
 
 #: gui/session/session.xml:(caption):239
 msgid "Cancel"
@@ -1132,21 +1132,21 @@ msgstr "Wyślij"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr ""
+msgstr "Wybierz adresata wiadomości czatu "
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Typ wiadomości do wysłania."
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Śledź graczy"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "Tryb obserwatora"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1224,7 +1224,7 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes "
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

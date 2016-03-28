@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# A L <De_Sade@web.de>, 2016
 # Wuzzy <almikes@aol.com>, 2015-2016
 # Benny <benediktwindolph@posteo.de>, 2014
 # foaly <foaly.f@web.de>, 2016
@@ -17,14 +18,14 @@
 # Thelxinoe, 2015
 # qwertz, 2014-2015
 # Raymond Vetter, 2014-2016
-# Xaver, 2015
+# Xaver, 2015-2016
 # Yves_G, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 12:31+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-27 21:35+0000\n"
+"Last-Translator: A L <De_Sade@web.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,7 +372,7 @@ msgstr "Fehlerhafte Netzwerkprotokoll-Version"
 
 #: gui/common/network.js:56
 msgid "Game is loading, please try later"
-msgstr "Spiel läd, bitte versuche es später"
+msgstr "Spiel lädt, bitte versuche es später"
 
 #: gui/common/network.js:57
 msgid "Game has already started, no observers allowed"
@@ -660,7 +661,7 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:238
 msgid "Repair Rate:"
-msgstr "Repair Rate:"
+msgstr "Reparaturrate:"
 
 #: gui/common/tooltips.js:240 gui/common/tooltips.js:251
 msgid "health"
@@ -1852,7 +1853,7 @@ msgstr "Beschreibung:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr "Willkommen"
+msgstr "Willkommen!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -1896,7 +1897,7 @@ msgstr "Fortfahren"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr "Grafikführung"
+msgstr "Leitung Grafik"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
@@ -1928,7 +1929,7 @@ msgstr "3D-Grafik"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
-msgstr "Sound"
+msgstr "Ton"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
@@ -1944,13 +1945,13 @@ msgstr "2. Pledgie-Spendenaktion"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
-"IndieGoGO 2013 campaign\n"
+"Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr "Indiegogo-Kampangie in 2013\nÜber 1000 Spender (!), inklusive:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr "Führung"
+msgstr "Leitung"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -2170,7 +2171,7 @@ msgstr "Nachbearbeitung"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr "Wenig"
+msgstr "Niedrig"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
@@ -2242,7 +2243,7 @@ msgstr "HQ-Wasser-Effekte"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid "Use actual water depth in rendering calculations"
-msgstr "Verwendet aktuelle Wassertiefe in Rendering-Berechnungen"
+msgstr "Verwendet tatsächliche Wassertiefe in Rendering-Berechnungen"
 
 #: gui/options/options.jsongraphicsSetting[9].label
 msgid "Real Water Depth"
@@ -2370,7 +2371,7 @@ msgstr "KASERNE"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Trainiere alle Bürgersoldaten. Einige Fraktionen erlauben hier auch das Trainieren von Gardesoldaten."
+msgstr "– Trainiere alle Bürgersoldaten. Einige Fraktionen erlauben hier auch das Trainieren von Gardesoldaten."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
@@ -2388,7 +2389,7 @@ msgstr "– Baue einen Stützpunkt, um deinen Angriff schnell mit neuen Truppen 
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr "SCHMIED"
+msgstr "SCHMIEDE"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -2459,7 +2460,7 @@ msgstr "– Ein mittelschweres Kriegsschiff."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr "– Steht den keltischen Fraktionen (Briten, Galliern), Maurya-Indern und Iberern zur Verfügung."
+msgstr "– Steht den keltischen Fraktionen (Britonen, Galliern), Maurya-Indern und Iberern zur Verfügung."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2487,7 +2488,7 @@ msgstr "– Beanspruche große Territorien."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr "– Kann in freundlichem und neutralem Territorium gebaut werden."
+msgstr "– Können in freundlichem und neutralem Territorium gebaut werden."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -2517,7 +2518,7 @@ msgstr "FISCHEN"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Erwirtschafte reichen Ertrag durch Fischen."
+msgstr "– Erwirtschafte reichen Ertrag durch Fischen."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
@@ -2551,7 +2552,7 @@ msgstr "– Bildet starke Einheiten aus, wie Gardisten, Helden und Belagerungswa
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr "- Erhöht das Bevölkerungsmaximum."
+msgstr "– Erhöht das Bevölkerungsmaximum."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
@@ -2670,7 +2671,7 @@ msgstr "– Alle persischen Gebäude sind +25% stärker."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr "- Als Folge erhöht sich die Bauzeit um 20%."
+msgstr "– Als Folge erhöht sich die Bauzeit um 20%."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -2689,7 +2690,7 @@ msgstr "– Schwer gepanzert und langsam. Schwacher Angriff."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "- Benutzt gegen Kavallerie oder gegen andere Nahkampf-Infanterie, um sie an Ort und Stelle festzusetzen."
+msgstr "– Benutzt gegen Kavallerie oder gegen andere Nahkampf-Infanterie, um sie an Ort und Stelle festzusetzen."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2807,7 +2808,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for Greek factions."
-msgstr "- Ein Startgebäude der Griechen."
+msgstr "– Ein Startgebäude der Griechen."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -2815,7 +2816,7 @@ msgstr "– Gewährt +10 auf das Bevölkerungslimit."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr "- Nur in einigen Karten vorhanden."
+msgstr "– Nur in einigen Karten vorhanden."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -3007,7 +3008,7 @@ msgstr "– Eine Meeresressource."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000 Nahrung."
+msgstr "– 2000 Nahrung."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

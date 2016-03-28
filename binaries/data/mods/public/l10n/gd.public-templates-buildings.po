@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2015
+# GunChleoc, 2014-2016
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-18 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-03-27 17:34+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -582,7 +582,7 @@ msgstr "Brugh Bhreatannach"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Trèanaich curaidhean is laoich Bhreatannach. Tog reitheachan sèiste."
+msgstr "Trèanaich curaidhean is laoich Bhreatannach. Tog reitheachan-sèiste."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
@@ -609,12 +609,12 @@ msgstr "Gearastan Breatannach"
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/gaul_rotarymill.xml:21
 msgid "Farming bonus"
-msgstr "Buannachd àiteachais"
+msgstr "Buannachd àitich"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Boosts nearby farming with +25% gathering rate."
-msgstr ""
+msgstr "Meudaichidh seo an cruinneachadh aig tuathanasan am fagas dhut le +25%."
 
 #: simulation/templates/structures/brit_rotarymill.xml:33
 #: simulation/templates/structures/gaul_rotarymill.xml:33
@@ -629,7 +629,7 @@ msgstr "Melonas"
 #: simulation/templates/structures/brit_rotarymill.xml:36
 #: simulation/templates/structures/gaul_rotarymill.xml:36
 msgid "Increase nearby farming output +25%."
-msgstr "Meudaich na bheir àiteachas am fagas dhut le +25%"
+msgstr "Meudaich na bheir àiteach am fagas dhut le +25%"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -708,7 +708,7 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Tog bàtaichean-iasgaich gus feòil a chruinneachadh is longan malairt gus malart a dhèanamh le calachan eile."
+msgstr "Tog bàtaichean-iasgaich gus feòil a chruinneachadh is longan-malairt gus malart a dhèanamh le calachan eile."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
@@ -732,7 +732,7 @@ msgstr "Fastaich saighdearan-duaise Ibèireach. Rannsaich leasachaidhean airson 
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Ambasaid Eadailteach"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -772,11 +772,11 @@ msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Repairing ship Aura"
-msgstr ""
+msgstr "Aura càradh luinge"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr ""
+msgstr "Slànaichidh e long le gearastan oirre le 3 PB gach diog."
 
 #: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
@@ -825,7 +825,7 @@ msgstr "Dùn Gallach"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Trèanaich curaidhean is laoich Ghallach. Tog reitheachan sèiste."
+msgstr "Trèanaich curaidhean is laoich Ghallach. Tog reitheachan-sèiste."
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
@@ -904,7 +904,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
-msgstr ""
+msgstr "Nì gach aonad am broinn astair lèirsinne na carraigh seo sabaid nas treasa. Astar na buaidhe: 50 meatair. Cha bhi crìonadh air togalaichean a tha am broinn ranntair na carraighe seo."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -1050,7 +1050,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:11
 msgid "All traders in range +20% walk speed."
-msgstr ""
+msgstr "Coisichidh gach neach-malairt am fagas nas luaithe le +20%."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid "Edict Pillar of Ashoka"
@@ -1064,7 +1064,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Carragh Aśoka chliùiteach. Cuiridh i ri luaths coiseachd an luchd-malairt. Cha bhi crìonadh air togalaichean a tha am broinn ranntair na carraighe seo."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1125,7 +1125,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "Cìos satraip: Faigh beagan teachd a-steach cunbhalach de bhiadh, fiodh, clach is meatailt. Trèanaich curaidhean Pearsach is an lèintean-crios \"neo-bhàsmhor\". Cuingeachadh togail: 1."
+msgstr "Cìos satrapachd: Faigh beagan teachd a-steach cunbhalach de bhiadh, fiodh, clach is meatailt. Trèanaich curaidhean Pearsach is an lèintean-crios “neo-bhàsmhor.” Cuingeachadh togail: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1174,7 +1174,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Trèanaich laoich eachraidh is tog reitheachan sèiste."
+msgstr "Trèanaich laoich eachraidh is tog reitheachan-sèiste."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1645,4 +1645,4 @@ msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Trèanaich curaidhean is hoiplidean spàrtach."
+msgstr "Trèanaich curaidhean Spartach is laoch hoiplidean Homoioi."

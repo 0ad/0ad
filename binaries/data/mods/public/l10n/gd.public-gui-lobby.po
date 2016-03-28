@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-03-13 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-03-27 15:43+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,17 +61,17 @@ msgstr "Tha %(newnick)s air %(oldnick)s a-nis."
 #: gui/lobby/lobby.js:209
 msgctxt "map size"
 msgid "Any"
-msgstr "Seòrsa sam bith"
+msgstr "Na h-uile"
 
 #: gui/lobby/lobby.js:214
 msgctxt "player number"
 msgid "Any"
-msgstr "Seòrsa sam bith"
+msgstr "Na h-uile"
 
 #: gui/lobby/lobby.js:218
 msgctxt "map"
 msgid "Any"
-msgstr "Seòrsa sam bith"
+msgstr "Na h-uile"
 
 #: gui/lobby/lobby.js:390
 msgid "Moderator"
@@ -84,7 +84,7 @@ msgstr "Cluicheadair"
 #: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
 #: gui/lobby/lobby.js:394 gui/lobby/lobby.js:395 gui/lobby/lobby.js:396
 msgid "N/A"
-msgstr "Chan eil seo iomchaidh"
+msgstr "—"
 
 #: gui/lobby/lobby.js:419 gui/lobby/lobby.js:449
 #, javascript-format
@@ -107,23 +107,23 @@ msgstr "Cluicheadairean:"
 
 #: gui/lobby/lobby.js:634
 msgid "The game has already started."
-msgstr ""
+msgstr "Tha an geama air a thòiseachadh mar-thà."
 
 #: gui/lobby/lobby.js:635
 msgid "Do you want to join as observer?"
-msgstr ""
+msgstr "A bheil thu airson dol ann ’nad amharc?"
 
 #: gui/lobby/lobby.js:636
 msgid "Confirmation"
-msgstr ""
+msgstr "Dearbhadh"
 
 #: gui/lobby/lobby.js:638
 msgid "No"
-msgstr ""
+msgstr "Chan eil"
 
 #: gui/lobby/lobby.js:638
 msgid "Yes"
-msgstr ""
+msgstr "Tha"
 
 #: gui/lobby/lobby.js:657
 #, javascript-format
@@ -133,7 +133,7 @@ msgstr "Tha coltas nach eil an seòladh aig a’ gheama seo, %(ip)s, dligheach."
 #: gui/lobby/lobby.js:770
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "Tha sinn duilich ach chan eil taic ris an àithne \"%(cmd)s\"."
+msgstr "Tha sinn duilich ach chan eil taic ris an àithne “%(cmd)s”."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:844
@@ -193,11 +193,11 @@ msgstr "Na sgaoil spama. Chaidh bacadh leth-mhionaid a chur ort."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr "’Ga cheangal..."
+msgstr "’Ga cheangal…"
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr "’Ga chlàradh..."
+msgstr "’Ga chlàradh…"
 
 #: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
@@ -322,7 +322,7 @@ msgstr "Ùraich"
 
 #: gui/lobby/lobby.xml:(caption):284
 msgid "Enter username:"
-msgstr "Cuir a-steach ainm cleachdaiche:"
+msgstr "Cuir a-steach ainm:"
 
 #: gui/lobby/lobby.xml:(caption):290
 msgid "View Profile"
@@ -415,25 +415,25 @@ msgstr "Mìneachaidhean:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr " * ’S e an lobaidh ioma-chluicheadair aig 0 A.D. Empires Ascendant a tha ’ga sholar le Wildfire Games (WFG) a th’ anns an \"seirbheis\"."
+msgstr " * ’S e an lobaidh ioma-chluicheadair aig 0 A.D. Empires Ascendant a tha ’ga sholar le Wildfire Games (WFG) a th’ anns an t-“seirbheis.”"
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr " * ’S e cleachdaiche na seirbheise a th’ anns an \"thu\"."
+msgstr " * ’S e cleachdaiche na seirbheise a th’ anns an “thu.”"
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr " * ’S e buill an sgioba Wildfire Games (WFG) uile còmhla a th’ anns an \"sinn\"."
+msgstr " * ’S e buill an sgioba Wildfire Games (WFG) uile còmhla a th’ anns an “sinn.”"
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr "* Is ciall dha \"rangachadh\" gun sgrùd sinn stadastaireachd nan cleachdaichean a chum gintinn aon sgòir ioma-chuimsich."
+msgstr "* Is ciall dha “rangachadh” gun sgrùd sinn stadastaireachd nan cleachdaichean a chum gintinn aon sgòir ioma-chuimsich."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr " * Is èigneachadh poileasaidhean a’ chleachdaidh ciall dha \"maorsainneachd\"."
+msgstr " * Is èigneachadh poileasaidhean a’ chleachdaidh ciall dha “maorsainneachd.”"
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -509,23 +509,23 @@ msgstr "Teirmichean a’ chleachdaidh airson na lobaidh ioma-chluicheadair aig 0
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr " * Is ciall dha \"dol an riochd\" gum feuch thu ri brath a ghabhail air dearbh-aithne càch air adhbhar agad fhèin."
+msgstr " * Is ciall dha “dol an riochd” gum feuch thu ri brath a ghabhail air dearbh-aithne càch air adhbhar agad fhèin."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr " * Is ciall dha \"spama\" gun cuirear teachdaireachdan neo-bhuntainneach no neo-iomchaidh gu grunn mòr fhaightearan."
+msgstr " * Is ciall dha “spama” gun cuirear teachdaireachdan neo-bhuntainneach no neo-iomchaidh gu grunn mòr fhaightearan."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr " * ’S e sgòr ioma-chuimseach airson gach cleachdaiche fa leth a th’ anns an \"rangachadh\"."
+msgstr " * ’S e sgòr ioma-chuimseach airson gach cleachdaiche fa leth a th’ anns an “rangachadh.”"
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr " * ’S e geamannan san tèid an stadastaireachd a thracadh a dh’fhaodas an rangachd atharrachadh a th’ anns na \"geamannan rangaichte\"."
+msgstr " * ’S e geamannan san tèid an stadastaireachd a thracadh a dh’fhaodas an rangachd atharrachadh a th’ anns na “geamannan rangaichte.”"
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"

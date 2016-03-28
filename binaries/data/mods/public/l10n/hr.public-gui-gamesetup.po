@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ano nym <degers@gmx.de>, 2016
 # Bongo <ivanm.ploce@gmail.com>, 2014
 # Chris_Kay_083, 2014
 # Tomislav Kaučić, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 08:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-25 20:31+0000\n"
+"Last-Translator: Ano nym <degers@gmx.de>\n"
 "Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,11 +89,10 @@ msgstr "Demo mape"
 msgid "All Maps"
 msgstr "Sve mape"
 
-#: gui/gamesetup/gamesetup.js:136 gui/gamesetup/gamesetup.js:1384
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
+#: gui/gamesetup/gamesetup.js:136
+msgctxt "map type"
 msgid "Random"
-msgstr "Nasumično"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:141
 msgctxt "civilization"
@@ -152,6 +152,11 @@ msgstr[2] ""
 #: gui/gamesetup/gamesetup.js:1381 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "Uvjet pobjede:"
+
+#: gui/gamesetup/gamesetup.js:1384
+msgctxt "map selection"
+msgid "Random"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1455
 #, javascript-format
@@ -222,47 +227,6 @@ msgstr "Naziv igre je već u upotrebi."
 msgid "%(playername)s's game"
 msgstr "Igra igrača %(playername)s"
 
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
-msgid "Skirmish"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:16
-msgid "Scenario"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:19 gui/gamesetup/gamesetup.xml:(tooltip):139
-#: gui/gamesetup/mapsettings.xml:(tooltip):38
-#: gui/gamesetup/settings/mapType.xml:(tooltip):13
-msgid "Select a map type."
-msgstr "Odaberite vrstu mape."
-
-#: gui/gamesetup/mapselection.js:20 gui/gamesetup/gamesetup.xml:(caption):110
-#: gui/gamesetup/mapsettings.xml:(caption):7
-#: gui/gamesetup/settings/mapType.xml:(caption):5
-msgid "Map Type:"
-msgstr "Tip Mape:"
-
-#: gui/gamesetup/mapselection.js:33 gui/gamesetup/gamesetup.xml:(tooltip):147
-#: gui/gamesetup/mapsettings.xml:(tooltip):46
-msgid "Select a map filter."
-msgstr "Odaberite filter mape."
-
-#: gui/gamesetup/mapselection.js:34 gui/gamesetup/gamesetup.xml:(caption):113
-#: gui/gamesetup/mapsettings.xml:(caption):10
-msgid "Map Filter:"
-msgstr "Filter mape:"
-
-#: gui/gamesetup/mapselection.js:47 gui/gamesetup/gamesetup.xml:(tooltip):156
-#: gui/gamesetup/mapsettings.xml:(tooltip):55
-msgid "Select a map to play on."
-msgstr "Odaberite mapu na kojoj biste igrali."
-
-#: gui/gamesetup/mapselection.js:48 gui/gamesetup/gamesetup.xml:(caption):116
-#: gui/gamesetup/mapsettings.xml:(caption):13
-msgid "Select Map:"
-msgstr "Odaberi mapu:"
-
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
@@ -308,36 +272,42 @@ msgid "Loading map data. Please wait..."
 msgstr "Učitavam podatke mape. Molimo pričekajte..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):45
-#: gui/gamesetup/players.xml:(caption):8
 msgid "Player Name"
 msgstr "Ime igrača"
 
 #: gui/gamesetup/gamesetup.xml:(caption):48
 msgid "Color"
-msgstr ""
+msgstr "boja"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
-#: gui/gamesetup/players.xml:(caption):11
 msgid "Player Placement"
 msgstr "Lokacija igrača"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
-#: gui/gamesetup/players.xml:(caption):14
 msgid "Civilization"
 msgstr "Civilizacija"
 
 #: gui/gamesetup/gamesetup.xml:(caption):69
-#: gui/gamesetup/players.xml:(caption):29
 msgid "Team"
 msgstr "Ekipa"
 
+#: gui/gamesetup/gamesetup.xml:(caption):110
+msgid "Map Type:"
+msgstr "Tip Mape:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):113
+msgid "Map Filter:"
+msgstr "Filter mape:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):116
+msgid "Select Map:"
+msgstr "Odaberi mapu:"
+
 #: gui/gamesetup/gamesetup.xml:(caption):119
-#: gui/gamesetup/mapsettings.xml:(caption):19
 msgid "Number of Players:"
 msgstr "Broj Igrača:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):122
-#: gui/gamesetup/mapsettings.xml:(caption):22
 msgid "Map Size:"
 msgstr "Veličina mape:"
 
@@ -407,7 +377,6 @@ msgid "Rated Game:"
 msgstr "Ocijenjena igra:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):63
-#: gui/gamesetup/players.xml:(tooltip):23
 msgid "View civilization info"
 msgstr "Pogledaj info o civilizaciji"
 
@@ -416,32 +385,38 @@ msgid "Pick a color."
 msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
-#: gui/gamesetup/players.xml:(tooltip):38
 msgid "Select player."
 msgstr "Označi igrača."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):91
-#: gui/gamesetup/players.xml:(tooltip):47
 msgid "Configure AI settings."
 msgstr "Konfiguriraj AI postavke."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):94
-#: gui/gamesetup/players.xml:(tooltip):50
 msgid "Select player's civilization."
 msgstr "Odaberi civilizaciju igrača."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):98
-#: gui/gamesetup/players.xml:(tooltip):54
 msgid "Select player's team."
 msgstr "Odaberi ekipu igrača."
 
+#: gui/gamesetup/gamesetup.xml:(tooltip):139
+msgid "Select a map type."
+msgstr "Odaberite vrstu mape."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):147
+msgid "Select a map filter."
+msgstr "Odaberite filter mape."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):156
+msgid "Select a map to play on."
+msgstr "Odaberite mapu na kojoj biste igrali."
+
 #: gui/gamesetup/gamesetup.xml:(tooltip):166
-#: gui/gamesetup/mapsettings.xml:(tooltip):65
 msgid "Select number of players."
 msgstr "Odaberite broj igrača."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):170
-#: gui/gamesetup/mapsettings.xml:(tooltip):70
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Odaberite veličinu mape. (Veće mape mogu usporiti performanse.)"
 
@@ -534,10 +509,6 @@ msgstr "Postavite svojeg poslužitelja."
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "Naziv poslužitelja:"
-
-#: gui/gamesetup/mapsettings.xml:(caption):16
-msgid "Other Settings"
-msgstr ""
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

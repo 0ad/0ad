@@ -76,8 +76,10 @@ bool CNetClientSession::Connect(u16 port, const CStr& server)
 	m_Server = peer;
 
 	// Prevent the local client of the host from timing out too quickly.
+#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
 	if (GetIPAddress() == "127.0.0.1")
 		enet_peer_timeout(peer, 1, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
+#endif
 
 	m_Stats = new CNetStatsTable(m_Server);
 	if (CProfileViewer::IsInitialised())

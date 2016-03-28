@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-21 07:23+0000\n"
+"PO-Revision-Date: 2016-03-22 15:30+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -152,19 +152,19 @@ msgstr "Pierwsze, wybierz rodzaj mapy którym chcesz grać:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Losowa mapa[font=\"sans-14\"] — Mapa została automatycznie stworzona przez scenariusz"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scenariusz[font=\"sans-14\"] — Mapa została stworzona przez twórców map i  z już dodanymi cywilizacjami"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Potyczka[font=\"sans-14\"] — Mapa stworzona przez twórców map, ale tutaj cywilizacje mogą być zmieniane"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -173,7 +173,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Wtedy do mapy można dodać filtrowanie wojsk. Domyślne mapy są na ogół grywalne. Naval to mapa, gdzie nie wszyscy przeciwnicy mogą dotrzeć drogą lądową, a  mapy demonstracyjne są wykorzystywane w celach testowych (zazwyczaj nieprzydatne do gry na nich). Filtr \" All Maps \" (\"Wszystkie Mapy\") pokazuje wszystkie mapy w jednej liście."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -182,7 +182,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Na końcu zmień ustawienia. Dla losowych map to oznacza dostosowanie liczby graczy, rozmiaru mapy etc. Dla scenariuszy oznacza że możesz wybrać tylko kto kontroluje którego gracza (decyduje to w jakim miejscu rozpoczynasz na mapie etc). Dostępne opcje to: człowiek, Bot lub żaden gracz w ogóle (przeciwnik będzie w stanie gotowości)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -570,7 +570,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
 "reports from the same user."
-msgstr ""
+msgstr "• Losowe ID użytkownika (umiejscowione w %APPDATA%\\0ad\\config\\user.cfg na Windowsie, $HOME/.config/0ad/config/user.cfg na Unixie), pozwól nam wykryć błąd, który powtarza się u wielu użytkowników."
 
 #: gui/manual/userreport.txt:6
 msgid ""

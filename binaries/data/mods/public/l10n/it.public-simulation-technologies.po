@@ -8,14 +8,15 @@
 # Fabio Pedretti <fabio.ped@libero.it>, 2016
 # francescogramazio <francescograma@gmail.com>, 2014
 # Me Lazzi, 2014-2015
+# Samuele Marazzita <samuelemarazzita@gmail.com>, 2016
 # Sebastiano Pistore <olatusrooc@virgilio.it>, 2016
 # andreac <supercarrer1989@hotmail.it>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-19 09:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:01+0100\n"
+"PO-Revision-Date: 2016-03-23 10:43+0000\n"
+"Last-Translator: Samuele Marazzita <samuelemarazzita@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -800,7 +801,7 @@ msgstr "Gli avamposti sopravvivono il doppio del tempo in territorio neutrale."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "Tasso di decadimento del territorio -50% per gli avamposti."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -1468,15 +1469,11 @@ msgstr "La meraviglia attrae molte più persone verso la tua civiltà."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "+50 massimo capacità popolazione."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Espansione Gloriosa"
-
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1535,7 +1532,7 @@ msgstr "Miglioramento della precisione del proiettile"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Precisione arcieri aumentata del 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1571,7 +1568,7 @@ msgstr "Armi da assedio immobili vengono montate e smontate velocemente"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% tempo di montaggio e smontaggio per armi da assedio immobili."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1754,19 +1751,19 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit these "
 "countries wealth."
-msgstr ""
+msgstr "L'estensione del commercio porta alla stabile organizzazione dei commercianti e delle loro famiglie nei paesi stranieri, consentendo loro di sfruttare le ricchezze di questi paesi."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Player can use his allies dropsites."
-msgstr ""
+msgstr "Il giocatore può utilizzare i punti di scarico dei suoi alleati."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "Esodo"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "Richiede 3 Commercianti"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2348,7 +2345,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "I Mauryani costruivano le mura delle loro città con il legno, una risorsa abbondante in India. Di conseguenza le mura delle città Maurytiane hanno -20% di salute e -20% di tempo di costruzione."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

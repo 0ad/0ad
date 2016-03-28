@@ -32,7 +32,7 @@ StatusBars.prototype.Sprites =
 StatusBars.prototype.Init = function()
 {
 	this.enabled = false;
-	this.auraSources = {};
+	this.auraSources = new Map();
 };
 
 /**
@@ -63,16 +63,16 @@ StatusBars.prototype.SetEnabled = function(enabled)
 
 StatusBars.prototype.AddAuraSource = function(source, auraName)
 {
-	if (this.auraSources[source])
-		this.auraSources[source].push(auraName);
+	if (this.auraSources.has(source))
+		this.auraSources.get(source).push(auraName);
 	else
-		this.auraSources[source] = [auraName];
+		this.auraSources.set(source, [auraName]);
 	this.RegenerateSprites();
 };
 
 StatusBars.prototype.RemoveAuraSource = function(source, auraName)
 {
-	let names = this.auraSources[source];
+	let names = this.auraSources.get(source);
 	names.splice(names.indexOf(auraName), 1);
 	this.RegenerateSprites();
 };
@@ -233,7 +233,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 {
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	let sources = cmpGuiInterface.GetEntitiesWithStatusBars().filter(e => this.auraSources[e] && this.auraSources[e].length);
+	let sources = cmpGuiInterface.GetEntitiesWithStatusBars().filter(e => this.auraSources.has(e) && this.auraSources.get(e).length);
 
 	if (!sources.length)
 		return 0;
@@ -244,7 +244,7 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 		let cmpAuras = Engine.QueryInterface(ent, IID_Auras); 
 		if (!cmpAuras) // probably the ent just died 
 			continue; 
-		for (let name of this.auraSources[ent]) 
+		for (let name of this.auraSources.get(ent)) 
 			iconSet.add(cmpAuras.GetOverlayIcon(name)); 
 	}
 

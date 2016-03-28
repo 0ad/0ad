@@ -1,7 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-//Random terrain textures, exclude african biome
-let random_terrain = randomizeBiome([6]);
+let random_terrain = randomizeBiome([g_BiomeSavanna]);
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -18,7 +17,7 @@ const tWater = rBiomeT15();
 let tHill = rBiomeT8();
 let tDirt = rBiomeT9();
 
-if (random_terrain == 1)
+if (random_terrain == g_BiomeTemperate)
 {
 	tDirt = ["medit_shrubs_a", "grass_field"];
 	tHill = ["grass_field", "peat_temp"];
@@ -333,7 +332,7 @@ RMS.SetProgress(65);
 
 log("Creating dirt patches...");
 let sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-let numb = random_terrain == 6 ? 3 : 1;
+let numb = random_terrain == g_BiomeSavanna ? 3 : 1;
 
 for (let i = 0; i < sizes.length; ++i)
 {
@@ -394,7 +393,7 @@ log("Creating more straggeler trees...");
 createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 3, clRock, 3));
 
 log("Creating decoration...");
-let planetm = random_terrain == 7 ? 8 : 1;
+let planetm = random_terrain == g_BiomeTropic ? 8 : 1;
 createDecoration
 (
 	[

@@ -1,3 +1,12 @@
+const g_BiomeTemperate = 1;
+const g_BiomeSnowy = 2;
+const g_BiomeDesert = 3;
+const g_BiomeAlpine = 4;
+const g_BiomeMediterranean = 5;
+const g_BiomeSavanna = 6;
+const g_BiomeTropic = 7;
+const g_BiomeAutumn = 8;
+
 var biomeID = 1;
 var rbt1 = ["temp_grass_long_b"];
 var rbt2 = "temp_forestfloor_pine";
@@ -74,8 +83,7 @@ function setBiome(biomeIndex)
 
 	biomeID = biomeIndex;
 
-	//temperate
-	if (biomeID == 1)
+	if (biomeID == g_BiomeTemperate)
 	{
 		// temperate ocean blue, a bit too deep and saturated perhaps but it looks nicer.
 		// this assumes ocean settings, maps that aren't oceans should reset.
@@ -179,8 +187,7 @@ function setBiome(biomeIndex)
 		rba8 = "actor|props/flora/bush_medit_sm.xml";
 		rba9 = "actor|flora/trees/oak.xml";
 	}
-	//snowy
-	else if (biomeID == 2)
+	else if (biomeID == g_BiomeSnowy)
 	{
 		setSunColor(0.550, 0.601, 0.644);				// a little darker
 		// Water is a semi-deep blue, fairly wavy, fairly murky for an ocean.
@@ -237,8 +244,7 @@ function setBiome(biomeIndex)
 		setPPSaturation(0.37);
 		setPPEffect("hdr");
 	}
-	//desert
-	else if (biomeID == 3)
+	else if (biomeID == g_BiomeDesert)
 	{
 		setSunColor(0.733, 0.746, 0.574);	
 
@@ -315,8 +321,7 @@ function setBiome(biomeIndex)
 		rba8 = "actor|props/flora/bush_desert_dry_a.xml";
 		rba9 = "actor|flora/trees/palm_date.xml";
 	}
-	//alpine
-	else if (biomeID == 4)
+	else if (biomeID == g_BiomeAlpine)
 	{
 		// simulates an alpine lake, fairly deep.
 		// this is not intended for a clear running river, or even an ocean.
@@ -375,8 +380,7 @@ function setBiome(biomeIndex)
 		rba8 = "actor|props/flora/bush_desert_a.xml";
 		rba9 = "actor|flora/trees/pine.xml";
 	}
-	//medit
-	else if (biomeID == 5)
+	else if (biomeID == g_BiomeMediterranean)
 	{
 		// Guess what, this is based on the colors of the mediterranean sea.
 		setWaterColor(0.024,0.212,0.024);
@@ -470,8 +474,7 @@ function setBiome(biomeIndex)
 		rba8 = "actor|props/flora/bush_medit_sm.xml";
 		rba9 = "actor|flora/trees/palm_cretan_date.xml";
 	}
-	//savanah
-	else if (biomeID == 6)
+	else if (biomeID == g_BiomeSavanna)
 	{
 		// Using the Malawi as a reference, in parts where it's not too murky from a river nearby.
 		setWaterColor(0.055,0.176,0.431);
@@ -539,8 +542,7 @@ function setBiome(biomeIndex)
 		rba8 = "actor|props/flora/bush_dry_a.xml";
 		rba9 = "actor|flora/trees/baobab.xml";
 	}
-	//tropic
-	else if (biomeID == 7)
+	else if (biomeID == g_BiomeTropic)
 	{
 		
 		// Bora-Bora ish. Quite transparent, not wavy.
@@ -600,8 +602,7 @@ function setBiome(biomeIndex)
 		rba8 = "actor|props/flora/plant_tropic_large.xml";
 		rba9 = "actor|flora/trees/tree_tropic.xml";
 	}
-	//autumn
-	else if (biomeID == 8)
+	else if (biomeID == g_BiomeAutumn)
 	{
 		// basically temperate with a reddish twist in the reflection and the tint. Also less wavy.
 		// this assumes ocean settings, maps that aren't oceans should reset.

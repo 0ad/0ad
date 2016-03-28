@@ -464,7 +464,7 @@ var unitFilters = {
 		var entState = GetEntityState(entity);
 		if (!entState)
 			return false;
-		return hasClass(entState, "Unit") && entState.unitAI.isIdle;
+		return hasClass(entState, "Unit") && entState.unitAI && entState.unitAI.isIdle;
 	},
 	"isAnything": function (entity) {
 		return true;
@@ -1353,7 +1353,7 @@ function addTrainingByPosition(position)
 	var playerState = simState.players[Engine.GetPlayerID()];
 	var selection = g_Selection.toList();
 
-	if (!selection.length)
+	if (!playerState || !selection.length)
 		return;
 
 	var trainableEnts = getAllTrainableEntitiesFromSelection();

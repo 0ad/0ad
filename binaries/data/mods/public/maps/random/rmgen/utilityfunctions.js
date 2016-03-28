@@ -95,13 +95,13 @@ function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID
 	var tF1 = terrainset[3]
 	var tF2 = terrainset[4]
 
-	if (biomeID == 6)
+	if (biomeID == g_BiomeSavanna)
 	{
 		var MIN_TREES = 200 * numMultiplier;
 		var MAX_TREES = 1250 * numMultiplier;
 		var P_FOREST = 0;
 	}
-	else if (biomeID == 7)
+	else if (biomeID == g_BiomeTropic)
 	{
 		var MIN_TREES = 1000 * numMultiplier;
 		var MAX_TREES = 6000 * numMultiplier;
@@ -124,7 +124,7 @@ function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID
 		[[tFF1, tM, tF2], [tFF1, tF2]]
 	];	// some variation
 
-	if (biomeID != 6)
+	if (biomeID != g_BiomeSavanna)
 	{
 		var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 		var num = floor(size / types.length);

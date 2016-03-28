@@ -7,13 +7,13 @@
 # David Mannes <mannesdavid@web.de>, 2015
 # leper <leper@wildfiregames.com>, 2014-2015
 # Raymond Vetter, 2014-2016
-# Xaver, 2015
+# Xaver, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 19:41+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"PO-Revision-Date: 2016-03-22 22:09+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,7 +145,7 @@ msgstr "[font=\"sans-14\"]In einem Mehrspielerspiel kann nur der Host die Option
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr "Wählen Sie zunächst, welche Art von Karte du spielen möchtest:"
+msgstr "Wähle zunächst, welche Art von Karte du spielen möchtest:"
 
 #: gui/manual/intro.txt:32
 msgid ""
@@ -172,7 +172,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "Ferner können die Karten weiter gefiltert werden. Die Standardkarten sind grundsätzlich spielbare Karten. Seekarten sind Karten, in denen nicht alle Gegner über Landwege erreicht werden können und Demokarten sind Karten, die für Testzwecke benutzt werden (grundsätzlich nicht nützlich zum Spielen). Der Filter »Alle Karten« zeigt alle Karten auf einmal in einer Liste an."
+msgstr "Ferner können die Karten weiter gefiltert werden. Die Standardkarten sind grundsätzlich spielbare Karten. Seekarten sind Karten, in denen nicht alle Gegner über Landwege erreicht werden können und Demokarten sind Karten, die für Testzwecke benutzt werden (meist nicht geeignet zum Spielen). Der Filter »Alle Karten« zeigt alle Karten auf einmal in einer Liste an."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -277,11 +277,11 @@ msgstr "F10: Menü öffnen/schließen"
 
 #: gui/manual/intro.txt:61
 msgid "F12: Show/hide time elapsed counter"
-msgstr "F12: Zeige/Verstecke die vergangene Zeit"
+msgstr "F12: Ein-/Ausblenden der vergangenen Zeit"
 
 #: gui/manual/intro.txt:62
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: Schließt alle Dialoge (Chat, Menü) oder setzt die Auswahl zurück"
+msgstr "ESC: Alle Dialoge (Chat, Menü) schließen oder Auswahl zurücksetzen"
 
 #: gui/manual/intro.txt:63
 msgid "Enter/return: Open/send chat"
@@ -402,7 +402,7 @@ msgstr "- Ist der Mauszeiger über einem verbündeten oder eigenen Gebäude: Ein
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "- Wenn der Cursor sich über einer nicht verbündeten Einheit oder ein Gebäude befindet: greife an (anstelle von einnehmen oder sammeln)"
+msgstr "– Wenn der Mauszeiger sich über einer nicht verbündeten Einheit oder einem Gebäude befindet: angreifen (anstelle von einnehmen oder sammeln)"
 
 #: gui/manual/intro.txt:90
 msgid ""
@@ -428,7 +428,7 @@ msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr "Alt + W: Zu Drahtgittermodellen wechseln (einmal drücken, um Drahtgitter über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Drahtgittermodelle zu bekommen, und ein drittes mal, um in den normalen Modus zurückzuwechseln)"
+msgstr "Alt + W: Zu Drahtgittermodellen wechseln (einmal drücken, um Drahtgitter über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Drahtgittermodelle zu bekommen, und ein drittes Mal, um in den normalen Modus zurückzuwechseln)"
 
 #: gui/manual/intro.txt:96
 msgid ""
@@ -437,7 +437,7 @@ msgstr "Alt + S: Umrisse von Einheiten ein-/ausschalten (kann einen leichten Per
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Z: Toggle sky"
-msgstr "Alt + Z: Anzeigen des Himmels umschalten"
+msgstr "Alt + Z: Himmel ein-/ausschalten"
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -461,11 +461,11 @@ msgstr "D oder \\[Pfeil nach rechts]: Kamera nach rechts bewegen"
 
 #: gui/manual/intro.txt:104
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr "Strg + W oder \\[oben]: Kamera nach oben drehen"
+msgstr "Strg + W oder \\[oben]: Kamera nach oben schwenken"
 
 #: gui/manual/intro.txt:105
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr "Strg + S oder \\[unten]: Kamera nach unten drehen"
+msgstr "Strg + S oder \\[unten]: Kamera nach unten schwenken"
 
 #: gui/manual/intro.txt:106
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
@@ -575,7 +575,7 @@ msgstr "• Eine zufällige Benutzer-ID (gespeichert in %APPDATA%\\0ad\\config\\
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• Die Spielversion und grundlegende Build-Enstellungen (Optimisationsmodus, Prozessorarchitektur, Zeitstempel, Compilerversion)."
+msgstr "• Die Spielversion und grundlegende Build-Enstellungen (Optimierungsmodus, Prozessorarchitektur, Zeitstempel, Compilerversion)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
@@ -587,7 +587,7 @@ msgstr "• Hardware-Details: Betriebssystemversion, Version des Grafikkartentre
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "• Performance-Details: eine Momentaufnahme der Zeitdaten ein paar Sekunden, nachdem Sie ein Spiel starten oder Grafikeinstellungen ändern."
+msgstr "• Performance-Details: eine Momentaufnahme der Zeitdaten ein paar Sekunden, nachdem Du ein Spiel startest oder Grafikeinstellungen änderst."
 
 #: gui/manual/userreport.txt:10
 msgid ""
@@ -602,4 +602,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Wir werden die  erfassten Daten auf unseren Servern speichern und eventuell Statistiken oder nicht-benutzeridentifizierbare Details veröffentlichen, um anderen Spielentwicklern mit ähnlichen Fragen zu helfen. Wir speichern die IP-Adressen, von denen die Daten gesendet wurden, um Missbrauch dieses Dienstes zu erkennen - sie werden aber nicht veröffentlicht. Die veröffentlichten Daten können unter http://feedback.wildfiregames.com/ eingesehen werden."
+msgstr "Wir werden die erfassten Daten auf unseren Servern speichern und eventuell Statistiken oder nicht-benutzeridentifizierbare Details veröffentlichen, um anderen Spielentwicklern mit ähnlichen Fragen zu helfen. Wir speichern die IP-Adressen, von denen die Daten gesendet wurden, um Missbrauch dieses Dienstes zu erkennen - sie werden aber nicht veröffentlicht. Die veröffentlichten Daten können unter http://feedback.wildfiregames.com/ eingesehen werden."

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014-2015
+# Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2016
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 08:39+0000\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-21 11:02+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +60,7 @@ msgstr "Historien om %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Åbner %(url)s\ni standardbrowseren. Vent venligst..."
 
 #: gui/common/functions_global_object.js:73
 msgid "Opening page"
@@ -85,11 +86,11 @@ msgstr ""
 
 #: gui/common/functions_utility.js:77
 msgid "A randomly selected map."
-msgstr ""
+msgstr "En tilfældigt udvalgt bane."
 
 #: gui/common/functions_utility.js:84
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Der er desværre ingen beskrivelse tilgængelig."
 
 #: gui/common/functions_utility.js:109
 msgid "mm:ss"
@@ -365,11 +366,11 @@ msgstr ""
 
 #: gui/common/network.js:58
 msgid "You have been kicked"
-msgstr ""
+msgstr "Du er blevet smidt ud"
 
 #: gui/common/network.js:59
 msgid "You have been banned"
-msgstr ""
+msgstr "Du er blevet forbudt adgang"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -377,7 +378,7 @@ msgstr ""
 
 #: gui/common/network.js:61
 msgid "Server full"
-msgstr ""
+msgstr "Serveren er fuld"
 
 #: gui/common/network.js:64
 #, javascript-format
@@ -416,7 +417,7 @@ msgstr ""
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Sandkasse"
 
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
@@ -464,35 +465,35 @@ msgstr ""
 #: gui/common/settings.js:171
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Tilfældig"
 
 #: gui/common/settings.js:175
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Scenarie"
 
 #: gui/common/settings.js:206
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: gui/common/settings.js:207
 msgid "Endless Game"
-msgstr ""
+msgstr "Uendeligt Spil"
 
 #: gui/common/settings.js:248
 msgid "Unlimited"
-msgstr ""
+msgstr "Ubegrænset"
 
 #: gui/common/settings.js:296 gui/common/settings.js:307
 #: gui/common/settings.js:319 gui/common/settings.js:343
 #: gui/common/settings.js:355
 msgid "Unknown"
-msgstr ""
+msgstr "Ukendt"
 
 #: gui/common/settings.js:331
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:90
 #: gui/common/tooltips.js:124
@@ -650,11 +651,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:240 gui/common/tooltips.js:251
 msgid "health"
-msgstr ""
+msgstr "helbred"
 
 #: gui/common/tooltips.js:242 gui/common/tooltips.js:253
 msgid "worker"
-msgstr ""
+msgstr "arbejder"
 
 #: gui/common/tooltips.js:248
 #, javascript-format
@@ -970,27 +971,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Én"
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Én"
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Én"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Én"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Én"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
@@ -1027,7 +1028,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Ukendt Civilisation"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1367,11 +1368,11 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Kunst"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Oversættere"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1930,7 +1931,7 @@ msgstr ""
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
-"IndieGoGO 2013 campaign\n"
+"Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr ""
 

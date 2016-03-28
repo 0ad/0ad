@@ -9,16 +9,16 @@
 # Ellen Roels, 2015
 # Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
-# niektb <niektb95@gmail.com>, 2014-2015
+# niektb <niektb95@gmail.com>, 2014-2016
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2014,2016
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2016-03-20 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:01+0100\n"
+"PO-Revision-Date: 2016-03-25 18:37+0000\n"
+"Last-Translator: niektb <niektb95@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,23 +26,11 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: maps/random/adeath_canyon.jsonsettings.Description
-msgid ""
-"Even and odd players start on a different side of a deep but resourceful "
-"canyon"
-msgstr ""
-
-#: maps/random/adeath_canyon.jsonsettings.Name
-msgid "ADeath Canyon"
-msgstr ""
-
 #: maps/random/aegean_sea.jsonsettings.Description
-#: maps/scenarios/Isthmus2.xml:Description:40
 msgid "Players start on two sides of a sea with scattered islands."
 msgstr "De spelers starten aan twee zijden van een zee met verspreide eilanden."
 
 #: maps/random/aegean_sea.jsonsettings.Name
-#: maps/scenarios/Isthmus2.xml:Name:40
 msgid "Aegean Sea"
 msgstr "Egeïsche zee"
 
@@ -72,7 +60,7 @@ msgstr "Bergen bekijken de laaglanden. Er zijn veel grondstoffen te vinden op de
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
-msgstr "Verrassingsaanval"
+msgstr "Hinderlaag"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -200,7 +188,7 @@ msgstr "Een aangrenzende provincie wil jouw leiderschap volgen en vraagt om een 
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
-msgstr "Wereldrijk"
+msgstr "Keizerrijk"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
@@ -220,7 +208,7 @@ msgstr "Een overstroming heeft de vallei onder water gezet, eilanden kunnen zowe
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
-msgstr "Overstoming"
+msgstr "Overstroming"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -292,9 +280,9 @@ msgstr "Hyrcanische kusten"
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
-"Teams start off with nearly adjacent town centers on a small island, "
+"Teams start off with nearly adjacent civic centers on a small island, "
 "offering a fortified base from which to expand."
-msgstr "Teams starten met beschavingscentra dicht bij elkaar, op een klein eiland. Dit biedt een versterkte basis om verder uit te breiden."
+msgstr "Teams starten met beschavingscentra dicht bij elkaar, op een klein eiland. Dit biedt een versterkte basis om, van daar uit, verder uit te breiden."
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
@@ -302,7 +290,7 @@ msgstr "Eilandfort"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
-msgstr "Spelers starten in kleine eilanden, terwijl er veel andere eilanden in de omgeving zijn."
+msgstr "Spelers starten op kleine eilanden, terwijl er veel andere eilanden in de omgeving zijn."
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
@@ -514,10 +502,10 @@ msgstr "Sneeuwvlok zeerotsen"
 
 #: maps/random/stronghold.jsonsettings.Description
 msgid ""
-"Teams start off with nearly adjacent town centers, offering easy military "
+"Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr "Teams starten als tweelingdorpen, dicht bij elkaar. Dit zorgt voor goede samenwerking op defensief en economisch vlak. Door de stukjes persoonlijk territorium moeten teams hun vrienden vertrouwen om de achterhoede te beschermen."
+msgstr "Teams starten als tweelingdorpen, dicht bij elkaar. Dit maakt een goede samenwerking op defensief en economisch vlak mogelijk. Dankzij de kleine stukjes persoonlijk territorium moeten teamgenoten op elkaar vertrouwen om hun achterhoede te beschermen."
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
@@ -605,11 +593,6 @@ msgstr "Pas op! Een vijandelijke aanvalsgolf!"
 msgid "The first wave will start in 15 minutes!"
 msgstr "De eerste aanvalsgolf begint over 15 minuten!"
 
-#: maps/scenarios/Cinema_Demo.js:12
-#, javascript-format
-msgid "Cutscene starts in %(time)s"
-msgstr ""
-
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
 msgstr "Testen van de ja-nee dialoog. Wil je tuurlijk of liever niet zeggen?"
@@ -695,9 +678,7 @@ msgstr "Lente in Arcadië, Griekenland. Lenteregens hebben het water in de klein
 #: maps/scenarios/Walls.xml:PlayerData[0].Name:31
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:42
-#: maps/scenarios/test.xml:PlayerData[1].Name:40 maps/skirmishes/Acropolis Bay
-#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Acropolis Fortress
-#: (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[0].Name:31
@@ -765,9 +746,7 @@ msgstr "Speler 1"
 #: maps/scenarios/WallTest.xml:PlayerData[1].Name:31
 #: maps/scenarios/Walls.xml:PlayerData[1].Name:31
 #: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:42
-#: maps/scenarios/test.xml:PlayerData[2].Name:40 maps/skirmishes/Acropolis Bay
-#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Acropolis Fortress
-#: (2).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
 #: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:31
@@ -982,22 +961,6 @@ msgstr "Religieuze instituten"
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Strategische veldtocht - proof of concept"
 
-#: maps/scenarios/Cinema_Demo.xml:Description:40
-msgid "Demo map for cinematic camera movements."
-msgstr ""
-
-#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
-msgid "Xerxes I"
-msgstr ""
-
-#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
-msgid "Yuu"
-msgstr ""
-
-#: maps/scenarios/Cinema_Demo.xml:Name:40
-msgid "Cinema Demo"
-msgstr ""
-
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
 msgstr "Gevechtsdemo"
@@ -1037,9 +1000,7 @@ msgstr "Invasie kracht"
 #: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
 #: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[2].Name:31
-#: maps/scenarios/Two_Seas.xml:PlayerData[3].Name:40 maps/skirmishes/Acropolis
-#: Fortress (2).xml:PlayerData[3].Name:40 maps/skirmishes/Barcania
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
@@ -1094,9 +1055,7 @@ msgstr "Een kleine woestijnkaart. Ieder speler start bij een oase, maar voor de 
 #: maps/scenarios/Gold_Rush.xml:PlayerData[3].Name:31
 #: maps/scenarios/Necropolis.xml:PlayerData[3].Name:41 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[3].Name:31 maps/scenarios/Siwa
-#: Oasis.xml:PlayerData[3].Name:31
-#: maps/scenarios/Two_Seas.xml:PlayerData[4].Name:40 maps/skirmishes/Acropolis
-#: Fortress (2).xml:PlayerData[4].Name:40 maps/skirmishes/Caspian Sea
+#: Oasis.xml:PlayerData[3].Name:31 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:42 maps/skirmishes/Corinthian Isthmus
 #: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Greek Acropolis
@@ -1209,16 +1168,6 @@ msgstr "De Peloponnesische vallei van Laconië, thuisland van de Spartanen.\n\nD
 #: maps/scenarios/Laconia 01.xml:Name:31
 msgid "Laconia"
 msgstr "Laconië"
-
-#: maps/scenarios/Malta2.xml:Description:40
-msgid ""
-"Romanian conquest of Malta Island.\n"
-"Malta has been colonized by carthaganians and greeks, who both live peacefully and established commercial exchanges years ago. Romans wants to take malta to establish a new military base and create new mediteranean commercial routes. The roman conquest start from Gozo Island (northern island)."
-msgstr ""
-
-#: maps/scenarios/Malta2.xml:Name:40
-msgid "Malta Island"
-msgstr ""
 
 #: maps/scenarios/Migration.xml:Description:31
 msgid ""
@@ -1696,34 +1645,6 @@ msgstr "Multiplayer kaart, een tropisch paradijs."
 msgid "Tropical Island"
 msgstr "Tropisch eiland"
 
-#: maps/scenarios/Two_Seas.xml:Description:40 maps/skirmishes/Two Seas
-#: (6).xml:Description:41
-msgid ""
-"A large tropic map with two seas to the East and to the West. Good for two "
-"teams of three players or three teams of two players."
-msgstr "Een grote tropische kaart met twee zeeën, in het oosten en het westen.\nGoed voor twee teams van drie spelers, of drie teams van twee spelers."
-
-#: maps/scenarios/Two_Seas.xml:PlayerData[1].Name:40
-msgid "Capital 1"
-msgstr ""
-
-#: maps/scenarios/Two_Seas.xml:PlayerData[2].Name:40
-msgid "Capital 2"
-msgstr ""
-
-#: maps/scenarios/Two_Seas.xml:PlayerData[5].Name:40
-msgid "Player 5"
-msgstr ""
-
-#: maps/scenarios/Two_Seas.xml:PlayerData[6].Name:40
-msgid "Player 6"
-msgstr ""
-
-#: maps/scenarios/Two_Seas.xml:Name:40 maps/skirmishes/Two Seas
-#: (6).xml:Name:41
-msgid "Two Seas (6)"
-msgstr "Twee zeeën (6)"
-
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
 msgstr "Eenheden demo"
@@ -1735,7 +1656,7 @@ msgstr "Een demo met alle eenheden in het spel."
 #: maps/scenarios/WallTest.xml:Description:31
 #: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
 #: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:41 maps/skirmishes/test.xml:Description:40
+#: (4).xml:Description:41
 msgid "Give an interesting description of your map."
 msgstr "Geef een interessante beschrijving voor je kaart."
 
@@ -1759,7 +1680,7 @@ msgstr "We Are Legion"
 msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Een demokaart voor snelle gevechten met Romeinse legionairs."
 
-#: maps/scenarios/_default.xml:Name:32 maps/skirmishes/test.xml:Name:40
+#: maps/scenarios/_default.xml:Name:32
 msgid "Unnamed map"
 msgstr "Onbekende kaart"
 
@@ -1802,19 +1723,6 @@ msgstr "Wegwijs door de economiestart"
 msgid "Base Temperate Map"
 msgstr "Basis matigeklimaatskaart"
 
-#: maps/scenarios/test.xml:Description:40
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
-msgid ""
-"The high peaks and valleys of the Alps.\n"
-"\n"
-"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr "Hoge pieken en valleien van de Alpen.\n\nElke speler start de wedstrijd in een veilige groene vallei. Tussen de spelers liggen verraderlijke bergen."
-
-#: maps/scenarios/test.xml:Name:40
-#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
-msgid "Alpine Valleys (2)"
-msgstr "Alpenvallei (2)"
-
 #: maps/skirmishes/Acropolis Bay (2).xml:Description:41
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
@@ -1826,19 +1734,6 @@ msgstr "Elke speler start boven op een vlak plateau, ook gekend als een akropoli
 msgid "Acropolis Bay (2)"
 msgstr "Akropolisbaai (2)"
 
-#: maps/skirmishes/Acropolis Fortress (2).xml:Description:40
-#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
-msgid ""
-"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
-"\n"
-"Scout the lands to find free treasures and to secure new resources.."
-msgstr "Drie beschavingen bevinden zich bovenop rotsachtige plateaus of acropolis, terwijl de vierde door een rivier van zijn vijanden afgeschermd is.\n\nVerken het land om schatten te vinden en grondstoffen op te eisen."
-
-#: maps/skirmishes/Acropolis Fortress (2).xml:Name:40 maps/skirmishes/Greek
-#: Acropolis (4).xml:Name:41
-msgid "Greek Acropolis (4)"
-msgstr "Griekse Akropolis (4)"
-
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Description:40
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
@@ -1848,6 +1743,17 @@ msgstr "Een kaart gevuld met onbegaanbare bergen en een groot aantal natuurlijke
 #: maps/skirmishes/Alpine_Mountains_(3).xml:Name:40
 msgid "Alpine Mountains (3)"
 msgstr "Alpenbergen (3)"
+
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
+msgid ""
+"The high peaks and valleys of the Alps.\n"
+"\n"
+"Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
+msgstr "Hoge pieken en valleien van de Alpen.\n\nElke speler start de wedstrijd in een veilige groene vallei. Tussen de spelers liggen verraderlijke bergen."
+
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
+msgid "Alpine Valleys (2)"
+msgstr "Alpenvallei (2)"
 
 #: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
@@ -1871,14 +1777,6 @@ msgid ""
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers."
 msgstr "Een wild en bebost eiland, vol met wouden, goud en mysterie... Bergen, zeëen en dichte bossen zorgen voor een heel dynamische en snelle kaart voor 3 spelers met veel potentieel voor schermutselingen en guerilla oorlogsvoering en ook hard defensief vechten of aggressieve manoeuvres."
-
-#: maps/skirmishes/Basic Tutorial.xml:Description:41
-msgid "The first steps of playing 0 A.D."
-msgstr ""
-
-#: maps/skirmishes/Basic Tutorial.xml:Name:41
-msgid "Basic Tutorial"
-msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
@@ -1951,14 +1849,6 @@ msgstr "Delos"
 #: maps/skirmishes/Cycladic Archipelago (3).xml:Name:41
 msgid "Cycladic Archipelago (3)"
 msgstr "Cycladisch Archipel (3)"
-
-#: maps/skirmishes/Cyprus.xml:Description:40
-msgid "Version Beta"
-msgstr ""
-
-#: maps/skirmishes/Cyprus.xml:Name:40
-msgid "Cyprus"
-msgstr ""
 
 #: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""
@@ -2050,6 +1940,17 @@ msgstr "Twee beschavingen bevinden zich vanboven op rotsachtige plateaus of akro
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:41
 msgid "Greek Acropolis (2)"
 msgstr "Griekse Akropolis (2)"
+
+#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
+msgid ""
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr "Drie beschavingen bevinden zich bovenop rotsachtige plateaus of acropolis, terwijl de vierde door een rivier van zijn vijanden afgeschermd is.\n\nVerken het land om schatten te vinden en grondstoffen op te eisen."
+
+#: maps/skirmishes/Greek Acropolis (4).xml:Name:41
+msgid "Greek Acropolis (4)"
+msgstr "Griekse Akropolis (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Name:42
 msgid "Greek Acropolis Night (2)"
@@ -2292,6 +2193,16 @@ msgstr "Vier beschavingen bevinden zich vanboven op rotsachtige plateaus of acro
 #: maps/skirmishes/Tuscan Acropolis (4).xml:Name:40
 msgid "Tuscan Acropolis (4)"
 msgstr "Toscaanse Akropolis (4)"
+
+#: maps/skirmishes/Two Seas (6).xml:Description:41
+msgid ""
+"A large tropic map with two seas to the East and to the West. Good for two "
+"teams of three players or three teams of two players."
+msgstr "Een grote tropische kaart met twee zeeën, in het oosten en het westen.\nGoed voor twee teams van drie spelers, of drie teams van twee spelers."
+
+#: maps/skirmishes/Two Seas (6).xml:Name:41
+msgid "Two Seas (6)"
+msgstr "Twee zeeën (6)"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:42
 msgid ""

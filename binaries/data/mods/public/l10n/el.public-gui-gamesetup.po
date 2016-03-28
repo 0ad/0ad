@@ -11,12 +11,13 @@
 # George Charoupas <labaxp@gmail.com>, 2015
 # MasterWord, 2015
 # jason <manitarious@gmail.com>, 2015
-# LOUKAS SKOUROLIAKOS, 2015
+# LOUKAS SKOUROLIAKOS, 2015-2016
 # malvanos <malvanos@gmail.com>, 2015
 # mAnlis mAnlAkis <www.1908jeep@gmail.com>, 2016
 # ridergr <ridergr@gmail.com>, 2015
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
+# Savvas Nesseris <nesseris@yahoo.com>, 2016
 # Tony Chief <chiefleestones@yahoo.gr>, 2016
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
@@ -25,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-20 08:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:00+0100\n"
+"PO-Revision-Date: 2016-03-24 09:41+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,9 +105,8 @@ msgstr "Χάρτες Επίδειξης"
 msgid "All Maps"
 msgstr "Όλοι οι χάρτες"
 
-#: gui/gamesetup/gamesetup.js:136 gui/gamesetup/gamesetup.js:1384
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
+#: gui/gamesetup/gamesetup.js:136
+msgctxt "map type"
 msgid "Random"
 msgstr "Τυχαίο"
 
@@ -167,6 +167,11 @@ msgstr[1] "%(number)s παίκτες."
 #: gui/gamesetup/gamesetup.js:1381 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "Προϋπόθεση νίκης:"
+
+#: gui/gamesetup/gamesetup.js:1384
+msgctxt "map selection"
+msgid "Random"
+msgstr "Τυχαίο"
 
 #: gui/gamesetup/gamesetup.js:1455
 #, javascript-format
@@ -237,47 +242,6 @@ msgstr "Το όνομα παιχνιδιού είναι ήδη σε χρήση."
 msgid "%(playername)s's game"
 msgstr "Το παιχνίδι του/ων %(playername)s"
 
-#: gui/gamesetup/mapselection.js:16
-msgctxt "map"
-msgid "Skirmish"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:16
-msgid "Scenario"
-msgstr ""
-
-#: gui/gamesetup/mapselection.js:19 gui/gamesetup/gamesetup.xml:(tooltip):139
-#: gui/gamesetup/mapsettings.xml:(tooltip):38
-#: gui/gamesetup/settings/mapType.xml:(tooltip):13
-msgid "Select a map type."
-msgstr "Επιλογή τύπου χάρτη."
-
-#: gui/gamesetup/mapselection.js:20 gui/gamesetup/gamesetup.xml:(caption):110
-#: gui/gamesetup/mapsettings.xml:(caption):7
-#: gui/gamesetup/settings/mapType.xml:(caption):5
-msgid "Map Type:"
-msgstr "Τύπος Χάρτη:"
-
-#: gui/gamesetup/mapselection.js:33 gui/gamesetup/gamesetup.xml:(tooltip):147
-#: gui/gamesetup/mapsettings.xml:(tooltip):46
-msgid "Select a map filter."
-msgstr "Επιλογή φίλτρου χάρτη."
-
-#: gui/gamesetup/mapselection.js:34 gui/gamesetup/gamesetup.xml:(caption):113
-#: gui/gamesetup/mapsettings.xml:(caption):10
-msgid "Map Filter:"
-msgstr "Φίλτρο Χάρτη:"
-
-#: gui/gamesetup/mapselection.js:47 gui/gamesetup/gamesetup.xml:(tooltip):156
-#: gui/gamesetup/mapsettings.xml:(tooltip):55
-msgid "Select a map to play on."
-msgstr "Επιλογή χάρτη για παιχνίδι."
-
-#: gui/gamesetup/mapselection.js:48 gui/gamesetup/gamesetup.xml:(caption):116
-#: gui/gamesetup/mapsettings.xml:(caption):13
-msgid "Select Map:"
-msgstr "Επιλογή Χάρτη:"
-
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
@@ -323,7 +287,6 @@ msgid "Loading map data. Please wait..."
 msgstr "Φόρτωση δεδομένων χάρτη. Παρακαλώ περιμένετε..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):45
-#: gui/gamesetup/players.xml:(caption):8
 msgid "Player Name"
 msgstr "Όνομα παίκτη:"
 
@@ -332,27 +295,34 @@ msgid "Color"
 msgstr "Χρώμα"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
-#: gui/gamesetup/players.xml:(caption):11
 msgid "Player Placement"
 msgstr "Τοποθέτηση παίκτη"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
-#: gui/gamesetup/players.xml:(caption):14
 msgid "Civilization"
 msgstr "Πολιτισμός"
 
 #: gui/gamesetup/gamesetup.xml:(caption):69
-#: gui/gamesetup/players.xml:(caption):29
 msgid "Team"
 msgstr "Ομάδα"
 
+#: gui/gamesetup/gamesetup.xml:(caption):110
+msgid "Map Type:"
+msgstr "Τύπος Χάρτη:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):113
+msgid "Map Filter:"
+msgstr "Φίλτρο Χάρτη:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):116
+msgid "Select Map:"
+msgstr "Επιλογή Χάρτη:"
+
 #: gui/gamesetup/gamesetup.xml:(caption):119
-#: gui/gamesetup/mapsettings.xml:(caption):19
 msgid "Number of Players:"
 msgstr "Αριθμός Παικτών:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):122
-#: gui/gamesetup/mapsettings.xml:(caption):22
 msgid "Map Size:"
 msgstr "Μέγεθος Χάρτη:"
 
@@ -362,7 +332,7 @@ msgstr "Αποστολή"
 
 #: gui/gamesetup/gamesetup.xml:(caption):219
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Τα κόλπα ενεργοποιήθηκαν"
 
 #: gui/gamesetup/gamesetup.xml:(caption):232
 msgid "Start game!"
@@ -422,7 +392,6 @@ msgid "Rated Game:"
 msgstr "Βαθμολογημένο παιχνίδι:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):63
-#: gui/gamesetup/players.xml:(tooltip):23
 msgid "View civilization info"
 msgstr "Προβολή πληροφοριών για τον πολιτισμό"
 
@@ -431,32 +400,38 @@ msgid "Pick a color."
 msgstr "Διάλεξε χρώμα."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
-#: gui/gamesetup/players.xml:(tooltip):38
 msgid "Select player."
 msgstr "Επιλογή παίκτη."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):91
-#: gui/gamesetup/players.xml:(tooltip):47
 msgid "Configure AI settings."
 msgstr "Διαμόρφωση Ρυθμίσεων AI (τεχνητής νοημοσύνης)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):94
-#: gui/gamesetup/players.xml:(tooltip):50
 msgid "Select player's civilization."
 msgstr "Επιλογή πολιτισμού του παίκτη."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):98
-#: gui/gamesetup/players.xml:(tooltip):54
 msgid "Select player's team."
 msgstr "Επιλογή ομάδας του παίκτη."
 
+#: gui/gamesetup/gamesetup.xml:(tooltip):139
+msgid "Select a map type."
+msgstr "Επιλογή τύπου χάρτη."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):147
+msgid "Select a map filter."
+msgstr "Επιλογή φίλτρου χάρτη."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):156
+msgid "Select a map to play on."
+msgstr "Επιλογή χάρτη για παιχνίδι."
+
 #: gui/gamesetup/gamesetup.xml:(tooltip):166
-#: gui/gamesetup/mapsettings.xml:(tooltip):65
 msgid "Select number of players."
 msgstr "Επιλογή αριθμού παικτών."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):170
-#: gui/gamesetup/mapsettings.xml:(tooltip):70
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Επιλογή μεγέθους χάρτη. (τα μεγαλύτερα μεγέθη ίσως επηρεάσουν αρνητικά τις επιδόσεις)."
 
@@ -550,10 +525,6 @@ msgstr "Διαμόρφωση διακομιστή ως host."
 msgid "Server name:"
 msgstr "Όνομα διακομιστή:"
 
-#: gui/gamesetup/mapsettings.xml:(caption):16
-msgid "Other Settings"
-msgstr ""
-
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
 msgstr "Ρητό της Ημέρας:"
@@ -644,11 +615,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr ""
+msgstr "\"Η πειθώ είναι συχνά πιο αποτελεσματική από τη δύναμη\" -- Αίσωπος"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr ""
+msgstr "\"Η έπαρση μπορεί να οδηγήσει στην αυτοκαταστροφή\" -- Αίσωπος"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
@@ -656,7 +627,7 @@ msgstr "\"Αργά και σταθερά κερδίζεις τον αγώνα\" 
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "\"Οι θεοί βοηθούν αυτούς που βοηθούν τους εαυτούς τους\" - Αίσωπος"
 
 #: gui/text/quotes.txt:22
 msgid ""

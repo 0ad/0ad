@@ -399,6 +399,15 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
+		// If inside a started attack plan, let the plan deal with this unit
+		let plan = target.getMetadata(PlayerID, "plan");
+		if (plan !== undefined && plan >= 0)
+		{
+			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
+			if (attack && attack.state !== "unexecuted")
+				continue;
+		}
+
 		// Signal this attacker to our defense manager, except if we are in enemy territory
 		// TODO treat ship attack
 		if (attacker && attacker.position() && attacker.getMetadata(PlayerID, "PartOfArmy") === undefined &&
@@ -407,15 +416,6 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			let territoryOwner = this.territoryMap.getOwner(attacker.position());
 			if (territoryOwner === 0 || gameState.isPlayerAlly(territoryOwner))
 				this.makeIntoArmy(gameState, attacker.id());
-		}
-
-		// If inside a started attack plan, let the plan deal with this unit
-		let plan = target.getMetadata(PlayerID, "plan");
-		if (plan !== undefined && plan >= 0)
-		{
-			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
-			if (attack && attack.state !== "unexecuted")
-				continue;
 		}
 
 		if (target.getMetadata(PlayerID, "PartOfArmy") !== undefined)

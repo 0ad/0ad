@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-19 09:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-21 09:01+0100\n"
+"PO-Revision-Date: 2016-03-26 13:05+0000\n"
+"Last-Translator: Yordan Grigorov <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -313,7 +313,7 @@ msgstr "Доспехи, изработени изцяло от бронз. Са�
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "+2 защита срещу разсичане за експертите, но цената им се увеличава с +10 метал."
+msgstr "+2 защита срещу разсичане за гвардейците, но цената им се увеличава с +10 метал."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -396,7 +396,7 @@ msgstr "Само най-знаменитите во̀ини имали щито�
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "+2 защита срещу пробождане за експертите, но цената им се увеличава с +10 метал."
+msgstr "+2 защита срещу пробождане за гвардейците, но цената им се увеличава с +10 метал."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -566,7 +566,7 @@ msgstr "Пазачите имат рядко срещана смелост и д
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "Бранителите имат рядко срещана смелост и доблест в битка. +2 атака за експертите."
+msgstr "Бранителите имат рядко срещана смелост и доблест в битка. +2 атака за гвардейците."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -1210,7 +1210,7 @@ msgstr "Копие срещу шамфрон"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr "Експерти срещу аматьори"
+msgstr "Гвардейци срещу аматьори"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -1467,22 +1467,18 @@ msgstr "Чудото привлича още много хора към Ваша
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "+50 максимално население."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Славно разрастване"
-
-#: simulation/data/technologies/promotion_healer_advanced.jsongenericName
-msgid "Healer Promotion"
-msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
 " the fulcrum action of the throwing arm mid-throw, increasing speed and "
 "range of the javelin."
-msgstr "Ремъкът за леки метателни копия (гърците го наричали също така „примка“ или „бронкос“) засилвал въртящия момент на оръжието по време на хвърляне, увеличавайки скоростта и обхвата на лекото копие."
+msgstr "Ремъкът за метателни копия (гърците го наричали също така „примка“ или „бронкос“) засилвал въртящия момент на оръжието по време на хвърляне, увеличавайки скоростта и обхвата на метателното копие."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
@@ -1490,7 +1486,7 @@ msgstr "+2 пробождане и +4 обхват за всички хвърл�
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
-msgstr "Ремък за леко метателно копие"
+msgstr "Ремък за метателно копие"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
@@ -1706,15 +1702,15 @@ msgstr "Военноморски архитекти"
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "Бранителните единици (експертите) носят най-добрите оръжия и получават най-доброто обучение."
+msgstr "Бранителните единици (гвардейците) носят най-добрите оръжия и получават най-доброто обучение."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the barracks."
-msgstr "Отключете възможността да обучавате експерти в казармите."
+msgstr "Отключете възможността да обучавате гвардейци в казармите."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "Отключете експертните единици"
+msgstr "Отключете гвардейските единици"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
@@ -2371,11 +2367,11 @@ msgstr "Персийците можели и събирали голям бро�
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr "Експертната пехота Анусия се обучава два пъти по-бързо, но губи малко от максималното си здраве."
+msgstr "Гвардейската пехота Анусия се обучава два пъти по-бързо, но губи малко от максималното си здраве."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "-50% време за обучаване на експертната пехота Анусия, но и -20 здраве."
+msgstr "-50% време за обучаване на гвардейската пехота Анусия, но и -20 здраве."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2510,7 +2506,7 @@ msgstr "Елинска метрополия"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "Бързината на обучаване на експерти и строене на обсадни оръжия в крепостта се увеличава драстично, ако се групират в партиди или батальони."
+msgstr "Бързината на обучаване на гвардейци и строене на обсадни оръжия в крепостта се увеличава драстично, ако се групират в партиди или батальони."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -2573,7 +2569,7 @@ msgstr "Сребърните щитове, или Аргираспидаи, би
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "attack, health, and armor."
-msgstr "Повишете пехотата Експертен щитоносец в Сребърен щит, която има по-мощна атака, повече здраве и защита."
+msgstr "Повишете пехотата Гвардейски щитоносец в Сребърен щит, която има по-мощна атака, повече здраве и защита."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
