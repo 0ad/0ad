@@ -427,7 +427,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			if (item.metadata && item.metadata.role && item.metadata.role == "worker" && item.metadata.plan == undefined)
 			{
 				numberOfWorkers += item.count;
-				if (ent.hasClass("Support"))
+				if (item.metadata.support)
 					numberOfSupports += item.count;
 			}
 		});
@@ -465,9 +465,11 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		return;
 
 	// Choose whether we want soldiers instead.
-	let supportRatio = (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.2) : this.supportRatio);
+	let supportRatio = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.2) : this.supportRatio;
+	let supportMin = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? 4 : 8;
+	supportMin = Math.max(supportMin, supportRatio * numberTotal);
 	let template;
-	if ((numberOfSupports + numberOfQueuedSupports) > 8 && (numberOfSupports + numberOfQueuedSupports)/numberTotal > supportRatio)
+	if (numberOfSupports + numberOfQueuedSupports > supportMin)
 	{
 		let requirements;
 		if (numberTotal < 45)
@@ -489,7 +491,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// If the template variable is empty, the default unit (Support unit) will be used
 	// base "0" means automatic choice of base
 	if (!template && templateDef)
-		queues.villager.addPlan(new m.TrainingPlan(gameState, templateDef, { "role": "worker", "base": 0 }, size, size));
+		queues.villager.addPlan(new m.TrainingPlan(gameState, templateDef, { "role": "worker", "base": 0, "support": true }, size, size));
 	else if (template)
 		queues.citizenSoldier.addPlan(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
 };
