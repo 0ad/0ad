@@ -56,8 +56,8 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.gatherers = {};
 	for (let type of this.Config.resources)
 	{
-		this.dropsiteSupplies[type] = {"nearby": [], "medium": [], "faraway": []};
-		this.gatherers[type] = {"nextCheck": 0, "used": 0, "lost": 0};
+		this.dropsiteSupplies[type] = { "nearby": [], "medium": [], "faraway": [] };
+		this.gatherers[type] = { "nextCheck": 0, "used": 0, "lost": 0 };
 	}
 };
 
@@ -403,7 +403,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
-	return {"quality": bestVal, "pos": [x, z]};
+	return { "quality": bestVal, "pos": [x, z] };
 };
 
 m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly = false)
@@ -447,7 +447,10 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				if (numFarms + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
 				{
 					if (count < 600)
+					{
 						queues.field.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
+						gameState.ai.HQ.needFarm = true;
+					}
 				}
 				else
 				{
@@ -460,7 +463,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				}
 			}
 		}
-		else if (!queues.dropsites.length() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length)
+		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length)
 		{
 			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
 			{
@@ -481,7 +484,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						let newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
 							queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
-						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length && !queues.civilCentre.length())
+						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length && !queues.civilCentre.hasQueuedUnits())
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality

@@ -63,7 +63,7 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 	for (let q of this.queueArrays)
 	{
 		let queue = q[1];
-		if (!queue.length() || !queue.plans[0].isGo(gameState))
+		if (!queue.hasQueuedUnits() || !queue.plans[0].isGo(gameState))
 			continue;
 		let costs = queue.plans[0].getCost();
 		needed.add(costs);
@@ -157,7 +157,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	{
 		let qStr = "";
 		let q = this.queues[i];
-		if (q.length() > 0)
+		if (q.hasQueuedUnits())
 		{
 			API3.warn(i + ": ( with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
 			API3.warn(" while maxAccountWanted(0.6) is " + uneval(q.maxAccountWanted(gameState, 0.6)));
@@ -259,7 +259,7 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 		{
 			// returns exactly the correct amount, ie 0 if we're not go.
 			let queueCost = this.queues[j].maxAccountWanted(gameState, 0.6);
-			if (this.queues[j].length() > 0 && this.accounts[j][res] < queueCost[res] && !this.queues[j].paused)
+			if (this.queues[j].hasQueuedUnits() && this.accounts[j][res] < queueCost[res] && !this.queues[j].paused)
 			{
 				// adding us to the list of queues that need an update.
 				tempPrio[j] = this.priorities[j];
@@ -316,7 +316,7 @@ m.QueueManager.prototype.switchResource = function(gameState, res)
 	// TODO: this isn't perfect compression.
 	for (let j in this.queues)
 	{
-		if (this.queues[j].length() === 0 || this.queues[j].paused)
+		if (!this.queues[j].hasQueuedUnits() || this.queues[j].paused)
 			continue;
 
 		let queue = this.queues[j];
@@ -352,7 +352,7 @@ m.QueueManager.prototype.startNextItems = function(gameState)
 	{
 		let name = q[0];
 		let queue = q[1];
-		if (queue.length() > 0 && !queue.paused)
+		if (queue.hasQueuedUnits() && !queue.paused)
 		{
 			let item = queue.getNext();
 			if (this.accounts[name].canAfford(item.getCost()) && item.canStart(gameState))
@@ -363,7 +363,7 @@ m.QueueManager.prototype.startNextItems = function(gameState)
 				queue.switched = 0;
 			}
 		}
-		else if (queue.length() === 0)
+		else if (!queue.hasQueuedUnits())
 		{
 			this.accounts[name].reset();
 			queue.switched = 0;

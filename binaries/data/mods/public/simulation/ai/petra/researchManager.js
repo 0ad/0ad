@@ -15,7 +15,7 @@ m.ResearchManager = function(Config)
  */
 m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 {
-	if (queues.majorTech.length() !== 0)
+	if (queues.majorTech.hasQueuedUnits())
 		return;
 
 	var townPhase = gameState.townPhase();
@@ -48,7 +48,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 
 m.ResearchManager.prototype.researchPopulationBonus = function(gameState, queues)
 {
-	if (queues.minorTech.length() !== 0)
+	if (queues.minorTech.hasQueuedUnits())
 		return;
 
 	var techs = gameState.findAvailableTech();
@@ -66,7 +66,7 @@ m.ResearchManager.prototype.researchPopulationBonus = function(gameState, queues
 
 m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 {
-	if (queues.minorTech.length() !== 0)
+	if (queues.minorTech.hasQueuedUnits())
 		return;
 
 	var techs = gameState.findAvailableTech();
@@ -161,7 +161,7 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 
 m.ResearchManager.prototype.update = function(gameState, queues)
 {
-	if (queues.minorTech.length() || queues.majorTech.length())
+	if (queues.minorTech.hasQueuedUnits() || queues.majorTech.hasQueuedUnits())
 		return;
 
 	var techs = gameState.findAvailableTech();
@@ -187,7 +187,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 		return;
 
 	// remove some techs not yet used by this AI
-	// remove alse sharedLos if we have no ally
+	// remove also sharedLos if we have no ally
 	for (let i = 0; i < techs.length; ++i)
 	{
 		let template = techs[i][1]._template;

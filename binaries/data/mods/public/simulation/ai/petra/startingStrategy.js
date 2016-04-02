@@ -61,13 +61,13 @@ m.HQ.prototype.gameAnalysis = function(gameState)
  */
 m.HQ.prototype.assignStartingEntities = function(gameState)
 {
-	for (var ent of gameState.getOwnEntities().values())
+	for (let ent of gameState.getOwnEntities().values())
 	{
 		// do not affect merchant ship immediately to trade as they may-be useful for transport
 		if (ent.hasClass("Trader") && !ent.hasClass("Ship"))
 			this.tradeManager.assignTrader(ent);
 
-		var pos = ent.position();
+		let pos = ent.position();
 		if (!pos)
 		{
 			// TODO should support recursive garrisoning. Make a warning for now
@@ -94,8 +94,8 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 
 		ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(pos));
 		let bestbase;
-		var territorypos = this.territoryMap.gamePosToMapPos(pos);
-		var territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
+		let territorypos = this.territoryMap.gamePosToMapPos(pos);
+		let territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
 		for (let i = 1; i < this.baseManagers.length; ++i)
 		{
 			let base = this.baseManagers[i];
@@ -148,7 +148,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 	if (!landIndex)
 	{
-		var civ = gameState.civ();
+		let civ = gameState.civ();
 		for (let ent of gameState.getOwnEntities().values())
 		{
 			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))
@@ -364,7 +364,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			var access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = gameState.ai.accessibility.getAccessValue(ent.position());
 			for (let cc of allycc)
 			{
 				if (!cc.position())
@@ -385,7 +385,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			var access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = gameState.ai.accessibility.getAccessValue(ent.position());
 			for (let cc of allycc)
 			{
 				if (!cc.position())
@@ -438,10 +438,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 		for (let land of startingLand)
 		{
 			for (let sea of gameState.ai.accessibility.regionLinks[land])
-			{
 				if (gameState.ai.HQ.navalRegions[sea])
 					this.navalManager.updateFishingBoats(sea, num);
-			}
 		}
 	}
 
