@@ -105,16 +105,14 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 	var path = gameState.ai.accessibility.getTrajectToIndex(index1, index2);
 	if (path && path.length == 3 && gameState.ai.accessibility.regionType[path[1]] === "water")
 		return path[1];
-	else
+
+	if (this.Config.debug > 1)
 	{
-		if (this.Config.debug > 1)
-		{
-			API3.warn("bad path from " + index1 + " to " + index2 + " ??? " + uneval(path));
-			API3.warn(" regionLinks start " + uneval(gameState.ai.accessibility.regionLinks[index1]));
-			API3.warn(" regionLinks end   " + uneval(gameState.ai.accessibility.regionLinks[index2]));
-		}
-		return undefined;
+		API3.warn("bad path from " + index1 + " to " + index2 + " ??? " + uneval(path));
+		API3.warn(" regionLinks start " + uneval(gameState.ai.accessibility.regionLinks[index1]));
+		API3.warn(" regionLinks end   " + uneval(gameState.ai.accessibility.regionLinks[index2]));
 	}
+	return undefined;
 };
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
@@ -320,6 +318,29 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 					base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
 				base.reassignIdleWorkers(gameState, [ent]);
 				base.workerObject.update(gameState, ent);
+			}
+			else if (ent.resourceSupplyType() && ent.position())
+			{
+				let type = ent.resourceSupplyType();
+				if (!type.generic)
+					continue;
+				let dropsites = gameState.getOwnDropsites(type.generic);
+				let pos = ent.position();
+				let access = gameState.ai.accessibility.getAccessValue(pos);
+				let distmin = Math.min();
+				let goal;
+				for (let dropsite of dropsites.values())
+				{
+					if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
+						continue;
+					let dist = API3.SquareVectorDistance(pos, dropsite.position());
+					if (dist > distmin)
+						continue;
+					distmin = dist;
+					goal = dropsite.position();
+				}
+				if (goal)
+					ent.moveToRange(goal[0], goal[1]);
 			}
 		}
 	}
@@ -1278,6 +1299,47 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues)
 	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_farmstead"));
 };
 
+// Build a corral, and train animals there
+m.HQ.prototype.manageCorral = function(gameState, queues)
+{
+	if (queues.corral.hasQueuedUnits())
+		return;
+
+	// Only build one corral for the time being
+	if (gameState.getOwnEntitiesByClass("Corral", true).length === 0)
+	{
+		if (!this.canBuild(gameState, "structures/{civ}_corral"))
+			return;
+		let template = gameState.applyCiv("structures/{civ}_corral");
+		if (this.canBuild(gameState, template))
+			queues.corral.addPlan(new m.ConstructionPlan(gameState, template));
+		return;
+	}
+
+	// And train some animals
+	for (let corral of gameState.getOwnEntitiesByClass("Corral", true).values())
+	{
+		if (corral.foundationProgress() !== undefined)
+			continue;
+		let trainables = corral.trainableEntities("");
+		for (let trainable of trainables)
+		{
+			if (gameState.isDisabledTemplates(trainable))
+				continue;
+			let template = gameState.getTemplate(trainable);
+			if (!template || !template.isHuntable())
+				continue;
+			let count = gameState.countEntitiesByType(trainable, true);
+			for (let item of corral.trainingQueue())
+				count += item.count;
+			if (count > 1)
+				continue;
+			queues.corral.addPlan(new m.TrainingPlan(gameState, trainable, { "trainer": corral.id() }));
+			return;
+		}
+	}
+};
+
 // build more houses if needed.
 // kinda ugly, lots of special cases to both build enough houses but not tooo many…
 m.HQ.prototype.buildMoreHouses = function(gameState,queues)
@@ -2018,6 +2080,9 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 		if (!this.saveResources && gameState.ai.playedTurn % 4 == 2)
 			this.buildFarmstead(gameState, queues);
+
+		if (this.needCorral && gameState.ai.playedTurn % 4 == 3)
+			this.manageCorral(gameState, queues);
 
 		if (!queues.minorTech.hasQueuedUnits() && gameState.ai.playedTurn % 5 == 1)
 			this.researchManager.update(gameState, queues);

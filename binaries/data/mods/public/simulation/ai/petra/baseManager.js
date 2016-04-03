@@ -462,6 +462,18 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						queues.field.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
 			}
+			else if (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) &&
+				 !queues.corral.hasQueuedUnits() &&
+				 gameState.getOwnEntitiesByClass("Corral", true).length === 0 &&
+				 gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
+			{
+				let count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
+				if (count < 600)
+				{
+					queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral", { "base": this.ID }));
+					gameState.ai.HQ.needCorral = true;
+				}
+			}
 		}
 		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length)
 		{

@@ -212,7 +212,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
 				{
-					if (template.hasClass("Field"))
+					if (template.hasClass("Field") || template.hasClass("Corral"))
 						placement.addInfluence(x, z, 80/cellSize, 50);
 					else // If this is not a field add a negative influence because we want to leave this area for fields
 						placement.addInfluence(x, z, 80/cellSize, -20);
@@ -227,7 +227,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 					else if (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))
 						placement.addInfluence(x, z, 60/cellSize, -40);   // and further away from other stuffs
 				}
-				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") &&
+				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && !ent.hasClass("Corral") &&
 					(!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
 					placement.addInfluence(x, z, 100/cellSize, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
 				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")

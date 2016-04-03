@@ -491,6 +491,11 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	{
 		this.saveResources = true;
 		this.Config.Economy.popForTown = 40; // Switch to town phase as soon as possible to be able to expand
+		if (startingWood < 2000 && this.needFarm)
+		{
+			this.needCorral = true;
+			this.needFarm = false;
+		}
 	}
 	if (startingWood > 8500 && this.canBuildUnits)
 	{
@@ -516,6 +521,13 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			}
 			gameState.ai.queues.dropsites.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
 		}
+	}
+	// and build immediately a corral if not much wood
+	if (this.needCorral)
+	{
+		template = gameState.applyCiv("structures/{civ}_corral");
+		if (gameState.getOwnEntitiesByClass("Corral", true).length === 0 && this.canBuild(gameState, template))
+			gameState.ai.queues.corral.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }));
 	}
 };
 

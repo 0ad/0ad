@@ -79,21 +79,22 @@ m.Config = function(difficulty)
 
 	this.priorities =
 	{
-		"villager" : 30,      // should be slightly lower than the citizen soldier one to not get all the food
-		"citizenSoldier" : 60,
-		"trader" : 50,
-		"ships" : 70,
-		"house" : 350,
-		"dropsites" : 200,
-		"field" : 400,
-		"dock" : 90,
-		"economicBuilding" : 90,
-		"militaryBuilding" : 130,
-		"defenseBuilding" : 70,
-		"civilCentre" : 950,
-		"majorTech" : 700,
-		"minorTech" : 40,
-		"emergency" : 1000    // used only in emergency situations, should be the highest one
+		"villager": 30,      // should be slightly lower than the citizen soldier one to not get all the food
+		"citizenSoldier": 60,
+		"trader": 50,
+		"ships": 70,
+		"house": 350,
+		"dropsites": 200,
+		"field": 400,
+		"dock": 90,
+		"corral": 60,
+		"economicBuilding": 90,
+		"militaryBuilding": 130,
+		"defenseBuilding": 70,
+		"civilCentre": 950,
+		"majorTech": 700,
+		"minorTech": 40,
+		"emergency": 1000    // used only in emergency situations, should be the highest one
 	};
 
 	this.personality =

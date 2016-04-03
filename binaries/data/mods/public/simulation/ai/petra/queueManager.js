@@ -431,6 +431,9 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 			if (q === "field" && gameState.ai.HQ.needFarm &&
 				gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length === 0)
 				toBePaused = false;
+			if (q === "corral" && gameState.ai.HQ.needCorral &&
+				gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length === 0)
+				toBePaused = false;
 			if (q === "dock" && gameState.ai.HQ.needFish &&
 				gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).length === 0)
 				toBePaused = false;
