@@ -1,0 +1,10 @@
+{
+	"type": "garrisonedUnits",
+	"affects": ["Ship"],
+	"modifications": [
+	{ "value": "Health/RegenRate", "add": 3 }
+	],
+	"auraName": "Repairing Ship aura",
+	"auraDescription": "Heals garrisoned ship at 3 HP per second.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

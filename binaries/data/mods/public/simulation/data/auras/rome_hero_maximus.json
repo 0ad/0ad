@@ -1,0 +1,11 @@
+{
+	"type": "global",
+	"affects": ["Unit", "Structure"],
+	"modifications": [
+	{ "value": "Armour/Pierce", "add": 1 },
+	{ "value": "Armour/Hack", "add": 1 },
+	{ "value": "Armour/Crush", "add": 1 }
+	],
+	"auraName": "Shield of Rome Aura",
+	"auraDescription": "+1 armour for all units and structures."
+}

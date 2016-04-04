@@ -5,20 +5,7 @@
     <Pierce>40.0</Pierce>
     <Crush>4.0</Crush>
   </Armour>
-  <Auras>
-    <Aura1>
-      <Type>garrisonedUnits</Type>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <Armour.Pierce> <Add>3</Add> </Armour.Pierce>
-        <Armour.Hack> <Add>3</Add> </Armour.Hack>
-        <Armour.Crush> <Add>3</Add> </Armour.Crush>
-        <Vision.Range> <Add>20</Add> </Vision.Range>
-      </Modifications>
-      <AuraName>Wall Protection</AuraName>
-      <AuraDescription>Units on walls have 3 extra Armor levels</AuraDescription>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">wall_garrisoned</Auras>
   <Cost>
     <BuildTime>45</BuildTime>
     <Resources>

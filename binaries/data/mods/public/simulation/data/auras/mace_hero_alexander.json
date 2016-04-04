@@ -1,0 +1,9 @@
+{
+	"type": "global",
+	"affects": ["Structure"],
+	"modifications": [
+	{ "value": "TerritoryInfluence/Radius", "multiply": 1.1}
+	],
+	"auraName": "Imperialism Aura",
+	"auraDescription": "+10% territory effect for all buildings while he lives."
+}

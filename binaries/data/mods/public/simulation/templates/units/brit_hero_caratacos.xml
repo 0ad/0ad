@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras>
-	<Aura1>
-      <Type>global</Type>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
-      </Modifications>
-      <AuraName>Hero Aura</AuraName>
-      <AuraDescription>All Units +15% speed.</AuraDescription>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">brit_hero_caratacos</Auras>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Caratacos</SpecificName>

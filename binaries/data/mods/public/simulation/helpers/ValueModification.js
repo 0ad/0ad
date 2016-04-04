@@ -32,7 +32,7 @@ function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, t
 
 	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager); 
 	if (!cmpAuraManager)
-		return value; 
+		return value;
 	return cmpAuraManager.ApplyTemplateModifications(tech_type, value, playerID, template);
 }
 

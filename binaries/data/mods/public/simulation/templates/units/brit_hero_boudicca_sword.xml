@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras>
-    <Aura1>
-      <Type>global</Type>
-      <Affects>Champion</Affects>
-      <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.25</Multiply> </UnitMotion.WalkSpeed>
-        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
-        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
-        <Attack.Capture.Value> <Add>2</Add> </Attack.Capture.Value>
-      </Modifications>
-      <AuraName>Champion Army</AuraName>
-      <AuraDescription>+5 Attack, +2 Capture and +25% Speed for Champion Units.</AuraDescription>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">brit_hero_boudicca</Auras>
   <Identity>
     <Civ>brit</Civ>
     <Gender>female</Gender>

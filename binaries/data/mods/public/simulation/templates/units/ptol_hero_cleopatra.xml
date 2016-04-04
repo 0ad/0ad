@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_archer">
-  <Auras>
-    <unit_attack_speed_20>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <Attack.Melee.RepeatTime> <Multiply>0.8</Multiply> </Attack.Melee.RepeatTime>
-        <Attack.Ranged.RepeatTime> <Multiply>0.8</Multiply> </Attack.Ranged.RepeatTime>
-      </Modifications>
-      <AuraName>Patriot Aura</AuraName>
-      <AuraDescription>Egyptian units fight 25% faster in her vision range.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </unit_attack_speed_20>
-  </Auras>
+  <Auras datatype="tokens">ptol_hero_cleopatra</Auras>
   <Identity>
     <Civ>ptol</Civ>
     <Gender>female</Gender>

@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras>
-    <Aura1>
-      <Type>garrison</Type>
-      <Affects>Ship</Affects>
-      <AffectedPlayers>Player MutualAlly</AffectedPlayers>
-      <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.5</Multiply> </UnitMotion.WalkSpeed>
-      </Modifications>
-      <AuraName>Naval Commander Aura</AuraName>
-      <AuraDescription>When garrisoned in a ship, his ship is +50% faster.</AuraDescription>
-    </Aura1>
-    <Aura2>
-      <Type>global</Type>
-      <Affects>Ship</Affects>
-      <Modifications>
-        <Cost.BuildTime> <Multiply>0.8</Multiply> </Cost.BuildTime>
-      </Modifications>
-      <AuraName>Naval Architect Aura</AuraName>
-      <AuraDescription>-20% build time for ships during his lifespan.</AuraDescription>
-    </Aura2>
-  </Auras>
+  <Auras datatype="tokens">athen_hero_themistocles_1 athen_hero_themistocles_2</Auras>
   <Identity>
     <Civ>athen</Civ>
     <Lang>greek</Lang>

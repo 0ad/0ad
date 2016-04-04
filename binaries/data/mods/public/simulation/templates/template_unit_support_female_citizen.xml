@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>10</Radius>
-      <Affects>Citizen+Soldier</Affects>
-      <Modifications>
-        <Builder.Rate> <Multiply>1.1</Multiply> </Builder.Rate>
-        <ResourceGatherer.BaseSpeed> <Multiply>1.1</Multiply> </ResourceGatherer.BaseSpeed>
-      </Modifications>
-      <AuraName>Inspiration Aura</AuraName>
-      <AuraDescription>Nearby males work 10% faster.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/buildgather_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
   <Attack>
     <Melee>
       <Hack>2.0</Hack>
@@ -30,6 +16,7 @@
       <MaxRange>4.0</MaxRange>
     </Slaughter>
   </Attack>
+  <Auras datatype="tokens">female_inspiration</Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">

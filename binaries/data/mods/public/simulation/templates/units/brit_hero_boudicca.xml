@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_javelinist">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Champion</Affects>
-      <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.25</Multiply> </UnitMotion.WalkSpeed>
-        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
-        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
-        <Attack.Capture.Value> <Add>2</Add> </Attack.Capture.Value>
-      </Modifications>
-      <AuraName>Champion Army</AuraName>
-      <AuraDescription>+5 Attack, +2 Capture and +25% Speed for Champion Units.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">brit_hero_boudicca</Auras>
   <Footprint replace="">
     <Square width="4.5" depth="9.0"/>
     <Height>5.0</Height>

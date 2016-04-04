@@ -1,5 +1,5 @@
 /**
- * System component which loads the technology data files
+ * System component which loads the technology and the aura data files
  */
 function TechnologyTemplateManager() {}
 

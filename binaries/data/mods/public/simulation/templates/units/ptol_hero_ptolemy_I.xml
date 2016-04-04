@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>77</Radius>
-      <Affects>Worker</Affects>
-      <Modifications>
-        <Builder.Rate> <Multiply>1.10</Multiply> </Builder.Rate>
-      </Modifications>
-      <AuraName>Construction Aura</AuraName>
-      <AuraDescription>Buildings construct 10% faster within his vision.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/build_bonus.png</OverlayIcon>
-    </Aura1>
-    <Aura2>
-      <Type>global</Type>
-      <Affects>Mercenary</Affects>
-      <Modifications>
-		<Cost.Resources.food> <Multiply>0.5</Multiply> </Cost.Resources.food>
-		<Cost.Resources.wood> <Multiply>0.5</Multiply> </Cost.Resources.wood>
-        <Cost.Resources.stone> <Multiply>0.5</Multiply> </Cost.Resources.stone>
-        <Cost.Resources.metal> <Multiply>0.5</Multiply> </Cost.Resources.metal>
-      </Modifications>
-      <AuraName>Mercenary Patron Aura</AuraName>
-      <AuraDescription>Mercenaries cost -50% resources during his lifetime.</AuraDescription>
-    </Aura2>
-  </Auras>
+  <Auras datatype="tokens">ptol_hero_ptolemy_I_1 ptol_hero_ptolemy_I_2</Auras>
   <Identity>
     <Civ>ptol</Civ>
     <GenericName>Ptolemy I "Savior"</GenericName>

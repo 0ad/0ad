@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>70</Radius>
-      <AffectedPlayers>Enemy</AffectedPlayers>
-      <Affects>Structure Mechanical</Affects>
-      <Modifications>
-        <Health.Max> <Multiply>0.8</Multiply> </Health.Max>
-      </Modifications>
-      <AuraName>Conquest Aura</AuraName>
-      <AuraDescription>All nearby enemy buildings, siege engines, and ships have their health reduced by 20%.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/health_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">sele_hero_antiochus_righteous</Auras>
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>

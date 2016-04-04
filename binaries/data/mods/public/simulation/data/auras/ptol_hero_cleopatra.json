@@ -1,0 +1,12 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Unit"],
+	"modifications": [
+	{ "value": "Attack/Melee/RepeatTime", "multiply": 0.8 },
+	{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.8 }
+	],
+	"auraName": "Patriot Aura",
+	"auraDescription": "Egyptian units fight 25% faster in her vision range.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

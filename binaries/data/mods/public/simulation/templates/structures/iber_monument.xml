@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>50</Radius>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <Attack.Melee.Hack> <Add>2</Add> </Attack.Melee.Hack>
-        <Attack.Ranged.Pierce> <Add>3</Add> </Attack.Ranged.Pierce>
-      </Modifications>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">iber_monument</Auras>
   <BuildRestrictions>
     <Category>Monument</Category>
   </BuildRestrictions>

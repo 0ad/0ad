@@ -1,114 +1,54 @@
 function Auras() {}
 
-var modificationSchema =
-	"<element name='Modifications' a:help='Modification list'>" +
-		"<oneOrMore>" +
-			"<element a:help='Name of the value to modify'>" +
-				"<anyName/>" +
-				"<choice>" +
-					"<element name='Add'>" +
-						"<data type='decimal'/>" +
-					"</element>" +
-					"<element name='Multiply'>" +
-						"<data type='decimal'/>" +
-					"</element>" +
-				"</choice>" +
-			"</element>" +
-		"</oneOrMore>" +
-	"</element>";
-
 Auras.prototype.Schema =
-	"<oneOrMore>" +
-		"<element a:help='Any name you want'>" +
-			"<anyName/>" +
-			"<interleave>" +
-				"<optional>" +
-					"<element name='Radius' a:help='Define the radius this aura affects, if it is a range aura'>" +
-						"<data type='nonNegativeInteger'/>" +
-					"</element>" +
-				"</optional>" +
-				"<element name='Type' a:help='Controls how this aura affects nearby units'>" +
-					"<choice>" +
-						"<value a:help='Affects units in the same formation'>formation</value>" +
-						"<value a:help='Affects units in a certain range'>range</value>" +
-						"<value a:help='Affects the structure or unit this unit is garrisoned in'>garrison</value>" +
-						"<value a:help='Affects the units that are garrisoned on a certain structure'>garrisonedUnits</value>" +
-						"<value a:help='Affects all units while this unit is alive'>global</value>" +
-					"</choice>" +
-				"</element>" +
-				modificationSchema +
-				"<optional>" +
-					"<element name='AuraName' a:help='name to display in the GUI'>" +
-						"<text/>" +
-					"</element>" +
-				"</optional>" +
-				"<optional>" +
-					"<element name='AuraDescription' a:help='description to display in the GUI, requires a name'>" +
-						"<text/>" +
-					"</element>" +
-				"</optional>" +
-				"<optional>" +
-					"<element name='OverlayIcon' a:help='Icon to show on the entities affected by this aura'>" +
-						"<text/>" +
-					"</element>" +
-				"</optional>" +
-				"<element name='Affects' a:help='Affected classes'>" +
-					"<text/>" +
-				"</element>" +
-				"<optional>" +
-					"<element name='AffectedPlayers' a:help='Affected players'>" +
-						"<text/>" +
-					"</element>" +
-				"</optional>" +
-			"</interleave>" +
-		"</element>" +
-	"</oneOrMore>";
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
+			"<text/>";
 
 Auras.prototype.Init = function()
 {
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	this.templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+	let cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	this.auras = {};
 	this.affectedPlayers = {};
-	for (var name in this.template)
+	let auraNames = this.GetAuraNames();
+	for (let name of auraNames)
 	{
-		this.affectedPlayers[name] = []; // will be calculated on ownership change
-		var aura = {};
-		aura.affects = this.template[name].Affects;
-		if (this.template[name].AffectedPlayers)
-			aura.affectedPlayers = this.template[name].AffectedPlayers.split(/\s+/);
-		this.auras[name] = aura;
+		this.affectedPlayers[name] = [];
+		this.auras[name] = cmpTechnologyTemplateManager.GetAuraTemplate(name);
 	}
 	// In case of autogarrisoning, this component can be called before ownership is set.
 	// So it needs to be completely initialised from the start.
 	this.Clean();
 };
 
-Auras.prototype.GetModifierIdentifier = function(name, mod)
+// We can modify identifier if we want stackable auras in some case.
+Auras.prototype.GetModifierIdentifier = function(name)
 {
-		return this.templateName + "/" + name + "/" + mod.value;
+		return name;
 };
 
 Auras.prototype.GetDescriptions = function()
 {
+	let auraNames = this.GetAuraNames();
 	var ret = {};
-	for (let name in this.template)
+	for (let name of auraNames)
 	{
-		let aura = this.template[name];
-		if (aura.AuraName)
-			ret[aura.AuraName] = aura.AuraDescription || null;
+		let aura = this.auras[name];
+		if (aura.auraName)
+			ret[aura.auraName] = aura.auraDescription || null;
 	}
 	return ret;
 };
 
 Auras.prototype.GetAuraNames = function()
 {
-	return Object.keys(this.template);
+	return this.template._string.split(/\s+/);
 };
 
 Auras.prototype.GetOverlayIcon = function(name)
 {
-	return this.template[name].OverlayIcon || "";
+	return this.auras[name].overlayIcon || "";
 };
 
 Auras.prototype.GetAffectedEntities = function(name)
@@ -122,7 +62,7 @@ Auras.prototype.GetRange = function(name)
 		return undefined;
 	if (this.IsGlobalAura(name))
 		return -1; // -1 is infinite range
-	return +this.template[name].Radius;
+	return +this.auras[name].radius;
 };
 
 Auras.prototype.GetClasses = function(name)
@@ -163,6 +103,16 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	}
 };
 
+Auras.prototype.CanApply = function(name)
+{
+	if (!this.auras[name].requiredTechnology)
+		return true;
+	let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (!cmpTechnologyManager || !cmpTechnologyManager.IsTechnologyResearched(this.auras[name].requiredTechnology))
+		return false;
+	return true;
+};
+
 Auras.prototype.HasFormationAura = function()
 {
 	return this.GetAuraNames().some(n => this.IsFormationAura(n));
@@ -180,7 +130,7 @@ Auras.prototype.HasGarrisonedUnitsAura = function()
 
 Auras.prototype.GetType = function(name)
 {
-	return this.template[name].Type;
+	return this.auras[name].type;
 };
 
 Auras.prototype.IsFormationAura = function(name)
@@ -234,25 +184,6 @@ Auras.prototype.Clean = function()
 
 		if (this[name].rangeQuery)
 			cmpRangeManager.DestroyActiveQuery(this[name].rangeQuery);
-	}
-
-	for (let name in this.template)
-	{
-		let modifications = [];
-		for (let value in this.template[name].Modifications)
-		{
-			let mod = {};
-			mod.value = value.replace(/\./g, "/").replace(/\/\//g, ".");
-			let templateModifications = this.template[name].Modifications[value];
-			if (templateModifications.Add)
-				mod.add = ApplyValueModificationsToEntity("Auras/"+name+"/Modifications/"+mod.value+"/Add",
-					+templateModifications.Add, this.entity);
-			else if (templateModifications.Multiply)
-				mod.multiply = ApplyValueModificationsToEntity("Auras/"+name+"/Modifications/"+mod.value+"/Multiply",
-					+templateModifications.Multiply, this.entity);
-			modifications.push(mod);
-		}
-		this.auras[name].modifications = modifications;
 	}
 
 	for (let name of auraNames)
@@ -343,6 +274,9 @@ Auras.prototype.ApplyGarrisonBonus = function(structure)
 
 Auras.prototype.ApplyTemplateBonus = function(name, players)
 {
+	if (!this.CanApply(name))
+		return;
+
 	if (!this.IsGlobalAura(name))
 		return;
 	var modifications = this.GetModifications(name);
@@ -351,7 +285,7 @@ Auras.prototype.ApplyTemplateBonus = function(name, players)
 
 	for (let mod of modifications)
 		for (let player of players)
-			cmpAuraManager.ApplyTemplateBonus(mod.value, player, classes, mod, this.GetModifierIdentifier(name, mod));
+			cmpAuraManager.ApplyTemplateBonus(mod.value, player, classes, mod, this.GetModifierIdentifier(name));
 };
 
 Auras.prototype.RemoveFormationBonus = function(memberList)
@@ -370,6 +304,8 @@ Auras.prototype.RemoveGarrisonBonus = function(structure)
 
 Auras.prototype.RemoveTemplateBonus = function(name)
 {
+	if (!this.CanApply(name))
+		return;
 	if (!this.IsGlobalAura(name))
 		return;
 
@@ -380,7 +316,7 @@ Auras.prototype.RemoveTemplateBonus = function(name)
 
 	for (let mod of modifications)
 		for (let player of players)
-			cmpAuraManager.RemoveTemplateBonus(mod.value, player, classes, this.GetModifierIdentifier(name, mod));
+			cmpAuraManager.RemoveTemplateBonus(mod.value, player, classes, this.GetModifierIdentifier(name));
 };
 
 Auras.prototype.ApplyBonus = function(name, ents)
@@ -390,12 +326,15 @@ Auras.prototype.ApplyBonus = function(name, ents)
 		return;
 
 	this[name].targetUnits = this[name].targetUnits.concat(validEnts);
+
+	if (!this.CanApply(name))
+		return;
+
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 
 	for (let mod of modifications)
-		cmpAuraManager.ApplyBonus(mod.value, validEnts, mod, this.GetModifierIdentifier(name, mod));
-
+		cmpAuraManager.ApplyBonus(mod.value, validEnts, mod, this.GetModifierIdentifier(name));
 	// update status bars if this has an icon
 	if (!this.GetOverlayIcon(name))
 		return;
@@ -415,11 +354,15 @@ Auras.prototype.RemoveBonus = function(name, ents)
 		return;
 
 	this[name].targetUnits = this[name].targetUnits.filter(v => validEnts.indexOf(v) == -1);
+
+	if (!this.CanApply(name))
+		return;
+
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 
 	for (let mod of modifications)
-		cmpAuraManager.RemoveBonus(mod.value, validEnts, this.GetModifierIdentifier(name, mod));
+		cmpAuraManager.RemoveBonus(mod.value, validEnts, this.GetModifierIdentifier(name));
 
 	// update status bars if this has an icon
 	if (!this.GetOverlayIcon(name))
@@ -445,9 +388,23 @@ Auras.prototype.OnDiplomacyChanged = function(msg)
 		this.Clean();
 };
 
-Auras.prototype.OnValueModification = function(msg)
+Auras.prototype.OnGlobalResearchFinished = function(msg)
 {
-	if (msg.component == "Auras")
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || cmpOwnership.GetOwner() != msg.player)
+		return;
+	let auraNames = this.GetAuraNames();
+	let needsClean = false;
+	for (let name of auraNames)
+	{
+		let requiredTech = this.auras[name].requiredTechnology;
+		if (requiredTech && requiredTech == msg.tech)
+		{
+			needsClean = true;
+			break;
+		}
+	}
+	if (needsClean)
 		this.Clean();
 };
 

@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_javelinist">
-  <Auras>
-	<Aura1>
-      <Type>formation</Type>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
-        <Armour.Pierce> <Add>1</Add> </Armour.Pierce>
-        <Armour.Hack>   <Add>1</Add> </Armour.Hack>
-        <Armour.Crush>  <Add>1</Add> </Armour.Crush>
-      </Modifications>
-      <AuraName>Formation Reforms</AuraName>
-      <AuraDescription>All units in his formation +15% speed and +1 armor.</AuraDescription>
-    </Aura1>
-	<Aura2>
-      <Type>global</Type>
-      <Affects>Javelin</Affects>
-      <Modifications>
-        <UnitMotion.WalkSpeed><Multiply>1.15</Multiply></UnitMotion.WalkSpeed>
-      </Modifications>
-      <AuraName>Peltast Reforms</AuraName>
-      <AuraDescription>All Peltasts +15% speed.</AuraDescription>
-    </Aura2>
-  </Auras>
+  <Auras datatype="tokens">athen_hero_iphicrates_1 athen_hero_iphicrates_2</Auras>
   <Identity>
     <Civ>athen</Civ>
     <Lang>greek</Lang>

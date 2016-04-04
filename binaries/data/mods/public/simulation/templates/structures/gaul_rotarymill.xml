@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras datatype="tokens">rotary_mill</Auras>
   <Cost>
     <BuildTime>100</BuildTime>
     <PopulationBonus>2</PopulationBonus>
@@ -10,19 +11,6 @@
       <metal>0</metal>
     </Resources>
   </Cost>
-  <Auras>
-    <Aura1>
-    <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Worker</Affects>
-      <Modifications>
-        <ResourceGatherer.Rates.food..grain> <Multiply>1.25</Multiply> </ResourceGatherer.Rates.food..grain>
-      </Modifications>
-      <AuraName>Farming bonus</AuraName>
-      <AuraDescription>Boosts nearby farming with +25% gathering rate.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/farming.png</OverlayIcon>
-    </Aura1>
-  </Auras>
   <Footprint replace="">
     <Circle radius="9.0"/>
     <Height>6.0</Height>

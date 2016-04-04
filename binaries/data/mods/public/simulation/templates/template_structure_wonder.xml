@@ -10,17 +10,18 @@
       <Crush>2</Crush>
     </Foundation>
   </Armour>
+  <Auras datatype="tokens">wonder_pop_1 wonder_pop_2</Auras>
   <BuildRestrictions>
     <Category>Wonder</Category>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>1500</CapturePoints>
+    <CapturePoints>2000</CapturePoints>
     <RegenRate>5.0</RegenRate>
   </Capturable>
   <Cost>
     <BuildTime>1000</BuildTime>
     <Resources>
-      <food>0</food>
+      <food>1000</food>
       <wood>1000</wood>
       <stone>1000</stone>
       <metal>1000</metal>

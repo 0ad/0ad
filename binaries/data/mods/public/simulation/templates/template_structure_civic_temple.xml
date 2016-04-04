@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Auras>
-    <heal>
-      <Type>range</Type>
-      <Radius>40</Radius>
-      <Affects>Human</Affects>
-      <Modifications>
-        <Health.RegenRate> <Add>1</Add> </Health.RegenRate>
-      </Modifications>
-      <AuraName>Healing Aura</AuraName>
-      <AuraDescription>Heals nearby units at 1 HP per second.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/heal.png</OverlayIcon>
-    </heal>
-  </Auras>
+  <Auras datatype="tokens">temple_heal</Auras>
   <BuildRestrictions>
     <Category>Temple</Category>
   </BuildRestrictions>

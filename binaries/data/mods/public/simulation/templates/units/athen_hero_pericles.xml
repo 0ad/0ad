@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_spearman">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Worker</Affects>
-      <Modifications>
-        <Builder.Rate> <Multiply>1.15</Multiply> </Builder.Rate>
-      </Modifications>
-      <AuraName>Builder Aura</AuraName>
-      <AuraDescription>Buildings construct 15% faster within his vision.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/build_bonus.png</OverlayIcon>
-    </Aura1>
-    <Aura2>
-      <Type>global</Type>
-      <Affects>Temple</Affects>
-      <Modifications>
-        <Cost.Resources.stone> <Add>-50</Add> </Cost.Resources.stone>
-      </Modifications>
-      <AuraName>Acropolis Aura</AuraName>
-      <AuraDescription>Temples are 50 stone cheaper during his lifetime.</AuraDescription>
-    </Aura2>
-  </Auras>
+  <Auras datatype="tokens">athen_hero_pericles_1 athen_hero_pericles_2</Auras>
   <Identity>
     <Civ>athen</Civ>
     <Lang>greek</Lang>

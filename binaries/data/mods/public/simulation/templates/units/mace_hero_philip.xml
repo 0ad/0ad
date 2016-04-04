@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Champion</Affects>
-      <Modifications>
-        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
-        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
-	<Attack.Capture.Value> <Add>2</Add> </Attack.Capture.Value>
-      </Modifications>
-      <AuraName>Hero Aura</AuraName>
-      <AuraDescription>+5 Attack and +2 Capture for Champion Units.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">mace_hero_philip</Auras>
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>

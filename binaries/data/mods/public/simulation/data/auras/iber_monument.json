@@ -1,0 +1,10 @@
+{
+	"type": "range",
+	"radius": 50,
+	"affects": ["Unit"],
+	"modifications": [
+	{ "value": "Attack/Melee/Hack", "add": 2 },
+	{"value": "Attack/Ranged/Pierce", "add": 3 }
+	],
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

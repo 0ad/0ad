@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_archer">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Worker</Affects>
-      <Modifications>
-        <Builder.Rate> <Multiply>1.15</Multiply> </Builder.Rate>
-        <ResourceGatherer.BaseSpeed> <Multiply>1.15</Multiply> </ResourceGatherer.BaseSpeed>
-      </Modifications>
-      <AuraName>Administrator Aura</AuraName>
-      <AuraDescription> +15% Gather Rate and Build Rate of nearby units.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/buildgather_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">pers_hero_xerxes</Auras>
   <Identity>
     <Civ>pers</Civ>
 	<GenericName>Xerxes I</GenericName>

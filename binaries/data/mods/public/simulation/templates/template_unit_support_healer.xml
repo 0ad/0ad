@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
+  <Cost>
+    <Resources>
+      <food>250</food>
+    </Resources>
+  </Cost>
   <Heal>
     <Range>12</Range>
     <HP>5</HP>
@@ -7,11 +12,6 @@
     <UnhealableClasses datatype="tokens"/>
     <HealableClasses datatype="tokens">Human</HealableClasses>
   </Heal>
-  <Cost>
-    <Resources>
-      <food>250</food>
-    </Resources>
-  </Cost>
   <Health>
     <Max>85</Max>
   </Health>

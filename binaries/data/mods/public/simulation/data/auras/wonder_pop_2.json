@@ -1,0 +1,8 @@
+{
+	"type": "global",
+	"affects": ["Player"],
+	"modifications": [ { "value": "Player/MaxPopulation", "add": 40 } ],
+	"auraName": "Wonder Aura",
+	"auraDescription": "+40 extra max. population cap (requires \"Glorious Expansion\" tech)",
+	"requiredTechnology": "pop_wonder"
+}

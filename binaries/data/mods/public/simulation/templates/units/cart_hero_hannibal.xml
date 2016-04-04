@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Unit</Affects>
-      <AffectedPlayers>Player Ally</AffectedPlayers>
-      <Modifications>
-        <Attack.Ranged.Pierce> <Add>2</Add> </Attack.Ranged.Pierce>
-        <Attack.Melee.Hack> <Add>2</Add> </Attack.Melee.Hack>
-        <Attack.Capture.Value> <Add>1</Add> </Attack.Capture.Value>
-      </Modifications>
-      <AuraName>Tactician Aura</AuraName>
-      <AuraDescription>All allied units +2 Attack and +1 Capture within his vision range.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">cart_hero_hannibal</Auras>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Hannibal Barca</GenericName>

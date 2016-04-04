@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
-  <Auras>
-    <AuraA>
-      <Type>garrison</Type>
-      <Affects>Structure Mechanical</Affects>
-      <Modifications>
-        <Capturable.GarrisonRegenRate> <Add>2</Add> </Capturable.GarrisonRegenRate>
-      </Modifications>
-      <AuraName>Garrisoned Capture Aura</AuraName>
-      <AuraDescription>When garrisoned in a structure or a siege, the hero gives it a bonus of +2 capture points recovery rate.</AuraDescription>
-    </AuraA>    
-  </Auras>
   <Attack> 
     <Capture>
       <Value>15</Value> 
@@ -23,6 +12,7 @@
     <Pierce>20.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
+  <Auras datatype="tokens">hero_garrison</Auras>
   <Cost>
     <Population>2</Population>
     <BuildTime>40</BuildTime>

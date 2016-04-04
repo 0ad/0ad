@@ -1,0 +1,13 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Unit"],
+	"modifications": [
+	{ "value": "Attack/Ranged/Pierce", "add": 5 },
+	{ "value": "Attack/Ranged/Hack", "add": 5 },
+	{ "value": "Attack/Capture/Value", "add": 2 }
+	],
+	"auraName": "Sword of Rome Aura",
+	"auraDescription": "+5 Attack and +2 Capture for Roman units within his vision range.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

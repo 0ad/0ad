@@ -1,0 +1,9 @@
+{
+	"type": "global",
+	"affects": ["Temple"],
+	"modifications": [
+	{ "value": "Cost/Resources/stone", "add": -50 }
+	],
+	"auraName": "Acropolis Aura",
+	"auraDescription": "Temples are 50 stone cheaper during his lifetime."
+}
