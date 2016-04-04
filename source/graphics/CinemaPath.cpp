@@ -43,7 +43,10 @@ CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline, const 
 	: CCinemaData(data), TNSpline(spline), m_TargetSpline(targetSpline), m_TimeElapsed(0.f)
 {
 	m_TimeElapsed = 0;
+
+	// Calculate curves by nodes
 	BuildSpline();
+	m_TargetSpline.BuildSpline();
 
 	if (m_Orientation == L"target")
 	{
