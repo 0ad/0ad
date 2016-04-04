@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>1</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>0</RandOrder>
 	<RandGain>0</RandGain>
-	<GainUpper>1</GainUpper>
 	<GainLower>0.9</GainLower>
 	<RandPitch>0</RandPitch>
-	<PitchUpper>1.1</PitchUpper>
-	<PitchLower>0.9</PitchLower>
 	<Threshold>5</Threshold>
-	<Decay>3</Decay>
-	<Replacement>camel_10.ogg</Replacement>
 	<Path>audio/actor/fauna/animal</Path>
 	<Sound>camel_10.ogg</Sound>
 </SoundGroup>

@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>1</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>0</RandGain>
-	<GainUpper>1</GainUpper>
 	<GainLower>0</GainLower>
 	<RandPitch>1</RandPitch>
 	<PitchUpper>1.03</PitchUpper>
-	<PitchLower>0.9</PitchLower>
 	<Threshold>0</Threshold>
-	<Decay>3</Decay>
-	<Replacement></Replacement>
 	<Path>audio/actor/singlesteps/</Path>
 	<Sound>fs_wood2.ogg</Sound>
 	<Sound>fs_wood4.ogg</Sound>

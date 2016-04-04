@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,10 +38,11 @@ Example SoundGroup.xml
 		<ConeGain>1.0</ConeGain>
 		<ConeInner>360</ConeInner>
 		<ConeOuter>360</ConeOuter>
-		<Sound>audio/voice/hellenes/soldier/Attack_Attackx.ogg</Sound>
-		<Sound>audio/voice/hellenes/soldier/Attack_Chargex.ogg</Sound>
-		<Sound>audio/voice/hellenes/soldier/Attack_Engagex.ogg</Sound>
-		<Sound>audio/voice/hellenes/soldier/Attack_ForMyFamily.ogg</Sound>
+		<Path>audio/resource/hellenes/soldier/</Path>
+		<Sound>Attack_Attackx.ogg</Sound>
+		<Sound>Attack_Chargex.ogg</Sound>
+		<Sound>Attack_Engagex.ogg</Sound>
+		<Sound>Attack_ForMyFamily.ogg</Sound>
 	</SoundGroup>
 */
 

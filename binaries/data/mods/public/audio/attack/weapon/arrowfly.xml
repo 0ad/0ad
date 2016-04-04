@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>.3</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>1</RandGain>
@@ -15,8 +12,6 @@
 	<PitchUpper>1.2</PitchUpper>
 	<PitchLower>0.8</PitchLower>
 	<Threshold>100</Threshold>
-	<Decay>3</Decay>
-	<Replacement>arrowfly_28.ogg</Replacement>
 	<Path>audio/attack/weapon/</Path>
 	<Sound>arrowfly_28.ogg</Sound>
 	<Sound>arrowfly_20.ogg</Sound>
