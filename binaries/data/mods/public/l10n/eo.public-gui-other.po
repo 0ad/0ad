@@ -6,14 +6,15 @@
 # Joop Kiefte <ikojba@gmail.com>, 2014
 # Kamparano <kamparano.viro@gmail.com>, 2015
 # Michael Moroni <michael.moroni@openmailbox.org>, 2015
+# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Pritchenko, 2015
 # Tempo D. Valse <tempodivalse.wiki@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-21 09:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-03 13:46+0000\n"
+"Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -472,7 +473,7 @@ msgstr "Hazarda"
 #: gui/common/settings.js:175
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Scenaro"
 
 #: gui/common/settings.js:206
 msgid "None"
@@ -926,7 +927,7 @@ msgstr "Manlibro"
 
 #: gui/replaymenu/replay_actions.js:31
 msgid "You"
-msgstr ""
+msgstr "Vi"
 
 #: gui/replaymenu/replay_actions.js:51
 msgid "You don't have the same mods active as the replay does."
@@ -1030,7 +1031,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Nekonata Civilizacio"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1212,7 +1213,7 @@ msgstr ""
 
 #: gui/summary/layout.js:50
 msgid "Infantry"
-msgstr ""
+msgstr "Infanterio"
 
 #: gui/summary/layout.js:51
 msgid "Worker"
@@ -1224,7 +1225,7 @@ msgstr "Kavalerio"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
-msgstr ""
+msgstr "Probatalanto"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
@@ -1370,11 +1371,11 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Arto"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Tradukistoj"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1769,11 +1770,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Victory:"
-msgstr ""
+msgstr "Venko:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):187
 msgid "Players:"
-msgstr ""
+msgstr "Ludantoj:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 msgid "Spoiler"
@@ -1805,7 +1806,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):77
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Ludantoj"
 
 #: gui/replaymenu/replay_menu.xml:(heading):81
 msgctxt "replay"
@@ -1815,17 +1816,17 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):85
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Grandeco"
 
 #: gui/replaymenu/replay_menu.xml:(heading):89
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Loĝantaro"
 
 #: gui/replaymenu/replay_menu.xml:(heading):93
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Daŭro"
 
 #: gui/savedgames/load.xml:(caption):42
 msgid "Load"
@@ -1893,7 +1894,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Verkisto"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -1921,7 +1922,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Music"
-msgstr ""
+msgstr "Muziko"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -2159,7 +2160,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Malalta"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
@@ -2167,7 +2168,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Alta"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2353,7 +2354,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "SOLDATEJO"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
@@ -2415,7 +2416,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr ""
+msgstr "KATAPULTOJ"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."

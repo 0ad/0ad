@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-27 17:34+0000\n"
+"PO-Revision-Date: 2016-03-31 09:48+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -995,27 +995,27 @@ msgstr "A bheil thu cinnteach gu bheil thu airson an t-ath-chluiche seo a sguaba
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
 msgid "Any"
-msgstr "Àm sam bith"
+msgstr "Na h-uile"
 
 #: gui/replaymenu/replay_filters.js:56
 msgctxt "map size"
 msgid "Any"
-msgstr "Meud sam bith"
+msgstr "Na h-uile"
 
 #: gui/replaymenu/replay_filters.js:69
 msgctxt "map name"
 msgid "Any"
-msgstr "Ainm sam bith"
+msgstr "Na h-uile"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "population capacity"
 msgid "Any"
-msgstr "Sluagh sam bith"
+msgstr "Na h-uile"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "duration"
 msgid "Any"
-msgstr "Faide sam bith"
+msgstr "Na h-uile"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:102
@@ -1202,7 +1202,7 @@ msgstr "Iomlan"
 
 #: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
 msgid "Total"
-msgstr "Gu h-iomlan"
+msgstr "Iomlan"
 
 #: gui/summary/layout.js:23
 msgid "Houses"
@@ -1210,7 +1210,7 @@ msgstr "Taighean"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
-msgstr "An eaconamaidh"
+msgstr "Eaconamaidh"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
@@ -1250,7 +1250,7 @@ msgstr "Eachraidh"
 
 #: gui/summary/layout.js:53
 msgid "Champion"
-msgstr "Laoch"
+msgstr "Laoich"
 
 #: gui/summary/layout.js:55
 msgid "Navy"
@@ -1282,11 +1282,11 @@ msgstr "Meatailt"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
-msgstr "Cìsean (chuir / fhuair)"
+msgstr "Cìsean (a chuireadh / fhuaras)"
 
 #: gui/summary/layout.js:82
 msgid "Treasures collected"
-msgstr "Ulaidhean a thog thu"
+msgstr "Ulaidhean air an togail"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
@@ -1348,7 +1348,7 @@ msgstr "As motha"
 
 #: gui/summary/layout.js:129
 msgid "At finish"
-msgstr "Deireadh"
+msgstr "Deireannach"
 
 #: gui/summary/layout.js:132
 msgid "Map control"
@@ -1493,7 +1493,7 @@ msgstr "Coitcheann"
 
 #: gui/options/options.xml:(caption):35
 msgid "Graphics Settings"
-msgstr "Roghainnean grafaigeachd"
+msgstr "Roghainnean na grafaigeachd"
 
 #: gui/options/options.xml:(caption):48
 msgid "Sound Settings"
@@ -1509,7 +1509,7 @@ msgstr "Ath-shuidhich"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
-msgstr "Till"
+msgstr "Aisig"
 
 #: gui/options/options.xml:(caption):83 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1521,7 +1521,7 @@ msgstr "Ath-shuidhichidh seo roghainnean a’ chleachdaiche air bun-roghainnean 
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr "Tillidh seo dha na roghainnean a shàbhail thu roimhe"
+msgstr "Aisigidh seo na roghainnean a shàbhail thu roimhe"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
@@ -1639,7 +1639,7 @@ msgstr "Ioma-chluicheadair"
 
 #: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
-msgstr "Innealan ⁊ Roghainnean"
+msgstr "Innealan ⁊ roghainnean"
 
 #: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
@@ -1783,7 +1783,7 @@ msgstr "Ath-chluich geamannan"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr "Criathraich ath-chluichean co-chòrdail"
+msgstr "Ath-chluichean co-chòrdail a-mhàin"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
