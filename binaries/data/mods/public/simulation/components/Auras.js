@@ -25,7 +25,9 @@ Auras.prototype.Init = function()
 // We can modify identifier if we want stackable auras in some case.
 Auras.prototype.GetModifierIdentifier = function(name)
 {
-		return name;
+	if (this.auras[name].stackable)
+		return name + this.entity;
+	return name;
 };
 
 Auras.prototype.GetDescriptions = function()
@@ -194,6 +196,7 @@ Auras.prototype.Clean = function()
 		// initialise range query
 		this[name] = {};
 		this[name].targetUnits = [];
+		this[name].isApplied = this.CanApply(name);
 		var affectedPlayers = this.GetAffectedPlayers(name);
 
 		if (!affectedPlayers.length)
@@ -274,7 +277,7 @@ Auras.prototype.ApplyGarrisonBonus = function(structure)
 
 Auras.prototype.ApplyTemplateBonus = function(name, players)
 {
-	if (!this.CanApply(name))
+	if (!this[name].isApplied)
 		return;
 
 	if (!this.IsGlobalAura(name))
@@ -304,7 +307,7 @@ Auras.prototype.RemoveGarrisonBonus = function(structure)
 
 Auras.prototype.RemoveTemplateBonus = function(name)
 {
-	if (!this.CanApply(name))
+	if (!this[name].isApplied)
 		return;
 	if (!this.IsGlobalAura(name))
 		return;
@@ -327,7 +330,7 @@ Auras.prototype.ApplyBonus = function(name, ents)
 
 	this[name].targetUnits = this[name].targetUnits.concat(validEnts);
 
-	if (!this.CanApply(name))
+	if (!this[name].isApplied)
 		return;
 
 	var modifications = this.GetModifications(name);
@@ -355,7 +358,7 @@ Auras.prototype.RemoveBonus = function(name, ents)
 
 	this[name].targetUnits = this[name].targetUnits.filter(v => validEnts.indexOf(v) == -1);
 
-	if (!this.CanApply(name))
+	if (!this[name].isApplied)
 		return;
 
 	var modifications = this.GetModifications(name);
