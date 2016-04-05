@@ -628,7 +628,7 @@ function initMapSettings()
 
 	let numPlayers = getNumPlayers();
 	g_MapInfo = {
-		"biome": biomeID,
+		"biome": g_BiomeID,
 		"numPlayers": numPlayers,
 		"teams": getTeams(numPlayers),
 		"startAngle": randFloat(0, TWO_PI)
