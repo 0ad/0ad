@@ -9,47 +9,51 @@ const g_BiomeAutumn = 8;
 
 var g_BiomeID = g_BiomeTemperate;
 
-var rbt1 = ["temp_grass_long_b"];
-var rbt2 = "temp_forestfloor_pine";
-var rbt3 = "temp_plants_bog";
-var rbt4 = ["temp_cliff_a", "temp_cliff_b"];
-var rbt5 = "temp_grass_d";
-var rbt6 = "temp_grass_c";
-var rbt7 = "temp_grass_clovers_2";
-var rbt8 = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
-var rbt9 = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
-var rbt10 = "temp_road";
-var rbt11 = "temp_road_overgrown";
-var rbt12 = "temp_grass_plants";
-var rbt13 = "temp_mud_plants";
-var rbt14 = "sand_grass_25";
-var rbt15 = "medit_sand_wet";
+var g_Terrains = {
+	"mainTerrain": ["temp_grass_long_b"],
+	"forestFloor1": "temp_forestfloor_pine",
+	"forestFloor2": "temp_plants_bog",
+	"tier1Terrain": "temp_grass_d",
+	"tier2Terrain": "temp_grass_c",
+	"tier3Terrain": "temp_grass_clovers_2",
+	"tier4Terrain": "temp_grass_plants",
+	"cliff": ["temp_cliff_a", "temp_cliff_b"],
+	"hill": ["temp_dirt_gravel", "temp_dirt_gravel_b"],
+	"dirt": ["temp_dirt_gravel", "temp_dirt_gravel_b"],
+	"road": "temp_road",
+	"roadWild": "temp_road_overgrown",
+	"shoreBlend": "temp_mud_plants",
+	"shore": "sand_grass_25",
+	"water": "medit_sand_wet"
+};
 
-// gaia entities
-var rbe1 = "gaia/flora_tree_oak";
-var rbe2 = "gaia/flora_tree_oak_large";
-var rbe3 = "gaia/flora_tree_apple";
-var rbe4 = "gaia/flora_tree_pine";
-var rbe5 = "gaia/flora_tree_aleppo_pine";
-var rbe6 = "gaia/flora_bush_berry";
-var rbe7 = "gaia/fauna_chicken";
-var rbe8 = "gaia/fauna_deer";
-var rbe9 = "gaia/fauna_fish";
-var rbe10 = "gaia/fauna_sheep";
-var rbe11 = "gaia/geology_stonemine_medit_quarry";
-var rbe12 = "gaia/geology_stone_mediterranean";
-var rbe13 = "gaia/geology_metal_mediterranean_slabs";
+var g_Gaia = {
+	"tree1": "gaia/flora_tree_oak",
+	"tree2": "gaia/flora_tree_oak_large",
+	"tree3": "gaia/flora_tree_apple",
+	"tree4": "gaia/flora_tree_pine",
+	"tree5": "gaia/flora_tree_aleppo_pine",
+	"fruitBush": "gaia/flora_bush_berry",
+	"chicken": "gaia/fauna_chicken",
+	"fish": "gaia/fauna_fish",
+	"mainHuntableAnimal": "gaia/fauna_deer",
+	"secondaryHuntableAnimal": "gaia/fauna_sheep",
+	"stoneLarge": "gaia/geology_stonemine_medit_quarry",
+	"stoneSmall": "gaia/geology_stone_mediterranean",
+	"metalLarge": "gaia/geology_metal_mediterranean_slabs"
+};
 
-// decorative props
-var rba1 = "actor|props/flora/grass_soft_large_tall.xml";
-var rba2 = "actor|props/flora/grass_soft_large.xml";
-var rba3 = "actor|props/flora/reeds_pond_lush_a.xml";
-var rba4 = "actor|props/flora/pond_lillies_large.xml";
-var rba5 = "actor|geology/stone_granite_large.xml";
-var rba6 = "actor|geology/stone_granite_med.xml";
-var rba7 = "actor|props/flora/bush_medit_me.xml";
-var rba8 = "actor|props/flora/bush_medit_sm.xml";
-var rba9 = "actor|flora/trees/oak.xml";
+var g_Decoratives = {
+	"grass": "actor|props/flora/grass_soft_large_tall.xml",
+	"grassShort": "actor|props/flora/grass_soft_large.xml",
+	"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+	"lillies": "actor|props/flora/pond_lillies_large.xml",
+	"rockLarge": "actor|geology/stone_granite_large.xml",
+	"rockMedium": "actor|geology/stone_granite_med.xml",
+	"bushMedium": "actor|props/flora/bush_medit_me.xml",
+	"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+	"tree": "actor|flora/trees/oak.xml"
+};
 
 /**
  * Randomizes environment, optionally excluding some biome IDs.
@@ -100,93 +104,95 @@ function setBiome(biomeIndex)
 		setPPSaturation(0.62);
 		setPPContrast(0.62);
 		setPPBloom(0.3);
-		
+
+		g_Terrains = {
+			"cliff": ["temp_cliff_a", "temp_cliff_b"],
+			"hill": ["temp_dirt_gravel", "temp_dirt_gravel_b"],
+			"dirt": ["temp_dirt_gravel", "temp_dirt_gravel_b"],
+			"road": "temp_road",
+			"roadWild": "temp_road_overgrown",
+			"shoreBlend": "temp_mud_plants",
+			"shore": "sand_grass_25",
+			"water": "medit_sand_wet"
+		};
+
 		if (randInt(2))
 		{
-			rbt1 = "alpine_grass";
-			rbt2 = "temp_forestfloor_pine";
-			rbt3 = "temp_grass_clovers_2";
-			rbt5 = "alpine_grass_a";
-			rbt6 = "alpine_grass_b";
-			rbt7 = "alpine_grass_c";
-			rbt12 = "temp_grass_mossy";
+			g_Terrains.mainTerrain = "alpine_grass";
+			g_Terrains.forestFloor1 = "temp_forestfloor_pine";
+			g_Terrains.forestFloor2 = "temp_grass_clovers_2";
+			g_Terrains.tier1Terrain = "alpine_grass_a";
+			g_Terrains.tier2Terrain = "alpine_grass_b";
+			g_Terrains.tier3Terrain = "alpine_grass_c";
+			g_Terrains.tier4Terrain = "temp_grass_mossy";
 		}
 		else
 		{
-			rbt1 = "temp_grass_long_b";
-			rbt2 = "temp_forestfloor_pine";
-			rbt3 = "temp_plants_bog";
-			rbt5 = "temp_grass_d";
-			rbt6 = "temp_grass_c";
-			rbt7 = "temp_grass_clovers_2";
-			rbt12 = "temp_grass_plants";
+			g_Terrains.mainTerrain = "temp_grass_long_b";
+			g_Terrains.forestFloor1 = "temp_forestfloor_pine";
+			g_Terrains.forestFloor2 = "temp_plants_bog";
+			g_Terrains.tier1Terrain = "temp_grass_d";
+			g_Terrains.tier2Terrain = "temp_grass_c";
+			g_Terrains.tier3Terrain = "temp_grass_clovers_2";
+			g_Terrains.tier4Terrain = "temp_grass_plants";
 		}
-		
-		rbt4 = ["temp_cliff_a", "temp_cliff_b"];
-		
-		rbt8 = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
-		rbt9 = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
-		rbt10 = "temp_road";
-		rbt11 = "temp_road_overgrown";
-		
-		rbt13 = "temp_mud_plants";
-		rbt14 = "sand_grass_25";
-		rbt15 = "medit_sand_wet";
 
-		// gaia entities
+		g_Gaia = {
+			"fruitBush": "gaia/flora_bush_berry",
+			"chicken": "gaia/fauna_chicken",
+			"fish": "gaia/fauna_fish",
+			"mainHuntableAnimal": "gaia/fauna_deer",
+			"secondaryHuntableAnimal": "gaia/fauna_sheep",
+			"stoneLarge": "gaia/geology_stonemine_temperate_quarry",
+			"stoneSmall": "gaia/geology_stone_temperate",
+			"metalLarge": "gaia/geology_metal_temperate_slabs"
+		};
+
 		var random_trees = randInt(3);
-		
 		if (random_trees == 0)
 		{
-			rbe1 = "gaia/flora_tree_oak";
-			rbe2 = "gaia/flora_tree_oak_large";
+			g_Gaia.tree1 = "gaia/flora_tree_oak";
+			g_Gaia.tree2 = "gaia/flora_tree_oak_large";
 		}
 		else if (random_trees == 1)
 		{
-			rbe1 = "gaia/flora_tree_poplar";
-			rbe2 = "gaia/flora_tree_poplar";
+			g_Gaia.tree1 = "gaia/flora_tree_poplar";
+			g_Gaia.tree2 = "gaia/flora_tree_poplar";
 		}
 		else
 		{
-			rbe1 = "gaia/flora_tree_euro_beech";
-			rbe2 = "gaia/flora_tree_euro_beech";
+			g_Gaia.tree1 = "gaia/flora_tree_euro_beech";
+			g_Gaia.tree2 = "gaia/flora_tree_euro_beech";
 		}
-		rbe3 = "gaia/flora_tree_apple";
+		g_Gaia.tree3 = "gaia/flora_tree_apple";
 		random_trees = randInt(3);
 		if (random_trees == 0)
 		{
-			rbe4 = "gaia/flora_tree_pine";
-			rbe5 = "gaia/flora_tree_aleppo_pine";
+			g_Gaia.tree4 = "gaia/flora_tree_pine";
+			g_Gaia.tree5 = "gaia/flora_tree_aleppo_pine";
 		}
 		else if (random_trees == 1)
 		{
-			rbe4 = "gaia/flora_tree_pine";
-			rbe5 = "gaia/flora_tree_pine";
+			g_Gaia.tree4 = "gaia/flora_tree_pine";
+			g_Gaia.tree5 = "gaia/flora_tree_pine";
 		}
 		else
 		{
-			rbe4 = "gaia/flora_tree_aleppo_pine";
-			rbe5 = "gaia/flora_tree_aleppo_pine";
+			g_Gaia.tree4 = "gaia/flora_tree_aleppo_pine";
+			g_Gaia.tree5 = "gaia/flora_tree_aleppo_pine";
 		}
-		rbe6 = "gaia/flora_bush_berry";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_deer";
-		rbe9 = "gaia/fauna_fish";
-		rbe10 = "gaia/fauna_sheep";
-		rbe11 = "gaia/geology_stonemine_temperate_quarry";
-		rbe12 = "gaia/geology_stone_temperate";
-		rbe13 = "gaia/geology_metal_temperate_slabs";
 
-		// decorative props
-		rba1 = "actor|props/flora/grass_soft_large_tall.xml";
-		rba2 = "actor|props/flora/grass_soft_large.xml";
-		rba3 = "actor|props/flora/reeds_pond_lush_a.xml";
-		rba4 = "actor|props/flora/water_lillies.xml";
-		rba5 = "actor|geology/stone_granite_large.xml";
-		rba6 = "actor|geology/stone_granite_med.xml";
-		rba7 = "actor|props/flora/bush_medit_me.xml";
-		rba8 = "actor|props/flora/bush_medit_sm.xml";
-		rba9 = "actor|flora/trees/oak.xml";
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_soft_large_tall.xml",
+			"grassShort": "actor|props/flora/grass_soft_large.xml",
+			"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+			"lillies": "actor|props/flora/water_lillies.xml",
+			"rockLarge": "actor|geology/stone_granite_large.xml",
+			"rockMedium": "actor|geology/stone_granite_med.xml",
+			"bushMedium": "actor|props/flora/bush_medit_me.xml",
+			"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+			"tree": "actor|flora/trees/oak.xml"
+		};
 	}
 	else if (g_BiomeID == g_BiomeSnowy)
 	{
@@ -198,48 +204,52 @@ function setBiome(biomeIndex)
 		setWaterWaviness(5.5);
 		setWaterMurkiness(0.83);
 
-		rbt1 = ["polar_snow_b", "snow grass 75", "snow rocks", "snow forest"];
-		rbt2 = "polar_tundra_snow";
-		rbt3 = "polar_tundra_snow";
-		rbt4 = ["alpine_cliff_a", "alpine_cliff_b"];
-		rbt5 = "polar_snow_a";
-		rbt6 = "polar_ice_snow";
-		rbt7 = "polar_ice";
-		rbt8 = ["polar_snow_rocks", "polar_cliff_snow"];
-		rbt9 = "snow grass 2";
-		rbt10 = "new_alpine_citytile";
-		rbt11 = "polar_ice_cracked";
-		rbt12 = "snow grass 2";
-		rbt13 = "polar_ice";
-		rbt14 = "alpine_shore_rocks_icy";
-		rbt15 = "alpine_shore_rocks";
+		g_Terrains = {
+			"mainTerrain": ["polar_snow_b", "snow grass 75", "snow rocks", "snow forest"],
+			"forestFloor1": "polar_tundra_snow",
+			"forestFloor2": "polar_tundra_snow",
+			"cliff": ["alpine_cliff_a", "alpine_cliff_b"],
+			"tier1Terrain": "polar_snow_a",
+			"tier2Terrain": "polar_ice_snow",
+			"tier3Terrain": "polar_ice",
+			"tier4Terrain": "snow grass 2",
+			"hill": ["polar_snow_rocks", "polar_cliff_snow"],
+			"dirt": "snow grass 2",
+			"road": "new_alpine_citytile",
+			"roadWild": "polar_ice_cracked",
+			"shoreBlend": "polar_ice",
+			"shore": "alpine_shore_rocks_icy",
+			"water": "alpine_shore_rocks"
+		};
 
-		// gaia entities
-		rbe1 = "gaia/flora_tree_pine_w";
-		rbe2 = "gaia/flora_tree_pine_w";
-		rbe3 = "gaia/flora_tree_pine_w";
-		rbe4 = "gaia/flora_tree_pine_w";
-		rbe5 = "gaia/flora_tree_pine";
-		rbe6 = "gaia/flora_bush_berry";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_muskox";
-		rbe9 = "gaia/fauna_fish_tuna";
-		rbe10 = "gaia/fauna_walrus";
-		rbe11 = "gaia/geology_stonemine_alpine_quarry";
-		rbe12 = "gaia/geology_stone_alpine_a";
-		rbe13 = "gaia/geology_metal_alpine_slabs";
+		g_Gaia = {
+			"tree1": "gaia/flora_tree_pine_w",
+			"tree2": "gaia/flora_tree_pine_w",
+			"tree3": "gaia/flora_tree_pine_w",
+			"tree4": "gaia/flora_tree_pine_w",
+			"tree5": "gaia/flora_tree_pine",
+			"fruitBush": "gaia/flora_bush_berry",
+			"chicken": "gaia/fauna_chicken",
+			"mainHuntableAnimal": "gaia/fauna_muskox",
+			"fish": "gaia/fauna_fish_tuna",
+			"secondaryHuntableAnimal": "gaia/fauna_walrus",
+			"stoneLarge": "gaia/geology_stonemine_alpine_quarry",
+			"stoneSmall": "gaia/geology_stone_alpine_a",
+			"metalLarge": "gaia/geology_metal_alpine_slabs"
+		};
 
-		// decorative props
-		rba1 = "actor|props/flora/grass_soft_dry_small_tall.xml";
-		rba2 = "actor|props/flora/grass_soft_dry_large.xml";
-		rba3 = "actor|props/flora/reeds_pond_dry.xml";
-		rba4 = "actor|geology/stone_granite_large.xml";
-		rba5 = "actor|geology/stone_granite_large.xml";
-		rba6 = "actor|geology/stone_granite_med.xml";
-		rba7 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba8 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba9 = "actor|flora/trees/pine_w.xml";
-			
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+			"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+			"reeds": "actor|props/flora/reeds_pond_dry.xml",
+			"lillies": "actor|geology/stone_granite_large.xml",
+			"rockLarge": "actor|geology/stone_granite_large.xml",
+			"rockMedium": "actor|geology/stone_granite_med.xml",
+			"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+			"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+			"tree": "actor|flora/trees/pine_w.xml"
+		};
+
 		setFogFactor(0.6);
 		setFogThickness(0.21);
 		setPPSaturation(0.37);
@@ -263,64 +273,68 @@ function setBiome(biomeIndex)
 		setPPContrast(0.67);
 		setPPSaturation(0.42);
 		setPPBloom(0.23);
-		
-		rbt1 = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
-		rbt2 = "forestfloor_dirty";
-		rbt3 = "desert_forestfloor_palms";
-		rbt4 = ["desert_cliff_1", "desert_cliff_2", "desert_cliff_3", "desert_cliff_4", "desert_cliff_5"];
-		rbt5 = "desert_dirt_rough";
-		rbt6 = "desert_dirt_rocks_1";
-		rbt7 = "desert_dirt_rocks_2";
-		rbt8 = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
-		rbt9 = ["desert_lakebed_dry", "desert_lakebed_dry_b"];
-		rbt10 = "desert_city_tile";
-		rbt11 = "desert_city_tile";
-		rbt12 = "desert_dirt_rough";
-		rbt13 = "desert_shore_stones";
-		rbt14 = "desert_sand_smooth";
-		rbt15 = "desert_sand_wet";
 
-		// gaia entities
+		g_Terrains = {
+			"mainTerrain": ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"],
+			"forestFloor1": "forestfloor_dirty",
+			"forestFloor2": "desert_forestfloor_palms",
+			"cliff": ["desert_cliff_1", "desert_cliff_2", "desert_cliff_3", "desert_cliff_4", "desert_cliff_5"],
+			"tier1Terrain": "desert_dirt_rough",
+			"tier2Terrain": "desert_dirt_rocks_1",
+			"tier3Terrain": "desert_dirt_rocks_2",
+			"tier4Terrain": "desert_dirt_rough",
+			"hill": ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"],
+			"dirt": ["desert_lakebed_dry", "desert_lakebed_dry_b"],
+			"road": "desert_city_tile",
+			"roadWild": "desert_city_tile",
+			"shoreBlend": "desert_shore_stones",
+			"shore": "desert_sand_smooth",
+			"water": "desert_sand_wet"
+		};
+
+		g_Gaia = {
+			"fruitBush": "gaia/flora_bush_grapes",
+			"chicken": "gaia/fauna_chicken",
+			"mainHuntableAnimal": "gaia/fauna_camel",
+			"fish": "gaia/fauna_fish",
+			"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+			"stoneLarge": "gaia/geology_stonemine_desert_quarry",
+			"stoneSmall": "gaia/geology_stone_desert_small",
+			"metalLarge": "gaia/geology_metal_desert_slabs"
+		};
 		if (randInt(2))
 		{
-			rbe1 = "gaia/flora_tree_cretan_date_palm_short";
-			rbe2 = "gaia/flora_tree_cretan_date_palm_tall";
+			g_Gaia.tree1 = "gaia/flora_tree_cretan_date_palm_short";
+			g_Gaia.tree2 = "gaia/flora_tree_cretan_date_palm_tall";
 		}
 		else
 		{
-			rbe1 = "gaia/flora_tree_date_palm";
-			rbe2 = "gaia/flora_tree_date_palm";
+			g_Gaia.tree1 = "gaia/flora_tree_date_palm";
+			g_Gaia.tree2 = "gaia/flora_tree_date_palm";
 		}
-		rbe3 = "gaia/flora_tree_fig";
+		g_Gaia.tree3 = "gaia/flora_tree_fig";
 		if (randInt(2))
 		{
-			rbe4 = "gaia/flora_tree_tamarix";
-			rbe5 = "gaia/flora_tree_tamarix";
+			g_Gaia.tree4 = "gaia/flora_tree_tamarix";
+			g_Gaia.tree5 = "gaia/flora_tree_tamarix";
 		}
 		else
 		{
-			rbe4 = "gaia/flora_tree_senegal_date_palm";
-			rbe5 = "gaia/flora_tree_senegal_date_palm";
+			g_Gaia.tree4 = "gaia/flora_tree_senegal_date_palm";
+			g_Gaia.tree5 = "gaia/flora_tree_senegal_date_palm";
 		}
-		rbe6 = "gaia/flora_bush_grapes";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_camel";
-		rbe9 = "gaia/fauna_fish";
-		rbe10 = "gaia/fauna_gazelle";
-		rbe11 = "gaia/geology_stonemine_desert_quarry";
-		rbe12 = "gaia/geology_stone_desert_small";
-		rbe13 = "gaia/geology_metal_desert_slabs";
 
-		// decorative props
-		rba1 = "actor|props/flora/grass_soft_dry_small_tall.xml";
-		rba2 = "actor|props/flora/grass_soft_dry_large.xml";
-		rba3 = "actor|props/flora/reeds_pond_lush_a.xml";
-		rba4 = "actor|props/flora/reeds_pond_lush_b.xml";
-		rba5 = "actor|geology/stone_desert_med.xml";
-		rba6 = "actor|geology/stone_desert_med.xml";
-		rba7 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba8 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba9 = "actor|flora/trees/palm_date.xml";
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+			"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+			"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+			"lillies": "actor|props/flora/reeds_pond_lush_b.xml",
+			"rockLarge": "actor|geology/stone_desert_med.xml",
+			"rockMedium": "actor|geology/stone_desert_med.xml",
+			"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+			"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+			"tree": "actor|flora/trees/palm_date.xml"
+		};
 	}
 	else if (g_BiomeID == g_BiomeAlpine)
 	{
@@ -338,48 +352,52 @@ function setBiome(biomeIndex)
 		setPPSaturation(0.48);
 		setPPContrast(0.53);
 		setPPBloom(0.12);
-		
-		rbt1 = ["alpine_dirt_grass_50"];
-		rbt2 = "alpine_forrestfloor";
-		rbt3 = "alpine_forrestfloor";
-		rbt4 = ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"];
-		rbt5 = "alpine_dirt";
-		rbt6 = ["alpine_grass_snow_50", "alpine_dirt_snow", "alpine_dirt_snow"];
-		rbt7 = ["alpine_snow_a", "alpine_snow_b"];
-		rbt8 = "alpine_cliff_snow";
-		rbt9 = ["alpine_dirt", "alpine_grass_d"];
-		rbt10 = "new_alpine_citytile";
-		rbt11 = "new_alpine_citytile";
-		rbt12 = "new_alpine_grass_a";
-		rbt13 = "alpine_shore_rocks";
-		rbt14 = "alpine_shore_rocks_grass_50";
-		rbt15 = "alpine_shore_rocks";
 
-		// gaia entities
-		rbe1 = "gaia/flora_tree_pine";
-		rbe2 = "gaia/flora_tree_pine";
-		rbe3 = "gaia/flora_tree_pine";
-		rbe4 = "gaia/flora_tree_pine";
-		rbe5 = "gaia/flora_tree_pine";
-		rbe6 = "gaia/flora_bush_berry";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_goat";
-		rbe9 = "gaia/fauna_fish_tuna";
-		rbe10 = "gaia/fauna_deer";
-		rbe11 = "gaia/geology_stonemine_alpine_quarry";
-		rbe12 = "gaia/geology_stone_alpine_a";
-		rbe13 = "gaia/geology_metal_alpine_slabs";
+		g_Terrains = {
+			"mainTerrain": ["alpine_dirt_grass_50"],
+			"forestFloor1": "alpine_forrestfloor",
+			"forestFloor2": "alpine_forrestfloor",
+			"cliff": ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"],
+			"tier1Terrain": "alpine_dirt",
+			"tier2Terrain": ["alpine_grass_snow_50", "alpine_dirt_snow", "alpine_dirt_snow"],
+			"tier3Terrain": ["alpine_snow_a", "alpine_snow_b"],
+			"tier4Terrain": "new_alpine_grass_a",
+			"hill": "alpine_cliff_snow",
+			"dirt": ["alpine_dirt", "alpine_grass_d"],
+			"road": "new_alpine_citytile",
+			"roadWild": "new_alpine_citytile",
+			"shoreBlend": "alpine_shore_rocks",
+			"shore": "alpine_shore_rocks_grass_50",
+			"water": "alpine_shore_rocks"
+		};
 
-		// decorative props
-		rba1 = "actor|props/flora/grass_soft_small_tall.xml";
-		rba2 = "actor|props/flora/grass_soft_large.xml";
-		rba3 = "actor|props/flora/reeds_pond_dry.xml";
-		rba4 = "actor|geology/stone_granite_large.xml";
-		rba5 = "actor|geology/stone_granite_large.xml";
-		rba6 = "actor|geology/stone_granite_med.xml";
-		rba7 = "actor|props/flora/bush_desert_a.xml";
-		rba8 = "actor|props/flora/bush_desert_a.xml";
-		rba9 = "actor|flora/trees/pine.xml";
+		g_Gaia = {
+			"tree1": "gaia/flora_tree_pine",
+			"tree2": "gaia/flora_tree_pine",
+			"tree3": "gaia/flora_tree_pine",
+			"tree4": "gaia/flora_tree_pine",
+			"tree5": "gaia/flora_tree_pine",
+			"fruitBush": "gaia/flora_bush_berry",
+			"chicken": "gaia/fauna_chicken",
+			"mainHuntableAnimal": "gaia/fauna_goat",
+			"fish": "gaia/fauna_fish_tuna",
+			"secondaryHuntableAnimal": "gaia/fauna_deer",
+			"stoneLarge": "gaia/geology_stonemine_alpine_quarry",
+			"stoneSmall": "gaia/geology_stone_alpine_a",
+			"metalLarge": "gaia/geology_metal_alpine_slabs"
+		};
+
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_soft_small_tall.xml",
+			"grassShort": "actor|props/flora/grass_soft_large.xml",
+			"reeds": "actor|props/flora/reeds_pond_dry.xml",
+			"lillies": "actor|geology/stone_granite_large.xml",
+			"rockLarge": "actor|geology/stone_granite_large.xml",
+			"rockMedium": "actor|geology/stone_granite_med.xml",
+			"bushMedium": "actor|props/flora/bush_desert_a.xml",
+			"bushSmall": "actor|props/flora/bush_desert_a.xml",
+			"tree": "actor|flora/trees/pine.xml"
+		};
 	}
 	else if (g_BiomeID == g_BiomeMediterranean)
 	{
@@ -396,84 +414,84 @@ function setBiome(biomeIndex)
 		setPPContrast(0.62);
 		setPPSaturation(0.51);
 		setPPBloom(0.12);
-		
-		rbt1 = ["medit_grass_field_a", "medit_grass_field_b"];
-		rbt2 = "medit_grass_field";
-		rbt3 = "medit_grass_shrubs";
-		rbt4 = ["medit_cliff_grass", "medit_cliff_greek", "medit_cliff_greek_2", "medit_cliff_aegean", "medit_cliff_italia", "medit_cliff_italia_grass"];
-		rbt5 = "medit_grass_field_b";
-		rbt6 = "medit_grass_field_brown";
-		rbt7 = "medit_grass_field_dry";
-		rbt8 = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
-		rbt9 = ["medit_dirt", "medit_dirt_b"];
-		rbt10 = "medit_city_tile";
-		rbt11 = "medit_city_tile";
-		rbt12 = "medit_grass_wild";
-		rbt13 = "medit_sand";
-		rbt14 = "sand_grass_25";
-		rbt15 = "medit_sand_wet";
 
-		// gaia entities
+		g_Terrains = {
+			"mainTerrain": ["medit_grass_field_a", "medit_grass_field_b"],
+			"forestFloor1": "medit_grass_field",
+			"forestFloor2": "medit_grass_shrubs",
+			"cliff": ["medit_cliff_grass", "medit_cliff_greek", "medit_cliff_greek_2", "medit_cliff_aegean", "medit_cliff_italia", "medit_cliff_italia_grass"],
+			"tier1Terrain": "medit_grass_field_b",
+			"tier2Terrain": "medit_grass_field_brown",
+			"tier3Terrain": "medit_grass_field_dry",
+			"tier4Terrain": "medit_grass_wild",
+			"hill": ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"],
+			"dirt": ["medit_dirt", "medit_dirt_b"],
+			"road": "medit_city_tile",
+			"roadWild": "medit_city_tile",
+			"shoreBlend": "medit_sand",
+			"shore": "sand_grass_25",
+			"water": "medit_sand_wet"
+		};
+
+		g_Gaia = {
+			"chicken": "gaia/fauna_chicken",
+			"mainHuntableAnimal": "gaia/fauna_deer",
+			"fish": "gaia/fauna_fish",
+			"secondaryHuntableAnimal": "gaia/fauna_sheep",
+			"stoneLarge": "gaia/geology_stonemine_medit_quarry",
+			"stoneSmall": "gaia/geology_stone_mediterranean",
+			"metalLarge": "gaia/geology_metal_mediterranean_slabs"
+		};
+
 		var random_trees = randInt(3);
-		
 		if (random_trees == 0)
 		{
-			rbe1 = "gaia/flora_tree_cretan_date_palm_short";
-			rbe2 = "gaia/flora_tree_cretan_date_palm_tall";
+			g_Gaia.tree1 = "gaia/flora_tree_cretan_date_palm_short";
+			g_Gaia.tree2 = "gaia/flora_tree_cretan_date_palm_tall";
 		}
 		else if (random_trees == 1)
 		{
-			rbe1 = "gaia/flora_tree_carob";
-			rbe2 = "gaia/flora_tree_carob";
+			g_Gaia.tree1 = "gaia/flora_tree_carob";
+			g_Gaia.tree2 = "gaia/flora_tree_carob";
 		}
 		else
 		{
-			rbe1 = "gaia/flora_tree_medit_fan_palm";
-			rbe2 = "gaia/flora_tree_medit_fan_palm";
+			g_Gaia.tree1 = "gaia/flora_tree_medit_fan_palm";
+			g_Gaia.tree2 = "gaia/flora_tree_medit_fan_palm";
 		}
 		
 		if (randInt(2))
-		{
-			rbe3 = "gaia/flora_tree_apple";
-		}
+			g_Gaia.tree3 = "gaia/flora_tree_apple";
 		else
-		{
-			rbe3 = "gaia/flora_tree_poplar_lombardy";
-		}
+			g_Gaia.tree3 = "gaia/flora_tree_poplar_lombardy";
 		
 		if (randInt(2))
 		{
-			rbe4 = "gaia/flora_tree_cypress";
-			rbe5 = "gaia/flora_tree_cypress";
+			g_Gaia.tree4 = "gaia/flora_tree_cypress";
+			g_Gaia.tree5 = "gaia/flora_tree_cypress";
 		}
 		else
 		{
-			rbe4 = "gaia/flora_tree_aleppo_pine";
-			rbe5 = "gaia/flora_tree_aleppo_pine";
+			g_Gaia.tree4 = "gaia/flora_tree_aleppo_pine";
+			g_Gaia.tree5 = "gaia/flora_tree_aleppo_pine";
 		}
 		
 		if (randInt(2))
-			rbe6 = "gaia/flora_bush_berry";
+			g_Gaia.fruitBush = "gaia/flora_bush_berry";
 		else
-			rbe6 = "gaia/flora_bush_grapes";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_deer";
-		rbe9 = "gaia/fauna_fish";
-		rbe10 = "gaia/fauna_sheep";
-		rbe11 = "gaia/geology_stonemine_medit_quarry";
-		rbe12 = "gaia/geology_stone_mediterranean";
-		rbe13 = "gaia/geology_metal_mediterranean_slabs";
+			g_Gaia.fruitBush = "gaia/flora_bush_grapes";
 
-		// decorative props
-		rba1 = "actor|props/flora/grass_soft_large_tall.xml";
-		rba2 = "actor|props/flora/grass_soft_large.xml";
-		rba3 = "actor|props/flora/reeds_pond_lush_b.xml";
-		rba4 = "actor|props/flora/water_lillies.xml";
-		rba5 = "actor|geology/stone_granite_large.xml";
-		rba6 = "actor|geology/stone_granite_med.xml";
-		rba7 = "actor|props/flora/bush_medit_me.xml";
-		rba8 = "actor|props/flora/bush_medit_sm.xml";
-		rba9 = "actor|flora/trees/palm_cretan_date.xml";
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_soft_large_tall.xml",
+			"grassShort": "actor|props/flora/grass_soft_large.xml",
+			"reeds": "actor|props/flora/reeds_pond_lush_b.xml",
+			"lillies": "actor|props/flora/water_lillies.xml",
+			"rockLarge": "actor|geology/stone_granite_large.xml",
+			"rockMedium": "actor|geology/stone_granite_med.xml",
+			"bushMedium": "actor|props/flora/bush_medit_me.xml",
+			"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+			"tree": "actor|flora/trees/palm_cretan_date.xml"
+		};
 	}
 	else if (g_BiomeID == g_BiomeSavanna)
 	{
@@ -490,58 +508,61 @@ function setBiome(biomeIndex)
 		setPPEffect("hdr");
 		setPPContrast(0.57031);
 		setPPBloom(0.34);
-		
-		rbt1 = ["savanna_grass_a", "savanna_grass_b"];
-		rbt2 = "savanna_forestfloor_a";
-		rbt3 = "savanna_forestfloor_b";
-		rbt4 = ["savanna_cliff_a", "savanna_cliff_b"];
-		rbt5 = "savanna_shrubs_a";
-		rbt6 = "savanna_dirt_rocks_b";
-		rbt7 = "savanna_dirt_rocks_a";
-		rbt8 = ["savanna_grass_a", "savanna_grass_b"];
-		rbt9 = ["savanna_dirt_rocks_b", "dirt_brown_e"];
-		rbt10 = "savanna_tile_a";
-		rbt11 = "savanna_tile_a";
-		rbt12 = "savanna_grass_a";
-		rbt13 = "savanna_riparian";
-		rbt14 = "savanna_riparian_bank";
-		rbt15 = "savanna_riparian_wet";
 
-		// gaia entities
-		rbe1 = "gaia/flora_tree_baobab";
-		rbe2 = "gaia/flora_tree_baobab";
-		rbe3 = "gaia/flora_tree_baobab";
-		rbe4 = "gaia/flora_tree_baobab";
-		rbe5 = "gaia/flora_tree_baobab";
-		rbe6 = "gaia/flora_bush_grapes";
-		rbe7 = "gaia/fauna_chicken";
+		g_Terrains = {
+			"mainTerrain": ["savanna_grass_a", "savanna_grass_b"],
+			"forestFloor1": "savanna_forestfloor_a",
+			"forestFloor2": "savanna_forestfloor_b",
+			"cliff": ["savanna_cliff_a", "savanna_cliff_b"],
+			"tier1Terrain": "savanna_shrubs_a",
+			"tier2Terrain": "savanna_dirt_rocks_b",
+			"tier3Terrain": "savanna_dirt_rocks_a",
+			"tier4Terrain": "savanna_grass_a",
+			"hill": ["savanna_grass_a", "savanna_grass_b"],
+			"dirt": ["savanna_dirt_rocks_b", "dirt_brown_e"],
+			"road": "savanna_tile_a",
+			"roadWild": "savanna_tile_a",
+			"shoreBlend": "savanna_riparian",
+			"shore": "savanna_riparian_bank",
+			"water": "savanna_riparian_wet"
+		};
+
+		g_Gaia = {
+			"tree1": "gaia/flora_tree_baobab",
+			"tree2": "gaia/flora_tree_baobab",
+			"tree3": "gaia/flora_tree_baobab",
+			"tree4": "gaia/flora_tree_baobab",
+			"tree5": "gaia/flora_tree_baobab",
+			"fruitBush": "gaia/flora_bush_grapes",
+			"chicken": "gaia/fauna_chicken",
+			"fish": "gaia/fauna_fish",
+			"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+			"stoneLarge": "gaia/geology_stonemine_desert_quarry",
+			"stoneSmall": "gaia/geology_stone_savanna_small",
+			"metalLarge": "gaia/geology_metal_savanna_slabs"
+		};
 
 		var rts = randInt(1,4);
 		if (rts == 1)
-			rbe8 = "gaia/fauna_wildebeest";
+			g_Gaia.mainHuntableAnimal = "gaia/fauna_wildebeest";
 		else if (rts == 2)
-			rbe8 = "gaia/fauna_zebra";
+			g_Gaia.mainHuntableAnimal = "gaia/fauna_zebra";
 		else if (rts == 3)
-			rbe8 = "gaia/fauna_giraffe";
+			g_Gaia.mainHuntableAnimal = "gaia/fauna_giraffe";
 		else if (rts == 4)
-			rbe8 = "gaia/fauna_elephant_african_bush";
+			g_Gaia.mainHuntableAnimal = "gaia/fauna_elephant_african_bush";
 
-		rbe9 = "gaia/fauna_fish";
-		rbe10 = "gaia/fauna_gazelle";
-		rbe11 = "gaia/geology_stonemine_desert_quarry";
-		rbe12 = "gaia/geology_stone_savanna_small";
-		rbe13 = "gaia/geology_metal_savanna_slabs";
-
-		// decorative props
-		rba1 = "actor|props/flora/grass_savanna.xml";
-		rba2 = "actor|props/flora/grass_medit_field.xml";
-		rba3 = "actor|props/flora/reeds_pond_lush_a.xml";
-		rba4 = "actor|props/flora/reeds_pond_lush_b.xml";
-		rba5 = "actor|geology/stone_savanna_med.xml";
-		rba6 = "actor|geology/stone_savanna_med.xml";
-		rba7 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba8 = "actor|props/flora/bush_dry_a.xml";
-		rba9 = "actor|flora/trees/baobab.xml";
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_savanna.xml",
+			"grassShort": "actor|props/flora/grass_medit_field.xml",
+			"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+			"lillies": "actor|props/flora/reeds_pond_lush_b.xml",
+			"rockLarge": "actor|geology/stone_savanna_med.xml",
+			"rockMedium": "actor|geology/stone_savanna_med.xml",
+			"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+			"bushSmall": "actor|props/flora/bush_dry_a.xml",
+			"tree": "actor|flora/trees/baobab.xml"
+		};
 	}
 	else if (g_BiomeID == g_BiomeTropic)
 	{
@@ -560,48 +581,52 @@ function setBiome(biomeIndex)
 		setPPContrast(0.67);
 		setPPSaturation(0.62);
 		setPPBloom(0.6);
-		
-		rbt1 = ["tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_plants", "tropic_plants", "tropic_plants_b"];
-		rbt2 = "tropic_plants_c";
-		rbt3 = "tropic_plants_c";
-		rbt4 = ["tropic_cliff_a", "tropic_cliff_a", "tropic_cliff_a", "tropic_cliff_a_plants"];
-		rbt5 = "tropic_grass_c";
-		rbt6 = "tropic_grass_plants";
-		rbt7 = "tropic_plants";
-		rbt8 = ["tropic_cliff_grass"];
-		rbt9 = ["tropic_dirt_a", "tropic_dirt_a_plants"];
-		rbt10 = "tropic_citytile_a";
-		rbt11 = "tropic_citytile_plants";
-		rbt12 = "tropic_plants_b";
-		rbt13 = "temp_mud_plants";
-		rbt14 = "tropic_beach_dry_plants";
-		rbt15 = "tropic_beach_dry";
 
-		// gaia entities
-		rbe1 = "gaia/flora_tree_toona";
-		rbe2 = "gaia/flora_tree_toona";
-		rbe3 = "gaia/flora_tree_palm_tropic";
-		rbe4 = "gaia/flora_tree_palm_tropic";
-		rbe5 = "gaia/flora_tree_palm_tropic";
-		rbe6 = "gaia/flora_bush_berry";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_peacock";
-		rbe9 = "gaia/fauna_fish";
-		rbe10 = "gaia/fauna_tiger";
-		rbe11 = "gaia/geology_stonemine_tropic_quarry";
-		rbe12 = "gaia/geology_stone_tropic_a";
-		rbe13 = "gaia/geology_metal_tropic_slabs";
+		g_Terrains = {
+			"mainTerrain": ["tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_plants", "tropic_plants", "tropic_plants_b"],
+			"forestFloor1": "tropic_plants_c",
+			"forestFloor2": "tropic_plants_c",
+			"cliff": ["tropic_cliff_a", "tropic_cliff_a", "tropic_cliff_a", "tropic_cliff_a_plants"],
+			"tier1Terrain": "tropic_grass_c",
+			"tier2Terrain": "tropic_grass_plants",
+			"tier3Terrain": "tropic_plants",
+			"tier4Terrain": "tropic_plants_b",
+			"hill": ["tropic_cliff_grass"],
+			"dirt": ["tropic_dirt_a", "tropic_dirt_a_plants"],
+			"road": "tropic_citytile_a",
+			"roadWild": "tropic_citytile_plants",
+			"shoreBlend": "temp_mud_plants",
+			"shore": "tropic_beach_dry_plants",
+			"water": "tropic_beach_dry"
+		};
 
-		// decorative props
-		rba1 = "actor|props/flora/plant_tropic_a.xml";
-		rba2 = "actor|props/flora/plant_lg.xml";
-		rba3 = "actor|props/flora/reeds_pond_lush_b.xml";
-		rba4 = "actor|props/flora/water_lillies.xml";
-		rba5 = "actor|geology/stone_granite_large.xml";
-		rba6 = "actor|geology/stone_granite_med.xml";
-		rba7 = "actor|props/flora/plant_tropic_large.xml";
-		rba8 = "actor|props/flora/plant_tropic_large.xml";
-		rba9 = "actor|flora/trees/tree_tropic.xml";
+		g_Gaia = {
+			"tree1": "gaia/flora_tree_toona",
+			"tree2": "gaia/flora_tree_toona",
+			"tree3": "gaia/flora_tree_palm_tropic",
+			"tree4": "gaia/flora_tree_palm_tropic",
+			"tree5": "gaia/flora_tree_palm_tropic",
+			"fruitBush": "gaia/flora_bush_berry",
+			"chicken": "gaia/fauna_chicken",
+			"mainHuntableAnimal": "gaia/fauna_peacock",
+			"fish": "gaia/fauna_fish",
+			"secondaryHuntableAnimal": "gaia/fauna_tiger",
+			"stoneLarge": "gaia/geology_stonemine_tropic_quarry",
+			"stoneSmall": "gaia/geology_stone_tropic_a",
+			"metalLarge": "gaia/geology_metal_tropic_slabs"
+		};
+
+		g_Decoratives = {
+			"grass": "actor|props/flora/plant_tropic_a.xml",
+			"grassShort": "actor|props/flora/plant_lg.xml",
+			"reeds": "actor|props/flora/reeds_pond_lush_b.xml",
+			"lillies": "actor|props/flora/water_lillies.xml",
+			"rockLarge": "actor|geology/stone_granite_large.xml",
+			"rockMedium": "actor|geology/stone_granite_med.xml",
+			"bushMedium": "actor|props/flora/plant_tropic_large.xml",
+			"bushSmall": "actor|props/flora/plant_tropic_large.xml",
+			"tree": "actor|flora/trees/tree_tropic.xml"
+		};
 	}
 	else if (g_BiomeID == g_BiomeAutumn)
 	{
@@ -619,232 +644,236 @@ function setBiome(biomeIndex)
 		setPPContrast(0.56);
 		setPPBloom(0.38);
 		setPPEffect("hdr");
-		
-		rbt1 = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
-		rbt2 = "temp_plants_bog_aut";
-		rbt3 = "temp_forestfloor_aut";
-		rbt4 = ["temp_cliff_a", "temp_cliff_b"];
-		rbt5 = "temp_grass_plants_aut";
-		rbt6 = ["temp_grass_b_aut", "temp_grass_c_aut"];
-		rbt7 = ["temp_grass_b_aut", "temp_grass_long_b_aut"];
-		rbt8 = "temp_highlands_aut";
-		rbt9 = ["temp_cliff_a", "temp_cliff_b"];
-		rbt10 = "temp_road_aut";
-		rbt11 = "temp_road_overgrown_aut";
-		rbt12 = "temp_grass_plants_aut";
-		rbt13 = "temp_grass_plants_aut";
-		rbt14 = "temp_forestfloor_pine";
-		rbt15 = "medit_sand_wet";
 
-		// gaia entities
-		rbe1 = "gaia/flora_tree_euro_beech_aut";
-		rbe2 = "gaia/flora_tree_euro_beech_aut";
-		rbe3 = "gaia/flora_tree_pine";
-		rbe4 = "gaia/flora_tree_oak_aut";
-		rbe5 = "gaia/flora_tree_oak_aut";
-		rbe6 = "gaia/flora_bush_berry";
-		rbe7 = "gaia/fauna_chicken";
-		rbe8 = "gaia/fauna_deer";
-		rbe9 = "gaia/fauna_fish";
-		rbe10 = "gaia/fauna_rabbit";
-		rbe11 = "gaia/geology_stonemine_temperate_quarry";
-		rbe12 = "gaia/geology_stone_temperate";
-		rbe13 = "gaia/geology_metal_temperate_slabs";
+		g_Terrains = {
+			"mainTerrain": ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"],
+			"forestFloor1": "temp_plants_bog_aut",
+			"forestFloor2": "temp_forestfloor_aut",
+			"cliff": ["temp_cliff_a", "temp_cliff_b"],
+			"tier1Terrain": "temp_grass_plants_aut",
+			"tier2Terrain": ["temp_grass_b_aut", "temp_grass_c_aut"],
+			"tier3Terrain": ["temp_grass_b_aut", "temp_grass_long_b_aut"],
+			"tier4Terrain": "temp_grass_plants_aut",
+			"hill": "temp_highlands_aut",
+			"dirt": ["temp_cliff_a", "temp_cliff_b"],
+			"road": "temp_road_aut",
+			"roadWild": "temp_road_overgrown_aut",
+			"shoreBlend": "temp_grass_plants_aut",
+			"shore": "temp_forestfloor_pine",
+			"water": "medit_sand_wet"
+		};
 
-		// decorative props
-		rba1 = "actor|props/flora/grass_soft_dry_small_tall.xml";
-		rba2 = "actor|props/flora/grass_soft_dry_large.xml";
-		rba3 = "actor|props/flora/reeds_pond_dry.xml";
-		rba4 = "actor|geology/stone_granite_large.xml";
-		rba5 = "actor|geology/stone_granite_large.xml";
-		rba6 = "actor|geology/stone_granite_med.xml";
-		rba7 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba8 = "actor|props/flora/bush_desert_dry_a.xml";
-		rba9 = "actor|flora/trees/european_beech_aut.xml";
+		g_Gaia = {
+			"tree1": "gaia/flora_tree_euro_beech_aut",
+			"tree2": "gaia/flora_tree_euro_beech_aut",
+			"tree3": "gaia/flora_tree_pine",
+			"tree4": "gaia/flora_tree_oak_aut",
+			"tree5": "gaia/flora_tree_oak_aut",
+			"fruitBush": "gaia/flora_bush_berry",
+			"chicken": "gaia/fauna_chicken",
+			"mainHuntableAnimal": "gaia/fauna_deer",
+			"fish": "gaia/fauna_fish",
+			"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+			"stoneLarge": "gaia/geology_stonemine_temperate_quarry",
+			"stoneSmall": "gaia/geology_stone_temperate",
+			"metalLarge": "gaia/geology_metal_temperate_slabs"
+		};
+
+		g_Decoratives = {
+			"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+			"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+			"reeds": "actor|props/flora/reeds_pond_dry.xml",
+			"lillies": "actor|geology/stone_granite_large.xml",
+			"rockLarge": "actor|geology/stone_granite_large.xml",
+			"rockMedium": "actor|geology/stone_granite_med.xml",
+			"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+			"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+			"tree": "actor|flora/trees/european_beech_aut.xml"
+		};
 	}
 }
 
 function rBiomeT1()
 {
-	return rbt1;
+	return g_Terrains.mainTerrain;
 }
 
 function rBiomeT2()
 {
-	return rbt2;
+	return g_Terrains.forestFloor1;
 }
 
 function rBiomeT3()
 {
-	return rbt3;
+	return g_Terrains.forestFloor2;
 }
 
 function rBiomeT4()
 {
-	return rbt4;
+	return g_Terrains.cliff;
 }
 
 function rBiomeT5()
 {
-	return rbt5;
+	return g_Terrains.tier1Terrain;
 }
 
 function rBiomeT6()
 {
-	return rbt6;
+	return g_Terrains.tier2Terrain;
 }
 
 function rBiomeT7()
 {
-	return rbt7;
+	return g_Terrains.tier3Terrain;
 }
 
 function rBiomeT8()
 {
-	return rbt8;
+	return g_Terrains.hill;
 }
 
 function rBiomeT9()
 {
-	return rbt9;
+	return g_Terrains.dirt;
 }
 
 function rBiomeT10()
 {
-	return rbt10;
+	return g_Terrains.road;
 }
 
 function rBiomeT11()
 {
-	return rbt11;
+	return g_Terrains.roadWild;
 }
 
 function rBiomeT12()
 {
-	return rbt12;
+	return g_Terrains.tier4Terrain;
 }
 
 function rBiomeT13()
 {
-	return rbt13;
+	return g_Terrains.shoreBlend;
 }
 
 function rBiomeT14()
 {
-	return rbt14;
+	return g_Terrains.shore;
 }
 
 function rBiomeT15()
 {
-	return rbt15;
+	return g_Terrains.water;
 }
 
 function rBiomeE1()
 {
-	return rbe1;
+	return g_Gaia.tree1;
 }
 
 function rBiomeE2()
 {
-	return rbe2;
+	return g_Gaia.tree2;
 }
 
 function rBiomeE3()
 {
-	return rbe3;
+	return g_Gaia.tree3;
 }
 
 function rBiomeE4()
 {
-	return rbe4;
+	return g_Gaia.tree4;
 }
 
 function rBiomeE5()
 {
-	return rbe5;
+	return g_Gaia.tree5;
 }
 
 function rBiomeE6()
 {
-	return rbe6;
+	return g_Gaia.fruitBush;
 }
 
 function rBiomeE7()
 {
-	return rbe7;
+	return g_Gaia.chicken;
 }
 
 function rBiomeE8()
 {
-	return rbe8;
+	return g_Gaia.mainHuntableAnimal;
 }
 
 function rBiomeE9()
 {
-	return rbe9;
+	return g_Gaia.fish;
 }
 
 function rBiomeE10()
 {
-	return rbe10;
+	return g_Gaia.secondaryHuntableAnimal;
 }
 
 function rBiomeE11()
 {
-	return rbe11;
+	return g_Gaia.stoneLarge;
 }
 
 function rBiomeE12()
 {
-	return rbe12;
+	return g_Gaia.stoneSmall;
 }
 
 function rBiomeE13()
 {
-	return rbe13;
+	return g_Gaia.metalLarge;
 }
 
 function rBiomeA1()
 {
-	return rba1;
+	return g_Decoratives.grass;
 }
 
 function rBiomeA2()
 {
-	return rba2;
+	return g_Decoratives.grassShort;
 }
 
 function rBiomeA3()
 {
-	return rba3;
+	return g_Decoratives.reeds;
 }
 
 function rBiomeA4()
 {
-	return rba4;
+	return g_Decoratives.lillies;
 }
 
 function rBiomeA5()
 {
-	return rba5;
+	return g_Decoratives.rockLarge;
 }
 
 function rBiomeA6()
 {
-	return rba6;
+	return g_Decoratives.rockMedium;
 }
 
 function rBiomeA7()
 {
-	return rba7;
+	return g_Decoratives.bushMedium;
 }
 
 function rBiomeA8()
 {
-	return rba8;
+	return g_Decoratives.bushSmall;
 }
 
 function rBiomeA9()
 {
-	return rba9;
+	return g_Decoratives.tree;
 }

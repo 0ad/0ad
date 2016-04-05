@@ -54,10 +54,6 @@ const g_DefaultTileClasses = [
 
 var g_MapInfo;
 var g_TileClasses;
-
-var g_Terrains;
-var g_Gaia;
-var g_Decoratives;
 var g_Forests;
 
 /**
@@ -559,52 +555,6 @@ function initTileClasses(newClasses)
  */
 function initBiome()
 {
-	g_Terrains = {
-		"mainTerrain": rBiomeT1(),
-		"forestFloor1": rBiomeT2(),
-		"forestFloor2": rBiomeT3(),
-		"cliff": rBiomeT4(),
-		"tier1Terrain": rBiomeT5(),
-		"tier2Terrain": rBiomeT6(),
-		"tier3Terrain": rBiomeT7(),
-		"hill": rBiomeT8(),
-		"dirt": rBiomeT9(),
-		"road": rBiomeT10(),
-		"roadWild": rBiomeT11(),
-		"tier4Terrain": rBiomeT12(),
-		"shoreBlend": rBiomeT13(),
-		"shore": rBiomeT14(),
-		"water": rBiomeT15()
-	};
-
-	g_Gaia = {
-		"tree1": rBiomeE1(),
-		"tree2": rBiomeE2(),
-		"tree3": rBiomeE3(),
-		"tree4": rBiomeE4(),
-		"tree5": rBiomeE5(),
-		"fruitBush": rBiomeE6(),
-		"chicken": rBiomeE7(),
-		"mainHuntableAnimal": rBiomeE8(),
-		"fish": rBiomeE9(),
-		"secondaryHuntableAnimal": rBiomeE10(),
-		"stoneLarge": rBiomeE11(),
-		"stoneSmall": rBiomeE12(),
-		"metalLarge": rBiomeE13()
-	};
-
-	g_Decoratives = {
-		"grass": rBiomeA1(),
-		"grassShort": rBiomeA2(),
-		"reeds": rBiomeA3(),
-		"lillies": rBiomeA4(),
-		"rockLarge": rBiomeA5(),
-		"rockMedium": rBiomeA6(),
-		"bushMedium": rBiomeA7(),
-		"bushSmall": rBiomeA8(),
-		"tree": rBiomeA9()
-	};
-
 	g_Forests = {
 		"forest1": [
 			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree1,
