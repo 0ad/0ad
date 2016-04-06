@@ -597,7 +597,7 @@ public:
 			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
 	} 
 
-	virtual std::vector<entity_id_t> GetEntityCollisions(bool checkStructures, bool checkUnits)
+	virtual std::vector<entity_id_t> GetUnitCollisions()
 	{
 		std::vector<entity_id_t> ret;
 
@@ -605,32 +605,15 @@ public:
 		if (!cmpObstructionManager)
 			return ret; // error
 
-		flags_t flags = 0;
-		bool invertMatch = false;
-
 		// There are four 'block' flags: construction, foundation, movement,
 		// and pathfinding. Structures have all of these flags, while units
 		// block only movement and construction.
-
-		// The 'block construction' flag is common to both units and structures.
-		if (checkStructures && checkUnits)
-			flags = ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
-		// The 'block foundation' flag is exclusive to structures.
-		else if (checkStructures)
-			flags = ICmpObstructionManager::FLAG_BLOCK_FOUNDATION;
-		else if (checkUnits)
-		{
-			// As structures block a superset of what units do, matching units
-			// but not structures means excluding entities that contain any of
-			// the structure-specific flags (foundation and pathfinding).
-			invertMatch = true;
-			flags = ICmpObstructionManager::FLAG_BLOCK_FOUNDATION | ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
-		}
+		flags_t flags = ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
 
 		// Ignore collisions within the same control group, or with other shapes that don't match the filter.
 		// Note that, since the control group for each entity defaults to the entity's ID, this is typically
 		// equivalent to only ignoring the entity's own shape and other shapes that don't match the filter.
-		SkipControlGroupsRequireFlagObstructionFilter filter(invertMatch, m_ControlGroup, m_ControlGroup2, flags);
+		SkipControlGroupsRequireFlagObstructionFilter filter(false, m_ControlGroup, m_ControlGroup2, flags);
 
 		ICmpObstructionManager::ObstructionSquare square;
 		if (!GetObstructionSquare(square))
