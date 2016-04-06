@@ -3,6 +3,7 @@
   <BuildRestrictions>
     <Category>Special</Category>
   </BuildRestrictions>
+  <Capturable disable=""/>
   <Footprint>
     <Square width="62" depth="15.5"/>
     <Height>10.0</Height>
@@ -22,6 +23,7 @@
       <Edge width="59" depth="4" x="0" z="5"/> 
     </Obstructions>
   </Obstruction>
+  <Minimap disable=""/>
   <Selectable>
     <EditorOnly/>
   </Selectable>
