@@ -46,34 +46,35 @@ m.Config = function(difficulty)
 		"armyMergeSize" : 1400	// squared.
 	};
 
-	// military
 	this.buildings =
 	{
-		"base" : {
-			"default" : [ "structures/{civ}_civil_centre" ],
-			"ptol" : [ "structures/{civ}_military_colony" ],
-			"sele" : [ "structures/{civ}_military_colony" ]
+		"base": {
+			"default": [ "structures/{civ}_civil_centre" ],
+			"ptol": [ "structures/{civ}_military_colony" ],
+			"sele": [ "structures/{civ}_military_colony" ]
 		},
-		"advanced" : {
-			"default" : [],
-			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
-			"brit" : [ "structures/{civ}_rotarymill" ],
-			"cart" : [ "structures/{civ}_embassy_celtic",
-				"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
-			"gaul" : [ "structures/{civ}_tavern" ],
-			"iber" : [ "structures/{civ}_monument" ],
-			"mace" : [ "structures/{civ}_siege_workshop", "structures/{civ}_library", "structures/{civ}_theatron" ],
-			"maur" : [ "structures/{civ}_elephant_stables" ],
-			"pers" : [ "structures/{civ}_stables", "structures/{civ}_apadana" ],
-			"ptol" : [ "structures/{civ}_library" ],
-			"rome" : [ "structures/{civ}_army_camp" ],
-			"sele" : [ "structures/{civ}_library" ],
-			"spart" : [ "structures/{civ}_syssiton", "structures/{civ}_theatron" ]
+		"advanced": {
+			"default": [],
+			"athen": [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion",
+				   "structures/{civ}_theatron" ],
+			"brit": [ "structures/{civ}_rotarymill" ],
+			"cart": [ "structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian",
+				  "structures/{civ}_embassy_italiote" ],
+			"gaul": [ "structures/{civ}_rotarymill", "structures/{civ}_tavern" ],
+			"iber": [ "structures/{civ}_monument" ],
+			"mace": [ "structures/{civ}_siege_workshop", "structures/{civ}_library",
+				  "structures/{civ}_theatron" ],
+			"maur": [ "structures/{civ}_elephant_stables", "structures/{civ}_pillar_ashoka" ],
+			"pers": [ "structures/{civ}_stables", "structures/{civ}_apadana" ],
+			"ptol": [ "structures/{civ}_library" ],
+			"rome": [ "structures/{civ}_army_camp" ],
+			"sele": [ "structures/{civ}_library" ],
+			"spart": [ "structures/{civ}_syssiton", "structures/{civ}_theatron" ]
 		},
-		"naval" : {
-			"default" : [],
-//			"brit" : [ "structures/{civ}_crannog" ],
-			"cart" : [ "structures/{civ}_super_dock" ]
+		"naval": {
+			"default": [],
+//			"brit": [ "structures/{civ}_crannog" ],
+			"cart": [ "structures/{civ}_super_dock" ]
 		}
 	};
 

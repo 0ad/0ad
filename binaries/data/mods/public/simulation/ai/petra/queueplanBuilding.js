@@ -234,9 +234,10 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 					placement.addInfluence(x, z, 120/cellSize, -50);
 				else if (template.hasClass("Military"))
 					placement.addInfluence(x, z, 40/cellSize, -40);
+				else if (template.genericName() === "Rotary Mill" && ent.hasClass("Field"))
+					placement.addInfluence(x, z, 60/cellSize, 40);
 			});
 		}
-
 		if (template.hasClass("Farmstead"))
 		{
 			for (let j = 0; j < placement.map.length; ++j)

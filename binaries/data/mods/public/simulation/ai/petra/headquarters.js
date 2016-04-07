@@ -1607,14 +1607,22 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		for (let advanced of this.bAdvanced)
 			nAdvanced += gameState.countEntitiesAndQueuedByType(advanced, true);
 
-		if (!nAdvanced || (nAdvanced < this.bAdvanced.length && gameState.getPopulation() > 120))
+		if (!nAdvanced || (nAdvanced < this.bAdvanced.length && gameState.getPopulation() > 110))
 		{
 			for (let advanced of this.bAdvanced)
 			{
 				if (gameState.countEntitiesAndQueuedByType(advanced, true) > 0 || !this.canBuild(gameState, advanced))
 					continue;
-				let preferredBase = this.findBestBaseForMilitary(gameState);
-				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "preferredBase": preferredBase }));
+				let template = gameState.getTemplate(advanced);
+				if (!template)
+					continue;
+				if (template.hasDefensiveFire() || template.trainableEntities())
+				{
+					let preferredBase = this.findBestBaseForMilitary(gameState);
+					queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "preferredBase": preferredBase }));
+				}
+				else	// not a military building, but still use this queue
+					queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced));
 				break;
 			}
 		}
@@ -2151,6 +2159,7 @@ m.HQ.prototype.Serialize = function()
 		"bAdvanced": this.bAdvanced,
 		"saveResources": this.saveResources,
 		"saveSpace": this.saveSpace,
+		"needCorral": this.needCorral,
 		"needFarm": this.needFarm,
 		"needFish": this.needFish,
 		"canBuildUnits": this.canBuildUnits,
