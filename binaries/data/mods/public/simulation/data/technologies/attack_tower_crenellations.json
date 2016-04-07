@@ -8,6 +8,6 @@
 	"researchTime": 40,
 	"tooltip": "Install crenellations and murder holes to have 40% more arrows fired per garrisoned soldier.",
 	"modifications": [{"value": "BuildingAI/GarrisonArrowMultiplier", "multiply": 1.4}],
-	"affects": ["Defensive Tower"],
+	"affects": ["DefenseTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

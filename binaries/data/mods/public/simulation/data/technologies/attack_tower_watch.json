@@ -16,6 +16,6 @@
 	"researchTime": 40,
 	"tooltip": "Post sentries to add one arrow to towers.",
 	"modifications": [{"value": "BuildingAI/DefaultArrowCount", "add": 1.0}],
-	"affects": ["Defensive Tower"],
+	"affects": ["DefenseTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

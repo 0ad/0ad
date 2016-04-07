@@ -8,6 +8,6 @@
 	"researchTime": 40,
 	"tooltip": "Removes defense tower minimum range.",
 	"modifications": [{"value": "Attack/Ranged/MinRange", "replace": 0}],
-	"affects": ["Defensive Tower"],
+	"affects": ["DefenseTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
