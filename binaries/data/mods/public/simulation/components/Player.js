@@ -526,7 +526,7 @@ Player.prototype.IsAlly = function(id)
 /**
  * Check if given player is our ally excluding ourself
  */
-Player.prototype.IsStrictAlly = function(id)
+Player.prototype.IsExclusiveAlly = function(id)
 {
 	return this.playerID != id && this.IsAlly(id);
 };
@@ -543,7 +543,7 @@ Player.prototype.IsMutualAlly = function(id)
 /**
  * Check if given player is our ally, and we are its ally, excluding ourself
  */
-Player.prototype.IsStrictMutualAlly = function(id)
+Player.prototype.IsExclusiveMutualAlly = function(id)
 {
 	return this.playerID != id && this.IsMutualAlly(id);
 };
