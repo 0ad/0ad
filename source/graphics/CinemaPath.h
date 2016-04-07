@@ -59,7 +59,6 @@ class CCinemaPath : private CCinemaData, public TNSpline
 public:
 	CCinemaPath() : m_TimeElapsed(0), m_PreviousNodeTime(0) {}
 	CCinemaPath(const CCinemaData& data, const TNSpline& spline, const TNSpline& targetSpline);
-	~CCinemaPath() { DistStylePtr = NULL;  DistModePtr = NULL; }
 
 	// Sets camera position to calculated point on spline
 	void MoveToPointAt(float t, float nodet, const CVector3D&);
@@ -80,7 +79,7 @@ public:
 	float (CCinemaPath::*DistStylePtr)(float ratio) const;
 	float (CCinemaPath::*DistModePtr)(float ratio) const;
 
-	const CCinemaData* GetData() const { return CCinemaData::GetData(); }
+	const CCinemaData* GetData() const;
 
 public:
 
@@ -88,16 +87,16 @@ public:
 	void DrawSpline(const RNSpline& spline, const CVector4D& RGBA, int smoothness, bool lines) const;
 	void DrawNodes(const CVector4D& RGBA) const;
 
-	inline CVector3D GetNodePosition(const int index) const { return Node[index].Position; }
-	inline fixed GetNodeDuration(const int index) const { return Node[index].Distance; }
-	inline fixed GetDuration() const { return MaxDistance; }
+	CVector3D GetNodePosition(const int index) const;
+	fixed GetNodeDuration(const int index) const;
+	fixed GetDuration() const;
 
-	inline float GetNodeFraction() const { return (m_TimeElapsed - m_PreviousNodeTime) / Node[m_CurrentNode].Distance.ToFloat(); }
-	inline float GetElapsedTime() const { return m_TimeElapsed; }
+	float GetNodeFraction() const;
+	float GetElapsedTime() const;
 
-	CStrW GetName() const { return m_Name; }
+	CStrW GetName() const;
 
-	inline void SetTimescale(fixed scale) { m_Timescale = scale; }
+	void SetTimescale(fixed scale);
 
 	float m_TimeElapsed;
 	float m_PreviousNodeTime; // How much time has passed before the current node
@@ -122,11 +121,11 @@ public:
 	/**
 	 * Returns true if path doesn't contain nodes
 	 */
-	bool Empty() { return Node.empty(); }
+	bool Empty() const;
 
-	fixed GetTimescale() const { return m_Timescale; }
+	fixed GetTimescale() const;
 
-	const TNSpline& getTargetSpline() const { return m_TargetSpline; }
+	const TNSpline& getTargetSpline() const;
 
 private:
 

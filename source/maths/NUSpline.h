@@ -51,14 +51,14 @@ class RNSpline
 {
 public:
 
-	RNSpline() { NodeCount = 0; }
-	virtual ~RNSpline() {}
+	RNSpline();
+	virtual ~RNSpline() = default;
 
 	void AddNode(const CFixedVector3D& pos);
 	void BuildSpline();
 	CVector3D GetPosition(float time) const;
 	CVector3D GetRotation(float time) const;
-	const std::vector<SplineData>& GetAllNodes() const { return Node; }
+	const std::vector<SplineData>& GetAllNodes() const;
 
 	fixed MaxDistance;
 	int NodeCount;
@@ -78,8 +78,9 @@ protected:
 class SNSpline : public RNSpline
 {
 public:
-	virtual ~SNSpline() {}
-	void BuildSpline(){ RNSpline::BuildSpline(); Smooth(); Smooth(); Smooth(); }
+	virtual ~SNSpline() = default;
+
+	void BuildSpline();
 	void Smooth();
 };
 
@@ -90,17 +91,16 @@ public:
 class TNSpline : public SNSpline
 {
 public:
-	virtual ~TNSpline() {}
+	virtual ~TNSpline() = default;
 
 	void AddNode(const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod);
-	void PushNode() { Node.push_back( SplineData() ); }
 	void InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod);
 	void RemoveNode(const int index);
-	void UpdateNodeTime(const int index, fixed time);
 	void UpdateNodePos(const int index, const CFixedVector3D& pos);
+	void UpdateNodeTime(const int index, fixed time);
 
-	void BuildSpline(){ RNSpline::BuildSpline();  Smooth(); Smooth(); Smooth(); }
-	void Smooth(){ for (int x = 0; x < 3; ++x) { SNSpline::Smooth(); Constrain(); } }
+	void BuildSpline();
+	void Smooth();
 	void Constrain();
 };
 
