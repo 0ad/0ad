@@ -1,13 +1,11 @@
 {
 	"type": "global",
 	"affects": ["Unit"],
-	"affectedPlayers": ["Player"],
 	"modifications": [
 	{ "value": "Attack/Ranged/Pierce", "add": 5 },
 	{ "value": "Attack/Melee/Hack", "add": 5 },
 	{ "value": "Attack/Capture/Value", "add": 2 },
-	{ "value": "UnitMotion/WalkSpeed", "multiply": 1.25 }
-	],
+	{ "value": "UnitMotion/WalkSpeed", "multiply": 1.25 }	],
 	"auraName": "Champion Army",
 	"auraDescription": "+5 Attack, +2 Capture and +25% Speed for Champion Units."
 }
