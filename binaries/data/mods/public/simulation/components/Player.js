@@ -528,7 +528,7 @@ Player.prototype.IsAlly = function(id)
  */
 Player.prototype.IsStrictAlly = function(id)
 {
-	return (this.playerID != id) && this.IsAlly(id);
+	return this.playerID != id && this.IsAlly(id);
 };
 
 /**
@@ -545,7 +545,7 @@ Player.prototype.IsMutualAlly = function(id)
  */
 Player.prototype.IsStrictMutualAlly = function(id)
 {
-	return (this.playerID != id) && this.IsMutualAlly(id);
+	return this.playerID != id && this.IsMutualAlly(id);
 };
 
 Player.prototype.SetEnemy = function(id)
@@ -559,7 +559,7 @@ Player.prototype.SetEnemy = function(id)
 Player.prototype.GetEnemies = function()
 {
 	var enemies = [];
-	for (var i = 0; i < this.diplomacy.length; i++)
+	for (var i = 0; i < this.diplomacy.length; ++i)
 		if (this.diplomacy[i] < 0)
 			enemies.push(i);
 	return enemies;
