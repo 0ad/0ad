@@ -541,7 +541,7 @@ Player.prototype.IsMutualAlly = function(id)
 };
 
 /**
- * Check if given player is our ally, and we are its ally, exclding ourself
+ * Check if given player is our ally, and we are its ally, excluding ourself
  */
 Player.prototype.IsStrictMutualAlly = function(id)
 {
