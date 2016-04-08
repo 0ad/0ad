@@ -5,6 +5,7 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # Charon De Beukelaer <charondb@gmail.com>, 2015
+# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Ellen Roels, 2015
 # Evert Van Petegem <inactive+evertvp@transifex.com>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-28 13:12+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"PO-Revision-Date: 2016-04-07 19:02+0000\n"
+"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -429,7 +430,7 @@ msgstr "Gebruikers: %(users)s"
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Oneindig Spel"
+msgstr "Zandbak"
 
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
@@ -778,7 +779,7 @@ msgstr "???"
 
 #: gui/common/tooltips.js:536
 msgid "Classes:"
-msgstr "Klasses:"
+msgstr "Klassen:"
 
 #: gui/credits/credits.js:35
 #, javascript-format
@@ -1250,19 +1251,19 @@ msgstr "Eenhedenstatistieken (rekruteringen / verloren / vermoord)"
 
 #: gui/summary/layout.js:76
 msgid "Food"
-msgstr "voedsel"
+msgstr "Voedsel"
 
 #: gui/summary/layout.js:77
 msgid "Wood"
-msgstr "hout"
+msgstr "Hout"
 
 #: gui/summary/layout.js:78
 msgid "Stone"
-msgstr "steen"
+msgstr "Steen"
 
 #: gui/summary/layout.js:79
 msgid "Metal"
-msgstr "metaal"
+msgstr "Metaal"
 
 #: gui/summary/layout.js:81
 msgid "Tributes (Sent / Received)"
@@ -2520,7 +2521,7 @@ msgstr "- Vis de zeeën voor een overvloedige oogst. "
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr "- Visboten kunnen veel voedsel in één uitvaart vervoeren."
+msgstr "- Vissersboten kunnen veel voedsel in één uitvaart vervoeren."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
@@ -2688,7 +2689,7 @@ msgstr "- Zwaar gepantserd en traag. Slechte aanval."
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry or against other melee infantry to pin them in place."
-msgstr "Gebruikt tegen cavalrie, of andere melee infanteri om hun in plaats te houden "
+msgstr "Gebruikt tegen cavalerie of andere mêlee infanterie om hen op hun plaats te houden"
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
@@ -2730,7 +2731,7 @@ msgstr "- Vol makke dieren die eenvoudig bejaagd kunnen worden."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr "- Rijk in soorten mijnbouw"
+msgstr "- Rijk aan alle soorten grondstoffen"
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
@@ -2976,7 +2977,7 @@ msgstr "- Als aura heeft hij de \"guerrilla tactiek\", daarmee kunnen dichtbije 
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr "OORLOGSOLIFANTEN"
+msgstr "KRIJGSOLIFANTEN"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-29 08:54+0000\n"
+"PO-Revision-Date: 2016-04-04 18:44+0000\n"
 "Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -2037,15 +2037,15 @@ msgstr "История чата"
 
 #: gui/options/options.jsonlobbySetting[1].tooltip
 msgid "Show time that messages are posted in the lobby chat"
-msgstr "Показывать время сообщений в общем чате"
+msgstr "Показывать время отправки сообщений в общем чате"
 
 #: gui/options/options.jsonlobbySetting[1].label
 msgid "Chat Timestamp"
-msgstr "Отметка времени в чате"
+msgstr "Времени сообщения в чате"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "Start 0 A.D. in a window"
-msgstr "Запускать 0 A.D. в окне"
+msgstr "Запускать 0 A.D. в окне."
 
 #: gui/options/options.jsongeneralSetting[0].label
 msgid "Windowed Mode"
@@ -2053,7 +2053,7 @@ msgstr " Оконный режим"
 
 #: gui/options/options.jsongeneralSetting[1].tooltip
 msgid "Pause single player games when window loses focus"
-msgstr "Когда окно неактивно ставить на паузу одиночную игру"
+msgstr "Когда окно неактивно, ставить на паузу одиночную игру."
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Background Pause"
@@ -2112,7 +2112,7 @@ msgstr "Продолжительность игры"
 
 #: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr "Всегда показывать время, оставшееся до начала военных действий"
+msgstr "Всегда показывать время, оставшееся до начала военных действий."
 
 #: gui/options/options.jsongeneralSetting[8].label
 msgid "Ceasefire Time Overlay"
@@ -2121,7 +2121,7 @@ msgstr "Продолжительность перемирия"
 #: gui/options/options.jsongeneralSetting[9].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr "Сохранить и восстановить настройки матча для быстрого повторного использования при хостинге другой игры"
+msgstr "Сохранять и восстанавливать настройки матча для быстрого повторного использования при создании другой игры."
 
 #: gui/options/options.jsongeneralSetting[9].label
 msgid "Persist Match Settings"
@@ -2129,19 +2129,19 @@ msgstr "Сохранять настройки матча"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr "Разрешить наблюдателям присоединиться к игре после того, как она началась"
+msgstr "Разрешить зрителям присоединяться к игре после того, как она началась."
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr "Поздний наблюдатель присоединяется."
+msgstr "Опоздавшие зрители"
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
-msgstr "Предотвращение дальнейшего наблюдателя от присоединения, если предел достигнут"
+msgstr "Максимальное количество зрителей, которое может присоединиться."
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr "наблюдательский лимит"
+msgstr "Лимит зрителей"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2161,11 +2161,11 @@ msgstr "Громкость музыки"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
-msgstr "Уровень фонового шума в игре"
+msgstr "Уровень фонового окружения в игре"
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Gain"
-msgstr "Громкость шумов"
+msgstr "Громкость окружения"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
