@@ -1,0 +1,11 @@
+{
+	"type": "range",
+	"radius": 77,
+	"affects": ["Worker"],
+	"modifications": [
+	{ "value": "Builder/Rate", "multiply": 1.10 }
+	],
+	"auraName": "Construction Aura",
+	"auraDescription": "Buildings construct 10% faster within his vision.",
+	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
+}

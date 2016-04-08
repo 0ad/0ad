@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras>
-	<Aura1>
-      <Type>global</Type>
-      <Affects>Pike</Affects>
-      <Modifications>
-        <Health.Max> <Multiply>1.40</Multiply> </Health.Max>
-      </Modifications>
-      <AuraName>Raphia Aura</AuraName>
-      <AuraDescription>Egyptian Pikemen have 40% greater health during his lifetime.</AuraDescription>
-	</Aura1>
-  </Auras>
+  <Auras datatype="tokens">ptol_hero_ptolemy_IV</Auras>
   <Identity>
     <Civ>ptol</Civ>
     <GenericName>Ptolemy IV "Father Loving"</GenericName>

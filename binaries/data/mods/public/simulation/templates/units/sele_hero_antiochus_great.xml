@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
-  <Auras>
-    <Aura1>
-      <Type>global</Type>
-      <Affects>Cavalry</Affects>
-      <Modifications>
-        <Armour.Pierce> <Add>2</Add> </Armour.Pierce>
-        <Armour.Hack> <Add>2</Add> </Armour.Hack>
-        <Armour.Crush> <Add>2</Add> </Armour.Crush>
-      </Modifications>
-      <AuraName>Ilarchès Aura</AuraName>
-      <AuraDescription>All cavalry gains +2 levels of all armour types.</AuraDescription>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">sele_hero_antiochus_great</Auras>
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>

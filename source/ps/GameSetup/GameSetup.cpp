@@ -1324,7 +1324,13 @@ bool Autostart(const CmdLineArgs& args)
 	scriptInterface.SetProperty(settings, "AISeed", aiseed);
 
 	// Set player data for AIs
-	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }:
+	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }
+	//		            or = { PlayerData: [ null, { AI: ... }, ... ] } when gaia set
+	int offset = 1;
+	JS::RootedValue player(cx);
+	if (scriptInterface.GetPropertyInt(playerData, 0, &player) && player.isNull())
+		offset = 0;
+
 	if (args.Has("autostart-ai"))
 	{
 		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
@@ -1334,7 +1340,7 @@ bool Autostart(const CmdLineArgs& args)
 
 			// Instead of overwriting existing player data, modify the array
 			JS::RootedValue player(cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-1, &player) || player.isUndefined())
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 			{
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
 				{
@@ -1348,7 +1354,7 @@ bool Autostart(const CmdLineArgs& args)
 			CStr name = aiArgs[i].AfterFirst(":");
 			scriptInterface.SetProperty(player, "AI", std::string(name));
 			scriptInterface.SetProperty(player, "AIDiff", 3);
-			scriptInterface.SetPropertyInt(playerData, playerID-1, player);
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
 		}
 	}
 	// Set AI difficulty
@@ -1361,7 +1367,7 @@ bool Autostart(const CmdLineArgs& args)
 
 			// Instead of overwriting existing player data, modify the array
 			JS::RootedValue player(cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-1, &player) || player.isUndefined())
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 			{
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
 				{
@@ -1374,7 +1380,7 @@ bool Autostart(const CmdLineArgs& args)
 
 			int difficulty = civArgs[i].AfterFirst(":").ToInt();			
 			scriptInterface.SetProperty(player, "AIDiff", difficulty);
-			scriptInterface.SetPropertyInt(playerData, playerID-1, player);
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
 		}
 	}
 	// Set player data for Civs
@@ -1389,7 +1395,7 @@ bool Autostart(const CmdLineArgs& args)
 
 				// Instead of overwriting existing player data, modify the array
 				JS::RootedValue player(cx);
-				if (!scriptInterface.GetPropertyInt(playerData, playerID-1, &player) || player.isUndefined())
+				if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
 				{
 					if (mapDirectory == L"skirmishes")
 					{
@@ -1400,9 +1406,9 @@ bool Autostart(const CmdLineArgs& args)
 					scriptInterface.Eval("({})", &player);
 				}
 			
-				CStr name = civArgs[i].AfterFirst(":");			
+				CStr name = civArgs[i].AfterFirst(":");
 				scriptInterface.SetProperty(player, "Civ", std::string(name));
-				scriptInterface.SetPropertyInt(playerData, playerID-1, player);
+				scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
 			}
 		}
 		else

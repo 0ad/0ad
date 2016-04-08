@@ -1,0 +1,12 @@
+{
+	"type": "garrisonedUnits",
+	"affects": ["Unit"],
+	"modifications": [
+	{ "value": "Armour/Pierce", "add": 3 },
+	{ "value": "Armour/Hack", "add": 3 },
+	{ "value": "Armour/Crush", "add": 3 },
+	{ "value": "Vision/Range", "add": 20 }
+	],
+	"auraName": "Wall Protection",
+	"auraDescription": "Units on walls have 3 extra Armor levels and higher vision."
+}

@@ -448,7 +448,7 @@ m.NavalManager.prototype.setMinimalTransportShips = function(gameState, sea, num
 // bumps up the number of ships we want if we need more.
 m.NavalManager.prototype.checkLevels = function(gameState, queues)
 {
-	if (queues.ships.length() !== 0)
+	if (queues.ships.hasQueuedUnits())
 		return;
 
 	for (let sea = 0; sea < this.neededTransportShips.length; sea++)
@@ -477,7 +477,7 @@ m.NavalManager.prototype.checkLevels = function(gameState, queues)
 
 m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 {
-	if (queues.ships.length() > 0)
+	if (queues.ships.hasQueuedUnits())
 		return;
 	if (gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt()).length +
 		gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).length === 0)
@@ -608,7 +608,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	}
 
 	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popForTown + 15 ||
-		queues.militaryBuilding.length() !== 0 || this.bNaval.length === 0)
+		queues.militaryBuilding.hasQueuedUnits() || this.bNaval.length === 0)
 		return;
 	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
 	if (!docks.length)

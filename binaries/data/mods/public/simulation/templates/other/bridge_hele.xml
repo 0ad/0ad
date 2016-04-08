@@ -3,6 +3,7 @@
   <BuildRestrictions>
     <Category>Special</Category>
   </BuildRestrictions>
+  <Capturable disable=""/>
   <Footprint>
     <Square width="62" depth="15.5"/>
     <Height>10.0</Height>
@@ -17,6 +18,7 @@
     <History>Roman engineers constructed bridges using concrete, which they called Opus caementicium.</History>
     <Icon>gaia/special_blank.png</Icon>
   </Identity>
+  <Minimap disable=""/>
   <Obstruction>
     <Obstructions>
       <Edge width="59" depth="4" x="0" z="5"/> 

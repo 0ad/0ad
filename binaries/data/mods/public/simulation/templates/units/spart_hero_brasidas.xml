@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras>
-	<Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Javelin</Affects>
-      <Modifications>
-        <Attack.Ranged.Pierce> <Add>2</Add> </Attack.Ranged.Pierce>
-        <Armour.Pierce> <Add>1</Add> </Armour.Pierce>
-        <Armour.Hack>   <Add>1</Add> </Armour.Hack>
-        <Armour.Crush>  <Add>1</Add> </Armour.Crush>
-      </Modifications>
-      <AuraName>Helot Reforms</AuraName>
-      <AuraDescription>Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">spart_hero_brasidas</Auras>
   <Identity>
     <Civ>spart</Civ>
     <Lang>greek</Lang>

@@ -20,26 +20,23 @@ m.Template = m.Class({
 			return this._auraTemplateModif.get(string);
 		else if (this._techModif && this._techModif.has(string))
 			return this._techModif.get(string);
-		else
+
+		if (!this._tpCache.has(string))
 		{
-			if (!this._tpCache.has(string))
+			var args = string.split("/");
+			for (let arg of args)
 			{
-				var args = string.split("/");
-				for (let arg of args)
+				if (value[arg])
+					value = value[arg];
+				else
 				{
-					if (value[arg])
-						value = value[arg];
-					else
-					{
-						value = undefined;
-						break;
-					}
+					value = undefined;
+					break;
 				}
-				this._tpCache.set(string, value);
 			}
-			return this._tpCache.get(string);
+			this._tpCache.set(string, value);
 		}
- 
+		return this._tpCache.get(string);
 	},
 
 	genericName: function() {
@@ -450,15 +447,7 @@ m.Template = m.Class({
 	 * Returns whether this is an animal that is too difficult to hunt.
 	 * (Any non domestic currently.)
 	 */
-	isUnhuntable: function() {   // used by Aegis
-		if (!this.get("UnitAI") || !this.get("UnitAI/NaturalBehaviour"))
-			return false;
-
-		// only attack domestic animals since they won't flee nor retaliate.
-		return this.get("UnitAI/NaturalBehaviour") !== "domestic";
-	},
-
-	isHuntable: function() {     // used by Petra
+	isHuntable: function() {
 		if(!this.get("ResourceSupply") || !this.get("ResourceSupply/KillBeforeGather"))
 			return false;
 
@@ -532,15 +521,13 @@ m.Template = m.Class({
 	territoryInfluenceRadius: function() {
 		if (this.get("TerritoryInfluence") !== undefined)
 			return +this.get("TerritoryInfluence/Radius");
-		else
-			return -1;
+		return -1;
 	},
 
 	territoryInfluenceWeight: function() {
 		if (this.get("TerritoryInfluence") !== undefined)
 			return +this.get("TerritoryInfluence/Weight");
-		else
-			return -1;
+		return -1;
 	},
 
 	territoryDecayRate: function() {

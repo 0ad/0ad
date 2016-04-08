@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <Health.RegenRate> <Add>1</Add> </Health.RegenRate>
-      </Modifications>
-      <AuraName>Hero Aura</AuraName>
-      <AuraDescription>+1 HP per second healing rate for all units.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/heal.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">brit_hero_cunobelin</Auras>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Cunobelin</SpecificName>

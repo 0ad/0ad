@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>0.8</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<Distanceless>1</Distanceless>
@@ -13,11 +10,7 @@
 	<GainUpper>0.8</GainUpper>
 	<GainLower>0.7</GainLower>
 	<RandPitch>1</RandPitch>
-	<PitchUpper>1.1</PitchUpper>
-	<PitchLower>0.9</PitchLower>
 	<Threshold>1</Threshold>
-	<Decay>3</Decay>
-	<Replacement>civ_female_march_1.ogg</Replacement>
 	<Path>audio/voice/greek/civ</Path>
 	<Sound>civ_female_march_1.ogg</Sound>
 	<Sound>civ_female_march_2.ogg</Sound>

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Auras>
-    <Aura1>
-      <Type>garrisonedUnits</Type>
-      <Affects>Ship</Affects>
-      <Modifications>
-        <Health.RegenRate> <Add>3</Add> </Health.RegenRate>
-      </Modifications>
-      <AuraName>Repairing ship Aura</AuraName>
-      <AuraDescription>Heals garrisoned ship at 3 HP per second.</AuraDescription>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">cart_super_dock_repair</Auras>
   <BuildRestrictions>
     <Territory>own ally neutral</Territory>
     <PlacementType>shore</PlacementType>

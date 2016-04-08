@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_spearman">
-  <Auras>
-    <Aura1>
-      <Type>global</Type>
-      <Affects>Worker</Affects>
-      <Modifications>
-        <ResourceGatherer.BaseSpeed> <Multiply>1.15</Multiply> </ResourceGatherer.BaseSpeed>
-      </Modifications>
-      <AuraName>Hero Aura</AuraName>
-      <AuraDescription>Gathering rates increased with +15% during his lifetime.</AuraDescription>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">gaul_hero_britomartus</Auras>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Britomartus</SpecificName>

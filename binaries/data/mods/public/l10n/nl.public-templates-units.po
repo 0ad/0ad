@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
+# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Ellen Roels, 2015
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Mar, 2015
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-14 09:01+0100\n"
-"PO-Revision-Date: 2016-03-17 10:37+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2016-03-19 09:26+0100\n"
+"PO-Revision-Date: 2016-04-07 17:54+0000\n"
+"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,11 +170,11 @@ msgstr "Kampioen Ruiter"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr "Kampioen cavalerieboogschutter"
+msgstr "Kampioen Ruiter Boogschutter"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr "Kampioen Ruitertirailleur"
+msgstr "Kampioen Ruiter Tirailleur"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
 msgid "Champion Cavalry Spearman"
@@ -191,7 +192,7 @@ msgstr "Olifant"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
-msgstr "Oorlogsolifant"
+msgstr "Krijgsolifant"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
@@ -202,15 +203,15 @@ msgstr "Infanterie"
 
 #: simulation/templates/template_unit_champion_infantry.xml:22
 msgid "Champion Infantry"
-msgstr "Kampioen infanterie"
+msgstr "Kampioen Infanterie"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr "Kampioenboogschutter"
+msgstr "Kampioen Boogschutter"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr "Kampioentirailleur"
+msgstr "Kampioen Tirailleur"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
@@ -233,7 +234,7 @@ msgstr "Voordeel: 3x tegen cavalerie."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
-msgstr "Kampioen speervechter"
+msgstr "Kampioen Speervechter"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
 msgid "Champion Swordsman"
@@ -265,7 +266,7 @@ msgstr "Hond"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
-msgstr "Oorlogshond"
+msgstr "Vechthond"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
@@ -277,7 +278,7 @@ msgstr "Fauna"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
-msgstr "vis"
+msgstr "Vis"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:15
 msgid "Cetacean"
@@ -314,7 +315,7 @@ msgstr "Held Ruiter Boogschutter"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr "Held ruitertirailleur"
+msgstr "Held Ruiter Tirailleur"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
@@ -330,19 +331,19 @@ msgstr "Held Boogschutter"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 msgid "Hero Skirmisher"
-msgstr "Heldentirailleur"
+msgstr "Held Tirailleur"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
-msgstr "Held piekenier"
+msgstr "Held Piekenier"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 msgid "Hero Spearman"
-msgstr "Held speervechter"
+msgstr "Held Speervechter"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 msgid "Hero Swordsman"
-msgstr "Held zwaardvechter"
+msgstr "Held Zwaardvechter"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
@@ -385,7 +386,7 @@ msgstr "Licht oorlogsschip "
 msgid ""
 "Garrison up to 20 units for transport. Garrison increases the firepower up "
 "to 10 arrows."
-msgstr "Beman met 20 eenheden om te transporteren. Bemanning verhoogt de vuurkracht tot 10 pijlen."
+msgstr "Beman t.e.m. 20 eenheden om te transporteren. Bemanning verhoogt de vuurkracht tot maximaal 10 pijlen."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -405,7 +406,7 @@ msgstr "Vissersboot"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr "Vis voor extra voedsel. Beman met  iemand extra aan om sneller te vissen."
+msgstr "Bevis de wateren voor voedsel. Neem iemand extra aan boord om sneller te vissen."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -447,7 +448,7 @@ msgstr "Medium"
 msgid ""
 "Garrison up to 30 units for transport. Garrison increases the firepower up "
 "to 13 arrows."
-msgstr "Beman met 30 eenheden voor om te transporteren. Bemanning verhoogt de vuurkracht tot 13 pijlen."
+msgstr "Beman t.e.m. 30 eenheden om te transporteren. Bemanning verhoogt de vuurkracht tot maximaal 13 pijlen."
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "Bolt Shooter"
@@ -930,7 +931,7 @@ msgstr "Keltische cavalerie"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:10
 msgid "Celtic Chariot"
-msgstr "Keltische oorlogskar"
+msgstr "Keltische strijdwagen"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:11
 msgid "Carbanto"
@@ -1129,7 +1130,7 @@ msgstr "Heilige Schare van Astarte"
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
-msgstr "Noord Afrikaanse oorlogsolifant"
+msgstr "Noord-Afrikaanse krijgsolifant"
 
 #: simulation/templates/units/cart_champion_elephant.xml:6
 msgid "Pil Malḥamit"
@@ -1141,7 +1142,7 @@ msgstr "Infanterie van de Heilige Schare"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
-msgstr "Heilige Schare of Ba'al"
+msgstr "Heilige Schare van Ba'al"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
@@ -1341,7 +1342,7 @@ msgstr "Solduros"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:11
 msgid "+10 Metal loot for every enemy unit killed."
-msgstr "Ieder gedode eenheid levert 10 extra metaal op."
+msgstr "+10 metaal als buit bij elke gedode vijandelijke eenheid."
 
 #: simulation/templates/units/gaul_hero_brennus.xml:16
 msgid "Brennus"
@@ -1349,7 +1350,7 @@ msgstr "Brennus"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:11
 msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Verzamelsnelheiden worden met 15% verhoogd tijdens zijn leven."
+msgstr "Verzamelen gaat 15% sneller tijdens zijn leven."
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:16
 msgid "Britomartus"
@@ -1665,7 +1666,7 @@ msgstr "Strijdwagen"
 
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
-msgstr "Gevechtskar"
+msgstr "Strijdwagen"
 
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
@@ -1678,7 +1679,7 @@ msgstr "Deelt vertrappelingsschade toe."
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
 msgid "Indian War Elephant"
-msgstr "Indiase oorlogsolifant"
+msgstr "Indische krijgsolifant"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -1922,7 +1923,7 @@ msgstr "Anusiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "Lead from the Front Aura"
-msgstr "Voorste leideraura."
+msgstr "Aanvoerdersaura"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:14
 msgid "+2 Attack and +1 Capture for nearby cavalry units."
@@ -2123,7 +2124,7 @@ msgstr "Ágēma Basiléōs"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
-msgstr "Oorlogsolifant met bemanningstoren"
+msgstr "Krijgsolifant met bemanningstoren"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:6
 msgid "Polémou Eléphantos"
@@ -2516,7 +2517,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr "Gepantserde oorlogsolifant"
+msgstr "Gepantserde krijgsolifant"
 
 #: simulation/templates/units/sele_champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"

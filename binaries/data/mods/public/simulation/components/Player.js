@@ -524,12 +524,28 @@ Player.prototype.IsAlly = function(id)
 };
 
 /**
+ * Check if given player is our ally excluding ourself
+ */
+Player.prototype.IsExclusiveAlly = function(id)
+{
+	return this.playerID != id && this.IsAlly(id);
+};
+
+/**
  * Check if given player is our ally, and we are its ally
  */
 Player.prototype.IsMutualAlly = function(id)
 {
 	var cmpPlayer = QueryPlayerIDInterface(id);
 	return this.IsAlly(id) && cmpPlayer && cmpPlayer.IsAlly(this.playerID);
+};
+
+/**
+ * Check if given player is our ally, and we are its ally, excluding ourself
+ */
+Player.prototype.IsExclusiveMutualAlly = function(id)
+{
+	return this.playerID != id && this.IsMutualAlly(id);
 };
 
 Player.prototype.SetEnemy = function(id)
@@ -543,7 +559,7 @@ Player.prototype.SetEnemy = function(id)
 Player.prototype.GetEnemies = function()
 {
 	var enemies = [];
-	for (var i = 0; i < this.diplomacy.length; i++)
+	for (var i = 0; i < this.diplomacy.length; ++i)
 		if (this.diplomacy[i] < 0)
 			enemies.push(i);
 	return enemies;

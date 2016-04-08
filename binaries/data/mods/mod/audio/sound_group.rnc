@@ -29,7 +29,6 @@ SoundGroup = element SoundGroup {
     element ConeGain { xsd:float }? &
     element ConeInner { xsd:float }? &
     element ConeOuter { xsd:float }? &
-    element Replacement { text }? &
     element Threshold { xsd:float }? &
     element Decay { xsd:float }? &
     element Sound { text }+ &

@@ -6,6 +6,7 @@
 # Wuzzy <almikes@aol.com>, 2014-2016
 # leper <leper@wildfiregames.com>, 2014-2015
 # MartinusMagnus <martinkleemann@web.de>, 2014
+# Patrick B <chessplayer95.pb@googlemail.com>, 2016
 # Paul Müller <paulbochynek@web.de>, 2015
 # qwertz, 2015
 # Raymond Vetter, 2014-2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-21 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-03-30 20:47+0000\n"
+"Last-Translator: Patrick B <chessplayer95.pb@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,13 +189,13 @@ msgstr "Freigeschaltet in der Großstadtphase."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Rüste die Pferde deiner Kavallerie mit einer Panzerung aus. Gesamte Kavallerie erhält +1 auf ihren Schutz gegen Hiebe."
+msgstr "Rüste die Pferde deiner Kavallerie mit einer Panzerung aus. Gesamte Kavallerie erhält +1 auf ihren Hiebschutz."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "Körperpanzer komplett aus Eisen geformt, das härteste bearbeitbare Metall, welches im Altertum bekannt ist."
+msgstr "Eine Rüstung komplett aus Eisen, welches im Altertum als das härteste bearbeitbare Metall galt."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
@@ -231,7 +232,7 @@ msgstr "Infanterie +1 Hieb- und Stichschutz."
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "Wattierter Körperschutz"
+msgstr "Gepolsteter Körperschutz"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -330,7 +331,7 @@ msgstr "Sperrholzkonstruktion für große Schilde."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Speerkämpfer der Infanterie +2 Hiebschutz"
+msgstr "Speerkämpfer der Infanterie erhalten +2 Hiebschutz"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -352,7 +353,7 @@ msgstr "Die besten Schilde haben entweder an den Ecken (Römischer Scutum) oder 
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Speerkämpfer der Infanterie +1 Hiebschutz"
+msgstr "Speerkämpfer der Infanterie erhalten +1 Hiebschutz"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -372,7 +373,7 @@ msgstr "Ein auf die Schildoberfläche gehämmerter Bronzebeschlag."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Speerkämpfer der Infanterie +1 Hiebschutz"
+msgstr "Speerkämpfer der Infanterie erhalten +1 Hiebschutz"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -393,7 +394,7 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "Nur die am meisten gefeierten Soldaten hatten Schilde, die mit Silber beschlagen sind, wie die des bekannten Regiments „Silberschilde“ in der Armee von Alexander dem Großen."
+msgstr "Nur die gefeiertsten Soldaten hatten mit Silber beschlagene Schilde, wie die des bekannten Regiments „Silberschilde“ in der Armee von Alexander dem Großen."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -465,7 +466,7 @@ msgstr "Freigeschaltet in der Dorfphase."
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "Ein langer Speer, speziell für Kavallerie."
+msgstr "Ein langer Speer, speziell für Kavallerie hergestellt."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -1187,11 +1188,11 @@ msgstr "Nahkampfinfanterie erhält +1 Hiebangriff."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "Die Verwendung von Eisen anstatt Bronze erhöhte die Durschschlagskraft von Speeren."
+msgstr "Die Verwendung von Eisen anstatt Bronze erhöhte die Durchschlagskraft von Speeren."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr "Alle Speerträger +2 Hiebangriffe."
+msgstr "Alle Speerträger erhalten +2 auf Hiebangriffe."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"

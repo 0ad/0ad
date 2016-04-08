@@ -167,7 +167,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
 	{
-		var collisions = cmpObstruction.GetEntityCollisions(true, true);
+		var collisions = cmpObstruction.GetUnitCollisions();
 		if (collisions.length)
 		{
 			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);

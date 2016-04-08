@@ -179,10 +179,9 @@ m.Filters = {
 
 	byDistance: function(startPoint, dist){
 		return {"func": function(ent){
-			if (ent.position() === undefined)
+			if (!ent.position())
 				return false;
-			else
-				return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
+			return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
 		},
 		"dynamicProperties": ['position']};
 	},
@@ -192,18 +191,14 @@ m.Filters = {
 		return {"func": function(ent){
 			if (!ent.position())
 				return false;
-			else
-				return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
+			return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
 		},
 		"dynamicProperties": []};
 	},
 	
 	byTerritory: function(Map, territoryIndex){
 		return {"func": function(ent){
-			if (Map.point(ent.position()) == territoryIndex)
-				return true;
-			else
-				return false;
+			return Map.point(ent.position()) == territoryIndex;
 		},
 		"dynamicProperties": ['position']};
 	},
@@ -225,7 +220,7 @@ m.Filters = {
 				return false;
 			
 			// Skip targets that are too hard to hunt
-			if (ent.isUnhuntable())
+			if (!ent.isHuntable())
 				return false;
 			
 			// And don't go for the bloody fish! TODO: better accessibility checks 
@@ -239,8 +234,8 @@ m.Filters = {
 			
 			if (type.generic == "treasure")
 				return (resourceType == type.specific);
-			else
-				return (resourceType == type.generic);
+
+			return resourceType == type.generic;
 		},
 		"dynamicProperties": []};
 	},

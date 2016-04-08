@@ -44,6 +44,11 @@ CVector3D GetPositionOnCubic(const CVector3D& startPos, const CVector3D& startVe
 
 /*********************************** R N S **************************************************/
 
+RNSpline::RNSpline()
+	: NodeCount(0)
+{
+}
+
 // adds node and updates segment length
 void RNSpline::AddNode(const CFixedVector3D& pos)
 {
@@ -124,6 +129,11 @@ CVector3D RNSpline::GetPosition(float time) const
 		Node[i+1].Position, endVel, t);
 }
 
+const std::vector<SplineData>& RNSpline::GetAllNodes() const
+{
+	return Node;
+}
+
 // internal. Based on Equation 14 
 CVector3D RNSpline::GetStartVelocity(int index)
 {
@@ -143,6 +153,13 @@ CVector3D RNSpline::GetEndVelocity(int index)
 }
 
 /*********************************** S N S **************************************************/
+
+void SNSpline::BuildSpline()
+{
+	RNSpline::BuildSpline();
+	for (int i = 0; i < 3; ++i)
+		Smooth();
+}
 
 // smoothing filter.
 void SNSpline::Smooth()
@@ -223,6 +240,7 @@ void TNSpline::RemoveNode(const int index)
 	Node.erase(Node.begin() + index, Node.begin() + index + 1);
 	--NodeCount;
 }
+
 void TNSpline::UpdateNodeTime(const int index, fixed time)
 {
 	if (NodeCount == 0 || index > NodeCount - 1)
@@ -230,12 +248,29 @@ void TNSpline::UpdateNodeTime(const int index, fixed time)
 
 	Node[index].Distance = time;
 }
+
 void TNSpline::UpdateNodePos(const int index, const CFixedVector3D& pos)
 {
 	if (NodeCount == 0 || index > NodeCount - 1)
 		return;
 
 	Node[index].Position = pos;
+}
+
+void TNSpline::BuildSpline()
+{
+	RNSpline::BuildSpline();
+	for (int i = 0; i < 3; ++i)
+		Smooth();
+}
+
+void TNSpline::Smooth()
+{
+	for (int i = 0; i < 3; ++i)
+	{
+		SNSpline::Smooth();
+		Constrain();
+	}
 }
 
 void TNSpline::Constrain()

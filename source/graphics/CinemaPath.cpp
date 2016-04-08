@@ -43,7 +43,10 @@ CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline, const 
 	: CCinemaData(data), TNSpline(spline), m_TargetSpline(targetSpline), m_TimeElapsed(0.f)
 {
 	m_TimeElapsed = 0;
+
+	// Calculate curves by nodes
 	BuildSpline();
+	m_TargetSpline.BuildSpline();
 
 	if (m_Orientation == L"target")
 	{
@@ -191,6 +194,41 @@ void CCinemaPath::DrawNodes(const CVector4D& RGBA) const
 #endif
 }
 
+CVector3D CCinemaPath::GetNodePosition(const int index) const
+{
+	return Node[index].Position;
+}
+
+fixed CCinemaPath::GetNodeDuration(const int index) const
+{
+	return Node[index].Distance;
+}
+
+fixed CCinemaPath::GetDuration() const
+{
+	return MaxDistance;
+}
+
+float CCinemaPath::GetNodeFraction() const
+{
+	return (m_TimeElapsed - m_PreviousNodeTime) / Node[m_CurrentNode].Distance.ToFloat();
+}
+
+float CCinemaPath::GetElapsedTime() const
+{
+	return m_TimeElapsed;
+}
+
+CStrW CCinemaPath::GetName() const
+{
+	return m_Name;
+}
+
+void CCinemaPath::SetTimescale(fixed scale)
+{
+	m_Timescale = scale;
+}
+
 void CCinemaPath::MoveToPointAt(float t, float nodet, const CVector3D& startRotation)
 {
 	CCamera *camera = g_Game->GetView()->GetCamera();
@@ -285,6 +323,11 @@ float CCinemaPath::EaseSine(float t) const
 	return t;
 }
 
+const CCinemaData* CCinemaPath::GetData() const
+{
+	return CCinemaData::GetData();
+}
+
 bool CCinemaPath::Validate()
 {
 	if (m_TimeElapsed > GetDuration().ToFloat() || m_TimeElapsed < 0.0f)
@@ -321,4 +364,19 @@ bool CCinemaPath::Play(const float deltaRealTime)
 
 	MoveToPointAt(m_TimeElapsed / GetDuration().ToFloat(), GetNodeFraction(), m_PreviousRotation);
 	return true;
+}
+
+bool CCinemaPath::Empty() const
+{
+	return Node.empty();
+}
+
+fixed CCinemaPath::GetTimescale() const
+{
+	return m_Timescale;
+}
+
+const TNSpline& CCinemaPath::getTargetSpline() const
+{
+	return m_TargetSpline;
 }

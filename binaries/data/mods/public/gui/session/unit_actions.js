@@ -729,7 +729,7 @@ var g_EntityCommands =
 			var selection = g_Selection.toList();
 			if (selection.length < 1)
 				return;
-			if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather)
+			if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather || g_DevSettings.controlAll)
 				openDeleteDialog(selection);
 		},
 	},

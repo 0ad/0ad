@@ -4,6 +4,7 @@
 # 
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014
+# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2016
 # Joshua Christo Randiny <jrandiny2@gmail.com>, 2014-2015
 # Samuel Christo Randiny <srandiny@gmail.com>, 2015-2016
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-24 14:19+0000\n"
-"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
+"PO-Revision-Date: 2016-04-02 10:13+0000\n"
+"Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -348,7 +349,7 @@ msgstr "Alasan tak diketahui"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Sang pembuat permainan telah menghentikan permainan"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -931,11 +932,11 @@ msgstr "Aktif: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:56
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Replay ini tidak kompatibel dengan versi permainan anda!"
 
 #: gui/replaymenu/replay_actions.js:58
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Replay tidak kompatibel"
 
 #: gui/replaymenu/replay_actions.js:58 gui/replaymenu/replay_actions.js:75
 msgid "Ok"
@@ -947,15 +948,15 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:81
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Skor pada akhir permainan."
 
 #: gui/replaymenu/replay_actions.js:114
 msgid "Delete replay"
-msgstr ""
+msgstr "Hapus tayangan ulang"
 
 #: gui/replaymenu/replay_actions.js:115
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Apa Anda yakin untuk menghapus tayangan ulang ini secara permanen?"
 
 #: gui/replaymenu/replay_filters.js:40
 msgctxt "datetime"
@@ -1130,12 +1131,12 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/structree/draw.js:374
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Tingkat Pengumpulan:"
 
 #: gui/structree/load.js:161
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s sampai %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
@@ -1249,7 +1250,7 @@ msgstr "Harta karun terkumpul"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Jarahan"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
@@ -1287,7 +1288,7 @@ msgstr "Rasio\nvegetarian"
 
 #: gui/summary/layout.js:125
 msgid "Feminization"
-msgstr ""
+msgstr "Kefeminiman"
 
 #: gui/summary/layout.js:126
 msgid ""
@@ -1355,7 +1356,7 @@ msgstr "Pemograman"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Seni"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
@@ -1480,11 +1481,11 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Kembalikan ke pengaturan yang telah disimpan sebelumnya"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Simpan perubahan"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1570,7 +1571,7 @@ msgstr "Pengaturan"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Tayangan Ulang"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1618,7 +1619,7 @@ msgstr "Laporkan masalah"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Terjemahkan permainan"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
@@ -1738,7 +1739,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "Tayangan Ulang Permainan"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
@@ -1780,7 +1781,7 @@ msgstr "Ringkasan"
 
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Start Replay"
-msgstr ""
+msgstr "Mulai Tayangan Ulang"
 
 #: gui/replaymenu/replay_menu.xml:(heading):73
 msgctxt "replay"
@@ -1878,7 +1879,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Komposer"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -1894,11 +1895,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "Seni 2D"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "Seni 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Sound"
@@ -2027,7 +2028,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Peringatan Jaringan"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2084,7 +2085,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "Batas Pengamat"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2144,15 +2145,15 @@ msgstr "Post Processing"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Rendah"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Sedang"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Tinggi"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2202,7 +2203,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Aktifkan efek air."
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2390,7 +2391,7 @@ msgstr "- Jawara Penombak dan Jawara Penombak Berkuda untuk Kartago."
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr ""
+msgstr "- Keduanya dapat dilatih di Kuil, tidak di Benteng seperti jawara lainnya."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -2433,7 +2434,7 @@ msgstr "- Kapal perang kelas trireme sedang."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr ""
+msgstr "- Tersedia untuk: Bangsa Kelt (Briton,Galia),Maurya, dan Iberia."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2499,7 +2500,7 @@ msgstr "- Kapal nelayan membawa sejumlah besar Makanan tiap perjalanan."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "- Memancing lebih cepat daripada mengumpulkan makanan di ladang."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
@@ -2681,7 +2682,7 @@ msgstr "- Kapal perang standar terberat. Tersedia untuk: Romawi, Kartago, Ptolem
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "- Dapat membawa hingga 50 unit."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
@@ -2789,7 +2790,7 @@ msgstr "- Memberi +10 Populasi."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only present on some maps."
-msgstr ""
+msgstr "- Hanya terdapat pada beberapa peta."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
@@ -2835,7 +2836,7 @@ msgstr "KUIL"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Struktur Fase Kota"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."

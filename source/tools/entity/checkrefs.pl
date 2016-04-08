@@ -90,7 +90,7 @@ sub add_entities
             {
                 my $gender = $ent->{Entity}{Identity}{Gender}{' content'} || "male";
                 my $lang = $ent->{Entity}{Identity}{Lang}{' content'} || "greek";
-                
+
                 for (grep ref($_), values %{$ent->{Entity}{Sound}{SoundGroups}})
                 {
                     # see simulation/components/Sound.js and Identity.js for explanation
@@ -311,8 +311,6 @@ sub add_soundgroups
         {
             push @deps, [$f, "$path/$_" ];
         }
-
-        push @deps, [$f, "$path/$sound->{Replacement}" ] if $sound->{Replacement} and not ref $sound->{Replacement};
     }
 }
 
@@ -478,7 +476,7 @@ sub add_terrains
         if ($f !~ /terrains.xml$/)
         {
             push @files, $f;
-            
+
             my $terrain = XMLin(vfs_to_physical($f), ForceArray => [qw(texture)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
             for my $texture (@{$terrain->{textures}{texture}})

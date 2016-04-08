@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>60</Radius>
-      <Affects>Unit</Affects>
-      <Modifications>
-        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
-        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
-        <Attack.Capture.Value> <Add>2</Add> </Attack.Capture.Value>
-      </Modifications>
-      <AuraName>Sword of Rome Aura</AuraName>
-      <AuraDescription>+5 Attack and +2 Capture for Roman units within his vision range.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">rome_hero_marcellus</Auras>
   <Identity>
     <Civ>rome</Civ>
     <Lang>latin</Lang>

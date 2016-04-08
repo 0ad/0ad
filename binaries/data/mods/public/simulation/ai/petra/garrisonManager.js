@@ -207,7 +207,9 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 	default:
 		if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager 
 			return true;
-		warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType"));
+		API3.warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType") +
+			  " for " + ent.id() + " inside " + holder.id());
+		ent.setMetadata(PlayerID, "garrisonType", "protection");
 		return true;
 	}
 };

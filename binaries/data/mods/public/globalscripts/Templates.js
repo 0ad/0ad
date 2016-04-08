@@ -68,10 +68,11 @@ function MatchesClassList(classes, match)
 /**
  * Get information about a template with or without technology modifications.
  * @param template A valid template as returned by the template loader.
- * @param player An optional player id to get the technology modifications 
+ * @param player An optional player id to get the technology modifications
  *               of properties.
+ * @param aurasTemplate An object in the form of {key: {auraName: "", auraDescription: ""}}
  */
-function GetTemplateDataHelper(template, player)
+function GetTemplateDataHelper(template, player, aurasTemplate)
 {
 	var ret = {};
 
@@ -120,13 +121,13 @@ function GetTemplateDataHelper(template, player)
 	if (template.Auras)
 	{
 		ret.auras = {};
-		for (let auraID in template.Auras)
+		for (let auraID in aurasTemplate)
 		{
-			let aura = template.Auras[auraID];
-			if (aura.AuraName)
+			let aura = aurasTemplate[auraID];
+			if (aura.auraName)
 				ret.auras[auraID] = {
-					"name": aura.AuraName,
-					"description": aura.AuraDescription || null
+					"name": aura.auraName || null,
+					"description": aura.auraDescription || null
 				};
 		}
 	}

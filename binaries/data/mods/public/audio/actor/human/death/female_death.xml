@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>0.9</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<GainUpper>0.9</GainUpper>
 	<GainLower>0.7</GainLower>
 	<RandPitch>1</RandPitch>
-	<PitchUpper>1.1</PitchUpper>
-	<PitchLower>0.9</PitchLower>
 	<Threshold>10</Threshold>
-	<Decay>3</Decay>
-	<Replacement>female_death_01.ogg</Replacement>
 	<Path>audio/actor/human/death/</Path>
 	<Sound>female_death_01.ogg</Sound>
 	<Sound>female_death_02.ogg</Sound>

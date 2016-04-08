@@ -200,10 +200,7 @@ m.EntityCollection.prototype.getCentrePosition = function()
 		count ++;
 	}
 
-	if (count === 0)
-		return undefined;
-	else
-		return [sumPos[0]/count, sumPos[1]/count];
+	return count ? [sumPos[0]/count, sumPos[1]/count] : undefined;
 };
 
 // returns the average position from the sample first units.
@@ -223,10 +220,8 @@ m.EntityCollection.prototype.getApproximatePosition = function(sample)
 		if (i === sample)
 			break;
 	}
-	if (i === 0)
-		return undefined;
-	else
-		return [sumPos[0]/i, sumPos[1]/i];
+
+	return i ? [sumPos[0]/i, sumPos[1]/i] : undefined;
 };
 
 
@@ -265,8 +260,8 @@ m.EntityCollection.prototype.updateEnt = function(ent, force)
 			return false;
 		return this.addEnt(ent);
 	}
-	else
-		return this.removeEnt(ent);
+
+	return this.removeEnt(ent);
 };
 
 m.EntityCollection.prototype.registerUpdates = function()

@@ -626,11 +626,10 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	var current = this.getEntityCounts();
 	for (let trainable of allTrainable)
 	{
-		let template = this.getTemplate(trainable);
-
-		if (!template || !template.available(this))
-			continue;
 		if (this.isDisabledTemplates(trainable))
+			continue;
+		let template = this.getTemplate(trainable);
+		if (!template || !template.available(this))
 			continue;
 		
 		let okay = true;

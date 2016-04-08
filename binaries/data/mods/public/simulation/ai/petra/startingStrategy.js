@@ -61,13 +61,13 @@ m.HQ.prototype.gameAnalysis = function(gameState)
  */
 m.HQ.prototype.assignStartingEntities = function(gameState)
 {
-	for (var ent of gameState.getOwnEntities().values())
+	for (let ent of gameState.getOwnEntities().values())
 	{
 		// do not affect merchant ship immediately to trade as they may-be useful for transport
 		if (ent.hasClass("Trader") && !ent.hasClass("Ship"))
 			this.tradeManager.assignTrader(ent);
 
-		var pos = ent.position();
+		let pos = ent.position();
 		if (!pos)
 		{
 			// TODO should support recursive garrisoning. Make a warning for now
@@ -94,8 +94,8 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 
 		ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(pos));
 		let bestbase;
-		var territorypos = this.territoryMap.gamePosToMapPos(pos);
-		var territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
+		let territorypos = this.territoryMap.gamePosToMapPos(pos);
+		let territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
 		for (let i = 1; i < this.baseManagers.length; ++i)
 		{
 			let base = this.baseManagers[i];
@@ -148,7 +148,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 	if (!landIndex)
 	{
-		var civ = gameState.civ();
+		let civ = gameState.civ();
 		for (let ent of gameState.getOwnEntities().values())
 		{
 			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))
@@ -227,20 +227,17 @@ m.HQ.prototype.regionAnalysis = function(gameState)
  */
 m.HQ.prototype.structureAnalysis = function(gameState)
 {
-	var civ = gameState.playerData.civ;
-	if (civ in this.Config.buildings.base)
-		this.bBase = this.Config.buildings.base[civ];
-	else
-		this.bBase = this.Config.buildings.base['default'];
+	var civref = gameState.playerData.civ;
+	var civ = civref in this.Config.buildings.base ? civref : 'default';
+	this.bBase = [];
+	for (let base of this.Config.buildings.base[civ])
+		this.bBase.push(gameState.applyCiv(base));
 
-	if (civ in this.Config.buildings.advanced)
-		this.bAdvanced = this.Config.buildings.advanced[civ];
-	else
-		this.bAdvanced = this.Config.buildings.advanced['default'];	
-	for (let i in this.bBase)
-		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
-	for (let i in this.bAdvanced)
-		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
+	civ = civref in this.Config.buildings.advanced ? civref : 'default';
+	this.bAdvanced = [];
+	for (let advanced of this.Config.buildings.advanced[civ])
+		if (!gameState.isDisabledTemplates(gameState.applyCiv(advanced)))
+			this.bAdvanced.push(gameState.applyCiv(advanced));
 };
 
 /**
@@ -364,7 +361,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			var access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = gameState.ai.accessibility.getAccessValue(ent.position());
 			for (let cc of allycc)
 			{
 				if (!cc.position())
@@ -385,7 +382,7 @@ m.HQ.prototype.dispatchUnits = function(gameState)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			var access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = gameState.ai.accessibility.getAccessValue(ent.position());
 			for (let cc of allycc)
 			{
 				if (!cc.position())
@@ -438,10 +435,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 		for (let land of startingLand)
 		{
 			for (let sea of gameState.ai.accessibility.regionLinks[land])
-			{
 				if (gameState.ai.HQ.navalRegions[sea])
 					this.navalManager.updateFishingBoats(sea, num);
-			}
 		}
 	}
 
@@ -493,6 +488,11 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	{
 		this.saveResources = true;
 		this.Config.Economy.popForTown = 40; // Switch to town phase as soon as possible to be able to expand
+		if (startingWood < 2000 && this.needFarm)
+		{
+			this.needCorral = true;
+			this.needFarm = false;
+		}
 	}
 	if (startingWood > 8500 && this.canBuildUnits)
 	{
@@ -518,6 +518,13 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			}
 			gameState.ai.queues.dropsites.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
 		}
+	}
+	// and build immediately a corral if not much wood
+	if (this.needCorral)
+	{
+		template = gameState.applyCiv("structures/{civ}_corral");
+		if (gameState.getOwnEntitiesByClass("Corral", true).length === 0 && this.canBuild(gameState, template))
+			gameState.ai.queues.corral.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }));
 	}
 };
 

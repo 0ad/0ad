@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>1</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>0</RandGain>
@@ -15,13 +12,11 @@
 	<PitchUpper>1.0</PitchUpper>
 	<PitchLower>1.0</PitchLower>
 	<Threshold>10</Threshold>
-	<Decay>3</Decay>
-	<Replacement>mstep110.ogg</Replacement>
 	<Path>audio/actor/mounted/movement/</Path>
 	<Sound>mstep110.ogg</Sound>
-    <Sound>mstep111.ogg</Sound>
-    <Sound>mstep112.ogg</Sound>
-    <Sound>mstep113.ogg</Sound>
-    <Sound>mstep114.ogg</Sound>
-    <Sound>mstep115.ogg</Sound>
+	<Sound>mstep111.ogg</Sound>
+	<Sound>mstep112.ogg</Sound>
+	<Sound>mstep113.ogg</Sound>
+	<Sound>mstep114.ogg</Sound>
+	<Sound>mstep115.ogg</Sound>
 </SoundGroup>

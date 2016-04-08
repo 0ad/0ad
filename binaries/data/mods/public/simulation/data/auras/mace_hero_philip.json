@@ -1,0 +1,13 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Champion"],
+	"modifications": [
+	{ "value": "Attack/Ranged/Pierce", "add": 5},
+	{ "value": "Attack/Melee/Hack", "add": 5},
+	{ "value": "Attack/Capture/Value", "add": 2}
+	],
+	"auraName": "Hero Aura",
+	"auraDescription": "+5 Attack and +2 Capture for Champion Units.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

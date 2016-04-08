@@ -1,22 +1,3 @@
-/*
- * Map		: Ardennes Forest
- *	Author	: Michael Mayfield <mmayfield45@gmail.com>
- *	Version  : 1.2
- * 
- * CHANGES:
- * 
- * 1.2:	- Improved hill generation
- *			- Changed name from Black Forest to Ardennes Forest
- *
- * 1.1:	- Reduces amount and jaggedness of cliffs
- *			- Improved forest generation - some clumps join together
- *			- Increased distance between minerals / stones and hills
- *			- Reduce noise around players bases
- * 
- * 1.0:	- Initial release
- * 
- */
-
 RMS.LoadLibrary("rmgen");
 
 const BUILDING_ANGlE = -PI/4;

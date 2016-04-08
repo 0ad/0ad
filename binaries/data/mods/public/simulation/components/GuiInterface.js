@@ -576,7 +576,28 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	if (!template)
 		return null;
 
-	return GetTemplateDataHelper(template, player);
+	let aurasTemplate = {};
+
+	if (!template.Auras)
+		return GetTemplateDataHelper(template, player, aurasTemplate);
+
+	// Add aura name and description loaded from JSON file
+	let auraNames = template.Auras._string.split(/\s+/);
+	let cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+	for (let name of auraNames)
+	{
+		let auraTemplate = cmpTechnologyTemplateManager.GetAuraTemplate(name);
+		if (!auraTemplate)
+		{
+			// the following warning is perhaps useless since it's yet done in TechnologyTemplateManager
+			warn("Tried to get data for invalid aura: " + name);
+			continue;
+		}
+		aurasTemplate[name] = {};
+		aurasTemplate[name].auraName = auraTemplate.auraName || null;
+		aurasTemplate[name].auraDescription = auraTemplate.auraDescription || null;
+	}
+	return GetTemplateDataHelper(template, player, aurasTemplate);
 };
 
 GuiInterface.prototype.GetTechnologyData = function(player, name)

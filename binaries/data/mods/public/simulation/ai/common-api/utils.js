@@ -51,21 +51,10 @@ m.AssocArraytoArray = function(assocArray) {
 	return endArray;
 };
 
-m.ShallowClone = function(obj)
-{
-	var ret = {};
-	for (var k in obj)
-		ret[k] = obj[k];
-	return ret;
-};
-
 // Picks a random element from an array
 m.PickRandom = function(list)
 {
-	if (list.length === 0)
-		return undefined;
-	else
-		return list[Math.floor(Math.random()*list.length)];
+	return list.length ? list[Math.floor(Math.random()*list.length)] : undefined;
 };
 
 

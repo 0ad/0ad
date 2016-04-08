@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
 	<Gain>1</Gain>
-	<Pitch>1</Pitch>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
-	<ConeInner>360</ConeInner>
-	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>1</RandGain>
 	<GainUpper>0.9</GainUpper>
 	<GainLower>0.5</GainLower>
 	<RandPitch>1</RandPitch>
-	<PitchUpper>1.1</PitchUpper>
-	<PitchLower>0.9</PitchLower>
 	<Threshold>1</Threshold>
-	<Decay>3</Decay>
-	<Replacement>ballist_attack_01.ogg</Replacement>
 	<Path>audio/attack/siege</Path>
 	<Sound>ballist_attack_01.ogg</Sound>
 	<Sound>ballist_attack_02.ogg</Sound>

@@ -1,0 +1,9 @@
+{
+	"type": "global",
+	"affects": ["Javelin"],
+	"modifications": [
+	{ "value": "UnitMotion/WalkSpeed", "add": 1.15 }
+	],
+	"auraName": "Peltast Reforms",
+	"auraDescription": "All Peltasts +15% speed."
+}

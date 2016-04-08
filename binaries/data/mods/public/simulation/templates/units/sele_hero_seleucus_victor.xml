@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
-  <Auras>
-    <Aura1>
-      <Type>range</Type>
-      <Radius>80</Radius>
-      <Affects>Elephant</Affects>
-      <Modifications>
-        <UnitMotion.WalkSpeed> <Multiply>1.20</Multiply> </UnitMotion.WalkSpeed>
-        <Attack.Melee.Hack> <Multiply>1.20</Multiply> </Attack.Melee.Hack>
-        <Attack.Melee.Crush> <Multiply>1.20</Multiply> </Attack.Melee.Crush>
-      </Modifications>
-      <AuraName>Zooiarchos Aura</AuraName>
-      <AuraDescription>Boosts War Elephant attack and speed +20% within his vision.</AuraDescription>
-      <OverlayIcon>art/textures/ui/session/auras/attack_bonus.png</OverlayIcon>
-    </Aura1>
-  </Auras>
+  <Auras datatype="tokens">sele_hero_seleucus_victor</Auras>
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>
