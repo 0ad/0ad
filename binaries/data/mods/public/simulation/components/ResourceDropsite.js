@@ -20,7 +20,7 @@ ResourceDropsite.prototype.Schema =
 ResourceDropsite.prototype.Init = function()
 {
 	this.sharable = this.template.Sharable == "true";
-	this.shared = false;
+	this.shared = this.sharable;
 };
 
 /**
