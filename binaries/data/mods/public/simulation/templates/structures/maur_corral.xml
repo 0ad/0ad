@@ -14,6 +14,12 @@
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      -gaia/fauna_sheep
+      gaia/fauna_goat
+    </Entities>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryans/corral.xml</Actor>
     <FoundationActor>structures/fndn_3x3.xml</FoundationActor>

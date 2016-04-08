@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
   <Cost>
-    <BuildTime>40</BuildTime>
+    <BuildTime>35</BuildTime>
     <Resources>
-      <food>60</food>
+      <food>50</food>
     </Resources>
   </Cost>
   <Identity>
@@ -15,10 +15,21 @@
     <Anchor>pitch</Anchor>
   </Position>
   <ResourceSupply>
-    <Amount>120</Amount>
+    <Amount>100</Amount>
     <Type>food.meat</Type>
-	<MaxGatherers>6</MaxGatherers>
+    <MaxGatherers>6</MaxGatherers>
   </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/goat.xml</select>
+      <order_walk>actor/fauna/animal/goat.xml</order_walk>
+      <death>actor/fauna/animal/goat.xml</death>
+      <trained>actor/fauna/animal/goat.xml</trained>
+    </SoundGroups>
+  </Sound>
+  <UnitMotion>
+    <WalkSpeed>3.0</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/goat.xml</Actor>
   </VisualActor>

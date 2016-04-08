@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
+  <Cost>
+    <BuildTime>35</BuildTime>
+    <Resources>
+      <food>50</food>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Pig</SpecificName>
@@ -8,9 +14,20 @@
   <Position>
     <Anchor>pitch</Anchor>
   </Position>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/pig.xml</select>
+      <order_walk>actor/fauna/animal/pig.xml</order_walk>
+      <death>actor/fauna/animal/pig.xml</death>
+      <trained>actor/fauna/animal/pig.xml</trained>
+    </SoundGroups>
+  </Sound>
   <StatusBars>
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>
+  <UnitMotion>
+    <WalkSpeed>3.0</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/pig1.xml</Actor>
   </VisualActor>
