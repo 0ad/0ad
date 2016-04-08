@@ -402,9 +402,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 // Called by the "town phase" research plan once it's started
 m.HQ.prototype.OnTownPhase = function(gameState)
 {
-	if (this.Config.difficulty > 2 && this.supportRatio > 0.4)
-		this.supportRatio = 0.4;
-
 	var phaseName = gameState.getTemplate(gameState.townPhase()).name();
 	m.chatNewPhase(gameState, phaseName, true);
 };
@@ -412,9 +409,6 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 // Called by the "city phase" research plan once it's started
 m.HQ.prototype.OnCityPhase = function(gameState)
 {
-	if (this.Config.difficulty > 2 && this.supportRatio > 0.3)
-		this.supportRatio = 0.3;
-
 	// increase the priority of defense buildings to free this queue for our first fortress
 	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
 
@@ -485,12 +479,13 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	if (numberQueued > 50 || (numberOfQueuedSupports > 20 && numberOfQueuedSoldiers > 20) || numberInTraining > 15)
 		return;
 
-	// Choose whether we want soldiers instead.
-	let supportRatio = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.2) : this.supportRatio;
-	let supportMin = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? 4 : 8;
-	supportMin = Math.max(supportMin, supportRatio * numberTotal);
+	// Choose whether we want soldiers or support units.
+	let supportRatio = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.1) : this.supportRatio;
+	let supportMax = supportRatio * this.targetNumWorkers;
+	let supportNum = supportMax * Math.atan(numberTotal/supportMax) / 1.570796;
+
 	let template;
-	if (numberOfSupports + numberOfQueuedSupports > supportMin)
+	if (numberOfSupports + numberOfQueuedSupports > supportNum)
 	{
 		let requirements;
 		if (numberTotal < 45)
