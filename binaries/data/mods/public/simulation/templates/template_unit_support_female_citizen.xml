@@ -81,13 +81,9 @@
       <gather_ruins>resource/mining/mining.xml</gather_ruins>
     </SoundGroups>
   </Sound>
-  <Stamina>
-    <Max>500</Max>
-  </Stamina>
   <UnitAI>
     <AlertReactiveLevel>1</AlertReactiveLevel>
-  </UnitAI>
-  <UnitMotion>
+  </UnitAI>  <UnitMotion>
     <WalkSpeed>9.5</WalkSpeed>
     <Run>
       <Speed>16.0</Speed>

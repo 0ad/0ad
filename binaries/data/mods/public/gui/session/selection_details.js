@@ -112,8 +112,6 @@ function displaySingle(entState)
 		});
 	}
 
-	// TODO: Stamina
-
 	// Experience
 	Engine.GetGUIObjectByName("experience").hidden = !entState.promotion;
 	if (entState.promotion)
@@ -370,9 +368,6 @@ function displayMultiple(selection)
 			"max": Math.ceil(maxCapturePoints)
 		});
 	}
-
-	// TODO: Stamina
-	// Engine.GetGUIObjectByName("staminaBarMultiple");
 
 	Engine.GetGUIObjectByName("numberOfUnits").caption = selection.length;
 
