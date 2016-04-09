@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,14 +25,8 @@
 // Find the root ID of a region, used by InitRegions
 inline u16 RootID(u16 x, const std::vector<u16>& v)
 {
-	// Just add a basic check for infinite loops
-	int checkLoop = 0;
 	while (v[x] < x)
-	{
-		++checkLoop;
-		ENSURE(checkLoop < 1000 && "Long loop (probably infinite), unable to find an invariant point");
 		x = v[x];
-	}
 
 	return x;
 }
@@ -58,6 +52,7 @@ void HierarchicalPathfinder::Chunk::InitRegions(int ci, int cj, Grid<NavcellData
 	u16* pCurrentID = NULL;
 	u16 LeftID = 0;
 	u16 DownID = 0;
+	bool Checked = false; // prevent some unneccessary RootID calls
 
 	connect.reserve(32); // TODO: What's a sensible number?
 	connect.push_back(0); // connect[0] = 0
@@ -86,36 +81,43 @@ void HierarchicalPathfinder::Chunk::InitRegions(int ci, int cj, Grid<NavcellData
 			if (LeftID > 0)
 			{
 				*pCurrentID = LeftID;
-				if (*pCurrentID != DownID && DownID > 0)
+				if (*pCurrentID != DownID && DownID > 0 && !Checked)
 				{
 					u16 id0 = RootID(DownID, connect);
 					u16 id1 = RootID(LeftID, connect);
+					Checked = true; // this avoids repeatedly connecting the same IDs
 
 					if (id0 < id1)
 						connect[id1] = id0;
 					else if (id0 > id1)
 						connect[id0] = id1;
 				}
+				else if (DownID == 0)
+					Checked = false;
 			}
 			else if (DownID > 0)
+			{
 				*pCurrentID = DownID;
+				Checked = false;
+			}
 			else
 			{
 				// New ID
 				*pCurrentID = ++regionID;
 				connect.push_back(regionID);
+				Checked = false;
 			}
 		}
 	}
 
 	// Directly point the root ID
 	m_NumRegions = 0;
-	for (u16 i = regionID; i > 0; --i)
+	for (u16 i = 1; i <= regionID; ++i)
 	{
 		if (connect[i] == i)
 			++m_NumRegions;
 		else
-			connect[i] = RootID(i,connect);
+			connect[i] = RootID(i, connect);
 	}
 
 	// Replace IDs by the root ID
