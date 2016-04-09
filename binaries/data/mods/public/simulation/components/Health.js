@@ -44,7 +44,7 @@ Health.prototype.Schema =
 Health.prototype.Init = function()
 {
 	// Cache this value so it allows techs to maintain previous health level
-	this.maxHitpoints = Math.round(+this.template.Max);
+	this.maxHitpoints = +this.template.Max;
 	// Default to <Initial>, but use <Max> if it's undefined or zero
 	// (Allowing 0 initial HP would break our death detection code)
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
@@ -343,10 +343,10 @@ Health.prototype.OnValueModification = function(msg)
 		return;
 
 	let oldMaxHitpoints = this.GetMaxHitpoints();
-	let newMaxHitpoints = Math.round(ApplyValueModificationsToEntity("Health/Max", +this.template.Max, this.entity));
+	let newMaxHitpoints = ApplyValueModificationsToEntity("Health/Max", +this.template.Max, this.entity);
 	if (oldMaxHitpoints != newMaxHitpoints)
 	{
-		let newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);
+		let newHitpoints = this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints;
 		this.maxHitpoints = newMaxHitpoints;
 		this.SetHitpoints(newHitpoints);
 	}

@@ -270,7 +270,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpHealth = QueryMiragedInterface(ent, IID_Health);
 	if (cmpHealth)
 	{
-		ret.hitpoints = Math.ceil(cmpHealth.GetHitpoints());
+		ret.hitpoints = cmpHealth.GetHitpoints();
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
 		ret.needsHeal = !cmpHealth.IsUnhealable();
