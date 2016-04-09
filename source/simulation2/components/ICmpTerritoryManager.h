@@ -70,7 +70,12 @@ public:
 	/**
 	 * Set a piece of territory to blinking. Must be updated on every territory calculation
 	 */
-	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z) = 0;
+	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, bool enable) = 0;
+
+	/**
+	 * Check if a piece of territory is blinking.
+	 */
+	virtual bool IsTerritoryBlinking(entity_pos_t x, entity_pos_t z) = 0;
 
 	/**
 	 * Returns the percentage of the world controlled by a given player as defined by

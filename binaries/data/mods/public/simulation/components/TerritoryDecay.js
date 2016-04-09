@@ -48,9 +48,13 @@ TerritoryDecay.prototype.IsConnected = function()
 
 	for (var i = 1; i < numPlayers; ++i)
 		if (this.connectedNeighbours[i] > 0 && cmpPlayer.IsMutualAlly(i))
-			return true; // don't decay if connected to a connected ally
+		{
+			// don't decay if connected to a connected ally; disable blinking
+			cmpTerritoryManager.SetTerritoryBlinking(pos.x, pos.y, false);
+			return true;
+		}
 
-	cmpTerritoryManager.SetTerritoryBlinking(pos.x, pos.y);
+	cmpTerritoryManager.SetTerritoryBlinking(pos.x, pos.y, true);
 	return false;
 };
 
@@ -111,6 +115,13 @@ TerritoryDecay.prototype.OnTerritoryPositionChanged = function(msg)
 	if (this.territoryOwnership)
 		this.UpdateOwner();
 	else
+		this.UpdateDecayState();
+};
+
+TerritoryDecay.prototype.OnDiplomacyChanged = function(msg)
+{
+	// Can change the connectedness of certain areas
+	if (!this.territoryOwnership)
 		this.UpdateDecayState();
 };
 
