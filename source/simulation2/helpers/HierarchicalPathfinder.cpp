@@ -112,7 +112,7 @@ void HierarchicalPathfinder::Chunk::InitRegions(int ci, int cj, Grid<NavcellData
 
 	// Directly point the root ID
 	m_NumRegions = 0;
-	for (u16 i = 1; i <= regionID; ++i)
+	for (u16 i = 1; i < regionID+1; ++i)
 	{
 		if (connect[i] == i)
 			++m_NumRegions;

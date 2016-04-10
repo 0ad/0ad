@@ -814,7 +814,7 @@ function parseChatAddressee(msg)
 
 	// For observers only permit public- and observer-chat and PM to observers
 	if (isPlayerObserver(senderID) &&
-			(isPM && !isPlayerObserver(addresseeIndex) || !isPM && cmd != "/observers"))
+		((isPM && !isPlayerObserver(addresseeIndex)) || (!isPM && cmd != "/observers")))
 		return false;
 
 	return isSender || g_IsChatAddressee[cmd](senderID, addresseeGUID);

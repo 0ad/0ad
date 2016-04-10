@@ -56,14 +56,11 @@ Cost.prototype.GetBuildTime = function()
 
 Cost.prototype.GetResourceCosts = function(owner)
 {
-	if (owner == undefined)
+	if (!owner)
 	{
 		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		if (!cmpOwnership)
-		{
-			warn("GetResourceCost called without valid ownership");
-			owner = 0;
-		}
+			error("GetResourceCost called without valid ownership");
 		else
 			owner = cmpOwnership.GetOwner();
 	}
