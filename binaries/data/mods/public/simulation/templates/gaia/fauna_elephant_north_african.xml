@@ -12,17 +12,17 @@
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-	  </Bonuses>
+        <Bonuses>
+          <BonusCav>
+            <Classes>Cavalry</Classes>
+            <Multiplier>1.5</Multiplier>
+          </BonusCav>
+        </Bonuses>
     </Melee>
   </Attack>
   <Footprint>
-    <Circle radius="2.6"/>
-    <Height>2.7</Height>
+    <Square width="3.5" depth="7.0"/>
+    <Height>3.0</Height>
   </Footprint>
   <Health>
     <Max>200</Max>

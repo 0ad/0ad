@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_wild_passive">
-  <Footprint replace="">
-    <Square width="5" depth="8"/>
-    <Height>7.5</Height>
+  <Footprint>
+    <Square width="2.0" depth="8.0"/>
+    <Height>2.5</Height>
   </Footprint>
   <Health>
     <Max>150</Max>
@@ -27,8 +27,8 @@
   <Selectable>
     <Overlay>
       <Texture>
-        <MainTexture>circle/128x128.png</MainTexture>
-        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
       </Texture>
     </Overlay>
   </Selectable>

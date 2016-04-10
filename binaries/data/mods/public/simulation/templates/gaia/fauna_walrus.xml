@@ -15,8 +15,8 @@
     </Melee>
   </Attack>
   <Footprint>
-    <Circle radius="2.3"/>
-    <Height>2.5</Height>
+    <Square width="3.2" depth="6.4"/>
+    <Height>2.0</Height>
   </Footprint>
   <Identity>
     <Civ>gaia</Civ>
@@ -30,6 +30,14 @@
     <Amount>300</Amount>
     <Type>food.meat</Type>
   </ResourceSupply>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>fauna/walrus.xml</Actor>
   </VisualActor>
