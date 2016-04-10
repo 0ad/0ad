@@ -4961,7 +4961,7 @@ UnitAI.prototype.WalkToPointRange = function(x, z, min, max, queued)
  */
 UnitAI.prototype.Stop = function(queued)
 {
-	this.AddOrder("Stop", undefined, queued);
+	this.AddOrder("Stop", { "force": true }, queued);
 };
 
 /**
