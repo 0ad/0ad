@@ -152,7 +152,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	
 	var cmpPlayer = QueryOwnerInterface(this.entity);
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (!cmpPlayer || !cmpIdentity || cmpPlayer.GetCiv() != cmpIdentity.GetCiv())
+	if (!cmpPlayer || !cmpIdentity)
 		return [];
 
 	var techs = string.split(/\s+/);

@@ -170,13 +170,21 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs)
 				return false;
 		}
 	}
-	else if (reqs.civ) 
+	else if (reqs.civ)
 	{
 		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		if (cmpPlayer && cmpPlayer.GetCiv() == reqs.civ) 
+		if (cmpPlayer && cmpPlayer.GetCiv() == reqs.civ)
 			return true;
 		else 
 			return false;
+	}
+	else if (reqs.notciv)
+	{
+		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetCiv() == reqs.notciv)
+			return false;
+		else
+			return true;
 	}
 
 	// The technologies requirements are not a recognised format
