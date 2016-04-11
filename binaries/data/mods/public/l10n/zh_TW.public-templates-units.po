@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-20 08:35+0000\n"
+"POT-Creation-Date: 2016-04-08 09:01+0200\n"
+"PO-Revision-Date: 2016-04-10 00:35+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "市民"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:40
+#: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "士兵"
@@ -49,7 +49,7 @@ msgstr "士兵"
 #: simulation/templates/units/cart_support_healer_b.xml:10
 #: simulation/templates/units/gaul_support_healer_b.xml:9
 #: simulation/templates/units/iber_support_healer_b.xml:11
-#: simulation/templates/units/maur_support_healer_b.xml:10
+#: simulation/templates/units/maur_support_healer_b.xml:9
 #: simulation/templates/units/pers_support_healer_b.xml:10
 #: simulation/templates/units/rome_support_healer_b.xml:11
 msgctxt "Rank"
@@ -70,7 +70,7 @@ msgstr "基本"
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
-#: simulation/templates/units/maur_ship_trireme.xml:20
+#: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "近戰"
 
@@ -283,18 +283,8 @@ msgstr "鯨魚"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "殺死，然後從這豐富的海洋資源中收集食物。"
 
-#: simulation/templates/template_unit_hero.xml:10
-msgid "Garrisoned Capture Aura"
-msgstr "駐守捕獲靈氣"
-
-#: simulation/templates/template_unit_hero.xml:11
-msgid ""
-"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
-"capture points recovery rate."
-msgstr "當駐守在建築物或攻城武器內時，英雄會給予其 +2 的捕獲點數恢復速度的獎勵。"
-
-#: simulation/templates/template_unit_hero.xml:40
-#: simulation/templates/template_unit_hero.xml:38
+#: simulation/templates/template_unit_hero.xml:30
+#: simulation/templates/template_unit_hero.xml:28
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
@@ -475,15 +465,7 @@ msgstr "其中最多可駐守 20 個步兵，可增加射箭數 0 到 10 支。"
 msgid "Support"
 msgstr "支援"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:12
-msgid "Inspiration Aura"
-msgstr "鼓舞靈氣"
-
-#: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster."
-msgstr "鄰近的男性單位工作快 10%。"
-
-#: simulation/templates/template_unit_support_female_citizen.xml:56
+#: simulation/templates/template_unit_support_female_citizen.xml:43
 msgid "Female Citizen"
 msgstr "女性市民"
 
@@ -743,75 +725,27 @@ msgstr "西徐亞弓箭手"
 msgid "Toxótēs Skythikós"
 msgstr "Toxótēs Skythikós"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:13
-msgid "Formation Reforms"
-msgstr "陣型改革"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:14
-msgid "All units in his formation +15% speed and +1 armor."
-msgstr "所有在他的隊伍裡的單位 +15% 速度及 +1 盔甲。"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:22
-msgid "Peltast Reforms"
-msgstr "盾兵改革"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:23
-msgid "All Peltasts +15% speed."
-msgstr "所有盾兵 +15% 移動速度。"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:29
+#: simulation/templates/units/athen_hero_iphicrates.xml:7
 msgid "Iphicrates"
 msgstr "伊菲克拉特斯"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:30
+#: simulation/templates/units/athen_hero_iphicrates.xml:8
 msgid "Iphikratēs"
 msgstr "Iphikratēs"
 
-#: simulation/templates/units/athen_hero_pericles.xml:11
-msgid "Builder Aura"
-msgstr "建築者靈氣"
-
-#: simulation/templates/units/athen_hero_pericles.xml:12
-msgid "Buildings construct 15% faster within his vision."
-msgstr "在他的視野內建築物的建造速度快 15%。"
-
-#: simulation/templates/units/athen_hero_pericles.xml:21
-msgid "Acropolis Aura"
-msgstr "衛城靈氣"
-
-#: simulation/templates/units/athen_hero_pericles.xml:22
-msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "在他的生命週期中神廟便宜50石頭。"
-
-#: simulation/templates/units/athen_hero_pericles.xml:28
+#: simulation/templates/units/athen_hero_pericles.xml:7
 msgid "Pericles"
 msgstr "伯里克里斯"
 
-#: simulation/templates/units/athen_hero_pericles.xml:29
+#: simulation/templates/units/athen_hero_pericles.xml:8
 msgid "Periklēs"
 msgstr "Periklēs"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:11
-msgid "Naval Commander Aura"
-msgstr "海軍指揮官靈氣"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:12
-msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "當他駐守在船隻中時，該船隻速度 +50%。"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:20
-msgid "Naval Architect Aura"
-msgstr "造船工程師靈氣"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "-20% build time for ships during his lifespan."
-msgstr "在他活著的時候，船隻建造時間 -20%。"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:27
+#: simulation/templates/units/athen_hero_themistocles.xml:7
 msgid "Themistocles"
 msgstr "地米斯托克利"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:28
+#: simulation/templates/units/athen_hero_themistocles.xml:8
 msgid "Themistoklês"
 msgstr "地米斯托克利"
 
@@ -940,49 +874,20 @@ msgstr "布立吞長劍兵"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
-msgid "Champion Army"
-msgstr "精英軍隊"
-
-#: simulation/templates/units/brit_hero_boudicca.xml:15
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:14
-msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr "精英單位 +5 攻擊力、+2 捕獲及 +25% 速度。"
-
-#: simulation/templates/units/brit_hero_boudicca.xml:27
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
+#: simulation/templates/units/brit_hero_boudicca.xml:12
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:7
 msgid "Boudicca"
 msgstr "布狄卡"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:21
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
 msgid "Heroine"
 msgstr "女英雄"
 
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:13
-msgid "Hero Aura"
-msgstr "英雄靈氣"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:11
-#: simulation/templates/units/cart_hero_hamilcar.xml:11
-msgid "All Units +15% speed."
-msgstr "所有單位 +15% 速度。"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:16
+#: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
 msgstr "Caratacos"
 
-#: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "+1 HP per second healing rate for all units."
-msgstr "所有單位每秒治療速率 +1 HP。"
-
-#: simulation/templates/units/brit_hero_cunobelin.xml:18
+#: simulation/templates/units/brit_hero_cunobelin.xml:6
 msgid "Cunobelin"
 msgstr "邱諾貝林"
 
@@ -1147,54 +1052,33 @@ msgstr "神聖軍團長槍兵"
 msgid "Mašal"
 msgstr "Mašal"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:10
-msgid "Lightning Aura"
-msgstr "閃電靈氣"
-
-#: simulation/templates/units/cart_hero_hamilcar.xml:16
+#: simulation/templates/units/cart_hero_hamilcar.xml:6
 msgid "Ḥimelqart Baraq"
 msgstr "Ḥimelqart Baraq"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:17
+#: simulation/templates/units/cart_hero_hamilcar.xml:7
 msgid "Hamilcar Barca"
 msgstr "哈米爾卡·巴卡"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "Tactician Aura"
-msgstr "戰術家靈氣"
-
-#: simulation/templates/units/cart_hero_hannibal.xml:15
-msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr "在他的視野內所有的盟軍單位 +2 攻擊力及 +1 捕獲。"
-
-#: simulation/templates/units/cart_hero_hannibal.xml:21
+#: simulation/templates/units/cart_hero_hannibal.xml:6
 msgid "Hannibal Barca"
 msgstr "漢尼拔·巴卡"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:22
+#: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:25
+#: simulation/templates/units/cart_hero_hannibal.xml:10
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
 msgstr "「戰略家」能力 (待定)：當漢尼拔活著的時候，玩家可以看到戰爭迷霧中的變化。 \n可以衝撞。"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:11
-msgid "Commander Aura"
-msgstr "指揮官靈氣"
-
-#: simulation/templates/units/cart_hero_maharbal.xml:12
-msgid ""
-" +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr "在他的視野內的騎兵 +5 衝鋒攻擊力 (目前無效)。"
-
-#: simulation/templates/units/cart_hero_maharbal.xml:17
+#: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
 msgstr "馬哈巴爾"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:18
+#: simulation/templates/units/cart_hero_maharbal.xml:7
 msgid "Maharbaʿal"
 msgstr "Maharbaʿal"
 
@@ -1335,27 +1219,15 @@ msgstr "重劍兵"
 msgid "Solduros"
 msgstr "Solduros"
 
-#: simulation/templates/units/gaul_hero_brennus.xml:11
-msgid "+10 Metal loot for every enemy unit killed."
-msgstr "每殺死一個敵方單位獲得+10金屬的戰利品。"
-
-#: simulation/templates/units/gaul_hero_brennus.xml:16
+#: simulation/templates/units/gaul_hero_brennus.xml:6
 msgid "Brennus"
 msgstr "布倫努斯"
 
-#: simulation/templates/units/gaul_hero_britomartus.xml:11
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "在他的生命週期內採集速率+15%。"
-
-#: simulation/templates/units/gaul_hero_britomartus.xml:16
+#: simulation/templates/units/gaul_hero_britomartus.xml:6
 msgid "Britomartus"
 msgstr "Britomartus"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:14
-msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr "所有單位在他的靈氣內部 +2 攻擊力及 +1 捕獲。"
-
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:20
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:6
 msgid "Vercingetorix"
 msgstr "維欽托利"
 
@@ -1494,23 +1366,15 @@ msgstr "Hypaspistḗs"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
-#: simulation/templates/units/mace_hero_alexander.xml:10
-msgid "Imperialism Aura"
-msgstr "帝國靈氣"
-
-#: simulation/templates/units/mace_hero_alexander.xml:11
-msgid "+10% territory effect for all buildings while he lives."
-msgstr "當他仍活著時，所有建築物 +10% 領土效果。"
-
-#: simulation/templates/units/mace_hero_alexander.xml:32
+#: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "Alexander The Great"
 msgstr "亞歷山大大帝"
 
-#: simulation/templates/units/mace_hero_alexander.xml:33
+#: simulation/templates/units/mace_hero_alexander.xml:23
 msgid "Mégās Aléxandros"
 msgstr "Mégās Aléxandros"
 
-#: simulation/templates/units/mace_hero_alexander.xml:34
+#: simulation/templates/units/mace_hero_alexander.xml:24
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "「英雄殺手」加值：對敵方英雄 +20% 攻擊力加值。"
 
@@ -1526,27 +1390,19 @@ msgstr "Kraterós"
 msgid "Trusted general under Alexander the Great."
 msgstr "亞歷山大大帝所信任的將軍。"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:13
-msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr "攻城武器 +15% 射程且 +10 粉碎攻擊力。"
-
-#: simulation/templates/units/mace_hero_demetrius.xml:20
+#: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
 msgstr "德米特里一世"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:21
+#: simulation/templates/units/mace_hero_demetrius.xml:8
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:14
-msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr "精英單位 +5 攻擊力和 +2 捕獲。"
-
-#: simulation/templates/units/mace_hero_philip.xml:21
+#: simulation/templates/units/mace_hero_philip.xml:7
 msgid "Philip II of Macedon"
 msgstr "馬其頓王國的腓力二世"
 
-#: simulation/templates/units/mace_hero_philip.xml:22
+#: simulation/templates/units/mace_hero_philip.xml:8
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -1654,7 +1510,7 @@ msgstr "Aśvārohagaṇaḥ"
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:12
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
-#: simulation/templates/units/pers_hero_darius.xml:21
+#: simulation/templates/units/pers_hero_darius.xml:10
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
 msgstr "馬戰車"
@@ -1667,7 +1523,7 @@ msgstr "戰車"
 msgid "Rath"
 msgstr "Rath"
 
-#: simulation/templates/units/maur_champion_chariot.xml:15
+#: simulation/templates/units/maur_champion_chariot.xml:14
 msgid "Deals Trample Damage."
 msgstr "有踐踏傷害。"
 
@@ -1709,7 +1565,7 @@ msgstr "戰象射手"
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Can run amok."
 msgstr "可以衝撞。"
 
@@ -1723,9 +1579,9 @@ msgstr "Aśoka Devānāmpriya"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:14
 msgid ""
-"Hero Aura: TBD.\n"
-"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "英雄靈氣：待完成。\n英雄特殊能力：「阿育王法敕」─ 阿育王法敕可以在阿育王活著時建造。"
+"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
+"during Ashoka's lifetime."
+msgstr "英雄特殊能力：「阿育王法敕」─ 阿育王法敕可以在阿育王活著時建造。"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
@@ -1746,10 +1602,6 @@ msgstr "英雄特殊能力：「醫療者」─ 以較快的速度治療單位�
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
 msgstr "旃陀羅笈多"
-
-#: simulation/templates/units/maur_hero_maurya.xml:7
-msgid "Hero Aura: TBD."
-msgstr "英雄靈氣：待完成。"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1804,7 +1656,7 @@ msgstr "大象工人"
 msgid "Karmākara Gaja"
 msgstr "Karmākara Gaja"
 
-#: simulation/templates/units/maur_support_elephant.xml:32
+#: simulation/templates/units/maur_support_elephant.xml:31
 msgid "Mobile dropsite. Can also assist in constructing buildings."
 msgstr "可移動的資源收集處。也可以輔助建造建築物。"
 
@@ -1916,61 +1768,35 @@ msgstr "波斯長生軍"
 msgid "Anusiya"
 msgstr "盾矛兵"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:13
-msgid "Lead from the Front Aura"
-msgstr "勇往直前靈氣"
-
-#: simulation/templates/units/pers_hero_cyrus.xml:14
-msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr "鄰近的騎兵單位 +2 攻擊力及 +1 捕獲。"
-
-#: simulation/templates/units/pers_hero_cyrus.xml:20
+#: simulation/templates/units/pers_hero_cyrus.xml:6
 msgid "Cyrus II The Great"
 msgstr "居魯士二世"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:21
+#: simulation/templates/units/pers_hero_cyrus.xml:7
 msgid "Kurush II"
 msgstr "居魯士二世"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
-msgid "Leadership Aura"
-msgstr "領導靈氣"
-
-#: simulation/templates/units/pers_hero_darius.xml:12
-msgid "+15% Movement Speed of all units."
-msgstr "所有單位 +15% 移動速度。"
-
-#: simulation/templates/units/pers_hero_darius.xml:22
 msgid "Darius The Great"
 msgstr "大流士大帝"
 
-#: simulation/templates/units/pers_hero_darius.xml:23
+#: simulation/templates/units/pers_hero_darius.xml:12
 msgid "Darayavahush I"
 msgstr "大流士一世"
 
-#: simulation/templates/units/pers_hero_darius.xml:25
+#: simulation/templates/units/pers_hero_darius.xml:14
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
 msgstr "英雄靈氣：「帝國商人」。在他活著的時候提升貿易獲利（待完成）。"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:12
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
-msgid "Administrator Aura"
-msgstr "管理人靈氣"
-
-#: simulation/templates/units/pers_hero_xerxes.xml:13
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
-msgid " +15% Gather Rate and Build Rate of nearby units."
-msgstr "鄰近單位 +15% 採集速率及建造速率。"
-
-#: simulation/templates/units/pers_hero_xerxes.xml:19
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:24
+#: simulation/templates/units/pers_hero_xerxes.xml:6
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:11
 msgid "Xerxes I"
 msgstr "薛西斯一世"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:20
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:25
+#: simulation/templates/units/pers_hero_xerxes.xml:7
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Xsayarsa I"
 msgstr "薛西斯一世"
 
@@ -2133,65 +1959,33 @@ msgstr "Juggernaut"
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:12
-msgid "Patriot Aura"
-msgstr "愛國者靈氣"
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 25% faster in her vision range."
-msgstr "在她視野中的埃及單位戰鬥速度加快 25%。"
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:20
+#: simulation/templates/units/ptol_hero_cleopatra.xml:7
 msgid "Cleopatra VII"
 msgstr "克麗奧佩脫拉七世"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:21
+#: simulation/templates/units/ptol_hero_cleopatra.xml:8
 msgid "Kleopatra H' Philopator"
 msgstr "托勒密七世·奈俄斯·菲洛帕托爾"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:22
+#: simulation/templates/units/ptol_hero_cleopatra.xml:9
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
 msgstr "「夥伴」靈氣（待完成）：增加她視野內的英雄的戰鬥能力。並降低敵方英雄的戰鬥能力。"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
-msgid "Construction Aura"
-msgstr "建築靈氣"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
-msgid "Buildings construct 10% faster within his vision."
-msgstr "在他視野內的建築物建造速度快 10%。"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
-msgid "Mercenary Patron Aura"
-msgstr "傭兵守護神靈氣"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:25
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "在他活著的時候，傭兵花費 -50% 資源。"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "托勒密一世「救主」"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:31
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:7
 msgid "Ptolemaios A' Soter"
 msgstr "托勒密一世·索塔爾一世"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
-msgid "Raphia Aura"
-msgstr "棕櫚葉靈氣"
-
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
-msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr "埃及長槍兵在他活著的時候有著比一般長槍兵多40%的生命值。"
-
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:16
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:6
 msgid "Ptolemy IV \"Father Loving\""
 msgstr "托勒密四世「篤愛父親者」"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:7
 msgid "Ptolemaios D' Philopator"
 msgstr "托勒密四世·菲洛帕托爾"
 
@@ -2308,27 +2102,11 @@ msgstr "義大利重裝步兵"
 msgid "Extraordinarius"
 msgstr "Extraordinarius"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:13
-msgid "Sword of Rome Aura"
-msgstr "羅馬之劍靈氣"
-
-#: simulation/templates/units/rome_hero_marcellus.xml:14
-msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr "在他視野內的羅馬單位 +5 攻擊力及 +2 捕獲。"
-
-#: simulation/templates/units/rome_hero_marcellus.xml:21
+#: simulation/templates/units/rome_hero_marcellus.xml:7
 msgid "Marcus Claudius Marcellus"
 msgstr "馬克盧斯"
 
-#: simulation/templates/units/rome_hero_maximus.xml:12
-msgid "Shield of Rome Aura"
-msgstr "羅馬之盾靈氣"
-
-#: simulation/templates/units/rome_hero_maximus.xml:13
-msgid "+1 armour for all units and structures."
-msgstr "所有單位及建築物 +1 盔甲等級"
-
-#: simulation/templates/units/rome_hero_maximus.xml:19
+#: simulation/templates/units/rome_hero_maximus.xml:7
 msgid "Quintus Fabius Maximus"
 msgstr "Quintus Fabius Maximus"
 
@@ -2534,53 +2312,27 @@ msgstr "羅馬重劍兵"
 msgid "Thorakitès Rhomaïkós"
 msgstr "Thorakitès Rhomaïkós"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:12
-msgid "Ilarchès Aura"
-msgstr "Ilarchès 靈氣"
-
-#: simulation/templates/units/sele_hero_antiochus_great.xml:13
-msgid "All cavalry gains +2 levels of all armour types."
-msgstr "所有騎兵在所有攻擊類型上獲得 +2 盔甲等級。"
-
-#: simulation/templates/units/sele_hero_antiochus_great.xml:19
+#: simulation/templates/units/sele_hero_antiochus_great.xml:7
 msgid "Antiochus III \"The Great\""
 msgstr "安條克三世「大帝」"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:20
+#: simulation/templates/units/sele_hero_antiochus_great.xml:8
 msgid "Antiokhos G' Mégās"
 msgstr "Antiokhos G' Mégās"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
-msgid "Conquest Aura"
-msgstr "征服靈氣"
-
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
-msgid ""
-"All nearby enemy buildings, siege engines, and ships have their health "
-"reduced by 20%."
-msgstr "所有鄰近的敵方建築物、攻城武器、船艦等皆減少生命值 20%。"
-
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:20
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:7
 msgid "Antiochus IV \"The Righteous\""
 msgstr "安條克四世「神顯者」"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:21
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:8
 msgid "Antiokhos D' Epiphanes"
 msgstr "神顯者 安條克四世"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:13
-msgid "Zooiarchos Aura"
-msgstr "Zooiarchos 靈氣"
-
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:14
-msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr "在他視野內的戰象攻擊力及速度均 +20%。"
-
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:21
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:7
 msgid "Seleucus I \"The Victor\""
 msgstr "塞琉古一世「勝利者」"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:22
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:8
 msgid "Seleukos A' Nikator"
 msgstr "勝利者 塞琉古一世"
 
@@ -2684,39 +2436,16 @@ msgstr "阿基斯三世"
 msgid "Agis"
 msgstr "阿基斯"
 
-#: simulation/templates/units/spart_hero_agis.xml:11
-msgid ""
-"No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
-" hoplite."
-msgstr "無英雄靈氣。有其他步兵英雄 2 倍的生命值。本質上是一個非常強悍的重裝步兵。"
-
-#: simulation/templates/units/spart_hero_brasidas.xml:14
-msgid "Helot Reforms"
-msgstr "希洛人改革"
-
-#: simulation/templates/units/spart_hero_brasidas.xml:15
-msgid ""
-"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr "在他視野內的希洛散兵獲得 +2 攻擊力及所有盔甲類型 +1 盔甲等級。"
-
-#: simulation/templates/units/spart_hero_brasidas.xml:22
-#: simulation/templates/units/spart_hero_brasidas.xml:23
+#: simulation/templates/units/spart_hero_brasidas.xml:7
+#: simulation/templates/units/spart_hero_brasidas.xml:8
 msgid "Brasidas"
 msgstr "伯拉西達"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:14
-msgid "Last Stand Aura"
-msgstr "背水一戰靈氣"
-
-#: simulation/templates/units/spart_hero_leonidas.xml:15
-msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr "鄰近的重裝步兵和斯巴達士兵 +20% 攻擊力及 +1 捕獲。"
-
-#: simulation/templates/units/spart_hero_leonidas.xml:22
+#: simulation/templates/units/spart_hero_leonidas.xml:7
 msgid "Leonidas I"
 msgstr "列奧尼達一世"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:23
+#: simulation/templates/units/spart_hero_leonidas.xml:8
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 

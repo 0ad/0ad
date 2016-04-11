@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-04-03 10:28+0000\n"
+"POT-Creation-Date: 2016-04-08 09:01+0200\n"
+"PO-Revision-Date: 2016-04-08 14:07+0000\n"
 "Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Rakyat"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:40
+#: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "Tentara"
@@ -48,7 +48,7 @@ msgstr "Tentara"
 #: simulation/templates/units/cart_support_healer_b.xml:10
 #: simulation/templates/units/gaul_support_healer_b.xml:9
 #: simulation/templates/units/iber_support_healer_b.xml:11
-#: simulation/templates/units/maur_support_healer_b.xml:10
+#: simulation/templates/units/maur_support_healer_b.xml:9
 #: simulation/templates/units/pers_support_healer_b.xml:10
 #: simulation/templates/units/rome_support_healer_b.xml:11
 msgctxt "Rank"
@@ -69,7 +69,7 @@ msgstr "Dasar"
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
-#: simulation/templates/units/maur_ship_trireme.xml:20
+#: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "Jarak Dekat"
 
@@ -282,18 +282,8 @@ msgstr "Cetacea"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Bunuh, lalu kumpulkan makanan dari sumber daya laut yang kaya ini"
 
-#: simulation/templates/template_unit_hero.xml:10
-msgid "Garrisoned Capture Aura"
-msgstr ""
-
-#: simulation/templates/template_unit_hero.xml:11
-msgid ""
-"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
-"capture points recovery rate."
-msgstr ""
-
-#: simulation/templates/template_unit_hero.xml:40
-#: simulation/templates/template_unit_hero.xml:38
+#: simulation/templates/template_unit_hero.xml:30
+#: simulation/templates/template_unit_hero.xml:28
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
@@ -424,7 +414,7 @@ msgstr "Kapal Perang Berat"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
 msgid "Garrison up to 10 catapults to increase fire power."
-msgstr ""
+msgstr "Masukkan hingga 10 katapel untuk meningkatkan serangan."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
@@ -474,15 +464,7 @@ msgstr "Simpan hingga 20 infanteri untuk menambah jumlah panah dari 0 hingga 10.
 msgid "Support"
 msgstr "Pendukung"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:12
-msgid "Inspiration Aura"
-msgstr "Aura Inspirasi"
-
-#: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster."
-msgstr "Pria di sekitar bekerja 10% lebih cepat."
-
-#: simulation/templates/template_unit_support_female_citizen.xml:56
+#: simulation/templates/template_unit_support_female_citizen.xml:43
 msgid "Female Citizen"
 msgstr "Rakyat Perempuan"
 
@@ -742,75 +724,27 @@ msgstr "Pemanah Skithia"
 msgid "Toxótēs Skythikós"
 msgstr "Toxótēs Skythikós"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:13
-msgid "Formation Reforms"
-msgstr "Reformasi Formasi"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:14
-msgid "All units in his formation +15% speed and +1 armor."
-msgstr "Seluruh unit pada formasinya +15% kecepatan dan +1 pertahanan."
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:22
-msgid "Peltast Reforms"
-msgstr "Reformasi Peltastes"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:23
-msgid "All Peltasts +15% speed."
-msgstr "Semua Peltastes +15% kecepatan."
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:29
+#: simulation/templates/units/athen_hero_iphicrates.xml:7
 msgid "Iphicrates"
 msgstr "Iphicrates"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:30
+#: simulation/templates/units/athen_hero_iphicrates.xml:8
 msgid "Iphikratēs"
 msgstr "Iphikratēs"
 
-#: simulation/templates/units/athen_hero_pericles.xml:11
-msgid "Builder Aura"
-msgstr "Aura Pembangun"
-
-#: simulation/templates/units/athen_hero_pericles.xml:12
-msgid "Buildings construct 15% faster within his vision."
-msgstr "Pembangunan dalam jarak pandangnya 15% lebih cepat."
-
-#: simulation/templates/units/athen_hero_pericles.xml:21
-msgid "Acropolis Aura"
-msgstr "Aura Akropolis"
-
-#: simulation/templates/units/athen_hero_pericles.xml:22
-msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "Kuil lebih murah 50 batu pada masa hidupnya."
-
-#: simulation/templates/units/athen_hero_pericles.xml:28
+#: simulation/templates/units/athen_hero_pericles.xml:7
 msgid "Pericles"
 msgstr "Pericles"
 
-#: simulation/templates/units/athen_hero_pericles.xml:29
+#: simulation/templates/units/athen_hero_pericles.xml:8
 msgid "Periklēs"
 msgstr "Periklēs"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:11
-msgid "Naval Commander Aura"
-msgstr "Aura Laksamana"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:12
-msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Ketika berada dalam kapal, kapal tersebut +50% lebih cepat."
-
-#: simulation/templates/units/athen_hero_themistocles.xml:20
-msgid "Naval Architect Aura"
-msgstr "Aura Arsitek Kelautan"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "-20% build time for ships during his lifespan."
-msgstr "-20% waktu membuat kapal selama dia masih hidup."
-
-#: simulation/templates/units/athen_hero_themistocles.xml:27
+#: simulation/templates/units/athen_hero_themistocles.xml:7
 msgid "Themistocles"
 msgstr "Themistokles"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:28
+#: simulation/templates/units/athen_hero_themistocles.xml:8
 msgid "Themistoklês"
 msgstr "Themistoklês"
 
@@ -939,49 +873,20 @@ msgstr "Pasukan Pedang Panjang Briton"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
-msgid "Champion Army"
-msgstr "Pasukan Jawara"
-
-#: simulation/templates/units/brit_hero_boudicca.xml:15
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:14
-msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr ""
-
-#: simulation/templates/units/brit_hero_boudicca.xml:27
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
+#: simulation/templates/units/brit_hero_boudicca.xml:12
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:7
 msgid "Boudicca"
 msgstr "Boudicca"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:21
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
 msgid "Heroine"
 msgstr "Srikandi"
 
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:13
-msgid "Hero Aura"
-msgstr "Aura Srikandi"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:11
-#: simulation/templates/units/cart_hero_hamilcar.xml:11
-msgid "All Units +15% speed."
-msgstr "Seluruh unit +15% kecepatannya."
-
-#: simulation/templates/units/brit_hero_caratacos.xml:16
+#: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
 msgstr "Karatakos"
 
-#: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "+1 HP per second healing rate for all units."
-msgstr "+1 nyawa per detik untuk semua unit."
-
-#: simulation/templates/units/brit_hero_cunobelin.xml:18
+#: simulation/templates/units/brit_hero_cunobelin.xml:6
 msgid "Cunobelin"
 msgstr "Cunobelin"
 
@@ -1146,54 +1051,33 @@ msgstr "Pasukan Tembiang Suci"
 msgid "Mašal"
 msgstr "Mašal"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:10
-msgid "Lightning Aura"
-msgstr "Aura Petir"
-
-#: simulation/templates/units/cart_hero_hamilcar.xml:16
+#: simulation/templates/units/cart_hero_hamilcar.xml:6
 msgid "Ḥimelqart Baraq"
 msgstr "Ḥimelqart Baraq"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:17
+#: simulation/templates/units/cart_hero_hamilcar.xml:7
 msgid "Hamilcar Barca"
 msgstr "Hamilcar Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "Tactician Aura"
-msgstr "Aura Ahli Siasat"
-
-#: simulation/templates/units/cart_hero_hannibal.xml:15
-msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr ""
-
-#: simulation/templates/units/cart_hero_hannibal.xml:21
+#: simulation/templates/units/cart_hero_hannibal.xml:6
 msgid "Hannibal Barca"
 msgstr "Hannibal Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:22
+#: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:25
+#: simulation/templates/units/cart_hero_hannibal.xml:10
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
 msgstr "Kemampuan \"Penyiasat\" (TBD): Pemain dapat melihat perubahan di dalam kabut perang selama Hannibal hidup.\nDapat mengamuk."
 
-#: simulation/templates/units/cart_hero_maharbal.xml:11
-msgid "Commander Aura"
-msgstr "Aura Panglima"
-
-#: simulation/templates/units/cart_hero_maharbal.xml:12
-msgid ""
-" +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr "+5 serangan serbu kavaleri dalam jarak pandangnya (saat ini tak berguna)"
-
-#: simulation/templates/units/cart_hero_maharbal.xml:17
+#: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
 msgstr "Maharbal"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:18
+#: simulation/templates/units/cart_hero_maharbal.xml:7
 msgid "Maharbaʿal"
 msgstr "Maharbaʿal"
 
@@ -1334,27 +1218,15 @@ msgstr "Pasukan Pedang Berat"
 msgid "Solduros"
 msgstr "Solduros"
 
-#: simulation/templates/units/gaul_hero_brennus.xml:11
-msgid "+10 Metal loot for every enemy unit killed."
-msgstr "+10 jarahan Logam untuk setiap unit musuh terbunuh."
-
-#: simulation/templates/units/gaul_hero_brennus.xml:16
+#: simulation/templates/units/gaul_hero_brennus.xml:6
 msgid "Brennus"
 msgstr "Brennus"
 
-#: simulation/templates/units/gaul_hero_britomartus.xml:11
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Kecepatan pengumpulan meningkat +15% semasa hidupnya."
-
-#: simulation/templates/units/gaul_hero_britomartus.xml:16
+#: simulation/templates/units/gaul_hero_britomartus.xml:6
 msgid "Britomartus"
 msgstr "Britomartus"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:14
-msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr "+2 serangan dan +1 penangkapan untuk seluruh unit dalam auranya."
-
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:20
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:6
 msgid "Vercingetorix"
 msgstr "Vercingetorix"
 
@@ -1493,23 +1365,15 @@ msgstr "Hypaspistḗs"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
-#: simulation/templates/units/mace_hero_alexander.xml:10
-msgid "Imperialism Aura"
-msgstr "Aura Imperialisme"
-
-#: simulation/templates/units/mace_hero_alexander.xml:11
-msgid "+10% territory effect for all buildings while he lives."
-msgstr "+10% pengaruh wilayah kepada seluruh bangunan selama ia hidup."
-
-#: simulation/templates/units/mace_hero_alexander.xml:32
+#: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "Alexander The Great"
 msgstr "Iskandar Agung"
 
-#: simulation/templates/units/mace_hero_alexander.xml:33
+#: simulation/templates/units/mace_hero_alexander.xml:23
 msgid "Mégās Aléxandros"
 msgstr "Mégās Aléxandros"
 
-#: simulation/templates/units/mace_hero_alexander.xml:34
+#: simulation/templates/units/mace_hero_alexander.xml:24
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "Bonus \"Herosida\": +20% bonus serangan vs. Pahlawan musuh."
 
@@ -1525,27 +1389,19 @@ msgstr "Kraterós"
 msgid "Trusted general under Alexander the Great."
 msgstr "Jenderal terpercaya pada masa Iskandar Agung"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:13
-msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr "+15% Jarak dan +10 Serangan Lindas untu Mesing Kepung."
-
-#: simulation/templates/units/mace_hero_demetrius.xml:20
+#: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
 msgstr "Demetrius Sang Pengepung"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:21
+#: simulation/templates/units/mace_hero_demetrius.xml:8
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:14
-msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr ""
-
-#: simulation/templates/units/mace_hero_philip.xml:21
+#: simulation/templates/units/mace_hero_philip.xml:7
 msgid "Philip II of Macedon"
 msgstr "Philip II of Macedon"
 
-#: simulation/templates/units/mace_hero_philip.xml:22
+#: simulation/templates/units/mace_hero_philip.xml:8
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
@@ -1653,7 +1509,7 @@ msgstr "Aśvārohagaṇaḥ"
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:12
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
-#: simulation/templates/units/pers_hero_darius.xml:21
+#: simulation/templates/units/pers_hero_darius.xml:10
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
 msgstr "Kereta"
@@ -1666,7 +1522,7 @@ msgstr "Kereta Perang"
 msgid "Rath"
 msgstr "Rath"
 
-#: simulation/templates/units/maur_champion_chariot.xml:15
+#: simulation/templates/units/maur_champion_chariot.xml:14
 msgid "Deals Trample Damage."
 msgstr ""
 
@@ -1708,7 +1564,7 @@ msgstr "Pemanah Gajah"
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Can run amok."
 msgstr "Dapat mengamuk."
 
@@ -1722,8 +1578,8 @@ msgstr "Aśoka Devānāmpriya"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:14
 msgid ""
-"Hero Aura: TBD.\n"
-"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
+"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
+"during Ashoka's lifetime."
 msgstr ""
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
@@ -1745,10 +1601,6 @@ msgstr ""
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
 msgstr "Chandragupta Maurya"
-
-#: simulation/templates/units/maur_hero_maurya.xml:7
-msgid "Hero Aura: TBD."
-msgstr "Aura Pahlawan:Belum Tersedia"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1803,7 +1655,7 @@ msgstr "Gajah Pekerja"
 msgid "Karmākara Gaja"
 msgstr "Karmākara Gaja"
 
-#: simulation/templates/units/maur_support_elephant.xml:32
+#: simulation/templates/units/maur_support_elephant.xml:31
 msgid "Mobile dropsite. Can also assist in constructing buildings."
 msgstr "Gudang berjalan. Dapat membantu pembangunan."
 
@@ -1915,61 +1767,35 @@ msgstr "Pasukan Abadi Persia"
 msgid "Anusiya"
 msgstr "Anusiya"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:13
-msgid "Lead from the Front Aura"
-msgstr "Aura Memimpin dari Depan"
-
-#: simulation/templates/units/pers_hero_cyrus.xml:14
-msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr "+2 Serangan dan +1 Mengambil Alih untuk kavaleri di sekitar."
-
-#: simulation/templates/units/pers_hero_cyrus.xml:20
+#: simulation/templates/units/pers_hero_cyrus.xml:6
 msgid "Cyrus II The Great"
 msgstr "Koresh II Agung"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:21
+#: simulation/templates/units/pers_hero_cyrus.xml:7
 msgid "Kurush II"
 msgstr "Kurush II"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
-msgid "Leadership Aura"
-msgstr "Aura Pemimpin"
-
-#: simulation/templates/units/pers_hero_darius.xml:12
-msgid "+15% Movement Speed of all units."
-msgstr "+15% Kecepatan Gerak untuk seluruh unit."
-
-#: simulation/templates/units/pers_hero_darius.xml:22
 msgid "Darius The Great"
 msgstr "Darius Agung"
 
-#: simulation/templates/units/pers_hero_darius.xml:23
+#: simulation/templates/units/pers_hero_darius.xml:12
 msgid "Darayavahush I"
 msgstr "Darayavahush I"
 
-#: simulation/templates/units/pers_hero_darius.xml:25
+#: simulation/templates/units/pers_hero_darius.xml:14
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
 msgstr ""
 
-#: simulation/templates/units/pers_hero_xerxes.xml:12
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
-msgid "Administrator Aura"
-msgstr "Aura Pengatur"
-
-#: simulation/templates/units/pers_hero_xerxes.xml:13
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
-msgid " +15% Gather Rate and Build Rate of nearby units."
-msgstr " +15% Tingkat Pengumpulan dan Tingkat Pembangunan unit sekitar."
-
-#: simulation/templates/units/pers_hero_xerxes.xml:19
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:24
+#: simulation/templates/units/pers_hero_xerxes.xml:6
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:11
 msgid "Xerxes I"
 msgstr "Xerxes I"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:20
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:25
+#: simulation/templates/units/pers_hero_xerxes.xml:7
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Xsayarsa I"
 msgstr "Xsayarsa I"
 
@@ -2132,65 +1958,33 @@ msgstr "Raksasa"
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:12
-msgid "Patriot Aura"
-msgstr "Aura Patriot "
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 25% faster in her vision range."
-msgstr ""
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:20
+#: simulation/templates/units/ptol_hero_cleopatra.xml:7
 msgid "Cleopatra VII"
 msgstr "Kleopatra VII"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:21
+#: simulation/templates/units/ptol_hero_cleopatra.xml:8
 msgid "Kleopatra H' Philopator"
 msgstr "Kleopatra H' Philopator"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:22
+#: simulation/templates/units/ptol_hero_cleopatra.xml:9
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
 msgstr ""
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
-msgid "Construction Aura"
-msgstr "Aura Pembangunan"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
-msgid "Buildings construct 10% faster within his vision."
-msgstr "Pembangunan 10% lebih cepat pada jarak pandangnya."
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
-msgid "Mercenary Patron Aura"
-msgstr "Aura Penyokong Bayaran"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:25
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Prajurit bayaran memerlukan -50% sumberdaya semasa hidupnya."
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "Ptolemaios I \"Penyelamat\""
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:31
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:7
 msgid "Ptolemaios A' Soter"
 msgstr "Ptolemaios A' Soter"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
-msgid "Raphia Aura"
-msgstr "Aura Rafah"
-
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
-msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr "Pasukan Tembiang Mesir memiliki 40% tambahan nyawa sepanjang hidupnya."
-
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:16
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:6
 msgid "Ptolemy IV \"Father Loving\""
 msgstr "Ptolemy IV \"Ayah Penyayang\""
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:7
 msgid "Ptolemaios D' Philopator"
 msgstr "Ptolemaios D' Philopator"
 
@@ -2307,27 +2101,11 @@ msgstr "Infanteri Berat Itala"
 msgid "Extraordinarius"
 msgstr "Extraordinarius"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:13
-msgid "Sword of Rome Aura"
-msgstr "Aura Pedang Romawi"
-
-#: simulation/templates/units/rome_hero_marcellus.xml:14
-msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr ""
-
-#: simulation/templates/units/rome_hero_marcellus.xml:21
+#: simulation/templates/units/rome_hero_marcellus.xml:7
 msgid "Marcus Claudius Marcellus"
 msgstr "Marcus Claudius Marcellus"
 
-#: simulation/templates/units/rome_hero_maximus.xml:12
-msgid "Shield of Rome Aura"
-msgstr "Aura Perisai Romawi"
-
-#: simulation/templates/units/rome_hero_maximus.xml:13
-msgid "+1 armour for all units and structures."
-msgstr "+1 Pelindung untuk semua unit dan struktur"
-
-#: simulation/templates/units/rome_hero_maximus.xml:19
+#: simulation/templates/units/rome_hero_maximus.xml:7
 msgid "Quintus Fabius Maximus"
 msgstr "Quintus Fabius Maximus"
 
@@ -2533,53 +2311,27 @@ msgstr "Pasukan Pedang Berat Romawi"
 msgid "Thorakitès Rhomaïkós"
 msgstr "Thorakitès Rhomaïkós"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:12
-msgid "Ilarchès Aura"
-msgstr "Aura Ilarchès "
-
-#: simulation/templates/units/sele_hero_antiochus_great.xml:13
-msgid "All cavalry gains +2 levels of all armour types."
-msgstr "Semua kavaleri mendapat +2 untuk semua baju zirah."
-
-#: simulation/templates/units/sele_hero_antiochus_great.xml:19
+#: simulation/templates/units/sele_hero_antiochus_great.xml:7
 msgid "Antiochus III \"The Great\""
 msgstr "Antiokhos III \"Agung\""
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:20
+#: simulation/templates/units/sele_hero_antiochus_great.xml:8
 msgid "Antiokhos G' Mégās"
 msgstr "Antiokhos G' Mégās"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
-msgid "Conquest Aura"
-msgstr "Aura Penakluk"
-
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
-msgid ""
-"All nearby enemy buildings, siege engines, and ships have their health "
-"reduced by 20%."
-msgstr "Semua bangunan, mesin kepung, dan kapal musuh di sekitar nyawanya berkurang 20%"
-
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:20
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:7
 msgid "Antiochus IV \"The Righteous\""
 msgstr "Aintiokhos IV \"Sang Adil\""
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:21
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:8
 msgid "Antiokhos D' Epiphanes"
 msgstr "Antiokhos D' Epiphanes"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:13
-msgid "Zooiarchos Aura"
-msgstr "Aura Zooiarchos"
-
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:14
-msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr "Meningkatkan serangan dan kecepatan Gajah Perang +20% pada jarak pandangnya."
-
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:21
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:7
 msgid "Seleucus I \"The Victor\""
 msgstr "Seleukus I \"Pemenang\""
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:22
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:8
 msgid "Seleukos A' Nikator"
 msgstr "Seleukos A' Nikator"
 
@@ -2683,39 +2435,16 @@ msgstr "Agis III"
 msgid "Agis"
 msgstr "Agis"
 
-#: simulation/templates/units/spart_hero_agis.xml:11
-msgid ""
-"No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
-" hoplite."
-msgstr ""
-
-#: simulation/templates/units/spart_hero_brasidas.xml:14
-msgid "Helot Reforms"
-msgstr "Reformasi Helot"
-
-#: simulation/templates/units/spart_hero_brasidas.xml:15
-msgid ""
-"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr "Penskirmis Helot dalam jarak pandangnya memperoleh +2 serangan dan +1 semua jenis pertahanan "
-
-#: simulation/templates/units/spart_hero_brasidas.xml:22
-#: simulation/templates/units/spart_hero_brasidas.xml:23
+#: simulation/templates/units/spart_hero_brasidas.xml:7
+#: simulation/templates/units/spart_hero_brasidas.xml:8
 msgid "Brasidas"
 msgstr "Brasidas"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:14
-msgid "Last Stand Aura"
-msgstr "Aura Bertahan"
-
-#: simulation/templates/units/spart_hero_leonidas.xml:15
-msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr ""
-
-#: simulation/templates/units/spart_hero_leonidas.xml:22
+#: simulation/templates/units/spart_hero_leonidas.xml:7
 msgid "Leonidas I"
 msgstr "Leonidas I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:23
+#: simulation/templates/units/spart_hero_leonidas.xml:8
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 

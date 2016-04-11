@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-20 06:21+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2016-04-08 09:01+0200\n"
+"PO-Revision-Date: 2016-04-08 09:48+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "增加人口上限。"
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:50
+#: simulation/templates/template_structure_defense_wooden_tower.xml:49
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -61,21 +61,13 @@ msgstr "村莊"
 msgid "House"
 msgstr "房舍"
 
-#: simulation/templates/template_structure_civic_temple.xml:11
-msgid "Healing Aura"
-msgstr "醫療靈氣"
-
-#: simulation/templates/template_structure_civic_temple.xml:12
-msgid "Heals nearby units at 1 HP per second."
-msgstr "治療附近的單位每秒1點生命值。"
-
-#: simulation/templates/template_structure_civic_temple.xml:44
+#: simulation/templates/template_structure_civic_temple.xml:32
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
 msgstr "訓練醫療者。可駐守最多20個單位以更快的速率治療他們(每秒3點生命值)。研究醫療及宗教狂熱改進科技。"
 
-#: simulation/templates/template_structure_civic_temple.xml:45
+#: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:32
@@ -85,8 +77,8 @@ msgstr "訓練醫療者。可駐守最多20個單位以更快的速率治療他�
 msgid "Town"
 msgstr "城鎮"
 
-#: simulation/templates/template_structure_civic_temple.xml:45
-#: simulation/templates/template_structure_civic_temple.xml:43
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Temple"
 msgstr "神廟"
 
@@ -144,21 +136,11 @@ msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "允許單位通過城市的牆。可以鎖住以避免通過。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:18
-#: simulation/templates/template_structure_defense_wall_medium.xml:18
-msgid "Wall Protection"
-msgstr "防護城牆"
-
-#: simulation/templates/template_structure_defense_wall_long.xml:19
-#: simulation/templates/template_structure_defense_wall_medium.xml:19
-msgid "Units on walls have 3 extra Armor levels"
-msgstr "在城牆上的單位有額外的3點護甲等級"
-
-#: simulation/templates/template_structure_defense_wall_long.xml:58
+#: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid "Long wall segments can be converted to gates."
 msgstr "長的城牆區段可以被轉換為閘門。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:59
+#: simulation/templates/template_structure_defense_wall_long.xml:46
 msgid "Convert Stone Wall into City Gate"
 msgstr "將石牆轉換為城門"
 
@@ -326,11 +308,11 @@ msgstr "特殊的建築物"
 msgid "This is a special building unique to a particular civilization."
 msgstr "只有特定的文明才有此特殊的建築物。"
 
-#: simulation/templates/template_structure_wonder.xml:46
+#: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
 msgstr "奇觀"
 
-#: simulation/templates/template_structure_wonder.xml:47
+#: simulation/templates/template_structure_wonder.xml:48
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
@@ -455,24 +437,24 @@ msgstr "倉庫"
 msgid "Neṓs"
 msgstr "萬神殿"
 
-#: simulation/templates/structures/athen_theatron.xml:32
-#: simulation/templates/structures/mace_theatron.xml:32
-#: simulation/templates/structures/spart_theatron.xml:32
-#: simulation/templates/structures/theb_theatron.xml:32
+#: simulation/templates/structures/athen_theatron.xml:24
+#: simulation/templates/structures/mace_theatron.xml:24
+#: simulation/templates/structures/spart_theatron.xml:24
+#: simulation/templates/structures/theb_theatron.xml:24
 msgid "Greek Theater"
 msgstr "希臘劇院"
 
-#: simulation/templates/structures/athen_theatron.xml:33
-#: simulation/templates/structures/mace_theatron.xml:33
-#: simulation/templates/structures/spart_theatron.xml:33
-#: simulation/templates/structures/theb_theatron.xml:33
+#: simulation/templates/structures/athen_theatron.xml:25
+#: simulation/templates/structures/mace_theatron.xml:25
+#: simulation/templates/structures/spart_theatron.xml:25
+#: simulation/templates/structures/theb_theatron.xml:25
 msgid "Théātron"
 msgstr "希臘劇院"
 
-#: simulation/templates/structures/athen_theatron.xml:35
-#: simulation/templates/structures/mace_theatron.xml:35
-#: simulation/templates/structures/spart_theatron.xml:35
-#: simulation/templates/structures/theb_theatron.xml:35
+#: simulation/templates/structures/athen_theatron.xml:27
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/spart_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
@@ -608,26 +590,16 @@ msgstr "布立吞前哨"
 
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/gaul_rotarymill.xml:21
-msgid "Farming bonus"
-msgstr "耕種獎勵"
-
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Boosts nearby farming with +25% gathering rate."
-msgstr "鄰近的耕種速率加速 +25%。"
-
-#: simulation/templates/structures/brit_rotarymill.xml:33
-#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "旋轉研磨機"
 
-#: simulation/templates/structures/brit_rotarymill.xml:34
-#: simulation/templates/structures/gaul_rotarymill.xml:34
+#: simulation/templates/structures/brit_rotarymill.xml:22
+#: simulation/templates/structures/gaul_rotarymill.xml:22
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:36
-#: simulation/templates/structures/gaul_rotarymill.xml:36
+#: simulation/templates/structures/brit_rotarymill.xml:24
+#: simulation/templates/structures/gaul_rotarymill.xml:24
 msgid "Increase nearby farming output +25%."
 msgstr "增加鄰近的耕種輸出+25%。"
 
@@ -770,23 +742,15 @@ msgstr "迦太基前哨"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:10
-msgid "Repairing ship Aura"
-msgstr "船隻修復靈氣"
-
 #: simulation/templates/structures/cart_super_dock.xml:11
-msgid "Heals garrisoned ship at 3 HP per second."
-msgstr "每秒治療駐守的船隻 3 HP。"
-
-#: simulation/templates/structures/cart_super_dock.xml:21
 msgid "Naval Shipyard"
 msgstr "海軍造船廠"
 
-#: simulation/templates/structures/cart_super_dock.xml:22
+#: simulation/templates/structures/cart_super_dock.xml:12
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:25
+#: simulation/templates/structures/cart_super_dock.xml:15
 msgid "Construct and repair mighty warships."
 msgstr "建造及修復強力戰艦。"
 
@@ -892,15 +856,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:38
+#: simulation/templates/structures/iber_monument.xml:27
 msgid "Revered Monument"
 msgstr "崇敬紀念碑"
 
-#: simulation/templates/structures/iber_monument.xml:39
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:42
+#: simulation/templates/structures/iber_monument.xml:31
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1016,7 +980,7 @@ msgstr "象棚"
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:26
+#: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Train elephant units."
 msgstr "訓練大象單位。"
 
@@ -1032,7 +996,7 @@ msgstr "Kshetra"
 msgid "Durg"
 msgstr "杜爾格（印度城市）"
 
-#: simulation/templates/structures/maur_fortress.xml:7
+#: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
 msgstr "訓練英雄及精英單位。"
 
@@ -1048,19 +1012,15 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:11
-msgid "All traders in range +20% walk speed."
-msgstr "在範圍內所有的貿易商人 +20% 走路速度。"
-
-#: simulation/templates/structures/maur_pillar_ashoka.xml:38
+#: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Edict Pillar of Ashoka"
 msgstr "阿育王法敕"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:39
+#: simulation/templates/structures/maur_pillar_ashoka.xml:28
 msgid "Śāsana Stambha Aśokā"
 msgstr "Śāsana Stambha Aśokā"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:42
+#: simulation/templates/structures/maur_pillar_ashoka.xml:31
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
@@ -1201,7 +1161,7 @@ msgstr "Didebani"
 msgid "Palace"
 msgstr "宮殿"
 
-#: simulation/templates/structures/pers_palace.xml:30
+#: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "建造限制：1。"
 
@@ -1213,7 +1173,7 @@ msgstr "波斯特殊建築物"
 msgid "Parihuvādā"
 msgstr "Parihuvādā"
 
-#: simulation/templates/structures/pers_sb2.xml:26
+#: simulation/templates/structures/pers_sb2.xml:25
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
@@ -1263,7 +1223,7 @@ msgstr "巴比倫空中花園"
 msgid "ḥwt-n-mš'"
 msgstr "ḥwt-n-mš'"
 
-#: simulation/templates/structures/ptol_barracks.xml:19
+#: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
@@ -1296,6 +1256,12 @@ msgstr "mktr-'a"
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
 msgstr "ḥwt"
+
+#: simulation/templates/structures/ptol_house.xml:20
+msgid ""
+"Increase the population limit. Since they are made of mud brick, Egyptian "
+"houses are free of cost, but are very weak."
+msgstr ""
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1512,7 +1478,7 @@ msgstr "灶神維斯塔神廟"
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:15
+#: simulation/templates/structures/rome_temple_vesta.xml:14
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
