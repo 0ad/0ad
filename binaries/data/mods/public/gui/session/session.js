@@ -1045,7 +1045,8 @@ function showTimeWarpMessageBox()
  */
 function reportGame()
 {
-	if (!Engine.HasXmppClient() || !Engine.IsRankedGame())
+	// Only 1v1 games are rated (and Gaia is part of g_Players)
+	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() || g_Players.length != 3)
 		return;
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
