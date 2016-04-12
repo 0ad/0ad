@@ -258,6 +258,8 @@ m.GameState.prototype.checkTechRequirements = function (reqs)
 	}
 	else if (reqs.civ)
 		return this.playerData.civ == reqs.civ;
+	else if (reqs.notciv)
+		return this.playerData.civ != reqs.notciv
 	
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));
@@ -310,6 +312,11 @@ m.GameState.prototype.hasAllies = function()
 m.GameState.prototype.isPlayerAlly = function(id)
 {
 	return this.playerData.isAlly[id];
+};
+
+m.GameState.prototype.isPlayerMutualAlly = function(id)
+{
+	return this.playerData.isMutualAlly[id];
 };
 
 m.GameState.prototype.isPlayerEnemy = function(id)
