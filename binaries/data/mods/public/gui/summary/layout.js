@@ -113,7 +113,7 @@ var g_ScorePanelsData = [
 			{ "width": 100, "fn": calculateResourceExchanged },
 			{ "width": 100, "fn": calculateResourceExchanged },
 			{ "width": 100, "fn": calculateResourceExchanged },
-			{ "width": 100, "fn": calculateBatteryEfficiency },
+			{ "width": 100, "fn": calculateBarterEfficiency },
 			{ "width": 100, "fn": calculateTradeIncome }
 		],
 		"teamCounterFn": calculateMarketTeam
