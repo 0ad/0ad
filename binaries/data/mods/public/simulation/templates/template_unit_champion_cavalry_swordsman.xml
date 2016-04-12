@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
-    <Hack>9</Hack>
-    <Pierce>7</Pierce>
+    <Hack op="add">1</Hack>
+    <Pierce op="add">2</Pierce>
   </Armour>
   <Attack>
     <Melee>
@@ -23,10 +23,9 @@
     </Charge>
   </Attack>
   <Cost>
-    <BuildTime>16</BuildTime>
     <Resources>
       <wood>75</wood>
-      <metal>100</metal>
+      <metal>125</metal>
     </Resources>
   </Cost>
   <Health>

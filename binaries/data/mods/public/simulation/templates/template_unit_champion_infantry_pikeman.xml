@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>15</Hack>
-    <Pierce>15</Pierce>
+    <Hack op="add">8</Hack>
+    <Pierce op="add">8</Pierce>
     <Crush>20</Crush>
   </Armour>
   <Attack>

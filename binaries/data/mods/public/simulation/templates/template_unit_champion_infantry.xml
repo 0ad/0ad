@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>6</Pierce>
+    <Hack>5</Hack>
+    <Pierce>5</Pierce>
     <Crush>20</Crush>
   </Armour>
   <Cost>
-    <BuildTime>13</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
-      <food>100</food>
+      <food>125</food>
       <wood>0</wood>
       <stone>0</stone>
-      <metal>50</metal>
+      <metal>75</metal>
     </Resources>
   </Cost>
   <Health>

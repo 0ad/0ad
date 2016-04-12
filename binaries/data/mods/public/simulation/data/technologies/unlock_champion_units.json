@@ -7,11 +7,11 @@
 		"rome": "Regio Cohors"
 	},
 	"description": "Guard units (Champions) are professionals who wield the best weapons and have the best training.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 500},
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 1000},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "helmet_corinthian_crest.png",
-	"researchTime": 40,
+	"researchTime": 90,
 	"tooltip": "Unlock the ability to train Champions at the barracks.",
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

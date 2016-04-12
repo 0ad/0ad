@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>10</Hack>
-    <Pierce>10</Pierce>
+    <Hack op="add">3</Hack>
+    <Pierce op="add">3</Pierce>
   </Armour>
   <Attack>
     <Melee>
@@ -52,7 +52,7 @@
   <UnitMotion>
     <WalkSpeed>11.5</WalkSpeed>
     <Run>
-      <Speed>15.0</Speed>
+      <Speed>23.0</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>

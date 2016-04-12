@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_swordsman">
-  <Armour>
-    <Hack>6</Hack>
-    <Pierce>5</Pierce>
-    <Crush>5</Crush>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>16.5</Hack>
-    </Melee>
-    <Charge>
-      <Hack>32.0</Hack>
-    </Charge>
-  </Attack>
-  <Health>
-    <Max>120</Max>
-  </Health>
   <Identity>
     <Civ>merc</Civ>
     <GenericName>Thracian Mercenary Swordsman</GenericName>
@@ -26,7 +10,6 @@
     <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Looter disable=""/>
   <Promotion disable=""/>
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>

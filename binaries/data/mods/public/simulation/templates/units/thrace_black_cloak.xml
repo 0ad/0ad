@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Attack>
-    <Melee>
-      <Hack>24.5</Hack>
-    </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-    </Charge>
-  </Attack>
   <Cost>
+    <BuildTime op="mul">0.5</BuildTime>
     <Resources>
       <food>0</food>
-      <metal>125</metal>
+      <metal op="mul">3</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -22,17 +15,8 @@
     <History>Thracian tribesmen who wield the fiercesome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
     <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/sele_infantry_swordsman.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <UnitMotion>
-    <WalkSpeed>9.5</WalkSpeed>
-    <Run>
-      <Speed>18.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>88</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/hellenes/thracian_blackcloak.xml</Actor>
   </VisualActor>
