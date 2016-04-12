@@ -475,7 +475,7 @@ function setBaseTerrainDiamondSquare(minHeight, maxHeight, smoothness, initialHe
 	var shift = [floor((newHeightmap.length - heightmap.length) / 2), floor((newHeightmap[0].length - heightmap[0].length) / 2)];
 	for (var x = 0; x < heightmap.length; x++)
 		for (var y = 0; y < heightmap[0].length; y++)
-			heightmap[x][y] = newHeightmap[x][y];
+			heightmap[x][y] = newHeightmap[x + shift[0]][y + shift[1]];
 }
 
 
