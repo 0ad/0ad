@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
   <BuildRestrictions>
     <Category>Stoa</Category>
   </BuildRestrictions>
@@ -23,7 +18,7 @@
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <Max>1500</Max>
+    <Max>2500</Max>
   </Health>
   <Identity>
     <Civ>gaia</Civ>
@@ -32,6 +27,7 @@
     <History>A structure built for civic purposes. Stoas eventually became meeting places for philosophy and commerce. They were usually built within the Agora, or city center, of a Greek city.</History>
     <Tooltip>Add +10 to Population Cap. Recruit special units.</Tooltip>
     <Icon>gaia/special_stoa.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>10</xp>
@@ -51,9 +47,9 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
+      units/thrace_black_cloak
       units/mace_thureophoros
       units/mace_thorakites
-      units/thrace_black_cloak
     </Entities>
   </ProductionQueue>
   <Vision>

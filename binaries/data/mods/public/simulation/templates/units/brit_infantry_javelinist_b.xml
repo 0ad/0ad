@@ -2,10 +2,11 @@
 <Entity parent="template_unit_infantry_ranged_javelinist">
   <Builder>
     <Entities datatype="tokens">
+      structures/brit_crannog
       structures/brit_kennel
       structures/brit_rotarymill
       structures/{civ}_wonder
-	</Entities>
+    </Entities>
   </Builder>
   <Identity>
     <Civ>brit</Civ>
