@@ -221,45 +221,22 @@ m.GameState.prototype.checkTechRequirements = function (reqs)
 	if (!reqs)
 		return true;
 	
-	if (reqs.tech)
-	{
-		return (this.playerData.researchedTechs[reqs.tech] !== undefined && this.playerData.researchedTechs[reqs.tech]);
-	}
-	else if (reqs.all)
-	{
-		for (let req of reqs.all)
-			if (!this.checkTechRequirements(req))
-				return false;
-		return true;
-	}
-	else if (reqs.any)
-	{
-		for (let req of reqs.any)
-			if (this.checkTechRequirements(req))
-				return true;
-		return false;
-	}
-	else if (reqs.class)
-	{
-		if (reqs.numberOfTypes)
-		{
-			if (this.playerData.typeCountsByClass[reqs.class])
-				return (reqs.numberOfTypes <= Object.keys(this.playerData.typeCountsByClass[reqs.class]).length);
-			else
-				return false;
-		}
-		else if (reqs.number)
-		{
-			if (this.playerData.classCounts[reqs.class])
-				return (reqs.number <= this.playerData.classCounts[reqs.class]);
-			else
-				return false;
-		}
-	}
-	else if (reqs.civ)
+	if (reqs.all)
+		return reqs.all.every(r => this.checkTechRequirements(r));
+	if (reqs.any)
+		return reqs.any.some(r => this.checkTechRequirements(r));
+	if (reqs.civ)
 		return this.playerData.civ == reqs.civ;
-	else if (reqs.notciv)
-		return this.playerData.civ != reqs.notciv
+	if (reqs.notciv)
+		return this.playerData.civ != reqs.notciv;
+	if (reqs.tech)
+		return this.playerData.researchedTechs[reqs.tech] !== undefined && this.playerData.researchedTechs[reqs.tech];
+	if (reqs.class && reqs.numberOfTypes)
+		return this.playerData.typeCountsByClass[reqs.class] && 
+			Object.keys(this.playerData.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
+	if (reqs.class && reqs.number)
+		return this.playerData.classCounts[reqs.class] &&
+			reqs.number <= this.playerData.classCounts[reqs.class] >= reqs.number;
 	
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));
@@ -355,40 +332,36 @@ m.GameState.prototype.isEntityAlly = function(ent)
 {
 	if (!ent || !ent.owner)
 		return false;
-	if ((typeof ent.owner) === "function")
+	if (typeof ent.owner === "function")
 		return this.playerData.isAlly[ent.owner()];
-	else
-		return this.playerData.isAlly[ent.owner];
+	return this.playerData.isAlly[ent.owner];
 };
 
 m.GameState.prototype.isEntityExclusiveAlly = function(ent)
 {
 	if (!ent || !ent.owner)
 		return false;
-	if ((typeof ent.owner) === "function")
-		return (this.playerData.isAlly[ent.owner()] && ent.owner() !== this.player);
-	else
-		return (this.playerData.isAlly[ent.owner] && ent.owner !== this.player);
+	if (typeof ent.owner === "function")
+		return this.playerData.isAlly[ent.owner()] && ent.owner() !== this.player;
+	return this.playerData.isAlly[ent.owner] && ent.owner !== this.player;
 };
 
 m.GameState.prototype.isEntityEnemy = function(ent)
 {
 	if (!ent || !ent.owner)
 		return false;
-	if ((typeof ent.owner) === "function")
+	if (typeof ent.owner === "function")
 		return this.playerData.isEnemy[ent.owner()];
-	else
-		return this.playerData.isEnemy[ent.owner];
+	return this.playerData.isEnemy[ent.owner];
 };
  
 m.GameState.prototype.isEntityOwn = function(ent)
 {
 	if (!ent || !ent.owner)
 		return false;
-	if ((typeof ent.owner) === "function")
+	if (typeof ent.owner === "function")
 		return ent.owner() === this.player;
-	else
-		return ent.owner === this.player;
+	return ent.owner === this.player;
 };
 
 m.GameState.prototype.getEntityById = function(id)
