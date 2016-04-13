@@ -85,8 +85,8 @@ TechnologyManager.prototype.CanProduce = function (templateName)
 
 	if (template.Identity && template.Identity.RequiredTechnology)
 		return this.IsTechnologyResearched(template.Identity.RequiredTechnology);
-	else
-		return true; // If there is no required technology then this entity can be produced
+	// If there is no required technology then this entity can be produced
+	return true;
 };
 
 TechnologyManager.prototype.IsTechnologyResearched = function(tech)
@@ -124,69 +124,44 @@ TechnologyManager.prototype.CanResearch = function(tech)
 	return this.CheckTechnologyRequirements(template.requirements || null);
 };
 
-// Private function for checking a set of requirements is met
-TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs)
+/**
+ * Private function for checking a set of requirements is met
+ * @param reqs Object of technology requirements as given by the technology template
+ * @param civonly A boolean set to true if only the civ requirement is checked
+ *
+ * @return true if the requirements are checked
+ * false otherwise
+ */
+TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs, civonly)
 {
 	// If there are no requirements then all requirements are met
 	if (!reqs)
 		return true;
 
-	if (reqs.tech)
+	if (reqs.all)
+		return reqs.all.every(r => this.CheckTechnologyRequirements(r, civonly));
+	if (reqs.any)
+		return reqs.any.some(r => this.CheckTechnologyRequirements(r, civonly));
+	if (reqs.civ)
 	{
-		return this.IsTechnologyResearched(reqs.tech);
+		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		return cmpPlayer && cmpPlayer.GetCiv() == reqs.civ;
 	}
-	else if (reqs.all)
+	if (reqs.notciv)
 	{
-		for (var i = 0; i < reqs.all.length; i++)
-		{
-			if (!this.CheckTechnologyRequirements(reqs.all[i]))
-				return false;
-		}
+		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		return cmpPlayer && cmpPlayer.GetCiv() != reqs.notciv;
+	}
+	if (civonly)
 		return true;
-	}
-	else if (reqs.any)
-	{
-		for (var i = 0; i < reqs.any.length; i++)
-		{
-			if (this.CheckTechnologyRequirements(reqs.any[i]))
-				return true;
-		}
-		return false;
-	}
-	else if (reqs.class)
-	{
-		if (reqs.numberOfTypes)
-		{
-			if (this.typeCountsByClass[reqs.class])
-				return (reqs.numberOfTypes <= Object.keys(this.typeCountsByClass[reqs.class]).length);
-			else
-				return false;
-		}
-		else if (reqs.number)
-		{
-			if (this.classCounts[reqs.class])
-				return (reqs.number <= this.classCounts[reqs.class]);
-			else
-				return false;
-		}
-	}
-	else if (reqs.civ)
-	{
-		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		if (cmpPlayer && cmpPlayer.GetCiv() == reqs.civ)
-			return true;
-		else 
-			return false;
-	}
-	else if (reqs.notciv)
-	{
-		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		if (cmpPlayer && cmpPlayer.GetCiv() == reqs.notciv)
-			return false;
-		else
-			return true;
-	}
-
+	if (reqs.tech)
+		return this.IsTechnologyResearched(reqs.tech);
+	if (reqs.class && reqs.numberOfTypes)
+		return this.typeCountsByClass[reqs.class] &&
+			Object.keys(this.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
+	if (reqs.class && reqs.number)
+		return this.classCounts[reqs.class] &&
+			this.classCounts[reqs.class] >= reqs.number;
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));
 	return false;

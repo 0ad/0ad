@@ -141,11 +141,11 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 {
 	if (!this.template.Technologies)
 		return [];
-	
+
 	var string = this.template.Technologies._string;
 	if (!string)
 		return [];
-	
+
 	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (!cmpTechnologyManager)
 		return [];
@@ -156,11 +156,18 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		return [];
 
 	var techs = string.split(/\s+/);
+
+	// Remove any technologies that can't be searched by this civ (after capture for example)
+	techs = techs.filter(tech => {
+		let reqs = cmpTechnologyManager.GetTechnologyTemplate(tech).requirements || null;
+		return cmpTechnologyManager.CheckTechnologyRequirements(reqs, true);
+	});
+
 	var techList = [];
 	var superseded = {}; // Stores the tech which supersedes the key
 
 	var disabledTechnologies = cmpPlayer.GetDisabledTechnologies();
-	
+
 	// Add any top level technologies to an array which corresponds to the displayed icons
 	// Also store what a technology is superceded by in the superceded object {"tech1":"techWhichSupercedesTech1", ...}
 	for (var i in techs)
@@ -174,7 +181,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		else
 			superseded[template.supersedes] = tech;
 	}
-	
+
 	// Now make researched/in progress techs invisible
 	for (var i in techList)
 	{
@@ -186,9 +193,9 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		
 		techList[i] = tech;
 	}
-	
+
 	var ret = [];
-	
+
 	// This inserts the techs into the correct positions to line up the technology pairs
 	for (var i = 0; i < techList.length; i++)
 	{
@@ -198,14 +205,14 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 			ret[i] = undefined;
 			continue;
 		}
-		
+
 		var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
 		if (template.top)
 			ret[i] = {"pair": true, "top": template.top, "bottom": template.bottom};
 		else
 			ret[i] = tech;
 	}
-	
+
 	return ret;
 };
 
