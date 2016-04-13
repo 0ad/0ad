@@ -307,11 +307,12 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation || !entState.trader)
+			if (targetState.foundation || !entState.trader || !targetState.market)
 				return false;
 			if (!playerCheck(entState, targetState, ["Player", "Ally"]))
 				return false;
-			if (!(hasClass(entState, "Organic") && hasClass(targetState, "Market")) && !(hasClass(entState, "Ship") && hasClass(targetState, "NavalMarket")))
+			if (!(targetState.market.land && hasClass(entState, "Organic") ||
+			      targetState.market.naval && hasClass(entState, "Ship")))
 				return false;
 
 			var tradingData = {"trader": entState.id, "target": targetState.id};
@@ -529,8 +530,8 @@ var unitActions =
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
 			}
-			else if (hasClass(entState, "Market") && hasClass(targetState, "Market") && entState.id != targetState.id &&
-					(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")) && !playerCheck(entState, targetState, ["Enemy"]))
+			else if (entState.market && targetState.market && entState.id != targetState.id &&
+				(!entState.market.naval || targetState.market.naval) && !playerCheck(entState, targetState, ["Enemy"]))
 			{
 				// Find a trader (if any) that this building can produce.
 				var trader;
@@ -881,7 +882,7 @@ var g_EntityCommands =
 	"select-trading-goods": {
 		"getInfo": function(entState)
 		{
-			if (!hasClass(entState, "Market"))
+			if (!entState.market)
 				return false;
 			return {
 				"tooltip": translate("Select trading goods"),
