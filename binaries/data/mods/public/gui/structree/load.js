@@ -267,6 +267,7 @@ function calcReqs(op, val)
 	{
 	case "civ":
 	case "class":
+	case "notciv":
 	case "number":
 		// nothing needs doing
 		break;
@@ -289,6 +290,7 @@ function calcReqs(op, val)
 				switch (o)
 				{
 				case "civ":
+				case "notciv":
 					c.push(r);
 					break;
 
