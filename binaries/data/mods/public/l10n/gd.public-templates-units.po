@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-27 17:46+0000\n"
+"POT-Creation-Date: 2016-04-08 09:01+0200\n"
+"PO-Revision-Date: 2016-04-08 10:32+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Saoranach"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:40
+#: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "Saighdear"
@@ -46,7 +46,7 @@ msgstr "Saighdear"
 #: simulation/templates/units/cart_support_healer_b.xml:10
 #: simulation/templates/units/gaul_support_healer_b.xml:9
 #: simulation/templates/units/iber_support_healer_b.xml:11
-#: simulation/templates/units/maur_support_healer_b.xml:10
+#: simulation/templates/units/maur_support_healer_b.xml:9
 #: simulation/templates/units/pers_support_healer_b.xml:10
 #: simulation/templates/units/rome_support_healer_b.xml:11
 msgctxt "Rank"
@@ -67,7 +67,7 @@ msgstr "Bunasach"
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
-#: simulation/templates/units/maur_ship_trireme.xml:20
+#: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "Dlùth"
 
@@ -280,18 +280,8 @@ msgstr "Muc-mara"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Marbh e is cruinnich biadh o stòras mòr na mara seo."
 
-#: simulation/templates/template_unit_hero.xml:10
-msgid "Garrisoned Capture Aura"
-msgstr "Aura glacadh ghearastain"
-
-#: simulation/templates/template_unit_hero.xml:11
-msgid ""
-"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
-"capture points recovery rate."
-msgstr "Nuair a bhios e na ghearastan ann an togalach no inneal-sèiste, cuiridh an curaidh buannachd de +2 ris an astar san fhaigh e puingean glacaidh air ais."
-
-#: simulation/templates/template_unit_hero.xml:40
-#: simulation/templates/template_unit_hero.xml:38
+#: simulation/templates/template_unit_hero.xml:30
+#: simulation/templates/template_unit_hero.xml:28
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Hero"
@@ -472,15 +462,7 @@ msgstr "Cuir suas ri 20 aonadan coisridh ’nan gearastan ann ach am meudaich th
 msgid "Support"
 msgstr "Taic"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:12
-msgid "Inspiration Aura"
-msgstr "Aura brosnachail"
-
-#: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster."
-msgstr "Obraichidh na fireannaich am fagas nas luaithe le 10%."
-
-#: simulation/templates/template_unit_support_female_citizen.xml:56
+#: simulation/templates/template_unit_support_female_citizen.xml:43
 msgid "Female Citizen"
 msgstr "Saoranach boireann"
 
@@ -740,75 +722,27 @@ msgstr "Boghadair Sgitiach"
 msgid "Toxótēs Skythikós"
 msgstr "Toxótēs Skythikós"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:13
-msgid "Formation Reforms"
-msgstr "Ath-leasachaidhean air na cumaidhean"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:14
-msgid "All units in his formation +15% speed and +1 armor."
-msgstr "Gheibh gach aonad sa chumadh aige +15% de dh’astar ’s +1 de dh’armachd."
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:22
-msgid "Peltast Reforms"
-msgstr "Ath-leasachaidhean air a’ phealtast"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:23
-msgid "All Peltasts +15% speed."
-msgstr "Gheibh gach pealtast +15% de luaths."
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:29
+#: simulation/templates/units/athen_hero_iphicrates.xml:7
 msgid "Iphicrates"
 msgstr "Iphicrates"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:30
+#: simulation/templates/units/athen_hero_iphicrates.xml:8
 msgid "Iphikratēs"
 msgstr "Iphikratēs"
 
-#: simulation/templates/units/athen_hero_pericles.xml:11
-msgid "Builder Aura"
-msgstr "Aura togail"
-
-#: simulation/templates/units/athen_hero_pericles.xml:12
-msgid "Buildings construct 15% faster within his vision."
-msgstr "Thèid gach togalach am broinn astar lèirsinne a thogail 15% nas luaithe."
-
-#: simulation/templates/units/athen_hero_pericles.xml:21
-msgid "Acropolis Aura"
-msgstr "Aura acra-bhailteach"
-
-#: simulation/templates/units/athen_hero_pericles.xml:22
-msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "Bidh teampaill 50 clach nas saoire fhad ’s a bhios e beò"
-
-#: simulation/templates/units/athen_hero_pericles.xml:28
+#: simulation/templates/units/athen_hero_pericles.xml:7
 msgid "Pericles"
 msgstr "Pericles"
 
-#: simulation/templates/units/athen_hero_pericles.xml:29
+#: simulation/templates/units/athen_hero_pericles.xml:8
 msgid "Periklēs"
 msgstr "Periklēs"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:11
-msgid "Naval Commander Aura"
-msgstr "Aura ceannaird-mhara"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:12
-msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Nuair a bhios e ’na ghearastan air long, bidh an long +50% nas luaithe."
-
-#: simulation/templates/units/athen_hero_themistocles.xml:20
-msgid "Naval Architect Aura"
-msgstr "Aura ailtire-mhara"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:21
-msgid "-20% build time for ships during his lifespan."
-msgstr "-20% air ùine togail nan long fhad ’s a bhios e beò."
-
-#: simulation/templates/units/athen_hero_themistocles.xml:27
+#: simulation/templates/units/athen_hero_themistocles.xml:7
 msgid "Themistocles"
 msgstr "Themistocles"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:28
+#: simulation/templates/units/athen_hero_themistocles.xml:8
 msgid "Themistoklês"
 msgstr "Themistoklês"
 
@@ -937,49 +871,20 @@ msgstr "Mòr-chlaidheamhair Breatannach"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:13
-msgid "Champion Army"
-msgstr "Feachd nan laoch"
-
-#: simulation/templates/units/brit_hero_boudicca.xml:15
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:14
-msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr "+5 de dh’ionnsaigh, +2 de ghlacadh is luaths leasaichte le +25% airson laoich."
-
-#: simulation/templates/units/brit_hero_boudicca.xml:27
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:20
+#: simulation/templates/units/brit_hero_boudicca.xml:12
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:7
 msgid "Boudicca"
 msgstr "Boudicca"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:21
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
 msgid "Heroine"
 msgstr "Bana-churaidh"
 
-#: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cunobelin.xml:11
-#: simulation/templates/units/gaul_hero_brennus.xml:10
-#: simulation/templates/units/gaul_hero_britomartus.xml:10
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:13
-#: simulation/templates/units/mace_hero_demetrius.xml:12
-#: simulation/templates/units/mace_hero_philip.xml:13
-msgid "Hero Aura"
-msgstr "Aura gaisgich"
-
-#: simulation/templates/units/brit_hero_caratacos.xml:11
-#: simulation/templates/units/cart_hero_hamilcar.xml:11
-msgid "All Units +15% speed."
-msgstr "Gheibh gach aonad +15% de luaths."
-
-#: simulation/templates/units/brit_hero_caratacos.xml:16
+#: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
 msgstr "Caratacos"
 
-#: simulation/templates/units/brit_hero_cunobelin.xml:12
-msgid "+1 HP per second healing rate for all units."
-msgstr "+1 PB gach diog air luaths slànachaidh nan aonadan uile."
-
-#: simulation/templates/units/brit_hero_cunobelin.xml:18
+#: simulation/templates/units/brit_hero_cunobelin.xml:6
 msgid "Cunobelin"
 msgstr "Cynfelyn"
 
@@ -1144,54 +1049,33 @@ msgstr "Pìcear còmhlain naoimh"
 msgid "Mašal"
 msgstr "Mašal"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:10
-msgid "Lightning Aura"
-msgstr "Aura dealanaich"
-
-#: simulation/templates/units/cart_hero_hamilcar.xml:16
+#: simulation/templates/units/cart_hero_hamilcar.xml:6
 msgid "Ḥimelqart Baraq"
 msgstr "Ḥimelqart Baraq"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:17
+#: simulation/templates/units/cart_hero_hamilcar.xml:7
 msgid "Hamilcar Barca"
 msgstr "Hamilcar Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "Tactician Aura"
-msgstr "Aura innleachd"
-
-#: simulation/templates/units/cart_hero_hannibal.xml:15
-msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr "+2 de dh’ionnsaigh is +1 de ghlacadh airson gach aonad caidreabhach am broinn astar lèirsinne."
-
-#: simulation/templates/units/cart_hero_hannibal.xml:21
+#: simulation/templates/units/cart_hero_hannibal.xml:6
 msgid "Hannibal Barca"
 msgstr "Hannibal Barca"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:22
+#: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:25
+#: simulation/templates/units/cart_hero_hannibal.xml:10
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
 msgstr "Comas “ro-innleachd” (ri shònrachadh): Chì an cluicheadair na dh’atharraicheas taobh a-staigh ceò a’ chogaidh fad ’s a tha Hannibal beò.\nDh’fhaoidte gun gabh e caothach."
 
-#: simulation/templates/units/cart_hero_maharbal.xml:11
-msgid "Commander Aura"
-msgstr "Aura ceannaird"
-
-#: simulation/templates/units/cart_hero_maharbal.xml:12
-msgid ""
-" +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr " Bheir gach aonad eachraidh ionnsaigh cruinn-leum le +5 am broinn astar lèirsinne (gun fheum fhathast)."
-
-#: simulation/templates/units/cart_hero_maharbal.xml:17
+#: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
 msgstr "Maharbal"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:18
+#: simulation/templates/units/cart_hero_maharbal.xml:7
 msgid "Maharbaʿal"
 msgstr "Maharbaʿal"
 
@@ -1332,27 +1216,15 @@ msgstr "Claidheamhair trom"
 msgid "Solduros"
 msgstr "Solduros"
 
-#: simulation/templates/units/gaul_hero_brennus.xml:11
-msgid "+10 Metal loot for every enemy unit killed."
-msgstr "+10 de spùinnean meatailt airson gach aonad an nàmhad air a mharbhadh."
-
-#: simulation/templates/units/gaul_hero_brennus.xml:16
+#: simulation/templates/units/gaul_hero_brennus.xml:6
 msgid "Brennus"
 msgstr "Brennus"
 
-#: simulation/templates/units/gaul_hero_britomartus.xml:11
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Cruinneachadh leasaichte le +15% fhad ’s a bhios e beò."
-
-#: simulation/templates/units/gaul_hero_britomartus.xml:16
+#: simulation/templates/units/gaul_hero_britomartus.xml:6
 msgid "Britomartus"
 msgstr "Britomartus"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:14
-msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr "+2 de dh’ionnsaigh is +1 de ghlacadh aig a h-uile aonad fon aura aige."
-
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:20
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:6
 msgid "Vercingetorix"
 msgstr "Vercingetorix"
 
@@ -1491,23 +1363,15 @@ msgstr "Hypaspistḗs"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
-#: simulation/templates/units/mace_hero_alexander.xml:10
-msgid "Imperialism Aura"
-msgstr "Aura impireachd"
-
-#: simulation/templates/units/mace_hero_alexander.xml:11
-msgid "+10% territory effect for all buildings while he lives."
-msgstr "+10% de bhuaidh ranntair air gach togalach fhad ’s a bhios e beò."
-
-#: simulation/templates/units/mace_hero_alexander.xml:32
+#: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "Alexander The Great"
 msgstr "Alasdair Mòr"
 
-#: simulation/templates/units/mace_hero_alexander.xml:33
+#: simulation/templates/units/mace_hero_alexander.xml:23
 msgid "Mégās Aléxandros"
 msgstr "Mégās Aléxandros"
 
-#: simulation/templates/units/mace_hero_alexander.xml:34
+#: simulation/templates/units/mace_hero_alexander.xml:24
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "Buannachd curaidh-mhuirt: +20% air ionnsaighean an aghaidh curaidhean an nàmhad."
 
@@ -1523,27 +1387,19 @@ msgstr "Kraterós"
 msgid "Trusted general under Alexander the Great."
 msgstr "Ceann-armailt earbsach fo Alasdair Mòr."
 
-#: simulation/templates/units/mace_hero_demetrius.xml:13
-msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr "+15% de dh’astar ’s +10 air ionnsaigh brùillidh airson innealan-sèiste."
-
-#: simulation/templates/units/mace_hero_demetrius.xml:20
+#: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
 msgstr "Demetrios nan Sèist"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:21
+#: simulation/templates/units/mace_hero_demetrius.xml:8
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:14
-msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr "+5 de dh’ionnsaigh is +2 de ghlacadh airson laoich."
-
-#: simulation/templates/units/mace_hero_philip.xml:21
+#: simulation/templates/units/mace_hero_philip.xml:7
 msgid "Philip II of Macedon"
 msgstr "Filip II Masadonach"
 
-#: simulation/templates/units/mace_hero_philip.xml:22
+#: simulation/templates/units/mace_hero_philip.xml:8
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B’ ho Makedṓn"
 
@@ -1651,7 +1507,7 @@ msgstr "Aśvārohagaṇaḥ"
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:12
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
-#: simulation/templates/units/pers_hero_darius.xml:21
+#: simulation/templates/units/pers_hero_darius.xml:10
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
 msgstr "Feun"
@@ -1664,7 +1520,7 @@ msgstr "Feun-cogaidh"
 msgid "Rath"
 msgstr "Rath"
 
-#: simulation/templates/units/maur_champion_chariot.xml:15
+#: simulation/templates/units/maur_champion_chariot.xml:14
 msgid "Deals Trample Damage."
 msgstr "Nì e dochann saltairt."
 
@@ -1706,7 +1562,7 @@ msgstr "Boghadair ailbhein"
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Can run amok."
 msgstr "Dh’fhaoidte gun gabh e caothach."
 
@@ -1720,9 +1576,9 @@ msgstr "Aśoka Devānāmpriya"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:14
 msgid ""
-"Hero Aura: TBD.\n"
-"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "Aura gaisgich: ri shònrachadh.\nSònraichte: Fuagraidhean Aśoka - gabhaidh carraighean fuagraidh Aśoka a thogail fhad ’s a bhios Aśoka beò."
+"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
+"during Ashoka's lifetime."
+msgstr "Aura gaisgich: “Fuagraidhean Aśoka” - gabhaidh carraighean fuagraidh Aśoka a thogail fhad ’s a bhios Aśoka beò."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chanakya"
@@ -1743,10 +1599,6 @@ msgstr "Sònraichte: Lighiche - slànaich aonadan gu luath.\nSònraichte: tidsea
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
 msgstr "Chandragupta Mauraidhea"
-
-#: simulation/templates/units/maur_hero_maurya.xml:7
-msgid "Hero Aura: TBD."
-msgstr "Aura gaisgich: ri shònrachadh."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1801,7 +1653,7 @@ msgstr "Ailbhean obrach"
 msgid "Karmākara Gaja"
 msgstr "Karmākara Gaja"
 
-#: simulation/templates/units/maur_support_elephant.xml:32
+#: simulation/templates/units/maur_support_elephant.xml:31
 msgid "Mobile dropsite. Can also assist in constructing buildings."
 msgstr "Ionad-stòrais a ghabhas gluasad. ’S urrainn dha taic a thoirt dhan togail cuideachd."
 
@@ -1913,61 +1765,35 @@ msgstr "Lèine-chrios neo-bhàsmhor Pearsach"
 msgid "Anusiya"
 msgstr "Anusaidhea"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:13
-msgid "Lead from the Front Aura"
-msgstr "Aura stiùiridh on toiseach"
-
-#: simulation/templates/units/pers_hero_cyrus.xml:14
-msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr "Ionnsaigh le +2 is +1 de ghlacadh airson aonadan eachraidh am fagas"
-
-#: simulation/templates/units/pers_hero_cyrus.xml:20
+#: simulation/templates/units/pers_hero_cyrus.xml:6
 msgid "Cyrus II The Great"
 msgstr "Kùrois II Mòr"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:21
+#: simulation/templates/units/pers_hero_cyrus.xml:7
 msgid "Kurush II"
 msgstr "Kurush II"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
-msgid "Leadership Aura"
-msgstr "Aura ceannardais"
-
-#: simulation/templates/units/pers_hero_darius.xml:12
-msgid "+15% Movement Speed of all units."
-msgstr "Gluaisidh gach aonad +15% nas luaithe."
-
-#: simulation/templates/units/pers_hero_darius.xml:22
 msgid "Darius The Great"
 msgstr "Darius Mòr"
 
-#: simulation/templates/units/pers_hero_darius.xml:23
+#: simulation/templates/units/pers_hero_darius.xml:12
 msgid "Darayavahush I"
 msgstr "Darayavahush I"
 
-#: simulation/templates/units/pers_hero_darius.xml:25
+#: simulation/templates/units/pers_hero_darius.xml:14
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
 msgstr "Aura gaisgich: marsanta na h-impireachd. Gheibh thu barrachd bhuannachd às a’ mhalart fhad ’s a bhios e beò (ri shònrachadh)."
 
-#: simulation/templates/units/pers_hero_xerxes.xml:12
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
-msgid "Administrator Aura"
-msgstr "Aura rianaire"
-
-#: simulation/templates/units/pers_hero_xerxes.xml:13
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
-msgid " +15% Gather Rate and Build Rate of nearby units."
-msgstr "Cruinnichidh is togaidh aonadan am fagas +15% nas luaithe."
-
-#: simulation/templates/units/pers_hero_xerxes.xml:19
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:24
+#: simulation/templates/units/pers_hero_xerxes.xml:6
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:11
 msgid "Xerxes I"
 msgstr "Xerxes I"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:20
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:25
+#: simulation/templates/units/pers_hero_xerxes.xml:7
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Xsayarsa I"
 msgstr "Xsayarsa I"
 
@@ -2130,65 +1956,33 @@ msgstr "Diagannàd"
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:12
-msgid "Patriot Aura"
-msgstr "Aura tìr-ghràdhaiche"
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 25% faster in her vision range."
-msgstr "Nì aonadan Èipheiteach sabaid nas luaithe le 25% nuair a bhios iad am broinn a h-astar lèirsinne."
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:20
+#: simulation/templates/units/ptol_hero_cleopatra.xml:7
 msgid "Cleopatra VII"
 msgstr "Cleopatra VII"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:21
+#: simulation/templates/units/ptol_hero_cleopatra.xml:8
 msgid "Kleopatra H' Philopator"
 msgstr "Kleopatra H’ Philopator"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:22
+#: simulation/templates/units/ptol_hero_cleopatra.xml:9
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
 msgstr "Aura cèile (ri shònrachadh): Bidh curaidhean caidreabhach am broinn a h-astar lèirsinne nas èifeachdaiche. Caillidh curaidhean an nàmhad èifeachdachd."
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
-msgid "Construction Aura"
-msgstr "Aura togail"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
-msgid "Buildings construct 10% faster within his vision."
-msgstr "Thèid gach togalach am broinn astar lèirsinne a thogail 10% nas luaithe."
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
-msgid "Mercenary Patron Aura"
-msgstr "Aura taic do shaighdearan-duaise"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:25
-msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Bidh saighdearan-duaise nas saoire le -50% fhad ’s a bhios e beò."
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:30
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "Ptolamaidh I “An Slànaighear”"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:31
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:7
 msgid "Ptolemaios A' Soter"
 msgstr "Ptolemaios A’ Soter"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
-msgid "Raphia Aura"
-msgstr "Aura Rafa"
-
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
-msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr "Bidh 40% de shlàinte a bharrachd air pìcearan Èipheiteach fhad ’s a bhios e beò."
-
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:16
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:6
 msgid "Ptolemy IV \"Father Loving\""
 msgstr "Ptolamaidh IV “An t-Athair Gràdhach”"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:7
 msgid "Ptolemaios D' Philopator"
 msgstr "Ptolemaios D’ Philopator"
 
@@ -2305,27 +2099,11 @@ msgstr "Coisridh throm Eadailteach"
 msgid "Extraordinarius"
 msgstr "Extraordinarius"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:13
-msgid "Sword of Rome Aura"
-msgstr "Aura claidheamh na Ròimhe"
-
-#: simulation/templates/units/rome_hero_marcellus.xml:14
-msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr "+5 de dh’ionnsaigh is +2 de ghlacadh airson aonadan Romanach am broinn astar lèirsinne."
-
-#: simulation/templates/units/rome_hero_marcellus.xml:21
+#: simulation/templates/units/rome_hero_marcellus.xml:7
 msgid "Marcus Claudius Marcellus"
 msgstr "Marcus Claudius Marcellus"
 
-#: simulation/templates/units/rome_hero_maximus.xml:12
-msgid "Shield of Rome Aura"
-msgstr "Aura sgiath na Ròimhe"
-
-#: simulation/templates/units/rome_hero_maximus.xml:13
-msgid "+1 armour for all units and structures."
-msgstr "+1 de dh’armachd airson gach aonad ’s togalach."
-
-#: simulation/templates/units/rome_hero_maximus.xml:19
+#: simulation/templates/units/rome_hero_maximus.xml:7
 msgid "Quintus Fabius Maximus"
 msgstr "Quintus Fabius Maximus"
 
@@ -2531,53 +2309,27 @@ msgstr "Claidheamhair trom Ròmanach"
 msgid "Thorakitès Rhomaïkós"
 msgstr "Thorakitès Rhomaïkós"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:12
-msgid "Ilarchès Aura"
-msgstr "Aura Ilarchès"
-
-#: simulation/templates/units/sele_hero_antiochus_great.xml:13
-msgid "All cavalry gains +2 levels of all armour types."
-msgstr "Gheibh a h-uile aonad eachraidh +2 air gach seòrsa de dh’armachd."
-
-#: simulation/templates/units/sele_hero_antiochus_great.xml:19
+#: simulation/templates/units/sele_hero_antiochus_great.xml:7
 msgid "Antiochus III \"The Great\""
 msgstr "Antiochus III “Mòr”"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:20
+#: simulation/templates/units/sele_hero_antiochus_great.xml:8
 msgid "Antiokhos G' Mégās"
 msgstr "Antiokhos G’ Mégās"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
-msgid "Conquest Aura"
-msgstr "Aura ceannsachaidh"
-
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
-msgid ""
-"All nearby enemy buildings, siege engines, and ships have their health "
-"reduced by 20%."
-msgstr "Thèid an t-slàinte aig a h-uile togalach, inneal-sèiste ’s long an nàmhad a lùghdachadh le 20%."
-
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:20
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:7
 msgid "Antiochus IV \"The Righteous\""
 msgstr "Antiochus IV “An t-Ionracan”"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:21
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:8
 msgid "Antiokhos D' Epiphanes"
 msgstr "Antiokhos D’ Epiphanes"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:13
-msgid "Zooiarchos Aura"
-msgstr "Aura ceannard ailbhein"
-
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:14
-msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr "Gheibh ailbheanan-cogaidh am broinn astar lèirsinne buannachd air an ionnsaigh ’s an gluasad le +20%."
-
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:21
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:7
 msgid "Seleucus I \"The Victor\""
 msgstr "Seleucus I “Am Buadhair”"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:22
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:8
 msgid "Seleukos A' Nikator"
 msgstr "Seleukos A’ Nikator"
 
@@ -2681,39 +2433,16 @@ msgstr "Agis III"
 msgid "Agis"
 msgstr "Agis"
 
-#: simulation/templates/units/spart_hero_agis.xml:11
-msgid ""
-"No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
-" hoplite."
-msgstr "Gun aura gaisgich. Tha 2x de shlàinte aige an coimeas curaidhean coisridh eile. ’S e hoiplid glè bhuan a th’ ann."
-
-#: simulation/templates/units/spart_hero_brasidas.xml:14
-msgid "Helot Reforms"
-msgstr "Aura ath-leasachadh Heileotais"
-
-#: simulation/templates/units/spart_hero_brasidas.xml:15
-msgid ""
-"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr "Gheibh gach streupaire Heileotais am broinn astar lèirsinne +2 air an ionnsaigh ’s +1 air gach seòrsa de dh’armachd."
-
-#: simulation/templates/units/spart_hero_brasidas.xml:22
-#: simulation/templates/units/spart_hero_brasidas.xml:23
+#: simulation/templates/units/spart_hero_brasidas.xml:7
+#: simulation/templates/units/spart_hero_brasidas.xml:8
 msgid "Brasidas"
 msgstr "Brasidas"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:14
-msgid "Last Stand Aura"
-msgstr "Aura seasamh deireannach"
-
-#: simulation/templates/units/spart_hero_leonidas.xml:15
-msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr "Gheibh gach hoiplid ’s Homoioi am fagas +20% air an ionnsaigh is +1 de ghlacadh."
-
-#: simulation/templates/units/spart_hero_leonidas.xml:22
+#: simulation/templates/units/spart_hero_leonidas.xml:7
 msgid "Leonidas I"
 msgstr "Leonidas I"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:23
+#: simulation/templates/units/spart_hero_leonidas.xml:8
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 

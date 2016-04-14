@@ -78,7 +78,7 @@ function displaySingle(entState)
 
 		Engine.GetGUIObjectByName("healthStats").caption = sprintf(translate("%(hitpoints)s / %(maxHitpoints)s"), {
 			"hitpoints": Math.ceil(entState.hitpoints),
-			"maxHitpoints": entState.maxHitpoints
+			"maxHitpoints": Math.ceil(entState.maxHitpoints)
 		});
 	}
 
@@ -108,11 +108,9 @@ function displaySingle(entState)
 
 		Engine.GetGUIObjectByName("captureStats").caption = sprintf(translate("%(capturePoints)s / %(maxCapturePoints)s"), {
 			"capturePoints": Math.ceil(entState.capturePoints[entState.player]),
-			"maxCapturePoints": entState.maxCapturePoints
+			"maxCapturePoints": Math.ceil(entState.maxCapturePoints)
 		});
 	}
-
-	// TODO: Stamina
 
 	// Experience
 	Engine.GetGUIObjectByName("experience").hidden = !entState.promotion;
@@ -334,8 +332,8 @@ function displayMultiple(selection)
 
 		Engine.GetGUIObjectByName("healthMultiple").tooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), {
 			"label": "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]",
-			"current": averageHealth,
-			"max": maxHealth
+			"current": Math.ceil(averageHealth),
+			"max": Math.ceil(maxHealth)
 		});
 	}
 
@@ -370,9 +368,6 @@ function displayMultiple(selection)
 			"max": Math.ceil(maxCapturePoints)
 		});
 	}
-
-	// TODO: Stamina
-	// Engine.GetGUIObjectByName("staminaBarMultiple");
 
 	Engine.GetGUIObjectByName("numberOfUnits").caption = selection.length;
 

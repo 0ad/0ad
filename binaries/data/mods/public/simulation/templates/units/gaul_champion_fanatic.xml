@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
   <Armour>
-    <Hack>2</Hack>
-    <Pierce>4</Pierce>
+    <Hack op="add">-3</Hack>
+    <Pierce op="add">-3</Pierce>
   </Armour>
   <Cost>
+    <BuildTime op="mul">0.5</BuildTime>
     <Resources>
       <food>0</food>
-      <metal>80</metal>
+      <metal op="mul">2</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -17,6 +18,14 @@
     <History>A fanatic Celtic warrior, devoted to war and his Celtic liege lord. These bloodthirsty young men roamed Gaul in search of battle.</History>
     <Icon>units/celt_fanatic.png</Icon>
   </Identity>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.5</WalkSpeed>
+    <Run>
+      <Speed op="mul">1.5</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/fanatic.xml</Actor>
   </VisualActor>

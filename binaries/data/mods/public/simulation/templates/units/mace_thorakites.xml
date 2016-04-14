@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Cost>
+    <Resources>
+      <food>0</food>
+      <metal op="mul">2</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>
@@ -7,7 +13,7 @@
     <SpecificName>Thōrakitēs</SpecificName>
     <History>Thōrakitai were soldiers similar to Thyreophóroi. The literal translation of the term is curassiers, which suggests that they may have worn a short Celtic mail shirt or possibly a thorax. Thorakitai were used in armies of the Hellenistic Period in a variety of tactical situations. They were a type of armored but mobile infantry who did not require a rigid formation to be effective in combat. From their name we can deduce that most wore armor and helmet. They bore a thureos (or thyreos), an oblong shield, and were armed with sword, javelins and spear, which were used according to their tactical use. It seems that the thorakitai were heavily armored thureophoroi, able to bear spears and do battle in a phalanx as well as irregularly attack the enemy in situations when such an action was required for tactical reasons, like to exploit or challenge rough terrain. Thorakitai are mentioned in the army of the Achaian League and in the army of the Seleucids. The Seleucid Thorakitai were used in the storming of the Elburz Range in 210 BC under Antiochus III. They were used with the lighter troops to climb the cliffs and fight hand to hand with the enemy who might have not been dislodged by the lighter troops in the assault. There is a tomb illustration from Sidon showing what could well be a thorakites. The fragmentary inscription indicates that he was an Anatolian.</History>
     <Icon>units/mace_thorakites.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <VisualActor>
     <Actor>units/macedonians/thorakites.xml</Actor>

@@ -237,7 +237,8 @@ public:
 	virtual std::vector<u32> GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected);
 	virtual bool IsConnected(entity_pos_t x, entity_pos_t z);
 
-	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z);
+	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, bool enable);
+	virtual bool IsTerritoryBlinking(entity_pos_t x, entity_pos_t z);
 
 	// To support lazy updates of territory render data,
 	// we maintain a DirtyID here and increment it whenever territories change;
@@ -731,7 +732,7 @@ bool CCmpTerritoryManager::IsConnected(entity_pos_t x, entity_pos_t z)
 	return (m_Territories->get(i, j) & TERRITORY_CONNECTED_MASK) != 0;
 }
 
-void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z)
+void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, bool enable)
 {
 	CalculateTerritories();
 	if (!m_Territories)
@@ -747,11 +748,24 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z)
 
 	FLOODFILL(i, j,
 		u8 bitmask = m_Territories->get(nx, nz);
-		if ((bitmask & TERRITORY_PLAYER_MASK) != thisOwner || (bitmask & TERRITORY_BLINKING_MASK))
+		if ((bitmask & TERRITORY_PLAYER_MASK) != thisOwner)
 			continue;
-		m_Territories->set(nx, nz, bitmask | TERRITORY_BLINKING_MASK);
+		u8 blinking = bitmask & TERRITORY_BLINKING_MASK;
+		if (enable && !blinking)
+			m_Territories->set(nx, nz, bitmask | TERRITORY_BLINKING_MASK);
+		else if (!enable && blinking)
+			m_Territories->set(nx, nz, bitmask & ~TERRITORY_BLINKING_MASK);
+		else
+			continue;
 	);
 	m_BoundaryLinesDirty = true;
+}
+
+bool CCmpTerritoryManager::IsTerritoryBlinking(entity_pos_t x, entity_pos_t z)
+{
+	u16 i, j;
+	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+	return (m_Territories->get(i, j) & TERRITORY_BLINKING_MASK) != 0;
 }
 
 TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager) :

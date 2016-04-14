@@ -242,7 +242,7 @@ Capturable.prototype.OnValueModification = function(msg)
 		return;
 
 	var oldMaxCp = this.GetMaxCapturePoints();
-	this.maxCp = Math.round(ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity));
+	this.maxCp = ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity);
 	if (oldMaxCp == this.maxCp)
 		return;
 

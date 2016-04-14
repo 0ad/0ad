@@ -12,12 +12,12 @@
       <Crush>20.0</Crush>
       <MaxRange>6.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-	  </Bonuses>
+      <Bonuses>
+        <BonusCav>
+          <Classes>Cavalry</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusCav>
+      </Bonuses>
     </Melee>
     <Charge>
       <Hack>30.0</Hack>
@@ -25,17 +25,17 @@
       <Crush>30.0</Crush>
       <MaxRange>6.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-	  </Bonuses>
+      <Bonuses>
+        <BonusCav>
+          <Classes>Cavalry</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusCav>
+      </Bonuses>
     </Charge>
   </Attack>
   <Footprint>
-    <Circle radius="3.65"/>
-    <Height>3.0</Height>
+    <Square width="4.6" depth="9.2"/>
+    <Height>4.0</Height>
   </Footprint>
   <Health>
     <Max>300</Max>

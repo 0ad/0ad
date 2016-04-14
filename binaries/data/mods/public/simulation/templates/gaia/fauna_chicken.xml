@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
   <Footprint>
-    <Circle radius="0.75"/>
-    <Height>1.5</Height>
+    <Square width="0.9" depth="1.8"/>
+    <Height>1.0</Height>
   </Footprint>
   <Health>
     <Max>5</Max>

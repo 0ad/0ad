@@ -412,8 +412,12 @@ function createSunkenTerrain(players)
 
 	var expSize = g_MapInfo.mapArea * 0.015 / (g_MapInfo.numPlayers / 4);
 	var expDist = 0.1 + (g_MapInfo.numPlayers / 200);
+	var expAngle = 0.75;
 	if (g_MapInfo.numPlayers == 2)
-		expSize = g_MapInfo.mapArea * 0.015 / 0.7;
+	{
+		expSize = g_MapInfo.mapArea * 0.015 / 0.8;
+		expAngle = 0.72;
+	}
 
 	var nRoad = 0.44;
 	var nExp = 0.425;
@@ -441,8 +445,8 @@ function createSunkenTerrain(players)
 		var playerAngle = g_MapInfo.startAngle + i * TWO_PI / g_MapInfo.numPlayers;
 		var pX = round(fractionToTiles(0.5 + 0.4 * cos(playerAngle)));
 		var pZ = round(fractionToTiles(0.5 + 0.4 * sin(playerAngle)));
-		var expX = round(fractionToTiles(0.5 + expDist * cos(g_MapInfo.startAngle + (i + 0.75) * TWO_PI / g_MapInfo.numPlayers)));
-		var expZ = round(fractionToTiles(0.5 + expDist * sin(g_MapInfo.startAngle + (i + 0.75) * TWO_PI / g_MapInfo.numPlayers)));
+		var expX = round(fractionToTiles(0.5 + expDist * cos(g_MapInfo.startAngle + (i + expAngle) * TWO_PI / g_MapInfo.numPlayers)));
+		var expZ = round(fractionToTiles(0.5 + expDist * sin(g_MapInfo.startAngle + (i + expAngle) * TWO_PI / g_MapInfo.numPlayers)));
 		var rearX = round(fractionToTiles(0.5 + 0.47 * cos(playerAngle)));
 		var rearZ = round(fractionToTiles(0.5 + 0.47 * sin(playerAngle)));
 		var prePlayerAngle = g_MapInfo.startAngle + (i - 0.5) * TWO_PI / g_MapInfo.numPlayers;

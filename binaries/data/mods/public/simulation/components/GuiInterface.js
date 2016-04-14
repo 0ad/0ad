@@ -234,6 +234,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"garrisonHolder": null,
 		"gate": null,
 		"guard": null,
+		"market": null,
 		"mirage": null,
 		"pack": null,
 		"player": -1,
@@ -270,7 +271,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpHealth = QueryMiragedInterface(ent, IID_Health);
 	if (cmpHealth)
 	{
-		ret.hitpoints = Math.ceil(cmpHealth.GetHitpoints());
+		ret.hitpoints = cmpHealth.GetHitpoints();
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
 		ret.needsHeal = !cmpHealth.IsUnhealable();
@@ -287,6 +288,13 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 	if (cmpBuilder)
 		ret.builder = true;
+
+	let cmpMarket = Engine.QueryInterface(ent, IID_Market);
+	if (cmpMarket)
+		ret.market = {
+			"land": cmpMarket.HasType("land"),
+			"naval": cmpMarket.HasType("naval"),
+		};
 
 	let cmpPack = Engine.QueryInterface(ent, IID_Pack);
 	if (cmpPack)

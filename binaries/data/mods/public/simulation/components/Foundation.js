@@ -26,7 +26,7 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	// decoupled from its owner, so we need to remember it in here (and assume it won't change)
 	this.owner = owner;
 
-	// Remember our cost here, so if it changes after construction begins (from aura or technologies)
+	// Remember the cost here, so if it changes after construction begins (from auras or technologies)
 	// we will use the correct values to refund partial construction costs
 	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	this.costs = cmpCost.GetResourceCosts(owner);

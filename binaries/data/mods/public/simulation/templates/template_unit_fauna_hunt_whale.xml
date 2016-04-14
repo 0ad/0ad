@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna">
-  <Footprint>
-    <Circle radius="10.0"/>
-    <Height>2.5</Height>
-  </Footprint>
   <Health>
     <Max>200</Max>
     <DeathType>remain</DeathType>

@@ -9,14 +9,14 @@
       <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
-  <Footprint replace="">
-    <Square width="5" depth="8"/>
-    <Height>7.5</Height>
+  <Footprint>
+    <Square width="3.5" depth="7.0"/>
+    <Height>1.5</Height>
   </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Crocodylus niloticus</SpecificName>
-	<GenericName>Nile Crocodile</GenericName>
+    <GenericName>Nile Crocodile</GenericName>
     <Icon>gaia/fauna_crocodile.png</Icon>
   </Identity>
   <Position>
@@ -25,8 +25,8 @@
   <Selectable>
     <Overlay>
       <Texture>
-        <MainTexture>circle/128x128.png</MainTexture>
-        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
       </Texture>
     </Overlay>
   </Selectable>
@@ -44,7 +44,7 @@
     </Run>
   </UnitMotion>
   <Vision>
-	  <Range>20</Range>
+    <Range>20</Range>
   </Vision>
   <VisualActor>
     <Actor>fauna/crocodile.xml</Actor>

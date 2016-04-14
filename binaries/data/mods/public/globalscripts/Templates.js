@@ -70,9 +70,9 @@ function MatchesClassList(classes, match)
  * @param template A valid template as returned by the template loader.
  * @param player An optional player id to get the technology modifications
  *               of properties.
- * @param aurasTemplate An object in the form of {key: {auraName: "", auraDescription: ""}}
+ * @param auraTemplates An object in the form of {key: {auraName: "", auraDescription: ""}}
  */
-function GetTemplateDataHelper(template, player, aurasTemplate)
+function GetTemplateDataHelper(template, player, auraTemplates)
 {
 	var ret = {};
 
@@ -121,9 +121,9 @@ function GetTemplateDataHelper(template, player, aurasTemplate)
 	if (template.Auras)
 	{
 		ret.auras = {};
-		for (let auraID in aurasTemplate)
+		for (let auraID of template.Auras._string.split(/\s+/))
 		{
-			let aura = aurasTemplate[auraID];
+			let aura = auraTemplates[auraID];
 			if (aura.auraName)
 				ret.auras[auraID] = {
 					"name": aura.auraName || null,

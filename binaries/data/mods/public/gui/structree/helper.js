@@ -1,5 +1,6 @@
 var g_TemplateData = {};
 var g_TechnologyData = {};
+var g_AuraData = {};
 
 function loadTemplate(templateName)
 {
@@ -8,7 +9,11 @@ function loadTemplate(templateName)
 		// We need to clone the template because we want to perform some translations.
 		var data = clone(Engine.GetTemplate(templateName));
 		translateObjectKeys(data, ["GenericName", "SpecificName", "Tooltip"]);
-		
+
+		if (data.Auras)
+			for (let auraID of data.Auras._string.split(/\s+/))
+				loadAuraData(auraID);
+
 		g_TemplateData[templateName] = data;
 	}
 
@@ -27,6 +32,20 @@ function loadTechData(templateName)
 	}
 
 	return g_TechnologyData[templateName];
+}
+
+function loadAuraData(templateName)
+{
+	if (!(templateName in g_AuraData))
+	{
+		let filename = "simulation/data/auras/" + templateName + ".json";
+		let data = Engine.ReadJSONFile(filename);
+		translateObjectKeys(data, ["auraName", "auraDescription"]);
+
+		g_AuraData[templateName] = data;
+	}
+
+	return g_AuraData[templateName];
 }
 
 /**
@@ -85,5 +104,5 @@ function depath(path)
 function GetTemplateData(templateName)
 {
 	var template = loadTemplate(templateName);
-	return GetTemplateDataHelper(template);
+	return GetTemplateDataHelper(template, null, g_AuraData);
 }

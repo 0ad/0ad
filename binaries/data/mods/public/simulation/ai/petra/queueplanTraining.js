@@ -22,9 +22,6 @@ m.TrainingPlan.prototype = Object.create(m.QueuePlan.prototype);
 
 m.TrainingPlan.prototype.canStart = function(gameState)
 {
-	if (this.invalidTemplate)
-		return false;
-
 	let trainers = gameState.findTrainers(this.type);
 	if (this.metadata && this.metadata.sea)
 		trainers = trainers.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));

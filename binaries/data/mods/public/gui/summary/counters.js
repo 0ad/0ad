@@ -1,9 +1,9 @@
 // FUNCTIONS FOR CALCULATING SCORES
-var g_TeamMiscHelperData = [];
+var g_TeamHelperData = [];
 
 function resetDataHelpers()
 {
-	g_TeamMiscHelperData = [];
+	g_TeamHelperData = [];
 }
 
 function updateCountersPlayer(playerState, counters, idGUI)
@@ -15,7 +15,46 @@ function updateCountersPlayer(playerState, counters, idGUI)
 	}
 }
 
-function calculateEconomyScore(playerState, position)
+// Updates g_TeamHelperData by appending some data from playerState
+function calculateTeamCounters(playerState)
+{
+	if (!g_TeamHelperData[playerState.team])
+		g_TeamHelperData[playerState.team] = {
+			"food": 0,
+			"vegetarianFood": 0,
+			"female": 0,
+			"worker": 0,
+			"enemyUnitsKilled": 0,
+			"unitsLost": 0,
+			"percentMapControlled": 0,
+			"peakPercentMapControlled": 0,
+			"percentMapExplored": 0,
+			"totalBought": 0,
+			"totalSold": 0
+		};
+
+	g_TeamHelperData[playerState.team].food += playerState.statistics.resourcesGathered.food;
+	g_TeamHelperData[playerState.team].vegetarianFood += playerState.statistics.resourcesGathered.vegetarianFood;
+
+	g_TeamHelperData[playerState.team].female += playerState.statistics.unitsTrained.Female;
+	g_TeamHelperData[playerState.team].worker += playerState.statistics.unitsTrained.Worker;
+
+	g_TeamHelperData[playerState.team].enemyUnitsKilled += playerState.statistics.enemyUnitsKilled.total;
+	g_TeamHelperData[playerState.team].unitsLost += playerState.statistics.unitsLost.total;
+
+	g_TeamHelperData[playerState.team].percentMapControlled = playerState.statistics.teamPercentMapControlled;
+	g_TeamHelperData[playerState.team].peakPercentMapControlled = playerState.statistics.teamPeakPercentMapControlled;
+
+	g_TeamHelperData[playerState.team].percentMapExplored = playerState.statistics.teamPercentMapExplored;
+
+	for (let type in playerState.statistics.resourcesBought)
+		g_TeamHelperData[playerState.team].totalBought += playerState.statistics.resourcesBought[type];
+
+	for (let type in playerState.statistics.resourcesSold)
+		g_TeamHelperData[playerState.team].totalSold += playerState.statistics.resourcesSold[type];
+}
+
+function calculateEconomyScore(playerState)
 {
 	let total = 0;
 	for (let type in playerState.statistics.resourcesGathered)
@@ -24,18 +63,18 @@ function calculateEconomyScore(playerState, position)
 	return Math.round(total / 10);
 }
 
-function calculateMilitaryScore(playerState, position)
+function calculateMilitaryScore(playerState)
 {
 	return Math.round((playerState.statistics.enemyUnitsKilledValue +
 		playerState.statistics.enemyBuildingsDestroyedValue) / 10);
 }
 
-function calculateExplorationScore(playerState, position)
+function calculateExplorationScore(playerState)
 {
 	return playerState.statistics.percentMapExplored * 10;
 }
 
-function calculateScoreTotal(playerState, position)
+function calculateScoreTotal(playerState)
 {
 	return calculateEconomyScore(playerState) +
 		calculateMilitaryScore(playerState) +
@@ -49,13 +88,24 @@ function calculateScoreTeam(counters)
 		if (t == -1)
 			continue;
 
+		let teamTotalScore = 0;
 		for (let w in counters)
 		{
 			let total = 0;
-			for (let p = 0; p < g_Teams[t]; ++p)
-				total += (+Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption);
 
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = total;
+			if (w == 2)	// Team exploration score (not additive)
+				total = g_TeamHelperData[t].percentMapExplored * 10;
+			else
+				for (let p = 0; p < g_Teams[t]; ++p)
+					total += +Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
+
+			if (w < 3)
+			{
+				teamTotalScore += total;
+				Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = total;
+			}
+			else
+				Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotalScore;
 		}
 	}
 }
@@ -119,7 +169,7 @@ function calculateResources(playerState, position)
 		g_OutcomeColor + (playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type]) + '[/color]';
 }
 
-function calculateTotalResources(playerState, position)
+function calculateTotalResources(playerState)
 {
 	let totalGathered = 0;
 	let totalUsed = 0;
@@ -133,17 +183,17 @@ function calculateTotalResources(playerState, position)
 	return g_IncomeColor + totalGathered + '[/color] / ' + g_OutcomeColor + totalUsed + '[/color]';
 }
 
-function calculateTreasureCollected(playerState, position)
+function calculateTreasureCollected(playerState)
 {
 	return playerState.statistics.treasuresCollected;
 }
 
-function calculateLootCollected(playerState, position)
+function calculateLootCollected(playerState)
 {
 	return playerState.statistics.lootCollected;
 }
 
-function calculateTributeSent(playerState, position)
+function calculateTributeSent(playerState)
 {
 	return g_IncomeColor + playerState.statistics.tributesSent + "[/color] / " +
 	       g_OutcomeColor + playerState.statistics.tributesReceived + "[/color]";
@@ -199,7 +249,7 @@ function calculateResourceExchanged(playerState, position)
 		g_OutcomeColor + '-' + playerState.statistics.resourcesSold[type] + '[/color]';
 }
 
-function calculateBatteryEfficiency(playerState, position)
+function calculateBarterEfficiency(playerState)
 {
 	let totalBought = 0;
 	let totalSold = 0;
@@ -213,7 +263,7 @@ function calculateBatteryEfficiency(playerState, position)
 	return Math.floor(totalSold > 0 ? (totalBought / totalSold) * 100 : 0) + "%";
 }
 
-function calculateTradeIncome(playerState, position)
+function calculateTradeIncome(playerState)
 {
 	return playerState.statistics.tradeIncome;
 }
@@ -250,63 +300,36 @@ function calculateMarketTeam(counters)
 				}
 			}
 
-			if (w >= 4)
-				teamTotal = total.i +(w == 4 ? "%" : "");
+			if (w == 4)
+				teamTotal = Math.floor(g_TeamHelperData[t].totalSold > 0 ? (g_TeamHelperData[t].totalBought / g_TeamHelperData[t].totalSold) * 100 : 0) + "%"
+			else if (w > 4)
+				teamTotal = total.i;
 			else
-				teamTotal = g_IncomeColor + '+' + total.i + '[/color] ' + g_IncomeColor + '-' + total.o + '[/color]';
+				teamTotal = g_IncomeColor + '+' + total.i + '[/color] ' + g_OutcomeColor + '-' + total.o + '[/color]';
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
 	}
 }
 
-function calculateVegetarianRatio(playerState, position)
+function calculateVegetarianRatio(playerState)
 {
-	if (!g_TeamMiscHelperData[playerState.team])
-		g_TeamMiscHelperData[playerState.team] = [];
-
-	if (!g_TeamMiscHelperData[playerState.team][position])
-		g_TeamMiscHelperData[playerState.team][position] = { "food": 0, "vegetarianFood": 0 };
-
 	if (playerState.statistics.resourcesGathered.vegetarianFood && playerState.statistics.resourcesGathered.food)
-	{
-		g_TeamMiscHelperData[playerState.team][position].food += playerState.statistics.resourcesGathered.food;
-		g_TeamMiscHelperData[playerState.team][position].vegetarianFood += playerState.statistics.resourcesGathered.vegetarianFood;
 		return Math.floor((playerState.statistics.resourcesGathered.vegetarianFood / playerState.statistics.resourcesGathered.food) * 100) + "%";
-	}
 	else
 		return 0 + "%";
 }
 
-function calculateFeminization(playerState, position)
+function calculateFeminization(playerState)
 {
-	if (!g_TeamMiscHelperData[playerState.team])
-		g_TeamMiscHelperData[playerState.team] = [];
-
-	if (!g_TeamMiscHelperData[playerState.team][position])
-		g_TeamMiscHelperData[playerState.team][position] = { "Female": 0, "Worker": 0 };
-
 	if (playerState.statistics.unitsTrained.Worker && playerState.statistics.unitsTrained.Female)
-	{
-		g_TeamMiscHelperData[playerState.team][position].Female = playerState.statistics.unitsTrained.Female;
-		g_TeamMiscHelperData[playerState.team][position].Worker = playerState.statistics.unitsTrained.Worker;
 		return Math.floor((playerState.statistics.unitsTrained.Female / playerState.statistics.unitsTrained.Worker) * 100) + "%";
-	}
 	else
 		return 0 + "%";
 }
 
-function calculateKillDeathRatio(playerState, position)
+function calculateKillDeathRatio(playerState)
 {
-	if (!g_TeamMiscHelperData[playerState.team])
-		g_TeamMiscHelperData[playerState.team] = [];
-
-	if (!g_TeamMiscHelperData[playerState.team][position])
-		g_TeamMiscHelperData[playerState.team][position] = { "enemyUnitsKilled": 0, "unitsLost": 0 };
-
-	g_TeamMiscHelperData[playerState.team][position].enemyUnitsKilled = playerState.statistics.enemyUnitsKilled.total;
-	g_TeamMiscHelperData[playerState.team][position].unitsLost = playerState.statistics.unitsLost.total;
-
 	if (!playerState.statistics.enemyUnitsKilled.total)
 		return g_DefaultDecimal;
 
@@ -316,33 +339,18 @@ function calculateKillDeathRatio(playerState, position)
 	return Math.round((playerState.statistics.enemyUnitsKilled.total / playerState.statistics.unitsLost.total)*100)/100;
 }
 
-function calculateMapExploration(playerState, position)
+function calculateMapExploration(playerState)
 {
-	if (!g_TeamMiscHelperData[playerState.team])
-		g_TeamMiscHelperData[playerState.team] = [];
-
-	g_TeamMiscHelperData[playerState.team][position] = playerState.statistics.teamPercentMapExplored;
-
 	return playerState.statistics.percentMapExplored + "%";
 }
 
-function calculateMapFinalControl(playerState, position)
+function calculateMapFinalControl(playerState)
 {
-	if (!g_TeamMiscHelperData[playerState.team])
-		g_TeamMiscHelperData[playerState.team] = [];
-
-	g_TeamMiscHelperData[playerState.team][position] = playerState.statistics.teamPercentMapControlled;
-
 	return playerState.statistics.percentMapControlled + "%";
 }
 
-function calculateMapPeakControl(playerState, position)
+function calculateMapPeakControl(playerState)
 {
-	if (!g_TeamMiscHelperData[playerState.team])
-		g_TeamMiscHelperData[playerState.team] = [];
-
-	g_TeamMiscHelperData[playerState.team][position] = playerState.statistics.teamPeakPercentMapControlled;
-
 	return playerState.statistics.peakPercentMapControlled + "%";
 }
 
@@ -358,20 +366,24 @@ function calculateMiscellaneous(counters)
 			let teamTotal = "undefined";
 
 			if (w == 0)
-				teamTotal = (g_TeamMiscHelperData[t][w].food == 0 ? "0" : Math.floor((g_TeamMiscHelperData[t][w].vegetarianFood / g_TeamMiscHelperData[t][w].food) * 100)) + "%";
+				teamTotal = (g_TeamHelperData[t].food == 0 ? "0" : Math.floor((g_TeamHelperData[t].vegetarianFood / g_TeamHelperData[t].food) * 100)) + "%";
 			else if (w == 1)
-				teamTotal = (g_TeamMiscHelperData[t][w].Worker == 0 ? "0" : Math.floor((g_TeamMiscHelperData[t][w].Female / g_TeamMiscHelperData[t][w].Worker) * 100)) + "%";
+				teamTotal = (g_TeamHelperData[t].worker == 0 ? "0" : Math.floor((g_TeamHelperData[t].female / g_TeamHelperData[t].worker) * 100)) + "%";
 			else if (w == 2)
 			{
-				if (!g_TeamMiscHelperData[t][w].enemyUnitsKilled)
+				if (!g_TeamHelperData[t].enemyUnitsKilled)
 					teamTotal = g_DefaultDecimal;
-				else if (!g_TeamMiscHelperData[t][w].unitsLost)	// and enemyUnitsKilled.total > 0
+				else if (!g_TeamHelperData[t].unitsLost)	// and enemyUnitsKilled.total > 0
 					teamTotal = g_InfiniteSymbol; // infinity symbol
 				else
-					teamTotal = Math.round((g_TeamMiscHelperData[t][w].enemyUnitsKilled / g_TeamMiscHelperData[t][w].unitsLost) * 100) / 100;
+					teamTotal = Math.round((g_TeamHelperData[t].enemyUnitsKilled / g_TeamHelperData[t].unitsLost) * 100) / 100;
 			}
-			else if (w >= 3)
-				teamTotal = g_TeamMiscHelperData[t][w] + "%";
+			else if (w == 3)
+				teamTotal = g_TeamHelperData[t].percentMapExplored + "%";
+			else if (w == 4)
+				teamTotal = g_TeamHelperData[t].percentMapControlled + "%";
+			else if (w == 5)
+				teamTotal = g_TeamHelperData[t].peakPercentMapControlled + "%";
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}

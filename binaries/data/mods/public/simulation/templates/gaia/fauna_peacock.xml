@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_passive">
+  <Footprint>
+    <Square width="1.1" depth="2.2"/>
+    <Height>2.5</Height>
+  </Footprint>
   <Health>
     <Max>5</Max>
   </Health>
@@ -16,10 +20,6 @@
       <RangeMin>5.0</RangeMin>
     </Run>
   </UnitMotion>
-  <!--<UnitAI>
-    <Feeds>true</Feeds>
-    <FeedingTransitionTime>1300</FeedingTransitionTime>
-  </UnitAI>-->
   <VisualActor>
     <Actor>fauna/peacock.xml</Actor>
   </VisualActor>

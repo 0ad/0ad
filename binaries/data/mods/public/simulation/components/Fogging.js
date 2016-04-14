@@ -67,7 +67,7 @@ Fogging.prototype.LoadMirage = function(player)
 	var cmpMirage = Engine.QueryInterface(this.mirages[player], IID_Mirage);
 	if (!cmpMirage)
 	{
-		error("Failed to load mirage entity for template " + templateName);
+		error("Failed to load a mirage for entity " + this.entity);
 		this.mirages[player] = INVALID_ENTITY;
 		return;
 	}
@@ -81,7 +81,7 @@ Fogging.prototype.LoadMirage = function(player)
 	var cmpMirageOwnership = Engine.QueryInterface(this.mirages[player], IID_Ownership);
 	if (!cmpParentOwnership || !cmpMirageOwnership)
 	{
-		error("Failed to copy the ownership data of the fogged entity " + templateName);
+		error("Failed to copy the ownership data of the fogged entity " + this.entity);
 		return;
 	}
 	cmpMirageOwnership.SetOwner(cmpParentOwnership.GetOwner());
@@ -91,7 +91,7 @@ Fogging.prototype.LoadMirage = function(player)
 	var cmpMiragePosition = Engine.QueryInterface(this.mirages[player], IID_Position);
 	if (!cmpParentPosition || !cmpMiragePosition)
 	{
-		error("Failed to copy the position data of the fogged entity " + templateName);
+		error("Failed to copy the position data of the fogged entity " + this.entity);
 		return;
 	}
 	if (!cmpParentPosition.IsInWorld())
@@ -107,7 +107,7 @@ Fogging.prototype.LoadMirage = function(player)
 	var cmpMirageVisualActor = Engine.QueryInterface(this.mirages[player], IID_Visual);
 	if (!cmpParentVisualActor || !cmpMirageVisualActor)
 	{
-		error("Failed to copy the visual data of the fogged entity " + templateName);
+		error("Failed to copy the visual data of the fogged entity " + this.entity);
 		return;
 	}
 	cmpMirageVisualActor.SetActorSeed(cmpParentVisualActor.GetActorSeed());

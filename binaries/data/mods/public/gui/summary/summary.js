@@ -119,6 +119,9 @@ function updatePanelData(panelInfo)
 
 		// Update counters
 		updateCountersPlayer(playerState, panelInfo.counters, playerCounterValue);
+
+		// Calculate g_TeamHelperData
+		calculateTeamCounters(playerState);
 	}
 	// Update team counters
 	let teamCounterFn = panelInfo.teamCounterFn;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>6</Pierce>
+    <Hack op="add">-4</Hack>
+    <Pierce op="add">-4</Pierce>
   </Armour>
   <Attack>
     <Melee>

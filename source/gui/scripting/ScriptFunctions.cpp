@@ -384,7 +384,7 @@ void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 std::string GetPlayerGUID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	if (!g_NetClient)
-		return "";
+		return std::string();
 
 	return g_NetClient->GetGUID();
 }

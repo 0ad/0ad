@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_decorative">
-	<Position>
-		<Altitude>0</Altitude>
-		<Anchor>upright</Anchor>
-		<Floating>false</Floating>
-		<TurnRate>1.0</TurnRate>
-	</Position>
-	<VisualActor>
-		<Actor>fauna/hawk.xml</Actor>
-	</VisualActor>
-	<UnitAI>
-		<RoamDistance>1000.0</RoamDistance>
-	</UnitAI>
-	<UnitMotion disable="" />
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+    <TurnRate>1.0</TurnRate>
+  </Position>
+  <VisualActor>
+    <Actor>fauna/hawk.xml</Actor>
+  </VisualActor>
+  <UnitAI>
+    <RoamDistance>1000.0</RoamDistance>
+  </UnitAI>
+  <UnitMotion disable="" />
   <UnitMotionFlying>
     <MaxSpeed>15.0</MaxSpeed>
     <TakeoffSpeed>1.0</TakeoffSpeed>

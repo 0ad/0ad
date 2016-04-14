@@ -22,6 +22,12 @@
   <Obstruction>
     <Static width="12.0" depth="20.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      -gaia/fauna_sheep
+      gaia/fauna_goat
+    </Entities>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/ptolemies/corral.xml</Actor>
     <FoundationActor>structures/fndn_2x4.xml</FoundationActor>

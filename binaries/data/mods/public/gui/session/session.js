@@ -797,7 +797,11 @@ function updateHero()
 	// Setup tooltip
 	let tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
 	let healthLabel = "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]";
-	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { label: healthLabel, current: heroState.hitpoints, max: heroState.maxHitpoints });
+	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { 
+		"label": healthLabel,
+		"current": Math.ceil(heroState.hitpoints),
+		"max": Math.ceil(heroState.maxHitpoints)
+	});
 	if (heroState.attack)
 		tooltip += "\n" + getAttackTooltip(heroState);
 
@@ -1041,7 +1045,8 @@ function showTimeWarpMessageBox()
  */
 function reportGame()
 {
-	if (!Engine.HasXmppClient() || !Engine.IsRankedGame())
+	// Only 1v1 games are rated (and Gaia is part of g_Players)
+	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() || g_Players.length != 3)
 		return;
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");

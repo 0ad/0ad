@@ -12,6 +12,12 @@
   <Obstruction>
     <Static width="10.0" depth="20.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      -gaia/fauna_sheep
+      gaia/fauna_pig
+    </Entities>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/plot_corral.xml</Actor>
   </VisualActor>

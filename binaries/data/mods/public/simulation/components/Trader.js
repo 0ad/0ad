@@ -1,5 +1,5 @@
-// See helpers/TraderGain.js for the CalculateTaderGain() function which works out how many 
-// resources a trader gets 
+// See helpers/TraderGain.js for the CalculateTaderGain() function which works out how many
+// resources a trader gets
 
 // Additional gain for ships for each garrisoned trader, in percents
 const GARRISONED_TRADER_ADDITION = 20;
@@ -61,7 +61,7 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 				gain.market2Gain = Math.round(garrisonMultiplier * gain.market2Gain);
 		}
 	}
-	
+
 	return gain;
 };
 
@@ -69,29 +69,32 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 // Return true if at least one of markets was changed.
 Trader.prototype.SetTargetMarket = function(target, source)
 {
-	// Check that target is a market
-	var cmpTargetIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpTargetIdentity)
-		return false;
-	if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
+	var cmpTargetMarket = Engine.QueryInterface(target, IID_Market);
+	if (!cmpTargetMarket)
 		return false;
 
 	if (source)
 	{
 		// Establish a trade route with both markets in one go.
-		cmpTargetIdentity = Engine.QueryInterface(source, IID_Identity);
-		if (!cmpTargetIdentity)
-			return false;
-		if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
+		let cmpSourceMarket = Engine.QueryInterface(source, IID_Market);
+		if (!cmpSourceMarket)
 			return false;
 		this.markets = [source];
+		cmpSourceMarket.AddTrader(this.entity);
 	}
 	if (this.markets.length >= 2)
 	{
 		// If we already have both markets - drop them
 		// and use the target as first market
+		for (let market of this.markets)
+		{
+			let cmpMarket = Engine.QueryInterface(market, IID_Market);
+			if (cmpMarket)
+				cmpMarket.RemoveTrader(this.entity);
+		}
 		this.index = 0;
 		this.markets = [target];
+		cmpTargetMarket.AddTrader(this.entity);
 	}
 	else if (this.markets.length == 1)
 	{
@@ -103,6 +106,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		{
 			this.index = 0;
 			this.markets.push(target);
+			cmpTargetMarket.AddTrader(this.entity);
 			this.goods.amount = this.CalculateGain(this.markets[0], this.markets[1]);
 		}
 	}
@@ -112,6 +116,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		// set the target as first market
 		this.index = 0;
 		this.markets = [target];
+		cmpTargetMarket.AddTrader(this.entity);
 	}
 	// Drop carried goods if markets were changed
 	this.goods.amount = null;
@@ -150,16 +155,16 @@ Trader.prototype.SetRequiredGoods = function(requiredGoods)
 Trader.prototype.CanTrade = function(target)
 {
 	var cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	var cmpTargetIdentity = Engine.QueryInterface(target, IID_Identity);
 	// Check that the target exists
-	if (!cmpTargetIdentity)
+	var cmpTargetMarket = Engine.QueryInterface(target, IID_Market);
+	if (!cmpTargetMarket)
 		return false;
 	// Check that the target is not a foundation
 	var cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
 	if (cmpTargetFoundation)
 		return false;
-	var landTradingPossible = cmpTraderIdentity.HasClass("Organic") && cmpTargetIdentity.HasClass("Market");
-	var seaTradingPossible = cmpTraderIdentity.HasClass("Ship") && cmpTargetIdentity.HasClass("NavalMarket");
+	var landTradingPossible = cmpTraderIdentity.HasClass("Organic") && cmpTargetMarket.HasType("land");
+	var seaTradingPossible = cmpTraderIdentity.HasClass("Ship") && cmpTargetMarket.HasType("naval");
 	if (!landTradingPossible && !seaTradingPossible)
 		return false;
 
@@ -242,8 +247,24 @@ Trader.prototype.GetGoods = function()
 	return this.goods;
 };
 
+/**
+ * Called when this trader can no longer trade with the market
+ */
+Trader.prototype.RemoveMarket = function(market)
+{
+	let index = this.markets.indexOf(market);
+	if (index != -1)
+		this.markets.splice(index, 1);
+};
+
 Trader.prototype.StopTrading = function()
 {
+	for (let market of this.markets)
+	{
+		let cmpMarket = Engine.QueryInterface(market, IID_Market);
+		if (cmpMarket)
+			cmpMarket.RemoveTrader(this.entity);
+	}
 	this.index = -1;
 	this.markets = [];
 	// Drop carried goods
