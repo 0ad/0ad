@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,8 @@ RNSpline::RNSpline()
 	: NodeCount(0)
 {
 }
+
+RNSpline::~RNSpline() = default;
 
 // adds node and updates segment length
 void RNSpline::AddNode(const CFixedVector3D& pos)
@@ -154,6 +156,8 @@ CVector3D RNSpline::GetEndVelocity(int index)
 
 /*********************************** S N S **************************************************/
 
+SNSpline::~SNSpline() = default;
+
 void SNSpline::BuildSpline()
 {
 	RNSpline::BuildSpline();
@@ -182,6 +186,8 @@ void SNSpline::Smooth()
 }
 
 /*********************************** T N S **************************************************/
+
+TNSpline::~TNSpline() = default;
 
 // as with RNSpline but use timePeriod in place of actual node spacing
 // ie time period is time from last node to this node
