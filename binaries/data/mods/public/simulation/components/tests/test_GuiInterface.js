@@ -15,6 +15,7 @@ Engine.LoadComponentScript("interfaces/Gate.js");
 Engine.LoadComponentScript("interfaces/Guard.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/Market.js");
 Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
@@ -495,6 +496,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	garrisonHolder: null,
 	gate: null,
 	guard: null,
+	market: null,
 	mirage: null,
 	pack: null,
 	player: -1,
