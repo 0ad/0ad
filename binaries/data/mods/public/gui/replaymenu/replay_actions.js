@@ -79,6 +79,7 @@ function showReplaySummary()
 	// Open summary screen
 	summary.isReplay = true;
 	summary.gameResult = translate("Scores at the end of the game.");
+	summary.replayDirectory = g_ReplaysFiltered[selected].directory;
 	Engine.SwitchGuiPage("page_summary.xml", summary);
 }
 

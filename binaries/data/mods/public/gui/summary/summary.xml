@@ -157,6 +157,27 @@
 			</object>
 		</object>
 
+		<object type="button" name="replayButton" style="ModernButtonRed" size="100%-310 100%-48 100%-170 100%-20">
+			<translatableAttribute id="caption">Replay</translatableAttribute>
+			<action on="Press"><![CDATA[
+				if (g_GameData.isInGame)
+					return;
+
+				if (Engine.HasXmppClient())
+					messageBox(
+						400, 200,
+						translate("Are you sure you want to quit the lobby?"),
+						translate("Confirmation"),
+						0,
+						[translate("No"), translate("Yes")],
+						[null, startReplay]
+					);
+				else
+					startReplay();
+				]]>
+			</action>
+		</object>
+
 		<object type="button" style="ModernButtonRed" size="100%-160 100%-48 100%-20 100%-20">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
 			<action on="Press"><![CDATA[
