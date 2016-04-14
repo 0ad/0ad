@@ -1,8 +1,8 @@
 {
 	"genericName": "Advanced Siege",
 	"description": "Advanced technologies improve siege efficiency",
-	"cost": {"food": 0, "wood": 1000, "stone": 0, "metal": 500},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 0, "wood": 1000, "stone": 0, "metal": 500 },
+	"requirements": { "all": [{ "tech": "phase_city" }, { "notciv": "maur" }] },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "siege_ram.png",
 	"researchTime": 40,

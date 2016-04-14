@@ -45,8 +45,8 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
-	  units/{civ}_infantry_spearman_b
-	  units/{civ}_infantry_pikeman_b
+      units/{civ}_infantry_spearman_b
+      units/{civ}_infantry_pikeman_b
       units/{civ}_infantry_swordsman_b
       units/{civ}_infantry_javelinist_b
       units/{civ}_infantry_slinger_b
@@ -59,7 +59,6 @@
     <Technologies datatype="tokens">
       heal_barracks
       training_conscription
-      unlock_champion_units
     </Technologies>
   </ProductionQueue>
   <Sound>

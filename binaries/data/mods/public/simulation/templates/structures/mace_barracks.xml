@@ -26,6 +26,9 @@
       units/{civ}_champion_infantry_a_barracks
       units/{civ}_champion_cavalry_barracks
     </Entities>
+    <Technologies datatype="tokens">
+      unlock_champion_units
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/macedonians/barracks.xml</Actor>
