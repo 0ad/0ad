@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion">
   <Armour>
-    <Hack>8</Hack>
-    <Pierce>8</Pierce>
+    <Hack>10</Hack>
+    <Pierce>10</Pierce>
     <Crush>25</Crush>
   </Armour>
   <Cost>
-    <Population>3</Population>
-    <BuildTime>20</BuildTime>
+    <Population>5</Population>
+    <BuildTime>30</BuildTime>
     <Resources>
       <food>250</food>
       <wood>0</wood>
@@ -20,7 +20,7 @@
     <Height>6.0</Height>
   </Footprint>
   <Health>
-    <Max>500</Max>
+    <Max>750</Max>
   </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
