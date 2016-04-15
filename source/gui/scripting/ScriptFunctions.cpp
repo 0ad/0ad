@@ -205,7 +205,10 @@ std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std
 
 bool IsVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	return g_Game ? g_Game->IsVisualReplay() : false;
+	if (!g_Game)
+		return false;
+
+	return g_Game->IsVisualReplay();
 }
 
 std::wstring GetCurrentReplayDirectory(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -213,9 +216,10 @@ std::wstring GetCurrentReplayDirectory(ScriptInterface::CxPrivate* UNUSED(pCxPri
 	if (!g_Game)
 		return std::wstring();
 
-	return g_Game->IsVisualReplay() ?
-		OsPath(g_Game->GetReplayPath()).Parent().Filename().string() :
-		g_Game->GetReplayLogger().GetDirectory().Filename().string();
+	if (g_Game->IsVisualReplay())
+		return OsPath(g_Game->GetReplayPath()).Parent().Filename().string();
+
+	return g_Game->GetReplayLogger().GetDirectory().Filename().string();
 }
 
 int GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
