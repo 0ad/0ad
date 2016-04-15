@@ -4,15 +4,16 @@
 # 
 # Translators:
 # not_xx <aric1987@gmail.com>, 2014
+# Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # liulitchi <xingzuo88@qq.com>, 2014
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-04-14 09:54+0000\n"
+"Last-Translator: Christian Xia <wood_elf@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "[font=\"sans-14\"]对传统的 RTS 游戏的玩家应当十分熟悉此�
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
-msgstr "基本控制："
+msgstr "基本控制:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
@@ -144,25 +145,25 @@ msgstr "[font=\"sans-14\"]在多人游戏，只有主机可以改变游戏设置
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "首先，请选择您想玩的地图类型:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]随机地图[font=\"sans-14\"] — 根据脚本自动创建的地图"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]剧情地图[font=\"sans-14\"] — 由地图设计师创建的地图，具有固定文明"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]遭遇战地图[font=\"sans-14\"] — 由地图设计师创建的地图，但是可自由选择文明"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -171,7 +172,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "然后可以进一步筛选地图。默认地图一般都是可玩地图。在海战地图中，并非所有对手都位于陆地上，而演示地图用于测试(一般不用于游玩)。“所有地图”筛选器可将所有地图显示在同一列表中。"
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -180,7 +181,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "最后，更改设置。对于随机地图，您可以设置玩家数量、地图大小等。对于剧情地图，您只能选择控制玩家的角色(决定您在地图上的起始位置)。选项包括人类玩家、AI 或无玩家(对手将留空)。"
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -568,7 +569,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
 "reports from the same user."
-msgstr ""
+msgstr "• 随机用户ID (在 Windows 上，存储于 %APPDATA%\\0ad\\config\\user.cfg , 对于 Unix，存储于 ~/.config/0ad/config/user.cfg)，允许我们检测来自同一用户的报告。"
 
 #: gui/manual/userreport.txt:6
 msgid ""

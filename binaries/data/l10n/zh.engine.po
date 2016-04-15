@@ -4,6 +4,7 @@
 # 
 # Translators:
 # rentt777 <35974380@qq.com>, 2013
+# Christian Xia <wood_elf@126.com>, 2016
 # loms126 <loms126@126.com>, 2014
 # Tianran Yao <yaotianran@gmail.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2014
@@ -11,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-01-12 15:55+0000\n"
-"Last-Translator: Tianran Yao <yaotianran@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-04-14 06:04+0000\n"
+"Last-Translator: Christian Xia <wood_elf@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,15 +96,15 @@ msgstr "未知错误"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
-msgstr ""
+msgstr "媒体流错误"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "传入的媒体流版本不受支持"
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "服务器已关闭媒体流"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
@@ -141,7 +142,7 @@ msgstr "用户或系统请求断开连接"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "没有活动连接"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"

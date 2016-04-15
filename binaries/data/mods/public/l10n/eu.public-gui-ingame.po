@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
-# Thadah <juchuf@gmail.com>, 2015-2016
+# Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
 # Osoitz <oelkoro@gmail.com>, 2015
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-21 07:23+0000\n"
-"Last-Translator: Thadah <juchuf@gmail.com>\n"
+"PO-Revision-Date: 2016-04-14 08:50+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,40 +115,40 @@ msgstr "Eskatu zure aliatuei etsai hau erasotzea"
 #: gui/session/menu.js:507
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, eta %(garrisonedString)s."
 
 #: gui/session/menu.js:508
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, eta %(inactiveString)s."
 
 #: gui/session/menu.js:511 gui/session/menu.js:582
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:512 gui/session/menu.js:581
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, eta %(inactiveString)s."
 
 #: gui/session/menu.js:517
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:518
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, eta %(inactiveString)s."
 
 #: gui/session/menu.js:521 gui/session/menu.js:585
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(inactiveString)s dago."
+msgstr[1] "%(inactiveString)s daude."
 
 #: gui/session/menu.js:522
 msgid "There are no land traders."
@@ -655,19 +656,19 @@ msgstr "Posizioa mantendu"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Erasotu hurbil dauden etsaiak, eta segitu ikusi ahal dituen bitartean"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "Erasotu hurbil dauden etsaiak"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Erasotu hurbil dauden etsaiak, distantzia txiki bat segitu eta bueltatu hasierako lekura"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
@@ -677,7 +678,7 @@ msgstr "Ihes egin erasotua bada"
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "Erasotu eraso-eremuan dauden etsaiak, baina ez mugitu"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
@@ -687,17 +688,17 @@ msgstr "Uneko kontua: %(count)s, Muga: %(limit)s."
 #: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s %(change)s-ekin handitzen du limitea."
 
 #: gui/session/selection_panels_helpers.js:92
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s %(change)s-ekin txikitzen du limitea."
 
 #: gui/session/selection_panels_helpers.js:121
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
-msgstr ""
+msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/selection_panels_helpers.js:131
 msgid "Shift-click"
@@ -706,17 +707,17 @@ msgstr "Mayus-klik"
 #: gui/session/selection_panels_helpers.js:140
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s %(number)s entrenatzeko (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:147
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s %(number)s entrenatzeko (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:154
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s %(number)s entrenatzeko."
 
 #: gui/session/session.js:67 gui/session/utility_functions.js:91
 #: gui/session/utility_functions.js:97 gui/session/utility_functions.js:102
@@ -849,7 +850,7 @@ msgstr ""
 #: gui/session/unit_actions.js:554
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Itxarondako irabazia: %(gain)s"
 
 #: gui/session/unit_actions.js:686 gui/session/unit_actions.js:950
 msgid "Unload All"
@@ -1060,7 +1061,7 @@ msgstr "Egin klik jokora itzultzeko"
 #: gui/session/session.xml:(caption):216
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Nora:"
 
 #: gui/session/session.xml:(caption):224
 msgctxt "chat input"
@@ -1083,7 +1084,7 @@ msgstr ""
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Idatzi bidaliko duzun mezua."
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
@@ -1096,7 +1097,7 @@ msgstr "Ikuskari modua"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
-msgstr ""
+msgstr "Aukeratu ikusi nahi duzun jokalaria"
 
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
@@ -1124,19 +1125,19 @@ msgstr "Bai ala ez?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr ""
+msgstr "Trukatu baliabideak:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
-msgstr ""
+msgstr "Bizi puntuak"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Capture points"
-msgstr ""
+msgstr "Atzemate puntuak"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
-msgstr ""
+msgstr "Eraso eta Armadura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):69
 msgid "Experience"

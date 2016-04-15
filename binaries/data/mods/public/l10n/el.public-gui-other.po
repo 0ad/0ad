@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Anastasios Grav <tasosgr4@gmail.com>, 2016
+# Armando Stylianakis <armandos.styl@gmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014-2015
 # Marinus Savoritias <savoritias@gmail.com>, 2015-2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-08 09:00+0200\n"
-"PO-Revision-Date: 2016-04-08 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-14 20:25+0000\n"
+"Last-Translator: Armando Stylianakis <armandos.styl@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,11 +99,11 @@ msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 
 #: gui/common/functions_utility.js:109
 msgid "mm:ss"
-msgstr "mm:ss"
+msgstr "λλ:δδ"
 
 #: gui/common/functions_utility.js:111
 msgid "HH:mm:ss"
-msgstr "HH:mm:ss"
+msgstr "ΩΩ:λλ:δδ"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -110,7 +111,7 @@ msgstr "Φόρτωση Εγκαταλείφθηκε"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "yyyy-MM-dd HH:mm:ss"
+msgstr "εεεε-ΜΜ-ηη ΩΩ:λλ:δδ"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
@@ -370,7 +371,7 @@ msgstr "Το παιχνίδι είδη έχει αρχίσει. Οι παρατ�
 
 #: gui/common/network.js:58
 msgid "You have been kicked"
-msgstr "Σέ έδιωξαν από το παιχνίδι."
+msgstr "Σας έδιωξαν από το παιχνίδι."
 
 #: gui/common/network.js:59
 msgid "You have been banned"
@@ -421,7 +422,7 @@ msgstr "Χρήστες: %(users)s"
 #: gui/common/settings.js:107
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Δοκιμαστικό"
 
 #: gui/common/settings.js:111
 msgctxt "aiDiff"
@@ -451,7 +452,7 @@ msgstr "Πολύ δύσκολο"
 #: gui/common/settings.js:151
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Χωρίς εκεχειρίες"
 
 #: gui/common/settings.js:152
 #, javascript-format
@@ -464,7 +465,7 @@ msgstr[1] "%(minutes)s λεπτά"
 #: gui/common/settings.js:166
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Αψιμαχία"
 
 #: gui/common/settings.js:171
 msgctxt "map"
@@ -651,7 +652,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:238
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Συντελεστής Επιδιόρθωσης:"
 
 #: gui/common/tooltips.js:240 gui/common/tooltips.js:251
 msgid "health"
@@ -668,7 +669,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:249
 msgid "Build Rate:"
-msgstr ""
+msgstr "Συντελεστής Χτισίματος:"
 
 #: gui/common/tooltips.js:294 gui/common/tooltips.js:295
 #: gui/common/tooltips.js:296 gui/common/tooltips.js:297
@@ -832,7 +833,7 @@ msgstr "Προειδοποίηση"
 
 #: gui/options/options.js:337
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές, θέλετε να κλείσετε αυτό το παράθυρο;"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1024,15 +1025,15 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.js:242
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "εεεε-ΜΜ-ηη ΩΩ:λλ:δδ"
 
 #: gui/replaymenu/replay_menu.js:272
 msgid "yyyy-MM"
-msgstr ""
+msgstr "εεεε-ΜΜ"
 
 #: gui/replaymenu/replay_menu.js:323
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Άγνωστος Πολιτισμός"
 
 #: gui/replaymenu/replay_menu.js:336
 #, javascript-format
@@ -1202,7 +1203,7 @@ msgstr "Φρούρια"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "Αστικά κέντρα"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
@@ -1234,7 +1235,7 @@ msgstr "Ναυτικό"
 
 #: gui/summary/layout.js:56
 msgid "Traders"
-msgstr ""
+msgstr "Εμπόροι"
 
 #: gui/summary/layout.js:59
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -1266,7 +1267,7 @@ msgstr "Θησαυροί που έχουν συλλεχθεί"
 
 #: gui/summary/layout.js:83
 msgid "Loot"
-msgstr ""
+msgstr "Λεηλασία"
 
 #: gui/summary/layout.js:86
 msgid "Resource Statistics (Gathered / Used)"
