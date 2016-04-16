@@ -166,7 +166,18 @@ m.GameState.prototype.cityPhase = function()
 
 m.GameState.prototype.getPhaseRequirements = function(i)
 {
-	return this.phases[i-1].requirements ? this.phases[i-1].requirements : undefined;
+	if (!this.phases[i-1].requirements)
+		return undefined;
+	let requirements = this.phases[i-1].requirements;
+	if (requirements.number)
+		return requirements;
+	else if (requirements.all)
+	{
+		for (let req of requirements.all)
+			if (req.number)
+				return req;
+	}
+	return undefined;
 };
 
 m.GameState.prototype.isResearched = function(template)
