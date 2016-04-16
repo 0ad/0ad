@@ -247,7 +247,7 @@ m.GameState.prototype.checkTechRequirements = function (reqs)
 			Object.keys(this.playerData.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
 	if (reqs.class && reqs.number)
 		return this.playerData.classCounts[reqs.class] &&
-			reqs.number <= this.playerData.classCounts[reqs.class] >= reqs.number;
+			this.playerData.classCounts[reqs.class] >= reqs.number;
 	
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));
