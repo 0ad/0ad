@@ -4,8 +4,8 @@
 		"athen": "Kōmópolis"
 	},
 	"description": "Advances from a small village to a bustling town, ready to expand rapidly. This is the Athenian town phase, where metal gathering rates are boosted because of the 'Silver Owls' bonus.",
-	"cost": {"food": 500, "wood": 500, "stone": 0, "metal": 0},
-	"requirements": { "class": "Village", "number": 5 },
+	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 0 },
+	"requirements": { "all": [{ "class": "Village", "number": 5 }, { "civ": "athen" }] },
 	"requirementsTooltip": "Requires 5 Village Phase structures (except Palisades and Farm Fields).",
 	"supersedes": "phase_village",
 	"replaces": ["phase_town"],
@@ -13,10 +13,10 @@
 	"researchTime": 30,
 	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants an extra +10% metal gather rate to all workers.",
 	"modifications": [
-		{"value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker"},
-		{"value": "TerritoryInfluence/Radius", "multiply": 1.30, "affects": "CivCentre"},
-		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"},
-		{"value": "Capturable/GarrisonRegenRate", "add": 2.0, "affects": "Structure"}
+		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker" },
+		{ "value": "TerritoryInfluence/Radius", "multiply": 1.30, "affects": "CivCentre" },
+		{ "value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier" },
+		{ "value": "Capturable/GarrisonRegenRate", "add": 2.0, "affects": "Structure" }
 	],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

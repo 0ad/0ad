@@ -4,6 +4,7 @@
 # 
 # Translators:
 # rentt777 <35974380@qq.com>, 2014
+# Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # hyln9 <hyln9@live.cn>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 12:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-14 09:50+0000\n"
+"Last-Translator: Christian Xia <wood_elf@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "无法在此筑墙"
 
 #: gui/session/menu.js:111
 msgid "Are you sure you want to resign?"
-msgstr "确定要投降吗？"
+msgstr "确定要投降吗?"
 
 #: gui/session/menu.js:112 gui/session/menu.js:145 gui/session/menu.js:157
 msgid "Confirmation"
@@ -75,15 +76,15 @@ msgstr "是"
 #: gui/session/menu.js:126
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "您确定要退出吗？离开将会和其他玩家断开连接"
+msgstr "您确定要退出吗?离开将会和其他玩家断开连接"
 
 #: gui/session/menu.js:130 gui/session/menu.js:134
 msgid "Are you sure you want to quit?"
-msgstr "确定要退出吗？"
+msgstr "确定要退出吗?"
 
 #: gui/session/menu.js:156
 msgid "Do you want to resign or will you return soon?"
-msgstr "你想放弃还是马上回来？"
+msgstr "你想放弃还是马上回来?"
 
 #: gui/session/menu.js:159
 msgid "I will return"
@@ -95,7 +96,7 @@ msgstr "我放弃"
 
 #: gui/session/menu.js:176
 msgid "Destroy everything currently selected?"
-msgstr "摧毁所选项目？"
+msgstr "是否摧毁所选项目?"
 
 #: gui/session/menu.js:177 gui/session/unit_actions.js:717
 msgid "Delete"
@@ -227,11 +228,11 @@ msgstr[0] "%(numberOfShipTraders)s 商船处于非活动状态"
 
 #: gui/session/menu.js:655
 msgid "Current Scores"
-msgstr ""
+msgstr "目前分数"
 
 #: gui/session/menu.js:680 gui/session/menu.js:702
 msgid "Resume"
-msgstr "继续游戏"
+msgstr "继续"
 
 #: gui/session/menu.js:687 gui/session/menu.js:702
 #: gui/session/menu.xml:(caption):76
@@ -265,7 +266,7 @@ msgstr "%(username)s 已被踢出"
 #: gui/session/messages.js:36
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s  已被禁用"
+msgstr "%(username)s  已被封禁"
 
 #: gui/session/messages.js:45
 #, javascript-format
@@ -275,12 +276,12 @@ msgstr "%(player)s 正在开始重新加入游戏。"
 #: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s 离开了游戏。"
+msgstr "%(player)s 已离开游戏。"
 
 #: gui/session/messages.js:47
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s 重新加入了游戏"
+msgstr "%(player)s 已重新加入游戏"
 
 #: gui/session/messages.js:60
 msgid "Connection to the server has been authenticated."
@@ -334,11 +335,11 @@ msgstr "组队"
 
 #: gui/session/messages.js:88
 msgid "Observer"
-msgstr ""
+msgstr "观察者"
 
 #: gui/session/messages.js:89
 msgid "Private"
-msgstr "私人的"
+msgstr "私人"
 
 #: gui/session/messages.js:124
 #, javascript-format
@@ -373,41 +374,41 @@ msgstr "%(player)s 已与你和解。"
 #: gui/session/messages.js:134
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s 已与 %(player2)s 结盟。"
 
 #: gui/session/messages.js:135
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s 正与 %(player2)s 交战。"
 
 #: gui/session/messages.js:136
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s 已与 %(player2)s 和解。"
 
 #: gui/session/messages.js:503
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "所有人"
 
 #: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "盟友"
 
 #: gui/session/messages.js:515
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "敌方"
 
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "观察者"
 
 #: gui/session/messages.js:650
 msgid "Unknown Player"
-msgstr ""
+msgstr "未知玩家"
 
 #: gui/session/messages.js:657
 msgid "You have been defeated."
@@ -416,12 +417,12 @@ msgstr "您已战败。"
 #: gui/session/messages.js:658
 #, javascript-format
 msgid "%(player)s has been defeated."
-msgstr "%(player)s 战败。"
+msgstr "%(player)s 已战败。"
 
 #: gui/session/messages.js:689
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s 给予 %(player2)s %(amounts)s。"
 
 #: gui/session/messages.js:691
 #, javascript-format
@@ -431,7 +432,7 @@ msgstr "%(player)s 给你 %(amounts)s。"
 #: gui/session/messages.js:706
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "您的家畜正被 %(attacker)s 攻击 !"
+msgstr "您的家畜正被 %(attacker)s 攻击!"
 
 #: gui/session/messages.js:707
 #, javascript-format
@@ -550,7 +551,7 @@ msgstr "生命值:"
 #: gui/session/selection_details.js:368
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
-msgstr "捕获点："
+msgstr "捕获点:"
 
 #: gui/session/selection_panels.js:71
 msgid "Increase the alert level to protect more units"
@@ -660,34 +661,34 @@ msgstr "停留原地"
 #: gui/session/selection_panels_helpers.js:58
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "攻击附近的对手，集中攻击进攻者并在其显形时追击"
 
 #: gui/session/selection_panels_helpers.js:60
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "攻击附近的对手"
 
 #: gui/session/selection_panels_helpers.js:62
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "攻击附近的对手，追击一小段距离然后返回原始位置"
 
 #: gui/session/selection_panels_helpers.js:64
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "遭到攻击时逃跑"
 
 #: gui/session/selection_panels_helpers.js:66
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "攻击射程内的对手，但不作移动"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "现有数量： %(count)s，限额： %(limit)s。"
+msgstr "现有数量: %(count)s，限额: %(limit)s。"
 
 #: gui/session/selection_panels_helpers.js:90
 #, javascript-format
@@ -730,7 +731,7 @@ msgstr "您"
 
 #: gui/session/session.js:234
 msgid "Gaia"
-msgstr "Gaia"
+msgstr "盖亚"
 
 #: gui/session/session.js:374
 #, javascript-format
@@ -747,11 +748,11 @@ msgstr "连接已断开。"
 
 #: gui/session/session.js:449
 msgid "You have won the battle!"
-msgstr "您已胜出！"
+msgstr "您已胜出!"
 
 #: gui/session/session.js:451
 msgid "You have been defeated..."
-msgstr "您已战败……"
+msgstr "您已战败..."
 
 #: gui/session/session.js:459
 msgid "You have abandoned the game."
@@ -763,24 +764,24 @@ msgstr "确定"
 
 #: gui/session/session.js:603
 msgid "Press OK to continue"
-msgstr "点击 确定 继续"
+msgstr "按“确定 ”继续"
 
 #: gui/session/session.js:609
 msgid "Do you want to quit?"
-msgstr "要退出吗？"
+msgstr "要退出吗?"
 
 #: gui/session/session.js:614
 msgid "DEFEATED!"
-msgstr "战败！"
+msgstr "战败!"
 
 #: gui/session/session.js:619
 msgid "VICTORIOUS!"
-msgstr "胜利！"
+msgstr "胜利!"
 
 #: gui/session/session.js:724
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "重播已结束。您想要退出吗？"
+msgstr "重播已结束。您想要退出吗?"
 
 #: gui/session/session.js:725
 msgctxt "replayFinished"
@@ -907,19 +908,19 @@ msgstr "选择交易的商品"
 
 #: gui/session/unit_actions.js:907
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "按下以防止盟友使用此资源回收点"
 
 #: gui/session/unit_actions.js:911
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "按下以允许盟友使用此资源回收点"
 
 #: gui/session/unit_actions.js:970
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "已允许您使用此资源回收点"
 
 #: gui/session/unit_actions.js:974
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "已禁止使用此资源回收点"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -984,7 +985,7 @@ msgstr "保存"
 
 #: gui/session/menu.xml:(caption):53
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: gui/session/menu.xml:(caption):64
 msgid "Options"
@@ -1065,12 +1066,12 @@ msgstr "继续游戏"
 #: gui/session/session.xml:(caption):216
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "收件人:"
 
 #: gui/session/session.xml:(caption):224
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "文本:"
 
 #: gui/session/session.xml:(caption):239
 msgid "Cancel"
@@ -1083,21 +1084,21 @@ msgstr "发送"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr ""
+msgstr "选择聊天消息收件人"
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "键入要发送的消息。"
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "跟随玩家"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "观察者模式"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1110,7 +1111,7 @@ msgstr "贸易"
 
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
-msgstr "交易商品选择："
+msgstr "交易商品选择:"
 
 #: gui/session/trade_window.xml:(tooltip):35
 msgid ""
@@ -1175,7 +1176,7 @@ msgstr "菜单"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

@@ -1,13 +1,13 @@
 {
 	"genericName": "Bolt Accuracy",
 	"description": "Improvement to projectile accuracy",
-	"cost": {"food": 0, "wood": 250, "stone": 0, "metal": 250},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 0, "wood": 250, "stone": 0, "metal": 250 },
+	"requirements": { "all": [{ "tech": "phase_city" }, { "all": [{ "notciv": "brit"}, { "notciv": "gaul" }, { "notciv": "iber" }, { "notciv": "maur" }, { "notciv": "pers" }] } ]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "accuracy_bolt.png",
 	"researchTime": 40,
 	"tooltip": "Bolt shooter accuracy increased 25%.",
-	"modifications": [{"value": "Attack/Ranged/Spread", "multiply": 0.8}],
+	"modifications": [{ "value": "Attack/Ranged/Spread", "multiply": 0.8 }],
 	"affects": ["Bolt Shooter"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # loms126 <loms126@126.com>, 2014
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-19 08:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-04-15 05:20+0000\n"
+"Last-Translator: Christian Xia <wood_elf@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,35 +25,35 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:7
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "食物"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:9
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "木材"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:11
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "金属"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/ai/petra/chatHelper.js:13
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "矿石"
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "我正在对 %(_player_)s 发动大规模军事战役，来加入我吧。"
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -103,7 +104,7 @@ msgstr "我发现您正处于一个不太好的状况 %(_player_)s, 希望这个
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "%(_player_)s，这次我可以帮助你，但是以后请为我分配更多资源。"
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
@@ -121,7 +122,7 @@ msgstr "如果您能提供给我一些 %(resource)s, 我将会更积极参与我
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "如果你有多余的 %(resource)s，那么就可以帮助强化我的军队。"
 
 #: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
@@ -622,7 +623,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
+msgstr[0] "%(name)s 离 %(category)s 太近，至少需要保持 %(distance)s 米距离"
 
 #: simulation/components/BuildRestrictions.js:284
 #, javascript-format
@@ -630,7 +631,7 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
+msgstr[0] "%(name)s 离 %(category)s 太远，距离必须在 %(distance)s 米以内"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -733,72 +734,72 @@ msgstr "生产队列已满。"
 
 #: simulation/components/ProductionQueue.js:743
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "无法找到可用空间来部署受训单位"
 
 #: simulation/helpers/Cheat.js:63
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "您需要选择用于训练单位的建筑。"
 
 #: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(作弊 - 控制所有单位)"
 
 #: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(作弊 - 已晋升单位)"
 
 #: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "已请求向 %(_player_)s 发动攻击。"
 
 #: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "无法撤离单位"
 
 #: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "某些单位无法返回工作岗位"
 
 #: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "该建筑的科技要求不满足。"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "盖亚"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "玩家 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "玩家 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "玩家 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "玩家 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "玩家 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "玩家 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "玩家 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "玩家 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
@@ -965,7 +966,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "佩特拉是默认的 0 A.D. AI 机器人。请向 Wildfire Games 报告问题(请参阅主菜单中的链接)。\n\n在资源囤积方面(采集速度或交易速度)，AI 会有不同的奖励/惩罚，从 0.5 (沙盒)到 1.6 (极难)不等(中等难度下为 1.0)。此外，沙盒级别下的 AI 不会扩张领地也不会发动攻击。"
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

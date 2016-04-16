@@ -4,8 +4,8 @@
 		"athen": "Megalópolis"
 	},
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Athenian city phase, where metal gathering rates are boosted because of the 'Silver Owls' bonus.",
-	"cost": {"food": 0, "wood": 0, "stone": 750, "metal": 750},
-	"requirements": { "class": "Town", "number": 4 },
+	"cost": { "food": 0, "wood": 0, "stone": 750, "metal": 750 },
+	"requirements": { "all": [{ "class": "Town", "number": 4 }, { "civ": "athen" }] },
 	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civic Centers).",
 	"supersedes": "phase_town_athen",
 	"replaces": ["phase_city"],
@@ -13,10 +13,10 @@
 	"researchTime": 60,
 	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by another +50%. Silver Owls civ bonus grants an extra +10% metal gather rate to all workers.",
 	"modifications": [
-		{"value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker"},
-		{"value": "TerritoryInfluence/Radius", "multiply": 1.50, "affects": "CivCentre"},
-		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"},
-		{"value": "Capturable/GarrisonRegenRate", "add": 1.5, "affects": "Structure"}
+		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker" },
+		{ "value": "TerritoryInfluence/Radius", "multiply": 1.50, "affects": "CivCentre" },
+		{ "value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier" },
+		{ "value": "Capturable/GarrisonRegenRate", "add": 1.5, "affects": "Structure" }
 	],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

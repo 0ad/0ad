@@ -23,8 +23,9 @@
       <PreferredClasses datatype="tokens">Gates Structure</PreferredClasses>
     </Charge>
   </Attack>
+  <Capturable disable=""/>
   <Cost>
-    <BuildTime>20</BuildTime>
+    <BuildTime>30</BuildTime>
     <Population>5</Population>
     <Resources>
       <wood>350</wood>
@@ -40,7 +41,7 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>250</Max>
+    <Max>400</Max>
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>

@@ -10,7 +10,7 @@
       <Hack>0.0</Hack>
       <Pierce>150.0</Pierce>
       <Crush>25.0</Crush>
-      <MaxRange>80</MaxRange>
+      <MaxRange>80.0</MaxRange>
       <MinRange>8.0</MinRange>
       <Spread>2.5</Spread>
       <ProjectileSpeed>300.0</ProjectileSpeed>
@@ -18,8 +18,11 @@
       <RepeatTime>5000</RepeatTime>
     </Ranged>
   </Attack>
+  <Capturable>
+    <RegenRate>20</RegenRate>
+  </Capturable>
   <Cost>
-    <BuildTime>18</BuildTime>
+    <BuildTime>20</BuildTime>
     <Resources>
       <wood>250</wood>
       <metal>250</metal>

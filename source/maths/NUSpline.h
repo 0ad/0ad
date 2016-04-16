@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ class RNSpline
 public:
 
 	RNSpline();
-	virtual ~RNSpline() = default;
+	virtual ~RNSpline();
 
 	void AddNode(const CFixedVector3D& pos);
 	void BuildSpline();
@@ -78,7 +78,7 @@ protected:
 class SNSpline : public RNSpline
 {
 public:
-	virtual ~SNSpline() = default;
+	virtual ~SNSpline();
 
 	void BuildSpline();
 	void Smooth();
@@ -91,7 +91,7 @@ public:
 class TNSpline : public SNSpline
 {
 public:
-	virtual ~TNSpline() = default;
+	virtual ~TNSpline();
 
 	void AddNode(const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod);
 	void InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod);

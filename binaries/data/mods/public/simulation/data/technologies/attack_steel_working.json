@@ -5,13 +5,13 @@
 		"iber": "Toledo Steel"
 	},
 	"description": "Secret steel working techniques give sword blades distinctive and beautiful markings. Not only that, but the steel's hardness is unparalleled.",
-	"cost": {"food": 0, "wood": 200, "stone": 0, "metal": 200},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 200 },
+	"requirements": { "all": [{ "tech": "phase_city" }, { "any": [{ "civ": "iber" }, { "civ": "maur" }] }] },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "metalworker.png",
 	"researchTime": 60,
 	"tooltip": "+2 attack for all sword units.",
-	"modifications": [{"value": "Attack/Melee/Hack", "add": 2.0}],
+	"modifications": [{ "value": "Attack/Melee/Hack", "add": 2.0 }],
 	"affects": ["Sword"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

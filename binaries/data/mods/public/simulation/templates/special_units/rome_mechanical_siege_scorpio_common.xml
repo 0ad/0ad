@@ -2,18 +2,11 @@
 <Entity parent="template_unit_mechanical_siege_ballista">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>150.0</Pierce>
-      <Crush>25.0</Crush>
-      <MaxRange>84.0</MaxRange>
-      <MinRange>8.0</MinRange>
-      <ProjectileSpeed>300.0</ProjectileSpeed>
-      <RepeatTime>4500</RepeatTime>
+      <Pierce op="mul">1.2</Pierce>
+      <Crush op="mul">0.5</Crush>
+      <MaxRange op="add">8.0</MaxRange>
     </Ranged>
   </Attack>
-  <Cost>
-    <BuildTime>15</BuildTime>
-  </Cost>
   <Footprint replace="">
     <Square width="5.0" depth="5.0"/>
     <Height>3.0</Height>

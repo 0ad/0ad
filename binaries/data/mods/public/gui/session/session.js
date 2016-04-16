@@ -472,6 +472,8 @@ function leaveGame(willRejoin)
 	if (!g_IsReplay)
 		Engine.SaveReplayMetadata(JSON.stringify(summary));
 
+	summary.replayDirectory = Engine.GetCurrentReplayDirectory();
+
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())

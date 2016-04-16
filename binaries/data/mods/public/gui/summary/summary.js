@@ -129,6 +129,26 @@ function updatePanelData(panelInfo)
 		teamCounterFn(panelInfo.counters);
 }
 
+function startReplay()
+{
+	if (Engine.HasXmppClient())
+		Engine.StopXmppClient();
+
+	Engine.StartVisualReplay(g_GameData.replayDirectory);
+	Engine.SwitchGuiPage("page_loading.xml", {
+		"attribs": Engine.GetReplayAttributes(g_GameData.replayDirectory),
+		"isNetworked" : false,
+		"playerAssignments": {
+			"local" : {
+				"name": translate("You"),
+				"player": -1
+			}
+		},
+		"savedGUIData": "",
+		"isReplay" : true
+	});
+}
+
 function init(data)
 {
 	updateObjectPlayerPosition();
@@ -139,6 +159,7 @@ function init(data)
 	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { "time": timeToString(data.timeElapsed) });
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { "mapName": translate(data.mapSettings.Name), "mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "") });
+	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.isInGame || !g_GameData.replayDirectory;
 
 	// Panels
 	g_PlayerCount = data.playerStates.length - 1;

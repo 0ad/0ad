@@ -161,6 +161,9 @@ public:
 	inline float GetSimRate() const
 	{	return m_SimRate; }
 
+	inline std::string GetReplayPath() const
+	{	return m_ReplayPath; }
+
 	/**
 	 * Replace the current turn manager.
 	 * This class will take ownership of the pointer.

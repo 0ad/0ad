@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Mysterelee <8161525@qq.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 08:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-15 06:36+0000\n"
+"Last-Translator: Christian Xia <wood_elf@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,14 +23,14 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "马的脸部的金属盔甲"
+msgstr "金属盔甲(马脸)。"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "将您骑兵的座骑装备上盔甲。所有骑兵 +1 劈砍及穿刺盔甲等级。"
+msgstr "为您的骑兵座骑装备盔甲。所有骑兵 +1 劈砍及穿刺盔甲等级。"
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -89,7 +90,7 @@ msgstr "马头盔甲"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "城镇阶段解锁。"
+msgstr "于城镇阶段解锁。"
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -106,7 +107,7 @@ msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
-msgstr "马身体用的金属盔甲。"
+msgstr "金属盔甲(马身)。"
 
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
@@ -180,23 +181,23 @@ msgstr "马身体用的金属盔甲。"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "城市阶段时解锁。"
+msgstr "于城市阶段时解锁。"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "将您骑兵的座骑装备上盔甲。所有骑兵+1劈砍盔甲等级。"
+msgstr "为您的骑兵座骑装备盔甲。所有骑兵 +1 劈砍盔甲等级。"
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "以整块的铁打造而成的全身甲，铁是古人所知最难加工的金属。"
+msgstr "纯铁打造的盔甲，铁是古人所知最坚硬的可加工金属。"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "所有英雄+2劈砍盔甲等级和+2穿刺盔甲等级，但+50金属耗费。"
+msgstr "所有英雄 +2 劈砍盔甲等级和 +2 穿刺盔甲等级，但金属消耗 +50。"
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -212,22 +213,22 @@ msgstr "Sidḗrea Panoplía"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr "铁甲"
+msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "步兵的有衬垫的亚麻布衣或皮革衣。"
+msgstr "带衬垫亚麻布或皮质盔甲(步兵)。"
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "所有步兵 +1 劈砍及穿刺盔甲等级。"
+msgstr "所有步兵 +1 劈砍和穿刺盔甲等级。"
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "有衬垫的盔甲"
+msgstr "带衬垫盔甲"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -252,17 +253,17 @@ msgstr "有衬垫的盔甲"
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr "军团段甲"
+msgstr "古希腊薄甲"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "步兵的薄亚麻护甲。"
+msgstr "层压亚麻盔甲(步兵)。"
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "步兵薄亚麻护甲"
+msgstr "层压亚麻盔甲"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -281,7 +282,7 @@ msgstr "步兵薄亚麻护甲"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr "层麻护甲"
+msgstr "亚麻胸甲"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
@@ -295,7 +296,7 @@ msgstr "使用青铜薄片强化的盔甲。"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "鱼鳞铠甲"
+msgstr "鱼鳞盔甲"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -306,11 +307,11 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "完全使用铜打造的盔甲。只有最好的士兵才可以穿戴这种盔甲，因为它非常贵且制作耗时极长。"
+msgstr "纯铜打造的盔甲。只有最好的士兵才可以穿戴这种盔甲，因为它非常昂贵且打造耗时极长。"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "精英 +2 劈砍盔甲等级，但也 +10 金属耗费。"
+msgstr "冠军单位 +2 劈砍盔甲等级，但也 +10 金属消耗。"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -322,7 +323,7 @@ msgstr "胸甲"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr "用夹板制造的大盾牌。"
+msgstr "大型盾牌夹板结构。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
@@ -330,7 +331,7 @@ msgstr "矛兵 +2 穿刺盔甲等级。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr "制造夹板盾牌"
+msgstr "加班盾牌结构"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
@@ -344,7 +345,7 @@ msgstr "Aspidískos"
 msgid ""
 "The best shields have reinforcements either on the corners (Roman scutum) or"
 " around the rim (Greek aspis)."
-msgstr "在转角处加固(罗马塔盾)或是在边缘加固(希腊盾牌)的最好的盾牌。"
+msgstr "在转角处加固(罗马塔盾)或是在边缘加固(希腊盾牌)的最高级盾牌。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
@@ -364,7 +365,7 @@ msgstr "Aspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr "表面覆盖著铜片的盾牌。"
+msgstr "盾牌表面覆有铜皮。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
@@ -389,15 +390,15 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr "只有最著名的士兵才会有镶银的盾牌，在亚历山大大帝时期就有「银盾卫队」。"
+msgstr "只有最著名的士兵才拥有镶银盾牌，如亚历山大大帝军队中就有“银盾”军团。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "精英 +2 穿刺盔甲等级，但 +10 金属耗费。"
+msgstr "冠军单位 +2 穿刺盔甲等级，但也 +10 金属消耗。"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
-msgstr "银质盾牌"
+msgstr "银盾"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.ptol
@@ -409,11 +410,11 @@ msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr "保护船体的铅包"
+msgstr "铅包可保护船体。"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "保护船体的铅护套。所有舰船护甲 +2。"
+msgstr "铅包可保护船体。所有船只的护甲类型 +2 等级。"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -427,7 +428,7 @@ msgstr "亚麻绳支撑了整个船体。"
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "亚麻绳支撑了整个船体。所有船只的所有伤害类型皆 +2 盔甲等级。"
+msgstr "亚麻绳支撑了整个船体。所有船只的护甲类型 +2 等级。"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
@@ -444,7 +445,7 @@ msgstr "以木头加固横梁的船体。所有船只的所有伤害类型皆 +2
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr "强化全身"
+msgstr "加固船体"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
@@ -457,11 +458,11 @@ msgstr "强化全身"
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "村庄阶段时解锁。"
+msgstr "于村庄阶段解锁。"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "骑兵专用长矛"
+msgstr "骑兵专用长矛。"
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -732,15 +733,15 @@ msgstr "坚固地基"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "猎杀洞允许在城塔底部攻击敌军。"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
-msgstr ""
+msgstr "移除防御塔的最小射程。"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "猎杀洞"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -796,7 +797,7 @@ msgstr "在中立领土上可以存活比正常的前哨站多一倍的时间。
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "前哨站领地腐化率 -50%。"
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -838,19 +839,19 @@ msgstr "马车"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "腌制可延长鱼肉的保存时间。"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr ""
+msgstr "渔船 +20 食物容量。"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "腌制鱼肉"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "城镇阶段解锁。需要渔网。"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -898,16 +899,16 @@ msgstr "采集训练"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Using net improves the fishing productivity."
-msgstr ""
+msgstr "使用渔网可增加捕鱼产出率。"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "在渔船上使用渔网。+30% 捕鱼速度。解锁腌制鱼肉。"
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
-msgstr ""
+msgstr "渔网"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1356,7 +1357,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "从小村庄发展为繁华城镇，准备快速扩张。这就是雅典人的城镇阶段，其中金属采集速度因为“银枭”的奖励而提升。"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1464,7 +1465,7 @@ msgstr "奇观会吸引更多的人加入您的文明。"
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "enable +50 wonder aura"
-msgstr ""
+msgstr "启用 +50 奇迹光环"
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1750,7 +1751,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Player can use his allies dropsites."
-msgstr ""
+msgstr "玩家可以使用盟友的资源采集点。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1758,7 +1759,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "需要 3 名商人"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
@@ -2340,7 +2341,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "印度拥有丰富的天然木材资源，而孔雀王朝以木材建造城墙。因此，孔雀王朝的城墙生命值 -20%，但建造时间也 -20%。"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

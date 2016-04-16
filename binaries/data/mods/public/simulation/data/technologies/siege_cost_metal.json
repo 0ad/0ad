@@ -1,13 +1,13 @@
 {
 	"genericName": "Metalworker",
 	"description": "Siege weapons require less metal resource",
-	"cost": {"food": 500, "wood": 500, "stone": 250, "metal": 0},
-	"requirements": {"tech": "phase_city"},
+	"cost": { "food": 500, "wood": 500, "stone": 250, "metal": 0 },
+	"requirements": { "all": [{ "tech": "phase_city" }, { "notciv": "maur" }] },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "metalworker.png",
 	"researchTime": 40,
 	"tooltip": "Siege weapons cost 20% less metal",
-	"modifications": [{"value": "Cost/Resources/metal", "multiply": 0.8}],
+	"modifications": [{ "value": "Cost/Resources/metal", "multiply": 0.8 }],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

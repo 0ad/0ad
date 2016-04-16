@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege_ram">
+  <Attack>
+    <Melee>
+      <Crush op="mul">1.2</Crush>
+    </Melee>
+    <Charge>
+      <Crush op="mul">1.2</Crush>
+    </Charge>
+  </Attack>
   <Footprint replace="">
     <Square width="8.0" depth="12.0"/>
     <Height>3.0</Height>
