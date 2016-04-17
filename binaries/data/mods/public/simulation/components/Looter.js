@@ -14,15 +14,6 @@ Looter.prototype.Collect = function(targetEntity)
 	if (!cmpLoot)
 		return;
 
-	// Loot experience points as defined in the template
-	var xp = cmpLoot.GetXp();
-	if (xp > 0)
-	{
-		let cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
-		if (cmpPromotion)
-			cmpPromotion.IncreaseXp(xp);
-	}
-
 	// Loot resources as defined in the templates
 	var resources = cmpLoot.GetResources();
 	for (let type in resources)
