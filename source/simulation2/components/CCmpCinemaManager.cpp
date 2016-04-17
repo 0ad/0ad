@@ -96,17 +96,17 @@ public:
 			if (!data->m_LookAtTarget)
 				continue;
 
-			const std::vector<SplineData>& targetNodes = path.getTargetSpline().GetAllNodes();
+			const std::vector<SplineData>& targetNodes = path.GetTargetSpline().GetAllNodes();
 			serialize.NumberU32("NumberOfTargetNodes", targetNodes.size(), 1, MAX_SPLINE_NODES);
 			for (size_t i = 0; i < targetNodes.size(); ++i)
 			{
 				if (i > 0)
-					serialize.NumberFixed_Unbounded("NodeDeltaTime", nodes[i - 1].Distance);
+					serialize.NumberFixed_Unbounded("NodeDeltaTime", targetNodes[i - 1].Distance);
 				else
 					serialize.NumberFixed_Unbounded("NodeDeltaTime", fixed::Zero());
-				serialize.NumberFixed_Unbounded("PositionX", nodes[i].Position.X);
-				serialize.NumberFixed_Unbounded("PositionY", nodes[i].Position.Y);
-				serialize.NumberFixed_Unbounded("PositionZ", nodes[i].Position.Z);
+				serialize.NumberFixed_Unbounded("PositionX", targetNodes[i].Position.X);
+				serialize.NumberFixed_Unbounded("PositionY", targetNodes[i].Position.Y);
+				serialize.NumberFixed_Unbounded("PositionZ", targetNodes[i].Position.Z);
 			}
 		}
 	}
@@ -188,23 +188,24 @@ public:
 			if (!pCinematicSimulationData->m_Enabled)
 				break;
 
+			pCinematicSimulationData->m_ElapsedTime += msgData.turnLength;
+			pCinematicSimulationData->m_CurrentPathElapsedTime += msgData.turnLength;
+			if (pCinematicSimulationData->m_CurrentPathElapsedTime >= pCinematicSimulationData->m_PathQueue.front().GetDuration())
+			{
+				CMessageCinemaPathEnded msgCinemaPathEnded(pCinematicSimulationData->m_PathQueue.front().GetName());
+				pCinematicSimulationData->m_PathQueue.pop_front();
+				g_Game->GetSimulation2()->PostMessage(SYSTEM_ENTITY, msgCinemaPathEnded);
+				pCinematicSimulationData->m_CurrentPathElapsedTime = fixed::Zero();
+				if (!pCinematicSimulationData->m_PathQueue.empty())
+					pCinematicSimulationData->m_PathQueue.front().Reset();
+			}
 			if (pCinematicSimulationData->m_ElapsedTime >= pCinematicSimulationData->m_TotalTime)
 			{
+				pCinematicSimulationData->m_CurrentPathElapsedTime = fixed::Zero();
 				pCinematicSimulationData->m_ElapsedTime = fixed::Zero();
 				pCinematicSimulationData->m_TotalTime = fixed::Zero();
 				g_Game->GetView()->GetCinema()->SetEnabled(false);
 				g_Game->GetSimulation2()->PostMessage(SYSTEM_ENTITY, CMessageCinemaQueueEnded());
-			}
-			else
-			{
-				pCinematicSimulationData->m_ElapsedTime += msgData.turnLength;
-				pCinematicSimulationData->m_CurrentPathElapsedTime += msgData.turnLength;
-				if (pCinematicSimulationData->m_CurrentPathElapsedTime >= pCinematicSimulationData->m_PathQueue.front().GetDuration())
-				{
-					CMessageCinemaPathEnded msgCinemaPathEnded(pCinematicSimulationData->m_PathQueue.front().GetName());
-					pCinematicSimulationData->m_PathQueue.pop_front();
-					g_Game->GetSimulation2()->PostMessage(SYSTEM_ENTITY, msgCinemaPathEnded);
-				}
 			}
 			break;
 		}
@@ -218,8 +219,10 @@ public:
 		if (!g_Game || !g_Game->GetView())
 			return;
 		g_Game->GetView()->GetCinema()->AddPathToQueue(name);
-		CinematicSimulationData* pGetCinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
-		pGetCinematicSimulationData->m_TotalTime += pGetCinematicSimulationData->m_Paths[name].GetDuration();
+		CinematicSimulationData* pCinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
+		if (pCinematicSimulationData->m_PathQueue.size() == 1)
+			pCinematicSimulationData->m_PathQueue.front().Reset();
+		pCinematicSimulationData->m_TotalTime += pCinematicSimulationData->m_Paths[name].GetDuration();
 	}
 
 	virtual void Play()
