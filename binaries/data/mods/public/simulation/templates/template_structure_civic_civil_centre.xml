@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
   <Armour>
-    <Hack>15</Hack>
-    <Pierce>25</Pierce>
-    <Crush>3</Crush>
+    <Hack op="add">5</Hack>
+    <Pierce op="add">5</Pierce>
     <Foundation>
       <Hack>5</Hack>
       <Pierce>15</Pierce>
@@ -36,7 +35,7 @@
     </Distance>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>2000</CapturePoints>
+    <CapturePoints>2500</CapturePoints>
     <RegenRate>5.0</RegenRate>
   </Capturable>
   <Cost>
