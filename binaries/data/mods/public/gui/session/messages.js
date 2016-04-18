@@ -843,7 +843,7 @@ function matchUsername(text)
 }
 
 /**
- * Unused multiplayer-dialog.
+ * Custom dialog response handling, usable by trigger maps.
  */
 function sendDialogAnswer(guiObject, dialogName)
 {
@@ -859,7 +859,7 @@ function sendDialogAnswer(guiObject, dialogName)
 }
 
 /**
- * Unused multiplayer-dialog.
+ * Custom dialog opening, usable by trigger maps.
  */
 function openDialog(dialogName, data, player)
 {
