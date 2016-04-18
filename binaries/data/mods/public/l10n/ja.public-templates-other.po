@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:52+0000\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr "ナイルワニ"
 msgid "Nile Crocodile"
 msgstr "ナイルワニ"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "鹿"
 
@@ -329,7 +329,7 @@ msgstr "イズミダイ"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "この豊かな川の幸から食料を採集します。"
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "ガゼル"
 
@@ -341,7 +341,7 @@ msgstr "キリン（成獣）"
 msgid "Giraffe (Juvenile)"
 msgstr "キリン（幼獣）"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "山羊"
 
@@ -361,11 +361,11 @@ msgstr "雌ライオン"
 msgid "Muskox"
 msgstr "ジャコウウシ"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "孔雀"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "豚"
 
@@ -385,7 +385,7 @@ msgstr "ホオジロザメ"
 msgid "Shark"
 msgstr "サメ"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "羊"
 
@@ -397,7 +397,7 @@ msgstr "虎"
 msgid "Walrus"
 msgstr "セイウチ"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "ナガスクジラ"
 
@@ -633,13 +633,13 @@ msgstr "ベンチ"
 msgid "Wooden Bench"
 msgstr "木のベンチ"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "橋"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "木の橋"
 
@@ -651,7 +651,7 @@ msgstr "生贄の神殿"
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "医師と神聖隊騎兵を養成します。"
 
@@ -659,7 +659,7 @@ msgstr "医師と神聖隊騎兵を養成します。"
 msgid "Hut"
 msgstr "小屋"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "人口上限が2増加します。"
 
@@ -730,18 +730,9 @@ msgstr "ポルチコ"
 msgid "Propylaea"
 msgstr "プロピュライア"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "柱廊"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "ギリシアの王の柱廊"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "人口上限が10増加します。特有のユニットを召集します。"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -751,7 +742,7 @@ msgstr "ギリシア式柱廊"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "人口上限が15増加します。より多くのユニットと英雄を召集します。"
 
@@ -972,7 +963,7 @@ msgstr "一部の文明用でその他の文明にはない、人口上限5の�
 msgid "Marker"
 msgstr "マーカー"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr ""
 

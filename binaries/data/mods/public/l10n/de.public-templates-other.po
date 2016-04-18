@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-04-14 22:18+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 16:12+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,7 +294,7 @@ msgstr "Crocodylus niloticus"
 msgid "Nile Crocodile"
 msgstr "Nilkrokodil"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "Reh"
 
@@ -332,7 +332,7 @@ msgstr "Tilapia"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Sammle Nahrung von diesem reichlich vorhandenen Küstenfisch."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "Gazelle"
 
@@ -344,7 +344,7 @@ msgstr "Giraffe (ausgewachsen)"
 msgid "Giraffe (Juvenile)"
 msgstr "Giraffe (Jungtier)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "Ziege"
 
@@ -364,11 +364,11 @@ msgstr "Löwin"
 msgid "Muskox"
 msgstr "Moschusochse"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "Pfau"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Schwein"
 
@@ -388,7 +388,7 @@ msgstr "Weißer Hai"
 msgid "Shark"
 msgstr "Hai"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "Schaf"
 
@@ -400,7 +400,7 @@ msgstr "Tiger"
 msgid "Walrus"
 msgstr "Walross"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "Finnwal"
 
@@ -636,13 +636,13 @@ msgstr "Bank"
 msgid "Wooden Bench"
 msgstr "Holzbank"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Brücke"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Holzbrücke"
 
@@ -654,7 +654,7 @@ msgstr "Opfertempel"
 msgid "Tophet"
 msgstr "Tofet"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Bilde Kavallerie der Heiligen Schar und Mediziner aus."
 
@@ -662,7 +662,7 @@ msgstr "Bilde Kavallerie der Heiligen Schar und Mediziner aus."
 msgid "Hut"
 msgstr "Hütte"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "Erhöht das Bevölkerungslimit um +2."
 
@@ -733,18 +733,9 @@ msgstr "Portikus"
 msgid "Propylaea"
 msgstr "Propylon"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Stoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Königlich-Hellenische Stoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Erhöht das Bevölkerungslimit um +10. Rekrutiere Spezialeinheiten."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -754,7 +745,7 @@ msgstr "Hellenische Stoa"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "Erhöhe das Bevölkerungslimit um +15. Rekrutiere Sondereinheiten und Helden."
 
@@ -975,7 +966,7 @@ msgstr "Änderungen in einem 5er Wohnhaus für Zivilisationen mit diesen Häuser
 msgid "Marker"
 msgstr "Marker"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr "Spieler"
 

@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-14 20:01+0000\n"
-"Last-Translator: Armando Stylianakis <armandos.styl@gmail.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 09:30+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,6 +55,18 @@ msgstr "Χτίσε για να αποκτήσεις μεγάλες εκτάσε�
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Κέντρο Πόλης"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -508,19 +520,21 @@ msgstr "Τείχος"
 msgid "Pýrgos"
 msgstr "Πύργος"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Παρθενώνας"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.Περιφρουρήστε με πάνω απο 30 μονάδες γιανα γιατρευτούν με ταχύτερο ρυθμό"
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -794,7 +808,7 @@ msgstr "Mijdil-šaʿar"
 msgid "Homah"
 msgstr "Homah"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Ναός του Ba'al Hammon"
 
@@ -871,15 +885,15 @@ msgstr "Οικία"
 msgid "Arruga"
 msgstr "Ρυτίδα"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "Ανεστραμένο μνημείο"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1151,18 +1165,37 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Εκπαίδευσε Πρωταθλητές Ιππικό και κατασκεύασε Πολιορκητικούς Κριούς."
 
+#: simulation/templates/structures/pers_hall.xml:22
+msgid "Persian Hall"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:23
+msgid "Duvarthi Visadahyu"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:25
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries."
+msgstr "Ειδικό κτήριο.\nΕκπαίδευσε πολεμικούς ελέφαντες και Κάρδακες μισθοφόρους."
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Huvādā"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "Περσικό Ειδικό Κτίριο."
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "Πύλη Ιστάρ της Βαβυλώνας"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "Ειδικό Αυτοκρατορικό Ρωμαϊκό κτίριο."
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1173,26 +1206,12 @@ msgid "Didebani"
 msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "Παλάτι"
+msgid "Taçara"
+msgstr ""
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "Όριο χτισίματος 1."
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "Περσικό Ειδικό Κτίριο."
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Ειδικό κτήριο.\nΕκπαίδευσε πολεμικούς ελέφαντες και Κάρδακες μισθοφόρους."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1355,13 +1374,17 @@ msgstr "h-n-njwt"
 msgid "mktr"
 msgstr "mktr"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "Ναός της Έντφου"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Αψίδα του Θριάμβου"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "Ειδικό Αυτοκρατορικό Ρωμαϊκό κτίριο."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1485,19 +1508,13 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Εκπαίδευσε θεραπευτές. Οχύρωσε έως 30 μονάδες για να θεραπεύτουν με γρήγορο ρυθμό."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "Ναός της Εστίας"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "Χτίστε αυτόν το ναό για να αυξήσετε κατά πολύ την αφοσίωση των κτιρίων σας και των πολιτισσών σας (βοηθά στην αποφυγή της αιχμαλώτησής τους)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1531,7 +1548,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "Murus Latericius"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 
@@ -1627,3 +1644,9 @@ msgstr "Συσσίτιον"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Εκπαίδευσε Σπαρτιάτες ήρωες και Σπαρτιάτες πρωταθλητές οπλίτες."
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.Περιφρουρήστε με πάνω απο 30 μονάδες γιανα γιατρευτούν με ταχύτερο ρυθμό"

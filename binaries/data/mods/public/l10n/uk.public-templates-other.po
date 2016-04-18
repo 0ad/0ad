@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-04-04 06:38+0000\n"
-"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,7 +292,7 @@ msgstr "Крокодилус Нілотікус"
 msgid "Nile Crocodile"
 msgstr "Нільський крокодил"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "Олень"
 
@@ -330,7 +330,7 @@ msgstr "Риба Тілапія"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Збирайте їжу з цих щедрих узбережних ресурсів."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "Газель"
 
@@ -342,7 +342,7 @@ msgstr "Жираф (Дорослий)"
 msgid "Giraffe (Juvenile)"
 msgstr "Жираф (Дитинча)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "Козел"
 
@@ -362,11 +362,11 @@ msgstr "Левиця"
 msgid "Muskox"
 msgstr "Вівцебик"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "Павич"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Свиня"
 
@@ -386,7 +386,7 @@ msgstr "Біла Акула"
 msgid "Shark"
 msgstr "Акула"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "Вівця"
 
@@ -398,7 +398,7 @@ msgstr "Тигр"
 msgid "Walrus"
 msgstr "Морж"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "Кит"
 
@@ -634,13 +634,13 @@ msgstr "Лава"
 msgid "Wooden Bench"
 msgstr "Дерев’яна лава"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Міст"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Дерев'яний міст"
 
@@ -652,7 +652,7 @@ msgstr "Жертовний Храм"
 msgid "Tophet"
 msgstr "Долина смерті"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Тренує лікарів і кавалеристів священного загону."
 
@@ -660,7 +660,7 @@ msgstr "Тренує лікарів і кавалеристів священно
 msgid "Hut"
 msgstr "Хатина"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "Добавляє +2 до кількості населення."
 
@@ -731,18 +731,9 @@ msgstr "Портіко"
 msgid "Propylaea"
 msgstr "Пропілеї"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Колонада"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Грецька царська колонада"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Добавляє +10 до кількості населення. Наймає спеціальних юнітів."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -752,7 +743,7 @@ msgstr "Грецька колонада"
 msgid "Harmya"
 msgstr "Хармія"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "Добавляє +15 до кількості населення. Наймає особливих юнітів та героїв."
 
@@ -973,7 +964,7 @@ msgstr "Перетворюється в будинок з 5 мешканцями
 msgid "Marker"
 msgstr "Вказівник"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr "Гравець"
 

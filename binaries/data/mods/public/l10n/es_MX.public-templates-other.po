@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:52+0000\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr "Crocodylus niloticus"
 msgid "Nile Crocodile"
 msgstr "Cocodrilo del Nilo"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "Venado"
 
@@ -329,7 +329,7 @@ msgstr "Tilapia"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Consigue comida de este abundante recurso de la ribera."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "Gacela"
 
@@ -341,7 +341,7 @@ msgstr "Jirafa adulta"
 msgid "Giraffe (Juvenile)"
 msgstr "Girafa joven"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "Cabra"
 
@@ -361,11 +361,11 @@ msgstr "Leonesa"
 msgid "Muskox"
 msgstr "Buey almizclero"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "Pavo real"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Cerdo"
 
@@ -385,7 +385,7 @@ msgstr "Gran blanco"
 msgid "Shark"
 msgstr "Tiburón"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "Tigre"
 
@@ -397,7 +397,7 @@ msgstr "Tigre"
 msgid "Walrus"
 msgstr "Morsa"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "Ballena rorcual"
 
@@ -633,13 +633,13 @@ msgstr "Banco"
 msgid "Wooden Bench"
 msgstr "Banco de madera"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Puente"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Puente de madera"
 
@@ -651,7 +651,7 @@ msgstr "Templo de sacrificios"
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Recluta médicos y caballería del Batallón Sagrado."
 
@@ -659,7 +659,7 @@ msgstr "Recluta médicos y caballería del Batallón Sagrado."
 msgid "Hut"
 msgstr "Choza"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "Aumenta +2 el Limite de poblacion"
 
@@ -730,18 +730,9 @@ msgstr "Pórtico"
 msgid "Propylaea"
 msgstr "Propylaea"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Estoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Estoa Helenística Real"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Amplia a +10 el límite de población. Recluta unidades especiales."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -751,7 +742,7 @@ msgstr "Estoa Helénica"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "Añade +15 al límite de población. Recluta unidades y héroes adicionales."
 
@@ -972,7 +963,7 @@ msgstr "Se convierte en una casa de 5 de población para las civilizaciones que 
 msgid "Marker"
 msgstr "Marcador"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr ""
 

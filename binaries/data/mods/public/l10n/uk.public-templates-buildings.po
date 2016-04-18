@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 09:48+0000\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 09:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -43,6 +43,18 @@ msgstr "Побудується, щоб придбати великі ділян�
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Громадський Центр"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -496,19 +508,21 @@ msgstr "Тейхос"
 msgid "Pýrgos"
 msgstr "Пиргос"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Святилище Парфенон"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Приносить славу вашій цивілізації та додає великі території до вашої імперії. Розміщує до 30 юнітів для прискореного відновлення здоров'я."
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -782,7 +796,7 @@ msgstr "Мижділ-Шахар"
 msgid "Homah"
 msgstr "Хома"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Храм Бахам Хамона"
 
@@ -859,15 +873,15 @@ msgstr "Етхе"
 msgid "Arruga"
 msgstr "Аруга"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "Почесний монумент"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Гур Оройгарі"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1139,18 +1153,37 @@ msgstr "Діда"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Тренує Чемпіонів Кавалерії та будує Облогові Тарани."
 
+#: simulation/templates/structures/pers_hall.xml:22
+msgid "Persian Hall"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:23
+msgid "Duvarthi Visadahyu"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:25
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries."
+msgstr "Особлива будівля.\nТренує Бойових Слонів і Кардакешських наймитів."
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Хувада"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "Особлива будівля Персії"
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "Вавилонська Брама Іштар"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "Особлива будівля Римської Імперії."
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1161,26 +1194,12 @@ msgid "Didebani"
 msgstr "Дідебані"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "Палац"
+msgid "Taçara"
+msgstr ""
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "Ліміт будівель: 1."
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "Особлива будівля Персії"
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Паріхувада"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Особлива будівля.\nТренує Бойових Слонів і Кардакешських наймитів."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1343,13 +1362,17 @@ msgstr "х-н-нжвт"
 msgid "mktr"
 msgstr "мктр"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "Храм Едфу"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Тріумфальна Арка"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "Особлива будівля Римської Імперії."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1473,19 +1496,13 @@ msgstr "Аєдес Мартіс"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Тренує цілителів. Розмістіть до 30 юнітів для швидкого зцілення."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "Храм Вести"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Аєдес Веста"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "Побудуйте цей храм, щоб значно підвищити лояльність ваших будівель, так і жінок-громадян (допомагає запобігти їх захопленню)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1519,7 +1536,7 @@ msgstr "Туріс Лапідея"
 msgid "Murus Latericius"
 msgstr "Цегляні Мури"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Аєдес лові Оптимі Максімі"
 
@@ -1615,3 +1632,9 @@ msgstr "Сицітьйон"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Тренує Спартанських героїв і Спартанських чемпіонів гоплитів."
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Приносить славу вашій цивілізації та додає великі території до вашої імперії. Розміщує до 30 юнітів для прискореного відновлення здоров'я."

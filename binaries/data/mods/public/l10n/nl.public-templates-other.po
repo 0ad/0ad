@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-04-07 14:02+0000\n"
-"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -293,7 +293,7 @@ msgstr "Crocodylus niloticus"
 msgid "Nile Crocodile"
 msgstr "Nijlkrokodil"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "Hert"
 
@@ -331,7 +331,7 @@ msgstr "Tilapia (vis)"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Verzamel voedsel van deze, aan de oever gelegen, voedselbron."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "Gazelle"
 
@@ -343,7 +343,7 @@ msgstr "Giraf (volwassen)"
 msgid "Giraffe (Juvenile)"
 msgstr "Giraf (kalf)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "Geit"
 
@@ -363,11 +363,11 @@ msgstr "Leeuwin"
 msgid "Muskox"
 msgstr "Muskusos"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "Pauw"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Varken"
 
@@ -387,7 +387,7 @@ msgstr "Witte haai"
 msgid "Shark"
 msgstr "Haai"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "Schaap"
 
@@ -399,7 +399,7 @@ msgstr "Tijger"
 msgid "Walrus"
 msgstr "Walrus"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "Blauwe vinvis"
 
@@ -635,13 +635,13 @@ msgstr "Bank"
 msgid "Wooden Bench"
 msgstr "Houten bank"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Brug"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Houten brug"
 
@@ -653,7 +653,7 @@ msgstr "Offertempel"
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Rekruteer helers en ruiters van de Heilige Schare."
 
@@ -661,7 +661,7 @@ msgstr "Rekruteer helers en ruiters van de Heilige Schare."
 msgid "Hut"
 msgstr "Hut"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "Vergroot de bevolkingslimiet met 2."
 
@@ -732,18 +732,9 @@ msgstr "Portico"
 msgid "Propylaea"
 msgstr "Propylaea"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Stoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Griekse koninklijke stoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Vergroot de bevolkingslimiet met 10, rekruteer speciale eenheden."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -753,7 +744,7 @@ msgstr "Hellenistische stoa"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "Vergroot de populatielimiet met 15. Rekruteer extra eenheden en helden."
 
@@ -974,7 +965,7 @@ msgstr "Wordt door een 5-bev huis vervangen voor beschavingen die dergelijke hui
 msgid "Marker"
 msgstr "Markeerpunt"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr "Speler"
 

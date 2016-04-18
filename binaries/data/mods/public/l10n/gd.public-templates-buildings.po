@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 10:05+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,6 +40,18 @@ msgstr "Tog fear gus cnap òr de ranntair a ghabhail. Trèanaich saoranaich. Gea
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Ionad sìobhalta"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr "Stoa"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr "Stoa rìoghail Greugach"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "Cuir +10% ris na tha ceadaichte dhut de shluagh. Trus aonadan sònraichte."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -493,19 +505,21 @@ msgstr "Teîkhos"
 msgid "Pýrgos"
 msgstr "Pýrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Naós Parthenṓn"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Thoir cliù air an t‑sìobhaltas agad is cuir cnap mòr de thìr ris an impireachd agad. Cuir gearastan de gu ruige 30 aonadan ann gus an slànachadh gu luath."
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+msgstr "Thoir cliù air an t‑sìobhaltas agad is cuir cnap mòr de thìr ris an impireachd agad. Cuir gearastan de gu ruige 30 aonadan ann gus an slànachadh gu cianail fhèin luath."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -779,7 +793,7 @@ msgstr "Mijdil-šaʿar"
 msgid "Homah"
 msgstr "Homah"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Teampall Ba’al Hammon"
 
@@ -856,15 +870,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "Carragh urramach"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1136,18 +1150,37 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Trèanaich laoich eachraidh is tog reitheachan-sèiste."
 
+#: simulation/templates/structures/pers_hall.xml:22
+msgid "Persian Hall"
+msgstr "Talla Pearsach"
+
+#: simulation/templates/structures/pers_hall.xml:23
+msgid "Duvarthi Visadahyu"
+msgstr "Duvarthi Visadahyu"
+
+#: simulation/templates/structures/pers_hall.xml:25
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries."
+msgstr "Togalach sònraichte\nTrèanaich ailbheanan-cogaidh is saighdearan-duaise Kardakes."
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Huvādā"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "Togalach sònraichte nam Pearsach."
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "Geata Ištar Bhàbilon"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "Togalach sònraichte na h‑impireachd Ròmanach."
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr "Meudaichidh seo ath-ghintinn na dìlseachd air togalaichean am fagas ach am bi iad nas dorra glacadh. Cuingeachadh togail: 1."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1158,26 +1191,12 @@ msgid "Didebani"
 msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "Lùchairt"
+msgid "Taçara"
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "Cuingeachadh togail: 1."
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "Togalach sònraichte nam Pearsach."
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Togalach sònraichte\nTrèanaich ailbheanan-cogaidh is saighdearan-duaise Kardakes."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1261,7 +1280,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Meudaich na tha ceadaichte dhut a shluagh. On a tha ballachan eabair aca, cha chosg taighean nan Èipheiteach dad ach tha iad glè lag."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1340,13 +1359,17 @@ msgstr "h-n-njwt"
 msgid "mktr"
 msgstr "mktr"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "Teampall Edfu"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Bogha buaidhe"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "Togalach sònraichte na h‑impireachd Ròmanach."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1470,19 +1493,13 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Trèanaich lighichean. Cuir gearastan de gu ruige 30 aonadan ann gus an slànachadh gu luath."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "Teampall Bheasta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "Tog an teampall seo ach am bi na togalaichean is na saoranaich boireann agad mòran nas dìlse (ach nach tèid an glacadh)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1516,7 +1533,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "Murus Latericius"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 
@@ -1612,3 +1629,9 @@ msgstr "Syssítion"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Trèanaich curaidhean Spartach is laoch hoiplidean Homoioi."
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Thoir cliù air an t‑sìobhaltas agad is cuir cnap mòr de thìr ris an impireachd agad. Cuir gearastan de gu ruige 30 aonadan ann gus an slànachadh gu luath."

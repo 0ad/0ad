@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:00+0200\n"
-"PO-Revision-Date: 2016-04-08 09:17+0000\n"
+"POT-Creation-Date: 2016-04-15 09:00+0200\n"
+"PO-Revision-Date: 2016-04-15 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -781,7 +781,7 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/replaymenu/replay_actions.js:112 gui/savedgames/load.js:49
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "Yes"
@@ -789,7 +789,7 @@ msgstr "हाँ"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/replaymenu/replay_actions.js:112 gui/savedgames/load.js:49
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "No"
@@ -919,7 +919,7 @@ msgstr ""
 msgid "Manual"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:31
+#: gui/replaymenu/replay_actions.js:31 gui/summary/summary.js:143
 msgid "You"
 msgstr ""
 
@@ -957,11 +957,11 @@ msgstr ""
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:114
+#: gui/replaymenu/replay_actions.js:115
 msgid "Delete replay"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:115
+#: gui/replaymenu/replay_actions.js:116
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
@@ -1327,12 +1327,12 @@ msgstr ""
 msgid "Team total"
 msgstr ""
 
-#: gui/summary/summary.js:136
+#: gui/summary/summary.js:159
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:138
+#: gui/summary/summary.js:161
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
@@ -1875,6 +1875,10 @@ msgid "Market"
 msgstr ""
 
 #: gui/summary/summary.xml:(caption):161
+msgid "Replay"
+msgstr ""
+
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "जारी रखें"
 

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-04-15 03:16+0000\n"
-"Last-Translator: Christian Xia <wood_elf@126.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,7 +292,7 @@ msgstr "尼罗鳄"
 msgid "Nile Crocodile"
 msgstr "尼罗鳄"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "鹿"
 
@@ -330,7 +330,7 @@ msgstr "罗非鱼"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "从丰富的沿岸资源中收集食物。"
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "羚羊"
 
@@ -342,7 +342,7 @@ msgstr "长颈鹿 (成年)"
 msgid "Giraffe (Juvenile)"
 msgstr "长颈鹿 (幼年)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "山羊"
 
@@ -362,11 +362,11 @@ msgstr "母狮"
 msgid "Muskox"
 msgstr "麝牛"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "孔雀"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "猪"
 
@@ -386,7 +386,7 @@ msgstr "大白鯊"
 msgid "Shark"
 msgstr "鯊魚"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "羊"
 
@@ -398,7 +398,7 @@ msgstr "老虎"
 msgid "Walrus"
 msgstr "海象"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "长须鲸"
 
@@ -634,13 +634,13 @@ msgstr "长凳"
 msgid "Wooden Bench"
 msgstr "木长凳"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "桥"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "木桥"
 
@@ -652,7 +652,7 @@ msgstr "祭祀庙"
 msgid "Tophet"
 msgstr "托非特（古希伯来人在此举行人祭）"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "训练医生与圣队骑兵。"
 
@@ -660,7 +660,7 @@ msgstr "训练医生与圣队骑兵。"
 msgid "Hut"
 msgstr "茅屋"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "人口上限 +2。"
 
@@ -731,18 +731,9 @@ msgstr "门廊"
 msgid "Propylaea"
 msgstr "通廊"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "拱廊"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "希腊皇家柱廊"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "人口上限 +10， 招募特殊单位。"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -752,7 +743,7 @@ msgstr "希腊柱廊 "
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "人口上限 +15， 招募单位和英雄。"
 
@@ -973,7 +964,7 @@ msgstr "将有哪些房舍的文明变为5单位容量的房舍，其他文明�
 msgid "Marker"
 msgstr "里程碑"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr "玩家"
 

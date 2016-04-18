@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 11:35+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 09:30+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,6 +47,18 @@ msgstr "Bouw om grote delen territorium te verkrijgen. Rekruteer burgers. Bemann
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Beschavingscentrum"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -500,19 +512,21 @@ msgstr "Teîkhos"
 msgid "Pýrgos"
 msgstr "Pýrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Naós Parthenṓn"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Breng glorie en voeg grote delen gebied toe aan jouw rijk. Geneest tot 30 eenheden in de tempel simultaan."
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -786,7 +800,7 @@ msgstr "Mijdil-šaʿar"
 msgid "Homah"
 msgstr "Homah"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Tempel van Ba'al Hammon"
 
@@ -863,15 +877,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "Geëerd monument"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1143,18 +1157,37 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Rekruteer kampioenruiters en bouw stormrammen."
 
+#: simulation/templates/structures/pers_hall.xml:22
+msgid "Persian Hall"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:23
+msgid "Duvarthi Visadahyu"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:25
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries."
+msgstr "Speciaal gebouw.\nRekruteer oorlogsolifanten en huurlingen van Karkades."
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Huvādā"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "Perzisch speciaal gebouw"
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "Ishtar poort van Babylon"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "Special Romeins imperiaal gebouw."
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1165,26 +1198,12 @@ msgid "Didebani"
 msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "Paleis"
+msgid "Taçara"
+msgstr ""
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "Bouwlimiet: 1."
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "Perzisch speciaal gebouw"
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Speciaal gebouw.\nRekruteer oorlogsolifanten en huurlingen van Karkades."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1347,13 +1366,17 @@ msgstr "h-n-njwt"
 msgid "mktr"
 msgstr "mktr"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "Tempel van Edfu"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Triomfboog"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "Special Romeins imperiaal gebouw."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1477,19 +1500,13 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Rekruteer helers. Geneest tot 30 eenheden in de tempel simultaan."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "Tempel van Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "Bouw deze tempel om de trouwheid van je gebouwen en vrouwen te verhogen (zorgt er voor dat ze minder snel gevangengenomen worden)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1523,7 +1540,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "Murus Latericius"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 
@@ -1619,3 +1636,9 @@ msgstr "Syssítion"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Rekruteer Spartaanse helden en Spartaanse kampioen hoplieten."
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Breng glorie en voeg grote delen gebied toe aan jouw rijk. Geneest tot 30 eenheden in de tempel simultaan."
