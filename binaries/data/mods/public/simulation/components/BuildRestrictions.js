@@ -171,35 +171,50 @@ BuildRestrictions.prototype.CheckPlacement = function()
 
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-	var isOwn = (tileOwner == cmpPlayer.GetPlayerID());
-	var isNeutral = (tileOwner == 0);
-	var isAlly = !isOwn && cmpPlayer.IsAlly(tileOwner);
-	// We count neutral players as enemies, so you can't build in their territory.
-	var isEnemy = !isNeutral && (cmpPlayer.IsEnemy(tileOwner) || cmpPlayer.IsNeutral(tileOwner));
+	var isConnected = !cmpTerritoryManager.IsTerritoryBlinking(pos.x, pos.y);
+	var isOwn = tileOwner == cmpPlayer.GetPlayerID();
+	var isMutualAlly = cmpPlayer.IsExclusiveMutualAlly(tileOwner);
+	var isNeutral = tileOwner == 0;
 
-	var territoryFail = true;
-	var territoryType = "";
-	if (isAlly && !this.HasTerritory("ally"))
-		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
-		territoryType = markForTranslationWithContext("Territory type", "ally");
-	else if (isOwn && !this.HasTerritory("own"))
-		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
-		territoryType = markForTranslationWithContext("Territory type", "own");
-	else if (isNeutral && !this.HasTerritory("neutral"))
-		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
-		territoryType = markForTranslationWithContext("Territory type", "neutral");
-	else if (isEnemy && !this.HasTerritory("enemy"))
-		// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
-		territoryType = markForTranslationWithContext("Territory type", "enemy");
+	var invalidTerritory = "";
+	if (isOwn)
+	{
+		if (!this.HasTerritory("own"))
+			// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+			invalidTerritory = markForTranslationWithContext("Territory type", "own");
+		else if (!isConnected && !this.HasTerritory("neutral"))
+			// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+			invalidTerritory = markForTranslationWithContext("Territory type", "unconnected own");
+	}
+	else if (isMutualAlly)
+	{
+		if (!this.HasTerritory("ally"))
+			// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+			invalidTerritory = markForTranslationWithContext("Territory type", "allied");
+		else if (!isConnected && !this.HasTerritory("neutral"))
+			// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+			invalidTerritory = markForTranslationWithContext("Territory type", "unconnected allied");
+	}
+	else if (isNeutral)
+	{
+		if (!this.HasTerritory("neutral"))
+			// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+			invalidTerritory = markForTranslationWithContext("Territory type", "neutral");
+	}
 	else
-		territoryFail = false;
+	{
+		// consider everything else enemy territory
+		if (!this.HasTerritory("enemy"))
+			// Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
+			invalidTerritory = markForTranslationWithContext("Territory type", "enemy");
+	}
 
-	if (territoryFail)
+	if (invalidTerritory)
 	{
 		result.message = markForTranslation("%(name)s cannot be built in %(territoryType)s territory. Valid territories: %(validTerritories)s");
 		result.translateParameters.push("territoryType");
 		result.translateParameters.push("validTerritories");
-		result.parameters.territoryType = {"context": "Territory type", "message": territoryType};
+		result.parameters.territoryType = {"context": "Territory type", "message": invalidTerritory};
 		// gui code will join this array to a string
 		result.parameters.validTerritories = {"context": "Territory type list", "list": this.GetTerritories()};
 		return result;	// Fail

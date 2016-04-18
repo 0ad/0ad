@@ -3,6 +3,7 @@ var PETRA = function(m)
 
 // other map functions
 m.TERRITORY_PLAYER_MASK = 0x1F;
+m.TERRITORY_BLINKING_MASK = 0x40;
 
 m.createObstructionMap = function(gameState, accessIndex, template)
 {
@@ -43,11 +44,28 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	for (let k = 0; k < territoryMap.data.length; ++k)
 	{
 		let tilePlayer = (territoryMap.data[k] & m.TERRITORY_PLAYER_MASK);
-		if ((!buildNeutral && tilePlayer == 0) ||
-			(!buildOwn && tilePlayer == PlayerID) ||
-			(!buildAlly && tilePlayer != PlayerID && gameState.isPlayerAlly(tilePlayer)) ||
-			(!buildEnemy && tilePlayer != 0 && gameState.isPlayerEnemy(tilePlayer)))
-			continue;
+		let isConnected = (territoryMap.data[k] & m.TERRITORY_BLINKING_MASK) == 0;
+		if (tilePlayer == PlayerID)
+		{
+			if (!buildOwn || !buildNeutral && !isConnected)
+				continue;
+		}
+		else if (gameState.isPlayerMutualAlly(tilePlayer))
+		{
+			if (!buildAlly || !buildNeutral && !isConnected)
+				continue;
+		}
+		else if (tilePlayer == 0)
+		{
+			if (!buildNeutral)
+				continue;
+		}
+		else
+		{
+			if (!buildEnemy)
+				continue;
+		}
+
 		let x = ratio * (k % territoryMap.width);
 		let y = ratio * (Math.floor(k / territoryMap.width));
 		for (let ix = 0; ix < ratio; ++ix)
