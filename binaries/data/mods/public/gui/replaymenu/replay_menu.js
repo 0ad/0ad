@@ -11,7 +11,7 @@ const g_CivData = loadCivData();
 /**
  * Used for creating the mapsize filter.
  */
-const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
+const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 
 /**
  * All replays found in the directory.

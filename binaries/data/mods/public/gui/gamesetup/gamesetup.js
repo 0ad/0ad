@@ -1,13 +1,13 @@
 const g_MatchSettings_SP = "config/matchsettings.json";
 const g_MatchSettings_MP = "config/matchsettings.mp.json";
 
-const g_Ceasefire = prepareForDropdown(g_Settings ? g_Settings.Ceasefire : undefined);
-const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly) : undefined);
-const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
-const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
-const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
-const g_StartingResources = prepareForDropdown(g_Settings ? g_Settings.StartingResources : undefined);
-const g_VictoryConditions = prepareForDropdown(g_Settings ? g_Settings.VictoryConditions : undefined);
+const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
+const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly));
+const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
+const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
+const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
+const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
+const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
 
 /**
  * All selectable playercolors except gaia.

@@ -1,5 +1,5 @@
 const g_IsReplay = Engine.IsVisualReplay();
-const g_GameSpeeds = prepareForDropdown(g_Settings ? g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay) : undefined);
+const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay));
 
 /**
  * Colors to flash when pop limit reached.

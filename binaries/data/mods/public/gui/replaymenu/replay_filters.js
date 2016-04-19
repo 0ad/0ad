@@ -15,7 +15,7 @@ const g_DurationFilterIntervals = [
 /**
  * Allow to filter by population capacity.
  */
-const g_PopulationCapacities = prepareForDropdown(g_Settings ? g_Settings.PopulationCapacities : undefined);
+const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 
 /**
  * Reloads the selectable values in the filters. The filters depend on g_Settings and g_Replays
