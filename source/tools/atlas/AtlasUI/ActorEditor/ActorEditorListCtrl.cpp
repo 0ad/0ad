@@ -46,13 +46,14 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 
 	#undef COLOR
 
-	AddColumnType(_("Variant"),		90,  "@name",		new FieldEditCtrl_Text());
-	AddColumnType(_("Ratio"),		50,  "@frequency",	new FieldEditCtrl_Text());
-	AddColumnType(_("Model"),		140, "mesh",		new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd, *.dae)|*.pmd;*.dae|All files (*.*)|*.*")));
-	AddColumnType(_("Textures"),		250, "textures",	new FieldEditCtrl_Dialog(&TexListEditor::Create));
-	AddColumnType(_("Animations"),		250, "animations",	new FieldEditCtrl_Dialog(&AnimListEditor::Create));
-	AddColumnType(_("Props"),		220, "props",		new FieldEditCtrl_Dialog(&PropListEditor::Create));
-	AddColumnType(_("Color"),		80,  "color",		new FieldEditCtrl_Color());
+	AddColumnType(_("Variant"),    90,  "@name",      new FieldEditCtrl_Text());
+	AddColumnType(_("Base File"),  90,  "@file",      new FieldEditCtrl_File(_T("art/variants/"), _("Variants (*.xml)|*.xml|All files (*.*)|*.*")));
+	AddColumnType(_("Ratio"),      50,  "@frequency", new FieldEditCtrl_Text());
+	AddColumnType(_("Model"),      140, "mesh",       new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd, *.dae)|*.pmd;*.dae|All files (*.*)|*.*")));
+	AddColumnType(_("Textures"),   250, "textures",   new FieldEditCtrl_Dialog(&TexListEditor::Create));
+	AddColumnType(_("Animations"), 250, "animations", new FieldEditCtrl_Dialog(&AnimListEditor::Create));
+	AddColumnType(_("Props"),      220, "props",      new FieldEditCtrl_Dialog(&PropListEditor::Create));
+	AddColumnType(_("Color"),      80,  "color",      new FieldEditCtrl_Color());
 }
 
 void ActorEditorListCtrl::DoImport(AtObj& in)

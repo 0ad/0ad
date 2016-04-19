@@ -6,9 +6,6 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="97"/>
-        <animation event="0.4" file="infantry/sword/attack/isw_s_def_01.psa" name="attack_capture" speed="100"/>
-        <animation event="0.4" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_capture" speed="100"/>
-        <animation event="0.2" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_capture" speed="100"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="90"/>
         <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="100"/>
@@ -44,11 +41,7 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="attack_capture">
-      <props>
-        <prop actor="props/units/tools/pitchfork.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
+    <variant file="biped/attack_capture.xml"/>
     <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/bow_short.xml" attachpoint="l_hand"/>

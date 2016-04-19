@@ -11,7 +11,6 @@
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-
         <animation event="0.5" file="biped/inf_sling_atk_a.psa" name="attack_ranged" speed="30"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="38"/>
@@ -38,7 +37,9 @@
         <prop actor="props/units/weapons/sling.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>	  
+      <textures>
+        <texture file="skeletal/hele_tunic.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

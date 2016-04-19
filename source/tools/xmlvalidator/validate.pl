@@ -80,6 +80,12 @@ sub validate_actors
     validate('actor', \@files, 'art/actors/actor.rng');
 }
 
+sub validate_variants
+{
+    my @files = find_files('art/variants', 'xml');
+    validate('variant', \@files, 'art/variants/variant.rng');
+}
+
 sub validate_guis
 {
     # there are two different gui XML schemas depending on path
@@ -167,6 +173,7 @@ sub validate_textures
 }
 
 validate_actors();
+validate_variants();
 validate_guis();
 validate_maps();
 validate_materials();

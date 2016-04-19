@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ class CObjectManager;
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
+#include "ps/XML/Xeromyces.h"
 
 #include <boost/random/mersenne_twister.hpp>
 
@@ -187,6 +188,8 @@ private:
 	CObjectManager& m_ObjectManager;
 
 	boost::unordered_set<VfsPath> m_UsedFiles;
+
+	void LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
 };
 
 #endif

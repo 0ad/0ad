@@ -12,9 +12,6 @@
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.4" file="infantry/sword/attack/isw_s_def_01.psa" name="attack_capture" speed="100"/>
-        <animation event="0.4" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_capture" speed="100"/>
-        <animation event="0.2" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_capture" speed="100"/>
         <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="attack_melee" speed="200"/>
         <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="attack_slaughter" speed="200"/>
         <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
@@ -55,11 +52,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="attack_capture">
-      <props>
-        <prop actor="props/units/tools/pitchfork.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
+    <variant file="biped/attack_capture.xml"/>
     <variant name="attack_melee">
       <props>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
