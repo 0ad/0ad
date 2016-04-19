@@ -7,39 +7,17 @@
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="99"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="97"/>
-        <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="100"/>
-        <animation event="0.5" file="biped/not used/ijv_def_02.psa" load="0" name="attack_ranged" speed="100"/>
-        <animation event="0.5" file="biped/not used/ijv_def_03.psa" load="0" name="attack_ranged" speed="200"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="40"/>
         <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="40"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
-        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="110"/>
-        <animation file="infantry/general/forage.psa" name="gather_meat" speed="110"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
-        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
       </animations>
       <mesh>skeletal/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_lime.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/celt_round_a.xml" attachpoint="shield"/>
       </props>
     </variant>
@@ -80,122 +58,24 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle">
-      <props>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="attack_ranged">
-      <props>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
-      </props>
-    </variant>
-    <variant name="attack_slaughter">
-      <props>
-        <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_tree">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_grain">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_fruit">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-      </props>
-    </variant>
-    <variant name="gather_meat">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-      </props>
-    </variant>
-    <variant name="gather_rock">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_ore">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_ruins">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="Build">
-      <props>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="l_hand"/>
-        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="carry_food">
-      <props>
-        <prop actor="props/units/shuttle_basket.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_wood">
-      <props>
-        <prop actor="props/units/shuttle_wood.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_stone">
-      <props>
-        <prop actor="props/units/shuttle_stone.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_metal">
-      <props>
-        <prop actor="props/units/shuttle_metal.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
+    <variant frequency="100" name="Idle"/>
+    <variant file="biped/attack_ranged_javelinist.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/infantry_death.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
