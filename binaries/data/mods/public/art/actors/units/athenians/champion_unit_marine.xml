@@ -41,6 +41,10 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+  </group>
+  <group>
     <variant frequency="1" name="Ekdromos-Chiton-01">
       <textures><texture file="skeletal/hele_su1_01.dds" name="baseTex"/></textures>
     </variant>

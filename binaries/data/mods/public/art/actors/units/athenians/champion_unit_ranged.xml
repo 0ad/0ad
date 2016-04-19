@@ -50,6 +50,7 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
     <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>

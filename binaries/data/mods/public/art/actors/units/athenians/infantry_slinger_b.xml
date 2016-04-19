@@ -6,30 +6,9 @@
       <animations>
         <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="200"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-
         <animation event="0.5" file="biped/inf_sling_atk_a.psa" name="attack_ranged" speed="30"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_slaughter" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="38"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="35"/>
-        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
-        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
-        <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
-        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="300"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
@@ -44,90 +23,21 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant name="attack_slaughter">
-      <props>
-        <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_tree">
-      <props>
-        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_grain">
-      <props>
-        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_fruit">
-      <props>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_meat">
-      <props>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-      </props>
-    </variant>
-    <variant name="gather_rock">
-      <props>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_ore">
-      <props>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="gather_ruins">
-      <props>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="Build">
-      <props>
-        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="carry_food">
-      <props>
-        <prop actor="props/units/shuttle_basket.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="carry_wood">
-      <props>
-        <prop actor="props/units/shuttle_wood.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_stone">
-      <props>
-        <prop actor="props/units/shuttle_stone.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-      </props>
-    </variant>
-    <variant name="carry_metal">
-      <props>
-        <prop actor="props/units/shuttle_metal.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-      </props>
-    </variant>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/infantry_death.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

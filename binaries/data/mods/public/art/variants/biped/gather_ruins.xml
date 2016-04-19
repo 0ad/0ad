@@ -1,0 +1,11 @@
+<variant name="gather_ruins">
+  <animations>
+	<animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
+  </animations>
+  <props>
+    <prop attachpoint="shield"/>
+	<prop attachpoint="helmet"/>
+    <prop attachpoint="r_hand"/>
+	<prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+  </props>
+</variant>

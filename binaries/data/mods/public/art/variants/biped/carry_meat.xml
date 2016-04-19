@@ -1,0 +1,11 @@
+<variant name="carry_meat">
+  <animations>
+	<animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
+  </animations>
+  <props>
+	<prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+	<prop attachpoint="l_hand"/>
+	<prop attachpoint="helmet"/>
+	<prop attachpoint="shield"/>
+  </props>
+</variant>

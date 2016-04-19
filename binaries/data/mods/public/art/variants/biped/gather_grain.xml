@@ -1,0 +1,11 @@
+<variant name="gather_grain">
+  <animations>
+	<animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
+  </animations>
+  <props>
+    <prop attachpoint="shield"/>
+	<prop attachpoint="helmet"/>
+    <prop attachpoint="r_hand"/>
+	<prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
+  </props>
+</variant>

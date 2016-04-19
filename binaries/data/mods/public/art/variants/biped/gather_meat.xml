@@ -1,0 +1,12 @@
+<variant name="gather_meat">
+  <animations>
+	<animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
+  </animations>
+  <props>
+	<prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+    <prop attachpoint="r_hand"/>
+	<prop attachpoint="l_hand"/>
+    <prop attachpoint="shield"/>
+	<prop attachpoint="helmet"/>
+  </props>
+</variant>

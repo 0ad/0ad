@@ -1,0 +1,11 @@
+<variant name="Build">
+  <animations>
+	<animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="300"/>
+  </animations>
+  <props>
+	<prop attachpoint="shield"/>
+	<prop attachpoint="helmet"/>
+    <prop attachpoint="l_hand"/>
+	<prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+  </props>
+</variant>
