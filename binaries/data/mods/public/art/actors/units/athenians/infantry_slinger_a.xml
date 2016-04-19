@@ -6,7 +6,6 @@
       <animations>
         <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="200"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation event="0.5" file="biped/inf_sling_atk_a.psa" name="attack_ranged" speed="30"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="36"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
@@ -26,6 +25,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_slinger.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>

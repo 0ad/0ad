@@ -7,7 +7,6 @@
         <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
         <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="130"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="30"/>
-        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="attack_melee" speed="200"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
@@ -32,12 +31,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="attack_melee">
-      <props>
-        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield"/>
-      </props>
-    </variant>
+    <variant file="biped/attack_melee_hoplite.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
