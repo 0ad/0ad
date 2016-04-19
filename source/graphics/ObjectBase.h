@@ -21,6 +21,8 @@
 class CModel;
 class CSkeletonAnim;
 class CObjectManager;
+class CXeromyces;
+class XMBElement;
 
 #include <vector>
 #include <set>
@@ -29,7 +31,6 @@ class CObjectManager;
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
-#include "ps/XML/Xeromyces.h"
 
 #include <boost/random/mersenne_twister.hpp>
 
