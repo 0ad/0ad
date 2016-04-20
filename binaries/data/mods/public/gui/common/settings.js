@@ -32,6 +32,7 @@ function loadSettingsValues()
 		"AIDescriptions": loadAIDescriptions(),
 		"AIDifficulties": loadAIDifficulties(),
 		"Ceasefire": loadCeasefire(),
+		"WonderDurations": loadWonderDuration(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
 		"MapSizes": loadSettingValuesFile("map_sizes.json"),
@@ -128,6 +129,27 @@ function loadAIDifficulties()
 			"Title": translateWithContext("aiDiff", "Very Hard")
 		}
 	];
+}
+
+/**
+ * Loads available wonder-victory times
+ */
+function loadWonderDuration()
+{
+	var jsonFile = "wonder_times.json";
+	var json = Engine.ReadJSONFile(g_SettingsDirectory + jsonFile);
+
+	if (!json || json.Default === undefined || !json.Times || !Array.isArray(json.Times))
+	{
+		error("Could not load " + jsonFile);
+		return undefined;
+	}
+
+	return json.Times.map(duration => ({
+		"Duration": duration,
+		"Default": duration == json.Default,
+		"Title": sprintf(translatePluralWithContext("wonder victory", "%(min)s minute", "%(min)s minutes", duration), { "min": duration })
+	}));
 }
 
 /**

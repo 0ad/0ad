@@ -8,6 +8,7 @@ const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
 const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
+const g_WonderDurations = prepareForDropdown(g_Settings && g_Settings.WonderDurations);
 
 /**
  * All selectable playercolors except gaia.
@@ -248,6 +249,7 @@ function initGUIObjects()
 		initPopulationCaps();
 		initStartingResources();
 		initCeasefire();
+		initWonderDurations();
 		initVictoryConditions();
 		initMapSizes();
 		initRadioButtons();
@@ -300,22 +302,49 @@ function initMapFilters()
 }
 
 /**
- * Sets the size of the more-options dialog.
+ * Remove empty space in case of hidden options (like cheats, rating or wonder duration)
  */
 function resizeMoreOptionsWindow()
 {
-	// For singleplayer reduce the size of more options dialog by two options (cheats, rated game = 60px)
-	if (!g_IsNetworked)
+	const elementHeight = 30;
+	const elements = [
+		"optionGameSpeed",
+		"optionVictoryCondition",
+		"optionWonderDuration",
+		"optionPopulationCap",
+		"optionStartingResources",
+		"optionCeasefire",
+		"optionRevealMap",
+		"optionExploreMap",
+		"optionDisableTreasures",
+		"optionLockTeams",
+		"optionCheats",
+		"optionRating",
+		"hideMoreOptions"
+	];
+
+	let yPos = undefined;
+	for (let element of elements)
 	{
-		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+160";
-		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 310 50%+70 336";
+		let guiOption = Engine.GetGUIObjectByName(element);
+		let gSize = guiOption.size;
+		yPos = yPos || gSize.top;
+
+		if (guiOption.hidden)
+			continue;
+
+		gSize.top = yPos;
+		gSize.bottom = yPos + elementHeight - 2;
+		guiOption.size = gSize;
+
+		yPos += elementHeight;
 	}
-	// For non-lobby multiplayergames reduce the size of the dialog by one option (rated game, 30px)
-	else if (!Engine.HasXmppClient())
-	{
-		Engine.GetGUIObjectByName("moreOptions").size = "50%-200 50%-195 50%+200 50%+190";
-		Engine.GetGUIObjectByName("hideMoreOptions").size = "50%-70 340 50%+70 366";
-	}
+
+	// Resize the vertically centered window containing the options
+	let moreOptions = Engine.GetGUIObjectByName("moreOptions");
+	let mSize = moreOptions.size;
+	mSize.bottom = mSize.top + yPos + 20;
+	moreOptions.size = mSize;
 }
 
 function initNumberOfPlayers()
@@ -404,6 +433,21 @@ function initVictoryConditions()
 		updateGameAttributes();
 	};
 	victoryConditions.selected = g_VictoryConditions.Default;
+}
+
+function initWonderDurations()
+{
+	let wonderConditions = Engine.GetGUIObjectByName("wonderDuration");
+	wonderConditions.list = g_WonderDurations.Title;
+	wonderConditions.list_data = g_WonderDurations.Duration;
+	wonderConditions.onSelectionChange = function()
+	{
+		if (this.selected != -1)
+			g_GameAttributes.settings.WonderDuration = g_WonderDurations.Duration[this.selected];
+
+		updateGameAttributes();
+	};
+	wonderConditions.selected = g_WonderDurations.Default;
 }
 
 function initMapSizes()
@@ -1090,6 +1134,9 @@ function selectMap(name)
 		g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[victoryIdx];
 	}
 
+	if (g_GameAttributes.mapType == "scenario")
+		delete g_GameAttributes.settings.WonderDuration;
+
 	if (mapSettings.PlayerData)
 		sanitizePlayerData(mapSettings.PlayerData);
 
@@ -1243,6 +1290,7 @@ function updateGUIObjects()
 	// These dropdowns might set the default (as they ignore g_IsInGuiUpdate)
 	let mapSizeIdx = mapSettings.Size !== undefined ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default;
 	let victoryIdx = mapSettings.GameType !== undefined ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
+	let wonderDurationIdx = mapSettings.WonderDuration !== undefined ? g_WonderDurations.Duration.indexOf(mapSettings.WonderDuration) : g_WonderDurations.Default;
 	let popIdx = mapSettings.PopulationCap !== undefined ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
 	let startingResIdx = mapSettings.StartingResources !== undefined ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
 	let ceasefireIdx = mapSettings.Ceasefire !== undefined ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
@@ -1256,6 +1304,7 @@ function updateGUIObjects()
 		Engine.GetGUIObjectByName("mapSize").selected = mapSizeIdx;
 		Engine.GetGUIObjectByName("numPlayersSelection").selected = numPlayers - 1;
 		Engine.GetGUIObjectByName("victoryCondition").selected = victoryIdx;
+		Engine.GetGUIObjectByName("wonderDuration").selected = wonderDurationIdx;
 		Engine.GetGUIObjectByName("populationCap").selected = popIdx;
 		Engine.GetGUIObjectByName("gameSpeed").selected = gameSpeedIdx;
 		Engine.GetGUIObjectByName("ceasefire").selected = ceasefireIdx;
@@ -1273,6 +1322,7 @@ function updateGUIObjects()
 	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.LongName[mapSizeIdx] : translate("Default");
 	Engine.GetGUIObjectByName("numPlayersText").caption = numPlayers;
 	Engine.GetGUIObjectByName("victoryConditionText").caption = g_VictoryConditions.Title[victoryIdx];
+	Engine.GetGUIObjectByName("wonderDurationText").caption = g_WonderDurations.Title[wonderDurationIdx];
 	Engine.GetGUIObjectByName("populationCapText").caption = g_PopulationCapacities.Title[popIdx];
 	Engine.GetGUIObjectByName("startingResourcesText").caption = g_StartingResources.Title[startingResIdx];
 	Engine.GetGUIObjectByName("ceasefireText").caption = g_Ceasefire.Title[ceasefireIdx];
@@ -1284,6 +1334,10 @@ function updateGUIObjects()
 	setGUIBoolean("revealMap", "revealMapText", !!mapSettings.RevealMap);
 	setGUIBoolean("lockTeams", "lockTeamsText", !!mapSettings.LockTeams);
 	setGUIBoolean("enableRating", "enableRatingText", !!mapSettings.RatingEnabled);
+
+	Engine.GetGUIObjectByName("optionWonderDuration").hidden =
+		g_GameAttributes.settings.GameType &&
+		g_GameAttributes.settings.GameType != "wonder";
 
 	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !mapSettings.CheatsEnabled;
 
@@ -1299,6 +1353,7 @@ function updateGUIObjects()
 
 	let notScenario = g_GameAttributes.mapType != "scenario" && g_IsController ;
 	hideControl("victoryCondition", "victoryConditionText", notScenario);
+	hideControl("wonderDuration", "wonderDurationText", notScenario);
 	hideControl("populationCap", "populationCapText", notScenario);
 	hideControl("startingResources", "startingResourcesText", notScenario);
 	hideControl("ceasefire", "ceasefireText", notScenario);
@@ -1356,6 +1411,8 @@ function updateGUIObjects()
 			pColorPicker.selected = g_PlayerColors.findIndex(col => sameColor(col, color));
 	}
 
+	resizeMoreOptionsWindow();
+
 	g_IsInGuiUpdate = false;
 
 	// Game attributes include AI settings, so update the player list
@@ -1374,7 +1431,21 @@ function setMapDescription()
 	let mapName = g_GameAttributes.map || "";
 
 	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || ""));
-	let victoryTitle = g_VictoryConditions.Title[victoryIdx];
+	let victoryTitle;
+
+	if (g_VictoryConditions.Name[victoryIdx] == "wonder")
+		victoryTitle = sprintf(
+			translatePluralWithContext(
+				"victory condition",
+				"Wonder (%(min)s minute)",
+				"Wonder (%(min)s minutes)",
+				g_GameAttributes.settings.WonderDuration
+			),
+			{ "min": g_GameAttributes.settings.WonderDuration }
+		);
+	else
+		victoryTitle = g_VictoryConditions.Title[victoryIdx];
+
 	if (victoryIdx != g_VictoryConditions.Default)
 		victoryTitle = "[color=\"" + g_VictoryColor + "\"]" + victoryTitle + "[/color]";
 

@@ -31,7 +31,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 		if (i != data.to)
 			players.push(i);
 
-	var time = cmpWonder.GetTimeTillVictory()*1000;
+	var time = cmpWonder.GetVictoryDuration();
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("%(player)s will have won in %(time)s"),
 		"players": players,
