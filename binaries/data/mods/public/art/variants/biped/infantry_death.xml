@@ -6,4 +6,7 @@
 	<animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
 	<animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
   </animations>
+  <props>
+    <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+  </props>
 </variant>
