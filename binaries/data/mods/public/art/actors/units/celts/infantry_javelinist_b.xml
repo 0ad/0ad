@@ -17,6 +17,7 @@
         <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
       </props>
       <textures><texture file="skeletal/celt_ijv_b_01.dds" name="baseTex"/></textures>
     </variant>
