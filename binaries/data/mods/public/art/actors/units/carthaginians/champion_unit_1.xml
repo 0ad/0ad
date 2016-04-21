@@ -40,5 +40,9 @@
       <textures><texture file="skeletal/kart_su1_sacredband_5.dds" name="baseTex"/></textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+  </group>
   <material>player_trans.xml</material>
 </actor>

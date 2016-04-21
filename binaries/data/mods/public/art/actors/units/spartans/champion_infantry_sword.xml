@@ -55,6 +55,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
     <variant name="gather_tree">
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
