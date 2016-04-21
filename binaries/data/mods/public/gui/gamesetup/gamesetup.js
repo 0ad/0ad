@@ -193,6 +193,11 @@ var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
 var g_LastGameStanza;
 
 /**
+ * Remembers if the current player viewed the AI settings of some playerslot.
+ */
+var g_LastViewedAIPlayer = -1;
+
+/**
  * Initializes some globals without touching the GUI.
  *
  * @param {Object} attribs - context data sent by the lobby / mainmenu
@@ -1420,6 +1425,13 @@ function updateGUIObjects()
 
 	// We should have everyone confirm that the new settings are acceptable.
 	resetReadyData();
+
+	// Refresh AI config page
+	if (g_LastViewedAIPlayer != -1)
+	{
+		Engine.PopGuiPage();
+		openAIConfig(g_LastViewedAIPlayer);
+	}
 }
 
 /**
@@ -1480,8 +1492,29 @@ function updateGameAttributes()
 		updateGUIObjects();
 }
 
+function openAIConfig(playerSlot)
+{
+	g_LastViewedAIPlayer = playerSlot;
+
+	Engine.PushGuiPage("page_aiconfig.xml", {
+		"callback": "AIConfigCallback",
+		"isController": g_IsController,
+		"playerSlot": playerSlot,
+		"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
+		"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff
+	});
+}
+
+/**
+ * Called after closing the dialog.
+ */
 function AIConfigCallback(ai)
 {
+	g_LastViewedAIPlayer = -1;
+
+	if (!ai.save || !g_IsController)
+		return;
+
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
 
@@ -1570,18 +1603,10 @@ function updatePlayerList()
 				selection = noAssignment;
 
 			// Since no human is assigned, show the AI config button
-			if (g_IsController)
-			{
-				configButton.hidden = false;
-				configButton.onpress = function() {
-					Engine.PushGuiPage("page_aiconfig.xml", {
-						"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
-						"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
-						"callback": "AIConfigCallback",
-						"playerSlot": playerSlot // required by the callback function
-					});
-				};
-			}
+			configButton.hidden = false;
+			configButton.onpress = function() {
+				openAIConfig(playerSlot);
+			};
 		}
 		// There was a human, so make sure we don't have any AI left
 		// over in their slot, if we're in charge of the attributes
