@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 09:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-18 09:01+0200\n"
+"PO-Revision-Date: 2016-04-21 08:13+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,31 +29,31 @@ msgstr "Samfunnsbygning"
 msgid "Civic"
 msgstr "Samfunn"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Samfunnssenter"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:70
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Bygg for å tilegne store landområder. Tren borgere. Stasjoner: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
-#: simulation/templates/template_structure_civic_civil_centre.xml:34
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Samfunnssentrum"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Hellensk kongelig stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "Legg +10 til befolkningstaket. Rekrutter spesialenheter."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -101,7 +101,7 @@ msgid "Defensive Structure"
 msgstr "Forsvarsbygning"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "Defensive"
 msgstr "Defensiv"
 
@@ -141,28 +141,28 @@ msgstr "Steinmur"
 msgid "Wall off your town for a stout defense."
 msgstr "Bygg vegg rundt byen som et robust forsvar."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:33
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Byport."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:34
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Gir enheter adgang gjennom bymuren. Kan låses for å hindre adgang."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:45
+#: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
 msgstr "Lange vegger kan bygges om til porter."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:46
+#: simulation/templates/template_structure_defense_wall_long.xml:41
 msgid "Convert Stone Wall into City Gate"
 msgstr "Bygg om en bymur til en byport"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:58
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "Skyteskår"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Skyter piler. Stasjoner for å forsvare en bymur mot angripere."
 
@@ -175,11 +175,11 @@ msgstr "Bymur"
 msgid "Wooden Tower"
 msgstr "Tømmertårn"
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
 msgstr "Økonomisk bygning"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Økonomisk"
@@ -269,19 +269,19 @@ msgstr "Brygge"
 msgid "Embassy"
 msgstr "Ambassade"
 
-#: simulation/templates/template_structure_military_fortress.xml:59
+#: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Tren helter, stormestere og beleiringsvåpen. Utforsk forbedringer av beleiringsvåpen. Stasjoner: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
 msgstr "Storby"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
-#: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Fortress"
 msgstr "Festning"
 
@@ -521,7 +521,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Bring storhet til din sivilisasjon og legg store landeområder under ditt imperium. Stasjoner opptil 30 enheter for å helbrede dem kjapt. "
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -1152,19 +1152,19 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Tren mester-kavaleri og bygg rambukker for beleiring."
 
-#: simulation/templates/structures/pers_hall.xml:22
+#: simulation/templates/structures/pers_hall.xml:25
 msgid "Persian Hall"
-msgstr ""
+msgstr "Persisk hall"
 
-#: simulation/templates/structures/pers_hall.xml:23
+#: simulation/templates/structures/pers_hall.xml:26
 msgid "Duvarthi Visadahyu"
 msgstr ""
 
-#: simulation/templates/structures/pers_hall.xml:25
+#: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Spesialbygning\nTren krigselefanter og Kardakes leiesoldater."
+"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+msgstr "Spesialbygning\nTren krigselefanter og Kardakes leiesoldater. Byggegrense: 2"
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1182,7 +1182,7 @@ msgstr "Ishtars Babylonske Port"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture. Build Limit: 1."
-msgstr ""
+msgstr "Øker loyalitetsbyggingen til nærliggende bygninger, hvilket gjør dem vanskeligere å ta over. Byggegrense: 1."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1636,4 +1636,4 @@ msgstr "Tren spartanske helter og spartanske stormester-hoplitter."
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Bring storhet til din silvilisasjon og legg store landeområder under ditt emperium. Stasjoner opptil 30 enheter for a helbrede dem kjapt. "
+msgstr "Bring storhet til din sivilisasjon og legg store landeområder under ditt imperium. Stasjoner opptil 30 enheter for å helbrede dem kjapt. "

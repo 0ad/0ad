@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 09:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-18 09:01+0200\n"
+"PO-Revision-Date: 2016-04-19 18:50+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,31 +27,31 @@ msgstr "Občanská stavba"
 msgid "Civic"
 msgstr "Občanský"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Správní středisko"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:70
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Stavte, abyste získali rozsáhlé plochy země. Cvičte občany. Posádka: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
-#: simulation/templates/template_structure_civic_civil_centre.xml:34
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Správní středisko"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Kolonáda"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Helénská královská kolonáda"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "Přidá +10 k populačnímu limitu. Provést nábor zvláštních jednotek."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -99,7 +99,7 @@ msgid "Defensive Structure"
 msgstr "Obranná stavba"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "Defensive"
 msgstr "Obranný"
 
@@ -139,28 +139,28 @@ msgstr "Kamenná hradba"
 msgid "Wall off your town for a stout defense."
 msgstr "Obežeňte město zdí kvůli lepší obraně."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:33
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Městská brána"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:34
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Umožňuje jednotkám průchod městskou hradbou. Může být zamknuta pro zabránění přístupu."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:45
+#: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
 msgstr "Dlouhé hradební úseky lze měnit na brány."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:46
+#: simulation/templates/template_structure_defense_wall_long.xml:41
 msgid "Convert Stone Wall into City Gate"
 msgstr "Proměnit kamennou hradbu na městskou bránu"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:58
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "Věž v hradbě"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Střílí šípy. Obsaďte posádkou pro obranu města proti útočníkům."
 
@@ -173,11 +173,11 @@ msgstr "Městská hradba"
 msgid "Wooden Tower"
 msgstr "Dřevěná věž"
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
 msgstr "Hospodářská stavba"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Hospodářství"
@@ -267,19 +267,19 @@ msgstr "Přístaviště"
 msgid "Embassy"
 msgstr "Vyslanectví"
 
-#: simulation/templates/template_structure_military_fortress.xml:59
+#: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Cvičte hrdiny, elitní vojáky a obléhací stroje. Zkoumejte vylepšení obléhacích zbraní. Posádka: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
 msgstr "Velkoměsto"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
-#: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Fortress"
 msgstr "Pevnost"
 
@@ -519,7 +519,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Přineste slávu vaší civilizaci a přidejte rozsáhlé plochy země k vaší říši. Obsaďte posádkou až o 30 jednotkách pro extrémně rychlé hojení."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -1150,19 +1150,19 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Cvičte elitní jezdectvo a stavějte obléhací beranidla."
 
-#: simulation/templates/structures/pers_hall.xml:22
-msgid "Persian Hall"
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:23
-msgid "Duvarthi Visadahyu"
-msgstr ""
-
 #: simulation/templates/structures/pers_hall.xml:25
+msgid "Persian Hall"
+msgstr "Perská síň"
+
+#: simulation/templates/structures/pers_hall.xml:26
+msgid "Duvarthi Visadahyu"
+msgstr "Duvarthi Visadahyu"
+
+#: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Zvláštní budova.\nCvičte válečné slony a Kardacké žoldnéře."
+"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+msgstr "Zvláštní budova.\nCvičte válečné slony a Kardacké žoldnéře. Čas stavby: 2."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1180,7 +1180,7 @@ msgstr "Ištařina babylonská brána"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture. Build Limit: 1."
-msgstr ""
+msgstr "Zvyší rychlost obnovování loajality přilehlých budov, což je bude dělat težší na dobytí. Čas stavby: 1."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1192,7 +1192,7 @@ msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
-msgstr ""
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
@@ -1280,7 +1280,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr "Zvyší max. počet jednotek. Vzhledem k tomu, že jsou egyptské domy postavené nepálených cihel, jsou zdarma, avšak velmi slabé."
+msgstr "Zvýší nejvyšší počet jednotek. Vzhledem k tomu, že jsou egyptské domy postaveny z nepálených cihel, jsou zdarma, avšak velmi slabé."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"

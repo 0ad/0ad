@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-15 09:00+0200\n"
-"PO-Revision-Date: 2016-04-15 16:13+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"PO-Revision-Date: 2016-04-18 14:04+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -358,7 +358,7 @@ msgstr "Schlechte Verbindung zum Server (%(milliseconds)sms)"
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Schlechte Verbindung nach %(player)s (%(milliseconds)sms)"
+msgstr "Schlechte Verbindung zu %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgid "Unknown reason"
@@ -787,7 +787,7 @@ msgstr "Klassen:"
 #: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr "%(nick)s - %(name)s"
+msgstr "%(nick)s – %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -2104,11 +2104,11 @@ msgstr "Detaillierte Kurzinfo"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Zeigt an, welche Spieler eine schlechte Verbindung in Multiplayer-Spielen hat."
+msgstr "Zeigt an, welche Spieler eine schlechte Verbindung in Mehrspielerspielen hat."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr "Netzwerk Warnungen"
+msgstr "Netzwerkwarnungen"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2153,11 +2153,11 @@ msgstr "Spieleinstellungen behalten"
 
 #: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr "Erlaube Beobachter dem Spiel nach dem Start beizutreten."
+msgstr "Erlaube Beobachtern dem Spiel nach dem Start beizutreten."
 
 #: gui/options/options.jsongeneralSetting[10].label
 msgid "Late Observer Joins"
-msgstr "Späte Beobachter Beitretungen:"
+msgstr "Späte Beobachterbeitritte:"
 
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
@@ -2165,7 +2165,7 @@ msgstr "Hindert weitere Beobachter am Beitreten, wenn die Grenze erreicht ist"
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr "Beobachter Limit"
+msgstr "Beobachterlimit"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"

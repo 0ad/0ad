@@ -21,7 +21,7 @@
 # Jakob Gahde (J5lx) <j5lx@fmail.co.uk>, 2014
 # Jonas <jesus_007@posteo.de>, 2015
 # jonnius <jonatan_zeidler@gmx.de>, 2014
-# leper <leper@wildfiregames.com>, 2014-2015
+# leper <leper@wildfiregames.com>, 2014-2016
 # Mansent, 2013
 # Marcel Haring, 2013-2014
 # pilino1234 <mhilgendrf@aol.com>, 2016
@@ -57,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-28 12:02+0000\n"
-"Last-Translator: Patrick B <chessplayer95.pb@googlemail.com>\n"
+"PO-Revision-Date: 2016-04-20 15:27+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,7 +373,7 @@ msgstr "Team"
 
 #: gui/session/messages.js:88
 msgid "Observer"
-msgstr "Beobachter"
+msgstr "Zuschauer"
 
 #: gui/session/messages.js:89
 msgid "Private"
@@ -407,7 +407,7 @@ msgstr "%(player)s ist jetzt im Krieg mit dir."
 #: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s ist jetzt neutral dir gegenüber."
+msgstr "%(player)s steht dir jetzt neutral gegenüber."
 
 #: gui/session/messages.js:134
 #, javascript-format
@@ -442,7 +442,7 @@ msgstr "Feinde"
 #: gui/session/messages.js:521
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "Beobachter"
+msgstr "Zuschauer"
 
 #: gui/session/messages.js:650
 msgid "Unknown Player"
@@ -1125,7 +1125,7 @@ msgstr "Senden"
 #: gui/session/session.xml:(tooltip):219
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr "Wählen Chat-Nachricht Adressen"
+msgstr "Wähle Empfänger"
 
 #: gui/session/session.xml:(tooltip):227
 msgctxt "chat input"
@@ -1139,11 +1139,11 @@ msgstr "Spieler folgen"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr "Beobachter-Modus"
+msgstr "Zuschauermodus"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
-msgstr "Spieler zum Betrachten wählen"
+msgstr "Spieler zum Zuschauen wählen"
 
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
@@ -1159,7 +1159,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr "Wähle zuerst eine Ware als Tauschobjekt und dann mit den Pfeiltasten die Ware zum Eintauschen (Umschalt setzt die gewählte Ressource auf 100% fest)."
+msgstr "Wähle zuerst eine Ware als Tauschobjekt und dann mit den Pfeilen bei den anderen Waren die gewünschten Tauschraten (Umschalt setzt die gewählte Ressource auf 100% fest)."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
