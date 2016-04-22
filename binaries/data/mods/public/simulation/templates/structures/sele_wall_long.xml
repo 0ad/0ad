@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_long">
   <Footprint>
-    <Square width="38.5" depth="7.0"/>
+    <Square width="35.5" depth="7.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Identity>
@@ -11,12 +11,12 @@
     <History>All Hellenistic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>
   </Identity>
   <Obstruction>
-    <Static width="37.0" depth="6.0"/>
+    <Static width="34.0" depth="6.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/seleucids/wall_long.xml</Actor>
   </VisualActor>
   <WallPiece>
-    <Length>37.0</Length>
+    <Length>34.0</Length>
   </WallPiece>
 </Entity>
