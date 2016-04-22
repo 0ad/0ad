@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Seleucid_Civic_Centre">
+      <animations>
+        <animation file="mechanical/sele_gate_opening.dae" name="gate_opening" speed="180"/>
+        <animation file="mechanical/sele_gate_open.dae" name="gate_open" speed="20"/>
+        <animation file="mechanical/sele_gate_closing.dae" name="gate_closing" speed="200"/>
+        <animation file="mechanical/sele_gate_closed.dae" name="gate_closed" speed="20"/>
+      </animations>
+      <mesh>structural/sele_gate.dae</mesh>
+      <textures>
+        <texture file="structural/Sele_struct_2.png" name="baseTex"/>
+        <texture file="structural/Sele_struct_2.png" name="normTex"/>
+        <texture file="structural/Sele_struct_2.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

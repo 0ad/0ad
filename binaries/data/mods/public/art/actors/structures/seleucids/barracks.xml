@@ -14,7 +14,9 @@
       </props>
       <textures>
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>
+        <texture file="structural/Sele_struct_2_norm.png" name="normTex"/>
         <texture file="structural/ao/sele_barracks_AO.png" name="aoTex"/>
+        <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -40,5 +42,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
