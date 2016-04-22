@@ -1,5 +1,5 @@
 /**
- * Used for checking replay compability.
+ * Used for checking replay compatibility.
  */
 const g_EngineInfo = Engine.GetEngineInfo();
 
@@ -78,7 +78,7 @@ function loadReplays(replaySelectionData)
 		// Use time saved in file, otherwise file mod date
 		replay.timestamp = replay.attribs.timestamp ? +replay.attribs.timestamp : +replay.filemod_timestamp-replay.duration;
 
-		// Check replay for compability
+		// Check replay for compatibility
 		replay.isCompatible = isReplayCompatible(replay);
 
 		sanitizeGameAttributes(replay.attribs);

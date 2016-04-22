@@ -10,7 +10,7 @@ function createReplaySelectionData(selectedDirectory)
 	let mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	let populationFilter = Engine.GetGUIObjectByName("populationFilter");
 	let durationFilter = Engine.GetGUIObjectByName("durationFilter");
-	let compatibilityFilter = Engine.GetGUIObjectByName("compabilityFilter");
+	let compatibilityFilter = Engine.GetGUIObjectByName("compatibilityFilter");
 
 	return {
 		"directory": selectedDirectory,

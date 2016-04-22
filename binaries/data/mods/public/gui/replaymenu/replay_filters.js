@@ -23,7 +23,7 @@ const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.Popul
  */
 function initFilters(filters)
 {
-	Engine.GetGUIObjectByName("compabilityFilter").checked = !filters || filters.compatibility;
+	Engine.GetGUIObjectByName("compatibilityFilter").checked = !filters || filters.compatibility;
 
 	if (filters && filters.playernames)
 		Engine.GetGUIObjectByName("playersFilter").caption = filters.playernames;
@@ -188,9 +188,9 @@ function filterReplays()
  */
 function filterReplay(replay)
 {
-	// Check for compability first (most likely to filter)
-	var compabilityFilter = Engine.GetGUIObjectByName("compabilityFilter");
-	if (compabilityFilter.checked && !isReplayCompatible(replay))
+	// Check for compatibility first (most likely to filter)
+	let compatibilityFilter = Engine.GetGUIObjectByName("compatibilityFilter");
+	if (compatibilityFilter.checked && !isReplayCompatible(replay))
 		return false;
 
 	// Filter date/time (select a month)
