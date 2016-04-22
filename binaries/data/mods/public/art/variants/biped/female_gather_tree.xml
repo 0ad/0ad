@@ -1,0 +1,9 @@
+<variant name="gather_tree">
+  <animations>
+    <animation event="0.4" file="female/f_lumber_01.dae" name="gather_tree" speed="60"/>
+  </animations>
+  <props>
+    <prop attachpoint="r_hand"/>
+	<prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+  </props>
+</variant>

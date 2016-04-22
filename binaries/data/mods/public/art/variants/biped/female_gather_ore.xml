@@ -1,0 +1,9 @@
+<variant name="gather_ore">
+  <animations>
+    <animation event="0.4" file="female/f_mine_01.dae" name="gather_ore" speed="150"/>
+  </animations>
+  <props>
+    <prop attachpoint="r_hand"/>
+	<prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+  </props>
+</variant>

@@ -1,0 +1,9 @@
+<variant name="gather_grain">
+  <animations>
+    <animation file="female/f_farm_01.dae" name="gather_grain" speed="75"/>
+  </animations>
+  <props>
+    <prop attachpoint="r_hand"/>
+	<prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
+  </props>
+</variant>
