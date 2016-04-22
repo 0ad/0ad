@@ -21,27 +21,34 @@ const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.Popul
  * Reloads the selectable values in the filters. The filters depend on g_Settings and g_Replays
  * (including its derivatives g_MapSizes, g_MapNames).
  */
-function initFilters()
+function initFilters(filters)
 {
-	initDateFilter();
-	initMapNameFilter();
-	initMapSizeFilter();
-	initPopCapFilter();
-	initDurationFilter();
+	Engine.GetGUIObjectByName("compabilityFilter").checked = !filters || filters.compatibility;
+
+	if (filters && filters.playernames)
+		Engine.GetGUIObjectByName("playersFilter").caption = filters.playernames;
+
+	initDateFilter(filters && filters.date);
+	initMapSizeFilter(filters && filters.mapSize);
+	initMapNameFilter(filters && filters.mapName);
+	initPopCapFilter(filters && filters.popCap);
+	initDurationFilter(filters && filters.duration);
 }
 
 /**
  * Allow to filter by month. Uses g_Replays.
  */
-function initDateFilter()
+function initDateFilter(date)
 {
 	var months = g_Replays.map(replay => getReplayMonth(replay));
 	months = months.filter((month, index) => months.indexOf(month) == index).sort();
-	months.unshift(translateWithContext("datetime", "Any"));
 
 	var dateTimeFilter = Engine.GetGUIObjectByName("dateTimeFilter");
-	dateTimeFilter.list = months;
-	dateTimeFilter.list_data = months;
+	dateTimeFilter.list = [translateWithContext("datetime", "Any")].concat(months);
+	dateTimeFilter.list_data = [""].concat(months);
+
+	if (date)
+		dateTimeFilter.selected = dateTimeFilter.list_data.indexOf(date);
 
 	if (dateTimeFilter.selected == -1 || dateTimeFilter.selected >= dateTimeFilter.list.length)
 		dateTimeFilter.selected = 0;
@@ -50,11 +57,14 @@ function initDateFilter()
 /**
  * Allow to filter by mapsize. Uses g_MapSizes.
  */
-function initMapSizeFilter()
+function initMapSizeFilter(mapSize)
 {
 	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	mapSizeFilter.list = [translateWithContext("map size", "Any")].concat(g_MapSizes.Name);
 	mapSizeFilter.list_data = [-1].concat(g_MapSizes.Tiles);
+
+	if (mapSize)
+		mapSizeFilter.selected = mapSizeFilter.list_data.indexOf(mapSize);
 
 	if (mapSizeFilter.selected == -1 || mapSizeFilter.selected >= mapSizeFilter.list.length)
 		mapSizeFilter.selected = 0;
@@ -63,11 +73,14 @@ function initMapSizeFilter()
 /**
  * Allow to filter by mapname. Uses g_MapNames.
  */
-function initMapNameFilter()
+function initMapNameFilter(mapName)
 {
 	var mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
-	mapNameFilter.list = [translateWithContext("map name", "Any")].concat(g_MapNames);
-	mapNameFilter.list_data = [""].concat(g_MapNames.map(mapName => translate(mapName)));
+	mapNameFilter.list = [translateWithContext("map name", "Any")].concat(g_MapNames.map(mapName => translate(mapName)));
+	mapNameFilter.list_data = [""].concat(g_MapNames);
+
+	if (mapName)
+		mapNameFilter.selected = mapNameFilter.list_data.indexOf(mapName);
 
 	if (mapNameFilter.selected == -1 || mapNameFilter.selected >= mapNameFilter.list.length)
 		mapNameFilter.selected = 0;
@@ -76,11 +89,14 @@ function initMapNameFilter()
 /**
  * Allow to filter by population capacity.
  */
-function initPopCapFilter()
+function initPopCapFilter(popCap)
 {
 	var populationFilter = Engine.GetGUIObjectByName("populationFilter");
 	populationFilter.list = [translateWithContext("population capacity", "Any")].concat(g_PopulationCapacities.Title);
 	populationFilter.list_data = [""].concat(g_PopulationCapacities.Population);
+
+	if (popCap)
+		populationFilter.selected = populationFilter.list_data.indexOf(popCap);
 
 	if (populationFilter.selected == -1 || populationFilter.selected >= populationFilter.list.length)
 		populationFilter.selected = 0;
@@ -89,7 +105,7 @@ function initPopCapFilter()
 /**
  * Allow to filter by game duration. Uses g_DurationFilterIntervals.
  */
-function initDurationFilter()
+function initDurationFilter(duration)
 {
 	var durationFilter = Engine.GetGUIObjectByName("durationFilter");
 	durationFilter.list = g_DurationFilterIntervals.map((interval, index) => {
@@ -109,6 +125,9 @@ function initDurationFilter()
 		return sprintf(translateWithContext("duration filter", "%(min)s - %(max)s min"), interval);
 	});
 	durationFilter.list_data = g_DurationFilterIntervals.map((interval, index) => index);
+
+	if (duration)
+		durationFilter.selected = durationFilter.list_data.indexOf(duration);
 
 	if (durationFilter.selected == -1 || durationFilter.selected >= g_DurationFilterIntervals.length)
 		durationFilter.selected = 0;

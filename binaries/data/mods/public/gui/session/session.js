@@ -61,8 +61,13 @@ var lastTickTime = new Date();
 
 /**
  * Not constant as we add "gaia".
- **/
+ */
 var g_CivData = {};
+
+/**
+ * For restoring selection, order and filters when returning to the replay menu
+ */
+var g_ReplaySelectionData;
 
 var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
 
@@ -212,6 +217,7 @@ function init(initData, hotloadData)
 		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
 		g_MatchID = initData.attribs.matchID;
+		g_ReplaySelectionData = initData.replaySelectionData;
 
 		// Cache the player data
 		// (This may be updated at runtime by handleNetMessage)
@@ -473,6 +479,7 @@ function leaveGame(willRejoin)
 		Engine.SaveReplayMetadata(JSON.stringify(summary));
 
 	summary.replayDirectory = Engine.GetCurrentReplayDirectory();
+	summary.replaySelectionData = g_ReplaySelectionData;
 
 	Engine.EndGame();
 

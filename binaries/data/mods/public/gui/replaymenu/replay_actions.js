@@ -1,4 +1,34 @@
 /**
+ * Creates the data for restoring selection, order and filters when returning to the replay menu.
+ */
+function createReplaySelectionData(selectedDirectory)
+{
+	let replaySelection = Engine.GetGUIObjectByName("replaySelection");
+	let dateTimeFilter = Engine.GetGUIObjectByName("dateTimeFilter");
+	let playersFilter = Engine.GetGUIObjectByName("playersFilter");
+	let mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
+	let mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
+	let populationFilter = Engine.GetGUIObjectByName("populationFilter");
+	let durationFilter = Engine.GetGUIObjectByName("durationFilter");
+	let compatibilityFilter = Engine.GetGUIObjectByName("compabilityFilter");
+
+	return {
+		"directory": selectedDirectory,
+		"column": replaySelection.selected_column,
+		"columnOrder": replaySelection.selected_column_order,
+		"filters": {
+			"date": dateTimeFilter.list_data[dateTimeFilter.selected],
+			"playernames": playersFilter.caption,
+			"mapName": mapNameFilter.list_data[mapNameFilter.selected],
+			"mapSize": mapSizeFilter.list_data[mapSizeFilter.selected],
+			"popCap": populationFilter.list_data[populationFilter.selected],
+			"duration": durationFilter.list_data[durationFilter.selected],
+			"compatibility": compatibilityFilter.checked
+		}
+	};
+}
+
+/**
  * Starts the selected visual replay, or shows an error message in case of incompatibility.
  */
 function startReplay()
@@ -25,7 +55,7 @@ function reallyStartVisualReplay(replayDirectory)
 	Engine.StartVisualReplay(replayDirectory);
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": Engine.GetReplayAttributes(replayDirectory),
-		"isNetworked" : false,
+		"isNetworked": false,
 		"playerAssignments": {
 			"local":{
 				"name": translate("You"),
@@ -33,7 +63,8 @@ function reallyStartVisualReplay(replayDirectory)
 			}
 		},
 		"savedGUIData": "",
-		"isReplay" : true
+		"isReplay": true,
+		"replaySelectionData": createReplaySelectionData(replayDirectory)
 	});
 }
 
@@ -80,6 +111,7 @@ function showReplaySummary()
 	summary.isReplay = true;
 	summary.gameResult = translate("Scores at the end of the game.");
 	summary.replayDirectory = g_ReplaysFiltered[selected].directory;
+	summary.replaySelectionData = createReplaySelectionData(g_ReplaysFiltered[selected].directory);
 	Engine.SwitchGuiPage("page_summary.xml", summary);
 }
 
