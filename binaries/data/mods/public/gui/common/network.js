@@ -172,13 +172,9 @@ function getNetworkWarnings()
 {
 	// Remove outdated messages
 	for (let guid in g_NetworkWarnings)
-	{
-		if (Date.now() > g_NetworkWarnings[guid].added + g_NetworkWarningTimeout)
+		if (Date.now() > g_NetworkWarnings[guid].added + g_NetworkWarningTimeout ||
+		    guid != "server" && !g_PlayerAssignments[guid])
 			delete g_NetworkWarnings[guid];
-
-		if (guid != "server" && !g_PlayerAssignments[guid])
-			delete g_NetworkWarnings[guid];
-	}
 
 	// Show local messages first
 	let guids = Object.keys(g_NetworkWarnings).sort(guid => guid != "server");

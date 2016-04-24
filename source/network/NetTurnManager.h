@@ -180,7 +180,7 @@ protected:
 	u32 m_TurnLength;
 
 	/// Commands queued at each turn (index 0 is for m_CurrentTurn+1)
-	std::deque<std::map<u32, std::vector<SimulationCommand> > > m_QueuedCommands;
+	std::deque<std::map<u32, std::vector<SimulationCommand>>> m_QueuedCommands;
 
 	int m_PlayerId;
 	uint m_ClientId;
@@ -272,13 +272,13 @@ protected:
 	void DoTurn(u32 turn);
 
 	// Contains the commands of every player on each turn
-	std::map<u32, std::vector<std::pair<player_id_t, std::string> > > m_ReplayCommands;
+	std::map<u32, std::vector<std::pair<player_id_t, std::string>>> m_ReplayCommands;
 
 	// Contains the length of every turn
 	std::map<u32, u32> m_ReplayTurnLengths;
 
 	// Contains all replay hash values and weather or not the quick hash method was used
-	std::map<u32, std::pair<std::string, bool> > m_ReplayHash;
+	std::map<u32, std::pair<std::string, bool>> m_ReplayHash;
 };
 /**
  * The server-side counterpart to CNetClientTurnManager.
@@ -337,7 +337,7 @@ protected:
 	std::map<int, u32> m_ClientsSimulated;
 
 	// Map of turn -> {Client ID -> state hash}; old indexes <= min(m_ClientsSimulated) are deleted
-	std::map<u32, std::map<int, std::string> > m_ClientStateHashes;
+	std::map<u32, std::map<int, std::string>> m_ClientStateHashes;
 
 	// Map of client ID -> playername
 	std::map<u32, CStrW> m_ClientPlayernames;

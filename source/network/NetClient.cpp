@@ -140,9 +140,8 @@ CNetClient::~CNetClient()
 
 void CNetClient::TraceMember(JSTracer *trc)
 {
-	std::deque<JS::Heap<JS::Value> >::iterator itr;
-	for (itr=m_GuiMessageQueue.begin(); itr != m_GuiMessageQueue.end(); ++itr)
-		JS_CallHeapValueTracer(trc, &*itr, "m_GuiMessageQueue");
+	for (JS::Heap<JS::Value>& guiMessage : m_GuiMessageQueue)
+		JS_CallHeapValueTracer(trc, &guiMessage, "m_GuiMessageQueue");
 }
 
 void CNetClient::SetUserName(const CStrW& username)
@@ -278,14 +277,14 @@ void CNetClient::PostPlayerAssignmentsToScript()
 	JS::RootedValue hosts(cx);
 	GetScriptInterface().GetProperty(msg, "hosts", &hosts);
 
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
 		JS::RootedValue host(cx);
 		GetScriptInterface().Eval("({})", &host);
-		GetScriptInterface().SetProperty(host, "name", std::wstring(it->second.m_Name), false);
-		GetScriptInterface().SetProperty(host, "player", it->second.m_PlayerID, false);
-		GetScriptInterface().SetProperty(host, "status", it->second.m_Status, false);
-		GetScriptInterface().SetProperty(hosts, it->first.c_str(), host, false);
+		GetScriptInterface().SetProperty(host, "name", std::wstring(p.second.m_Name), false);
+		GetScriptInterface().SetProperty(host, "player", p.second.m_PlayerID, false);
+		GetScriptInterface().SetProperty(host, "status", p.second.m_Status, false);
+		GetScriptInterface().SetProperty(hosts, p.first.c_str(), host, false);
 	}
 
 	PushGuiMessage(msg);
@@ -709,18 +708,17 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 		return true;
 
 	CClientPerformanceMessage* message = (CClientPerformanceMessage*)event->GetParamRef();
-	std::vector<CClientPerformanceMessage::S_m_Clients> &clients = message->m_Clients;
 
 	// Display warnings for other clients with bad ping
-	for (size_t i = 0; i < clients.size(); ++i)
+	for (size_t i = 0; i < message->m_Clients.size(); ++i)
 	{
-		if (clients[i].m_MeanRTT < DEFAULT_TURN_LENGTH_MP || clients[i].m_GUID == client->m_GUID)
+		if (message->m_Clients[i].m_MeanRTT < DEFAULT_TURN_LENGTH_MP || message->m_Clients[i].m_GUID == client->m_GUID)
 			continue;
 
 		JS::RootedValue msg(cx);
 		client->GetScriptInterface().Eval("({ 'type':'netwarn', 'warntype': 'client-latency' })", &msg);
-		client->GetScriptInterface().SetProperty(msg, "guid", clients[i].m_GUID);
-		client->GetScriptInterface().SetProperty(msg, "meanRTT", clients[i].m_MeanRTT);
+		client->GetScriptInterface().SetProperty(msg, "guid", message->m_Clients[i].m_GUID);
+		client->GetScriptInterface().SetProperty(msg, "meanRTT", message->m_Clients[i].m_MeanRTT);
 		client->PushGuiMessage(msg);
 	}
 

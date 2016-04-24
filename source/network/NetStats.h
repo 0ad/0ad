@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ private:
 	std::vector<ProfileColumn> m_ColumnDescriptions;
 
 	CMutex m_Mutex;
-	std::vector<std::vector<CStr> > m_LatchedData; // protected by m_Mutex
+	std::vector<std::vector<CStr>> m_LatchedData; // protected by m_Mutex
 };
 
 #endif // INCLUDED_NETSTATS

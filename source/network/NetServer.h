@@ -327,7 +327,7 @@ private:
 	 * turn number, to simplify support for rejoining etc.
 	 * TODO: verify this doesn't use too much RAM.
 	 */
-	std::vector<std::vector<CSimulationMessage> > m_SavedCommands;
+	std::vector<std::vector<CSimulationMessage>> m_SavedCommands;
 
 	/**
 	 * The latest copy of the simulation state, received from an existing
@@ -361,9 +361,9 @@ private:
 	bool m_Shutdown; // protected by m_WorkerMutex
 
 	// Queues for messages sent by the game thread:
-	std::vector<std::pair<int, CStr> > m_AssignPlayerQueue; // protected by m_WorkerMutex
+	std::vector<std::pair<int, CStr>> m_AssignPlayerQueue; // protected by m_WorkerMutex
 	std::vector<bool> m_StartGameQueue; // protected by m_WorkerMutex
-	std::vector<std::pair<CStr, int> > m_PlayerReadyQueue; // protected by m_WorkerMutex
+	std::vector<std::pair<CStr, int>> m_PlayerReadyQueue; // protected by m_WorkerMutex
 	std::vector<bool> m_PlayerResetReadyQueue; // protected by m_WorkerMutex
 	std::vector<std::string> m_GameAttributesQueue; // protected by m_WorkerMutex
 	std::vector<u32> m_TurnLengthQueue; // protected by m_WorkerMutex

@@ -1,3 +1,20 @@
+/* Copyright (C) 2016 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "precompiled.h"
 
 #include "NetFileTransfer.h"
@@ -141,16 +158,18 @@ void CNetFileTransferer::Poll()
 {
 	// Find tasks which have fewer packets in flight than their window size,
 	// and send more packets
-	for (FileSendTasksMap::iterator it = m_FileSendTasks.begin(); it != m_FileSendTasks.end(); ++it)
+	for (std::pair<const u32, CNetFileSendTask>& p : m_FileSendTasks)
 	{
-		while (it->second.packetsInFlight < it->second.maxWindowSize && it->second.offset < it->second.buffer.size())
+		CNetFileSendTask& task = p.second;
+
+		while (task.packetsInFlight < task.maxWindowSize && task.offset < task.buffer.size())
 		{
 			CFileTransferDataMessage dataMessage;
-			dataMessage.m_RequestID = it->second.requestID;
-			ssize_t packetSize = std::min(DEFAULT_FILE_TRANSFER_PACKET_SIZE, it->second.buffer.size() - it->second.offset);
-			dataMessage.m_Data = it->second.buffer.substr(it->second.offset, packetSize);
-			it->second.offset += packetSize;
-			it->second.packetsInFlight++;
+			dataMessage.m_RequestID = task.requestID;
+			ssize_t packetSize = std::min(DEFAULT_FILE_TRANSFER_PACKET_SIZE, task.buffer.size() - task.offset);
+			dataMessage.m_Data = task.buffer.substr(task.offset, packetSize);
+			task.offset += packetSize;
+			++task.packetsInFlight;
 			m_Session->SendMessage(&dataMessage);
 		}
 	}

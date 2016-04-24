@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,10 +69,9 @@ const std::vector<ProfileColumn>& CNetStatsTable::GetColumns()
 {
 	m_ColumnDescriptions.clear();
 	m_ColumnDescriptions.push_back(ProfileColumn("Name", 200));
+
 	if (m_Peer)
-	{
 		m_ColumnDescriptions.push_back(ProfileColumn("Value", 80));
-	}
 	else
 	{
 		CScopeLock lock(m_Mutex);
@@ -80,6 +79,7 @@ const std::vector<ProfileColumn>& CNetStatsTable::GetColumns()
 		for (size_t i = 0; i < m_LatchedData.size(); ++i)
 			m_ColumnDescriptions.push_back(ProfileColumn("Peer "+CStr::FromUInt(i), 80));
 	}
+
 	return m_ColumnDescriptions;
 }
 

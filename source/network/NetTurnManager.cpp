@@ -170,10 +170,9 @@ bool CNetTurnManager::Update(float simFrameLength, size_t maxTurns)
 
 		// Put all the client commands into a single list, in a globally consistent order
 		std::vector<SimulationCommand> commands;
-		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
-		{
-			commands.insert(commands.end(), std::make_move_iterator(it->second.begin()), std::make_move_iterator(it->second.end()));
-		}
+		for (std::pair<const u32, std::vector<SimulationCommand>>& p : m_QueuedCommands[0])
+			commands.insert(commands.end(), std::make_move_iterator(p.second.begin()), std::make_move_iterator(p.second.end()));
+
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
 
@@ -214,10 +213,9 @@ bool CNetTurnManager::UpdateFastForward()
 
 		// Put all the client commands into a single list, in a globally consistent order
 		std::vector<SimulationCommand> commands;
-		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
-		{
-			commands.insert(commands.end(), std::make_move_iterator(it->second.begin()), std::make_move_iterator(it->second.end()));
-		}
+		for (std::pair<const u32, std::vector<SimulationCommand>>& p : m_QueuedCommands[0])
+			commands.insert(commands.end(), std::make_move_iterator(p.second.begin()), std::make_move_iterator(p.second.end()));
+
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
 
@@ -564,11 +562,11 @@ void CNetReplayTurnManager::DoTurn(u32 turn)
 	m_TurnLength = m_ReplayTurnLengths[turn];
 
 	// Simulate commands for that turn
-	for (const std::pair<player_id_t, std::string>& pair : m_ReplayCommands[turn])
+	for (const std::pair<player_id_t, std::string>& p : m_ReplayCommands[turn])
 	{
 		JS::RootedValue command(m_Simulation2.GetScriptInterface().GetContext());
-		m_Simulation2.GetScriptInterface().ParseJSON(pair.second, &command);
-		AddCommand(m_ClientId, pair.first, command, m_CurrentTurn + 1);
+		m_Simulation2.GetScriptInterface().ParseJSON(p.second, &command);
+		AddCommand(m_ClientId, p.first, command, m_CurrentTurn + 1);
 	}
 
 	if (turn == m_FinalTurn)
@@ -602,10 +600,10 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
 void CNetServerTurnManager::CheckClientsReady()
 {
 	// See if all clients (including self) are ready for a new turn
-	for (std::map<int, u32>::iterator it = m_ClientsReady.begin(); it != m_ClientsReady.end(); ++it)
+	for (const std::pair<int, u32>& clientReady : m_ClientsReady)
 	{
-		NETTURN_LOG((L"  %d: %d <=? %d\n", it->first, it->second, m_ReadyTurn));
-		if (it->second <= m_ReadyTurn)
+		NETTURN_LOG((L"  %d: %d <=? %d\n", clientReady.first, clientReady.second, m_ReadyTurn));
+		if (clientReady.second <= m_ReadyTurn)
 			return; // wasn't ready for m_ReadyTurn+1
 	}
 
@@ -640,31 +638,29 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, const CStrW& 
 
 	// Find the newest turn which we know all clients have simulated
 	u32 newest = std::numeric_limits<u32>::max();
-	for (std::map<int, u32>::iterator it = m_ClientsSimulated.begin(); it != m_ClientsSimulated.end(); ++it)
-	{
-		if (it->second < newest)
-			newest = it->second;
-	}
+	for (const std::pair<int, u32>& clientSimulated : m_ClientsSimulated)
+		if (clientSimulated.second < newest)
+			newest = clientSimulated.second;
 
 	// For every set of state hashes that all clients have simulated, check for OOS
-	for (std::map<u32, std::map<int, std::string> >::iterator it = m_ClientStateHashes.begin(); it != m_ClientStateHashes.end(); ++it)
+	for (const std::pair<u32, std::map<int, std::string>>& clientStateHash : m_ClientStateHashes)
 	{
-		if (it->first > newest)
+		if (clientStateHash.first > newest)
 			break;
 
 		// Assume the host is correct (maybe we should choose the most common instead to help debugging)
-		std::string expected = it->second.begin()->second;
+		std::string expected = clientStateHash.second.begin()->second;
 
 		// Find all players that are OOS on that turn
 		std::vector<CStrW> OOSPlayerNames;
-		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
+		for (const std::pair<int, std::string>& hashPair : clientStateHash.second)
 		{
 			NETTURN_LOG((L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str()));
-			if (cit->second != expected)
+			if (hashPair.second != expected)
 			{
 				// Oh no, out of sync
 				m_HasSyncError = true;
-				OOSPlayerNames.push_back(m_ClientPlayernames[cit->first]);
+				OOSPlayerNames.push_back(m_ClientPlayernames[hashPair.first]);
 			}
 		}
 
@@ -672,7 +668,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, const CStrW& 
 		if (m_HasSyncError)
 		{
 			CSyncErrorMessage msg;
-			msg.m_Turn = it->first;
+			msg.m_Turn = clientStateHash.first;
 			msg.m_HashExpected = expected;
 			for (const CStrW& playername : OOSPlayerNames)
 			{

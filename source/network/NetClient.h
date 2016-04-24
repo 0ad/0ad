@@ -249,7 +249,7 @@ private:
 	CStr m_GUID;
 
 	/// Queue of messages for GuiPoll
-	std::deque<JS::Heap<JS::Value> > m_GuiMessageQueue;
+	std::deque<JS::Heap<JS::Value>> m_GuiMessageQueue;
 
 	/// Serialized game state received when joining an in-progress game
 	std::string m_JoinSyncBuffer;

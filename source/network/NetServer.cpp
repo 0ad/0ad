@@ -90,11 +90,11 @@ public:
 
 		// Find the session corresponding to the rejoining host (if any)
 		CNetServerSession* session = NULL;
-		for (size_t i = 0; i < m_Server.m_Sessions.size(); ++i)
+		for (CNetServerSession* serverSession : m_Server.m_Sessions)
 		{
-			if (m_Server.m_Sessions[i]->GetHostID() == m_RejoinerHostID)
+			if (serverSession->GetHostID() == m_RejoinerHostID)
 			{
-				session = m_Server.m_Sessions[i];
+				session = serverSession;
 				break;
 			}
 		}
@@ -157,16 +157,14 @@ CNetServerWorker::~CNetServerWorker()
 
 	delete m_Stats;
 
-	for (size_t i = 0; i < m_Sessions.size(); ++i)
+	for (CNetServerSession* session : m_Sessions)
 	{
-		m_Sessions[i]->DisconnectNow(NDR_SERVER_SHUTDOWN);
-		delete m_Sessions[i];
+		session->DisconnectNow(NDR_SERVER_SHUTDOWN);
+		delete session;
 	}
 
 	if (m_Host)
-	{
 		enet_host_destroy(m_Host);
-	}
 
 	delete m_ServerTurnManager;
 }
@@ -346,17 +344,12 @@ bool CNetServerWorker::Broadcast(const CNetMessage* message)
 	bool ok = true;
 
 	// Send to all sessions that are active and has finished authentication
-	for (size_t i = 0; i < m_Sessions.size(); ++i)
-	{
-		if (m_Sessions[i]->GetCurrState() == NSS_PREGAME || m_Sessions[i]->GetCurrState() == NSS_INGAME)
-		{
-			if (!m_Sessions[i]->SendMessage(message))
+	// TODO: this does lots of repeated message serialisation if we have lots
+	// of remote peers; could do it more efficiently if that's a real problem
+	for (CNetServerSession* session : m_Sessions)
+		if (session->GetCurrState() == NSS_PREGAME || session->GetCurrState() == NSS_INGAME)
+			if (!session->SendMessage(message))
 				ok = false;
-
-			// TODO: this does lots of repeated message serialisation if we have lots
-			// of remote peers; could do it more efficiently if that's a real problem
-		}
-	}
 
 	return ok;
 }
@@ -411,9 +404,9 @@ bool CNetServerWorker::RunStep()
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
-	std::vector<std::pair<int, CStr> > newAssignPlayer;
+	std::vector<std::pair<int, CStr>> newAssignPlayer;
 	std::vector<bool> newStartGame;
-	std::vector<std::pair<CStr, int> > newPlayerReady;
+	std::vector<std::pair<CStr, int>> newPlayerReady;
 	std::vector<bool> newPlayerResetReady;
 	std::vector<std::string> newGameAttributes;
 	std::vector<u32> newTurnLength;
@@ -432,11 +425,11 @@ bool CNetServerWorker::RunStep()
 		newTurnLength.swap(m_TurnLengthQueue);
 	}
 
-	for (size_t i = 0; i < newAssignPlayer.size(); ++i)
-		AssignPlayer(newAssignPlayer[i].first, newAssignPlayer[i].second);
+	for (const std::pair<int, CStr8>& p : newAssignPlayer)
+		AssignPlayer(p.first, p.second);
 
-	for (size_t i = 0; i < newPlayerReady.size(); ++i)
-		SetPlayerReady(newPlayerReady[i].first, newPlayerReady[i].second);
+	for (const std::pair<CStr8, int>& p : newPlayerReady)
+		SetPlayerReady(p.first, p.second);
 
 	if (!newPlayerResetReady.empty())
 		ClearAllPlayerReady();
@@ -456,8 +449,8 @@ bool CNetServerWorker::RunStep()
 		StartGame();
 
 	// Perform file transfers
-	for (size_t i = 0; i < m_Sessions.size(); ++i)
-		m_Sessions[i]->GetFileTransferer().Poll();
+	for (CNetServerSession* session : m_Sessions)
+		session->GetFileTransferer().Poll();
 
 	CheckClientConnections();
 
@@ -635,8 +628,7 @@ void CNetServerWorker::HandleMessageReceive(const CNetMessage* message, CNetServ
 	}
 
 	// Update FSM
-	bool ok = session->Update(message->GetType(), (void*)message);
-	if (!ok)
+	if (!session->Update(message->GetType(), (void*)message))
 		LOGERROR("Net server: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)session->GetCurrState());
 }
 
@@ -719,9 +711,9 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 {
 	// Find all player IDs in active use; we mustn't give them to a second player (excluding the unassigned ID: -1)
 	std::set<i32> usedIDs;
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
-		if (it->second.m_Enabled && it->second.m_PlayerID != -1)
-			usedIDs.insert(it->second.m_PlayerID);
+	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
+		if (p.second.m_Enabled && p.second.m_PlayerID != -1)
+			usedIDs.insert(p.second.m_PlayerID);
 
 	// If the player is rejoining after disconnecting, try to give them
 	// back their old player ID
@@ -824,10 +816,10 @@ bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
 {
 	// Remove anyone who's already assigned to this player
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+	for (std::pair<const CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
-		if (it->second.m_PlayerID == playerID)
-			it->second.m_PlayerID = -1;
+		if (p.second.m_PlayerID == playerID)
+			p.second.m_PlayerID = -1;
 	}
 
 	// Update this host's assignment if it exists
@@ -839,16 +831,16 @@ void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
 
 void CNetServerWorker::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message)
 {
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
-		if (!it->second.m_Enabled)
+		if (!p.second.m_Enabled)
 			continue;
 
 		CPlayerAssignmentMessage::S_m_Hosts h;
-		h.m_GUID = it->first;
-		h.m_Name = it->second.m_Name;
-		h.m_PlayerID = it->second.m_PlayerID;
-		h.m_Status = it->second.m_Status;
+		h.m_GUID = p.first;
+		h.m_Name = p.second.m_Name;
+		h.m_PlayerID = p.second.m_PlayerID;
+		h.m_Status = p.second.m_Status;
 		message.m_Hosts.push_back(h);
 	}
 }
@@ -955,18 +947,20 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		int disconnectedPlayers = 0;
 		int connectedPlayers = 0;
 		// (TODO: if GUIDs were stable, we should use them instead)
-		for (PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.begin(); it != server.m_PlayerAssignments.end(); ++it)
+		for (const std::pair<CStr, PlayerAssignment>& p : server.m_PlayerAssignments)
 		{
-			if (!it->second.m_Enabled && it->second.m_Name == username)
+			const PlayerAssignment& assignment = p.second;
+
+			if (!assignment.m_Enabled && assignment.m_Name == username)
 			{
-				isObserver = it->second.m_PlayerID == -1;
+				isObserver = assignment.m_PlayerID == -1;
 				isRejoining = true;
 			}
 
-			if (it->second.m_PlayerID == -1)
+			if (assignment.m_PlayerID == -1)
 				continue;
 
-			if (it->second.m_Enabled)
+			if (assignment.m_Enabled)
 				++connectedPlayers;
 			else
 				++disconnectedPlayers;
@@ -1208,9 +1202,9 @@ bool CNetServerWorker::OnDisconnect(void* context, CFsmEvent* event)
 
 void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 {
-	for (size_t i = 0; i < m_Sessions.size(); ++i)
+	for (const CNetServerSession* session : m_Sessions)
 	{
-		if (m_Sessions[i] != changedSession && m_Sessions[i]->GetCurrState() != NSS_INGAME)
+		if (session != changedSession && session->GetCurrState() != NSS_INGAME)
 			return;
 	}
 
@@ -1225,8 +1219,8 @@ void CNetServerWorker::StartGame()
 {
 	m_ServerTurnManager = new CNetServerTurnManager(*this);
 
-	for (size_t i = 0; i < m_Sessions.size(); ++i)
-		m_ServerTurnManager->InitialiseClient(m_Sessions[i]->GetHostID(), 0); // TODO: only for non-observers
+	for (const CNetServerSession* session : m_Sessions)
+		m_ServerTurnManager->InitialiseClient(session->GetHostID(), 0); // TODO: only for non-observers
 
 	m_State = SERVER_STATE_LOADING;
 
@@ -1289,9 +1283,9 @@ CStrW CNetServerWorker::DeduplicatePlayerName(const CStrW& original)
 	while (true)
 	{
 		bool unique = true;
-		for (size_t i = 0; i < m_Sessions.size(); ++i)
+		for (const CNetServerSession* session : m_Sessions)
 		{
-			if (m_Sessions[i]->GetUserName() == name)
+			if (session->GetUserName() == name)
 			{
 				unique = false;
 				break;
