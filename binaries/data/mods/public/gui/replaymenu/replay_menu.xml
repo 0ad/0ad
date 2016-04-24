@@ -97,15 +97,15 @@
 
 		</object>
 
-		<!-- Right Panel: Compability Filter & Replay Details -->
+		<!-- Right Panel: Compatibility Filter & Replay Details -->
 		<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
 
-			<!-- Compability Filter Checkbox -->
-			<object name="compabilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 4 20 100%" font="sans-bold-13">
+			<!-- Compatibility Filter Checkbox -->
+			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 4 20 100%" font="sans-bold-13">
 					<action on="Press">displayReplayList();</action>
 			</object>
 
-			<!-- Compability Filter Label -->
+			<!-- Compatibility Filter Label -->
 			<object type="text" size="20 2 100% 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Filter compatible replays</translatableAttribute>
 			</object>

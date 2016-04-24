@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant name="a">
       <mesh>gaia/cross_large_short.dae</mesh>
@@ -17,5 +16,5 @@
       </textures>
     </variant>
   </group>
-  <material>basic_glow.xml</material>
+  <material>basic_trans_wind.xml</material>
 </actor>

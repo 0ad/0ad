@@ -1,0 +1,8 @@
+<variant name="death">
+  <animations>
+    <animation file="female/f_death_01.dae" name="Death" speed="130"/>
+  </animations>
+  <props>
+    <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+  </props>
+</variant>

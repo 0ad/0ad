@@ -906,11 +906,11 @@ var g_EntityCommands =
 			if (entState.resourceDropsite.shared)
 				return {
 					"tooltip": translate("Press to prevent allies from using this dropsite"),
-					"icon": "lock_unlocked.png"
+					"icon": "unlocked_small.png"
 				};
 			return {
 				"tooltip": translate("Press to allow allies to use this dropsite"),
-				"icon": "lock_locked.png"
+				"icon": "locked_small.png"
 			};
 		},
 		"execute": function(entState)
@@ -976,11 +976,11 @@ var g_AllyEntityCommands =
 			if (entState.resourceDropsite.shared)
 				return {
 					"tooltip": translate("You are allowed to use this dropsite"),
-					"icon": "lock_unlocked.png"
+					"icon": "unlocked_small.png"
 				};
 			return {
 				"tooltip": translate("The use of this dropsite is prohibited"),
-				"icon": "lock_locked.png"
+				"icon": "locked_small.png"
 			};
 		},
 		"execute": function(entState)

@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:00+0200\n"
-"PO-Revision-Date: 2016-04-08 09:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-15 09:00+0200\n"
+"PO-Revision-Date: 2016-04-20 13:51+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -664,7 +664,7 @@ msgstr "İşçi"
 #: gui/common/tooltips.js:248
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:249
 msgid "Build Rate:"
@@ -788,7 +788,7 @@ msgstr "<geçersiz>"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/replaymenu/replay_actions.js:112 gui/savedgames/load.js:49
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "Yes"
@@ -796,7 +796,7 @@ msgstr "Evet"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/replaymenu/replay_actions.js:112 gui/savedgames/load.js:49
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "No"
@@ -926,7 +926,7 @@ msgstr "Teknik Detaylar"
 msgid "Manual"
 msgstr "Kılavuz"
 
-#: gui/replaymenu/replay_actions.js:31
+#: gui/replaymenu/replay_actions.js:31 gui/summary/summary.js:143
 msgid "You"
 msgstr "Siz"
 
@@ -964,11 +964,11 @@ msgstr "Özet veri bulunmamaktadır."
 msgid "Scores at the end of the game."
 msgstr "Oyunun sonundaki puanlar."
 
-#: gui/replaymenu/replay_actions.js:114
+#: gui/replaymenu/replay_actions.js:115
 msgid "Delete replay"
 msgstr "Tekrar oynatmayı sil"
 
-#: gui/replaymenu/replay_actions.js:115
+#: gui/replaymenu/replay_actions.js:116
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
@@ -1334,12 +1334,12 @@ msgstr "Harita kontolü"
 msgid "Team total"
 msgstr "Takım bütünü"
 
-#: gui/summary/summary.js:136
+#: gui/summary/summary.js:159
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Oyun süresi: %(time)s"
 
-#: gui/summary/summary.js:138
+#: gui/summary/summary.js:161
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1759,7 +1759,7 @@ msgstr "Yeniden oynatma Oyunlar"
 
 #: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Tekrar oynatmaları uyuma filtrele"
 
 #: gui/replaymenu/replay_menu.xml:(caption):136
 msgid "Map Type:"
@@ -1882,6 +1882,10 @@ msgid "Market"
 msgstr "Pazar"
 
 #: gui/summary/summary.xml:(caption):161
+msgid "Replay"
+msgstr "Yeniden oynatma"
+
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "Devam et"
 
@@ -1923,35 +1927,35 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "Ek müzik"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "Fülüt"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "Viola, keman"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "Kelt arpı"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "Trompet"
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "Cembe"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Percussion"
-msgstr ""
+msgstr "Vurmalı çalgı"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Didgeridoo"
-msgstr ""
+msgstr "Didgeridoo"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -1963,29 +1967,29 @@ msgstr "Ses"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "Yunan"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "Latin"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "Sesler"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie Sürücü 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie Sürücü 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Indiegogo 2013 kampanyası\n1000 den fazla destekçi (!), dahil:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -2021,7 +2025,7 @@ msgstr "Proje Liderleri"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Tasarım Eş-Liderleri"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -2029,7 +2033,7 @@ msgstr "Özel teşekkürler:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Ve 0 A.D. yi mümkün kılan tüm topluluğa teşekkürler."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -2263,7 +2267,7 @@ msgstr "Parçalar"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Kapatıldığında, Su kaplama işlemede mümkün olan düşük ayarları kullan. Bunu yapmak diğer ayarları geçersiz kılar."
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
@@ -2498,7 +2502,7 @@ msgstr "Bir orta \"kadırga\" -sınıf savaş gemisi."
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid ""
 "- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr ""
+msgstr "- Kelt gruplaşmaları kullanılabilir (Britanyalı, Galyalı), Mauryalı ve İberyalı."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."
@@ -2506,7 +2510,7 @@ msgstr "- Su üzerinden en fazla 40 birim taşıyabilir."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Garnizon piyadeleri ile ateş gücü artar."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
@@ -2560,17 +2564,17 @@ msgstr "- Denizlerde bol balık hasadı."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "- Balıkcı kayıtkları her yolculukta önemli miktarda Besin taşır."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "- Balık tutma tarladan yiyecek toplamaktan daha hızlıdır."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
 "- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Garnizon Destek Birimleri Balık Teknelerinin toplama oranlarını ikiye katlar."
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
@@ -2750,7 +2754,7 @@ msgstr "- 50 birime kadar nakliye."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Garnizon mancınıkları ile ateş gücü artar."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."

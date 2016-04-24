@@ -15,7 +15,9 @@ EndGameManager.prototype.Init = function()
 	// Game type, initialised from the map settings.
 	// One of: "conquest" (default) and "endless"
 	this.gameType = "conquest";
-	
+
+	this.wonderDuration = 10 * 60 * 1000;
+
 	// Allied victory means allied players can win if victory conditions are met for each of them
 	// Would be false for a "last man standing" game (when diplomacy is fully implemented)
 	this.alliedVictory = true;
@@ -35,6 +37,16 @@ EndGameManager.prototype.SetGameType = function(newGameType)
 EndGameManager.prototype.CheckGameType = function(type)
 {
 	return this.gameType == type;
+};
+
+EndGameManager.prototype.SetWonderDuration = function(wonderDuration)
+{
+	this.wonderDuration = wonderDuration;
+};
+
+EndGameManager.prototype.GetWonderDuration = function()
+{
+	return this.wonderDuration;
 };
 
 EndGameManager.prototype.MarkPlayerAsWon = function(playerID)

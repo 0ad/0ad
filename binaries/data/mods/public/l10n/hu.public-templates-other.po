@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-16 22:21+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,7 +294,7 @@ msgstr "Crocodylus niloticus"
 msgid "Nile Crocodile"
 msgstr "Nílusi krokodil"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "Szarvas"
 
@@ -332,7 +332,7 @@ msgstr "Tilápia hal"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Élelem gyűjtése ebből a bőséges part menti nyersanyagból."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "Gazella"
 
@@ -344,7 +344,7 @@ msgstr "Zsiráf (felnőtt)"
 msgid "Giraffe (Juvenile)"
 msgstr "Zsiráf (fiatal)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "Kecske"
 
@@ -364,11 +364,11 @@ msgstr "Nőstény oroszlán"
 msgid "Muskox"
 msgstr "Pézsmatulok"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "Páva"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Disznó"
 
@@ -388,7 +388,7 @@ msgstr "Nagy fehér"
 msgid "Shark"
 msgstr "Cápa"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "Bárány"
 
@@ -400,7 +400,7 @@ msgstr "Tigris"
 msgid "Walrus"
 msgstr "Rozmár"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "Barázdásbálna"
 
@@ -636,13 +636,13 @@ msgstr "Pad"
 msgid "Wooden Bench"
 msgstr "Fapad"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Híd"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Fahíd"
 
@@ -654,7 +654,7 @@ msgstr "Áldozati templom"
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Orvosok és a Szent csapat lovasainak kiképzése."
 
@@ -662,7 +662,7 @@ msgstr "Orvosok és a Szent csapat lovasainak kiképzése."
 msgid "Hut"
 msgstr "Kunyhó"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "+2 hozzáadása a népességkorláthoz."
 
@@ -733,18 +733,9 @@ msgstr "Oszlopsor"
 msgid "Propylaea"
 msgstr "Propülaia"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Oszlopcsarnok"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Görög királyi oszlopcsarnok"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "+10 hozzáadása a népességkorláthoz. Különleges egységek toborzása."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -754,7 +745,7 @@ msgstr "Görög oszlopcsarnok"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "+15 hozzáadása a népességkorláthoz. További egységek és hősök toborzása."
 
@@ -975,7 +966,7 @@ msgstr "Átváltozik egy 5 személyes házzá azoknál a civilizációknál, aho
 msgid "Marker"
 msgstr "Jelölő"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr "Játékos"
 

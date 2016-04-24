@@ -166,7 +166,18 @@ m.GameState.prototype.cityPhase = function()
 
 m.GameState.prototype.getPhaseRequirements = function(i)
 {
-	return this.phases[i-1].requirements ? this.phases[i-1].requirements : undefined;
+	if (!this.phases[i-1].requirements)
+		return undefined;
+	let requirements = this.phases[i-1].requirements;
+	if (requirements.number)
+		return requirements;
+	else if (requirements.all)
+	{
+		for (let req of requirements.all)
+			if (req.number)
+				return req;
+	}
+	return undefined;
 };
 
 m.GameState.prototype.isResearched = function(template)
@@ -236,7 +247,7 @@ m.GameState.prototype.checkTechRequirements = function (reqs)
 			Object.keys(this.playerData.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
 	if (reqs.class && reqs.number)
 		return this.playerData.classCounts[reqs.class] &&
-			reqs.number <= this.playerData.classCounts[reqs.class] >= reqs.number;
+			this.playerData.classCounts[reqs.class] >= reqs.number;
 	
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));

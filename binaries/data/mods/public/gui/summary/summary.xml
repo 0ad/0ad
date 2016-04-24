@@ -187,7 +187,7 @@
 				}
 				else if (g_GameData.isReplay)
 				{
-					Engine.SwitchGuiPage("page_replaymenu.xml");
+					Engine.SwitchGuiPage("page_replaymenu.xml", { "replaySelectionData": g_GameData.replaySelectionData });
 				}
 				else if (!Engine.HasXmppClient())
 				{

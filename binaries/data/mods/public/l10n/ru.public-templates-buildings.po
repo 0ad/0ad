@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 09:48+0000\n"
+"POT-Creation-Date: 2016-04-18 09:01+0200\n"
+"PO-Revision-Date: 2016-04-18 09:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -38,19 +38,31 @@ msgstr "Гражданское здание"
 msgid "Civic"
 msgstr "Гражданский"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Городской центр"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:70
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Стройте, чтобы получить больше участков территории. Позволяет обучать горожан. Гарнизон: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
-#: simulation/templates/template_structure_civic_civil_centre.xml:34
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Ратуша"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -98,7 +110,7 @@ msgid "Defensive Structure"
 msgstr "Защитное сооружение"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "Defensive"
 msgstr "Оборона"
 
@@ -138,28 +150,28 @@ msgstr "Каменная стена"
 msgid "Wall off your town for a stout defense."
 msgstr "Окружите свой город стеной для надёжной защиты."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:33
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Городские ворота"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:34
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Позволяют юнитам проходить через городскую стену. Могут быть заперты для предотвращения доступа."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:45
+#: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
 msgstr "Длинные участки стен могут быть переделаны в ворота."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:46
+#: simulation/templates/template_structure_defense_wall_long.xml:41
 msgid "Convert Stone Wall into City Gate"
 msgstr "Преобразовать каменную стену в городские ворота"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:58
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "Сторожевая башня на стене"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Стреляет стрелами. Разместите гарнизон для защиты городских стен от нападающих."
 
@@ -172,11 +184,11 @@ msgstr "Городская стена"
 msgid "Wooden Tower"
 msgstr "Деревянная башня"
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
 msgstr "Хозяйственная постройка"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Хозяйство"
@@ -266,19 +278,19 @@ msgstr "Причал"
 msgid "Embassy"
 msgstr "Посольство"
 
-#: simulation/templates/template_structure_military_fortress.xml:59
+#: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Позволяет обучать героев, чемпионов, строить осадные орудия. А также исследовать технологии осадного оружия. Гарнизон: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
 msgstr "Город"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
-#: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Fortress"
 msgstr "Крепость"
 
@@ -504,19 +516,21 @@ msgstr "Тейхос"
 msgid "Pýrgos"
 msgstr "Пиргос"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Святилище Парфенон"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Чудо приносит славу вашей цивилизации и значительно расширяет территорию вашей империи. Позволяет разместить гарнизон до 30 юнитов для ускоренного восстановления здоровья."
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -790,7 +804,7 @@ msgstr "Миждил-шаар"
 msgid "Homah"
 msgstr "Хомах"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Храм Баал-Хаммона"
 
@@ -867,15 +881,15 @@ msgstr "Эче"
 msgid "Arruga"
 msgstr "Арруга"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "Почитаемый монумент"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Гур Ороигарри"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1147,18 +1161,37 @@ msgstr "Дида"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Позволяет обучать чемпионов кавалерии и строить осадные тараны."
 
+#: simulation/templates/structures/pers_hall.xml:25
+msgid "Persian Hall"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:26
+msgid "Duvarthi Visadahyu"
+msgstr ""
+
+#: simulation/templates/structures/pers_hall.xml:28
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+msgstr ""
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Хувада"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "Особое персидское строение"
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "Ворота Иштар в Вавилоне"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "Особое строение римской империи."
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1169,26 +1202,12 @@ msgid "Didebani"
 msgstr "Дидебани"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "Дворец"
+msgid "Taçara"
+msgstr ""
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "Максимальное количество: 1."
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "Особое персидское строение"
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Парихувада"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Особое строение.\nПозволяет обучать боевых слонов и нанимать кардакешских наёмников."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1351,13 +1370,17 @@ msgstr "х-н-нйвт"
 msgid "mktr"
 msgstr "мктр"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "Храм Эдфу"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Триумфальная арка"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "Особое строение римской империи."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1481,19 +1504,13 @@ msgstr "Эдес Мартис"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Позволяет обучать целителей и может быстро исцелить гарнизон до 30 единиц."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "Храм Весты"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Эдес Вестэ"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "Построите этот храм, чтобы значительно увеличить лояльность ваших зданий и граждан-женщин (Помогает предотвратить их захват)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1527,7 +1544,7 @@ msgstr "Туррис лапидеа"
 msgid "Murus Latericius"
 msgstr "Мурус латерициус"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Эдес Йовис Оптими Максими"
 
@@ -1623,3 +1640,9 @@ msgstr "Сисситион"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Позволяет обучать спартанских героев и спартианских чемпионов-гоплитов."
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Чудо приносит славу вашей цивилизации и значительно расширяет территорию вашей империи. Позволяет разместить гарнизон до 30 юнитов для ускоренного восстановления здоровья."

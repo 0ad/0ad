@@ -9,6 +9,7 @@ element actor {
     element group {
         element variant {
             attribute name { text }? &
+            attribute file { text }? &
             attribute frequency { xsd:nonNegativeInteger }? &
             element mesh {
                 text

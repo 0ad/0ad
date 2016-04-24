@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,171 @@ CObjectBase::CObjectBase(CObjectManager& objectManager)
 	m_Properties.m_FloatOnWater = false;
 }
 
+void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant)
+{
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(animation);
+	EL(animations);
+	EL(color);
+	EL(decal);
+	EL(mesh);
+	EL(particles);
+	EL(prop);
+	EL(props);
+	EL(texture);
+	EL(textures);
+	EL(variant);
+	AT(actor);
+	AT(angle);
+	AT(attachpoint);
+	AT(depth);
+	AT(event);
+	AT(file);
+	AT(frequency);
+	AT(load);
+	AT(maxheight);
+	AT(minheight);
+	AT(name);
+	AT(offsetx);
+	AT(offsetz);
+	AT(selectable);
+	AT(sound);
+	AT(speed);
+	AT(width);
+	#undef AT
+	#undef EL
+
+	if (variant.GetNodeName() != el_variant)
+	{
+		LOGERROR("Invalid variant format (unrecognised root element '%s')", XeroFile.GetElementString(variant.GetNodeName()).c_str());
+		return;
+	}
+
+	XERO_ITER_ATTR(variant, attr)
+	{
+		if (attr.Name == at_file)
+		{
+			// Open up an external file to load.
+			// Don't crash hard when failures happen, but log them and continue
+			m_UsedFiles.insert(attr.Value);
+			CXeromyces XeroVariant;
+			if (XeroVariant.Load(g_VFS, "art/variants/" + attr.Value) == PSRETURN_OK)
+			{
+				XMBElement variantRoot = XeroVariant.GetRoot();
+				LoadVariant(XeroVariant, variantRoot, currentVariant);
+			}
+			else
+				LOGERROR("Could not open path %s", attr.Value);
+			// Continue loading extra definitions in this variant to allow nested files
+		}
+		else if (attr.Name == at_name)
+			currentVariant.m_VariantName = attr.Value.LowerCase();
+		else if (attr.Name == at_frequency)
+			currentVariant.m_Frequency = attr.Value.ToInt();
+	}
+
+	XERO_ITER_EL(variant, option)
+	{
+		int option_name = option.GetNodeName();
+
+		if (option_name == el_mesh)
+		{
+			currentVariant.m_ModelFilename = VfsPath("art/meshes") / option.GetText().FromUTF8();
+		}
+		else if (option_name == el_textures)
+		{
+			XERO_ITER_EL(option, textures_element)
+			{
+				ENSURE(textures_element.GetNodeName() == el_texture);
+				
+				Samp samp;
+				XERO_ITER_ATTR(textures_element, se)
+				{
+					if (se.Name == at_file)
+						samp.m_SamplerFile = VfsPath("art/textures/skins") / se.Value.FromUTF8();
+					else if (se.Name == at_name)
+						samp.m_SamplerName = CStrIntern(se.Value);
+				}
+				currentVariant.m_Samplers.push_back(samp);
+			}
+		}
+		else if (option_name == el_decal)
+		{
+			XMBAttributeList attrs = option.GetAttributes();
+			Decal decal;
+			decal.m_SizeX = attrs.GetNamedItem(at_width).ToFloat();
+			decal.m_SizeZ = attrs.GetNamedItem(at_depth).ToFloat();
+			decal.m_Angle = DEGTORAD(attrs.GetNamedItem(at_angle).ToFloat());
+			decal.m_OffsetX = attrs.GetNamedItem(at_offsetx).ToFloat();
+			decal.m_OffsetZ = attrs.GetNamedItem(at_offsetz).ToFloat();
+			currentVariant.m_Decal = decal;
+		}
+		else if (option_name == el_particles)
+		{
+			XMBAttributeList attrs = option.GetAttributes();
+			VfsPath file = VfsPath("art/particles") / attrs.GetNamedItem(at_file).FromUTF8();
+			currentVariant.m_Particles = file;
+
+			// For particle hotloading, it's easiest to reload the entire actor,
+			// so remember the relevant particle file as a dependency for this actor
+			m_UsedFiles.insert(file);
+		}
+		else if (option_name == el_color)
+		{
+			currentVariant.m_Color = option.GetText();
+		}
+		else if (option_name == el_animations)
+		{
+			XERO_ITER_EL(option, anim_element)
+			{
+				ENSURE(anim_element.GetNodeName() == el_animation);
+
+				Anim anim;
+				XERO_ITER_ATTR(anim_element, ae)
+				{
+					if (ae.Name == at_name)
+						anim.m_AnimName = ae.Value;
+					else if (ae.Name == at_file)
+						anim.m_FileName = VfsPath("art/animation") / ae.Value.FromUTF8();
+					else if (ae.Name == at_speed)
+						anim.m_Speed = ae.Value.ToInt() > 0 ? ae.Value.ToInt() / 100.f : 1.f;
+					else if (ae.Name == at_event)
+						anim.m_ActionPos = clamp(ae.Value.ToFloat(), 0.f, 1.f);
+					else if (ae.Name == at_load)
+						anim.m_ActionPos2 = clamp(ae.Value.ToFloat(), 0.f, 1.f);
+					else if (ae.Name == at_sound)
+						anim.m_SoundPos = clamp(ae.Value.ToFloat(), 0.f, 1.f);
+				}
+				currentVariant.m_Anims.push_back(anim);
+			}
+		}
+		else if (option_name == el_props)
+		{
+			XERO_ITER_EL(option, prop_element)
+			{
+				ENSURE(prop_element.GetNodeName() == el_prop);
+
+				Prop prop;
+				XERO_ITER_ATTR(prop_element, pe)
+				{
+					if (pe.Name == at_attachpoint)
+						prop.m_PropPointName = pe.Value;
+					else if (pe.Name == at_actor)
+						prop.m_ModelName = pe.Value.FromUTF8();
+					else if (pe.Name == at_minheight)
+						prop.m_minHeight = pe.Value.ToFloat();
+					else if (pe.Name == at_maxheight)
+						prop.m_maxHeight = pe.Value.ToFloat();
+					else if (pe.Name == at_selectable)
+						prop.m_selectable = pe.Value != "false";
+				}
+				currentVariant.m_Props.push_back(prop);
+			}
+		}
+	}
+}
+
 bool CObjectBase::Load(const VfsPath& pathname)
 {
 	m_UsedFiles.clear();
@@ -53,36 +218,8 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	EL(actor);
 	EL(castshadow);
 	EL(float);
-	EL(material);
 	EL(group);
-	EL(variant);
-	EL(animations);
-	EL(animation);
-	EL(props);
-	EL(prop);
-	EL(mesh);
-	EL(texture);
-	EL(textures);
-	EL(color);
-	EL(decal);
-	EL(particles);
-	AT(file);
-	AT(name);
-	AT(speed);
-	AT(event);
-	AT(load);
-	AT(sound);
-	AT(attachpoint);
-	AT(actor);
-	AT(frequency);
-	AT(width);
-	AT(depth);
-	AT(angle);
-	AT(offsetx);
-	AT(offsetz);
-	AT(minheight);
-	AT(maxheight);
-	AT(selectable);
+	EL(material);
 	#undef AT
 	#undef EL
 
@@ -93,7 +230,6 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		LOGERROR("Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
-
 
 	m_VariantGroups.clear();
 
@@ -132,155 +268,21 @@ bool CObjectBase::Load(const VfsPath& pathname)
 			std::vector<Variant>::iterator currentVariant = currentGroup->begin();
 			XERO_ITER_EL(child, variant)
 			{
-				ENSURE(variant.GetNodeName() == el_variant);
-				XERO_ITER_ATTR(variant, attr)
-				{
-					if (attr.Name == at_name)
-						currentVariant->m_VariantName = attr.Value.LowerCase();
-
-					else if (attr.Name == at_frequency)
-						currentVariant->m_Frequency = attr.Value.ToInt();
-				}
-
-				XERO_ITER_EL(variant, option)
-				{
-					int option_name = option.GetNodeName();
-
-					if (option_name == el_mesh)
-					{
-						currentVariant->m_ModelFilename = VfsPath("art/meshes") / option.GetText().FromUTF8();
-					}
-					else if (option_name == el_textures)
-					{
-						XERO_ITER_EL(option, textures_element)
-						{
-							ENSURE(textures_element.GetNodeName() == el_texture);
-							
-							Samp samp;
-							XERO_ITER_ATTR(textures_element, se)
-							{
-								if (se.Name == at_file)
-									samp.m_SamplerFile = VfsPath("art/textures/skins") / se.Value.FromUTF8();
-								else if (se.Name == at_name)
-									samp.m_SamplerName = CStrIntern(se.Value);
-							}
-							currentVariant->m_Samplers.push_back(samp);
-						}
-					}
-					else if (option_name == el_decal)
-					{
-						XMBAttributeList attrs = option.GetAttributes();
-						Decal decal;
-						decal.m_SizeX = attrs.GetNamedItem(at_width).ToFloat();
-						decal.m_SizeZ = attrs.GetNamedItem(at_depth).ToFloat();
-						decal.m_Angle = DEGTORAD(attrs.GetNamedItem(at_angle).ToFloat());
-						decal.m_OffsetX = attrs.GetNamedItem(at_offsetx).ToFloat();
-						decal.m_OffsetZ = attrs.GetNamedItem(at_offsetz).ToFloat();
-						currentVariant->m_Decal = decal;
-					}
-					else if (option_name == el_particles)
-					{
-						XMBAttributeList attrs = option.GetAttributes();
-						VfsPath file = VfsPath("art/particles") / attrs.GetNamedItem(at_file).FromUTF8();
-						currentVariant->m_Particles = file;
-
-						// For particle hotloading, it's easiest to reload the entire actor,
-						// so remember the relevant particle file as a dependency for this actor
-						m_UsedFiles.insert(file);
-					}
-					else if (option_name == el_color)
-					{
-						currentVariant->m_Color = option.GetText();
-					}
-					else if (option_name == el_animations)
-					{
-						XERO_ITER_EL(option, anim_element)
-						{
-							ENSURE(anim_element.GetNodeName() == el_animation);
-
-							Anim anim;
-							XERO_ITER_ATTR(anim_element, ae)
-							{
-								if (ae.Name == at_name)
-								{
-									anim.m_AnimName = ae.Value;
-								}
-								else if (ae.Name == at_file)
-								{
-									anim.m_FileName = VfsPath("art/animation") / ae.Value.FromUTF8();
-								}
-								else if (ae.Name == at_speed)
-								{
-									anim.m_Speed = ae.Value.ToInt() / 100.f;
-									if (anim.m_Speed <= 0.0) anim.m_Speed = 1.0f;
-								}
-								else if (ae.Name == at_event)
-								{
-									float pos = ae.Value.ToFloat();
-									anim.m_ActionPos = clamp(pos, 0.f, 1.f);
-								}
-								else if (ae.Name == at_load)
-								{
-									float pos = ae.Value.ToFloat();
-									anim.m_ActionPos2 = clamp(pos, 0.f, 1.f);
-								}
-								else if (ae.Name == at_sound)
-								{
-									float pos = ae.Value.ToFloat();
-									anim.m_SoundPos = clamp(pos, 0.f, 1.f);
-								}
-							}
-							currentVariant->m_Anims.push_back(anim);
-						}
-
-					}
-					else if (option_name == el_props)
-					{
-						XERO_ITER_EL(option, prop_element)
-						{
-							ENSURE(prop_element.GetNodeName() == el_prop);
-
-							Prop prop;
-							XERO_ITER_ATTR(prop_element, pe)
-							{
-								if (pe.Name == at_attachpoint)
-									prop.m_PropPointName = pe.Value;
-								else if (pe.Name == at_actor)
-									prop.m_ModelName = pe.Value.FromUTF8();
-								else if (pe.Name == at_minheight)
-									prop.m_minHeight = pe.Value.ToFloat();
-								else if (pe.Name == at_maxheight)
-									prop.m_maxHeight = pe.Value.ToFloat();
-								else if (pe.Name == at_selectable)
-									prop.m_selectable = pe.Value != "false";
-							}
-							currentVariant->m_Props.push_back(prop);
-						}
-					}
-				}
-
+				LoadVariant(XeroFile, variant, *currentVariant);
 				++currentVariant;
 			}
 
 			if (currentGroup->size() == 0)
-			{
 				LOGERROR("Actor group has zero variants ('%s')", pathname.string8());
-			}
 
 			++currentGroup;
 		}
 		else if (child_name == el_castshadow)
-		{
 			m_Properties.m_CastShadows = true;
-		}
 		else if (child_name == el_float)
-		{
 			m_Properties.m_FloatOnWater = true;
-		}
 		else if (child_name == el_material)
-		{
 			m_Material = VfsPath("art/materials") / child.GetText().FromUTF8();
-		}
 	}
 
 	if (m_Material.empty())

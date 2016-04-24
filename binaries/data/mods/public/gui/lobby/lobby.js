@@ -1,12 +1,12 @@
 /**
  * Used for the gamelist-filtering.
  */
-const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
+const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 
 /**
  * Used for the gamelist-filtering.
  */
-const g_MapTypes = prepareForDropdown(g_Settings ? g_Settings.MapTypes : undefined);
+const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 
 /**
  * Whether or not to display timestamps in the chat window.

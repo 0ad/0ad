@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wuzzy <almikes@aol.com>, 2015
+# Wuzzy <almikes@aol.com>, 2015-2016
 # David Mannes <mannesdavid@web.de>, 2015
 # Larson März <larson@protonmail.ch>, 2014
 # Leonard König <leonard.r.koenig@gmail.com>, 2014-2015
 # leper <leper@wildfiregames.com>, 2014-2015
 # MartinusMagnus <martinkleemann@web.de>, 2014
+# Matthias Kerk <matthias@tuxlife.de>, 2016
 # Meinrad Müller <meinradmueller@hotmail.com>, 2015
 # Michael Vetter <jubalh@openmailbox.org>, 2016
 # Nicklas Wiegandt <nicklas@wiegandt.net>, 2015
@@ -25,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 12:53+0000\n"
-"Last-Translator: Michael Vetter <jubalh@openmailbox.org>\n"
+"POT-Creation-Date: 2016-04-18 09:01+0200\n"
+"PO-Revision-Date: 2016-04-18 19:42+0000\n"
+"Last-Translator: Matthias Kerk <matthias@tuxlife.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,19 +44,31 @@ msgstr "Ziviles Bauwerk"
 msgid "Civic"
 msgstr "Zivil"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "Verwaltungssitz"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:70
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Bauen, um große Teile Land zu beanspruchen. Bilde Bürger aus. Garnison: 20"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
-#: simulation/templates/template_structure_civic_civil_centre.xml:34
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Verwaltungssitz"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr "Stoa"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr "Hellenisch-königliche Stoa"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "Erhöht das Bevölkerungslimit um +10. Rekrutiere Sondereinheiten."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -103,7 +116,7 @@ msgid "Defensive Structure"
 msgstr "Verteidigungsbauwerk"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "Defensive"
 msgstr "Defensiv"
 
@@ -143,28 +156,28 @@ msgstr "Steinwall"
 msgid "Wall off your town for a stout defense."
 msgstr "Ummauere deine Stadt um die Verteidigung zu verbessern."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:33
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "Stadttor"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:34
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Ermöglicht Einheiten den Zugang durch eine Stadtmauer. Kann verriegelt werden um den Zugang zu verhindern."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:45
+#: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
 msgstr "Lange Mauersegmente können in Tore umgewandelt werden."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:46
+#: simulation/templates/template_structure_defense_wall_long.xml:41
 msgid "Convert Stone Wall into City Gate"
 msgstr "Wandle Steinmauer in Stadttor um."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:58
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "Wehrturm"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Verschießt Pfeile. Muss besetzt werden, um die Stadtmauer gegen Angreifer zu verteidigen."
 
@@ -177,11 +190,11 @@ msgstr "Stadtmauer"
 msgid "Wooden Tower"
 msgstr "Holzturm"
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
 msgstr "Wirtschaftsbauwerk"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Wirtschaftlich"
@@ -271,19 +284,19 @@ msgstr "Hafen"
 msgid "Embassy"
 msgstr "Botschaft"
 
-#: simulation/templates/template_structure_military_fortress.xml:59
+#: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "Bilde Helden und Gardisten aus und baue Belagerungswaffen. Erforsche Verbesserungen für Belagerungswaffen. Einquartieren: 20."
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
 msgstr "Großstadt"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
-#: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Fortress"
 msgstr "Festung"
 
@@ -509,19 +522,21 @@ msgstr "Teîkhos"
 msgid "Pýrgos"
 msgstr "Pýrgos"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Naós Parthenṓn"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Bringe deiner Zivilisation Ruhm und Ehre und erweitere dein Reich mit großen Ländereien. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+msgstr "Bringt Ruhm zu deiner Zivilisation und fügt große Landstriche deinem Imperium hinzu. Quartiere bis zu 30 Einheiten ein, um sie mit einer sehr schnellen Rate zu heilen."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -795,7 +810,7 @@ msgstr "Mijdil-šaʿar"
 msgid "Homah"
 msgstr "Homah"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Tempel des Baal-Hammon"
 
@@ -872,15 +887,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "Verehrtes Denkmal"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1152,18 +1167,37 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "Bilde Garde-Kavallerie aus und baue Rammböcke."
 
+#: simulation/templates/structures/pers_hall.xml:25
+msgid "Persian Hall"
+msgstr "Parsische Halle"
+
+#: simulation/templates/structures/pers_hall.xml:26
+msgid "Duvarthi Visadahyu"
+msgstr "Duvarthi Visadahyu"
+
+#: simulation/templates/structures/pers_hall.xml:28
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+msgstr "Spezialgebäude.\nBilde Kriegselefanten und Kardakensöldner aus. Baulimit: 2"
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Huvādā"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "Persisches Spezialgebäude"
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "Ischtar-Tor"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "Spezielles imperial-römisches Gebäude."
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr "Erhöht die Regeneration der Loyalität naheliegender Gebäude, wodurch es schwerer wird, sie zu erobern. Baulimit: 1."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1174,26 +1208,12 @@ msgid "Didebani"
 msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "Palast"
+msgid "Taçara"
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "Baulimit: 1."
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "Persisches Spezialgebäude"
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Spezialgebäude.\nBilde Kriegselefanten und Kardakensöldner aus."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1356,13 +1376,17 @@ msgstr "h-n-njwt"
 msgid "mktr"
 msgstr "mktr"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "Tempel von Edfu"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "Triumphbogen"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "Spezielles imperial-römisches Gebäude."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1486,19 +1510,13 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Bilde Heiler aus. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "Tempel der Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "Baue diesen Tempel, um die Loyalität deiner Gebäude und Bewohnerinnen zu steigern (verhindert die feindliche Übernahme)."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1532,7 +1550,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "Murus Latericius"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 
@@ -1628,3 +1646,9 @@ msgstr "Syssítion"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Bilde spartanische Helden und Gardehopliten aus."
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Bringe deiner Zivilisation Ruhm und Ehre und erweitere dein Reich mit großen Ländereien. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."

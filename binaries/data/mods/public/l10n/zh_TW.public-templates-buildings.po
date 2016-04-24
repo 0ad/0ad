@@ -6,12 +6,13 @@
 # DanSnow <dododavid006@gmail.com>, 2014
 # Jeff Huang <s8321414@gmail.com>, 2014-2016
 # Mysterelee <8161525@qq.com>, 2014
+# nigelinux <nnigelinux@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-18 09:01+0200\n"
+"PO-Revision-Date: 2016-04-18 13:45+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,19 +28,31 @@ msgstr "市政建築"
 msgid "Civic"
 msgstr "市鎮"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
 msgstr "城鎮中心"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:70
+#: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "建造以擴大領土範圍。訓練市民。駐軍：20。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
-#: simulation/templates/template_structure_civic_civil_centre.xml:34
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "城鎮中心"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
+msgid "Stoa"
+msgstr "拱廊"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
+msgid "Hellenic Royal Stoa"
+msgstr "希臘皇家柱廊"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "將 +10 到人口限制中。招募特殊單位。"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -87,7 +100,7 @@ msgid "Defensive Structure"
 msgstr "防禦性建築物"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "Defensive"
 msgstr "防禦"
 
@@ -127,28 +140,28 @@ msgstr "石牆"
 msgid "Wall off your town for a stout defense."
 msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:33
+#: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid "City Gate"
 msgstr "城門"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:34
+#: simulation/templates/template_structure_defense_wall_gate.xml:29
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "允許單位通過城市的牆。可以鎖住以避免通過。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:45
+#: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
 msgstr "長的城牆區段可以被轉換為閘門。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:46
+#: simulation/templates/template_structure_defense_wall_long.xml:41
 msgid "Convert Stone Wall into City Gate"
 msgstr "將石牆轉換為城門"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:58
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
 msgstr "城牆塔樓"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:59
+#: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "射出箭矢。在城牆中駐軍以對抗攻擊者。"
 
@@ -161,11 +174,11 @@ msgstr "城牆"
 msgid "Wooden Tower"
 msgstr "木製塔樓"
 
-#: simulation/templates/template_structure_economic.xml:14
+#: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
 msgstr "經濟建築物"
 
-#: simulation/templates/template_structure_economic.xml:15
+#: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "經濟"
@@ -255,19 +268,19 @@ msgstr "碼頭"
 msgid "Embassy"
 msgstr "大使館"
 
-#: simulation/templates/template_structure_military_fortress.xml:59
+#: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
 msgstr "訓練英雄、精英、以及攻城武器。研究攻城武器改進。駐軍：20。"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
 msgstr "城市"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
-#: simulation/templates/template_structure_military_fortress.xml:25
-#: simulation/templates/template_structure_military_fortress.xml:58
+#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Fortress"
 msgstr "堡壘"
 
@@ -493,18 +506,20 @@ msgstr "城牆"
 msgid "Pýrgos"
 msgstr "箭塔"
 
-#: simulation/templates/structures/athen_wonder.xml:9
-#: simulation/templates/structures/mace_wonder.xml:9
-#: simulation/templates/structures/spart_wonder.xml:9
+#: simulation/templates/structures/athen_wonder.xml:15
+#: simulation/templates/structures/mace_wonder.xml:15
+#: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
 msgstr "Naós Parthenṓn"
 
-#: simulation/templates/structures/athen_wonder.xml:11
-#: simulation/templates/structures/mace_wonder.xml:11
-#: simulation/templates/structures/spart_wonder.xml:11
+#: simulation/templates/structures/athen_wonder.xml:17
+#: simulation/templates/structures/cart_wonder.xml:17
+#: simulation/templates/structures/mace_wonder.xml:17
+#: simulation/templates/structures/ptol_wonder.xml:17
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
+"empire. Garrison up to 30 units to heal them at an extremely quick rate."
 msgstr "將榮耀歸於您的文明，並在您的帝國裡加入大片的土地。可駐守最多30個單位以極快的速度治療他們。"
 
 #: simulation/templates/structures/brit_barracks.xml:15
@@ -779,7 +794,7 @@ msgstr "Mijdil-šaʿar"
 msgid "Homah"
 msgstr "Homah"
 
-#: simulation/templates/structures/cart_wonder.xml:9
+#: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
 msgstr "Ba'al Hammon 的神廟"
 
@@ -856,15 +871,15 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:27
+#: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
 msgstr "崇敬紀念碑"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:31
+#: simulation/templates/structures/iber_monument.xml:32
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters. Buildings in the territory of the monument do not decay."
@@ -1136,18 +1151,37 @@ msgstr "Didā"
 msgid "Train Champion Cavalry and Construct Siege Rams."
 msgstr "訓練精英騎兵並建造攻城槌。"
 
+#: simulation/templates/structures/pers_hall.xml:25
+msgid "Persian Hall"
+msgstr "波斯大廳"
+
+#: simulation/templates/structures/pers_hall.xml:26
+msgid "Duvarthi Visadahyu"
+msgstr "Duvarthi Visadahyu"
+
+#: simulation/templates/structures/pers_hall.xml:28
+msgid ""
+"Special Building.\n"
+"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+msgstr "特殊建築物。\n訓練戰象或 Kardakes 傭兵。建造限制：2。"
+
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
 msgstr "Huvādā"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:20
+#: simulation/templates/structures/pers_ishtar_gate.xml:25
+msgid "Persian Special Building"
+msgstr "波斯特殊建築物"
+
+#: simulation/templates/structures/pers_ishtar_gate.xml:26
 msgid "Ishtar Gate of Babylon"
 msgstr "巴比倫的伊什塔爾城門"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:21
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Special Imperial Roman building."
-msgstr "特殊的羅馬帝國建築物。"
+#: simulation/templates/structures/pers_ishtar_gate.xml:27
+msgid ""
+"Increases the loyalty regeneration of nearby structures, making them harder "
+"to capture. Build Limit: 1."
+msgstr "增加附近建築物的忠誠點數再生速率，讓它們更難以被捕捉。建造限制：1。"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1158,26 +1192,12 @@ msgid "Didebani"
 msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
-msgid "Palace"
-msgstr "宮殿"
+msgid "Taçara"
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_palace.xml:29
 msgid "Build Limit: 1."
 msgstr "建造限制：1。"
-
-#: simulation/templates/structures/pers_sb2.xml:22
-msgid "Persian Special Building"
-msgstr "波斯特殊建築物"
-
-#: simulation/templates/structures/pers_sb2.xml:23
-msgid "Parihuvādā"
-msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_sb2.xml:25
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "特殊建築物。\n訓練戰象或 Kardakes 傭兵。"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1261,7 +1281,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "增加人口上限。因為是由泥磚建成，埃及的房舍不消耗資源，但非常脆弱。"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1340,13 +1360,17 @@ msgstr "h-n-njwt"
 msgid "mktr"
 msgstr "mktr"
 
-#: simulation/templates/structures/ptol_wonder.xml:9
+#: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
 msgstr "埃德富神廟"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
 msgstr "凱旋門"
+
+#: simulation/templates/structures/rome_arch.xml:23
+msgid "Special Imperial Roman building."
+msgstr "特殊的羅馬帝國建築物。"
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1470,19 +1494,13 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "最多訓練醫療者。可駐守30個單位以較快的速度治療他們。"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:12
+#: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
 msgstr "灶神維斯塔神廟"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:13
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:14
-msgid ""
-"Build this temple to greatly increase the loyalty of your buildings and "
-"female-citizens (helps prevent their capture)."
-msgstr "建造這個神廟以大大的提高您的建築物及女性公民的忠誠度(有助於防止其被俘虜)。"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1516,7 +1534,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "磚牆"
 
-#: simulation/templates/structures/rome_wonder.xml:9
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 
@@ -1612,3 +1630,9 @@ msgstr "Syssítion"
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "訓練斯巴達英雄及斯巴達重裝步兵。"
+
+#: simulation/templates/structures/spart_wonder.xml:17
+msgid ""
+"Bring glory to your civilization and add large tracts of land to your "
+"empire. Garrison up to 30 units to heal them at a quick rate."
+msgstr "將榮耀歸於您的文明，並在您的帝國裡加入大片的土地。可駐守最多30個單位以極快的速度治療他們。"

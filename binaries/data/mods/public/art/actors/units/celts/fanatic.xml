@@ -43,5 +43,9 @@
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+  </group>
   <material>player_trans.xml</material>
 </actor>

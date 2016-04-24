@@ -45,6 +45,7 @@
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
     </variant>
+    <variant file="biped/attack_capture.xml"/>
     <variant name="attack_ranged">
       <props>
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="loaded-r_hand"/>

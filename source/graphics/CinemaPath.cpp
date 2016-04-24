@@ -89,8 +89,13 @@ CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline, const 
 void CCinemaPath::Draw() const
 {
 	DrawSpline(*this, CVector4D(0.2f, 0.2f, 1.f, 0.5f), 100, true);
+	DrawNodes(*this, CVector4D(0.5f, 1.0f, 0.f, 0.5f));
+
+	if (!m_LookAtTarget)
+		return;
+
 	DrawSpline(m_TargetSpline, CVector4D(1.0f, 0.2f, 0.2f, 0.5f), 100, true);
-	DrawNodes(CVector4D(0.5f, 1.0f, 0.f, 0.5f));
+	DrawNodes(m_TargetSpline, CVector4D(1.0f, 0.5f, 0.f, 0.5f));
 }
 
 void CCinemaPath::DrawSpline(const RNSpline& spline, const CVector4D& RGBA, int smoothness, bool lines) const
@@ -157,7 +162,7 @@ void CCinemaPath::DrawSpline(const RNSpline& spline, const CVector4D& RGBA, int 
 #endif
 }
 
-void CCinemaPath::DrawNodes(const CVector4D& RGBA) const
+void CCinemaPath::DrawNodes(const RNSpline& spline, const CVector4D& RGBA) const
 {
 #if CONFIG2_GLES
 	#warning TODO : do something about CCinemaPath on GLES
@@ -167,26 +172,9 @@ void CCinemaPath::DrawNodes(const CVector4D& RGBA) const
 
 	glColor4f(RGBA.X, RGBA.Y, RGBA.Z, RGBA.W);
 	glBegin(GL_POINTS);
-	for (size_t i = 0; i < Node.size(); ++i)
-		glVertex3f(Node[i].Position.X.ToFloat(), Node[i].Position.Y.ToFloat(), Node[i].Position.Z.ToFloat());
-	glEnd();
-
-	if (!m_LookAtTarget)
-	{
-		glPointSize(1.0f);
-		glDisable(GL_POINT_SMOOTH);
-		return;
-	}
-
-	// draw target nodes
-	glColor4f(RGBA.Y, RGBA.X, RGBA.Z, RGBA.W);
-	glBegin(GL_POINTS);
-	for (size_t i = 0; i < m_TargetSpline.GetAllNodes().size(); ++i)
-		glVertex3f(
-			m_TargetSpline.GetAllNodes()[i].Position.X.ToFloat(),
-			m_TargetSpline.GetAllNodes()[i].Position.Y.ToFloat(),
-			m_TargetSpline.GetAllNodes()[i].Position.Z.ToFloat()
-		);
+	const std::vector<SplineData> nodes = spline.GetAllNodes();
+	for (size_t i = 0; i < nodes.size(); ++i)
+		glVertex3f(nodes[i].Position.X.ToFloat(), nodes[i].Position.Y.ToFloat(), nodes[i].Position.Z.ToFloat());
 	glEnd();
 
 	glPointSize(1.0f);
@@ -357,10 +345,7 @@ bool CCinemaPath::Play(const float deltaRealTime)
 {
 	m_TimeElapsed += m_Timescale.ToFloat() * deltaRealTime;
 	if (!Validate())
-	{
-		m_TimeElapsed = 0.0f;
 		return false;
-	}
 
 	MoveToPointAt(m_TimeElapsed / GetDuration().ToFloat(), GetNodeFraction(), m_PreviousRotation);
 	return true;
@@ -371,12 +356,17 @@ bool CCinemaPath::Empty() const
 	return Node.empty();
 }
 
+void CCinemaPath::Reset()
+{
+	m_TimeElapsed = 0.0f;
+}
+
 fixed CCinemaPath::GetTimescale() const
 {
 	return m_Timescale;
 }
 
-const TNSpline& CCinemaPath::getTargetSpline() const
+const TNSpline& CCinemaPath::GetTargetSpline() const
 {
 	return m_TargetSpline;
 }

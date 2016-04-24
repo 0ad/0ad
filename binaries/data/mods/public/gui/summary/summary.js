@@ -137,15 +137,16 @@ function startReplay()
 	Engine.StartVisualReplay(g_GameData.replayDirectory);
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": Engine.GetReplayAttributes(g_GameData.replayDirectory),
-		"isNetworked" : false,
+		"isNetworked": false,
 		"playerAssignments": {
-			"local" : {
+			"local": {
 				"name": translate("You"),
 				"player": -1
 			}
 		},
 		"savedGUIData": "",
-		"isReplay" : true
+		"isReplay": true,
+		"replaySelectionData": g_GameData.replaySelectionData
 	});
 }
 

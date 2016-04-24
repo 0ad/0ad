@@ -30,11 +30,12 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="Death">
+    <variant name="death">
       <props>
         <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
+    <variant file="biped/attack_capture.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

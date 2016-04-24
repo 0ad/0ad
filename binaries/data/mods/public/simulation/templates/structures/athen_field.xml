@@ -2,11 +2,10 @@
 <Entity parent="template_structure_resource_field">
   <Identity>
     <Civ>athen</Civ>
-    <SpecificName>Agroí</SpecificName>
+    <SpecificName>Agrós</SpecificName>
     <History>The Athenians were not reknowned as farmers and preferred to herd livestock or cultivate olives instead.</History>
   </Identity>
   <VisualActor>
-    <Actor>structures/plot_field_3D_8x8.xml</Actor>
-    <FoundationActor>structures/plot_field_found.xml</FoundationActor>
+    <Actor>structures/plot_field_medit.xml</Actor>
   </VisualActor>
 </Entity>

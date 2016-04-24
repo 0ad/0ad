@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:52+0000\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -292,7 +292,7 @@ msgstr "Crocodylus niloticus"
 msgid "Nile Crocodile"
 msgstr "нилски крокодил"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "јелен"
 
@@ -330,7 +330,7 @@ msgstr "тилапија"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Прикупи храну из овог обилног обалског ресурса."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "газела"
 
@@ -342,7 +342,7 @@ msgstr "Жирафа (одрасла)"
 msgid "Giraffe (Juvenile)"
 msgstr "Жирафа (младунче)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "коза"
 
@@ -362,11 +362,11 @@ msgstr "лавица"
 msgid "Muskox"
 msgstr "Мошусно говече"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "паун"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "свиња"
 
@@ -386,7 +386,7 @@ msgstr "велика бела ајкула"
 msgid "Shark"
 msgstr "ајкула"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "овца"
 
@@ -398,7 +398,7 @@ msgstr "тигар"
 msgid "Walrus"
 msgstr "морж"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "кит перајар"
 
@@ -634,13 +634,13 @@ msgstr "клупа"
 msgid "Wooden Bench"
 msgstr "дрвена клупа"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "мост"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "дрвени мост"
 
@@ -652,7 +652,7 @@ msgstr "Храм са жртвеником"
 msgid "Tophet"
 msgstr "пакао"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Обучи лекаре и коњанике из Свете чете."
 
@@ -660,7 +660,7 @@ msgstr "Обучи лекаре и коњанике из Свете чете."
 msgid "Hut"
 msgstr "колиба"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "Додаје +2 на максималан број становника."
 
@@ -731,18 +731,9 @@ msgstr "степениште"
 msgid "Propylaea"
 msgstr "Пропилеји"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Колонада"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Хеленски краљевска колонада"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Додаје +10 на максималан број становника."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -752,7 +743,7 @@ msgstr "Хеленска колонада"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "Додаје +15 на максималан број становника."
 
@@ -973,7 +964,7 @@ msgstr "Промене у кући за 5 становника за цивили
 msgid "Marker"
 msgstr "Обележивач"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr ""
 

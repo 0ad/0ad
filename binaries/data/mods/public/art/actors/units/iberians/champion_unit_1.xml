@@ -48,5 +48,9 @@
       <textures><texture file="skeletal/iber_champ_inf_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+  </group>
   <material>player_trans.xml</material>
 </actor>

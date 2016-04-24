@@ -410,7 +410,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			{
 				fixed timescale = it->second.GetTimescale();
 				const std::vector<SplineData>& nodes = it->second.GetAllNodes();
-				const std::vector<SplineData>& target_nodes = it->second.getTargetSpline().GetAllNodes();
+				const std::vector<SplineData>& target_nodes = it->second.GetTargetSpline().GetAllNodes();
 				const CCinemaData* data = it->second.GetData();
 				
 				XML_Element("Path");

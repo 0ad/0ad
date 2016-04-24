@@ -1,0 +1,9 @@
+<variant name="Build">
+  <animations>
+    <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="70"/>
+  </animations>
+  <props>
+    <prop attachpoint="l_hand"/>
+	<prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+  </props>
+</variant>

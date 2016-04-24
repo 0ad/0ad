@@ -32,6 +32,7 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
     <variant name="Death">
       <props>
         <prop actor="props/units/blood_01.xml" attachpoint="root"/>

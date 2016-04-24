@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:26+0100\n"
-"PO-Revision-Date: 2016-03-21 14:54+0000\n"
-"Last-Translator: Ole Sannes Riiser <OLE-SR@online.no>\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,7 +292,7 @@ msgstr "Crocodylus niloticus"
 msgid "Nile Crocodile"
 msgstr "Krokodille fra Nilen"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "Hjort"
 
@@ -330,7 +330,7 @@ msgstr "Tilapiafisk"
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Sank mat fra denne bugnende elvebreddressursen."
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "Gaselle"
 
@@ -342,7 +342,7 @@ msgstr "Giraff (Voksen)"
 msgid "Giraffe (Juvenile)"
 msgstr "Giraff (Ung)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "Geit"
 
@@ -362,11 +362,11 @@ msgstr "Løvinne"
 msgid "Muskox"
 msgstr "Moskus"
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "Påfugl"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Gris"
 
@@ -386,7 +386,7 @@ msgstr "Stor Hvit"
 msgid "Shark"
 msgstr "Hai"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "Sau"
 
@@ -398,7 +398,7 @@ msgstr "Tiger"
 msgid "Walrus"
 msgstr "Hvalross"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr "Finnhval"
 
@@ -634,13 +634,13 @@ msgstr "Benk"
 msgid "Wooden Bench"
 msgstr "Trebenk"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "Bro"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "Tømmerbro"
 
@@ -652,7 +652,7 @@ msgstr "Ofringstempel"
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Tren leger og Hellig Bånd-kavaleri."
 
@@ -660,7 +660,7 @@ msgstr "Tren leger og Hellig Bånd-kavaleri."
 msgid "Hut"
 msgstr "Hytte"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr "Legg +2 til befolkningstaket."
 
@@ -731,18 +731,9 @@ msgstr "Portiko"
 msgid "Propylaea"
 msgstr "Propylaea"
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "Stoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr "Hellensk kongelig stoa"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Legg +10 til befolkningstaket. Rekrutter spesialenheter."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -752,7 +743,7 @@ msgstr "Hellensk stoa"
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr "Legg +15 til befolkningstaket. Rekrutter ekstra enheter og helter."
 
@@ -973,7 +964,7 @@ msgstr "Endringer i et 5-innbyggershus for sivilisasjoner med disse husene slett
 msgid "Marker"
 msgstr "Markør"
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr "Spiller"
 

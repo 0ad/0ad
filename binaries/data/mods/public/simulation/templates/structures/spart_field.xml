@@ -2,7 +2,10 @@
 <Entity parent="template_structure_resource_field">
   <Identity>
     <Civ>spart</Civ>
-    <SpecificName>Agroí</SpecificName>
+    <SpecificName>Agrós</SpecificName>
     <History>A farmer's field. The Hellenes were not reknowned as farmers and preferred to herd livestock instead.</History>
   </Identity>
+  <VisualActor>
+    <Actor>structures/plot_field_medit.xml</Actor>
+  </VisualActor>
 </Entity>

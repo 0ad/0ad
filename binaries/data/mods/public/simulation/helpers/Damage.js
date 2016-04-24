@@ -74,6 +74,11 @@ Damage.CauseDamage = function(data)
 	// Damage the target
 	var targetState = cmpDamageReceiver.TakeDamage(data.strengths.hack * data.multiplier, data.strengths.pierce * data.multiplier, data.strengths.crush * data.multiplier);
 
+	var cmpPromotion = Engine.QueryInterface(data.attacker, IID_Promotion);
+	var cmpLoot = Engine.QueryInterface(data.target, IID_Loot);
+	if (cmpPromotion && cmpLoot && cmpLoot.GetXp() > 0)
+		cmpPromotion.IncreaseXp(cmpLoot.GetXp() * -targetState.change / cmpHealth.GetMaxHitpoints());
+
 	// If the target was killed run some cleanup
 	if (targetState.killed)
 		Damage.TargetKilled(data.attacker, data.target);

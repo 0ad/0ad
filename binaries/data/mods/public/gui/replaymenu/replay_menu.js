@@ -1,5 +1,5 @@
 /**
- * Used for checking replay compability.
+ * Used for checking replay compatibility.
  */
 const g_EngineInfo = Engine.GetEngineInfo();
 
@@ -11,7 +11,7 @@ const g_CivData = loadCivData();
 /**
  * Used for creating the mapsize filter.
  */
-const g_MapSizes = prepareForDropdown(g_Settings ? g_Settings.MapSizes : undefined);
+const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 
 /**
  * All replays found in the directory.
@@ -36,12 +36,12 @@ var g_MapNames = [];
 /**
  * Directory name of the currently selected replay. Used to restore the selection after changing filters.
  */
-var g_selectedReplayDirectory = "";
+var g_SelectedReplayDirectory = "";
 
 /**
  * Initializes globals, loads replays and displays the list.
  */
-function init()
+function init(data)
 {
 	if (!g_Settings)
 	{
@@ -49,7 +49,7 @@ function init()
 		return;
 	}
 
-	loadReplays();
+	loadReplays(data && data.replaySelectionData);
 
 	if (!g_Replays)
 	{
@@ -62,9 +62,10 @@ function init()
 
 /**
  * Store the list of replays loaded in C++ in g_Replays.
- * Check timestamp and compatibility and extract g_Playernames, g_MapNames
+ * Check timestamp and compatibility and extract g_Playernames, g_MapNames.
+ * Restore selected filters and item.
  */
-function loadReplays()
+function loadReplays(replaySelectionData)
 {
 	g_Replays = Engine.GetReplays();
 
@@ -77,7 +78,7 @@ function loadReplays()
 		// Use time saved in file, otherwise file mod date
 		replay.timestamp = replay.attribs.timestamp ? +replay.attribs.timestamp : +replay.filemod_timestamp-replay.duration;
 
-		// Check replay for compability
+		// Check replay for compatibility
 		replay.isCompatible = isReplayCompatible(replay);
 
 		sanitizeGameAttributes(replay.attribs);
@@ -105,7 +106,20 @@ function loadReplays()
 	g_MapNames.sort();
 
 	// Reload filters (since they depend on g_Replays and its derivatives)
-	initFilters();
+	initFilters(replaySelectionData && replaySelectionData.filters);
+
+	// Restore user selection
+	if (replaySelectionData)
+	{
+		if (replaySelectionData.directory)
+			g_SelectedReplayDirectory = replaySelectionData.directory;
+
+		let replaySelection = Engine.GetGUIObjectByName("replaySelection");
+		if (replaySelectionData.column)
+			replaySelection.selected_column = replaySelectionData.column;
+		if (replaySelectionData.columnOrder)
+			replaySelection.selected_column_order = replaySelectionData.columnOrder;
+	}
 }
 
 /**
@@ -152,7 +166,7 @@ function displayReplayList()
 	// Remember previously selected replay
 	var replaySelection = Engine.GetGUIObjectByName("replaySelection");
 	if (replaySelection.selected != -1)
-		g_selectedReplayDirectory = g_ReplaysFiltered[replaySelection.selected].directory;
+		g_SelectedReplayDirectory = g_ReplaysFiltered[replaySelection.selected].directory;
 
 	filterReplays();
 
@@ -188,7 +202,7 @@ function displayReplayList()
 	replaySelection.list_data = list.directories || [];
 
 	// Restore selection
-	replaySelection.selected = replaySelection.list.findIndex(directory => directory == g_selectedReplayDirectory);
+	replaySelection.selected = replaySelection.list.findIndex(directory => directory == g_SelectedReplayDirectory);
 
 	displayReplayDetails();
 }

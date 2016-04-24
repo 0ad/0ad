@@ -477,6 +477,7 @@ void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in
 	permittedComponentTypes.insert("Fogging");
 	permittedComponentTypes.insert("Armour");
 	permittedComponentTypes.insert("Health");
+	permittedComponentTypes.insert("Market");
 	permittedComponentTypes.insert("StatusBars");
 	permittedComponentTypes.insert("OverlayRenderer");
 	permittedComponentTypes.insert("Decay");

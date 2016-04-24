@@ -276,7 +276,7 @@
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 				</object>
 
-				<object size="14 38 94% 66">
+				<object name="optionGameSpeed" size="14 38 94% 66">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Game Speed:</translatableAttribute>
 					</object>
@@ -286,7 +286,7 @@
 					</object>
 				</object>
 
-				<object size="14 68 94% 96">
+				<object name="optionVictoryCondition" size="14 68 94% 96">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Victory Condition:</translatableAttribute>
 					</object>
@@ -296,7 +296,17 @@
 					</object>
 				</object>
 
-				<object size="14 98 94% 126">
+				<object name="optionWonderDuration" size="14 188 94% 216">
+					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
+						<translatableAttribute id="caption">Wonder Victory:</translatableAttribute>
+					</object>
+					<object name="wonderDurationText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="wonderDuration" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
+						<translatableAttribute id="tooltip">Number of minutes that the player has to keep the wonder in order to win.</translatableAttribute>
+					</object>
+				</object>
+
+				<object name="optionPopulationCap" size="14 98 94% 126">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Population Cap:</translatableAttribute>
 					</object>
@@ -306,7 +316,7 @@
 					</object>
 				</object>
 
-				<object size="14 128 94% 156">
+				<object name="optionStartingResources" size="14 128 94% 156">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Starting Resources:</translatableAttribute>
 					</object>
@@ -316,7 +326,7 @@
 					</object>
 				</object>
 
-				<object size="14 158 94% 186">
+				<object name="optionCeasefire" size="14 158 94% 186">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Ceasefire:</translatableAttribute>
 					</object>
@@ -326,7 +336,7 @@
 					</object>
 				</object>
 
-				<object size="14 188 94% 216">
+				<object name="optionRevealMap" size="14 218 94% 246">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption" comment="Make sure to differentiate between the revealed map and explored map options!">Revealed Map:</translatableAttribute>
 					</object>
@@ -336,7 +346,7 @@
 					</object>
 				</object>
 
-				<object size="14 218 94% 246">
+				<object name="optionExploreMap" size="14 248 94% 276">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption" comment="Make sure to differentiate between the revealed map and explored map options!">Explored Map:</translatableAttribute>
 					</object>
@@ -346,7 +356,7 @@
 					</object>
 				</object>
 
-				<object size="14 248 94% 276">
+				<object name="optionDisableTreasures" size="14 278 94% 306">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Disable Treasures:</translatableAttribute>
 					</object>
@@ -356,7 +366,7 @@
 					</object>
 				</object>
 
-				<object size="14 278 94% 306">
+				<object name="optionLockTeams" size="14 308 94% 336">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Teams Locked:</translatableAttribute>
 					</object>
@@ -366,7 +376,7 @@
 					</object>
 				</object>
 
-				<object name="optionCheats" size="14 308 94% 336" hidden="true">
+				<object name="optionCheats" size="14 338 94% 366" hidden="true">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Cheats:</translatableAttribute>
 					</object>
@@ -376,7 +386,7 @@
 					</object>
 				</object>
 
-				<object name="optionRating" size="14 338 94% 366" hidden="true">
+				<object name="optionRating" size="14 368 94% 396" hidden="true">
 					<object size="0 0 40% 28" hidden="false" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Rated Game:</translatableAttribute>
 					</object>

@@ -19,6 +19,9 @@
                 <attribute name="name"/>
               </optional>
               <optional>
+                <attribute name="file"/>
+              </optional>
+              <optional>
                 <attribute name="frequency">
                   <data type="nonNegativeInteger"/>
                 </attribute>

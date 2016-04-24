@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:53+0100\n"
-"PO-Revision-Date: 2016-03-13 09:52+0000\n"
+"POT-Creation-Date: 2016-04-15 09:01+0200\n"
+"PO-Revision-Date: 2016-04-15 08:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr ""
 msgid "Nile Crocodile"
 msgstr "നൈല്‍ മുതല"
 
-#: simulation/templates/gaia/fauna_deer.xml:5
+#: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
 msgstr "മാന്‍"
 
@@ -328,7 +328,7 @@ msgstr "സിലോപ്പി മീന്‍"
 msgid "Collect food from this bountiful riparian resource."
 msgstr ""
 
-#: simulation/templates/gaia/fauna_gazelle.xml:5
+#: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
 msgstr "കലമാന്‍"
 
@@ -340,7 +340,7 @@ msgstr "ജിറാഫ് (വലുത്)"
 msgid "Giraffe (Juvenile)"
 msgstr "ജിറാഫ് (കുട്ടി)"
 
-#: simulation/templates/gaia/fauna_goat.xml:11
+#: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
 msgstr "ആട്"
 
@@ -360,11 +360,11 @@ msgstr "സിംഹി"
 msgid "Muskox"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_peacock.xml:8
+#: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
 msgstr "മയില്‍"
 
-#: simulation/templates/gaia/fauna_pig.xml:5
+#: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "പന്നി"
 
@@ -384,7 +384,7 @@ msgstr ""
 msgid "Shark"
 msgstr "സ്രാവ്"
 
-#: simulation/templates/gaia/fauna_sheep.xml:11
+#: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
 msgstr "ചെമ്മരിയാട്"
 
@@ -396,7 +396,7 @@ msgstr "കടുവ"
 msgid "Walrus"
 msgstr "കടലാന"
 
-#: simulation/templates/gaia/fauna_whale_fin.xml:4
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
 msgstr ""
 
@@ -632,13 +632,13 @@ msgstr "ബെഞ്ച്"
 msgid "Wooden Bench"
 msgstr "മരബെഞ്ച്"
 
-#: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
 msgstr "പാലം"
 
-#: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
 msgstr "മരപ്പാലം"
 
@@ -650,7 +650,7 @@ msgstr ""
 msgid "Tophet"
 msgstr ""
 
-#: simulation/templates/other/cart_tophet.xml:25
+#: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr ""
 
@@ -658,7 +658,7 @@ msgstr ""
 msgid "Hut"
 msgstr "കുടില്‍"
 
-#: simulation/templates/other/celt_hut.xml:23
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
 msgstr ""
 
@@ -729,18 +729,9 @@ msgstr ""
 msgid "Propylaea"
 msgstr ""
 
-#: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
 msgstr "സ്റ്റോവ"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:31
-msgid "Hellenic Royal Stoa"
-msgstr ""
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -750,7 +741,7 @@ msgstr ""
 msgid "Harmya"
 msgstr ""
 
-#: simulation/templates/other/maur_palace.xml:14
+#: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr ""
 
@@ -971,7 +962,7 @@ msgstr ""
 msgid "Marker"
 msgstr ""
 
-#: simulation/templates/special/player.xml:53
+#: simulation/templates/special/player.xml:55
 msgid "Player"
 msgstr ""
 

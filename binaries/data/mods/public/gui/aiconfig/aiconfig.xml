@@ -24,6 +24,7 @@
 			<object name="aiSelection" type="dropdown" style="ModernDropDown" size="50%-24 0 50%+136 28">
 				<action on="SelectionChange">selectAI(this.selected);</action>
 			</object>
+			<object name="aiSelectionText" type="text" style="ModernLeftLabelText" size="50%-24 0 50%+136 28"/>
 
 			<object type="text" style="ModernRightLabelText" size="-10 35 90 50%+35">
 				<translatableAttribute id="caption">AI Difficulty:</translatableAttribute>
@@ -31,18 +32,19 @@
 			
 			<object name="aiDifficulty" type="dropdown" style="ModernDropDown" size="50%-24 35 50%+136 63">
 			</object>
+			<object name="aiDifficultyText" type="text" style="ModernLeftLabelText" size="50%-24 35 50%+136 63"/>
 		</object>
 
 		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 90 92% 100%-60"/>
 
 		<object type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">Engine.PopGuiPage();</action>
+			<action on="Press">returnAI(false);</action>
 		</object>
 
 		<object type="button" style="ModernButtonRed" size="50%+5 100%-45 100%-18 100%-17">
 			<translatableAttribute id="caption">OK</translatableAttribute>
-			<action on="Press">returnAI();</action>
+			<action on="Press">returnAI(true);</action>
 		</object>
 	</object>
 </objects>

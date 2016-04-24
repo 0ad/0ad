@@ -1,0 +1,11 @@
+<variant name="gather_tree">
+  <animations>
+	<animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
+  </animations>
+  <props>
+    <prop attachpoint="shield"/>
+	<prop attachpoint="helmet"/>
+    <prop attachpoint="r_hand"/>
+	<prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+  </props>
+</variant>

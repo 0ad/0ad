@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:00+0200\n"
-"PO-Revision-Date: 2016-04-08 09:19+0000\n"
+"POT-Creation-Date: 2016-04-15 09:00+0200\n"
+"PO-Revision-Date: 2016-04-15 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -788,7 +788,7 @@ msgstr "<inválido>"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/replaymenu/replay_actions.js:112 gui/savedgames/load.js:49
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "Yes"
@@ -796,7 +796,7 @@ msgstr "Sim"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:111 gui/savedgames/load.js:49
+#: gui/replaymenu/replay_actions.js:112 gui/savedgames/load.js:49
 #: gui/savedgames/load.js:123 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:86
 msgid "No"
@@ -926,7 +926,7 @@ msgstr "Detalhes Técnicos"
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/replaymenu/replay_actions.js:31
+#: gui/replaymenu/replay_actions.js:31 gui/summary/summary.js:143
 msgid "You"
 msgstr "Você"
 
@@ -964,11 +964,11 @@ msgstr "Dados de resumo não disponíveis."
 msgid "Scores at the end of the game."
 msgstr "Pontuações no final do jogo."
 
-#: gui/replaymenu/replay_actions.js:114
+#: gui/replaymenu/replay_actions.js:115
 msgid "Delete replay"
 msgstr "Apagar repetição"
 
-#: gui/replaymenu/replay_actions.js:115
+#: gui/replaymenu/replay_actions.js:116
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Tem a certeza de que deseja apagar a repetição?"
 
@@ -1334,12 +1334,12 @@ msgstr "Controlo do mapa"
 msgid "Team total"
 msgstr "Total da equipa"
 
-#: gui/summary/summary.js:136
+#: gui/summary/summary.js:159
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo do jogo decorrido: %(time)s"
 
-#: gui/summary/summary.js:138
+#: gui/summary/summary.js:161
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1882,6 +1882,10 @@ msgid "Market"
 msgstr "Mercado"
 
 #: gui/summary/summary.xml:(caption):161
+msgid "Replay"
+msgstr ""
+
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "Continuar"
 

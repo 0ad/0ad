@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
 class CModel;
 class CSkeletonAnim;
 class CObjectManager;
+class CXeromyces;
+class XMBElement;
 
 #include <vector>
 #include <set>
@@ -187,6 +189,8 @@ private:
 	CObjectManager& m_ObjectManager;
 
 	boost::unordered_set<VfsPath> m_UsedFiles;
+
+	void LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
 };
 
 #endif

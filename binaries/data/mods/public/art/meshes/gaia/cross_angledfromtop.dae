@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author>PMD to COLLADA Converter</author>
-      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.77.0 commit date:2016-03-18, commit time:12:34, hash:22a2853</authoring_tool>
     </contributor>
-    <created>2012-01-26T22:20:47</created>
-    <modified>2012-01-26T22:20:47</modified>
-    <unit meter="0.01" name="centimeter"/>
+    <created>2016-04-18T23:46:41</created>
+    <modified>2016-04-18T23:46:41</modified>
+    <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
+  <library_images/>
   <library_geometries>
-    <geometry id="cross_angledfromtop-Geometry" name="cross_angledfromtop-Geometry">
+    <geometry id="cross_angledfromtop-Geometry_001-mesh" name="cross_angledfromtop-Geometry.001">
       <mesh>
-        <source id="cross_angledfromtop-Geometry-Position">
-          <float_array count="48" id="cross_angledfromtop-Geometry-Position-array">2.3395520 -1.1358260 0.1428170 2.4704570 0.3005830 4.0137720 -2.4704560 -0.3005760 -0.0044600 -2.3395520 1.1358340 3.8664950 1.1358290 2.3395550 0.1428170 -0.3005800 2.4704600 4.0137720 0.3005800 -2.4704540 -0.0044600 -1.1358290 -2.3395480 3.8664950 -2.3395510 1.1358320 0.1428170 -2.4704570 -0.3005760 4.0137720 2.4704560 0.3005820 -0.0044600 2.3395510 -1.1358270 3.8664950 -1.1358300 -2.3395480 0.1428170 0.3005790 -2.4704540 4.0137720 -0.3005820 2.4704600 -0.0044600 1.1358270 2.3395550 3.8664950</float_array>
+        <source id="cross_angledfromtop-Geometry_001-mesh-positions">
+          <float_array id="cross_angledfromtop-Geometry_001-mesh-positions-array" count="48">2.339552 -1.135826 0.142817 2.470457 0.300583 4.013772 -2.470456 -0.300576 -0.004459977 -2.339552 1.135834 3.866495 1.135829 2.339555 0.142817 -0.30058 2.47046 4.013772 0.30058 -2.470454 -0.004459977 -1.135829 -2.339548 3.866495 -2.339551 1.135832 0.142817 -2.470457 -0.300576 4.013772 2.470456 0.300582 -0.004459977 2.339551 -1.135827 3.866495 -1.13583 -2.339548 0.142817 0.300579 -2.470454 4.013772 -0.300582 2.47046 -0.004459977 1.135827 2.339555 3.866495</float_array>
           <technique_common>
-            <accessor count="16" source="cross_angledfromtop-Geometry-Position-array" stride="3">
+            <accessor source="#cross_angledfromtop-Geometry_001-mesh-positions-array" count="16" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="cross_angledfromtop-Geometry-Normals">
-          <float_array count="48" id="cross_angledfromtop-Geometry-Normal-array">-0.1707320 -0.9218710 0.3478560 -0.1707330 -0.9218710 0.3478560 -0.1707330 -0.9218710 0.3478560 -0.1707330 -0.9218710 0.3478560 0.9218710 -0.1707320 0.3478560 0.9218710 -0.1707320 0.3478560 0.9218710 -0.1707320 0.3478560 0.9218710 -0.1707320 0.3478560 0.1707320 0.9218710 0.3478560 0.1707330 0.9218710 0.3478560 0.1707330 0.9218710 0.3478560 0.1707330 0.9218710 0.3478560 -0.9218710 0.1707320 0.3478560 -0.9218710 0.1707320 0.3478560 -0.9218710 0.1707320 0.3478560 -0.9218710 0.1707320 0.3478560</float_array>
+        <source id="cross_angledfromtop-Geometry_001-mesh-normals">
+          <float_array id="cross_angledfromtop-Geometry_001-mesh-normals-array" count="48">0.8965008 -0.4352474 0.08274072 0.3766883 0.0457856 0.9252079 -0.99268 -0.1207447 -0.002676427 -0.3656928 0.1775425 0.9136452 0.4352471 0.8965011 0.08274084 -0.04578572 0.3766883 0.9252079 0.1207448 -0.99268 -0.00267601 -0.1774951 -0.3656972 0.9136526 -0.8965008 0.4352473 0.0827406 -0.3766884 -0.04578554 0.9252079 0.99268 0.1207445 -0.002676069 0.3656973 -0.177495 0.9136527 -0.435247 -0.8965011 0.0827406 0.04578578 -0.3766884 0.9252079 -0.1207451 0.99268 -0.00267601 0.177495 0.3656973 0.9136525</float_array>
           <technique_common>
-            <accessor count="16" source="cross_angledfromtop-Geometry-Normal-array" stride="3">
+            <accessor source="#cross_angledfromtop-Geometry_001-mesh-normals-array" count="16" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="cross_angledfromtop-Geometry-UV">
-          <float_array count="32" id="cross_angledfromtop-Geometry-UV-array">0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037 0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037 0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037 0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037</float_array>
+        <source id="cross_angledfromtop-Geometry_001-mesh-map-0">
+          <float_array id="cross_angledfromtop-Geometry_001-mesh-map-0-array" count="48">0.01126092 0.009075999 0.01126092 0.991037 0.991094 0.009075999 0.991094 0.991037 0.991094 0.009075999 0.01126092 0.991037 0.01126092 0.009075999 0.01126092 0.991037 0.991094 0.009075999 0.991094 0.991037 0.991094 0.009075999 0.01126092 0.991037 0.01126092 0.009075999 0.01126092 0.991037 0.991094 0.009075999 0.991094 0.991037 0.991094 0.009075999 0.01126092 0.991037 0.01126092 0.009075999 0.01126092 0.991037 0.991094 0.009075999 0.991094 0.991037 0.991094 0.009075999 0.01126092 0.991037</float_array>
           <technique_common>
-            <accessor count="16" source="cross_angledfromtop-Geometry-UV-array" stride="2">
-              <param name="U" type="float"/>
-              <param name="V" type="float"/>
+            <accessor source="#cross_angledfromtop-Geometry_001-mesh-map-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="cross_angledfromtop-Geometry-Vertex">
-          <input semantic="POSITION" source="#cross_angledfromtop-Geometry-Position"/>
+        <vertices id="cross_angledfromtop-Geometry_001-mesh-vertices">
+          <input semantic="POSITION" source="#cross_angledfromtop-Geometry_001-mesh-positions"/>
         </vertices>
-        <triangles count="8" material="material0">
-          <input offset="0" semantic="VERTEX" source="#cross_angledfromtop-Geometry-Vertex"/>
-          <input offset="0" semantic="NORMAL" source="#cross_angledfromtop-Geometry-Normals"/>
-          <input offset="0" semantic="TEXCOORD" source="#cross_angledfromtop-Geometry-UV"/>
-          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13</p>
-        </triangles>
+        <polylist count="8">
+          <input semantic="VERTEX" source="#cross_angledfromtop-Geometry_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cross_angledfromtop-Geometry_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#cross_angledfromtop-Geometry_001-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 2 2 4 1 1 5 4 4 6 5 5 7 6 6 8 7 7 9 6 6 10 5 5 11 8 8 12 9 9 13 10 10 14 11 11 15 10 10 16 9 9 17 12 12 18 13 13 19 14 14 20 15 15 21 14 14 22 13 13 23</p>
+        </polylist>
       </mesh>
     </geometry>
   </library_geometries>
+  <library_controllers/>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="cross_angledfromtop" layer="L1" name="cross_angledfromtop">
-        <instance_geometry url="#cross_angledfromtop-Geometry"/>
+      <node id="cross_angledfromtop" name="cross_angledfromtop" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#cross_angledfromtop-Geometry_001-mesh" name="cross_angledfromtop"/>
       </node>
     </visual_scene>
   </library_visual_scenes>

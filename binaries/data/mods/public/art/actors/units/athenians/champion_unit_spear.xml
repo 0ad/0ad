@@ -26,6 +26,10 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+  </group>
+  <group>
     <variant frequency="1" name="epilektos-01">
       <textures><texture file="skeletal/athen_epilektos_1.png" name="baseTex"/></textures>
     </variant>
