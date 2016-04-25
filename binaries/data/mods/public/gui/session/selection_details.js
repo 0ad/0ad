@@ -19,6 +19,44 @@ function getResourceTypeDisplayName(resourceType)
 		return getLocalizedResourceName(resourceCode, "firstWord");
 }
 
+// Updates the health bar of garrisoned units
+function updateGarrisionHealthBar(entState, selection)
+{
+	if (!entState.garrisonHolder)
+		return;
+
+	// Summing up the Health of every single unit
+	let totalGarrisionHealth = 0;
+	let maxGarrisionHealth = 0;
+	for (let selEnt of selection)
+	{
+		let selEntState = GetEntityState(selEnt);
+		if (selEntState.garrisonHolder)
+			for (let ent of selEntState.garrisonHolder.entities)
+			{
+				let state = GetEntityState(ent);
+				totalGarrisionHealth += state.hitpoints || 0;
+				maxGarrisionHealth += state.maxHitpoints || 0;
+			}
+	}
+
+	// Configuring the health bar
+	let healthGarrison = Engine.GetGUIObjectByName("healthGarrison");
+	healthGarrison.hidden = totalGarrisionHealth <= 0;
+	if (totalGarrisionHealth > 0)
+	{
+		let healthBarGarrison = Engine.GetGUIObjectByName("healthBarGarrison");
+		let healthSize = healthBarGarrison.size;
+		healthSize.rtop = 100-100*Math.max(0, Math.min(1, totalGarrisionHealth / maxGarrisionHealth));
+		healthBarGarrison.size = healthSize;
+		healthGarrison.tooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), {
+			"label": "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]",
+			"current": Math.ceil(totalGarrisionHealth),
+			"max": Math.ceil(maxGarrisionHealth)
+		});
+	}
+}
+
 // Fills out information that most entities have
 function displaySingle(entState)
 {
@@ -376,7 +414,7 @@ function displayMultiple(selection)
 	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
-// Updates middle entity Selection Details Panel
+// Updates middle entity Selection Details Panel and left Unit Commands Panel
 function updateSelectionDetails()
 {
 	let supplementalDetailsPanel = Engine.GetGUIObjectByName("supplementalSelectionDetails");
@@ -415,4 +453,8 @@ function updateSelectionDetails()
 
 	// Fill out commands panel for specific unit selected (or first unit of primary group)
 	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
+
+	// Show health bar for garrisoned units if the garrison panel is visible
+	if (Engine.GetGUIObjectByName("unitGarrisonPanel") && !Engine.GetGUIObjectByName("unitGarrisonPanel").hidden)
+		updateGarrisionHealthBar(entState, selection);
 }
