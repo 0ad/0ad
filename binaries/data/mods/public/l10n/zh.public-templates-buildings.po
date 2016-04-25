@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-18 09:01+0200\n"
-"PO-Revision-Date: 2016-04-18 09:51+0000\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-22 09:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -380,9 +380,10 @@ msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agroí"
-msgstr "Agroí"
+msgid "Agrós"
+msgstr "阿尔戈斯"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -1102,9 +1103,8 @@ msgstr "阿波陀那"
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
-"Limit: 1."
-msgstr "「进献总督」：以缓慢的速度增加食物、木头、石头以及金属资源。训练波斯英雄及他们的「长生军」英雄。建造限制：1。"
+"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1166,7 +1166,7 @@ msgstr ""
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+"Train War Elephants and Kardakes mercenaries."
 msgstr ""
 
 #: simulation/templates/structures/pers_house.xml:22
@@ -1184,7 +1184,7 @@ msgstr "巴比伦的伊什塔尔城门"
 #: simulation/templates/structures/pers_ishtar_gate.xml:27
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
-"to capture. Build Limit: 1."
+"to capture."
 msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
@@ -1198,10 +1198,6 @@ msgstr "Didebani"
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
 msgstr ""
-
-#: simulation/templates/structures/pers_palace.xml:29
-msgid "Build Limit: 1."
-msgstr "建造限制：1"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1561,10 +1557,6 @@ msgstr "Liménas"
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
 msgstr "粮仓"
-
-#: simulation/templates/structures/sele_field.xml:5
-msgid "Agrós"
-msgstr "阿尔戈斯"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"

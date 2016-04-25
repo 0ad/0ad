@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2016-03-27 19:49+0000\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-22 19:57+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -580,43 +580,57 @@ msgstr "%(name)s nem építhető érvénytelen talajra"
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
-msgid "ally"
-msgstr "szövetséges"
-
-#. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
-msgctxt "Territory type"
 msgid "own"
 msgstr "saját"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:190
+#: simulation/components/BuildRestrictions.js:187
+msgctxt "Territory type"
+msgid "unconnected own"
+msgstr "saját. nem összekötött"
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:193
+msgctxt "Territory type"
+msgid "allied"
+msgstr "szövetséges"
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:196
+msgctxt "Territory type"
+msgid "unconnected allied"
+msgstr "saját, összekötött"
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "semleges"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:209
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "ellenséges"
 
-#: simulation/components/BuildRestrictions.js:199
+#: simulation/components/BuildRestrictions.js:214
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s nem építhető %(territoryType)s területre. Érvényes területek: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:238
+#: simulation/components/BuildRestrictions.js:253
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s csak érvényes partvonalra építhető"
 
-#: simulation/components/BuildRestrictions.js:262
+#: simulation/components/BuildRestrictions.js:277
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -627,7 +641,7 @@ msgid_plural ""
 msgstr[0] "%(name)s és %(category)s túl közel vannak egymáshoz, legalább%(distance)s méter távolság kell legyen közöttük"
 msgstr[1] "%(name)s és %(category)s túl közel vannak egymáshoz, legalább%(distance)s méter távolság kell legyen közöttük"
 
-#: simulation/components/BuildRestrictions.js:284
+#: simulation/components/BuildRestrictions.js:299
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -638,28 +652,28 @@ msgstr[1] "%(name)s és %(category)s túl messze vannak egymástól, legfeljebb 
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:324
+#: simulation/components/BuildRestrictions.js:339
 msgctxt "Territory type list"
 msgid "own"
 msgstr "saját"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:326
+#: simulation/components/BuildRestrictions.js:341
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "szövetséges"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:328
+#: simulation/components/BuildRestrictions.js:343
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "semleges"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:330
+#: simulation/components/BuildRestrictions.js:345
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ellenséges"
@@ -731,11 +745,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:366
+#: simulation/components/ProductionQueue.js:373
 msgid "The production queue is full."
 msgstr "A termelési sor tele van."
 
-#: simulation/components/ProductionQueue.js:743
+#: simulation/components/ProductionQueue.js:750
 msgid "Can't find free space to spawn trained units"
 msgstr "Nem található szabad hely a kiképzett egységek elhelyezéséhez"
 

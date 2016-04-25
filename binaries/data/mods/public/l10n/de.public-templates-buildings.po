@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-18 09:01+0200\n"
-"PO-Revision-Date: 2016-04-18 19:42+0000\n"
-"Last-Translator: Matthias Kerk <matthias@tuxlife.de>\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-22 22:48+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +68,7 @@ msgstr "Hellenisch-königliche Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Erhöht das Bevölkerungslimit um +10. Rekrutiere Sondereinheiten."
+msgstr "Erhöht das Bevölkerungslimit um +10. Rekrutiere Spezialeinheiten."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -392,9 +392,10 @@ msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agroí"
-msgstr "Agroí"
+msgid "Agrós"
+msgstr "Agrós"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -1114,9 +1115,8 @@ msgstr "Apadana"
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
-"Limit: 1."
-msgstr "„Satrapien-Tribut“: Erhalte eine kleine Menge Nahrung, Holz, Stein und Metall. Bilde Persische Helden und ihre „Unsterblichen“-Leibgarde aus. Baulimit: 1."
+"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+msgstr "„Satrapien-Tribut“: Erhalte eine kleine Menge Nahrung, Holz, Stein und Metall. Bilde persische Helden und ihre „Unsterblichen“-Leibgarde aus."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1178,8 +1178,8 @@ msgstr "Duvarthi Visadahyu"
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
-msgstr "Spezialgebäude.\nBilde Kriegselefanten und Kardakensöldner aus. Baulimit: 2"
+"Train War Elephants and Kardakes mercenaries."
+msgstr "Spezialgebäude.\nBilde Kriegselefanten und Kardakensöldner aus."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1196,8 +1196,8 @@ msgstr "Ischtar-Tor"
 #: simulation/templates/structures/pers_ishtar_gate.xml:27
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
-"to capture. Build Limit: 1."
-msgstr "Erhöht die Regeneration der Loyalität naheliegender Gebäude, wodurch es schwerer wird, sie zu erobern. Baulimit: 1."
+"to capture."
+msgstr "Erhöht die Regeneration der Loyalität naheliegender Gebäude, wodurch es schwerer wird, sie zu erobern."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1210,10 +1210,6 @@ msgstr "Didebani"
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
 msgstr "Taçara"
-
-#: simulation/templates/structures/pers_palace.xml:29
-msgid "Build Limit: 1."
-msgstr "Baulimit: 1."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1573,10 +1569,6 @@ msgstr "Liménas"
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
 msgstr "Sītobólion"
-
-#: simulation/templates/structures/sele_field.xml:5
-msgid "Agrós"
-msgstr "Agrós"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:00+0200\n"
-"PO-Revision-Date: 2016-04-15 09:49+0000\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-22 09:47+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -413,42 +413,50 @@ msgstr "No se pudo expulsar a %(name)s."
 msgid "Users: %(users)s"
 msgstr ""
 
-#: gui/common/settings.js:107
+#: gui/common/settings.js:108
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "De prueba"
 
-#: gui/common/settings.js:111
+#: gui/common/settings.js:112
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Muy Facil"
 
-#: gui/common/settings.js:115
+#: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Facil"
 
-#: gui/common/settings.js:119
+#: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Medios"
 
-#: gui/common/settings.js:124
+#: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Dificil"
 
-#: gui/common/settings.js:128
+#: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Muy difícil"
 
 #: gui/common/settings.js:151
+#, javascript-format
+msgctxt "wonder victory"
+msgid "%(min)s minute"
+msgid_plural "%(min)s minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/settings.js:173
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "No cese al fuego"
 
-#: gui/common/settings.js:152
+#: gui/common/settings.js:174
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -456,40 +464,40 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minutos"
 msgstr[1] "%(minutes)s minutos"
 
-#: gui/common/settings.js:166
+#: gui/common/settings.js:188
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Escaramuza"
 
-#: gui/common/settings.js:171
+#: gui/common/settings.js:193
 msgctxt "map"
 msgid "Random"
 msgstr "Aleatorio"
 
-#: gui/common/settings.js:175
+#: gui/common/settings.js:197
 msgctxt "map"
 msgid "Scenario"
 msgstr ""
 
-#: gui/common/settings.js:206
+#: gui/common/settings.js:228
 msgid "None"
 msgstr "Ninguno"
 
-#: gui/common/settings.js:207
+#: gui/common/settings.js:229
 msgid "Endless Game"
 msgstr "Partida sin fin"
 
-#: gui/common/settings.js:248
+#: gui/common/settings.js:270
 msgid "Unlimited"
 msgstr "Infinito"
 
-#: gui/common/settings.js:296 gui/common/settings.js:307
-#: gui/common/settings.js:319 gui/common/settings.js:343
-#: gui/common/settings.js:355
+#: gui/common/settings.js:318 gui/common/settings.js:329
+#: gui/common/settings.js:341 gui/common/settings.js:365
+#: gui/common/settings.js:377
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: gui/common/settings.js:331
+#: gui/common/settings.js:353
 msgctxt "map size"
 msgid "Default"
 msgstr "Predeterminado"

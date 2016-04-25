@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:00+0100\n"
-"PO-Revision-Date: 2016-03-21 09:36+0000\n"
+"POT-Creation-Date: 2016-04-22 09:00+0200\n"
+"PO-Revision-Date: 2016-04-22 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -37,168 +37,175 @@ msgstr "なし"
 msgid "AI will be disabled for this player."
 msgstr "このプレイヤーのAIが無効になります。"
 
-#: gui/gamesetup/gamesetup.js:43
+#: gui/gamesetup/gamesetup.js:44
 msgid "Game settings have been changed"
 msgstr "ゲーム設定が変更されました"
 
-#: gui/gamesetup/gamesetup.js:44
+#: gui/gamesetup/gamesetup.js:45
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
-#: gui/gamesetup/gamesetup.js:45
+#: gui/gamesetup/gamesetup.js:46
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
-#: gui/gamesetup/gamesetup.js:46
+#: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s はキックされました"
 
-#: gui/gamesetup/gamesetup.js:47
+#: gui/gamesetup/gamesetup.js:48
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s は締め出されました(banned)"
 
-#: gui/gamesetup/gamesetup.js:48
+#: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:49
+#: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:52
+#: gui/gamesetup/gamesetup.js:53
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)sが準備完了です。"
 
-#: gui/gamesetup/gamesetup.js:55
+#: gui/gamesetup/gamesetup.js:56
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)sの準備がまだです。"
 
-#: gui/gamesetup/gamesetup.js:67 gui/gamesetup/gamesetup.js:1268
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1327
 msgid "Default"
 msgstr "デフォルト"
 
-#: gui/gamesetup/gamesetup.js:72
+#: gui/gamesetup/gamesetup.js:73
 msgid "Naval Maps"
 msgstr "海洋マップ"
 
-#: gui/gamesetup/gamesetup.js:77
+#: gui/gamesetup/gamesetup.js:78
 msgid "Demo Maps"
 msgstr "デモマップ"
 
-#: gui/gamesetup/gamesetup.js:82
+#: gui/gamesetup/gamesetup.js:83
 msgid "All Maps"
 msgstr "すべてのマップ"
 
-#: gui/gamesetup/gamesetup.js:136
+#: gui/gamesetup/gamesetup.js:137
 msgctxt "map type"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:141
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "civilization"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/gamesetup/gamesetup.js:227
+#: gui/gamesetup/gamesetup.js:238
 msgid "Return to the lobby."
 msgstr "ロビーに戻ります。"
 
-#: gui/gamesetup/gamesetup.js:227
+#: gui/gamesetup/gamesetup.js:238
 msgid "Return to the main menu."
 msgstr "メインメニューに戻ります。"
 
-#: gui/gamesetup/gamesetup.js:492
+#: gui/gamesetup/gamesetup.js:546
 msgid "Yes"
 msgstr "はい"
 
-#: gui/gamesetup/gamesetup.js:492
+#: gui/gamesetup/gamesetup.js:546
 msgid "No"
 msgstr "いいえ"
 
-#: gui/gamesetup/gamesetup.js:531
+#: gui/gamesetup/gamesetup.js:585
 msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1109
+#: gui/gamesetup/gamesetup.js:1166
 msgid "You"
 msgstr "あなた"
 
-#: gui/gamesetup/gamesetup.js:1185
+#: gui/gamesetup/gamesetup.js:1242
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1333
+#: gui/gamesetup/gamesetup.js:1398
 msgid "Loading..."
 msgstr "読込中..."
 
-#: gui/gamesetup/gamesetup.js:1376
+#: gui/gamesetup/gamesetup.js:1450
+#, javascript-format
+msgctxt "victory condition"
+msgid "Wonder (%(min)s minute)"
+msgid_plural "Wonder (%(min)s minutes)"
+msgstr[0] ""
+
+#: gui/gamesetup/gamesetup.js:1464
 msgid "Sorry, no description available."
 msgstr "すみませんが、説明はありません。"
 
-#: gui/gamesetup/gamesetup.js:1378
+#: gui/gamesetup/gamesetup.js:1466
 msgid "Randomly selects a map from the list"
 msgstr "リストの中からマップをランダムに選択"
 
-#: gui/gamesetup/gamesetup.js:1380
+#: gui/gamesetup/gamesetup.js:1468
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s 人用。"
 
-#: gui/gamesetup/gamesetup.js:1381 gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.js:1469 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "勝利条件："
 
-#: gui/gamesetup/gamesetup.js:1384
+#: gui/gamesetup/gamesetup.js:1472
 msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1455
+#: gui/gamesetup/gamesetup.js:1564
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1460
+#: gui/gamesetup/gamesetup.js:1569
 msgid "Unassigned"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1722
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1628
+#: gui/gamesetup/gamesetup.js:1729
 msgid "Unknown Player"
 msgstr "不明なプレイヤー"
 
-#: gui/gamesetup/gamesetup.js:1670
+#: gui/gamesetup/gamesetup.js:1771
 msgid "I'm not ready"
 msgstr "わたしはまだ準備できていない"
 
-#: gui/gamesetup/gamesetup.js:1671
+#: gui/gamesetup/gamesetup.js:1772
 msgid "State that you are not ready to play."
 msgstr "プレイの準備ができていないことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1676 gui/gamesetup/gamesetup.js:1754
+#: gui/gamesetup/gamesetup.js:1777 gui/gamesetup/gamesetup.js:1855
 msgid "I'm ready!"
 msgstr "準備できた！"
 
-#: gui/gamesetup/gamesetup.js:1677
+#: gui/gamesetup/gamesetup.js:1778
 msgid "State that you are ready to play!"
 msgstr "プレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1755
+#: gui/gamesetup/gamesetup.js:1856
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "現行の設定を受け入れプレイの準備ができたことを表明します。"
 
@@ -251,17 +258,17 @@ msgstr "AI設定"
 msgid "AI Player:"
 msgstr "AIプレイヤー："
 
-#: gui/aiconfig/aiconfig.xml:(caption):29
+#: gui/aiconfig/aiconfig.xml:(caption):30
 msgid "AI Difficulty:"
 msgstr "AI難易度："
 
-#: gui/aiconfig/aiconfig.xml:(caption):39
+#: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: gui/aiconfig/aiconfig.xml:(caption):44
-#: gui/gamesetup/gamesetup.xml:(caption):398
+#: gui/aiconfig/aiconfig.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):408
 msgid "OK"
 msgstr "OK"
 
@@ -343,42 +350,46 @@ msgid "Game Speed:"
 msgstr "ゲーム速度："
 
 #: gui/gamesetup/gamesetup.xml:(caption):301
+msgid "Wonder Victory:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Population Cap:"
 msgstr "人口上限："
 
-#: gui/gamesetup/gamesetup.xml:(caption):311
+#: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "Starting Resources:"
 msgstr "開始時資源："
 
-#: gui/gamesetup/gamesetup.xml:(caption):321
+#: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Ceasefire:"
 msgstr "停戦："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):331
+#: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Revealed Map:"
 msgstr "マップ可視化："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):341
+#: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Explored Map:"
 msgstr "探索済みマップ："
 
-#: gui/gamesetup/gamesetup.xml:(caption):351
+#: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Disable Treasures:"
 msgstr "財宝の無効化："
 
-#: gui/gamesetup/gamesetup.xml:(caption):361
+#: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "Teams Locked:"
 msgstr "固定チーム："
 
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):381
 msgid "Cheats:"
 msgstr "チート："
 
-#: gui/gamesetup/gamesetup.xml:(caption):381
+#: gui/gamesetup/gamesetup.xml:(caption):391
 msgid "Rated Game:"
 msgstr "格付けする："
 
@@ -443,46 +454,51 @@ msgid "Select victory condition."
 msgstr "勝利条件を選択します。"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):305
+msgid ""
+"Number of minutes that the player has to keep the wonder in order to win."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select population cap."
 msgstr "人口上限を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):315
+#: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select the game's starting resources."
 msgstr "ゲーム開始時の資源を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):325
+#: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid "Set time where no attacks are possible."
 msgstr "攻撃を禁ずる時間を設定してください。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):335
+#: gui/gamesetup/gamesetup.xml:(tooltip):345
 msgid "Toggle revealed map (see everything)."
 msgstr "マップ全域を可視にするか切り替えます（すべて見えます）。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):345
+#: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Toggle explored map (see initial map)."
 msgstr "全体マップの切り替え(初期マップが見える)。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):355
+#: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Disable all treasures on the map."
 msgstr "マップのすべての財宝を無効にします。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):365
+#: gui/gamesetup/gamesetup.xml:(tooltip):375
 msgid "Toggle locked teams."
 msgstr "チームを固定するか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):375
+#: gui/gamesetup/gamesetup.xml:(tooltip):385
 msgid "Toggle the usability of cheats."
 msgstr "チートを利用可能にするか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):385
+#: gui/gamesetup/gamesetup.xml:(tooltip):395
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "ゲームをランキング用に格付けするか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):399
+#: gui/gamesetup/gamesetup.xml:(tooltip):409
 msgid "Close more game options window"
 msgstr "ゲームの詳細設定ウィンドウを閉じます"
 

@@ -18,15 +18,16 @@
 # Menelaos Vergis <menelaosvergis@gmail.com>, 2014-2015
 # Nick Mantas <inactive+nickthegreek@transifex.com>, 2014
 # ridergr <ridergr@gmail.com>, 2015
+# Savvas Adamtziloglou <savvas-gr@greeklug.gr>, 2016
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
 # Traumflut <sophiareg95@gmail.com>, 2014
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-18 09:01+0200\n"
-"PO-Revision-Date: 2016-04-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-24 14:04+0000\n"
+"Last-Translator: Savvas Adamtziloglou <savvas-gr@greeklug.gr>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,15 +59,15 @@ msgstr "Κέντρο Πόλης"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Στοά"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Ελληνική Βασιλική Στοά"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "Αύξηση κατά +10 του πληθυσμιακού ορίου. Στρατολόγηση ειδικών μονάδων."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -390,9 +391,10 @@ msgstr "Φάρμα"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agroí"
-msgstr "Αγροί"
+msgid "Agrós"
+msgstr "Αγρός"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -1112,9 +1114,8 @@ msgstr "Αίθουσα Ακροάσεων"
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
-"Limit: 1."
-msgstr "\"Φόρος σατραπείας\": Απόκτησε μία μικρή αλλά σταθερή ροή πόρων τροφής, ξυλείας, πέτρας και μέταλλου. Εκπαίδευσε Πέρσες ήρωες και την \"Αθάνατη\" φρουρά τους. Όριο κατασκευής: 1."
+"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1167,7 +1168,7 @@ msgstr "Εκπαίδευσε Πρωταθλητές Ιππικό και κατα
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Persian Hall"
-msgstr ""
+msgstr "Περσική Αίθουσα"
 
 #: simulation/templates/structures/pers_hall.xml:26
 msgid "Duvarthi Visadahyu"
@@ -1176,7 +1177,7 @@ msgstr ""
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+"Train War Elephants and Kardakes mercenaries."
 msgstr ""
 
 #: simulation/templates/structures/pers_house.xml:22
@@ -1194,7 +1195,7 @@ msgstr "Πύλη Ιστάρ της Βαβυλώνας"
 #: simulation/templates/structures/pers_ishtar_gate.xml:27
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
-"to capture. Build Limit: 1."
+"to capture."
 msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
@@ -1208,10 +1209,6 @@ msgstr "Didebani"
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
 msgstr ""
-
-#: simulation/templates/structures/pers_palace.xml:29
-msgid "Build Limit: 1."
-msgstr "Όριο χτισίματος 1."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1571,10 +1568,6 @@ msgstr "Λιμήν"
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
 msgstr "Σιτοβολώνας"
-
-#: simulation/templates/structures/sele_field.xml:5
-msgid "Agrós"
-msgstr "Αγρός"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
