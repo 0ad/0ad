@@ -1301,11 +1301,8 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 	// Only build one corral for the time being
 	if (gameState.getOwnEntitiesByClass("Corral", true).length === 0)
 	{
-		if (!this.canBuild(gameState, "structures/{civ}_corral"))
-			return;
-		let template = gameState.applyCiv("structures/{civ}_corral");
-		if (this.canBuild(gameState, template))
-			queues.corral.addPlan(new m.ConstructionPlan(gameState, template));
+		if (this.canBuild(gameState, "structures/{civ}_corral"))
+			queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral"));
 		return;
 	}
 
@@ -1543,11 +1540,11 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 
 m.HQ.prototype.buildWonder = function(gameState, queues)
 {
-	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
-		return;
 	if (queues.wonder && queues.wonder.hasQueuedUnits())
 		return;
 	if (gameState.getOwnEntitiesByClass("Wonder", true).length > 0)
+		return;
+	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
 		return;
 
 	if (!queues.wonder)
@@ -1561,7 +1558,7 @@ m.HQ.prototype.buildWonder = function(gameState, queues)
 // TODO: building placement is bad. Choice of buildings is also fairly dumb.
 m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 {
-	if (this.canBuild(gameState, "structures/{civ}_barracks") && !queues.militaryBuilding.hasQueuedUnits())
+	if (!queues.militaryBuilding.hasQueuedUnits() && this.canBuild(gameState, "structures/{civ}_barracks"))
 	{
 		var barrackNb = gameState.getOwnEntitiesByClass("Barracks", true).length;
 		// first barracks.
@@ -1784,6 +1781,12 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	if (!template || !template.available(gameState))
 		return false;
 
+	if (!gameState.findBuilder(type))
+	{
+		this.stopBuild(gameState, type, 120);
+		return false;
+	}
+
 	if (this.numActiveBase() < 1)
 	{
 		// if no base, check that we can build outside our territory
@@ -1804,13 +1807,13 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	return true;
 };
 
-m.HQ.prototype.stopBuild = function(gameState, structure)
+m.HQ.prototype.stopBuild = function(gameState, structure, time=180)
 {
 	let type = gameState.applyCiv(structure);
 	if (this.stopBuilding.has(type))
-		this.stopBuilding.set(type, Math.max(this.stopBuilding.get(type), gameState.ai.elapsedTime + 180));
+		this.stopBuilding.set(type, Math.max(this.stopBuilding.get(type), gameState.ai.elapsedTime + time));
 	else
-		this.stopBuilding.set(type, gameState.ai.elapsedTime + 180);
+		this.stopBuilding.set(type, gameState.ai.elapsedTime + time);
 };
 
 m.HQ.prototype.restartBuild = function(gameState, structure)

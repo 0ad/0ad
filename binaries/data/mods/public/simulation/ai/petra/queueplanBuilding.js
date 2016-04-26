@@ -32,18 +32,17 @@ m.ConstructionPlan.prototype.canStart = function(gameState)
 	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
 		return false;
 
-	return (gameState.findBuilders(this.type).length > 0);
+	return gameState.findBuilder(this.type) !== undefined;
 };
 
 m.ConstructionPlan.prototype.start = function(gameState)
 {
 	Engine.ProfileStart("Building construction start");
 
-	var builders = gameState.findBuilders(this.type).toEntityArray();
-
 	// We don't care which builder we assign, since they won't actually
 	// do the building themselves - all we care about is that there is
-	// some unit that can start the foundation
+	// at least one unit that can start the foundation
+	var builder = gameState.findBuilder(this.type);
 
 	var pos = this.findGoodPosition(gameState);
 	if (!pos)
@@ -84,17 +83,17 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		let shiftMax = gameState.ai.HQ.territoryMap.cellSize;
 		for (let shift = 0; shift <= shiftMax; shift += 2)
 		{
-			builders[0].construct(this.type, pos.x-shift*sina, pos.z-shift*cosa, pos.angle, this.metadata);
+			builder.construct(this.type, pos.x-shift*sina, pos.z-shift*cosa, pos.angle, this.metadata);
 			if (shift > 0)
-				builders[0].construct(this.type, pos.x+shift*sina, pos.z+shift*cosa, pos.angle, this.metadata);
+				builder.construct(this.type, pos.x+shift*sina, pos.z+shift*cosa, pos.angle, this.metadata);
 		}
 	}
 	else if (pos.xx === undefined || (pos.x == pos.xx && pos.z == pos.zz))
-		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
+		builder.construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
 	else // try with the lowest, move towards us unless we're same
 	{
 		for (let step = 0; step <= 1; step += 0.2)
-			builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz),
+			builder.construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz),
 				pos.angle, this.metadata);
 	}
 	this.onStart(gameState);
