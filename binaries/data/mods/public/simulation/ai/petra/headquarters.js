@@ -31,7 +31,6 @@ m.HQ = function(Config)
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
 	this.supportRatio = this.Config.Economy.supportRatio;
 
-	this.lastTerritoryUpdate = -1;
 	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
 
 	this.fortStartTime = 180;	// wooden defense towers, will start at fortStartTime + towerLapseTime
@@ -95,6 +94,8 @@ m.HQ.prototype.postinit = function(gameState)
 		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
 		base.assignResourceToDropsite(gameState, ent);
 	}
+
+	this.updateTerritories(gameState);
 };
 
 // returns the sea index linking regions 1 and region 2 (supposed to be different land region)
@@ -117,6 +118,9 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
+	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
+		this.updateTerritories(gameState);
+
 	for (let evt of events.Create)
 	{
 		// Let's check if we have a building set to create a new base.
@@ -178,7 +182,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				base.anchor = ent;
 				base.anchorId = evt.newentity;
 				base.buildings.updateEnt(ent);
-				this.updateTerritories(gameState);
 				if (base.ID === this.baseManagers[1].ID)
 				{
 					// this is our first base, let us configure our starting resources
@@ -191,8 +194,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 					this.saveSpace = undefined;
 				}
 			}
-			else if (ent.hasTerritoryInfluence())
-				this.updateTerritories(gameState);
 		}
 	}
 
@@ -237,15 +238,12 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				newbase.init(gameState, "captured");
 			newbase.setAnchor(gameState, ent);
 			this.baseManagers.push(newbase);
-			this.updateTerritories(gameState);
 			newbase.assignEntity(gameState, ent);
 		}
 		else
 		{
 			// TODO should be reassigned later if a better base is captured
 			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
-			if (ent.hasTerritoryInfluence())
-				this.updateTerritories(gameState);
 			if (ent.decaying())
 			{
 				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity, true))
@@ -1824,11 +1822,6 @@ m.HQ.prototype.restartBuild = function(gameState, structure)
 
 m.HQ.prototype.updateTerritories = function(gameState)
 {
-	// TODO may-be update also when territory decreases. For the moment, only increases are taking into account
-	if (this.lastTerritoryUpdate == gameState.ai.playedTurn)
-		return;
-	this.lastTerritoryUpdate = gameState.ai.playedTurn;
-
 	var passabilityMap = gameState.getMap();
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
@@ -2066,10 +2059,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			phaseName = gameState.getTemplate(gameState.cityPhase()).name();
 
 		m.chatNewPhase(gameState, phaseName, false);
-		this.updateTerritories(gameState);
 	}
-	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)
-		this.updateTerritories(gameState);
 
 	if (gameState.getGameType() === "wonder")
 		this.buildWonder(gameState, queues);
@@ -2145,7 +2135,6 @@ m.HQ.prototype.Serialize = function()
 		"lastFailedGather": this.lastFailedGather,
 		"supportRatio": this.supportRatio,
 		"targetNumWorkers": this.targetNumWorkers,
-		"lastTerritoryUpdate": this.lastTerritoryUpdate,
 		"stopBuilding": this.stopBuilding,
 		"fortStartTime": this.fortStartTime,
 		"towerStartTime": this.towerStartTime,

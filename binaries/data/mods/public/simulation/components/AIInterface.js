@@ -8,6 +8,7 @@ AIInterface.prototype.EventNames = [
 	"Destroy",
 	"Attacked",
 	"ConstructionFinished",
+	"DiplomacyChanged",
 	"TrainingStarted",
 	"TrainingFinished",
 	"AIMetadata",
@@ -16,6 +17,7 @@ AIInterface.prototype.EventNames = [
 	"OwnershipChanged",
 	"Garrison",
 	"UnGarrison",
+	"TerritoriesChanged",
 	"TerritoryDecayChanged",
 	"TributeExchanged",
 	"AttackRequest"
@@ -164,21 +166,31 @@ AIInterface.prototype.PushEvent = function(type, msg)
 	this.events[type].push(msg);
 };
 
+AIInterface.prototype.OnDiplomacyChanged = function(msg)
+{
+	this.events.DiplomacyChanged.push(msg);
+};
+
 AIInterface.prototype.OnGlobalPlayerDefeated = function(msg)
 {
-	this.events["PlayerDefeated"].push(msg);
+	this.events.PlayerDefeated.push(msg);
 };
 
 AIInterface.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	var cmpMirage = Engine.QueryInterface(msg.entity, IID_Mirage);
 	if (!cmpMirage)
-		this.events["EntityRenamed"].push(msg);
+		this.events.EntityRenamed.push(msg);
 };
 
 AIInterface.prototype.OnGlobalTributeExchanged = function(msg)
 {
-	this.events["TributeExchanged"].push(msg);
+	this.events.TributeExchanged.push(msg);
+};
+
+AIInterface.prototype.OnTerritoriesChanged = function(msg)
+{
+	this.events.TerritoriesChanged.push(msg);
 };
 
 // When a new technology is researched, check which templates it affects,
