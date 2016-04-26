@@ -382,7 +382,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	{
 		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined &&
 			!this.defeated[this.currentEnemyPlayer] &&
-			gameState.getEnemyEntities(this.currentEnemyPlayer) > 0)
+			gameState.getEnemyEntities(this.currentEnemyPlayer).length > 0)
 			return this.currentEnemyPlayer;
 
 		let distmin;
