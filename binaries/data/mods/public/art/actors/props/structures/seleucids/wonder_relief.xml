@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="pediment">
+      <mesh>structural/sele_wonder_reliefs.dae</mesh>
+      <textures>
+        <texture file="structural/Sele_relief.png" name="baseTex"/>
+        <texture file="structural/ao/sele_wonder_relief_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

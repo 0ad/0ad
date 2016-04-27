@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_wonder">
-  <Footprint replace="">
-    <Square width="62.0" depth="62.0"/>
-    <Height>10.0</Height>
+  <Footprint>
+    <Square width="29.0" depth="59.0"/>
+    <Height>12.0</Height>
   </Footprint>
   <Health>
     <Max>4400</Max>
   </Health>
   <Identity>
     <Civ>sele</Civ>
-    <SpecificName>Paradise of Daphne</SpecificName>
+    <SpecificName>Temple of Pythian Apollo</SpecificName>
     <History>About 6 kilometres West of the Seleucid capital city of Antioch lay the Paradise of Daphne, a park of woods and waters, in the midst of which rose a great temple to the Pythian Apollo, also founded by Seleucus I and enriched with a cult-statue of the god. The beauty and the lax morals of Daphne were celebrated all over the Western world; and indeed Antioch as a whole shared in both these titles to fame. Its amenities awoke both the enthusiasm and the scorn of many writers of antiquity.</History>
   </Identity>
   <Loot>
     <xp>200</xp>
   </Loot>
   <Obstruction>
-    <Static width="59.0" depth="59.0"/>
+    <Static width="27.0" depth="57.0"/>
   </Obstruction>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
@@ -25,6 +25,6 @@
   </StatusBars>
   <VisualActor>
     <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
-    <Actor>structures/persians/gardens_struct.xml</Actor>
+    <Actor>structures/seleucids/wonder.xml</Actor>
   </VisualActor>
 </Entity>
