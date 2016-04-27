@@ -316,8 +316,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 		else if (type == "technology")
 		{
 			// Load the technology template
-			var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
-			var template = cmpTechnologyTemplateManager.GetTemplate(templateName);
+			var cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
+			var template = cmpDataTemplateManager.GetTechnologyTemplate(templateName);
 			if (!template)
 				return;
 			var cmpPlayer = QueryOwnerInterface(this.entity);

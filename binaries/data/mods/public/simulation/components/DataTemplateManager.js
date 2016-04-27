@@ -1,21 +1,28 @@
 /**
  * System component which loads the technology and the aura data files
  */
-function TechnologyTemplateManager() {}
+function DataTemplateManager() {}
 
-TechnologyTemplateManager.prototype.Schema =
+DataTemplateManager.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
-TechnologyTemplateManager.prototype.Init = function()
+DataTemplateManager.prototype.Init = function()
 {
 	this.allTechs = {};
 	this.allAuras = {};
 	var techNames = this.ListAllTechs();
 	for (var i in techNames)
-		this.GetTemplate(techNames[i]);
+		this.GetTechnologyTemplate(techNames[i]);
 };
 
-TechnologyTemplateManager.prototype.GetTemplate = function(template)
+DataTemplateManager.prototype.Serialize = null; // we have no dynamic state to save
+
+DataTemplateManager.prototype.Deserialize = function()
+{
+	this.Init();
+};
+
+DataTemplateManager.prototype.GetTechnologyTemplate = function(template)
 {
 	if (!this.allTechs[template])
 	{
@@ -27,7 +34,7 @@ TechnologyTemplateManager.prototype.GetTemplate = function(template)
 	return this.allTechs[template];
 };
 
-TechnologyTemplateManager.prototype.GetAuraTemplate = function(template)
+DataTemplateManager.prototype.GetAuraTemplate = function(template)
 {
 	if (!this.allAuras[template])
 	{
@@ -39,14 +46,14 @@ TechnologyTemplateManager.prototype.GetAuraTemplate = function(template)
 	return this.allAuras[template];
 };
 
-TechnologyTemplateManager.prototype.ListAllTechs = function()
+DataTemplateManager.prototype.ListAllTechs = function()
 {
 	return Engine.FindJSONFiles("technologies", true);
 };
 
-TechnologyTemplateManager.prototype.GetAllTechs = function()
+DataTemplateManager.prototype.GetAllTechs = function()
 {
 	return this.allTechs;
 };
 
-Engine.RegisterSystemComponentType(IID_TechnologyTemplateManager, "TechnologyTemplateManager", TechnologyTemplateManager);
+Engine.RegisterSystemComponentType(IID_DataTemplateManager, "DataTemplateManager", DataTemplateManager);

@@ -90,8 +90,8 @@ function Cheat(input)
 			return;
 
 		// check if specialised tech exists (like phase_town_athen)
-		var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
-		if (cmpTechnologyTemplateManager.ListAllTechs().indexOf(parameter + "_" + cmpPlayer.civ) > -1)
+		var cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
+		if (cmpDataTemplateManager.ListAllTechs().indexOf(parameter + "_" + cmpPlayer.civ) > -1)
 			parameter += "_" + cmpPlayer.civ;
 
 		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": parameter, "selected": input.selected });

@@ -34,7 +34,7 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
-#include "simulation2/components/ICmpTechnologyTemplateManager.h"
+#include "simulation2/components/ICmpDataTemplateManager.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/serialization/DebugSerializer.h"
@@ -979,12 +979,12 @@ public:
 		JSAutoRequest rq(cx);
 
 		// load the technology templates
-		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSystemEntity());
-		ENSURE(cmpTechTemplateManager);
+		CmpPtr<ICmpDataTemplateManager> cmpDataTemplateManager(GetSystemEntity());
+		ENSURE(cmpDataTemplateManager);
 
 		// Get the game state from AIInterface
 		JS::RootedValue techTemplates(cx);
-		cmpTechTemplateManager->GetAllTechs(&techTemplates);
+		cmpDataTemplateManager->GetAllTechs(&techTemplates);
 
 		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
 		m_Worker.TryLoadSharedComponent(true);

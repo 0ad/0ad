@@ -8,14 +8,14 @@ Auras.prototype.Schema =
 
 Auras.prototype.Init = function()
 {
-	let cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	this.auras = {};
 	this.affectedPlayers = {};
 	let auraNames = this.GetAuraNames();
 	for (let name of auraNames)
 	{
 		this.affectedPlayers[name] = [];
-		this.auras[name] = cmpTechnologyTemplateManager.GetAuraTemplate(name);
+		this.auras[name] = cmpDataTemplateManager.GetAuraTemplate(name);
 	}
 	// In case of autogarrisoning, this component can be called before ownership is set.
 	// So it needs to be completely initialised from the start.
