@@ -1093,7 +1093,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
 	if (expectedGain < this.tradeManager.minimalGain ||
-		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0)))
+		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())))
 		return false;
 
 	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
@@ -1228,8 +1228,8 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 {
 	// at least one market (which have the same queue) should be build before any temple
 	if (gameState.currentPhase() < 3 || queues.economicBuilding.hasQueuedUnits() ||
-		gameState.getOwnEntitiesByClass("Temple", true).length ||
-		!gameState.getOwnEntitiesByClass("BarterMarket", true).length)
+		gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
+		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
@@ -1238,7 +1238,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 
 m.HQ.prototype.buildMarket = function(gameState, queues)
 {
-	if (gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0 ||
+	if (gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() ||
 		!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
 
@@ -1277,12 +1277,12 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 m.HQ.prototype.buildFarmstead = function(gameState, queues)
 {
 	// Only build one farmstead for the time being ("DropsiteFood" does not refer to CCs)
-	if (gameState.getOwnEntitiesByClass("Farmstead", true).length > 0)
+	if (gameState.getOwnEntitiesByClass("Farmstead", true).hasEntities())
 		return;
 	// Wait to have at least one dropsite and house before the farmstead
-	if (gameState.getOwnEntitiesByClass("Storehouse", true).length == 0)
+	if (!gameState.getOwnEntitiesByClass("Storehouse", true).hasEntities())
 		return;
-	if (gameState.getOwnEntitiesByClass("House", true).length == 0)
+	if (!gameState.getOwnEntitiesByClass("House", true).hasEntities())
 		return;
 	if (queues.economicBuilding.hasQueuedUnitsWithClass("DropsiteFood"))
 		return;
@@ -1299,7 +1299,7 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 		return;
 
 	// Only build one corral for the time being
-	if (gameState.getOwnEntitiesByClass("Corral", true).length === 0)
+	if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities())
 	{
 		if (this.canBuild(gameState, "structures/{civ}_corral"))
 			queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral"));
@@ -1461,7 +1461,7 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
 	if (this.numActiveBase() > 0 && gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase()))
 		return false;
-	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length > 0 || queues.civilCentre.hasQueuedUnits())
+	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
 	let template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
 	if (!this.canBuild(gameState, template))
@@ -1531,7 +1531,7 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 		queues.militaryBuilding.hasQueuedUnits() || gameState.getOwnEntitiesByClass("Blacksmith", true).length)
 		return;
 	// build a market before the blacksmith
-	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).length)
+	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 
 	if (this.canBuild(gameState, "structures/{civ}_blacksmith"))
@@ -1542,7 +1542,7 @@ m.HQ.prototype.buildWonder = function(gameState, queues)
 {
 	if (queues.wonder && queues.wonder.hasQueuedUnits())
 		return;
-	if (gameState.getOwnEntitiesByClass("Wonder", true).length > 0)
+	if (gameState.getOwnEntitiesByClass("Wonder", true).hasEntities())
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
 		return;

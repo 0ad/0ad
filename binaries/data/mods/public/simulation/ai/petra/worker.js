@@ -530,7 +530,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		return true;
 
 	var resources = gameState.getHuntableSupplies();	
-	if (resources.length === 0)
+	if (!resources.hasEntities())
 		return false;
 
 	var nearestSupplyDist = Math.min();
@@ -622,11 +622,11 @@ m.Worker.prototype.startFishing = function(gameState)
 {
 	if (!this.ent.position())
 		return false;
-	
+
 	// So here we're doing it basic. We check what we can hunt, we hunt it. No fancies.
-	
+
 	var resources = gameState.getFishableSupplies();
-	if (resources.length === 0)
+	if (!resources.hasEntities())
 	{
 		gameState.ai.HQ.navalManager.resetFishingBoats(gameState);
 		this.ent.destroy();

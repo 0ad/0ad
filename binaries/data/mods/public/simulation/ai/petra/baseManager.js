@@ -463,7 +463,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			}
 			else if (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) &&
 				 !queues.corral.hasQueuedUnits() &&
-				 gameState.getOwnEntitiesByClass("Corral", true).length === 0 &&
+				 !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
 				 gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
 			{
 				let count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
@@ -474,7 +474,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				}
 			}
 		}
-		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).length)
+		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).hasEntities())
 		{
 			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
 			{
@@ -495,7 +495,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						let newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
 							queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
-						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length && !queues.civilCentre.hasQueuedUnits())
+						else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() && !queues.civilCentre.hasQueuedUnits())
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality
@@ -609,10 +609,10 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 				let only;
 				// in average, females are less efficient for stone and metal, and citizenSoldiers for food
 				let gatherers = this.gatherersByType(gameState, lessNeed.type);
-				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).length)
+				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
 					only = "CitizenSoldier";
 				else if ((lessNeed.type === "stone" || lessNeed.type === "metal") && moreNeed.type !== "stone" && moreNeed.type !== "metal" &&
-					gatherers.filter(API3.Filters.byClass("Female")).length) 
+					gatherers.filter(API3.Filters.byClass("Female")).hasEntities()) 
 					only = "Female";
 
 				gatherers.forEach( function (ent) {
