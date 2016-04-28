@@ -339,10 +339,10 @@ function displayMultiple(selection)
 	let averageHealth = 0;
 	let maxHealth = 0;
 	let maxCapturePoints = 0;
-	let capturePoints = (new Array(9)).fill(0);
+	let capturePoints = (new Array(g_MaxPlayers + 1)).fill(0);
 	let playerID = 0;
 
-	for (let i = 0; i < selection.length; i++)
+	for (let i = 0; i < selection.length; ++i)
 	{
 		let entState = GetEntityState(selection[i]);
 		if (!entState)
@@ -388,7 +388,7 @@ function displayMultiple(selection)
 			sizeObj.rbottom = startSize + size;
 			unitCaptureBar.size = sizeObj;
 			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
-			unitCaptureBar.hidden=false;
+			unitCaptureBar.hidden = false;
 			return startSize + size;
 		};
 
