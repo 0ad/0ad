@@ -34,7 +34,7 @@ Market.prototype.RemoveTrader = function(ent)
 Market.prototype.GetInternationalBonus = function()
 {
 	return ApplyValueModificationsToEntity("Market/InternationalBonus", +this.template.InternationalBonus, this.entity);
-}
+};
 
 Market.prototype.HasType = function(type)
 {

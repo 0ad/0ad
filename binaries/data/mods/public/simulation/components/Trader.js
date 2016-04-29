@@ -135,7 +135,7 @@ Trader.prototype.GetSecondMarket = function()
 Trader.prototype.GetTraderGainMultiplier = function()
 {
 	return ApplyValueModificationsToEntity("Trader/GainMultiplier", +this.template.GainMultiplier, this.entity);
-}
+};
 
 Trader.prototype.HasBothMarkets = function()
 {
