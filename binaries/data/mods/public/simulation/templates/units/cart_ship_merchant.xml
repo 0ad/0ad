@@ -13,7 +13,7 @@
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Trader>
-    <GainMultiplier>1.25</GainMultiplier>
+    <GainMultiplier op="mul">1.25</GainMultiplier>
   </Trader>
   <VisualActor>
     <Actor>structures/carthaginians/merchant_ship.xml</Actor>

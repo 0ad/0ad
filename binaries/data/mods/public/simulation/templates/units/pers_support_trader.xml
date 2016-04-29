@@ -21,7 +21,7 @@
     </SoundGroups>
   </Sound>
   <Trader>
-    <GainMultiplier>1.25</GainMultiplier>
+    <GainMultiplier op="mul">1.25</GainMultiplier>
   </Trader>
   <VisualActor>
     <Actor>units/persians/trader.xml</Actor>

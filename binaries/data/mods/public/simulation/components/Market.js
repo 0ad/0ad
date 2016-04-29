@@ -10,6 +10,9 @@ Market.prototype.Schema =
 				"</choice>" +
 			"</oneOrMore>" +
 		"</list>" +
+	"</element>" +
+	"<element name='InternationalBonus' a:help='Additional part of the gain donated when two different players trade'>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
 Market.prototype.Init = function()
@@ -27,6 +30,11 @@ Market.prototype.RemoveTrader = function(ent)
 {
 	this.traders.delete(ent);
 };
+
+Market.prototype.GetInternationalBonus = function()
+{
+	return ApplyValueModificationsToEntity("Market/InternationalBonus", +this.template.InternationalBonus, this.entity);
+}
 
 Market.prototype.HasType = function(type)
 {

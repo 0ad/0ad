@@ -12,10 +12,9 @@ function Trader() {}
 Trader.prototype.Schema =
 	"<a:help>Lets the unit generate resouces while moving between markets (or docks in case of water trading).</a:help>" +
 	"<a:example>" +
-		"<MaxDistance>2.0</MaxDistance>" +
-		"<GainMultiplier>1.0</GainMultiplier>" +
+		"<GainMultiplier>0.75</GainMultiplier>" +
 	"</a:example>" +
-	"<element name='GainMultiplier' a:help='Additional gain multiplier'>" +
+	"<element name='GainMultiplier' a:help='Trader gain for a 100m distance'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>";
 
@@ -132,6 +131,11 @@ Trader.prototype.GetSecondMarket = function()
 {
 	return this.markets[1] || null;
 };
+
+Trader.prototype.GetTraderGainMultiplier = function()
+{
+	return ApplyValueModificationsToEntity("Trader/GainMultiplier", +this.template.GainMultiplier, this.entity);
+}
 
 Trader.prototype.HasBothMarkets = function()
 {
