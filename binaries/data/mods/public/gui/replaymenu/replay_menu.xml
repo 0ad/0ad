@@ -110,8 +110,23 @@
 				<translatableAttribute id="caption">Filter compatible replays</translatableAttribute>
 			</object>
 
+			<!-- Singleplayer / Multiplayer Filter -->
+			<object name="singleplayerFilter" type="dropdown" style="ModernDropDown" size="0 30 100% 55" font="sans-bold-13">
+				<action on="SelectionChange">displayReplayList();</action>
+			</object>
+
+			<!-- Victory Condition Filter -->
+			<object name="victoryConditionFilter" type="dropdown" style="ModernDropDown" size="0 60 100% 85" font="sans-bold-13">
+				<action on="SelectionChange">displayReplayList();</action>
+			</object>
+
+			<!-- Rated Games Filter -->
+			<object name="ratedGamesFilter" type="dropdown" style="ModernDropDown" size="0 90 100% 115" font="sans-bold-13">
+				<action on="SelectionChange">displayReplayList();</action>
+			</object>
+
 			<!-- Placeholder to show if no replay is selected -->
-			<object name="replayInfoEmpty" size="0 30 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
+			<object name="replayInfoEmpty" size="0 120 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="false">
 				<object name="logo" size="50%-110 40 50%+110 140" type="image" sprite="logo"/>
 				<object name="subjectBox" type="image" sprite="ModernDarkBoxWhite" size="3% 180 97% 99%">
 					<object name="subject" size="5 5 100%-5 100%-5" type="text" style="ModernText" text_align="center"/>
@@ -119,7 +134,7 @@
 			</object>
 
 			<!--  -->
-			<object name="replayInfo" size="0 30 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="true">
+			<object name="replayInfo" size="0 120 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="true">
 
 				<!-- Map Name Label -->
 				<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernLabelText"/>

@@ -11,6 +11,9 @@ function createReplaySelectionData(selectedDirectory)
 	let populationFilter = Engine.GetGUIObjectByName("populationFilter");
 	let durationFilter = Engine.GetGUIObjectByName("durationFilter");
 	let compatibilityFilter = Engine.GetGUIObjectByName("compatibilityFilter");
+	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
+	let victoryConFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
+	let ratedGamesFilter = Engine.GetGUIObjectByName("ratedGamesFilter");
 
 	return {
 		"directory": selectedDirectory,
@@ -23,7 +26,10 @@ function createReplaySelectionData(selectedDirectory)
 			"mapSize": mapSizeFilter.list_data[mapSizeFilter.selected],
 			"popCap": populationFilter.list_data[populationFilter.selected],
 			"duration": durationFilter.list_data[durationFilter.selected],
-			"compatibility": compatibilityFilter.checked
+			"compatibility": compatibilityFilter.checked,
+			"singleplayer": singleplayerFilter.list_data[singleplayerFilter.selected],
+			"victoryCondition": victoryConFilter.list_data[victoryConFilter.selected],
+			"ratedGames": ratedGamesFilter.selected
 		}
 	};
 }
