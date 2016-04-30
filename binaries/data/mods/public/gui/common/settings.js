@@ -315,7 +315,7 @@ function prepareForDropdown(settingValues)
 function translateAIName(aiName)
 {
 	var description = g_Settings.AIDescriptions.find(ai => ai.id == aiName);
-	return description ? translate(description.data.name) : translate("Unknown");
+	return description ? translate(description.data.name) : translateWithContext("AI name", "Unknown");
 }
 
 /**
@@ -326,7 +326,7 @@ function translateAIName(aiName)
 function translateAIDifficulty(index)
 {
 	var difficulty = g_Settings.AIDifficulties[index];
-	return difficulty ? difficulty.Title : translate("Unknown");
+	return difficulty ? difficulty.Title : translateWithContext("AI difficulty", "Unknown");
 }
 
 /**
@@ -338,7 +338,7 @@ function translateAIDifficulty(index)
 function translateMapType(mapType)
 {
 	var type = g_Settings.MapTypes.find(t => t.Name == mapType);
-	return type ? type.Title : translate("Unknown");
+	return type ? type.Title : translateWithContext("map type", "Unknown");
 }
 
 /**
@@ -362,7 +362,7 @@ function translateMapSize(tiles)
 function translatePopulationCapacity(population)
 {
 	var popCap = g_Settings.PopulationCapacities.find(p => p.Population == population);
-	return popCap ? popCap.Title : translate("Unknown");
+	return popCap ? popCap.Title : translateWithContext("population capacity", "Unknown");
 }
 
 /**
@@ -374,5 +374,5 @@ function translatePopulationCapacity(population)
 function translateVictoryCondition(gameType)
 {
 	var vc = g_Settings.VictoryConditions.find(vc => vc.Name == gameType);
-	return vc ? vc.Title : translate("Unknown");
+	return vc ? vc.Title : translateWithContext("victory condition", "Unknown");
 }
