@@ -1591,7 +1591,14 @@ function updatePlayerList()
 			{
 				// Check for a valid AI
 				if (aiId in aiAssignments)
+				{
 					selection = aiAssignments[aiId];
+					configButton.hidden = false;
+					configButton.onpress = function()
+					{
+						openAIConfig(playerSlot);
+					};
+				}
 				else
 				{
 					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
@@ -1601,12 +1608,6 @@ function updatePlayerList()
 
 			if (!selection)
 				selection = noAssignment;
-
-			// Since no human is assigned, show the AI config button
-			configButton.hidden = false;
-			configButton.onpress = function() {
-				openAIConfig(playerSlot);
-			};
 		}
 		// There was a human, so make sure we don't have any AI left
 		// over in their slot, if we're in charge of the attributes
