@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
-  <group>
-    <variant name="Celtic Tavern">
-      <mesh>structural/celt_tavern_struct.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/tavern_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/tavern_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_tavern.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-		<texture file="structural/ao/celt_tavern.png" name="aoTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/tavern_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/tavern_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_tavern.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+	<castshadow/>
+	<group>
+		<variant frequency="100" name="Base">
+			<mesh>structural/celt_tavern.dae</mesh>
+			<props>
+				<prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+				<prop actor="props/structures/celts/celt_tavern_shield4.xml" attachpoint="root"/>
+				<prop actor="props/structures/celts/celt_tavern_shield1.xml" attachpoint="shield1" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_shield2.xml" attachpoint="shield2" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_shield3.xml" attachpoint="shield3" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_barrel1.xml" attachpoint="barrel1" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_barrel2.xml" attachpoint="barrel2" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_table.xml" attachpoint="table" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_bucket_food.xml" attachpoint="bucket_food" maxheight="20" minheight="-20"/>
+				<prop actor="props/structures/celts/celt_tavern_bucket_water.xml" attachpoint="bucket_water" maxheight="20" minheight="-20"/>
+				<prop actor="fauna/horse_a.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
+				<prop actor="particle/smoke_curved.xml" attachpoint="smoke"/>
+			</props>
+			<textures>
+				<texture file="structural/celt_struct.dds" name="baseTex"/>
+				<texture file="structural/celt_struct_norm.png" name="normTex"/>
+				<texture file="structural/celt_struct_spec.png" name="specTex"/>
+				<texture file="structural/ao/gaul_tavern_ao.png" name="aoTex"/>
+			</textures>
+		</variant>
+	</group>
+ 	<material>player_trans_ao_parallax_spec.xml</material>
 </actor>
