@@ -296,7 +296,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 					ent.getMetadata(PlayerID, "onBoard") === shipId)
 					ent.setMetadata(PlayerID, "onBoard", undefined);
 			});
-			plan.needTransportShips = (plan.transportShips.length === 0);
+			plan.needTransportShips = !plan.transportShips.hasEntities();
 		}
 		else if (plan.state === "sailing")
 		{
@@ -479,8 +479,8 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 {
 	if (queues.ships.hasQueuedUnits())
 		return;
-	if (gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt()).length +
-		gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).length === 0)
+	if (!gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt()).hasEntities() &&
+	    !gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).hasEntities())
 		return;
 	// check if we have enough transport ships per region.
 	for (var sea = 0; sea < this.seaShips.length; ++sea)
@@ -582,7 +582,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	if (gameState.getPopulation() > this.Config.Economy.popForDock)
 	{
 		if (queues.dock.countQueuedUnitsWithClass("NavalMarket") === 0 &&
-			gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).length === 0 &&
+			!gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).hasEntities() &&
 			gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
 		{
 			let dockStarted = false;
@@ -611,7 +611,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		queues.militaryBuilding.hasQueuedUnits() || this.bNaval.length === 0)
 		return;
 	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
-	if (!docks.length)
+	if (!docks.hasEntities())
 		return;
 	var nNaval = 0;
 	for (let naval of this.bNaval)

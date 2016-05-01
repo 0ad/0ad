@@ -429,16 +429,16 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 		if (toBePaused)
 		{
 			if (q === "field" && gameState.ai.HQ.needFarm &&
-				gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length === 0)
+				!gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).hasEntities())
 				toBePaused = false;
 			if (q === "corral" && gameState.ai.HQ.needCorral &&
-				gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length === 0)
+				!gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).hasEntities())
 				toBePaused = false;
 			if (q === "dock" && gameState.ai.HQ.needFish &&
-				gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).length === 0)
+				!gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).hasEntities())
 				toBePaused = false;
 			if (q === "ships" && gameState.ai.HQ.needFish &&
-				gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byClass("FishingBoat")).length === 0)
+				!gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byClass("FishingBoat")).hasEntities())
 				toBePaused = false;
 		}
 
