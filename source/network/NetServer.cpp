@@ -600,8 +600,14 @@ void CNetServerWorker::CheckClientConnections()
 		// (since that will show the locally triggered warning instead)
 		if (message)
 			for (size_t j = 0; j < m_Sessions.size(); ++j)
-				if (i != j)
+			{
+				if (i != j && (
+				    m_Sessions[j]->GetCurrState() == NSS_PREGAME ||
+				    m_Sessions[j]->GetCurrState() == NSS_INGAME))
+				{
 					m_Sessions[j]->SendMessage(message);
+				}
+			}
 
 		SAFE_DELETE(message);
 	}
