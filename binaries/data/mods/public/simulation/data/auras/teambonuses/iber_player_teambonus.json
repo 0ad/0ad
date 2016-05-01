@@ -1,0 +1,13 @@
+{
+	"type": "global",
+	"affects": ["CitizenSoldier Javelin"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+		{ "value": "Cost/Resources/food", "multiply": 0.8 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.8 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.8 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.8 }
+	],
+	"auraName": "Saripeko",
+	"auraDescription": "Reduces the cost for citizen-soldier skirmishers with 20% for allies of Iberian players"
+}

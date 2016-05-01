@@ -1,0 +1,13 @@
+{
+	"type": "global",
+	"affects": ["CivilCentre"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+		{ "value": "Cost/Resources/food", "multiply": 0.8 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.8 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.8 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.8 }
+	],
+	"auraName": "Syryan Tetrapolis",
+	"auraDescription": "Reduces the cost for civil centers with 20% for allies of Seleucid players"
+}

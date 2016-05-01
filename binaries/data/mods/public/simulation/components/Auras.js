@@ -87,7 +87,9 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	var affectedPlayers = this.auras[name].affectedPlayers || ["Player"];
 	this.affectedPlayers[name] = [];
 
-	var cmpPlayer = QueryOwnerInterface(this.entity);
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return;
 
@@ -386,15 +388,17 @@ Auras.prototype.OnOwnershipChanged = function(msg)
 
 Auras.prototype.OnDiplomacyChanged = function(msg)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (cmpPlayer && (cmpPlayer.GetPlayerID() == msg.player || cmpPlayer.GetPlayerID() == msg.otherPlayer) ||
+	   IsOwnedByPlayer(msg.player, this.entity) ||
+	   IsOwnedByPlayer(msg.otherPlayer, this.entity))
 		this.Clean();
 };
 
 Auras.prototype.OnGlobalResearchFinished = function(msg)
 {
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() != msg.player)
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if ((!cmpPlayer || cmpPlayer.GetPlayerID() != msg.player) && !IsOwnedByPlayer(msg.player, this.entity))
 		return;
 	let auraNames = this.GetAuraNames();
 	let needsClean = false;

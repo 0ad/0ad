@@ -389,7 +389,7 @@ Player.prototype.SetTeam = function(team)
 			cmpPlayer.SetAlly(this.playerID);
 		}
 
-	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID, "otherPlayer": null });
 };
 
 Player.prototype.SetLockTeams = function(value)
@@ -410,7 +410,7 @@ Player.prototype.GetDiplomacy = function()
 Player.prototype.SetDiplomacy = function(dipl)
 {
 	this.diplomacy = dipl;
-	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID, "otherPlayer": null });
 };
 
 Player.prototype.SetDiplomacyIndex = function(idx, value)
@@ -427,7 +427,7 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 		return;
 
 	this.diplomacy[idx] = value;
-	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID });
+	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID, "otherPlayer": cmpPlayer.GetPlayerID() });
 
 	// Mutual worsening of relations
 	if (cmpPlayer.diplomacy[this.playerID] > value)
