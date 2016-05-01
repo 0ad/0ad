@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>5</Pierce>
+    <Crush>2</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Fence</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="1.6" depth="1.6"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Colonnade</GenericName>
+    <SpecificName>Corinthian Colonnade</SpecificName>
+    <History>A colonnade of the detailed Greek Corinthian order.</History>
+    <Icon>gaia/special_fence.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>1</xp>
+    <food>0</food>
+    <wood>0</wood>
+    <stone>20</stone>
+    <metal>0</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="1.5" depth="1.5"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <Vision>
+    <Range>4</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>props/special/eyecandy/sele_colonnade.xml</Actor>
+  </VisualActor>
+</Entity>
