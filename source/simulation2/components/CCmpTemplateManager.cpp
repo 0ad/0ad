@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "ICmpTemplateManager.h"
 
 #include "simulation2/MessageTypes.h"
+#include "simulation2/serialization/SerializeTemplates.h"
 
 #include "ps/TemplateLoader.h"
 
@@ -58,43 +59,24 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		size_t count = 0;
+		std::map<CStr, std::vector<entity_id_t>> templateMap;
+		
+		for (std::pair<entity_id_t, std::string> templateEnt : m_LatestTemplates)
+			if (!ENTITY_IS_LOCAL(templateEnt.first))
+				templateMap[templateEnt.second].push_back(templateEnt.first);
 
-		for (std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
-		{
-			if (ENTITY_IS_LOCAL(it->first))
-				continue;
-			++count;
-		}
-		serialize.NumberU32_Unbounded("num entities", (u32)count);
-
-		for (std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
-		{
-			if (ENTITY_IS_LOCAL(it->first))
-				continue;
-			serialize.NumberU32_Unbounded("id", it->first);
-			serialize.StringASCII("template", it->second, 0, 256);
-		}
-		// TODO: maybe we should do some kind of interning thing instead of printing so many strings?
-
-		// TODO: will need to serialize techs too, because we need to be giving out
-		// template data before other components (like the tech components) have been deserialized
+		SerializeMap<SerializeString, SerializeVector<SerializeU32_Unbounded>>()(serialize, "templates", templateMap);
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
 
-		u32 numEntities;
-		deserialize.NumberU32_Unbounded("num entities", numEntities);
-		for (u32 i = 0; i < numEntities; ++i)
-		{
-			entity_id_t ent;
-			std::string templateName;
-			deserialize.NumberU32_Unbounded("id", ent);
-			deserialize.StringASCII("template", templateName, 0, 256);
-			m_LatestTemplates[ent] = templateName;
-		}
+		std::map<CStr, std::vector<entity_id_t>> templateMap;
+		SerializeMap<SerializeString, SerializeVector<SerializeU32_Unbounded>>()(deserialize, "templates", templateMap);
+		for (std::pair<CStr, std::vector<entity_id_t>> mapEl : templateMap)
+			for (entity_id_t id : mapEl.second)
+				m_LatestTemplates[id] = mapEl.first;	
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))

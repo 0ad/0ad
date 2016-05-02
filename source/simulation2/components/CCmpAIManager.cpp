@@ -609,6 +609,9 @@ public:
 
 	void SerializeState(ISerializer& serializer)
 	{
+		if (m_Players.empty())
+			return;
+
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
 
@@ -665,15 +668,18 @@ public:
 
 	void Deserialize(std::istream& stream, u32 numAis)
 	{
+		m_PlayerMetadata.clear();
+		m_Players.clear();
+
+		if (numAis == 0)
+			return;
+
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
 
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
 		CStdDeserializer deserializer(*m_ScriptInterface, stream);
-
-		m_PlayerMetadata.clear();
-		m_Players.clear();
 
 		std::string rngString;
 		std::stringstream rngStream;

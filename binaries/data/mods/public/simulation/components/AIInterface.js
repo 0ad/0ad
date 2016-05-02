@@ -48,6 +48,8 @@ AIInterface.prototype.Serialize = function()
 			continue;
 		if (typeof this[key] == "function")
 			continue;
+		if (key == "templates")
+			continue;
 		state[key] = this[key];
 	}
 	return state;
