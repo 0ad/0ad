@@ -1687,6 +1687,13 @@ function swapPlayers(guid, newSlot)
 
 		// Transfer the AI from the target slot to the current slot.
 		g_GameAttributes.settings.PlayerData[playerID - 1].AI = g_GameAttributes.settings.PlayerData[newSlot].AI;
+
+		// Swap civilizations if they aren't fixed
+		if (g_GameAttributes.mapType != "scenario")
+		{
+			[g_GameAttributes.settings.PlayerData[playerID - 1].Civ, g_GameAttributes.settings.PlayerData[newSlot].Civ] =
+				[g_GameAttributes.settings.PlayerData[newSlot].Civ, g_GameAttributes.settings.PlayerData[playerID - 1].Civ];
+		}
 	}
 
 	if (g_IsNetworked)
