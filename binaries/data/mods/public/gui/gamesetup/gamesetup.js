@@ -934,6 +934,7 @@ function sanitizePlayerData(playerData)
 	playerData.forEach((pData, index) => {
 		pData.Color = pData.Color || g_PlayerColors[index];
 		pData.Civ = pData.Civ || "random";
+		pData.AI = pData.AI || "";
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults
