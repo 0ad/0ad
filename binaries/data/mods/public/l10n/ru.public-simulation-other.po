@@ -4,22 +4,25 @@
 # 
 # Translators:
 # Alexander Olkhovskiy, 2015
+# Alexander Olkhovskiy, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014-2015
 # Григорий Световидов <grin.sv@gmail.com>, 2015
+# Ivan, 2014
 # Ivan, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015-2016
 # Yegor <revolver45@inbox.ru>, 2014
+# Григорий Световидов <grin.sv@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-22 08:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-30 15:14+0000\n"
+"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +63,7 @@ msgstr "Камень"
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Я начинаю масштабную военную кампанию против %(_player_)s, приходи и поддержи меня."
 
 #: simulation/ai/petra/chatHelper.js:23
 #, javascript-format
@@ -111,7 +114,7 @@ msgstr "Я вижу, ты в плохом положении %(_player_)s, на�
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "На этот раз я могу тебе помочь %(_player_)s, но постарайся собирать больше ресурсов в будущем."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
@@ -129,7 +132,7 @@ msgstr "Я бы сражался за наше общее дело с больш
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Если у тебя найдётся излишек %(resource)s, это поможет усилить мою армию."
 
 #: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
@@ -175,7 +178,7 @@ msgstr "Теперь поручите женщинам собирать ягод
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr "Теперь установите точку сбора своего центра цивилизации на на ягодах."
+msgstr "Теперь установите точку сбора своего центра цивилизации на ягодах."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
@@ -187,7 +190,7 @@ msgstr "Добавьте в очередь тренировки после же�
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr "Когда женщины закончат обучение, отправьте 4 для постройки дома неподалеку."
+msgstr "Когда женщины закончат обучение, отправьте 4 из них для постройки дома неподалеку."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
@@ -201,7 +204,7 @@ msgstr "Добавьте в очередь группу из 5 женщин."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr "Используйте Shift + ЛКМ, чтобы добавить в очередь строительства еще один дом для 4 строителей."
+msgstr "Используйте Shift + ЛКМ, чтобы добавить в очередь строительства ещё один дом для 4 строителей."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
@@ -240,7 +243,7 @@ msgstr "Используйте 2-3 или более женщин, чтобы с
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr "Добавьте еще один дом."
+msgstr "Добавьте ещё один дом."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
@@ -250,7 +253,7 @@ msgstr "Кусты с ягодами заканчиваются, пошлите 
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr "Добавьте в очередь еще 5 женщин, их отправьте добывать камень."
+msgstr "Добавьте в очередь ещё 5 женщин, их отправьте добывать камень."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
@@ -266,7 +269,7 @@ msgstr "Позаботьтесь о том, чтобы сборщики ягод
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr "Добавьте в очередь строителям еще один дом."
+msgstr "Добавьте в очередь строителям ещё один дом."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
@@ -286,7 +289,7 @@ msgstr "Обучите ещё несколько пращников и отпр�
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr "Добавьте в очередь еще группу из 5 женщин, этих — для добычи дерева. "
+msgstr "Добавьте в очередь ещё группу из 5 женщин, этих — для добычи дерева. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -406,7 +409,7 @@ msgstr "- Стройте достаточно домов. ГЦ должен бы
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr "- Женщины дешевле - с ними можно строить и собирать больше."
+msgstr "- Женщины дешевле - а значит, их можно обучить больше и собрать больше ресурсов."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
@@ -425,7 +428,7 @@ msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr "Добро пожаловать в руководство к игре 0 A.D. Щелкните на горожанке и следом уже правой кнопкой щёлкните по кустам, чтобы отправить её собирать пищу. Женщины собирают пищу быстрее других юнитов."
+msgstr "Добро пожаловать в руководство к игре 0 A.D. Щёлкните на горожанке и следом уже правой кнопкой щёлкните по кустам, чтобы отправить её собирать пищу. Женщины собирают пищу быстрее других юнитов."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
@@ -477,7 +480,7 @@ msgid ""
 "The field's builders will now automatically begin collecting food from the "
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
-msgstr "Как поле будет готово, строители сразу начнут собирать урожай. Используя вновь испечённых стрелков постройте дом рядом."
+msgstr "Как поле будет готово, строители сразу начнут собирать урожай. Используя вновь испечённых стрелков, постройте дом рядом."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:51
 msgid ""
@@ -644,10 +647,10 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(name)s располагается слишком близко к %(category)s, должно быть не менее %(distance)s метра"
+msgstr[1] "%(name)s располагается слишком близко к %(category)s, должно быть не менее %(distance)s метров"
+msgstr[2] "%(name)s располагается слишком близко к %(category)s, должно быть не менее %(distance)s метров"
+msgstr[3] "%(name)s располагается слишком близко к %(category)s, должно быть не менее %(distance)s метров"
 
 #: simulation/components/BuildRestrictions.js:299
 #, javascript-format
@@ -655,10 +658,10 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(name)s располагается слишком далеко от %(category)s, должна быть в пределах %(distance)s метра"
+msgstr[1] "%(name)s располагается слишком далеко от %(category)s, должна быть в пределах %(distance)s метров"
+msgstr[2] "%(name)s располагается слишком далеко от %(category)s, должна быть в пределах %(distance)s метров"
+msgstr[3] "%(name)s располагается слишком далеко от %(category)s, должна быть в пределах %(distance)s метров"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -765,7 +768,7 @@ msgstr "Невозможно найти свободное место для п�
 
 #: simulation/helpers/Cheat.js:63
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Вам нужно выбрать здание, тренирующее юнитов."
 
 #: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
@@ -782,7 +785,7 @@ msgstr ""
 
 #: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Невозможно вывести гарнизон"
 
 #: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
@@ -862,15 +865,15 @@ msgstr "Безумная (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr "Быстрая (5x)"
+msgstr "Перемотка вперёд (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr "Быстрая (10x)"
+msgstr "Перемотка вперёд (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr "Быстрая (20x)"
+msgstr "Перемотка вперёд (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
@@ -898,7 +901,7 @@ msgstr "Завоевание: юниты"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr "Постройте и защитете чудо для победы"
+msgstr "Постройте и защитите чудо для победы"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -993,7 +996,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra - бот ИИ по умолчанию в 0 A.D. Пожалуйста, сообщайте о неполадках и предложениях в Wildfire Games (см. ссылку в главном меню).\n\nБот ИИ имеет повышающий/понижающий коэффициент  при получении ресурсов (как при сборе, так и при торговле) от 0.5 для \"Песочницы\" до 1.6 для \"Очень сложно\" (1.0 для \"Среднего\"). Кроме того, на уровне \"Песочница\" бот не расширяет свою территорию и не атакует."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

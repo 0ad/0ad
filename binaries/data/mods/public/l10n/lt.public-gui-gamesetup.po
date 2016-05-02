@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adomas Jackevičius, 2014
+# Adomas Jackevičius, 2014,2016
 # banginis <asesuarbanesu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-04-22 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-30 20:38+0000\n"
+"Last-Translator: Adomas Jackevičius\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,12 +44,12 @@ msgstr "%(username)s atsijungė"
 #: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s buvo išspirtas"
 
 #: gui/gamesetup/gamesetup.js:48
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s buvo užblokuotas"
 
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
@@ -90,7 +90,7 @@ msgstr "Visi žemėlapiai"
 #: gui/gamesetup/gamesetup.js:137
 msgctxt "map type"
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:142
 msgctxt "civilization"
@@ -163,7 +163,7 @@ msgstr "Pergalės Sąlyga:"
 #: gui/gamesetup/gamesetup.js:1472
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:1564
 #, javascript-format

@@ -23,6 +23,7 @@
 # dr&mx <dronmax@gmail.com>, 2014-2015
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
+# Homunkul <Behal.inc@gmail.com>, 2014
 # Igor <ggg2134@mail.ru>, 2013
 # insolor <insolor@gmail.com>, 2014
 # Ivan <lis84@mail.ru>, 2013
@@ -32,33 +33,40 @@
 # Malik Khodjaev <loc.root.123@gmail.com>, 2013
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # micha030201 <micha030201@gmail.com>, 2014
+# micha030201 <micha030201@gmail.com>, 2014
 # Nikita Pavlyuk <nekit96-08@mail.ru>, 2014
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Pavel <mpolr21@gmail.com>, 2014
 # sad2shade <sad.2.shade@gmail.com>, 2014
 # Simple88, 2014
+# Simple88, 2014
 # sorrymak <dearalcher@gmail.com>, 2013
 # under.quol <under.quol@gmail.com>, 2013
 # utyf05 <utyf05@gmail.com>, 2015
+# utyf05 <utyf05@gmail.com>, 2015
 # v00d00911 <agroworker@mail.ru>, 2014
+# Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015-2016
 # Vladislav <swsh0t@gmail.com>, 2013
+# vlitomsk <kvas.omsk@gmail.com>, 2014
 # webslavic <webslavic@yahoo.com>, 2014
+# Woratiklis, 2015
 # Woratiklis, 2015
 # Yegor <revolver45@inbox.ru>, 2014
 # zake1313 <mihfay@gmail.com>, 2014
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
+# Григорий Световидов <grin.sv@gmail.com>, 2015
 # Кваша Владислав <vladislav.kwasha@yandex.ua>, 2014
 # Чувак, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-04-22 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-04-30 19:54+0000\n"
+"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -184,10 +192,10 @@ msgstr "Загрузка…"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Чудо (%(min)s минута)"
+msgstr[1] "Чудо (%(min)s минуты)"
+msgstr[2] "Чудо (%(min)s минут)"
+msgstr[3] "Чудо (%(min)s мин.)"
 
 #: gui/gamesetup/gamesetup.js:1464
 msgid "Sorry, no description available."
@@ -500,7 +508,7 @@ msgstr "Выбрать условия победы."
 #: gui/gamesetup/gamesetup.xml:(tooltip):305
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Время (в минутах), на протяжении которого игрок должен поддерживать Чудо, чтобы выиграть."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select population cap."
@@ -508,11 +516,11 @@ msgstr "Выберите лимит населения."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select the game's starting resources."
-msgstr "Выбери стартовые ресурсы."
+msgstr "Выберите стартовые ресурсы."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid "Set time where no attacks are possible."
-msgstr "Установите время, в течение которого атаки невозможны"
+msgstr "Установите время, в течение которого атаки невозможны."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -540,7 +548,7 @@ msgstr "Включить / выключить возможность испол�
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):395
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Включите если игру нужно оценить для доски почёта."
+msgstr "Включите, если игру нужно оценить для доски почёта."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):409
 msgid "Close more game options window"
@@ -946,7 +954,7 @@ msgid ""
 "\"For there is but one essential justice which cements society, and one law "
 "which establishes this justice. This law is right reason, which is the true "
 "rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
-msgstr "Есть всего лишь одна существенная справедливость, которая скрепляет общество и один закон, который устанавливает правосудие. Этот закон — здравый смысл, который является истинным правилом всех заповедей и запретов\". - Маркус Тулиус Цицерон"
+msgstr "Есть всего лишь одна существенная справедливость, которая скрепляет общество и один закон, который устанавливает правосудие. Этот закон — здравый смысл, который является истинным правилом всех заповедей и запретов\". - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
@@ -962,13 +970,13 @@ msgstr "«Никто не стар настолько, чтобы не расс�
 msgid ""
 "\"We are not born, we do not live for ourselves alone; our country, our "
 "friends, have a share in us.\" - Marcus Tullius Cicero"
-msgstr "«Мы не рождаемся и не живем сами по себе; наша страна, наши друзья, также влияют на нас». — Маркус Тулиус Цицерон"
+msgstr "«Мы не рождаемся и не живем сами по себе; наша страна, наши друзья, также влияют на нас». — Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
 "Tullius Cicero"
-msgstr "\"Урожай, Вы руки, к тоге; к гражданской похвале, Вы лавры\". - Маркус Тулиус Цицерон"
+msgstr "\"Урожай, Вы руки, к тоге; к гражданской похвале, Вы лавры\". - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
@@ -983,7 +991,7 @@ msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero"
-msgstr "\"Эти, сенаторы, что пользуются услугами банд. Они воздерживаются от убийства кого-то; затем хвастаются, что пощадили его!\" - Маркус Тулиус Цицерон"
+msgstr "\"Эти, сенаторы, что пользуются услугами банд. Они воздерживаются от убийства кого-то; затем хвастаются, что пощадили его!\" - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
@@ -1007,7 +1015,7 @@ msgstr "\"Пусть наказание соответствует престу�
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr "\"Позвольте благосостоянию людей быть окончательным законом\". - Маркус Тулиус Цицерон"
+msgstr "\"Позвольте благосостоянию людей быть окончательным законом\". - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
@@ -1021,13 +1029,13 @@ msgstr "\"Законы молчат во время войны.\" - Марк Т�
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
-msgstr "\"Война никогда не предпринимается идеальным государством, кроме защиты его чести или его безопасности\". - Маркус Тулиус Цицерон"
+msgstr "\"Война никогда не предпринимается идеальным государством, кроме защиты его чести или его безопасности\". - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
-msgstr "\"Первая обязанность человека - искать и расследовать правду\". - Маркус Тулиус Цицерон"
+msgstr "\"Первая обязанность человека - искать и расследовать правду\". - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1101,7 +1109,7 @@ msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr "\"Отойди, ты заслоняешь мне солнце\" - Диоген из Синопы, когда Александр Македонский найдя его греясь на солнце сказал \"Проси у меня чего хочешь\""
+msgstr "\"Отойди, ты заслоняешь мне солнце\" - Диоген Синопский, когда Александр Македонский найдя его греясь на солнце сказал \"Проси у меня чего хочешь\""
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
@@ -1111,7 +1119,7 @@ msgstr "\"Я гражданин мира\" - Диоген Синопский"
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
-msgstr "\"Не то, чтобы я безумен, просто моя голова отличается от Вашей\". - Диоген из Синопа"
+msgstr "\"Не то, чтобы я безумен, просто моя голова отличается от Вашей\". - Диоген Синопский"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1141,13 +1149,13 @@ msgstr "\"Шанс борется на стороне благоразумног
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
-msgstr "\"Если человек потушить глаз другого человека, его глаза угаснет.\" - Хаммурапи"
+msgstr "\"Око за око, зуб за зуб.\" - Хаммурапи"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr "\"Я пришел не к войне с итальянцами, но на помощь итальянцам против Рима.\" - Ганнибал Барка"
+msgstr "\"Я пришёл не к войне с итальянцами, но на помощь итальянцам против Рима.\" - Ганнибал Барка"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
@@ -1158,7 +1166,7 @@ msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
-msgstr "\"Мои предки уступили римской доблести. Я попытаюсь, чтобы в следующий раз, вы понесли поражение благодаря моей удачи и доблести\". - Ганнибал Барса"
+msgstr "\"Мои предки уступили римской доблести. Я попытаюсь, чтобы в следующий раз вы понесли поражение благодаря моей удаче и доблести\". - Ганнибал Барка"
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
@@ -1209,13 +1217,13 @@ msgstr "\"Мы - есть прах и тень.\" - Гораций"
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
-msgstr "\"Я не, присягаю в верности любому хозяину; куда шторм ведет меня, туда я захожу для приюта\". - Гораций"
+msgstr "\"Я не присягаю в верности любому хозяину; куда шторм ведет меня, туда я захожу для приюта\". - Гораций"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
-msgstr "\"Завоеванная Греция взяла в плен ее дикого завоевателя и принесла ее искусства в простоватый Лацио\". - Гораций"
+msgstr "\"Завоеванная Греция взяла в плен её дикого завоевателя и принесла её искусства в простоватый Лацио\". - Гораций"
 
 #: gui/text/quotes.txt:123
 msgid ""
@@ -1229,7 +1237,7 @@ msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr "\"Я никогда не учился настраивать арфу, или играть на лютне; но я знаю как превратить маленькую и незначительную деревушку в великий и процветающий город.\" - Фемистокл"
+msgstr "\"Я никогда не учился настраивать арфу или играть на лютне; но я знаю как превратить маленькую и незначительную деревушку в великий и процветающий город.\" - Фемистокл"
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
@@ -1260,7 +1268,7 @@ msgstr "\"Идите и получите его!\" - Леонид, персид�
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr "\"Для думающего человека - там, где Мудрость  там и дом\". - Зоростер"
+msgstr "\"Для думающего человека  — там, где Мудрость  там и дом\". - Зоростер"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
@@ -1336,7 +1344,7 @@ msgstr "\"Война мила для тех, кто ее не видел, но �
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr "\"Кончины час настал, и мы своей идем дорогой, я — умереть, ты — жить. Который лучше знает только Бог.\" - Платон"
+msgstr "\"Кончины час настал, и мы своей идем дорогой, я — умереть, ты — жить. Что лучше — знает только Бог.\" - Платон"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
@@ -1353,7 +1361,7 @@ msgstr "\"Пусть каждый человек напомнит своим п�
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
-msgstr "«Ложь, не только плоха сама по себе, но и заражает душу злом.» — Платон"
+msgstr "«Ложь не только плоха сама по себе, но и заражает душу злом.» — Платон"
 
 #: gui/text/quotes.txt:147
 msgid ""
