@@ -3,10 +3,10 @@
 	"radius": 50,
 	"affects": ["Soldier"],
 	"modifications": [
-	{ "value": "Attack/Melee/Hack", "add": 2 },
-	{"value": "Attack/Ranged/Pierce", "add": 3 }
+		{ "value": "Attack/Melee/Hack", "add": 2 },
+		{ "value": "Attack/Ranged/Pierce", "add": 3 }
 	],
 	"auraName": "Defensive Aura",
-	"auraDescription": "Gives all Iberian units in Aura +2 Hack and +5 Pierce Attack boost.",
+	"auraDescription": "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }
