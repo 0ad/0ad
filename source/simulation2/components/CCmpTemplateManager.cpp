@@ -61,7 +61,7 @@ public:
 	{
 		std::map<CStr, std::vector<entity_id_t>> templateMap;
 		
-		for (std::pair<entity_id_t, std::string> templateEnt : m_LatestTemplates)
+		for (const std::pair<entity_id_t, std::string>& templateEnt : m_LatestTemplates)
 			if (!ENTITY_IS_LOCAL(templateEnt.first))
 				templateMap[templateEnt.second].push_back(templateEnt.first);
 
@@ -74,7 +74,7 @@ public:
 
 		std::map<CStr, std::vector<entity_id_t>> templateMap;
 		SerializeMap<SerializeString, SerializeVector<SerializeU32_Unbounded>>()(deserialize, "templates", templateMap);
-		for (std::pair<CStr, std::vector<entity_id_t>> mapEl : templateMap)
+		for (const std::pair<CStr, std::vector<entity_id_t>>& mapEl : templateMap)
 			for (entity_id_t id : mapEl.second)
 				m_LatestTemplates[id] = mapEl.first;	
 	}
