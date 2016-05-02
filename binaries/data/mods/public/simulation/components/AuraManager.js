@@ -33,25 +33,31 @@ AuraManager.prototype.ensureExists = function(name, value, id, key, defaultData)
 	var k = i.get(key);
 	if (!k)
 	{
-		k = [];
+		k = {};
 		i.set(key, k);
 	}
 	return k;
 };
 
-AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
+AuraManager.prototype.ApplyBonus = function(value, ents, newData, key)
 {
 	for (let ent of ents)
 	{
-		var dataList = this.ensureExists("modifications", value, ent, key, { "add":0, "multiply":1 });
+		var data = this.ensureExists("modifications", value, ent, key, { "add":0, "multiply":1 });
 
-		// Clone the data object to prevent references and serialization issues
-		dataList.push(clone(data));
-
-		if (dataList.length > 1)
+		if (data.count)
+		{
+			// this aura is already applied and the bonus shouldn't be given twice,
+			// just count the number of times it is applied
+			data.count++;
 			continue;
+		}
 
 		// first time added this aura
+		data.multiply = newData.multiply;
+		data.add = newData.add;
+		data.count = 1;
+
 		if (data.add)
 			this.modificationsCache.get(value).get(ent).add += data.add;
 		if (data.multiply)
@@ -66,17 +72,23 @@ AuraManager.prototype.ApplyBonus = function(value, ents, data, key)
 	}
 };
 
-AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, data, key)
+AuraManager.prototype.ApplyTemplateBonus = function(value, player, classes, newData, key)
 {
-	var dataList = this.ensureExists("templateModifications", value, player, key, new Map());
+	var data = this.ensureExists("templateModifications", value, player, key, new Map());
 
-	// Clone the data object to prevent references and serialization issues
-	dataList.push(clone(data));
-
-	if (dataList.length > 1)
+	if (data.count)
+	{
+		// this aura is already applied and the bonus shouldn't be given twice,
+		// just count the number of times it is applied
+		data.count++;
 		return;
+	}
 
 	// first time added this aura
+	data.multiply = newData.multiply;
+	data.add = newData.add;
+	data.count = 1;
+
 	let cache = this.templateModificationsCache.get(value).get(player);
 	if (!cache.get(classes))
 		cache.set(classes, new Map());
@@ -107,14 +119,13 @@ AuraManager.prototype.RemoveBonus = function(value, ents, key)
 		var e = v.get(ent);
 		if (!e)
 			continue;
-		var dataList = e.get(key);
-		if (!dataList || !dataList.length)
+		var data = e.get(key);
+		if (!data || !data.count)
 			continue;
 
-		// get the applied data to remove again
-		var data = dataList.pop();
+		data.count--;
 
-		if (dataList.length > 0)
+		if (data.count > 0)
 			continue;
 
 		// out of last aura of this kind, remove modifications
@@ -123,6 +134,11 @@ AuraManager.prototype.RemoveBonus = function(value, ents, key)
 
 		if (data.multiply)
 			this.modificationsCache.get(value).get(ent).multiply /= data.multiply;
+
+		// clean up the object
+		e.delete(key);
+		if (e.size == 0)
+			v.delete(ent);
 
 		// post message to the entity to notify it about the change
 		Engine.PostMessage(ent, MT_ValueModification, {
@@ -141,17 +157,23 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 	var p = v.get(player);
 	if (!p)
 		return;
-	var dataList = p.get(key);
-	if (!dataList || !dataList.length)
+	var data = p.get(key);
+	if (!data || !data.count)
 		return;
 
-	dataList.pop();
+	data.count--;
 
-	if (dataList.length > 0)
+	if (data.count > 0)
 		return;
 
-	this.templateModificationsCache.get(value).get(player).get(classes).get(key).add = 0;
-	this.templateModificationsCache.get(value).get(player).get(classes).get(key).multiply = 1;
+	this.templateModificationsCache.get(value).get(player).get(classes).delete(key);
+	if (this.templateModifications.get(value).get(player).get(classes).size == 0)
+		this.templateModificationsCache.get(value).get(player).delete(classes);
+
+	// clean up the object
+	p.delete(key)
+	if (p.size == 0)
+		v.delete(player);
 
 	Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, {
 		"player": player,
