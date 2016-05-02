@@ -1,6 +1,6 @@
 {
 	"type": "global",
-	"affects": ["Unit"],
+	"affects": ["Soldier", "Siege"],
 	"modifications": [
 	{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
 	],

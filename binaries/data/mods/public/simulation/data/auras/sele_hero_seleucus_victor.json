@@ -4,8 +4,8 @@
 	"affects": ["Elephant"],
 	"modifications": [
 	{ "value": "UnitMotion/WalkSpeed>", "multiply": 1.2 },
-	{ "value": "Attack.Melee.Hack>", "multiply": 1.2 },
-	{ "value": "Attack.Melee.Crush>", "multiply": 1.2 }
+	{ "value": "Attack/Melee/Hack>", "multiply": 1.2 },
+	{ "value": "Attack/Melee/Crush>", "multiply": 1.2 }
 	],
 	"auraName": "Zooiarchos Aura",
 	"auraDescription": "Boosts War Elephant attack and speed +20% within his vision.",

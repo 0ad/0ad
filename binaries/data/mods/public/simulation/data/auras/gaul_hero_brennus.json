@@ -1,6 +1,6 @@
 {
 	"type": "global",
-	"affects": ["Unit"],
+	"affects": ["Human", "Mechanical"],
 	"modifications": [
 	{ "value": "Looter/Resource/metal", "add": 10 }
 	],
