@@ -1168,26 +1168,38 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 }
 
 /*
- * Command line options for autostart (keep synchronized with binaries/system/readme.txt):
+ * Command line options for autostart
+ * (keep synchronized with binaries/system/readme.txt):
  *
- * -autostart="TYPEDIR/MAPNAME"         enables autostart and sets MAPNAME; TYPEDIR is skirmishes, scenarios, or random
- * -autostart-ai=PLAYER:AI              sets the AI for PLAYER (e.g. 2:petra)
- * -autostart-aidiff=PLAYER:DIFF        sets the DIFFiculty of PLAYER's AI (0: sandbox, 5: very hard)
- * -autostart-civ=PLAYER:CIV            sets PLAYER's civilisation to CIV (skirmish and random maps only)
- * -autostart-aiseed=AISEED             sets the seed used for the AI random generator (default 0, use -1 for random)
+ * -autostart="TYPEDIR/MAPNAME"    enables autostart and sets MAPNAME;
+ *                                 TYPEDIR is skirmishes, scenarios, or random
+ * -autostart-ai=PLAYER:AI         sets the AI for PLAYER (e.g. 2:petra)
+ * -autostart-aidiff=PLAYER:DIFF   sets the DIFFiculty of PLAYER's AI
+ *                                 (0: sandbox, 5: very hard)
+ * -autostart-aiseed=AISEED        sets the seed used for the AI random
+ *                                 generator (default 0, use -1 for random)
+ * -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV
+ *                                 (skirmish and random maps only)
+ * -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
+ *
  * Multiplayer:
- * -autostart-playername=NAME		sets local player NAME (default 'anonymous')
- * -autostart-host                      sets multiplayer host mode
- * -autostart-host-players=NUMBER       sets NUMBER of human players for multiplayer game (default 2)
- * -autostart-client=IP                 sets multiplayer client to join host at given IP address
+ * -autostart-playername=NAME      sets local player NAME (default 'anonymous')
+ * -autostart-host                 sets multiplayer host mode
+ * -autostart-host-players=NUMBER  sets NUMBER of human players for multiplayer
+ *                                 game (default 2)
+ * -autostart-client=IP            sets multiplayer client to join host at
+ *                                 given IP address
  * Random maps only:
- * -autostart-seed=SEED                 sets random map SEED value (default 0, use -1 for random)
- * -autostart-size=TILES                sets random map size in TILES (default 192)
- * -autostart-players=NUMBER            sets NUMBER of players on random map (default 2)
+ * -autostart-seed=SEED            sets random map SEED value
+ *                                 (default 0, use -1 for random)
+ * -autostart-size=TILES           sets random map size in TILES (default 192)
+ * -autostart-players=NUMBER       sets NUMBER of players on random map
+ *                                 (default 2)
  *
  * Examples:
  * 1) "Bob" will host a 2 player game on the Arcadia map:
  * -autostart="scenarios/Arcadia 02" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
+ * 
  * 2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
  * -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
 */
@@ -1330,6 +1342,33 @@ bool Autostart(const CmdLineArgs& args)
 	JS::RootedValue player(cx);
 	if (scriptInterface.GetPropertyInt(playerData, 0, &player) && player.isNull())
 		offset = 0;
+
+	// Set teams
+	if (args.Has("autostart-team"))
+	{
+		std::vector<CStr> civArgs = args.GetMultiple("autostart-team");
+		for (size_t i = 0; i < civArgs.size(); ++i)
+		{
+			int playerID = civArgs[i].BeforeFirst(":").ToInt();		
+
+			// Instead of overwriting existing player data, modify the array
+			JS::RootedValue player(cx);
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+			{
+				if (mapDirectory == L"skirmishes")
+				{
+					// playerID is certainly bigger than this map player number
+					LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
+					continue;
+				}
+				scriptInterface.Eval("({})", &player);
+			}
+
+			int teamID = civArgs[i].AfterFirst(":").ToInt() - 1;
+			scriptInterface.SetProperty(player, "Team", teamID);
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+		}
+	}
 
 	if (args.Has("autostart-ai"))
 	{
