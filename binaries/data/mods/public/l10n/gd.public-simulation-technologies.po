@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 09:13+0000\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-02 10:09+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -68,6 +68,7 @@ msgstr "Seampron"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
@@ -1378,7 +1379,7 @@ msgstr "Bhiodh an stàit no an treubh a’ togail talla-bìdh airson fèilltean 
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Bidh +5 de shluagh a bharrachd ceadaichte dhut le gach ionad sìobhalta."
+msgstr "Gheibh thu buannachd dhe +5 air an tomhas-shluaigh le gach ionad sìobhalta."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1419,7 +1420,7 @@ msgstr "Bhiodh caochladh de liosan taighe ann o raointean beaga le feansa timche
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr "Bidh +20% de shluagh a bharrachd ceadaichte dhut le gach taigh."
+msgstr "Gheibh thu buannachd dhe +20% air an tomhas-shluaigh le gach taigh."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1589,6 +1590,18 @@ msgstr "Trèanaich na h-eich agad ach an gluais iad nas luaithe."
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
 msgstr "Trèanadh air luaths an eachraidh"
+
+#: simulation/data/technologies/trade_commercial_treaty.jsondescription
+msgid "Improve the international trading profit."
+msgstr "Faigh barrachd maoin às a' mhalart eadar-nàiseanta."
+
+#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+msgid "Market +10% International Bonus."
+msgstr "Buannachd eadar-nàiseanta dhe +10% air margaidean."
+
+#: simulation/data/technologies/trade_commercial_treaty.jsongenericName
+msgid "Commercial Treaty"
+msgstr "Cùmhnant malairteach"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
@@ -2263,18 +2276,6 @@ msgstr "Tog ballachan-cloiche air ranntair neo-phàirteach."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Ballachan fada na h-Àithne"
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsondescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Stèidhich na stàit-bhailtean Greugach an Lìg Dhealos 478 BC beagan às dèidh mòr-bhuannachdan a’ chabhlaich aig Salamis agus Mycale. Bha fainear dhaibh cuidhteas fhaighinn dhe na Pearsaich san sgìre Àigeanach. Chuir na bailtean caidreabhach airgead ’s longan fad ’s a chuir Muinntir na h-Àithne an cabhlach gu lèir a bh’ aca dhan ghnothach."
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
-msgid "Delian League"
-msgstr "Lìg Dhealos"
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""

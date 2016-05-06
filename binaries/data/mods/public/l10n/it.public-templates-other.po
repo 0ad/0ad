@@ -7,13 +7,14 @@
 # Fabio Pedretti <fabio.ped@libero.it>, 2015-2016
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # Me Lazzi, 2015
+# Michele Marongiu <michelemarongiu@gmail.com>, 2016
 # Sebastiano Pistore <olatusrooc@virgilio.it>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-16 14:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-02 14:46+0000\n"
+"Last-Translator: Michele Marongiu <michelemarongiu@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -886,6 +887,14 @@ msgstr "Grande Piramide"
 msgid "Minor Pyramid"
 msgstr "Piramide Minore"
 
+#: simulation/templates/other/sele_colonnade.xml:20
+msgid "Colonnade"
+msgstr "Colonnato"
+
+#: simulation/templates/other/sele_colonnade.xml:21
+msgid "Corinthian Colonnade"
+msgstr "Colonnato Corinzio"
+
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
@@ -966,7 +975,7 @@ msgstr "Si trasforma in una casa da +5 unità di popolazione per le civiltà che
 msgid "Marker"
 msgstr "Indicatore"
 
-#: simulation/templates/special/player.xml:55
+#: simulation/templates/special/player.xml:56
 msgid "Player"
 msgstr "Giocatore"
 
@@ -985,7 +994,7 @@ msgid "Oxybelḗs"
 msgstr "Oxybelḗ"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
 msgid "Ballista"
 msgstr "Ballista"
 
@@ -993,6 +1002,6 @@ msgstr "Ballista"
 msgid "Polybolos"
 msgstr "Polybolos"
 
-#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
 msgid "Scorpio"
 msgstr "Scorpione"

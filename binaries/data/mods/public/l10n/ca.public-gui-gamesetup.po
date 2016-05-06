@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-04-22 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-05-06 05:12+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,8 +144,8 @@ msgstr "S'està carregant..."
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Meravella (%(min)s minut)"
+msgstr[1] "Meravella (%(min)s minuts)"
 
 #: gui/gamesetup/gamesetup.js:1464
 msgid "Sorry, no description available."
@@ -351,7 +351,7 @@ msgstr "Velocitat del joc:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Victòria per meravella:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Population Cap:"
@@ -456,7 +456,7 @@ msgstr "Seleccioneu les condicions de victòria."
 #: gui/gamesetup/gamesetup.xml:(tooltip):305
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Nombre de minuts que cal mantenir la meravella per aconseguir la victòria."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select population cap."
