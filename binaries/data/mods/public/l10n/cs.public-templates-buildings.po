@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-18 09:01+0200\n"
-"PO-Revision-Date: 2016-04-19 18:50+0000\n"
+"POT-Creation-Date: 2016-04-29 09:01+0200\n"
+"PO-Revision-Date: 2016-05-01 18:46+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -375,9 +375,10 @@ msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agroí"
-msgstr "Agroí"
+msgid "Agrós"
+msgstr "Agrós"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -1097,9 +1098,8 @@ msgstr "Apadana"
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
-"Limit: 1."
-msgstr "„Satrapův poplatek“: Získejte malé množství potravy, dřevo, kámen a kov. Cvičte perské hrdiny a jejich „nesmrtelnou“ osobní stráž. Stavební limit: 1."
+"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+msgstr "„Satrapův poplatek“: Získejte malé množství potravy, dřevo, kámen a kov. Cvičte perské hrdiny a jejich „nesmrtelnou“ osobní stráž."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1161,8 +1161,8 @@ msgstr "Duvarthi Visadahyu"
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
-msgstr "Zvláštní budova.\nCvičte válečné slony a Kardacké žoldnéře. Čas stavby: 2."
+"Train War Elephants and Kardakes mercenaries."
+msgstr "Zvláštní budova.\nCvičte válečné slony a kardacké žoldnéře."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1179,8 +1179,8 @@ msgstr "Ištařina babylonská brána"
 #: simulation/templates/structures/pers_ishtar_gate.xml:27
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
-"to capture. Build Limit: 1."
-msgstr "Zvyší rychlost obnovování loajality přilehlých budov, což je bude dělat težší na dobytí. Čas stavby: 1."
+"to capture."
+msgstr "Zvyší rychlost obnovování loajality přilehlých budov, což je bude dělat těžší na dobytí."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1193,10 +1193,6 @@ msgstr "Didebani"
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
 msgstr "Taçara"
-
-#: simulation/templates/structures/pers_palace.xml:29
-msgid "Build Limit: 1."
-msgstr "Stavební omezení: 1."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1557,10 +1553,6 @@ msgstr "Liménas"
 msgid "Sītobólion"
 msgstr "Sītobólion"
 
-#: simulation/templates/structures/sele_field.xml:5
-msgid "Agrós"
-msgstr "Agrós"
-
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
 msgstr "Phrourion"
@@ -1599,8 +1591,8 @@ msgid "Naós"
 msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
-msgid "Paradise of Daphne"
-msgstr "Háj Dafné"
+msgid "Temple of Pythian Apollo"
+msgstr "Chrám pýthijského Apolóna (Apolón z Delf)"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"

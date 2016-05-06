@@ -31,7 +31,6 @@ m.HQ = function(Config)
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
 	this.supportRatio = this.Config.Economy.supportRatio;
 
-	this.lastTerritoryUpdate = -1;
 	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
 
 	this.fortStartTime = 180;	// wooden defense towers, will start at fortStartTime + towerLapseTime
@@ -95,6 +94,8 @@ m.HQ.prototype.postinit = function(gameState)
 		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
 		base.assignResourceToDropsite(gameState, ent);
 	}
+
+	this.updateTerritories(gameState);
 };
 
 // returns the sea index linking regions 1 and region 2 (supposed to be different land region)
@@ -117,6 +118,9 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
+	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
+		this.updateTerritories(gameState);
+
 	for (let evt of events.Create)
 	{
 		// Let's check if we have a building set to create a new base.
@@ -178,7 +182,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				base.anchor = ent;
 				base.anchorId = evt.newentity;
 				base.buildings.updateEnt(ent);
-				this.updateTerritories(gameState);
 				if (base.ID === this.baseManagers[1].ID)
 				{
 					// this is our first base, let us configure our starting resources
@@ -191,8 +194,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 					this.saveSpace = undefined;
 				}
 			}
-			else if (ent.hasTerritoryInfluence())
-				this.updateTerritories(gameState);
 		}
 	}
 
@@ -237,15 +238,12 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				newbase.init(gameState, "captured");
 			newbase.setAnchor(gameState, ent);
 			this.baseManagers.push(newbase);
-			this.updateTerritories(gameState);
 			newbase.assignEntity(gameState, ent);
 		}
 		else
 		{
 			// TODO should be reassigned later if a better base is captured
 			m.getBestBase(gameState, ent).assignEntity(gameState, ent);
-			if (ent.hasTerritoryInfluence())
-				this.updateTerritories(gameState);
 			if (ent.decaying())
 			{
 				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity, true))
@@ -1095,7 +1093,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
 	if (expectedGain < this.tradeManager.minimalGain ||
-		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0)))
+		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())))
 		return false;
 
 	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
@@ -1230,8 +1228,8 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 {
 	// at least one market (which have the same queue) should be build before any temple
 	if (gameState.currentPhase() < 3 || queues.economicBuilding.hasQueuedUnits() ||
-		gameState.getOwnEntitiesByClass("Temple", true).length ||
-		!gameState.getOwnEntitiesByClass("BarterMarket", true).length)
+		gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
+		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
@@ -1240,7 +1238,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 
 m.HQ.prototype.buildMarket = function(gameState, queues)
 {
-	if (gameState.getOwnEntitiesByClass("BarterMarket", true).length > 0 ||
+	if (gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() ||
 		!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
 
@@ -1279,12 +1277,12 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 m.HQ.prototype.buildFarmstead = function(gameState, queues)
 {
 	// Only build one farmstead for the time being ("DropsiteFood" does not refer to CCs)
-	if (gameState.getOwnEntitiesByClass("Farmstead", true).length > 0)
+	if (gameState.getOwnEntitiesByClass("Farmstead", true).hasEntities())
 		return;
 	// Wait to have at least one dropsite and house before the farmstead
-	if (gameState.getOwnEntitiesByClass("Storehouse", true).length == 0)
+	if (!gameState.getOwnEntitiesByClass("Storehouse", true).hasEntities())
 		return;
-	if (gameState.getOwnEntitiesByClass("House", true).length == 0)
+	if (!gameState.getOwnEntitiesByClass("House", true).hasEntities())
 		return;
 	if (queues.economicBuilding.hasQueuedUnitsWithClass("DropsiteFood"))
 		return;
@@ -1301,13 +1299,10 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 		return;
 
 	// Only build one corral for the time being
-	if (gameState.getOwnEntitiesByClass("Corral", true).length === 0)
+	if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities())
 	{
-		if (!this.canBuild(gameState, "structures/{civ}_corral"))
-			return;
-		let template = gameState.applyCiv("structures/{civ}_corral");
-		if (this.canBuild(gameState, template))
-			queues.corral.addPlan(new m.ConstructionPlan(gameState, template));
+		if (this.canBuild(gameState, "structures/{civ}_corral"))
+			queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral"));
 		return;
 	}
 
@@ -1466,7 +1461,7 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
 	if (this.numActiveBase() > 0 && gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase()))
 		return false;
-	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).length > 0 || queues.civilCentre.hasQueuedUnits())
+	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
 	let template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
 	if (!this.canBuild(gameState, template))
@@ -1536,7 +1531,7 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 		queues.militaryBuilding.hasQueuedUnits() || gameState.getOwnEntitiesByClass("Blacksmith", true).length)
 		return;
 	// build a market before the blacksmith
-	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).length)
+	if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 
 	if (this.canBuild(gameState, "structures/{civ}_blacksmith"))
@@ -1545,11 +1540,11 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 
 m.HQ.prototype.buildWonder = function(gameState, queues)
 {
-	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
-		return;
 	if (queues.wonder && queues.wonder.hasQueuedUnits())
 		return;
-	if (gameState.getOwnEntitiesByClass("Wonder", true).length > 0)
+	if (gameState.getOwnEntitiesByClass("Wonder", true).hasEntities())
+		return;
+	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
 		return;
 
 	if (!queues.wonder)
@@ -1563,7 +1558,7 @@ m.HQ.prototype.buildWonder = function(gameState, queues)
 // TODO: building placement is bad. Choice of buildings is also fairly dumb.
 m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 {
-	if (this.canBuild(gameState, "structures/{civ}_barracks") && !queues.militaryBuilding.hasQueuedUnits())
+	if (!queues.militaryBuilding.hasQueuedUnits() && this.canBuild(gameState, "structures/{civ}_barracks"))
 	{
 		var barrackNb = gameState.getOwnEntitiesByClass("Barracks", true).length;
 		// first barracks.
@@ -1786,6 +1781,12 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	if (!template || !template.available(gameState))
 		return false;
 
+	if (!gameState.findBuilder(type))
+	{
+		this.stopBuild(gameState, type, 120);
+		return false;
+	}
+
 	if (this.numActiveBase() < 1)
 	{
 		// if no base, check that we can build outside our territory
@@ -1806,13 +1807,13 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	return true;
 };
 
-m.HQ.prototype.stopBuild = function(gameState, structure)
+m.HQ.prototype.stopBuild = function(gameState, structure, time=180)
 {
 	let type = gameState.applyCiv(structure);
 	if (this.stopBuilding.has(type))
-		this.stopBuilding.set(type, Math.max(this.stopBuilding.get(type), gameState.ai.elapsedTime + 180));
+		this.stopBuilding.set(type, Math.max(this.stopBuilding.get(type), gameState.ai.elapsedTime + time));
 	else
-		this.stopBuilding.set(type, gameState.ai.elapsedTime + 180);
+		this.stopBuilding.set(type, gameState.ai.elapsedTime + time);
 };
 
 m.HQ.prototype.restartBuild = function(gameState, structure)
@@ -1824,11 +1825,6 @@ m.HQ.prototype.restartBuild = function(gameState, structure)
 
 m.HQ.prototype.updateTerritories = function(gameState)
 {
-	// TODO may-be update also when territory decreases. For the moment, only increases are taking into account
-	if (this.lastTerritoryUpdate == gameState.ai.playedTurn)
-		return;
-	this.lastTerritoryUpdate = gameState.ai.playedTurn;
-
 	var passabilityMap = gameState.getMap();
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
@@ -2066,10 +2062,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			phaseName = gameState.getTemplate(gameState.cityPhase()).name();
 
 		m.chatNewPhase(gameState, phaseName, false);
-		this.updateTerritories(gameState);
 	}
-	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)
-		this.updateTerritories(gameState);
 
 	if (gameState.getGameType() === "wonder")
 		this.buildWonder(gameState, queues);
@@ -2145,7 +2138,6 @@ m.HQ.prototype.Serialize = function()
 		"lastFailedGather": this.lastFailedGather,
 		"supportRatio": this.supportRatio,
 		"targetNumWorkers": this.targetNumWorkers,
-		"lastTerritoryUpdate": this.lastTerritoryUpdate,
 		"stopBuilding": this.stopBuilding,
 		"fortStartTime": this.fortStartTime,
 		"towerStartTime": this.towerStartTime,

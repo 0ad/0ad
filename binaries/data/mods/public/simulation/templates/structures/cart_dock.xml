@@ -19,6 +19,9 @@
     <History>The Carthaginians were famous for their sea trade. Carthage itself had an entire harbor dedicated to nothing more than commercial sea trade.</History>
     <Tooltip>Construct fishing boats to gather meat and merchant ships to trade with other docks.</Tooltip>
   </Identity>
+  <Market>
+    <InternationalBonus op="add">0.1</InternationalBonus>
+  </Market>
   <Obstruction>
     <Static width="30.0" depth="19.0"/>
   </Obstruction>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -698,6 +698,26 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		// to reduce the search space
 	}
 
+	// Clip out vertices that are inside an edgeSquare (i.e. trivially unreachable)
+	for (size_t i = 0; i < edgeSquares.size(); ++i)
+	{
+		// If the start point is inside the square, ignore it
+		if (start.p.X >= edgeSquares[i].p0.X &&
+		    start.p.Y >= edgeSquares[i].p0.Y &&
+		    start.p.X <= edgeSquares[i].p1.X &&
+		    start.p.Y <= edgeSquares[i].p1.Y)
+			continue;
+
+		// Remove every non-start/goal vertex that is inside an edgeSquare;
+		// since remove() would be inefficient, just mark it as closed instead.
+		for (size_t j = 2; j < vertexes.size(); ++j)
+			if (vertexes[j].p.X >= edgeSquares[i].p0.X &&
+			    vertexes[j].p.Y >= edgeSquares[i].p0.Y &&
+			    vertexes[j].p.X <= edgeSquares[i].p1.X &&
+			    vertexes[j].p.Y <= edgeSquares[i].p1.Y)
+				vertexes[j].status = Vertex::CLOSED;
+	}
+
 	ENSURE(vertexes.size() < 65536); // we store array indexes as u16
 
 	// Render the debug overlay
@@ -806,9 +826,12 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 			break;
 		}
 
-		// Sort the edges so ones nearer this vertex are checked first by CheckVisibility,
-		// since they're more likely to block the rays
-		std::sort(edgeSquares.begin(), edgeSquares.end(), SquareSort(vertexes[curr.id].p));
+		// Sort the edges by distance in order to check those first that have a high probability of blocking a ray.
+		// The heuristic based on distance is very rough, especially for squares that are further away;
+		// we're also only really interested in the closest squares since they are the only ones that block a lot of rays.
+		// Thus we only do a partial sort; the threshold is just a somewhat reasonable value.
+		if (edgeSquares.size() > 8)
+			std::partial_sort(edgeSquares.begin(), edgeSquares.begin() + 8, edgeSquares.end(), SquareSort(vertexes[curr.id].p));
 
 		std::vector<Edge> edgesUnaligned;
 		std::vector<EdgeAA> edgesLeft;

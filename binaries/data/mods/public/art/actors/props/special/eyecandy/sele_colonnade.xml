@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1">
+      <mesh>structural/sele_colonnade.dae</mesh>
+      <textures>
+        <texture file="structural/Sele_struct_2.png" name="baseTex"/>
+        <texture file="structural/Sele_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
+        <texture file="structural/ao/sele_colonnade_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

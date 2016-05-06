@@ -33,6 +33,11 @@ var g_Disconnected = false;
 var g_IsObserver = false;
 
 /**
+ * True if the current user has rejoined (or joined the game after it started).
+ */
+var g_HasRejoined = false;
+
+/**
  * The playerID selected in the change perspective tool.
  */
 var g_ViewedPlayer = Engine.GetPlayerID();
@@ -218,6 +223,7 @@ function init(initData, hotloadData)
 		g_PlayerAssignments = initData.playerAssignments;
 		g_MatchID = initData.attribs.matchID;
 		g_ReplaySelectionData = initData.replaySelectionData;
+		g_HasRejoined = initData.isRejoining;
 
 		// Cache the player data
 		// (This may be updated at runtime by handleNetMessage)
@@ -478,7 +484,8 @@ function leaveGame(willRejoin)
 	if (!g_IsReplay)
 		Engine.SaveReplayMetadata(JSON.stringify(summary));
 
-	summary.replayDirectory = Engine.GetCurrentReplayDirectory();
+	if (!g_HasRejoined)
+		summary.replayDirectory = Engine.GetCurrentReplayDirectory();
 	summary.replaySelectionData = g_ReplaySelectionData;
 
 	Engine.EndGame();

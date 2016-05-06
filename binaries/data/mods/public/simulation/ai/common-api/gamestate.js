@@ -701,14 +701,17 @@ m.GameState.prototype.findTrainers = function(template)
 };
 
 /**
- * Find units that are capable of constructing the given building type.
+ * Get any unit that is capable of constructing the given building type.
  */
-m.GameState.prototype.findBuilders = function(template)
+m.GameState.prototype.findBuilder = function(template)
 {
-	return this.getOwnUnits().filter(function(ent) {
+	for (let ent of this.getOwnUnits().values())
+	{
 		let buildable = ent.buildableEntities();
-		return buildable && buildable.indexOf(template) != -1;
-	});
+		if (buildable && buildable.indexOf(template) !== -1)
+			return ent;
+	}
+	return undefined;
 };
 
 // Return true if one of the buildings is capable of researching the given tech

@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers_cavalry_javelinist_b_trireme">
-  <Armour>
-    <Hack>4</Hack>
-    <Pierce>2</Pierce>
-    <Crush>4</Crush>
-  </Armour>
-  <Attack>
-    <Ranged>
-      <MaxRange>44</MaxRange>
-      <Spread>1.3</Spread>
-    </Ranged>
-  </Attack>
-  <Health>
-    <Max>150</Max>
-  </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
     <Entity>units/pers_cavalry_javelinist_e_trireme</Entity>
   </Promotion>
-  <ResourceGatherer>
-    <BaseSpeed>0.75</BaseSpeed>
-  </ResourceGatherer>
   <VisualActor>
     <Actor>units/persians/cavalry_javelinist_a.xml</Actor>
   </VisualActor>

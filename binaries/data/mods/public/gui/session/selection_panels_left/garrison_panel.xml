@@ -8,4 +8,12 @@
 			</object>
 		</repeat>
 	</object>
+	<!-- Health bar of garrisoned units -->
+	<object size="-14 1 -7 100%-49" type="image" name="healthGarrison" tooltip_style="sessionToolTip">
+		<translatableAttribute id="tooltip">Hitpoints</translatableAttribute>
+		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+		<object type="image" sprite="healthBackground" ghost="true"/>
+		<object type="image" sprite="healthForeground" ghost="true" name="healthBarGarrison"/>
+		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
+	</object>
 </object>

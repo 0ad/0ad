@@ -34,6 +34,7 @@
   </Loot>
   <Market>
     <TradeType>land</TradeType>
+    <InternationalBonus>0.2</InternationalBonus>
   </Market>
   <Obstruction>
     <Static width="30.0" depth="26.0"/>
@@ -59,6 +60,7 @@
       trade_convoys_armor
       trade_gain_01
       trade_gain_02
+      trade_commercial_treaty
     </Technologies>
     <Entities datatype="tokens">
       units/{civ}_support_trader

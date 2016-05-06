@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:01+0100\n"
-"PO-Revision-Date: 2016-03-19 08:43+0000\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-22 08:18+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -579,43 +579,57 @@ msgstr "%(name)sは不適合な地形に建設できません。"
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
-msgid "ally"
-msgstr "同盟国領"
-
-#. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
-msgctxt "Territory type"
 msgid "own"
 msgstr "自国領"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:190
+#: simulation/components/BuildRestrictions.js:187
+msgctxt "Territory type"
+msgid "unconnected own"
+msgstr ""
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:193
+msgctxt "Territory type"
+msgid "allied"
+msgstr ""
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:196
+msgctxt "Territory type"
+msgid "unconnected allied"
+msgstr ""
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "中立地帯"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:209
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "敵領"
 
-#: simulation/components/BuildRestrictions.js:199
+#: simulation/components/BuildRestrictions.js:214
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)sは%(territoryType)sに建設できません。建設できるのは%(validTerritories)sです。"
 
-#: simulation/components/BuildRestrictions.js:238
+#: simulation/components/BuildRestrictions.js:253
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)sは適切な岸辺に建設しなければいけません。"
 
-#: simulation/components/BuildRestrictions.js:262
+#: simulation/components/BuildRestrictions.js:277
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -625,7 +639,7 @@ msgid_plural ""
 "away"
 msgstr[0] "%(name)sが%(category)sに近すぎます。少なくとも%(distance)sメートル離さなければなりません。"
 
-#: simulation/components/BuildRestrictions.js:284
+#: simulation/components/BuildRestrictions.js:299
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -635,28 +649,28 @@ msgstr[0] "%(name)sが%(category)sから離れすぎています。%(distance)s�
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:324
+#: simulation/components/BuildRestrictions.js:339
 msgctxt "Territory type list"
 msgid "own"
 msgstr "自国領"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:326
+#: simulation/components/BuildRestrictions.js:341
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "同盟国領"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:328
+#: simulation/components/BuildRestrictions.js:343
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "中立地帯"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:330
+#: simulation/components/BuildRestrictions.js:345
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵領"
@@ -728,11 +742,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:366
+#: simulation/components/ProductionQueue.js:373
 msgid "The production queue is full."
 msgstr "生産キューが満杯です。"
 
-#: simulation/components/ProductionQueue.js:743
+#: simulation/components/ProductionQueue.js:750
 msgid "Can't find free space to spawn trained units"
 msgstr "養成したユニットを配置する場所がありません"
 

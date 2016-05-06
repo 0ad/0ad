@@ -415,14 +415,14 @@ public:
 
 		serialize.Bool("global visibility update", m_GlobalVisibilityUpdate);
 		SerializeVector<SerializeU8_Unbounded>()(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
-		SerializeVector<SerializeU16_Unbounded>()(serialize, "dirty visibility", m_DirtyVisibility);
+		SerializeRepetitiveVector<SerializeU16_Unbounded>()(serialize, "dirty visibility", m_DirtyVisibility);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "modified entities", m_ModifiedEntities);
 
 		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosTiles
 		// since they can be recomputed from the entity data when deserializing;
 		// m_LosState must be serialized since it depends on the history of exploration
 
-		SerializeVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
+		SerializeRepetitiveVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
 		SerializeVector<SerializeU16_Unbounded>()(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
 	}

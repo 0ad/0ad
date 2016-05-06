@@ -11,11 +11,12 @@
 # Mysterelee <8161525@qq.com>, 2014
 # Tong Hui <tonghuix@gmail.com>, 2015
 # liulitchi <xingzuo88@qq.com>, 2014
+# 艳伟 车 <313049312@qq.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-18 09:01+0200\n"
-"PO-Revision-Date: 2016-04-18 09:51+0000\n"
+"POT-Creation-Date: 2016-04-29 09:01+0200\n"
+"PO-Revision-Date: 2016-04-29 09:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -48,15 +49,15 @@ msgstr "市政中心"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr " 柱廊"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "希腊皇家柱廊"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "人口上限 +10。招募特殊单位。"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -380,9 +381,10 @@ msgstr "Sitobólion"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agroí"
-msgstr "Agroí"
+msgid "Agrós"
+msgstr "阿尔戈斯"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -524,7 +526,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "将荣耀归于您的文明，并在您的帝国里加入大片的土地。可驻守最多30个单位以极快的速度治疗他们。"
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -1102,9 +1104,8 @@ msgstr "阿波陀那"
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
-"Limit: 1."
-msgstr "「进献总督」：以缓慢的速度增加食物、木头、石头以及金属资源。训练波斯英雄及他们的「长生军」英雄。建造限制：1。"
+"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+msgstr "「总督进献」：以缓慢的速度增加食物、木头、石头以及金属资源。训练波斯英雄及他们的「长生军」英雄。"
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1157,17 +1158,17 @@ msgstr "训练精英骑兵并建造攻城槌。"
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Persian Hall"
-msgstr ""
+msgstr "波斯大厅"
 
 #: simulation/templates/structures/pers_hall.xml:26
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
-msgstr ""
+"Train War Elephants and Kardakes mercenaries."
+msgstr "特殊建筑物。\n训练战象或Kardakes佣兵。"
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1184,8 +1185,8 @@ msgstr "巴比伦的伊什塔尔城门"
 #: simulation/templates/structures/pers_ishtar_gate.xml:27
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
-"to capture. Build Limit: 1."
-msgstr ""
+"to capture."
+msgstr "增加附近建筑物的忠诚点数再生速率，让它们更难以被捕捉。"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1197,11 +1198,7 @@ msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
-msgstr ""
-
-#: simulation/templates/structures/pers_palace.xml:29
-msgid "Build Limit: 1."
-msgstr "建造限制：1"
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1562,10 +1559,6 @@ msgstr "Liménas"
 msgid "Sītobólion"
 msgstr "粮仓"
 
-#: simulation/templates/structures/sele_field.xml:5
-msgid "Agrós"
-msgstr "阿尔戈斯"
-
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
 msgstr "Phrourion"
@@ -1604,8 +1597,8 @@ msgid "Naós"
 msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
-msgid "Paradise of Daphne"
-msgstr "达芙妮的天堂"
+msgid "Temple of Pythian Apollo"
+msgstr ""
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"

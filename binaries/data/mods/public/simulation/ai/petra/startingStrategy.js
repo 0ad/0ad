@@ -37,7 +37,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 
 	// If no base yet, check if we can construct one. If not, dispatch our units to possible tasks/attacks
 	this.canBuildUnits = true;
-	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
+	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).hasEntities())
 	{
 		let template = gameState.applyCiv("structures/{civ}_civil_centre");
 		if (gameState.isDisabledTemplates(template) || !gameState.getTemplate(template).available(gameState))
@@ -253,7 +253,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 	template = gameState.getTemplate(template);
 	var goal = "civil_centre";
 	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
-	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.length)
+	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.hasEntities())
 	{
 		// not enough resource to build a cc, try with a dock to accumulate resources if none yet
 		if (gameState.ai.queues.dock.hasQueuedUnits())
@@ -502,7 +502,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 
 	// immediatly build a wood dropsite if possible.
 	var template = gameState.applyCiv("structures/{civ}_storehouse");
-	if (gameState.getOwnEntitiesByClass("Storehouse", true).length === 0 && this.canBuild(gameState, template))
+	if (!gameState.getOwnEntitiesByClass("Storehouse", true).hasEntities() && this.canBuild(gameState, template))
 	{
 		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40)
@@ -523,7 +523,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	if (this.needCorral)
 	{
 		template = gameState.applyCiv("structures/{civ}_corral");
-		if (gameState.getOwnEntitiesByClass("Corral", true).length === 0 && this.canBuild(gameState, template))
+		if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities() && this.canBuild(gameState, template))
 			gameState.ai.queues.corral.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }));
 	}
 };

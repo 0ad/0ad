@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -121,7 +121,7 @@ private:
 
 	u32 m_NextRequestID;
 
-	typedef std::map<u32, shared_ptr<CNetFileReceiveTask> > FileReceiveTasksMap;
+	typedef std::map<u32, shared_ptr<CNetFileReceiveTask>> FileReceiveTasksMap;
 	FileReceiveTasksMap m_FileReceiveTasks;
 
 	typedef std::map<u32, CNetFileSendTask> FileSendTasksMap;

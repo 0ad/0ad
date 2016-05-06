@@ -1,7 +1,7 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Unit"],
+	"affects": ["Soldier", "Siege"],
 	"affectedPlayers": ["Ally"],
 	"modifications": [
 	{ "value": "Attack/Ranged/Pierce", "add": 2 },

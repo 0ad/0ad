@@ -687,45 +687,6 @@ function addProps(constraint, size, deviation, fill)
 }
 
 /**
- * Create rivers.
- */
-function addRivers(constraint, size, deviation, fill)
-{
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
-	var count = 5;
-	var minSize = scaleByMapSize(15, 15);
-	var maxSize = scaleByMapSize(15, 15);
-	var elevation = -2;
-	var spread = scaleByMapSize(5, 5);
-
-	for (var i = 0; i < count; ++i)
-	{
-		var offset = getRandomDeviation(size, deviation);
-
-		var startAngle = randFloat(0, 2 * PI);
-		var endAngle = startAngle + randFloat(PI * 0.5, PI * 1.5);
-
-		var startX = g_MapInfo.centerOfMap + Math.floor(g_MapInfo.centerOfMap * Math.cos(startAngle));
-		var startZ = g_MapInfo.centerOfMap + Math.floor(g_MapInfo.centerOfMap * Math.sin(startAngle));
-
-		var endX = g_MapInfo.centerOfMap + Math.floor(g_MapInfo.centerOfMap * Math.cos(endAngle));
-		var endZ = g_MapInfo.centerOfMap + Math.floor(g_MapInfo.centerOfMap * Math.sin(endAngle));
-
-		var pMinSize = Math.floor(minSize * offset);
-		var pMaxSize = Math.floor(maxSize * offset);
-		var pSpread = Math.floor(spread * offset);
-
-		var placer = new PathPlacer(startX, startZ, endX, endZ, 12, 0.25, 1, 0.05, 0.3);
-		var terrainPainter = new LayeredPainter([g_Terrains.water, g_Terrains.shore], [2]);
-		var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, elevation, 2);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(g_TileClasses.water)], constraint);
-	}
-}
-
-/**
  * Create valleys.
  */
 function addValleys(constraint, size, deviation, fill)

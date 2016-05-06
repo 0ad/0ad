@@ -34,7 +34,7 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
-#include "simulation2/components/ICmpTechnologyTemplateManager.h"
+#include "simulation2/components/ICmpDataTemplateManager.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/serialization/DebugSerializer.h"
@@ -609,6 +609,9 @@ public:
 
 	void SerializeState(ISerializer& serializer)
 	{
+		if (m_Players.empty())
+			return;
+
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
 
@@ -665,15 +668,18 @@ public:
 
 	void Deserialize(std::istream& stream, u32 numAis)
 	{
+		m_PlayerMetadata.clear();
+		m_Players.clear();
+
+		if (numAis == 0)
+			return;
+
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
 
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
 		CStdDeserializer deserializer(*m_ScriptInterface, stream);
-
-		m_PlayerMetadata.clear();
-		m_Players.clear();
 
 		std::string rngString;
 		std::stringstream rngStream;
@@ -979,12 +985,12 @@ public:
 		JSAutoRequest rq(cx);
 
 		// load the technology templates
-		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSystemEntity());
-		ENSURE(cmpTechTemplateManager);
+		CmpPtr<ICmpDataTemplateManager> cmpDataTemplateManager(GetSystemEntity());
+		ENSURE(cmpDataTemplateManager);
 
 		// Get the game state from AIInterface
 		JS::RootedValue techTemplates(cx);
-		cmpTechTemplateManager->GetAllTechs(&techTemplates);
+		cmpDataTemplateManager->GetAllTechs(&techTemplates);
 
 		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
 		m_Worker.TryLoadSharedComponent(true);

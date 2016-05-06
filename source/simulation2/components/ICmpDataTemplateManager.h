@@ -15,25 +15,24 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPDATATEMPLATEMANAGER
+#define INCLUDED_ICMPDATATEMPLATEMANAGER
 
-#include "ICmpTechnologyTemplateManager.h"
+#include "simulation2/system/Interface.h"
 
-#include "simulation2/system/InterfaceScripted.h"
-#include "simulation2/scripting/ScriptComponent.h"
+#include "maths/Fixed.h"
 
-BEGIN_INTERFACE_WRAPPER(TechnologyTemplateManager)
-END_INTERFACE_WRAPPER(TechnologyTemplateManager)
-
-class CCmpTechnologyTemplateManagerScripted : public ICmpTechnologyTemplateManager
+/**
+ * Data template manager interface.
+ * (This interface only includes the functions needed by native code for accessing
+ *	json template data, the associated logic is handled in scripts)
+ */
+class ICmpDataTemplateManager : public IComponent
 {
 public:
-	DEFAULT_SCRIPT_WRAPPER(TechnologyTemplateManagerScripted)
+	virtual void GetAllTechs(JS::MutableHandleValue ret) = 0;
 
-	virtual void GetAllTechs(JS::MutableHandleValue ret)
-	{
-		return m_Script.CallRef("GetAllTechs", ret);
-	}
+	DECLARE_INTERFACE_TYPE(DataTemplateManager)
 };
 
-REGISTER_COMPONENT_SCRIPT_WRAPPER(TechnologyTemplateManagerScripted)
+#endif // INCLUDED_ICMPDATATEMPLATEMANAGER

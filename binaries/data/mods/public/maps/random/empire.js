@@ -1,4 +1,6 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmgen2");
+
 InitMap();
 
 randomizeBiome();

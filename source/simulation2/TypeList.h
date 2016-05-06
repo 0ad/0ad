@@ -160,8 +160,8 @@ COMPONENT(SoundManager)
 INTERFACE(ValueModificationManager)
 COMPONENT(ValueModificationManagerScripted)
 
-INTERFACE(TechnologyTemplateManager)
-COMPONENT(TechnologyTemplateManagerScripted)
+INTERFACE(DataTemplateManager)
+COMPONENT(DataTemplateManagerScripted)
 
 INTERFACE(Terrain)
 COMPONENT(Terrain)

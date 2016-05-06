@@ -48,7 +48,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 			if (!item.metadata || !item.metadata.role || item.metadata.role !== "trader")
 				return;
 			numTraders += item.count;
-			if (item.sea !== undefined)
+			if (item.metadata.sea !== undefined)
 				numSeaTraders += item.count;
 			else
 				numLandTraders += item.count;

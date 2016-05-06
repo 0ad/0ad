@@ -138,6 +138,11 @@ m.EntityCollection.prototype.forEach = function(callback)
 	return this;
 };
 
+m.EntityCollection.prototype.hasEntities = function()
+{
+	return this._entities.size !== 0;
+};
+
 m.EntityCollection.prototype.move = function(x, z, queued)
 {
 	queued = queued || false;

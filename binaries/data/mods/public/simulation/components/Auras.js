@@ -8,14 +8,14 @@ Auras.prototype.Schema =
 
 Auras.prototype.Init = function()
 {
-	let cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	this.auras = {};
 	this.affectedPlayers = {};
 	let auraNames = this.GetAuraNames();
 	for (let name of auraNames)
 	{
 		this.affectedPlayers[name] = [];
-		this.auras[name] = cmpTechnologyTemplateManager.GetAuraTemplate(name);
+		this.auras[name] = cmpDataTemplateManager.GetAuraTemplate(name);
 	}
 	// In case of autogarrisoning, this component can be called before ownership is set.
 	// So it needs to be completely initialised from the start.
@@ -87,7 +87,9 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	var affectedPlayers = this.auras[name].affectedPlayers || ["Player"];
 	this.affectedPlayers[name] = [];
 
-	var cmpPlayer = QueryOwnerInterface(this.entity);
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return;
 
@@ -386,15 +388,17 @@ Auras.prototype.OnOwnershipChanged = function(msg)
 
 Auras.prototype.OnDiplomacyChanged = function(msg)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (cmpPlayer && (cmpPlayer.GetPlayerID() == msg.player || cmpPlayer.GetPlayerID() == msg.otherPlayer) ||
+	   IsOwnedByPlayer(msg.player, this.entity) ||
+	   IsOwnedByPlayer(msg.otherPlayer, this.entity))
 		this.Clean();
 };
 
 Auras.prototype.OnGlobalResearchFinished = function(msg)
 {
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() != msg.player)
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if ((!cmpPlayer || cmpPlayer.GetPlayerID() != msg.player) && !IsOwnedByPlayer(msg.player, this.entity))
 		return;
 	let auraNames = this.GetAuraNames();
 	let needsClean = false;

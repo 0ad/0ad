@@ -5,12 +5,12 @@
 # Translators:
 # GunChleoc, 2015-2016
 # GunChleoc, 2014-2015
-# GunChleoc, 2014-2015
+# GunChleoc, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2016-03-27 12:50+0000\n"
+"POT-Creation-Date: 2016-04-22 09:01+0200\n"
+"PO-Revision-Date: 2016-04-22 08:31+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -578,43 +578,57 @@ msgstr "Cha ghabh %(name)s a thogail air cruth-tìre mì-dhligheach"
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
-msgid "ally"
-msgstr "aig caidreabhach"
-
-#. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
-msgctxt "Territory type"
 msgid "own"
 msgstr "agad fhèin"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:190
+#: simulation/components/BuildRestrictions.js:187
+msgctxt "Territory type"
+msgid "unconnected own"
+msgstr "agad fhèin nach eil ceangailte"
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:193
+msgctxt "Territory type"
+msgid "allied"
+msgstr "caidreabhach"
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:196
+msgctxt "Territory type"
+msgid "unconnected allied"
+msgstr "caidreabhach nach eil ceangailte"
+
+#. Translation: territoryType being displayed in a translated sentence in the
+#. form: "House cannot be built in %(territoryType)s territory.".
+#: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neo-phàirteach"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:209
 msgctxt "Territory type"
 msgid "enemy"
-msgstr "aig an nàmhaid"
+msgstr "an nàmhad"
 
-#: simulation/components/BuildRestrictions.js:199
+#: simulation/components/BuildRestrictions.js:214
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "Cha ghabh %(name)s a thogail air ranntair %(territoryType)s. Ranntairean dligheach: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:238
+#: simulation/components/BuildRestrictions.js:253
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "Feumaidh tu %(name)s a thogail air oirthir dligheach"
 
-#: simulation/components/BuildRestrictions.js:262
+#: simulation/components/BuildRestrictions.js:277
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -627,7 +641,7 @@ msgstr[1] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)
 msgstr[2] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatairean air falbh air a’ char as lugha"
 msgstr[3] "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatair air falbh air a’ char as lugha"
 
-#: simulation/components/BuildRestrictions.js:284
+#: simulation/components/BuildRestrictions.js:299
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -640,28 +654,28 @@ msgstr[3] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am br
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:324
+#: simulation/components/BuildRestrictions.js:339
 msgctxt "Territory type list"
 msgid "own"
 msgstr "agad fhèin"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:326
+#: simulation/components/BuildRestrictions.js:341
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aig caidreabhach"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:328
+#: simulation/components/BuildRestrictions.js:343
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neo-phàirteach"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:330
+#: simulation/components/BuildRestrictions.js:345
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "aig an nàmhaid"
@@ -733,11 +747,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Tha stòras a dhìth - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:366
+#: simulation/components/ProductionQueue.js:373
 msgid "The production queue is full."
 msgstr "Tha an ciutha làn."
 
-#: simulation/components/ProductionQueue.js:743
+#: simulation/components/ProductionQueue.js:750
 msgid "Can't find free space to spawn trained units"
 msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an trèanadh a shìoladh"
 

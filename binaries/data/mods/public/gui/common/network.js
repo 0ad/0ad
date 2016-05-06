@@ -50,7 +50,7 @@ function getDisconnectReason(id)
 {
 	switch (id)
 	{
-	case 0: return translate("Unknown reason");
+	case 0: return translateWithContext("network disconnect", "Unknown reason");
 	case 1: return translate("The host has ended the game");
 	case 2: return translate("Incorrect network protocol version");
 	case 3: return translate("Game is loading, please try later");
@@ -172,13 +172,9 @@ function getNetworkWarnings()
 {
 	// Remove outdated messages
 	for (let guid in g_NetworkWarnings)
-	{
-		if (Date.now() > g_NetworkWarnings[guid].added + g_NetworkWarningTimeout)
+		if (Date.now() > g_NetworkWarnings[guid].added + g_NetworkWarningTimeout ||
+		    guid != "server" && !g_PlayerAssignments[guid])
 			delete g_NetworkWarnings[guid];
-
-		if (guid != "server" && !g_PlayerAssignments[guid])
-			delete g_NetworkWarnings[guid];
-	}
 
 	// Show local messages first
 	let guids = Object.keys(g_NetworkWarnings).sort(guid => guid != "server");

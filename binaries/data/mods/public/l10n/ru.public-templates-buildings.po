@@ -5,24 +5,32 @@
 # Translators:
 # Alex <yanebotan@ngs.ru>, 2015
 # delpfine <delpfine2012@gmail.com>, 2015
+# delpfine <delpfine2012@gmail.com>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
 # Igor Kustov, 2014
+# Igor Kustov, 2014
 # Ivan, 2014
+# Ivan, 2014
+# Konstantin, 2014
 # Konstantin, 2014
 # Peter Seregin <peter01@myself.com>, 2015
 # sad2shade <sad.2.shade@gmail.com>, 2016
+# sad2shade <sad.2.shade@gmail.com>, 2016
 # vadim s. sabinich <vadim@sabini.ch>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
+# webslavic <webslavic@yahoo.com>, 2016
+# webslavic <webslavic@yahoo.com>, 2016
+# Woratiklis, 2015
 # Woratiklis, 2015
 # Виталий Орехов <7opex0@mail.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-18 09:01+0200\n"
-"PO-Revision-Date: 2016-04-18 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-04-29 09:01+0200\n"
+"PO-Revision-Date: 2016-04-30 19:32+0000\n"
+"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +62,7 @@ msgstr "Ратуша"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Стоа"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
@@ -134,7 +142,7 @@ msgstr "Оборонительная башня"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Постройте в нейтральной или собственной территории для разведки карты. Медленно переходит к Gaia на нейтральной территории."
+msgstr "Постройте в нейтральной или собственной территории для разведки карты. Медленно переходит к Гее на нейтральной территории."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -386,9 +394,10 @@ msgstr "Ситоболион"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
+#: simulation/templates/structures/sele_field.xml:5
 #: simulation/templates/structures/spart_field.xml:5
-msgid "Agroí"
-msgstr "Агрои"
+msgid "Agrós"
+msgstr "Агрос"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíkhisma"
@@ -530,7 +539,7 @@ msgstr "Святилище Парфенон"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Приносит славу вашей цивилизации славу, а империи - много новых территорий.Гарнизон (до 30 юнитов) исцеляется необычайно быстро."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -1108,9 +1117,8 @@ msgstr "Ападана"
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
-"resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
-"Limit: 1."
-msgstr "\"Сатрапская дань\": даёт еду, древесину, камни и металлы. Обучает персидских героев и их \"бессмертных\" телохранителей. Лимит зданий: 1."
+"resources. Train Persian heroes and their \"Immortals\" bodyguards."
+msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1172,7 +1180,7 @@ msgstr ""
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
-"Train War Elephants and Kardakes mercenaries. Build Limit: 2."
+"Train War Elephants and Kardakes mercenaries."
 msgstr ""
 
 #: simulation/templates/structures/pers_house.xml:22
@@ -1190,7 +1198,7 @@ msgstr "Ворота Иштар в Вавилоне"
 #: simulation/templates/structures/pers_ishtar_gate.xml:27
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
-"to capture. Build Limit: 1."
+"to capture."
 msgstr ""
 
 #: simulation/templates/structures/pers_market.xml:12
@@ -1204,10 +1212,6 @@ msgstr "Дидебани"
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
 msgstr ""
-
-#: simulation/templates/structures/pers_palace.xml:29
-msgid "Build Limit: 1."
-msgstr "Максимальное количество: 1."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1291,7 +1295,7 @@ msgstr "хвт"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Увеличивает предел населения. Поскольку египетские дома сделаны из грязевых кирпичей, они ничего не стоят, но очень плохи."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1568,10 +1572,6 @@ msgstr "Лименас"
 msgid "Sītobólion"
 msgstr "Ситоболион"
 
-#: simulation/templates/structures/sele_field.xml:5
-msgid "Agrós"
-msgstr "Агрос"
-
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
 msgstr "Фрурион"
@@ -1610,8 +1610,8 @@ msgid "Naós"
 msgstr "Наос"
 
 #: simulation/templates/structures/sele_wonder.xml:12
-msgid "Paradise of Daphne"
-msgstr "Рай на Дафне"
+msgid "Temple of Pythian Apollo"
+msgstr ""
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"

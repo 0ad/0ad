@@ -934,6 +934,7 @@ function sanitizePlayerData(playerData)
 	playerData.forEach((pData, index) => {
 		pData.Color = pData.Color || g_PlayerColors[index];
 		pData.Civ = pData.Civ || "random";
+		pData.AI = pData.AI || "";
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults
@@ -1591,7 +1592,14 @@ function updatePlayerList()
 			{
 				// Check for a valid AI
 				if (aiId in aiAssignments)
+				{
 					selection = aiAssignments[aiId];
+					configButton.hidden = false;
+					configButton.onpress = function()
+					{
+						openAIConfig(playerSlot);
+					};
+				}
 				else
 				{
 					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
@@ -1601,12 +1609,6 @@ function updatePlayerList()
 
 			if (!selection)
 				selection = noAssignment;
-
-			// Since no human is assigned, show the AI config button
-			configButton.hidden = false;
-			configButton.onpress = function() {
-				openAIConfig(playerSlot);
-			};
 		}
 		// There was a human, so make sure we don't have any AI left
 		// over in their slot, if we're in charge of the attributes
@@ -1686,6 +1688,13 @@ function swapPlayers(guid, newSlot)
 
 		// Transfer the AI from the target slot to the current slot.
 		g_GameAttributes.settings.PlayerData[playerID - 1].AI = g_GameAttributes.settings.PlayerData[newSlot].AI;
+
+		// Swap civilizations if they aren't fixed
+		if (g_GameAttributes.mapType != "scenario")
+		{
+			[g_GameAttributes.settings.PlayerData[playerID - 1].Civ, g_GameAttributes.settings.PlayerData[newSlot].Civ] =
+				[g_GameAttributes.settings.PlayerData[newSlot].Civ, g_GameAttributes.settings.PlayerData[playerID - 1].Civ];
+		}
 	}
 
 	if (g_IsNetworked)

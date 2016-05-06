@@ -25,7 +25,7 @@ AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 	GetEntityFlagMask: function(identifier) { },
 });
 
-AddMock(SYSTEM_ENTITY, IID_TechnologyTemplateManager, {
+AddMock(SYSTEM_ENTITY, IID_DataTemplateManager, {
 	GetAuraTemplate: function(name) {
 		if (name == "test1")
 			return {

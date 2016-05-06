@@ -1,7 +1,7 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Unit"],
+	"affects": ["Human"],
 	"modifications": [
 	{ "value": "Health/RegenRate", "add": 1 }
 	],

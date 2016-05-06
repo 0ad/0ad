@@ -11,7 +11,7 @@
 					/>
 					<repeat count="4" var="r">
 						<object name="phase[k]_struct[s]_row[r]">
-							<repeat count="16" var="p">
+							<repeat count="24" var="p">
 								<object type="image" style="ProdBox" name="phase[k]_struct[s]_row[r]_prod[p]"/>
 							</repeat>
 						</object>

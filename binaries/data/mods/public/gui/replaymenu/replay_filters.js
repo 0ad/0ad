@@ -33,6 +33,9 @@ function initFilters(filters)
 	initMapNameFilter(filters && filters.mapName);
 	initPopCapFilter(filters && filters.popCap);
 	initDurationFilter(filters && filters.duration);
+	initSingleplayerFilter(filters && filters.singleplayer);
+	initVictoryConditionFilter(filters && filters.victoryCondition);
+	initRatedGamesFilter(filters && filters.ratedGames);
 }
 
 /**
@@ -133,6 +136,45 @@ function initDurationFilter(duration)
 		durationFilter.selected = 0;
 }
 
+function initSingleplayerFilter(singleplayer)
+{
+	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
+	singleplayerFilter.list = [translate("Single- and multiplayer"), translate("Single Player"), translate("Multiplayer")];
+	singleplayerFilter.list_data = ["", "Singleplayer", "Multiplayer"];
+
+	if (singleplayer)
+		singleplayerFilter.selected = singleplayerFilter.list_data.indexOf(singleplayer);
+
+	if (singleplayerFilter.selected < 0 || singleplayerFilter.selected >= singleplayerFilter.list.length)
+		singleplayerFilter.selected = 0;
+}
+
+function initVictoryConditionFilter(victoryCondition)
+{
+	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
+	victoryConditionFilter.list = [translateWithContext("victory condition", "Any gametype")].concat(g_VictoryConditions.map(victoryCondition => translateVictoryCondition(victoryCondition)));
+	victoryConditionFilter.list_data = [""].concat(g_VictoryConditions);
+
+	if (victoryCondition)
+		victoryConditionFilter.selected = victoryConditionFilter.list_data.indexOf(victoryCondition);
+
+	if (victoryConditionFilter.selected < 0 || victoryConditionFilter.selected >= victoryConditionFilter.list.length)
+		victoryConditionFilter.selected = 0;
+}
+
+function initRatedGamesFilter(ratedGames)
+{
+	let ratedGamesFilter = Engine.GetGUIObjectByName("ratedGamesFilter");
+	ratedGamesFilter.list = [translate("Rated and unrated games"), translate("Rated games"), translate("Unrated games")];
+	ratedGamesFilter.list_data = ["", "rated", "not rated"];
+
+	if (ratedGames)
+		ratedGamesFilter.selected = ratedGamesFilter.list_data.indexOf(ratedGames);
+
+	if (ratedGamesFilter.selected < 0 || ratedGamesFilter.selected >= ratedGamesFilter.list.length)
+		ratedGamesFilter.selected = 0;
+}
+
 /**
  * Initializes g_ReplaysFiltered with replays that are not filtered out and sort it.
  */
@@ -193,14 +235,31 @@ function filterReplay(replay)
 	if (compatibilityFilter.checked && !isReplayCompatible(replay))
 		return false;
 
+	// Filter by singleplayer / multiplayer
+	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
+	if (singleplayerFilter.selected == 1 && replay.isMultiplayer ||
+	    singleplayerFilter.selected == 2 && !replay.isMultiplayer)
+		return false;
+
+	// Filter by victory condition
+	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
+	if (victoryConditionFilter.selected > 0 && replay.attribs.settings.GameType != victoryConditionFilter.list_data[victoryConditionFilter.selected])
+		return false;
+
+	// Filter by rating
+	let ratedGamesFilter = Engine.GetGUIObjectByName("ratedGamesFilter");
+	if (ratedGamesFilter.selected == 1 && !replay.isRated ||
+	    ratedGamesFilter.selected == 2 && replay.isRated)
+		return false
+
 	// Filter date/time (select a month)
-	var dateTimeFilter = Engine.GetGUIObjectByName("dateTimeFilter");
+	let dateTimeFilter = Engine.GetGUIObjectByName("dateTimeFilter");
 	if (dateTimeFilter.selected > 0 && getReplayMonth(replay) != dateTimeFilter.list_data[dateTimeFilter.selected])
 		return false;
 
 	// Filter by playernames
-	var playersFilter = Engine.GetGUIObjectByName("playersFilter");
-	var keywords = playersFilter.caption.toLowerCase().split(" ");
+	let playersFilter = Engine.GetGUIObjectByName("playersFilter");
+	let keywords = playersFilter.caption.toLowerCase().split(" ");
 	if (keywords.length)
 	{
 		// We just check if all typed words are somewhere in the playerlist of that replay
@@ -210,22 +269,22 @@ function filterReplay(replay)
 	}
 
 	// Filter by map name
-	var mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
+	let mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
 	if (mapNameFilter.selected > 0 && getReplayMapName(replay) != mapNameFilter.list_data[mapNameFilter.selected])
 		return false;
 
 	// Filter by map size
-	var mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
+	let mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	if (mapSizeFilter.selected > 0 && replay.attribs.settings.Size != mapSizeFilter.list_data[mapSizeFilter.selected])
 		return false;
 
 	// Filter by population capacity
-	var populationFilter = Engine.GetGUIObjectByName("populationFilter");
+	let populationFilter = Engine.GetGUIObjectByName("populationFilter");
 	if (populationFilter.selected > 0 && replay.attribs.settings.PopulationCap != populationFilter.list_data[populationFilter.selected])
 		return false;
 
 	// Filter by game duration
-	var durationFilter = Engine.GetGUIObjectByName("durationFilter");
+	let durationFilter = Engine.GetGUIObjectByName("durationFilter");
 	if (durationFilter.selected > 0)
 	{
 		let interval = g_DurationFilterIntervals[durationFilter.selected];

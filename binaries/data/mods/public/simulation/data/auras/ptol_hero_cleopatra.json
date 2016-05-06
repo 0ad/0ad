@@ -1,7 +1,7 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Unit"],
+	"affects": ["Soldier", "Siege"],
 	"modifications": [
 	{ "value": "Attack/Melee/RepeatTime", "multiply": 0.8 },
 	{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.8 }

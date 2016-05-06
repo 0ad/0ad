@@ -34,6 +34,11 @@ var g_Playernames = [];
 var g_MapNames = [];
 
 /**
+ * Sorted list of the victory conditions occuring in the replays
+ */
+var g_VictoryConditions = [];
+
+/**
  * Directory name of the currently selected replay. Used to restore the selection after changing filters.
  */
 var g_SelectedReplayDirectory = "";
@@ -62,7 +67,7 @@ function init(data)
 
 /**
  * Store the list of replays loaded in C++ in g_Replays.
- * Check timestamp and compatibility and extract g_Playernames, g_MapNames.
+ * Check timestamp and compatibility and extract g_Playernames, g_MapNames, g_VictoryConditions.
  * Restore selected filters and item.
  */
 function loadReplays(replaySelectionData)
@@ -75,6 +80,7 @@ function loadReplays(replaySelectionData)
 	g_Playernames = [];
 	for (let replay of g_Replays)
 	{
+		let nonAIPlayers = 0;
 		// Use time saved in file, otherwise file mod date
 		replay.timestamp = replay.attribs.timestamp ? +replay.attribs.timestamp : +replay.filemod_timestamp-replay.duration;
 
@@ -86,6 +92,10 @@ function loadReplays(replaySelectionData)
 		// Extract map names
 		if (g_MapNames.indexOf(replay.attribs.settings.Name) == -1 && replay.attribs.settings.Name != "")
 			g_MapNames.push(replay.attribs.settings.Name);
+
+		// Extract victory conditions
+		if (replay.attribs.settings.GameType && g_VictoryConditions.indexOf(replay.attribs.settings.GameType) == -1)
+			g_VictoryConditions.push(replay.attribs.settings.GameType);
 
 		// Extract playernames
 		for (let playerData of replay.attribs.settings.PlayerData)
@@ -101,9 +111,19 @@ function loadReplays(replaySelectionData)
 
 			if (g_Playernames.indexOf(playername) == -1)
 				g_Playernames.push(playername);
+
+			++nonAIPlayers;
 		}
+
+		replay.isMultiplayer = nonAIPlayers > 1;
+
+		replay.isRated = nonAIPlayers == 2 &&
+			replay.attribs.settings.PlayerData.length == 2 &&
+			replay.attribs.settings.RatingEnabled;
 	}
+
 	g_MapNames.sort();
+	g_VictoryConditions.sort();
 
 	// Reload filters (since they depend on g_Replays and its derivatives)
 	initFilters(replaySelectionData && replaySelectionData.filters);

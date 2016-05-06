@@ -271,7 +271,7 @@ m.AttackPlan.prototype.mustStart = function()
 		return false;
 
 	if (!this.canBuildUnits)
-		return (this.unitCollection.length > 0);
+		return this.unitCollection.hasEntities();
 
 	var MaxReachedEverywhere = true;
 	var MinReachedEverywhere = true;
@@ -796,7 +796,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 		targets = this.rushTargetFinder(gameState, this.targetPlayer);
 	else
 		targets = this.defaultTargetFinder(gameState, this.targetPlayer);
-	if (!targets.length)
+	if (!targets.hasEntities())
 		return undefined;
 
 	var land = gameState.ai.accessibility.getAccessValue(position);
@@ -834,20 +834,20 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 	if (gameState.getGameType() === "wonder")
 	{
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
-		if (targets.length)
+		if (targets.hasEntities())
 			return targets;
 	}
 
 	targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("CivCentre"));
-	if (!targets.length)
+	if (!targets.hasEntities())
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	// If there's nothing, attack anything else that's less critical
-	if (!targets.length)
+	if (!targets.hasEntities())
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Town"));
-	if (!targets.length)
+	if (!targets.hasEntities())
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Village"));
 	// no buildings, attack anything conquest critical, even units
-	if (!targets.length)
+	if (!targets.hasEntities())
 		targets = gameState.getEnemyEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	return targets;
 };
@@ -900,7 +900,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	if (target)
 		targets.addEnt(target);
 
-	if (!targets.length)
+	if (!targets.hasEntities())
 	{
 		if (this.type === "Attack")
 			targets = this.defaultTargetFinder(gameState, playerEnemy);
@@ -1033,7 +1033,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 // Runs every turn after the attack is executed
 m.AttackPlan.prototype.update = function(gameState, events)
 {
-	if (!this.unitCollection.length)
+	if (!this.unitCollection.hasEntities())
 		return 0;
 
 	Engine.ProfileStart("Update Attack");
@@ -1153,7 +1153,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					nexttoWalls = true;
 			});
 			// there are walls but we can attack
-			if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).length !== 0)
+			if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).hasEntities())
 			{
 				if (this.Config.debug > 1)
 					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
@@ -1676,7 +1676,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 m.AttackPlan.prototype.Abort = function(gameState)
 {
 	this.unitCollection.unregister();
-	if (this.unitCollection.length)
+	if (this.unitCollection.hasEntities())
 	{
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
 		var rallyPoint = this.rallyPoint;

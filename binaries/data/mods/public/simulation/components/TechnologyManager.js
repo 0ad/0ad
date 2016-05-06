@@ -41,7 +41,7 @@ TechnologyManager.prototype.Init = function()
 	// Some technologies are automatically researched when their conditions are met.  They have no cost and are 
 	// researched instantly.  This allows civ bonuses and more complicated technologies.
 	this.autoResearchTech = {};
-	var allTechs = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager).GetAllTechs();
+	var allTechs = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager).GetAllTechs();
 	for (var key in allTechs)
 	{
 		if (allTechs[key].autoResearch || allTechs[key].top)
@@ -58,10 +58,10 @@ TechnologyManager.prototype.OnUpdate = function()
 // This function checks if the requirements of any autoresearch techs are met and if they are it researches them
 TechnologyManager.prototype.UpdateAutoResearch = function()
 {
-	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+	var cmpDataTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (var key in this.autoResearchTech)
 	{
-		var tech = cmpTechTempMan.GetTemplate(key);
+		var tech = cmpDataTempMan.GetTechnologyTemplate(key);
 		if ((tech.autoResearch && this.CanResearch(key))
 			|| (tech.top && (this.IsTechnologyResearched(tech.top) || this.IsTechnologyResearched(tech.bottom))))
 		{
@@ -74,7 +74,7 @@ TechnologyManager.prototype.UpdateAutoResearch = function()
 
 TechnologyManager.prototype.GetTechnologyTemplate = function(tech)
 {
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager).GetTemplate(tech);
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager).GetTechnologyTemplate(tech);
 };
 
 // Checks an entity template to see if its technology requirements have been met

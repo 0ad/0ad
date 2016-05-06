@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,15 +149,16 @@ public:
 		SAFE_DELETE(m_DebugOverlay);
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	virtual void Serialize(ISerializer& serialize)
 	{
 		// Territory state can be recomputed as required, so we don't need to serialize any of it.
-		// TODO: do we ever need to serialize m_TriggerEvent to prevent lost messages?
+		serialize.Bool("trigger event", m_TriggerEvent);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
+		deserialize.Bool("trigger event", m_TriggerEvent);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
