@@ -134,14 +134,6 @@ function resetTerrain(terrain, tc, elevation)
 }
 
 /**
- * Euclidian distance between two points.
- */
-function euclid_distance(x1, z1, x2, z2)
-{
-	return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(z2 - z1, 2));
-}
-
-/**
  * Chose starting locations for the given players.
  *
  * @param {string} type - "radial", "stacked", "stronghold", "random"
@@ -445,7 +437,7 @@ function placeRandom(playerIDs)
 		var tooClose = false;
 		for (var j = 0; j < placed.length; ++j)
 		{
-			var sep = euclid_distance(x, z, placed[j].x, placed[j].z);
+			var sep = getDistance(x, z, placed[j].x, placed[j].z);
 			if (sep < 0.25)
 			{
 				tooClose = true;
