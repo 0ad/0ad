@@ -4,6 +4,7 @@ timeArray.push(new Date().getTime());
 
 // Importing rmgen libraries
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("heightmap");
 
 const BUILDING_ANGlE = -PI/4;
 
@@ -17,37 +18,7 @@ var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 
 
-//////////
-// Heightmap functionality
-//////////
-
-// Some general heightmap settings
-const MIN_HEIGHT = - SEA_LEVEL; // 20, should be set in the libs!
-const MAX_HEIGHT = 0xFFFF/HEIGHT_UNITS_PER_METRE - SEA_LEVEL; // A bit smaler than 90, should be set in the libs!
-
-// Add random heightmap generation functionality
-function getRandomReliefmap(minHeight, maxHeight)
-{
-	minHeight = (minHeight || MIN_HEIGHT);
-	maxHeight = (maxHeight || MAX_HEIGHT);
-
-	if (minHeight < MIN_HEIGHT)
-		warn("getRandomReliefmap: Argument minHeight is smaler then the supported minimum height of " + MIN_HEIGHT + " (const MIN_HEIGHT): " + minHeight)
-
-	if (maxHeight > MAX_HEIGHT)
-		warn("getRandomReliefmap: Argument maxHeight is smaler then the supported maximum height of " + MAX_HEIGHT + " (const MAX_HEIGHT): " + maxHeight)
-
-	var reliefmap = [];
-	for (var x = 0; x <= mapSize; x++)
-	{
-		reliefmap.push([]);
-		for (var y = 0; y <= mapSize; y++)
-			reliefmap[x].push(randFloat(minHeight, maxHeight));
-	}
-	return reliefmap;
-}
-
-// Apply a heightmap
+// Function to apply a heightmap
 function setReliefmap(reliefmap)
 {
 	// g_Map.height = reliefmap;
@@ -56,70 +27,6 @@ function setReliefmap(reliefmap)
 			setHeight(x, y, reliefmap[x][y]);
 }
 
-// Get minimum and maxumum height used in a heightmap
-function getMinAndMaxHeight(reliefmap)
-{
-	var height = {};
-	height.min = Infinity;
-	height.max = -Infinity;
-
-	for (var x = 0; x <= mapSize; x++)
-		for (var y = 0; y <= mapSize; y++)
-		{
-			if (reliefmap[x][y] < height.min)
-				height.min = reliefmap[x][y];
-			else if (reliefmap[x][y] > height.max)
-				height.max = reliefmap[x][y];
-		}
-
-	return height;
-}
-
-// Rescale a heightmap (Waterlevel is not taken into consideration!)
-function getRescaledReliefmap(reliefmap, minHeight, maxHeight)
-{
-	var newReliefmap = deepcopy(reliefmap);
-	minHeight = (minHeight || MIN_HEIGHT);
-	maxHeight = (maxHeight || MAX_HEIGHT);
-
-	if (minHeight < MIN_HEIGHT)
-		warn("getRescaledReliefmap: Argument minHeight is smaler then the supported minimum height of " + MIN_HEIGHT + " (const MIN_HEIGHT): " + minHeight)
-
-	if (maxHeight > MAX_HEIGHT)
-		warn("getRescaledReliefmap: Argument maxHeight is smaler then the supported maximum height of " + MAX_HEIGHT + " (const MAX_HEIGHT): " + maxHeight)
-
-	var oldHeightRange = getMinAndMaxHeight(reliefmap);
-
-	for (var x = 0; x <= mapSize; x++)
-		for (var y = 0; y <= mapSize; y++)
-			newReliefmap[x][y] = minHeight + (reliefmap[x][y] - oldHeightRange.min) / (oldHeightRange.max - oldHeightRange.min) * (maxHeight - minHeight);
-
-	return newReliefmap
-}
-
-// Applying decay errosion (terrain independent)
-function getHeightErrosionedReliefmap(reliefmap, strength)
-{
-	var newReliefmap = deepcopy(reliefmap);
-	strength = (strength || 1.0); // Values much higher then 1 (1.32+ for an 8 tile map, 1.45+ for a 12 tile map, 1.62+ @ 20 tile map, 0.99 @ 4 tiles) will result in a resonance disaster/self interference
-
-	var map = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]; // Default
-
-	for (var x = 0; x <= mapSize; x++)
-		for (var y = 0; y <= mapSize; y++)
-		{
-			var div = 0;
-			for (var i = 0; i < map.length; i++)
-				newReliefmap[x][y] += strength / map.length * (reliefmap[(x + map[i][0] + mapSize + 1) % (mapSize + 1)][(y + map[i][1] + mapSize + 1) % (mapSize + 1)] - reliefmap[x][y]); // Not entirely sure if scaling with map.length is perfect but tested values seam to indicate it is
-		}
-
-	return newReliefmap;
-}
-
-
-//////////
-// Prepare for hightmap munipulation
-//////////
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes
 var heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
@@ -215,11 +122,12 @@ while (!goodStartPositionsFound)
 	log("Starting giant while loop try " + tries);
 
 	// Generate reliefmap
-	var myReliefmap = getRandomReliefmap(heightRange.min, heightRange.max);
+	var myReliefmap = deepcopy(g_Map.height);
+	setRandomHeightmap(heightRange.min, heightRange.max, myReliefmap);
 	for (var i = 0; i < 50 + mapSize/4; i++) // Cycles depend on mapsize (more cycles -> bigger structures)
-		myReliefmap = getHeightErrosionedReliefmap(myReliefmap, 1);
+		globalSmoothHeightmap(0.8, myReliefmap);
 
-	myReliefmap = getRescaledReliefmap(myReliefmap, heightRange.min, heightRange.max);
+	rescaleHeightmap(heightRange.min, heightRange.max, myReliefmap);
 	setReliefmap(myReliefmap);
 	
 	// Find good start position tiles

@@ -7,6 +7,12 @@ const HEIGHT_UNITS_PER_METRE = 92;
 const MIN_MAP_SIZE = 128;
 const MAX_MAP_SIZE = 512;
 const FALLBACK_CIV = "athen";
+/**
+ * Constants needed for heightmap_manipulation.js
+ */
+const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE // Engine limit, Roughly 700 meters
+const MIN_HEIGHT = - SEA_LEVEL;
+const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
 
 function fractionToTiles(f)
 {

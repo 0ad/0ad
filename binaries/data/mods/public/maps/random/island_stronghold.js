@@ -1,19 +1,3 @@
-function decayErrodeHeightmap(strength, heightmap)
-{
-	strength = strength || 0.9; // 0 to 1
-	heightmap = heightmap || g_Map.height;
-
-	let referenceHeightmap = deepcopy(heightmap);
-	// let map = [[1, 0], [0, 1], [-1, 0], [0, -1]]; // faster
-	let map = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]; // smoother
-	let max_x = heightmap.length;
-	let max_y = heightmap[0].length;
-	for (let x = 0; x < max_x; ++x)
-		for (let y = 0; y < max_y; ++y)
-			for (let i = 0; i < map.length; ++i)
-				heightmap[x][y] += strength / map.length * (referenceHeightmap[(x + map[i][0] + max_x) % max_x][(y + map[i][1] + max_y) % max_y] - referenceHeightmap[x][y]); // Not entirely sure if scaling with map.length is perfect but tested values seam to indicate it is
-}
-
 /**
  * Returns starting position in tile coordinates for the given player.
  */
@@ -28,6 +12,7 @@ function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 }
 
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("heightmap");
 
 const g_InitialMines = 1;
 const g_InitialMineDistance = 14;
@@ -372,7 +357,7 @@ RMS.SetProgress(70);
 
 log("Smoothing heightmap...");
 for (let i = 0; i < 5; ++i)
-	decayErrodeHeightmap(0.5);
+	globalSmoothHeightmap();
 
 // repaint clLand to compensate for smoothing
 unPaintTileClassBasedOnHeight(-10, 10, 3, clLand);
@@ -420,7 +405,7 @@ createAreas(
 	scaleByMapSize(4, 13)
 );
 for (let i = 0; i < 3; ++i)
-	decayErrodeHeightmap(0.2);
+	globalSmoothHeightmap();
 
 createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
