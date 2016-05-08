@@ -1645,34 +1645,93 @@ GuiInterface.prototype.PlaySound = function(player, data)
 	PlaySound(data.name, data.entity);
 };
 
+/**
+ * Find any idle units.
+ *
+ * @param data.viewedPlayer	The player for which to find idle units.
+ * @param data.idleClasses		Array of class names to include.
+ * @param data.prevUnit		The previous idle unit, if calling a second time to iterate through units.  May be left undefined.
+ * @param data.limit			The number of idle units to return.  May be left undefined (will return all idle units).
+ * @param data.excludeUnits	Array of units to exclude.
+ *
+ * Returns an array of idle units.
+ * If multiple classes were supplied, and multiple items will be returned, the items will be sorted by class.
+ */
 GuiInterface.prototype.FindIdleUnits = function(player, data)
 {
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let playerEntities = cmpRangeManager.GetEntitiesByPlayer(data.viewedPlayer).filter(entity => {
-
-		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
-		if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsGarrisoned())
-			return false;
-
-		let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass(data.idleClass))
-			return false;
-
-		return true;
-	});
-
 	let idleUnits = [];
-
-	for (let ent of playerEntities)
+	// The general case is that only the 'first' idle unit is required; filtering would examine every unit.
+	// This loop imitates a grouping/aggregation on the first matching idle class.
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	for (let entity of cmpRangeManager.GetEntitiesByPlayer(data.viewedPlayer))
 	{
-		if (ent <= data.prevUnit|0 || data.excludeUnits.indexOf(ent) > -1)
+		let filtered = this.IdleUnitFilter(entity, data.idleClasses, data.excludeUnits);
+		if (!filtered.idle)
 			continue;
-		idleUnits.push(ent);
-		if (data.limit && idleUnits.length >= data.limit)
-			break;
+
+		// If the entity is in the 'current' (first, 0) bucket on a resumed search, it must be after the "previous" unit, if any.
+		// By adding to the 'end', there is no pause if the series of units loops.
+		var bucket = filtered.bucket;
+		if(bucket == 0 && data.prevUnit && entity <= data.prevUnit)
+			bucket = data.idleClasses.length;
+
+		if (!idleUnits[bucket])
+			idleUnits[bucket] = [];
+		idleUnits[bucket].push(entity);
+
+		// If enough units have been collected in the first bucket, go ahead and return them.
+		if (data.limit && bucket == 0 && idleUnits[0].length == data.limit)
+			return idleUnits[0];
 	}
 
-	return idleUnits;
+	let reduced = idleUnits.reduce((prev, curr) => prev.concat(curr), []);
+	if (data.limit && reduced.length > data.limit)
+		return reduced.slice(0, data.limit);
+
+	return reduced;
+};
+
+/**
+ * Discover if the player has idle units.
+ *
+ * @param data.viewedPlayer	The player for which to find idle units.
+ * @param data.idleClasses	Array of class names to include.
+ * @param data.excludeUnits	Array of units to exclude.
+ *
+ * Returns a boolean of whether the player has any idle units
+ */
+GuiInterface.prototype.HasIdleUnits = function(player, data)
+{
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return cmpRangeManager.GetEntitiesByPlayer(data.viewedPlayer).some(unit => this.IdleUnitFilter(unit, data.idleClasses, data.excludeUnits).idle);
+};
+
+/**
+ * Whether to filter an idle unit
+ *
+ * @param unit			The unit to filter.
+ * @param idleclasses	Array of class names to include.
+ * @param excludeUnits	Array of units to exclude.
+ *
+ * Returns an object with the following fields:
+ * 	- idle - true if the unit is considered idle by the filter, false otherwise.
+ * 	- bucket - if idle, set to the index of the first matching idle class, undefined otherwise.
+ */
+GuiInterface.prototype.IdleUnitFilter = function(unit, idleClasses, excludeUnits)
+{
+	let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
+	if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsGarrisoned())
+		return { "idle": false };
+
+	let cmpIdentity = Engine.QueryInterface(unit, IID_Identity);
+	if(!cmpIdentity)
+		return { "idle": false };
+
+	let bucket = idleClasses.findIndex(elem => cmpIdentity.HasClass(elem));
+	if (bucket == -1 || excludeUnits.indexOf(unit) > -1)
+		return { "idle": false };
+
+	return { "idle": true, "bucket": bucket };
 };
 
 GuiInterface.prototype.GetTradingRouteGain = function(player, data)
@@ -1899,6 +1958,7 @@ let exposedFunctions = {
 	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
 	"FindIdleUnits": 1,
+	"HasIdleUnits": 1,
 	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
 	"CanCapture": 1,

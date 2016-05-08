@@ -1683,14 +1683,14 @@ function setCameraFollow(entity)
 }
 
 var lastIdleUnit = 0;
-var currIdleClass = 0;
-var lastIdleType = undefined;
+var currIdleClassIndex = 0;
+var lastIdleClasses = [];
 
 function resetIdleUnit()
 {
 	lastIdleUnit = 0;
-	currIdleClass = 0;
-	lastIdleType = undefined;
+	currIdleClassIndex = 0;
+	lastIdleClasses = [];
 }
 
 function findIdleUnit(classes)
@@ -1699,61 +1699,46 @@ function findIdleUnit(classes)
 	var selectall = Engine.HotkeyIsPressed("selection.offscreen");
 
 	// Reset the last idle unit, etc., if the selection type has changed.
-	var type = classes.join();
-	if (selectall || type != lastIdleType)
+	if (selectall || classes.length != lastIdleClasses.length || !classes.every((v,i) => v === lastIdleClasses[i]))
 		resetIdleUnit();
-	lastIdleType = type;
+	lastIdleClasses = classes;
 
-	// If selectall is true, there is no limit and it's necessary to iterate
-	// over all of the classes, resetting only when the first match is found.
-	var matched = false;
-
-	for (var i = 0; i < classes.length; ++i)
+	var data = {
+		"viewedPlayer": g_ViewedPlayer,
+		"excludeUnits": append ? g_Selection.toList() : [],
+		// If the current idle class index is not 0, put the class at that index first.
+		"idleClasses": classes.slice(currIdleClassIndex, classes.length).concat(classes.slice(0, currIdleClassIndex))
+	};
+	if (!selectall)
 	{
-		var data = {
-			"idleClass": classes[currIdleClass],
-			"prevUnit": lastIdleUnit,
-			"limit": 1,
-			"excludeUnits": []
-		};
-
-		if (append)
-			data.excludeUnits = g_Selection.toList();
-
-		if (selectall)
-			data = { "idleClass": classes[currIdleClass] };
-
-		data.viewedPlayer = g_ViewedPlayer;
-
-		// Check if we have new valid entity
-		var idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", data);
-		if (idleUnits.length && idleUnits[0] != lastIdleUnit)
-		{
-			lastIdleUnit = idleUnits[0];
-			if (!append && (!selectall || selectall && !matched))
-				g_Selection.reset();
-
-			if (selectall)
-				g_Selection.addList(idleUnits);
-			else
-			{
-				g_Selection.addList([lastIdleUnit]);
-				var position = GetEntityState(lastIdleUnit).position;
-				if (position)
-					Engine.CameraMoveTo(position.x, position.z);
-				return;
-			}
-
-			matched = true;
-		}
-
-		lastIdleUnit = 0;
-		currIdleClass = (currIdleClass + 1) % classes.length;
+		data.limit = 1;
+		data.prevUnit = lastIdleUnit;
 	}
 
-	// TODO: display a message or play a sound to indicate no more idle units, or something
-	// Reset for next cycle
-	resetIdleUnit();
+	var idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", data);
+	if (!idleUnits.length)
+	{
+		// TODO: display a message or play a sound to indicate no more idle units, or something
+		// Reset for next cycle
+		resetIdleUnit();
+		return;
+	}
+
+	if (!append)
+		g_Selection.reset();
+	g_Selection.addList(idleUnits);
+
+	if (selectall)
+		return;
+
+	lastIdleUnit = idleUnits[0];
+	var entityState = GetEntityState(lastIdleUnit);
+	var position = entityState.position;
+	if (position)
+		Engine.CameraMoveTo(position.x, position.z);
+	// Move the idle class index to the first class an idle unit was found for.
+	var indexChange = data.idleClasses.findIndex(elem => hasClass(entityState, elem));
+	currIdleClassIndex = (currIdleClassIndex + indexChange) % classes.length;
 }
 
 function stopUnits(entities)
