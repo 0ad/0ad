@@ -22,6 +22,7 @@
 #include "NetHost.h"
 
 #include "lib/config2.h"
+#include "lib/external_libraries/enet.h"
 #include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptVal.h"
 
@@ -313,7 +314,7 @@ private:
 	CStrW m_ServerName;
 	CStrW m_WelcomeMessage;
 
-	std::vector<CStr> m_BannedIPs;
+	std::vector<enet_uint32> m_BannedIPs;
 	std::vector<CStrW> m_BannedPlayers;
 
 	u32 m_NextHostID;

@@ -25,7 +25,6 @@
 #include "NetStats.h"
 #include "NetTurnManager.h"
 
-#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -486,12 +485,6 @@ bool CNetServerWorker::RunStep()
 
 		CNetServerSession* session = new CNetServerSession(*this, event.peer);
 
-		// Prevent the local client of the host from timing out too quickly
-#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
-		if (session->GetIPAddress() == "127.0.0.1")
-			enet_peer_timeout(event.peer, 0, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
-#endif
-
 		m_Sessions.push_back(session);
 
 		SetupSession(session);
@@ -690,7 +683,7 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 {
 	AddPlayer(session->GetGUID(), session->GetUserName());
 
-	if (m_HostGUID.empty() && session->GetIPAddress() == "127.0.0.1")
+	if (m_HostGUID.empty() && session->IsLocalClient())
 		m_HostGUID = session->GetGUID();
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
@@ -802,8 +795,8 @@ bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 			m_BannedPlayers.push_back(playerName);
 
 		// Remember IP address
-		CStr ipAddress = (*it)->GetIPAddress();
-		if (!ipAddress.empty() && std::find(m_BannedIPs.begin(), m_BannedIPs.end(), ipAddress) == m_BannedIPs.end())
+		enet_uint32 ipAddress = (*it)->GetIPAddress();
+		if (std::find(m_BannedIPs.begin(), m_BannedIPs.end(), ipAddress) == m_BannedIPs.end())
 			m_BannedIPs.push_back(ipAddress);
 	}
 
@@ -999,6 +992,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	session->SetUserName(username);
 	session->SetGUID(message->m_GUID);
 	session->SetHostID(newHostID);
+	session->SetLocalClient(message->m_IsLocalClient);
 
 	CAuthenticateResultMessage authenticateResult;
 	authenticateResult.m_Code = isRejoining ? ARC_OK_REJOINING : ARC_OK;

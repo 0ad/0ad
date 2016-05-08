@@ -152,9 +152,9 @@ public:
 		scriptInterface.Eval("({mapType:'scenario',map:'maps/scenarios/Saharan Oases',mapPath:'maps/scenarios/',thing:'example'})", &attrs);
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
-		CNetClient client1(&client1Game);
-		CNetClient client2(&client2Game);
-		CNetClient client3(&client3Game);
+		CNetClient client1(&client1Game, false);
+		CNetClient client2(&client2Game, false);
+		CNetClient client3(&client3Game, false);
 
 		clients.push_back(&client1);
 		clients.push_back(&client2);
@@ -217,9 +217,9 @@ public:
 		scriptInterface.Eval("({mapType:'scenario',map:'maps/scenarios/Saharan Oases',mapPath:'maps/scenarios/',thing:'example'})", &attrs);
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
-		CNetClient client1(&client1Game);
-		CNetClient client2(&client2Game);
-		CNetClient client3(&client3Game);
+		CNetClient client1(&client1Game, false);
+		CNetClient client2(&client2Game, false);
+		CNetClient client3(&client3Game, false);
 
 		client1.SetUserName(L"alice");
 		client2.SetUserName(L"bob");
@@ -269,7 +269,7 @@ public:
 		debug_printf("==== Connecting client 2B\n");
 
 		CGame client2BGame(true);
-		CNetClient client2B(&client2BGame);
+		CNetClient client2B(&client2BGame, false);
 		client2B.SetUserName(L"bob");
 		clients.push_back(&client2B);
 

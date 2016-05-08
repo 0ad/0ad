@@ -21,7 +21,6 @@
 #include "NetServer.h"
 #include "NetMessage.h"
 #include "NetStats.h"
-#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -51,7 +50,7 @@ CNetClientSession::~CNetClientSession()
 	}
 }
 
-bool CNetClientSession::Connect(u16 port, const CStr& server)
+bool CNetClientSession::Connect(u16 port, const CStr& server, bool isLocalClient)
 {
 	ENSURE(!m_Host);
 	ENSURE(!m_Server);
@@ -77,7 +76,7 @@ bool CNetClientSession::Connect(u16 port, const CStr& server)
 
 	// Prevent the local client of the host from timing out too quickly.
 #if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
-	if (GetIPAddress() == "127.0.0.1")
+	if (isLocalClient)
 		enet_peer_timeout(peer, 1, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
 #endif
 
@@ -178,15 +177,6 @@ bool CNetClientSession::SendMessage(const CNetMessage* message)
 	return CNetHost::SendMessage(message, m_Server, "server");
 }
 
-CStr CNetClientSession::GetIPAddress() const
-{
-	char ipAddress[256] = "";
-	if (enet_address_get_host_ip(&m_Server->address, ipAddress, ARRAY_SIZE(ipAddress)) < 0)
-		LOGMESSAGE("Could not get IP address of the server!");
-
-	return ipAddress;
-}
-
 u32 CNetClientSession::GetLastReceivedTime() const
 {
 	if (!m_Server)
@@ -210,13 +200,9 @@ CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
 {
 }
 
-CStr CNetServerSession::GetIPAddress() const
+enet_uint32 CNetServerSession::GetIPAddress() const
 {
-	char ipAddress[256] = "";
-	if (enet_address_get_host_ip(&m_Peer->address, ipAddress, ARRAY_SIZE(ipAddress)) < 0)
-		LOGMESSAGE("Could not get IP address of a client!");
-
-	return ipAddress;
+	return m_Peer->address.host;
 }
 
 u32 CNetServerSession::GetLastReceivedTime() const
@@ -250,4 +236,22 @@ void CNetServerSession::DisconnectNow(u32 reason)
 bool CNetServerSession::SendMessage(const CNetMessage* message)
 {
 	return m_Server.SendMessage(m_Peer, message);
+}
+
+bool CNetServerSession::IsLocalClient() const
+{
+	return m_IsLocalClient;
+}
+
+void CNetServerSession::SetLocalClient(bool isLocalClient)
+{
+	m_IsLocalClient = isLocalClient;
+
+	if (!isLocalClient)
+		return;
+
+	// Prevent the local client of the host from timing out too quickly
+#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
+	enet_peer_timeout(m_Peer, 0, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
+#endif
 }

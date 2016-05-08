@@ -21,6 +21,7 @@
 #include "network/fsm.h"
 #include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
+#include "lib/external_libraries/enet.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptVal.h"
 
@@ -70,7 +71,7 @@ public:
 	CNetClientSession(CNetClient& client);
 	~CNetClientSession();
 
-	bool Connect(u16 port, const CStr& server);
+	bool Connect(u16 port, const CStr& server, bool isLocalClient);
 
 	/**
 	 * Process queued incoming messages.
@@ -92,8 +93,6 @@ public:
 	 * Send a message to the server.
 	 */
 	virtual bool SendMessage(const CNetMessage* message);
-
-	CStr GetIPAddress() const;
 
 	/**
 	 * Number of milliseconds since the most recent packet of the server was received.
@@ -144,7 +143,12 @@ public:
 	u32 GetHostID() const { return m_HostID; }
 	void SetHostID(u32 id) { m_HostID = id; }
 
-	CStr GetIPAddress() const;
+	enet_uint32 GetIPAddress() const;
+
+	/**
+	 * Whether this client is running in the same process as the server.
+	 */
+	bool IsLocalClient() const;
 
 	/**
 	 * Number of milliseconds since the latest packet of that client was received.
@@ -172,6 +176,11 @@ public:
 	void DisconnectNow(u32 reason);
 
 	/**
+	 * Prevent timeouts for the client running in the same process as the server.
+	 */
+	void SetLocalClient(bool isLocalClient);
+
+	/**
 	 * Send a message to the client.
 	 */
 	virtual bool SendMessage(const CNetMessage* message);
@@ -188,6 +197,8 @@ private:
 	CStr m_GUID;
 	CStrW m_UserName;
 	u32 m_HostID;
+
+	bool m_IsLocalClient;
 };
 
 #endif	// NETSESSION_H

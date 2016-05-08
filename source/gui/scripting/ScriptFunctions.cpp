@@ -359,7 +359,7 @@ void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring
 	}
 
 	g_Game = new CGame();
-	g_NetClient = new CNetClient(g_Game);
+	g_NetClient = new CNetClient(g_Game, true);
 	g_NetClient->SetUserName(playerName);
 
 	if (!g_NetClient->SetupConnection("127.0.0.1"))
@@ -377,7 +377,7 @@ void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring
 	ENSURE(!g_Game);
 
 	g_Game = new CGame();
-	g_NetClient = new CNetClient(g_Game);
+	g_NetClient = new CNetClient(g_Game, false);
 	g_NetClient->SetUserName(playerName);
 	if (!g_NetClient->SetupConnection(serverAddress))
 	{
