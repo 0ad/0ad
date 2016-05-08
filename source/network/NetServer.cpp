@@ -25,6 +25,7 @@
 #include "NetStats.h"
 #include "NetTurnManager.h"
 
+#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -795,7 +796,7 @@ bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 			m_BannedPlayers.push_back(playerName);
 
 		// Remember IP address
-		enet_uint32 ipAddress = (*it)->GetIPAddress();
+		u32 ipAddress = (*it)->GetIPAddress();
 		if (std::find(m_BannedIPs.begin(), m_BannedIPs.end(), ipAddress) == m_BannedIPs.end())
 			m_BannedIPs.push_back(ipAddress);
 	}

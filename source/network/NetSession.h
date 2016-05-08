@@ -21,7 +21,6 @@
 #include "network/fsm.h"
 #include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
-#include "lib/external_libraries/enet.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptVal.h"
 
@@ -143,7 +142,7 @@ public:
 	u32 GetHostID() const { return m_HostID; }
 	void SetHostID(u32 id) { m_HostID = id; }
 
-	enet_uint32 GetIPAddress() const;
+	u32 GetIPAddress() const;
 
 	/**
 	 * Whether this client is running in the same process as the server.

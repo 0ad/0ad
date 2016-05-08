@@ -21,6 +21,7 @@
 #include "NetServer.h"
 #include "NetMessage.h"
 #include "NetStats.h"
+#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -200,7 +201,7 @@ CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
 {
 }
 
-enet_uint32 CNetServerSession::GetIPAddress() const
+u32 CNetServerSession::GetIPAddress() const
 {
 	return m_Peer->address.host;
 }
