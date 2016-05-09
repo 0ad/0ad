@@ -5,7 +5,8 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
 # Ildradil <piggmatias@gmail.com>, 2013
-# Max, 2015
+# Max Ihalempia, 2016
+# Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015-2016
 # Riku Viitanen <riisseli4@gmail.com>, 2015-2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-04-22 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-05-08 20:52+0000\n"
+"Last-Translator: Max Ihalempia\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +96,7 @@ msgstr "Kaikki kartat"
 #: gui/gamesetup/gamesetup.js:137
 msgctxt "map type"
 msgid "Random"
-msgstr ""
+msgstr "Satunnainen"
 
 #: gui/gamesetup/gamesetup.js:142
 msgctxt "civilization"
@@ -141,8 +142,8 @@ msgstr "Ladataan..."
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ihme (%(min)s minuutti)"
+msgstr[1] "Ihme (%(min)s minuuttia)"
 
 #: gui/gamesetup/gamesetup.js:1464
 msgid "Sorry, no description available."
@@ -166,7 +167,7 @@ msgstr "Voiton edellytys:"
 #: gui/gamesetup/gamesetup.js:1472
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Satunnainen"
 
 #: gui/gamesetup/gamesetup.js:1564
 #, javascript-format
@@ -348,7 +349,7 @@ msgstr "Pelin nopeus:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Ihmevoitto:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Population Cap:"

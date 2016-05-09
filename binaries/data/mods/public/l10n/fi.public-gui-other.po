@@ -5,7 +5,8 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015-2016
 # Kalle Mantyla <kalle.mantyla@gmail.com>, 2016
-# Max, 2015
+# Max Ihalempia, 2016
+# Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
 # Riku Viitanen <riisseli4@gmail.com>, 2015
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-05-02 09:00+0200\n"
-"PO-Revision-Date: 2016-05-02 09:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-05-08 21:10+0000\n"
+"Last-Translator: Max Ihalempia\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -330,31 +331,31 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Menettää yhteyden palvelimeen (%(seconds)s)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s menettää yhteyden (%(seconds)s)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Huono yhteys palvelimeen (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Huono yhteys %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:53
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Tuntematon syy"
 
 #: gui/common/network.js:54
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Isännöijä on päättänyt pelin"
 
 #: gui/common/network.js:55
 msgid "Incorrect network protocol version"
@@ -378,16 +379,16 @@ msgstr "Sinut on bannattu"
 
 #: gui/common/network.js:60
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Pelaajanimi jo käytössä. Jos menetit yhteyden, kokeile uudestaan muutaman sekunnin kuluttua"
 
 #: gui/common/network.js:61
 msgid "Server full"
-msgstr ""
+msgstr "Palvelin täynnä"
 
 #: gui/common/network.js:64
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Ei hyväksytty arvo %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:76
@@ -453,8 +454,8 @@ msgstr "Erittäin vaikea"
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuutti"
+msgstr[1] "%(min)s minuuttia"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -499,17 +500,17 @@ msgstr "Rajoittamaton"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -519,12 +520,12 @@ msgstr "Oletus"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:90
 #: gui/common/tooltips.js:124
@@ -802,7 +803,7 @@ msgstr "Luokat:"
 #: gui/credits/credits.js:35
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1051,7 +1052,7 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "Yksin- ja moninpeli"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
@@ -1064,19 +1065,19 @@ msgstr "Moninpeli"
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
 msgid "Any gametype"
-msgstr ""
+msgstr "Mikä tahansa pelityyppi"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "Arvostetut ja arvostamattomat pelit"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "Arvostellut pelit"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "Arvostamattomat pelit"
 
 #: gui/replaymenu/replay_menu.js:276
 msgid "yyyy-MM-dd HH:mm"
@@ -1088,7 +1089,7 @@ msgstr "vvvv-KK"
 
 #: gui/replaymenu/replay_menu.js:357
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Tuntematon sivilisaatio"
 
 #: gui/replaymenu/replay_menu.js:370
 #, javascript-format
@@ -1416,23 +1417,23 @@ msgstr "Sulje"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. lopputekstit"
 
 #: gui/credits/credits.xml:(caption):24
 msgid "Special Credits"
-msgstr ""
+msgstr "Erityismaininnat"
 
 #: gui/credits/credits.xml:(caption):31
 msgid "Programming"
-msgstr ""
+msgstr "Ohjelmointi"
 
 #: gui/credits/credits.xml:(caption):38
 msgid "Art"
-msgstr ""
+msgstr "Taide"
 
 #: gui/credits/credits.xml:(caption):45
 msgid "Translators"
-msgstr ""
+msgstr "Kääntäjät"
 
 #: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
 msgid "Miscellaneous"
@@ -1440,7 +1441,7 @@ msgstr "Sekalaiset"
 
 #: gui/credits/credits.xml:(caption):59
 msgid "Donors"
-msgstr ""
+msgstr "Lahjoittajat"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1537,7 +1538,7 @@ msgstr "Aula-asetukset"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Nollauta"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1549,15 +1550,15 @@ msgstr "Tallenna"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Nollauttaa käyttäjän asetukset pelin tavallisiin asetuksiin"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Palauttaa aiemmin tallennettuihin asetuksiin"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Tallentaa muutokset"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
@@ -1587,7 +1588,7 @@ msgstr "Tilanne: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XX: Timosthenes"
-msgstr ""
+msgstr "Alpha XX: Timosthenes"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -1683,11 +1684,11 @@ msgstr "Raportoi virheestä"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Käännä peliä"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Lopputekstit"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1799,7 +1800,7 @@ msgstr "Paina avataksesi 0 A.D. käännös sivuston selaimessasi."
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Paina nähdäksesi 0 A.D. lopputekstit."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1931,7 +1932,7 @@ msgstr "Tori"
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Replay"
-msgstr ""
+msgstr "Uusinta"
 
 #: gui/summary/summary.xml:(caption):182
 msgid "Continue"
@@ -1939,153 +1940,153 @@ msgstr "Jatka"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Taiteen johtaja"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Äänipäällikkö"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Säveltäjä"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Luovat päälliköt"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Kartantekijät"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Satunnaiset kartan ohjelmat"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D taide"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D taide"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion"
-msgstr ""
+msgstr "Lisämusiikki, lyömäsoittimet"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "Lisämusiikki"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "Huilu"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "Alttoviulu, viulu"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "Kelttiläinen harppu"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "Trumpetti"
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "Djembe"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Percussion"
-msgstr ""
+msgstr "Lyömäsoittimet"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Didgeridoo"
-msgstr ""
+msgstr "Didgeridoo"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
-msgstr ""
+msgstr "Musiikki"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Sound"
-msgstr ""
+msgstr "Ääni"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "Kreikkalainen"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "Latinalainen"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "Äänet"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie kampanja 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie kampanja 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Indiegogo 2013 kampanja\nEnemmän kuin 1000 lahjoittajaa (!), sisältyen:"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Päällikkö"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Historiaviitteet"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Yhteisö ja Hallinto"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Ohjelmointipäälliköt"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Erityiset kiitokset"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "Muistaen "
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. perustaja"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Projektipäälliköt"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Yhteisjohtosuunnittelijat"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Erityiset kiitokset:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Ja kiitos koko yhteisölle mahdollistaen 0 A.D. tekemisen."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Yhtään historioitsijaa ei satutettu projektin kehityksen aikana."
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2140,11 +2141,11 @@ msgstr "Yksityiskohtaiset työkaluvihjeet"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Näytä kenellä pelaajista on huono yhteys moninpelipeleissä."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "Verkkovaroitukset"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -2201,7 +2202,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Observer Limit"
-msgstr ""
+msgstr "Tarkkailijarajoitus"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2261,15 +2262,15 @@ msgstr "Jälkiprosessointi"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Matala"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Keskinkertainen"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Korkea"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2798,7 +2799,7 @@ msgstr "- Raskain standardi sotalaiva. Avoinna: Roomalle, Karthagolle, Ptolemaio
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "- Voi kuljettaa jopa 50 yksikköä."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
