@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-27 08:23+0000\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-07 11:26+0000\n"
 "Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -74,6 +74,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
@@ -1596,6 +1597,18 @@ msgstr "Train je paarden zodat ze sneller lopen."
 msgid "Cavalry Speed Training"
 msgstr "Cavalerie Snelheidstraining"
 
+#: simulation/data/technologies/trade_commercial_treaty.jsondescription
+msgid "Improve the international trading profit."
+msgstr "Verhoog de internationale handelswinst."
+
+#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+msgid "Market +10% International Bonus."
+msgstr "Markten +10% internationale bonus."
+
+#: simulation/data/technologies/trade_commercial_treaty.jsongenericName
+msgid "Commercial Treaty"
+msgstr "Commercieel verdrag"
+
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
 msgstr "Verhoogt de defensieve kwaliteiten van handelaars."
@@ -2269,18 +2282,6 @@ msgstr "Bouw stenen muren in neutraal territorium."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Atheense lange muren"
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsondescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Kort na de grote maritieme overwinningen te Salamis en Mykale stichtten de Griekse stadstaten in 478 V.C. de zogenoemde Delische Bond. Het doel van die bond was de Perzen uit de Egeïsche regio te houden. De geallieerde staten droegen schepen en geld bij, terwijl de Atheners hun volledige marine schonken."
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
-msgid "Delian League"
-msgstr "Delische Bond"
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""

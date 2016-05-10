@@ -65,7 +65,7 @@ public:
 	 * Construct a client associated with the given game object.
 	 * The game must exist for the lifetime of this object.
 	 */
-	CNetClient(CGame* game);
+	CNetClient(CGame* game, bool isLocalClient);
 
 	virtual ~CNetClient();
 
@@ -238,6 +238,9 @@ private:
 
 	/// Unique-per-game identifier of this client, used to identify the sender of simulation commands
 	u32 m_HostID;
+
+	/// Whether to prevent the client of the host from timing out
+	bool m_IsLocalClient;
 
 	/// Latest copy of game setup attributes heard from the server
 	JS::PersistentRootedValue m_GameAttributes;

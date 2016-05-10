@@ -291,12 +291,14 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 	totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", { "entity": entity, "batchSize": trainNum }) : 1));
 
 	let costs = [];
-	if (totalCosts.food) costs.push(sprintf(translate("%(component)s %(cost)s"), { "component": getCostComponentDisplayName("food"), "cost": totalCosts.food }));
-	if (totalCosts.wood) costs.push(sprintf(translate("%(component)s %(cost)s"), { "component": getCostComponentDisplayName("wood"), "cost": totalCosts.wood }));
-	if (totalCosts.metal) costs.push(sprintf(translate("%(component)s %(cost)s"), { "component": getCostComponentDisplayName("metal"), "cost": totalCosts.metal }));
-	if (totalCosts.stone) costs.push(sprintf(translate("%(component)s %(cost)s"), { "component": getCostComponentDisplayName("stone"), "cost": totalCosts.stone }));
-	if (totalCosts.population) costs.push(sprintf(translate("%(component)s %(cost)s"), { "component": getCostComponentDisplayName("population"), "cost": totalCosts.population }));
-	if (totalCosts.time) costs.push(sprintf(translate("%(component)s %(cost)s"), { "component": getCostComponentDisplayName("time"), "cost": totalCosts.time }));
+
+	for (let type in g_CostDisplayNames)
+		if (totalCosts[type])
+			costs.push(sprintf(translate("%(component)s %(cost)s"), {
+				"component": getCostComponentDisplayName(type),
+				"cost": totalCosts[type]
+			}));
+
 	return costs;
 }
 

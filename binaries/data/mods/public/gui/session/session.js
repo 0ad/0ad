@@ -650,20 +650,11 @@ function changeGameSpeed(speed)
 
 function hasIdleWorker()
 {
-	for (let workerType of g_WorkerTypes)
-	{
-		let idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", {
+	return Engine.GuiInterfaceCall("HasIdleUnits", {
 			"viewedPlayer": g_ViewedPlayer,
-			"idleClass": workerType,
-			"prevUnit": undefined,
-			"limit": 1,
+			"idleClasses": g_WorkerTypes,
 			"excludeUnits": []
-		});
-
-		if (idleUnits.length > 0)
-			return true;
-	}
-	return false;
+	});
 }
 
 function updateIdleWorkerButton()

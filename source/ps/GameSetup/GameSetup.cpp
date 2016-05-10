@@ -1486,7 +1486,7 @@ bool Autostart(const CmdLineArgs& args)
 		bool ok = g_NetServer->SetupConnection();
 		ENSURE(ok);
 
-		g_NetClient = new CNetClient(g_Game);
+		g_NetClient = new CNetClient(g_Game, true);
 		g_NetClient->SetUserName(userName);
 		g_NetClient->SetupConnection("127.0.0.1");
 	}
@@ -1494,7 +1494,7 @@ bool Autostart(const CmdLineArgs& args)
 	{
 		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData);
 
-		g_NetClient = new CNetClient(g_Game);
+		g_NetClient = new CNetClient(g_Game, false);
 		g_NetClient->SetUserName(userName);
 
 		CStr ip = args.Get("autostart-client");

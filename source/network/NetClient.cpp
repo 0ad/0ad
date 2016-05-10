@@ -66,11 +66,12 @@ private:
 	CNetClient& m_Client;
 };
 
-CNetClient::CNetClient(CGame* game) :
+CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
 	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
+	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0)
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
@@ -154,7 +155,7 @@ void CNetClient::SetUserName(const CStrW& username)
 bool CNetClient::SetupConnection(const CStr& server)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
-	bool ok = session->Connect(PS_DEFAULT_PORT, server);
+	bool ok = session->Connect(PS_DEFAULT_PORT, server, m_IsLocalClient);
 	SetAndOwnSession(session);
 	return ok;
 }
@@ -467,6 +468,7 @@ bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 	authenticate.m_GUID = client->m_GUID;
 	authenticate.m_Name = client->m_UserName;
 	authenticate.m_Password = L""; // TODO
+	authenticate.m_IsLocalClient = client->m_IsLocalClient;
 	client->SendMessage(&authenticate);
 
 	return true;

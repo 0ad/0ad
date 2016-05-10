@@ -4,16 +4,17 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
-# Max, 2015
+# Max Ihalempia, 2016
+# Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Ildradil <piggmatias@gmail.com>, 2015
 # Riku Viitanen <riisseli4@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 08:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-08 21:11+0000\n"
+"Last-Translator: Max Ihalempia\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,6 +71,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
@@ -468,7 +470,7 @@ msgstr "Ertyisesti ratsuväelle tehty pitkä keihäs."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr ""
+msgstr "Varusta kantamaratsuväkesi paremmilla aseilla. Lähitaisteluratsuväki +2 Hakkaushyökkäystä."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -533,7 +535,7 @@ msgstr "Korvaa pronssiaseet rautaisilla."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "Varusta kantamaratsuväkesi paremmilla aseilla. +20% lähitaisteluratsuväen hyökkäys."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -798,7 +800,7 @@ msgstr "Varuskunnat selviytyvät kaksinkertaisen ajan neutraalissa alueessa."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "Alueellinen heikentyminen -50% varuskunnille."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -840,7 +842,7 @@ msgstr "Hevostenvetämät kärryt"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Suolaus sallii kalojen säilymisen kauemmin."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -1592,6 +1594,18 @@ msgstr "Kouluta hevosesi nopeammiksi."
 msgid "Cavalry Speed Training"
 msgstr ""
 
+#: simulation/data/technologies/trade_commercial_treaty.jsondescription
+msgid "Improve the international trading profit."
+msgstr ""
+
+#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+msgid "Market +10% International Bonus."
+msgstr ""
+
+#: simulation/data/technologies/trade_commercial_treaty.jsongenericName
+msgid "Commercial Treaty"
+msgstr ""
+
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
 msgstr "Lisää kauppiaitten puolustuskykyä."
@@ -2265,18 +2279,6 @@ msgstr "Rakenna kivimuureja neutraaliin alueeseen."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Ateenalaiset pitkät muurit"
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsondescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
-msgid "Delian League"
-msgstr "Delianin kieli"
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""

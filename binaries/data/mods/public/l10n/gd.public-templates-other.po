@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 09:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-02 10:08+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -661,7 +661,7 @@ msgstr "Bothag"
 
 #: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
-msgstr "Cuir +2 ris na tha ceadaichte dhut de shluagh."
+msgstr "Cuir +2 ris an tomhas-shluaigh."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -671,7 +671,7 @@ msgstr "Taigh-fada"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr "Cuir +10% ris na tha ceadaichte dhut de shluagh."
+msgstr "Cuir +10% ris an tomhas-shluaigh."
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -744,7 +744,7 @@ msgstr "Lùchairt Innseanach"
 
 #: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr "Cuir +15 ris na tha ceadaichte dhut de shluagh. Trus aonadan a bharrachd is curaidhean."
+msgstr "Cuir +15 ris an tomhas-shluaigh. Trus aonadan a bharrachd is curaidhean."
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
@@ -883,6 +883,14 @@ msgstr "Pioramaid Mhòr"
 msgid "Minor Pyramid"
 msgstr "Pioramaid bheag"
 
+#: simulation/templates/other/sele_colonnade.xml:20
+msgid "Colonnade"
+msgstr "Colbh-thrannsa"
+
+#: simulation/templates/other/sele_colonnade.xml:21
+msgid "Corinthian Colonnade"
+msgstr "Colbh-thrannsa Choirinteach"
+
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
@@ -963,7 +971,7 @@ msgstr "Atharraichean air taighean le sluagh de 5 airson sìobhaltasan aig a bhe
 msgid "Marker"
 msgstr "Comharra"
 
-#: simulation/templates/special/player.xml:55
+#: simulation/templates/special/player.xml:56
 msgid "Player"
 msgstr "Cluicheadair"
 
@@ -982,7 +990,7 @@ msgid "Oxybelḗs"
 msgstr "Oxybelḗs"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
 msgid "Ballista"
 msgstr "Bogha-tilgeil"
 
@@ -990,6 +998,6 @@ msgstr "Bogha-tilgeil"
 msgid "Polybolos"
 msgstr "Polybolos"
 
-#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
 msgid "Scorpio"
 msgstr "Scorpio"

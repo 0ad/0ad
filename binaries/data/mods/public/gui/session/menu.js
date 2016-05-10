@@ -341,7 +341,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 			continue;
 
 		button.enabled = controlsPlayer(g_ViewedPlayer);
-		button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
+		button.tooltip = formatTributeTooltip(i, resource, 100);
 		button.onpress = (function(i, resource, button) {
 			// Shift+click to send 500, shift+click+click to send 1000, etc.
 			// See INPUT_MASSTRIBUTING in input.js
@@ -359,14 +359,14 @@ function diplomacyFormatTributeButtons(i, hidden)
 					amounts[type] = 0;
 				amounts[resource] = 100 * multiplier;
 
-				button.tooltip = formatTributeTooltip(g_Players[i], resource, amounts[resource]);
+				button.tooltip = formatTributeTooltip(i, resource, amounts[resource]);
 
 				// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
 				// evil global variable hackery.
 				g_FlushTributing = function() {
 					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts":  amounts });
 					multiplier = 1;
-					button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
+					button.tooltip = formatTributeTooltip(i, resource, 100);
 				};
 
 				if (!isBatchTrainPressed)
@@ -747,12 +747,12 @@ function closeOpenDialogs()
 	closeTrade();
 }
 
-function formatTributeTooltip(player, resource, amount)
+function formatTributeTooltip(playerID, resource, amount)
 {
 	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
 		"resourceAmount": amount,
 		"resourceType": getLocalizedResourceName(resource, "withinSentence"),
-		"playerName": "[color=\"" + rgbToGuiColor(player.color) + "\"]" + player.name + "[/color]",
-		"greaterAmount": (amount < 500 ? 500 : amount + 500)
+		"playerName": colorizePlayernameByID(playerID),
+		"greaterAmount": amount < 500 ? 500 : amount + 500
 	});
 }

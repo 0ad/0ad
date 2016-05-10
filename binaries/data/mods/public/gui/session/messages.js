@@ -653,11 +653,10 @@ function colorizePlayernameHelper(username, playerID)
 function formatDefeatMessage(msg)
 {
 	// In singleplayer, the local player is "You". "You has" is incorrect.
-	let message = !g_IsNetworked && msg.player == Engine.GetPlayerID() ?
-			translate("You have been defeated.") :
-			translate("%(player)s has been defeated.");
+	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
+		return translate("You have been defeated.");
 
-	return sprintf(message, {
+	return sprintf(translate("%(player)s has been defeated."), {
 		"player": colorizePlayernameByID(msg.player)
 	});
 }
@@ -814,7 +813,7 @@ function parseChatAddressee(msg)
 
 	// For observers only permit public- and observer-chat and PM to observers
 	if (isPlayerObserver(senderID) &&
-		((isPM && !isPlayerObserver(addresseeIndex)) || (!isPM && cmd != "/observers")))
+	    (isPM && !isPlayerObserver(addresseeIndex) || !isPM && cmd != "/observers"))
 		return false;
 
 	return isSender || g_IsChatAddressee[cmd](senderID, addresseeGUID);

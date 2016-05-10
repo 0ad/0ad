@@ -431,6 +431,7 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 	std::set<std::string> permittedComponentTypes;
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Minimap");
+	permittedComponentTypes.insert("Obstruction");
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("OverlayRenderer");
 	permittedComponentTypes.insert("Position");
@@ -455,6 +456,10 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 	CParamNode::LoadXMLString(identity, "<Identity/>");
 	identity.CopyFilteredChildrenOfChild(in.GetChild("Entity"), "Identity", identitySubset);
 	CParamNode::LoadXMLString(out, ("<Entity>"+utf8_from_wstring(identity.ToXML())+"</Entity>").c_str());
+
+	// Mirages obstruction shouldn't block anything
+	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
+		CParamNode::LoadXMLString(out, "<Entity><Obstruction><BlockMovement>false</BlockMovement><BlockPathfinding>false</BlockPathfinding><BlockFoundation>false</BlockFoundation><BlockConstruction>false</BlockConstruction></Obstruction></Entity>");
 
 	// Set the entity as mirage entity
 	CParamNode::LoadXMLString(out, "<Entity><Mirage/></Entity>");

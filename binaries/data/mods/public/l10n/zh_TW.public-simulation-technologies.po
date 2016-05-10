@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 12:39+0000\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-02 14:35+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -69,6 +69,7 @@ msgstr "馬頭盔甲"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
@@ -1591,6 +1592,18 @@ msgstr "訓練您的馬，使其移動更快速。"
 msgid "Cavalry Speed Training"
 msgstr "騎兵移動力訓練"
 
+#: simulation/data/technologies/trade_commercial_treaty.jsondescription
+msgid "Improve the international trading profit."
+msgstr "改進國際貿易利潤。"
+
+#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+msgid "Market +10% International Bonus."
+msgstr "市集 +10% 國際獎勵。"
+
+#: simulation/data/technologies/trade_commercial_treaty.jsongenericName
+msgid "Commercial Treaty"
+msgstr "商業條約"
+
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
 msgstr "增加商人的防禦能力。"
@@ -2264,18 +2277,6 @@ msgstr "在中立領土上建造石牆。"
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "雅典長城"
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsondescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr "在薩拉米斯及麥凱爾的海軍大勝利後不久，希臘城邦就在西元前 478 年成立所謂的提洛同盟，其目標是將波斯人驅離愛琴海地區。各個同盟城邦都貢獻了船艦或金錢，而雅典則貢獻了他們的整個海軍。"
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
-msgid "Delian League"
-msgstr "提洛同盟"
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-18 05:14+0000\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-02 14:35+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -85,6 +85,7 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
@@ -1607,6 +1608,18 @@ msgstr "Wyszkól swoje konie do szybszej jazdy."
 msgid "Cavalry Speed Training"
 msgstr "Trening szybkości Kawalerii"
 
+#: simulation/data/technologies/trade_commercial_treaty.jsondescription
+msgid "Improve the international trading profit."
+msgstr "Popraw międzynarodowe zyski."
+
+#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+msgid "Market +10% International Bonus."
+msgstr "Targi +10 do Międzynarodowego Dodatku"
+
+#: simulation/data/technologies/trade_commercial_treaty.jsongenericName
+msgid "Commercial Treaty"
+msgstr "Trakt Handlowy"
+
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
 msgstr "Zwiększa zdolności obronne kupców."
@@ -2280,18 +2293,6 @@ msgstr "Buduj kamienne mury na neutralnym terytorium."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Ateńskie długie mury"
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsondescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Krótko po wielkich zwycięstwach morskich pod Salaminą i Mykale, Greckie państwa-miasta wprowadziły tak zwaną Symmachię Delijska w 478 roku p.n.e., której celem było wyparcie Persów z rejonów egejskich. Zjednoczone miasta przekazały okręty i pieniądze, podczas gdy Ateńczycy zaoferowali całą swoją flotę."
-
-#: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
-msgid "Delian League"
-msgstr "Symmachia Delijska"
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-15 09:01+0200\n"
-"PO-Revision-Date: 2016-04-15 08:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-02 09:01+0200\n"
+"PO-Revision-Date: 2016-05-07 11:24+0000\n"
+"Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -885,6 +885,14 @@ msgstr "Grote pyramide"
 msgid "Minor Pyramid"
 msgstr "Kleine piramide"
 
+#: simulation/templates/other/sele_colonnade.xml:20
+msgid "Colonnade"
+msgstr "Colonnade"
+
+#: simulation/templates/other/sele_colonnade.xml:21
+msgid "Corinthian Colonnade"
+msgstr "Korinthische Colonnade"
+
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
@@ -965,7 +973,7 @@ msgstr "Wordt door een 5-bev huis vervangen voor beschavingen die dergelijke hui
 msgid "Marker"
 msgstr "Markeerpunt"
 
-#: simulation/templates/special/player.xml:55
+#: simulation/templates/special/player.xml:56
 msgid "Player"
 msgstr "Speler"
 
@@ -984,7 +992,7 @@ msgid "Oxybelḗs"
 msgstr "Oxybelḗs"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:29
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
 msgid "Ballista"
 msgstr "Ballista"
 
@@ -992,6 +1000,6 @@ msgstr "Ballista"
 msgid "Polybolos"
 msgstr "Polybolos"
 
-#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
 msgid "Scorpio"
 msgstr "Scorpio"

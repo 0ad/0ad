@@ -313,7 +313,7 @@ private:
 	CStrW m_ServerName;
 	CStrW m_WelcomeMessage;
 
-	std::vector<CStr> m_BannedIPs;
+	std::vector<u32> m_BannedIPs;
 	std::vector<CStrW> m_BannedPlayers;
 
 	u32 m_NextHostID;
