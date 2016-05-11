@@ -737,7 +737,7 @@ g_SelectionPanels.Queue = {
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
 			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
-				"population": getCostComponentDisplayName("population"),
+				"population": getCostComponentDisplayIcon("population"),
 				"neededSlots": data.item.neededSlots
 			});
 		}
@@ -977,23 +977,12 @@ g_SelectionPanels.Selection = {
 	},
 	"setTooltip": function(data)
 	{
+		let tooltip = data.name;
 		if (data.carried)
-		{
-			var str = data.name + "\n";
-			var ress = ["food", "wood", "stone", "metal"];
-			for (var i = 0; i < 4; ++i)
-			{
-				if (data.carried[ress[i]])
-				{
-					str += getCostComponentDisplayName(ress[i]) + data.carried[ress[i]];
-					if (i !== 3)
-						str += " ";
-				}
-			}
-			data.button.tooltip = str;
-		}
-		else
-			data.button.tooltip = data.name;
+			tooltip += "\n" + Object.keys(data.carried).map(res =>
+				getCostComponentDisplayIcon(res) + data.carried[res]
+			).join(" ");
+		data.button.tooltip = tooltip;
 	},
 	"setCountDisplay": function(data)
 	{

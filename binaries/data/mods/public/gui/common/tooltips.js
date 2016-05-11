@@ -1,4 +1,4 @@
-const g_CostDisplayNames = {
+const g_CostDisplayIcons = {
 	"food": '[icon="iconFood"]',
 	"wood": '[icon="iconWood"]',
 	"stone": '[icon="iconStone"]',
@@ -258,10 +258,10 @@ function getBuildRateTooltip(rate)
  * Translates a cost component identifier as they are used internally
  * (e.g. "population", "food", etc.) to proper display names.
  */
-function getCostComponentDisplayName(costComponentName)
+function getCostComponentDisplayIcon(costComponentName)
 {
-	if (costComponentName in g_CostDisplayNames)
-		return g_CostDisplayNames[costComponentName];
+	if (costComponentName in g_CostDisplayIcons)
+		return g_CostDisplayIcons[costComponentName];
 
 	warn(sprintf("The specified cost component, ‘%(component)s’, is not currently supported.", { "component": costComponentName }));
 	return "";
@@ -292,10 +292,10 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 
 	let costs = [];
 
-	for (let type in g_CostDisplayNames)
+	for (let type in g_CostDisplayIcons)
 		if (totalCosts[type])
 			costs.push(sprintf(translate("%(component)s %(cost)s"), {
-				"component": getCostComponentDisplayName(type),
+				"component": getCostComponentDisplayIcon(type),
 				"cost": totalCosts[type]
 			}));
 
@@ -353,7 +353,7 @@ function getWallPieceTooltip(wallTypes)
 			// Translation: This string is part of the resources cost string on
 			// the tooltip for wall structures.
 			out.push(sprintf(translate("%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"), {
-				"resourceIcon": getCostComponentDisplayName(resource),
+				"resourceIcon": getCostComponentDisplayIcon(resource),
 				"minimum": resourceMin,
 				"maximum": resourceMax
 			}));
@@ -415,7 +415,7 @@ function getNeededResourcesTooltip(resources)
 	let formatted = [];
 	for (let resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
-			"component": '[font="sans-12"]' + getCostComponentDisplayName(resource) + '[/font]',
+			"component": '[font="sans-12"]' + getCostComponentDisplayIcon(resource) + '[/font]',
 			"cost": resources[resource]
 		}));
 

@@ -366,7 +366,7 @@ function assembleTooltip(template)
 		let rates = [];
 		for (let type in template.gather)
 			rates.push(sprintf(translate("%(resourceIcon)s %(rate)s"), {
-				"resourceIcon": getCostComponentDisplayName(type),
+				"resourceIcon": getCostComponentDisplayIcon(type),
 				"rate": template.gather[type]
 			}));
 
