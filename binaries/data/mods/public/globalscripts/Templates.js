@@ -145,7 +145,7 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 		if (template.BuildRestrictions.Distance)
 		{
 			ret.buildRestrictions.distance = {
-				"fromCategory": template.BuildRestrictions.Distance.FromCategory,
+				"fromClass": template.BuildRestrictions.Distance.FromClass,
 			};
 			if (template.BuildRestrictions.Distance.MinDistance) ret.buildRestrictions.distance.min = +template.BuildRestrictions.Distance.MinDistance;
 			if (template.BuildRestrictions.Distance.MaxDistance) ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
