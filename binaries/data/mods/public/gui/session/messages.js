@@ -188,7 +188,8 @@ var g_NotificationsTypes =
 		addChatMessage({
 			"type": "defeat",
 			"guid": findGuidForPlayerID(player),
-			"player": player
+			"player": player,
+			"resign": !!notification.resign
 		});
 
 		updateDiplomacy();
@@ -652,12 +653,31 @@ function colorizePlayernameHelper(username, playerID)
 
 function formatDefeatMessage(msg)
 {
+	let defeatMsg;
+	let playername;
+
 	// In singleplayer, the local player is "You". "You has" is incorrect.
 	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-		return translate("You have been defeated.");
+	{
+		// Translation: String used to colorize the word "You" of that sentence
+		playername = colorizePlayernameHelper(translateWithContext("You have been defeated", "You"), msg.player);
+		if (msg.resign)
+			defeatMsg = translate("%(You)s have resigned.");
+		else
+			defeatMsg = translate("%(You)s have been defeated.");
+	}
+	else
+	{
+		playername = colorizePlayernameByID(msg.player);
+		if (msg.resign)
+			defeatMsg = translate("%(player)s has resigned.");
+		else
+			defeatMsg = translate("%(player)s has been defeated.");
+	}
 
-	return sprintf(translate("%(player)s has been defeated."), {
-		"player": colorizePlayernameByID(msg.player)
+	return sprintf(defeatMsg, {
+		"player": playername,
+		"You": playername
 	});
 }
 

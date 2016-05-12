@@ -426,7 +426,8 @@ function resignGame(leaveGameAfterResign)
 
 	Engine.PostNetworkCommand({
 		"type": "defeat-player",
-		"playerId": Engine.GetPlayerID()
+		"playerId": Engine.GetPlayerID(),
+		"resign": true
 	});
 
 	updateTopPanel();
