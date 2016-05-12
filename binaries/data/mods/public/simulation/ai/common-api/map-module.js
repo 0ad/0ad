@@ -12,14 +12,14 @@ m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 	let map = (type === "territory" || type === "resource") ? sharedScript.territoryMap : sharedScript.passabilityMap;
 	this.width = map.width;
 	this.height = map.height;
-	this.cellSize = map.cellSize;   
+	this.cellSize = map.cellSize;
 	this.length = this.width * this.height;
 
 	this.maxVal = 255;
 
 	// sanity check
 	if (originalMap && originalMap.length !== this.length)
-		warn("AI map size incompatibility with type " + type + ": original " + originalMap.length + " new " + this.length); 
+		warn("AI map size incompatibility with type " + type + ": original " + originalMap.length + " new " + this.length);
 
 	if (originalMap && actualCopy)
 	{
@@ -54,13 +54,13 @@ m.Map.prototype.point = function(p)
 m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linear")
 {
 	strength = strength ? strength : maxDist;
-	
+
 	var x0 = Math.floor(Math.max(0, cx - maxDist));
 	var y0 = Math.floor(Math.max(0, cy - maxDist));
 	var x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
 	var y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
 	var maxDist2 = maxDist * maxDist;
-	
+
 	// code duplicating for speed
 	if (type === 'linear' || type === "linear")
 	{
@@ -138,13 +138,13 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'constant';
-	
+
 	var x0 = Math.max(0, cx - maxDist);
 	var y0 = Math.max(0, cy - maxDist);
 	var x1 = Math.min(this.width, cx + maxDist);
 	var y1 = Math.min(this.height, cy + maxDist);
 	var maxDist2 = maxDist * maxDist;
-	
+
 	var str = 0.0;
 	switch (type)
 	{
@@ -158,7 +158,7 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 			str = strength;
 			break;
 	}
-	
+
 	if (type === 'linear' || type === "linear")
 	{
 		for (let y = y0; y < y1; ++y)
@@ -259,9 +259,9 @@ m.Map.prototype.sumInfluence = function(cx, cy, radius)
 	var x1 = Math.min(this.width, cx + radius);
 	var y1 = Math.min(this.height, cy + radius);
 	var radius2 = radius * radius;
-	
+
 	var sum = 0;
-	
+
 	for (let y = y0; y < y1; ++y)
 	{
 		for (let x = x0; x < x1; ++x)
@@ -314,7 +314,7 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 				min = maximum;
 		}
 	}
-	
+
 	for (let x = 0; x < w; ++x)
 	{
 		let min = maximum;
@@ -329,7 +329,7 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 			if (min > maximum)
 				min = maximum;
 		}
-		
+
 		for (let y = h - 2; y >= 0; --y)
 		{
 			let g = grid[x + y * w];

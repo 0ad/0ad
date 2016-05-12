@@ -155,7 +155,6 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	API3.warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
 	for (let i in this.queues)
 	{
-		let qStr = "";
 		let q = this.queues[i];
 		if (q.hasQueuedUnits())
 		{
@@ -164,7 +163,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 		}
 		for (let plan of q.plans)
 		{
-			qStr = "     " + plan.type + " ";
+			let qStr = "     " + plan.type + " ";
 			if (plan.number)
 				qStr += "x" + plan.number;
 			qStr += "   isGo " + plan.isGo(gameState);

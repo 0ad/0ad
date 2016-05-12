@@ -721,9 +721,8 @@ m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return false;
 
-	var template = this.getTemplate(templateName);
 	var civ = this.playerData.civ;
-	
+
 	for (let ent of this.getOwnResearchFacilities().values())
 	{
 		let techs = ent.researchableTechs(civ);
@@ -750,10 +749,9 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return [];
 
-	var template = this.getTemplate(templateName);
 	var self = this;
 	var civ = this.playerData.civ;
-	
+
 	return this.getOwnResearchFacilities().filter(function(ent) {
 		let techs = ent.researchableTechs(civ);
 		for (let tech of techs)

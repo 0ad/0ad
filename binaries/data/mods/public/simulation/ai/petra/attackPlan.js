@@ -11,7 +11,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 {
 	this.Config = Config;
 	this.name = uniqueID;
-	this.type = type || "Attack";	
+	this.type = type || "Attack";
 	this.state = "unexecuted";
 
 	if (data && data.target)
@@ -187,7 +187,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	gameState.ai.queueManager.addQueue("plan_" + this.name, priority);
 	gameState.ai.queueManager.addQueue("plan_" + this.name +"_champ", priority+1);
 	gameState.ai.queueManager.addQueue("plan_" + this.name +"_siege", priority);
-	
+
 	// each array is [ratio, [associated classes], associated EntityColl, associated unitStat, name ]
 	this.buildOrder = [];
 	this.canBuildUnits = gameState.ai.HQ.canBuildUnits;
@@ -211,7 +211,7 @@ m.AttackPlan.prototype.init = function(gameState)
 
 	this.unitCollection = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", this.name));
 	this.unitCollection.registerUpdates();
-	
+
 	this.unit = {};
 
 	// defining the entity collections. Will look for units I own, that are part of this plan.
@@ -254,7 +254,7 @@ m.AttackPlan.prototype.setPaused = function(boolValue)
 // Returns true if the attack can be executed at the current time
 // Basically it checks we have enough units.
 m.AttackPlan.prototype.canStart = function()
-{	
+{
 	if (!this.canBuildUnits)
 		return true;
 
@@ -529,7 +529,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 			let queue2 = this.queueChamp.countQueuedUnitsWithMetadata("special", specialData);
 			let queue3 = this.queueSiege.countQueuedUnitsWithMetadata("special", specialData);
 			API3.warn(" >>> " + order[4] + " done " + order[2].length + " training " + inTraining +
-				  " queue " + queue1 + " champ " + queue2 + " siege " + queue3 + " >> need " + order[3].targetSize); 
+				  " queue " + queue1 + " champ " + queue2 + " siege " + queue3 + " >> need " + order[3].targetSize);
 		}
 		API3.warn("====================================");
 	}
@@ -993,7 +993,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		gameState.ai.queueManager.removeQueue("plan_" + this.name);
 		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 		gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
-		
+
 		for (let ent of this.unitCollection.values())
 			ent.setMetadata(PlayerID, "subrole", "walking");
 		this.unitCollection.setStance("aggressive");
@@ -1091,7 +1091,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// we're marching towards the target
 		// Let's check if any of our unit has been attacked.
 		// In case yes, we'll determine if we're simply off against an enemy army, a lone unit/building
-		// or if we reached the enemy base. Different plans may react differently.		
+		// or if we reached the enemy base. Different plans may react differently.
 		var attackedNB = 0;
 		var attackedUnitNB = 0;
 		for (let evt of events.Attacked)
@@ -1141,7 +1141,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		}
 		if (gameState.ai.playedTurn % 5 === 0)
 			this.position5TurnsAgo = this.position;
-		
+
 		if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
 		{
 			if (!this.path[0][0] || !this.path[0][1])
@@ -1214,7 +1214,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 		}
 	}
-	
+
 	// basic state of attacking.
 	if (this.state === "")
 	{
@@ -1270,7 +1270,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							continue;
 						if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
 							continue;
-						if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned     
+						if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned
 							continue;
 						this.target = attack.target;
 						this.targetPlayer = attack.targetPlayer;
@@ -1303,7 +1303,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		{
 			if (IDs.indexOf(evt.target) == -1)
 				continue;
-			var attacker = gameState.getEntityById(evt.attacker);
+			let attacker = gameState.getEntityById(evt.attacker);
 			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
 				continue;
 			var ourUnit = gameState.getEntityById(evt.target);
@@ -1338,7 +1338,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				else
 				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
 					// also if our unit is attacking a range unit and the attacker is a melee unit, retaliate
-					var orderData = ourUnit.unitAIOrderData();
+					let orderData = ourUnit.unitAIOrderData();
 					if (orderData && orderData.length && orderData[0].target)
 					{
 						if (orderData[0].target === attacker.id())
@@ -1355,7 +1355,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				}
 			}
 		}
-		
+
 		var enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
 		var enemyStructures = gameState.getEnemyStructures(this.targetPlayer);
 
@@ -1428,7 +1428,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			let orderData = ent.unitAIOrderData();
 			if (orderData && orderData.length && orderData[0].target)
 				targetId = orderData[0].target;
-	
+
 			// update the order if needed
 			let needsUpdate = false;
 			let maybeUpdate = false;
@@ -1668,7 +1668,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	}
 	this.lastPosition = this.position;
 	Engine.ProfileStop();
-	
+
 	return this.unitCollection.length;
 };
 
@@ -1894,7 +1894,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"targetPlayer": this.targetPlayer,
 		"target": ((this.target !== undefined) ? this.target.id() : undefined),
 		"targetPos": this.targetPos,
-		"path": this.path	    
+		"path": this.path
 	};
 
 	return { "properties": properties};

@@ -483,7 +483,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 	    !gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).hasEntities())
 		return;
 	// check if we have enough transport ships per region.
-	for (var sea = 0; sea < this.seaShips.length; ++sea)
+	for (let sea = 0; sea < this.seaShips.length; ++sea)
 	{
 		if (this.seaShips[sea] === undefined)
 			continue;
@@ -492,7 +492,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 
 		if (this.seaTransportShips[sea].length < this.wantedTransportShips[sea])
 		{
-			var template = this.getBestShip(gameState, sea, "transport");
+			let template = this.getBestShip(gameState, sea, "transport");
 			if (template)
 			{
 				queues.ships.addPlan(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));

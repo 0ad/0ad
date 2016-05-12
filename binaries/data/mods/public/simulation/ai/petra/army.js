@@ -17,7 +17,7 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	this.defenseRatio = this.Config.Defense.defenseRatio;
 	this.compactSize = this.Config.Defense.armyCompactSize;
 	this.breakawaySize = this.Config.Defense.armyBreakawaySize;
-		
+
 	// average
 	this.foePosition = [0,0];
 	this.positionLastUpdate = gameState.ai.elapsedTime;
@@ -28,19 +28,19 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	this.assignedAgainst = {};
 	// who we assigned against, for quick removal.
 	this.assignedTo = {};
-	
+
 	this.foeEntities = [];
 	this.foeStrength = 0;
-	
+
 	this.ownEntities = [];
 	this.ownStrength = 0;
-	
+
 	// actually add units
 	for (let id of foeEntities)
 		this.addFoe(gameState, id, true);
 	for (let id of ownEntities)
 		this.addOwn(gameState, id);
-	
+
 	this.recalculatePosition(gameState, true);
 
 	return true;
@@ -79,7 +79,7 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 {
 	this.ownStrength  = 0;
 	this.foeStrength  = 0;
-	
+
 	// todo: deal with specifics.
 
 	for (let id of this.foeEntities)
@@ -127,11 +127,11 @@ m.Army.prototype.addFoe = function (gameState, enemyId, force)
 	let ent = gameState.getEntityById(enemyId);
 	if (!ent || !ent.position())
 		return false;
-	
+
 	// check distance
 	if (!force && API3.SquareVectorDistance(ent.position(), this.foePosition) > this.compactSize)
 			return false;
-	
+
 	this.foeEntities.push(enemyId);
 	this.assignedAgainst[enemyId] = [];
 	this.positionLastUpdate = 0;
@@ -150,7 +150,7 @@ m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 		return false;
 
 	this.foeEntities.splice(idx, 1);
-	
+
 	this.assignedAgainst[enemyId] = undefined;
 	for (let to in this.assignedTo)
 		if (this.assignedTo[to] == enemyId)

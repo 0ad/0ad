@@ -30,7 +30,7 @@ m.inRange = function(a, b, range)// checks for X distance
 	// will avoid unnecessary checking for position in some rare cases... I'm lazy
 	if (a === undefined || b === undefined || range === undefined)
 		return undefined;
-	
+
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
 	return ((dx*dx + dz*dz ) < range);
@@ -61,7 +61,7 @@ m.PickRandom = function(list)
 // Utility functions for conversions of maps of different sizes
 // It expects that cell size of map 1 is a multiple of cell size of map 2
 
-// return the index of map2 with max content from indices contained inside the cell i of map1 
+// return the index of map2 with max content from indices contained inside the cell i of map1
 m.getMaxMapIndex = function(i, map1, map2)
 {
 	var ratio = map1.cellSize / map2.cellSize;
@@ -75,7 +75,7 @@ m.getMaxMapIndex = function(i, map1, map2)
 	return index;
 };
 
-// return the list of indices of map2 contained inside the cell i of map1 
+// return the list of indices of map2 contained inside the cell i of map1
 // map1.cellSize must be a multiple of map2.cellSize
 m.getMapIndices = function(i, map1, map2)
 {

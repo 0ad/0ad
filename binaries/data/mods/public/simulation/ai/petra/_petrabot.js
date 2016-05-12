@@ -77,7 +77,7 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 
 		// this.queues can only be modified by the queue manager or things will go awry.
 		this.queues = {};
-		for (var i in this.Config.priorities)
+		for (let i in this.Config.priorities)
 			this.queues[i] = new m.Queue();
 
 		this.queueManager = new m.QueueManager(this.Config, this.queues);
@@ -109,7 +109,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 	// Run the update every n turns, offset depending on player ID to balance the load
 	this.elapsedTime = this.gameState.getTimeElapsed() / 1000;
 	if (!this.playedTurn || (this.turn + this.player) % 8 == 5)
-	{		
+	{
 		Engine.ProfileStart("PetraBot bot (player " + this.player +")");
 
 		this.playedTurn++;
@@ -117,19 +117,19 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 		if (this.gameState.getOwnEntities().length === 0)
 		{
 			Engine.ProfileStop();
-			return; // With no entities to control the AI cannot do anything 
+			return; // With no entities to control the AI cannot do anything
 		}
 
 		this.HQ.update(this.gameState, this.queues, this.savedEvents);
 
 		this.queueManager.update(this.gameState);
-		
+
 		for (let i in this.savedEvents)
 			this.savedEvents[i] = [];
 
 		Engine.ProfileStop();
 	}
-	
+
 	this.turn++;
 };
 

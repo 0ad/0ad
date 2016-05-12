@@ -27,7 +27,7 @@ m.BaseManager = function(gameState, Config)
 	this.maxDistResourceSquare = 360*360;
 
 	this.constructing = false;
-	// Defenders to train in this cc when its construction is finished 
+	// Defenders to train in this cc when its construction is finished
 	this.neededDefenders = ((this.Config.difficulty > 2) ? 3 + 2*(this.Config.difficulty - 3) : 0);
 
 	// vector for iterating, to check one use the HQ map.

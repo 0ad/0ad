@@ -32,7 +32,7 @@ m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID)
 			return;	// over
 
 	// Create a new army for it.
-	var army = new m.DefenseArmy(gameState, [], [entityID]);
+	let army = new m.DefenseArmy(gameState, [], [entityID]);
 	this.armies.push(army);
 };
 

@@ -177,7 +177,7 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.createResourceMaps(this);
 
 	this.gameState = {};
-	for (var i in this._players)
+	for (let i in this._players)
 	{
 		this.gameState[this._players[i]] = new m.GameState();
 		this.gameState[this._players[i]].init(this,state, this._players[i]);
@@ -212,7 +212,7 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.territoryMap = state.territoryMap;
 	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 	
-	for (var i in this.gameState)
+	for (let i in this.gameState)
 		this.gameState[i].update(this,state);
 
 	// TODO: merge this with "ApplyEntitiesDelta" since after all they do the same.
@@ -398,7 +398,7 @@ m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 	if (!metadata)
 		metadata = this._entityMetadata[player][ent.id()] = {};
 	metadata[key] = value;
-	
+
 	this.updateEntityCollections('metadata', ent);
 	this.updateEntityCollections('metadata.' + key, ent);
 };
@@ -406,7 +406,7 @@ m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 m.SharedScript.prototype.getMetadata = function(player, ent, key)
 {
 	var metadata = this._entityMetadata[player][ent.id()];
-	
+
 	if (!metadata || !(key in metadata))
 		return undefined;
 	return metadata[key];
@@ -415,7 +415,7 @@ m.SharedScript.prototype.getMetadata = function(player, ent, key)
 m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 {
 	var metadata = this._entityMetadata[player][ent.id()];
-	
+
 	if (!metadata || !(key in metadata))
 		return true;
 	metadata[key] = undefined;
