@@ -529,18 +529,17 @@ function updateChatAddressees()
 		if (guid == Engine.GetPlayerGUID())
 			continue;
 
-		let username = g_PlayerAssignments[guid].name;
-		let playerIndex = g_PlayerAssignments[guid].player;
+		let playerID = g_PlayerAssignments[guid].player;
 
 		// Don't provide option for PM from observer to player
-		if (g_IsObserver && !isPlayerObserver(playerIndex))
+		if (g_IsObserver && !isPlayerObserver(playerID))
 			continue;
 
-		let colorBox = isPlayerObserver(playerIndex) ? "" : '[color="' + rgbToGuiColor(g_Players[playerIndex].color) + '"]■ [/color]';
+		let colorBox = isPlayerObserver(playerID) ? "" : colorizePlayernameHelper("■", playerID) + " ";
 
 		addressees.push({
-			"cmd": "/msg " + username,
-			"label": colorBox + username
+			"cmd": "/msg " + g_PlayerAssignments[guid].name,
+			"label": colorBox + g_PlayerAssignments[guid].name
 		});
 	}
 

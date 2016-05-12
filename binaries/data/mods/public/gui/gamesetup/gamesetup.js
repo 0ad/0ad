@@ -595,7 +595,7 @@ function initPlayerAssignments()
 		};
 
 		let colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
-		colorPicker.list = g_PlayerColors.map(color => '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"] ■[/color]');
+		colorPicker.list = g_PlayerColors.map(color => ' ' + '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"]■[/color]');
 		colorPicker.list_data = g_PlayerColors.map((color, index) => index);
 		colorPicker.selected = -1;
 		colorPicker.onSelectionChange = function() { selectPlayerColor(playerSlot, this.selected); };
