@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -107,11 +107,11 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(cameraMetadata, "Zoom", g_Game->GetView()->GetCameraZoom());
 	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
-	
+
 	simulation.GetScriptInterface().SetProperty(metadata, "description", description);
-	
+
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(&metadata, true);
-	
+
 	// Write the saved game as zip file containing the various components
 	PIArchiveWriter archiveWriter = CreateArchiveWriter_Zip(tempSaveFileRealPath, false);
 	if (!archiveWriter)
@@ -142,15 +142,15 @@ class CGameLoader
 {
 	NONCOPYABLE(CGameLoader);
 public:
-	
+
 	/**
 	 * @param scriptInterface the ScriptInterface used for loading metadata.
 	 * @param[out] savedState serialized simulation state stored as string of bytes,
 	 *	loaded from simulation.dat inside the archive.
 	 *
 	 * Note: We use a different approach for returning the string and the metadata JS::Value.
-	 * We use a pointer for the string to avoid copies (efficiency). We don't use this approach 
-	 * for the metadata because it would be error prone with rooting and the stack-based rooting 
+	 * We use a pointer for the string to avoid copies (efficiency). We don't use this approach
+	 * for the metadata because it would be error prone with rooting and the stack-based rooting
 	 * types and confusing (a chain of pointers pointing to other pointers).
 	 */
 	CGameLoader(ScriptInterface& scriptInterface, std::string* savedState) :
@@ -169,7 +169,7 @@ public:
 	{
 		JSContext* cx = m_ScriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		if (pathname == L"metadata.json")
 		{
 			std::string buffer;
@@ -183,12 +183,12 @@ public:
 			WARN_IF_ERR(archiveFile->Load("", DummySharedPtr((u8*)m_SavedState->data()), m_SavedState->size()));
 		}
 	}
-	
+
 	JS::Value GetMetadata()
 	{
 		return m_Metadata.get();
 	}
-	
+
 private:
 
 	ScriptInterface& m_ScriptInterface;
@@ -217,7 +217,7 @@ Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterfa
 	WARN_RETURN_STATUS_IF_ERR(archiveReader->ReadEntries(CGameLoader::ReadEntryCallback, (uintptr_t)&loader));
 	metadata.set(loader.GetMetadata());
 
-	return INFO::OK;	
+	return INFO::OK;
 }
 
 JS::Value SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
@@ -225,7 +225,7 @@ JS::Value SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
 	TIMER(L"GetSavedGames");
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedObject games(cx, JS_NewArrayObject(cx, 0));
 
 	Status err;
@@ -260,7 +260,7 @@ JS::Value SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
 			continue; // skip this file
 		}
 		JS::RootedValue metadata(cx, loader.GetMetadata());
-		
+
 		JS::RootedValue game(cx);
 		scriptInterface.Eval("({})", &game);
 		scriptInterface.SetProperty(game, "id", pathnames[i].Basename());
@@ -293,15 +293,15 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 	return true;
 }
 
-JS::Value SavedGames::GetEngineInfo(ScriptInterface& scriptInterface) 
-{ 
+JS::Value SavedGames::GetEngineInfo(ScriptInterface& scriptInterface)
+{
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
-	JS::RootedValue metainfo(cx); 
-	scriptInterface.Eval("({})", &metainfo); 
-	scriptInterface.SetProperty(metainfo, "version_major", SAVED_GAME_VERSION_MAJOR); 
-	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR); 
+
+	JS::RootedValue metainfo(cx);
+	scriptInterface.Eval("({})", &metainfo);
+	scriptInterface.SetProperty(metainfo, "version_major", SAVED_GAME_VERSION_MAJOR);
+	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR);
 	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
 	scriptInterface.SetProperty(metainfo, "mods", g_modsLoaded);
 	return metainfo;
