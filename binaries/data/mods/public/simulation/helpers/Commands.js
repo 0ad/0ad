@@ -1583,7 +1583,6 @@ function TryTransformWallToGate(ent, cmpPlayer, cmd)
 		return;
 	}
 
-	var civ = cmpIdentity.GetCiv();
 	var gate = Engine.AddEntity(cmd.template);
 
 	var cmpCost = Engine.QueryInterface(gate, IID_Cost);
