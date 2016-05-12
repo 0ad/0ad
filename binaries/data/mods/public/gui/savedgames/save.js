@@ -1,44 +1,38 @@
-
 var g_Descriptions;
 var g_SavedGameData;
 
 function selectDescription()
 {
 	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	if (gameSelection.selected != -1)
-	{
-		Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
-		var gameID = gameSelection.list_data[gameSelection.selected];
-		Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
-	}
+	if (gameSelection.selected == -1)
+		return;
+
+	var gameID = gameSelection.list_data[gameSelection.selected];
+	Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
+	Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
 }
 
 function init(data)
 {
-	if (data && data.savedGameData)
-		g_SavedGameData = data.savedGameData;
+	g_SavedGameData = data && data.savedGameData || undefined;
 
 	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 
-	var savedGames = Engine.GetSavedGames();
-	if (savedGames.length == 0)
+	var savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];
 		gameSelection.selected = -1;
 		return;
 	}
 
-	savedGames.sort(sortDecreasingDate);
-
-	var gameListIDs = [ game.id for each (game in savedGames) ];
-	var gameListLabels = [ generateLabel(game.metadata) for each (game in savedGames) ];
-
 	g_Descriptions = {};
-	[ g_Descriptions[game.id] = (game.metadata.description ? game.metadata.description : "") for each (game in savedGames) ];
+	for (let game of savedGames)
+		g_Descriptions[game.id] = game.metadata.description || "";
 
-	gameSelection.list = gameListLabels;
-	gameSelection.list_data = gameListIDs;
+	gameSelection.list = savedGames.map(game => generateLabel(game.metadata));
+	gameSelection.list_data = savedGames.map(game => game.id);
 	gameSelection.selected = -1;
 }
 
@@ -48,17 +42,24 @@ function saveGame()
 	var gameLabel = gameSelection.list[gameSelection.selected];
 	var gameID = gameSelection.list_data[gameSelection.selected];
 	var desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
-	var name = gameID ? gameID : "savegame";
+	var name = gameID || "savegame";
 
-	if (gameSelection.selected != -1)
+	if (gameSelection.selected == -1)
 	{
-		// Ask for confirmation
-		var btCaptions = [translate("No"), translate("Yes")];
-		var btCode = [null, function(){ reallySaveGame(name, desc, false); }];
-		messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently overwritten, are you sure?"), translate("OVERWRITE SAVE"), 0, btCaptions, btCode);
-	}
-	else
 		reallySaveGame(name, desc, true);
+		return;
+	}
+
+	// Ask for confirmation
+	messageBox(
+		500, 200,
+		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
+			translate("Saved game will be permanently overwritten, are you sure?"),
+		translate("OVERWRITE SAVE"),
+		0,
+		[translate("No"), translate("Yes")],
+		[null, function(){ reallySaveGame(name, desc, false); }]
+	);
 }
 
 function reallySaveGame(name, desc, nameIsPrefix)
@@ -83,15 +84,21 @@ function deleteGame()
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	// Ask for confirmation
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [null, function(){ reallyDeleteGame(gameID); }];
-	messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently deleted, are you sure?"), translate("DELETE"), 0, btCaptions, btCode);
+	messageBox(
+		500, 200,
+		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
+			translate("Saved game will be permanently deleted, are you sure?"),
+		translate("DELETE"),
+		0,
+		[translate("No"), translate("Yes")],
+		[null, function(){ reallyDeleteGame(gameID); }]
+	);
 }
 
 function reallyDeleteGame(gameID)
 {
 	if (!Engine.DeleteSavedGame(gameID))
-		error(sprintf("Could not delete saved game '%(id)s'", { id: gameID }));
+		error("Could not delete saved game: " + gameID);
 
 	// Run init again to refresh saved game list
 	init();
