@@ -6,7 +6,7 @@
 		{"value": "Armour/Pierce",              "add":      1                          },
 		{"value": "Armour/Crush",               "add":      1                          },
 		{"value": "Attack/Capture/Value",       "add":      0.4                        },
-		{"value": "ResourceGatherer/BaseSpeed", "multiply": 0.25                       },
+		{"value": "ResourceGatherer/BaseSpeed", "multiply": 0.75                       },
 		{"value": "UnitMotion/WalkSpeed",       "add":      0.5,  "affects": "Infantry"},
 		{"value": "UnitMotion/WalkSpeed",       "add":      1,    "affects": "Cavalry" },
 		{"value": "Attack/Ranged/MaxRange",     "add":      4,    "affects": "Ranged"  },
