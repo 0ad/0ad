@@ -5,12 +5,13 @@
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
+# mandruis <manuiglesias96@yahoo.es>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-22 08:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-05-12 11:45+0000\n"
+"Last-Translator: mandruis <manuiglesias96@yahoo.es>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -585,21 +586,21 @@ msgstr "propio"
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "host desconectado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "aliado desconectado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -752,15 +753,15 @@ msgstr "Non é posíbel atopar espazo libre no que facer aparecer as unidades ad
 
 #: simulation/helpers/Cheat.js:63
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Debe seleccionar un edificio que adestra unidades."
 
 #: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Truco - controlar todas as unidades)"
 
 #: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Truco - unidades promovido)"
 
 #: simulation/helpers/Commands.js:678
 #, javascript-format
@@ -769,11 +770,11 @@ msgstr "Ataque contra %(_player_)s solicitado."
 
 #: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Incapaz de desguarecer unidad(es)"
 
 #: simulation/helpers/Commands.js:729
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "Algunhas unidad(es) non volver ao traballo"
 
 #: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
@@ -980,7 +981,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra é o patrón 0 dC AI bot. Por favor, reporte problemas para Wildfire Games (consulte a ligazón no menú principal) .\n\nA AI ten un extra / penalidade sobre o almacenamento de recursos (tanto obtención de taxa ou ganancia comercial) varios de 0,5 a Sandbox para 1,6 para Very Hard (Medium = 1,0). Ademais, o nivel de caixa de area non expande nin ataque."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
+# mandruis <manuiglesias96@yahoo.es>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-18 09:00+0100\n"
-"PO-Revision-Date: 2016-03-18 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-05-12 11:18+0000\n"
+"Last-Translator: mandruis <manuiglesias96@yahoo.es>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,25 +142,25 @@ msgstr "[font=\"sans-14\"]Nas partidas de varios xogadores, só o anfitrión pod
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "En primeiro lugar, seleccionar o tipo de mapa que quere xogar:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr " [font = \"sans-bold-14\"] mapa aleatorio [font = \"sans-14\"] - Un mapa creado automaticamente a partir dunha script"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font = \"sans-bold-14\"] mapa Escenario [font = \"sans-14\"] - Un mapa creado por mapa deseñadores e civilizacións reparadas"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font = \"sans-bold-14\"] mapa Skirmish [font = \"sans-14\"] - Un mapa creado por diseñadores de mapas , pero onde as civilizacións tienen que ser escollidos"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -168,7 +169,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "A continuación, os mapas poden ser futher filtrada. Os mapas estándar son mapas xeralmente xogabades. mapas navais son mapas onde non todos os adversarios poden ser alcanzados sobre mapas terrestres e demo son mapas utilizados para fins de proba (en xeral, non é útil para xogar en). O filtro \"Todos os mapas\" mostra todos os mapas xuntos nunha lista."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -177,7 +178,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Finalmente cambiar a configuración. Para mapas aleatorios iso inclúe o número de xogadores, o tamaño dun mapa, etc. para os escenarios só é posible seleccionar quen controla cal xogador (decide onde comeza o mapa etc). As opcións son ou un xogador humano, un AI ou ningún xogador en todo (o adversario só estará inactivo)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -565,7 +566,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
 "reports from the same user."
-msgstr ""
+msgstr "• A identificación de usuario chou (almacenado en % APPDATA% \\ 0AD \\ config \\ user.cfg en Windows, $ HOME / .config / 0AD / config / user.cfg no Unix), para deixar-nos detectar informes repetidas do mesmo usuario."
 
 #: gui/manual/userreport.txt:6
 msgid ""
