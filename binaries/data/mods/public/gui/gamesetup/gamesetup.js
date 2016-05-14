@@ -281,7 +281,7 @@ function initGUIObjects()
 
 function initMapTypes()
 {
-	let mapTypes = Engine.GetGUIObjectByName("mapTypeSelection");
+	let mapTypes = Engine.GetGUIObjectByName("mapType");
 	mapTypes.list = g_MapTypes.Title;
 	mapTypes.list_data = g_MapTypes.Name;
 	mapTypes.onSelectionChange = function() {
@@ -294,7 +294,7 @@ function initMapTypes()
 
 function initMapFilters()
 {
-	let mapFilters = Engine.GetGUIObjectByName("mapFilterSelection");
+	let mapFilters = Engine.GetGUIObjectByName("mapFilter");
 	mapFilters.list = g_MapFilters.map(mapFilter => mapFilter.name);
 	mapFilters.list_data = g_MapFilters.map(mapFilter => mapFilter.id);
 	mapFilters.onSelectionChange = function() {
@@ -355,14 +355,14 @@ function resizeMoreOptionsWindow()
 function initNumberOfPlayers()
 {
 	let playersArray = Array(g_MaxPlayers).fill(0).map((v, i) => i + 1); // 1, 2, ..., MaxPlayers
-	let numPlayersSelection = Engine.GetGUIObjectByName("numPlayersSelection");
-	numPlayersSelection.list = playersArray;
-	numPlayersSelection.list_data = playersArray;
-	numPlayersSelection.onSelectionChange = function() {
+	let numPlayers = Engine.GetGUIObjectByName("numPlayers");
+	numPlayers.list = playersArray;
+	numPlayers.list_data = playersArray;
+	numPlayers.onSelectionChange = function() {
 		if (this.selected != -1)
 			selectNumPlayers(this.list_data[this.selected]);
 	};
-	numPlayersSelection.selected = g_MaxPlayers - 1;
+	numPlayers.selected = g_MaxPlayers - 1;
 }
 
 function initGameSpeed()
@@ -502,12 +502,8 @@ function initRadioButtons()
  */
 function hideControls()
 {
-	hideControl("mapTypeSelection", "mapTypeText");
-	hideControl("mapFilterSelection", "mapFilterText");
-	hideControl("mapSelection", "mapSelectionText");
-	hideControl("victoryCondition", "victoryConditionText");
-	hideControl("gameSpeed", "gameSpeedText");
-	hideControl("numPlayersSelection", "numPlayersText");
+	for (let ctrl of ["mapType", "mapFilter", "mapSelection", "victoryCondition", "gameSpeed", "numPlayers"])
+		hideControl(ctrl, ctrl + "Text");
 
 	// TODO: Shouldn't players be able to choose their own assignment?
 	for (let i = 0; i < g_MaxPlayers; ++i)
@@ -561,8 +557,8 @@ function initMultiplayerSettings()
 	Engine.GetGUIObjectByName("enableCheats").checked = g_GameAttributes.settings.CheatsEnabled;
 	Engine.GetGUIObjectByName("enableRating").checked = !!g_GameAttributes.settings.RatingEnabled;
 
-	hideControl("enableCheats", "enableCheatsText");
-	hideControl("enableRating", "enableRatingText");
+	for (let ctrl of ["enableCheats", "enableRating"])
+		hideControl(ctrl, ctrl + "Text");
 }
 
 /**
@@ -1304,11 +1300,11 @@ function updateGUIObjects()
 
 	if (g_IsController)
 	{
-		Engine.GetGUIObjectByName("mapTypeSelection").selected = mapTypeIdx;
-		Engine.GetGUIObjectByName("mapFilterSelection").selected = mapFilterIdx;
+		Engine.GetGUIObjectByName("mapType").selected = mapTypeIdx;
+		Engine.GetGUIObjectByName("mapFilter").selected = mapFilterIdx;
 		Engine.GetGUIObjectByName("mapSelection").selected = Engine.GetGUIObjectByName("mapSelection").list_data.indexOf(mapName);
 		Engine.GetGUIObjectByName("mapSize").selected = mapSizeIdx;
-		Engine.GetGUIObjectByName("numPlayersSelection").selected = numPlayers - 1;
+		Engine.GetGUIObjectByName("numPlayers").selected = numPlayers - 1;
 		Engine.GetGUIObjectByName("victoryCondition").selected = victoryIdx;
 		Engine.GetGUIObjectByName("wonderDuration").selected = wonderDurationIdx;
 		Engine.GetGUIObjectByName("populationCap").selected = popIdx;
@@ -1355,18 +1351,14 @@ function updateGUIObjects()
 	Engine.GetGUIObjectByName("mapSizeDesc").hidden = !isRandom;
 	Engine.GetGUIObjectByName("mapSize").hidden = !isRandom || !g_IsController;
 	Engine.GetGUIObjectByName("mapSizeText").hidden = !isRandom || g_IsController;
-	hideControl("numPlayersSelection", "numPlayersText", isRandom && g_IsController);
+	hideControl("numPlayers", "numPlayersText", isRandom && g_IsController);
 
 	let notScenario = g_GameAttributes.mapType != "scenario" && g_IsController ;
-	hideControl("victoryCondition", "victoryConditionText", notScenario);
-	hideControl("wonderDuration", "wonderDurationText", notScenario);
-	hideControl("populationCap", "populationCapText", notScenario);
-	hideControl("startingResources", "startingResourcesText", notScenario);
-	hideControl("ceasefire", "ceasefireText", notScenario);
-	hideControl("revealMap", "revealMapText", notScenario);
-	hideControl("exploreMap", "exploreMapText", notScenario);
-	hideControl("disableTreasures", "disableTreasuresText", notScenario);
-	hideControl("lockTeams", "lockTeamsText", notScenario);
+
+	for (let ctrl of ["victoryCondition", "wonderDuration", "populationCap",
+	                  "startingResources", "ceasefire", "revealMap",
+	                  "exploreMap", "disableTreasures", "lockTeams"])
+		hideControl(ctlr, ctrl + "Text", notScenario);
 
 	setMapDescription();
 
