@@ -795,6 +795,18 @@ m.GameState.prototype.isEntityLimitReached = function(category)
 	return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
 };
 
+m.GameState.prototype.getTraderTemplatesGains = function()
+{
+	let shipMechantTemplateName = this.applyCiv("units/{civ}_ship_merchant");
+	let supportTraderTemplateName = this.applyCiv("units/{civ}_support_trader");
+	let shipMerchantTemplate = !this.isDisabledTemplates(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
+	let supportTraderTemplate = !this.isDisabledTemplates(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
+	return {
+		"navalGainMultiplier": shipMerchantTemplate && shipMerchantTemplate.gainMultiplier(),
+		"landGainMultiplier": supportTraderTemplate && supportTraderTemplate.gainMultiplier()
+	};
+};
+
 return m;
 
 }(API3);

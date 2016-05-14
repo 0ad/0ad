@@ -390,6 +390,9 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	var potential = { "gain": 0 };
 	var bestIndex = { "gain": 0 };
 	var bestLand  = { "gain": 0 };
+
+	let traderTemplatesGains = gameState.getTraderTemplatesGains();
+
 	for (var m1 of market1)
 	{
 		if (!m1.position())
@@ -408,7 +411,14 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			var sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
 			if (!land && !sea)
 				continue;
-			var gain = Math.round(API3.SquareVectorDistance(m1.position(), m2.position()) / this.Config.distUnitGain);
+			let gainMultiplier;
+			if (land && traderTemplatesGains.landGainMultiplier)
+				gainMultiplier = traderTemplatesGains.landGainMultiplier;
+			else if (sea && traderTemplatesGains.navalGainMultiplier)
+				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
+			else
+				continue;
+			let gain = Math.round(API3.SquareVectorDistance(m1.position(), m2.position()) * gainMultiplier / 10000);
 			if (gain < this.minimalGain)
 				continue;
 			if (m1.foundationProgress() === undefined && m2.foundationProgress() === undefined)

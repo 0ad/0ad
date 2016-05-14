@@ -544,6 +544,12 @@ m.Template = m.Class({
 
 	visionRange: function() {
 		return +this.get("Vision/Range");
+	},
+
+	gainMultiplier: function() {
+		if (!this.get("Trader"))
+			return undefined;
+		return +this.get("Trader/GainMultiplier");
 	}
 });
 
@@ -912,7 +918,7 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	 research: function(template) {
+	research: function(template) {
 		Engine.PostCommand(PlayerID,{ "type": "research", "entity": this.id(), "template": template });
 		return this;
 	},

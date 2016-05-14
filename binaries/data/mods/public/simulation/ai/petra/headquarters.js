@@ -1041,7 +1041,9 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
 
-	for (var j = 0; j < this.territoryMap.length; ++j)
+	let traderTemplatesGains = gameState.getTraderTemplatesGains();
+
+	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
 		// do not try on the border of our territory
 		if (this.frontierMap.map[j] == 2)
@@ -1049,35 +1051,41 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		if (this.basesMap.map[j] == 0)   // only in our territory
 			continue;
 		// with enough room around to build the cc
-		var i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
+		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)
 			continue;
-		var index = gameState.ai.accessibility.landPassMap[i];
+		let index = gameState.ai.accessibility.landPassMap[i];
 		if (!this.landRegions[index])
 			continue;
-
-		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		// checking distances to other markets
-		var maxDist = 0;
+		let maxVal = 0;
+		let gainMultiplier;
 		for (let market of markets)
 		{
 			if (isNavalMarket && market.hasClass("NavalMarket"))
 			{
-				// TODO check that there are on the same sea. For the time being, we suppose it is true
+				if (this.navalManager.getDockIndex(gameState, market, true) !== gameState.ai.accessibility.getAccessValue(pos, true))
+					continue;
+				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			}
-			else if (gameState.ai.accessibility.getAccessValue(market.position()) != index)
+			else if (gameState.ai.accessibility.getAccessValue(market.position()) === index)
+				gainMultiplier = traderTemplatesGains.landGainMultiplier;
+			else
 				continue;
-			let dist = API3.SquareVectorDistance(market.position(), pos);
-			if (dist > maxDist)
-				maxDist = dist;
+			if (!gainMultiplier)
+				continue;
+			let val = API3.SquareVectorDistance(market.position(), pos) * gainMultiplier;
+			if (val > maxVal)
+				maxVal = val;
 		}
-		if (maxDist == 0)
+		if (maxVal === 0)
 			continue;
-		if (bestVal !== undefined && maxDist < bestVal)
+		if (bestVal !== undefined && maxVal < bestVal)
 			continue;
 		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
-		bestVal = maxDist;
+		bestVal = maxVal;
 		bestIdx = i;
 		bestJdx = j;
 	}
@@ -1087,8 +1095,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
-
-	var expectedGain = Math.round(bestVal / this.Config.distUnitGain);
+	let expectedGain = Math.round(bestVal / 10000);
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
