@@ -13,7 +13,7 @@ const g_WonderDurations = prepareForDropdown(g_Settings && g_Settings.WonderDura
 /**
  * All selectable playercolors except gaia.
  */
-const g_PlayerColors = g_Settings ? g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color) : undefined;
+const g_PlayerColors = g_Settings && g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color);
 
 /**
  * Directory containing all maps of the given type.

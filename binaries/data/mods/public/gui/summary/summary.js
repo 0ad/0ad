@@ -96,10 +96,10 @@ function updatePanelData(panelInfo)
 			playerCounterValue = "valueDataTeam[" + playerState.team + "][" + positionObject + "]";
 		}
 
-		let colorString = "color: "
-				+ Math.floor(playerState.color.r * 255) + " "
-				+ Math.floor(playerState.color.g * 255) + " "
-				+ Math.floor(playerState.color.b * 255);
+		let colorString = "color: " +
+				Math.floor(playerState.color.r * 255) + " " +
+				Math.floor(playerState.color.g * 255) + " " +
+				Math.floor(playerState.color.b * 255);
 
 		let rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
@@ -155,11 +155,22 @@ function init(data)
 	updateObjectPlayerPosition();
 	g_GameData = data;
 
-	let mapSize = data.mapSettings.Size ? g_Settings.MapSizes.find(size => size.Tiles == data.mapSettings.Size) : undefined;
+	let mapSize = data.mapSettings.Size && g_Settings.MapSizes.find(size => size.Tiles == data.mapSettings.Size);
 	let mapType = g_Settings.MapTypes.find(mapType => mapType.Name == data.mapSettings.mapType);
-	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(translate("Game time elapsed: %(time)s"), { "time": timeToString(data.timeElapsed) });
+	
+	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(
+		translate("Game time elapsed: %(time)s"), {
+			"time": timeToString(data.timeElapsed)
+	});
+
 	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
-	Engine.GetGUIObjectByName("mapName").caption = sprintf(translate("%(mapName)s - %(mapType)s"), { "mapName": translate(data.mapSettings.Name), "mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "") });
+
+	Engine.GetGUIObjectByName("mapName").caption = sprintf(
+		translate("%(mapName)s - %(mapType)s"), {
+			"mapName": translate(data.mapSettings.Name),
+			"mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "")
+		});
+
 	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.isInGame || !g_GameData.replayDirectory;
 
 	// Panels
@@ -171,10 +182,7 @@ function init(data)
 		for (let t = 0; t < g_PlayerCount; ++t)
 		{
 			let playerTeam = data.playerStates[t+1].team;
-			if (g_Teams[playerTeam])
-				g_Teams[playerTeam]++;
-			else
-				g_Teams[playerTeam] = 1;
+			g_Teams[playerTeam] = (g_Teams[playerTeam] || 0) + 1;
 		}
 
 		if (g_Teams.length == g_PlayerCount)
