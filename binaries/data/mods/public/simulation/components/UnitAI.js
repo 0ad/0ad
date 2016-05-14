@@ -5290,7 +5290,7 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
 
 UnitAI.prototype.MarketRemoved = function(market)
 {
-	if (this.order.data.target == market)
+	if (this.order && this.order.data && this.order.data.target && this.order.data.target == market)
 		this.UnitFsm.ProcessMessage(this, { "type": "TradingCanceled", "market": market });
 };
 
