@@ -4,7 +4,7 @@ var PETRA = function(m)
 m.Config = function(difficulty)
 {
 	// 0 is sandbox, 1 is very easy, 2 is easy, 3 is medium, 4 is hard and 5 is very hard.
-	this.difficulty = (difficulty !== undefined) ? difficulty : 3;
+	this.difficulty = difficulty !== undefined ? difficulty : 3;
 
 	// debug level: 0=none, 1=sanity checks, 2=debug, 3=detailed debug, -100=serializatio debug
 	this.debug = 0;
@@ -127,14 +127,14 @@ m.Config.prototype.setConfig = function(gameState)
 		this.Economy.cityPhase = 240000;
 		this.Economy.supportRatio = 0.5;
 		this.Economy.provisionFields = 1;
-		this.Military.numWoodenTowers = (this.personality.defensive > 0.66) ? 1 : 0;
+		this.Military.numWoodenTowers = this.personality.defensive > 0.66 ? 1 : 0;
 	}
 	else if (this.difficulty < 3)
 	{
 		this.Economy.cityPhase = 1800;
 		this.Economy.supportRatio = 0.4;
 		this.Economy.provisionFields = 1;
-		this.Military.numWoodenTowers = (this.personality.defensive > 0.66) ? 1 : 0;
+		this.Military.numWoodenTowers = this.personality.defensive > 0.66 ? 1 : 0;
 	}
 	else
 	{

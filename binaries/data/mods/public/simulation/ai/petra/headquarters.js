@@ -514,9 +514,9 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements)
 {
 	var units;
-	if (classes.indexOf("Hero") != -1)
+	if (classes.indexOf("Hero") !== -1)
 		units = gameState.findTrainableUnits(classes, []);
-	else if (classes.indexOf("Siege") != -1)	// We do not want siege tower as AI does not know how to use it
+	else if (classes.indexOf("Siege") !== -1)	// We do not want siege tower as AI does not know how to use it
 		units = gameState.findTrainableUnits(classes, ["SiegeTower"]);
 	else						// We do not want hero when not explicitely specified
 		units = gameState.findTrainableUnits(classes, ["Hero"]);
@@ -744,7 +744,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.territoryMap.getOwnerIndex(j) != 0)
+		if (this.territoryMap.getOwnerIndex(j) !== 0)
 			continue;
 		// with enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -762,10 +762,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 
 		if (proximity)	// this is our first cc, let's do it near our units
-		{
-			let dist = API3.SquareVectorDistance(proximity, pos);
-			norm /= (1 + dist/scale);
-		}
+			norm /= (1 + API3.SquareVectorDistance(proximity, pos) / scale);
 		else
 		{
 			let minDist = Math.min();
@@ -914,7 +911,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.territoryMap.getOwnerIndex(j) != 0)
+		if (this.territoryMap.getOwnerIndex(j) !== 0)
 			continue;
 		// with enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -1119,12 +1116,13 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	var ownStructures = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Fortress", "Tower"])).toEntityArray();
 	var enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"])).toEntityArray();
 
-	var wonderMode = (gameState.getGameType() === "wonder");
+	var wonderMode = gameState.getGameType() === "wonder";
 	var wonderDistmin;
+	var wonders;
 	if (wonderMode)
 	{
-		var wonders = gameState.getOwnStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
-		wonderMode = (wonders.length != 0);
+		wonders = gameState.getOwnStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
+		wonderMode = wonders.length !== 0;
 		if (wonderMode)
 			wonderDistmin = (50 + wonders[0].footprintRadius()) * (50 + wonders[0].footprintRadius());
 	}
@@ -1768,8 +1766,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	{
 		if (this.stopBuilding.get(type) > gameState.ai.elapsedTime)
 			return false;
-		else
-			this.stopBuilding.delete(type);
+		this.stopBuilding.delete(type);
 	}
 
 	if (gameState.isDisabledTemplates(type))

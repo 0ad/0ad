@@ -49,8 +49,7 @@ m.Queue.prototype.getNext = function()
 {
 	if (this.plans.length > 0)
 		return this.plans[0];
-	else
-		return null;
+	return null;
 };
 
 m.Queue.prototype.startNext = function(gameState)
@@ -60,15 +59,14 @@ m.Queue.prototype.startNext = function(gameState)
 		this.plans.shift().start(gameState);
 		return true;
 	}
-	else
-		return false;
+	return false;
 };
 
 // returns the maximal account we'll accept for this queue.
 // Currently all the cost of the first element and fraction of that of the second
 m.Queue.prototype.maxAccountWanted = function(gameState, fraction)
 {
-	var cost = new API3.Resources();
+	let cost = new API3.Resources();
 	if (this.plans.length > 0 && this.plans[0].isGo(gameState))
 		cost.add(this.plans[0].getCost());
 	if (this.plans.length > 1 && this.plans[1].isGo(gameState) && fraction > 0)
@@ -82,7 +80,7 @@ m.Queue.prototype.maxAccountWanted = function(gameState, fraction)
 
 m.Queue.prototype.queueCost = function()
 {
-	var cost = new API3.Resources();
+	let cost = new API3.Resources();
 	for (let plan of this.plans)
 		cost.add(plan.getCost());
 	return cost;
@@ -100,7 +98,7 @@ m.Queue.prototype.hasQueuedUnits = function()
 
 m.Queue.prototype.countQueuedUnits = function()
 {
-	var count = 0;
+	let count = 0;
 	for (let plan of this.plans)
 		count += plan.number;
 	return count;
@@ -113,7 +111,7 @@ m.Queue.prototype.hasQueuedUnitsWithClass = function(classe)
 
 m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
 {
-	var count = 0;
+	let count = 0;
 	for (let plan of this.plans)
 		if (plan.template && plan.template.hasClass(classe))
 			count += plan.number;
@@ -122,7 +120,7 @@ m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
 
 m.Queue.prototype.countQueuedUnitsWithMetadata = function(data, value)
 {
-	var count = 0;
+	let count = 0;
 	for (let plan of this.plans)
 		if (plan.metadata[data] && plan.metadata[data] == value)
 			count += plan.number;

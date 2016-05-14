@@ -403,7 +403,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 		API3.warn(">>>> previous plan left with units " + plan.units.length);
 	if (nbUnits)
 		this.transportPlans.push(newplan);
-	return (nbUnits !== 0);
+	return nbUnits !== 0;
 };
 
 /**

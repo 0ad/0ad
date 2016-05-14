@@ -95,7 +95,7 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 	if (ent.hasClass("Structure"))
 	{
 		if (ent.owner() !== PlayerID)
-			entStrength = (ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4);
+			entStrength = ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4;
 		else	// small strength used only when we try to recover capture points
 			entStrength = 2;
 	}
@@ -156,7 +156,7 @@ m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 		if (this.assignedTo[to] == enemyId)
 			this.assignedTo[to] = undefined;
 
-	let ent = (enemyEntity ? enemyEntity : gameState.getEntityById(enemyId));
+	let ent = enemyEntity ? enemyEntity : gameState.getEntityById(enemyId);
 	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
 	{
 		this.evaluateStrength(ent, false, true);
@@ -209,7 +209,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	}
 	this.assignedTo[id] = undefined;
 
-	let ent = (Entity ? Entity : gameState.getEntityById(id));
+	let ent = Entity ? Entity : gameState.getEntityById(id);
 	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
 	{
 		this.evaluateStrength(ent, true, true);
@@ -219,7 +219,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		else
 			ent.setMetadata(PlayerID, "plan", undefined);
 
-		var formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
+		let formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
 		if (formerSubrole !== undefined)
 			ent.setMetadata(PlayerID, "subrole", formerSubrole);
 		else
@@ -252,7 +252,7 @@ m.Army.prototype.isCapturing = function (gameState)
 	if (this.foeEntities.length != 1)
 		return false;
 	let ent = gameState.getEntityById(this.foeEntities[0]);
-	return (ent && ent.hasClass("Structure"));
+	return ent && ent.hasClass("Structure");
 };    
 
 // this one is "undefined entity" proof because it's called at odd times.
@@ -397,10 +397,10 @@ m.Army.prototype.onUpdate = function (gameState)
 		this.positionLastUpdate = gameState.ai.elapsedTime;
 	
 		// Check for breakaways.
-		for (var i = 0; i < this.foeEntities.length; ++i)
+		for (let i = 0; i < this.foeEntities.length; ++i)
 		{
-			var id = this.foeEntities[i];
-			var ent = gameState.getEntityById(id);
+			let id = this.foeEntities[i];
+			let ent = gameState.getEntityById(id);
 			if (!ent || !ent.position())
 				continue;
 			if (API3.SquareVectorDistance(ent.position(), this.foePosition) > this.breakawaySize)
