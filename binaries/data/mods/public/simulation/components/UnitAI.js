@@ -166,6 +166,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		// ignore
 	},
 
+	"TradingCanceled": function(msg) {
+		// ignore
+	},
+
 	"GuardedAttacked": function(msg) {
 		// ignore
 	},
@@ -648,7 +652,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.Trade": function(msg) {
 		// We must check if this trader has both markets in case it was a back-to-work order
 		var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-		if (!cmpTrader || ! cmpTrader.HasBothMarkets())
+		if (!cmpTrader || !cmpTrader.HasBothMarkets())
 		{
 			this.FinishOrder();
 			return;
@@ -2613,6 +2617,16 @@ UnitAI.prototype.UnitFsmSpec = {
 					else
 						this.PerformTradeAndMoveToNextMarket(this.order.data.target);
 				},
+			},
+
+			"TradingCanceled": function(msg) {
+				if (msg.market != this.order.data.target)
+					return;
+				let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+				let otherMarket = cmpTrader && cmpTrader.GetFirstMarket();
+				this.StopTrading();
+				if (otherMarket)
+					this.WalkToTarget(otherMarket);
 			},
 		},
 
@@ -5209,6 +5223,12 @@ UnitAI.prototype.SetTargetMarket = function(target, source)
 	return marketsChanged;
 };
 
+UnitAI.prototype.SwitchMarketOrder = function(oldMarket, newMarket)
+{
+	if (this.order.data && this.order.data.target && this.order.data.target == oldMarket)
+		this.order.data.target == newMarket;
+};
+
 UnitAI.prototype.MoveToMarket = function(targetMarket)
 {
 	if (this.waypoints && this.waypoints.length > 1)
@@ -5266,6 +5286,12 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
 		this.SetNextState("APPROACHINGMARKET");
 	else
 		this.StopTrading();
+};
+
+UnitAI.prototype.MarketRemoved = function(market)
+{
+	if (this.order.data.target == market)
+		this.UnitFsm.ProcessMessage(this, { "type": "TradingCanceled", "market": market });
 };
 
 UnitAI.prototype.StopTrading = function()

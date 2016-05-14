@@ -129,6 +129,10 @@ Fogging.prototype.LoadMirage = function(player)
 	if (cmpResourceSupply)
 		cmpMirage.CopyResourceSupply(cmpResourceSupply);
 
+	var cmpMarket = Engine.QueryInterface(this.entity, IID_Market);
+	if (cmpMarket)
+		cmpMirage.CopyMarket(cmpMarket);
+
 	// Notify the GUI the entity has been replaced by a mirage, in case it is selected at this moment
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGuiInterface.AddMiragedEntity(player, this.entity, this.mirages[player]);

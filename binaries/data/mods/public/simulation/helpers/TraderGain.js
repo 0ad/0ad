@@ -1,7 +1,7 @@
 function CalculateTraderGain(firstMarket, secondMarket, traderTemplate, trader)
 {
-	let cmpMarket1 = Engine.QueryInterface(firstMarket, IID_Market);
-	let cmpMarket2 = Engine.QueryInterface(secondMarket, IID_Market);
+	let cmpMarket1 = QueryMiragedInterface(firstMarket, IID_Market);
+	let cmpMarket2 = QueryMiragedInterface(secondMarket, IID_Market);
 	if (!cmpMarket1 || !cmpMarket2)
 		return null;
 

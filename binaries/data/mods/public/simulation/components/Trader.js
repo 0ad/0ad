@@ -44,7 +44,7 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 		{
 			var garrisonMultiplier = 1;
 			var garrisonedTradersCount = 0;
-			for each (var entity in cmpGarrisonHolder.GetEntities())
+			for (let entity of cmpGarrisonHolder.GetEntities())
 			{
 				var cmpGarrisonedUnitTrader = Engine.QueryInterface(entity, IID_Trader);
 				if (cmpGarrisonedUnitTrader)
@@ -68,18 +68,17 @@ Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 // Return true if at least one of markets was changed.
 Trader.prototype.SetTargetMarket = function(target, source)
 {
-	var cmpTargetMarket = Engine.QueryInterface(target, IID_Market);
+	let cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
 	if (!cmpTargetMarket)
 		return false;
 
 	if (source)
 	{
 		// Establish a trade route with both markets in one go.
-		let cmpSourceMarket = Engine.QueryInterface(source, IID_Market);
+		let cmpSourceMarket = QueryMiragedInterface(source, IID_Market);
 		if (!cmpSourceMarket)
 			return false;
 		this.markets = [source];
-		cmpSourceMarket.AddTrader(this.entity);
 	}
 	if (this.markets.length >= 2)
 	{
@@ -87,7 +86,7 @@ Trader.prototype.SetTargetMarket = function(target, source)
 		// and use the target as first market
 		for (let market of this.markets)
 		{
-			let cmpMarket = Engine.QueryInterface(market, IID_Market);
+			let cmpMarket = QueryMiragedInterface(market, IID_Market);
 			if (cmpMarket)
 				cmpMarket.RemoveTrader(this.entity);
 		}
@@ -160,7 +159,7 @@ Trader.prototype.CanTrade = function(target)
 {
 	var cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 	// Check that the target exists
-	var cmpTargetMarket = Engine.QueryInterface(target, IID_Market);
+	var cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
 	if (!cmpTargetMarket)
 		return false;
 	// Check that the target is not a foundation
@@ -251,20 +250,46 @@ Trader.prototype.GetGoods = function()
 };
 
 /**
- * Called when this trader can no longer trade with the market
+ * Returns true if the trader has the given market (can be either a market or a mirage)
+ */
+Trader.prototype.HasMarket = function(market)
+{
+	return this.markets.indexOf(market) != -1; 
+};
+
+/**
+ * Remove a market when this trader can no longer trade with it
  */
 Trader.prototype.RemoveMarket = function(market)
 {
 	let index = this.markets.indexOf(market);
-	if (index != -1)
-		this.markets.splice(index, 1);
+	if (index == -1)
+		return;
+	this.markets.splice(index, 1);
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI)
+		cmpUnitAI.MarketRemoved(market);
+};
+
+/**
+ * Switch between a market and its mirage according to visibility
+ */
+Trader.prototype.SwitchMarket = function(oldMarket, newMarket)
+{
+	let index = this.markets.indexOf(oldMarket);
+	if (index == -1)
+		return;
+	this.markets[index] = newMarket;
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI)
+		cmpUnitAI.SwitchMarketOrder(oldMarket, newMarket);
 };
 
 Trader.prototype.StopTrading = function()
 {
 	for (let market of this.markets)
 	{
-		let cmpMarket = Engine.QueryInterface(market, IID_Market);
+		let cmpMarket = QueryMiragedInterface(market, IID_Market);
 		if (cmpMarket)
 			cmpMarket.RemoveTrader(this.entity);
 	}
