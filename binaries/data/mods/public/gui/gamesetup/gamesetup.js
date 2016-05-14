@@ -1358,7 +1358,7 @@ function updateGUIObjects()
 	for (let ctrl of ["victoryCondition", "wonderDuration", "populationCap",
 	                  "startingResources", "ceasefire", "revealMap",
 	                  "exploreMap", "disableTreasures", "lockTeams"])
-		hideControl(ctlr, ctrl + "Text", notScenario);
+		hideControl(ctrl, ctrl + "Text", notScenario);
 
 	setMapDescription();
 
