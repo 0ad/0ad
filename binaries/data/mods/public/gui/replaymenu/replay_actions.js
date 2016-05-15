@@ -64,7 +64,7 @@ function reallyStartVisualReplay(replayDirectory)
 		"isNetworked": false,
 		"playerAssignments": {
 			"local":{
-				"name": translate("You"),
+				"name": singleplayerName(),
 				"player": -1
 			}
 		},

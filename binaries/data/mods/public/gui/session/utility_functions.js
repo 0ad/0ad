@@ -87,19 +87,19 @@ function getTradingTooltip(gain)
 		gainString += translate("+") + gain.market2Gain;
 
 	var tooltip = sprintf(translate("%(gain)s (%(player)s)"), {
-		gain: gainString,
-		player: (!g_IsNetworked && gain.traderOwner == playerID) ? translate("You") : simState.players[gain.traderOwner].name
+		"gain": gainString,
+		"player": simState.players[gain.traderOwner].name
 	});
 	
 	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
 		tooltip += translateWithContext("Separation mark in an enumeration", ", ") + sprintf(translate("%(gain)s (%(player)s)"), {
-			gain: gain.market1Gain,
-			player: (!g_IsNetworked && gain.market1Owner == playerID) ? translate("You") : simState.players[gain.market1Owner].name
+			"gain": gain.market1Gain,
+			"player": simState.players[gain.market1Owner].name
 		});
 	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
 		tooltip += translateWithContext("Separation mark in an enumeration", ", ") + sprintf(translate("%(gain)s (%(player)s)"), {
-			gain: gain.market2Gain,
-			player: (!g_IsNetworked && gain.market2Owner == playerID) ? translate("You") : simState.players[gain.market2Owner].name
+			"gain": gain.market2Gain,
+			"player": simState.players[gain.market2Owner].name
 		});
 
 	return tooltip;

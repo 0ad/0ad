@@ -74,7 +74,12 @@ var g_CivData = {};
  */
 var g_ReplaySelectionData;
 
-var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
+var g_PlayerAssignments = {
+	"local": {
+		"name": singleplayerName(),
+		"player": 1
+	}
+};
 
 /**
  * Cache dev-mode settings that are frequently or widely used.

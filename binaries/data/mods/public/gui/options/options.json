@@ -2,6 +2,18 @@
 	"generalSetting":
 	[
 		{
+			"type": "string",
+			"label": "Playername (Single Player)",
+			"tooltip": "How you want to be addressed in Single Player matches).",
+			"parameters": { "config": "playername.singleplayer" }
+		},
+		{
+			"type": "string",
+			"label": "Playername (Multiplayer)",
+			"tooltip": "How you want to be addressed in Multiplayer matches (except lobby).",
+			"parameters": { "config": "playername.multiplayer" }
+		},
+		{
 			"type": "boolean",
 			"label": "Windowed Mode",
 			"tooltip": "Start 0 A.D. in a window",

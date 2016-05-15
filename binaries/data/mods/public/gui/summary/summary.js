@@ -140,7 +140,7 @@ function startReplay()
 		"isNetworked": false,
 		"playerAssignments": {
 			"local": {
-				"name": translate("You"),
+				"name": singleplayerName(),
 				"player": -1
 			}
 		},

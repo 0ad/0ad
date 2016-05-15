@@ -226,6 +226,13 @@ function init(attribs)
 	g_IsController = attribs.type != "client";
 	g_ServerName = attribs.serverName || undefined;
 
+	// Replace empty playername when entering a singleplayermatch for the first time
+	if (!g_IsNetworked)
+	{
+		Engine.ConfigDB_CreateValue("user", "playername.singleplayer", singleplayerName());
+		Engine.ConfigDB_WriteValueToFile("user", "playername.singleplayer", singleplayerName(), "config/user.cfg");
+	}
+
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
@@ -1165,7 +1172,8 @@ function selectMap(name)
 
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
-		g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1, "civ": "", "team": -1, "ready": 0 } };
+		g_PlayerAssignments = { "local": { "name": singleplayerName(), "player": 1, "civ": "", "team": -1, "ready": 0 } };
+
 	else
 	{
 		let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;

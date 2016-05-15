@@ -4,6 +4,7 @@
 
 	<script file="gui/common/network.js"/>
 	<script file="gui/common/functions_global_object.js"/>
+	<script file="gui/common/functions_utility.js"/>
 	<script file="gui/gamesetup/gamesetup_mp.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
@@ -31,7 +32,7 @@
 
 			<object name="joinPlayerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
 				<action on="Load">
-					this.caption = Engine.ConfigDB_GetValue("user", "playername");
+					this.caption = multiplayerName();
 				</action>
 			</object>
 
@@ -41,7 +42,7 @@
 
 			<object name="joinServer" type="input" size="50%+10 80 100%-20 104" style="ModernInput">
 				<action on="Load">
-					this.caption = Engine.ConfigDB_GetValue("user", "multiplayerserver")
+					this.caption = Engine.ConfigDB_GetValue("user", "multiplayerserver");
 				</action>
 			</object>
 
@@ -69,7 +70,7 @@
 
 			<object name="hostPlayerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
 				<action on="Load">
-					this.caption = Engine.ConfigDB_GetValue("user", "playername");
+					this.caption = multiplayerName();
 				</action>
 			</object>
 			</object>

@@ -748,6 +748,12 @@ void Script_EndGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	EndGame();
 }
 
+CStrW GetSystemUsername(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return sys_get_user_name();
+}
+
+
 // Cause the game to exit gracefully.
 // params:
 // returns:
@@ -1117,4 +1123,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");
+	scriptInterface.RegisterFunction<CStrW, &GetSystemUsername>("GetSystemUsername");
 }

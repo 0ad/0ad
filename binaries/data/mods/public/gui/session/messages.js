@@ -652,32 +652,12 @@ function colorizePlayernameHelper(username, playerID)
 
 function formatDefeatMessage(msg)
 {
-	let defeatMsg;
-	let playername;
-
-	// In singleplayer, the local player is "You". "You has" is incorrect.
-	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-	{
-		// Translation: String used to colorize the word "You" of that sentence
-		playername = colorizePlayernameHelper(translateWithContext("You have been defeated", "You"), msg.player);
-		if (msg.resign)
-			defeatMsg = translate("%(You)s have resigned.");
-		else
-			defeatMsg = translate("%(You)s have been defeated.");
-	}
-	else
-	{
-		playername = colorizePlayernameByID(msg.player);
-		if (msg.resign)
-			defeatMsg = translate("%(player)s has resigned.");
-		else
-			defeatMsg = translate("%(player)s has been defeated.");
-	}
-
-	return sprintf(defeatMsg, {
-		"player": playername,
-		"You": playername
-	});
+	return sprintf(
+		msg.resign ?
+			translate("%(player)s has resigned.") :
+			translate("%(player)s has been defeated."),
+		{ "player": colorizePlayernameByID(msg.player) }
+	);
 }
 
 function formatDiplomacyMessage(msg)

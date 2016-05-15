@@ -194,8 +194,8 @@ function switchSetupPage(oldpage, newpage)
 function startHost(playername, servername)
 {
 	// Save player name
-	Engine.ConfigDB_CreateValue("user", "playername", playername);
-	Engine.ConfigDB_WriteValueToFile("user", "playername", playername, "config/user.cfg");
+	Engine.ConfigDB_CreateValue("user", "playername.multiplayer", playername);
+	Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", playername, "config/user.cfg");
 
 	// Disallow identically named games in the multiplayer lobby
 	if (Engine.HasXmppClient())
@@ -263,8 +263,8 @@ function startJoin(playername, ip)
 	else
 	{
 		// Only save the player name and host address if they're valid and we're not in the lobby
-		Engine.ConfigDB_CreateValue("user", "playername", playername);
-		Engine.ConfigDB_WriteValueToFile("user", "playername", playername, "config/user.cfg");
+		Engine.ConfigDB_CreateValue("user", "playername.multiplayer", playername);
+		Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", playername, "config/user.cfg");
 		Engine.ConfigDB_CreateValue("user", "multiplayerserver", ip);
 		Engine.ConfigDB_WriteValueToFile("user", "multiplayerserver", ip, "config/user.cfg");
 	}
@@ -274,6 +274,6 @@ function startJoin(playername, ip)
 function getDefaultGameName()
 {
 	return sprintf(translate("%(playername)s's game"), {
-		"playername": Engine.ConfigDB_GetValue("user", "playername")
+		"playername": multiplayerName()
 	});
 }
