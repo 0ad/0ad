@@ -79,6 +79,11 @@ const g_MapFilters = [
 		"filter": mapKeywords => mapKeywords.indexOf("demo") != -1
 	},
 	{
+		"id": "trigger",
+		"name": translate("Trigger Maps"),
+		"filter": mapKeywords => mapKeywords.indexOf("trigger") != -1
+	},
+	{
 		"id": "all",
 		"name": translate("All Maps"),
 		"filter": mapKeywords => true
