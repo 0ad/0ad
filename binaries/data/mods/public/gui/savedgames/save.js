@@ -56,7 +56,6 @@ function saveGame()
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
 			translate("Saved game will be permanently overwritten, are you sure?"),
 		translate("OVERWRITE SAVE"),
-		0,
 		[translate("No"), translate("Yes")],
 		[null, function(){ reallySaveGame(name, desc, false); }]
 	);
@@ -89,7 +88,6 @@ function deleteGame()
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
 			translate("Saved game will be permanently deleted, are you sure?"),
 		translate("DELETE"),
-		0,
 		[translate("No"), translate("Yes")],
 		[null, function(){ reallyDeleteGame(gameID); }]
 	);

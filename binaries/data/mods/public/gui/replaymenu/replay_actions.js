@@ -96,7 +96,7 @@ function displayReplayCompatibilityError(replay)
 		errMsg += sprintf(translate("Required version: %(version)s"), { "version": replay.attribs.engine_version });
 	}
 
-	messageBox(500, 200, errMsg, translate("Incompatible replay"), 0, [translate("Ok")], [null]);
+	messageBox(500, 200, errMsg, translate("Incompatible replay"));
 }
 
 /**
@@ -113,7 +113,7 @@ function showReplaySummary()
 
 	if (!summary)
 	{
-		messageBox(500, 200, translate("No summary data available."), translate("Error"), 0, [translate("Ok")], [null]);
+		messageBox(500, 200, translate("No summary data available."), translate("Error"));
 		return;
 	}
 
@@ -150,14 +150,13 @@ function deleteReplay()
 
 	var replay = g_ReplaysFiltered[selected];
 
-	// Show confirmation message
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [null, function() { reallyDeleteReplay(replay.directory); }];
-
-	var title = translate("Delete replay");
-	var question = translate("Are you sure you want to delete this replay permanently?") + "\n" + escapeText(replay.file);
-
-	messageBox(500, 200, question, title, 0, btCaptions, btCode);
+	messageBox(
+		500, 200,
+		translate("Are you sure you want to delete this replay permanently?") + "\n" + escapeText(replay.file),
+		translate("Delete replay"),
+		[translate("No"), translate("Yes")],
+		[null, function() { reallyDeleteReplay(replay.directory); }]
+	);
 }
 
 /**

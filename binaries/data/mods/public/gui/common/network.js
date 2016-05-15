@@ -83,8 +83,7 @@ function reportDisconnect(reason, wasConnected)
 			translate("Lost connection to the server.") :
 			translate("Failed to connect to the server.")
 		) + "\n\n" + reasonText,
-		translate("Disconnected"),
-		2
+		translate("Disconnected")
 	);
 }
 

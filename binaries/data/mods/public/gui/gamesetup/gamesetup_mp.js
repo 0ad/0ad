@@ -219,9 +219,11 @@ function startHost(playername, servername)
 	catch (e)
 	{
 		cancelSetup();
-		messageBox(400, 200,
-			sprintf("Cannot host game: %(message)s.", { "message": e.message }),
-			"Error", 2);
+		messageBox(
+			400, 200,
+			sprintf(translate("Cannot host game: %(message)s."), { "message": e.message }),
+			translate("Error")
+		);
 		return false;
 	}
 
@@ -246,9 +248,11 @@ function startJoin(playername, ip)
 	catch (e)
 	{
 		cancelSetup();
-		messageBox(400, 200,
-			sprintf("Cannot join game: %(message)s.", { "message": e.message }),
-			"Error", 2);
+		messageBox(
+			400, 200,
+			sprintf(translate("Cannot join game: %(message)s."), { "message": e.message }),
+			translate("Error")
+		);
 		return false;
 	}
 

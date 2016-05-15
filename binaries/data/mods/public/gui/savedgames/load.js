@@ -83,7 +83,6 @@ function loadGame()
 		500, 250,
 		message,
 		translate("Warning"),
-		0,
 		[translate("No"), translate("Yes")],
 		[init, function(){ reallyLoadGame(gameId); }]
 	);
@@ -121,7 +120,6 @@ function deleteGame()
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
 			translate("Saved game will be permanently deleted, are you sure?"),
 		translate("DELETE"),
-		0,
 		[translate("No"), translate("Yes")],
 		[null, function(){ reallyDeleteGame(gameID); }]
 	);

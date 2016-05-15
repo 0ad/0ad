@@ -110,7 +110,6 @@ function resignMenuButton()
 		400, 200,
 		translate("Are you sure you want to resign?"),
 		translate("Confirmation"),
-		0,
 		[translate("No"), translate("Yes")],
 		[resumeGame, resignGame]
 	);
@@ -143,7 +142,6 @@ function exitMenuButton()
 		400, 200,
 		messageTypes[messageType].caption,
 		translate("Confirmation"),
-		0,
 		[translate("No"), translate("Yes")],
 		messageTypes[messageType].buttons
 	);
@@ -155,7 +153,6 @@ function resignQuestion()
 		400, 200,
 		translate("Do you want to resign or will you return soon?"),
 		translate("Confirmation"),
-		0,
 		[translate("I will return"), translate("I resign")],
 		[leaveGame, resignGame],
 		[true, false]
@@ -175,7 +172,6 @@ function openDeleteDialog(selection)
 		400, 200,
 		translate("Destroy everything currently selected?"),
 		translate("Delete"),
-		0,
 		[translate("No"), translate("Yes")],
 		[resumeGame, deleteSelectedEntities],
 		[null, selection]

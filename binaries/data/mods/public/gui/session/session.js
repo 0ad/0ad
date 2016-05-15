@@ -640,7 +640,7 @@ function checkPlayerState()
 			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
 	}
 
-	messageBox(400, 200, message, title, 0, btCaptions, btCode);
+	messageBox(400, 200, message, title, btCaptions, btCode);
 }
 
 function changeGameSpeed(speed)
@@ -731,7 +731,6 @@ function onReplayFinished()
 	messageBox(400, 200,
 		translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"),
 		translateWithContext("replayFinished", "Confirmation"),
-		0,
 		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
 		[resumeGame, leaveGame]);
 }
@@ -1043,9 +1042,11 @@ function getBuildString()
 
 function showTimeWarpMessageBox()
 {
-	messageBox(500, 250,
-			translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
-			translate("Time warp mode"), 2);
+	messageBox(
+		500, 250,
+		translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
+		translate("Time warp mode")
+	);
 }
 
 /**
