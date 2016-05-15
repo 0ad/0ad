@@ -46,11 +46,13 @@ var g_NetworkCommands = {
 /**
  * Must be kept in sync with source/network/NetHost.h
  */
-function getDisconnectReason(id)
+function getDisconnectReason(id, wasConnected)
 {
 	switch (id)
 	{
-	case 0: return translateWithContext("network disconnect", "Unknown reason");
+	case 0: return wasConnected ?
+		translateWithContext("network disconnect", "Unknown reason") :
+		translate("This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall or anti-virus software");
 	case 1: return translate("The host has ended the game");
 	case 2: return translate("Incorrect network protocol version");
 	case 3: return translate("Game is loading, please try later");
@@ -70,11 +72,20 @@ function getDisconnectReason(id)
  *
  * @param {number} reason
  */
-function reportDisconnect(reason)
+function reportDisconnect(reason, wasConnected)
 {
 	// Translation: States the reason why the client disconnected from the server.
-	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(reason) });
-	messageBox(400, 200, translate("Lost connection to the server.") + "\n\n" + reasonText, translate("Disconnected"), 2);
+	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(reason, wasConnected) })
+
+	messageBox(
+		400, 200,
+		(wasConnected ?
+			translate("Lost connection to the server.") :
+			translate("Failed to connect to the server.")
+		) + "\n\n" + reasonText,
+		translate("Disconnected"),
+		2
+	);
 }
 
 function kickPlayer(username, ban)

@@ -92,7 +92,7 @@ function pollAndHandleNetworkClient()
 				{
 				case "disconnected":
 					cancelSetup();
-					reportDisconnect(message.reason);
+					reportDisconnect(message.reason, false);
 					return;
 
 				default:
@@ -165,7 +165,7 @@ function pollAndHandleNetworkClient()
 
 				case "disconnected":
 					cancelSetup();
-					reportDisconnect(message.reason);
+					reportDisconnect(message.reason, false);
 					return;
 
 				default:

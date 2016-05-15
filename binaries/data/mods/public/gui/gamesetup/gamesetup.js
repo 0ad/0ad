@@ -619,7 +619,7 @@ function handleNetStatusMessage(message)
 	}
 
 	cancelSetup();
-	reportDisconnect(message.reason);
+	reportDisconnect(message.reason, true);
 }
 
 /**
