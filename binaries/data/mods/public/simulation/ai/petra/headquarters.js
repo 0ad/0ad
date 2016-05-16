@@ -1805,7 +1805,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	// build limits
 	var limits = gameState.getEntityLimits();
 	var category = template.buildCategory();
-	if (category && limits[category] && gameState.getEntityCounts()[category] >= limits[category])
+	if (category && limits[category] !== undefined && gameState.getEntityCounts()[category] >= limits[category])
 		return false;
 
 	return true;
