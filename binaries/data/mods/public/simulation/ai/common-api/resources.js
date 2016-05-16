@@ -6,7 +6,7 @@ m.Resources = function(amounts = {}, population = 0)
 	for (let key of this.types)
 		this[key] = amounts[key] || 0;
 
-	this.population = (population > 0) ? population : 0;
+	this.population = population > 0 ? population : 0;
 };
 
 m.Resources.prototype.types = [ "food", "wood", "stone", "metal" ];

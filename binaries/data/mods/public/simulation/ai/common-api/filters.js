@@ -38,7 +38,7 @@ m.Filters = {
 
 	byMetadata: function(player, key, value){
 		return {"func" : function(ent){
-			return (ent.getMetadata(player, key) == value);
+			return ent.getMetadata(player, key) == value;
 		}, 
 		"dynamicProperties": ['metadata.' + key]};
 	},
@@ -46,14 +46,14 @@ m.Filters = {
 	// can be used for stuffs which won't change once entities are created.
 	byStaticMetadata: function(player, key, value){
 		return {"func" : function(ent){
-			return (ent.getMetadata(player, key) == value);
+			return ent.getMetadata(player, key) == value;
 		},
 		"dynamicProperties": []};
 	},
 	
 	byHasMetadata: function(player, key){
 		return {"func" : function(ent){
-			return (ent.getMetadata(player, key) != undefined);
+			return ent.getMetadata(player, key) != undefined;
 		},
 		"dynamicProperties": ['metadata.' + key]};
 	},
@@ -81,14 +81,14 @@ m.Filters = {
 	
 	byOwner: function(owner){
 		return {"func" : function(ent){
-			return (ent.owner() === owner);
+			return ent.owner() === owner;
 		}, 
 		"dynamicProperties": ['owner']};
 	},
 	
 	byNotOwner: function(owner){
 		return {"func" : function(ent){
-			return (ent.owner() !== owner);
+			return ent.owner() !== owner;
 		}, 
 		"dynamicProperties": ['owner']};
 	},
@@ -123,7 +123,7 @@ m.Filters = {
 	},
 	byTargetedEntity: function(targetID){
 		return {"func": function(ent) {
-			return (ent.unitAIOrderData().length && ent.unitAIOrderData()[0].target && ent.unitAIOrderData()[0].target == targetID);
+			return ent.unitAIOrderData().length && ent.unitAIOrderData()[0].target && ent.unitAIOrderData()[0].target == targetID;
 		},
 		"dynamicProperties": ['unitAIOrderData']};
 	},
@@ -181,7 +181,7 @@ m.Filters = {
 		return {"func": function(ent){
 			if (!ent.position())
 				return false;
-			return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
+			return m.SquareVectorDistance(startPoint, ent.position()) < dist*dist;
 		},
 		"dynamicProperties": ['position']};
 	},
@@ -205,7 +205,7 @@ m.Filters = {
 
 	isDropsite: function(resourceType){
 		return {"func": function(ent){
-			return (ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) !== -1));
+			return ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) !== -1);
 		},
 		"dynamicProperties": []};
 	},
@@ -233,7 +233,7 @@ m.Filters = {
 				return false;
 			
 			if (type.generic == "treasure")
-				return (resourceType == type.specific);
+				return resourceType == type.specific;
 
 			return resourceType == type.generic;
 		},

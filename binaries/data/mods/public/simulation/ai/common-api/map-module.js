@@ -281,8 +281,8 @@ m.Map.prototype.sumInfluence = function(cx, cy, radius)
  */
 m.Map.prototype.expandInfluences = function(maximum, map)
 {
-	maximum = (maximum !== undefined) ? maximum : this.maxVal;
-	let grid = (map !== undefined) ? map : this.map;
+	maximum = maximum !== undefined ? maximum : this.maxVal;
+	let grid = map !== undefined ? map : this.map;
 	let w = this.width;
 	let h = this.height;
 
@@ -402,7 +402,7 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 				continue;
 			if (obstruction.isObstructedTile(kx, ky, radius))
 				continue;
-			return (kx + ky*w);
+			return kx + ky*w;
 		}
 	}
 	return -1;
@@ -416,7 +416,7 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 		return true;
 	for (let dy = 0; dy <= radius; ++dy)
 	{
-		let dxmax = (dy == 0) ? radius : Math.ceil(Math.sqrt(radius*radius - (dy-0.5)*(dy-0.5)));
+		let dxmax = dy === 0 ? radius : Math.ceil(Math.sqrt(radius*radius - (dy-0.5)*(dy-0.5)));
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
 		for (let dx = -dxmax; dx <= dxmax; ++dx)
@@ -433,7 +433,7 @@ m.Map.prototype.findNearestObstructed = function(k, radius)
 	var w = this.width;
 	var ix = k % w;
 	var iy = Math.floor(k / w);
-	var n = (this.cellSize > 8) ? 1 : Math.floor(8 / this.cellSize);
+	var n = this.cellSize > 8 ? 1 : Math.floor(8 / this.cellSize);
 	for (let i = 1; i <= n; ++i)
 	{
 		let kx = ix - i;
@@ -458,7 +458,7 @@ m.Map.prototype.findNearestObstructed = function(k, radius)
 					else
 						++ky;
 				}
-				return (kx + w*ky);
+				return kx + w*ky;
 			}
 			if (j < 2*i+1)
 				++kx;
