@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -80,6 +80,7 @@ LIB_API Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, Direct
 
 // same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.
+// If the breakpoint is enabled, debug_break will be called if the directory didn't exist and couldn't be created.
 LIB_API Status CreateDirectories(const OsPath& path, mode_t mode, bool breakpoint = true);
 
 LIB_API Status DeleteDirectory(const OsPath& dirPath);

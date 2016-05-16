@@ -196,7 +196,7 @@ Status tex_write(Tex* t, const VfsPath& filename)
 /**
  * Return an unused directory, based on date and index (for example 2016-02-09_0001)
  */
-OsPath getDateIndexSubdirectory(const OsPath& parentDir)
+OsPath createDateIndexSubdirectory(const OsPath& parentDir)
 {
     const std::time_t timestamp = std::time(nullptr);
     const struct std::tm* now = std::localtime(&timestamp);

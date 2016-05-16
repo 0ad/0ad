@@ -76,10 +76,11 @@ public:
 			CFG_GET_VAL("serializationtest", m_EnableSerializationTest);
 		}
 
-		m_OOSLogPath = getDateIndexSubdirectory(psLogDir() / "oos_logs");
-
 		if (m_EnableOOSLog)
+		{
+			m_OOSLogPath = createDateIndexSubdirectory(psLogDir() / "oos_logs");
 			debug_printf("Writing ooslogs to %s\n", m_OOSLogPath.string8().c_str());
+		}
 	}
 
 	~CSimulation2Impl()
@@ -296,7 +297,7 @@ void CSimulation2Impl::ReportSerializationFailure(
 	SerializationTestState* primaryStateBefore, SerializationTestState* primaryStateAfter,
 	SerializationTestState* secondaryStateBefore, SerializationTestState* secondaryStateAfter)
 {
-	const OsPath path = getDateIndexSubdirectory(psLogDir() / "serializationtest");
+	const OsPath path = createDateIndexSubdirectory(psLogDir() / "serializationtest");
 	debug_printf("Writing serializationtest-data to %s\n", path.string8().c_str());
 
 	// Clean up obsolete files from previous runs
@@ -555,6 +556,12 @@ void CSimulation2Impl::DumpState()
 	const OsPath path = m_OOSLogPath / name.str();
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
+	if (!DirectoryExists(m_OOSLogPath))
+	{
+		LOGWARNING("OOS-log directory %s was deleted, creating it again.", m_OOSLogPath.string8().c_str());
+		CreateDirectories(m_OOSLogPath, 0700);
+	}
+
 	file << "State hash: " << std::hex;
 	std::string hashRaw;
 	m_ComponentManager.ComputeStateHash(hashRaw, false);
@@ -590,6 +597,8 @@ void CSimulation2::EnableOOSLog()
 		return;
 
 	m->m_EnableOOSLog = true;
+	m->m_OOSLogPath = createDateIndexSubdirectory(psLogDir() / "oos_logs");
+
 	debug_printf("Writing ooslogs to %s\n", m->m_OOSLogPath.string8().c_str());
 }
 
