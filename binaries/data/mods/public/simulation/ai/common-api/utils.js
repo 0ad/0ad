@@ -20,7 +20,7 @@ m.SquareVectorDistance = function(a, b)
 {
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
-	return (dx*dx + dz*dz);
+	return dx*dx + dz*dz;
 };
 
 // A is the reference, B must be in "range" of A
@@ -33,7 +33,7 @@ m.inRange = function(a, b, range)// checks for X distance
 
 	var dx = a[0] - b[0];
 	var dz = a[1] - b[1];
-	return ((dx*dx + dz*dz ) < range);
+	return dx*dx + dz*dz  < range;
 };
 
 // slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate.

@@ -28,7 +28,7 @@ m.BaseManager = function(gameState, Config)
 
 	this.constructing = false;
 	// Defenders to train in this cc when its construction is finished
-	this.neededDefenders = ((this.Config.difficulty > 2) ? 3 + 2*(this.Config.difficulty - 3) : 0);
+	this.neededDefenders = this.Config.difficulty > 2 ? 3 + 2*(this.Config.difficulty - 3) : 0;
 
 	// vector for iterating, to check one use the HQ map.
 	this.territoryIndices = [];
@@ -618,7 +618,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 				gatherers.forEach( function (ent) {
 					if (!ent.canGather(moreNeed.type))
 						return;
-					if (nb == 0)
+					if (nb === 0)
 						return;
 					if (only && !ent.hasClass(only))
 						return;
@@ -627,7 +627,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 					ent.setMetadata(PlayerID, "gather-type", moreNeed.type);
 					gameState.ai.HQ.AddTCResGatherer(moreNeed.type);
 				});
-				if (nb == 0)
+				if (nb === 0)
 					return;
 			}
 		}
@@ -724,7 +724,7 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 			vala = -20;
 		if (b.getMetadata(PlayerID, "plan") === undefined)
 			valb = -20;
-		return (vala - valb);
+		return vala - valb;
 	});
 	var needed = Math.min(number, availableWorkers.length - 3);
 	for (let i = 0; i < needed; ++i)
@@ -863,7 +863,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 						coeffB *= 0.5 * (1 + (Math.sqrt(coeffB)/150)*(30/time));
 					else if (workerB.getMetadata(PlayerID, "gather-type") === "food")
 						coeffB *= 3;
-					return (coeffA - coeffB);						
+					return coeffA - coeffB;						
 				});
 				let current = 0;
 				let nonBuilderTot = nonBuilderWorkers.length;
@@ -1055,7 +1055,7 @@ m.BaseManager.prototype.Deserialize = function(gameState, data)
 	for (let key in data)
 		this[key] = data[key];
 
-	this.anchor = ((this.anchorId !== undefined) ? gameState.getEntityById(this.anchorId) : undefined);
+	this.anchor = this.anchorId !== undefined ? gameState.getEntityById(this.anchorId) : undefined;
 };
 
 return m;

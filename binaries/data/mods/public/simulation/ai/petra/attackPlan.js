@@ -238,7 +238,7 @@ m.AttackPlan.prototype.getType = function()
 
 m.AttackPlan.prototype.isStarted = function()
 {
-	return (this.state !== "unexecuted" && this.state !== "completing");
+	return this.state !== "unexecuted" && this.state !== "completing";
 };
 
 m.AttackPlan.prototype.isPaused = function()
@@ -1471,7 +1471,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			{
 				if (!maybeUpdate && this.CheckCapture(gameState, ent))
 					continue;
-				let deltat = (ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING") ? 10 : 5;
+				let deltat = ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING" ? 10 : 5;
 				let lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
 				if (lastAttackPlanUpdateTime && (time - lastAttackPlanUpdateTime) < deltat &&
 					this.CheckCapture(gameState, ent))
@@ -1518,7 +1518,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							valb += 1000;
 						else if (structb.hasClass("ConquestCritical"))
 							valb += 200;
-						return (valb - vala);
+						return valb - vala;
 					});
 					if (mStruct[0].hasClass("Gates"))
 						ent.attack(mStruct[0].id(), false);
@@ -1542,7 +1542,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 			else
 			{
-				let nearby = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"));
+				let nearby = !ent.hasClass("Cavalry") && !ent.hasClass("Ranged");
 				let mUnit = enemyUnits.filter(function (enemy) {
 					if (!enemy.position())
 						return false;
@@ -1625,7 +1625,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 								valb += 10000;
 							else if (structb.hasClass("ConquestCritical"))
 								valb += 100;
-							return (valb - vala);
+							return valb - vala;
 						});
 						if (mStruct[0].hasClass("Gates"))
 							ent.attack(mStruct[0].id(), false);
@@ -1680,7 +1680,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	{
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
 		var rallyPoint = this.rallyPoint;
-		var withdrawal = (this.isStarted() && !this.overseas);
+		var withdrawal = this.isStarted() && !this.overseas;
 		for (let ent of this.unitCollection.values())
 		{
 			if (ent.getMetadata(PlayerID, "role") === "attack")
@@ -1781,7 +1781,7 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 
 m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)
 {
-	return (ent.hasClass("Siege") || (ent.hasClass("Elephant") && ent.hasClass("Champion")));
+	return ent.hasClass("Siege") || (ent.hasClass("Elephant") && ent.hasClass("Champion"));
 };
 
 m.AttackPlan.prototype.debugAttack = function()
@@ -1892,7 +1892,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"captureTime": this.captureTime,
 		"noCapture": this.noCapture,
 		"targetPlayer": this.targetPlayer,
-		"target": ((this.target !== undefined) ? this.target.id() : undefined),
+		"target": this.target !== undefined ? this.target.id() : undefined,
 		"targetPos": this.targetPos,
 		"path": this.path
 	};

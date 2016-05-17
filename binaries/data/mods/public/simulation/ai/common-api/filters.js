@@ -191,7 +191,7 @@ m.Filters = {
 		return {"func": function(ent){
 			if (!ent.position())
 				return false;
-			return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
+			return m.SquareVectorDistance(startPoint, ent.position()) < dist*dist;
 		},
 		"dynamicProperties": []};
 	},

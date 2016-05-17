@@ -147,7 +147,7 @@ m.GarrisonManager.prototype.numberOfGarrisonedUnits = function(holder)
 	if (!this.holders.has(holder.id()))
 		return holder.garrisoned().length;
 
-	return (holder.garrisoned().length + this.holders.get(holder.id()).length);
+	return holder.garrisoned().length + this.holders.get(holder.id()).length;
 };
 
 // This is just a pre-garrison state, while the entity walk to the garrison holder

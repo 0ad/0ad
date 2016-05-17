@@ -221,16 +221,18 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend)
 	return undefined;
 };
 
-m.Accessibility.prototype.getRegionSize = function(position, onWater){
+m.Accessibility.prototype.getRegionSize = function(position, onWater)
+{
 	var pos = this.gamePosToMapPos(position);
 	var index = pos[0] + pos[1]*this.width;
-	var ID = (onWater === true) ? this.navalPassMap[index] : this.landPassMap[index];
+	var ID = onWater === true ? this.navalPassMap[index] : this.landPassMap[index];
 	if (this.regionSize[ID] === undefined)
 		return 0;
 	return this.regionSize[ID];
 };
 
-m.Accessibility.prototype.getRegionSizei = function(index, onWater) {
+m.Accessibility.prototype.getRegionSizei = function(index, onWater)
+{
 	if (this.regionSize[this.landPassMap[index]] === undefined && (!onWater || this.regionSize[this.navalPassMap[index]] === undefined))
 		return 0;
 	if (onWater && this.regionSize[this.navalPassMap[index]] > this.regionSize[this.landPassMap[index]])

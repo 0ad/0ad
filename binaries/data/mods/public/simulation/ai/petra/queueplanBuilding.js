@@ -141,8 +141,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": 0 };
-			else
-				return false;
+			return false;
 		}
 		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
 		{
@@ -241,7 +240,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			for (let j = 0; j < placement.map.length; ++j)
 			{
-				let value = placement.map[j] - (gameState.sharedScript.resourceMaps.wood.map[j])/3;
+				let value = placement.map[j] - gameState.sharedScript.resourceMaps.wood.map[j]/3;
 				placement.map[j] = value >= 0 ? value : 0;
 				if (gameState.ai.HQ.borderMap.map[j] > 0)
 					placement.map[j] /= 2;	// we need space around farmstead, so disfavor map border
@@ -252,8 +251,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// requires to be inside our territory, and inside our base territory if required
 	// and if our first market, put it on border if possible to maximize distance with next market
 	var favorBorder = template.hasClass("BarterMarket");
-	var disfavorBorder = (gameState.currentPhase() > 1 && !template.hasDefensiveFire());
-	var preferredBase = (this.metadata && this.metadata.preferredBase);
+	var disfavorBorder = gameState.currentPhase() > 1 && !template.hasDefensiveFire();
+	var preferredBase = this.metadata && this.metadata.preferredBase;
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		let base = this.metadata.base;
@@ -536,7 +535,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 		for (let i = 0; i < length; ++i)
 		{
 			let count = 0;
-			for (let j = 0; j < (length-1); ++j)
+			for (let j = 0; j < length-1; ++j)
 			{
 				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
 					++count;
@@ -724,7 +723,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 	{
 		if (k === "food" || !resourceMaps[k])
 			continue;
-		let weigh0 = (k === "wood") ? 2 : 1;
+		let weigh0 = k === "wood" ? 2 : 1;
 		for (let dy = 0; dy <= size; ++dy)
 		{
 			let dxmax = size - dy;
@@ -736,7 +735,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 					let kx = ix + dx;
 					if (kx < 0 || kx >= w)
 						continue;
-					let ddx = (dx > 0) ? dx : -dx;
+					let ddx = dx > 0 ? dx : -dx;
 					let weight = weigh0 * (dxmax - ddx) / size;
 					total += weight * resourceMaps[k].map[kx + w * ky];
 					nbcell += weight;
@@ -752,7 +751,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 					let kx = ix + dx;
 					if (kx < 0 || kx >= w)
 						continue;
-					let ddx = (dx > 0) ? dx : -dx;
+					let ddx = dx > 0 ? dx : -dx;
 					let weight = weigh0 * (dxmax - ddx) / size;
 					total += weight * resourceMaps[k].map[kx + w * ky];
 					nbcell += weight;
@@ -760,7 +759,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 			}
 		}
 	}
-	return (nbcell ? (total / nbcell) : 0);
+	return nbcell ? (total / nbcell) : 0;
 };
 
 m.ConstructionPlan.prototype.Serialize = function()

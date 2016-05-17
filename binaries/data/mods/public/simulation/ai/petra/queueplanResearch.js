@@ -26,7 +26,7 @@ m.ResearchPlan.prototype.canStart = function(gameState)
 
 m.ResearchPlan.prototype.isInvalid = function(gameState)
 {
-	return (gameState.isResearched(this.type) || gameState.isResearching(this.type));
+	return gameState.isResearched(this.type) || gameState.isResearching(this.type);
 };
 
 m.ResearchPlan.prototype.start = function(gameState)
@@ -38,9 +38,7 @@ m.ResearchPlan.prototype.start = function(gameState)
 	// plans that have already been executed this turn)
 	if (trainers.length > 0)
 	{
-		trainers.sort(function(a, b) {
-			return (a.trainingQueueTime() - b.trainingQueueTime());
-		});
+		trainers.sort((a, b) => a.trainingQueueTime() - b.trainingQueueTime());
 		// drop anything in the queue if we rush it.
 		if (this.rush)
 			trainers[0].stopAllProduction(0.45);

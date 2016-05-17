@@ -24,7 +24,7 @@ m.TradeManager.prototype.init = function(gameState)
 
 m.TradeManager.prototype.hasTradeRoute = function()
 {
-	return (this.tradeRoute !== undefined);
+	return this.tradeRoute !== undefined;
 };
 
 m.TradeManager.prototype.assignTrader = function(ent)
@@ -166,12 +166,12 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 		let wantedRate = gameState.ai.HQ.wantedRates[type];
 		if (stocks[type] < 200)
 		{
-			tradingGoods[type] = (wantedRate > 0) ? 20 : 10;
+			tradingGoods[type] = wantedRate > 0 ? 20 : 10;
 			targetNum += Math.min(5, 3 + Math.ceil(wantedRate/30));
 		}
 		else if (stocks[type] < 500)
 		{
-			tradingGoods[type] = (wantedRate > 0) ? 15 : 10;
+			tradingGoods[type] = wantedRate > 0 ? 15 : 10;
 			targetNum += 2;
 		}
 		else if (stocks[type] < 1000)
@@ -281,7 +281,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 			continue;
 		let barterRateMin = 80;
 		if (available[buy] < 5000 && available.food > 5000)
-			barterRateMin -= (20 - Math.floor(available[buy]/250));
+			barterRateMin -= 20 - Math.floor(available[buy]/250);
 		let barterRate = getBarterRate(prices, buy, "food");
 		if (barterRate < barterRateMin)
 			continue;
@@ -407,7 +407,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 				continue;
 			var access2 = gameState.ai.accessibility.getAccessValue(m2.position());
 			var sea2 = m2.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m2, true) : undefined;
-			var land = (access1 == access2) ? access1 : undefined;
+			var land = access1 == access2 ? access1 : undefined;
 			var sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
 			if (!land && !sea)
 				continue;
@@ -494,11 +494,9 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			return bestIndex;
 		else if (gameState.ai.accessibility.regionType[accessIndex] === "land" && bestLand.gain > 0)
 			return bestLand;
-		else
-			return false;
+		return false;
 	}
-	else
-		return true;
+	return true;
 };
 
 // Called when a market was built or destroyed, and checks if trader orders should be changed
@@ -610,7 +608,7 @@ m.TradeManager.prototype.routeEntToId = function(route)
 		return route;
 	let ret = {};
 	for (let key in route)
-		ret[key] = ((key == "source" || key == "target") ? route[key].id() : route[key]);
+		ret[key] = (key == "source" || key == "target") ? route[key].id() : route[key];
 	return ret;
 };
 
@@ -620,7 +618,7 @@ m.TradeManager.prototype.routeIdToEnt = function(gameState, route)
 		return route;
 	let ret = {};
 	for (let key in route)
-		ret[key] = ((key == "source" || key == "target") ? gameState.getEntityById(route[key]) : route[key]);
+		ret[key] = (key == "source" || key == "target") ? gameState.getEntityById(route[key]) : route[key];
 	return ret;
 };
 

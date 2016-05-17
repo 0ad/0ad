@@ -509,13 +509,13 @@ m.Template = m.Class({
 	},
 
 	hasTerritoryInfluence: function() {
-		return (this.get("TerritoryInfluence") !== undefined);
+		return this.get("TerritoryInfluence") !== undefined;
 	},
 
 	hasDefensiveFire: function() {
 		if (!this.get("Attack") || !this.get("Attack/Ranged"))
 			return false;
-		return (this.getDefaultArrow() || this.getArrowMultiplier());
+		return this.getDefaultArrow() || this.getArrowMultiplier();
 	},
 
 	territoryInfluenceRadius: function() {
@@ -616,16 +616,16 @@ m.Entity = m.Class({
 		return this._entity.idle;
 	},
 
-	unitAIState: function() { return (this._entity.unitAIState !== undefined) ? this._entity.unitAIState : undefined; },
-	unitAIOrderData: function() { return (this._entity.unitAIOrderData !== undefined) ? this._entity.unitAIOrderData : undefined; },
+	unitAIState: function() { return this._entity.unitAIState !== undefined ? this._entity.unitAIState : undefined; },
+	unitAIOrderData: function() { return this._entity.unitAIOrderData !== undefined ? this._entity.unitAIOrderData : undefined; },
 
-	hitpoints: function() { return (this._entity.hitpoints !== undefined) ? this._entity.hitpoints : undefined; },
+	hitpoints: function() { return this._entity.hitpoints !== undefined ? this._entity.hitpoints : undefined; },
 	isHurt: function() { return this.hitpoints() < this.maxHitpoints(); },
 	healthLevel: function() { return this.hitpoints() / this.maxHitpoints(); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
-	decaying: function() { return (this._entity.decaying !== undefined) ? this._entity.decaying : undefined; },
-	capturePoints: function() {return (this._entity.capturePoints !== undefined) ? this._entity.capturePoints : undefined; },
+	decaying: function() { return this._entity.decaying !== undefined ? this._entity.decaying : undefined; },
+	capturePoints: function() {return this._entity.capturePoints !== undefined ? this._entity.capturePoints : undefined; },
 
 	/**
 	 * Returns the current training queue state, of the form
@@ -673,7 +673,7 @@ m.Entity = m.Class({
 	},
 
 	isOwn: function(player) {
-		if (typeof(this._entity.owner) === "undefined")
+		if (typeof this._entity.owner === "undefined")
 			return false;
 		return this._entity.owner === player;
 	},

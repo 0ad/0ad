@@ -23,13 +23,13 @@ m.getMaxStrength = function(ent, againstClass)
 			switch (str)
 			{
 			case "crush":
-				strength += (val * 0.085) / 3;
+				strength += val * 0.085 / 3;
 				break;
 			case "hack":
-				strength += (val * 0.075) / 3;
+				strength += val * 0.075 / 3;
 				break;
 			case "pierce":
-				strength += (val * 0.065) / 3;
+				strength += val * 0.065 / 3;
 				break;
 			default:
 				API3.warn("Petra: " + str + " unknown attackStrength in getMaxStrength");
@@ -38,7 +38,7 @@ m.getMaxStrength = function(ent, againstClass)
 
 		let attackRange = ent.attackRange(type);
 		if (attackRange)
-			strength += (attackRange.max * 0.0125) ;
+			strength += attackRange.max * 0.0125;
 
 		let attackTimes = ent.attackTimes(type);
 		for (let str in attackTimes)
@@ -47,10 +47,10 @@ m.getMaxStrength = function(ent, againstClass)
 			switch (str)
 			{
 			case "repeat":
-				strength += (val / 100000);
+				strength += val / 100000;
 				break;
 			case "prepare":
-				strength -= (val / 100000);
+				strength -= val / 100000;
 				break;
 			default:
 				API3.warn("Petra: " + str + " unknown attackTimes in getMaxStrength");
@@ -65,13 +65,13 @@ m.getMaxStrength = function(ent, againstClass)
 		switch (str)
 		{
 		case "crush":
-			strength += (val * 0.085) / 3;
+			strength += val * 0.085 / 3;
 			break;
 		case "hack":
-			strength += (val * 0.075) / 3;
+			strength += val * 0.075 / 3;
 			break;
 		case "pierce":
-			strength += (val * 0.065) / 3;
+			strength += val * 0.065 / 3;
 			break;
 		default:
 			API3.warn("Petra: " + str + " unknown armourStrength in getMaxStrength");

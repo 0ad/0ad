@@ -521,7 +521,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	else						// We do not want hero when not explicitely specified
 		units = gameState.findTrainableUnits(classes, ["Hero"]);
 
-	if (units.length == 0)
+	if (units.length === 0)
 		return undefined;
 
 	var parameters = requirements.slice();
@@ -590,7 +590,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 					bTopParam *= param[1];
 			}
 		}
-		return -(aTopParam/(aDivParam+1)) + (bTopParam/(bDivParam+1));
+		return -aTopParam/(aDivParam+1) + bTopParam/(bDivParam+1);
 	});
 	return units[0][0];
 };
@@ -687,8 +687,8 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 		let vb = Math.max(0, b.wanted - b.current) / (b.current + 1);
 		// If they happen to be equal (generally this means "0" aka no need), make it fair.
 		if (va === vb)
-			return (a.current - b.current);
-		return (vb - va);
+			return a.current - b.current;
+		return vb - va;
 	});
 	return needed;
 };
@@ -787,7 +787,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				if (dist < minDist)
 					minDist = dist;
 			}
-			if (norm == 0)
+			if (norm === 0)
 				continue;
 
 			if (minDist > 170000 && !this.navalMap)	// Reject if too far from any allied cc (not connected)
@@ -819,7 +819,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				else if (dist < 6400)
 					norm *= 0.5;
 			}
-			if (norm == 0)
+			if (norm === 0)
 				continue;
 		}
 
@@ -1355,14 +1355,14 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			let freeSlots = gameState.getPopulationLimit() - gameState.getPopulation();
 			for (let ent of gameState.getOwnFoundations().values())
 				freeSlots += ent.getPopulationBonus();
+
 			if (gameState.ai.HQ.saveResources)
-				return (freeSlots <= 10);
+				return freeSlots <= 10;
 			else if (gameState.getPopulation() > 55)
-				return (freeSlots <= 21);
+				return freeSlots <= 21;
 			else if (gameState.getPopulation() > 30)
-				return (freeSlots <= 15);
-			else
-				return (freeSlots <= 10);
+				return freeSlots <= 15;
+			return freeSlots <= 10;
 		};
 		queues.house.addPlan(plan);
 	}
@@ -1438,7 +1438,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		return;
 	// first build one cc if all have been destroyed
 	let activeBases = this.numActiveBase();
-	if (activeBases == 0)
+	if (activeBases === 0)
 	{
 		this.buildFirstBase(gameState);
 		return;
@@ -1468,7 +1468,7 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
-	let template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
+	let template = this.numActiveBase() > 0 ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
 	if (!this.canBuild(gameState, template))
 		return false;
 
@@ -1596,7 +1596,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	}
 
 	//build advanced military buildings
-	if (gameState.currentPhase() > 2 && gameState.getPopulation() > 80 && !queues.militaryBuilding.hasQueuedUnits() && this.bAdvanced.length != 0)
+	if (gameState.currentPhase() > 2 && gameState.getPopulation() > 80 && !queues.militaryBuilding.hasQueuedUnits() && this.bAdvanced.length !== 0)
 	{
 		let nAdvanced = 0;
 		for (let advanced of this.bAdvanced)
@@ -1709,8 +1709,8 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				nearestAnchor.stopProduction(item.id);
 		}
 	}
-	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax() && nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints());
-	var rangedWanted = (Math.random() > 0.5 && autogarrison);
+	var autogarrison = numGarrisoned < nearestAnchor.garrisonMax() && nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints();
+	var rangedWanted = Math.random() > 0.5 && autogarrison;
 
 	var total = gameState.getResources();
 	var templateFound;
@@ -2118,7 +2118,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	for (let i = 0; i < this.baseManagers.length; ++i)
 	{
 		this.baseManagers[i].checkEvents(gameState, events, queues);
-		if (((i + gameState.ai.playedTurn)%this.baseManagers.length) === 0)
+		if ((i + gameState.ai.playedTurn)%this.baseManagers.length === 0)
 			this.baseManagers[i].update(gameState, queues, events);
 	}
 
