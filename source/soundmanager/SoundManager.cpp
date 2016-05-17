@@ -484,6 +484,9 @@ void CSoundManager::SetMasterGain(float gain)
 void CSoundManager::SetMusicGain(float gain)
 {
 	m_MusicGain = gain;
+
+	if (m_CurrentTune)
+		m_CurrentTune->SetGain(m_MusicGain);
 }
 void CSoundManager::SetAmbientGain(float gain)
 {
