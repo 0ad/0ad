@@ -777,16 +777,20 @@ g_SelectionPanels.Research = {
 	},
 	"getItems": function(unitEntState, selection)
 	{
-		// TODO 8 is the row lenght, make variable
-		if (getNumberOfRightPanelButtons() > 8 && selection.length > 1)
+		if (getNumberOfRightPanelButtons() > g_SelectionPanels.Queue.getMaxNumberOfItems() &&
+		      selection.length > 1)
 			return [];
-		for (var ent of selection)
+
+		let techs = [];
+		for (let ent of selection)
 		{
-			var entState = GetEntityState(ent);
-			if (entState.production && entState.production.technologies.length)
-				return entState.production.technologies;
+			let entState = GetEntityState(ent);
+			if (entState.production && entState.production.technologies)
+				for (let tech of entState.production.technologies)
+					if (techs.indexOf(tech) == -1)
+						techs.push(tech);
 		}
-		return [];
+		return techs;
 	},
 	"hideItem": function(i, rowLength) // called when no item is found
 	{
