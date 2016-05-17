@@ -146,27 +146,44 @@ const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("ma
  */
 const g_RandomCiv = '[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") + '[/color]';
 
-// Is this is a networked game, or offline
+/**
+ * Whether this is a single- or multiplayer match.
+ */
 var g_IsNetworked;
 
-// Is this user in control of game settings (i.e. is a network server, or offline player)
+/**
+ * Is this user in control of game settings (i.e. singleplayer or host of a multiplayergame).
+ */
 var g_IsController;
 
-// Server name, if user is a server, connected to the multiplayer lobby
+/**
+ * To report the game to the lobby bot.
+ */
 var g_ServerName;
 
-// Are we currently updating the GUI in response to network messages instead of user input
-// (and therefore shouldn't send further messages to the network)
+/**
+ * States whether the GUI is currently updated in response to network messages instead of user input
+ * and therefore shouldn't send further messages to the network.
+ */
 var g_IsInGuiUpdate;
 
-// Is this user ready
+/**
+ * Whether the current player is ready to start the game.
+ */
 var g_IsReady;
 
-// There are some duplicate orders on init, we can ignore these [bool].
+/**
+ * Ignore duplicate ready commands on init.
+ */
 var g_ReadyInit = true;
 
-// If no one has changed ready status, we have no need to spam the settings changed message.
-// 2 - Host's initial ready, suppressed settings message, 1 - Will show settings message, <=0 - Suppressed settings message
+/**
+ * If noone has changed the ready status, we have no need to spam the settings changed message.
+ *
+ * <=0 - Suppressed settings message
+ * 1 - Will show settings message
+ * 2 - Host's initial ready, suppressed settings message
+ */
 var g_ReadyChanged = 2;
 
 /**
@@ -187,10 +204,11 @@ var g_ChatMessages = [];
  */
 var g_MapData = {};
 
-// To prevent the display locking up while we load the map metadata,
-// we'll start with a 'loading' message and switch to the main screen in the
-// tick handler
-var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
+/**
+ * Wait one tick before initializing the GUI objects and
+ * don't process netmessages prior to that.
+ */
+var g_LoadingState = 0;
 
 /**
  * Only send a lobby update if something actually changed.
@@ -603,7 +621,7 @@ function initPlayerAssignments()
 		};
 
 		let colorPicker = Engine.GetGUIObjectByName("playerColorPicker["+i+"]");
-		colorPicker.list = g_PlayerColors.map(color => ' ' + '[color="' + color.r + ' ' + color.g + ' ' + color.b + '"]■[/color]');
+		colorPicker.list = g_PlayerColors.map(color => ' ' + '[color="' + rgbToGuiColor(color) + '"]■[/color]');
 		colorPicker.list_data = g_PlayerColors.map((color, index) => index);
 		colorPicker.selected = -1;
 		colorPicker.onSelectionChange = function() { selectPlayerColor(playerSlot, this.selected); };
@@ -640,7 +658,7 @@ function handleNetStatusMessage(message)
  */
 function handleReadyMessage(message)
 {
-	g_ReadyChanged -= 1;
+	--g_ReadyChanged;
 
 	if (g_ReadyChanged < 1 && g_PlayerAssignments[message.guid].player != -1)
 		addChatMessage({
@@ -775,7 +793,9 @@ function getMapPreview(map)
 	return mapData.settings.Preview;
 }
 
-// Get a setting if it exists or return default
+/**
+ * Get a playersetting or return the default if it wasn't set.
+ */
 function getSetting(settings, defaults, property)
 {
 	if (settings && (property in settings))
@@ -978,6 +998,10 @@ function cancelSetup()
 		Engine.SwitchGuiPage("page_pregame.xml");
 }
 
+/**
+ * Can't init the GUI before the first tick.
+ * Process netmessages afterwards.
+ */
 function onTick()
 {
 	if (!g_Settings)
@@ -1046,7 +1070,7 @@ function selectNumPlayers(num)
 }
 
 /**
- *  Assigns the given color to that player.
+ * Assigns the given color to that player.
  */
 function selectPlayerColor(playerSlot, colorIndex)
 {
@@ -1126,7 +1150,6 @@ function selectMapFilter(id)
 	updateGameAttributes();
 }
 
-// Called when the user selects a map from the list
 function selectMap(name)
 {
 	// Avoid recursion
