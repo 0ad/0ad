@@ -7,6 +7,9 @@ m.DefenseManager = function(Config)
 	this.Config = Config;
 	this.targetList = [];
 	this.armyMergeSize = this.Config.Defense.armyMergeSize;
+	this.attackingArmies = {};	// stats on how many enemies are currently attacking our allies
+	this.attackingUnits = {};
+	this.attackedAllies = {};
 };
 
 m.DefenseManager.prototype.update = function(gameState, events)
@@ -17,6 +20,34 @@ m.DefenseManager.prototype.update = function(gameState, events)
 
 	this.checkEvents(gameState, events);
 
+	// Count the number of enemies attacking our allies in the previous turn
+	// We'll be more cooperative if several enemies are attacking him simultaneously
+	this.attackedAllies = {};
+	let attackingArmies = clone(this.attackingArmies);
+	for (let enemy in this.attackingUnits)
+	{
+		if (!this.attackingUnits[enemy])
+			continue;
+		for (let ally in this.attackingUnits[enemy])
+		{
+			if (this.attackingUnits[enemy][ally] < 8)
+				continue;
+			if (attackingArmies[enemy] === undefined)
+				attackingArmies[enemy] = {};
+			if (attackingArmies[enemy][ally] === undefined)
+				attackingArmies[enemy][ally] = 0;
+			attackingArmies[enemy][ally] += 1;
+		}
+	}
+	for (let enemy in attackingArmies)
+	{
+		for (let ally in attackingArmies[enemy])
+		{
+			if (this.attackedAllies[ally] === undefined)
+				this.attackedAllies[ally] = 0;
+			this.attackedAllies[ally] += 1;
+		}
+	}
 	this.checkEnemyArmies(gameState);
 	this.checkEnemyUnits(gameState);
 	this.assignDefenders(gameState);
@@ -63,7 +94,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		if (this.targetList.indexOf(targetId) !== -1)
 			return true;
 		let target = gameState.getEntityById(targetId);
-		if (target && this.territoryMap.getOwner(entity.position()) === PlayerID)
+		if (target && territoryOwner === PlayerID)
 		{
 			this.targetList.push(targetId);
 			return true;
@@ -97,18 +128,18 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 			return true;
 	}
 
-	if (this.Config.personality.cooperative > 0.3)
+	let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+	for (let cc of ccEnts.values())
 	{
-		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
-		for (let cc of ccEnts.values())
-		{
-			if (!gameState.isEntityExclusiveAlly(cc))
-				continue;
-			if (this.Config.personality.cooperative < 0.6 && cc.foundationProgress() !== undefined)
-				continue;
-			if (API3.SquareVectorDistance(cc.position(), entity.position()) < dist2Min)
-				return true;
-		}
+		if (!gameState.isEntityExclusiveAlly(cc))
+			continue;
+		let cooperation = this.GetCooperationLevel(cc);
+		if (cooperation < 0.6 && cc.foundationProgress() !== undefined)
+			continue;
+		if (cooperation < 0.3)
+			continue;
+		if (API3.SquareVectorDistance(cc.position(), entity.position()) < dist2Min)
+			return true;
 	}
 
 	let myBuildings = gameState.getOwnStructures();
@@ -120,14 +151,26 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 			return true;
 	}
 
+	// Update the number of enemies attacking this ally
+	if (gameState.isPlayerMutualAlly(territoryOwner))
+	{
+		let enemy = entity.owner();
+		if (this.attackingUnits[enemy] === undefined)
+			this.attackingUnits[enemy] = {};
+		if (this.attackingUnits[enemy][territoryOwner] === undefined)
+			this.attackingUnits[enemy][territoryOwner] = 0;
+		this.attackingUnits[enemy][territoryOwner] += 1;
+	}
+
 	return false;
 };
 
 
 m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 {
-	var nbPlayers = gameState.sharedScript.playersData.length;
+	const nbPlayers = gameState.sharedScript.playersData.length;
 	var i = gameState.ai.playedTurn % nbPlayers;
+ 	this.attackingUnits[i] = undefined;
 
 	if (i === PlayerID)
 	{
@@ -238,13 +281,33 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 	if (gameState.ai.playedTurn % 5 !== 0)
 		return;
 	// Check if any army is no more dangerous (possibly because it has defeated us and destroyed our base)
+ 	this.attackingArmies = {};
 	for (let i = 0; i < this.armies.length; ++i)
 	{
 		let army = this.armies[i];
 		army.recalculatePosition(gameState);
 		let owner = this.territoryMap.getOwner(army.foePosition);
 		if (!gameState.isPlayerEnemy(owner))
+		{
+			if (gameState.isPlayerMutualAlly(owner))
+			{
+				// update the number of enemies attacking this ally
+				for (let id of army.foeEntities)
+				{
+					let ent = gameState.getEntityById(id);
+					if (!ent)
+						continue;
+					let enemy = ent.owner();
+					if (this.attackingArmies[enemy] === undefined)
+						this.attackingArmies[enemy] = {};
+					if (this.attackingArmies[enemy][owner] === undefined)
+						this.attackingArmies[enemy][owner] = 0;
+					this.attackingArmies[enemy][owner] += 1;
+					break;
+				}
+			}
 			continue;
+		}
 		else if (owner !== 0)   // enemy army back in its territory
 		{
 			army.clear(gameState);
@@ -260,7 +323,8 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 		{
 			if (!gameState.isEntityAlly(base))
 				continue;
-			if (this.Config.personality.cooperative < 0.3 && !gameState.isEntityOwn(base))
+			let cooperation = this.GetCooperationLevel(base);
+			if (cooperation < 0.3 && !gameState.isEntityOwn(base))
 				continue;
 			if (API3.SquareVectorDistance(base.position(), army.foePosition) > 40000)
 				continue;
@@ -581,11 +645,26 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
 };
 
+/**
+ * Be more inclined to help an ally attacked by several enemies
+ */
+m.DefenseManager.prototype.GetCooperationLevel = function(ent)
+{
+	let ally = ent.owner();
+	let cooperation = this.Config.personality.cooperative;
+	if (this.attackedAllies[ally] && this.attackedAllies[ally] > 1)
+		cooperation += 0.2 * (this.attackedAllies[ally] - 1);
+	return cooperation;
+};
+
 m.DefenseManager.prototype.Serialize = function()
 {
 	let properties = {
 		"targetList" : this.targetList,
-		"armyMergeSize": this.armyMergeSize
+		"armyMergeSize": this.armyMergeSize,
+		"attackingUnits": this.attackingUnits,
+		"attackingArmies": this.attackingArmies,
+		"attackedAllies": this.attackedAllies
 	};
 
 	let armies = [];

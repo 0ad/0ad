@@ -91,7 +91,7 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 			else
 				tributes += 2*evt.amounts[key];
 		}
-		this.Config.personality.cooperative = Math.min(1, this.Config.personality.cooperative + 0.0002 * tributes);
+		this.Config.personality.cooperative = Math.min(1, this.Config.personality.cooperative + 0.0001 * tributes);
 	}
 
 	for (let evt of events.Attacked)
