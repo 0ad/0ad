@@ -188,9 +188,9 @@ function createBase(player, walls)
 
 	// Create starting units
 	if ((walls || walls === undefined) && g_MapInfo.mapSize > 192)
-		placeCivDefaultEntities(fx, fz, player.id, g_MapInfo.mapRadius);
+		placeCivDefaultEntities(fx, fz, player.id);
 	else
-		placeCivDefaultEntities(fx, fz, player.id, g_MapInfo.mapRadius, { 'iberWall': false });
+		placeCivDefaultEntities(fx, fz, player.id, { 'iberWall': false });
 
 	// Create the city patch
 	var cityRadius = scaleByMapSize(15, 25) / 3;
