@@ -53,7 +53,6 @@ public:
 	 * Currently relies on g_Game being initialised (evil globals...)
 	 */
 	int GetCurrentDisplayedPlayer() const;
-	void SetCurrentDisplayedPlayer(int player);
 
 private:
 	CComponentManager* m_ComponentManager;
@@ -61,8 +60,6 @@ private:
 	CTerrain* m_Terrain;
 
 	CEntityHandle m_SystemEntity;
-
-	int m_CurrentDisplayedPlayer;
 
 	friend class CSimulation2Impl;
 };

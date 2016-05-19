@@ -237,10 +237,8 @@ void SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 
 void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 {
-	if (!g_Game)
-		return;
-
-	g_Game->GetSimulation2()->GetSimContext().SetCurrentDisplayedPlayer(id);
+	if (g_Game)
+		g_Game->SetViewedPlayerID(id);
 }
 
 JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)

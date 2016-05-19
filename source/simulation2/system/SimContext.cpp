@@ -24,7 +24,7 @@
 #include "ps/Game.h"
 
 CSimContext::CSimContext() :
-	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL), m_CurrentDisplayedPlayer(0)
+	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL)
 {
 }
 
@@ -67,10 +67,5 @@ ScriptInterface& CSimContext::GetScriptInterface() const
 
 int CSimContext::GetCurrentDisplayedPlayer() const
 {
-	return g_Game ? m_CurrentDisplayedPlayer : -1;
-}
-
-void CSimContext::SetCurrentDisplayedPlayer(int player)
-{
-	m_CurrentDisplayedPlayer = player;
+	return g_Game ? g_Game->GetViewedPlayerID() : -1;
 }
