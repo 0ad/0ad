@@ -777,20 +777,18 @@ g_SelectionPanels.Research = {
 	},
 	"getItems": function(unitEntState, selection)
 	{
-		if (getNumberOfRightPanelButtons() > g_SelectionPanels.Queue.getMaxNumberOfItems() &&
-		      selection.length > 1)
+		// Tech-pairs require two rows. Thus only show techs when there is only one row in use.
+		// TODO Use a reference instead of a magic number
+		if (getNumberOfRightPanelButtons() > 8 && selection.length > 1)
 			return [];
 
-		let techs = [];
 		for (let ent of selection)
 		{
 			let entState = GetEntityState(ent);
-			if (entState.production && entState.production.technologies)
-				for (let tech of entState.production.technologies)
-					if (techs.indexOf(tech) == -1)
-						techs.push(tech);
+			if (entState.production && entState.production.technologies.length)
+				return entState.production.technologies;
 		}
-		return techs;
+		return [];
 	},
 	"hideItem": function(i, rowLength) // called when no item is found
 	{
