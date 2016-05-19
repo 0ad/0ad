@@ -769,7 +769,7 @@ bool IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
 }
 
 // Pause/unpause the game
-void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause)
+void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, bool sendMessage)
 {
 	if (!g_Game)
 	{
@@ -781,6 +781,9 @@ void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause)
 	if (g_SoundManager)
 		g_SoundManager->Pause(pause);
 #endif
+
+	if (g_NetClient && sendMessage)
+		g_NetClient->SendPausedMessage(pause);
 }
 
 // Return the global frames-per-second value.
@@ -1083,7 +1086,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
 	scriptInterface.RegisterFunction<void, &ExitProgram>("Exit");
 	scriptInterface.RegisterFunction<bool, &IsPaused>("IsPaused");
-	scriptInterface.RegisterFunction<void, bool, &SetPaused>("SetPaused");
+	scriptInterface.RegisterFunction<void, bool, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");

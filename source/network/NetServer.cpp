@@ -655,6 +655,7 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnJoinSyncingLoadedGame, context);
 
 	session->AddTransition(NSS_INGAME, (uint)NMT_REJOINED, NSS_INGAME, (void*)&OnRejoined, context);
+	session->AddTransition(NSS_INGAME, (uint)NMT_CLIENT_PAUSED, NSS_INGAME, (void*)&OnClientPaused, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CHAT, NSS_INGAME, (void*)&OnChat, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnInGame, context);
@@ -698,6 +699,10 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 
 void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 {
+	std::vector<CStr>::iterator pausing = std::find(m_PausingPlayers.begin(), m_PausingPlayers.end(), session->GetGUID());
+	if (pausing != m_PausingPlayers.end())
+		m_PausingPlayers.erase(pausing);
+
 	RemovePlayer(session->GetGUID());
 
 	if (m_ServerTurnManager && session->GetCurrState() != NSS_JOIN_SYNCING)
@@ -1186,6 +1191,15 @@ bool CNetServerWorker::OnRejoined(void* context, CFsmEvent* event)
 
 	server.Broadcast(message);
 
+	// Send all pausing players to the rejoined client.
+	for (const CStr& guid : server.m_PausingPlayers)
+	{
+		CClientPausedMessage pausedMessage;
+		pausedMessage.m_GUID = guid;
+		pausedMessage.m_Pause = true;
+		session->SendMessage(&pausedMessage);
+	}
+
 	return true;
 }
 
@@ -1197,6 +1211,45 @@ bool CNetServerWorker::OnDisconnect(void* context, CFsmEvent* event)
 	CNetServerWorker& server = session->GetServer();
 
 	server.OnUserLeave(session);
+
+	return true;
+}
+
+bool CNetServerWorker::OnClientPaused(void *context, CFsmEvent *event)
+{
+	ENSURE(event->GetType() == (uint)NMT_CLIENT_PAUSED);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	CClientPausedMessage* message = (CClientPausedMessage*)event->GetParamRef();
+
+	message->m_GUID = session->GetGUID();
+
+	// Update the list of pausing players.
+	std::vector<CStr>::iterator player = std::find(server.m_PausingPlayers.begin(), server.m_PausingPlayers.end(), session->GetGUID());
+
+	if (message->m_Pause)
+	{
+		if (player != server.m_PausingPlayers.end())
+			return true;
+
+		server.m_PausingPlayers.push_back(session->GetGUID());
+	}
+	else
+	{
+		if (player == server.m_PausingPlayers.end())
+			return true;
+
+		server.m_PausingPlayers.erase(player);
+	}
+
+	// Send messages to clients that are in game, and are not the client who paused.
+	for (CNetServerSession* session : server.m_Sessions)
+	{
+		if (session->GetCurrState() == NSS_INGAME && message->m_GUID != session->GetGUID())
+			session->SendMessage(message);
+	}
 
 	return true;
 }

@@ -147,6 +147,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		pNewMessage = new CClientPerformanceMessage;
 		break;
 
+	case NMT_CLIENT_PAUSED:
+		pNewMessage = new CClientPausedMessage;
+		break;
+
 	case NMT_LOADED_GAME:
 		pNewMessage = new CLoadedGameMessage;
 		break;

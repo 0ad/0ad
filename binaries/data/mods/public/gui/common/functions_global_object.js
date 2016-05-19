@@ -139,8 +139,6 @@ function displayGamestateNotifications()
 	let messages = [];
 	let maxTextWidth = 0;
 
-	// TODO: Players who paused the game should be added here
-
 	// Add network warnings
 	if (Engine.ConfigDB_GetValue("user", "overlay.netwarnings") == "true")
 	{

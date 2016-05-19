@@ -123,6 +123,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, (void*)&OnKicked, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, (void*)&OnClientTimeout, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, (void*)&OnClientPerformance, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, (void*)&OnClientPaused, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
@@ -340,6 +341,13 @@ void CNetClient::SendRejoinedMessage()
 {
 	CRejoinedMessage rejoinedMessage;
 	SendMessage(&rejoinedMessage);
+}
+
+void CNetClient::SendPausedMessage(bool pause)
+{
+	CClientPausedMessage pausedMessage;
+	pausedMessage.m_Pause = pause;
+	SendMessage(&pausedMessage);
 }
 
 bool CNetClient::HandleMessage(CNetMessage* message)
@@ -723,6 +731,23 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 		client->GetScriptInterface().SetProperty(msg, "meanRTT", message->m_Clients[i].m_MeanRTT);
 		client->PushGuiMessage(msg);
 	}
+
+	return true;
+}
+
+bool CNetClient::OnClientPaused(void *context, CFsmEvent *event)
+{
+	ENSURE(event->GetType() == (uint)NMT_CLIENT_PAUSED);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+	CClientPausedMessage* message = (CClientPausedMessage*)event->GetParamRef();
+
+	JS::RootedValue msg(cx);
+	client->GetScriptInterface().Eval("({ 'type':'paused' })", &msg);
+	client->GetScriptInterface().SetProperty(msg, "pause", message->m_Pause != 0);
+	client->GetScriptInterface().SetProperty(msg, "guid", message->m_GUID);
+	client->PushGuiMessage(msg);
 
 	return true;
 }

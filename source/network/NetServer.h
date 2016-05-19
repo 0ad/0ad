@@ -274,6 +274,7 @@ private:
 	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);
 	static bool OnDisconnect(void* context, CFsmEvent* event);
+	static bool OnClientPaused(void* context, CFsmEvent* event);
 
 	void CheckGameLoadStatus(CNetServerSession* changedSession);
 
@@ -315,6 +316,11 @@ private:
 
 	std::vector<u32> m_BannedIPs;
 	std::vector<CStrW> m_BannedPlayers;
+
+	/**
+	 * Holds the GUIDs of all currently paused players.
+	 */
+	std::vector<CStr> m_PausingPlayers;
 
 	u32 m_NextHostID;
 

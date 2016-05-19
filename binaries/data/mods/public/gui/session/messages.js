@@ -31,6 +31,7 @@ var g_NetMessageTypes = {
 	"netstatus": msg => handleNetStatusMessage(msg),
 	"netwarn": msg => addNetworkWarning(msg),
 	"players": msg => handlePlayerAssignmentsMessage(msg),
+	"paused": msg => setClientPauseState(msg.guid, msg.pause),
 	"rejoined": msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
 	"kicked": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
 	"banned": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
@@ -449,6 +450,10 @@ function handleNetStatusMessage(message)
 
 	if (message.status == "disconnected")
 	{
+		// Hide the pause overlay, and pause animations.
+		Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
+		Engine.SetPaused(true, false);
+
 		g_Disconnected = true;
 		closeOpenDialogs();
 	}
@@ -461,6 +466,8 @@ function handlePlayerAssignmentsMessage(message)
 	{
 		if (message.hosts[guid])
 			continue;
+
+		setClientPauseState(guid, false);
 
 		addChatMessage({ "type": "disconnect", "guid": guid });
 

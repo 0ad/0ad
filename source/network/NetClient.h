@@ -197,6 +197,11 @@ public:
 	 */
 	void SendRejoinedMessage();
 
+	/**
+	 * Call when the client has paused or unpaused the game.
+	 */
+	void SendPausedMessage(bool pause);
+
 private:
 	// Net message / FSM transition handlers
 	static bool OnConnect(void* context, CFsmEvent* event);
@@ -215,6 +220,7 @@ private:
 	static bool OnKicked(void* context, CFsmEvent* event);
 	static bool OnClientTimeout(void* context, CFsmEvent* event);
 	static bool OnClientPerformance(void* context, CFsmEvent* event);
+	static bool OnClientPaused(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 
 	/**

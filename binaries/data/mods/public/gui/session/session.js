@@ -38,6 +38,16 @@ var g_IsObserver = false;
 var g_HasRejoined = false;
 
 /**
+ * True if the current player has paused the game explicitly.
+ */
+var g_Paused = false;
+
+/**
+ * The list of GUIDs of players who have currently paused the game, if the game is networked.
+ */
+var g_PausingClients = [];
+
+/**
  * The playerID selected in the change perspective tool.
  */
 var g_ViewedPlayer = Engine.GetPlayerID();
@@ -440,7 +450,7 @@ function resignGame(leaveGameAfterResign)
 	global.music.setState(global.music.states.DEFEAT);
 
 	if (!leaveGameAfterResign)
-		resumeGame();
+		resumeGame(true);
 }
 
 /**
