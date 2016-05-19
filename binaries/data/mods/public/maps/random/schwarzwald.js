@@ -109,8 +109,6 @@ var terrainHillBorder = ['temp_highlands', 'temp_highlands', 'temp_highlands', '
 var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
 
-const BUILDING_ANGlE = -PI/4;
-
 // Setup map 
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
@@ -242,7 +240,7 @@ for (var i=0; i < numPlayers; i++)
 
 	rectangularSmoothToHeight([x,z] , 20, 20, playerHeight, 0.8);
 
-	placeCivDefaultEntities(x, z, i+1, BUILDING_ANGlE, {'iberWall': false});
+	placeCivDefaultEntities(x, z, i+1, { 'iberWall': false });
 	
 	// Place base texture
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);

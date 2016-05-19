@@ -49,8 +49,6 @@ const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 // terrain + entity (for painting)
 const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-const BUILDING_ANGlE = -PI/4;
-
 log("Initializing map...");
 
 InitMap();
@@ -135,7 +133,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

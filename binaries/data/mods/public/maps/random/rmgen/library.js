@@ -13,6 +13,8 @@ const FALLBACK_CIV = "athen";
 const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE // Engine limit, Roughly 700 meters
 const MIN_HEIGHT = - SEA_LEVEL;
 const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
+// Default angle for buildings
+const BUILDING_ORIENTATION = - PI / 4;
 
 function fractionToTiles(f)
 {

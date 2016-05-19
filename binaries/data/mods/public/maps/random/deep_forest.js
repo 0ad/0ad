@@ -58,7 +58,6 @@ var numPlayers = getNumPlayers();
 var baseRadius = 20;
 var minPlayerRadius = min(mapRadius-1.5*baseRadius, 5*mapRadius/8);
 var maxPlayerRadius = min(mapRadius-baseRadius, 3*mapRadius/4);
-const BUILDING_ANGlE = -PI/4;
 var playerStartLocX = new Array(numPlayers);
 var playerStartLocZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -96,7 +95,7 @@ for (var i=0; i < numPlayers; i++)
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
 	// Place starting entities
-	placeCivDefaultEntities(x, z, i+1, BUILDING_ANGlE);
+	placeCivDefaultEntities(x, z, i+1);
 	// Place base texture
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
 	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]), paintClass(clPlayer)];

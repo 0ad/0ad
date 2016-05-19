@@ -70,10 +70,6 @@ const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -284,7 +280,7 @@ if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 	createArea(placer, [painter,paintClass(clCity)], null);
 
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : 'towers'});
+	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
     nPlayer++;
 }

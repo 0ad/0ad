@@ -48,10 +48,6 @@ const aBushSmall = rBiomeA8();
 
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
-const BUILDING_ANGlE = -PI/4;
-
-
-// initialize map
 
 log("Initializing map...");
 
@@ -156,7 +152,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : 'towers'});
+	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

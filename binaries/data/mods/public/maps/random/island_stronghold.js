@@ -59,7 +59,6 @@ const aRockMedium = rBiomeA6();
 
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
-const BUILDING_ANGlE = -PI/4;
 
 log("Initializing map...");
 InitMap();
@@ -166,7 +165,7 @@ for (let i = 0; i < teams.length; ++i)
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
 		// create starting units
-		placeCivDefaultEntities(fx, fz, teams[i][p], BUILDING_ANGlE, { "iberWall": false });
+		placeCivDefaultEntities(fx, fz, teams[i][p], { "iberWall": false });
 	}
 
 	log("Create initial mines for team " + i);

@@ -470,13 +470,12 @@ function placeWall(startX, startY, wall, style, playerId, orientation)
 //	fortress       An instance of Fortress with a wall defined
 //	style          Optional. Wall style string. Default is the civ of the given player, "palisades" for gaia
 //	playerId       Optional. Number of the player the wall will be placed for. Default is 0 (gaia)
-//	orientation    Optional. Angle the first wall element (should be a gate or entrance) is placed. Default is 0
+//	orientation    Optional. Angle the first wall element (should be a gate or entrance) is placed. Default is BUILDING_ORIENTATION
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function placeCustomFortress(centerX, centerY, fortress, style, playerId, orientation)
+function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, orientation = BUILDING_ORIENTATION)
 {
 	// Graciously handle arguments
 	fortress = (fortress || fortressTypes["medium"]);
-	playerId = (playerId || 0);
 	if (!wallStyles.hasOwnProperty(style))
 	{
 		if (playerId == 0)
@@ -484,7 +483,6 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId, orient
 		else
 			style = (getCivCode(playerId-1));
 	}
-	orientation = (orientation || 0);
 	
 	// Calculate center if fortress.centerToFirstElement is undefined (default)
 	var centerToFirstElement = fortress.centerToFirstElement;

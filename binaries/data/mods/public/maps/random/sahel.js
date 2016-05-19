@@ -52,10 +52,6 @@ function placeStoneMineFormation(x, z)
 	}
 }
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -121,7 +117,7 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz-5, clPlayer);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

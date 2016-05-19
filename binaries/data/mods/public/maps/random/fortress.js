@@ -47,10 +47,6 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -100,12 +96,12 @@ for (var i=0; i < numPlayers; i++)
 {
 	var startEntities = getStartingEntities(i);
 	// Place starting entities
-	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities, BUILDING_ANGlE)
+	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities)
 	var uDist = 8;
 	var uSpace = 2;
 	for (var j = 1; j < startEntities.length - 1; ++j)
 	{
-		var uAngle = BUILDING_ANGlE - PI * (2-j) / 2;
+		var uAngle = BUILDING_ORIENTATION - PI * (2-j) / 2;
 		var count = (startEntities[j].Count !== undefined ? startEntities[j].Count : 1);
 		for (var numberofentities = 0; numberofentities < count; numberofentities++)
 		{
@@ -115,7 +111,7 @@ for (var i=0; i < numPlayers; i++)
 		}
 	}
 	// create resources
-	var bbAngle = BUILDING_ANGlE;
+	var bbAngle = BUILDING_ORIENTATION;
 	var bbDist = 10;
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
@@ -191,7 +187,7 @@ for (var i=0; i < numPlayers; i++)
 			"cornerIn", "wallLong", "house", "tower", "wallLong", "tower", "wallLong",
 			"cornerIn", "wallLong", "house", "tower"];
 	}
-	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, i+1, BUILDING_ANGlE);
+	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, i+1);
 }
 
 // create lakes
