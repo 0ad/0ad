@@ -458,13 +458,6 @@ void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int messag
 	g_NetClient->SendReadyMessage(message);
 }
 
-void SendNetworkRejoined(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendRejoinedMessage();
-}
-
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
@@ -1052,7 +1045,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
-	scriptInterface.RegisterFunction<void, &SendNetworkRejoined>("SendNetworkRejoined");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 

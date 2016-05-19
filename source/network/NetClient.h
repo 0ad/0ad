@@ -239,6 +239,9 @@ private:
 	/// Unique-per-game identifier of this client, used to identify the sender of simulation commands
 	u32 m_HostID;
 
+	/// True if the player is currently rejoining or has already rejoined the game.
+	bool m_Rejoin;
+
 	/// Whether to prevent the client of the host from timing out
 	bool m_IsLocalClient;
 

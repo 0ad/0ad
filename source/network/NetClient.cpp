@@ -72,7 +72,8 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
 	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
 	m_IsLocalClient(isLocalClient),
-	m_LastConnectionCheck(0)
+	m_LastConnectionCheck(0),
+	m_Rejoin(false)
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
@@ -487,13 +488,12 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	LOGMESSAGE("Net: Authentication result: host=%u, %s", message->m_HostID, utf8_from_wstring(message->m_Message));
 
-	bool  isRejoining = (message->m_Code == ARC_OK_REJOINING);
-
 	client->m_HostID = message->m_HostID;
+	client->m_Rejoin = message->m_Code == ARC_OK_REJOINING;
 
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'netstatus','status':'authenticated'})", &msg);
-	client->GetScriptInterface().SetProperty(msg, "rejoining", isRejoining);
+	client->GetScriptInterface().SetProperty(msg, "rejoining", client->m_Rejoin);
 	client->PushGuiMessage(msg);
 
 	return true;
@@ -742,6 +742,10 @@ bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'netstatus','status':'active'})", &msg);
 	client->PushGuiMessage(msg);
+
+	// If we have rejoined an in progress game, send the rejoined message to the server.
+	if (client->m_Rejoin)
+		client->SendRejoinedMessage();
 
 	return true;
 }
