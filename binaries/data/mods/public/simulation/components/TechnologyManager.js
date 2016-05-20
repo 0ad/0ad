@@ -377,13 +377,11 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 
 	if (!this.modificationCache[valueName][ent] || this.modificationCache[valueName][ent].origValue != curValue)
 	{
-		this.modificationCache[valueName][ent] = {"origValue": curValue};
-		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
-		// Ensure that preview or construction entites have the same properties as the final building
-		if (templateName.indexOf("preview|") > -1 || templateName.indexOf("construction|") > -1 )
-			templateName = templateName.slice(templateName.indexOf("|") + 1);
-		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
+		this.modificationCache[valueName][ent] = { "origValue": curValue };
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		if (!cmpIdentity)
+			return curValue;
+		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpIdentity.GetClassesList(), valueName, curValue);
 	}
 
 	return this.modificationCache[valueName][ent].newValue;
@@ -392,7 +390,9 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 // Alternative version of ApplyModifications, applies to templates instead of entities
 TechnologyManager.prototype.ApplyModificationsTemplate = function(valueName, curValue, template)
 {
-	return GetTechModifiedProperty(this.modifications, template, valueName, curValue);
+	if (!template || !template.Identity)
+		return curValue;
+	return GetTechModifiedProperty(this.modifications, GetIdentityClasses(template.Identity), valueName, curValue);
 };
 
 // Marks a technology as being queued for research

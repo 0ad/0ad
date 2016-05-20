@@ -6,50 +6,41 @@
  */
  
 /**
- * Returns modified property value if at least one tech modification is found
- *   applicable to the given entity template; else, returns its original value.
+ * Returns modified property value modified by the applicable tech
+ * modifications.
  *
- * currentTechModifications: mapping of property names to modification arrays,
- *   retrieved from the intended player's TechnologyManager.
- * entityTemplateData: raw entity template object.
- * propertyName: name of the tech modification to apply.
- * propertyValue: original value of property to be modified.
+ * @param currentTechModifications Object with mapping of property names to
+ * modification arrays, retrieved from the intended player's TechnologyManager.
+ * @param classes Array contianing the class list of the template.
+ * @param propertyName String encoding the name of the value.
+ * @param propertyValue Number storing the original value. Can also be
+ * non-numberic, but then only "replace" techs can be supported.
  */
-function GetTechModifiedProperty(currentTechModifications, entityTemplateData, propertyName, propertyValue)
+function GetTechModifiedProperty(currentTechModifications, classes, propertyName, propertyValue)
 {
-	// Get all modifications to this value
-	var modifications = currentTechModifications[propertyName];
-	if (!modifications) // no modifications so return the original value
-		return propertyValue;
+	let modifications = currentTechModifications[propertyName] || [];
 
-	// TODO: will we ever need the full template?
-	// Get the classes which this entity template belongs to
-	var classes = [];
-	if (entityTemplateData && entityTemplateData.Identity)
-		classes = GetIdentityClasses(entityTemplateData.Identity);
+	let multiply = 1;
+	let add = 0;
 
-	var retValue = propertyValue;
-
-	for (var i in modifications)
+	for (let modification of modifications)
 	{
-		var modification = modifications[i];
-		if (DoesModificationApply(modification, classes))
-		{
-			// We found a match, apply the modification
-
-			// Nothing is cumulative so that ordering doesn't matter as much as possible
-			if (modification.multiply)
-				retValue += (modification.multiply - 1) * propertyValue;
-			else if (modification.add)
-				retValue += modification.add;
-			else if (modification.replace !== undefined) // This will depend on ordering because there is no choice
-				retValue = modification.replace;
-			else
-				warn("GetTechModifiedProperty: modification format not recognised (modifying " + propertyName + "): " + uneval(modification));
-		}
+		if (!DoesModificationApply(modification, classes))
+			continue;
+		if (modification.replace !== undefined)
+			return modification.replace;
+		if (modification.multiply)
+			multiply *= modification.multiply;
+		else if (modification.add)
+			add += modification.add;
+		else
+			warn("GetTechModifiedProperty: modification format not recognised (modifying " + propertyName + "): " + uneval(modification));
 	}
 
-	return retValue;
+	// Note, some components pass non-numeric values (for which only the "replace" modification makes sense)
+	if (typeof propertyValue == "number")
+		return propertyValue * multiply + add;
+	return propertyValue;
 }
 
 /**
