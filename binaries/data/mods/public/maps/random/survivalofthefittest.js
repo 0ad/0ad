@@ -217,6 +217,17 @@ createObjectGroups(group, 0,
 	scaleByMapSize(40, 140), 100
 );
 
+group = new SimpleGroup( [new SimpleObject("special/trigger_point_C", 1,1, 0,0)], true, clWomen);
+createObjectGroups(group, 0,
+	[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
+	scaleByMapSize(40, 140), 100
+);
+
+group = new SimpleGroup( [new SimpleObject("special/trigger_point_D", 1,1, 0,0)], true, clWomen);
+createObjectGroups(group, 0,
+	[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
+	scaleByMapSize(40, 140), 100
+);
 
 // create bumps
 createBumps([avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 5)]);

@@ -1,77 +1,125 @@
-var treasures = ["gaia/special_treasure_food_barrel",
-				 "gaia/special_treasure_food_bin",
-				 "gaia/special_treasure_food_crate",
-				 "gaia/special_treasure_food_jars",
-				 "gaia/special_treasure_metal",
-				 "gaia/special_treasure_stone",
-				 "gaia/special_treasure_wood",
-				 "gaia/special_treasure_wood",
-				 "gaia/special_treasure_wood"];
-var attackerEntityTemplates = ["units/athen_champion_infantry",
-							   "units/athen_champion_marine",
-							   "units/athen_champion_ranged",
-							   "units/brit_champion_cavalry",
-							   "units/brit_champion_infantry",
-							   "units/cart_champion_cavalry",
-							   "units/cart_champion_elephant",
-							   "units/cart_champion_infantry",
-							   "units/cart_champion_pikeman",
-							   "units/gaul_champion_cavalry",
-							   "units/gaul_champion_fanatic",
-							   "units/gaul_champion_infantry",
-							   "units/iber_champion_cavalry",
-							   "units/iber_champion_infantry",
-							   "units/mace_champion_cavalry",
-							   "units/mace_champion_infantry_a",
-							   "units/mace_champion_infantry_e",
-							   "units/maur_champion_chariot",
-							   "units/maur_champion_elephant",
-							   "units/maur_champion_infantry",
-							   "units/maur_champion_maiden",
-							   "units/maur_champion_maiden_archer",
-							   "units/pers_champion_cavalry",
-							   "units/pers_champion_infantry",
-							   "units/ptol_champion_cavalry",
-							   "units/ptol_champion_elephant",
-							   "units/rome_champion_cavalry",
-							   "units/rome_champion_infantry",
-							   "units/sele_champion_cavalry",
-							   "units/sele_champion_chariot",
-							   "units/sele_champion_elephant",
-							   "units/sele_champion_infantry_pikeman",
-							   "units/sele_champion_infantry_swordsman",
-							   "units/spart_champion_infantry_pike",
-							   "units/spart_champion_infantry_spear",
-							   "units/spart_champion_infantry_sword"];
+var treasures =
+[
+	"gaia/special_treasure_food_barrel",
+	"gaia/special_treasure_food_bin",
+	"gaia/special_treasure_food_crate",
+	"gaia/special_treasure_food_jars",
+	"gaia/special_treasure_metal",
+	"gaia/special_treasure_stone",
+	"gaia/special_treasure_wood",
+	"gaia/special_treasure_wood",
+	"gaia/special_treasure_wood"
+];
+var attackerEntityTemplates =
+[
+	[
+		"units/athen_champion_infantry",
+		"units/athen_champion_marine",
+		"units/athen_champion_ranged",
+		"units/athen_siege_lithobolos_packed",
+		"units/athen_siege_oxybeles_packed",
+	],
+	[
+		"units/brit_champion_cavalry",
+		"units/brit_champion_infantry",
+		"units/brit_mechanical_siege_ram",
+	],
+	[
+		"units/cart_champion_cavalry",
+		"units/cart_champion_elephant",
+		"units/cart_champion_infantry",
+		"units/cart_champion_pikeman",
+	],
+	[
+		"units/gaul_champion_cavalry",
+		"units/gaul_champion_fanatic",
+		"units/gaul_champion_infantry",
+		"units/gaul_mechanical_siege_ram",
+	],
+	[
+		"units/iber_champion_cavalry",
+		"units/iber_champion_infantry",
+		"units/iber_mechanical_siege_ram",
+	],
+	[
+		"units/mace_champion_cavalry",
+		"units/mace_champion_infantry_a",
+		"units/mace_champion_infantry_e",
+		"units/mace_mechanical_siege_lithobolos_packed",
+		"units/mace_mechanical_siege_oxybeles_packed",
+	],
+	[
+		"units/maur_champion_chariot",
+		"units/maur_champion_elephant",
+		"units/maur_champion_infantry",
+		"units/maur_champion_maiden",
+		"units/maur_champion_maiden_archer",
+	],
+	[
+		"units/pers_champion_cavalry",
+		"units/pers_champion_infantry",
+		"units/pers_champion_elephant",
+	],
+	[
+		"units/ptol_champion_cavalry",
+		"units/ptol_champion_elephant",
+	],
+	[
+		"units/rome_champion_cavalry",
+		"units/rome_champion_infantry",
+		"units/rome_mechanical_siege_ballista_packed",
+		"units/rome_mechanical_siege_scorpio_packed",
+	],
+	[
+		"units/sele_champion_cavalry",
+		"units/sele_champion_chariot",
+		"units/sele_champion_elephant",
+		"units/sele_champion_infantry_pikeman",
+		"units/sele_champion_infantry_swordsman",
+	],
+	[
+		"units/spart_champion_infantry_pike",
+		"units/spart_champion_infantry_spear",
+		"units/spart_champion_infantry_sword",
+		"units/spart_mechanical_siege_ram",
+	],
+];
 
 Trigger.prototype.StartAnEnemyWave = function()
 {
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	var attackerEntity = attackerEntityTemplates[Math.floor(Math.random() * attackerEntityTemplates.length)];
-	var attackerCount = Math.round(cmpTimer.GetTime() / 180000); // A soldier for each 3 minutes of the game. Should be waves of 20 soldiers after an hour
+	var attackerEntities = attackerEntityTemplates[Math.floor(Math.random() * attackerEntityTemplates.length)];
+	// A soldier for each 2-3 minutes of the game. Should be waves of 20 soldiers after an hour
+	var nextTime = Math.round(120000 + Math.random() * 60000);
+	var attackerCount = Math.round(cmpTimer.GetTime() / nextTime / attackerEntities.length);
 
 	// spawn attackers
-	var attackers =  TriggerHelper.SpawnUnitsFromTriggerPoints("A", attackerEntity, attackerCount, 0);
+	var attackers =  [];
+	for (let attackerEntity of attackerEntities)
+		attackers.push(TriggerHelper.SpawnUnitsFromTriggerPoints("A", attackerEntity, attackerCount, 0));
 
-	for (var origin in attackers)
+	for (var entityType of attackers)
 	{
-		var cmpPlayer = QueryOwnerInterface(+origin, IID_Player);
-		if (cmpPlayer.GetState() != "active")
-			continue;
+		for (var origin in entityType)
+		{
+			var cmpPlayer = QueryOwnerInterface(+origin, IID_Player);
+			if (cmpPlayer.GetState() != "active")
+				continue;
 
-		var cmpPosition =  Engine.QueryInterface(this.playerCivicCenter[cmpPlayer.GetPlayerID()], IID_Position);
-		// this shouldn't happen if the player is still active
-		if (!cmpPosition || !cmpPosition.IsInWorld)
-			continue;
+			var cmpPosition =  Engine.QueryInterface(this.playerCivicCenter[cmpPlayer.GetPlayerID()], IID_Position);
+			// this shouldn't happen if the player is still active
+			if (!cmpPosition || !cmpPosition.IsInWorld)
+				continue;
 
-		// store the x and z coordinates in the command
-		var cmd = cmpPosition.GetPosition();
-		cmd.type = "attack-walk";
-		cmd.entities = attackers[origin];
-		cmd.queued = true;
-		cmd.targetClasses = undefined;
-		// send the attack-walk command
-		ProcessCommand(0, cmd);
+			// store the x and z coordinates in the command
+			var cmd = cmpPosition.GetPosition();
+			cmd.type = "attack-walk";
+			cmd.entities = entityType[origin];
+			cmd.queued = true;
+			cmd.targetClasses = undefined;
+			// send the attack-walk command
+			ProcessCommand(0, cmd);
+		}
 	}
 
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -80,7 +128,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 		"message": markForTranslation("An enemy wave is attacking!"),
 		"translateMessage": true
 	});
-	cmpTrigger.DoAfterDelay(180000, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
+	cmpTrigger.DoAfterDelay(nextTime, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
 };
 
 Trigger.prototype.InitGame = function()
@@ -92,13 +140,9 @@ Trigger.prototype.InitGame = function()
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		var playerEntities = cmpRangeManager.GetEntitiesByPlayer(i); // Get all of each player's entities
 		
-		for each (var entity in playerEntities)
-		{
+		for (let entity of playerEntities)
 			if (TriggerHelper.EntityHasClass(entity, "CivilCentre"))
-			{
 				cmpTrigger.playerCivicCenter[i] = entity;
-			}
-		}
 	}
 
 	// Fix alliances
@@ -125,7 +169,9 @@ Trigger.prototype.InitGame = function()
 		var civ = cmpPlayer.GetCiv(); 
 		cmpPlayer.SetDisabledTemplates([
 			"structures/" + civ + "_field",
+			"structures/" + civ + "_corral",
 			"structures/" + civ + "_civil_centre",
+			"structures/" + civ + "_military_colony",
 			"structures/" + civ + "_wallset_stone",
 			"other/wallset_palisade"
 		]);
@@ -134,7 +180,8 @@ Trigger.prototype.InitGame = function()
 
 Trigger.prototype.PlaceTreasures = function()
 {
-	var triggerPoints = cmpTrigger.GetTriggerPoints("B");
+	let point = ["B", "C", "D"][Math.floor(Math.random() * 3)];
+	var triggerPoints = cmpTrigger.GetTriggerPoints(point);
 	for (var point of triggerPoints)
 	{
 		var template = treasures[Math.floor(Math.random() * treasures.length)]
@@ -145,19 +192,20 @@ Trigger.prototype.PlaceTreasures = function()
 
 Trigger.prototype.InitializeEnemyWaves = function()
 {
+	var time = 5 + Math.round(Math.random() * 10) * 60 * 1000;
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification({
+	cmpGUIInterface.AddTimeNotification({
 		"players": [1,2,3,4,5,6,7,8], 
-		"message": markForTranslation("The first wave will start in 15 minutes!"),
+		"message": markForTranslation("The first wave will start in %(time)s!"),
 		"translateMessage": true
-	});
-	cmpTrigger.DoAfterDelay(15*60*1000, "StartAnEnemyWave", {});
+	}, time);
+	cmpTrigger.DoAfterDelay(time, "StartAnEnemyWave", {});
 };
 
 Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
 	// Defeat a player that has lost his civic center
-	if (data.entity == cmpTrigger.playerCivicCenter[data.from] && data.to == -1)
+	if (data.entity == cmpTrigger.playerCivicCenter[data.from])
 	{
 		TriggerHelper.DefeatPlayer(data.from);
 	
