@@ -26,7 +26,7 @@ m.TrainingPlan.prototype.canStart = function(gameState)
 	if (this.metadata && this.metadata.sea)
 		trainers = trainers.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
 
-	return (trainers.length !== 0);
+	return trainers.length !== 0;
 };
 
 m.TrainingPlan.prototype.start = function(gameState)
@@ -59,7 +59,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 		let wantedIndex;
 		if (this.metadata && this.metadata.index)
 			wantedIndex = this.metadata.index;
-		let workerUnit = (this.metadata && this.metadata.role && this.metadata.role == "worker");
+		let workerUnit = this.metadata && this.metadata.role && this.metadata.role == "worker";
 		let supportUnit = this.template.hasClass("Support");
 		trainers.sort(function(a, b) {
 			let aa = a.trainingQueueTime();
@@ -94,7 +94,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 				else if (bpop > apop)
 					bb++;
 			}
-			return (aa - bb);
+			return aa - bb;
 		});
 		if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
 			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");

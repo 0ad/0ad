@@ -71,7 +71,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 
 	this.state = "boarding";
 	this.boardingPos = {};
-	this.needTransportShips = (ship === undefined);
+	this.needTransportShips = ship === undefined;
 	this.nTry = {};
 	return true;
 };

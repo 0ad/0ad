@@ -136,17 +136,17 @@ function rndRiver(f, seed)
 //	fx&fz: position of player base
 //	playerid: id of player
 //	civEntities: use getStartingEntities(id-1) fo this one
-//	BUILDING_ANGlE: angle of main base building
+//	orientation: orientation of the main base building, default is BUILDING_ORIENTATION
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
-function createStartingPlayerEntities(fx, fz, playerid, civEntities, BUILDING_ANGlE)
+function createStartingPlayerEntities(fx, fz, playerid, civEntities, orientation = BUILDING_ORIENTATION)
 {
 	var uDist = 6;
 	var uSpace = 2;
-	placeObject(fx, fz, civEntities[0].Template, playerid, BUILDING_ANGlE);
+	placeObject(fx, fz, civEntities[0].Template, playerid, orientation);
 	for (var j = 1; j < civEntities.length; ++j)
 	{
-		var uAngle = BUILDING_ANGlE - PI * (2-j) / 2;
+		var uAngle = orientation - PI * (2-j) / 2;
 		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
 		for (var numberofentities = 0; numberofentities < count; numberofentities++)
 		{
@@ -163,29 +163,31 @@ function createStartingPlayerEntities(fx, fz, playerid, civEntities, BUILDING_AN
 //	Creates the default starting player entities depending on the players civ
 //	fx&fy: position of player base
 //	playerid: id of player
-//	angle: angle of main base building, optional, default is BUILDING_ANGlE
 //	kwargs: Takes some optional keyword arguments to tweek things
 //		'iberWall': may be false, 'walls' (default) or 'towers'. Determines the defensive structures Iberians get as civ bonus
+//		'orientation': angle of the main base building, default is BUILDING_ORIENTATION
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function placeCivDefaultEntities(fx, fz, playerid, angle, kwargs)
+function placeCivDefaultEntities(fx, fz, playerid, kwargs = {})
 {
 	// Unpack kwargs
-	kwargs = (kwargs || {});
 	var iberWall = 'walls';
 	if (getMapSize() <= 128)
 		iberWall = false;
 	if ('iberWall' in kwargs)
 		iberWall = kwargs['iberWall'];
+	var orientation = BUILDING_ORIENTATION
+	if ('orientation' in kwargs)
+		orientation = kwargs['orientation'];
 	// Place default civ starting entities
 	var civ = getCivCode(playerid-1);
 	var civEntities = getStartingEntities(playerid-1);
 	var uDist = 6;
 	var uSpace = 2;
-	placeObject(fx, fz, civEntities[0].Template, playerid, angle);
+	placeObject(fx, fz, civEntities[0].Template, playerid, orientation);
 	for (var j = 1; j < civEntities.length; ++j)
 	{
-		var uAngle = angle - PI * (2-j) / 2;
+		var uAngle = orientation - PI * (2-j) / 2;
 		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
 		for (var numberofentities = 0; numberofentities < count; numberofentities++)
 		{
@@ -198,7 +200,7 @@ function placeCivDefaultEntities(fx, fz, playerid, angle, kwargs)
 	if (civ == 'iber' && iberWall != false)
 	{
 		if (iberWall == 'towers')
-			placePolygonalWall(fx, fz, 15, ['entry'], 'tower', civ, playerid, angle, 7);
+			placePolygonalWall(fx, fz, 15, ['entry'], 'tower', civ, playerid, orientation, 7);
 		else
 			placeGenericFortress(fx, fz, 20/*radius*/, playerid);
 	}

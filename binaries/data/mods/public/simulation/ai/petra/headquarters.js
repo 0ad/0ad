@@ -514,14 +514,14 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements)
 {
 	var units;
-	if (classes.indexOf("Hero") != -1)
+	if (classes.indexOf("Hero") !== -1)
 		units = gameState.findTrainableUnits(classes, []);
-	else if (classes.indexOf("Siege") != -1)	// We do not want siege tower as AI does not know how to use it
+	else if (classes.indexOf("Siege") !== -1)	// We do not want siege tower as AI does not know how to use it
 		units = gameState.findTrainableUnits(classes, ["SiegeTower"]);
 	else						// We do not want hero when not explicitely specified
 		units = gameState.findTrainableUnits(classes, ["Hero"]);
 
-	if (units.length == 0)
+	if (units.length === 0)
 		return undefined;
 
 	var parameters = requirements.slice();
@@ -590,7 +590,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 					bTopParam *= param[1];
 			}
 		}
-		return -(aTopParam/(aDivParam+1)) + (bTopParam/(bDivParam+1));
+		return -aTopParam/(aDivParam+1) + bTopParam/(bDivParam+1);
 	});
 	return units[0][0];
 };
@@ -687,8 +687,8 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 		let vb = Math.max(0, b.wanted - b.current) / (b.current + 1);
 		// If they happen to be equal (generally this means "0" aka no need), make it fair.
 		if (va === vb)
-			return (a.current - b.current);
-		return (vb - va);
+			return a.current - b.current;
+		return vb - va;
 	});
 	return needed;
 };
@@ -744,7 +744,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.territoryMap.getOwnerIndex(j) != 0)
+		if (this.territoryMap.getOwnerIndex(j) !== 0)
 			continue;
 		// with enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -762,10 +762,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 
 		if (proximity)	// this is our first cc, let's do it near our units
-		{
-			let dist = API3.SquareVectorDistance(proximity, pos);
-			norm /= (1 + dist/scale);
-		}
+			norm /= (1 + API3.SquareVectorDistance(proximity, pos) / scale);
 		else
 		{
 			let minDist = Math.min();
@@ -790,7 +787,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				if (dist < minDist)
 					minDist = dist;
 			}
-			if (norm == 0)
+			if (norm === 0)
 				continue;
 
 			if (minDist > 170000 && !this.navalMap)	// Reject if too far from any allied cc (not connected)
@@ -822,7 +819,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				else if (dist < 6400)
 					norm *= 0.5;
 			}
-			if (norm == 0)
+			if (norm === 0)
 				continue;
 		}
 
@@ -914,7 +911,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.territoryMap.getOwnerIndex(j) != 0)
+		if (this.territoryMap.getOwnerIndex(j) !== 0)
 			continue;
 		// with enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -1041,7 +1038,9 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
 
-	for (var j = 0; j < this.territoryMap.length; ++j)
+	let traderTemplatesGains = gameState.getTraderTemplatesGains();
+
+	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
 		// do not try on the border of our territory
 		if (this.frontierMap.map[j] == 2)
@@ -1049,35 +1048,41 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		if (this.basesMap.map[j] == 0)   // only in our territory
 			continue;
 		// with enough room around to build the cc
-		var i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
+		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)
 			continue;
-		var index = gameState.ai.accessibility.landPassMap[i];
+		let index = gameState.ai.accessibility.landPassMap[i];
 		if (!this.landRegions[index])
 			continue;
-
-		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		// checking distances to other markets
-		var maxDist = 0;
+		let maxVal = 0;
+		let gainMultiplier;
 		for (let market of markets)
 		{
 			if (isNavalMarket && market.hasClass("NavalMarket"))
 			{
-				// TODO check that there are on the same sea. For the time being, we suppose it is true
+				if (this.navalManager.getDockIndex(gameState, market, true) !== gameState.ai.accessibility.getAccessValue(pos, true))
+					continue;
+				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			}
-			else if (gameState.ai.accessibility.getAccessValue(market.position()) != index)
+			else if (gameState.ai.accessibility.getAccessValue(market.position()) === index)
+				gainMultiplier = traderTemplatesGains.landGainMultiplier;
+			else
 				continue;
-			let dist = API3.SquareVectorDistance(market.position(), pos);
-			if (dist > maxDist)
-				maxDist = dist;
+			if (!gainMultiplier)
+				continue;
+			let val = API3.SquareVectorDistance(market.position(), pos) * gainMultiplier;
+			if (val > maxVal)
+				maxVal = val;
 		}
-		if (maxDist == 0)
+		if (maxVal === 0)
 			continue;
-		if (bestVal !== undefined && maxDist < bestVal)
+		if (bestVal !== undefined && maxVal < bestVal)
 			continue;
 		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
-		bestVal = maxDist;
+		bestVal = maxVal;
 		bestIdx = i;
 		bestJdx = j;
 	}
@@ -1087,8 +1092,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
-
-	var expectedGain = Math.round(bestVal / this.Config.distUnitGain);
+	let expectedGain = Math.round(bestVal / 10000);
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
@@ -1112,12 +1116,13 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	var ownStructures = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Fortress", "Tower"])).toEntityArray();
 	var enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"])).toEntityArray();
 
-	var wonderMode = (gameState.getGameType() === "wonder");
+	var wonderMode = gameState.getGameType() === "wonder";
 	var wonderDistmin;
+	var wonders;
 	if (wonderMode)
 	{
-		var wonders = gameState.getOwnStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
-		wonderMode = (wonders.length != 0);
+		wonders = gameState.getOwnStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
+		wonderMode = wonders.length !== 0;
 		if (wonderMode)
 			wonderDistmin = (50 + wonders[0].footprintRadius()) * (50 + wonders[0].footprintRadius());
 	}
@@ -1350,14 +1355,14 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			let freeSlots = gameState.getPopulationLimit() - gameState.getPopulation();
 			for (let ent of gameState.getOwnFoundations().values())
 				freeSlots += ent.getPopulationBonus();
+
 			if (gameState.ai.HQ.saveResources)
-				return (freeSlots <= 10);
+				return freeSlots <= 10;
 			else if (gameState.getPopulation() > 55)
-				return (freeSlots <= 21);
+				return freeSlots <= 21;
 			else if (gameState.getPopulation() > 30)
-				return (freeSlots <= 15);
-			else
-				return (freeSlots <= 10);
+				return freeSlots <= 15;
+			return freeSlots <= 10;
 		};
 		queues.house.addPlan(plan);
 	}
@@ -1433,7 +1438,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		return;
 	// first build one cc if all have been destroyed
 	let activeBases = this.numActiveBase();
-	if (activeBases == 0)
+	if (activeBases === 0)
 	{
 		this.buildFirstBase(gameState);
 		return;
@@ -1463,7 +1468,7 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
-	let template = (this.numActiveBase() > 0) ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
+	let template = this.numActiveBase() > 0 ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
 	if (!this.canBuild(gameState, template))
 		return false;
 
@@ -1591,7 +1596,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	}
 
 	//build advanced military buildings
-	if (gameState.currentPhase() > 2 && gameState.getPopulation() > 80 && !queues.militaryBuilding.hasQueuedUnits() && this.bAdvanced.length != 0)
+	if (gameState.currentPhase() > 2 && gameState.getPopulation() > 80 && !queues.militaryBuilding.hasQueuedUnits() && this.bAdvanced.length !== 0)
 	{
 		let nAdvanced = 0;
 		for (let advanced of this.bAdvanced)
@@ -1704,8 +1709,8 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				nearestAnchor.stopProduction(item.id);
 		}
 	}
-	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax() && nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints());
-	var rangedWanted = (Math.random() > 0.5 && autogarrison);
+	var autogarrison = numGarrisoned < nearestAnchor.garrisonMax() && nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints();
+	var rangedWanted = Math.random() > 0.5 && autogarrison;
 
 	var total = gameState.getResources();
 	var templateFound;
@@ -1761,8 +1766,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	{
 		if (this.stopBuilding.get(type) > gameState.ai.elapsedTime)
 			return false;
-		else
-			this.stopBuilding.delete(type);
+		this.stopBuilding.delete(type);
 	}
 
 	if (gameState.isDisabledTemplates(type))
@@ -1801,7 +1805,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	// build limits
 	var limits = gameState.getEntityLimits();
 	var category = template.buildCategory();
-	if (category && limits[category] && gameState.getEntityCounts()[category] >= limits[category])
+	if (category && limits[category] !== undefined && gameState.getEntityCounts()[category] >= limits[category])
 		return false;
 
 	return true;
@@ -2114,7 +2118,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	for (let i = 0; i < this.baseManagers.length; ++i)
 	{
 		this.baseManagers[i].checkEvents(gameState, events, queues);
-		if (((i + gameState.ai.playedTurn)%this.baseManagers.length) === 0)
+		if ((i + gameState.ai.playedTurn)%this.baseManagers.length === 0)
 			this.baseManagers[i].update(gameState, queues, events);
 	}
 

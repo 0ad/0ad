@@ -40,28 +40,42 @@ struct CColor;
 class CGame
 {
 	NONCOPYABLE(CGame);
+
 	/**
 	 * pointer to the CWorld object representing the game world.
 	 **/
 	CWorld *m_World;
+
 	/**
 	 * pointer to the CSimulation2 object operating on the game world.
 	 **/
 	CSimulation2 *m_Simulation2;
+
 	/**
 	 * pointer to the CGameView object representing the view into the game world.
 	 **/
 	CGameView *m_GameView;
+
 	/**
 	 * the game has been initialized and ready for use if true.
 	 **/
 	bool m_GameStarted;
+
 	/**
 	 * Timescale multiplier for simulation rate.
 	 **/
 	float m_SimRate;
 
+	/**
+	 * Index assigned to the current player.
+	 * 1-8 to control players, 0 for gaia, -1 for observer.
+	 */
 	player_id_t m_PlayerID;
+
+	/**
+	 * Differs from m_PlayerID if a defeated player or observer views another player.
+	 */
+	player_id_t m_ViewedPlayerID;
 
 	CNetTurnManager* m_TurnManager;
 
@@ -94,6 +108,9 @@ public:
 
 	int GetPlayerID();
 	void SetPlayerID(player_id_t playerID);
+
+	int GetViewedPlayerID();
+	void SetViewedPlayerID(player_id_t playerID);
 
 	/**
 	 * Retrieving player colors from scripts is slow, so this updates an

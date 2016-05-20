@@ -171,7 +171,7 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 		this.templateModificationsCache.get(value).get(player).delete(classes);
 
 	// clean up the object
-	p.delete(key)
+	p.delete(key);
 	if (p.size == 0)
 		v.delete(player);
 

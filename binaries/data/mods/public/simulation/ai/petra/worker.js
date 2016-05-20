@@ -571,7 +571,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
-		var canFlee = (!supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1);
+		var canFlee = !supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1;
 		// Only cavalry and range units should hunt fleeing animals 
 		if (canFlee && !isCavalry && !isRanged)
 			return;
@@ -710,12 +710,9 @@ m.Worker.prototype.startFishing = function(gameState)
 		this.ent.setMetadata(PlayerID, "target-foundation", undefined);
 		return true;
 	}
-	else
-	{
-		if (this.ent.getMetadata(PlayerID,"subrole") === "fisher")
-			this.ent.setMetadata(PlayerID, "subrole", "idle");
-		return false;
-	}
+	if (this.ent.getMetadata(PlayerID,"subrole") === "fisher")
+		this.ent.setMetadata(PlayerID, "subrole", "idle");
+	return false;
 };
 
 m.Worker.prototype.gatherNearestField = function(gameState, baseID)

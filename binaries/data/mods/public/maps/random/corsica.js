@@ -61,10 +61,6 @@ var tForestNicae = [tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERR
 var tForestNicaeLight = [tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + eFanPalm, tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 var tForestNicaeScarce = [tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + eFanPalm, tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -336,7 +332,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, [painter,paintClass(clSettlement),elevationPainter], null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : false});
+	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

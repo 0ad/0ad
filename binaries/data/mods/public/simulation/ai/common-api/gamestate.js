@@ -188,7 +188,8 @@ m.GameState.prototype.isResearched = function(template)
 // true if started or queued
 m.GameState.prototype.isResearching = function(template)
 {
-	return (this.playerData.researchStarted[template] !== undefined || this.playerData.researchQueued[template] !== undefined);
+	return this.playerData.researchStarted[template] !== undefined ||
+	       this.playerData.researchQueued[template] !== undefined;
 };
 
 // this is an "in-absolute" check that doesn't check if we have a building to research from.
@@ -199,7 +200,9 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 		return false;
 
 	// researching or already researched: NOO.
-	if (this.playerData.researchQueued[techTemplateName] || this.playerData.researchStarted[techTemplateName] || this.playerData.researchedTechs[techTemplateName])
+	if (this.playerData.researchQueued[techTemplateName] ||
+	    this.playerData.researchStarted[techTemplateName] ||
+	    this.playerData.researchedTechs[techTemplateName])
 		return false;
 
 	if (noRequirementCheck === true)
@@ -217,7 +220,9 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	if (template.pair())
 	{
 		let other = template.pairedWith();
-		if (this.playerData.researchQueued[other] || this.playerData.researchStarted[other] || this.playerData.researchedTechs[other])
+		if (this.playerData.researchQueued[other] ||
+		    this.playerData.researchStarted[other] ||
+		    this.playerData.researchedTechs[other])
 			return false;
 	}
 
@@ -721,9 +726,8 @@ m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return false;
 
-	var template = this.getTemplate(templateName);
 	var civ = this.playerData.civ;
-	
+
 	for (let ent of this.getOwnResearchFacilities().values())
 	{
 		let techs = ent.researchableTechs(civ);
@@ -750,10 +754,9 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return [];
 
-	var template = this.getTemplate(templateName);
 	var self = this;
 	var civ = this.playerData.civ;
-	
+
 	return this.getOwnResearchFacilities().filter(function(ent) {
 		let techs = ent.researchableTechs(civ);
 		for (let tech of techs)
@@ -792,9 +795,22 @@ m.GameState.prototype.isDisabledTemplates = function(template)
 // Checks whether the maximum number of buildings have been cnstructed for a certain catergory
 m.GameState.prototype.isEntityLimitReached = function(category)
 {
-	if(this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
+	if (this.playerData.entityLimits[category] === undefined ||
+	    this.playerData.entityCounts[category] === undefined)
 		return false;
-	return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
+	return this.playerData.entityCounts[category] >= this.playerData.entityLimits[category];
+};
+
+m.GameState.prototype.getTraderTemplatesGains = function()
+{
+	let shipMechantTemplateName = this.applyCiv("units/{civ}_ship_merchant");
+	let supportTraderTemplateName = this.applyCiv("units/{civ}_support_trader");
+	let shipMerchantTemplate = !this.isDisabledTemplates(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
+	let supportTraderTemplate = !this.isDisabledTemplates(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
+	return {
+		"navalGainMultiplier": shipMerchantTemplate && shipMerchantTemplate.gainMultiplier(),
+		"landGainMultiplier": supportTraderTemplate && supportTraderTemplate.gainMultiplier()
+	};
 };
 
 return m;

@@ -26,7 +26,7 @@ extern void WriteSystemInfo();
 
 extern const wchar_t* ErrorString(int err);
 
-extern OsPath getDateIndexSubdirectory(const OsPath& parentDir);
+extern OsPath createDateIndexSubdirectory(const OsPath& parentDir);
 
 extern void WriteScreenshot(const VfsPath& extension);
 extern void WriteBigScreenshot(const VfsPath& extension, int tiles);

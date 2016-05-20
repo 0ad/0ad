@@ -174,20 +174,15 @@
 	<!-- ================================  ================================ -->
 	<!-- Pause Overlay -->
 	<!-- ================================  ================================ -->
-	<object type="button"
-		name="pauseOverlay"
-		size="0 0 100% 100%"
-		tooltip_style="sessionToolTip"
-		hidden="true"
-		z="0"
-	>
+	<object type="button" name="pauseOverlay" size="0 0 100% 100%" tooltip_style="sessionToolTip" hidden="true" z="0">
 	    <object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
-	    <object size="50%-128 50%-20 50%+128 50%+20" type="text" style="PauseText" ghost="true" z="0">
+	    <object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true" z="0">
 			<translatableAttribute id="caption">Game Paused</translatableAttribute>
 		</object>
-		<object size="50%-128 50%+20 50%+128 50%+30" type="text" style="PauseMessageText" ghost="true" z="0">
+		<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true" z="0">
 			<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
 		</object>
+	    <object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="PausedByText" ghost="true" hidden="true" z="0"/>
 	    <action on="Press">togglePause();</action>
 	</object>
 
@@ -261,7 +256,7 @@
 	<!-- Trade Window -->
 	<!-- ================================  ================================ -->
 	<include file="gui/session/trade_window.xml"/>
-	
+
 	<!-- ================================  ================================ -->
 	<!-- Top Panel  -->
 	<!-- ================================  ================================ -->
@@ -305,7 +300,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Supplemental Details Panel (Left of Selection Details) -->
 		<!-- ================================  ================================ -->
-		<object 
+		<object
 			size="50%-304 100%-170 50%-110 100%"
 			name="supplementalSelectionDetails"
 			type="image"

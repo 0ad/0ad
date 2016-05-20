@@ -31,6 +31,7 @@ var g_NetMessageTypes = {
 	"netstatus": msg => handleNetStatusMessage(msg),
 	"netwarn": msg => addNetworkWarning(msg),
 	"players": msg => handlePlayerAssignmentsMessage(msg),
+	"paused": msg => setClientPauseState(msg.guid, msg.pause),
 	"rejoined": msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
 	"kicked": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
 	"banned": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
@@ -60,8 +61,8 @@ var g_StatusMessageTypes = {
 	"authenticated": msg => translate("Connection to the server has been authenticated."),
 	"connected": msg => translate("Connected to the server."),
 	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
-	                // Translation: States the reason why the client disconnected from the server.
-	                sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason) }),
+		// Translation: States the reason why the client disconnected from the server.
+		sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason, true) }),
 	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
 	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
 	"active": msg => ""
@@ -188,7 +189,8 @@ var g_NotificationsTypes =
 		addChatMessage({
 			"type": "defeat",
 			"guid": findGuidForPlayerID(player),
-			"player": player
+			"player": player,
+			"resign": !!notification.resign
 		});
 
 		updateDiplomacy();
@@ -448,6 +450,10 @@ function handleNetStatusMessage(message)
 
 	if (message.status == "disconnected")
 	{
+		// Hide the pause overlay, and pause animations.
+		Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
+		Engine.SetPaused(true, false);
+
 		g_Disconnected = true;
 		closeOpenDialogs();
 	}
@@ -460,6 +466,8 @@ function handlePlayerAssignmentsMessage(message)
 	{
 		if (message.hosts[guid])
 			continue;
+
+		setClientPauseState(guid, false);
 
 		addChatMessage({ "type": "disconnect", "guid": guid });
 
@@ -528,18 +536,17 @@ function updateChatAddressees()
 		if (guid == Engine.GetPlayerGUID())
 			continue;
 
-		let username = g_PlayerAssignments[guid].name;
-		let playerIndex = g_PlayerAssignments[guid].player;
+		let playerID = g_PlayerAssignments[guid].player;
 
 		// Don't provide option for PM from observer to player
-		if (g_IsObserver && !isPlayerObserver(playerIndex))
+		if (g_IsObserver && !isPlayerObserver(playerID))
 			continue;
 
-		let colorBox = isPlayerObserver(playerIndex) ? "" : '[color="' + rgbToGuiColor(g_Players[playerIndex].color) + '"]■ [/color]';
+		let colorBox = isPlayerObserver(playerID) ? "" : colorizePlayernameHelper("■", playerID) + " ";
 
 		addressees.push({
-			"cmd": "/msg " + username,
-			"label": colorBox + username
+			"cmd": "/msg " + g_PlayerAssignments[guid].name,
+			"label": colorBox + g_PlayerAssignments[guid].name
 		});
 	}
 
@@ -652,13 +659,12 @@ function colorizePlayernameHelper(username, playerID)
 
 function formatDefeatMessage(msg)
 {
-	// In singleplayer, the local player is "You". "You has" is incorrect.
-	if (!g_IsNetworked && msg.player == Engine.GetPlayerID())
-		return translate("You have been defeated.");
-
-	return sprintf(translate("%(player)s has been defeated."), {
-		"player": colorizePlayernameByID(msg.player)
-	});
+	return sprintf(
+		msg.resign ?
+			translate("%(player)s has resigned.") :
+			translate("%(player)s has been defeated."),
+		{ "player": colorizePlayernameByID(msg.player) }
+	);
 }
 
 function formatDiplomacyMessage(msg)

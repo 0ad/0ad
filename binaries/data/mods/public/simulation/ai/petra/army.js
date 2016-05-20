@@ -17,7 +17,7 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	this.defenseRatio = this.Config.Defense.defenseRatio;
 	this.compactSize = this.Config.Defense.armyCompactSize;
 	this.breakawaySize = this.Config.Defense.armyBreakawaySize;
-		
+
 	// average
 	this.foePosition = [0,0];
 	this.positionLastUpdate = gameState.ai.elapsedTime;
@@ -28,19 +28,19 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	this.assignedAgainst = {};
 	// who we assigned against, for quick removal.
 	this.assignedTo = {};
-	
+
 	this.foeEntities = [];
 	this.foeStrength = 0;
-	
+
 	this.ownEntities = [];
 	this.ownStrength = 0;
-	
+
 	// actually add units
 	for (let id of foeEntities)
 		this.addFoe(gameState, id, true);
 	for (let id of ownEntities)
 		this.addOwn(gameState, id);
-	
+
 	this.recalculatePosition(gameState, true);
 
 	return true;
@@ -79,7 +79,7 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 {
 	this.ownStrength  = 0;
 	this.foeStrength  = 0;
-	
+
 	// todo: deal with specifics.
 
 	for (let id of this.foeEntities)
@@ -95,7 +95,7 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 	if (ent.hasClass("Structure"))
 	{
 		if (ent.owner() !== PlayerID)
-			entStrength = (ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4);
+			entStrength = ent.getDefaultArrow() ? 6*ent.getDefaultArrow() : 4;
 		else	// small strength used only when we try to recover capture points
 			entStrength = 2;
 	}
@@ -127,11 +127,11 @@ m.Army.prototype.addFoe = function (gameState, enemyId, force)
 	let ent = gameState.getEntityById(enemyId);
 	if (!ent || !ent.position())
 		return false;
-	
+
 	// check distance
 	if (!force && API3.SquareVectorDistance(ent.position(), this.foePosition) > this.compactSize)
 			return false;
-	
+
 	this.foeEntities.push(enemyId);
 	this.assignedAgainst[enemyId] = [];
 	this.positionLastUpdate = 0;
@@ -150,13 +150,13 @@ m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 		return false;
 
 	this.foeEntities.splice(idx, 1);
-	
+
 	this.assignedAgainst[enemyId] = undefined;
 	for (let to in this.assignedTo)
 		if (this.assignedTo[to] == enemyId)
 			this.assignedTo[to] = undefined;
 
-	let ent = (enemyEntity ? enemyEntity : gameState.getEntityById(enemyId));
+	let ent = enemyEntity ? enemyEntity : gameState.getEntityById(enemyId);
 	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
 	{
 		this.evaluateStrength(ent, false, true);
@@ -209,7 +209,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	}
 	this.assignedTo[id] = undefined;
 
-	let ent = (Entity ? Entity : gameState.getEntityById(id));
+	let ent = Entity ? Entity : gameState.getEntityById(id);
 	if (ent)    // TODO recompute strength when no entities (could happen if capture+destroy)
 	{
 		this.evaluateStrength(ent, true, true);
@@ -219,7 +219,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		else
 			ent.setMetadata(PlayerID, "plan", undefined);
 
-		var formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
+		let formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
 		if (formerSubrole !== undefined)
 			ent.setMetadata(PlayerID, "subrole", formerSubrole);
 		else
@@ -252,7 +252,7 @@ m.Army.prototype.isCapturing = function (gameState)
 	if (this.foeEntities.length != 1)
 		return false;
 	let ent = gameState.getEntityById(this.foeEntities[0]);
-	return (ent && ent.hasClass("Structure"));
+	return ent && ent.hasClass("Structure");
 };    
 
 // this one is "undefined entity" proof because it's called at odd times.
@@ -397,10 +397,10 @@ m.Army.prototype.onUpdate = function (gameState)
 		this.positionLastUpdate = gameState.ai.elapsedTime;
 	
 		// Check for breakaways.
-		for (var i = 0; i < this.foeEntities.length; ++i)
+		for (let i = 0; i < this.foeEntities.length; ++i)
 		{
-			var id = this.foeEntities[i];
-			var ent = gameState.getEntityById(id);
+			let id = this.foeEntities[i];
+			let ent = gameState.getEntityById(id);
 			if (!ent || !ent.position())
 				continue;
 			if (API3.SquareVectorDistance(ent.position(), this.foePosition) > this.breakawaySize)

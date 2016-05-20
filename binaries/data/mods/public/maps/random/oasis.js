@@ -39,9 +39,6 @@ const aSand = "actor|particle/blowing_sand.xml";
 const pForestMain = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor];
 const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
 
 log("Initializing map...");
 
@@ -126,7 +123,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 		
 	// create animals
 	for (var j = 0; j < 2; ++j)

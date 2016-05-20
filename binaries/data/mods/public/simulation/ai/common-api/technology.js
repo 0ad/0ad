@@ -7,7 +7,7 @@ m.Technology = function(allTemplates, templateName)
 {
 	this._templateName = templateName;
 	var template = allTemplates[templateName];
-	
+
 	// check if this is one of two paired technologies.
 	this._isPair = template.pair !== undefined;
 	if (this._isPair)
@@ -44,10 +44,10 @@ m.Technology.prototype.getPairedTechs = function()
 {
 	if (!this._definesPair)
 		return undefined;
-	
+
 	var techOne = new m.Technology(this._techTemplates, this._template.top);
 	var techTwo = new m.Technology(this._techTemplates, this._template.bottom);
-	
+
 	return [techOne,techTwo];
 };
 

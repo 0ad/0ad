@@ -49,9 +49,6 @@ const aTree = rBiomeA9();
 
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
 
 log("Initializing map...");
 
@@ -163,8 +160,8 @@ for (var i = 0; i < numPlayers; i++)
 	// Place default civ starting entities
 	var uDist = 6;
 	var uSpace = 2;
-	placeObject(fx, fz, "skirmish/structures/default_civil_centre", id, BUILDING_ANGlE);
-	var uAngle = BUILDING_ANGlE - PI / 2;
+	placeObject(fx, fz, "skirmish/structures/default_civil_centre", id, BUILDING_ORIENTATION);
+	var uAngle = BUILDING_ORIENTATION - PI / 2;
 	var count = 4;
 	for (var numberofentities = 0; numberofentities < count; numberofentities++)
 	{

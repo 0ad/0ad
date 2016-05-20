@@ -737,7 +737,7 @@ g_SelectionPanels.Queue = {
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
 			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
-				"population": getCostComponentDisplayName("population"),
+				"population": getCostComponentDisplayIcon("population"),
 				"neededSlots": data.item.neededSlots
 			});
 		}
@@ -777,12 +777,14 @@ g_SelectionPanels.Research = {
 	},
 	"getItems": function(unitEntState, selection)
 	{
-		// TODO 8 is the row lenght, make variable
+		// Tech-pairs require two rows. Thus only show techs when there is only one row in use.
+		// TODO Use a reference instead of a magic number
 		if (getNumberOfRightPanelButtons() > 8 && selection.length > 1)
 			return [];
-		for (var ent of selection)
+
+		for (let ent of selection)
 		{
-			var entState = GetEntityState(ent);
+			let entState = GetEntityState(ent);
 			if (entState.production && entState.production.technologies.length)
 				return entState.production.technologies;
 		}
@@ -977,23 +979,12 @@ g_SelectionPanels.Selection = {
 	},
 	"setTooltip": function(data)
 	{
+		let tooltip = data.name;
 		if (data.carried)
-		{
-			var str = data.name + "\n";
-			var ress = ["food", "wood", "stone", "metal"];
-			for (var i = 0; i < 4; ++i)
-			{
-				if (data.carried[ress[i]])
-				{
-					str += getCostComponentDisplayName(ress[i]) + data.carried[ress[i]];
-					if (i !== 3)
-						str += " ";
-				}
-			}
-			data.button.tooltip = str;
-		}
-		else
-			data.button.tooltip = data.name;
+			tooltip += "\n" + Object.keys(data.carried).map(res =>
+				getCostComponentDisplayIcon(res) + data.carried[res]
+			).join(" ");
+		data.button.tooltip = tooltip;
 	},
 	"setCountDisplay": function(data)
 	{

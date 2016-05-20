@@ -12,14 +12,14 @@ m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 	let map = (type === "territory" || type === "resource") ? sharedScript.territoryMap : sharedScript.passabilityMap;
 	this.width = map.width;
 	this.height = map.height;
-	this.cellSize = map.cellSize;   
+	this.cellSize = map.cellSize;
 	this.length = this.width * this.height;
 
 	this.maxVal = 255;
 
 	// sanity check
 	if (originalMap && originalMap.length !== this.length)
-		warn("AI map size incompatibility with type " + type + ": original " + originalMap.length + " new " + this.length); 
+		warn("AI map size incompatibility with type " + type + ": original " + originalMap.length + " new " + this.length);
 
 	if (originalMap && actualCopy)
 	{
@@ -54,13 +54,13 @@ m.Map.prototype.point = function(p)
 m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linear")
 {
 	strength = strength ? strength : maxDist;
-	
+
 	var x0 = Math.floor(Math.max(0, cx - maxDist));
 	var y0 = Math.floor(Math.max(0, cy - maxDist));
 	var x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
 	var y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
 	var maxDist2 = maxDist * maxDist;
-	
+
 	// code duplicating for speed
 	if (type === 'linear' || type === "linear")
 	{
@@ -138,13 +138,13 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 {
 	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'constant';
-	
+
 	var x0 = Math.max(0, cx - maxDist);
 	var y0 = Math.max(0, cy - maxDist);
 	var x1 = Math.min(this.width, cx + maxDist);
 	var y1 = Math.min(this.height, cy + maxDist);
 	var maxDist2 = maxDist * maxDist;
-	
+
 	var str = 0.0;
 	switch (type)
 	{
@@ -158,7 +158,7 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 			str = strength;
 			break;
 	}
-	
+
 	if (type === 'linear' || type === "linear")
 	{
 		for (let y = y0; y < y1; ++y)
@@ -259,9 +259,9 @@ m.Map.prototype.sumInfluence = function(cx, cy, radius)
 	var x1 = Math.min(this.width, cx + radius);
 	var y1 = Math.min(this.height, cy + radius);
 	var radius2 = radius * radius;
-	
+
 	var sum = 0;
-	
+
 	for (let y = y0; y < y1; ++y)
 	{
 		for (let x = x0; x < x1; ++x)
@@ -281,8 +281,8 @@ m.Map.prototype.sumInfluence = function(cx, cy, radius)
  */
 m.Map.prototype.expandInfluences = function(maximum, map)
 {
-	maximum = (maximum !== undefined) ? maximum : this.maxVal;
-	let grid = (map !== undefined) ? map : this.map;
+	maximum = maximum !== undefined ? maximum : this.maxVal;
+	let grid = map !== undefined ? map : this.map;
 	let w = this.width;
 	let h = this.height;
 
@@ -314,7 +314,7 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 				min = maximum;
 		}
 	}
-	
+
 	for (let x = 0; x < w; ++x)
 	{
 		let min = maximum;
@@ -329,7 +329,7 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 			if (min > maximum)
 				min = maximum;
 		}
-		
+
 		for (let y = h - 2; y >= 0; --y)
 		{
 			let g = grid[x + y * w];
@@ -402,7 +402,7 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 				continue;
 			if (obstruction.isObstructedTile(kx, ky, radius))
 				continue;
-			return (kx + ky*w);
+			return kx + ky*w;
 		}
 	}
 	return -1;
@@ -416,7 +416,7 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 		return true;
 	for (let dy = 0; dy <= radius; ++dy)
 	{
-		let dxmax = (dy == 0) ? radius : Math.ceil(Math.sqrt(radius*radius - (dy-0.5)*(dy-0.5)));
+		let dxmax = dy === 0 ? radius : Math.ceil(Math.sqrt(radius*radius - (dy-0.5)*(dy-0.5)));
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
 		for (let dx = -dxmax; dx <= dxmax; ++dx)
@@ -433,7 +433,7 @@ m.Map.prototype.findNearestObstructed = function(k, radius)
 	var w = this.width;
 	var ix = k % w;
 	var iy = Math.floor(k / w);
-	var n = (this.cellSize > 8) ? 1 : Math.floor(8 / this.cellSize);
+	var n = this.cellSize > 8 ? 1 : Math.floor(8 / this.cellSize);
 	for (let i = 1; i <= n; ++i)
 	{
 		let kx = ix - i;
@@ -458,7 +458,7 @@ m.Map.prototype.findNearestObstructed = function(k, radius)
 					else
 						++ky;
 				}
-				return (kx + w*ky);
+				return kx + w*ky;
 			}
 			if (j < 2*i+1)
 				++kx;

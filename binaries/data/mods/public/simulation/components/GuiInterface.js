@@ -289,7 +289,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpBuilder)
 		ret.builder = true;
 
-	let cmpMarket = Engine.QueryInterface(ent, IID_Market);
+	let cmpMarket = QueryMiragedInterface(ent, IID_Market);
 	if (cmpMarket)
 		ret.market = {
 			"land": cmpMarket.HasType("land"),

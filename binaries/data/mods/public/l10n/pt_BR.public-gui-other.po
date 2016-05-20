@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-02 09:00+0200\n"
-"PO-Revision-Date: 2016-05-02 09:37+0000\n"
+"POT-Creation-Date: 2016-05-13 09:00+0200\n"
+"PO-Revision-Date: 2016-05-13 10:00+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -328,10 +328,12 @@ msgstr "%(previousAmounts)s e %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:121 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
-#: gui/common/tooltips.js:445 gui/common/tooltips.js:472
-#: gui/common/tooltips.js:540
+#: gui/common/tooltips.js:447 gui/common/tooltips.js:474
+#: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:76
+#: gui/savedgames/load.js:77
 msgid ", "
 msgstr ","
 
@@ -569,7 +571,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:58 gui/common/tooltips.js:241
-#: gui/common/tooltips.js:252 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:252 gui/common/tooltips.js:471
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "segundo"
@@ -640,7 +642,7 @@ msgstr "Ataque:"
 msgid "Interval:"
 msgstr "Intervalo:"
 
-#: gui/common/tooltips.js:165 gui/common/tooltips.js:467
+#: gui/common/tooltips.js:165 gui/common/tooltips.js:469
 msgid "Rate:"
 msgstr "Taxa:"
 
@@ -649,11 +651,11 @@ msgstr "Taxa:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:201 gui/common/tooltips.js:462
+#: gui/common/tooltips.js:201 gui/common/tooltips.js:464
 msgid "Range:"
 msgstr "Alcance:"
 
-#: gui/common/tooltips.js:203 gui/common/tooltips.js:464
+#: gui/common/tooltips.js:203 gui/common/tooltips.js:466
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metro"
@@ -705,105 +707,102 @@ msgstr ""
 msgid "Build Rate:"
 msgstr "Taxa de construção:"
 
-#: gui/common/tooltips.js:294 gui/common/tooltips.js:295
-#: gui/common/tooltips.js:296 gui/common/tooltips.js:297
-#: gui/common/tooltips.js:298 gui/common/tooltips.js:299
-#: gui/common/tooltips.js:415
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:417
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:353
+#: gui/common/tooltips.js:355
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s a %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:384
+#: gui/common/tooltips.js:386
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Muralhas:  %(costs)s"
 
-#: gui/common/tooltips.js:385
+#: gui/common/tooltips.js:387
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torres:  %(costs)s"
 
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:403
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:402
+#: gui/common/tooltips.js:404
 msgid "Population Bonus:"
 msgstr "Bônus de População:"
 
-#: gui/common/tooltips.js:420
+#: gui/common/tooltips.js:422
 msgid "Insufficient resources:"
 msgstr "Recursos Insuficientes"
 
-#: gui/common/tooltips.js:428
+#: gui/common/tooltips.js:430
 msgid "Speed:"
 msgstr "Velocidade:"
 
-#: gui/common/tooltips.js:432 gui/common/tooltips.js:438
+#: gui/common/tooltips.js:434 gui/common/tooltips.js:440
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:434
+#: gui/common/tooltips.js:436
 msgid "Walk"
 msgstr "Andar"
 
-#: gui/common/tooltips.js:440
+#: gui/common/tooltips.js:442
 msgid "Run"
 msgstr "Correr"
 
-#: gui/common/tooltips.js:443
+#: gui/common/tooltips.js:445
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:455 gui/common/tooltips.js:461
-#: gui/common/tooltips.js:466
+#: gui/common/tooltips.js:457 gui/common/tooltips.js:463
+#: gui/common/tooltips.js:468
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:456
+#: gui/common/tooltips.js:458
 msgid "Heal:"
 msgstr "Curar:"
 
 #. Translation: Short for hitpoints (that are healed in one healing action)
-#: gui/common/tooltips.js:459
+#: gui/common/tooltips.js:461
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "PV"
 msgstr[1] "PV"
 
-#: gui/common/tooltips.js:482
+#: gui/common/tooltips.js:484
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:483
+#: gui/common/tooltips.js:485
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:496
+#: gui/common/tooltips.js:498
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:506
+#: gui/common/tooltips.js:508
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:536
+#: gui/common/tooltips.js:538
 msgid "Classes:"
 msgstr "Classes:"
 
@@ -823,17 +822,17 @@ msgstr "<inválido>"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:150 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
+#: gui/savedgames/save.js:93
 msgid "Yes"
 msgstr "Sim"
 
 #: gui/msgbox/msgbox.js:40 gui/options/options.js:271
 #: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:150 gui/savedgames/load.js:49
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:86
+#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
+#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
+#: gui/savedgames/save.js:93
 msgid "No"
 msgstr "Não"
 
@@ -861,7 +860,7 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.js:274 gui/options/options.js:338
-#: gui/savedgames/load.js:89
+#: gui/savedgames/load.js:85
 msgid "Warning"
 msgstr "Aviso"
 
@@ -944,7 +943,7 @@ msgid ""
 "for additional information."
 msgstr "O editor de cenário não esta disponível ou falhou ao carregar. Veja o log do jogo para obter mais informações."
 
-#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:112
+#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Erro"
 
@@ -969,41 +968,51 @@ msgstr "Você"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Você não tem os mesmos mods ativos que o replay tem."
 
-#: gui/replaymenu/replay_actions.js:89
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:76
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Necessário: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Ativo: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:93
+#: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
 msgstr "O replay não é compatível com a sua versão do jogo!"
 
 #: gui/replaymenu/replay_actions.js:95
+#, javascript-format
+msgid "Your version: %(version)s"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:96
+#, javascript-format
+msgid "Required version: %(version)s"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
 msgstr "Replay incompatível"
 
-#: gui/replaymenu/replay_actions.js:95 gui/replaymenu/replay_actions.js:112
+#: gui/replaymenu/replay_actions.js:99 gui/replaymenu/replay_actions.js:116
 msgid "Ok"
 msgstr "OK"
 
-#: gui/replaymenu/replay_actions.js:112
+#: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
 msgstr "Sem dados de resumo disponíveis."
 
-#: gui/replaymenu/replay_actions.js:118
+#: gui/replaymenu/replay_actions.js:122
 msgid "Scores at the end of the game."
 msgstr "Resultados no final do jogo."
 
-#: gui/replaymenu/replay_actions.js:153
+#: gui/replaymenu/replay_actions.js:157
 msgid "Delete replay"
 msgstr "Apagar replay"
 
-#: gui/replaymenu/replay_actions.js:154
+#: gui/replaymenu/replay_actions.js:158
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
@@ -1131,7 +1140,7 @@ msgstr "Sem time"
 msgid "Team %(team)s"
 msgstr "Time %(team)s"
 
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:27
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:25
 msgid "No saved games found"
 msgstr "Nenhum jogo salvo encontrado"
 
@@ -1158,41 +1167,28 @@ msgid ""
 msgstr "Precisa da versão de salvar jogo %(requiredVersion)s do 0 A.D., enquanto você tem a versão de salvar jogo %(currentVersion)s."
 
 #: gui/savedgames/load.js:75
-#, javascript-format
-msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr "Não necessita de qualquer mod enquanto você estiver executando com \"%(currentMod)s\"."
+msgid "The savegame needs a different set of mods:"
+msgstr ""
 
-#: gui/savedgames/load.js:79
-#, javascript-format
-msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr "Ele precisa do mod \"%(requiredMod)s\" enquanto você estiver executando sem um mod."
-
-#: gui/savedgames/load.js:83
-#, javascript-format
-msgid ""
-"It needs the mod \"%(requiredMod)s\" while you are running with "
-"\"%(currentMod)s\"."
-msgstr "Precisa do mod \"%(requiredMod)s\" enquanto você estiver executando com \"%(currentMod)s\"."
-
-#: gui/savedgames/load.js:88
+#: gui/savedgames/load.js:80
 msgid "Do you still want to proceed?"
 msgstr "Ainda quer continuar?"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:58
-#: gui/savedgames/save.js:88
+#: gui/savedgames/load.js:121 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
+#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Jogo salvo será permanentemente deletado, tem certeza?"
 
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:88
+#: gui/savedgames/load.js:123 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "DELETAR"
 
-#: gui/savedgames/save.js:58
+#: gui/savedgames/save.js:57
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "O jogo salvo será sobrescrito permanentemente, você está certo disto?"
 

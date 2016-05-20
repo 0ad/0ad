@@ -374,9 +374,9 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			if (enemyDefense > 6)
 				veto[i] = true;
 		}
-	} 
+	}
 
-	// then if not a huge attack, continue attacking our previous target as long as it has some entities, 
+	// then if not a huge attack, continue attacking our previous target as long as it has some entities,
 	// otherwise target the most accessible one
 	if (attack.type !== "HugeAttack")
 	{

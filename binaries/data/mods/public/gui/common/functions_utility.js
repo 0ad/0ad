@@ -141,6 +141,16 @@ function sanitizePlayerName(name, stripUnicode, stripSpaces)
 	return sanitizedName.substr(0,20);
 }
 
+function singleplayerName()
+{
+	return Engine.ConfigDB_GetValue("user", "playername.singleplayer") || Engine.GetSystemUsername();
+}
+
+function multiplayerName()
+{
+	return Engine.ConfigDB_GetValue("user", "playername.multiplayer") || Engine.GetSystemUsername();
+}
+
 function tryAutoComplete(text, autoCompleteList)
 {
 	if (!text.length)

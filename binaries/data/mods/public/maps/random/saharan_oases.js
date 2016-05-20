@@ -47,8 +47,6 @@ const aLillies = "actor|props/flora/water_lillies.xml";
 // terrain + entity (for painting)
 const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 
-const BUILDING_ANGlE = -PI/4;
-
 log("Initializing map...");
 
 InitMap();
@@ -118,7 +116,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

@@ -24,7 +24,6 @@ var aSmoke = "actor|particle/smoke.xml";
 
 var pForestD = [tGrassC + TERRAIN_SEPARATOR + oTree, tGrassC];
 var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
-const BUILDING_ANGlE = -PI/4;
 
 log("Initializing map...");
 InitMap();
@@ -90,7 +89,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 
 	// create metal mine
 	var bbAngle = randFloat(0, TWO_PI);

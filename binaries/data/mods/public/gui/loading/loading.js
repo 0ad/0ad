@@ -105,8 +105,4 @@ function reallyStartGame()
 
 	// Restore default cursor.
 	Engine.SetCursor("arrow-default");
-
-	// Notify the other clients that we have finished the loading screen
-	if (g_Data.isNetworked && g_Data.isRejoining)
-		Engine.SendNetworkRejoined();
 }

@@ -47,7 +47,6 @@ const aBushSmall = rBiomeA8();
 
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
-const BUILDING_ANGlE = -PI/4;
 
 log("Initializing map...");
 InitMap();
@@ -146,7 +145,7 @@ for (let i = 0; i < numPlayers; ++i)
 	addToClass(ix - 5, iz, clPlayer);
 	addToClass(ix, iz - 5, clPlayer);
 
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, { "iberWall": false });
+	placeCivDefaultEntities(fx, fz, id, { "iberWall": false });
 
 	// Create the city patch
 	let cityRadius = radius/3;

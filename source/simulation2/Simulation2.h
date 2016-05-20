@@ -57,8 +57,6 @@ public:
 	void EnableOOSLog();
 	void EnableSerializationTest();
 
-	void SetCurrentDisplayedPlayer(int playerID);
-
 	/**
 	 * Load all scripts in the specified directory (non-recursively),
 	 * so they can register new component types and functions. This
@@ -219,7 +217,7 @@ public:
 	 */
 	const InterfaceListUnordered& GetEntitiesWithInterfaceUnordered(int iid);
 
-	CSimContext& GetSimContext() const;
+	const CSimContext& GetSimContext() const;
 	ScriptInterface& GetScriptInterface() const;
 
 	bool ComputeStateHash(std::string& outHash, bool quick);

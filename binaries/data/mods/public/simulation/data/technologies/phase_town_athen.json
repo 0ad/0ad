@@ -16,7 +16,7 @@
 		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker" },
 		{ "value": "TerritoryInfluence/Radius", "multiply": 1.30, "affects": "CivCentre" },
 		{ "value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier" },
-		{ "value": "Capturable/GarrisonRegenRate", "add": 2.0, "affects": "Structure" }
+		{ "value": "Capturable/GarrisonRegenRate", "add": 7.0, "affects": "Structure" }
 	],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

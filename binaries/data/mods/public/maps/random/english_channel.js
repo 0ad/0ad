@@ -49,10 +49,6 @@ const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
 const WATER_WIDTH = 0.25;
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -144,7 +140,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, [painter, paintClass(clPlayer)], null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

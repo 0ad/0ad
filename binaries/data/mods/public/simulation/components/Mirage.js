@@ -34,6 +34,10 @@ Mirage.prototype.Init = function()
 	this.killBeforeGather = null;
 	this.maxGatherers = null;
 	this.numGatherers = null;
+
+	this.traders = null;
+	this.marketType = null;
+	this.internationalBonus = null;
 };
 
 Mirage.prototype.SetParent = function(ent)
@@ -125,12 +129,71 @@ Mirage.prototype.GetKillBeforeGather = function() { return this.killBeforeGather
 Mirage.prototype.GetMaxGatherers = function() { return this.maxGatherers; };
 Mirage.prototype.GetNumGatherers = function() { return this.numGatherers; };
 
+// Market data
+
+Mirage.prototype.CopyMarket = function(cmpMarket)
+{
+	this.miragedIids.add(IID_Market);
+	this.traders = new Set();
+	for (let trader of cmpMarket.GetTraders())
+	{
+		let cmpTrader = Engine.QueryInterface(trader, IID_Trader);
+		let cmpOwnership = Engine.QueryInterface(trader, IID_Ownership);
+		if (!cmpTrader || !cmpOwnership)
+		{
+			cmpMarket.RemoveTrader(trader);
+			continue;
+		}
+		if (this.player != cmpOwnership.GetOwner())
+			continue;
+		cmpTrader.SwitchMarket(cmpMarket.entity, this.entity);
+		cmpMarket.RemoveTrader(trader);
+		this.AddTrader(trader);
+	}
+	this.marketType = cmpMarket.GetType();
+	this.internationalBonus = cmpMarket.GetInternationalBonus();
+};
+
+Mirage.prototype.HasType = function(type) { return this.marketType.has(type); };
+Mirage.prototype.GetInternationalBonus = function() { return this.internationalBonus; };
+Mirage.prototype.AddTrader = function(trader) { this.traders.add(trader); };
+Mirage.prototype.RemoveTrader = function(trader) { this.traders.delete(trader); };
+
+Mirage.prototype.UpdateTraders = function(msg)
+{
+	let cmpMarket = Engine.QueryInterface(this.parent, IID_Market);
+	if (!cmpMarket)	// The parent market does not exist anymore
+	{
+		for (let trader of this.traders)
+		{
+			let cmpTrader = Engine.QueryInterface(trader, IID_Trader);
+			if (cmpTrader)
+				cmpTrader.RemoveMarket(this.entity);
+		}
+		return;
+	}
+
+	// The market becomes visible, switch all traders from the mirage to the market
+	for (let trader of this.traders)
+	{
+		let cmpTrader = Engine.QueryInterface(trader, IID_Trader);
+		if (!cmpTrader)
+			continue;
+		cmpTrader.SwitchMarket(this.entity, cmpMarket.entity);
+		this.RemoveTrader(trader);
+		cmpMarket.AddTrader(trader);
+	}
+};
+
 // ============================
 
 Mirage.prototype.OnVisibilityChanged = function(msg)
 {
 	if (msg.player != this.player || msg.newVisibility != VIS_HIDDEN)
 		return;
+
+	if (this.miragedIids.has(IID_Market))
+		this.UpdateTraders(msg);
 
 	if (this.parent == INVALID_ENTITY)
 		Engine.DestroyEntity(this.entity);

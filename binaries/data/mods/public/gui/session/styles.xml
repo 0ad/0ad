@@ -12,11 +12,18 @@
 	   text_valign="center"
     />
 
-    <style name="PauseMessageText"
+    <style name="ResumeMessageText"
 	   font="sans-bold-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
+    />
+
+    <style name="PausedByText"
+	   font="sans-bold-16"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="top"
     />
 
     <style name="BuildNameText"
@@ -116,7 +123,7 @@
 	   text_valign="center"
 	   ghost="true"
     />
-    
+
     <style name="StatsTextCentered"
 	   font="sans-stroke-12"
 	   textcolor="white"
@@ -124,7 +131,7 @@
 	   text_valign="center"
 	   ghost="true"
     />
-    
+
     <style name="StatsTextRight"
 	   font="sans-stroke-12"
 	   textcolor="white"
@@ -132,7 +139,7 @@
 	   text_valign="center"
 	   ghost="true"
     />
-    
+
     <style name="CarryingTextRight"
 	   font="sans-bold-stroke-13"
 	   textcolor="white"
@@ -140,7 +147,7 @@
 	   text_valign="center"
 	   ghost="true"
     />
-    
+
     <style name="SpecificNameCentered"
 	   font="sans-bold-stroke-13"
 	   textcolor="gold"
@@ -148,7 +155,7 @@
 	   text_valign="center"
 	   ghost="true"
     />
-    
+
     <style name="GenericNameCentered"
 	   font="sans-stroke-12"
 	   textcolor="white"
@@ -156,7 +163,7 @@
 	   text_valign="center"
 	   ghost="true"
     />
-    
+
     <style name="SettingsText"
 	   font="sans-stroke-16"
 	   textcolor="white"

@@ -6,10 +6,6 @@ timeArray.push(new Date().getTime());
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("heightmap");
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -419,14 +415,14 @@ for (var p = 0; p < numPlayers; p++)
 {
 	var actualX = possibleStartPositions[bestDerivation[p]][0];
 	var actualY = possibleStartPositions[bestDerivation[p]][1];
-	placeCivDefaultEntities(actualX, actualY, p + 1, BUILDING_ANGlE, {"iberWall" : false});
+	placeCivDefaultEntities(actualX, actualY, p + 1, { "iberWall": false });
 
 	// Place some start resources
 	var uDist = 8;
 	var uSpace = 1;
 	for (var j = 1; j <= 4; ++j)
 	{
-		var uAngle = BUILDING_ANGlE - PI * (2-j) / 2;
+		var uAngle = BUILDING_ORIENTATION - PI * (2-j) / 2;
 		var count = 4;
 		for (var numberofentities = 0; numberofentities < count; numberofentities++)
 		{

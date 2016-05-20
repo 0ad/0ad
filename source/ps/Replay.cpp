@@ -70,7 +70,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
 	m_ScriptInterface.SetProperty(attribs, "mods", g_modsLoaded);
 
-	m_Directory = getDateIndexSubdirectory(VisualReplay::GetDirectoryName());
+	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryName());
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);

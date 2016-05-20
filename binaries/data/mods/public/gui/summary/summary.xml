@@ -168,7 +168,6 @@
 						400, 200,
 						translate("Are you sure you want to quit the lobby?"),
 						translate("Confirmation"),
-						0,
 						[translate("No"), translate("Yes")],
 						[null, startReplay]
 					);

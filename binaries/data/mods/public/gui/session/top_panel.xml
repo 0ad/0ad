@@ -26,7 +26,7 @@
 	<!-- ================================  ================================ -->
 	<!-- Switch the view perspective to another player's (for observers and for eased development) -->
 	<!-- ================================  ================================ -->
-	<object size="100%-415 5 100%-265 100%-5" name="viewPlayer" type="dropdown" hidden="true" style="ModernDropDown" tooltip_style="sessionToolTipBold">
+	<object size="100%-415 5 100%-265 100%-5" name="viewPlayer" type="dropdown" hidden="true" z="50" style="ModernDropDown" tooltip_style="sessionToolTipBold">
 		<translatableAttribute id="tooltip">Choose player to view</translatableAttribute>
 		<action on="SelectionChange">selectViewPlayer(this.selected - 1);</action>
 	</object>

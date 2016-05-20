@@ -38,6 +38,16 @@ var g_IsObserver = false;
 var g_HasRejoined = false;
 
 /**
+ * True if the current player has paused the game explicitly.
+ */
+var g_Paused = false;
+
+/**
+ * The list of GUIDs of players who have currently paused the game, if the game is networked.
+ */
+var g_PausingClients = [];
+
+/**
  * The playerID selected in the change perspective tool.
  */
 var g_ViewedPlayer = Engine.GetPlayerID();
@@ -74,7 +84,12 @@ var g_CivData = {};
  */
 var g_ReplaySelectionData;
 
-var g_PlayerAssignments = { "local": { "name": translate("You"), "player": 1 } };
+var g_PlayerAssignments = {
+	"local": {
+		"name": singleplayerName(),
+		"player": 1
+	}
+};
 
 /**
  * Cache dev-mode settings that are frequently or widely used.
@@ -262,7 +277,7 @@ function init(initData, hotloadData)
 	for (let player in g_Players)
 	{
 		playerIDs.push(player);
-		playerNames.push('[color="' + rgbToGuiColor(g_Players[player].color) + '"]■ [/color]' + g_Players[player].name);
+		playerNames.push(colorizePlayernameHelper("■", player) + " " + g_Players[player].name);
 	}
 
 	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
@@ -426,7 +441,8 @@ function resignGame(leaveGameAfterResign)
 
 	Engine.PostNetworkCommand({
 		"type": "defeat-player",
-		"playerId": Engine.GetPlayerID()
+		"playerId": Engine.GetPlayerID(),
+		"resign": true
 	});
 
 	updateTopPanel();
@@ -434,7 +450,7 @@ function resignGame(leaveGameAfterResign)
 	global.music.setState(global.music.states.DEFEAT);
 
 	if (!leaveGameAfterResign)
-		resumeGame();
+		resumeGame(true);
 }
 
 /**
@@ -639,7 +655,7 @@ function checkPlayerState()
 			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
 	}
 
-	messageBox(400, 200, message, title, 0, btCaptions, btCode);
+	messageBox(400, 200, message, title, btCaptions, btCode);
 }
 
 function changeGameSpeed(speed)
@@ -730,7 +746,6 @@ function onReplayFinished()
 	messageBox(400, 200,
 		translateWithContext("replayFinished", "The replay has finished. Do you want to quit?"),
 		translateWithContext("replayFinished", "Confirmation"),
-		0,
 		[translateWithContext("replayFinished", "No"), translateWithContext("replayFinished", "Yes")],
 		[resumeGame, leaveGame]);
 }
@@ -1042,9 +1057,11 @@ function getBuildString()
 
 function showTimeWarpMessageBox()
 {
-	messageBox(500, 250,
-			translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
-			translate("Time warp mode"), 2);
+	messageBox(
+		500, 250,
+		translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
+		translate("Time warp mode")
+	);
 }
 
 /**

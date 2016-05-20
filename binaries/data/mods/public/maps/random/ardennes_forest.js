@@ -1,9 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
-
 log("Initializing map...");
 
 InitMap();
@@ -177,7 +173,7 @@ for (var i=0; i < numPlayers; i++)
 	var iz = round(fz);
 
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	var citySize = 250
 

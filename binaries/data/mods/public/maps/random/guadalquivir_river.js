@@ -43,9 +43,6 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 const pForestP = [tForestFloorP + TERRAIN_SEPARATOR + oPoplar, tForestFloorP];
 const pForestC = [tForestFloorC + TERRAIN_SEPARATOR + oCarob, tForestFloorC];
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
 
 log("Initializing map...");
 
@@ -152,7 +149,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : false});
+	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

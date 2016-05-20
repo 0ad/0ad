@@ -79,7 +79,7 @@ system-installed version. Make sure you have got all the right files and \
 include paths.
 #endif
 
-#if MOZJS_MINOR_VERSION != 2 && MOZJS_MINOR_VERSION != 4
+#if MOZJS_MINOR_VERSION != 2 && MOZJS_MINOR_VERSION != 4 && MOZJS_MINOR_VERSION != 5
 #error Your compiler is trying to use an untested minor version of the \
 SpiderMonkey library. If you are a package maintainer, please make sure \
 to check very carefully that this version does not change the behaviour \

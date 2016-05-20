@@ -237,10 +237,8 @@ void SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 
 void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 {
-	if (!g_Game)
-		return;
-
-	g_Game->GetSimulation2()->GetSimContext().SetCurrentDisplayedPlayer(id);
+	if (g_Game)
+		g_Game->SetViewedPlayerID(id);
 }
 
 JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
@@ -458,13 +456,6 @@ void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int messag
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendReadyMessage(message);
-}
-
-void SendNetworkRejoined(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendRejoinedMessage();
 }
 
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
@@ -748,6 +739,12 @@ void Script_EndGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	EndGame();
 }
 
+CStrW GetSystemUsername(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return sys_get_user_name();
+}
+
+
 // Cause the game to exit gracefully.
 // params:
 // returns:
@@ -772,7 +769,7 @@ bool IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
 }
 
 // Pause/unpause the game
-void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause)
+void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, bool sendMessage)
 {
 	if (!g_Game)
 	{
@@ -784,6 +781,9 @@ void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause)
 	if (g_SoundManager)
 		g_SoundManager->Pause(pause);
 #endif
+
+	if (g_NetClient && sendMessage)
+		g_NetClient->SendPausedMessage(pause);
 }
 
 // Return the global frames-per-second value.
@@ -1048,7 +1048,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
-	scriptInterface.RegisterFunction<void, &SendNetworkRejoined>("SendNetworkRejoined");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 
@@ -1087,7 +1086,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
 	scriptInterface.RegisterFunction<void, &ExitProgram>("Exit");
 	scriptInterface.RegisterFunction<bool, &IsPaused>("IsPaused");
-	scriptInterface.RegisterFunction<void, bool, &SetPaused>("SetPaused");
+	scriptInterface.RegisterFunction<void, bool, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");
@@ -1117,4 +1116,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");
+	scriptInterface.RegisterFunction<CStrW, &GetSystemUsername>("GetSystemUsername");
 }

@@ -641,7 +641,6 @@ function joinButton()
 			translate("The game has already started.") + "\n" +
 				translate("Do you want to join as observer?"),
 			translate("Confirmation"),
-			0,
 			[translate("No"), translate("Yes")],
 			[null, joinSelectedGame]
 		);

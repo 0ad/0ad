@@ -41,39 +41,47 @@ Market.prototype.HasType = function(type)
 	return this.tradeType.has(type);
 };
 
+Market.prototype.GetType = function()
+{
+	return this.tradeType;
+};
+
+Market.prototype.GetTraders = function()
+{
+	return this.traders;
+};
+
 /**
- * Check if all traders with a route on this market can still trade
+ * Check if the traders attached to this market can still trade with it
+ * Warning: traders currently trading with a mirage of this market are dealt with in Mirage.js
  */
+
+Market.prototype.UpdateTraders = function(onDestruction)
+{
+	for (let trader of this.traders)
+	{
+		let cmpTrader = Engine.QueryInterface(trader, IID_Trader);
+		if (!cmpTrader)
+		{
+			this.RemoveTrader(trader);
+			continue;
+		}
+		if (!cmpTrader.HasMarket(this.entity) || !onDestruction && cmpTrader.CanTrade(this.entity))
+			continue;
+		// this trader can no more trade
+		this.RemoveTrader(trader);
+		cmpTrader.RemoveMarket(this.entity);
+	}
+};
+
 Market.prototype.OnDiplomacyChanged = function(msg)
 {
-	for (let ent of this.traders)
-	{
-		let cmpTrader = Engine.QueryInterface(ent, IID_Trader);
-		if (!cmpTrader)
-			this.RemoveTrader(ent);
-		else if (!cmpTrader.CanTrade(this.entity))
-		{
-			this.RemoveTrader(ent);
-			cmpTrader.RemoveMarket(this.entity);
-		}
-	}
+	this.UpdateTraders(false);
 };
 
 Market.prototype.OnOwnershipChanged = function(msg)
 {
-	for (let ent of this.traders)
-	{
-		let cmpTrader = Engine.QueryInterface(ent, IID_Trader);
-		if (!cmpTrader)
-			this.RemoveTrader(ent);
-		else if (msg.to == -1)
-			cmpTrader.RemoveMarket(this.entity);
-		else if (!cmpTrader.CanTrade(this.entity))
-		{
-			this.RemoveTrader(ent);
-			cmpTrader.RemoveMarket(this.entity);
-		}
-	}
+	this.UpdateTraders(msg.to == -1);
 };
 
 Engine.RegisterComponentType(IID_Market, "Market", Market);

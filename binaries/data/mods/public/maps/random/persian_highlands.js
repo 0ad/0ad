@@ -54,8 +54,6 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 // terrain + entity (for painting)
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tDirtMain, tDirtMain];
 
-const BUILDING_ANGlE = -PI/4;
-
 log("Initializing map...");
 
 InitMap();
@@ -136,7 +134,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

@@ -671,7 +671,8 @@ Player.prototype.OnPlayerDefeated = function(msg)
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification({
 		"type": "defeat",
-		"players": [this.playerID]
+		"players": [this.playerID],
+		"resign": !!msg.resign
 	});
 };
 

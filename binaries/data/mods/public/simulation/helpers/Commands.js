@@ -413,7 +413,7 @@ var g_Commands = {
 	"defeat-player": function(player, cmd, data)
 	{
 		// Send "OnPlayerDefeated" message to player
-		Engine.PostMessage(data.playerEnt, MT_PlayerDefeated, { "playerId": player } );
+		Engine.PostMessage(data.playerEnt, MT_PlayerDefeated, { "playerId": player, "resign": !!cmd.resign });
 	},
 
 	"garrison": function(player, cmd, data)
@@ -1583,7 +1583,6 @@ function TryTransformWallToGate(ent, cmpPlayer, cmd)
 		return;
 	}
 
-	var civ = cmpIdentity.GetCiv();
 	var gate = Engine.AddEntity(cmd.template);
 
 	var cmpCost = Engine.QueryInterface(gate, IID_Cost);

@@ -29,9 +29,6 @@ const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor];
 const pForestS = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor, tForestFloor];
-const BUILDING_ANGlE = -PI/4;
-
-// initialize map
 
 log("Initializing map...");
 
@@ -107,7 +104,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// create starting units
-	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
+	placeCivDefaultEntities(fx, fz, id);
 	
 	// create metal mine
 	var bbAngle = randFloat(0, TWO_PI);

@@ -238,16 +238,20 @@ function selectCiv(civCode)
 			}
 			else if (unit.required !== undefined)
 			{
-				if (unit.required in g_ParsedData.phases)
+				if (g_ParsedData.phases[unit.required])
 					phase = g_ParsedData.phases[unit.required].actualPhase;
-				else
+				else if (g_ParsedData.techs[unit.required])
 				{
 					let reqs = g_ParsedData.techs[unit.required].reqs;
-					if (g_SelectedCiv in reqs)
+					if (reqs[g_SelectedCiv])
 						phase = reqs[g_SelectedCiv][0];
-					else
+					else if (reqs.generic)
 						phase = reqs.generic[0];
+					else
+						warn("Empty requirements found on technology " + unit.required);
 				}
+				else
+					warn("Technology " + unit.required + " for " + prod + " not found.");
 			}
 
 			if (depath(phase).slice(0,5) !== "phase" || g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)

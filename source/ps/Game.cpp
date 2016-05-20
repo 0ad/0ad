@@ -345,10 +345,20 @@ int CGame::GetPlayerID()
 void CGame::SetPlayerID(player_id_t playerID)
 {
 	m_PlayerID = playerID;
+	m_ViewedPlayerID = playerID;
+
 	if (m_TurnManager)
 		m_TurnManager->SetPlayerID(m_PlayerID);
+}
 
-	m_Simulation2->SetCurrentDisplayedPlayer(g_Game->GetPlayerID());
+int CGame::GetViewedPlayerID()
+{
+	return m_ViewedPlayerID;
+}
+
+void CGame::SetViewedPlayerID(player_id_t playerID)
+{
+	m_ViewedPlayerID = playerID;
 }
 
 void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedState)

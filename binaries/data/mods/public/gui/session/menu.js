@@ -110,7 +110,6 @@ function resignMenuButton()
 		400, 200,
 		translate("Are you sure you want to resign?"),
 		translate("Confirmation"),
-		0,
 		[translate("No"), translate("Yes")],
 		[resumeGame, resignGame]
 	);
@@ -143,7 +142,6 @@ function exitMenuButton()
 		400, 200,
 		messageTypes[messageType].caption,
 		translate("Confirmation"),
-		0,
 		[translate("No"), translate("Yes")],
 		messageTypes[messageType].buttons
 	);
@@ -155,7 +153,6 @@ function resignQuestion()
 		400, 200,
 		translate("Do you want to resign or will you return soon?"),
 		translate("Confirmation"),
-		0,
 		[translate("I will return"), translate("I resign")],
 		[leaveGame, resignGame],
 		[true, false]
@@ -175,7 +172,6 @@ function openDeleteDialog(selection)
 		400, 200,
 		translate("Destroy everything currently selected?"),
 		translate("Delete"),
-		0,
 		[translate("No"), translate("Yes")],
 		[resumeGame, deleteSelectedEntities],
 		[null, selection]
@@ -670,25 +666,46 @@ function openStrucTree()
 }
 
 /**
- * Pause the game in single player mode.
+ * Pause or resume the game.
+ *
+ * @param explicit - true if the player explicitly wants to pause or resume.
+ * If this argument isn't set, a multiplayer game won't be paused and the pause overlay
+ * won't be shown in single player.
  */
-function pauseGame()
+function pauseGame(pause = true, explicit = false)
 {
-	if (g_IsNetworked)
+	if (g_IsNetworked && !explicit)
 		return;
 
-	Engine.GetGUIObjectByName("pauseButtonText").caption = translate("Resume");
-	Engine.GetGUIObjectByName("pauseOverlay").hidden = false;
-	Engine.SetPaused(true);
+	if (explicit)
+		g_Paused = pause;
+
+	Engine.SetPaused(g_Paused || pause, !!explicit);
+
+	if (g_IsNetworked)
+	{
+		setClientPauseState(Engine.GetPlayerGUID(), g_Paused);
+		return;
+	}
+
+	updatePauseOverlay();
 }
 
-function resumeGame()
+/**
+ * Resume the game.
+ *
+ * @param explicit - true if the player explicitly wants to resume the game.
+ * If this argument isn't set, a multiplayer game won't be resumed and the pause overlay won't
+ * be closed in single player.
+ */
+function resumeGame(explicit = false)
 {
-	Engine.GetGUIObjectByName("pauseButtonText").caption = translate("Pause");
-	Engine.GetGUIObjectByName("pauseOverlay").hidden = true;
-	Engine.SetPaused(false);
+	pauseGame(false, explicit);
 }
 
+/**
+ * Called when the current player toggles a pause button.
+ */
 function togglePause()
 {
 	if (!Engine.GetGUIObjectByName("pauseButton").enabled)
@@ -696,12 +713,40 @@ function togglePause()
 
 	closeOpenDialogs();
 
-	let pauseOverlay = Engine.GetGUIObjectByName("pauseOverlay");
+	pauseGame(!g_Paused, true);
+}
 
-	Engine.SetPaused(pauseOverlay.hidden);
-	Engine.GetGUIObjectByName("pauseButtonText").caption = pauseOverlay.hidden ? translate("Resume") : translate("Pause");
+/**
+ * Called when a client pauses or resumes in a multiplayer game.
+ */
+function setClientPauseState(guid, paused)
+{
+	// Update the list of pausing clients.
+	let index = g_PausingClients.indexOf(guid)
+	if (paused && index == -1)
+		g_PausingClients.push(guid);
+	else if (!paused && index != -1)
+		g_PausingClients.splice(index, 1);
 
-	pauseOverlay.hidden = !pauseOverlay.hidden;
+	updatePauseOverlay();
+
+	Engine.SetPaused(!!g_PausingClients.length, false);
+}
+
+/**
+ * Update the pause overlay.
+ */
+function updatePauseOverlay()
+{
+	Engine.GetGUIObjectByName("pauseButtonText").caption = g_Paused ? translate("Resume") : translate("Pause");
+	Engine.GetGUIObjectByName("resumeMessage").hidden = !g_Paused;
+
+	Engine.GetGUIObjectByName("pausedByText").hidden = !g_IsNetworked;
+	Engine.GetGUIObjectByName("pausedByText").caption = sprintf(translate("Paused by %(players)s"),
+		{ "players": g_PausingClients.map(guid => colorizePlayernameByGUID(guid)).join(translate(", ")) });
+
+	Engine.GetGUIObjectByName("pauseOverlay").hidden = !(g_Paused || g_PausingClients.length);
+	Engine.GetGUIObjectByName("pauseOverlay").onPress = g_Paused ? togglePause : function() {};
 }
 
 function openManual()

@@ -80,11 +80,10 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 // TODO: many things.
 m.QueueManager.prototype.wantedGatherRates = function(gameState)
 {
-	if (gameState.ai.playedTurn == 0)
-	{
-		// default values for first turn when we have not yet set our queues.
+	// default values for first turn when we have not yet set our queues.
+	if (gameState.ai.playedTurn === 0)
 		return { "food": 10, "wood": 10, "stone": 0, "metal": 0 };
-	}
+
 	// get out current resources, not removing accounts.
 	var current = gameState.getResources();
 	// short queue is the first item of a queue, assumed to be ready in 30s
@@ -107,7 +106,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 			let cost = queue.plans[j].getCost();
 			if (queue.plans[j].isGo(gameState))
 			{
-				if (j == 0)
+				if (j === 0)
 					total = totalShort;
 				else
 					total = totalMedium;
@@ -155,7 +154,6 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	API3.warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
 	for (let i in this.queues)
 	{
-		let qStr = "";
 		let q = this.queues[i];
 		if (q.hasQueuedUnits())
 		{
@@ -164,7 +162,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 		}
 		for (let plan of q.plans)
 		{
-			qStr = "     " + plan.type + " ";
+			let qStr = "     " + plan.type + " ";
 			if (plan.number)
 				qStr += "x" + plan.number;
 			qStr += "   isGo " + plan.isGo(gameState);

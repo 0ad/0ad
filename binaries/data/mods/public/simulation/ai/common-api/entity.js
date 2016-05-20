@@ -85,7 +85,7 @@ m.Template = m.Class({
 		if (!this._classes)
 			this._classes = this.classes();
 		var classes = this._classes;
-		return (classes && classes.indexOf(name) != -1);
+		return classes && classes.indexOf(name) !== -1;
 	},
 
 	hasClasses: function(array) {
@@ -505,17 +505,17 @@ m.Template = m.Class({
 
 	hasBuildTerritory: function(territory) {
 		var territories = this.buildTerritories();
-		return (territories && territories.indexOf(territory) != -1);
+		return territories && territories.indexOf(territory) !== -1;
 	},
 
 	hasTerritoryInfluence: function() {
-		return (this.get("TerritoryInfluence") !== undefined);
+		return this.get("TerritoryInfluence") !== undefined;
 	},
 
 	hasDefensiveFire: function() {
 		if (!this.get("Attack") || !this.get("Attack/Ranged"))
 			return false;
-		return (this.getDefaultArrow() || this.getArrowMultiplier());
+		return this.getDefaultArrow() || this.getArrowMultiplier();
 	},
 
 	territoryInfluenceRadius: function() {
@@ -531,19 +531,25 @@ m.Template = m.Class({
 	},
 
 	territoryDecayRate: function() {
-		return (this.get("TerritoryDecay") ? +this.get("TerritoryDecay/DecayRate") : 0);
+		return this.get("TerritoryDecay") ? +this.get("TerritoryDecay/DecayRate") : 0;
 	},
 
 	defaultRegenRate: function() {
-		return (this.get("Capturable") ? +this.get("Capturable/RegenRate") : 0);
+		return this.get("Capturable") ? +this.get("Capturable/RegenRate") : 0;
 	},
 
 	garrisonRegenRate: function() {
-		return (this.get("Capturable") ? +this.get("Capturable/GarrisonRegenRate") : 0);
+		return this.get("Capturable") ? +this.get("Capturable/GarrisonRegenRate") : 0;
 	},
 
 	visionRange: function() {
 		return +this.get("Vision/Range");
+	},
+
+	gainMultiplier: function() {
+		if (!this.get("Trader"))
+			return undefined;
+		return +this.get("Trader/GainMultiplier");
 	}
 });
 
@@ -610,32 +616,32 @@ m.Entity = m.Class({
 		return this._entity.idle;
 	},
 
-	unitAIState: function() { return ((this._entity.unitAIState !== undefined) ? this._entity.unitAIState : undefined); },
-	unitAIOrderData: function() { return ((this._entity.unitAIOrderData !== undefined) ? this._entity.unitAIOrderData : undefined); },
+	unitAIState: function() { return this._entity.unitAIState !== undefined ? this._entity.unitAIState : undefined; },
+	unitAIOrderData: function() { return this._entity.unitAIOrderData !== undefined ? this._entity.unitAIOrderData : undefined; },
 
-	hitpoints: function() { return ((this._entity.hitpoints !== undefined) ? this._entity.hitpoints : undefined); },
-	isHurt: function() { return (this.hitpoints() < this.maxHitpoints()); },
-	healthLevel: function() { return (this.hitpoints() / this.maxHitpoints()); },
+	hitpoints: function() { return this._entity.hitpoints !== undefined ? this._entity.hitpoints : undefined; },
+	isHurt: function() { return this.hitpoints() < this.maxHitpoints(); },
+	healthLevel: function() { return this.hitpoints() / this.maxHitpoints(); },
 	needsHeal: function() { return this.isHurt() && this.isHealable(); },
 	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
-	decaying: function() { return ((this._entity.decaying !== undefined) ? this._entity.decaying : undefined); },
-	capturePoints: function() {return ((this._entity.capturePoints !== undefined) ? this._entity.capturePoints : undefined); },
+	decaying: function() { return this._entity.decaying !== undefined ? this._entity.decaying : undefined; },
+	capturePoints: function() {return this._entity.capturePoints !== undefined ? this._entity.capturePoints : undefined; },
 
 	/**
 	 * Returns the current training queue state, of the form
 	 * [ { "id": 0, "template": "...", "count": 1, "progress": 0.5, "metadata": ... }, ... ]
 	 */
 	trainingQueue: function() {
-		var queue = this._entity.trainingQueue;
+		let queue = this._entity.trainingQueue;
 		return queue;
 	},
 
 	trainingQueueTime: function() {
-		var queue = this._entity.trainingQueue;
+		let queue = this._entity.trainingQueue;
 		if (!queue)
 			return undefined;
-		var time = 0;
-		for (var item of queue)
+		let time = 0;
+		for (let item of queue)
 			time += item.timeRemaining;
 		return time/1000;
 	},
@@ -667,13 +673,13 @@ m.Entity = m.Class({
 	},
 
 	isOwn: function(player) {
-		if (typeof(this._entity.owner) === "undefined")
+		if (typeof this._entity.owner === "undefined")
 			return false;
 		return this._entity.owner === player;
 	},
 
 	resourceSupplyAmount: function() {
-		if(this._entity.resourceSupplyAmount === undefined)
+		if (this._entity.resourceSupplyAmount === undefined)
 			return undefined;
 		return this._entity.resourceSupplyAmount;
 	},
@@ -688,13 +694,13 @@ m.Entity = m.Class({
 	isFull: function()
 	{
 		if (this._entity.resourceSupplyNumGatherers !== undefined)
-			return (this.maxGatherers() === this._entity.resourceSupplyNumGatherers);
+			return this.maxGatherers() === this._entity.resourceSupplyNumGatherers;
 
 		return undefined;
 	},
 
 	resourceCarrying: function() {
-		if(this._entity.resourceCarrying === undefined)
+		if (this._entity.resourceCarrying === undefined)
 			return undefined;
 		return this._entity.resourceCarrying; 
 	},
@@ -800,8 +806,8 @@ m.Entity = m.Class({
 	// moveApart from a point in the opposite direction with a distance dist
 	moveApart: function(point, dist) {
 		if (this.position() !== undefined) {
-			var direction = [this.position()[0] - point[0], this.position()[1] - point[1]];
-			var norm = m.VectorDistance(point, this.position());
+			let direction = [this.position()[0] - point[0], this.position()[1] - point[1]];
+			let norm = m.VectorDistance(point, this.position());
 			if (norm === 0)
 				direction = [1, 0];
 			else
@@ -817,8 +823,9 @@ m.Entity = m.Class({
 	// Flees from a unit in the opposite direction.
 	flee: function(unitToFleeFrom) {
 		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {
-			var FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],this.position()[1] - unitToFleeFrom.position()[1]];
-			var dist = m.VectorDistance(unitToFleeFrom.position(), this.position() );
+			let FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],
+			                     this.position()[1] - unitToFleeFrom.position()[1]];
+			let dist = m.VectorDistance(unitToFleeFrom.position(), this.position() );
 			FleeDirection[0] = (FleeDirection[0]/dist) * 8;
 			FleeDirection[1] = (FleeDirection[1]/dist) * 8;
 
@@ -912,7 +919,7 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	 research: function(template) {
+	research: function(template) {
 		Engine.PostCommand(PlayerID,{ "type": "research", "entity": this.id(), "template": template });
 		return this;
 	},
@@ -923,10 +930,10 @@ m.Entity = m.Class({
 	},
 
 	stopAllProduction: function(percentToStopAt) {
-		var queue = this._entity.trainingQueue;
+		let queue = this._entity.trainingQueue;
 		if (!queue)
 			return true;	// no queue, so technically we stopped all production.
-		for (var item of queue)
+		for (let item of queue)
 			if (item.progress < percentToStopAt)
 				Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": item.id });
 		return this;

@@ -150,8 +150,7 @@ function ShowRenderPathMessage()
 	// Warn about removing fixed render path
 	if (Engine.Renderer_GetRenderPath() == "fixed")
 		messageBox(
-			600,
-			300,
+			600, 300,
 			"[font=\"sans-bold-16\"]" +
 			sprintf(translate("%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model."), { startWarning: "[color=\"200 20 20\"]", endWarning: "[/color]"}) +
 			"\n\n" +
@@ -161,7 +160,6 @@ function ShowRenderPathMessage()
 			// the user will need a better graphics card.
 			translate("Please press \"Read More\" for more information or \"OK\" to continue."),
 			translate("WARNING!"),
-			0,
 			[translate("OK"), translate("Read More")],
 			[ null, function() { Engine.OpenURL("http://www.wildfiregames.com/forum/index.php?showtopic=16734"); } ]
 		);
@@ -284,9 +282,14 @@ function getBuildString()
 function exitGamePressed()
 {
 	closeMenu();
-	var btCaptions = [translate("No"), translate("Yes")];
-	var btCode = [null, Engine.Exit];
-	messageBox(400, 200, translate("Are you sure you want to quit 0 A.D.?"), translate("Confirmation"), 0, btCaptions, btCode);
+
+	messageBox(
+		400, 200,
+		translate("Are you sure you want to quit 0 A.D.?"),
+		translate("Confirmation"),
+		[translate("No"), translate("Yes")],
+		[null, Engine.Exit]
+	);
 }
 
 function pressedScenarioEditorButton()
@@ -296,7 +299,11 @@ function pressedScenarioEditorButton()
 	if (Engine.AtlasIsAvailable())
 		Engine.RestartInAtlas();
 	else
-		messageBox(400, 200, translate("The scenario editor is not available or failed to load. See the game logs for additional information."), translate("Error"), 2);
+		messageBox(
+			400, 200,
+			translate("The scenario editor is not available or failed to load. See the game logs for additional information."),
+			translate("Error")
+		);
 }
 
 function getLobbyDisabledByBuild()

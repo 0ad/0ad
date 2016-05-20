@@ -72,7 +72,8 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
 	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
 	m_IsLocalClient(isLocalClient),
-	m_LastConnectionCheck(0)
+	m_LastConnectionCheck(0),
+	m_Rejoin(false)
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
@@ -122,6 +123,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, (void*)&OnKicked, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, (void*)&OnClientTimeout, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, (void*)&OnClientPerformance, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, (void*)&OnClientPaused, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
@@ -341,6 +343,13 @@ void CNetClient::SendRejoinedMessage()
 	SendMessage(&rejoinedMessage);
 }
 
+void CNetClient::SendPausedMessage(bool pause)
+{
+	CClientPausedMessage pausedMessage;
+	pausedMessage.m_Pause = pause;
+	SendMessage(&pausedMessage);
+}
+
 bool CNetClient::HandleMessage(CNetMessage* message)
 {
 	// Handle non-FSM messages first
@@ -487,13 +496,12 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	LOGMESSAGE("Net: Authentication result: host=%u, %s", message->m_HostID, utf8_from_wstring(message->m_Message));
 
-	bool  isRejoining = (message->m_Code == ARC_OK_REJOINING);
-
 	client->m_HostID = message->m_HostID;
+	client->m_Rejoin = message->m_Code == ARC_OK_REJOINING;
 
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'netstatus','status':'authenticated'})", &msg);
-	client->GetScriptInterface().SetProperty(msg, "rejoining", isRejoining);
+	client->GetScriptInterface().SetProperty(msg, "rejoining", client->m_Rejoin);
 	client->PushGuiMessage(msg);
 
 	return true;
@@ -727,6 +735,23 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 	return true;
 }
 
+bool CNetClient::OnClientPaused(void *context, CFsmEvent *event)
+{
+	ENSURE(event->GetType() == (uint)NMT_CLIENT_PAUSED);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+	CClientPausedMessage* message = (CClientPausedMessage*)event->GetParamRef();
+
+	JS::RootedValue msg(cx);
+	client->GetScriptInterface().Eval("({ 'type':'paused' })", &msg);
+	client->GetScriptInterface().SetProperty(msg, "pause", message->m_Pause != 0);
+	client->GetScriptInterface().SetProperty(msg, "guid", message->m_GUID);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
 bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
@@ -742,6 +767,10 @@ bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'netstatus','status':'active'})", &msg);
 	client->PushGuiMessage(msg);
+
+	// If we have rejoined an in progress game, send the rejoined message to the server.
+	if (client->m_Rejoin)
+		client->SendRejoinedMessage();
 
 	return true;
 }

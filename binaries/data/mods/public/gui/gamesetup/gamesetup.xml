@@ -105,7 +105,7 @@
 			<object size="24 64 100%-460 358" type="image" sprite="CoverFillDark" name="playerAssignmentsPanelCover" hidden="true"/>
 			<!-- Map selection -->
 
-			<object size="100%-425 355 100%-285 470" name="mapTypeSelectionTooltip">
+			<object size="100%-425 355 100%-285 470" name="mapTypeTooltip">
 				<object type="text" style="ModernRightLabelText" size="0 0 100% 30">
 					<translatableAttribute id="caption">Map Type:</translatableAttribute>
 				</object>
@@ -124,14 +124,14 @@
 			</object>
 
 
-			<object size="100%-275 355 100%-25 470" name="mapFilterSelectionTooltip">
+			<object size="100%-275 355 100%-25 470" name="mapFilterTooltip">
 				<object name="mapTypeText" type="text" style="ModernLeftLabelText" size="0 0 100% 30"  hidden="true"/>
 				<object name="mapFilterText" type="text" style="ModernLeftLabelText" size="0 32 100% 62"  hidden="true"/>
 				<object name="mapSelectionText" type="text" style="ModernLeftLabelText" size="0 64 100% 94"  hidden="true"/>
 				<object name="mapSizeText" type="text" style="ModernLeftLabelText" size="0 128 100% 158" hidden="true"/>
 			</object>
 
-			<object name="mapTypeSelection"
+			<object name="mapType"
 				type="dropdown"
 				style="ModernDropDown"
 				size="100%-275 355 100%-25 383"
@@ -139,7 +139,7 @@
 				<translatableAttribute id="tooltip">Select a map type.</translatableAttribute>
 			</object>
 
-			<object name="mapFilterSelection"
+			<object name="mapFilter"
 				type="dropdown"
 				style="ModernDropDown"
 				size="100%-275 387 100%-25 415"
@@ -158,7 +158,7 @@
 			</object>
 
 			<object name="numPlayersText" size="100%-275 451 100%-25 483" type="text" style="ModernLeftLabelText"/>
-				<object name="numPlayersSelection"
+				<object name="numPlayers"
 					type="dropdown"
 					style="ModernDropDown"
 					size="100%-275 451 100%-25 479"

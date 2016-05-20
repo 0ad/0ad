@@ -88,14 +88,14 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 // Techs to be searched for as soon as they are available
 m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 {
-	var available = (gameState.currentPhase() == 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null);
-	var numWorkers = (gameState.currentPhase() == 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0);
+	var available = gameState.currentPhase() === 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
+	var numWorkers = gameState.currentPhase() === 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
 		let template = tech[1]._template;
-		if (gameState.currentPhase() == 1)
+		if (gameState.currentPhase() === 1)
 		{
 			let cost = template.cost;
 			let costMax = 0;
@@ -126,14 +126,14 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 // Techs to be searched for as soon as they are available, but only after phase 2
 m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 {
-	var available = (gameState.currentPhase() == 2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null);
-	var numWorkers = (gameState.currentPhase() == 2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0);
+	var available = gameState.currentPhase() === 2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
+	var numWorkers = gameState.currentPhase() === 2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
 		let template = tech[1]._template;
-	    	if (gameState.currentPhase() == 2)
+	    	if (gameState.currentPhase() === 2)
 		{
 			let cost = template.cost;
 			let costMax = 0;
@@ -208,7 +208,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	if (!techs.length)
 		return;
 	// randomly pick one. No worries about pairs in that case.
-	var p = Math.floor((Math.random()*techs.length));
+	var p = Math.floor(Math.random()*techs.length);
 	queues.minorTech.addPlan(new m.ResearchPlan(gameState, techs[p][0]));
 };
 

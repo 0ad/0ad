@@ -338,6 +338,7 @@ function displayMultiple(selection)
 	let maxCapturePoints = 0;
 	let capturePoints = (new Array(g_MaxPlayers + 1)).fill(0);
 	let playerID = 0;
+	let totalResourcesCarried = {};
 
 	for (let i = 0; i < selection.length; ++i)
 	{
@@ -354,6 +355,12 @@ function displayMultiple(selection)
 		{
 			maxCapturePoints += entState.maxCapturePoints;
 			capturePoints = entState.capturePoints.map((v, i) => v + capturePoints[i]);
+		}
+
+		if (entState.resourceCarrying && entState.resourceCarrying.length)
+		{
+			let carrying = entState.resourceCarrying[0];
+			totalResourcesCarried[carrying.type] = (totalResourcesCarried[carrying.type] || 0) + carrying.amount;
 		}
 	}
 
@@ -404,7 +411,11 @@ function displayMultiple(selection)
 		});
 	}
 
-	Engine.GetGUIObjectByName("numberOfUnits").caption = selection.length;
+	let numberOfUnits = Engine.GetGUIObjectByName("numberOfUnits");
+	numberOfUnits.caption = selection.length;
+	numberOfUnits.tooltip = Object.keys(totalResourcesCarried).map(res =>
+		getCostComponentDisplayIcon(res) + totalResourcesCarried[res]
+	).join(" ");
 
 	// Unhide Details Area
 	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = false;

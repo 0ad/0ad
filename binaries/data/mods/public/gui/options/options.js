@@ -268,10 +268,13 @@ function registerChanges()
 
 function setDefaults()
 {
-	let btCaptions = [translate("No"), translate("Yes")];
-	let btCode = [null, function(){ reallySetDefaults(); }];
-	messageBox(500, 200, translate("Resetting the options will erase your saved settings. Do you want to continue?"),
-		translate("Warning"), 0, btCaptions, btCode);
+	messageBox(
+		500, 200,
+		translate("Resetting the options will erase your saved settings. Do you want to continue?"),
+		translate("Warning"),
+		[translate("No"), translate("Yes")],
+		[null, reallySetDefaults]
+	);
 }
 
 function reallySetDefaults()
@@ -332,10 +335,13 @@ function closePage()
 	registerChanges();
 	if (Engine.ConfigDB_HasChanges("user"))
 	{
-		let btCaptions = [translate("No"), translate("Yes")];
-		let btCode = [null, function(){ closePageWithoutConfirmation(); }];
-		messageBox(500, 200, translate("You have unsaved changes, do you want to close this window?"),
-			translate("Warning"), 0, btCaptions, btCode);
+		messageBox(
+			500, 200,
+			translate("You have unsaved changes, do you want to close this window?"),
+			translate("Warning"),
+			[translate("No"), translate("Yes")],
+			[null, closePageWithoutConfirmation]
+		);
 	}
 	else
 		closePageWithoutConfirmation();
