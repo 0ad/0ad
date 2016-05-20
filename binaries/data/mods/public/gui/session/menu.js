@@ -691,13 +691,6 @@ function pauseGame(pause = true, explicit = false)
 	updatePauseOverlay();
 }
 
-/**
- * Resume the game.
- *
- * @param explicit - true if the player explicitly wants to resume the game.
- * If this argument isn't set, a multiplayer game won't be resumed and the pause overlay won't
- * be closed in single player.
- */
 function resumeGame(explicit = false)
 {
 	pauseGame(false, explicit);
