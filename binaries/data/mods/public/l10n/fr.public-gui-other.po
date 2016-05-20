@@ -12,6 +12,7 @@
 # Loki <tontonloul@hotmail.fr>, 2016
 # Moul <ma.azimi@laposte.net>, 2015
 # Marco tom Suden, 2014
+# Inperpetuammemoriam, 2016
 # Marwan <Skyplay33@gmail.com>, 2015
 # Moritz FS <momogingins@gmail.com>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015
@@ -25,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-13 09:00+0200\n"
-"PO-Revision-Date: 2016-05-13 10:00+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-16 09:00+0200\n"
+"PO-Revision-Date: 2016-05-16 17:00+0000\n"
+"Last-Translator: Inperpetuammemoriam\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,30 +72,30 @@ msgstr "Héros"
 msgid "History of the %(civilization)s"
 msgstr "Histoire des %(civilization)s"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "Ouverture de %(url)s\ndans votre navigateur par défaut. Veuillez patienter..."
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:60
 msgid "Opening page"
 msgstr "Ouverture de la page"
 
-#: gui/common/functions_global_object.js:84
+#: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS : %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/common/functions_global_object.js:101
+#: gui/common/functions_global_object.js:89
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:118
+#: gui/common/functions_global_object.js:106
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
@@ -333,7 +334,7 @@ msgstr "%(previousAmounts)s et %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -362,73 +363,83 @@ msgstr "Mauvaise connexion au serveur (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Mauvaise connexion avec %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:53
+#: gui/common/network.js:54
 msgctxt "network disconnect"
 msgid "Unknown reason"
+msgstr "Raison inconnue"
+
+#: gui/common/network.js:55
+msgid ""
+"This is often caused by UDP port 20595 not being forwarded on the host side,"
+" by a firewall or anti-virus software"
 msgstr ""
 
-#: gui/common/network.js:54
+#: gui/common/network.js:56
 msgid "The host has ended the game"
 msgstr "L'hôte a mis fin à la partie"
 
-#: gui/common/network.js:55
+#: gui/common/network.js:57
 msgid "Incorrect network protocol version"
 msgstr "Version de protocole réseau incorrecte"
 
-#: gui/common/network.js:56
+#: gui/common/network.js:58
 msgid "Game is loading, please try later"
 msgstr "La partie est en cours de lancement, veuillez réessayer plus tard"
 
-#: gui/common/network.js:57
+#: gui/common/network.js:59
 msgid "Game has already started, no observers allowed"
 msgstr "La partie a déjà commencé, pas de spectateurs autorisés"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:60
 msgid "You have been kicked"
 msgstr "Vous avez été éjecté(e)"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:61
 msgid "You have been banned"
 msgstr "Vous avez été banni(e)"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:62
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Nom de joueur déjà utilisé. Si vous avez été déconnecté(e), réessayez dans quelques secondes"
 
-#: gui/common/network.js:61
+#: gui/common/network.js:63
 msgid "Server full"
 msgstr "Serveur complet"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valeur invalide %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:76
+#: gui/common/network.js:78
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Motif : %(reason)s."
 
-#: gui/common/network.js:77
+#: gui/common/network.js:83
 msgid "Lost connection to the server."
 msgstr "Connexion au serveur perdue."
 
-#: gui/common/network.js:77
+#: gui/common/network.js:84
+msgid "Failed to connect to the server."
+msgstr ""
+
+#: gui/common/network.js:86
 msgid "Disconnected"
 msgstr "Déconnecté"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Impossible de bannir %(name)s."
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Impossible d'éjecter %(name)s."
 
-#: gui/common/network.js:119
+#: gui/common/network.js:129
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Utilisateurs : %(users)s"
@@ -468,8 +479,8 @@ msgstr "Très difficile"
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minute"
+msgstr[1] "%(min)s minutes"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -825,38 +836,10 @@ msgstr "Aucun"
 msgid "<invalid>"
 msgstr "<invalide>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "Yes"
-msgstr "Oui"
-
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "No"
-msgstr "Non"
-
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Retry"
-msgstr "Réessayer"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Ignore"
-msgstr "Ignorer"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Abort"
-msgstr "Abandonner"
 
 #: gui/options/options.js:273
 msgid ""
@@ -864,12 +847,26 @@ msgid ""
 "continue?"
 msgstr "Remettre les options à zéro va effacer vos paramètres enregistrés. Voulez-vous continuer ?"
 
-#: gui/options/options.js:274 gui/options/options.js:338
+#: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:85
 msgid "Warning"
 msgstr "Avertissement"
 
-#: gui/options/options.js:337
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "No"
+msgstr "Non"
+
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "Yes"
+msgstr "Oui"
+
+#: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Vous avez des modifications non enregistrées, voulez-vous fermer cette fenêtre ?"
 
@@ -904,7 +901,7 @@ msgstr "téléversement échoué (%(errorMessage)s)"
 msgid "unknown"
 msgstr "inconnu"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -917,24 +914,24 @@ msgstr "%(startWarning)sAttention :%(endWarning)s Il semblerait que vous utilisi
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Cliquez sur \"En savoir plus\" pour plus d'informations ou \"OK\" pour continuer."
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "ATTENTION !"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "En savoir plus"
 
-#: gui/pregame/mainmenu.js:258
+#: gui/pregame/mainmenu.js:256
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Version : %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Êtes-vous sûr(e) de vouloir quitter 0 A.D. ?"
 
@@ -942,32 +939,28 @@ msgstr "Êtes-vous sûr(e) de vouloir quitter 0 A.D. ?"
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:304
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'éditeur de scénario n'est pas disponible ou le chargement a échoué. Voir les registres de jeu pour des informations supplémentaires."
 
-#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Erreur"
 
-#: gui/pregame/mainmenu.js:304
+#: gui/pregame/mainmenu.js:311
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Ouvrir le hall multijoueur. \\[DÉSACTIVÉ LORS DE LA COMPILATION] "
 
-#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Détails techniques"
 
-#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Manuel"
-
-#: gui/replaymenu/replay_actions.js:67 gui/summary/summary.js:143
-msgid "You"
-msgstr "Vous"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
@@ -1001,10 +994,6 @@ msgstr ""
 msgid "Incompatible replay"
 msgstr "Vidéo incompatible"
 
-#: gui/replaymenu/replay_actions.js:99 gui/replaymenu/replay_actions.js:116
-msgid "Ok"
-msgstr "Ok"
-
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
 msgstr "Pas de résumé disponible."
@@ -1013,13 +1002,13 @@ msgstr "Pas de résumé disponible."
 msgid "Scores at the end of the game."
 msgstr "Scores à la fin du jeu."
 
-#: gui/replaymenu/replay_actions.js:157
-msgid "Delete replay"
-msgstr "Supprimer la vidéo"
-
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:155
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Êtes-vous sûr(e) de vouloir supprimer cette vidéo définitivement ?"
+
+#: gui/replaymenu/replay_actions.js:156
+msgid "Delete replay"
+msgstr "Supprimer la vidéo"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1179,17 +1168,17 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr "Voulez-vous toujours continuer ?"
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Cette sauvegarde sera supprimée définitivement, êtes-vous sûr(e) ?"
 
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
 msgid "DELETE"
 msgstr "SUPPRIMER"
 
@@ -1399,12 +1388,12 @@ msgstr "Contrôle de la carte"
 msgid "Team total"
 msgstr "Total de l'équipe"
 
-#: gui/summary/summary.js:160
+#: gui/summary/summary.js:162
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Temps de jeu écoulé : %(time)s"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1942,7 +1931,7 @@ msgstr "Marché"
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):181
 msgid "Continue"
 msgstr "Continuer"
 
@@ -2113,102 +2102,118 @@ msgid "Chat Timestamp"
 msgstr "Horodatage du chat"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
+msgid "How you want to be addressed in Single Player matches)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[0].label
+msgid "Playername (Single Player)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].tooltip
+msgid "How you want to be addressed in Multiplayer matches (except lobby)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].label
+msgid "Playername (Multiplayer)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "Démarrer 0 A.D. dans une fenêtre"
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
 msgstr "Mode fenêtré"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "Mettre en pause les jeux solo lorsque la fenêtre perd le focus"
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.jsongeneralSetting[3].label
 msgid "Background Pause"
 msgstr "Tâche de fond en pause"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "Si vous désactivez complètement cette page, vous risquez de manquer des annonces importantes.\nVous pouvez toujours y accéder via le menu principal."
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
 msgstr "Désactiver la page de bienvenue"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.jsongeneralSetting[5].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Afficher des infobulles détaillées sur les unités entraînables dans les bâtiments de production d'unités."
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.jsongeneralSetting[5].label
 msgid "Detailed Tooltips"
 msgstr "Infobulles détaillées"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Montrer quel joueur a une mauvaise connexion en partie multijoueurs."
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Network Warnings"
 msgstr "Avertissements réseau"
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Affiche le nombre d'images par seconde en haut à droite."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
 msgstr "Surcouche FPS"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Affiche l'heure système actuelle en haut à droite."
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "Realtime Overlay"
 msgstr "Surcouche temps réel"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Affiche le temps de jeu actuel en haut à droite."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Gametime Overlay"
 msgstr "Surcouche temps de jeu"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Toujours afficher la durée de cessez-le-feu restante."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "Décompte du cessez-le-feu"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Enregistrer et restaurer les paramètres du match pour une réutilisation rapide lors de l'hébergement d'une autre partie "
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Persist Match Settings"
 msgstr "Enregistrer les paramètres du match"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr "Autoriser les spectateurs à rejoindre la partie après son lancement"
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Late Observer Joins"
 msgstr "Spectateurs tardifs"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr "Empêche le spectateur suivant de rejoindre la partie si la limite est atteinte"
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr "Limite de spectateurs"
 
@@ -2906,20 +2911,16 @@ msgid "STOA"
 msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for Greek factions."
-msgstr "- Une structure de départ spéciale pour les factions grecques."
+msgid "- A special structure for Greek factions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Grants +10 Population."
-msgstr "- Alloue +10 de population."
+msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:6
-msgid "- Only present on some maps."
-msgstr "- Présente uniquement sur certaines cartes."
-
-#: gui/text/tips/stoa.txt:8
-msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr "- Présente dans l'éditeur Atlas pour les scénarios personnalisés."
+msgid "- Grants +10 Population."
+msgstr "- Alloue +10 de population."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

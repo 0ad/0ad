@@ -7,6 +7,7 @@
 # BladeFalconheart, 2014
 # BoucheDag <bouche4dag@gmail.com>, 2014
 # ClementL <lewisclement@gmail.com>, 2014
+# Damion Wolters <firewallscape@gmail.com>, 2016
 # Ellen Roels, 2015
 # Ilya <ilya.crols@gmail.com>, 2014
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-04-24 12:56+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2016-05-16 09:00+0200\n"
+"PO-Revision-Date: 2016-05-19 13:56+0000\n"
+"Last-Translator: Damion Wolters <firewallscape@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +93,7 @@ msgstr "* %(username)s is gereed!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s is niet gereed."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1337
 msgid "Default"
 msgstr "Standaard"
 
@@ -105,54 +106,54 @@ msgid "Demo Maps"
 msgstr "Demokaarten"
 
 #: gui/gamesetup/gamesetup.js:83
+msgid "Trigger Maps"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
 msgstr "Alle kaarten"
 
-#: gui/gamesetup/gamesetup.js:137
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "map type"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: gui/gamesetup/gamesetup.js:142
+#: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:250
 msgid "Return to the lobby."
 msgstr "Terugkeren naar de lobby."
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:250
 msgid "Return to the main menu."
 msgstr "Terugkeren naar het hoofdmenu."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:554
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:554
 msgid "No"
 msgstr "Nee"
 
-#: gui/gamesetup/gamesetup.js:585
+#: gui/gamesetup/gamesetup.js:593
 msgctxt "team"
 msgid "None"
 msgstr "Geen"
 
-#: gui/gamesetup/gamesetup.js:1166
-msgid "You"
-msgstr "Jij"
-
-#: gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1252
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1404
 msgid "Loading..."
 msgstr "Laden..."
 
-#: gui/gamesetup/gamesetup.js:1450
+#: gui/gamesetup/gamesetup.js:1456
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -160,65 +161,65 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Wonder (%(min)s minuut)"
 msgstr[1] "Wonder (%(min)s minuten)"
 
-#: gui/gamesetup/gamesetup.js:1464
+#: gui/gamesetup/gamesetup.js:1470
 msgid "Sorry, no description available."
 msgstr "Sorry, geen beschrijving beschikbaar."
 
-#: gui/gamesetup/gamesetup.js:1466
+#: gui/gamesetup/gamesetup.js:1472
 msgid "Randomly selects a map from the list"
 msgstr "Selecteer een willekeurige kaart uit de lijst"
 
-#: gui/gamesetup/gamesetup.js:1468
+#: gui/gamesetup/gamesetup.js:1474
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s speler."
 msgstr[1] "%(number)s spelers."
 
-#: gui/gamesetup/gamesetup.js:1469 gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.js:1475 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "Vereisten om te winnen:"
 
-#: gui/gamesetup/gamesetup.js:1472
+#: gui/gamesetup/gamesetup.js:1478
 msgctxt "map selection"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: gui/gamesetup/gamesetup.js:1564
+#: gui/gamesetup/gamesetup.js:1570
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1569
+#: gui/gamesetup/gamesetup.js:1575
 msgid "Unassigned"
 msgstr "Niet toegewezen"
 
-#: gui/gamesetup/gamesetup.js:1722
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1743
 msgid "Unknown Player"
 msgstr "Onbekende speler"
 
-#: gui/gamesetup/gamesetup.js:1771
+#: gui/gamesetup/gamesetup.js:1785
 msgid "I'm not ready"
 msgstr "Ik ben niet gereed"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1786
 msgid "State that you are not ready to play."
 msgstr "Geef aan dat je nog niet klaar bent om te spelen."
 
-#: gui/gamesetup/gamesetup.js:1777 gui/gamesetup/gamesetup.js:1855
+#: gui/gamesetup/gamesetup.js:1791 gui/gamesetup/gamesetup.js:1869
 msgid "I'm ready!"
 msgstr "Ik ben gereed!"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1792
 msgid "State that you are ready to play!"
 msgstr "Geef aan dat je klaar bent om te spelen!"
 
-#: gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1870
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Geef aan dat je de huidige instellingen aanvaardt en klaar om te spelen."
 
@@ -248,7 +249,21 @@ msgstr "Het spel is al begonnen, weer meedoen..."
 msgid "Game name already in use."
 msgstr "Spelnaam wordt al gebruikt."
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:224
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr "Kan het spel niet hosten: %(message)s."
+
+#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+msgid "Error"
+msgstr "Fout"
+
+#: gui/gamesetup/gamesetup_mp.js:253
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr "Kan niet verbinden met spel: %(message)s."
+
+#: gui/gamesetup/gamesetup_mp.js:276
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s's spel"
@@ -276,7 +291,7 @@ msgid "AI Difficulty:"
 msgstr "AI moeilijkheidsgraad"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):104
+#: gui/gamesetup/gamesetup_mp.xml:(caption):105
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -515,33 +530,33 @@ msgstr "Activeer dit als je wil dat het spel je score kan wijzigen."
 msgid "Close more game options window"
 msgstr "Sluit het opties venster"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):19
+#: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
 msgstr "Multiplayer"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):25
+#: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
 msgstr "Sluit je aan bij een bestaand spel."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):29
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
+#: gui/gamesetup/gamesetup_mp.xml:(caption):30
+#: gui/gamesetup/gamesetup_mp.xml:(caption):68
 msgid "Player name:"
 msgstr "Naam van de speler:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):39
+#: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
 msgstr "Server hostnaam of IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):49
-#: gui/gamesetup/gamesetup_mp.xml:(caption):91
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):92
 msgid "Continue"
 msgstr "Verder"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):62
+#: gui/gamesetup/gamesetup_mp.xml:(caption):63
 msgid "Set up your server to host."
 msgstr "Stel je server in om een spel te hosten."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):80
+#: gui/gamesetup/gamesetup_mp.xml:(caption):81
 msgid "Server name:"
 msgstr "Servernaam:"
 

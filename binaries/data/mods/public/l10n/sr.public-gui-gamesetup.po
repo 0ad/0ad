@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-04-22 09:36+0000\n"
+"POT-Creation-Date: 2016-05-16 09:00+0200\n"
+"PO-Revision-Date: 2016-05-16 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "* %(username)s је спреман!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s није спреман!"
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1337
 msgid "Default"
 msgstr "Подразумевано"
 
@@ -88,54 +88,54 @@ msgid "Demo Maps"
 msgstr "Демо мапа"
 
 #: gui/gamesetup/gamesetup.js:83
+msgid "Trigger Maps"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
 msgstr "Све мапе"
 
-#: gui/gamesetup/gamesetup.js:137
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "map type"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:142
+#: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
 msgid "Random"
 msgstr "Случајно"
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:250
 msgid "Return to the lobby."
 msgstr "Повратак у припремну собу"
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:250
 msgid "Return to the main menu."
 msgstr "Повратак у главни мени."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:554
 msgid "Yes"
 msgstr "Да"
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:554
 msgid "No"
 msgstr "Не"
 
-#: gui/gamesetup/gamesetup.js:585
+#: gui/gamesetup/gamesetup.js:593
 msgctxt "team"
 msgid "None"
 msgstr "Ништа"
 
-#: gui/gamesetup/gamesetup.js:1166
-msgid "You"
-msgstr "Ви"
-
-#: gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1252
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1404
 msgid "Loading..."
 msgstr "Учитавање..."
 
-#: gui/gamesetup/gamesetup.js:1450
+#: gui/gamesetup/gamesetup.js:1456
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -144,15 +144,15 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/gamesetup/gamesetup.js:1464
+#: gui/gamesetup/gamesetup.js:1470
 msgid "Sorry, no description available."
 msgstr "Жао нам је, не постоји опис."
 
-#: gui/gamesetup/gamesetup.js:1466
+#: gui/gamesetup/gamesetup.js:1472
 msgid "Randomly selects a map from the list"
 msgstr "Насумично изабира мапу из листе"
 
-#: gui/gamesetup/gamesetup.js:1468
+#: gui/gamesetup/gamesetup.js:1474
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -160,50 +160,50 @@ msgstr[0] "%(number)s играч. "
 msgstr[1] "%(number)s играча. "
 msgstr[2] "%(number)s играча. "
 
-#: gui/gamesetup/gamesetup.js:1469 gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.js:1475 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "Услови за победу:"
 
-#: gui/gamesetup/gamesetup.js:1472
+#: gui/gamesetup/gamesetup.js:1478
 msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1564
+#: gui/gamesetup/gamesetup.js:1570
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1569
+#: gui/gamesetup/gamesetup.js:1575
 msgid "Unassigned"
 msgstr "Нераспоређени"
 
-#: gui/gamesetup/gamesetup.js:1722
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1743
 msgid "Unknown Player"
 msgstr "Непознат играч"
 
-#: gui/gamesetup/gamesetup.js:1771
+#: gui/gamesetup/gamesetup.js:1785
 msgid "I'm not ready"
 msgstr "Нисам спреман"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1786
 msgid "State that you are not ready to play."
 msgstr "Изјавите да нисте спремни за игру."
 
-#: gui/gamesetup/gamesetup.js:1777 gui/gamesetup/gamesetup.js:1855
+#: gui/gamesetup/gamesetup.js:1791 gui/gamesetup/gamesetup.js:1869
 msgid "I'm ready!"
 msgstr "Спреман сам!"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1792
 msgid "State that you are ready to play!"
 msgstr "Изјавите да сте спремни за игру!"
 
-#: gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1870
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Изјавите да прихватате тренутна подешавања и да сте спремни за игру!"
 
@@ -233,7 +233,21 @@ msgstr "Партија је већ почела, поновно приступа
 msgid "Game name already in use."
 msgstr "Име партије се већ користи."
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:224
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+msgid "Error"
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:253
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:276
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s's партија"
@@ -261,7 +275,7 @@ msgid "AI Difficulty:"
 msgstr "AI тежина:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):104
+#: gui/gamesetup/gamesetup_mp.xml:(caption):105
 msgid "Cancel"
 msgstr "Обустави"
 
@@ -500,33 +514,33 @@ msgstr "Омогућити да ли ће се ова партија бодов�
 msgid "Close more game options window"
 msgstr "Затвори прозор са опцијама игре"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):19
+#: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
 msgstr "Игра за више играча"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):25
+#: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
 msgstr "Прикључивање постојећој партији"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):29
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
+#: gui/gamesetup/gamesetup_mp.xml:(caption):30
+#: gui/gamesetup/gamesetup_mp.xml:(caption):68
 msgid "Player name:"
 msgstr "Име играча:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):39
+#: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
 msgstr "Име домаћина сервера или IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):49
-#: gui/gamesetup/gamesetup_mp.xml:(caption):91
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):92
 msgid "Continue"
 msgstr "настави"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):62
+#: gui/gamesetup/gamesetup_mp.xml:(caption):63
 msgid "Set up your server to host."
 msgstr "Постави свој сервер да би био домаћин игре."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):80
+#: gui/gamesetup/gamesetup_mp.xml:(caption):81
 msgid "Server name:"
 msgstr "Име сервера:"
 

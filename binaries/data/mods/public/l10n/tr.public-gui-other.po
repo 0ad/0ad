@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-13 09:00+0200\n"
-"PO-Revision-Date: 2016-05-13 10:00+0000\n"
+"POT-Creation-Date: 2016-05-16 09:00+0200\n"
+"PO-Revision-Date: 2016-05-17 01:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -59,30 +59,30 @@ msgstr "Kahramanlar"
 msgid "History of the %(civilization)s"
 msgstr " %(civilization)sin tarihi"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "Açılıyor %(url)s\ninternet tarayıcısında. Lütfen bekleyin..."
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:60
 msgid "Opening page"
 msgstr "Sayfa açılıyor"
 
-#: gui/common/functions_global_object.js:84
+#: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/common/functions_global_object.js:101
+#: gui/common/functions_global_object.js:89
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:118
+#: gui/common/functions_global_object.js:106
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
@@ -321,7 +321,7 @@ msgstr "%(previousAmounts)s ve %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -350,73 +350,83 @@ msgstr "Sunucuya kötü bağlantı (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Kötü bağlantı %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:53
+#: gui/common/network.js:54
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Bilinmeyen sebep"
 
-#: gui/common/network.js:54
+#: gui/common/network.js:55
+msgid ""
+"This is often caused by UDP port 20595 not being forwarded on the host side,"
+" by a firewall or anti-virus software"
+msgstr ""
+
+#: gui/common/network.js:56
 msgid "The host has ended the game"
 msgstr "Bu oyunda konuk sona erdi"
 
-#: gui/common/network.js:55
+#: gui/common/network.js:57
 msgid "Incorrect network protocol version"
 msgstr "Geçersiz ağ protokol sürümü"
 
-#: gui/common/network.js:56
+#: gui/common/network.js:58
 msgid "Game is loading, please try later"
 msgstr "Oyun yükleniyor, lütfen daha sonra deneyin"
 
-#: gui/common/network.js:57
+#: gui/common/network.js:59
 msgid "Game has already started, no observers allowed"
 msgstr "Oyun zaten başladı, izleyicilere izin verilmemektedir"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:60
 msgid "You have been kicked"
 msgstr "Atıldın"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:61
 msgid "You have been banned"
 msgstr "Yasaklandın"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:62
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Kullanıcı adı kullanılıyor. Eğer bağlantı kesildiyse, birkaç saniye sonra tekrar dene."
 
-#: gui/common/network.js:61
+#: gui/common/network.js:63
 msgid "Server full"
 msgstr "Sunucu dolu"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Geçersiz değer %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:76
+#: gui/common/network.js:78
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Sebep: %(reason)s."
 
-#: gui/common/network.js:77
+#: gui/common/network.js:83
 msgid "Lost connection to the server."
 msgstr "Sunucuya bağlantı kaybedildi."
 
-#: gui/common/network.js:77
+#: gui/common/network.js:84
+msgid "Failed to connect to the server."
+msgstr ""
+
+#: gui/common/network.js:86
 msgid "Disconnected"
 msgstr "Bağlatı kesildi"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "%(name)s engellenemez."
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "%(name)s atılamaz."
 
-#: gui/common/network.js:119
+#: gui/common/network.js:129
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Kullanıcılar: %(users)s"
@@ -813,38 +823,10 @@ msgstr "Yok"
 msgid "<invalid>"
 msgstr "<geçersiz>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "Yes"
-msgstr "Evet"
-
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "No"
-msgstr "Hayır"
-
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "Tamam"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Retry"
-msgstr "Tekrar dene"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Ignore"
-msgstr "Yoksay"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Abort"
-msgstr "İptal"
 
 #: gui/options/options.js:273
 msgid ""
@@ -852,12 +834,26 @@ msgid ""
 "continue?"
 msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
-#: gui/options/options.js:274 gui/options/options.js:338
+#: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:85
 msgid "Warning"
 msgstr "Uyarı"
 
-#: gui/options/options.js:337
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "No"
+msgstr "Hayır"
+
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "Yes"
+msgstr "Evet"
+
+#: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Kaydedilmemiş değişiklikler var, pencereyi kapatmak istiyor musun?"
 
@@ -892,7 +888,7 @@ msgstr "yükleme başarısız (%(errorMessage)s)"
 msgid "unknown"
 msgstr "bilinmiyor"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -905,24 +901,24 @@ msgstr "%(startWarning)sUyarı:%(endWarning)s Gölgesiz(sabit işlevli) grafik k
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Lütfen daha fazla bilgi için \"Devamını Oku\"ya basın ya da devam etmek için \"Tamam\"a basın."
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "DİKKAT!"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "Daha Fazlasını Oku"
 
-#: gui/pregame/mainmenu.js:258
+#: gui/pregame/mainmenu.js:256
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Yapı: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
@@ -930,32 +926,28 @@ msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:304
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Senaryo editörü mevcut değil ya da yüklenmesi başarısız. Daha fazla bilgi için oyun günlük dosyasına bakınız."
 
-#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Hata"
 
-#: gui/pregame/mainmenu.js:304
+#: gui/pregame/mainmenu.js:311
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Çoklu oyuncu lobisi başlat. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Teknik Detaylar"
 
-#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Kılavuz"
-
-#: gui/replaymenu/replay_actions.js:67 gui/summary/summary.js:143
-msgid "You"
-msgstr "Siz"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
@@ -989,10 +981,6 @@ msgstr ""
 msgid "Incompatible replay"
 msgstr "Uyumsuz tekrar oynatma"
 
-#: gui/replaymenu/replay_actions.js:99 gui/replaymenu/replay_actions.js:116
-msgid "Ok"
-msgstr "Tamam"
-
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
 msgstr "Özet veri bulunmamaktadır."
@@ -1001,13 +989,13 @@ msgstr "Özet veri bulunmamaktadır."
 msgid "Scores at the end of the game."
 msgstr "Oyunun sonundaki puanlar."
 
-#: gui/replaymenu/replay_actions.js:157
-msgid "Delete replay"
-msgstr "Tekrar oynatmayı sil"
-
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:155
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
+
+#: gui/replaymenu/replay_actions.js:156
+msgid "Delete replay"
+msgstr "Tekrar oynatmayı sil"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1167,17 +1155,17 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr "Hala devam etmek istiyor musunuz?"
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Kayıtlı oyun kalıcı olarak silinecek, emin misiniz?"
 
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
 msgid "DELETE"
 msgstr "SİL"
 
@@ -1387,12 +1375,12 @@ msgstr "Harita kontolü"
 msgid "Team total"
 msgstr "Takım bütünü"
 
-#: gui/summary/summary.js:160
+#: gui/summary/summary.js:162
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Oyun süresi: %(time)s"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1930,7 +1918,7 @@ msgstr "Pazar"
 msgid "Replay"
 msgstr "Yeniden oynatma"
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):181
 msgid "Continue"
 msgstr "Devam et"
 
@@ -2101,102 +2089,118 @@ msgid "Chat Timestamp"
 msgstr "Sohbet Zaman damgası"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
+msgid "How you want to be addressed in Single Player matches)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[0].label
+msgid "Playername (Single Player)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].tooltip
+msgid "How you want to be addressed in Multiplayer matches (except lobby)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].label
+msgid "Playername (Multiplayer)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "0 A.D. yi pencere kipinde başlat"
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
 msgstr "Pencere Kipi"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "Pencere odağı kaybettiğinde tek oyuncu oyunlarını duraklat"
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.jsongeneralSetting[3].label
 msgid "Background Pause"
 msgstr "Arkaplan Duraklat"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "Eğer tamamen bu ekranı devre dışı bırakırsanız, önemli duyurular kaçırabilirsiniz.\nHala ana menüyü kullanarak başlatabilirsiniz."
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
 msgstr "Karşılama Ekranını Devre Dışı Bırak"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.jsongeneralSetting[5].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Birim üretim yapılarındaki eğitilebilir birimler için araç ipuçlarını göster."
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.jsongeneralSetting[5].label
 msgid "Detailed Tooltips"
 msgstr "Detaylı Araç ipuçları"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Network Warnings"
 msgstr "Ağ Uyarıları"
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Sağ üst köşede saniye başına çerçeve yenilenmesini göster."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
 msgstr "FPS Kaplaması"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Sağ üst köşede sistem saatini göster."
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "Realtime Overlay"
 msgstr "Gerçek Zaman Kaplaması"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Sağ üst köşede simüle saati göster."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Gametime Overlay"
 msgstr "Oyun Süresi Kaplaması"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Ateşkesin süresini daima gösterecek."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "Ateşkes Süresi"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Başka bir oyuna ev sahipliği yaparken hızlı yeniden kullanım için oyun ayarlarını kaydet ve geri yükle"
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Persist Match Settings"
 msgstr "Maç Ayarlarını Devam Ettir"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Late Observer Joins"
 msgstr "Geç Katılan İzleyiciler"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr "İzleyici Sınırı"
 
@@ -2894,20 +2898,16 @@ msgid "STOA"
 msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for Greek factions."
-msgstr "- Yunan hizipler için özel bir başlangıç yapısı."
+msgid "- A special structure for Greek factions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Grants +10 Population."
-msgstr "- Hibeler +10 Nüfus."
+msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:6
-msgid "- Only present on some maps."
-msgstr "- Yanlız bazı haritalarda sunulmaktadır."
-
-#: gui/text/tips/stoa.txt:8
-msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr "- Özel senaryolar için Atlas editöründe bulunabilir."
+msgid "- Grants +10 Population."
+msgstr "- Hibeler +10 Nüfus."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

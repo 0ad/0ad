@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-05-08 20:52+0000\n"
-"Last-Translator: Max Ihalempia\n"
+"POT-Creation-Date: 2016-05-16 09:00+0200\n"
+"PO-Revision-Date: 2016-05-16 09:52+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +77,7 @@ msgstr "* %(username)s on valmis!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s ei ole valmis."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1337
 msgid "Default"
 msgstr "Oletus"
 
@@ -90,54 +90,54 @@ msgid "Demo Maps"
 msgstr "Demokartat"
 
 #: gui/gamesetup/gamesetup.js:83
+msgid "Trigger Maps"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
 msgstr "Kaikki kartat"
 
-#: gui/gamesetup/gamesetup.js:137
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "map type"
 msgid "Random"
 msgstr "Satunnainen"
 
-#: gui/gamesetup/gamesetup.js:142
+#: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
 msgid "Random"
 msgstr "Satunnainen"
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:250
 msgid "Return to the lobby."
 msgstr "Palaa aulaan."
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:250
 msgid "Return to the main menu."
 msgstr "Palaa päävalikkoon."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:554
 msgid "Yes"
 msgstr "Kyllä"
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:554
 msgid "No"
 msgstr "Ei"
 
-#: gui/gamesetup/gamesetup.js:585
+#: gui/gamesetup/gamesetup.js:593
 msgctxt "team"
 msgid "None"
 msgstr "Ei mitään"
 
-#: gui/gamesetup/gamesetup.js:1166
-msgid "You"
-msgstr "Sinä"
-
-#: gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1252
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1404
 msgid "Loading..."
 msgstr "Ladataan..."
 
-#: gui/gamesetup/gamesetup.js:1450
+#: gui/gamesetup/gamesetup.js:1456
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -145,65 +145,65 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Ihme (%(min)s minuutti)"
 msgstr[1] "Ihme (%(min)s minuuttia)"
 
-#: gui/gamesetup/gamesetup.js:1464
+#: gui/gamesetup/gamesetup.js:1470
 msgid "Sorry, no description available."
 msgstr "Pahoittelut, kuvausta ei saatavilla."
 
-#: gui/gamesetup/gamesetup.js:1466
+#: gui/gamesetup/gamesetup.js:1472
 msgid "Randomly selects a map from the list"
 msgstr "Valitsee satunnaisen kartan listasta."
 
-#: gui/gamesetup/gamesetup.js:1468
+#: gui/gamesetup/gamesetup.js:1474
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s pelaaja"
 msgstr[1] "%(number)s pelaajaa."
 
-#: gui/gamesetup/gamesetup.js:1469 gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.js:1475 gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Victory Condition:"
 msgstr "Voiton edellytys:"
 
-#: gui/gamesetup/gamesetup.js:1472
+#: gui/gamesetup/gamesetup.js:1478
 msgctxt "map selection"
 msgid "Random"
 msgstr "Satunnainen"
 
-#: gui/gamesetup/gamesetup.js:1564
+#: gui/gamesetup/gamesetup.js:1570
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1569
+#: gui/gamesetup/gamesetup.js:1575
 msgid "Unassigned"
 msgstr "Määrittelemätön"
 
-#: gui/gamesetup/gamesetup.js:1722
+#: gui/gamesetup/gamesetup.js:1736
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1743
 msgid "Unknown Player"
 msgstr "Tuntematon pelaaja"
 
-#: gui/gamesetup/gamesetup.js:1771
+#: gui/gamesetup/gamesetup.js:1785
 msgid "I'm not ready"
 msgstr "En ole valmis"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1786
 msgid "State that you are not ready to play."
 msgstr "Ilmoita, ettet ole valmis pelaamaan."
 
-#: gui/gamesetup/gamesetup.js:1777 gui/gamesetup/gamesetup.js:1855
+#: gui/gamesetup/gamesetup.js:1791 gui/gamesetup/gamesetup.js:1869
 msgid "I'm ready!"
 msgstr "Olen valmis!"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1792
 msgid "State that you are ready to play!"
 msgstr "Ilmoita, että olet valmis pelaamaan!"
 
-#: gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1870
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Ilmoita, että hyväksyt tämänhetkiset asetukset ja olet valmis pelaamaan!"
 
@@ -233,7 +233,21 @@ msgstr "Peli on jo alkanut, liitytään uudelleen..."
 msgid "Game name already in use."
 msgstr "Pelinimi on jo käytössä."
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:224
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+msgid "Error"
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:253
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:276
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Pelaajan %(playername)s peli"
@@ -261,7 +275,7 @@ msgid "AI Difficulty:"
 msgstr "Tekoälyn vaikeustaso:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):104
+#: gui/gamesetup/gamesetup_mp.xml:(caption):105
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -500,33 +514,33 @@ msgstr "Valitse jos haluat pelin viralliseksi ja vaikuttavan tilastoihin."
 msgid "Close more game options window"
 msgstr "Sulje lisäasetuksien ikkuna"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):19
+#: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
 msgstr "Moninpeli"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):25
+#: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
 msgstr "Liitytään käynnissä olevaan peliin."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):29
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
+#: gui/gamesetup/gamesetup_mp.xml:(caption):30
+#: gui/gamesetup/gamesetup_mp.xml:(caption):68
 msgid "Player name:"
 msgstr "Pelaajan nimi:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):39
+#: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
 msgstr "Palvelimen nimi tai IP-osoite:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):49
-#: gui/gamesetup/gamesetup_mp.xml:(caption):91
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):92
 msgid "Continue"
 msgstr "Jatka"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):62
+#: gui/gamesetup/gamesetup_mp.xml:(caption):63
 msgid "Set up your server to host."
 msgstr "Pystytä palvelin hostiksi."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):80
+#: gui/gamesetup/gamesetup_mp.xml:(caption):81
 msgid "Server name:"
 msgstr "Palvelimen nimi:"
 

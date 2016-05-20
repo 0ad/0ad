@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-13 09:00+0200\n"
-"PO-Revision-Date: 2016-05-13 09:32+0000\n"
+"POT-Creation-Date: 2016-05-16 09:00+0200\n"
+"PO-Revision-Date: 2016-05-16 09:35+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -50,108 +50,108 @@ msgstr "Tukaj ne moreš zgraditi obzidja!"
 msgid "Are you sure you want to resign?"
 msgstr "Ste prepričani, da želite predati igro?"
 
-#: gui/session/menu.js:112 gui/session/menu.js:145 gui/session/menu.js:157
+#: gui/session/menu.js:112 gui/session/menu.js:144 gui/session/menu.js:155
 msgid "Confirmation"
 msgstr "Potrditev"
 
-#: gui/session/menu.js:114 gui/session/menu.js:147 gui/session/menu.js:179
-#: gui/session/session.js:624 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
+#: gui/session/session.js:629 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ne"
 
-#: gui/session/menu.js:114 gui/session/menu.js:147 gui/session/menu.js:179
-#: gui/session/session.js:624 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
+#: gui/session/session.js:629 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Da"
 
-#: gui/session/menu.js:126
+#: gui/session/menu.js:125
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Ste prepričani, da želite oditi? S tem boste prekinili vse ostale igralce."
 
-#: gui/session/menu.js:130 gui/session/menu.js:134
+#: gui/session/menu.js:129 gui/session/menu.js:133
 msgid "Are you sure you want to quit?"
 msgstr "Ste prepričani, da želite zapustiti igro?"
 
-#: gui/session/menu.js:156
+#: gui/session/menu.js:154
 msgid "Do you want to resign or will you return soon?"
 msgstr "Se želite predati ali se boste kmalu vrnili?"
 
-#: gui/session/menu.js:159
+#: gui/session/menu.js:156
 msgid "I will return"
 msgstr "Vrnil se bom"
 
-#: gui/session/menu.js:159
+#: gui/session/menu.js:156
 msgid "I resign"
 msgstr "Predajam se"
 
-#: gui/session/menu.js:176
+#: gui/session/menu.js:173
 msgid "Destroy everything currently selected?"
 msgstr "Uniči vse v trenutnem izboru?"
 
-#: gui/session/menu.js:177 gui/session/unit_actions.js:718
+#: gui/session/menu.js:174 gui/session/unit_actions.js:718
 msgid "Delete"
 msgstr "Zbriši"
 
-#: gui/session/menu.js:309
+#: gui/session/menu.js:305
 msgctxt "team"
 msgid "None"
 msgstr "Nihče"
 
-#: gui/session/menu.js:313 gui/session/messages.js:86
+#: gui/session/menu.js:309 gui/session/messages.js:86
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Zaveznik"
 
-#: gui/session/menu.js:314 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:310 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Nevtralen"
 
-#: gui/session/menu.js:314 gui/session/messages.js:87
+#: gui/session/menu.js:310 gui/session/messages.js:87
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Sovražnik"
 
-#: gui/session/menu.js:326
+#: gui/session/menu.js:322
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:387
+#: gui/session/menu.js:383
 msgid "Request your allies to attack this enemy"
 msgstr "Prosi ostale zaveznike, da napadejo tega sovražnika"
 
-#: gui/session/menu.js:507
+#: gui/session/menu.js:503
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s in %(garrisonedString)s."
 
-#: gui/session/menu.js:508
+#: gui/session/menu.js:504
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s in %(inactiveString)s."
 
-#: gui/session/menu.js:511 gui/session/menu.js:582
+#: gui/session/menu.js:507 gui/session/menu.js:578
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:512 gui/session/menu.js:581
+#: gui/session/menu.js:508 gui/session/menu.js:577
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s in %(inactiveString)s."
 
-#: gui/session/menu.js:517
+#: gui/session/menu.js:513
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:518
+#: gui/session/menu.js:514
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s in %(inactiveString)s."
 
-#: gui/session/menu.js:521 gui/session/menu.js:585
+#: gui/session/menu.js:517 gui/session/menu.js:581
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
@@ -160,11 +160,11 @@ msgstr[1] "Trenutno sta %(inactiveString)s."
 msgstr[2] "Trenutno so %(inactiveString)s."
 msgstr[3] "Trenutno jih je %(inactiveString)s."
 
-#: gui/session/menu.js:522
+#: gui/session/menu.js:518
 msgid "There are no land traders."
 msgstr "Ni trgovcev."
 
-#: gui/session/menu.js:530
+#: gui/session/menu.js:526
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
@@ -173,7 +173,7 @@ msgstr[1] "Trgujeta %(numberTrading)s trgovca"
 msgstr[2] "Trgujejo %(numberTrading)s trgovci"
 msgstr[3] "Trguje %(numberTrading)s trgovcev"
 
-#: gui/session/menu.js:539
+#: gui/session/menu.js:535
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
@@ -182,7 +182,7 @@ msgstr[1] "%(numberOfLandTraders)s nedejavna"
 msgstr[2] "%(numberOfLandTraders)s nedejavni"
 msgstr[3] "%(numberOfLandTraders)s nedejavnih"
 
-#: gui/session/menu.js:544
+#: gui/session/menu.js:540
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
@@ -191,7 +191,7 @@ msgstr[1] "%(numberOfLandTraders)s trgovca neaktivna."
 msgstr[2] "%(numberOfLandTraders)s trgovci neaktivni."
 msgstr[3] "%(numberOfLandTraders)s trgovcev neaktivnih."
 
-#: gui/session/menu.js:553
+#: gui/session/menu.js:549
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
@@ -200,7 +200,7 @@ msgstr[1] "%(numberGarrisoned)s nastanjena na trgovski ladji"
 msgstr[2] "%(numberGarrisoned)s nastanjeni na trgovski ladji"
 msgstr[3] "%(numberGarrisoned)s nastanjenih na trgovski ladji"
 
-#: gui/session/menu.js:558
+#: gui/session/menu.js:554
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -213,11 +213,11 @@ msgstr[1] "%(numberGarrisoned)s trgovca sta nastanjena na trgovski ladji."
 msgstr[2] "%(numberGarrisoned)s trgovci so nastanjeni na trgovski ladji."
 msgstr[3] "%(numberGarrisoned)s trgovcev je nastanjenih na trgovski ladji."
 
-#: gui/session/menu.js:586
+#: gui/session/menu.js:582
 msgid "There are no merchant ships."
 msgstr "Ni trgovskih ladij."
 
-#: gui/session/menu.js:593
+#: gui/session/menu.js:589
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
@@ -226,7 +226,7 @@ msgstr[1] "Trgujeta %(numberTrading)s trgovski ladji"
 msgstr[2] "Trgujejo %(numberTrading)s trgovske ladje"
 msgstr[3] "Trguje %(numberTrading)s trgovskih ladij"
 
-#: gui/session/menu.js:602
+#: gui/session/menu.js:598
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
@@ -235,7 +235,7 @@ msgstr[1] "%(numberOfShipTraders)s nedejavna"
 msgstr[2] "%(numberOfShipTraders)s nedejavni"
 msgstr[3] "%(numberOfShipTraders)s nedejavnih"
 
-#: gui/session/menu.js:607
+#: gui/session/menu.js:603
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
@@ -244,32 +244,32 @@ msgstr[1] "%(numberOfShipTraders)s trgovski ladji nedejavni"
 msgstr[2] "%(numberOfShipTraders)s trgovske ladje nedejavne"
 msgstr[3] "%(numberOfShipTraders)s trgovskih ladij nedejavnih"
 
-#: gui/session/menu.js:655
+#: gui/session/menu.js:651
 msgid "Current Scores"
 msgstr "Trenutno točkovanje"
 
-#: gui/session/menu.js:680 gui/session/menu.js:702
+#: gui/session/menu.js:676 gui/session/menu.js:698
 msgid "Resume"
 msgstr "Nadaljuj"
 
-#: gui/session/menu.js:687 gui/session/menu.js:702
+#: gui/session/menu.js:683 gui/session/menu.js:698
 #: gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Pavza"
 
-#: gui/session/menu.js:714 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:710 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Priročnik"
 
-#: gui/session/menu.js:730
+#: gui/session/menu.js:726
 msgid "The Developer Overlay was closed."
 msgstr "Plast za razvijalce je zaprta."
 
-#: gui/session/menu.js:731
+#: gui/session/menu.js:727
 msgid "The Developer Overlay was opened."
 msgstr "Plast za razvijalce je odprta."
 
-#: gui/session/menu.js:752
+#: gui/session/menu.js:748
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -351,7 +351,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Ekipa"
 
-#: gui/session/messages.js:88 gui/session/session.js:260
+#: gui/session/messages.js:88 gui/session/session.js:265
 msgid "Observer"
 msgstr ""
 
@@ -428,59 +428,43 @@ msgstr ""
 msgid "Unknown Player"
 msgstr "Neznan igralec"
 
-#. Translation: String used to colorize the word "You" of that sentence
-#: gui/session/messages.js:662
-msgctxt "You have been defeated"
-msgid "You"
-msgstr ""
-
-#: gui/session/messages.js:664
-#, javascript-format
-msgid "%(You)s have resigned."
-msgstr ""
-
-#: gui/session/messages.js:666
-#, javascript-format
-msgid "%(You)s have been defeated."
-msgstr ""
-
-#: gui/session/messages.js:672
+#: gui/session/messages.js:657
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: gui/session/messages.js:674
+#: gui/session/messages.js:658
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s je poražen."
 
-#: gui/session/messages.js:707
+#: gui/session/messages.js:687
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s je poslal igralcu %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:709
+#: gui/session/messages.js:689
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s vam je poslal %(amounts)s."
 
-#: gui/session/messages.js:724
+#: gui/session/messages.js:704
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "%(attacker)s je napadel tvoje živali!"
 
-#: gui/session/messages.js:725
+#: gui/session/messages.js:705
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Napadel vas je %(attacker)s!"
 
-#: gui/session/messages.js:768
+#: gui/session/messages.js:748
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:375
-#: gui/session/selection_details.js:407 gui/session/session.js:808
+#: gui/session/selection_details.js:407 gui/session/session.js:812
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -672,7 +656,7 @@ msgstr[1] "Preostaneta: %(number)s za izgradnjo."
 msgstr[2] "Preostanejo: %(number)s za izgradnjo."
 msgstr[3] "Preostanejo: %(number)s za izgradnjo."
 
-#: gui/session/selection_panels.js:1110 gui/session/session.js:807
+#: gui/session/selection_panels.js:1110 gui/session/session.js:811
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Zdravje:"
@@ -768,102 +752,97 @@ msgstr "%(action)s za urjenje %(number)s (%(fullBatch)s)."
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s za urjenje %(number)s."
 
-#: gui/session/session.js:77 gui/session/utility_functions.js:91
-#: gui/session/utility_functions.js:97 gui/session/utility_functions.js:102
-msgid "You"
-msgstr "Ti"
-
-#: gui/session/session.js:246
+#: gui/session/session.js:251
 msgid "Gaia"
 msgstr "Gaja"
 
-#: gui/session/session.js:386
+#: gui/session/session.js:391
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - strukturno drevo"
 
-#: gui/session/session.js:453 gui/session/session.js:469
+#: gui/session/session.js:458 gui/session/session.js:474
 msgid "You have left the game."
 msgstr "Zapustili ste igro."
 
-#: gui/session/session.js:460
+#: gui/session/session.js:465
 msgid "You have been disconnected."
 msgstr "Povezava je bila prekinjena."
 
-#: gui/session/session.js:462
+#: gui/session/session.js:467
 msgid "You have won the battle!"
 msgstr "Dobili ste bitko!"
 
-#: gui/session/session.js:464
+#: gui/session/session.js:469
 msgid "You have been defeated..."
 msgstr "Izgubili ste bitko..."
 
-#: gui/session/session.js:472
+#: gui/session/session.js:477
 msgid "You have abandoned the game."
 msgstr "Zapustili ste igro."
 
-#: gui/session/session.js:618
+#: gui/session/session.js:623
 msgid "OK"
 msgstr "V redu"
 
-#: gui/session/session.js:620
+#: gui/session/session.js:625
 msgid "Press OK to continue"
 msgstr "Pritisnite V redu za nadaljevanje"
 
-#: gui/session/session.js:626
+#: gui/session/session.js:631
 msgid "Do you want to quit?"
 msgstr "Ali želite končati?"
 
-#: gui/session/session.js:631
+#: gui/session/session.js:636
 msgid "DEFEATED!"
 msgstr "PORAŽENI!"
 
-#: gui/session/session.js:636
+#: gui/session/session.js:641
 msgid "VICTORIOUS!"
 msgstr "ZMAGOVALNI!"
 
-#: gui/session/session.js:732
+#: gui/session/session.js:737
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Posnetek je končan. Ali želiš zapustiti ta posnetek?"
 
-#: gui/session/session.js:733
+#: gui/session/session.js:738
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Potrditev"
 
-#: gui/session/session.js:735
+#: gui/session/session.js:739
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ne"
 
-#: gui/session/session.js:735
+#: gui/session/session.js:739
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Da"
 
-#: gui/session/session.js:900
+#: gui/session/session.js:904
 msgid "Population (current / limit)"
 msgstr "Populacija (trenutna / limit)"
 
-#: gui/session/session.js:901
+#: gui/session/session.js:905
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksimalno število prebivalcev: %(popCap)s"
 
-#: gui/session/session.js:1041
+#: gui/session/session.js:1045
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Izgradnja: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1047
+#: gui/session/session.js:1052
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Opomba: ukrivljanje časa je možnost za razvijalce in ni namenjena za daljšo časovno uporabo. Nepravilna uporaba lahko povzroči, da igra izgubi spomin in se sesuje."
 
-#: gui/session/session.js:1048
+#: gui/session/session.js:1053
 msgid "Time warp mode"
 msgstr "Način ukrivljanja časa"
 
