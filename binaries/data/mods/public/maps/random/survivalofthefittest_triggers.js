@@ -192,7 +192,7 @@ Trigger.prototype.PlaceTreasures = function()
 
 Trigger.prototype.InitializeEnemyWaves = function()
 {
-	var time = 5 + Math.round(Math.random() * 10) * 60 * 1000;
+	var time = (5 + Math.round(Math.random() * 10)) * 60 * 1000;
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.AddTimeNotification({
 		"players": [1,2,3,4,5,6,7,8], 
