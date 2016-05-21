@@ -11,7 +11,7 @@
 	"replaces": ["phase_town"],
 	"icon": "town_phase.png",
 	"researchTime": 30,
-	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants an extra +10% metal gather rate to all workers.",
+	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants an extra +10% metal gather rate to all workers. Citizen soldiers max health increased by +20%. All structures +7 garrisoned regeneration rate.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker" },
 		{ "value": "TerritoryInfluence/Radius", "multiply": 1.30, "affects": "CivCentre" },

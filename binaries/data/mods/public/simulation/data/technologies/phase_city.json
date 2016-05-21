@@ -11,7 +11,7 @@
 	"supersedes": "phase_town",
 	"icon": "city_phase.png",
 	"researchTime": 60,
-	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by another +50%",
+	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by another +50%. Citizen soldiers max health increased by +20%. All structures +9 garrisoned regeneration rate.",
 	"modifications": [
 		{ "value": "TerritoryInfluence/Radius", "multiply": 1.50, "affects": "CivCentre" },
 		{ "value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier" },
