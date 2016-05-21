@@ -71,6 +71,7 @@ CGame::CGame(bool disableGraphics, bool replayLog):
 	m_Paused(false),
 	m_SimRate(1.0f),
 	m_PlayerID(-1),
+	m_ViewedPlayerID(-1),
 	m_IsSavedGame(false),
 	m_IsVisualReplay(false),
 	m_ReplayStream(NULL)
