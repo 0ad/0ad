@@ -756,7 +756,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	var idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
 
 	// if we're constructing and we have the foundations to our base anchor, only try building that.
-	if (this.constructing == true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).length != 0)
+	if (this.constructing === true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).hasEntities())
 	{
 		foundations = this.buildings.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
 		let tID = foundations[0].id();
@@ -813,7 +813,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;
-		if (target.getMetadata(PlayerID, "baseAnchor") == true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
+		if (target.getMetadata(PlayerID, "baseAnchor") === true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
 		{
 			targetNB = 15;
 			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
@@ -898,7 +898,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		let targetNB = 1;
 		if (target.hasClass("Fortress"))
 			targetNB = 3;
-		if (target.getMetadata(PlayerID, "baseAnchor") == true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
+		if (target.getMetadata(PlayerID, "baseAnchor") === true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
 		{
 			maxTotalBuilders = Math.ceil(workers.length * 0.3);
 			targetNB = 5;

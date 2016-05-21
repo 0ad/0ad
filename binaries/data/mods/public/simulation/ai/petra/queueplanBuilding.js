@@ -18,9 +18,6 @@ m.ConstructionPlan = function(gameState, type, metadata, position)
 
 m.ConstructionPlan.prototype = Object.create(m.QueuePlan.prototype);
 
-// checks other than resource ones.
-// TODO: change this.
-// TODO: if there are specific requirements here, maybe try to do them?
 m.ConstructionPlan.prototype.canStart = function(gameState)
 {
 	if (gameState.ai.HQ.turnCache.buildingBuilt)   // do not start another building if already one this turn
@@ -51,7 +48,8 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		Engine.ProfileStop();
 		return;
 	}
-	else if (this.metadata && this.metadata.expectedGain)
+
+	if (this.metadata && this.metadata.expectedGain)
 	{
 		// Check if this market is still worth building (others may have been built making it useless)
 		let tradeManager = gameState.ai.HQ.tradeManager;
@@ -93,7 +91,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	else // try with the lowest, move towards us unless we're same
 	{
 		for (let step = 0; step <= 1; step += 0.2)
-			builder.construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz),
+			builder.construct(this.type, step*pos.x + (1-step)*pos.xx, step*pos.z + (1-step)*pos.zz,
 				pos.angle, this.metadata);
 	}
 	this.onStart(gameState);
@@ -107,7 +105,6 @@ m.ConstructionPlan.prototype.start = function(gameState)
 // TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
 m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 {
-
 	var template = this.template;
 
 	if (template.buildCategory() === "Dock")
@@ -146,14 +143,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
 		{
 			let pos = gameState.ai.HQ.findDefensiveLocation(gameState, template);
-
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
-			else if (template.hasClass("DefenseTower") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
+
+			if (template.hasClass("DefenseTower") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true) > 0 ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
 				return false;
-			// if this fortress is our first siege unit builder, just try the standard placement as we want siege units		    
+			// if this fortress is our first siege unit builder, just try the standard placement as we want siege units
 		}
 		else if (template.hasClass("Market"))	// Docks (i.e. NavalMarket) are done before
 		{
@@ -174,7 +171,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	var placement = new API3.Map(gameState.sharedScript, "territory");
 	var cellSize = placement.cellSize; // size of each tile
-	
+
 	var alreadyHasHouses = false;
 
 	if (this.position)	// If a position was specified then place the building as close to it as possible
@@ -197,7 +194,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		else
 		{
 			for (let j = 0; j < placement.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] != 0)
+				if (gameState.ai.HQ.basesMap.map[j] !== 0)
 					placement.map[j] = 45;
 		}
 
@@ -262,7 +259,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				placement.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				placement.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && placement.map[j] > 0)
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && placement.map[j] > 0)
 				placement.map[j] += 10;
 
 			if (placement.map[j] > 0)
@@ -278,11 +275,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		for (let j = 0; j < placement.map.length; ++j)
 		{
-			if (gameState.ai.HQ.basesMap.map[j] == 0)
+			if (gameState.ai.HQ.basesMap.map[j] === 0)
 				placement.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				placement.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && placement.map[j] > 0)
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && placement.map[j] > 0)
 				placement.map[j] += 10;
 
 			if (preferredBase && gameState.ai.HQ.basesMap.map[j] == this.metadata.preferredBase)
@@ -335,7 +332,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (bestVal <= 0)
 		return false;
 
-	let x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
+	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
@@ -343,7 +340,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		let secondBest = obstructions.findNearestObstructed(bestIdx, radius);
 		if (secondBest >= 0)
 		{
-			x = ((secondBest % obstructions.width) + 0.5) * obstructions.cellSize;
+			x = (secondBest % obstructions.width + 0.5) * obstructions.cellSize;
 			z = (Math.floor(secondBest / obstructions.width) + 0.5) * obstructions.cellSize;
 		}
 	}
@@ -445,7 +442,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		if (bestIdx !== undefined && dist > bestVal + maxWater)
 			continue;
 
-		let x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
+		let x = (i % obstructions.width + 0.5) * obstructions.cellSize;
 		let z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 		let angle = this.getDockAngle(gameState, x, z, halfSize);
 		if (angle === false)
@@ -476,7 +473,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	if (!this.metadata.proximity && bestWater < 10 && gameState.currentPhase() == 1)
 		return false;
 
-	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
+	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	// Assign this dock to a base
@@ -537,7 +534,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 			let count = 0;
 			for (let j = 0; j < length-1; ++j)
 			{
-				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
+				if ((waterPoints[(i + j) % length]+1) % numPoints == waterPoints[(i + j + 1) % length])
 					++count;
 				else
 					break;
@@ -741,7 +738,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 					nbcell += weight;
 				}
 			}
-			if (dy == 0)
+			if (dy === 0)
 				continue;
 			ky = iy - dy;
 			if (ky  >= 0 && ky < w)
@@ -759,7 +756,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 			}
 		}
 	}
-	return nbcell ? (total / nbcell) : 0;
+	return nbcell ? total / nbcell : 0;
 };
 
 m.ConstructionPlan.prototype.Serialize = function()

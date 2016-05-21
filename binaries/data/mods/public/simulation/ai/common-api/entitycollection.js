@@ -7,7 +7,7 @@ m.EntityCollection = function(sharedAI, entities = new Map(), filters = [])
 	this._entities = entities;
 	this._filters = filters;
 	this.dynamicProp = [];
-	for (var filter of this._filters)
+	for (let filter of this._filters)
 		if (filter.dynamicProperties.length)
 			this.dynamicProp = this.dynamicProp.concat(filter.dynamicProperties);
 
@@ -21,8 +21,8 @@ m.EntityCollection = function(sharedAI, entities = new Map(), filters = [])
 
 m.EntityCollection.prototype.Serialize = function()
 {
-	var filters = [];
-	for (var f of this._filters)
+	let filters = [];
+	for (let f of this._filters)
 		filters.push(uneval(f));
 	return {
 		"ents": this.toIdArray(),
@@ -54,6 +54,7 @@ m.EntityCollection.prototype.freeze = function()
 {
 	this.frozen = true;
 };
+
 m.EntityCollection.prototype.defreeze = function()
 {
 	this.frozen = false;
@@ -84,7 +85,7 @@ m.EntityCollection.prototype.filter = function(filter, thisp)
 	if (typeof filter === "function")
 		filter = {"func": filter, "dynamicProperties": []};
 
-	var ret = new Map();
+	let ret = new Map();
 	for (let [id, ent] of this._entities)
 		if (filter.func.call(thisp, ent, id, this))
 			ret.set(id, ent);
@@ -98,7 +99,7 @@ m.EntityCollection.prototype.filter = function(filter, thisp)
 m.EntityCollection.prototype.filterNearest = function(targetPos, n)
 {
 	// Compute the distance of each entity
-	var data = []; // [ [id, ent, distance], ... ]
+	let data = []; // [ [id, ent, distance], ... ]
 	for (let [id, ent] of this._entities)
 		if (ent.position())
 			data.push([id, ent, m.SquareVectorDistance(targetPos, ent.position())]);
@@ -121,7 +122,7 @@ m.EntityCollection.prototype.filterNearest = function(targetPos, n)
 
 m.EntityCollection.prototype.filter_raw = function(callback, thisp)
 {
-	var ret = new Map();
+	let ret = new Map();
 	for (let [id, ent] of this._entities)
 	{
 		let val = ent._entity;
@@ -177,9 +178,8 @@ m.EntityCollection.prototype.destroy = function()
 	return this;
 };
 
-m.EntityCollection.prototype.attack = function(unit)
+m.EntityCollection.prototype.attack = function(unitId)
 {
-	var unitId = unit;
 	Engine.PostCommand(PlayerID,{"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
 	return this;
 };
@@ -194,8 +194,8 @@ m.EntityCollection.prototype.setStance = function(stance)
 // Returns the average position of all units
 m.EntityCollection.prototype.getCentrePosition = function()
 {
-	var sumPos = [0, 0];
-	var count = 0;
+	let sumPos = [0, 0];
+	let count = 0;
 	for (let ent of this._entities.values())
 	{
 		if (!ent.position())
@@ -213,8 +213,8 @@ m.EntityCollection.prototype.getCentrePosition = function()
 // always a risk that it'll be unprecise.
 m.EntityCollection.prototype.getApproximatePosition = function(sample)
 {
-	var sumPos = [0, 0];
-	var i = 0;
+	let sumPos = [0, 0];
+	let i = 0;
 	for (let ent of this._entities.values())
 	{
 		if (!ent.position())
@@ -255,8 +255,8 @@ m.EntityCollection.prototype.addEnt = function(ent)
 // But can remove one.
 m.EntityCollection.prototype.updateEnt = function(ent, force)
 {
-	var passesFilters = true;
-	for (var filter of this._filters)
+	let passesFilters = true;
+	for (let filter of this._filters)
 		passesFilters = passesFilters && filter.func(ent);
 
 	if (passesFilters)

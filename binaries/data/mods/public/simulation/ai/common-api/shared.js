@@ -52,7 +52,7 @@ m.SharedScript.prototype.Deserialize = function(data)
 	this._techTemplates = data.techTp;
 	this._techModifications = data.techModifications;
 	this._entityMetadata = data.metadata;
-	this._derivedTemplates = {}; 
+	this._derivedTemplates = {};
 
 	this.isDeserialized = true;
 };
@@ -138,11 +138,11 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.barterPrices = state.barterPrices;
 
 	this.passabilityMap = state.passabilityMap;
-	if (this.mapSize % this.passabilityMap.width != 0)
+	if (this.mapSize % this.passabilityMap.width !== 0)
 		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while passability=" +  this.passabilityMap.width);
 	this.passabilityMap.cellSize = this.mapSize / this.passabilityMap.width;
 	this.territoryMap = state.territoryMap;
-	if (this.mapSize % this.territoryMap.width != 0)
+	if (this.mapSize % this.territoryMap.width !== 0)
 		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while territory=" +  this.territoryMap.width);
 	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 
@@ -425,13 +425,16 @@ m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 	return true;
 };
 
-m.copyPrototype = function(descendant, parent) {
-    var sConstructor = parent.toString();
-    var aMatch = sConstructor.match( /\s*function (.*)\(/ );
-	if ( aMatch != null ) { descendant.prototype[aMatch[1]] = parent; }
-	for (var m in parent.prototype) {
-		descendant.prototype[m] = parent.prototype[m];
-	}
+m.copyPrototype = function(descendant, parent)
+{
+	var sConstructor = parent.toString();
+	var aMatch = sConstructor.match( /\s*function (.*)\(/ );
+
+	if ( aMatch != null )
+		descendant.prototype[aMatch[1]] = parent;
+
+	for (let  p in parent.prototype)
+		descendant.prototype[p] = parent.prototype[p];
 };
 
 return m;

@@ -42,7 +42,6 @@ m.Queue.prototype.check= function(gameState)
 			return;
 		this.plans.shift();
 	}
-	return;
 };
 
 m.Queue.prototype.getNext = function()
