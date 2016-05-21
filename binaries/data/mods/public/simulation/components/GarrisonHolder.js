@@ -54,7 +54,7 @@ GarrisonHolder.prototype.Schema =
 /**
  * Initialize GarrisonHolder Component
  *
- * Garrisoning when loading a map is set in the script of the map, by setting initGarrison 
+ * Garrisoning when loading a map is set in the script of the map, by setting initGarrison
  * which should contain the array of garrisoned entities
  */
 GarrisonHolder.prototype.Init = function()
@@ -111,7 +111,7 @@ GarrisonHolder.prototype.GetEntities = function()
 
 /**
  * Returns an array of unit classes which can be garrisoned inside this
- * particualar entity. Obtained from the entity's template 
+ * particualar entity. Obtained from the entity's template
  */
 GarrisonHolder.prototype.GetAllowedClasses = function()
 {
@@ -146,7 +146,7 @@ GarrisonHolder.prototype.GetHealRate = function()
  * Set this entity to allow or disallow garrisoning in
  * Every component calling this function should do it with its own ID, and as long as one
  * component doesn't allow this entity to garrison, it can't be garrisoned
- * When this entity already contains garrisoned soldiers, 
+ * When this entity already contains garrisoned soldiers,
  * these will not be able to ungarrison until the flag is set to true again.
  *
  * This more useful for modern-day features. For example you can't garrison or ungarrison
@@ -158,7 +158,7 @@ GarrisonHolder.prototype.AllowGarrisoning = function(allow, callerID)
 };
 
 /**
- * Check if no component of this entity blocks garrisoning 
+ * Check if no component of this entity blocks garrisoning
  * (f.e. because the vehicle is moving too fast)
  */
 GarrisonHolder.prototype.IsGarrisoningAllowed = function()
@@ -389,7 +389,7 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
  * Ejects units and orders them to move to the Rally Point.
  * Returns true if successful, false if not
  * If an ejection with a given obstruction radius has failed, we won't try anymore to eject
- * entities with a bigger obstruction as that is compelled to also fail 
+ * entities with a bigger obstruction as that is compelled to also fail
  */
 GarrisonHolder.prototype.PerformEject = function(entities, forced)
 {
@@ -449,7 +449,7 @@ GarrisonHolder.prototype.Unload = function(entity, forced)
  * Unload one or all units that match a template and owner from
  * the garrisoning entity and order them to move to the Rally Point
  * Returns true if successful, false if not
- * 
+ *
  * extendedTemplate has the format "p"+ownerid+"&"+template
  */
 GarrisonHolder.prototype.UnloadTemplate = function(extendedTemplate, all, forced)

@@ -1,12 +1,12 @@
 /**
- * List of different actions units can execute, 
+ * List of different actions units can execute,
  * this is mostly used to determine which actions can be executed
  *
  * "execute" is meant to send the command to the engine
  *
- * The next functions will always return false 
+ * The next functions will always return false
  * in case you have to continue to seek
- * (i.e. look at the next entity for getActionInfo, the next 
+ * (i.e. look at the next entity for getActionInfo, the next
  * possible action for the actionCheck ...)
  * They will return an object when the searching is finished
  *
@@ -24,10 +24,10 @@
  *
  * "specificness" is used to determine how specific an action is,
  * The lower the number, the more specific an action is, and the bigger
- * the chance of selecting that action when multiple actions are possible 
+ * the chance of selecting that action when multiple actions are possible
  */
 
-var unitActions = 
+var unitActions =
 {
 	"move":
 	{
@@ -56,7 +56,7 @@ var unitActions =
 		"specificness": 12,
 	},
 
-	"attack-move": 
+	"attack-move":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -87,7 +87,7 @@ var unitActions =
 		"specificness": 30,
 	},
 
-	"capture": 
+	"capture":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -139,7 +139,7 @@ var unitActions =
 		"specificness": 10,
 	},
 
-	"heal": 
+	"heal":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -159,7 +159,7 @@ var unitActions =
 			// Healers can't heal themselves.
 			if (entState.id == targetState.id)
 				return false;
-			
+
 			var unhealableClasses = entState.healer.unhealableClasses;
 			if (MatchesClassList(targetState.identity.classes, unhealableClasses))
 				return false;
@@ -179,7 +179,7 @@ var unitActions =
 		"specificness": 7,
 	},
 
-	"build": 
+	"build":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -202,7 +202,7 @@ var unitActions =
 		"specificness": 3,
 	},
 
-	"repair": 
+	"repair":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -233,7 +233,7 @@ var unitActions =
 		"specificness": 11,
 	},
 
-	"gather": 
+	"gather":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -260,7 +260,7 @@ var unitActions =
 		"specificness": 1,
 	},
 
-	"returnresource": 
+	"returnresource":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -297,7 +297,7 @@ var unitActions =
 		"specificness": 2,
 	},
 
-	"setup-trade-route": 
+	"setup-trade-route":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -362,7 +362,7 @@ var unitActions =
 		"specificness": 0,
 	},
 
-	"garrison": 
+	"garrison":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -409,7 +409,7 @@ var unitActions =
 		"specificness": 20,
 	},
 
-	"guard": 
+	"guard":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -446,7 +446,7 @@ var unitActions =
 		"specificness": 40,
 	},
 
-	"remove-guard": 
+	"remove-guard":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -471,11 +471,11 @@ var unitActions =
 		"specificness": 41,
 	},
 
-	"set-rallypoint": 
+	"set-rallypoint":
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			// if there is a position set in the action then use this so that when setting a 
+			// if there is a position set in the action then use this so that when setting a
 			// rally point on an entity it is centered on that entity
 			if (action.position)
 				target = action.position;
@@ -584,7 +584,7 @@ var unitActions =
 			}
 
 			return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
-	
+
 		},
 		"actionCheck": function(target, selection)
 		{
@@ -604,7 +604,7 @@ var unitActions =
 			});
 			if (!haveRallyPoints)
 				return false;
-			
+
 			var actionInfo = getActionInfo("set-rallypoint", target);
 			if (!actionInfo.possible)
 				return false;
@@ -613,7 +613,7 @@ var unitActions =
 		"specificness": 6,
 	},
 
-	"unset-rallypoint": 
+	"unset-rallypoint":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -654,7 +654,7 @@ var unitActions =
 		"specificness": 11,
 	},
 
-	"none": 
+	"none":
 	{
 		"execute": function(target, action, selection, queued)
 		{
@@ -668,7 +668,7 @@ var unitActions =
  * Info and actions for the entity commands
  * Currently displayed in the bottom of the central panel
  */
-var g_EntityCommands = 
+var g_EntityCommands =
 {
 	// Unload
 	"unload-all": {
@@ -712,7 +712,7 @@ var g_EntityCommands =
 					"tooltip": translate("You cannot destroy this entity as you own less than half the capture points"),
 					"icon": "kill_small_disabled.png"
 				};
-					
+
 
 			return {
 				"tooltip": translate("Delete"),
@@ -728,7 +728,7 @@ var g_EntityCommands =
 				return;
 
 			var selection = g_Selection.toList();
-			if (selection.length < 1)
+			if (!selection.length)
 				return;
 			if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather || g_DevSettings.controlAll)
 				openDeleteDialog(selection);
@@ -748,7 +748,7 @@ var g_EntityCommands =
 		"execute": function(entState)
 		{
 			var selection = g_Selection.toList();
-			if (selection.length > 0)
+			if (selection.length)
 				stopUnits(selection);
 		},
 	},
@@ -824,7 +824,7 @@ var g_EntityCommands =
 				focusTarget = entState.rallyPoint.position;
 			else if (entState.position)
 				focusTarget = entState.position;
-			
+
 			if (focusTarget)
 				Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
 		},
@@ -944,13 +944,13 @@ var g_AllyEntityCommands =
 			{
 				var selectedEntState = GetEntityState(ent);
 				if (selectedEntState.garrisonHolder)
-				{	
+				{
 					var player = Engine.GetPlayerID();
 					for (var entity of selectedEntState.garrisonHolder.entities)
 					{
 						var state = GetEntityState(entity);
 						if (state.player == player)
-							count++;
+							++count;
 					}
 				}
 			}

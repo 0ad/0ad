@@ -51,9 +51,8 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		return;
 	}
 	
-	if (this.events.length > 0){
+	if (this.events.length)
 		this.savedEvents = this.savedEvents.concat(this.events);
-	}
 	
 	Engine.ProfileStart("tutorialBot");
 	

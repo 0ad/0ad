@@ -10,7 +10,7 @@ m.EntityCollection = function(sharedAI, entities = new Map(), filters = [])
 	for (var filter of this._filters)
 		if (filter.dynamicProperties.length)
 			this.dynamicProp = this.dynamicProp.concat(filter.dynamicProperties);
-	
+
 	Object.defineProperty(this, "length", {
 		get: function () {
 			return this._entities.size;
@@ -83,12 +83,12 @@ m.EntityCollection.prototype.filter = function(filter, thisp)
 {
 	if (typeof filter === "function")
 		filter = {"func": filter, "dynamicProperties": []};
-	
+
 	var ret = new Map();
 	for (let [id, ent] of this._entities)
 		if (filter.func.call(thisp, ent, id, this))
 			ret.set(id, ent);
-	
+
 	return new m.EntityCollection(this._ai, ret, this._filters.concat([filter]));
 };
 

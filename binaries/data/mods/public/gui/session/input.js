@@ -488,7 +488,7 @@ function getPreferredEntities(ents)
 	for (var i = 0; i < filters.length; ++i)
 	{
 		preferredEnts = ents.filter(filters[i]);
-		if (preferredEnts.length > 0)
+		if (preferredEnts.length)
 			break;
 	}
 	return preferredEnts;

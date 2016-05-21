@@ -88,7 +88,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		}
 	}
 	this.paused = false;
-	this.maxCompletingTime = 0;	
+	this.maxCompletingTime = 0;
 
 	// priority of the queues we'll create.
 	var priority = 70;
@@ -598,7 +598,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 				continue;
 			ent.setMetadata(PlayerID, "plan", plan);
 			this.unitCollection.updateEnt(ent);
-			added = true; 
+			added = true;
 		}
 		return added;
 	}

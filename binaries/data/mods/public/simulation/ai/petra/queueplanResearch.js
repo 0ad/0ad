@@ -36,7 +36,7 @@ m.ResearchPlan.prototype.start = function(gameState)
 	// Prefer training buildings with short queues
 	// (TODO: this should also account for units added to the queue by
 	// plans that have already been executed this turn)
-	if (trainers.length > 0)
+	if (trainers.length)
 	{
 		trainers.sort((a, b) => a.trainingQueueTime() - b.trainingQueueTime());
 		// drop anything in the queue if we rush it.

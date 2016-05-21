@@ -208,7 +208,7 @@ function loadTechnology(techName)
 				break;
 
 			case "all":
-				if (req[0].length < 1)
+				if (!req[0].length)
 					tech.reqs.generic = req[1];
 				else
 					for (let r of req[0])

@@ -57,7 +57,7 @@ m.Template = m.Class({
 			return undefined;
 		return GetIdentityClasses(template);
 	},
-	
+
 	requiredTech: function() {
 		return this.get("Identity/RequiredTechnology");
 	},
@@ -375,7 +375,7 @@ m.Template = m.Class({
 			return +this.get("ResourceSupply/MaxGatherers");
 		return 0;
 	},
-	
+
 	resourceGatherRates: function() {
 		if (!this.get("ResourceGatherer"))
 			return undefined;
@@ -478,7 +478,7 @@ m.Template = m.Class({
 			return undefined;
 		return this.get("BuildRestrictions/Category");
 	},
-	
+
 	buildTime: function() {
 		if (!this.get("Cost") || !this.get("Cost/BuildTime"))
 			return undefined;
@@ -702,7 +702,7 @@ m.Entity = m.Class({
 	resourceCarrying: function() {
 		if (this._entity.resourceCarrying === undefined)
 			return undefined;
-		return this._entity.resourceCarrying; 
+		return this._entity.resourceCarrying;
 	},
 
 	currentGatherRate: function() {

@@ -1,6 +1,6 @@
 function Attack() {}
 
-Attack.prototype.bonusesSchema = 
+Attack.prototype.bonusesSchema =
 	"<optional>" +
 		"<element name='Bonuses'>" +
 			"<zeroOrMore>" +
@@ -253,7 +253,7 @@ Attack.prototype.CanAttack = function(target)
 	let heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
 
 	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpIdentity) 
+	if (!cmpIdentity)
 		return undefined;
 
 	const targetClasses = cmpIdentity.GetClassesList();
@@ -294,7 +294,7 @@ Attack.prototype.CanAttack = function(target)
 Attack.prototype.GetPreference = function(target)
 {
 	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpIdentity) 
+	if (!cmpIdentity)
 		return undefined;
 
 	const targetClasses = cmpIdentity.GetClassesList();
@@ -350,14 +350,14 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	}
 
 	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpIdentity) 
+	if (!cmpIdentity)
 		return undefined;
 
 	let targetClasses = cmpIdentity.GetClassesList();
 	let isTargetClass = function (className) { return targetClasses.indexOf(className) != -1; };
 
 	// Always slaughter domestic animals instead of using a normal attack
-	if (isTargetClass("Domestic") && this.template.Slaughter) 
+	if (isTargetClass("Domestic") && this.template.Slaughter)
 		return "Slaughter";
 
 	let attack = this;
@@ -535,9 +535,9 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		let horizDistance = targetPosition.horizDistanceTo(selfPosition);
 
-		// This is an approximation of the time ot the target, it assumes that the target has a constant radial 
-		// velocity, but since units move in straight lines this is not true.  The exact value would be more 
-		// difficult to calculate and I think this is sufficiently accurate.  (I tested and for cavalry it was 
+		// This is an approximation of the time ot the target, it assumes that the target has a constant radial
+		// velocity, but since units move in straight lines this is not true.  The exact value would be more
+		// difficult to calculate and I think this is sufficiently accurate.  (I tested and for cavalry it was
 		// about 5% of the units radius out in the worst case)
 		let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
 
