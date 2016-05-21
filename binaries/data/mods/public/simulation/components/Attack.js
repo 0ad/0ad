@@ -583,7 +583,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)
 			return;
-		multiplier *= cmpHealth.GetMaxHitpoints() / cmpHealth.GetHitpoints();
+		multiplier *= cmpHealth.GetMaxHitpoints() / (0.1 * cmpHealth.GetMaxHitpoints() + 0.9 * cmpHealth.GetHitpoints());
 
 		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
