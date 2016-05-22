@@ -18,7 +18,8 @@ m.SharedScript = function(settings)
 
 	// array of entity collections
 	this._entityCollections = new Map();
-	this._techModifications = {};
+	this._entitiesModifications = new Map();	// entities modifications
+	this._templatesModifications = {};	// template modifications
 	// each name is a reference to the actual one.
 	this._entityCollectionsName = new Map();
 	this._entityCollectionsByDynProp = {};
@@ -38,8 +39,9 @@ m.SharedScript.prototype.Serialize = function()
 {
 	return {
 		"players": this._players,
-		"techTp": this._techTemplates,
-		"techModifications": this._techModifications,
+		"techTemplates": this._techTemplates,
+		"templatesModifications": this._templatesModifications,
+		"entitiesModifications": this._entitiesModifications,
 		"metadata": this._entityMetadata
 	};
 };
@@ -49,8 +51,9 @@ m.SharedScript.prototype.Serialize = function()
 m.SharedScript.prototype.Deserialize = function(data)
 {
 	this._players = data.players;
-	this._techTemplates = data.techTp;
-	this._techModifications = data.techModifications;
+	this._techTemplates = data.techTemplates;
+	this._templatesModifications = data.templatesModifications;
+	this._entitiesModifications = data.entitiesModifications;
 	this._entityMetadata = data.metadata;
 	this._derivedTemplates = {};
 
@@ -83,10 +86,10 @@ m.SharedScript.prototype.GetTemplate = function(name)
 {	
 	if (this._templates[name])
 		return this._templates[name];
-	
+
 	if (this._derivedTemplates[name])
 		return this._derivedTemplates[name];
-	
+
 	// If this is a foundation template, construct it automatically
 	if (name.indexOf("foundation|") !== -1)
 	{
@@ -112,7 +115,7 @@ m.SharedScript.prototype.GetTemplate = function(name)
 		this._derivedTemplates[name] = resource;
 		return resource;
 	}
-	
+
 	error("Tried to retrieve invalid template '"+name+"'");
 	return null;
 };
@@ -123,8 +126,11 @@ m.SharedScript.prototype.GetTemplate = function(name)
 m.SharedScript.prototype.init = function(state, deserialization)
 {
 	if (!deserialization)
+	{
+		this._entitiesModifications = new Map();
 		for (let i = 0; i < state.players.length; ++i)
-			this._techModifications[i] = {};
+			this._templatesModifications[i] = {};
+	}
 
 	this.ApplyTemplatesDelta(state);
 
@@ -310,6 +316,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		this.entities.removeEnt(entity);
 		
 		this._entities.delete(evt.entity);
+		this._entitiesModifications.delete(evt.entity)
 		for (let j in this._players)
 			delete this._entityMetadata[this._players[j]][evt.entity];
 	}
@@ -332,9 +339,11 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		if (!this._entities.has(+id))
 			continue;	// dead, presumably.
 		let changes = state.changedEntityTemplateInfo[id];
-		let entity = this._entities.get(+id);
+		if (!this._entitiesModifications.has(+id))
+			this._entitiesModifications.set(+id, new Map());
+		let modif = this._entitiesModifications.get(+id);
 		for (let change of changes)
-			entity._auraTemplateModif.set(change.variable, change.value);
+			modif.set(change.variable, change.value);
 	}
 	Engine.ProfileStop();
 };
@@ -349,10 +358,11 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 		for (let template in playerDiff)
 		{
 			let changes = playerDiff[template];
-			if (!this._techModifications[player][template])
-				this._techModifications[player][template] = new Map();
+			if (!this._templatesModifications[player][template])
+				this._templatesModifications[player][template] = new Map();
+			let modif = this._templatesModifications[player][template];
 			for (let change of changes)
-				this._techModifications[player][template].set(change.variable, change.value);
+				modif.set(change.variable, change.value);
 		}
 	}
 	Engine.ProfileStop();

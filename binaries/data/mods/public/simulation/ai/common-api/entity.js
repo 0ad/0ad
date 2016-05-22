@@ -16,10 +16,10 @@ m.Template = m.Class({
 	get: function(string)
 	{
 		var value = this._template;
-		if (this._auraTemplateModif && this._auraTemplateModif.has(string))
-			return this._auraTemplateModif.get(string);
-		else if (this._techModif && this._techModif.has(string))
-			return this._techModif.get(string);
+		if (this._entityModif && this._entityModif.has(string))
+			return this._entityModif.get(string);
+		else if (this._templateModif && this._templateModif.has(string))
+			return this._templateModif.get(string);
 
 		if (!this._tpCache.has(string))
 		{
@@ -565,11 +565,16 @@ m.Entity = m.Class({
 
 		this._templateName = entity.template;
 		this._entity = entity;
-		this._auraTemplateModif = new Map();	// template modification from auras. this is only for this entity.
+
 		this._ai = sharedAI;
-		if (!sharedAI._techModifications[entity.owner][this._templateName])
-			sharedAI._techModifications[entity.owner][this._templateName] = new Map();
-		this._techModif = sharedAI._techModifications[entity.owner][this._templateName]; // save a reference to the template tech modifications
+		// save a reference to the template tech modifications
+		if (!sharedAI._templatesModifications[entity.owner][this._templateName])
+			sharedAI._templatesModifications[entity.owner][this._templateName] = new Map();
+		this._templateModif = sharedAI._templatesModifications[entity.owner][this._templateName];
+		// save a reference to the entity tech/aura modifications
+		if (!sharedAI._entitiesModifications.has(entity.id))
+			sharedAI._entitiesModifications.set(entity.id, new Map());
+		this._entityModif = sharedAI._entitiesModifications.get(entity.id);
 	},
 
 	toString: function() {

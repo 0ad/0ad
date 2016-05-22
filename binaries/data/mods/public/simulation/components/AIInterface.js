@@ -127,7 +127,9 @@ AIInterface.prototype.GetRepresentation = function()
 	return state;
 };
 
-// Intended to be called first, during the map initialization: no caching
+/**
+ * Intended to be called first, during the map initialization: no caching
+ */
 AIInterface.prototype.GetFullRepresentation = function(flushEvents)
 {	
 	var state = this.GetNonEntityRepresentation();
@@ -157,10 +159,11 @@ AIInterface.prototype.ChangedEntity = function(ent)
 	this.changedEntities[ent] = 1;
 };
 
-// AIProxy sets up a load of event handlers to capture interesting things going on
-// in the world, which we will report to AI. Handle those, and add a few more handlers
-// for events that AIProxy won't capture.
-
+/**
+ * AIProxy sets up a load of event handlers to capture interesting things going on
+ * in the world, which we will report to AI. Handle those, and add a few more handlers
+ * for events that AIProxy won't capture.
+ */
 AIInterface.prototype.PushEvent = function(type, msg)
 {
 	if (this.events[type] === undefined)
@@ -195,11 +198,12 @@ AIInterface.prototype.OnTerritoriesChanged = function(msg)
 	this.events.TerritoriesChanged.push(msg);
 };
 
-// When a new technology is researched, check which templates it affects,
-// and send the updated values to the AI.
-// this relies on the fact that any "value" in a technology can only ever change
-// one template value, and that the naming is the same (with / in place of .)
-// it's not incredibly fast but it's not incredibly slow.
+/**
+ * When a new technology is researched, check which templates it affects,
+ * and send the updated values to the AI.
+ * this relies on the fact that any "value" in a technology can only ever change
+ * one template value, and that the naming is the same (with / in place of .)
+ */
 AIInterface.prototype.OnTemplateModification = function(msg)
 {
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -223,7 +227,8 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 	for (let name of this.templates)
 	{
 		let template = cmpTemplateManager.GetTemplateWithoutValidation(name);
-
+		if (!template || !template[msg.component])
+			continue;
 		for (let valName of msg.valueNames)
 		{
 			// let's get the base template value.
@@ -243,9 +248,9 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 			let oldValue = +item;
 			let newValue = ApplyValueModificationsToTemplate(valName, oldValue, msg.player, template);
 			// Apply the same roundings as in the components
-			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" || valName === "Cost/PopulationBonus")
+			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" ||
+			    valName === "Cost/PopulationBonus")
 				newValue = Math.round(newValue);
-
 			// TODO in some cases, we can have two opposite changes which bring us to the old value,
 			// and we should keep it. But how to distinguish it ?
 			if(newValue == oldValue)
@@ -253,9 +258,9 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 			if (!this.changedTemplateInfo[msg.player])
 				this.changedTemplateInfo[msg.player] = {};
 			if (!this.changedTemplateInfo[msg.player][name])
-				this.changedTemplateInfo[msg.player][name] = [{"variable": valName, "value": newValue}];
+				this.changedTemplateInfo[msg.player][name] = [{ "variable": valName, "value": newValue }];
 			else
-				this.changedTemplateInfo[msg.player][name].push({"variable": valName, "value": newValue});
+				this.changedTemplateInfo[msg.player][name].push({ "variable": valName, "value": newValue });
 		}
 	}
 };
@@ -270,6 +275,8 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 		if (!templateName || !templateName.length)
 			continue;
 		let template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
+		if (!template || !template[msg.component])
+			continue;
 		for (let valName of msg.valueNames)
 		{
 			// let's get the base template value.
@@ -289,16 +296,17 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 			let oldValue = +item;
 			let newValue = ApplyValueModificationsToEntity(valName, oldValue, ent);
 			// Apply the same roundings as in the components
-			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" || valName === "Cost/PopulationBonus")
+			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" ||
+			    valName === "Cost/PopulationBonus")
 				newValue = Math.round(newValue);
 			// TODO in some cases, we can have two opposite changes which bring us to the old value,
 			// and we should keep it. But how to distinguish it ?
 			if (newValue == oldValue)
 				continue;
 			if (!this.changedEntityTemplateInfo[ent])
-				this.changedEntityTemplateInfo[ent] = [{"variable": valName, "value": newValue}];
+				this.changedEntityTemplateInfo[ent] = [{ "variable": valName, "value": newValue }];
 			else
-				this.changedEntityTemplateInfo[ent].push({"variable": valName, "value": newValue});
+				this.changedEntityTemplateInfo[ent].push({ "variable": valName, "value": newValue });
 		}
 	}
 };

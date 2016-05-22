@@ -127,7 +127,7 @@ m.createBorderMap = function(gameState)
 	var border = Math.round(80 / map.cellSize);
 	var passabilityMap = gameState.sharedScript.passabilityMap;
 	var obstructionMask = gameState.getPassabilityClassMask("unrestricted");
-	if (gameState.ai.circularMap)
+	if (gameState.circularMap)
 	{
 		let ic = (width - 1) / 2;
 		let radcut = (ic - border) * (ic - border);

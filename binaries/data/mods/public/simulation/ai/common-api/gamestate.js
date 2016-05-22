@@ -20,7 +20,6 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.entities = SharedScript.entities;
 	this.player = player;
 	this.playerData = SharedScript.playersData[this.player];
-	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 	this.gameType = SharedScript.gameType;
 
@@ -61,7 +60,6 @@ m.GameState.prototype.update = function(SharedScript, state) {
 	this._entities = SharedScript._entities;
 	this.entities = SharedScript.entities;
 	this.playerData = SharedScript.playersData[this.player];
-	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 };
 
@@ -129,11 +127,11 @@ m.GameState.prototype.getTemplate = function(type)
 {
 	if (this.techTemplates[type] !== undefined)
 		return new m.Technology(this.techTemplates, type);
-	
+
 	if (!this.templates[type])
 		return null;
-	
-	return new m.Template(this.templates[type], this.techModifications);
+
+	return new m.Template(this.templates[type]);
 };
 
 m.GameState.prototype.applyCiv = function(str)

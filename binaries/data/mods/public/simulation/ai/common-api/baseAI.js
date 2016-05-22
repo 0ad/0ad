@@ -44,20 +44,11 @@ m.BaseAI.prototype.Init = function(state, playerID, sharedAI)
 	this.accessibility = sharedAI.accessibility;
 	this.terrainAnalyzer = sharedAI.terrainAnalyzer;
 	
-	this.techModifications = sharedAI._techModifications[this.player];
-	this.playerData = sharedAI.playersData[this.player];
-	
 	this.gameState = sharedAI.gameState[this.player];
 	this.gameState.ai = this;
 	this.sharedScript = sharedAI;
 	
 	this.timeElapsed = sharedAI.timeElapsed;
-
-	this.circularMap = sharedAI.circularMap;
-
-	this.gameType = sharedAI.gameType;
-
-	this.barterPrices = sharedAI.barterPrices;
 
 	this.CustomInit(this.gameState, this.sharedScript);
 };
