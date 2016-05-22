@@ -123,12 +123,25 @@ function draw()
 		thisEle.hidden = false;
 		
 		let p = 0;
-		for (let prod of trainer.trainer)
+		for (let prodType in trainer.production)
 		{
-			prod = g_ParsedData.units[prod];
-			if (!drawProdIcon(null, t, null, p, prod))
-				break;
-			p++;
+			for (let prod of trainer.production[prodType])
+			{
+				switch (prodType)
+				{
+				case "units":
+					prod = g_ParsedData.units[prod];
+					break;
+				case "techs":
+					prod = g_ParsedData.techs[prod];
+					break;
+				default:
+					continue;
+				}
+				if (!drawProdIcon(null, t, null, p, prod))
+					break;
+				++p;
+			}
 		}
 		hideRemaining("trainer["+t+"]_prod[", p, "]");
 
