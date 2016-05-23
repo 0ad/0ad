@@ -1,0 +1,380 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# Sander Deryckere, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-05-21 10:59+0200\n"
+"PO-Revision-Date: 2016-05-21 09:37+0000\n"
+"Last-Translator: Sander Deryckere\n"
+"Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/auras/athen_hero_iphicrates_1.jsonauraName
+msgid "Formation Reforms"
+msgstr "Formatiehervormingen"
+
+#: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
+msgid "All units in his formation +15% speed and +1 armor."
+msgstr "Alle eenheden in zijn formatie +15% snelheid en +1 bewapening."
+
+#: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
+msgid "Peltast Reforms"
+msgstr "Speerwerpershervormingen"
+
+#: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
+msgid "All Peltasts +15% speed."
+msgstr "Alle speerwerpers +15% snelheid."
+
+#: simulation/data/auras/athen_hero_pericles_1.jsonauraName
+msgid "Builder Aura"
+msgstr "Bouwersaura"
+
+#: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
+msgid "Buildings construct 15% faster within his vision."
+msgstr "Gebouwen worden 15% sneller gebouwd onder zijn toezicht."
+
+#: simulation/data/auras/athen_hero_pericles_2.jsonauraName
+msgid "Acropolis Aura"
+msgstr "Acropolisaura"
+
+#: simulation/data/auras/athen_hero_pericles_2.jsonauraDescription
+msgid "Temples are 50 stone cheaper during his lifetime."
+msgstr "Tempels zijn 50 steen goedkoper tijdens zijn leven."
+
+#: simulation/data/auras/athen_hero_themistocles_1.jsonauraName
+msgid "Naval Commander Aura"
+msgstr "Marinierscommandantaura"
+
+#: simulation/data/auras/athen_hero_themistocles_1.jsonauraDescription
+msgid "When garrisoned in a ship, his ship is +50% faster."
+msgstr "Indien bemand op een schip gaat zijn schip 50% sneller."
+
+#: simulation/data/auras/athen_hero_themistocles_2.jsonauraName
+msgid "Naval Architect Aura"
+msgstr "Marinearchitectenaura"
+
+#: simulation/data/auras/athen_hero_themistocles_2.jsonauraDescription
+msgid "-20% build time for ships during his lifespan."
+msgstr "Schepen worden 20% sneller gemaakt tijdens zijn leven."
+
+#: simulation/data/auras/brit_hero_boudicca.jsonauraName
+msgid "Champion Army"
+msgstr "Kampioenenaura"
+
+#: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
+msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
+msgstr "+5 aanvalskracht, +2 veroveraanval en +25% snelheid voor kampioenen."
+
+#: simulation/data/auras/brit_hero_caratacos.jsonauraName
+#: simulation/data/auras/brit_hero_cunobelin.jsonauraName
+#: simulation/data/auras/gaul_hero_brennus.jsonauraName
+#: simulation/data/auras/gaul_hero_britomartus.jsonauraName
+#: simulation/data/auras/gaul_hero_vercingetorix.jsonauraName
+#: simulation/data/auras/mace_hero_demetrius.jsonauraName
+#: simulation/data/auras/mace_hero_philip.jsonauraName
+msgid "Hero Aura"
+msgstr "Heldenaura"
+
+#: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
+#: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
+msgid "All Units +15% speed."
+msgstr "Alle eenheden zijn 15% sneller."
+
+#: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
+msgid "+1 HP per second healing rate for all units."
+msgstr "+1 HP per seconde geneessnelheid voor alle eenheden."
+
+#: simulation/data/auras/cart_hero_hamilcar.jsonauraName
+msgid "Lightning Aura"
+msgstr "Bliksemschichtaura"
+
+#: simulation/data/auras/cart_hero_hannibal.jsonauraName
+msgid "Tactician Aura"
+msgstr "Tactisch aura"
+
+#: simulation/data/auras/cart_hero_hannibal.jsonauraDescription
+msgid "All allied units +2 Attack and +1 Capture within his vision range."
+msgstr "Alle geallieerde eenheden in zijn gezichtsveld krijgen +2 aanvalskracht +1 veroveraanval."
+
+#: simulation/data/auras/cart_hero_maharbal.jsonauraName
+msgid "Commander Aura"
+msgstr "Commandantenaura"
+
+#: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
+msgid ""
+"+5 Cavalry charge attack within vision range of him (currently useless)."
+msgstr "Alle ruiters onder zijn toezicht hebben +5 extra aanvalskracht (momenteel nutteloos)."
+
+#: simulation/data/auras/cart_super_dock_repair.jsonauraName
+msgid "Repairing Ship aura"
+msgstr "Schipherstellingsaura"
+
+#: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
+msgid "Heals garrisoned ship at 3 HP per second."
+msgstr "Herstelt een ship in deze haven aan 3 HP per seconde."
+
+#: simulation/data/auras/epic_temple_heal.jsonauraName
+#: simulation/data/auras/temple_heal.jsonauraName
+msgid "Healing Aura"
+msgstr "Genezingsaura"
+
+#: simulation/data/auras/epic_temple_heal.jsonauraDescription
+msgid "Heals nearby units at 3 HP per second."
+msgstr "Genees nabije eenheden aan 3 leven per seconde."
+
+#: simulation/data/auras/female_inspiration.jsonauraName
+msgid "Inspiration Aura"
+msgstr "Inspiratieaura"
+
+#: simulation/data/auras/female_inspiration.jsonauraDescription
+msgid "Nearby males work 10% faster."
+msgstr "Nabije mannen werken 10% sneller."
+
+#: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
+msgid "+10 Metal loot for every enemy unit killed."
+msgstr "+10 metaal als buit bij elke gedode vijandelijke eenheid."
+
+#: simulation/data/auras/gaul_hero_britomartus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "Verzamelen gaat 15% sneller tijdens zijn leven."
+
+#: simulation/data/auras/gaul_hero_vercingetorix.jsonauraDescription
+msgid "+2 Attack and +1 Capture for all units within his aura."
+msgstr "Alle eenheden in zijn aura krijgen +2 aanvalskracht en +1 veroveringspunten."
+
+#: simulation/data/auras/hero_garrison.jsonauraName
+msgid "Garrisoned Capture Aura"
+msgstr "Bemand veroveraura"
+
+#: simulation/data/auras/hero_garrison.jsonauraDescription
+msgid ""
+"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
+"capture points recovery rate."
+msgstr "Wanneer een held een gebouw bemant, geeft hij een bonus van +2 veroveringspunten herstelsnelheid."
+
+#: simulation/data/auras/iber_monument.jsonauraName
+msgid "Defensive Aura"
+msgstr "Defensief aura"
+
+#: simulation/data/auras/iber_monument.jsonauraDescription
+msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
+msgstr "Geef alle Iberische eenheden met zicht op het aura +2 slag- en +3 steek aanval."
+
+#: simulation/data/auras/loyalty_regen.jsonauraName
+msgid "Loyalty Aura"
+msgstr "Getrouwheidsaura"
+
+#: simulation/data/auras/loyalty_regen.jsonauraDescription
+msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
+msgstr "Alle gebouwen binnen bereik genereren 50% snellere getrouwheid."
+
+#: simulation/data/auras/mace_hero_alexander.jsonauraName
+msgid "Imperialism Aura"
+msgstr "Imperialistisch aura"
+
+#: simulation/data/auras/mace_hero_alexander.jsonauraDescription
+msgid "+10% territory effect for all buildings while he lives."
+msgstr "Gebouwen krijgen 10% extra territorium tijdens zijn leven."
+
+#: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
+msgid "+15% Range and +10 Crush Attack for Siege Engines."
+msgstr "+15% bereik en +10 verbrijzelkracht voor belegeringswapens."
+
+#: simulation/data/auras/mace_hero_philip.jsonauraDescription
+msgid "+5 Attack and +2 Capture for Champion Units."
+msgstr "+5 aanvalskracht en +2 veroveringspunten voor kampioenen."
+
+#: simulation/data/auras/maur_pillar.jsonauraDescription
+msgid "All traders in range +20% walk speed."
+msgstr "Alle koopmannen wandelen +20% sneller."
+
+#: simulation/data/auras/pers_hero_cyrus.jsonauraName
+msgid "Lead from the Front Aura"
+msgstr "Aanvoerdersaura"
+
+#: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
+msgid "+2 Attack and +1 Capture for nearby cavalry units."
+msgstr "+2 aanvalskracht en +1 veroveringspunten voor nabije cavalerie."
+
+#: simulation/data/auras/pers_hero_darius.jsonauraName
+msgid "Leadership Aura"
+msgstr "Leiderschapsaura"
+
+#: simulation/data/auras/pers_hero_darius.jsonauraDescription
+msgid "+15% Movement Speed for all units."
+msgstr "15% extra loopsnelheid voor alle eenheden."
+
+#: simulation/data/auras/pers_hero_xerxes.jsonauraName
+msgid "Administrator Aura"
+msgstr "Administratorsaura"
+
+#: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
+msgid "+15% Gather Rate and Build Rate of nearby units."
+msgstr "+15% verzamelsnelheid en bouwsnelheid van nabije eenheden."
+
+#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+msgid "Patriot Aura"
+msgstr "Patriotaura"
+
+#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+msgid "Egyptian units fight 25% faster in her vision range."
+msgstr "Egyptische eenheden vechten 25% sneller in haar gezichtsveld."
+
+#: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
+msgid "Raphia Aura"
+msgstr "Raphia-aura"
+
+#: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
+msgid "Egyptian Pikemen have 40% greater health during his lifetime."
+msgstr "Egyptische piekeniers hebben 40% meer levenspunten gedurende zijn leven."
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
+msgid "Construction Aura"
+msgstr "Constructieaura"
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
+msgid "Buildings construct 10% faster within his vision."
+msgstr "Gebouwen worden 10% sneller gebouwd onder zijn toezicht."
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
+msgid "Mercenary Patron Aura"
+msgstr "Huurlingenpatroonaura"
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraDescription
+msgid "Mercenaries cost -50% resources during his lifetime."
+msgstr "Huurlingen kosten -50% middelen tijdens zijn leven."
+
+#: simulation/data/auras/rome_hero_marcellus.jsonauraName
+msgid "Sword of Rome Aura"
+msgstr "Zwaard van Rome aura"
+
+#: simulation/data/auras/rome_hero_marcellus.jsonauraDescription
+msgid "+5 Attack and +2 Capture for Roman units within his vision range."
+msgstr "+5 aanvalkracht en +2 veroveringspunten voor Romeinse eenheiden in zijn gezichtsveld."
+
+#: simulation/data/auras/rome_hero_maximus.jsonauraName
+msgid "Shield of Rome Aura"
+msgstr "Schild van Rome aura"
+
+#: simulation/data/auras/rome_hero_maximus.jsonauraDescription
+msgid "+1 armour for all units and structures."
+msgstr "+1 pantser voor alle eenheden en gebouwen."
+
+#: simulation/data/auras/rotary_mill.jsonauraName
+msgid "Farming bonus"
+msgstr "Landbouw bonus"
+
+#: simulation/data/auras/rotary_mill.jsonauraDescription
+msgid "Boosts nearby farming with +25% gathering rate."
+msgstr "Versterkt nabijzijnde landbouw met +25% oogstsnelheid."
+
+#: simulation/data/auras/sele_hero_antiochus_great.jsonauraName
+msgid "Ilarchès Aura"
+msgstr "Ilarchès Aura"
+
+#: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
+msgid "All Cavalry gains +2 levels of all armour types."
+msgstr "Alle cavalerie krijgt +2 niveaus van alle wapenrusting."
+
+#: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
+msgid "Conquest Aura"
+msgstr "Veroveringsaura"
+
+#: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraDescription
+msgid ""
+"All nearby enemy Buildings, Siege engines, and Ships have their health "
+"reduced by 20%."
+msgstr "Alle dichtbijzijnde, vijandelijke gebouwen, belegeringswapens en boten krijgen 20% verminderde gezondheid."
+
+#: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
+msgid "Zooiarchos Aura"
+msgstr "Zooiarchos Aura"
+
+#: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
+msgid "Boosts War Elephant attack and speed +20% within his vision."
+msgstr "Verhoogt de aanval en snelheid van oorlogsolifanten in zijn gezichtsveld met +20%."
+
+#: simulation/data/auras/spart_hero_brasidas.jsonauraName
+msgid "Helot Reforms"
+msgstr "Helotenhervormingen"
+
+#: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
+msgid ""
+"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
+msgstr "Helotenspeerwerpers binnen zijn gezichtsveld krijgen +2 aanval en +1 op alle wapenrusting."
+
+#: simulation/data/auras/spart_hero_leonidas.jsonauraName
+msgid "Last Stand Aura"
+msgstr "Laatste overlevende-aura."
+
+#: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
+msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
+msgstr "+20% Aanvalskracht en +1 Veroveringskracht voor nabije Hoplieten en Spartiates"
+
+#: simulation/data/auras/temple_heal.jsonauraDescription
+msgid "Heals nearby units at 1 HP per second."
+msgstr "Genees nabije eenheden aan 1 leven per seconde."
+
+#: simulation/data/auras/theatron.jsonauraDescription
+msgid "Increase territory influence."
+msgstr "Vergroot het territorium voor alle gebouwen."
+
+#: simulation/data/auras/wall_garrisoned.jsonauraName
+msgid "Wall Protection"
+msgstr "Muurbescherming"
+
+#: simulation/data/auras/wall_garrisoned.jsonauraDescription
+msgid "Units on walls have 3 extra Armor levels and higher vision."
+msgstr "Eenheden op de muren hebben +3 pantser en een groter gezichtsveld."
+
+#: simulation/data/auras/wonder_pop_1.jsonauraName
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Wonder Aura"
+msgstr "Wonder aura"
+
+#: simulation/data/auras/wonder_pop_1.jsonauraDescription
+msgid "+10 max. population cap"
+msgstr "+10 extra maximale bevolkingslimiet."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraDescription
+msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
+msgstr "+40 extra maximale bevolkingslimiet (vereist \"Glorieuze Expansie\" technologie)."
+
+#: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
+msgid "Delian League"
+msgstr "Delische Bond"
+
+#: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
+msgid ""
+"Shortly after the great naval victories at Salamis and Mycale, the Greek "
+"city-states instituted the so-called Delian League in 478 BC, whose purpose "
+"was to push the Persians out of the Aegean region. The allied states "
+"contributed ships and money, while the Athenians offered their entire navy."
+msgstr "Kort na de grote maritieme overwinningen te Salamis en Mykale stichtten de Griekse stadstaten in 478 V.C. de zogenoemde Delische Bond. Het doel van die bond was de Perzen uit de Egeïsche regio te houden. De geallieerde staten droegen schepen en geld bij, terwijl de Atheners hun volledige marine schonken."
+
+#: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
+msgid "Saripeko"
+msgstr "Saripeko"
+
+#: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
+msgid ""
+"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
+"Iberian players"
+msgstr "Verminder de kost van burger speerwerpers met 20% voor alle geallieerden van de Iberische speler."
+
+#: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
+msgid "Syryan Tetrapolis"
+msgstr "Syrische Tetrapolis"
+
+#: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
+msgid ""
+"Reduces the cost for civil centers with 20% for allies of Seleucid players"
+msgstr "Verminder de kost van beschavingscentra met 20% voor alle geallieerden van Seleucidische spelers."
