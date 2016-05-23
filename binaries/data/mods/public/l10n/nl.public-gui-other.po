@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-16 09:00+0200\n"
-"PO-Revision-Date: 2016-05-19 13:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-20 09:00+0200\n"
+"PO-Revision-Date: 2016-05-21 09:42+0000\n"
+"Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -368,7 +368,7 @@ msgstr "Ongekende reden"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
-msgstr ""
+msgstr "Dit wordt vaak veroorzaakt door een antivirus of firewall programma die de UDP poort 20595 van de host blokkeert."
 
 #: gui/common/network.js:56
 msgid "The host has ended the game"
@@ -419,7 +419,7 @@ msgstr "Verbinding met de server verloren."
 
 #: gui/common/network.js:84
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Verbinden met de server mislukt."
 
 #: gui/common/network.js:86
 msgid "Disconnected"
@@ -979,12 +979,12 @@ msgstr "Deze herhaling is niet compatibel met jouw versie van het spel!"
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Jouw versie: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Vereiste versie %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
@@ -1158,7 +1158,7 @@ msgstr "Hiervoor is versie %(requiredVersion)s van 0 A.D. vereist, jij hebt vers
 
 #: gui/savedgames/load.js:75
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Dit opgeslagen spel vereist een andere selectie mods:"
 
 #: gui/savedgames/load.js:80
 msgid "Do you still want to proceed?"
@@ -2098,20 +2098,20 @@ msgid "Chat Timestamp"
 msgstr "Chat tijdsweergave"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
-msgid "How you want to be addressed in Single Player matches)."
-msgstr ""
+msgid "How you want to be addressed in Single Player matches."
+msgstr "Hoe wil je genoemd worden in singleplayer wedstrijden?"
 
 #: gui/options/options.jsongeneralSetting[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "Spelernaam (singleplayer)"
 
 #: gui/options/options.jsongeneralSetting[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Hoe wil je genoemd worden in multiplayer wedstrijden (met uitzondering van de lobby)?"
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "Spelernaam (multiplayer)"
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
@@ -2908,11 +2908,11 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr ""
+msgstr "- Een speciaal gebouw voor de Griekse beschavingen."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "- Train zwaar bewapende speerwerpers en kampioen zwaardvechters."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."

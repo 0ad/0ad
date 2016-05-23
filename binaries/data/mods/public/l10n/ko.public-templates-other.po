@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# aksidion kreimben <aksidionkreimben@gmail.com>, 2016
 # Kevin Min <gr326887@graded.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-05-02 09:01+0200\n"
-"PO-Revision-Date: 2016-05-02 08:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-05-21 16:56+0000\n"
+"Last-Translator: aksidion kreimben <aksidionkreimben@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +37,7 @@ msgstr "열매들"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr ""
+msgstr "숲에서 열매를 모으세요."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -44,7 +45,7 @@ msgstr "나무"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr ""
+msgstr "저장된 나무를 자르세요."
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -56,11 +57,11 @@ msgstr "미네랄"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
-msgstr ""
+msgstr "금속광산"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "귀금속의 희귀한 형태의 접근을 제공하는 미네랄 침전물"
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -72,11 +73,11 @@ msgstr "돌 광산"
 
 #: simulation/templates/template_gaia_geo_rock.xml:6
 msgid "Mine these to provide Stone building material."
-msgstr ""
+msgstr "건물의 토대가 되는 것들을 채굴하세요."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "일반적인 유적"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -87,11 +88,11 @@ msgstr "잔해"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr ""
+msgstr "자원을 채굴 할 수 있는 유적"
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "일반 보물"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -113,7 +114,7 @@ msgstr "보물"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr ""
+msgstr "빨리 채취할 수 있는 보물"
 
 #: simulation/templates/template_structure.xml:58
 msgid "Structure"
@@ -135,7 +136,7 @@ msgstr "알렉산더 대왕의 군대"
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
+msgstr "이것은 지도 위에서 군대같은 것입니다."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -143,7 +144,7 @@ msgstr "마케도니아의 군대"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr ""
+msgstr "마케도니아인들의 군대"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
@@ -164,7 +165,7 @@ msgstr "작은 그리스 폴리스"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "이것은 작은 그리스 도시입니다."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -172,7 +173,7 @@ msgstr "그리스 폴리스"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "이것은 큰 그리스 도시입니다."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -184,7 +185,7 @@ msgstr "그리스 종교 성역"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr ""
+msgstr "전투 라인"
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
@@ -192,15 +193,15 @@ msgstr "4개의 유닛이 필요함"
 
 #: simulation/templates/formations/box.xml:7
 msgid "Box"
-msgstr ""
+msgstr "박스"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
-msgstr ""
+msgstr "기둥이 닫혔습니다."
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
-msgstr ""
+msgstr "기둥이 열렸습니다."
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
@@ -212,11 +213,11 @@ msgstr "측면"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr ""
+msgstr "라인이 닫혔습니다."
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr ""
+msgstr "라인이 열렸습니다."
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -224,7 +225,7 @@ msgstr "없음"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "10명의 근접 보병 유닛이 필요합니다."
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -232,7 +233,7 @@ msgstr "방진"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
-msgstr ""
+msgstr "흩뜨림"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
@@ -248,7 +249,7 @@ msgstr "9개의 단창 보병 유닛이 필요함"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
-msgstr ""
+msgstr "구성"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
@@ -256,7 +257,7 @@ msgstr "9개의 근접 보병 유닛이 필요함"
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
-msgstr ""
+msgstr "바다거북이"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
@@ -264,7 +265,7 @@ msgstr "3개의 기병 유닛이 필요함"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
-msgstr ""
+msgstr "쐐기"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -284,11 +285,11 @@ msgstr "닭"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "악어"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr "나일 악어"
+msgstr "악어"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
@@ -296,11 +297,11 @@ msgstr "사슴"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "아프리카 초원 코끼리"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr "아프리카 코끼리 (아이)"
+msgstr "아프리카 새끼 코끼리"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
@@ -318,7 +319,7 @@ msgstr "연어"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "풍부한 해양자원 으로부터의 수집"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -326,7 +327,7 @@ msgstr "틸라피아 물고기"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+msgstr "풍부한 강의 자원으로부터의 수집"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
@@ -334,11 +335,11 @@ msgstr "영양"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr "기린 (성인)"
+msgstr "기린"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
-msgstr "기린 (소아)"
+msgstr "새끼 기린"
 
 #: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
@@ -374,11 +375,11 @@ msgstr "토끼"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "코뿔소"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
-msgstr "백상아ㅣ"
+msgstr "백상아"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Shark"
@@ -402,11 +403,11 @@ msgstr "긴수염고래"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
-msgstr ""
+msgstr "혹등 고래"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "암소같은 영양"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
@@ -414,7 +415,7 @@ msgstr "늑대"
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
-msgstr ""
+msgstr "눈 늑대"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -422,11 +423,11 @@ msgstr "얼룩말"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr ""
+msgstr "거센 초원"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
-msgstr ""
+msgstr "마초"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
@@ -434,19 +435,19 @@ msgstr "포도들"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
-msgstr ""
+msgstr "음식으로 쓰일 포도를 모으세요."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr ""
+msgstr "낙엽 덤불"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
-msgstr ""
+msgstr "아카시아 나무"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
-msgstr ""
+msgstr "알레포 지역의 소나무"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
@@ -458,13 +459,13 @@ msgstr "바오밥나무"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
-msgstr ""
+msgstr "카롭 나무"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr ""
+msgstr "크리탄 섬 대추야자 나무"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
@@ -481,7 +482,7 @@ msgstr "죽은 나무"
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
+msgstr "유럽 너도밤 나무"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
@@ -489,11 +490,11 @@ msgstr "무화과"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
-msgstr ""
+msgstr "음식으로 쓰일 무화과를 모으세요."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr ""
+msgstr "지중해 야자나무"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
@@ -530,7 +531,7 @@ msgstr "포플러 나무"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "양버들 나무"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -538,11 +539,11 @@ msgstr "세네갈 대추야자"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr ""
+msgstr "소금 삼나무"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
-msgstr ""
+msgstr "투나 나무"
 
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
@@ -558,11 +559,11 @@ msgstr "돌 유적"
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
 msgid "Celtic Standing Stone"
-msgstr ""
+msgstr "셀틱 기"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
-msgstr ""
+msgstr "프톨레마이오스의 이집트 동상"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
@@ -575,19 +576,19 @@ msgstr "로마 동상들"
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr ""
+msgstr "음식 보물"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
-msgstr ""
+msgstr "반쯤 묻은 원통"
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
-msgstr ""
+msgstr "페르시안 음식 저장고"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
-msgstr ""
+msgstr "페르시안 음식 보물"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
@@ -597,7 +598,7 @@ msgstr "황금 양털"
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
 msgid "Metal Treasure"
-msgstr ""
+msgstr "금속 보물"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
@@ -605,7 +606,7 @@ msgstr "비밀 상자"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr ""
+msgstr "페르시아 상품"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
@@ -613,16 +614,16 @@ msgstr "페르시아 양탄자들"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
-msgstr ""
+msgstr "페가수스"
 
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
 msgid "Stone Treasure"
-msgstr ""
+msgstr "암석 보물"
 
 #: simulation/templates/gaia/special_treasure_wood.xml:10
 msgid "Wood Treasure"
-msgstr ""
+msgstr "목재 보물"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
@@ -644,15 +645,15 @@ msgstr "나무 다리"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "희생의 사원"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "지옥"
 
 #: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "의사와 신성한 기병을 훈련하세요."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -660,7 +661,7 @@ msgstr "오두막"
 
 #: simulation/templates/other/celt_hut.xml:22
 msgid "Add +2 to Population Cap."
-msgstr ""
+msgstr "2명의 인구를 추가합니다."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -670,22 +671,22 @@ msgstr "롱하우스"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr ""
+msgstr "10명의 인구를 추가합니다."
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
 #: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Column"
-msgstr ""
+msgstr "기둥(칼럼)"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr ""
+msgstr "도리스 지방의 기둥(칼럼)"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr ""
+msgstr "추락한 도리스 지방의 기둥(칼럼)"
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -711,39 +712,39 @@ msgstr "밀밭"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:29
 msgid "Epic Temple"
-msgstr ""
+msgstr "영웅 사원"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "나오스 파르테논 신전"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "최대 30명의 수비대는 빠른 속도로 그들을 치유합니다."
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "포르티코"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "아테네의 입구"
 
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "스토아"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "헬레닉 스토아"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
-msgstr ""
+msgstr "하르"
 
 #: simulation/templates/other/maur_palace.xml:13
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr ""
+msgstr "15명의 인구를 늘리고, 추가 유닛과 영웅을 모집"
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
@@ -755,7 +756,7 @@ msgstr "이집트 오벨리스크"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
-msgstr ""
+msgstr "방어벽 각도 스파이크"
 
 #: simulation/templates/other/palisades_angle_spike.xml:17
 msgid "Big Spike"
@@ -763,35 +764,35 @@ msgstr "큰 가시"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
-msgstr ""
+msgstr "방어벽 곡선"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
-msgstr ""
+msgstr "목재 벽 코너"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
-msgstr ""
+msgstr "방어벽의 끝"
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
-msgstr ""
+msgstr "목재 방벽의 끝"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
-msgstr ""
+msgstr "방어벽 요새"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
-msgstr ""
+msgstr "목재 타워"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:25
 msgid "Palisade Gate"
-msgstr ""
+msgstr "방어벽 입구"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:26
 msgid "Wooden Gate"
-msgstr ""
+msgstr "목재 문"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27
@@ -800,7 +801,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
-msgstr ""
+msgstr "방어벽"
 
 #: simulation/templates/other/palisades_rocks_long.xml:28
 #: simulation/templates/other/palisades_rocks_medium.xml:28
@@ -813,7 +814,7 @@ msgstr "목조 방벽"
 
 #: simulation/templates/other/palisades_rocks_long.xml:29
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
+msgstr "나무 문안에 나무 벽으로 변환"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
@@ -830,23 +831,23 @@ msgstr "망루"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
-msgstr ""
+msgstr "작은 대못"
 
 #: simulation/templates/other/palisades_small_spikes.xml:17
 msgid "Small Spikes"
-msgstr ""
+msgstr "작은 대못"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
-msgstr ""
+msgstr "대못 길이"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:17
 msgid "Tall Spikes"
-msgstr ""
+msgstr "큰 대못"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "아파트 벽돌"
 
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
@@ -867,7 +868,7 @@ msgstr "P-51 무스탕"
 
 #: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "2차 세계대전 미군 비행기"
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -884,11 +885,11 @@ msgstr "작은 피라미드"
 
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
-msgstr ""
+msgstr "열주(가로수)"
 
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
-msgstr ""
+msgstr "코린트식 열주(가로수)"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
@@ -899,94 +900,94 @@ msgstr "난파선"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "썩는 난파선 (군대). 어떤 사업가를 위한 좋은 기회."
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "난파선화물"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr ""
+msgstr "생명의 손실이 많은 난파선. 어떤 사업가에게 좋은 기회."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "작은 화물선의 난파. 어떤 사업가에게 좋은 기회."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "절반정도 부딪힌 화물선. 어떤 사업가에게 좋은 "
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "큰 마구간"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "중간 크기의 마구간"
 
 #: simulation/templates/other/stall_small_a.xml:12
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "작은 마구간"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
 msgid "Table"
-msgstr ""
+msgstr "테이블(탁자)"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr ""
+msgstr "직사각형 테이블(탁자)"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
+msgstr "정사각형 테이블(탁자)"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr ""
+msgstr "미완성된 그리스 사원"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
+msgstr "이 사원은 미완성 되었고, 유적으로 변했습니다."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr ""
+msgstr "10가구의 대중 주택의 변화는 다른 문명에 대한 삭제 입니다."
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
+msgstr "5 가구의 대중 주택의 변화는 다른 문명에 대한 삭제 입니다."
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "채점자"
 
 #: simulation/templates/special/player.xml:56
 msgid "Player"
-msgstr ""
+msgstr "선수"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "투석기"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr ""
+msgstr "석궁"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
@@ -995,8 +996,8 @@ msgstr "발리스타"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr ""
+msgstr "그리스식 연노"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
 msgid "Scorpio"
-msgstr ""
+msgstr "천갈궁(별자리)"

@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-16 09:00+0200\n"
-"PO-Revision-Date: 2016-05-16 09:35+0000\n"
+"POT-Creation-Date: 2016-05-20 09:00+0200\n"
+"PO-Revision-Date: 2016-05-20 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -57,12 +57,12 @@ msgid "Confirmation"
 msgstr "Bekräfta"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:629 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nej"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:629 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -100,7 +100,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Inga"
 
-#: gui/session/menu.js:309 gui/session/messages.js:86
+#: gui/session/menu.js:309 gui/session/messages.js:87
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Allierad"
@@ -109,7 +109,7 @@ msgstr "Allierad"
 msgid "Neutral"
 msgstr "Neutral"
 
-#: gui/session/menu.js:310 gui/session/messages.js:87
+#: gui/session/menu.js:310 gui/session/messages.js:88
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Fiende"
@@ -232,223 +232,231 @@ msgstr[1] "%(numberOfShipTraders)s inaktiva handelsskepp"
 msgid "Current Scores"
 msgstr "Aktuella Poäng"
 
-#: gui/session/menu.js:676 gui/session/menu.js:698
+#: gui/session/menu.js:741
 msgid "Resume"
 msgstr "Fortsätt"
 
-#: gui/session/menu.js:683 gui/session/menu.js:698
-#: gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:741 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Pausa"
 
-#: gui/session/menu.js:710 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:745
+#, javascript-format
+msgid "Paused by %(players)s"
+msgstr ""
+
+#: gui/session/menu.js:746
+msgid ", "
+msgstr ""
+
+#: gui/session/menu.js:759 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:726
+#: gui/session/menu.js:775
 msgid "The Developer Overlay was closed."
 msgstr "Utvecklaröverlägget stängdes."
 
-#: gui/session/menu.js:727
+#: gui/session/menu.js:776
 msgid "The Developer Overlay was opened."
 msgstr "Utvecklaröverlägget öppnades."
 
-#: gui/session/menu.js:748
+#: gui/session/menu.js:797
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Betala %(resourceAmount)s %(resourceType)s i tribut till %(playerName)s. Skift-klicka för att betala %(greaterAmount)s."
 
-#: gui/session/messages.js:35
+#: gui/session/messages.js:36
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s har blivit utsparkad"
 
-#: gui/session/messages.js:36
+#: gui/session/messages.js:37
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s har blivit bannlyst"
 
-#: gui/session/messages.js:45
+#: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s har börjat återansluta sig till spelet."
 
-#: gui/session/messages.js:46
+#: gui/session/messages.js:47
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s har lämnat spelet."
 
-#: gui/session/messages.js:47
+#: gui/session/messages.js:48
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s har återanslutit till spelet."
 
-#: gui/session/messages.js:60
+#: gui/session/messages.js:61
 msgid "Connection to the server has been authenticated."
 msgstr "Anslutning till servern har blivit autentiserad."
 
-#: gui/session/messages.js:61
+#: gui/session/messages.js:62
 msgid "Connected to the server."
 msgstr "Ansluten till servern."
 
-#: gui/session/messages.js:62
+#: gui/session/messages.js:63
 msgid "Connection to the server has been lost."
 msgstr "Anslutning till servern har tappats."
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:64
+#: gui/session/messages.js:65
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Anledning: %(reason)s."
 
-#: gui/session/messages.js:65
+#: gui/session/messages.js:66
 msgid "Waiting for other players to connect..."
 msgstr "Väntar på att andra spelare ska ansluta..."
 
-#: gui/session/messages.js:66
+#: gui/session/messages.js:67
 msgid "Synchronising gameplay with other players..."
 msgstr "Synkroniserar spelet med andra spelare..."
 
-#: gui/session/messages.js:75
+#: gui/session/messages.js:76
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:76
+#: gui/session/messages.js:77
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:79
+#: gui/session/messages.js:80
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:80
+#: gui/session/messages.js:81
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:85 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:86 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Lag"
 
-#: gui/session/messages.js:88 gui/session/session.js:265
+#: gui/session/messages.js:89 gui/session/session.js:275
 msgid "Observer"
 msgstr "Observatör"
 
-#: gui/session/messages.js:89
+#: gui/session/messages.js:90
 msgid "Private"
 msgstr "Privat"
 
-#: gui/session/messages.js:124
+#: gui/session/messages.js:125
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Du är nu allierad med %(player)s."
 
-#: gui/session/messages.js:125
+#: gui/session/messages.js:126
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Du är nu i krig med %(player)s."
 
-#: gui/session/messages.js:126
+#: gui/session/messages.js:127
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Du har nu neutral relation med %(player)s."
 
-#: gui/session/messages.js:129
+#: gui/session/messages.js:130
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s är nu allierad med dig."
 
-#: gui/session/messages.js:130
+#: gui/session/messages.js:131
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s är nu i krig med dig."
 
-#: gui/session/messages.js:131
+#: gui/session/messages.js:132
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s har nu neutral relation med dig."
 
-#: gui/session/messages.js:134
+#: gui/session/messages.js:135
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s är nu allierad med %(player2)s."
 
-#: gui/session/messages.js:135
+#: gui/session/messages.js:136
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s är nu i krig med %(player2)s."
 
-#: gui/session/messages.js:136
+#: gui/session/messages.js:137
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s har nu neutral relation med %(player2)s."
 
-#: gui/session/messages.js:504
+#: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Alla"
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:519
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Allierade"
 
-#: gui/session/messages.js:516
+#: gui/session/messages.js:523
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Fiender"
 
-#: gui/session/messages.js:522
+#: gui/session/messages.js:529
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Observatörer"
 
-#: gui/session/messages.js:650
+#: gui/session/messages.js:657
 msgid "Unknown Player"
 msgstr "Okänd Spelare"
 
-#: gui/session/messages.js:657
+#: gui/session/messages.js:664
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s har gett upp."
 
-#: gui/session/messages.js:658
+#: gui/session/messages.js:665
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s har blivit besegrade."
 
-#: gui/session/messages.js:687
+#: gui/session/messages.js:694
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s har skickat %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:689
+#: gui/session/messages.js:696
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s har skickat dig %(amounts)s."
 
-#: gui/session/messages.js:704
+#: gui/session/messages.js:711
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Ditt boskap har blivit attackerat av %(attacker)s!"
 
-#: gui/session/messages.js:705
+#: gui/session/messages.js:712
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Du har blivit attackerad av %(attacker)s!"
 
-#: gui/session/messages.js:748
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:375
-#: gui/session/selection_details.js:407 gui/session/session.js:812
+#: gui/session/selection_details.js:407 gui/session/session.js:822
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -580,7 +588,7 @@ msgstr "Köp %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Sälj %(resource)s"
 
-#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1122
+#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1124
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Erfordrar %(technology)s"
@@ -627,14 +635,14 @@ msgstr "Otillräcklig befolkningskapacitet:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:850
+#: gui/session/selection_panels.js:852
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Kvar att bygga: %(number)s"
 msgstr[1] "Kvar att bygga: %(number)s"
 
-#: gui/session/selection_panels.js:1110 gui/session/session.js:811
+#: gui/session/selection_panels.js:1112 gui/session/session.js:821
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Hälsa:"
@@ -730,97 +738,97 @@ msgstr "%(action)s för att träna %(number)s (%(fullBatch)s)."
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s för att träna %(number)s."
 
-#: gui/session/session.js:251
+#: gui/session/session.js:261
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:391
+#: gui/session/session.js:401
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strukturträd"
 
-#: gui/session/session.js:458 gui/session/session.js:474
+#: gui/session/session.js:468 gui/session/session.js:484
 msgid "You have left the game."
 msgstr "Du har lämnat spelet."
 
-#: gui/session/session.js:465
+#: gui/session/session.js:475
 msgid "You have been disconnected."
 msgstr "Din anslutning har brutits."
 
-#: gui/session/session.js:467
+#: gui/session/session.js:477
 msgid "You have won the battle!"
 msgstr "Du har vunnit striden!"
 
-#: gui/session/session.js:469
+#: gui/session/session.js:479
 msgid "You have been defeated..."
 msgstr "Du har blivit besegrad..."
 
-#: gui/session/session.js:477
+#: gui/session/session.js:487
 msgid "You have abandoned the game."
 msgstr "Du har övergivit spelet."
 
-#: gui/session/session.js:623
+#: gui/session/session.js:633
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:625
+#: gui/session/session.js:635
 msgid "Press OK to continue"
 msgstr "Tryck OK för att fortsätta"
 
-#: gui/session/session.js:631
+#: gui/session/session.js:641
 msgid "Do you want to quit?"
 msgstr "Vill du avsluta?"
 
-#: gui/session/session.js:636
+#: gui/session/session.js:646
 msgid "DEFEATED!"
 msgstr "BESEGRAD!"
 
-#: gui/session/session.js:641
+#: gui/session/session.js:651
 msgid "VICTORIOUS!"
 msgstr "SEGRARE!"
 
-#: gui/session/session.js:737
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Replayen är över. Vill du avsluta?"
 
-#: gui/session/session.js:738
+#: gui/session/session.js:748
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
-#: gui/session/session.js:739
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nej"
 
-#: gui/session/session.js:739
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:904
+#: gui/session/session.js:914
 msgid "Population (current / limit)"
 msgstr "Population (nuvarande / gräns)"
 
-#: gui/session/session.js:905
+#: gui/session/session.js:915
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximal befolkning: %(popCap)s"
 
-#: gui/session/session.js:1045
+#: gui/session/session.js:1055
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1052
+#: gui/session/session.js:1062
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Not: Time Warp Läge är ett utvecklaralternativ och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att förbruka för mycket minne och crasha."
 
-#: gui/session/session.js:1053
+#: gui/session/session.js:1063
 msgid "Time warp mode"
 msgstr "Time warp läge"
 
@@ -996,7 +1004,7 @@ msgstr "Alternativ"
 msgid "Resign"
 msgstr "Ge upp"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):362
+#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):357
 msgid "Exit"
 msgstr "Avsluta"
 
@@ -1056,38 +1064,38 @@ msgstr "Befordra valda enheter"
 msgid "Hierarchical pathfinder overlay"
 msgstr "Hierarkiska Pathfinderöverlägg"
 
-#: gui/session/session.xml:(caption):186
+#: gui/session/session.xml:(caption):180
 msgid "Game Paused"
 msgstr "Spel pausat"
 
-#: gui/session/session.xml:(caption):189
+#: gui/session/session.xml:(caption):183
 msgid "Click to Resume Game"
 msgstr "Tryck för att fortsätta spelet"
 
-#: gui/session/session.xml:(caption):216
+#: gui/session/session.xml:(caption):211
 msgctxt "chat input"
 msgid "To:"
 msgstr "Till:"
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):219
 msgctxt "chat input"
 msgid "Text:"
 msgstr "Meddelande:"
 
-#: gui/session/session.xml:(caption):239
+#: gui/session/session.xml:(caption):234
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: gui/session/session.xml:(caption):245
+#: gui/session/session.xml:(caption):240
 msgid "Send"
 msgstr "Skicka"
 
-#: gui/session/session.xml:(tooltip):219
+#: gui/session/session.xml:(tooltip):214
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
 msgstr "Välj adressat för chattmeddelandet"
 
-#: gui/session/session.xml:(tooltip):227
+#: gui/session/session.xml:(tooltip):222
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Skriv ditt meddelande."
