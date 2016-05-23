@@ -983,18 +983,27 @@ function recalculateStatusBarDisplay()
 {
 	let entities;
 	if (g_ShowAllStatusBars)
-		entities = g_IsObserver ? Engine.PickNonGaiaEntitiesOnScreen() : Engine.PickPlayerEntitiesOnScreen(Engine.GetPlayerID());
+		entities = g_ViewedPlayer == -1 ?
+			Engine.PickNonGaiaEntitiesOnScreen() :
+			Engine.PickPlayerEntitiesOnScreen(g_ViewedPlayer);
 	else
 	{
 		let selected = g_Selection.toList();
 		for (let ent in g_Selection.highlighted)
 			selected.push(g_Selection.highlighted[ent]);
 
-		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
-		entities = Engine.GuiInterfaceCall(g_IsObserver ? "GetNonGaiaEntities" : "GetPlayerEntities").filter(idx => selected.indexOf(idx) == -1);
+		// Remove selected entities from the 'all entities' array,
+		// to avoid disabling their status bars.
+		entities = Engine.GuiInterfaceCall(
+			g_ViewedPlayer == -1 ? "GetNonGaiaEntities" : "GetPlayerEntities", {
+				"viewedPlayer": g_ViewedPlayer
+			}).filter(idx => selected.indexOf(idx) == -1);
 	}
 
-	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });
+	Engine.GuiInterfaceCall("SetStatusBars", {
+		"entities": entities,
+		"enabled": g_ShowAllStatusBars
+	});
 }
 
 // Update the additional list of entities to be highlighted.

@@ -888,9 +888,9 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 	}
 };
 
-GuiInterface.prototype.GetPlayerEntities = function(player)
+GuiInterface.prototype.GetPlayerEntities = function(player, data)
 {
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(player);
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(data.viewedPlayer);
 };
 
 GuiInterface.prototype.GetNonGaiaEntities = function()
