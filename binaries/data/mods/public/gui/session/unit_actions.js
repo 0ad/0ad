@@ -234,11 +234,11 @@ var unitActions =
 			    entState.id == targetState.id) // Healers can't heal themselves.
 				return false;
 
-			var unhealableClasses = entState.healer.unhealableClasses;
+			let unhealableClasses = entState.healer.unhealableClasses;
 			if (MatchesClassList(targetState.identity.classes, unhealableClasses))
 				return false;
 
-			var healableClasses = entState.healer.healableClasses;
+			let healableClasses = entState.healer.healableClasses;
 			if (!MatchesClassList(targetState.identity.classes, healableClasses))
 				return false;
 
@@ -381,7 +381,7 @@ var unitActions =
 			if (!targetState.resourceSupply)
 				return false;
 
-			var resource = findGatherType(entState, targetState.resourceSupply);
+			let resource = findGatherType(entState, targetState.resourceSupply);
 			if (!resource)
 				return false;
 
@@ -392,7 +392,7 @@ var unitActions =
 		},
 		"actionCheck": function(target)
 		{
-			var actionInfo = getActionInfo("gather", target);
+			let actionInfo = getActionInfo("gather", target);
 
 			if (!actionInfo.possible)
 				return false;
@@ -429,7 +429,7 @@ var unitActions =
 			if (!targetState.resourceDropsite)
 				return false;
 
-			var playerState = GetSimState().players[entState.player];
+			let playerState = GetSimState().players[entState.player];
 			if (playerState.hasSharedDropsites && targetState.resourceDropsite.shared)
 			{
 				if (!playerCheck(entState, targetState, ["Player", "MutualAlly"]))
@@ -441,7 +441,7 @@ var unitActions =
 			if (!entState.resourceCarrying || !entState.resourceCarrying.length)
 				return false;
 
-			var carriedType = entState.resourceCarrying[0].type;
+			let carriedType = entState.resourceCarrying[0].type;
 			if (targetState.resourceDropsite.types.indexOf(carriedType) == -1)
 				return false;
 
@@ -452,7 +452,7 @@ var unitActions =
 		},
 		"actionCheck": function(target)
 		{
-			var actionInfo = getActionInfo("returnresource", target);
+			let actionInfo = getActionInfo("returnresource", target);
 			if (!actionInfo.possible)
 				return false;
 
@@ -501,7 +501,7 @@ var unitActions =
 			if (!tradingDetails)
 				return false;
 
-			var tooltip;
+			let tooltip;
 			switch (tradingDetails.type)
 			{
 			case "is first":
@@ -544,7 +544,7 @@ var unitActions =
 		},
 		"actionCheck": function(target)
 		{
-			var actionInfo = getActionInfo("setup-trade-route", target);
+			let actionInfo = getActionInfo("setup-trade-route", target);
 			if (!actionInfo.possible)
 				return false;
 
@@ -583,12 +583,12 @@ var unitActions =
 			    !playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 				return false;
 
-			var tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
+			let tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
 				"garrisoned": targetState.garrisonHolder.garrisonedEntitiesCount,
 				"capacity": targetState.garrisonHolder.capacity
 			});
 
-			var extraCount = 0;
+			let extraCount = 0;
 			if (entState.garrisonHolder)
 				extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
 
@@ -608,7 +608,7 @@ var unitActions =
 			if (preSelectedAction != ACTION_GARRISON)
 				return false;
 
-			var actionInfo =  getActionInfo("garrison", target);
+			let actionInfo =  getActionInfo("garrison", target);
 			if (!actionInfo.possible)
 				return {
 					"type": "none",
@@ -625,7 +625,7 @@ var unitActions =
 		},
 		"hotkeyActionCheck": function(target)
 		{
-			var actionInfo = getActionInfo("garrison", target);
+			let actionInfo = getActionInfo("garrison", target);
 
 			if (!Engine.HotkeyIsPressed("session.garrison") || !actionInfo.possible)
 				return false;
@@ -765,10 +765,10 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			var tooltip;
+			let tooltip;
 			// default to walking there (or attack-walking if hotkey pressed)
 			let data = { "command": "walk" };
-			var cursor = "";
+			let cursor = "";
 
 			if (Engine.HotkeyIsPressed("session.attackmove"))
 			{
@@ -801,7 +801,7 @@ var unitActions =
 			}
 			else if (targetState.resourceSupply)
 			{
-				var resourceType = targetState.resourceSupply.type;
+				let resourceType = targetState.resourceSupply.type;
 				if (resourceType.generic == "treasure")
 					cursor = "action-gather-" + resourceType.generic;
 				else
@@ -817,9 +817,9 @@ var unitActions =
 			         !playerCheck(entState, targetState, ["Enemy"]))
 			{
 				// Find a trader (if any) that this building can produce.
-				var trader;
+				let trader;
 				if (entState.production && entState.production.entities.length)
-					for (var i = 0; i < entState.production.entities.length; ++i)
+					for (let i = 0; i < entState.production.entities.length; ++i)
 						if ((trader = GetTemplateData(entState.production.entities[i]).trader))
 							break;
 
@@ -829,7 +829,7 @@ var unitActions =
 					"template": trader
 				};
 
-				var gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
+				let gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
 				if (gain && gain.traderGain)
 				{
 					data.command = "trade";
@@ -1019,7 +1019,7 @@ var g_EntityCommands =
 			    !g_DevSettings.controlAll)
 				return;
 
-			var selection = g_Selection.toList();
+			let selection = g_Selection.toList();
 			if (!selection.length)
 				return;
 
@@ -1039,7 +1039,7 @@ var g_EntityCommands =
 		},
 		"execute": function(entState)
 		{
-			var selection = g_Selection.toList();
+			let selection = g_Selection.toList();
 			if (selection.length)
 				stopUnits(selection);
 		},
@@ -1069,7 +1069,7 @@ var g_EntityCommands =
 			if (!entState.unitAI || !entState.turretParent)
 				return false;
 
-			var p = GetEntityState(entState.turretParent);
+			let p = GetEntityState(entState.turretParent);
 			if (!p.garrisonHolder || p.garrisonHolder.entities.indexOf(entState.id) == -1)
 				return false;
 
@@ -1246,7 +1246,7 @@ var g_AllyEntityCommands =
 
 			let player = Engine.GetPlayerID();
 
-			var count = 0;
+			let count = 0;
 			for (let ent in g_Selection.selected)
 			{
 				let selectedEntState = GetEntityState(+ent);
@@ -1301,8 +1301,8 @@ var g_AllyEntityCommands =
 
 function playerCheck(entState, targetState, validPlayers)
 {
-	var playerState = GetSimState().players[entState.player];
-	for (var player of validPlayers)
+	let playerState = GetSimState().players[entState.player];
+	for (let player of validPlayers)
 	{
 		if (player == "Gaia" && targetState.player == 0 ||
 		    player == "Player" && targetState.player == entState.player ||
