@@ -26,32 +26,37 @@
  * The lower the number, the more specific an action is, and the bigger
  * the chance of selecting that action when multiple actions are possible
  */
-
 var unitActions =
 {
 	"move":
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "walk",
+				"entities": selection,
+				"x": target.x,
+				"z": target.z,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_walk",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			return {"possible": true};
+			return { "possible": true };
 		},
 		"actionCheck": function(target, selection)
 		{
-			// Work out whether at least part of the selection have UnitAI
-			var haveUnitAI = selection.some(function(ent) {
-				var entState = GetEntityState(ent);
-				return entState && entState.unitAI;
-			});
+			if (!someUnitAI(selection) || !getActionInfo("move", target).possible)
+				return false;
 
-			if (haveUnitAI && getActionInfo("move", target).possible)
-				return {"type": "move"};
-			return false;
+			return { "type": "move" };
 		},
 		"specificness": 12,
 	},
@@ -60,29 +65,43 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
+			let targetClasses;
 			if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
-				var targetClasses = { "attack": ["Unit"] };
+				targetClasses = { "attack": ["Unit"] };
 			else
-				var targetClasses = { "attack": ["Unit", "Structure"] };
+				targetClasses = { "attack": ["Unit", "Structure"] };
 
-			Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "targetClasses": targetClasses, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "attack-walk",
+				"entities": selection,
+				"x": target.x,
+				"z": target.z,
+				"targetClasses": targetClasses,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_walk",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			return {"possible": true};
+			return { "possible": true };
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			// Work out whether at least part of the selection have UnitAI
-			var haveUnitAI = selection.some(function(ent) {
-				var entState = GetEntityState(ent);
-				return entState && entState.unitAI;
-			});
-			if (haveUnitAI && Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
-				return {"type": "attack-move", "cursor": "action-attack-move"};
-			return false;
+			if (!someUnitAI(selection) ||
+			    !Engine.HotkeyIsPressed("session.attackmove") ||
+			    !getActionInfo("attack-move", target).possible)
+				return false;
+
+			return {
+				"type": "attack-move",
+				"cursor": "action-attack-move"
+			};
 		},
 		"specificness": 30,
 	},
@@ -91,21 +110,43 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "allowCapture": true, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "attack",
+				"entities": selection,
+				"target": action.target,
+				"allowCapture": true,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_attack",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
 			if (!entState.attack || !targetState.hitpoints)
 				return false;
-			return {"possible": Engine.GuiInterfaceCall("CanCapture", {"entity": entState.id, "target": targetState.id})};
+
+			return {
+				"possible": Engine.GuiInterfaceCall("CanCapture", {
+					"entity": entState.id,
+					"target": targetState.id
+				})
+			};
 		},
 		"actionCheck": function(target)
 		{
-			if (getActionInfo("capture", target).possible)
-				return {"type": "capture", "cursor": "action-capture", "target": target};
-			return false;
+			if (!getActionInfo("capture", target).possible)
+				return false;
+
+			return {
+				"type": "capture",
+				"cursor": "action-capture",
+				"target": target
+			};
 		},
 		"specificness": 9,
 	},
@@ -114,27 +155,55 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued, "allowCapture": false});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "attack",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued,
+				"allowCapture": false
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_attack",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
 			if (!entState.attack || !targetState.hitpoints)
 				return false;
-			return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": targetState.id})};
+
+			return {
+				"possible": Engine.GuiInterfaceCall("CanAttack", {
+					"entity": entState.id,
+					"target": targetState.id
+				})
+			};
 		},
 		"hotkeyActionCheck": function(target)
 		{
-			if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
-				return {"type": "attack", "cursor": "action-attack", "target": target};
-			return false;
+			if (!Engine.HotkeyIsPressed("session.attack") ||
+			    !getActionInfo("attack", target).possible)
+				return false;
+
+			return {
+				"type": "attack",
+				"cursor": "action-attack",
+				"target": target
+			};
 		},
 		"actionCheck": function(target)
 		{
-			if (getActionInfo("attack", target).possible)
-				return {"type": "attack", "cursor": "action-attack", "target": target};
-			return false;
+			if (!getActionInfo("attack", target).possible)
+				return false;
+
+			return {
+				"type": "attack",
+				"cursor": "action-attack",
+				"target": target
+			};
 		},
 		"specificness": 10,
 	},
@@ -143,21 +212,26 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "heal", "entities": selection, "target": action.target, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_heal", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "heal",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_heal",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.healer)
-				return false;
-			if (!hasClass(targetState, "Unit") || !targetState.needsHeal)
-				return false;
-			if (!playerCheck(entState, targetState, ["Player", "Ally"]))
-				return false;
-
-			// Healers can't heal themselves.
-			if (entState.id == targetState.id)
+			if (!entState.healer ||
+			    !hasClass(targetState, "Unit") || !targetState.needsHeal ||
+			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
+			    entState.id == targetState.id) // Healers can't heal themselves.
 				return false;
 
 			var unhealableClasses = entState.healer.unhealableClasses;
@@ -168,13 +242,18 @@ var unitActions =
 			if (!MatchesClassList(targetState.identity.classes, healableClasses))
 				return false;
 
-			return {"possible": true};
+			return { "possible": true };
 		},
 		"actionCheck": function(target)
 		{
-			if (getActionInfo("heal", target).possible)
-				return {"type": "heal", "cursor": "action-heal", "target": target};
-			return false;
+			if (!getActionInfo("heal", target).possible)
+				return false;
+
+			return {
+				"type": "heal",
+				"cursor": "action-heal",
+				"target": target
+			};
 		},
 		"specificness": 7,
 	},
@@ -183,21 +262,39 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "autocontinue": true, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "repair",
+				"entities": selection,
+				"target": action.target,
+				"autocontinue": true,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_repair",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation && entState.builder && playerCheck(entState, targetState, ["Player", "Ally"]))
-				return {"possible": true};
-			return false;
+			if (!targetState.foundation || !entState.builder ||
+			    !playerCheck(entState, targetState, ["Player", "Ally"]))
+				return false;
+
+			return { "possible": true };
 		},
 		"actionCheck": function(target)
 		{
-			if (getActionInfo("build", target).possible)
-				return {"type": "build", "cursor": "action-build", "target": target};
-			return false;
+			if (!getActionInfo("build", target).possible)
+				return false;
+
+			return {
+				"type": "build",
+				"cursor": "action-build",
+				"target": target
+			};
 		},
 		"specificness": 3,
 	},
@@ -206,29 +303,57 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "autocontinue": true, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "repair",
+				"entities": selection,
+				"target": action.target,
+				"autocontinue": true,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_repair",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (entState.builder && targetState.needsRepair && playerCheck(entState, targetState, ["Player", "Ally"]))
-				return {"possible": true};
-			return false;
+			if (!entState.builder || !targetState.needsRepair ||
+			    !playerCheck(entState, targetState, ["Player", "Ally"]))
+				return false;
+
+			return { "possible": true };
 		},
 		"preSelectedActionCheck" : function(target)
 		{
 			if (preSelectedAction != ACTION_REPAIR)
 				return false;
+
 			if (getActionInfo("repair", target).possible)
-				return {"type": "repair", "cursor": "action-repair", "target": target};
-			return {"type": "none", "cursor": "action-repair-disabled", "target": null};
+				return {
+					"type": "repair",
+					"cursor": "action-repair",
+					"target": target
+				};
+
+			return {
+				"type": "none",
+				"cursor": "action-repair-disabled",
+				"target": null
+			};
 		},
 		"actionCheck": function(target)
 		{
-			if (getActionInfo("repair", target).possible)
-				return {"type": "build", "cursor": "action-repair", "target": target};
-			return false;
+			if (!getActionInfo("repair", target).possible)
+				return false;
+
+			return {
+				"type": "build",
+				"cursor": "action-repair",
+				"target": target
+			};
 		},
 		"specificness": 11,
 	},
@@ -237,25 +362,46 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "gather",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_gather",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo":  function(entState, targetState)
 		{
 			if (!targetState.resourceSupply)
 				return false;
+
 			var resource = findGatherType(entState, targetState.resourceSupply);
-			if (resource)
-				return {"possible": true, "cursor": "action-gather-" + resource};
-			return false;
+			if (!resource)
+				return false;
+
+			return {
+				"possible": true,
+				"cursor": "action-gather-" + resource
+			};
 		},
 		"actionCheck": function(target)
 		{
 			var actionInfo = getActionInfo("gather", target);
+
 			if (!actionInfo.possible)
 				return false;
-			return {"type": "gather", "cursor": actionInfo.cursor, "target": target};
+
+			return {
+				"type": "gather",
+				"cursor": actionInfo.cursor,
+				"target": target
+			};
 		},
 		"specificness": 1,
 	},
@@ -264,14 +410,25 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "returnresource", "entities": selection, "target": action.target, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "returnresource",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_gather",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
 			if (!targetState.resourceDropsite)
 				return false;
+
 			var playerState = GetSimState().players[entState.player];
 			if (playerState.hasSharedDropsites && targetState.resourceDropsite.shared)
 			{
@@ -280,19 +437,30 @@ var unitActions =
 			}
 			else if (!playerCheck(entState, targetState, ["Player"]))
 				return false;
+
 			if (!entState.resourceCarrying || !entState.resourceCarrying.length)
 				return false;
+
 			var carriedType = entState.resourceCarrying[0].type;
 			if (targetState.resourceDropsite.types.indexOf(carriedType) == -1)
 				return false;
-			return {"possible": true, "cursor": "action-return-" + carriedType};
+
+			return {
+				"possible": true,
+				"cursor": "action-return-" + carriedType
+			};
 		},
 		"actionCheck": function(target)
 		{
 			var actionInfo = getActionInfo("returnresource", target);
 			if (!actionInfo.possible)
 				return false;
-			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
+
+			return {
+				"type": "returnresource",
+				"cursor": actionInfo.cursor,
+				"target": target
+			};
 		},
 		"specificness": 2,
 	},
@@ -301,22 +469,34 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target, "source": null, "route": null, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_trade", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "setup-trade-route",
+				"entities": selection,
+				"target": action.target,
+				"source": null,
+				"route": null,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_trade",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation || !entState.trader || !targetState.market)
-				return false;
-			if (!playerCheck(entState, targetState, ["Player", "Ally"]))
-				return false;
-			if (!(targetState.market.land && hasClass(entState, "Organic") ||
+			if (targetState.foundation || !entState.trader || !targetState.market ||
+			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
+			    !(targetState.market.land && hasClass(entState, "Organic") ||
 			      targetState.market.naval && hasClass(entState, "Ship")))
 				return false;
 
-			var tradingData = {"trader": entState.id, "target": targetState.id};
-			var tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", tradingData);
+			let tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", {
+				"trader": entState.id,
+				"target": targetState.id
+			});
 
 			if (!tradingDetails)
 				return false;
@@ -325,39 +505,55 @@ var unitActions =
 			switch (tradingDetails.type)
 			{
 			case "is first":
-				tooltip = translate("Origin trade market.");
+				tooltip = translate("Origin trade market.") + "\n";
 				if (tradingDetails.hasBothMarkets)
-					tooltip += "\n" + sprintf(translate("Gain: %(gain)s"), {
-						gain: getTradingTooltip(tradingDetails.gain)
+					tooltip += sprintf(translate("Gain: %(gain)s"), {
+						"gain": getTradingTooltip(tradingDetails.gain)
 					});
 				else
-					tooltip += "\n" + translate("Right-click on another market to set it as a destination trade market.");
+					tooltip += translate("Right-click on another market to set it as a destination trade market.");
 				break;
+
 			case "is second":
-				tooltip = translate("Destination trade market.") + "\n" + sprintf(translate("Gain: %(gain)s"), {
-					gain: getTradingTooltip(tradingDetails.gain)
-				});
+				tooltip = translate("Destination trade market.") + "\n" +
+					sprintf(translate("Gain: %(gain)s"), {
+						"gain": getTradingTooltip(tradingDetails.gain)
+					});
 				break;
+
 			case "set first":
 				tooltip = translate("Right-click to set as origin trade market");
 				break;
+
 			case "set second":
 				if (tradingDetails.gain.traderGain == 0)   // markets too close
 					return false;
-				tooltip = translate("Right-click to set as destination trade market.") + "\n" + sprintf(translate("Gain: %(gain)s"), {
-					gain: getTradingTooltip(tradingDetails.gain)
-				});
+
+				tooltip = translate("Right-click to set as destination trade market.") + "\n" +
+					sprintf(translate("Gain: %(gain)s"), {
+						"gain": getTradingTooltip(tradingDetails.gain)
+					});
+
 				break;
 			}
-			return {"possible": true, "tooltip": tooltip};
 
+			return {
+				"possible": true,
+				"tooltip": tooltip
+			};
 		},
 		"actionCheck": function(target)
 		{
 			var actionInfo = getActionInfo("setup-trade-route", target);
 			if (!actionInfo.possible)
 				return false;
-			return {"type": "setup-trade-route", "cursor": "action-setup-trade-route", "tooltip": actionInfo.tooltip, "target": target};
+
+			return {
+				"type": "setup-trade-route",
+				"cursor": "action-setup-trade-route",
+				"tooltip": actionInfo.tooltip,
+				"target": target
+			};
 		},
 		"specificness": 0,
 	},
@@ -366,45 +562,80 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_garrison", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "garrison",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_garrison",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!hasClass(entState, "Unit") || !targetState.garrisonHolder)
+			if (!hasClass(entState, "Unit") ||
+			    !targetState.garrisonHolder ||
+			    !playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 				return false;
-			if (!playerCheck(entState, targetState, ["Player", "MutualAlly"]))
-				return false;
+
 			var tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
-				garrisoned: targetState.garrisonHolder.garrisonedEntitiesCount,
-				capacity: targetState.garrisonHolder.capacity
+				"garrisoned": targetState.garrisonHolder.garrisonedEntitiesCount,
+				"capacity": targetState.garrisonHolder.capacity
 			});
+
 			var extraCount = 0;
 			if (entState.garrisonHolder)
 				extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
+
 			if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
 				tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
-			if (MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
-				return {"possible": true, "tooltip": tooltip};
-			return false;
 
+			if (!MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
+				return false;
+
+			return {
+				"possible": true,
+				"tooltip": tooltip
+			};
 		},
 		"preSelectedActionCheck": function(target)
 		{
 			if (preSelectedAction != ACTION_GARRISON)
 				return false;
+
 			var actionInfo =  getActionInfo("garrison", target);
-			if (actionInfo.possible)
-				return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
-			return {"type": "none", "cursor": "action-garrison-disabled", "target": null};
+			if (!actionInfo.possible)
+				return {
+					"type": "none",
+					"cursor": "action-garrison-disabled",
+					"target": null
+				};
+
+			return {
+				"type": "garrison",
+				"cursor": "action-garrison",
+				"tooltip": actionInfo.tooltip,
+				"target": target
+			};
 		},
 		"hotkeyActionCheck": function(target)
 		{
 			var actionInfo = getActionInfo("garrison", target);
-			if (Engine.HotkeyIsPressed("session.garrison") && actionInfo.possible)
-				return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
-			return false;
+
+			if (!Engine.HotkeyIsPressed("session.garrison") || !actionInfo.possible)
+				return false;
+
+			return {
+				"type": "garrison",
+				"cursor": "action-garrison",
+				"tooltip": actionInfo.tooltip,
+				"target": target
+			};
 		},
 		"specificness": 20,
 	},
@@ -413,35 +644,59 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "guard", "entities": selection, "target": action.target, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "guard",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_guard",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.guard)
+			if (!targetState.guard ||
+			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
+			    !entState.unitAI || !entState.unitAI.canGuard ||
+			    targetState.unitAI && targetState.unitAI.isGuarding)
 				return false;
-			if (!playerCheck(entState, targetState, ["Player", "Ally"]))
-				return false;
-			if (!entState.unitAI || !entState.unitAI.canGuard)
-				return false;
-			if (targetState.unitAI && targetState.unitAI.isGuarding)
-				return false;
-			return {"possible": true};
+
+			return { "possible": true };
 		},
 		"preSelectedActionCheck" : function(target)
 		{
 			if (preSelectedAction != ACTION_GUARD)
 				return false;
+
 			if (getActionInfo("guard", target).possible)
-				return {"type": "guard", "cursor": "action-guard", "target": target};
-			return {"type": "none", "cursor": "action-guard-disabled", "target": null};
+				return {
+					"type": "guard",
+					"cursor": "action-guard",
+					"target": target
+				};
+
+			return {
+				"type": "none",
+				"cursor": "action-guard-disabled",
+				"target": null
+			};
 		},
 		"hotkeyActionCheck": function(target)
 		{
-			 if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("guard", target).possible)
-				return {"type": "guard", "cursor": "action-guard", "target": target};
-			return false;
+			if (!Engine.HotkeyIsPressed("session.guard") ||
+			    !getActionInfo("guard", target).possible)
+				return false;
+
+			return {
+				"type": "guard",
+				"cursor": "action-guard",
+				"target": target
+			};
 		},
 		"specificness": 40,
 	},
@@ -450,22 +705,31 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "remove-guard", "entities": selection, "target": action.target, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
+			Engine.PostNetworkCommand({
+				"type": "remove-guard",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_guard",
+				"entity": selection[0]
+			});
+
 			return true;
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("remove-guard", target).possible)
-			{
-				var isGuarding = selection.some(function(ent) {
-					var entState = GetEntityState(ent);
-					return entState && entState.unitAI && entState.unitAI.isGuarding;
-				});
-				if (isGuarding)
-					return {"type": "remove-guard", "cursor": "action-remove-guard"};
-			}
-			return false;
+			if (!Engine.HotkeyIsPressed("session.guard") ||
+			    !getActionInfo("remove-guard", target).possible ||
+			    !someGuarding(selection))
+				return false;
+
+			return {
+				"type": "remove-guard",
+				"cursor": "action-remove-guard"
+			};
 		},
 
 		"specificness": 41,
@@ -480,7 +744,15 @@ var unitActions =
 			if (action.position)
 				target = action.position;
 
-			Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z, "data": action.data, "queued": queued});
+			Engine.PostNetworkCommand({
+				"type": "set-rallypoint",
+				"entities": selection,
+				"x": target.x,
+				"z": target.z,
+				"data": action.data,
+				"queued": queued
+			});
+
 			// Display rally point at the new coordinates, to avoid display lag
 			Engine.GuiInterfaceCall("DisplayRallyPoint", {
 				"entities": selection,
@@ -488,35 +760,43 @@ var unitActions =
 				"z": target.z,
 				"queued": queued
 			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
 			var tooltip;
 			// default to walking there (or attack-walking if hotkey pressed)
-			var data = {command: "walk"};
+			let data = { "command": "walk" };
 			var cursor = "";
+
 			if (Engine.HotkeyIsPressed("session.attackmove"))
 			{
+				let targetClasses;
 				if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
-					var targetClasses = { "attack": ["Unit"] };
+					targetClasses = { "attack": ["Unit"] };
 				else
-					var targetClasses = { "attack": ["Unit", "Structure"] };
+					targetClasses = { "attack": ["Unit", "Structure"] };
+
 				data.command = "attack-walk";
 				data.targetClasses = targetClasses;
 				cursor = "action-attack-move";
 			}
 
-			if (targetState.garrisonHolder && playerCheck(entState, targetState, ["Player", "MutualAlly"]))
+			if (targetState.garrisonHolder &&
+			    playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 			{
 				data.command = "garrison";
 				data.target = targetState.id;
 				cursor = "action-garrison";
+
 				tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
-					garrisoned: targetState.garrisonHolder.garrisonedEntitiesCount,
-					capacity: targetState.garrisonHolder.capacity
+					"garrisoned": targetState.garrisonHolder.garrisonedEntitiesCount,
+					"capacity": targetState.garrisonHolder.capacity
 				});
-				if (targetState.garrisonHolder.garrisonedEntitiesCount >= targetState.garrisonHolder.capacity)
+
+				if (targetState.garrisonHolder.garrisonedEntitiesCount >=
+				    targetState.garrisonHolder.capacity)
 					tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
 			}
 			else if (targetState.resourceSupply)
@@ -526,12 +806,15 @@ var unitActions =
 					cursor = "action-gather-" + resourceType.generic;
 				else
 					cursor = "action-gather-" + resourceType.specific;
+
 				data.command = "gather";
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
 			}
-			else if (entState.market && targetState.market && entState.id != targetState.id &&
-				(!entState.market.naval || targetState.market.naval) && !playerCheck(entState, targetState, ["Enemy"]))
+			else if (entState.market && targetState.market &&
+			         entState.id != targetState.id &&
+			         (!entState.market.naval || targetState.market.naval) &&
+			         !playerCheck(entState, targetState, ["Enemy"]))
 			{
 				// Find a trader (if any) that this building can produce.
 				var trader;
@@ -540,7 +823,12 @@ var unitActions =
 						if ((trader = GetTemplateData(entState.production.entities[i]).trader))
 							break;
 
-				var traderData = { "firstMarket": entState.id, "secondMarket": targetState.id, "template": trader };
+				let traderData = {
+					"firstMarket": entState.id,
+					"secondMarket": targetState.id,
+					"template": trader
+				};
+
 				var gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
 				if (gain && gain.traderGain)
 				{
@@ -548,11 +836,13 @@ var unitActions =
 					data.target = traderData.secondMarket;
 					data.source = traderData.firstMarket;
 					cursor = "action-setup-trade-route";
-					tooltip = translate("Right-click to establish a default route for new traders.");
-					if (trader)
-						tooltip += "\n" + sprintf(translate("Gain: %(gain)s"), { gain: getTradingTooltip(gain) });
-					else // Foundation or cannot produce traders
-						tooltip += "\n" + sprintf(translate("Expected gain: %(gain)s"), { gain: getTradingTooltip(gain) });
+
+					tooltip = translate("Right-click to establish a default route for new traders.") + "\n" +
+						sprintf(
+							trader ?
+							translate("Gain: %(gain)s") :
+							translate("Expected gain: %(gain)s"),
+						{ "gain": getTradingTooltip(gain) });
 				}
 			}
 			else if (targetState.foundation && playerCheck(entState, targetState, ["Ally"]))
@@ -576,39 +866,40 @@ var unitActions =
 
 			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
 			// except if the autorallypoint hotkey is pressed and the target can produce entities
-			if (!Engine.HotkeyIsPressed("session.autorallypoint") || !targetState.production || !targetState.production.entities.length)
+			if (!Engine.HotkeyIsPressed("session.autorallypoint") ||
+			    !targetState.production ||
+			    !targetState.production.entities.length)
 			{
-				for each (var ent in g_Selection.selected)
-					if (targetState.id === ent)
+				for (let ent in g_Selection.selected)
+					if (targetState.id == +ent)
 						return false;
 			}
 
-			return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
+			return {
+				"possible": true,
+				"data": data,
+				"position": targetState.position,
+				"cursor": cursor,
+				"tooltip": tooltip
+			};
 
 		},
 		"actionCheck": function(target, selection)
 		{
-			// Work out whether at least part of the selection have UnitAI
-			var haveUnitAI = selection.some(function(ent) {
-				var entState = GetEntityState(ent);
-				return entState && entState.unitAI;
-			});
-			if (haveUnitAI)
+			if (someUnitAI(selection) || !someRallyPoints(selection))
 				return false;
 
-			// Work out whether at least part the selection have rally points
-			// while none have UnitAI
-			var haveRallyPoints = selection.some(function(ent) {
-				var entState = GetEntityState(ent);
-				return entState && ("rallyPoint" in entState) && entState.rallyPoint;
-			});
-			if (!haveRallyPoints)
-				return false;
-
-			var actionInfo = getActionInfo("set-rallypoint", target);
+			let actionInfo = getActionInfo("set-rallypoint", target);
 			if (!actionInfo.possible)
 				return false;
-			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "tooltip": actionInfo.tooltip, "position": actionInfo.position};
+
+			return {
+				"type": "set-rallypoint",
+				"cursor": actionInfo.cursor,
+				"data": actionInfo.data,
+				"tooltip": actionInfo.tooltip,
+				"position": actionInfo.position
+			};
 		},
 		"specificness": 6,
 	},
@@ -617,39 +908,36 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "unset-rallypoint", "entities": selection});
+			Engine.PostNetworkCommand({
+				"type": "unset-rallypoint",
+				"entities": selection
+			});
+
 			// Remove displayed rally point
 			Engine.GuiInterfaceCall("DisplayRallyPoint", {
 				"entities": []
 			});
+
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (entState.id != targetState.id)
+			if (entState.id != targetState.id ||
+			    !entState.rallyPoint || !entState.rallyPoint.position)
 				return false;
-			if (!entState.rallyPoint || !entState.rallyPoint.position)
-				return false;
-			return {"possible": true};
+
+			return { "possible": true };
 		},
 		"actionCheck": function(target, selection)
 		{
-			// Work out whether at least part of the selection have UnitAI
-			var haveUnitAI = selection.some(function(ent) {
-				var entState = GetEntityState(ent);
-				return entState && entState.unitAI;
-			});
+			if (someUnitAI(selection) || !someRallyPoints(selection) ||
+			    !getActionInfo("unset-rallypoint", target).possible)
+				return false;
 
-			// Work out whether at least part the selection have rally points
-			// while none have UnitAI
-			var haveRallyPoints = selection.some(function(ent) {
-				var entState = GetEntityState(ent);
-				return entState && ("rallyPoint" in entState) && entState.rallyPoint;
-			});
-
-			if (!haveUnitAI && haveRallyPoints && getActionInfo("unset-rallypoint", target).possible)
-				return {"type": "unset-rallypoint", "cursor": "action-unset-rally"};
-			return false;
+			return {
+				"type": "unset-rallypoint",
+				"cursor": "action-unset-rally"
+			};
 		},
 		"specificness": 11,
 	},
@@ -670,19 +958,20 @@ var unitActions =
  */
 var g_EntityCommands =
 {
-	// Unload
 	"unload-all": {
 		"getInfo": function(entState)
 		{
 			if (!entState.garrisonHolder)
 				return false;
-			var count = 0;
-			for each (var ent in g_Selection.selected)
+
+			let count = 0;
+			for (let ent in g_Selection.selected)
 			{
-				var state = GetEntityState(ent);
+				let state = GetEntityState(+ent);
 				if (state.garrisonHolder)
 					count += state.garrisonHolder.entities.length;
 			}
+
 			return {
 				"tooltip": translate("Unload All"),
 				"icon": "garrison-out.png",
@@ -694,7 +983,6 @@ var g_EntityCommands =
 			unloadAll();
 		},
 	},
-	// Delete
 	"delete": {
 		"getInfo": function(entState)
 		{
@@ -721,25 +1009,29 @@ var g_EntityCommands =
 		},
 		"execute": function(entState)
 		{
-			if (entState.mirage)
+			if (entState.mirage ||
+			    entState.capturePoints &&
+			    entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
 				return;
 
-			if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
+			if (entState.resourceSupply &&
+			    entState.resourceSupply.killBeforeGather &&
+			    !g_DevSettings.controlAll)
 				return;
 
 			var selection = g_Selection.toList();
 			if (!selection.length)
 				return;
-			if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather || g_DevSettings.controlAll)
-				openDeleteDialog(selection);
+
+			openDeleteDialog(selection);
 		},
 	},
-	// Stop
 	"stop": {
 		"getInfo": function(entState)
 		{
 			if (!entState.unitAI)
 				return false;
+
 			return {
 				"tooltip": translate("Stop"),
 				"icon": "stop.png"
@@ -752,12 +1044,13 @@ var g_EntityCommands =
 				stopUnits(selection);
 		},
 	},
-	// Garrison
-	 "garrison": {
+
+	"garrison": {
 		"getInfo": function(entState)
 		{
 			if (!entState.unitAI || entState.turretParent)
 				return false;
+
 			return {
 				"tooltip": translate("Garrison"),
 				"icon": "garrison.png"
@@ -769,7 +1062,7 @@ var g_EntityCommands =
 			preSelectedAction = ACTION_GARRISON;
 		},
 	},
-	// Ungarrison
+
 	"unload": {
 		"getInfo": function(entState)
 		{
@@ -779,6 +1072,7 @@ var g_EntityCommands =
 			var p = GetEntityState(entState.turretParent);
 			if (!p.garrisonHolder || p.garrisonHolder.entities.indexOf(entState.id) == -1)
 				return false;
+
 			return {
 				"tooltip": translate("Unload"),
 				"icon": "garrison-out.png"
@@ -789,12 +1083,13 @@ var g_EntityCommands =
 			unloadSelection();
 		},
 	},
-	// Repair
+
 	"repair": {
 		"getInfo": function(entState)
 		{
 			if (!entState.builder)
 				return false;
+
 			return {
 				"tooltip": translate("Repair"),
 				"icon": "repair.png"
@@ -806,12 +1101,13 @@ var g_EntityCommands =
 			preSelectedAction = ACTION_REPAIR;
 		},
 	},
-	// Focus on rally point
+
 	"focus-rally": {
 		"getInfo": function(entState)
 		{
 			if (!entState.rallyPoint)
 				return false;
+
 			return {
 				"tooltip": translate("Focus on Rally Point"),
 				"icon": "focus-rally.png"
@@ -819,7 +1115,7 @@ var g_EntityCommands =
 		},
 		"execute": function(entState)
 		{
-			var focusTarget = null;
+			let focusTarget;
 			if (entState.rallyPoint && entState.rallyPoint.position)
 				focusTarget = entState.rallyPoint.position;
 			else if (entState.position)
@@ -829,12 +1125,13 @@ var g_EntityCommands =
 				Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
 		},
 	},
-	// Back to work
+
 	"back-to-work": {
 		"getInfo": function(entState)
 		{
 			if (!entState.unitAI || !entState.unitAI.hasWorkOrders)
 				return false;
+
 			return {
 				"tooltip": translate("Back to Work"),
 				"icon": "production.png"
@@ -845,12 +1142,14 @@ var g_EntityCommands =
 			backToWork();
 		},
 	},
-	// Guard
+
 	"add-guard": {
 		"getInfo": function(entState)
 		{
-			if (!entState.unitAI || !entState.unitAI.canGuard || entState.unitAI.isGuarding)
+			if (!entState.unitAI || !entState.unitAI.canGuard ||
+			    entState.unitAI.isGuarding)
 				return false;
+
 			return {
 				"tooltip": translate("Guard"),
 				"icon": "add-guard.png"
@@ -862,12 +1161,13 @@ var g_EntityCommands =
 			preSelectedAction = ACTION_GUARD;
 		},
 	},
-	// Remove guard
+
 	"remove-guard": {
 		"getInfo": function(entState)
 		{
 			if (!entState.unitAI || !entState.unitAI.isGuarding)
 				return false;
+
 			return {
 				"tooltip": translate("Remove guard"),
 				"icon": "remove-guard.png"
@@ -878,12 +1178,13 @@ var g_EntityCommands =
 			removeGuard();
 		},
 	},
-	// Trading
+
 	"select-trading-goods": {
 		"getInfo": function(entState)
 		{
 			if (!entState.market)
 				return false;
+
 			return {
 				"tooltip": translate("Select trading goods"),
 				"icon": "economics.png"
@@ -894,20 +1195,23 @@ var g_EntityCommands =
 			toggleTrade();
 		},
 	},
-	// Dropsite sharing
+
 	"share-dropsite": {
 		"getInfo": function(entState)
 		{
 			if (!entState.resourceDropsite || !entState.resourceDropsite.sharable)
 				return false;
+
 			let playerState = GetSimState().players[entState.player];
 			if (!playerState.isMutualAlly.some((e, i) => e && i != entState.player))
 				return false;
+
 			if (entState.resourceDropsite.shared)
 				return {
 					"tooltip": translate("Press to prevent allies from using this dropsite"),
 					"icon": "unlocked_small.png"
 				};
+
 			return {
 				"tooltip": translate("Press to allow allies to use this dropsite"),
 				"icon": "locked_small.png"
@@ -922,6 +1226,7 @@ var g_EntityCommands =
 				if (state && state.resourceDropsite && state.resourceDropsite.sharable)
 					entities.push(state.id);
 			}
+
 			Engine.PostNetworkCommand({
 				"type": "set-dropsite-sharing",
 				"entities": entities,
@@ -933,27 +1238,29 @@ var g_EntityCommands =
 
 var g_AllyEntityCommands =
 {
-	// Unload
 	"unload-all": {
 		"getInfo": function(entState)
 		{
 			if (!entState.garrisonHolder)
 				return false;
+
+			let player = Engine.GetPlayerID();
+
 			var count = 0;
-			for each (var ent in g_Selection.selected)
+			for (let ent in g_Selection.selected)
 			{
-				var selectedEntState = GetEntityState(ent);
-				if (selectedEntState.garrisonHolder)
+				let selectedEntState = GetEntityState(+ent);
+				if (!selectedEntState.garrisonHolder)
+					continue;
+
+				for (let entity of selectedEntState.garrisonHolder.entities)
 				{
-					var player = Engine.GetPlayerID();
-					for (var entity of selectedEntState.garrisonHolder.entities)
-					{
-						var state = GetEntityState(entity);
-						if (state.player == player)
-							++count;
-					}
+					let state = GetEntityState(entity);
+					if (state.player == player)
+						++count;
 				}
 			}
+
 			return {
 				"tooltip": translate("Unload All"),
 				"icon": "garrison-out.png",
@@ -965,19 +1272,21 @@ var g_AllyEntityCommands =
 			unloadAllByOwner();
 		},
 	},
-	// Dropsite sharing
+
 	"share-dropsite": {
 		"getInfo": function(entState)
 		{
-			if (Engine.GetPlayerID() == -1 || !GetSimState().players[Engine.GetPlayerID()].hasSharedDropsites)
+			if (Engine.GetPlayerID() == -1 ||
+			    !GetSimState().players[Engine.GetPlayerID()].hasSharedDropsites ||
+			    !entState.resourceDropsite || !entState.resourceDropsite.sharable)
 				return false;
-			if (!entState.resourceDropsite || !entState.resourceDropsite.sharable)
-				return false;
+
 			if (entState.resourceDropsite.shared)
 				return {
 					"tooltip": translate("You are allowed to use this dropsite"),
 					"icon": "unlocked_small.png"
 				};
+
 			return {
 				"tooltip": translate("The use of this dropsite is prohibited"),
 				"icon": "locked_small.png"
@@ -995,12 +1304,38 @@ function playerCheck(entState, targetState, validPlayers)
 	var playerState = GetSimState().players[entState.player];
 	for (var player of validPlayers)
 	{
-		if (player == "Gaia" && targetState.player == 0)
-			return true;
-		if (player == "Player" && targetState.player == entState.player)
-			return true;
-		if (playerState["is"+player] && playerState["is"+player][targetState.player])
+		if (player == "Gaia" && targetState.player == 0 ||
+		    player == "Player" && targetState.player == entState.player ||
+		    playerState["is"+player] && playerState["is"+player][targetState.player])
 			return true;
 	}
 	return false;
 }
+
+/**
+ * Work out whether at least part of the selected entities have UnitAI.
+ */
+function someUnitAI(entities)
+{
+	return entities.some(ent => {
+		let entState = GetEntityState(ent);
+		return entState && entState.unitAI;
+	});
+}
+
+function someRallyPoints(entities)
+{
+	return entities.some(ent => {
+		let entState = GetEntityState(ent);
+		return entState && entState.rallyPoint;
+	});
+}
+
+function someGuarding(entities)
+{
+	return entities.some(ent => {
+		let entState = GetEntityState(ent);
+		return entState && entState.unitAI && entState.unitAI.isGuarding;
+	});
+}
+
