@@ -1396,8 +1396,6 @@ function updateGUIObjects()
 	                  "exploreMap", "disableTreasures", "lockTeams"])
 		hideControl(ctrl, ctrl + "Text", notScenario);
 
-	setMapDescription();
-
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		Engine.GetGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
@@ -1445,6 +1443,7 @@ function updateGUIObjects()
 			pColorPicker.selected = g_PlayerColors.findIndex(col => sameColor(col, color));
 	}
 
+	updateMapDescription();
 	resizeMoreOptionsWindow();
 
 	g_IsInGuiUpdate = false;
@@ -1466,41 +1465,59 @@ function updateGUIObjects()
 /**
  * Sets an additional map label, map preview image and mapsettings description.
  */
-function setMapDescription()
+function updateMapDescription()
 {
-	let numPlayers = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData.length : 0;
-	let mapName = g_GameAttributes.map || "";
+	setMapPreviewImage("mapPreview", getMapPreview(g_GameAttributes.map));
 
-	let victoryIdx = Math.max(0, g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || ""));
+	Engine.GetGUIObjectByName("mapInfoName").caption =
+		g_GameAttributes.map == "random" ?
+			translateWithContext("map selection", "Random") :
+			translate(getMapDisplayName(g_GameAttributes.map));
+
+	let numPlayers = sprintf(
+		translatePlural(
+			"%(number)s player. ",
+			"%(number)s players. ",
+			g_GameAttributes.settings.PlayerData.length
+		),
+		{ "number": g_GameAttributes.settings.PlayerData.length }
+	);
+
+	let mapDescription =
+		g_GameAttributes.map == "random" ?
+			translate("Randomly selects a map from the list") :
+		g_GameAttributes.settings.Description ?
+			translate(g_GameAttributes.settings.Description) :
+			translate("Sorry, no description available.");
+
+	let victoryIdx = g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType);
 	let victoryTitle;
 
-	if (g_VictoryConditions.Name[victoryIdx] == "wonder")
-		victoryTitle = sprintf(
-			translatePluralWithContext(
-				"victory condition",
-				"Wonder (%(min)s minute)",
-				"Wonder (%(min)s minutes)",
-				g_GameAttributes.settings.WonderDuration
-			),
-			{ "min": g_GameAttributes.settings.WonderDuration }
-		);
+	if (victoryIdx == -1)
+		victoryTitle = translateWithContext("victory condition", "Unknown")
 	else
-		victoryTitle = g_VictoryConditions.Title[victoryIdx];
+	{
+		if (g_VictoryConditions.Name[victoryIdx] == "wonder")
+			victoryTitle = sprintf(
+				translatePluralWithContext(
+					"victory condition",
+					"Wonder (%(min)s minute)",
+					"Wonder (%(min)s minutes)",
+					g_GameAttributes.settings.WonderDuration
+				),
+				{ "min": g_GameAttributes.settings.WonderDuration }
+			);
+		else
+			victoryTitle = g_VictoryConditions.Title[victoryIdx];
 
-	if (victoryIdx != g_VictoryConditions.Default)
-		victoryTitle = "[color=\"" + g_VictoryColor + "\"]" + victoryTitle + "[/color]";
+		if (victoryIdx != g_VictoryConditions.Default)
+			victoryTitle = "[color=\"" + g_VictoryColor + "\"]" + victoryTitle + "[/color]";
+	}
 
-	let mapDescription = g_GameAttributes.settings.Description ? translate(g_GameAttributes.settings.Description) : translate("Sorry, no description available.");
-	if (mapName == "random")
-		mapDescription = translate("Randomly selects a map from the list");
-
-	let gameDescription = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { "number": numPlayers });
-	gameDescription += translate("Victory Condition:") + " " + victoryTitle + ".\n\n";
-	gameDescription += mapDescription;
-
-	Engine.GetGUIObjectByName("mapInfoName").caption = mapName == "random" ? translateWithContext("map selection", "Random") : translate(getMapDisplayName(mapName));
-	Engine.GetGUIObjectByName("mapInfoDescription").caption = gameDescription;
-	setMapPreviewImage("mapPreview", getMapPreview(mapName));
+	Engine.GetGUIObjectByName("mapInfoDescription").caption =
+		numPlayers +
+		translate("Victory Condition:") + " " + victoryTitle + ".\n\n" +
+		mapDescription;
 }
 
 /**
