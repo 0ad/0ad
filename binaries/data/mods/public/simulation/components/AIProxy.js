@@ -88,9 +88,15 @@ AIProxy.prototype.OnPositionChanged = function(msg)
 		return;
 
 	if (msg.inWorld)
+	{
 		this.changes.position = [msg.x, msg.z];
+		this.changes.angle = msg.a;
+	}
 	else
+	{
 		this.changes.position = undefined;
+		this.changes.angle = undefined;
+	}
 };
 
 AIProxy.prototype.OnHealthChanged = function(msg)
@@ -215,12 +221,14 @@ AIProxy.prototype.GetFullRepresentation = function()
 
 		if (cmpPosition.IsInWorld())
 		{
-			var pos = cmpPosition.GetPosition2D();
+			let pos = cmpPosition.GetPosition2D();
 			ret.position = [pos.x, pos.y];
+			ret.angle = cmpPosition.GetRotation().y;
 		}
 		else
 		{
 			ret.position = undefined;
+			ret.angle = undefined;
 		}
 	}
 

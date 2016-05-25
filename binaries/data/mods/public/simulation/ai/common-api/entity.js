@@ -614,6 +614,7 @@ m.Entity = m.Class({
 	},
 
 	position: function() { return this._entity.position; },
+	angle: function() { return this._entity.angle; },
 
 	isIdle: function() {
 		if (typeof this._entity.idle === "undefined")
