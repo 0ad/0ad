@@ -229,7 +229,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 
 // Private function for checking a set of requirements is met
 // basically copies TechnologyManager's
-m.GameState.prototype.checkTechRequirements = function (reqs)
+m.GameState.prototype.checkTechRequirements = function(reqs)
 {
 	// If there are no requirements then all requirements are met
 	if (!reqs)
@@ -518,10 +518,9 @@ m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain)
 		// Count entities in building production queues
 		// TODO: maybe this fails for corrals.
 		this.getOwnTrainingFacilities().forEach(function(ent) {
-			ent.trainingQueue().forEach(function(item) {
+			for (let item of ent.trainingQueue())
 				if (item.unitTemplate == type)
 					count += item.count;
-			});
 		});
 	}
 	
@@ -545,7 +544,7 @@ m.GameState.prototype.countFoundationsByType = function(type, maintain)
 
 m.GameState.prototype.countOwnEntitiesByRole = function(role)
 {
-	return this.getOwnEntitiesByRole(role).length;
+	return this.getOwnEntitiesByRole(role, "true").length;
 };
 
 m.GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role)
@@ -554,10 +553,9 @@ m.GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role)
 	
 	// Count entities in building production queues
 	this.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
-			if (item.metadata && item.metadata.role == role)
+		for (let item of ent.trainingQueue())
+			if (item.metadata && item.metadata.role && item.metadata.role == role)
 				count += item.count;
-		});
 	});
 	return count;
 };
@@ -567,10 +565,9 @@ m.GameState.prototype.countOwnQueuedEntitiesWithMetadata = function(data, value)
 	// Count entities in building production queues
 	var count = 0;
 	this.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
+		for (let item of ent.trainingQueue())
 			if (item.metadata && item.metadata[data] && item.metadata[data] == value)
 				count += item.count;
-		});
 	});
 	return count;
 };

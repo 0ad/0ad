@@ -36,13 +36,13 @@ m.QueueManager = function(Config, queues)
 		this.accounts[q] = new API3.Resources();
 		this.queueArrays.push([q, this.queues[q]]);
 	}
-	var priorities = this.priorities;
+	let priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.getAvailableResources = function(gameState)
 {
-	var resources = gameState.getResources();
+	let resources = gameState.getResources();
 	for (let key in this.queues)
 		resources.subtract(this.accounts[key]);
 	return resources;
@@ -50,7 +50,7 @@ m.QueueManager.prototype.getAvailableResources = function(gameState)
 
 m.QueueManager.prototype.getTotalAccountedResources = function()
 {
-	var resources = new API3.Resources();
+	let resources = new API3.Resources();
 	for (let key in this.queues)
 		resources.add(this.accounts[key]);
 	return resources;
@@ -85,14 +85,14 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 		return { "food": 10, "wood": 10, "stone": 0, "metal": 0 };
 
 	// get out current resources, not removing accounts.
-	var current = gameState.getResources();
+	let current = gameState.getResources();
 	// short queue is the first item of a queue, assumed to be ready in 30s
 	// medium queue is the second item of a queue, assumed to be ready in 60s
 	// long queue contains the isGo=false items, assumed to be ready in 300s
-	var totalShort = { "food": 200, "wood": 200, "stone": 100, "metal": 100 };
-	var totalMedium = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
-	var totalLong = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
-	var total;
+	let totalShort = { "food": 200, "wood": 200, "stone": 100, "metal": 100 };
+	let totalMedium = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let totalLong = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let total;
 	//queueArrays because it's faster.
 	for (let q of this.queueArrays)
 	{
@@ -120,8 +120,8 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 		}
 	}
 	// global rates
-	var rates = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
-	var diff;
+	let rates = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let diff;
 	for (let type in rates)
 	{
 		if (current[type] > 0)
@@ -146,7 +146,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 
 m.QueueManager.prototype.printQueues = function(gameState)
 {
-	var numWorkers = 0;
+	let numWorkers = 0;
 	gameState.getOwnUnits().forEach (function (ent) {
 		if (ent.getMetadata(PlayerID, "role") === "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
 			numWorkers++;
@@ -191,7 +191,7 @@ m.QueueManager.prototype.clear = function()
  */
 m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
 {
-	var available = this.getAvailableResources(gameState);
+	let available = this.getAvailableResources(gameState);
 	for (let res of this.accounts[i].types)
 	{
 		if (this.accounts[i][res] >= cost[res])
@@ -220,7 +220,7 @@ m.QueueManager.prototype.transferAccounts = function(cost, i, j)
  */
 m.QueueManager.prototype.distributeResources = function(gameState)
 {
-	var availableRes = this.getAvailableResources(gameState);
+	let availableRes = this.getAvailableResources(gameState);
 	for (let res of availableRes.types)
 	{
 		if (availableRes[res] < 0)    // rescale the accounts if we've spent resources already accounted (e.g. by bartering)
@@ -400,15 +400,8 @@ m.QueueManager.prototype.update = function(gameState)
 // Recovery system: if short of workers after an attack, pause (and reset) some queues to favor worker training
 m.QueueManager.prototype.checkPausedQueues = function(gameState)
 {
-	let numWorkers = gameState.getOwnEntitiesByRole("worker", true).length;
-	gameState.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
-			if (item.metadata && item.metadata.role && item.metadata.role == "worker")
-				numWorkers += item.count;
-		});
-	});
-
-	var workersMin = Math.min(Math.max(12, 24 * this.Config.popScaling), this.Config.Economy.popForTown);
+	let numWorkers = gameState.countOwnEntitiesAndQueuedWithRole("worker");
+	let workersMin = Math.min(Math.max(12, 24 * this.Config.popScaling), this.Config.Economy.popForTown);
 	for (let q in this.queues)
 	{
 		let toBePaused = false;
@@ -513,7 +506,7 @@ m.QueueManager.prototype.addQueue = function(queueName, priority)
 	this.queueArrays = [];
 	for (let q in this.queues)
 		this.queueArrays.push([q, this.queues[q]]);
-	var priorities = this.priorities;
+	let priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
@@ -529,7 +522,7 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 	this.queueArrays = [];
 	for (let q in this.queues)
 		this.queueArrays.push([q, this.queues[q]]);
-	var priorities = this.priorities;
+	let priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
@@ -544,14 +537,14 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 		API3.warn(">>> Priority of queue " + queueName + " changed from " + this.priorities[queueName] + " to " + newPriority);
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;
-	var priorities = this.priorities;
+	let priorities = this.priorities;
 	this.queueArrays.sort((a,b) => priorities[b[0]] - priorities[a[0]]);
 };
 
 m.QueueManager.prototype.Serialize = function()
 {
-	var accounts = {};
-	var queues = {};
+	let accounts = {};
+	let queues = {};
 	for (let q in this.queues)
 	{
 		queues[q] = this.queues[q].Serialize();

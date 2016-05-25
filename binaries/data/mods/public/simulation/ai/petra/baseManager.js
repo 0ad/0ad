@@ -400,8 +400,8 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	if (bestVal <= 0)
 		return {"quality": bestVal, "pos": [0, 0]};
 
-	var x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
-	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
+	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
+	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 	return { "quality": bestVal, "pos": [x, z] };
 };
 
@@ -438,7 +438,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 		{
 			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
-				let count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
+				let count = this.getResourceLevel(gameState, type, gameState.currentPhase() > 1);  // animals are not accounted
 				let numFarms = gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length;  // including foundations
 				let numQueue = queues.field.countQueuedUnits();
 
@@ -466,7 +466,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				 !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
 				 gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
 			{
-				let count = this.getResourceLevel(gameState, type, (gameState.currentPhase() > 1));  // animals are not accounted
+				let count = this.getResourceLevel(gameState, type, gameState.currentPhase() > 1);  // animals are not accounted
 				if (count < 600)
 				{
 					queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral", { "base": this.ID }));
@@ -604,7 +604,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 				continue;
 			// If we assume a mean rate of 0.5 per gatherer, this diff should be > 1
 			// but we require a bit more to avoid too frequent changes
-			if ((scale*moreNeed.wanted - moreNeed.current) - (scale*lessNeed.wanted - lessNeed.current) > 1.5)
+			if (scale*moreNeed.wanted - moreNeed.current - scale*lessNeed.wanted + lessNeed.current > 1.5)
 			{
 				let only;
 				// in average, females are less efficient for stone and metal, and citizenSoldiers for food
@@ -736,17 +736,17 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 	return;
 };
 
+/**
+ * If we have some foundations, and we don't have enough builder-workers,
+ * try reassigning some other workers who are nearby	
+ * AI tries to use builders sensibly, not completely stopping its econ.
+ */
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
-{
-	// If we have some foundations, and we don't have enough builder-workers,
-	// try reassigning some other workers who are nearby	
-	// AI tries to use builders sensibly, not completely stopping its econ.
-	
-	// TODO: this is not perfect performance-wise.
+{	
 	var foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
-	
+
 	var damagedBuildings = this.buildings.filter(ent => ent.foundationProgress() === undefined && ent.needsRepair());
-	
+
 	// Check if nothing to build
 	if (!foundations.length && !damagedBuildings.length)
 		return;
@@ -803,7 +803,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		let maxTotalBuilders = Math.ceil(workers.length * 0.2);
-		if (target.hasClass("House") && gameState.getPopulationLimit() < (gameState.getPopulation() + 5) &&
+		if (target.hasClass("House") && gameState.getPopulationLimit() < gameState.getPopulation() + 5 &&
 			gameState.getPopulationLimit() < gameState.getPopulationMax())
 			maxTotalBuilders = maxTotalBuilders + 2;
 		let targetNB = 2;
@@ -855,12 +855,12 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 					let coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
 					// elephant moves slowly, so when far away they are only useful if build time is long
 					if (workerA.hasClass("Elephant"))
-						coeffA *= 0.5 * (1 + (Math.sqrt(coeffA)/150)*(30/time));
+						coeffA *= 0.5 * (1 + Math.sqrt(coeffA)/5/time);
 					else if (workerA.getMetadata(PlayerID, "gather-type") === "food")
 						coeffA *= 3;
 					let coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
 					if (workerB.hasClass("Elephant"))
-						coeffB *= 0.5 * (1 + (Math.sqrt(coeffB)/150)*(30/time));
+						coeffB *= 0.5 * (1 + Math.sqrt(coeffB)/5/time);
 					else if (workerB.getMetadata(PlayerID, "gather-type") === "food")
 						coeffB *= 3;
 					return coeffA - coeffB;						

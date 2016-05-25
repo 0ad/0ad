@@ -188,7 +188,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 
 	// creating plans after updating because an aborted plan might be reused in that case.
 
-	var barracksNb = gameState.getOwnEntitiesByClass("Barracks", true).filter(API3.Filters.isBuilt()).length;
+	let barracksNb = gameState.getOwnEntitiesByClass("Barracks", true).filter(API3.Filters.isBuilt()).length;
 	if (this.rushNumber < this.maxRushes && barracksNb >= 1)
 	{
 		if (unexecutedAttacks.Rush === 0)
@@ -208,7 +208,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 	else if (unexecutedAttacks.Attack === 0 && unexecutedAttacks.HugeAttack === 0 &&
-		(this.startedAttacks.Attack.length + this.startedAttacks.HugeAttack.length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100))))
+		this.startedAttacks.Attack.length + this.startedAttacks.HugeAttack.length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100)))
 	{
 		if ((barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase()))) ||
 			!gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
@@ -275,14 +275,14 @@ m.AttackManager.prototype.getPlan = function(planName)
 
 m.AttackManager.prototype.pausePlan = function(planName)
 {
-	var attack = this.getPlan(planName);
+	let attack = this.getPlan(planName);
 	if (attack)
 		attack.setPaused(true);
 };
 
 m.AttackManager.prototype.unpausePlan = function(planName)
 {
-	var attack = this.getPlan(planName);
+	let attack = this.getPlan(planName);
 	if (attack)
 		attack.setPaused(false);
 };
@@ -323,14 +323,14 @@ m.AttackManager.prototype.getAttackInPreparation = function(type)
  */
 m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 {
-	var enemyPlayer;
+	let enemyPlayer;
 
 	// first check if there is a preferred enemy based on our victory conditions
 	if (gameState.getGameType() === "wonder")
 	{
-		var moreAdvanced;
-		var enemyWonder;
-		var wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
+		let moreAdvanced;
+		let enemyWonder;
+		let wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder"));
 		for (let wonder of wonders.values())
 		{
 			if (wonder.owner() === 0)
@@ -355,7 +355,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		}
 	}
 
-	var veto = {};
+	let veto = {};
 	for (let i in this.defeated)
 		veto[i] = true;
 	// No rush if enemy too well defended (i.e. iberians)     
@@ -421,7 +421,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 
 	// then let's target our strongest enemy (basically counting enemies units)
 	// with priority to enemies with civ center
-	var max = 0;
+	let max = 0;
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (veto[i])

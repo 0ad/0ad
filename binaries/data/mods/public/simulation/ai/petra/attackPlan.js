@@ -273,8 +273,8 @@ m.AttackPlan.prototype.mustStart = function()
 	if (!this.canBuildUnits)
 		return this.unitCollection.hasEntities();
 
-	var MaxReachedEverywhere = true;
-	var MinReachedEverywhere = true;
+	let MaxReachedEverywhere = true;
+	let MinReachedEverywhere = true;
 	for (let unitCat in this.unitStat)
 	{
 		let Unit = this.unitStat[unitCat];
@@ -332,7 +332,7 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	if (this.unitStat.Siege || this.state !== "unexecuted")
 		return false;
 	// no minsize as we don't want the plan to fail at the last minute though.
-	var stat = { "priority": 1, "minSize": 0, "targetSize": 4, "batchSize": 2, "classes": ["Siege"],
+	let stat = { "priority": 1, "minSize": 0, "targetSize": 4, "batchSize": 2, "classes": ["Siege"],
 		"interests": [ ["siegeStrength", 3], ["cost",1] ] };
 	if (gameState.civ() === "maur")
 		stat.classes = ["Elephant", "Champion"];
@@ -397,7 +397,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		{
 			if (this.Config.debug > 1)
 			{
-				var am = gameState.ai.HQ.attackManager;
+				let am = gameState.ai.HQ.attackManager;
 				API3.warn(" attacks upcoming: raid " + am.upcomingAttacks.Raid.length +
 					  " rush " + am.upcomingAttacks.Rush.length +
 					  " attack " + am.upcomingAttacks.Attack.length +
@@ -425,7 +425,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			// We still have time left to recruit units and do stuffs.
 			if (!this.unitStat.Siege)
 			{
-				var numSiegeBuilder = 0;
+				let numSiegeBuilder = 0;
 				if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
 					numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
 				if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
@@ -1012,9 +1012,9 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		else
 		{
 			this.state = "transporting";
-			var startIndex = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
-			var endIndex = gameState.ai.accessibility.getAccessValue(this.targetPos);
-			var endPos = this.targetPos;
+			let startIndex = gameState.ai.accessibility.getAccessValue(this.rallyPoint);
+			let endIndex = gameState.ai.accessibility.getAccessValue(this.targetPos);
+			let endPos = this.targetPos;
 			// TODO require a global transport for the collection,
 			// and put back its state to "walking" when the transport is finished
 			for (let ent of this.unitCollection.values())
@@ -1047,7 +1047,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	// TODO instead of state "arrived", made a state "walking" with a new path
 	if (this.state === "transporting")
 	{
-		var done = true;
+		let done = true;
 		for (let ent of this.unitCollection.values())
 		{
 			if (this.Config.debug > 1 && ent.getMetadata(PlayerID, "transport") !== undefined)
@@ -1092,8 +1092,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// Let's check if any of our unit has been attacked.
 		// In case yes, we'll determine if we're simply off against an enemy army, a lone unit/building
 		// or if we reached the enemy base. Different plans may react differently.
-		var attackedNB = 0;
-		var attackedUnitNB = 0;
+		let attackedNB = 0;
+		let attackedUnitNB = 0;
 		for (let evt of events.Attacked)
 		{
 			if (IDs.indexOf(evt.target) === -1)
@@ -1107,7 +1107,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 		}
 		// Are we arrived at destination ?
-		var maybe = true;
+		let maybe = true;
 		if (!attackedUnitNB)
 		{
 			let siegeNB = 0;
@@ -1127,8 +1127,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0)
 		{
 			// check for stuck siege units
-			var farthest = 0;
-			var farthestEnt;
+			let farthest = 0;
+			let farthestEnt;
 			this.unitCollection.filter(API3.Filters.byClass("Siege")).forEach (function (ent) {
 				let dist = API3.SquareVectorDistance(ent.position(), self.position);
 				if (dist < farthest)
@@ -1147,7 +1147,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (!this.path[0][0] || !this.path[0][1])
 				API3.warn("Start: Problem with path " + uneval(this.path));
 			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
-			var nexttoWalls = false;
+			let nexttoWalls = false;
 			gameState.getEnemyStructures().filter(API3.Filters.byClass("StoneWall")).forEach( function (ent) {
 				if (!nexttoWalls && API3.SquareVectorDistance(self.position, ent.position()) < 800)
 					nexttoWalls = true;
@@ -1206,7 +1206,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		});
 		if (this.type === "Rush")   // try to find a better target for rush
 		{
-			var newtarget = this.getNearestTarget(gameState, this.position);
+			let newtarget = this.getNearestTarget(gameState, this.position);
 			if (newtarget)
 			{
 				this.target = newtarget;
@@ -1256,8 +1256,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (!this.target)
 			{
 				// Check if we could help any current attack
-				var attackManager = gameState.ai.HQ.attackManager;
-				var accessIndex = gameState.ai.accessibility.getAccessValue(this.position);
+				let attackManager = gameState.ai.HQ.attackManager;
+				let accessIndex = gameState.ai.accessibility.getAccessValue(this.position);
 				for (let attackType in attackManager.startedAttacks)
 				{
 					if (this.target)
@@ -1473,7 +1473,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					continue;
 				let deltat = ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING" ? 10 : 5;
 				let lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
-				if (lastAttackPlanUpdateTime && (time - lastAttackPlanUpdateTime) < deltat &&
+				if (lastAttackPlanUpdateTime && time - lastAttackPlanUpdateTime < deltat &&
 					this.CheckCapture(gameState, ent))
 					continue;
 			}
@@ -1679,8 +1679,8 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	if (this.unitCollection.hasEntities())
 	{
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
-		var rallyPoint = this.rallyPoint;
-		var withdrawal = this.isStarted() && !this.overseas;
+		let rallyPoint = this.rallyPoint;
+		let withdrawal = this.isStarted() && !this.overseas;
 		for (let ent of this.unitCollection.values())
 		{
 			if (ent.getMetadata(PlayerID, "role") === "attack")
@@ -1769,7 +1769,7 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 {
 	for (let ent of this.unitCollection.values())
 	{
-		if (data && +(ent.getMetadata(PlayerID, data)) !== value)
+		if (data && +ent.getMetadata(PlayerID, data) !== value)
 			continue;
 		let orders = ent.unitAIOrderData();
 		for (let order of orders)
@@ -1787,9 +1787,9 @@ m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)
 m.AttackPlan.prototype.debugAttack = function()
 {
 	API3.warn("---------- attack " + this.name);
-	for (var unitCat in this.unitStat)
+	for (let unitCat in this.unitStat)
 	{
-		var Unit = this.unitStat[unitCat];
+		let Unit = this.unitStat[unitCat];
 		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit.minSize + " need=" + Unit.targetSize);
 	}
 	API3.warn("------------------------------");

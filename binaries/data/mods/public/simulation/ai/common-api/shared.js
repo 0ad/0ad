@@ -302,21 +302,21 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 		if (foundationFinished[evt.entity])
 			evt.SuccessfulFoundation = true;
-		
+
 		// The entity was destroyed but its data may still be useful, so
 		// remember the entity and this AI's metadata concerning it
 		evt.metadata = {};
 		evt.entityObj = this._entities.get(evt.entity);
 		for (let j in this._players)
 			evt.metadata[this._players[j]] = this._entityMetadata[this._players[j]][evt.entity];
-		
+
 		let entity = this._entities.get(evt.entity);
 		for (let entCol of this._entityCollections.values())
 			entCol.removeEnt(entity);
 		this.entities.removeEnt(entity);
-		
+
 		this._entities.delete(evt.entity);
-		this._entitiesModifications.delete(evt.entity)
+		this._entitiesModifications.delete(evt.entity);
 		for (let j in this._players)
 			delete this._entityMetadata[this._players[j]][evt.entity];
 	}
