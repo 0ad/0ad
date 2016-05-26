@@ -5226,7 +5226,7 @@ UnitAI.prototype.SetTargetMarket = function(target, source)
 UnitAI.prototype.SwitchMarketOrder = function(oldMarket, newMarket)
 {
 	if (this.order.data && this.order.data.target && this.order.data.target == oldMarket)
-		this.order.data.target == newMarket;
+		this.order.data.target = newMarket;
 };
 
 UnitAI.prototype.MoveToMarket = function(targetMarket)

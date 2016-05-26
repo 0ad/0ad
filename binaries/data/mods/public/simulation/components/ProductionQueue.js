@@ -227,7 +227,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 
 ProductionQueue.prototype.GetTechCostMultiplier = function()
 {
-	let techCostMultiplier = {}
+	let techCostMultiplier = {};
 	for (let res in this.template.TechCostMultiplier)
 		techCostMultiplier[res] = ApplyValueModificationsToEntity("ProductionQueue/TechCostMultiplier/"+res, +this.template.TechCostMultiplier[res], this.entity);
 	return techCostMultiplier;
