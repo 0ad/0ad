@@ -133,7 +133,7 @@ function deleteReplayButtonPressed()
 	if (!Engine.GetGUIObjectByName("deleteReplayButton").enabled)
 		return;
 
-	if (Engine.HotkeyIsPressed("session.savedgames.noConfirmation"))
+	if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
 		deleteReplayWithoutConfirmation();
 	else
 		deleteReplay();

@@ -31,7 +31,7 @@
 			<action on="Press">
 				if (!this.enabled)
 					return;
-				if (Engine.HotkeyIsPressed("session.savedgames.noConfirmation"))
+				if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
 					deleteGameWithoutConfirmation();
 				else
 					deleteGame();

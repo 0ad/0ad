@@ -1022,8 +1022,13 @@ var g_EntityCommands =
 			let selection = g_Selection.toList();
 			if (!selection.length)
 				return;
-
-			openDeleteDialog(selection);
+			if (Engine.HotkeyIsPressed("session.noconfirmation"))
+				Engine.PostNetworkCommand({
+					"type": "delete-entities",
+					"entities": selection
+				});
+			else
+				openDeleteDialog(selection);
 		},
 	},
 	"stop": {
