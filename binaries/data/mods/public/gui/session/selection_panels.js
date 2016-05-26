@@ -786,10 +786,10 @@ g_SelectionPanels.Research = {
 		{
 			let entState = GetEntityState(ent);
 			if (entState.production && entState.production.technologies.length)
-				return entState.production.technologies.map( tech => { return {
+				return entState.production.technologies.map( tech => ({
 					"tech": tech,
 					"techCostMultiplier": entState.production.techCostMultiplier
-				};});
+				}));
 		}
 		return [];
 	},
