@@ -65,6 +65,16 @@
 							Engine.PushGuiPage("page_civinfo.xml");
 						]]></action>
 					</object>
+					<object name="civResetButton"
+						type="button"
+						sprite="iconResetGold"
+						sprite_over="iconResetWhite"
+						size="67.5%+93 0 67.5%+109 16"
+						tooltip_style="onscreenToolTip"
+					>
+						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random)</translatableAttribute>
+						<action on="Press">resetCivilizations();</action>
+					</object>
 					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%">
 						<translatableAttribute id="caption">Team</translatableAttribute>
 					</object>

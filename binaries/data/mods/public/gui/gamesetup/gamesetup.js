@@ -1396,6 +1396,8 @@ function updateGUIObjects()
 	                  "exploreMap", "disableTreasures", "lockTeams"])
 		hideControl(ctrl, ctrl + "Text", notScenario);
 
+	Engine.GetGUIObjectByName("civResetButton").hidden = !notScenario;
+
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
 		Engine.GetGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
@@ -1814,6 +1816,14 @@ function showMoreOptions(show)
 {
 	Engine.GetGUIObjectByName("moreOptionsFade").hidden = !show;
 	Engine.GetGUIObjectByName("moreOptions").hidden = !show;
+}
+
+function resetCivilizations()
+{
+	for (let i in g_GameAttributes.settings.PlayerData)
+		g_GameAttributes.settings.PlayerData[i].Civ = "random";
+
+	updateGameAttributes();
 }
 
 function toggleReady()
