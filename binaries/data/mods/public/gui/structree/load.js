@@ -145,6 +145,10 @@ function loadStructure(templateName)
 		structure.armour = struct.armour;
 		structure.auras = struct.auras;
 
+		// For technology cost multiplier, we need to use the tower
+		struct = loadStructure(structure.wallSet.templates.tower);
+		structure.techCostMultiplier = struct.techCostMultiplier;
+
 		let health;
 
 		for (let wSegm in structure.wallSet.templates)

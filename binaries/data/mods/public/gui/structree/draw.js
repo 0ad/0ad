@@ -70,7 +70,10 @@ function draw()
 				{
 					for (let prod of stru.production.technology[prod_pha])
 					{
-						prod = (depath(prod).slice(0,5) == "phase") ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod];
+						prod = clone(depath(prod).slice(0,5) == "phase" ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod]);
+						for (let res in stru.techCostMultiplier)
+							if (prod.cost[res])
+								prod.cost[res] *= stru.techCostMultiplier[res];
 						if (!drawProdIcon(i, s, r, p, prod))
 							break;
 						p++;
@@ -133,7 +136,10 @@ function draw()
 					prod = g_ParsedData.units[prod];
 					break;
 				case "techs":
-					prod = g_ParsedData.techs[prod];
+					prod = clone(g_ParsedData.techs[prod]);
+					for (let res in trainer.techCostMultiplier)
+						if (prod.cost[res])
+							prod.cost[res] *= trainer.techCostMultiplier[res];
 					break;
 				default:
 					continue;

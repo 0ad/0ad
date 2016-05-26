@@ -29,7 +29,16 @@ ProductionQueue.prototype.Schema =
 			"</attribute>" +
 			"<text/>" +
 		"</element>" +
-	"</optional>";
+	"</optional>" +
+	"<element name='TechCostMultiplier' a:help='Multiplier to modify ressources cost and research time of technologies searched in this building.'>" +
+		"<interleave>" +
+			"<element name='food'><ref name='nonNegativeDecimal'/></element>" +
+			"<element name='wood'><ref name='nonNegativeDecimal'/></element>" +
+			"<element name='stone'><ref name='nonNegativeDecimal'/></element>" +
+			"<element name='metal'><ref name='nonNegativeDecimal'/></element>" +
+			"<element name='time'><ref name='nonNegativeDecimal'/></element>" +
+		"</interleave>" +
+	"</element>";
 
 ProductionQueue.prototype.Init = function()
 {
@@ -216,6 +225,14 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	return ret;
 };
 
+ProductionQueue.prototype.GetTechCostMultiplier = function()
+{
+	let techCostMultiplier = {}
+	for (let res in this.template.TechCostMultiplier)
+		techCostMultiplier[res] = ApplyValueModificationsToEntity("ProductionQueue/TechCostMultiplier/"+res, +this.template.TechCostMultiplier[res], this.entity);
+	return techCostMultiplier;
+};
+
 ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
 {
 	if (!tech)
@@ -321,12 +338,13 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			if (!template)
 				return;
 			var cmpPlayer = QueryOwnerInterface(this.entity);
-			var time = template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
+			let techCostMultiplier = this.GetTechCostMultiplier();
+			let time =  techCostMultiplier.time * template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
 
 			var cost = {};
-			for each (var r in ["food", "wood", "stone", "metal"])
-				cost[r] = Math.floor(template.cost[r]);
-			
+			for (let res in template.cost)
+				cost[res] = Math.floor(techCostMultiplier[res] * template.cost[res]);
+
 			// TrySubtractResources should report error to player (they ran out of resources)
 			if (!cmpPlayer.TrySubtractResources(cost))
 				return;

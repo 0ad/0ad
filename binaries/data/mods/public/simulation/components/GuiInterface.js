@@ -308,7 +308,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.production = {
 			"entities": cmpProductionQueue.GetEntitiesList(),
 			"technologies": cmpProductionQueue.GetTechnologiesList(),
-			"queue": cmpProductionQueue.GetQueue(),
+			"techCostMultiplier": cmpProductionQueue.GetTechCostMultiplier(),
+			"queue": cmpProductionQueue.GetQueue()
 		};
 
 	let cmpTrader = Engine.QueryInterface(ent, IID_Trader);

@@ -804,6 +804,11 @@ g_SelectionPanels.Research = {
 		// abort if no template found for any of the techs
 		if (data.template.some(v => !v))
 			return false;
+
+		for (let template of data.template)
+			for (let res in template.cost)
+				template.cost[res] *= data.unitEntState.production.techCostMultiplier[res];
+
 		// index one row below
 		var shiftedIndex = data.i + data.rowLength;
 		data.positions = data.item.pair ? [data.i, shiftedIndex] : [shiftedIndex];

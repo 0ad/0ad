@@ -1,0 +1,12 @@
+{
+	"type": "global",
+	"affects": ["Structure"],
+	"modifications": [
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.9 }
+	],
+	"auraDescription": "Reduces the cost of all remaining technologies by 10%.",
+	"auraName": "Library Aura"
+}

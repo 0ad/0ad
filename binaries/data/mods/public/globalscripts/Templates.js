@@ -247,6 +247,13 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			ret.speed.run = func("UnitMotion/Run/Speed", +template.UnitMotion.Run.Speed, player, template);
 	}
 
+	if (template.ProductionQueue)
+	{
+		ret.techCostMultiplier = {};
+		for (let res in template.ProductionQueue.TechCostMultiplier)
+			ret.techCostMultiplier[res] = func("ProductionQueue/TechCostMultiplier/"+res, +template.ProductionQueue.TechCostMultiplier[res], player, template);
+	}
+
 	if (template.Trader)
 	{
 		ret.trader = {
