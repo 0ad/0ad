@@ -786,7 +786,10 @@ g_SelectionPanels.Research = {
 		{
 			let entState = GetEntityState(ent);
 			if (entState.production && entState.production.technologies.length)
-				return entState.production.technologies;
+				return entState.production.technologies.map( tech => { return {
+					"tech": tech,
+					"techCostMultiplier": entState.production.techCostMultiplier
+				};});
 		}
 		return [];
 	},
@@ -799,7 +802,7 @@ g_SelectionPanels.Research = {
 	},
 	"addData": function(data)
 	{
-		data.entType = data.item.pair ? [data.item.top, data.item.bottom] : [data.item];
+		data.entType = data.item.tech.pair ? [data.item.tech.top, data.item.tech.bottom] : [data.item.tech];
 		data.template = data.entType.map(GetTechnologyData);
 		// abort if no template found for any of the techs
 		if (data.template.some(v => !v))
@@ -807,12 +810,12 @@ g_SelectionPanels.Research = {
 
 		for (let template of data.template)
 			for (let res in template.cost)
-				template.cost[res] *= data.unitEntState.production.techCostMultiplier[res];
+				template.cost[res] *= data.item.techCostMultiplier[res];
 
 		// index one row below
 		var shiftedIndex = data.i + data.rowLength;
-		data.positions = data.item.pair ? [data.i, shiftedIndex] : [shiftedIndex];
-		data.positionsToHide = data.item.pair ? [] : [data.i];
+		data.positions = data.item.tech.pair ? [data.i, shiftedIndex] : [shiftedIndex];
+		data.positionsToHide = data.item.tech.pair ? [] : [data.i];
 
 		// add top buttons to the data
 		data.button = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchButton["+p+"]"));
@@ -915,7 +918,7 @@ g_SelectionPanels.Research = {
 		for (let button of data.buttonsToHide)
 			button.hidden = true;
 		// show the tech connector
-		data.pair.hidden = data.item.pair == null;
+		data.pair.hidden = data.item.tech.pair == null;
 	},
 	"setPosition": function(data)
 	{
