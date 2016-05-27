@@ -9,9 +9,8 @@
   </Builder>
   <Cost>
     <Resources>
-      <food>40</food>
-      <wood>40</wood>
-      <metal>20</metal>
+      <food op="add">-10.0</food>
+      <metal op="add">+10.0</metal>
     </Resources>
   </Cost>
   <Identity>
