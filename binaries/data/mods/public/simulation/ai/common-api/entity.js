@@ -15,7 +15,7 @@ m.Template = m.Class({
 	// TODO: there's no support for "_string" values here.
 	get: function(string)
 	{
-		var value = this._template;
+		let value = this._template;
 		if (this._entityModif && this._entityModif.has(string))
 			return this._entityModif.get(string);
 		else if (this._templateModif && this._templateModif.has(string))
@@ -23,7 +23,7 @@ m.Template = m.Class({
 
 		if (!this._tpCache.has(string))
 		{
-			var args = string.split("/");
+			let args = string.split("/");
 			for (let arg of args)
 			{
 				if (value[arg])
@@ -40,19 +40,15 @@ m.Template = m.Class({
 	},
 
 	genericName: function() {
-		if (!this.get("Identity") || !this.get("Identity/GenericName"))
-			return undefined;
 		return this.get("Identity/GenericName");
 	},
 
 	rank: function() {
-		if (!this.get("Identity"))
-			return undefined;
 		return this.get("Identity/Rank");
 	},
 
 	classes: function() {
-		var template = this.get("Identity");
+		let template = this.get("Identity");
 		if (!template)
 			return undefined;
 		return GetIdentityClasses(template);
@@ -63,20 +59,22 @@ m.Template = m.Class({
 	},
 
 	available: function(gameState) {
-		if (this.requiredTech() === undefined)
+		let techRequired = this.requiredTech();
+		if (!techRequired)
 			return true;
-		return gameState.isResearched(this.get("Identity/RequiredTechnology"));
+		return gameState.isResearched(techRequired);
 	},
 
 	// specifically
 	phase: function() {
-		if (!this.get("Identity/RequiredTechnology"))
+		let techRequired = this.requiredTech();
+		if (!techRequired)
 			return 0;
-		if (this.get("Identity/RequiredTechnology") == "phase_village")
+		if (techRequired === "phase_village")
 			return 1;
-		if (this.get("Identity/RequiredTechnology") == "phase_town")
+		if (techRequired === "phase_town")
 			return 2;
-		if (this.get("Identity/RequiredTechnology") == "phase_city")
+		if (techRequired === "phase_city")
 			return 3;
 		return 0;
 	},
@@ -84,7 +82,7 @@ m.Template = m.Class({
 	hasClass: function(name) {
 		if (!this._classes)
 			this._classes = this.classes();
-		var classes = this._classes;
+		let classes = this._classes;
 		return classes && classes.indexOf(name) !== -1;
 	},
 
@@ -109,8 +107,8 @@ m.Template = m.Class({
 		if (!this.get("Cost"))
 			return undefined;
 
-		var ret = {};
-		for (var type in this.get("Cost/Resources"))
+		let ret = {};
+		for (let type in this.get("Cost/Resources"))
 			ret[type] = +this.get("Cost/Resources/" + type);
 		return ret;
 	},
@@ -119,8 +117,8 @@ m.Template = m.Class({
 		if (!this.get("Cost"))
 			return undefined;
 
-		var ret = 0;
-		for (var type in this.get("Cost/Resources"))
+		let ret = 0;
+		for (let type in this.get("Cost/Resources"))
 			ret += +this.get("Cost/Resources/" + type);
 		return ret;
 	},
@@ -135,8 +133,8 @@ m.Template = m.Class({
 
 		if (this.get("Obstruction/Static"))
 		{
-			var w = +this.get("Obstruction/Static/@width");
-			var h = +this.get("Obstruction/Static/@depth");
+			let w = +this.get("Obstruction/Static/@width");
+			let h = +this.get("Obstruction/Static/@depth");
 			return Math.sqrt(w*w + h*h) / 2;
 		}
 
@@ -156,8 +154,8 @@ m.Template = m.Class({
 
 		if (this.get("Footprint/Square"))
 		{
-			var w = +this.get("Footprint/Square/@width");
-			var h = +this.get("Footprint/Square/@depth");
+			let w = +this.get("Footprint/Square/@width");
+			let h = +this.get("Footprint/Square/@depth");
 			return Math.sqrt(w*w + h*h) / 2;
 		}
 
@@ -169,9 +167,7 @@ m.Template = m.Class({
 
 	maxHitpoints: function()
 	{
-		if (this.get("Health") !== undefined)
-			return +this.get("Health/Max");
-		return 0;
+		return +(this.get("Health/Max") || 0);
 	},
 
 	isHealable: function()
@@ -205,8 +201,8 @@ m.Template = m.Class({
 		if (!this.get("Attack"))
 			return undefined;
 
-		var ret = [];
-		for (var type in this.get("Attack"))
+		let ret = [];
+		for (let type in this.get("Attack"))
 			ret.push(type);
 
 		return ret;
@@ -217,8 +213,8 @@ m.Template = m.Class({
 			return undefined;
 
 		return {
-				max: +this.get("Attack/" + type +"/MaxRange"),
-				min: +(this.get("Attack/" + type +"/MinRange") || 0)
+			max: +this.get("Attack/" + type +"/MaxRange"),
+			min: +(this.get("Attack/" + type +"/MinRange") || 0)
 		};
 	},
 
@@ -256,14 +252,18 @@ m.Template = m.Class({
 		if (!this.get("Attack"))
 			return undefined;
 
-		var Classes = [];
-		for (var i in this.get("Attack"))
+		let Classes = [];
+		for (let type in this.get("Attack"))
 		{
-			if (!this.get("Attack/" + i + "/Bonuses"))
+			let bonuses = this.get("Attack/" + type + "/Bonuses");
+			if (!bonuses)
 				continue;
-			for (var o in this.get("Attack/" + i + "/Bonuses"))
-				if (this.get("Attack/" + i + "/Bonuses/" + o + "/Classes"))
-					Classes.push([this.get("Attack/" + i +"/Bonuses/" + o +"/Classes").split(" "), +this.get("Attack/" + i +"/Bonuses" +o +"/Multiplier")]);
+			for (let b in bonuses)
+			{
+				let bonusClasses = this.get("Attack/" + type + "/Bonuses/" + b + "/Classes");
+				if (bonusClasses)
+					Classes.push([bonusClasses.split(" "), +this.get("Attack/" + type +"/Bonuses" + b +"/Multiplier")]);
+			}
 		}
 		return Classes;
 	},
@@ -274,13 +274,17 @@ m.Template = m.Class({
 		if (!this.get("Attack"))
 			return false;
 		var mcounter = [];
-		for (let i in this.get("Attack"))
+		for (let type in this.get("Attack"))
 		{
-			if (!this.get("Attack/" + i + "/Bonuses"))
+			let bonuses = this.get("Attack/" + type + "/Bonuses");
+			if (!bonuses)
 				continue;
-			for (let o in this.get("Attack/" + i + "/Bonuses"))
-				if (this.get("Attack/" + i + "/Bonuses/" + o + "/Classes"))
-					mcounter.concat(this.get("Attack/" + i + "/Bonuses/" + o + "/Classes").split(" "));
+			for (let b in bonuses)
+			{
+				let bonusClasses = this.get("Attack/" + type + "/Bonuses/" + b + "/Classes");
+				if (bonusClasses)
+					mcounter.concat(bonusClasses.split(" "));
+			}
 		}
 		for (let i in classes)
 		{
@@ -296,15 +300,17 @@ m.Template = m.Class({
 			return undefined;
 
 		if (this.get("Attack/" + type + "/Bonuses"))
-			for (var o in this.get("Attack/" + type + "/Bonuses"))
+		{
+			for (let b in this.get("Attack/" + type + "/Bonuses"))
 			{
-				if (!this.get("Attack/" + type + "/Bonuses/" + o + "/Classes"))
+				let bonusClasses = this.get("Attack/" + type + "/Bonuses/" + b + "/Classes");
+				if (!bonusClasses)
 					continue;
-				var total = this.get("Attack/" + type + "/Bonuses/" + o + "/Classes").split(" ");
-				for (var j in total)
-					if (total[j] === againstClass)
-						return +this.get("Attack/" + type + "/Bonuses/" + o + "/Multiplier");
+				for (let bcl of bonusesClasses.split(" "))
+					if (bcl === againstClass)
+						return +this.get("Attack/" + type + "/Bonuses/" + b + "/Multiplier");
 			}
+		}
 		return 1;
 	},
 
@@ -313,11 +319,12 @@ m.Template = m.Class({
 		if (!this.get("Attack"))
 			return false;
 
-		for (var i in this.get("Attack")) {
-			if (!this.get("Attack/" + i + "/RestrictedClasses") || !this.get("Attack/" + i + "/RestrictedClasses/_string"))
+		for (let type in this.get("Attack"))
+		{
+			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
+			if (!restrictedClasses)
 				continue;
-			var cannotAttack = this.get("Attack/" + i + "/RestrictedClasses/_string").split(" ");
-			if (cannotAttack.indexOf(saidClass) !== -1)
+			if (restrictedClasses.split(" ").indexOf(saidClass) !== -1)
 				return false;
 		}
 		return true;
@@ -326,15 +333,15 @@ m.Template = m.Class({
 	buildableEntities: function() {
 		if (!this.get("Builder/Entities/_string"))
 			return [];
-		var civ = this.civ();
-		var templates = this.get("Builder/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
+		let civ = this.civ();
+		let templates = this.get("Builder/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates; // TODO: map to Entity?
 	},
 
 	trainableEntities: function(civ) {
 		if (!this.get("ProductionQueue/Entities/_string"))
 			return undefined;
-		var templates = this.get("ProductionQueue/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
+		let templates = this.get("ProductionQueue/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates;
 	},
 
@@ -343,45 +350,40 @@ m.Template = m.Class({
 			return undefined;
 		if (!this.get("ProductionQueue/Technologies/_string"))
 			return undefined;
-		var templates = this.get("ProductionQueue/Technologies/_string").split(/\s+/);
+		let templates = this.get("ProductionQueue/Technologies/_string").split(/\s+/);
 		return templates;
 	},
 
 	resourceSupplyType: function() {
 		if (!this.get("ResourceSupply"))
 			return undefined;
-		var [type, subtype] = this.get("ResourceSupply/Type").split('.');
+		let [type, subtype] = this.get("ResourceSupply/Type").split('.');
 		return { "generic": type, "specific": subtype };
 	},
 	// will return either "food", "wood", "stone", "metal" and not treasure.
 	getResourceType: function() {
 		if (!this.get("ResourceSupply"))
 			return undefined;
-		var [type, subtype] = this.get("ResourceSupply/Type").split('.');
+		let [type, subtype] = this.get("ResourceSupply/Type").split('.');
 		if (type == "treasure")
 			return subtype;
 		return type;
 	},
 
 	resourceSupplyMax: function() {
-		if (!this.get("ResourceSupply"))
-			return undefined;
 		return +this.get("ResourceSupply/Amount");
 	},
 
-	maxGatherers: function()
-	{
-		if (this.get("ResourceSupply") !== undefined)
-			return +this.get("ResourceSupply/MaxGatherers");
-		return 0;
+	maxGatherers: function() {
+		return +(this.get("ResourceSupply/MaxGatherers") || 0);
 	},
 
 	resourceGatherRates: function() {
 		if (!this.get("ResourceGatherer"))
 			return undefined;
-		var ret = {};
-		var baseSpeed = +this.get("ResourceGatherer/BaseSpeed");
-		for (var r in this.get("ResourceGatherer/Rates"))
+		let ret = {};
+		let baseSpeed = +this.get("ResourceGatherer/BaseSpeed");
+		for (let r in this.get("ResourceGatherer/Rates"))
 			ret[r] = +this.get("ResourceGatherer/Rates/" + r) * baseSpeed;
 		return ret;
 	},
@@ -396,32 +398,22 @@ m.Template = m.Class({
 
 
 	garrisonableClasses: function() {
-		if (!this.get("GarrisonHolder"))
-			return undefined;
 		return this.get("GarrisonHolder/List/_string");
 	},
 
 	garrisonMax: function() {
-		if (!this.get("GarrisonHolder"))
-			return undefined;
 		return this.get("GarrisonHolder/Max");
 	},
 
 	garrisonEjectHealth: function() {
-		if (!this.get("GarrisonHolder"))
-			return undefined;
 		return +this.get("GarrisonHolder/EjectHealth");
 	},
 
 	getDefaultArrow: function() {
-		if (!this.get("BuildingAI"))
-			return undefined;
 		return +this.get("BuildingAI/DefaultArrowCount");
 	},
 
 	getArrowMultiplier: function() {
-		if (!this.get("BuildingAI"))
-			return undefined;
 		return +this.get("BuildingAI/GarrisonArrowMultiplier");
 	},
 
@@ -432,14 +424,10 @@ m.Template = m.Class({
 	},
 
 	buffHeal: function() {
-		if (!this.get("GarrisonHolder"))
-			return undefined;
 		return +this.get("GarrisonHolder/BuffHeal");
 	},
 
 	promotion: function() {
-		if (!this.get("Promotion"))
-			return undefined;
 		return this.get("Promotion/Entity");
 	},
 
@@ -448,52 +436,41 @@ m.Template = m.Class({
 	 * (Any non domestic currently.)
 	 */
 	isHuntable: function() {
-		if(!this.get("ResourceSupply") || !this.get("ResourceSupply/KillBeforeGather"))
+		if(!this.get("ResourceSupply/KillBeforeGather"))
 			return false;
 
 		// special case: rabbits too difficult to hunt for such a small food amount
-		if (this.get("Identity") && this.get("Identity/SpecificName") && this.get("Identity/SpecificName") === "Rabbit")
+		let specificName = this.get("Identity/SpecificName");
+		if (specificName && specificName === "Rabbit")
 			return false;
 
 		// do not hunt retaliating animals (animals without UnitAI are dead animals)
-		return !this.get("UnitAI") || !(this.get("UnitAI/NaturalBehaviour") === "violent" ||
-			this.get("UnitAI/NaturalBehaviour") === "aggressive" ||
-			this.get("UnitAI/NaturalBehaviour") === "defensive");
+		let behaviour = this.get("UnitAI/NaturalBehaviour");
+		return !this.get("UnitAI") ||
+		       !(behaviour === "violent" || behaviour === "aggressive" || behaviour === "defensive");
 	},
 
 	walkSpeed: function() {
-		if (!this.get("UnitMotion") || !this.get("UnitMotion/WalkSpeed"))
-			 return undefined;
 		return +this.get("UnitMotion/WalkSpeed");
 	},
 
 	trainingCategory: function() {
-		if (!this.get("TrainingRestrictions") || !this.get("TrainingRestrictions/Category"))
-			return undefined;
 		return this.get("TrainingRestrictions/Category");
 	},
 
 	buildCategory: function() {
-		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Category"))
-			return undefined;
 		return this.get("BuildRestrictions/Category");
 	},
 
 	buildTime: function() {
-		if (!this.get("Cost") || !this.get("Cost/BuildTime"))
-			return undefined;
 		return +this.get("Cost/BuildTime");
 	},
 
 	buildDistance: function() {
-		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Distance"))
-			return undefined;
 		return this.get("BuildRestrictions/Distance");
 	},
 
 	buildPlacementType: function() {
-		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/PlacementType"))
-			return undefined;
 		return this.get("BuildRestrictions/PlacementType");
 	},
 
@@ -504,7 +481,7 @@ m.Template = m.Class({
 	},
 
 	hasBuildTerritory: function(territory) {
-		var territories = this.buildTerritories();
+		let territories = this.buildTerritories();
 		return territories && territories.indexOf(territory) !== -1;
 	},
 
@@ -513,7 +490,7 @@ m.Template = m.Class({
 	},
 
 	hasDefensiveFire: function() {
-		if (!this.get("Attack") || !this.get("Attack/Ranged"))
+		if (!this.get("Attack/Ranged"))
 			return false;
 		return this.getDefaultArrow() || this.getArrowMultiplier();
 	},
@@ -531,15 +508,15 @@ m.Template = m.Class({
 	},
 
 	territoryDecayRate: function() {
-		return this.get("TerritoryDecay") ? +this.get("TerritoryDecay/DecayRate") : 0;
+		return +(this.get("TerritoryDecay/DecayRate") || 0);
 	},
 
 	defaultRegenRate: function() {
-		return this.get("Capturable") ? +this.get("Capturable/RegenRate") : 0;
+		return +(this.get("Capturable/RegenRate") || 0);
 	},
 
 	garrisonRegenRate: function() {
-		return this.get("Capturable") ? +this.get("Capturable/GarrisonRegenRate") : 0;
+		return +(this.get("Capturable/GarrisonRegenRate") || 0);
 	},
 
 	visionRange: function() {
@@ -547,8 +524,6 @@ m.Template = m.Class({
 	},
 
 	gainMultiplier: function() {
-		if (!this.get("Trader"))
-			return undefined;
 		return +this.get("Trader/GainMultiplier");
 	}
 });
@@ -747,9 +722,10 @@ m.Entity = m.Class({
 	isBuilder: function() { return this.get("Builder") !== undefined; },
 	isGatherer: function() { return this.get("ResourceGatherer") !== undefined; },
 	canGather: function(type) {
-		if (!this.get("ResourceGatherer") || !this.get("ResourceGatherer/Rates"))
+		let gatherRates = this.get("ResourceGatherer/Rates");
+		if (!gatherRates)
 			return false;
-		for (let r in this.get("ResourceGatherer/Rates"))
+		for (let r in gatherRates)
 			if (r.split('.')[0] === type)
 				return true;
 		return false;
@@ -832,10 +808,10 @@ m.Entity = m.Class({
 			let FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],
 			                     this.position()[1] - unitToFleeFrom.position()[1]];
 			let dist = m.VectorDistance(unitToFleeFrom.position(), this.position() );
-			FleeDirection[0] = (FleeDirection[0]/dist) * 8;
-			FleeDirection[1] = (FleeDirection[1]/dist) * 8;
+			FleeDirection[0] = 40 * FleeDirection[0]/dist;
+			FleeDirection[1] = 40 * FleeDirection[1]/dist;
 
-			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0]*5, "z": this.position()[1] + FleeDirection[1]*5, "queued": false});
+			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0], "z": this.position()[1] + FleeDirection[1], "queued": false});
 		}
 		return this;
 	},
@@ -871,7 +847,7 @@ m.Entity = m.Class({
 	},
 
 	setRallyPoint: function(target, command) {
-		var data = {"command": command, "target": target.id()};
+		let data = {"command": command, "target": target.id()};
 		Engine.PostCommand(PlayerID, {"type": "set-rallypoint", "entities": [this.id()], "x": target.position()[0], "z": target.position()[1], "data": data});
 		return this;
 	},
@@ -883,7 +859,7 @@ m.Entity = m.Class({
 
 	train: function(civ, type, count, metadata, promotedTypes)
 	{
-		var trainable = this.trainableEntities(civ);
+		let trainable = this.trainableEntities(civ);
 		if (!trainable)
 		{
 			error("Called train("+type+", "+count+") on non-training entity "+this);
