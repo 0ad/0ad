@@ -786,7 +786,7 @@ g_SelectionPanels.Research = {
 		{
 			let entState = GetEntityState(ent);
 			if (entState.production && entState.production.technologies.length)
-				return entState.production.technologies.map( tech => ({
+				return entState.production.technologies.map(tech => ({
 					"tech": tech,
 					"techCostMultiplier": entState.production.techCostMultiplier
 				}));
@@ -802,6 +802,11 @@ g_SelectionPanels.Research = {
 	},
 	"addData": function(data)
 	{
+		if (!data.item.tech)
+		{
+			g_SelectionPanels.Research.hideItem(data.i, data.rowLength);
+			return false;
+		}
 		data.entType = data.item.tech.pair ? [data.item.tech.top, data.item.tech.bottom] : [data.item.tech];
 		data.template = data.entType.map(GetTechnologyData);
 		// abort if no template found for any of the techs

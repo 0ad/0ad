@@ -63,14 +63,6 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	{
 		var item = items[i];
 
-		// If a tech has been researched it leaves an empty slot
-		if (!item)
-		{
-			if (g_SelectionPanels[guiName].hideItem)
-				g_SelectionPanels[guiName].hideItem(i, rowLength);
-			continue;
-		}
-
 		// STANDARD DATA
 		// add standard data
 		var data = {
