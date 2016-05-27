@@ -75,7 +75,7 @@
 						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random)</translatableAttribute>
 						<action on="Press">resetCivilizations();</action>
 					</object>
-					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+5 0 100%-5 100%">
+					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+15 0 100%-15 100%">
 						<translatableAttribute id="caption">Team</translatableAttribute>
 					</object>
 				</object>
