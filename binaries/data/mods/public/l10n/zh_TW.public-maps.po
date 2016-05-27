@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-21 10:20+0000\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-24 23:50+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -579,13 +579,14 @@ msgstr "一個在隨機地圖中放置城牆的方法/代碼實際示範。建�
 msgid "Wall Demo"
 msgstr "城牆展示"
 
-#: maps/random/survivalofthefittest_triggers.js:80
+#: maps/random/survivalofthefittest_triggers.js:128
 msgid "An enemy wave is attacking!"
 msgstr "有一波敵人來襲！"
 
-#: maps/random/survivalofthefittest_triggers.js:151
-msgid "The first wave will start in 15 minutes!"
-msgstr "第一波攻擊將會在15分鐘後到來！"
+#: maps/random/survivalofthefittest_triggers.js:199
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "第一波攻擊將會在 %(time)s 後到來！"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adam Jones <uk.adam.jones@gmail.com>, 2016
 # Fabrizio Marana, 2015
 # Laurene Albrand, 2015
 # Laurene Albrand, 2015
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-04-18 14:24+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-25 16:44+0000\n"
+"Last-Translator: Adam Jones <uk.adam.jones@gmail.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -582,13 +583,14 @@ msgstr "A demonstration of wall placement methods/code in random maps. Very larg
 msgid "Wall Demo"
 msgstr "Wall Demo"
 
-#: maps/random/survivalofthefittest_triggers.js:80
+#: maps/random/survivalofthefittest_triggers.js:128
 msgid "An enemy wave is attacking!"
 msgstr "An enemy wave is attacking!"
 
-#: maps/random/survivalofthefittest_triggers.js:151
-msgid "The first wave will start in 15 minutes!"
-msgstr "The first wave will start in 15 minutes!"
+#: maps/random/survivalofthefittest_triggers.js:199
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "The first wave will start in %(time)s!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

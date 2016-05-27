@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-05-12 11:44+0000\n"
-"Last-Translator: mandruis <manuiglesias96@yahoo.es>\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-23 09:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -578,13 +578,14 @@ msgstr "Unha demostración de código e métodos de colocación de murallas en m
 msgid "Wall Demo"
 msgstr "Mostra de murallas"
 
-#: maps/random/survivalofthefittest_triggers.js:80
+#: maps/random/survivalofthefittest_triggers.js:128
 msgid "An enemy wave is attacking!"
 msgstr "Atácanos unha vaga de inimigos!"
 
-#: maps/random/survivalofthefittest_triggers.js:151
-msgid "The first wave will start in 15 minutes!"
-msgstr "A primeira vaga comezará en 15 minutos!"
+#: maps/random/survivalofthefittest_triggers.js:199
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr ""
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

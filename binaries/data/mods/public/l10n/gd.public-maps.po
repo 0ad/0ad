@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-31 09:32+0000\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-23 11:38+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -578,13 +578,14 @@ msgstr "Seo taisbeanadh air dòighean/còd gus ballachan a chur ann am mapaichea
 msgid "Wall Demo"
 msgstr "Taisbeanadh air ballachan"
 
-#: maps/random/survivalofthefittest_triggers.js:80
+#: maps/random/survivalofthefittest_triggers.js:128
 msgid "An enemy wave is attacking!"
 msgstr "Tha an nàmhaid a’ toirt ionnsaigh ort!"
 
-#: maps/random/survivalofthefittest_triggers.js:151
-msgid "The first wave will start in 15 minutes!"
-msgstr "Tòisichidh a’ chiad ionnsaigh an ceann cairteal uarach!"
+#: maps/random/survivalofthefittest_triggers.js:199
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "Tòisichidh a’ chiad ionnsaigh an ceann %(time)s!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

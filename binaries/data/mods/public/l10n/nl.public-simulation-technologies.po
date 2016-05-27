@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-02 09:01+0200\n"
-"PO-Revision-Date: 2016-05-17 11:15+0000\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-25 16:50+0000\n"
 "Last-Translator: Sander Deryckere\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -501,7 +501,7 @@ msgstr "Training verhoogd de mêlee aanvalskracht."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "+20% mêlee cavalarie aanvalskracht."
+msgstr "20% extra aanvalskracht voor mêlee ruiters."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -1297,8 +1297,9 @@ msgstr "Avanceer van een stadje naar een echter metropool, vol wonderen van mode
 #: simulation/data/technologies/phase_city.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%"
-msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. Het territorium rond de beschavingscentra wordt met nog eens 50% vergroot."
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +20%. All structures +9 garrisoned regeneration rate."
+msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. De territoriumgrootte van beschavingscentra wordt met nog eens 50% vergroot, de maximale gezondheid van burgersoldaten wordt met 20% verhoogd, en alle gebouwen krijgen 9 extra veroveringspunten regeneratie."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1327,8 +1328,9 @@ msgstr "Avanceer van een stadje naar een echte metropool, vol wonderen met moder
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers."
-msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 50% vergroot. De 'zilveren uil' bonus geeft 10% extra metaal mijnsnelheid voor alle werkkrachten."
+"grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
+"health increased by +20%. All structures +9 garrisoned regeneration rate."
+msgstr "Ga verder naar grootstadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. De territoriumgrootte van beschavingscentra wordt met nog eens 50% vergroot, de maximale gezondheid van burgersoldaten wordt met 20% verhoogd, en alle gebouwen krijgen 9 extra veroveringspunten regeneratie. De 'zilveren uil' bonus geeft 10% extra metaal mijnsnelheid voor alle werkkrachten."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1338,8 +1340,9 @@ msgstr "Avanceer van klein dorp naar bloeiende stad, klaar om snel uit te breide
 #: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%"
-msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot."
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot, de maximale gezondheid van burgersoldaten wordt met 20% verhoogd, en alle gebouwen krijgen 7 extra veroveringspunten regeneratie."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1369,8 +1372,9 @@ msgstr "Avanceer van een dorpje naar een echte stad klaar om snel uit te breiden
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers."
-msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot. De 'zilveren uil' bonus geeft 10% extra metaal mijnsnelheid voor alle werkkrachten."
+"an extra +10% metal gather rate to all workers. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Ga verder naar stadsfase. Deze geeft toegang tot meer gebouwen en meer eenheden. De territoriumgrootte van beschavingscentra wordt met 30% vergroot, de maximale gezondheid van burgersoldaten wordt met 20% verhoogd, en alle gebouwen krijgen 7 extra veroveringspunten regeneratie. De 'zilveren uil' bonus geeft 10% extra metaal mijnsnelheid voor alle werkkrachten."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1506,7 +1510,7 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr "Verbeterde bescherming voor belegeringswapens."
+msgstr "Verbeterd pantser voor belegeringswapens."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
@@ -2418,7 +2422,7 @@ msgstr "Vroege Achaemenidische heersers wilden Perzië het eerste grote Azische 
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr "Fenicische triremen krijgen de mogelijkheid om ruiters te trainen."
+msgstr "Fenicische triremen krijgen de mogelijkheid om ruiters te rekruteren."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"

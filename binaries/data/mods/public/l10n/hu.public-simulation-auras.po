@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Balázs Meskó <meskobalazs@gmail.com>, 2016
+# Gellért Gyuris <gellert.gyuris@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-05-21 10:59+0200\n"
-"PO-Revision-Date: 2016-05-21 14:06+0000\n"
+"PO-Revision-Date: 2016-05-25 18:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +175,7 @@ msgstr "Hűség aura"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "Minden hatótávolságban lévő épületnek 1,5x beszállásolási hűségregenerációs sebesség."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -210,7 +211,7 @@ msgstr "Vezetői aura"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% Movement Speed for all units."
-msgstr ""
+msgstr "+15% mozgási sebesség minden egységnek."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -218,7 +219,7 @@ msgstr "Hivatalnok aura"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% gyűjtési sebesség és építési sebesség a közeli egységeknek."
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
 msgid "Patriot Aura"
@@ -282,7 +283,7 @@ msgstr "Ilarchès aura"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All Cavalry gains +2 levels of all armour types."
-msgstr ""
+msgstr "Minden lovas minden típusú páncélból +2 szintet kap."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -292,7 +293,7 @@ msgstr "Hódítás aura"
 msgid ""
 "All nearby enemy Buildings, Siege engines, and Ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Minden közeli ellenséges épület, ostromgép és hajó életereje 20%-kal csökkentve."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -325,7 +326,7 @@ msgstr "Másodpercenként 1 ÉP-vel gyógyítja a közeli egységeket."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence."
-msgstr ""
+msgstr "Területi hatás növelése."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -333,7 +334,7 @@ msgstr "Falvédelem"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Units on walls have 3 extra Armor levels and higher vision."
-msgstr ""
+msgstr "A falon lévő egységek további 3 vagy magasabb páncélszintet kapnak."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 #: simulation/data/auras/wonder_pop_2.jsonauraName
@@ -342,11 +343,11 @@ msgstr "Csoda aura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "+10 max. population cap"
-msgstr ""
+msgstr "+10 max. népességkorlát"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr ""
+msgstr "+40 további legnagyobb népességkorlát (a „Dicsőséges terjeszkedés” technológia szükséges)"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -368,13 +369,13 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr ""
+msgstr "20%-kal csökkenti a polgári gyalogos csatárok költéségét az ibériai játékosok szövetségeseinek"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syryan Tetrapolis"
-msgstr ""
+msgstr "Szír tetrapolisz"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr ""
+msgstr "20%-kal csökkenti a városházák költségét a szeleukida játékosok szövetségeseinek"
