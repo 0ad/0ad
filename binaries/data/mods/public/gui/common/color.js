@@ -1,4 +1,9 @@
 /**
+ * Used to highlight hotkeys in tooltip descriptions.
+ */
+var g_HotkeyColor = "255 251 131";
+
+/**
  * Concatenate integer color values to a string (for use in GUI objects)
  *
  * @param {Object} color
@@ -123,4 +128,16 @@ function hslToRgb(h, s, l)
 	}
 
 	return [r, g, b].map(n => Math.round(n * 255));
+}
+
+function colorizeHotkey(key)
+{
+	key = Engine.ConfigDB_GetValue("user", "hotkey." + key);
+
+	if (!key)
+		return "";
+
+	return "[color=\"" + g_HotkeyColor + "\"]" +
+	           "\\[" + key + "]" +
+	       "[/color]";
 }

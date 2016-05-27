@@ -1001,9 +1001,13 @@ var g_EntityCommands =
 					"icon": "kill_small_disabled.png"
 				};
 
-
 			return {
-				"tooltip": translate("Delete"),
+				"tooltip":
+					colorizeHotkey("session.kill") + " " +
+					translate("Destroy the selected units or buildings.") + "\n" +
+					sprintf(translate("Use %(hotkey)s to avoid the confirmation dialog."), {
+						"hotkey": colorizeHotkey("session.noconfirmation")
+					}),
 				"icon": "kill_small.png"
 			};
 		},
@@ -1038,7 +1042,8 @@ var g_EntityCommands =
 				return false;
 
 			return {
-				"tooltip": translate("Stop"),
+				"tooltip": colorizeHotkey("session.stop") + " " +
+				           translate("Abort the current order."),
 				"icon": "stop.png"
 			};
 		},
@@ -1057,7 +1062,8 @@ var g_EntityCommands =
 				return false;
 
 			return {
-				"tooltip": translate("Garrison"),
+				"tooltip": colorizeHotkey("session.garrison") + " " +
+				           translate("Order the selected units to garrison a building or unit."),
 				"icon": "garrison.png"
 			};
 		},
@@ -1156,7 +1162,8 @@ var g_EntityCommands =
 				return false;
 
 			return {
-				"tooltip": translate("Guard"),
+				"tooltip": colorizeHotkey("session.guard") + " " +
+				           translate("Order the selected units to guard a building or unit."),
 				"icon": "add-guard.png"
 			};
 		},
@@ -1343,4 +1350,3 @@ function someGuarding(entities)
 		return entState && entState.unitAI && entState.unitAI.isGuarding;
 	});
 }
-

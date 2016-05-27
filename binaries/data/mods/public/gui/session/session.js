@@ -289,6 +289,8 @@ function init(initData, hotloadData)
 	if (Engine.IsAtlasRunning())
 		Engine.GetGUIObjectByName("menuExitButton").enabled = false;
 
+	initHotkeyTooltips();
+
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
@@ -305,6 +307,19 @@ function init(initData, hotloadData)
 	// and it generates a massive amount of data to transmit and store
 	//setTimeout(function() { reportPerformance(5); }, 5000);
 	//setTimeout(function() { reportPerformance(60); }, 60000);
+}
+
+function initHotkeyTooltips()
+{
+	Engine.GetGUIObjectByName("idleWorkerButton").tooltip =
+		colorizeHotkey("selection.idleworker") + " " +
+		translate("Find idle worker");
+
+	Engine.GetGUIObjectByName("tradeHelp").tooltip =
+		translate("Select one goods as origin of the changes, then use the arrows of the target goods to make the changes.") + "\n" +
+		sprintf(translate("Using %(hotkey)s will put the selected resource to 100%%."), {
+			"hotkey": colorizeHotkey("session.fulltradeswap")
+		});
 }
 
 function initializeMusic()

@@ -1102,10 +1102,9 @@ g_SelectionPanels.Training = {
 	},
 	"setTooltip": function(data)
 	{
-		var tooltip = "";
-		var key = Engine.ConfigDB_GetValue("user", "hotkey.session.queueunit." + (data.i + 1));
-		if (key)
-			tooltip += "[color=\"255 251 131\"][font=\"sans-bold-16\"]\\[" + key + "][/font][/color] ";
+		let tooltip = "[font=\"sans-bold-16\"]" +
+			colorizeHotkey("session.queueunit." + (data.i + 1)) +
+			"[/font]";
 
 		tooltip += getEntityNamesFormatted(data.template);
 		tooltip += getVisibleEntityClassesFormatted(data.template);
@@ -1130,7 +1129,11 @@ g_SelectionPanels.Training = {
 			if (data.template.speed)
 				tooltip += "\n" + getSpeedTooltip(data.template);
 		}
-		tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(data.buildingsCountToTrainFullBatch, data.fullBatchSize, data.remainderBatch) + "[/color]";
+
+		tooltip += "[color=\"" + g_HotkeyColor + "\"]" +
+			formatBatchTrainingString(data.buildingsCountToTrainFullBatch, data.fullBatchSize, data.remainderBatch) +
+			"[/color]";
+
 		if (!data.technologyEnabled)
 		{
 			var techName = getEntityNames(GetTechnologyData(data.template.requiredTechnology));

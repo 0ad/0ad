@@ -8,10 +8,10 @@
 	<!-- Idle Worker Button -->
 	<object size="100%-80 100%-80 100%-5 100%-5">
 		<object type="button"
+			name="idleWorkerButton"
 			tooltip_style="sessionToolTip"
 			hotkey="selection.idleworker"
 		>
-			<translatableAttribute id="tooltip">Find idle worker</translatableAttribute>
 			<action on="Press">if (g_HasIdleWorker) findIdleUnit(g_WorkerTypes);</action>
 			<action on="MouseEnter">if (g_HasIdleWorker) Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle-highlight.png";</action>
 			<action on="MouseLeave">if (g_HasIdleWorker) Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle.png";</action>
