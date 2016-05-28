@@ -312,14 +312,14 @@ function init(initData, hotloadData)
 function initHotkeyTooltips()
 {
 	Engine.GetGUIObjectByName("idleWorkerButton").tooltip =
-		colorizeHotkey("selection.idleworker") + " " +
+		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
 		translate("Find idle worker");
 
 	Engine.GetGUIObjectByName("tradeHelp").tooltip =
-		translate("Select one goods as origin of the changes, then use the arrows of the target goods to make the changes.") + "\n" +
-		sprintf(translate("Using %(hotkey)s will put the selected resource to 100%%."), {
-			"hotkey": colorizeHotkey("session.fulltradeswap")
-		});
+		translate("Select one goods as origin of the changes, then use the arrows of the target goods to make the changes.") +
+		colorizeHotkey(
+			"\n" + translate("Using %(hotkey)s will put the selected resource to 100%%."),
+			"session.fulltradeswap");
 }
 
 function initializeMusic()

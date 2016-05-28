@@ -1103,7 +1103,7 @@ g_SelectionPanels.Training = {
 	"setTooltip": function(data)
 	{
 		let tooltip = "[font=\"sans-bold-16\"]" +
-			colorizeHotkey("session.queueunit." + (data.i + 1)) +
+			colorizeHotkey("%(hotkey)s", "session.queueunit." + (data.i + 1)) +
 			"[/font]";
 
 		tooltip += getEntityNamesFormatted(data.template);

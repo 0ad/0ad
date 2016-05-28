@@ -130,14 +130,17 @@ function hslToRgb(h, s, l)
 	return [r, g, b].map(n => Math.round(n * 255));
 }
 
-function colorizeHotkey(key)
+function colorizeHotkey(text, hotkey)
 {
-	key = Engine.ConfigDB_GetValue("user", "hotkey." + key);
+	let key = Engine.ConfigDB_GetValue("user", "hotkey." + hotkey);
 
 	if (!key)
 		return "";
 
-	return "[color=\"" + g_HotkeyColor + "\"]" +
-	           "\\[" + key + "]" +
-	       "[/color]";
+	return sprintf(text, {
+		"hotkey":
+			"[color=\"" + g_HotkeyColor + "\"]" +
+			"\\[" + key + "]" +
+			"[/color]"
+	});
 }
