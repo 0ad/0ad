@@ -9,7 +9,7 @@
  * the item and some other standard data is added to a data object.
  *
  * The standard data is
- * var data = {
+ * {
  *   "i":              index
  *   "item":           item coming from the getItems function
  *   "selection":      list of currently selected items
@@ -21,28 +21,19 @@
  *   "icon":           gui Icon object
  *   "guiSelection":   gui button Selection overlay
  *   "countDisplay":   gui caption space
- * };
+ * }
  *
- * Then, addData is called, and can be used to abort the processing
- * of the current item by returning false.
- * It should return true if you want the panel to be filled.
- *
- * addData is used to add data to the data object on top
- * (or instead of) the standard data.
- * addData is not obligated, the function will just continue
- * with the content setters if no addData is present.
- *
- * After the addData, all functions starting with "set" are called.
- * These are used to set various parts of content.
+ * Then for every data object, the setupButton function is called which
+ * sets the view and handlers of the button.
  */
 
-/* cache some formation info */
-var g_availableFormations = new Map();   // available formations per player
-var g_formationsInfo = new Map();
+// Cache some formation info
+// Available formations per player
+let g_AvailableFormations = new Map();
+let g_FormationsInfo = new Map();
 
-var g_SelectionPanels = {};
+let g_SelectionPanels = {};
 
-// ALERT
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
@@ -54,7 +45,7 @@ g_SelectionPanels.Alert = {
 			return [];
 		return ["increase", "end"];
 	},
-	"setAction": function(data)
+	"setupButton": function(data)
 	{
 		data.button.onPress = function() {
 			if (data.item == "increase")
@@ -62,9 +53,7 @@ g_SelectionPanels.Alert = {
 			else if (data.item == "end")
 				endOfAlert();
 		};
-	},
-	"setTooltip": function(data)
-	{
+
 		if (data.item == "increase")
 		{
 			if (data.unitEntState.alertRaiser.hasRaisedAlert)
@@ -74,9 +63,7 @@ g_SelectionPanels.Alert = {
 		}
 		else if (data.item == "end")
 			data.button.tooltip = translate("End of alert.");
-	},
-	"setGraphics": function(data)
-	{
+
 		if (data.item == "increase")
 		{
 			data.button.hidden = !data.unitEntState.alertRaiser.canIncreaseLevel;
@@ -91,10 +78,12 @@ g_SelectionPanels.Alert = {
 			data.icon.sprite = "stretched:session/icons/bell_level0.png";
 		}
 		data.button.enabled = !data.button.hidden && controlsPlayer(data.unitEntState.player);
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// BARTER
 g_SelectionPanels.Barter = {
 	"getMaxNumberOfItems": function()
 	{
@@ -108,85 +97,73 @@ g_SelectionPanels.Barter = {
 		// ["food", "wood", "stone", "metal"]
 		return BARTER_RESOURCES;
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
 		// data.item is the resource name in this case
-		data.button = {};
-		data.icon = {};
-		data.amount = {};
-		for (var a of BARTER_ACTIONS)
+		let button = {};
+		let icon = {};
+		let amount = {};
+		for (let a of BARTER_ACTIONS)
 		{
-			data.button[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Button["+data.i+"]");
-			data.icon[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Icon["+data.i+"]");
-			data.amount[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Amount["+data.i+"]");
+			button[a] = Engine.GetGUIObjectByName("unitBarter" + a + "Button[" + data.i + "]");
+			icon[a] = Engine.GetGUIObjectByName("unitBarter" + a + "Icon[" + data.i + "]");
+			amount[a] = Engine.GetGUIObjectByName("unitBarter" + a + "Amount[" + data.i + "]");
 		}
-		data.selectionIcon = Engine.GetGUIObjectByName("unitBarterSellSelection["+data.i+"]");
+		let selectionIcon = Engine.GetGUIObjectByName("unitBarterSellSelection[" + data.i + "]");
 
-		data.amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
+		let amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
 		if (Engine.HotkeyIsPressed("session.massbarter"))
-			data.amountToSell *= BARTER_BUNCH_MULTIPLIER;
-		data.isSelected = data.item == g_barterSell;
-		return true;
-	},
-	"setCountDisplay": function(data)
-	{
-		data.amount.Sell.caption = "-" + data.amountToSell;
-		var sellPrice = data.unitEntState.barterMarket.prices.sell[g_barterSell];
-		var buyPrice = data.unitEntState.barterMarket.prices.buy[data.item];
-		data.amount.Buy.caption = "+" + Math.round(sellPrice / buyPrice * data.amountToSell);
-	},
-	"setTooltip": function(data)
-	{
-		var resource = getLocalizedResourceName(data.item, "withinSentence");
-		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
-		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
-	},
-	"setAction": function(data)
-	{
-		data.button.Sell.onPress = function() { g_barterSell = data.item; };
-		var exchangeResourcesParameters = {
-			"sell": g_barterSell,
+			amountToSell *= BARTER_BUNCH_MULTIPLIER;
+
+		amount.Sell.caption = "-" + amountToSell;
+		let prices = data.unitEntState.barterMarket.prices;
+		amount.Buy.caption = "+" + Math.round(prices.sell[g_BarterSell] / prices.buy[data.item] * amountToSell);
+
+		let resource = getLocalizedResourceName(data.item, "withinSentence");
+		button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
+		button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
+
+		button.Sell.onPress = function() { g_BarterSell = data.item; };
+		let exchangeResourcesParameters = {
+			"sell": g_BarterSell,
 			"buy": data.item,
-			"amount": data.amountToSell
+			"amount": amountToSell
 		};
-		data.button.Buy.onPress = function() { exchangeResources(exchangeResourcesParameters); };
-	},
-	"setGraphics": function(data)
-	{
-		var grayscale = data.isSelected ? "color: 0 0 0 100:grayscale:" : "";
+		button.Buy.onPress = function() { exchangeResources(exchangeResourcesParameters); };
+
+		let isSelected = data.item == g_BarterSell;
+		let grayscale = isSelected ? "color: 0 0 0 100:grayscale:" : "";
 
 		// do we have enough of this resource to sell?
-		var neededRes = {};
-		neededRes[data.item] = data.amountToSell;
-		var canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", {
+		let neededRes = {};
+		neededRes[data.item] = amountToSell;
+		let canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", {
 			"cost": neededRes,
 			"player": data.unitEntState.player
 		}) ? "color:255 0 0 80:" : "";
 
 		// Let's see if we have enough resources to barter.
 		neededRes = {};
-		neededRes[g_barterSell] = data.amountToSell;
-		var canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", {
+		neededRes[g_BarterSell] = amountToSell;
+		let canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", {
 			"cost": neededRes,
 			"player": data.unitEntState.player
 		}) ? "color:255 0 0 80:" : "";
 
-		data.icon.Sell.sprite = canSellCurrent + "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
-		data.icon.Buy.sprite = canBuyAny + "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
+		icon.Sell.sprite = canSellCurrent + "stretched:" + grayscale + "session/icons/resources/" + data.item + ".png";
+		icon.Buy.sprite = canBuyAny + "stretched:" + grayscale + "session/icons/resources/" + data.item + ".png";
 
-		data.button.Buy.hidden = data.isSelected;
-		data.button.Buy.enabled = controlsPlayer(data.unitEntState.player);
-		data.button.Sell.hidden = false;
-		data.selectionIcon.hidden = !data.isSelected;
-	},
-	"setPosition": function(data)
-	{
-		setPanelObjectPosition(data.button.Sell, data.i, data.rowLength);
-		setPanelObjectPosition(data.button.Buy, data.i + data.rowLength, data.rowLength);
+		button.Buy.hidden = isSelected;
+		button.Buy.enabled = controlsPlayer(data.unitEntState.player);
+		button.Sell.hidden = false;
+		selectionIcon.hidden = !isSelected;
+
+		setPanelObjectPosition(button.Sell, data.i, data.rowLength);
+		setPanelObjectPosition(button.Buy, data.i + data.rowLength, data.rowLength);
+		return true;
 	}
 };
 
-// COMMAND
 g_SelectionPanels.Command = {
 	"getMaxNumberOfItems": function()
 	{
@@ -198,7 +175,7 @@ g_SelectionPanels.Command = {
 
 		for (let c in g_EntityCommands)
 		{
-			var info = g_EntityCommands[c].getInfo(unitEntState);
+			let info = g_EntityCommands[c].getInfo(unitEntState);
 			if (!info)
 				continue;
 
@@ -207,55 +184,48 @@ g_SelectionPanels.Command = {
 		}
 		return commands;
 	},
-	"setTooltip": function(data)
+	"setupButton": function(data)
 	{
 		data.button.tooltip = data.item.tooltip;
-	},
-	"setAction": function(data)
-	{
+
 		data.button.onPress = function() {
 			if (data.item.callback)
 				data.item.callback(data.item);
 			else
 				performCommand(data.unitEntState.id, data.item.name);
 		};
-	},
-	"setCountDisplay": function(data)
-	{
+
 		data.countDisplay.caption = data.item.count || "";
-	},
-	"setGraphics": function(data)
-	{
+
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
 		let grayscale = data.button.enabled ? "" : "grayscale:";
 		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
-	},
-	"setPosition": function(data)
-	{
-		var size = data.button.size;
+
+		let size = data.button.size;
 		// count on square buttons, so size.bottom is the width too
-		var spacer = size.bottom + 1;
+		let spacer = size.bottom + 1;
 		// relative to the center ( = 50%)
 		size.rleft = size.rright = 50;
 		// offset from the center calculation
 		size.left = (data.i - data.numberOfItems/2) * spacer;
 		size.right = size.left + size.bottom;
 		data.button.size = size;
+		return true;
 	}
 };
 
-//ALLY COMMAND
 g_SelectionPanels.AllyCommand = {
 	"getMaxNumberOfItems": function()
 	{
 		return 2;
 	},
+	"conflictsWith": ["Command"],
 	"getItems": function(unitEntState)
 	{
-		var commands = [];
-		for (var c in g_AllyEntityCommands)
+		let commands = [];
+		for (let c in g_AllyEntityCommands)
 		{
-			var info = g_AllyEntityCommands[c].getInfo(unitEntState);
+			let info = g_AllyEntityCommands[c].getInfo(unitEntState);
 			if (!info)
 				continue;
 			info.name = c;
@@ -263,45 +233,38 @@ g_SelectionPanels.AllyCommand = {
 		}
 		return commands;
 	},
-	"setTooltip": function(data)
+	"setupButton": function(data)
 	{
 		data.button.tooltip = data.item.tooltip;
-	},
-	"setAction": function(data)
-	{
+
 		data.button.onPress = function() {
 			if (data.item.callback)
 				data.item.callback(data.item);
 			else
 				performAllyCommand(data.unitEntState.id, data.item.name);
 		};
-	},
-	"conflictsWith": ["Command"],
-	"setCountDisplay": function(data)
-	{
+
 		data.countDisplay.caption = data.item.count || "";
-	},
-	"setGraphics": function(data)
-	{
+
 		data.button.enabled = data.item.count != undefined && data.item.count > 0;
 		let grayscale = data.button.enabled ? "" : "grayscale:";
 		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
-	},
-	"setPosition": function(data)
-	{
-		var size = data.button.size;
+
+		let size = data.button.size;
 		// count on square buttons, so size.bottom is the width too
-		var spacer = size.bottom + 1;
+		let spacer = size.bottom + 1;
 		// relative to the center ( = 50%)
 		size.rleft = size.rright = 50;
 		// offset from the center calculation
 		size.left = (data.i - data.numberOfItems/2) * spacer;
 		size.right = size.left + size.bottom;
 		data.button.size = size;
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// CONSTRUCTION
 g_SelectionPanels.Construction = {
 	"getMaxNumberOfItems": function()
 	{
@@ -311,88 +274,76 @@ g_SelectionPanels.Construction = {
 	{
 		return getAllBuildableEntitiesFromSelection();
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		data.entType = data.item;
-		data.template = GetTemplateData(data.entType);
-		if (!data.template) // abort if no template
+		let template = GetTemplateData(data.item);
+		if (!template)
 			return false;
 
-		data.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-			"tech": data.template.requiredTechnology,
+		let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
+			"tech": template.requiredTechnology,
 			"player": data.unitEntState.player
 		});
 
-		if (data.template.cost)
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": multiplyEntityCosts(data.template, 1),
+		let neededResources;
+		if (template.cost)
+			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": multiplyEntityCosts(template, 1),
 				"player": data.unitEntState.player
 			});
 
-		data.limits = getEntityLimitAndCount(data.playerState, data.entType);
+		let limits = getEntityLimitAndCount(data.playerState, data.item);
 
-		if (data.template.wallSet)
-			data.template.auras = GetTemplateData(data.template.wallSet.templates.long).auras;
+		if (template.wallSet)
+			template.auras = GetTemplateData(template.wallSet.templates.long).auras;
 
-		return true;
-	},
-	"setAction": function(data)
-	{
 		data.button.onPress = function () { startBuildingPlacement(data.item, data.playerState); };
-	},
-	"setTooltip": function(data)
-	{
-		var tooltip = getEntityNamesFormatted(data.template);
-		tooltip += getVisibleEntityClassesFormatted(data.template);
-		tooltip += getAurasTooltip(data.template);
 
-		if (data.template.tooltip)
-			tooltip += "\n[font=\"sans-13\"]" + data.template.tooltip + "[/font]";
+		let tooltip = getEntityNamesFormatted(template);
+		tooltip += getVisibleEntityClassesFormatted(template);
+		tooltip += getAurasTooltip(template);
 
-		tooltip += "\n" + getEntityCostTooltip(data.template);
-		tooltip += getPopulationBonusTooltip(data.template);
+		if (template.tooltip)
+			tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
-		tooltip += formatLimitString(data.limits.entLimit, data.limits.entCount, data.limits.entLimitChangers);
+		tooltip += "\n" + getEntityCostTooltip(template);
+		tooltip += getPopulationBonusTooltip(template);
 
-		if (!data.technologyEnabled)
+		tooltip += formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
+
+		if (!technologyEnabled)
 			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), {
-				"technology": getEntityNames(GetTechnologyData(data.template.requiredTechnology))
+				"technology": getEntityNames(GetTechnologyData(template.requiredTechnology))
 			});
 
-		if (data.neededResources)
-			tooltip += getNeededResourcesTooltip(data.neededResources);
+		if (neededResources)
+			tooltip += getNeededResourcesTooltip(neededResources);
 
 		data.button.tooltip = tooltip;
-		return true;
-	},
-	"setGraphics": function(data)
-	{
-		var modifier = "";
-		if (!data.technologyEnabled || data.limits.canBeAddedCount == 0)
+
+		let modifier = "";
+		if (!technologyEnabled || limits.canBeAddedCount == 0)
 		{
 			data.button.enabled = false;
-			modifier += "color: 0 0 0 127:";
-			modifier += "grayscale:";
+			modifier += "color:0 0 0 127:grayscale:";
 		}
-		else if (data.neededResources)
+		else if (neededResources)
 		{
 			data.button.enabled = false;
-			modifier += resourcesToAlphaMask(data.neededResources) +":";
+			modifier += resourcesToAlphaMask(neededResources) +":";
 		}
 		else
 			data.button.enabled = controlsPlayer(data.unitEntState.player);
 
-		if (data.template.icon)
-			data.icon.sprite = modifier + "stretched:session/portraits/" + data.template.icon;
-	},
-	"setPosition": function(data)
-	{
-		var index = data.i + getNumberOfRightPanelButtons();
+		if (template.icon)
+			data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
+
+		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
+		return true;
 	}
 };
 
-// FORMATION
 g_SelectionPanels.Formation = {
 	"getMaxNumberOfItems": function()
 	{
@@ -404,43 +355,39 @@ g_SelectionPanels.Formation = {
 	{
 		if (!hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
 			return [];
-		if (!g_availableFormations.has(unitEntState.player))
-			g_availableFormations.set(unitEntState.player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntState.player));
-		return g_availableFormations.get(unitEntState.player);
+		if (!g_AvailableFormations.has(unitEntState.player))
+			g_AvailableFormations.set(unitEntState.player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntState.player));
+		return g_AvailableFormations.get(unitEntState.player);
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		if (!g_formationsInfo.has(data.item))
-			g_formationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", { "templateName": data.item }));
-		data.formationInfo = g_formationsInfo.get(data.item);
-		data.formationOk = canMoveSelectionIntoFormation(data.item);
-		data.formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
+		if (!g_FormationsInfo.has(data.item))
+			g_FormationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", { "templateName": data.item }));
+
+		let formationInfo = g_FormationsInfo.get(data.item);
+		let formationOk = canMoveSelectionIntoFormation(data.item);
+		let formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
 			"ents": data.selection,
 			"formationTemplate": data.item
 		});
-		return true;
-	},
-	"setAction": function(data)
-	{
+
 		data.button.onPress = function() { performFormation(data.unitEntState.id, data.item); };
-	},
-	"setTooltip": function(data)
-	{
-		var tooltip = translate(data.formationInfo.name);
-		if (!data.formationOk && data.formationInfo.tooltip)
-			tooltip += "\n" + "[color=\"red\"]" + translate(data.formationInfo.tooltip) + "[/color]";
+
+		let tooltip = translate(formationInfo.name);
+		if (!formationOk && formationInfo.tooltip)
+			tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
 		data.button.tooltip = tooltip;
-	},
-	"setGraphics": function(data)
-	{
-		data.button.enabled = data.formationOk && controlsPlayer(data.unitEntState.player);
-		var grayscale = data.formationOk ? "" : "grayscale:";
-		data.guiSelection.hidden = !data.formationSelected;
-		data.icon.sprite = "stretched:"+grayscale+"session/icons/"+data.formationInfo.icon;
+
+		data.button.enabled = formationOk && controlsPlayer(data.unitEntState.player);
+		let grayscale = formationOk ? "" : "grayscale:";
+		data.guiSelection.hidden = !formationSelected;
+		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + formationInfo.icon;
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// GARRISON
 g_SelectionPanels.Garrison = {
 	"getMaxNumberOfItems": function()
 	{
@@ -451,44 +398,32 @@ g_SelectionPanels.Garrison = {
 	{
 		if (!unitEntState.garrisonHolder)
 			return [];
-		var groups = new EntityGroups();
-		for (var ent of selection)
+		let groups = new EntityGroups();
+		for (let ent of selection)
 		{
-			var state = GetEntityState(ent);
+			let state = GetEntityState(ent);
 			if (state.garrisonHolder)
 				groups.add(state.garrisonHolder.entities);
 		}
 		return groups.getEntsGrouped();
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		data.entType = data.item.template;
-		data.template = GetTemplateData(data.entType);
-		if (!data.template)
+		let template = GetTemplateData(data.item.template);
+		if (!template)
 			return false;
-		data.name = getEntityNames(data.template);
-		data.count = data.item.ents.length;
-		return true;
-	},
-	"setAction": function(data)
-	{
+
 		data.button.onPress = function() { unloadTemplate(data.item.template); };
-	},
-	"setTooltip": function(data)
-	{
-		var tooltip = sprintf(translate("Unload %(name)s"), { "name": data.name }) + "\n";
+
+		let tooltip = sprintf(translate("Unload %(name)s"), { "name": getEntityNames(template) }) + "\n";
 		tooltip += translate("Single-click to unload 1. Shift-click to unload all of this type.");
 		data.button.tooltip = tooltip;
-	},
-	"setCountDisplay": function(data)
-	{
-		data.countDisplay.caption = data.count || "";
-	},
-	"setGraphics": function(data)
-	{
-		var grayscale = "";
-		var ents = data.item.ents;
-		var entplayer = GetEntityState(ents[0]).player;
+
+		data.countDisplay.caption = data.item.ents.length || "";
+
+		let grayscale = "";
+		let ents = data.item.ents;
+		let entplayer = GetEntityState(ents[0]).player;
 		data.button.sprite = "color:" + rgbToGuiColor(g_Players[entplayer].color) +":";
 
 		if (!controlsPlayer(data.unitEntState.player) && !controlsPlayer(entplayer))
@@ -497,11 +432,13 @@ g_SelectionPanels.Garrison = {
 			grayscale = "grayscale:";
 		}
 
-		data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + data.template.icon;
+		data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// GATE
 g_SelectionPanels.Gate = {
 	"getMaxNumberOfItems": function()
 	{
@@ -510,18 +447,18 @@ g_SelectionPanels.Gate = {
 	"getItems": function(unitEntState, selection)
 	{
 		// Allow long wall pieces to be converted to gates
-		var longWallTypes = {};
-		var walls = [];
-		var gates = [];
-		for (var ent of selection)
+		let longWallTypes = {};
+		let walls = [];
+		let gates = [];
+		for (let ent of selection)
 		{
-			var state = GetEntityState(ent);
+			let state = GetEntityState(ent);
 			if (hasClass(state, "LongWall") && !state.gate && !longWallTypes[state.template])
 			{
-				var gateTemplate = getWallGateTemplate(state.id);
+				let gateTemplate = getWallGateTemplate(state.id);
 				if (gateTemplate)
 				{
-					var tooltipString = GetTemplateDataWithoutLocalization(state.template).gateConversionTooltip;
+					let tooltipString = GetTemplateDataWithoutLocalization(state.template).gateConversionTooltip;
 					if (!tooltipString)
 					{
 						warn(state.template + " is supposed to be convertable to a gate, but it's missing the GateConversionTooltip in the Identity template");
@@ -554,26 +491,23 @@ g_SelectionPanels.Gate = {
 			}
 			// Show both 'locked' and 'unlocked' as active if the selected gates have both lock states.
 			else if (state.gate && state.gate.locked != gates[0].gate.locked)
-				for (var j = 0; j < gates.length; ++j)
+				for (let j = 0; j < gates.length; ++j)
 					delete gates[j].gate.locked;
 		}
 
 		// Place wall conversion options after gate lock/unlock icons.
-		var items = gates.concat(walls);
-		return items;
+		return gates.concat(walls);
 	},
-	"setAction": function(data)
+	"setupButton": function(data)
 	{
 		data.button.onPress = function() {data.item.callback(data.item); };
-	},
-	"setTooltip": function(data)
-	{
-		var tooltip = data.item.tooltip;
+
+		let tooltip = data.item.tooltip;
 		if (data.item.template)
 		{
 			data.template = GetTemplateData(data.item.template);
 			data.wallCount = data.selection.reduce(function (count, ent) {
-					var state = GetEntityState(ent);
+					let state = GetEntityState(ent);
 					if (hasClass(state, "LongWall") && !state.gate)
 						++count;
 					return count;
@@ -589,11 +523,9 @@ g_SelectionPanels.Gate = {
 				tooltip += getNeededResourcesTooltip(data.neededResources);
 		}
 		data.button.tooltip = tooltip;
-	},
-	"setGraphics": function(data)
-	{
+
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
-		var gateIcon;
+		let gateIcon;
 		if (data.item.gate)
 		{
 			// If already a gate, show locking actions
@@ -605,24 +537,22 @@ g_SelectionPanels.Gate = {
 		}
 		else
 		{
-			// otherwise show gate upgrade icon
-			var template = GetTemplateData(data.item.template);
+			// Otherwise show gate upgrade icon
+			let template = GetTemplateData(data.item.template);
 			if (!template)
-				return;
+				return false;
 			gateIcon = data.template.icon ? "portraits/" + data.template.icon : "icons/gate_closed.png";
 			data.guiSelection.hidden = true;
 		}
 
 		data.icon.sprite = (data.neededResources ? resourcesToAlphaMask(data.neededResources) + ":" : "") + "stretched:session/" + gateIcon;
-	},
-	"setPosition": function(data)
-	{
-		var index = data.i + getNumberOfRightPanelButtons();
+
+		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
+		return true;
 	}
 };
 
-// PACK
 g_SelectionPanels.Pack = {
 	"getMaxNumberOfItems": function()
 	{
@@ -630,10 +560,10 @@ g_SelectionPanels.Pack = {
 	},
 	"getItems": function(unitEntState, selection)
 	{
-		var checks = {};
-		for (var ent of selection)
+		let checks = {};
+		for (let ent of selection)
 		{
-			var state = GetEntityState(ent);
+			let state = GetEntityState(ent);
 			if (!state.pack)
 				continue;
 			if (state.pack.progress == 0)
@@ -652,7 +582,7 @@ g_SelectionPanels.Pack = {
 					checks.unpackCancelButton = true;
 			}
 		}
-		var items = [];
+		let items = [];
 		if (checks.packButton)
 			items.push({ "packing": false, "packed": false, "tooltip": translate("Pack"), "callback": function() { packUnit(true); } });
 		if (checks.unpackButton)
@@ -663,16 +593,12 @@ g_SelectionPanels.Pack = {
 			items.push({ "packing": true, "packed": true, "tooltip": translate("Cancel Unpacking"), "callback": function() { cancelPackUnit(false); } });
 		return items;
 	},
-	"setAction": function(data)
+	"setupButton": function(data)
 	{
 		data.button.onPress = function() {data.item.callback(data.item); };
-	},
-	"setTooltip": function(data)
-	{
+
 		data.button.tooltip = data.item.tooltip;
-	},
-	"setGraphics": function(data)
-	{
+
 		if (data.item.packing)
 			data.icon.sprite = "stretched:session/icons/cancel.png";
 		else if (data.item.packed)
@@ -681,15 +607,13 @@ g_SelectionPanels.Pack = {
 			data.icon.sprite = "stretched:session/icons/pack.png";
 
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
-	},
-	"setPosition": function(data)
-	{
-		var index = data.i + getNumberOfRightPanelButtons();
+
+		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
+		return true;
 	}
 };
 
-// QUEUE
 g_SelectionPanels.Queue = {
 	"getMaxNumberOfItems": function()
 	{
@@ -701,38 +625,29 @@ g_SelectionPanels.Queue = {
 	},
 	"resizePanel": function(numberOfItems, rowLength)
 	{
-		var numRows = Math.ceil(numberOfItems / rowLength);
-		var panel = Engine.GetGUIObjectByName("unitQueuePanel");
-		var size = panel.size;
-		var buttonSize = Engine.GetGUIObjectByName("unitQueueButton[0]").size.bottom;
-		var margin = 4;
+		let numRows = Math.ceil(numberOfItems / rowLength);
+		let panel = Engine.GetGUIObjectByName("unitQueuePanel");
+		let size = panel.size;
+		let buttonSize = Engine.GetGUIObjectByName("unitQueueButton[0]").size.bottom;
+		let margin = 4;
 		size.top = size.bottom - numRows*buttonSize - (numRows+2)*margin;
 		panel.size = size;
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		// differentiate between units and techs
+		// Differentiate between units and techs
+		let template;
 		if (data.item.unitTemplate)
-		{
-			data.entType = data.item.unitTemplate;
-			data.template = GetTemplateData(data.entType);
-		}
+			template = GetTemplateData(data.item.unitTemplate);
 		else if (data.item.technologyTemplate)
-		{
-			data.entType = data.item.technologyTemplate;
-			data.template = GetTechnologyData(data.entType);
-		}
-		data.progress = Math.round(data.item.progress*100) + "%";
+			template = GetTechnologyData(data.item.technologyTemplate);
 
-		return data.template;
-	},
-	"setAction": function(data)
-	{
+		if (!template)
+			return false;
+
 		data.button.onPress = function() { removeFromProductionQueue(data.item.producingEnt, data.item.id); };
-	},
-	"setTooltip": function(data)
-	{
-		var tooltip = getEntityNames(data.template);
+
+		let tooltip = getEntityNames(template);
 		if (data.item.neededSlots)
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
@@ -742,34 +657,30 @@ g_SelectionPanels.Queue = {
 			});
 		}
 		data.button.tooltip = tooltip;
-	},
-	"setCountDisplay": function(data)
-	{
-		data.countDisplay.caption = data.item.count > 1 ? data.item.count : "";
-	},
-	"setProgressDisplay": function(data)
-	{
-		// show the progress number for the first item
-		if (data.i == 0)
-			Engine.GetGUIObjectByName("queueProgress").caption = data.progress;
 
-		var guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
-		var size = guiObject.size;
+		data.countDisplay.caption = data.item.count > 1 ? data.item.count : "";
+
+		// Show the progress number for the first item
+		if (data.i == 0)
+			Engine.GetGUIObjectByName("queueProgress").caption = Math.round(data.item.progress*100) + "%";
+
+		let guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
+		let size = guiObject.size;
 
 		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
 		size.top = size.left + Math.round(data.item.progress * (size.right - size.left));
 		guiObject.size = size;
-	},
-	"setGraphics": function(data)
-	{
-		if (data.template.icon)
-			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
+
+		if (template.icon)
+			data.icon.sprite = "stretched:session/portraits/" + template.icon;
 
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// RESEARCH
 g_SelectionPanels.Research = {
 	"getMaxNumberOfItems": function()
 	{
@@ -793,147 +704,123 @@ g_SelectionPanels.Research = {
 		}
 		return [];
 	},
-	"hideItem": function(i, rowLength) // called when no item is found
+	"hideItem": function(i, rowLength) // Called when no item is found
 	{
-		Engine.GetGUIObjectByName("unitResearchButton["+i+"]").hidden = true;
+		Engine.GetGUIObjectByName("unitResearchButton[" + i + "]").hidden = true;
 		// We also remove the paired tech and the pair symbol
-		Engine.GetGUIObjectByName("unitResearchButton["+(i+rowLength)+"]").hidden = true;
-		Engine.GetGUIObjectByName("unitResearchPair["+i+"]").hidden = true;
+		Engine.GetGUIObjectByName("unitResearchButton[" + (i + rowLength) + "]").hidden = true;
+		Engine.GetGUIObjectByName("unitResearchPair[" + i + "]").hidden = true;
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
 		if (!data.item.tech)
 		{
 			g_SelectionPanels.Research.hideItem(data.i, data.rowLength);
 			return false;
 		}
-		data.entType = data.item.tech.pair ? [data.item.tech.top, data.item.tech.bottom] : [data.item.tech];
-		data.template = data.entType.map(GetTechnologyData);
-		// abort if no template found for any of the techs
-		if (data.template.some(v => !v))
-			return false;
+		let techs = data.item.tech.pair ? [data.item.tech.bottom, data.item.tech.top] : [data.item.tech];
 
-		for (let template of data.template)
+		// Start position (start at the bottom)
+		let position = data.i + data.rowLength;
+
+		// Only show the top button for pairs
+		if (!data.item.tech.pair)
+			Engine.GetGUIObjectByName("unitResearchButton[" + data.i + "]").hidden = true;
+
+		// Set up the tech connector
+		let pair = Engine.GetGUIObjectByName("unitResearchPair[" + data.i + "]");
+		pair.hidden = data.item.tech.pair == null;
+		setPanelObjectPosition(pair, data.i, data.rowLength);
+
+		// Handle one or two techs
+		for (let i in techs)
+		{
+			let tech = techs[i];
+			let template = GetTechnologyData(tech);
+			if (!template)
+				return false;
+
 			for (let res in template.cost)
 				template.cost[res] *= data.item.techCostMultiplier[res];
 
-		// index one row below
-		var shiftedIndex = data.i + data.rowLength;
-		data.positions = data.item.tech.pair ? [data.i, shiftedIndex] : [shiftedIndex];
-		data.positionsToHide = data.item.tech.pair ? [] : [data.i];
+			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": template.cost,
+				"player": data.unitEntState.player
+			});
 
-		// add top buttons to the data
-		data.button = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchButton["+p+"]"));
-		data.buttonsToHide = data.positionsToHide.map(p => Engine.GetGUIObjectByName("unitResearchButton["+p+"]"));
+			let requirementsPassed = Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
+				"tech": tech,
+				"player": data.unitEntState.player
+			});
 
-		data.icon = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchIcon["+p+"]"));
-		data.unchosenIcon = data.positions.map(p => Engine.GetGUIObjectByName("unitResearchUnchosenIcon["+p+"]"));
+			let button = Engine.GetGUIObjectByName("unitResearchButton[" + position + "]");
+			let icon = Engine.GetGUIObjectByName("unitResearchIcon[" + position + "]");
 
-		data.neededResources = data.template.map(t => Engine.GuiInterfaceCall("GetNeededResources", {
-			"cost": t.cost,
-			"player": data.unitEntState.player
-		}));
-
-		data.requirementsPassed = data.entType.map(e => Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
-			"tech": e,
-			"player": data.unitEntState.player
-		}));
-
-		data.pair = Engine.GetGUIObjectByName("unitResearchPair["+data.i+"]");
-
-		return true;
-	},
-	"setTooltip": function(data)
-	{
-		for (var i in data.entType)
-		{
-			var tooltip = "";
-			var template = data.template[i];
-			tooltip = getEntityNamesFormatted(template);
+			let tooltip = getEntityNamesFormatted(template);
 			if (template.tooltip)
 				tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
 			tooltip += "\n" + getEntityCostTooltip(template);
-			if (!data.requirementsPassed[i])
+			if (!requirementsPassed)
 			{
 				tooltip += "\n" + template.requirementsTooltip;
 				if (template.classRequirements)
 				{
-					var player = data.unitEntState.player;
-					var current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
-					var remaining = template.classRequirements.number - current;
+					let player = data.unitEntState.player;
+					let current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
+					let remaining = template.classRequirements.number - current;
 					tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { "number": remaining });
 				}
 			}
-			if (data.neededResources[i])
-				tooltip += getNeededResourcesTooltip(data.neededResources[i]);
-			data.button[i].tooltip = tooltip;
-		}
-	},
-	"setAction": function(data)
-	{
-		for (var i in data.entType)
-		{
-			// array containing the indices other buttons
-			var others = Object.keys(data.template);
-			others.splice(i, 1);
-			var button = data.button[i];
-			// as we're in a loop, we need to limit the scope with a closure
-			// else the last value of the loop will be taken, rather than the current one
-			button.onpress = (function(template) { return function () { addResearchToQueue(data.unitEntState.id, template); }; })(data.entType[i]);
-			// on mouse enter, show a cross over the other icons
-			button.onmouseenter = (function(others, icons) {
-				return function() {
-					for (var j of others)
-						icons[j].hidden = false;
-				};
-			})(others, data.unchosenIcon);
-			button.onmouseleave = (function(others, icons) {
-				return function() {
-					for (var j of others)
-						icons[j].hidden = true;
-				};
-			})(others, data.unchosenIcon);
-		}
-	},
-	"setGraphics": function(data)
-	{
-		for (var i in data.entType)
-		{
-			let button = data.button[i];
-			button.hidden = false;
-			var modifier = "";
-			if (!data.requirementsPassed[i])
+			if (neededResources)
+				tooltip += getNeededResourcesTooltip(neededResources);
+			button.tooltip = tooltip;
+
+			button.onPress = function () {
+				addResearchToQueue(data.unitEntState.id, tech);
+			};
+
+			if (data.item.tech.pair)
 			{
-				button.enabled = false;
-				modifier += "color: 0 0 0 127:";
-				modifier += "grayscale:";
+				// On mouse enter, show a cross over the other icon
+				let otherPosition = (position + data.rowLength) % (2 * data.rowLength);
+				let unchosenIcon = Engine.GetGUIObjectByName("unitResearchUnchosenIcon[" + otherPosition + "]");
+				button.onMouseEnter = function() {
+						unchosenIcon.hidden = false;
+				};
+				button.onMouseLeave = function() {
+						unchosenIcon.hidden = true;
+				};
 			}
-			else if (data.neededResources[i])
+
+			button.hidden = false;
+			let modifier = "";
+			if (!requirementsPassed)
 			{
 				button.enabled = false;
-				modifier += resourcesToAlphaMask(data.neededResources[i]) + ":";
+				modifier += "color:0 0 0 127:grayscale:";
+			}
+			else if (neededResources)
+			{
+				button.enabled = false;
+				modifier += resourcesToAlphaMask(neededResources) + ":";
 			}
 			else
 				button.enabled = controlsPlayer(data.unitEntState.player);
 
-			if (data.template[i].icon)
-				data.icon[i].sprite = modifier + "stretched:session/portraits/" + data.template[i].icon;
+			if (template.icon)
+				icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
+
+			setPanelObjectPosition(button, position, data.rowLength);
+
+			// Prepare to handle the top button (if any)
+			position -= data.rowLength;
 		}
-		for (let button of data.buttonsToHide)
-			button.hidden = true;
-		// show the tech connector
-		data.pair.hidden = data.item.tech.pair == null;
-	},
-	"setPosition": function(data)
-	{
-		for (var i in data.button)
-			setPanelObjectPosition(data.button[i], data.positions[i], data.rowLength);
-		setPanelObjectPosition(data.pair, data.i, data.rowLength);
+
+		return true;
 	}
 };
 
-// SELECTION
 g_SelectionPanels.Selection = {
 	"getMaxNumberOfItems": function()
 	{
@@ -946,25 +833,22 @@ g_SelectionPanels.Selection = {
 			return [];
 		return g_Selection.groups.getTemplateNames();
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		data.entType = data.item;
-		data.template = GetTemplateData(data.entType);
-		if (!data.template)
+		let template = GetTemplateData(data.item);
+		if (!template)
 			return false;
-		data.name = getEntityNames(data.template);
 
-		var ents = g_Selection.groups.getEntsByName(data.item);
-		data.count = ents.length;
-		for (var ent of ents)
+		let ents = g_Selection.groups.getEntsByName(data.item);
+		for (let ent of ents)
 		{
-			var state = GetEntityState(ent);
+			let state = GetEntityState(ent);
 
 			if (state.resourceCarrying && state.resourceCarrying.length !== 0)
 			{
 				if (!data.carried)
 					data.carried = {};
-				var carrying = state.resourceCarrying[0];
+				let carrying = state.resourceCarrying[0];
 				if (data.carried[carrying.type])
 					data.carried[carrying.type] += carrying.amount;
 				else
@@ -975,9 +859,9 @@ g_SelectionPanels.Selection = {
 			{
 				if (!data.carried)
 					data.carried = {};
-				var amount = state.trader.goods.amount;
-				var type = state.trader.goods.type;
-				var totalGain = amount.traderGain;
+				let amount = state.trader.goods.amount;
+				let type = state.trader.goods.type;
+				let totalGain = amount.traderGain;
 				if (amount.market1Gain)
 					totalGain += amount.market1Gain;
 				if (amount.market2Gain)
@@ -988,34 +872,27 @@ g_SelectionPanels.Selection = {
 					data.carried[type] = totalGain;
 			}
 		}
-		return true;
-	},
-	"setTooltip": function(data)
-	{
-		let tooltip = data.name;
+
+		let tooltip = getEntityNames(template);
 		if (data.carried)
 			tooltip += "\n" + Object.keys(data.carried).map(res =>
 				getCostComponentDisplayIcon(res) + data.carried[res]
 			).join(" ");
 		data.button.tooltip = tooltip;
-	},
-	"setCountDisplay": function(data)
-	{
-		data.countDisplay.caption = data.count || "";
-	},
-	"setAction": function(data)
-	{
-		data.button.onpressright = function() { changePrimarySelectionGroup(data.item, true); };
-		data.button.onpress = function() { changePrimarySelectionGroup(data.item, false); };
-	},
-	"setGraphics": function(data)
-	{
-		if (data.template.icon)
-			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
+
+		data.countDisplay.caption = ents.length || "";
+
+		data.button.onPress = function() { changePrimarySelectionGroup(data.item, false); };
+		data.button.onPressRight = function() { changePrimarySelectionGroup(data.item, true); };
+
+		if (template.icon)
+			data.icon.sprite = "stretched:session/portraits/" + template.icon;
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// STANCE
 g_SelectionPanels.Stance = {
 	"getMaxNumberOfItems": function()
 	{
@@ -1027,31 +904,25 @@ g_SelectionPanels.Stance = {
 			return [];
 		return unitEntState.unitAI.possibleStances;
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		data.stanceSelected = Engine.GuiInterfaceCall("IsStanceSelected", {
+		data.button.onPress = function() { performStance(data.unitEntState, data.item); };
+
+		data.button.tooltip = getStanceDisplayName(data.item) + "\n" +
+			"[font=\"sans-13\"]" + getStanceTooltip(data.item) + "[/font]";
+
+		data.guiSelection.hidden = !Engine.GuiInterfaceCall("IsStanceSelected", {
 			"ents": data.selection,
 			"stance": data.item
 		});
-		return true;
-	},
-	"setAction": function(data)
-	{
-		data.button.onPress = function() { performStance(data.unitEntState, data.item); };
-	},
-	"setTooltip": function(data)
-	{
-		data.button.tooltip = getStanceDisplayName(data.item) + "\n[font=\"sans-13\"]" + getStanceTooltip(data.item) + "[/font]";
-	},
-	"setGraphics": function(data)
-	{
-		data.guiSelection.hidden = !data.stanceSelected;
-		data.icon.sprite = "stretched:session/icons/stances/"+data.item+".png";
+		data.icon.sprite = "stretched:session/icons/stances/" + data.item + ".png";
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
+
+		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		return true;
 	}
 };
 
-// TRAINING
 g_SelectionPanels.Training = {
 	"getMaxNumberOfItems": function()
 	{
@@ -1061,95 +932,98 @@ g_SelectionPanels.Training = {
 	{
 		return getAllTrainableEntitiesFromSelection();
 	},
-	"addData": function(data)
+	"setupButton": function(data)
 	{
-		data.entType = data.item;
-		data.template = GetTemplateData(data.entType);
-		if (!data.template)
+		let template = GetTemplateData(data.item);
+		if (!template)
 			return false;
 
-		data.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-			"tech": data.template.requiredTechnology,
+		let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
+			"tech": template.requiredTechnology,
 			"player": data.unitEntState.player
 		});
 
-		var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-			getTrainingBatchStatus(data.playerState, data.unitEntState.id, data.entType, data.selection);
+		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
+			getTrainingBatchStatus(data.playerState, data.unitEntState.id, data.item, data.selection);
 
-		data.buildingsCountToTrainFullBatch = buildingsCountToTrainFullBatch;
-		data.fullBatchSize = fullBatchSize;
-		data.remainderBatch = remainderBatch;
-
-		data.trainNum = buildingsCountToTrainFullBatch || 1; // train at least one unit
+		let trainNum = buildingsCountToTrainFullBatch || 1;
 		if (Engine.HotkeyIsPressed("session.batchtrain"))
-			data.trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+			trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
-		if (data.template.cost)
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": multiplyEntityCosts(data.template, data.trainNum),
+		let neededResources;
+		if (template.cost)
+			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": multiplyEntityCosts(template, trainNum),
 				"player": data.unitEntState.player
 			});
 
-		return true;
-	},
-	"setAction": function(data)
-	{
 		data.button.onPress = function() { addTrainingToQueue(data.selection, data.item, data.playerState); };
-	},
-	"setCountDisplay": function(data)
-	{
-		data.countDisplay.caption = data.trainNum > 1 ? data.trainNum : "";
-	},
-	"setTooltip": function(data)
-	{
+
+		data.countDisplay.caption = trainNum > 1 ? trainNum : "";
+
 		let tooltip = "[font=\"sans-bold-16\"]" +
-			colorizeHotkey("%(hotkey)s", "session.queueunit." + (data.i + 1)) +
-			"[/font]";
+		colorizeHotkey("%(hotkey)s", "session.queueunit." + (data.i + 1)) +
+			"[/font]"; 
 
-		tooltip += getEntityNamesFormatted(data.template);
-		tooltip += getVisibleEntityClassesFormatted(data.template);
-		tooltip += getAurasTooltip(data.template);
+		tooltip += getEntityNamesFormatted(template);
+		tooltip += getVisibleEntityClassesFormatted(template);
+		tooltip += getAurasTooltip(template);
 
-		if (data.template.tooltip)
-			tooltip += "\n[font=\"sans-13\"]" + data.template.tooltip + "[/font]";
+		if (template.tooltip)
+			tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
-		tooltip += "\n" + getEntityCostTooltip(data.template, data.trainNum, data.unitEntState.id);
+		tooltip += "\n" + getEntityCostTooltip(template, trainNum, data.unitEntState.id);
 
-		data.limits = getEntityLimitAndCount(data.playerState, data.entType);
+		let limits = getEntityLimitAndCount(data.playerState, data.item);
 
-		tooltip += formatLimitString(data.limits.entLimit, data.limits.entCount, data.limits.entLimitChangers);
+		tooltip += formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
 		if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
 		{
-			if (data.template.health)
-				tooltip += "\n[font=\"sans-bold-13\"]" + translate("Health:") + "[/font] " + data.template.health;
-			if (data.template.attack)
-				tooltip += "\n" + getAttackTooltip(data.template);
-			if (data.template.armour)
-				tooltip += "\n" + getArmorTooltip(data.template.armour);
-			if (data.template.speed)
-				tooltip += "\n" + getSpeedTooltip(data.template);
+			if (template.health)
+				tooltip += "\n[font=\"sans-bold-13\"]" + translate("Health:") + "[/font] " + template.health;
+			if (template.attack)
+				tooltip += "\n" + getAttackTooltip(template);
+			if (template.armour)
+				tooltip += "\n" + getArmorTooltip(template.armour);
+			if (template.speed)
+				tooltip += "\n" + getSpeedTooltip(template);
 		}
 
 		tooltip += "[color=\"" + g_HotkeyColor + "\"]" +
-			formatBatchTrainingString(data.buildingsCountToTrainFullBatch, data.fullBatchSize, data.remainderBatch) +
+			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) +
 			"[/color]";
 
-		if (!data.technologyEnabled)
+		if (!technologyEnabled)
 		{
-			var techName = getEntityNames(GetTechnologyData(data.template.requiredTechnology));
+			let techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
 			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { "technology": techName });
 		}
-		if (data.neededResources)
-			tooltip += getNeededResourcesTooltip(data.neededResources);
+		if (neededResources)
+			tooltip += getNeededResourcesTooltip(neededResources);
 
 		data.button.tooltip = tooltip;
-	},
-	// disable and enable buttons in the same way as when you do for the construction
-	"setGraphics": g_SelectionPanels.Construction.setGraphics,
-	"setPosition": function(data)
-	{
-		var index = data.i + getNumberOfRightPanelButtons();
+
+		let modifier = "";
+		if (!technologyEnabled || limits.canBeAddedCount == 0)
+		{
+			data.button.enabled = false;
+			modifier = "color:0 0 0 127:grayscale:";
+		}
+		else if (neededResources)
+		{
+			data.button.enabled = false;
+			modifier = resourcesToAlphaMask(neededResources) +":";
+		}
+		else
+			data.button.enabled = controlsPlayer(data.unitEntState.player);
+
+		if (template.icon)
+		data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
+
+		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
+
+		return true;
 	}
 };
 
@@ -1161,20 +1035,20 @@ g_SelectionPanels.Training = {
  *
  * Note that the panel needs to appear in the list to get rendered.
  */
-var g_PanelsOrder = [
+let g_PanelsOrder = [
 	// LEFT PANE
-	"Barter", // must always be visible on markets
-	"Garrison", // more important than Formation, as you want to see the garrisoned units in ships
+	"Barter", // Must always be visible on markets
+	"Garrison", // More important than Formation, as you want to see the garrisoned units in ships
 	"Alert",
 	"Formation",
-	"Stance", // normal together with formation
+	"Stance", // Normal together with formation
 
 	// RIGHT PANE
-	"Gate", // must always be shown on gates
-	"Pack", // must always be shown on packable entities
+	"Gate", // Must always be shown on gates
+	"Pack", // Must always be shown on packable entities
 	"Training",
 	"Construction",
-	"Research", // normal together with training
+	"Research", // Normal together with training
 
 	// UNIQUE PANES (importance doesn't matter)
 	"Command",

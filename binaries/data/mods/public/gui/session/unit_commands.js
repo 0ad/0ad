@@ -40,20 +40,19 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	}
 	let selection = g_Selection.toList();
 
-	var items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
+	let items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
 
 	if (!items || !items.length)
 		return;
 
-	var numberOfItems = items.length;
-	var garrisonGroups = new EntityGroups();
+	let numberOfItems = items.length;
 
 	// Determine how many buttons there should be
-	var maxNumberOfItems = g_SelectionPanels[guiName].getMaxNumberOfItems();
+	let maxNumberOfItems = g_SelectionPanels[guiName].getMaxNumberOfItems();
 	if (maxNumberOfItems < numberOfItems)
 		numberOfItems = maxNumberOfItems;
 
-	var rowLength = g_SelectionPanels[guiName].rowLength || 8;
+	let rowLength = g_SelectionPanels[guiName].rowLength || 8;
 
 	if (g_SelectionPanels[guiName].resizePanel)
 		g_SelectionPanels[guiName].resizePanel(numberOfItems, rowLength);
@@ -61,13 +60,11 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	// Make buttons
 	for (let i = 0; i < numberOfItems; ++i)
 	{
-		var item = items[i];
-
 		// STANDARD DATA
 		// add standard data
-		var data = {
+		let data = {
 			"i": i,
-			"item": item,
+			"item": items[i],
 			"selection": selection,
 			"playerState": playerState,
 			"unitEntState": unitEntState,
@@ -92,26 +89,10 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 			data.button.caption = "";
 		}
 
-		// GENERAL DATA
-		// add general data, and a chance to abort on faulty data
-		if (g_SelectionPanels[guiName].addData)
-		{
-			var success = g_SelectionPanels[guiName].addData(data);
-			if (!success)
-				continue; // ignore faulty data
-		}
-
 		// SET CONTENT
-		// run all content setters
-		for (var f in g_SelectionPanels[guiName])
-		{
-			if (f.match(/^set/))
-				g_SelectionPanels[guiName][f](data);
-		}
-
-		// Special case: position
-		if (!g_SelectionPanels[guiName].setPosition)
-			setPanelObjectPosition(data.button, i, rowLength);
+		if (g_SelectionPanels[guiName].setupButton)
+			if (!g_SelectionPanels[guiName].setupButton(data))
+				continue;
 
 		// TODO: we should require all entities to have icons, so this case never occurs
 		if (data.icon && !data.icon.sprite)
