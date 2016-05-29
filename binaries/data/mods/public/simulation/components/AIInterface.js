@@ -41,7 +41,7 @@ AIInterface.prototype.Init = function()
 
 AIInterface.prototype.Serialize = function()
 {
-	var state = {};
+	let state = {};
 	for (var key in this)
 	{
 		if (!this.hasOwnProperty(key))
@@ -57,7 +57,7 @@ AIInterface.prototype.Serialize = function()
 
 AIInterface.prototype.Deserialize = function(data)
 {
-	for (var key in data)
+	for (let key in data)
 	{
 		if (!data.hasOwnProperty(key))
 			continue;
@@ -74,7 +74,7 @@ AIInterface.prototype.Deserialize = function(data)
 AIInterface.prototype.Disable = function()
 {
 	this.enabled = false;
-	var nop = function(){};
+	let nop = function(){};
 	this.ChangedEntity = nop;
 	this.PushEvent = nop;
 	this.OnGlobalPlayerDefeated = nop;
@@ -86,10 +86,10 @@ AIInterface.prototype.Disable = function()
 
 AIInterface.prototype.GetNonEntityRepresentation = function()
 {
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
 	// Return the same game state as the GUI uses
-	var state = cmpGuiInterface.GetSimulationState(-1);
+	let state = cmpGuiInterface.GetSimulationState(-1);
 	
 	// Add some extra AI-specific data
 	// add custom events and reset them for the next turn
@@ -105,16 +105,16 @@ AIInterface.prototype.GetNonEntityRepresentation = function()
 
 AIInterface.prototype.GetRepresentation = function()
 {
-	var state = this.GetNonEntityRepresentation();
+	let state = this.GetNonEntityRepresentation();
 
 	// Add entity representations
 	Engine.ProfileStart("proxy representations");
 	state.entities = {};
-	for (var id in this.changedEntities)
+	for (let id in this.changedEntities)
 	{
-		var aiProxy = Engine.QueryInterface(+id, IID_AIProxy);
-		if (aiProxy)
-			state.entities[id] = aiProxy.GetRepresentation();
+		let cmpAIProxy = Engine.QueryInterface(+id, IID_AIProxy);
+		if (cmpAIProxy)
+			state.entities[id] = cmpAIProxy.GetRepresentation();
 	}
 	this.changedEntities = {};
 	Engine.ProfileStop();
@@ -132,7 +132,7 @@ AIInterface.prototype.GetRepresentation = function()
  */
 AIInterface.prototype.GetFullRepresentation = function(flushEvents)
 {	
-	var state = this.GetNonEntityRepresentation();
+	let state = this.GetNonEntityRepresentation();
 
 	if (flushEvents)
 		for (let name of this.EventNames)
@@ -183,8 +183,7 @@ AIInterface.prototype.OnGlobalPlayerDefeated = function(msg)
 
 AIInterface.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	var cmpMirage = Engine.QueryInterface(msg.entity, IID_Mirage);
-	if (!cmpMirage)
+	if (!Engine.QueryInterface(msg.entity, IID_Mirage))
 		this.events.EntityRenamed.push(msg);
 };
 

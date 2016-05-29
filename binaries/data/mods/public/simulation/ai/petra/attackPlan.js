@@ -964,7 +964,7 @@ m.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, posi
 	{
 		if (!struct.position() || !struct.get("Obstruction") || struct.hasClass("Field"))
 			continue;
-		// we consider that we can reach the target, but nenetheless check that we did not cross any enemy gate
+		// we consider that we can reach the target, but nonetheless check that we did not cross any enemy gate
 		if (dist < radius + 10 && !struct.hasClass("Gates"))
 			continue;
 		// Check that we are really blocked by this structure, i.e. advancing by 1+0.8(clearance)m

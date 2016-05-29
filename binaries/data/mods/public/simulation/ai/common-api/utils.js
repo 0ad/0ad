@@ -11,15 +11,15 @@ m.warn = function(output)
 
 m.VectorDistance = function(a, b)
 {
-	var dx = a[0] - b[0];
-	var dz = a[1] - b[1];
+	let dx = a[0] - b[0];
+	let dz = a[1] - b[1];
 	return Math.sqrt(dx*dx + dz*dz);
 };
 
 m.SquareVectorDistance = function(a, b)
 {
-	var dx = a[0] - b[0];
-	var dz = a[1] - b[1];
+	let dx = a[0] - b[0];
+	let dz = a[1] - b[1];
 	return dx*dx + dz*dz;
 };
 
@@ -31,22 +31,22 @@ m.inRange = function(a, b, range)// checks for X distance
 	if (a === undefined || b === undefined || range === undefined)
 		return undefined;
 
-	var dx = a[0] - b[0];
-	var dz = a[1] - b[1];
+	let dx = a[0] - b[0];
+	let dz = a[1] - b[1];
 	return dx*dx + dz*dz  < range;
 };
 
 // slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate.
 m.ManhattanDistance = function(a, b)
 {
-	var dx = a[0] - b[0];
-	var dz = a[1] - b[1];
+	let dx = a[0] - b[0];
+	let dz = a[1] - b[1];
 	return Math.abs(dx) + Math.abs(dz);
 };
 
 m.AssocArraytoArray = function(assocArray) {
-	var endArray = [];
-	for (var i in assocArray)
+	let endArray = [];
+	for (let i in assocArray)
 		endArray.push(assocArray[i]);
 	return endArray;
 };
@@ -59,46 +59,52 @@ m.PickRandom = function(list)
 
 
 // Utility functions for conversions of maps of different sizes
-// It expects that cell size of map 1 is a multiple of cell size of map 2
 
-// return the index of map2 with max content from indices contained inside the cell i of map1
+/**
+ *return the index of map2 with max content from indices contained inside the cell i of map1
+ * map1.cellSize must be a multiple of map2.cellSize
+ */
 m.getMaxMapIndex = function(i, map1, map2)
 {
-	var ratio = map1.cellSize / map2.cellSize;
-	var ix = (i % map1.width) * ratio;
-	var iy = Math.floor(i / map1.width) * ratio;
-	var index;
-	for (var kx = 0; kx < ratio; ++kx)
-		for (var ky = 0; ky < ratio; ++ky)
+	let ratio = map1.cellSize / map2.cellSize;
+	let ix = (i % map1.width) * ratio;
+	let iy = Math.floor(i / map1.width) * ratio;
+	let index;
+	for (let kx = 0; kx < ratio; ++kx)
+		for (let ky = 0; ky < ratio; ++ky)
 			if (!index || map2.map[ix+kx+(iy+ky)*map2.width] > map2.map[index])
 				index = ix+kx+(iy+ky)*map2.width;
 	return index;
 };
 
-// return the list of indices of map2 contained inside the cell i of map1
-// map1.cellSize must be a multiple of map2.cellSize
+/**
+ * return the list of indices of map2 contained inside the cell i of map1
+ * map1.cellSize must be a multiple of map2.cellSize
+ */
 m.getMapIndices = function(i, map1, map2)
 {
-	var ratio = map1.cellSize / map2.cellSize;	// TODO check that this is integer >= 1 ?
-	var ix = (i % map1.width) * ratio;
-	var iy = Math.floor(i / map1.width) * ratio;
-	var ret = [];
-	for (var kx = 0; kx < ratio; ++kx)
-		for (var ky = 0; ky < ratio; ++ky)
+	let ratio = map1.cellSize / map2.cellSize;	// TODO check that this is integer >= 1 ?
+	let ix = (i % map1.width) * ratio;
+	let iy = Math.floor(i / map1.width) * ratio;
+	let ret = [];
+	for (let kx = 0; kx < ratio; ++kx)
+		for (let ky = 0; ky < ratio; ++ky)
 			ret.push(ix+kx+(iy+ky)*map2.width);
 	return ret;
 };
 
-// return the list of points of map2 contained inside the cell i of map1 
-// map1.cellSize must be a multiple of map2.cellSize
+/**
+ * return the list of points of map2 contained inside the cell i of map1 
+ * map1.cellSize must be a multiple of map2.cellSize
+ */
 m.getMapPoints = function(i, map1, map2)
 {
-	var ratio = map1.cellSize / map2.cellSize;	// TODO check that this is integer >= 1 ?
-	var ix = (i % map1.width) * ratio;
-	var iy = Math.floor(i / map1.width) * ratio;
-	var ret = [];
-	for (var kx = 0; kx < ratio; ++kx)
-		for (var ky = 0; ky < ratio; ++ky)
+	let ratio = map1.cellSize / map2.cellSize;	// TODO check that this is integer >= 1 ?
+	let ix = (i % map1.width) * ratio;
+	let iy = Math.floor(i / map1.width) * ratio;
+	let ret = [];
+	for (let kx = 0; kx < ratio; ++kx)
+		for (let ky = 0; ky < ratio; ++ky)
 			ret.push([ix+kx, iy+ky]);
 	return ret;
 };
