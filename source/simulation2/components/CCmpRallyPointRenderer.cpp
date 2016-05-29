@@ -526,7 +526,7 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 		{
 			if (m_Displayed && IsSet())
 			{
-				markerCmpPosition->JumpTo(m_RallyPoints[i].X, m_RallyPoints[i].Y);
+				markerCmpPosition->MoveTo(m_RallyPoints[i].X, m_RallyPoints[i].Y);
 			}
 			else
 			{
