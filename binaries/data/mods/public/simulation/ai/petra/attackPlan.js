@@ -1,7 +1,8 @@
 var PETRA = function(m)
 {
 
-/* This is an attack plan:
+/**
+ * This is an attack plan:
  * It deals with everything in an attack, from picking a target to picking a path to it
  * To making sure units are built, and pushing elements to the queue manager otherwise
  * It also handles the actual attack, though much work is needed on that.
@@ -199,6 +200,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	this.captureStrength = 0;
 	this.captureTime = -1000;
 	this.noCapture = new Set();  // list of structure we won't try to capture
+	this.isBlocked = false;	     // true when this attack faces walls
 
 	return true;
 };
@@ -251,8 +253,10 @@ m.AttackPlan.prototype.setPaused = function(boolValue)
 	this.paused = boolValue;
 };
 
-// Returns true if the attack can be executed at the current time
-// Basically it checks we have enough units.
+/**
+ * Returns true if the attack can be executed at the current time
+ * Basically it checks we have enough units.
+ */
 m.AttackPlan.prototype.canStart = function()
 {
 	if (!this.canBuildUnits)
@@ -307,7 +311,7 @@ m.AttackPlan.prototype.forceStart = function()
 	}
 };
 
-// Adds a build order. If resetQueue is true, this will reset the queue.
+/** Adds a build order. If resetQueue is true, this will reset the queue.*/
 m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, resetQueue)
 {
 	if (!this.isStarted())
@@ -345,7 +349,7 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	return true;
 };
 
-// Three returns possible: 1 is "keep going", 0 is "failed plan", 2 is "start"
+/** Three returns possible: 1 is "keep going", 0 is "failed plan", 2 is "start" */
 m.AttackPlan.prototype.updatePreparation = function(gameState)
 {
 	// the completing step is used to return resources and regroup the units
@@ -691,10 +695,10 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	return added;
 };
 
-// Reassign one (at each turn) Cav unit to fasten raid preparation
+/** Reassign one (at each turn) Cav unit to fasten raid preparation */
 m.AttackPlan.prototype.reassignCavUnit = function(gameState)
 {
-	var found;
+	let found;
 	for (let ent of this.unitCollection.values())
 	{
 		if (!ent.position() || ent.getMetadata(PlayerID, "transport") !== undefined)
@@ -786,10 +790,14 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 
 	return true;
 };
-// sameLand true means that we look for a target for which we do not need to take a transport
+/**
+ * sameLand true means that we look for a target for which we do not need to take a transport
+ */
 m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand)
 {
-	var targets;
+	this.isBlocked = false;
+
+	let targets;
 	if (this.type === "Raid")
 		targets = this.raidTargetFinder(gameState);
 	else if (this.type === "Rush" || this.type === "Attack")
@@ -799,22 +807,22 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	if (!targets.hasEntities())
 		return undefined;
 
-	var land = gameState.ai.accessibility.getAccessValue(position);
+	let land = gameState.ai.accessibility.getAccessValue(position);
 
 	// picking the nearest target
-	var minDist = -1;
-	var target;
+	let target;
+	let minDist = Math.min();
 	for (let ent of targets.values())
 	{
 		if (!ent.position())
 			continue;
-		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) != land)
+		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) !== land)
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), position);
 		// in normal attacks, disfavor fields
 		if (this.type !== "Rush" && this.type !== "Raid" && ent.hasClass("Field"))
 			dist += 100000;
-		if (dist < minDist || minDist == -1)
+		if (dist < minDist)
 		{
 			minDist = dist;
 			target = ent;
@@ -822,15 +830,21 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	}
 	if (!target)
 		return undefined;
+
+	// Check that we can reach this target
+	target = this.checkTargetObstruction(gameState, target, position);
+
+	if (!target)
+		return undefined;
 	// Rushes can change their enemy target if nothing found with the preferred enemy
 	this.targetPlayer = target.owner();
 	return target;
 };
 
-// Default target finder aims for conquest critical targets
+/** Default target finder aims for conquest critical targets */
 m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
-	var targets;
+	let targets;
 	if (gameState.getGameType() === "wonder")
 	{
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
@@ -852,11 +866,11 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 	return targets;
 };
 
-// Rush target finder aims at isolated non-defended buildings
+/** Rush target finder aims at isolated non-defended buildings */
 m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 {
-	var targets = new API3.EntityCollection(gameState.sharedScript);
-	var buildings;
+	let targets = new API3.EntityCollection(gameState.sharedScript);
+	let buildings;
 	if (playerEnemy !== undefined)
 		buildings = gameState.getEnemyStructures(playerEnemy).toEntityArray();
 	else
@@ -868,8 +882,8 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	if (!this.position)
 		this.position = this.rallyPoint;
 
-	var minDist = Math.min();
-	var target;
+	let target;
+	let minDist = Math.min();
 	for (let building of buildings)
 	{
 		if (building.owner() === 0)
@@ -911,10 +925,10 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	return targets;
 };
 
-// Raid target finder aims at destructing foundations from which our defenseManager has attacked the builders
+/** Raid target finder aims at destructing foundations from which our defenseManager has attacked the builders */
 m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 {
-	var targets = new API3.EntityCollection(gameState.sharedScript);
+	let targets = new API3.EntityCollection(gameState.sharedScript);
 	for (let targetId of gameState.ai.HQ.defenseManager.targetList)
 	{
 		let target = gameState.getEntityById(targetId);
@@ -922,6 +936,127 @@ m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 			targets.addEnt(target);
 	}
 	return targets;
+};
+
+/**
+ * Check that we can have a path to this target
+ * otherwise we may be blocked by walls and try to react accordingly
+ * This is done only when attacker and target are on the same land
+ */
+m.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, position)
+{
+
+	let targetPos = target.position();
+	if (gameState.ai.accessibility.getAccessValue(targetPos) !== gameState.ai.accessibility.getAccessValue(position))
+		return target;
+
+	let startPos = { "x": position[0], "y": position[1] };
+	let endPos = { "x": targetPos[0], "y": targetPos[1] };
+	let blocker;
+	let path = Engine.ComputePath(startPos, endPos, gameState.getPassabilityClassMask("default"));
+	if (!path.length)
+		return undefined;
+
+	let pathPos = [path[0].x, path[0].y];
+	let dist = API3.VectorDistance(pathPos, targetPos);
+	let radius = target.obstructionRadius();
+	for (let struct of gameState.getEnemyStructures().values())
+	{
+		if (!struct.position() || !struct.get("Obstruction") || struct.hasClass("Field"))
+			continue;
+		// we consider that we can reach the target, but nenetheless check that we did not cross any enemy gate
+		if (dist < radius + 10 && !struct.hasClass("Gates"))
+			continue;
+		// Check that we are really blocked by this structure, i.e. advancing by 1+0.8(clearance)m
+		// in the target direction would bring us inside its obstruction.
+		let structPos = struct.position();
+		let x = pathPos[0] - structPos[0] + 1.8 * (targetPos[0] - pathPos[0]) / dist;
+		let y = pathPos[1] - structPos[1] + 1.8 * (targetPos[1] - pathPos[1]) / dist;
+
+		if (struct.get("Obstruction/Static"))
+		{
+			if (!struct.angle())
+				continue;
+			let angle = struct.angle();
+			let width = +struct.get("Obstruction/Static/@width");
+			let depth = +struct.get("Obstruction/Static/@depth");
+			let cosa = Math.cos(angle);
+			let sina = Math.sin(angle);
+			let u = x * cosa - y * sina;
+			let v = x * sina + y * cosa;
+			if (Math.abs(u) < width/2 && Math.abs(v) < depth/2)
+			{
+				blocker = struct;
+				break;
+			}
+		}
+		else if (struct.get("Obstruction/Obstructions"))
+		{
+			if (!struct.angle())
+				continue;
+			let angle = struct.angle();
+			let width = +struct.get("Obstruction/Obstructions/Door/@width");
+			let depth = +struct.get("Obstruction/Obstructions/Door/@depth");
+			let doorHalfWidth = width / 2;
+			width += +struct.get("Obstruction/Obstructions/Left/@width");
+			depth = Math.max(depth, +struct.get("Obstruction/Obstructions/Left/@depth"));
+			width += +struct.get("Obstruction/Obstructions/Right/@width");
+			depth = Math.max(depth, +struct.get("Obstruction/Obstructions/Right/@depth"));
+			let cosa = Math.cos(angle);
+			let sina = Math.sin(angle);
+			let u = x * cosa - y * sina;
+			let v = x * sina + y * cosa;
+			if (Math.abs(u) < width/2 && Math.abs(v) < depth/2)
+			{
+				blocker = struct;
+				break;
+			}
+			// check that the path does not cross this gate (could happen if not locked)
+			for (let i = 1; i < path.length; ++i)
+			{
+				let u1 = (path[i-1].x - structPos[0]) * cosa - (path[i-1].y - structPos[1]) * sina;
+				let v1 = (path[i-1].x - structPos[0]) * sina + (path[i-1].y - structPos[1]) * cosa;
+				let u2 = (path[i].x - structPos[0]) * cosa - (path[i].y - structPos[1]) * sina;
+				let v2 = (path[i].x - structPos[0]) * sina + (path[i].y - structPos[1]) * cosa;
+				if (v1 * v2 < 0)
+				{
+					let u0 = (u1*v2 - u2*v1) / (v2-v1);
+					if (Math.abs(u0) > doorHalfWidth)
+						continue;
+					blocker = struct;
+					break;
+				}
+			}
+			if (blocker)
+				break;
+		}
+		else if (struct.get("Obstruction/Unit"))
+		{
+			let r = +this.get("Obstruction/Unit/@radius");
+			if (x*x + y*y < r*r)
+			{
+				blocker = struct;
+				break;
+			}
+		}
+	}
+
+	if (blocker && blocker.hasClass("StoneWall"))
+	{
+/*		if (this.hasSiegeUnits(gameState))
+		{ */
+			this.isBlocked = true;
+			return blocker;
+/*		}
+		return undefined; */
+	}
+	else if (blocker)
+	{
+		this.isBlocked = true;
+		return blocker;
+	}
+
+	return target;
 };
 
 m.AttackPlan.prototype.getPathToTarget = function(gameState)
@@ -948,7 +1083,7 @@ m.AttackPlan.prototype.getPathToTarget = function(gameState)
 	return true;
 };
 
-// Set rally point at the border of our territory
+/** Set rally point at the border of our territory */
 m.AttackPlan.prototype.setRallyPoint = function(gameState)
 {
 	for (let i = 0; i < this.path.length; ++i)
@@ -972,8 +1107,10 @@ m.AttackPlan.prototype.setRallyPoint = function(gameState)
 	}
 };
 
-// Executes the attack plan, after this is executed the update function will be run every turn
-// If we're here, it's because we have enough units.
+/**
+ * Executes the attack plan, after this is executed the update function will be run every turn
+ * If we're here, it's because we have enough units.
+ */
 m.AttackPlan.prototype.StartAttack = function(gameState)
 {
 	if (this.Config.debug > 1)
@@ -1030,7 +1167,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 	return true;
 };
 
-// Runs every turn after the attack is executed
+/** Runs every turn after the attack is executed */
 m.AttackPlan.prototype.update = function(gameState, events)
 {
 	if (!this.unitCollection.hasEntities())
@@ -1046,153 +1183,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	// we are transporting our units, let's wait
 	// TODO instead of state "arrived", made a state "walking" with a new path
 	if (this.state === "transporting")
+		this.UpdateTransporting(gameState, events, IDs);
+
+	if (this.state === "walking" && !this.UpdateWalking(gameState, events, IDs))
 	{
-		let done = true;
-		for (let ent of this.unitCollection.values())
-		{
-			if (this.Config.debug > 1 && ent.getMetadata(PlayerID, "transport") !== undefined)
-				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,2,0]});
-			else if (this.Config.debug > 1)
-				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [1,1,1]});
-			if (!done)
-				continue;
-			if (ent.getMetadata(PlayerID, "transport") !== undefined)
-				done = false;
-		}
-
-		if (done)
-			this.state = "arrived";
-		else
-		{
-			// if we are attacked while waiting the rest of the army, retaliate
-			for (let evt of events.Attacked)
-			{
-				if (IDs.indexOf(evt.target) == -1)
-					continue;
-				let attacker = gameState.getEntityById(evt.attacker);
-				if (!attacker || !gameState.getEntityById(evt.target))
-					continue;
-				for (let ent of this.unitCollection.values())
-				{
-					if (ent.getMetadata(PlayerID, "transport") !== undefined)
-						continue;
-					if (!ent.isIdle())
-						continue;
-					ent.attack(attacker.id(), !this.noCapture.has(attacker.id()));
-				}
-				break;
-			}
-		}
-	}
-
-	// this actually doesn't do anything right now.
-	if (this.state === "walking")
-	{
-		// we're marching towards the target
-		// Let's check if any of our unit has been attacked.
-		// In case yes, we'll determine if we're simply off against an enemy army, a lone unit/building
-		// or if we reached the enemy base. Different plans may react differently.
-		let attackedNB = 0;
-		let attackedUnitNB = 0;
-		for (let evt of events.Attacked)
-		{
-			if (IDs.indexOf(evt.target) === -1)
-				continue;
-			let attacker = gameState.getEntityById(evt.attacker);
-			if (attacker && (attacker.owner() !== 0 || this.targetPlayer === 0))
-			{
-				attackedNB++;
-				if (attacker.hasClass("Unit"))
-					attackedUnitNB++;
-			}
-		}
-		// Are we arrived at destination ?
-		let maybe = true;
-		if (!attackedUnitNB)
-		{
-			let siegeNB = 0;
-			for (let ent of this.unitCollection.values())
-				if (this.isSiegeUnit(gameState, ent))
-					siegeNB++;
-			if (!siegeNB)
-				maybe = false;
-		}
-		if (maybe && ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 3))
-			this.state = "arrived";
-	}
-
-	if (this.state === "walking")
-	{
-		// basically haven't moved an inch: very likely stuck)
-		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0)
-		{
-			// check for stuck siege units
-			let farthest = 0;
-			let farthestEnt;
-			this.unitCollection.filter(API3.Filters.byClass("Siege")).forEach (function (ent) {
-				let dist = API3.SquareVectorDistance(ent.position(), self.position);
-				if (dist < farthest)
-					return;
-				farthest = dist;
-				farthestEnt = ent;
-			});
-			if (farthestEnt)
-				farthestEnt.destroy();
-		}
-		if (gameState.ai.playedTurn % 5 === 0)
-			this.position5TurnsAgo = this.position;
-
-		if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
-		{
-			if (!this.path[0][0] || !this.path[0][1])
-				API3.warn("Start: Problem with path " + uneval(this.path));
-			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
-			let nexttoWalls = false;
-			gameState.getEnemyStructures().filter(API3.Filters.byClass("StoneWall")).forEach( function (ent) {
-				if (!nexttoWalls && API3.SquareVectorDistance(self.position, ent.position()) < 800)
-					nexttoWalls = true;
-			});
-			// there are walls but we can attack
-			if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).hasEntities())
-			{
-				if (this.Config.debug > 1)
-					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
-				this.state = "arrived";
-			}
-			else if (nexttoWalls)	// abort plan
-			{
-				if (this.Config.debug > 1)
-					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
-				Engine.ProfileStop();
-				return 0;
-			}
-			else
-				//this.unitCollection.move(this.path[0][0], this.path[0][1]);
-				this.unitCollection.moveIndiv(this.path[0][0], this.path[0][1]);
-		}
-	}
-
-	// check if our units are close enough from the next waypoint.
-	if (this.state === "walking")
-	{
-		if (API3.SquareVectorDistance(this.position, this.targetPos) < 10000)
-		{
-			if (this.Config.debug > 1)
-				API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
-			this.state = "arrived";
-		}
-		else if (this.path.length && API3.SquareVectorDistance(this.position, this.path[0]) < 1600)
-		{
-			this.path.shift();
-			if (this.path.length)
-				this.unitCollection.move(this.path[0][0], this.path[0][1]);
-			else
-			{
-				if (this.Config.debug > 1)
-					API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
-				this.state = "arrived";
-			}
-		}
+		Engine.ProfileStop();
+		return 0;
 	}
 
 	if (this.state === "arrived")
@@ -1326,7 +1322,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 			else
 			{
-				if (this.isSiegeUnit(gameState, attacker))
+				if (this.isBlocked && !ourUnit.hasClass("Ranged") && attacker.hasClass("Ranged"))
+				{
+					// do not react if our melee units are attacked by ranged one and we are blocked by walls
+					// TODO check that the attacker is from behind the wall
+					continue;
+				}
+				else if (this.isSiegeUnit(gameState, attacker))
 				{	// if our unit is attacked by a siege unit, we'll send some melee units to help it.
 					let collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
 					for (let ent of collec.values())
@@ -1480,7 +1482,16 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 			let range = 60;
 			let attackTypes = ent.attackTypes();
-			if (attackTypes && attackTypes.indexOf("Ranged") !== -1)
+			if (this.isBlocked)
+			{
+				if (attackTypes && attackTypes.indexOf("Ranged") !== -1)
+					range = ent.attackRange("Ranged").max;
+				else if (attackTypes && attackTypes.indexOf("Melee") !== -1)
+					range = ent.attackRange("Melee").max;
+				else
+					range = 10;
+			}
+			else if (attackTypes && attackTypes.indexOf("Ranged") !== -1)
 				range = 30 + ent.attackRange("Ranged").max;
 			else if (ent.hasClass("Cavalry"))
 				range += 30;
@@ -1587,6 +1598,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					let newTargetId = mUnit[rand].id();
 					ent.attack(newTargetId, !this.noCapture.has(newTargetId));
 				}
+				else if (this.isBlocked)
+					ent.attack(this.target.id(), false);
 				else if (API3.SquareVectorDistance(this.targetPos, ent.position()) > 2500 )
 				{
 					let targetClasses = targetClassesUnit;
@@ -1604,6 +1617,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				else
 				{
 					let mStruct = enemyStructures.filter(function (enemy) {
+						if (self.isBlocked && enemy.id() !== this.target.id())
+							return false;
 						if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
 							return false;
 						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
@@ -1672,7 +1687,153 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	return this.unitCollection.length;
 };
 
-// reset any units
+m.AttackPlan.prototype.UpdateTransporting = function(gameState, events, IDs)
+{
+	let done = true;
+	for (let ent of this.unitCollection.values())
+	{
+		if (this.Config.debug > 1 && ent.getMetadata(PlayerID, "transport") !== undefined)
+			Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,2,0]});
+		else if (this.Config.debug > 1)
+			Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [1,1,1]});
+		if (!done)
+			continue;
+		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+			done = false;
+	}
+
+	if (done)
+	{
+		this.state = "arrived";
+		return;
+	}
+
+	// if we are attacked while waiting the rest of the army, retaliate
+	for (let evt of events.Attacked)
+	{
+		if (IDs.indexOf(evt.target) == -1)
+			continue;
+		let attacker = gameState.getEntityById(evt.attacker);
+		if (!attacker || !gameState.getEntityById(evt.target))
+			continue;
+		for (let ent of this.unitCollection.values())
+		{
+			if (ent.getMetadata(PlayerID, "transport") !== undefined)
+				continue;
+			if (!ent.isIdle())
+				continue;
+			ent.attack(attacker.id(), !this.noCapture.has(attacker.id()));
+		}
+		break;
+	}
+};
+
+m.AttackPlan.prototype.UpdateWalking = function(gameState, events, IDs)
+{
+	// we're marching towards the target
+	// Let's check if any of our unit has been attacked.
+	// In case yes, we'll determine if we're simply off against an enemy army, a lone unit/building
+	// or if we reached the enemy base. Different plans may react differently.
+	let attackedNB = 0;
+	let attackedUnitNB = 0;
+	for (let evt of events.Attacked)
+	{
+		if (IDs.indexOf(evt.target) === -1)
+			continue;
+		let attacker = gameState.getEntityById(evt.attacker);
+		if (attacker && (attacker.owner() !== 0 || this.targetPlayer === 0))
+		{
+			attackedNB++;
+			if (attacker.hasClass("Unit"))
+				attackedUnitNB++;
+		}
+	}
+	// Are we arrived at destination ?
+	if (attackedNB > 1 && (attackedUnitNB || this.hasSiegeUnits(gameState)))
+	{
+		if (gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer || attackedNB > 3)
+		{
+			this.state = "arrived";
+			return true;
+		}
+	}
+
+	// basically haven't moved an inch: very likely stuck)
+	if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0)
+	{
+		// check for stuck siege units
+		let farthest = 0;
+		let farthestEnt;
+		for (let ent of this.unitCollection.filter(API3.Filters.byClass("Siege")).values())
+		{
+			let dist = API3.SquareVectorDistance(ent.position(), this.position);
+			if (dist < farthest)
+				continue;
+			farthest = dist;
+			farthestEnt = ent;
+		}
+		if (farthestEnt)
+			farthestEnt.destroy();
+	}
+	if (gameState.ai.playedTurn % 5 === 0)
+		this.position5TurnsAgo = this.position;
+
+	if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
+	{
+		if (!this.path[0][0] || !this.path[0][1])
+			API3.warn("Start: Problem with path " + uneval(this.path));
+		// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
+		let nexttoWalls = false;
+		for (let ent of gameState.getEnemyStructures().filter(API3.Filters.byClass("StoneWall")).values())
+		{
+			if (!nexttoWalls && API3.SquareVectorDistance(this.position, ent.position()) < 800)
+				nexttoWalls = true;
+		}
+		// there are walls but we can attack
+		if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).hasEntities())
+		{
+			if (this.Config.debug > 1)
+				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
+			this.state = "arrived";
+			return true;
+		}
+		else if (nexttoWalls)	// abort plan
+		{
+			if (this.Config.debug > 1)
+				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
+			return false;
+		}
+		else
+			//this.unitCollection.move(this.path[0][0], this.path[0][1]);
+			this.unitCollection.moveIndiv(this.path[0][0], this.path[0][1]);
+	}
+
+	// check if our units are close enough from the next waypoint.
+	if (API3.SquareVectorDistance(this.position, this.targetPos) < 10000)
+	{
+		if (this.Config.debug > 1)
+			API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
+		this.state = "arrived";
+		return true;
+	}
+	else if (this.path.length && API3.SquareVectorDistance(this.position, this.path[0]) < 1600)
+	{
+		this.path.shift();
+		if (this.path.length)
+			this.unitCollection.move(this.path[0][0], this.path[0][1]);
+		else
+		{
+			if (this.Config.debug > 1)
+				API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
+			this.state = "arrived";
+			return true;
+		}
+	}
+
+	return true;
+};
+
+/** reset any units */
 m.AttackPlan.prototype.Abort = function(gameState)
 {
 	this.unitCollection.unregister();
@@ -1761,6 +1922,14 @@ m.AttackPlan.prototype.waitingForTransport = function()
 {
 	for (let ent of this.unitCollection.values())
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+			return true;
+	return false;
+};
+
+m.AttackPlan.prototype.hasSiegeUnits = function(gameState)
+{
+	for (let ent of this.unitCollection.values())
+		if (this.isSiegeUnit(gameState, ent))
 			return true;
 	return false;
 };
@@ -1891,6 +2060,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"captureStrength": this.captureStrength,
 		"captureTime": this.captureTime,
 		"noCapture": this.noCapture,
+		"isBlocked": this.isBlocked,
 		"targetPlayer": this.targetPlayer,
 		"target": this.target !== undefined ? this.target.id() : undefined,
 		"targetPos": this.targetPos,
