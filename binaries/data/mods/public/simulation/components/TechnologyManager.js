@@ -377,11 +377,13 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 
 	if (!this.modificationCache[valueName][ent] || this.modificationCache[valueName][ent].origValue != curValue)
 	{
-		this.modificationCache[valueName][ent] = { "origValue": curValue };
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		if (!cmpIdentity)
 			return curValue;
-		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpIdentity.GetClassesList(), valueName, curValue);
+		this.modificationCache[valueName][ent] = {
+			"origValue": curValue,
+			"newValue": GetTechModifiedProperty(this.modifications, cmpIdentity.GetClassesList(), valueName, curValue)
+		};
 	}
 
 	return this.modificationCache[valueName][ent].newValue;
