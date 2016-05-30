@@ -17,12 +17,15 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/waypoint_flag_0ad.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>

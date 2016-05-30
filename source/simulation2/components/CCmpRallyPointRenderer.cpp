@@ -556,7 +556,7 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 
 		CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityIds[i]);
 		if (cmpVisualActor)
-			cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
+			cmpVisualActor->SetVariant("civ", CStrW(cmpPlayer->GetCiv()).ToUTF8());
 	}
 	m_LastMarkerCount = m_RallyPoints.size() - 1;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,8 @@
 #include "ICmpUnitMotion.h"
 #include "ICmpValueModificationManager.h"
 #include "ICmpVisibility.h"
+
+#include "simulation2/serialization/SerializeTemplates.h"
 
 #include "graphics/Decal.h"
 #include "graphics/Frustum.h"
@@ -79,6 +81,8 @@ private:
 	std::wstring m_SoundGroup;
 	fixed m_AnimDesync;
 	fixed m_AnimSyncRepeatTime; // 0.0 if not synced
+
+	std::map<CStr, CStr> m_VariantSelections;
 
 	u32 m_Seed; // seed used for random variations
 
@@ -229,8 +233,9 @@ public:
 		serialize.NumberFixed_Unbounded("anim desync", m_AnimDesync);
 		serialize.NumberFixed_Unbounded("anim sync repeat time", m_AnimSyncRepeatTime);
 
+		SerializeMap<SerializeString, SerializeString>()(serialize, "variation", m_VariantSelections);
+
 		serialize.NumberU32_Unbounded("seed", m_Seed);
-		// TODO: variation/selection strings
 		serialize.String("actor", m_ActorName, 0, 256);
 
 		// TODO: store actor variables?
@@ -259,6 +264,8 @@ public:
 		// If we serialized a different seed or different actor, reload actor
 		if (oldSeed != GetActorSeed() || m_BaseActorName != m_ActorName)
 			ReloadActor();
+		else
+			m_Unit->SetEntitySelection(m_VariantSelections);
 
 		fixed repeattime = m_AnimSyncRepeatTime; // save because SelectAnimation overwrites it
 
@@ -410,6 +417,14 @@ public:
 		return CVector3D();
 	}
 
+	virtual void SetVariant(const CStr& key, const CStr& selection)
+	{
+		m_VariantSelections[key] = selection;
+		if (!m_Unit)
+			return;
+		m_Unit->SetEntitySelection(key, selection);
+	}
+
 	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup)
 	{
 		m_AnimRunThreshold = fixed::Zero();
@@ -422,7 +437,7 @@ public:
 
 		if (m_Unit)
 		{
-			m_Unit->SetEntitySelection(m_AnimName);
+			SetVariant("animation", m_AnimName);
 			if (m_Unit->GetAnimation())
 				m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
 		}
@@ -440,21 +455,13 @@ public:
 			m_AnimOverride.erase(name);
 	}
 
-	virtual void SetUnitEntitySelection(const CStr& selection)
-	{
-		if (m_Unit)
-		{
-			m_Unit->SetEntitySelection(selection);
-		}
-	}
-
 	virtual void SelectMovementAnimation(fixed runThreshold)
 	{
 		m_AnimRunThreshold = runThreshold;
 
 		if (m_Unit)
 		{
-			m_Unit->SetEntitySelection("walk");
+			SetVariant("animation", "walk");
 			if (m_Unit->GetAnimation())
 				m_Unit->GetAnimation()->SetAnimationState("walk", false, 1.f, 0.f, L"");
 		}
@@ -713,7 +720,8 @@ void CCmpVisualActor::ReloadActor()
 
 	InitModel(node->GetChild("VisualActor"));
 
-	m_Unit->SetEntitySelection(m_AnimName);
+	m_Unit->SetEntitySelection(m_VariantSelections);
+
 	if (m_Unit->GetAnimation())
 		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
 
@@ -763,17 +771,12 @@ void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 		if (it != m_AnimOverride.end())
 			name = it->second;
 
-		m_Unit->SetEntitySelection(name);
-		if (speed == 0.0f)
+		SetVariant("animation", name);
+		if (m_Unit->GetAnimation())
 		{
-			m_Unit->SetEntitySelection(name);
-			if (m_Unit->GetAnimation())
+			if (speed == 0.0f)
 				m_Unit->GetAnimation()->SetAnimationState(name, false, 1.f, 0.f, L"");
-		}
-		else
-		{
-			m_Unit->SetEntitySelection(name);
-			if (m_Unit->GetAnimation())
+			else
 				m_Unit->GetAnimation()->SetAnimationState(name, false, speed, 0.f, L"");
 		}
 	}

@@ -566,16 +566,11 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 
 GarrisonHolder.prototype.UpdateGarrisonFlag = function()
 {
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (!cmpVisual)
 		return;
-	cmpVisual.SelectAnimation("garrisoned", true, 0, "");
-	// TODO: ought to extend ICmpVisual to let us just select variant
-	// keywords without changing the animation too
-	if (this.entities.length)
-		cmpVisual.SelectAnimation("garrisoned", false, 1.0, "");
-	else
-		cmpVisual.SelectAnimation("idle", false, 1.0, "");
+	let selection = this.entities.length ? "garrisoned" : "ungarrisoned";
+	cmpVisual.SetVariant("garrison", selection);
 };
 
 /**
