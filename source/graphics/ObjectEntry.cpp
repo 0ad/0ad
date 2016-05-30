@@ -161,7 +161,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 		if (!it->second.m_FileName.empty())
 		{
-			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2, it->second.m_SoundPos);
+			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Frequency, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2, it->second.m_SoundPos);
 			if (anim)
 				m_Animations.insert(std::make_pair(name, anim));
 		}
@@ -248,15 +248,24 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName) const
 {
-	SkeletonAnimMap::const_iterator lower = m_Animations.lower_bound(animationName);
-	SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound(animationName);
-	size_t count = std::distance(lower, upper);
-	if (count == 0)
-		return NULL;
+	std::vector<CSkeletonAnim*> anims = GetAnimations(animationName);
 
-	size_t id = rand(0, count);
-	std::advance(lower, id);
-	return lower->second;
+	int totalFreq = 0;
+	for (CSkeletonAnim* anim : anims)
+		totalFreq += anim->m_Frequency;
+
+	if (totalFreq == 0)
+		return anims[rand(0, anims.size())];
+
+	int r = rand(0, totalFreq);
+	for (CSkeletonAnim* anim : anims)
+	{
+		r -= anim->m_Frequency;
+		if (r < 0)
+			return anim;
+	}
+	LOGERROR("No animation found");
+	return NULL;
 }
 
 std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationName) const
@@ -265,7 +274,23 @@ std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationNam
 
 	SkeletonAnimMap::const_iterator lower = m_Animations.lower_bound(animationName);
 	SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound(animationName);
+
 	for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
 		anims.push_back(it->second);
+
+	if (anims.size() == 0)
+		for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
+			if (anim.second->m_Frequency > 0)
+				anims.push_back(anim.second);
+
+	if (anims.size() == 0)
+	{
+		SkeletonAnimMap::const_iterator lower = m_Animations.lower_bound("idle");
+		SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound("idle");
+		for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
+			anims.push_back(it->second);
+	}
+
+	ENSURE(anims.size() > 0);
 	return anims;
 }

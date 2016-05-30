@@ -83,6 +83,11 @@ NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
 		  <interleave>
 			<attribute name="name"/>
 			<optional>
+				<attribute name="frequency">
+					<data type="nonNegativeInteger"/>
+				</attribute>
+			</optional>
+			<optional>
 			  <attribute name="file"/>
 			</optional>
 			<attribute name="speed">

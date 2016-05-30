@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -255,7 +255,7 @@ const CBoundingBoxAligned CModel::GetObjectSelectionBoundsRec()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2, float soundpos)
+CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, int frequency, float speed, float actionpos, float actionpos2, float soundpos)
 {
 	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(pathname);
 	if (!def)
@@ -263,6 +263,7 @@ CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name,
 
 	CSkeletonAnim* anim = new CSkeletonAnim();
 	anim->m_Name = name;
+	anim->m_Frequency = frequency;
 	anim->m_AnimDef = def;
 	anim->m_Speed = speed;
 

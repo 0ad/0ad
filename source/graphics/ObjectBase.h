@@ -42,9 +42,10 @@ public:
 	struct Anim
 	{
 		// constructor
-		Anim() : m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f), m_SoundPos(-1.f) {}
+		Anim() : m_Frequency(0), m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f), m_SoundPos(-1.f) {}
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
+		int m_Frequency;
 		// filename of the animation - manidle.psa, manrun.psa, etc
 		VfsPath m_FileName;
 		// animation speed, as specified in XML actor file

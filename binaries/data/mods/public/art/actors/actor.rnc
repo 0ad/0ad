@@ -38,6 +38,7 @@ element actor {
             element animations {
                 element animation {
                     attribute name { text } &
+                    attribute frequency { xsd:nonNegativeInteger }? &
                     attribute file { text }? &
                     attribute speed { xsd:nonNegativeInteger } &
                     attribute event { xsd:decimal { minInclusive = "0" maxInclusive = "1" } }? &

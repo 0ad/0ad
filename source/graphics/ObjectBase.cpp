@@ -163,6 +163,8 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 				{
 					if (ae.Name == at_name)
 						anim.m_AnimName = ae.Value;
+					else if (ae.Name == at_frequency)
+						anim.m_Frequency = ae.Value.ToInt();
 					else if (ae.Name == at_file)
 						anim.m_FileName = VfsPath("art/animation") / ae.Value.FromUTF8();
 					else if (ae.Name == at_speed)

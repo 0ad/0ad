@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -201,13 +201,14 @@ public:
 	 * animation specific to this model.
 	 * @param pathname animation file to load
 	 * @param name animation name (e.g. "idle")
+	 * @param frequency influences the random choices 
 	 * @param speed animation speed as a factor of the default animation speed
 	 * @param actionpos offset of 'action' event, in range [0, 1]
 	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
 	 * @param sound offset of 'sound' event, in range [0, 1]
 	 * @return new animation, or NULL on error
 	 */
-	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2, float soundpos);
+	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, int frequency, float speed, float actionpos, float actionpos2, float soundpos);
 
 	/**
 	 * Add a prop to the model on the given point.
