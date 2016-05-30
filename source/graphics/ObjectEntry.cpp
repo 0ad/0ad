@@ -278,19 +278,19 @@ std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationNam
 	for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
 		anims.push_back(it->second);
 
-	if (anims.size() == 0)
+	if (anims.empty())
 		for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
 			if (anim.second->m_Frequency > 0)
 				anims.push_back(anim.second);
 
-	if (anims.size() == 0)
+	if (anims.empty())
 	{
-		SkeletonAnimMap::const_iterator lower = m_Animations.lower_bound("idle");
-		SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound("idle");
+		lower = m_Animations.lower_bound("idle");
+		upper = m_Animations.upper_bound("idle");
 		for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
 			anims.push_back(it->second);
 	}
 
-	ENSURE(anims.size() > 0);
+	ENSURE(!anims.empty());
 	return anims;
 }
