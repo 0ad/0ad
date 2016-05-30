@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-20 09:00+0200\n"
-"PO-Revision-Date: 2016-05-23 08:54+0000\n"
-"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 10:49+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -612,8 +612,8 @@ msgid "Armor:"
 msgstr "Brnění:"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1192,20 +1192,20 @@ msgstr "Uložená hra bude trvale přepsána. Opravdu to chcete?"
 msgid "OVERWRITE SAVE"
 msgstr "PŘEPSAT ULOŽENÍ"
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr "Zdraví:"
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr "Rychlost sbírání:"
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s do %(val2)s"
@@ -1970,8 +1970,8 @@ msgid "3D Art"
 msgstr "Trojrozměrné umění"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion"
-msgstr "Doplňková hudba, bicí hudební nástroje"
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Doplňková hudba, bicí hudební nástroje, djembe, vzorkování"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -1982,28 +1982,32 @@ msgid "Flute"
 msgstr "Flétna"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr "Housle"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr "Keltská harfa"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr "Trumpeta"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr "Djembe - africké bubny"
 
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Percussion"
-msgstr "Bicí hudební nástroje"
+#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Rámový buben, darbuka, tamburína rik, bubínky (tom)"
 
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "Didgeridoo"
+
+#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trumpeta"
+
+#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Keltská harfa"
+
+#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Irské píšťaly"
+
+#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Housle"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"

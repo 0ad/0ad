@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-21 10:59+0200\n"
-"PO-Revision-Date: 2016-05-25 17:06+0000\n"
-"Last-Translator: foaly <foaly.f@web.de>\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-29 10:58+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,6 +170,14 @@ msgstr "Defensive Aura"
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
 msgstr "Gibt allen iberischen Einheiten innerhalb der Aura einen Bonus von +2 auf Hiebattacken und +3 auf Stichattacken."
 
+#: simulation/data/auras/library.jsonauraName
+msgid "Library Aura"
+msgstr "Bibliothek Aura"
+
+#: simulation/data/auras/library.jsonauraDescription
+msgid "Reduces the cost of all remaining technologies by 10%."
+msgstr "Verringert die Kosten aller übrigen Technologien um 10%."
+
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
 msgstr "Loyalitäts-Aura"
@@ -193,6 +201,23 @@ msgstr "+15% Reichweite und +10 Angriff von Belagerungswaffen."
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "+5 Angriff und +2 Eroberung für Gardisten."
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraName
+msgid "Evangelism Aura"
+msgstr "Evangelismus Aura"
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
+msgid ""
+"All player and allied Temple technologies -50% cost and -50% research time."
+msgstr "Alle Spieler und verbündete Tempel-Technologien -50% Kosten und -50% Forschungszeit."
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraName
+msgid "Teacher Aura"
+msgstr "Lehrer Aura"
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
+msgid "Empower a building with -50% research time."
+msgstr "Verbessern Sie ein Gebäude mit um einer von 50% reduzierter Forschungzeit."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."

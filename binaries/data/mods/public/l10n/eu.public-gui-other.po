@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-20 09:00+0200\n"
-"PO-Revision-Date: 2016-05-20 08:20+0000\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 09:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -597,8 +597,8 @@ msgid "Armor:"
 msgstr "Armadura:"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1171,20 +1171,20 @@ msgstr "Gordetako partida behin betiko gainidatziko da, ziur zaude?"
 msgid "OVERWRITE SAVE"
 msgstr ""
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr "Osasuna:"
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr ""
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr ""
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr ""
@@ -1949,7 +1949,7 @@ msgid "3D Art"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion"
+msgid "Additional music, percussion, djembe, sampling"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
@@ -1961,27 +1961,31 @@ msgid "Flute"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr ""
 
+#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr ""
+
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Percussion"
+msgid "Celtic harp"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Didgeridoo"
+msgid "Tin whistles"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
+msgid "Viola, violin"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title

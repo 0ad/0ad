@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-20 09:00+0200\n"
-"PO-Revision-Date: 2016-05-20 08:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-28 16:38+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -410,7 +410,7 @@ msgstr "S'ha perdut la connexió amb el servidor."
 
 #: gui/common/network.js:84
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "No s'ha pogut connectar al servidor."
 
 #: gui/common/network.js:86
 msgid "Disconnected"
@@ -603,8 +603,8 @@ msgid "Armor:"
 msgstr "Armadura:"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -970,12 +970,12 @@ msgstr "Aquesta gravació no és compatible amb aquesta versió del joc!"
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "La vostra versió: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Versió necessària: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
@@ -1177,20 +1177,20 @@ msgstr "La partida desada es sobreescriurà permanentment, n'esteu segur?"
 msgid "OVERWRITE SAVE"
 msgstr "SOBREESCRIU LA PARTIDA DESADA"
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr "Salut:"
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr "Velocitat de recollida:"
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s a %(val2)s"
@@ -1955,8 +1955,8 @@ msgid "3D Art"
 msgstr "Art 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion"
-msgstr "Música addicional, percussió"
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Música addicional, percussió, djembé, mostreig"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -1967,28 +1967,32 @@ msgid "Flute"
 msgstr "Flauta"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr "Viola, violí"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr "Arpa celta"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr "Trompeta"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr "Djembé"
 
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Percussion"
-msgstr "Percussió"
+#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Tambor de marc, darbuka, riq, toms"
 
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "Didjeridú"
+
+#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trompeta"
+
+#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Arpa celta"
+
+#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Flauta irlandesa"
+
+#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Viola, violí"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2899,7 +2903,7 @@ msgstr "STOÀ"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr ""
+msgstr "- Una estructura especial de les faccions gregues."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."

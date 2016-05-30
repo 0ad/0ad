@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# EriCSN Chang <ericsning@gmail.com>, 2016
 # Jeff Huang <s8321414@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-21 10:59+0200\n"
-"PO-Revision-Date: 2016-05-23 07:51+0000\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-29 13:13+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +169,14 @@ msgstr "防禦靈氣"
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
 msgstr "給予所有在靈氣範圍中的伊比利單位 +2 劈砍與 +3 穿刺傷害的加成。"
 
+#: simulation/data/auras/library.jsonauraName
+msgid "Library Aura"
+msgstr "圖書館靈氣"
+
+#: simulation/data/auras/library.jsonauraDescription
+msgid "Reduces the cost of all remaining technologies by 10%."
+msgstr "研發科技的花費減少10%"
+
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
 msgstr "忠誠靈氣"
@@ -191,6 +200,23 @@ msgstr "攻城武器 +15% 射程且 +10 粉碎攻擊力。"
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "精英單位 +5 攻擊力和 +2 捕獲。"
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraName
+msgid "Evangelism Aura"
+msgstr "福音主義靈氣"
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
+msgid ""
+"All player and allied Temple technologies -50% cost and -50% research time."
+msgstr "所有玩家與盟友的神廟科技 -50% 花費及 -50% 研究時間。"
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraName
+msgid "Teacher Aura"
+msgstr "導師靈氣"
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
+msgid "Empower a building with -50% research time."
+msgstr "賦予一棟建築科技研發時間-50%。"
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."

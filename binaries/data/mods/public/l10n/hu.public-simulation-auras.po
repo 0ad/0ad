@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-21 10:59+0200\n"
-"PO-Revision-Date: 2016-05-25 18:26+0000\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-28 15:45+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -169,6 +169,14 @@ msgstr "Védelmi aura"
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
 msgstr "Az aurán belül minden ibériai egység +2 vágás és +3 szúrás támadási bónuszt kap."
 
+#: simulation/data/auras/library.jsonauraName
+msgid "Library Aura"
+msgstr "Könyvtár aura"
+
+#: simulation/data/auras/library.jsonauraDescription
+msgid "Reduces the cost of all remaining technologies by 10%."
+msgstr "Csökkenti minden hátralévő technológia költségét 10%-kal."
+
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
 msgstr "Hűség aura"
@@ -192,6 +200,23 @@ msgstr "+15% hatótávolság és +10 zúzás támadás az ostromgépeknek."
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "+5 támadás és +2 elfoglalás a bajnok egységeknek."
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraName
+msgid "Evangelism Aura"
+msgstr "Evangelizáció aura"
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
+msgid ""
+"All player and allied Temple technologies -50% cost and -50% research time."
+msgstr "Minden saját és szövetséges templomi technológiánál -50% költség és -50% kutatási idő."
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraName
+msgid "Teacher Aura"
+msgstr "Tanár aura"
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
+msgid "Empower a building with -50% research time."
+msgstr "Egy épület felruházása -50% kutatási idővel."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."

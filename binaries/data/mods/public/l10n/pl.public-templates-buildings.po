@@ -13,7 +13,8 @@
 # Lukasz B <boberstarosta@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016
-# Michał Karol <michal.p.karol+transifex@gmail.com>, 2015
+# Michał Karol, 2016
+# Michał Karol, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Night Shade <aleksandra.peter3590@gmail.com>, 2016
 # zyxist <nightstorm@tlen.pl>, 2014
@@ -21,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-29 09:01+0200\n"
-"PO-Revision-Date: 2016-05-22 12:02+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-28 17:20+0000\n"
+"Last-Translator: Michał Karol\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -939,24 +940,22 @@ msgid ""
 "defense."
 msgstr "Pozwala tworzyć bohaterów i elitarne jednostki. Może przechować do 20 żołnierzy dla wzmocnienia obrony."
 
-#: simulation/templates/structures/mace_library.xml:15
-#: simulation/templates/structures/ptol_library.xml:15
-#: simulation/templates/structures/sele_library.xml:15
+#: simulation/templates/structures/mace_library.xml:16
+#: simulation/templates/structures/ptol_library.xml:16
+#: simulation/templates/structures/sele_library.xml:16
 msgid "Library"
 msgstr "Biblioteka"
 
-#: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/ptol_library.xml:16
+#: simulation/templates/structures/mace_library.xml:17
+#: simulation/templates/structures/ptol_library.xml:17
 msgid "Bibliothḗkē"
 msgstr "Biblioteka"
 
-#: simulation/templates/structures/mace_library.xml:18
-#: simulation/templates/structures/ptol_library.xml:18
-#: simulation/templates/structures/sele_library.xml:18
-msgid ""
-"Research special technologies and reduce the research time of all remaining "
-"technologies."
-msgstr "Pozwala odkryć specjalne technologie oraz zredukować czas odkrywania wszystkich pozostałych technologii."
+#: simulation/templates/structures/mace_library.xml:19
+#: simulation/templates/structures/ptol_library.xml:19
+#: simulation/templates/structures/sele_library.xml:19
+msgid "Research special technologies."
+msgstr "Badaj technologie specjalne."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -1575,7 +1574,7 @@ msgid ""
 "for stout defense."
 msgstr "Pozwala tworzyć machiny oblężnicze i szkolić elitarne jednostki. Umieść wewnątrz do 20 żołnierzy dla wzmocnienia obrony."
 
-#: simulation/templates/structures/sele_library.xml:16
+#: simulation/templates/structures/sele_library.xml:17
 msgid "Bibliothikon"
 msgstr "Biblioteka"
 

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-21 10:59+0200\n"
-"PO-Revision-Date: 2016-05-21 10:33+0000\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-27 13:26+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,14 @@ msgstr "Aura defensiva"
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
 msgstr "Proporciona a las unidades íberas un aura de +2 en daño de corte y +3 de perforación."
 
+#: simulation/data/auras/library.jsonauraName
+msgid "Library Aura"
+msgstr "Aura de biblioteca"
+
+#: simulation/data/auras/library.jsonauraDescription
+msgid "Reduces the cost of all remaining technologies by 10%."
+msgstr "Reduce un 10% el coste de todas las tecnologías restantes."
+
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
 msgstr "Aura de lealtad"
@@ -191,6 +199,23 @@ msgstr "+15% de distancia y +10 de daño destructor para todas las armas de ased
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "+5 de ataque y +2 de captura para las unidades campeonas."
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraName
+msgid "Evangelism Aura"
+msgstr "Aura de evangelismo"
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
+msgid ""
+"All player and allied Temple technologies -50% cost and -50% research time."
+msgstr "Las tecnologías de templos propios y aliados reducen en un -50% su coste y tiempo de investigación. "
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraName
+msgid "Teacher Aura"
+msgstr "Aura de instructor"
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
+msgid "Empower a building with -50% research time."
+msgstr "Bonifica edificios con una investigación un 50% más rápida."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."

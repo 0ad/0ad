@@ -14,6 +14,7 @@
 # Marco tom Suden, 2014
 # Inperpetuammemoriam, 2016
 # Marwan <Skyplay33@gmail.com>, 2015
+# Micky Jault <micky037@hotmail.fr>, 2016
 # Moritz FS <momogingins@gmail.com>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015-2016
 # Nexus nexus <neocrysis@gmail.com>, 2016
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-20 09:00+0200\n"
-"PO-Revision-Date: 2016-05-24 18:48+0000\n"
-"Last-Translator: Mortimer <doug.mortimer@netcourrier.com>\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 15:23+0000\n"
+"Last-Translator: Micky Jault <micky037@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -525,17 +526,17 @@ msgstr "Illimitée"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -545,12 +546,12 @@ msgstr "Par défaut"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:90
 #: gui/common/tooltips.js:124
@@ -616,8 +617,8 @@ msgid "Armor:"
 msgstr "Armure :"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1075,19 +1076,19 @@ msgstr "Multijoueur"
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
 msgid "Any gametype"
-msgstr ""
+msgstr "N'importe quel mode de jeu"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "Parties classées et non classées."
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "Partie classée."
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "Partie non classée."
 
 #: gui/replaymenu/replay_menu.js:276
 msgid "yyyy-MM-dd HH:mm"
@@ -1162,7 +1163,7 @@ msgstr "Nécessite une partie enregistrée de 0 A.D. version %(requiredVersion)s
 
 #: gui/savedgames/load.js:75
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "La sauvegarde nécessite un ensemble de mods différent."
 
 #: gui/savedgames/load.js:80
 msgid "Do you still want to proceed?"
@@ -1190,20 +1191,20 @@ msgstr "Cette sauvegarde sera écrasée définitivement, êtes-vous sûr(e) ?"
 msgid "OVERWRITE SAVE"
 msgstr "REMPLACER"
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr "Santé :"
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr "Taux de collecte :"
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "de %(val1)s à %(val2)s"
@@ -1929,7 +1930,7 @@ msgstr "Marché"
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Replay"
-msgstr ""
+msgstr "Rejouer."
 
 #: gui/summary/summary.xml:(caption):181
 msgid "Continue"
@@ -1968,8 +1969,8 @@ msgid "3D Art"
 msgstr "Art 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion"
-msgstr "Musique additionnelle, percussion"
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Musique additionnelle, percussion, djembé, échantillon."
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -1980,28 +1981,32 @@ msgid "Flute"
 msgstr "Flûte"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr "Alto, violon"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr "Harpe celtique"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr "Trompette"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr "Djembé"
 
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Percussion"
-msgstr "Percussion"
+#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Tambour sur cadre, darbouka, riqq, tom"
 
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "Didgeridoo"
+
+#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trompette"
+
+#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Harpe celtique"
+
+#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Flûtes irlandaises"
+
+#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Alto, violon"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2103,19 +2108,19 @@ msgstr "Horodatage du chat"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr ""
+msgstr "Comment voulez-vous être considéré en matchs solo?"
 
 #: gui/options/options.jsongeneralSetting[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "Nom du joueur (Solo)"
 
 #: gui/options/options.jsongeneralSetting[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Comment voulez-vous être considéré en matchs multijoueur? (excepté en lobby)"
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "Nom du joueur (Multijoueur)"
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
@@ -2912,11 +2917,11 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr ""
+msgstr "Une structure spéciale pour les factions grecques."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "Entraine des tirailleurs lourds et des champions d'infanterie de mêlée."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."

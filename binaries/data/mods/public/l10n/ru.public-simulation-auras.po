@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-21 10:59+0200\n"
-"PO-Revision-Date: 2016-05-21 13:48+0000\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-27 20:57+0000\n"
 "Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,14 @@ msgstr "Аура защитника"
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
 msgstr ""
 
+#: simulation/data/auras/library.jsonauraName
+msgid "Library Aura"
+msgstr ""
+
+#: simulation/data/auras/library.jsonauraDescription
+msgid "Reduces the cost of all remaining technologies by 10%."
+msgstr ""
+
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
 msgstr "Аура лояльности"
@@ -191,6 +199,23 @@ msgstr "+15% к урону на расстоянии и +10% к урону ос�
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+5 Attack and +2 Capture for Champion Units."
 msgstr "Чемпионы получают +5 к атаке и +2 к захвату."
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraName
+msgid "Evangelism Aura"
+msgstr ""
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
+msgid ""
+"All player and allied Temple technologies -50% cost and -50% research time."
+msgstr ""
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraName
+msgid "Teacher Aura"
+msgstr "Аура Учителя"
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
+msgid "Empower a building with -50% research time."
+msgstr ""
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
