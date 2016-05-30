@@ -422,10 +422,15 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 {
 	NETTURN_LOG((L"NotifyFinishedOwnCommands(%d)\n", turn));
 
-	// Send message to the server
 	CEndCommandBatchMessage msg;
-	msg.m_TurnLength = DEFAULT_TURN_LENGTH_MP; // TODO: why do we send this?
+
 	msg.m_Turn = turn;
+
+	// The turn-length field of the CEndCommandBatchMessage is currently only relevant
+	// when sending it from the server to the clients.
+	// It could be used to verify that the client simulated the correct turn length.
+	msg.m_TurnLength = 0;
+
 	m_NetClient.SendMessage(&msg);
 }
 
@@ -607,7 +612,6 @@ void CNetServerTurnManager::CheckClientsReady()
 			return; // wasn't ready for m_ReadyTurn+1
 	}
 
-	// Advance the turn
 	++m_ReadyTurn;
 
 	NETTURN_LOG((L"CheckClientsReady: ready for turn %d\n", m_ReadyTurn));
@@ -618,7 +622,6 @@ void CNetServerTurnManager::CheckClientsReady()
 	msg.m_Turn = m_ReadyTurn;
 	m_NetServer.Broadcast(&msg);
 
-	// Save the turn length in case it's needed later
 	ENSURE(m_SavedTurnLengths.size() == m_ReadyTurn);
 	m_SavedTurnLengths.push_back(m_TurnLength);
 }

@@ -1072,6 +1072,7 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 	}
 	else if (message->GetType() == (uint)NMT_END_COMMAND_BATCH)
 	{
+		// The turn-length field is ignored
 		CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (message);
 		server.m_ServerTurnManager->NotifyFinishedClientCommands(session->GetHostID(), endMessage->m_Turn);
 	}
