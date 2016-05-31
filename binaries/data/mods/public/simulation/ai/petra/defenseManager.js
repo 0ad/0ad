@@ -77,7 +77,6 @@ m.DefenseManager.prototype.getArmy = function(partOfArmy)
 	return undefined;
 };
 
-// TODO: this algorithm needs to be improved, sorta.
 m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 {
 	if (!entity.position())
@@ -165,11 +164,10 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	return false;
 };
 
-
 m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 {
 	const nbPlayers = gameState.sharedScript.playersData.length;
-	var i = gameState.ai.playedTurn % nbPlayers;
+	let i = gameState.ai.playedTurn % nbPlayers;
  	this.attackingUnits[i] = undefined;
 
 	if (i === PlayerID)
@@ -346,9 +344,8 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 	if (this.armies.length === 0)
 		return;
 	
-	var armiesNeeding = [];
-	// Okay, let's add defenders
-	// TODO: this is dumb.
+	let armiesNeeding = [];
+	// let's add defenders
 	for (let army of this.armies)
 	{
 		let needsDef = army.needsDefenders(gameState);
@@ -364,7 +361,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		return;
 
 	// let's get our potential units
-	var potentialDefenders = []; 
+	let potentialDefenders = []; 
 	gameState.getOwnUnits().forEach(function(ent) {
 		if (!ent.position())
 			return;
@@ -380,7 +377,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			return;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
-			var subrole = ent.getMetadata(PlayerID, "subrole");
+			let subrole = ent.getMetadata(PlayerID, "subrole");
 			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking"))
 				return;
 		}
@@ -423,7 +420,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 	if (!armiesNeeding.length)
 		return;
 	// If shortage of defenders, produce infantry garrisoned in nearest civil centre
-	var armiesPos = [];
+	let armiesPos = [];
 	for (let a = 0; a < armiesNeeding.length; ++a)
 		armiesPos.push(armiesNeeding[a].army.foePosition);
 	gameState.ai.HQ.trainEmergencyUnits(gameState, armiesPos);
@@ -441,9 +438,11 @@ m.DefenseManager.prototype.abortArmy = function(gameState, army)
 	}
 };
 
-// If our defense structures are attacked, garrison soldiers inside when possible
-// and if a support unit is attacked and has less than 55% health, garrison it inside the nearest healing structure
-// and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
+/**
+ * If our defense structures are attacked, garrison soldiers inside when possible
+ * and if a support unit is attacked and has less than 55% health, garrison it inside the nearest healing structure
+ * and if a ranged siege unit (not used for defense) is attacked, garrison it in the nearest fortress
+ */
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
 	// must be called every turn for all armies
@@ -553,10 +552,10 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 		if (dist >= range*range)
 			return;
 	}
-	var index = gameState.ai.accessibility.getAccessValue(target.position());
-	var garrisonManager = gameState.ai.HQ.garrisonManager;
-	var garrisonArrowClasses = target.getGarrisonArrowClasses();
-	var units = gameState.getOwnUnits().filter(function (ent) { return MatchesClassList(garrisonArrowClasses, ent.classes()); }).filterNearest(target.position());
+	let index = gameState.ai.accessibility.getAccessValue(target.position());
+	let garrisonManager = gameState.ai.HQ.garrisonManager;
+	let garrisonArrowClasses = target.getGarrisonArrowClasses();
+	let units = gameState.getOwnUnits().filter(ent => MatchesClassList(garrisonArrowClasses, ent.classes())).filterNearest(target.position());
 	for (let ent of units.values())
 	{
 		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
@@ -569,7 +568,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 			continue;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
-			var subrole = ent.getMetadata(PlayerID, "subrole");
+			let subrole = ent.getMetadata(PlayerID, "subrole");
 			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
 				continue;
 		}
@@ -579,7 +578,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 	}
 };
 
-// garrison a attacked siege ranged unit inside the nearest fortress
+/** garrison a attacked siege ranged unit inside the nearest fortress */
 m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 {
 	let distmin = Math.min();
@@ -593,7 +592,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 			return;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			return;
-		var entAccess = ent.getMetadata(PlayerID, "access");
+		let entAccess = ent.getMetadata(PlayerID, "access");
 		if (!entAccess)
 		{
 			entAccess = gameState.ai.accessibility.getAccessValue(ent.position());
@@ -611,7 +610,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
 };
 
-// garrison a hurt unit inside the nearest healing structure
+/** garrison a hurt unit inside the nearest healing structure */
 m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 {
 	let distmin = Math.min();

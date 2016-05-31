@@ -33,26 +33,26 @@ m.TradeManager.prototype.assignTrader = function(ent)
 	this.traders.updateEnt(ent);
 };
 
-// TODO take trader ships into account
 m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 {
 	if (!this.tradeRoute || queues.trader.hasQueuedUnits())
 		return;
 
-	var numTraders = this.traders.length;
-	var numSeaTraders = this.traders.filter(API3.Filters.byClass("Ship")).length;
-	var numLandTraders = numTraders - numSeaTraders;
+	let numTraders = this.traders.length;
+	let numSeaTraders = this.traders.filter(API3.Filters.byClass("Ship")).length;
+	let numLandTraders = numTraders - numSeaTraders;
 	// add traders already in training
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
+		for (let item of ent.trainingQueue())
+		{
 			if (!item.metadata || !item.metadata.role || item.metadata.role !== "trader")
-				return;
+				continue;
 			numTraders += item.count;
 			if (item.metadata.sea !== undefined)
 				numSeaTraders += item.count;
 			else
 				numLandTraders += item.count;
-		});
+		}
 	});
         if (numTraders >= this.targetNumTraders &&
 		((!this.tradeRoute.sea && numLandTraders >= Math.floor(this.targetNumTraders/2)) ||
@@ -118,8 +118,8 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 		return;
 
 	Engine.ProfileStart("Trade Manager");
-	var access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());
-	var route = this.checkRoutes(gameState, access);
+	let access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());
+	let route = this.checkRoutes(gameState, access);
 	if (!route)
 	{
 		// TODO try to garrison land trader inside merchant ship when only sea routes available
@@ -129,7 +129,7 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 		return;
 	}
 
-	var nearerSource = true;
+	let nearerSource = true;
 	if (API3.SquareVectorDistance(route.target.position(), ent.position()) < API3.SquareVectorDistance(route.source.position(), ent.position()))
 		nearerSource = false;
 
@@ -153,13 +153,13 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 
 m.TradeManager.prototype.setTradingGoods = function(gameState)
 {
-	var tradingGoods = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let tradingGoods = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	// first, try to anticipate future needs 
-	var stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
-	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-	var remaining = 100;
-	var targetNum = this.Config.Economy.targetNumTraders;
-	for (var type in stocks)
+	let stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
+	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+	let remaining = 100;
+	let targetNum = this.Config.Economy.targetNumTraders;
+	for (let type in stocks)
 	{
 		if (type == "food")
 			continue;
@@ -185,8 +185,8 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 
 
 	// then add what is needed now
-	var mainNeed = Math.floor(remaining * 70 / 100);
-	var nextNeed = remaining - mainNeed;
+	let mainNeed = Math.floor(remaining * 70 / 100);
+	let nextNeed = remaining - mainNeed;
 
 	tradingGoods[mostNeeded[0].type] += mainNeed;
 	if (mostNeeded[1].wanted > 0)
@@ -198,33 +198,35 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 		API3.warn(" trading goods set to " + uneval(tradingGoods));
 };
 
-// Try to barter unneeded resources for needed resources.
-// only once per turn because the info doesn't update between a turn and fixing isn't worth it.
+/**
+ * Try to barter unneeded resources for needed resources.
+ * only once per turn because the info is not updated within a turn
+ */
 m.TradeManager.prototype.performBarter = function(gameState)
 {
-	var barterers = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).toEntityArray();
+	let barterers = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).toEntityArray();
 	if (barterers.length === 0)
 		return false;
 
 	// Available resources after account substraction
-	var available = gameState.ai.queueManager.getAvailableResources(gameState);
-	var needs = gameState.ai.queueManager.currentNeeds(gameState);
+	let available = gameState.ai.queueManager.getAvailableResources(gameState);
+	let needs = gameState.ai.queueManager.currentNeeds(gameState);
 
-	var rates = gameState.ai.HQ.GetCurrentGatherRates(gameState);
+	let rates = gameState.ai.HQ.GetCurrentGatherRates(gameState);
 
-	var prices = gameState.getBarterPrices();
+	let prices = gameState.getBarterPrices();
 	// calculates conversion rates
-	var getBarterRate = function (prices,buy,sell) { return Math.round(100 * prices.sell[sell] / prices.buy[buy]); };
+	let getBarterRate = function (prices,buy,sell) { return Math.round(100 * prices.sell[sell] / prices.buy[buy]); };
 
 	// loop through each missing resource checking if we could barter and help finishing a queue quickly.
-	for (var buy of needs.types)
+	for (let buy of needs.types)
 	{
 		if (needs[buy] === 0 || needs[buy] < rates[buy]*30) // check if our rate allows to gather it fast enough
 			continue;
 
 		// pick the best resource to barter.
-		var bestToSell = undefined;
-		var bestRate = 0;
+		let bestToSell = undefined;
+		let bestRate = 0;
 		for (let sell of needs.types)
 		{
 			if (sell === buy)
@@ -273,8 +275,8 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	// now do contingency bartering, selling food to buy finite resources (and annoy our ennemies by increasing prices)
 	if (available.food < 1000 || needs.food > 0)
 		return false;
-	var bestToBuy;
-	var bestChoice = 0;
+	let bestToBuy;
+	let bestChoice = 0;
 	for (let buy of needs.types)
 	{
 		if (buy === "food")
@@ -371,12 +373,14 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 	return false;
 };
 
-// fills the best trade route in this.tradeRoute and the best potential route in this.potentialTradeRoute
-// If an index is given, it returns the best route with this index or the best land route if index is a land index 
+/**
+ * fills the best trade route in this.tradeRoute and the best potential route in this.potentialTradeRoute
+ * If an index is given, it returns the best route with this index or the best land route if index is a land index 
+ */
 m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {
-	var market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
-	var market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
+	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
+	let market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
 	{
 		this.tradeRoute = undefined;
@@ -386,29 +390,29 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 
 	if (!market2.length)
 		market2 = market1;
-	var candidate = { "gain": 0 };
-	var potential = { "gain": 0 };
-	var bestIndex = { "gain": 0 };
-	var bestLand  = { "gain": 0 };
+	let candidate = { "gain": 0 };
+	let potential = { "gain": 0 };
+	let bestIndex = { "gain": 0 };
+	let bestLand  = { "gain": 0 };
 
 	let traderTemplatesGains = gameState.getTraderTemplatesGains();
 
-	for (var m1 of market1)
+	for (let m1 of market1)
 	{
 		if (!m1.position())
 			continue;
-		var access1 = gameState.ai.accessibility.getAccessValue(m1.position());
-		var sea1 = m1.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m1, true) : undefined;
-		for (var m2 of market2)
+		let access1 = gameState.ai.accessibility.getAccessValue(m1.position());
+		let sea1 = m1.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m1, true) : undefined;
+		for (let m2 of market2)
 		{
 			if (m1.id() === m2.id())
 				continue;
 			if (!m2.position())
 				continue;
-			var access2 = gameState.ai.accessibility.getAccessValue(m2.position());
-			var sea2 = m2.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m2, true) : undefined;
-			var land = access1 == access2 ? access1 : undefined;
-			var sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
+			let access2 = gameState.ai.accessibility.getAccessValue(m2.position());
+			let sea2 = m2.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m2, true) : undefined;
+			let land = access1 == access2 ? access1 : undefined;
+			let sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
 			if (!land && !sea)
 				continue;
 			let gainMultiplier;
@@ -499,10 +503,10 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	return true;
 };
 
-// Called when a market was built or destroyed, and checks if trader orders should be changed
+/** Called when a market was built or destroyed, and checks if trader orders should be changed */
 m.TradeManager.prototype.checkTrader = function(gameState, ent)
 {
-	var presentRoute = ent.getMetadata(PlayerID, "route");
+	let presentRoute = ent.getMetadata(PlayerID, "route");
 	if (!presentRoute)
 		return;
 
@@ -513,8 +517,8 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 		return;
 	}
 
-	var access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());
-	var possibleRoute = this.checkRoutes(gameState, access);
+	let access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());
+	let possibleRoute = this.checkRoutes(gameState, access);
 	// Warning:  presentRoute is from metadata, so contains entity ids
 	if (!possibleRoute ||
 		(possibleRoute.source.id() != presentRoute.source && possibleRoute.source.id() != presentRoute.target) ||
@@ -535,11 +539,11 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).length &&
 		!gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).length)
 		return;
-	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
+	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
 	if (!template)
 		return;
 	this.checkRoutes(gameState);
-	var marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
+	let marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
 	if (!marketPos || marketPos[3] === 0)   // marketPos[3] is the expected gain
 	{	// no position found
 		gameState.ai.HQ.stopBuild(gameState, "structures/{civ}_market");
@@ -582,7 +586,7 @@ m.TradeManager.prototype.update = function(gameState, events, queues)
 	if (this.routeProspection)
 		this.prospectForNewMarket(gameState, queues);
 
-	var self = this;
+	let self = this;
 
 	if (this.checkEvents(gameState, events))  // true if one market was built or destroyed
 	{

@@ -22,7 +22,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	nobase.init(gameState);
 	nobase.accessIndex = 0;
 	this.baseManagers.push(nobase);   // baseManagers[0] will deal with unit/structure without base
-	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
+	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
 	{
 		let newbase = new m.BaseManager(gameState, this.Config);
@@ -133,10 +133,10 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
  */
 m.HQ.prototype.regionAnalysis = function(gameState)
 {
-	var accessibility = gameState.ai.accessibility;
+	let accessibility = gameState.ai.accessibility;
 	let landIndex;
 	let seaIndex;
-	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
+	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
 	{
 		let land = accessibility.getAccessValue(cc.position());
@@ -170,11 +170,11 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		return false;
 	}
 
-	var passabilityMap = gameState.getMap();
-	var totalSize = passabilityMap.width * passabilityMap.width;
-	var minLandSize = Math.floor(0.1*totalSize);
-	var minWaterSize = Math.floor(0.2*totalSize);
-	var cellArea = passabilityMap.cellSize * passabilityMap.cellSize;  
+	let passabilityMap = gameState.getMap();
+	let totalSize = passabilityMap.width * passabilityMap.width;
+	let minLandSize = Math.floor(0.1*totalSize);
+	let minWaterSize = Math.floor(0.2*totalSize);
+	let cellArea = passabilityMap.cellSize * passabilityMap.cellSize;  
 	for (let i = 0; i < accessibility.regionSize.length; ++i)
 	{
 		if (landIndex && i == landIndex)
@@ -227,8 +227,8 @@ m.HQ.prototype.regionAnalysis = function(gameState)
  */
 m.HQ.prototype.structureAnalysis = function(gameState)
 {
-	var civref = gameState.playerData.civ;
-	var civ = civref in this.Config.buildings.base ? civref : 'default';
+	let civref = gameState.playerData.civ;
+	let civ = civref in this.Config.buildings.base ? civref : 'default';
 	this.bBase = [];
 	for (let base of this.Config.buildings.base[civ])
 		this.bBase.push(gameState.applyCiv(base));
@@ -246,13 +246,13 @@ m.HQ.prototype.structureAnalysis = function(gameState)
  */
 m.HQ.prototype.buildFirstBase = function(gameState)
 {
-	var total = gameState.getResources();
-	var template = gameState.applyCiv("structures/{civ}_civil_centre");
+	let total = gameState.getResources();
+	let template = gameState.applyCiv("structures/{civ}_civil_centre");
 	if (gameState.isDisabledTemplates(template))
 		return;
 	template = gameState.getTemplate(template);
-	var goal = "civil_centre";
-	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
+	let goal = "civil_centre";
+	let docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
 	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.hasEntities())
 	{
 		// not enough resource to build a cc, try with a dock to accumulate resources if none yet
@@ -325,22 +325,22 @@ m.HQ.prototype.buildFirstBase = function(gameState)
  */
 m.HQ.prototype.dispatchUnits = function(gameState)
 {
-	var allycc = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	let allycc = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 	if (allycc.length)
 	{
 		if (this.Config.debug > 1)
 			API3.warn(" We have allied cc " + allycc.length + " and " + gameState.getOwnUnits().length + " units ");
-		var units = gameState.getOwnUnits();
-		var num = Math.max(Math.min(Math.round(0.08*(1+this.Config.personality.cooperative)*units.length), 20), 5);
-		var num1 = Math.floor(num / 2);
-		var num2 = num1;
+		let units = gameState.getOwnUnits();
+		let num = Math.max(Math.min(Math.round(0.08*(1+this.Config.personality.cooperative)*units.length), 20), 5);
+		let num1 = Math.floor(num / 2);
+		let num2 = num1;
 		// first pass to affect ranged infantry
 		units.filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).forEach(function (ent) {
 			if (!num || !num1)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
-			var access = gameState.ai.accessibility.getAccessValue(ent.position());
+			let access = gameState.ai.accessibility.getAccessValue(ent.position());
 			for (let cc of allycc)
 			{
 				if (!cc.position())
@@ -410,8 +410,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	if (this.baseManagers.length < 2)
 		return;
 
-	var startingSize = 0;
-	var startingLand = [];
+	let startingSize = 0;
+	let startingLand = [];
 	for (let region in this.landRegions)
 	{
 		for (let base of this.baseManagers)
@@ -423,7 +423,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			break;
 		}
 	}
-	var cell = gameState.getMap().cellSize;
+	let cell = gameState.getMap().cellSize;
 	startingSize = startingSize * cell * cell;
 	if (this.Config.debug > 1)
 		API3.warn("starting size " + startingSize + "(cut at 24000 for fish pushing)");
@@ -441,8 +441,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	}
 
 	// - count the available wood resource, and react accordingly
-	var startingFood = gameState.getResources().food;
-	var check = {};
+	let startingFood = gameState.getResources().food;
+	let check = {};
 	for (let proxim of ["nearby", "medium", "faraway"])
 	{
 		for (let base of this.baseManagers)
@@ -467,7 +467,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			this.needFarm = true;
 	}
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
-	var startingWood = gameState.getResources().wood;
+	let startingWood = gameState.getResources().wood;
 	check = {};
 	for (let proxim of ["nearby", "medium", "faraway"])
 	{
@@ -501,7 +501,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	}
 
 	// immediatly build a wood dropsite if possible.
-	var template = gameState.applyCiv("structures/{civ}_storehouse");
+	let template = gameState.applyCiv("structures/{civ}_storehouse");
 	if (!gameState.getOwnEntitiesByClass("Storehouse", true).hasEntities() && this.canBuild(gameState, template))
 	{
 		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
