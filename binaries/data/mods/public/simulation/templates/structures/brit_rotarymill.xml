@@ -1,50 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
-  <Auras datatype="tokens">rotary_mill</Auras>
-  <Cost>
-    <BuildTime>100</BuildTime>
-    <PopulationBonus>2</PopulationBonus>
-    <Resources>
-      <food>0</food>
-      <wood>200</wood>
-      <stone>100</stone>
-      <metal>0</metal>
-    </Resources>
-  </Cost>
-  <Footprint replace="">
-    <Circle radius="9.0"/>
-    <Height>6.0</Height>
-  </Footprint>
-  <GarrisonHolder disable=""/>
+<Entity parent="template_structure_special_rotarymill">
   <Identity>
     <Civ>brit</Civ>
-    <GenericName>Rotary Mill</GenericName>
-    <SpecificName>Melonas</SpecificName>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
-    <Tooltip>Increase nearby farming output +25%.</Tooltip>
-    <History>The Celts developed the first rotary flour mill.</History>
-    <Icon>structures/rotarymill.png</Icon>
   </Identity>
-  <Obstruction>
-    <Static width="16.0" depth="16.0"/>
-  </Obstruction>
-  <ProductionQueue disable=""/>
-  <RallyPoint disable=""/>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_ffactri.xml</select>
-      <constructed>interface/complete/building/complete_ffactri.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <StatusBars>
-    <HeightOffset>8.0</HeightOffset>
-  </StatusBars>
-  <TerritoryInfluence>
-    <Radius>32</Radius>
-  </TerritoryInfluence>
-  <VisualActor>
-    <Actor>structures/celts/special.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-  </VisualActor>
 </Entity>
