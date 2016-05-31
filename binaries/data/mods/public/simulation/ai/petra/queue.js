@@ -1,7 +1,7 @@
 var PETRA = function(m)
 {
 
-/*
+/**
  * Holds a list of wanted plans to train or construct
  */
 
@@ -42,7 +42,6 @@ m.Queue.prototype.check= function(gameState)
 			return;
 		this.plans.shift();
 	}
-	return;
 };
 
 m.Queue.prototype.getNext = function()
@@ -62,8 +61,10 @@ m.Queue.prototype.startNext = function(gameState)
 	return false;
 };
 
-// returns the maximal account we'll accept for this queue.
-// Currently all the cost of the first element and fraction of that of the second
+/**
+ * returns the maximal account we'll accept for this queue.
+ * Currently all the cost of the first element and fraction of that of the second
+ */
 m.Queue.prototype.maxAccountWanted = function(gameState, fraction)
 {
 	let cost = new API3.Resources();

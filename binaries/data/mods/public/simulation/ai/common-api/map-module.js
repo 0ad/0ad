@@ -412,7 +412,7 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 {
 	let w = this.width;
-	if (kx < radius || kx >= w - radius || ky < radius || ky >= w - radius || this.map[kx+ky*w] == 0)
+	if (kx < radius || kx >= w - radius || ky < radius || ky >= w - radius || this.map[kx+ky*w] === 0)
 		return true;
 	for (let dy = 0; dy <= radius; ++dy)
 	{
@@ -420,7 +420,7 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
 		for (let dx = -dxmax; dx <= dxmax; ++dx)
-			if (this.map[xp + dx] == 0 || this.map[xm + dx] == 0)
+			if (this.map[xp + dx] === 0 || this.map[xm + dx] === 0)
 				return true;
 	}
 	return false;

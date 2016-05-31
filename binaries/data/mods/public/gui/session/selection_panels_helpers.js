@@ -11,7 +11,7 @@ const GATE_ACTIONS = ["lock", "unlock"];
 // ==============================================
 // BARTER HELPERS
 // Resources to sell on barter panel
-var g_barterSell = "food";
+var g_BarterSell = "food";
 
 // FORMATION HELPERS
 // Check if the selection can move into formation, and cache the result

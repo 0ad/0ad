@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ static float DesyncSpeed(float speed, float desync)
 }
 
 CUnitAnimation::CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* object)
-	: m_Entity(ent), m_State("idle"), m_Looping(true),
+	: m_Entity(ent), m_State("idle"), m_AnimationName("idle"), m_Looping(true),
 	  m_Speed(1.f), m_SyncRepeatTime(0.f), m_OriginalSpeed(1.f), m_Desync(0.f)
 {
 	ReloadUnit(model, object);
@@ -56,26 +56,23 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 {
 	SModelAnimState state;
 
-	state.anims = object->GetAnimations(m_State);
-
-	if (state.anims.empty())
-		state.anims = object->GetAnimations("idle");
-	ENSURE(!state.anims.empty()); // there must always be an idle animation
-
 	state.model = model;
-	state.animIdx = rand(0, state.anims.size());
+	state.object = object;
+	state.anim = object->GetRandomAnimation(m_State);
 	state.time = 0.f;
 	state.pastLoadPos = false;
 	state.pastActionPos = false;
 	state.pastSoundPos = false;
 
+	ENSURE(state.anim != NULL); // there must always be an idle animation
+
 	m_AnimStates.push_back(state);
 
-	model->SetAnimation(state.anims[state.animIdx], !m_Looping);
+	model->SetAnimation(state.anim, !m_Looping);
 
 	// Detect if this unit has any non-static animations
-	for (size_t i = 0; i < state.anims.size(); i++)
-		if (state.anims[i]->m_AnimDef != NULL)
+	for (CSkeletonAnim* anim : object->GetAnimations(m_State))
+		if (anim->m_AnimDef != NULL)
 			m_AnimStatesAreStatic = false;
 
 	// Recursively add all props
@@ -111,6 +108,7 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	if (name != m_State)
 	{
 		m_State = name;
+		m_AnimationName = name;
 
 		ReloadUnit(m_Model, m_Object);
 	}
@@ -129,13 +127,13 @@ void CUnitAnimation::SetAnimationSyncOffset(float actionTime)
 	// Update all the synced prop models to each coincide with actionTime
 	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
-		CSkeletonAnimDef* animDef = it->anims[it->animIdx]->m_AnimDef;
+		CSkeletonAnimDef* animDef = it->anim->m_AnimDef;
 		if (animDef == NULL)
 			continue; // ignore static animations
 
 		float duration = animDef->GetDuration();
 
-		float actionPos = it->anims[it->animIdx]->m_ActionPos;
+		float actionPos = it->anim->m_ActionPos;
 		bool hasActionPos = (actionPos != -1.f);
 
 		if (!hasActionPos)
@@ -162,15 +160,15 @@ void CUnitAnimation::Update(float time)
 	// Advance all of the prop models independently
 	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
-		CSkeletonAnimDef* animDef = it->anims[it->animIdx]->m_AnimDef;
+		CSkeletonAnimDef* animDef = it->anim->m_AnimDef;
 		if (animDef == NULL)
 			continue; // ignore static animations
 
 		float duration = animDef->GetDuration();
 
-		float actionPos = it->anims[it->animIdx]->m_ActionPos;
-		float loadPos = it->anims[it->animIdx]->m_ActionPos2;
-		float soundPos = it->anims[it->animIdx]->m_SoundPos;
+		float actionPos = it->anim->m_ActionPos;
+		float loadPos = it->anim->m_ActionPos2;
+		float soundPos = it->anim->m_SoundPos;
 		bool hasActionPos = (actionPos != -1.f);
 		bool hasLoadPos = (loadPos != -1.f);
 		bool hasSoundPos = (soundPos != -1.f);
@@ -180,7 +178,7 @@ void CUnitAnimation::Update(float time)
 		if (m_SyncRepeatTime && hasActionPos)
 			speed = duration / m_SyncRepeatTime;
 		else
-			speed = m_Speed * it->anims[it->animIdx]->m_Speed;
+			speed = m_Speed * it->anim->m_Speed;
 
 		// Convert from real time to scaled animation time
 		float advance = time * speed;
@@ -232,15 +230,29 @@ void CUnitAnimation::Update(float time)
 			// Wrap the timer around
 			it->time = fmod(it->time + advance, duration);
 
-			// If there's a choice of multiple animations, pick a new random one
-			if (it->anims.size() > 1)
+			// Pick a new random animation
+			CSkeletonAnim* anim;
+			if (it->model == m_Model)
 			{
-				size_t newAnimIdx = rand(0, it->anims.size());
-				if (newAnimIdx != it->animIdx)
-				{
-					it->animIdx = newAnimIdx;
-					it->model->SetAnimation(it->anims[it->animIdx], !m_Looping);
-				}
+				// we're handling the root model
+				// choose animations from the complete state
+				anim = it->object->GetRandomAnimation(m_State);
+				m_AnimationName = anim->m_Name;
+				// if we use a new animation name,
+				// update the animations of all non-root models
+				if (it->anim->m_Name != m_AnimationName)
+					for (SModelAnimState animState : m_AnimStates)
+						if (animState.model != m_Model)
+							animState.model->SetAnimation(animState.object->GetRandomAnimation(m_AnimationName));
+			}
+			else
+				// choose animations that match the root
+				anim = it->object->GetRandomAnimation(m_AnimationName);
+
+			if (anim != it->anim)
+			{
+				it->anim = anim;
+				it->model->SetAnimation(anim, !m_Looping);
 			}
 
 			it->pastActionPos = false;

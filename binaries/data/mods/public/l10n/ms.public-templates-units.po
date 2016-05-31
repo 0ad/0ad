@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-08 09:01+0200\n"
-"PO-Revision-Date: 2016-04-08 09:57+0000\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 08:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -52,8 +52,8 @@ msgid "Basic"
 msgstr "Asas"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:26
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:36
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:32
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:35
 #: simulation/templates/template_unit_champion_elephant_melee.xml:20
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:45
@@ -74,7 +74,7 @@ msgid "Melee Cavalry"
 msgstr "Askar Berkuda Melee"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:20
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:32
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:45
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
@@ -90,7 +90,7 @@ msgid "Cavalry Spearman"
 msgstr "Askar Berkuda Lembing"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:29
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:36
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:35
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
@@ -166,11 +166,11 @@ msgstr "Pahlawan Memanah Berkuda"
 msgid "Champion Cavalry Skirmisher"
 msgstr "Pahlawan Peninjau Berkuda"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:34
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
 msgid "Champion Cavalry Spearman"
 msgstr "Pahlawan Lembing Berkuda"
 
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:37
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:36
 msgid "Champion Cavalry Swordsman"
 msgstr "Pahlawan Pedang Berkuda"
 
@@ -270,18 +270,18 @@ msgstr "Fauna"
 msgid "Fish"
 msgstr "Ikan"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:15
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:11
 msgid "Cetacean"
 msgstr "Setasea"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:16
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:12
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Bunuh, kemudian kumpul makanan dari sumber laut."
 
 #: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_hero.xml:28
 #: simulation/templates/template_unit_hero_infantry.xml:24
-#: simulation/templates/units/maur_hero_chanakya.xml:29
+#: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Hero"
 msgstr "Adiwira"
 
@@ -430,15 +430,15 @@ msgid ""
 "to 13 arrows."
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
 msgid "Bolt Shooter"
 msgstr "Penembak Bolt"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:44
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:47
 msgid "Siege Catapult"
 msgstr "Tarbil Kepung"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:45
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
 msgid "Causes splash damage."
 msgstr "Menyebabkan kerosakan percikan."
 
@@ -446,11 +446,11 @@ msgstr "Menyebabkan kerosakan percikan."
 msgid "Battering Ram"
 msgstr "Kayu Pelantak"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Siege Tower"
 msgstr "Menara Pengepung"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:59
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "Garison sehingga 20 orang askar infrantri di dalamnya untuk tingkatkan kiraan anak panah dari 0 hingga 10."
@@ -465,7 +465,7 @@ msgid "Female Citizen"
 msgstr "Warga Perempuan"
 
 #: simulation/templates/template_unit_support_healer.xml:20
-#: simulation/templates/units/maur_hero_chanakya.xml:29
+#: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Healer"
 msgstr "Bomoh"
 
@@ -544,10 +544,10 @@ msgstr "Sumber dagangan diantara pasaran anda dengan pihak sekutu anda."
 #: simulation/templates/units/maur_support_healer_a.xml:4
 #: simulation/templates/units/pers_cavalry_archer_a.xml:4
 #: simulation/templates/units/pers_cavalry_javelinist_a.xml:4
-#: simulation/templates/units/pers_cavalry_javelinist_a_trireme.xml:18
+#: simulation/templates/units/pers_cavalry_javelinist_a_trireme.xml:4
 #: simulation/templates/units/pers_cavalry_spearman_a.xml:4
 #: simulation/templates/units/pers_cavalry_swordsman_a.xml:4
-#: simulation/templates/units/pers_cavalry_swordsman_a_trireme.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_a_trireme.xml:4
 #: simulation/templates/units/pers_infantry_archer_a.xml:4
 #: simulation/templates/units/pers_infantry_javelinist_a.xml:4
 #: simulation/templates/units/pers_infantry_spearman_a.xml:4
@@ -642,13 +642,13 @@ msgstr "Pródromos"
 #: simulation/templates/units/maur_infantry_spearman_e.xml:4
 #: simulation/templates/units/maur_infantry_swordsman_e.xml:4
 #: simulation/templates/units/maur_support_healer_e.xml:4
-#: simulation/templates/units/merc_thrace_swordsman.xml:23
+#: simulation/templates/units/merc_thrace_swordsman.xml:7
 #: simulation/templates/units/pers_cavalry_archer_e.xml:4
 #: simulation/templates/units/pers_cavalry_javelinist_e.xml:4
-#: simulation/templates/units/pers_cavalry_javelinist_e_trireme.xml:18
+#: simulation/templates/units/pers_cavalry_javelinist_e_trireme.xml:4
 #: simulation/templates/units/pers_cavalry_spearman_e.xml:4
 #: simulation/templates/units/pers_cavalry_swordsman_e.xml:4
-#: simulation/templates/units/pers_cavalry_swordsman_e_trireme.xml:20
+#: simulation/templates/units/pers_cavalry_swordsman_e_trireme.xml:4
 #: simulation/templates/units/pers_infantry_archer_e.xml:4
 #: simulation/templates/units/pers_infantry_javelinist_e.xml:4
 #: simulation/templates/units/pers_infantry_spearman_e.xml:4
@@ -680,7 +680,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:18
+#: simulation/templates/units/spart_champion_infantry_sword.xml:15
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -744,37 +744,37 @@ msgstr "Themistocles"
 msgid "Themistoklês"
 msgstr "Themistoklês"
 
-#: simulation/templates/units/athen_infantry_javelinist_b.xml:22
+#: simulation/templates/units/athen_infantry_javelinist_b.xml:23
 msgid "Thracian Peltast"
 msgstr "Peltast Thracia"
 
-#: simulation/templates/units/athen_infantry_javelinist_b.xml:23
+#: simulation/templates/units/athen_infantry_javelinist_b.xml:24
 msgid "Peltastḗs Thrâx"
 msgstr "Peltastḗs Thrâx"
 
-#: simulation/templates/units/athen_infantry_marine_archer_b.xml:22
+#: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
 msgstr "Pemanah Upahan Crete"
 
-#: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
+#: simulation/templates/units/athen_infantry_marine_archer_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
 msgid "Toxótēs Krētikós"
 msgstr "Toxótēs Krētikós"
 
-#: simulation/templates/units/athen_infantry_slinger_b.xml:15
+#: simulation/templates/units/athen_infantry_slinger_b.xml:16
 msgid "Athenian Slinger Militia"
 msgstr "Militia Pelontar Athen"
 
-#: simulation/templates/units/athen_infantry_slinger_b.xml:16
+#: simulation/templates/units/athen_infantry_slinger_b.xml:17
 msgid "Psilòs Athēnaîos"
 msgstr "Psilòs Athēnaîos"
 
-#: simulation/templates/units/athen_infantry_spearman_b.xml:23
+#: simulation/templates/units/athen_infantry_spearman_b.xml:24
 msgid "Athenian Hoplite"
 msgstr "Hoplite Athen"
 
-#: simulation/templates/units/athen_infantry_spearman_b.xml:24
+#: simulation/templates/units/athen_infantry_spearman_b.xml:25
 msgid "Hoplítēs Athēnaîos"
 msgstr "Hoplítēs Athēnaîos"
 
@@ -886,32 +886,32 @@ msgstr "Caratacos"
 msgid "Cunobelin"
 msgstr "Cunobelin"
 
-#: simulation/templates/units/brit_infantry_javelinist_b.xml:13
-#: simulation/templates/units/gaul_infantry_javelinist_b.xml:15
+#: simulation/templates/units/brit_infantry_javelinist_b.xml:14
+#: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
 msgid "Baguada"
 msgstr "Baguada"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:13
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:15
+#: simulation/templates/units/brit_infantry_slinger_b.xml:14
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Celtic Slinger"
 msgstr "Pelontar Celt"
 
-#: simulation/templates/units/brit_infantry_slinger_b.xml:14
-#: simulation/templates/units/gaul_infantry_slinger_b.xml:16
+#: simulation/templates/units/brit_infantry_slinger_b.xml:15
+#: simulation/templates/units/gaul_infantry_slinger_b.xml:13
 msgid "Iaosae"
 msgstr "Iaosae"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:13
-#: simulation/templates/units/gaul_infantry_spearman_b.xml:15
+#: simulation/templates/units/brit_infantry_spearman_b.xml:14
+#: simulation/templates/units/gaul_infantry_spearman_b.xml:12
 msgid "Gaeroa"
 msgstr "Gaeroa"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:14
+#: simulation/templates/units/brit_infantry_spearman_b.xml:15
 msgid "Celtic Spearman"
 msgstr "Askar Bertombak Celt"
 
-#: simulation/templates/units/brit_mechanical_siege_ram.xml:12
-#: simulation/templates/units/gaul_mechanical_siege_ram.xml:12
+#: simulation/templates/units/brit_mechanical_siege_ram.xml:9
+#: simulation/templates/units/gaul_mechanical_siege_ram.xml:9
 msgid "Reithe"
 msgstr "Reithe"
 
@@ -935,12 +935,12 @@ msgstr "Venetic Ponti"
 msgid "Transport many soldiers across the sea."
 msgstr "Mengangkut ramai askar melintasi laut."
 
-#: simulation/templates/units/brit_support_female_citizen.xml:18
+#: simulation/templates/units/brit_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
 msgid "Bodu"
 msgstr "Bodu"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:19
+#: simulation/templates/units/brit_support_female_citizen.xml:20
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
 msgid "Celtic Woman"
 msgstr "Wanita Celt"
@@ -984,7 +984,7 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
-#: simulation/templates/units/merc_thrace_swordsman.xml:26
+#: simulation/templates/units/merc_thrace_swordsman.xml:10
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
 #: simulation/templates/units/ptol_infantry_archer_b.xml:23
@@ -996,7 +996,7 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
-#: simulation/templates/units/thrace_black_cloak.xml:23
+#: simulation/templates/units/thrace_black_cloak.xml:16
 msgid "Mercenary"
 msgstr "Askar Upahan"
 
@@ -1198,11 +1198,11 @@ msgstr "Bangsawan Berkuda Gaul"
 msgid "Gallic Brihent"
 msgstr "Gallic Brihent"
 
-#: simulation/templates/units/gaul_champion_fanatic.xml:15
+#: simulation/templates/units/gaul_champion_fanatic.xml:16
 msgid "Naked Fanatic"
 msgstr "Fanatik Dogeng"
 
-#: simulation/templates/units/gaul_champion_fanatic.xml:16
+#: simulation/templates/units/gaul_champion_fanatic.xml:17
 msgid "Gaesata"
 msgstr "Gaesata"
 
@@ -1238,11 +1238,11 @@ msgstr "Kantabriako Zaldun"
 msgid "Lantzari"
 msgstr "Lantzari"
 
-#: simulation/templates/units/iber_champion_cavalry.xml:17
+#: simulation/templates/units/iber_champion_cavalry.xml:11
 msgid "Leial Zalduneria"
 msgstr "Leial Zalduneria"
 
-#: simulation/templates/units/iber_champion_cavalry.xml:21
+#: simulation/templates/units/iber_champion_cavalry.xml:15
 msgid "Special: Flaming javelins. Good vs. Buildings."
 msgstr "Keistimewaan: Tombak berapi. Sesuai terhadap Bangunan."
 
@@ -1357,7 +1357,7 @@ msgstr "Pembawa Perisai Macedonia"
 msgid "Hypaspistḗs"
 msgstr "Hypaspistḗs"
 
-#: simulation/templates/units/mace_champion_infantry_e.xml:7
+#: simulation/templates/units/mace_champion_infantry_e.xml:11
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
@@ -1470,19 +1470,19 @@ msgstr "Wanita Macedonia"
 msgid "Hiereús"
 msgstr "Hiereús"
 
-#: simulation/templates/units/mace_thorakites.xml:6
+#: simulation/templates/units/mace_thorakites.xml:12
 msgid "Armored Swordsman"
 msgstr "Pemain Pedang Berperisai"
 
-#: simulation/templates/units/mace_thorakites.xml:7
+#: simulation/templates/units/mace_thorakites.xml:13
 msgid "Thōrakitēs"
 msgstr "Thōrakitēs"
 
-#: simulation/templates/units/mace_thureophoros.xml:10
+#: simulation/templates/units/mace_thureophoros.xml:12
 msgid "Heavy Skirmisher"
 msgstr "Askar Peninjau Berat"
 
-#: simulation/templates/units/mace_thureophoros.xml:11
+#: simulation/templates/units/mace_thureophoros.xml:13
 msgid "Thyreophóros"
 msgstr "Thyreophóros"
 
@@ -1503,7 +1503,7 @@ msgid "Aśvārohagaṇaḥ"
 msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur_champion_chariot.xml:9
-#: simulation/templates/units/maur_hero_ashoka.xml:12
+#: simulation/templates/units/maur_hero_ashoka.xml:13
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
 #: simulation/templates/units/pers_hero_darius.xml:10
 #: simulation/templates/units/sele_champion_chariot.xml:10
@@ -1564,34 +1564,33 @@ msgstr "Vachii Gaja"
 msgid "Can run amok."
 msgstr "Boleh mengamok"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:9
+#: simulation/templates/units/maur_hero_ashoka.xml:10
 msgid "Ashoka the Great"
 msgstr "Ashoka Agung"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:10
+#: simulation/templates/units/maur_hero_ashoka.xml:11
 msgid "Aśoka Devānāmpriya"
 msgstr "Aśoka Devānāmpriya"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:14
+#: simulation/templates/units/maur_hero_ashoka.xml:15
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
 msgstr ""
 
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chanakya"
 msgstr "Acharya Chanakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:31
+#: simulation/templates/units/maur_hero_chanakya.xml:32
 msgid "Acharya Chāṇakya"
 msgstr "Acharya Chāṇakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/units/maur_hero_chanakya.xml:34
 msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
-"Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "Keistimewaan Adiwira: \"Bomoh\" - Menyembuhkan unit pada kadar yang lebih cepat.\nKeistimewaan Adiwira: \"Guru\" - Memperkasakan bangunan untuk kajian dan latihan +50% lebih pantas.\nKeistimewaan Adiwira: \"Ahli Falsafah\" - Kajian 4 teknologi khas hanya tersedia untuk Chanakya."
+msgstr ""
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1675,12 +1674,12 @@ msgstr "Brāhmaṇa Pujari"
 msgid "Vaishya"
 msgstr "Vaishya"
 
-#: simulation/templates/units/merc_thrace_swordsman.xml:21
+#: simulation/templates/units/merc_thrace_swordsman.xml:5
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:14
 msgid "Thracian Mercenary Swordsman"
 msgstr "Pemain Pedang Upahan Thrace"
 
-#: simulation/templates/units/merc_thrace_swordsman.xml:22
+#: simulation/templates/units/merc_thrace_swordsman.xml:6
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
@@ -1795,27 +1794,27 @@ msgstr "Xerxes I"
 msgid "Xsayarsa I"
 msgstr "Xsayarsa I"
 
-#: simulation/templates/units/pers_infantry_archer_b.xml:13
+#: simulation/templates/units/pers_infantry_archer_b.xml:15
 msgid "Sogdian Archer"
 msgstr "Pemanah Sogdia"
 
-#: simulation/templates/units/pers_infantry_archer_b.xml:14
+#: simulation/templates/units/pers_infantry_archer_b.xml:16
 msgid "Sugda Vaçabara"
 msgstr "Sugda Vaçabara"
 
-#: simulation/templates/units/pers_infantry_javelinist_b.xml:13
+#: simulation/templates/units/pers_infantry_javelinist_b.xml:15
 msgid "Anatolian Auxiliary"
 msgstr "Askar Sokongan Anatolia"
 
-#: simulation/templates/units/pers_infantry_javelinist_b.xml:14
+#: simulation/templates/units/pers_infantry_javelinist_b.xml:16
 msgid "Spardiya Takabara"
 msgstr "Spardiya Takabara"
 
-#: simulation/templates/units/pers_infantry_spearman_b.xml:13
+#: simulation/templates/units/pers_infantry_spearman_b.xml:15
 msgid "Shieldbearer"
 msgstr "Pembawa Perisai"
 
-#: simulation/templates/units/pers_infantry_spearman_b.xml:14
+#: simulation/templates/units/pers_infantry_spearman_b.xml:16
 msgid "Sparabara"
 msgstr "Sparabara"
 
@@ -1835,11 +1834,11 @@ msgstr "Askar Peninjau Cardaces"
 msgid "Peltastes Kardakes"
 msgstr "Peltastes Kardakes"
 
-#: simulation/templates/units/pers_mechanical_siege_ram.xml:15
+#: simulation/templates/units/pers_mechanical_siege_ram.xml:17
 msgid "Assyrian Siege Ram"
 msgstr "Kayu Pelantak Assyria"
 
-#: simulation/templates/units/pers_mechanical_siege_ram.xml:16
+#: simulation/templates/units/pers_mechanical_siege_ram.xml:18
 msgid "Athuriya Hamaranakuba"
 msgstr "Athuriya Hamaranakuba"
 
@@ -2115,27 +2114,27 @@ msgid ""
 "for 500 Metal. (Not implemented)"
 msgstr "Keupayaan \"Pecah dan Tawan\": Tukar sekumpulan unit musuh menjadi unit sendiri dengan kos 500 Logam. (Tidak dilaksanakan)"
 
-#: simulation/templates/units/rome_infantry_javelinist_b.xml:15
+#: simulation/templates/units/rome_infantry_javelinist_b.xml:17
 msgid "Roman Skirmisher"
 msgstr "Peninjau Rom"
 
-#: simulation/templates/units/rome_infantry_javelinist_b.xml:16
+#: simulation/templates/units/rome_infantry_javelinist_b.xml:18
 msgid "Veles"
 msgstr "Veles"
 
-#: simulation/templates/units/rome_infantry_spearman_b.xml:15
+#: simulation/templates/units/rome_infantry_spearman_b.xml:17
 msgid "Veteran Spearman"
 msgstr "Askar Veteran Bertombak"
 
-#: simulation/templates/units/rome_infantry_spearman_b.xml:16
+#: simulation/templates/units/rome_infantry_spearman_b.xml:18
 msgid "Triarius"
 msgstr "Triarius"
 
-#: simulation/templates/units/rome_infantry_swordsman_b.xml:16
+#: simulation/templates/units/rome_infantry_swordsman_b.xml:17
 msgid "Roman Swordsman"
 msgstr "Pemain Pedang Rom"
 
-#: simulation/templates/units/rome_infantry_swordsman_b.xml:17
+#: simulation/templates/units/rome_infantry_swordsman_b.xml:18
 msgid "Hastatus"
 msgstr "Hastatus"
 
@@ -2155,7 +2154,7 @@ msgstr "Askar Legion Marian"
 msgid "Marian Legionarius"
 msgstr "Marian Legionarius"
 
-#: simulation/templates/units/rome_mechanical_siege_ram.xml:9
+#: simulation/templates/units/rome_mechanical_siege_ram.xml:17
 msgid "Aries"
 msgstr "Aries"
 
@@ -2415,11 +2414,11 @@ msgstr "Hoplite Sparta"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:16
+#: simulation/templates/units/spart_champion_infantry_sword.xml:13
 msgid "Skiritai Commando"
 msgstr "Komando Skiritai"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:17
+#: simulation/templates/units/spart_champion_infantry_sword.xml:14
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 
@@ -2444,19 +2443,19 @@ msgstr "Leonidas I"
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 
-#: simulation/templates/units/spart_infantry_javelinist_b.xml:14
+#: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Helot Skirmisher"
 msgstr "Askar Peninjau Helot"
 
-#: simulation/templates/units/spart_infantry_javelinist_b.xml:15
+#: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Akontistḗs Heílōs"
 msgstr "Akontistḗs Heílōs"
 
-#: simulation/templates/units/spart_infantry_spearman_b.xml:14
+#: simulation/templates/units/spart_infantry_spearman_b.xml:15
 msgid "Perioikoi Hoplite"
 msgstr "Hoplite Perioikoi"
 
-#: simulation/templates/units/spart_infantry_spearman_b.xml:15
+#: simulation/templates/units/spart_infantry_spearman_b.xml:16
 msgid "Hoplítēs Períoikos"
 msgstr "Hoplítēs Períoikos"
 
@@ -2507,11 +2506,11 @@ msgstr "Hoplite Hieros Lochos "
 msgid "Champion Spearman."
 msgstr "Pahlawan Bertombak"
 
-#: simulation/templates/units/thrace_black_cloak.xml:20
+#: simulation/templates/units/thrace_black_cloak.xml:13
 msgid "Thracian Black Cloak"
 msgstr "Mantel Hitam Thracia"
 
-#: simulation/templates/units/thrace_black_cloak.xml:21
+#: simulation/templates/units/thrace_black_cloak.xml:14
 msgid "Rhomphaiaphoros"
 msgstr "Rhomphaiaphoros"
 

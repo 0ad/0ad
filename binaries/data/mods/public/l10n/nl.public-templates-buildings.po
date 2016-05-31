@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Charon De Beukelaer <charondb@gmail.com>, 2015
+# Damion Wolters <firewallscape@gmail.com>, 2016
 # Ellen Roels, 2015
 # mat jojo <matthias.sleurink@gmail.com>, 2015
 # Mike vdw <cod4ever_Zypho@msn.com>, 2015
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-29 09:01+0200\n"
-"PO-Revision-Date: 2016-05-07 11:28+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2016-05-27 09:01+0200\n"
+"PO-Revision-Date: 2016-05-27 09:41+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr "Civiel gebouw"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "burgerlijk"
+msgstr "Burgerlijk"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 msgid "Civic Center"
@@ -73,7 +74,7 @@ msgstr "Vergroot de bevolkingslimiet."
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
-msgstr "Buurtschap"
+msgstr "Dorp"
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_civic_house.xml:33
@@ -94,7 +95,7 @@ msgstr "Rekruteer helers. Genees tot 20 eenheden in de tempel aan een snel tempo
 #: simulation/templates/structures/brit_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
-msgstr "Dorp"
+msgstr "Stad"
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
@@ -178,7 +179,7 @@ msgstr "Stadsmuur"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:46
 #: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
-msgstr "Houten toren"
+msgstr "Houten Toren"
 
 #: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
@@ -282,7 +283,7 @@ msgstr "Rekruteer helden, kampioenen en bouw belegeringswapens. Onderzoek verbet
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
-msgstr "Stad"
+msgstr "Grootstad"
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 #: simulation/templates/template_structure_military_fortress.xml:30
@@ -613,7 +614,7 @@ msgstr "Brythonische voorpost"
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/gaul_rotarymill.xml:21
 msgid "Rotary Mill"
-msgstr "Beestenmolen"
+msgstr "Rosmolen"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/gaul_rotarymill.xml:22
@@ -706,7 +707,7 @@ msgstr "Construeer vissersboten om te vissen, en handelsschepen om grondstoffen 
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr "Hire mercenaries."
+msgstr "Rekruteer huurlingen."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
@@ -934,24 +935,22 @@ msgid ""
 "defense."
 msgstr "Rekruteer kampioenen en helden. Beman tot en met 20 soldaten voor een sterke verdediging."
 
-#: simulation/templates/structures/mace_library.xml:15
-#: simulation/templates/structures/ptol_library.xml:15
-#: simulation/templates/structures/sele_library.xml:15
+#: simulation/templates/structures/mace_library.xml:16
+#: simulation/templates/structures/ptol_library.xml:16
+#: simulation/templates/structures/sele_library.xml:16
 msgid "Library"
 msgstr "Bibliotheek"
 
-#: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/ptol_library.xml:16
+#: simulation/templates/structures/mace_library.xml:17
+#: simulation/templates/structures/ptol_library.xml:17
 msgid "Bibliothḗkē"
 msgstr "Bibliothḗkē"
 
-#: simulation/templates/structures/mace_library.xml:18
-#: simulation/templates/structures/ptol_library.xml:18
-#: simulation/templates/structures/sele_library.xml:18
-msgid ""
-"Research special technologies and reduce the research time of all remaining "
-"technologies."
-msgstr "Onderzoek speciale technologieën en verminder de onderzoekstijd van alle overblijvende technologiën."
+#: simulation/templates/structures/mace_library.xml:19
+#: simulation/templates/structures/ptol_library.xml:19
+#: simulation/templates/structures/sele_library.xml:19
+msgid "Research special technologies."
+msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -984,7 +983,7 @@ msgstr "Rajadhanika"
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Gotra"
-msgstr "hindu clan"
+msgstr "Gotra"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
@@ -1570,7 +1569,7 @@ msgid ""
 "for stout defense."
 msgstr "Bouw belegeringswapens en rekruteer kampioenen. Beman met 20 soldaten voor een sterke verdediging."
 
-#: simulation/templates/structures/sele_library.xml:16
+#: simulation/templates/structures/sele_library.xml:17
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 

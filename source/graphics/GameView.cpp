@@ -714,7 +714,7 @@ void CGameView::Update(const float deltaRealTime)
 		CmpPtr<ICmpPosition> cmpPosition(*(m->Game->GetSimulation2()), m->FollowEntity);
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*(m->Game->GetSimulation2()), SYSTEM_ENTITY);
 		if (cmpPosition && cmpPosition->IsInWorld() &&
-		    cmpRangeManager && cmpRangeManager->GetLosVisibility(m->FollowEntity, m->Game->GetPlayerID()) == ICmpRangeManager::VIS_VISIBLE)
+		    cmpRangeManager && cmpRangeManager->GetLosVisibility(m->FollowEntity, m->Game->GetViewedPlayerID()) == ICmpRangeManager::VIS_VISIBLE)
 		{
 			// Get the most recent interpolated position
 			float frameOffset = m->Game->GetSimulation2()->GetLastFrameOffset();

@@ -308,7 +308,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.production = {
 			"entities": cmpProductionQueue.GetEntitiesList(),
 			"technologies": cmpProductionQueue.GetTechnologiesList(),
-			"queue": cmpProductionQueue.GetQueue(),
+			"techCostMultiplier": cmpProductionQueue.GetTechCostMultiplier(),
+			"queue": cmpProductionQueue.GetQueue()
 		};
 
 	let cmpTrader = Engine.QueryInterface(ent, IID_Trader);
@@ -888,9 +889,9 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 	}
 };
 
-GuiInterface.prototype.GetPlayerEntities = function(player)
+GuiInterface.prototype.GetPlayerEntities = function(player, data)
 {
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(player);
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(data.viewedPlayer);
 };
 
 GuiInterface.prototype.GetNonGaiaEntities = function()

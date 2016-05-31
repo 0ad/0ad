@@ -11,6 +11,7 @@
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Ivan, 2014
 # Ivan, 2014
+# John Smith <mae_mbllo@mail.ru>, 2016
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-30 15:14+0000\n"
-"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
+"PO-Revision-Date: 2016-05-17 10:38+0000\n"
+"Last-Translator: John Smith <mae_mbllo@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -604,7 +605,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "Союзнический"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -772,16 +773,16 @@ msgstr "Вам нужно выбрать здание, тренирующее ю
 
 #: simulation/helpers/Commands.js:126
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Обман - управлять всеми юнитами)"
 
 #: simulation/helpers/Commands.js:559
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Обман - помогать юнитам)"
 
 #: simulation/helpers/Commands.js:678
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Запрос атаки на %(_player_)s."
 
 #: simulation/helpers/Commands.js:715
 msgid "Unable to ungarrison unit(s)"
@@ -793,7 +794,7 @@ msgstr "Некоторые юниты не могут вернуться к ра
 
 #: simulation/helpers/Commands.js:985
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Технологии, необходимые для здания, отсутствуют."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"

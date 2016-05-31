@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,8 +95,8 @@ private:
 	struct SModelAnimState
 	{
 		CModel* model;
-		std::vector<CSkeletonAnim*> anims;
-		size_t animIdx;
+		CSkeletonAnim* anim;
+		const CObjectEntry* object;
 		float time;
 		bool pastLoadPos;
 		bool pastActionPos;
@@ -117,6 +117,7 @@ private:
 	CModel* m_Model;
 	const CObjectEntry* m_Object;
 	CStr m_State;
+	CStr m_AnimationName;
 	bool m_Looping;
 	float m_OriginalSpeed;
 	float m_Speed;

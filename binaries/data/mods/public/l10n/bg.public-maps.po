@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-21 10:44+0000\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-23 10:56+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -584,13 +584,14 @@ msgstr "Демонстрация на методите/кода за поста�
 msgid "Wall Demo"
 msgstr "Демонстрация — стени"
 
-#: maps/random/survivalofthefittest_triggers.js:80
+#: maps/random/survivalofthefittest_triggers.js:128
 msgid "An enemy wave is attacking!"
 msgstr "Вражеска вълна напада!"
 
-#: maps/random/survivalofthefittest_triggers.js:151
-msgid "The first wave will start in 15 minutes!"
-msgstr "Първата вълна започва след 15 минути!"
+#: maps/random/survivalofthefittest_triggers.js:199
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "Първата вълна започва след %(time)s!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

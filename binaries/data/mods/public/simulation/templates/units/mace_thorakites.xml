@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Armour>
+    <Hack op="add">2</Hack>
+    <Pierce op="add">2</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack op="add">-2</Hack>
+    </Melee>
+  </Attack>
   <Cost>
     <Resources>
       <food>0</food>

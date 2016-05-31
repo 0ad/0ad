@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-21 09:01+0100\n"
-"PO-Revision-Date: 2016-03-22 17:09+0000\n"
+"POT-Creation-Date: 2016-05-23 09:01+0200\n"
+"PO-Revision-Date: 2016-05-27 13:15+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -281,7 +281,7 @@ msgstr "Los equipos empiezan en una pequeña isla con centros cívicos casi adya
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
-msgstr "Isla fortaleza"
+msgstr "Fortaleza isleña"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -504,7 +504,7 @@ msgstr "Los equipos comienzan en centros cívicos prácticamente adyacentes, ofr
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
-msgstr "Fortaleza"
+msgstr "Bastión"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
@@ -580,13 +580,14 @@ msgstr "Una demostración de los métodos de colocación de muros en mapas aleat
 msgid "Wall Demo"
 msgstr "Demo de murallas"
 
-#: maps/random/survivalofthefittest_triggers.js:80
+#: maps/random/survivalofthefittest_triggers.js:128
 msgid "An enemy wave is attacking!"
 msgstr "¡Oleada enemiga! ¡Se acercan! ¡Nos atacan!"
 
-#: maps/random/survivalofthefittest_triggers.js:151
-msgid "The first wave will start in 15 minutes!"
-msgstr "¡La primera oleada comenzará en 15 minutos!"
+#: maps/random/survivalofthefittest_triggers.js:199
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "¡La primera oleada comenzará en %(time)s!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

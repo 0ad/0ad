@@ -289,7 +289,7 @@ function selectCiv(civCode)
 		buildList[myPhase].push(structCode);
 	}
 	for (let unitCode of g_Lists.units)
-		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].trainer)
+		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].production)
 			trainerList.push(unitCode);
 
 	g_CivData[g_SelectedCiv].buildList = buildList;

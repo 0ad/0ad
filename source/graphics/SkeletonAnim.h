@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,8 @@ class CSkeletonAnim
 public:
 	// the name of the action which uses this animation (e.g. "idle")
 	CStr m_Name;
+	// frequency of the animation
+	int m_Frequency;
 	// the raw animation frame data; may be NULL if this is a static 'animation'
 	CSkeletonAnimDef* m_AnimDef;
 	// speed at which this animation runs, as a factor of the AnimDef default speed

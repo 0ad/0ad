@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,6 +80,13 @@ public:
 	virtual CUnit* GetUnit() = 0;
 
 	/**
+	 * Set the variant selection of the actor for a certain key.
+	 * This overrides a previous selection on that key, so every component
+	 * should use unique keys.
+	 */
+	virtual void SetVariant(const CStr& key, const CStr& selection) = 0;
+
+	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
 	 * pick one at random (not network-synchronised).
 	 * If @p soundgroup is specified, then the sound will be played at each 'event' point in the
@@ -105,11 +112,6 @@ public:
 	 * @param name Animation name to remove from the replacement map.
 	 */
 	virtual void ResetMoveAnimation(const std::string& name) = 0;
-
-	/**
-	 * Sets the specified entity selection on the underlying unit.
-	 */
-	virtual void SetUnitEntitySelection(const CStr& selection) = 0;
 
 	/**
 	 * Start playing the walk/run animations, scaled to the unit's movement speed.

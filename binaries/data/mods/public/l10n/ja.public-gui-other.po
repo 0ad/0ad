@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-13 09:00+0200\n"
-"PO-Revision-Date: 2016-05-13 10:00+0000\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 09:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -54,30 +54,30 @@ msgstr "英雄"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)sの歴史"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "%(url)sを\n既定のウェブブラウザーで開いています。お待ちください...."
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:60
 msgid "Opening page"
 msgstr "ページを開く"
 
-#: gui/common/functions_global_object.js:84
+#: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/common/functions_global_object.js:101
+#: gui/common/functions_global_object.js:89
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)s倍)"
 
-#: gui/common/functions_global_object.js:118
+#: gui/common/functions_global_object.js:106
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
@@ -316,7 +316,7 @@ msgstr "%(previousAmounts)sと%(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -345,73 +345,83 @@ msgstr ""
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr ""
 
-#: gui/common/network.js:53
+#: gui/common/network.js:54
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr ""
 
-#: gui/common/network.js:54
+#: gui/common/network.js:55
+msgid ""
+"This is often caused by UDP port 20595 not being forwarded on the host side,"
+" by a firewall or anti-virus software"
+msgstr ""
+
+#: gui/common/network.js:56
 msgid "The host has ended the game"
 msgstr ""
 
-#: gui/common/network.js:55
+#: gui/common/network.js:57
 msgid "Incorrect network protocol version"
 msgstr "ネットワークプロトコルのバージョン不適合"
 
-#: gui/common/network.js:56
+#: gui/common/network.js:58
 msgid "Game is loading, please try later"
 msgstr "ゲーム読込み中です。後ほどやり直してください"
 
-#: gui/common/network.js:57
+#: gui/common/network.js:59
 msgid "Game has already started, no observers allowed"
 msgstr "ゲームはすでに始まっています。観戦はできません"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:60
 msgid "You have been kicked"
 msgstr "あなたは跳ね除けられました (kick)"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:61
 msgid "You have been banned"
 msgstr "あなたは締め出されました (ban)"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:62
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr ""
 
-#: gui/common/network.js:61
+#: gui/common/network.js:63
 msgid "Server full"
 msgstr ""
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[無効な値 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:76
+#: gui/common/network.js:78
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "理由： %(reason)s."
 
-#: gui/common/network.js:77
+#: gui/common/network.js:83
 msgid "Lost connection to the server."
 msgstr "サーバーとの接続が切れました。"
 
-#: gui/common/network.js:77
+#: gui/common/network.js:84
+msgid "Failed to connect to the server."
+msgstr ""
+
+#: gui/common/network.js:86
 msgid "Disconnected"
 msgstr "通信遮断"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "%(name)s. を締め出すことが出来ませんでした (banできません)"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "%(name)s を跳ね除けられませんでした。(kickできません)"
 
-#: gui/common/network.js:119
+#: gui/common/network.js:129
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "ユーザー名: %(users)s"
@@ -582,8 +592,8 @@ msgid "Armor:"
 msgstr "防御："
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -798,38 +808,10 @@ msgstr "なし"
 msgid "<invalid>"
 msgstr "<無効>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "Yes"
-msgstr "はい"
-
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "No"
-msgstr "いいえ"
-
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Retry"
-msgstr "リトライ"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Ignore"
-msgstr "無視"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Abort"
-msgstr "中止"
 
 #: gui/options/options.js:273
 msgid ""
@@ -837,12 +819,26 @@ msgid ""
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:274 gui/options/options.js:338
+#: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:85
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:337
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "No"
+msgstr "いいえ"
+
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "Yes"
+msgstr "はい"
+
+#: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -877,7 +873,7 @@ msgstr "アップロード失敗 (%(errorMessage)s)"
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -890,24 +886,24 @@ msgstr "%(startWarning)s警告：%(endWarning)s プログラマブルシェー�
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "「詳しく読む」を押して詳しい情報を調べるか、「OK」を押して続けてください。"
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "警告!"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "詳しく読む"
 
-#: gui/pregame/mainmenu.js:258
+#: gui/pregame/mainmenu.js:256
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "本当に0 A.D.を終了しますか?"
 
@@ -915,32 +911,28 @@ msgstr "本当に0 A.D.を終了しますか?"
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:304
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "シナリオエディターが利用可能でないか読み込みできません。追加情報ははゲームログを参照してください。"
 
-#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "エラー"
 
-#: gui/pregame/mainmenu.js:304
+#: gui/pregame/mainmenu.js:311
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "マルチプレイヤーロビーに入ります。\\[本ビルドでは利用不可]"
 
-#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "技術的詳細"
 
-#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "マニュアル"
-
-#: gui/replaymenu/replay_actions.js:67 gui/summary/summary.js:143
-msgid "You"
-msgstr "あなた"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
@@ -974,10 +966,6 @@ msgstr ""
 msgid "Incompatible replay"
 msgstr "適合しないリプレイ"
 
-#: gui/replaymenu/replay_actions.js:99 gui/replaymenu/replay_actions.js:116
-msgid "Ok"
-msgstr "Ok"
-
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
 msgstr ""
@@ -986,13 +974,13 @@ msgstr ""
 msgid "Scores at the end of the game."
 msgstr "ゲーム終了時の得点です。"
 
-#: gui/replaymenu/replay_actions.js:157
-msgid "Delete replay"
-msgstr "リプレイの削除"
-
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:155
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
+
+#: gui/replaymenu/replay_actions.js:156
+msgid "Delete replay"
+msgstr "リプレイの削除"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1150,17 +1138,17 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr "このまま続けますか？"
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "既存のゲームが消去されます。よろしいですか？"
 
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
 msgid "DELETE"
 msgstr "消去"
 
@@ -1172,20 +1160,20 @@ msgstr "既存のゲームが上書きされます。よろしいですか？"
 msgid "OVERWRITE SAVE"
 msgstr "上書き保存"
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr "耐久力："
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr "採集速度："
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s から %(val2)s"
@@ -1370,12 +1358,12 @@ msgstr "マップ支配"
 msgid "Team total"
 msgstr "チーム合計"
 
-#: gui/summary/summary.js:160
+#: gui/summary/summary.js:162
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "ゲーム経過時間：%(time)s"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1913,7 +1901,7 @@ msgstr "市場"
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):181
 msgid "Continue"
 msgstr "続行"
 
@@ -1950,7 +1938,7 @@ msgid "3D Art"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion"
+msgid "Additional music, percussion, djembe, sampling"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
@@ -1962,27 +1950,31 @@ msgid "Flute"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr ""
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr ""
 
+#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr ""
+
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Percussion"
+msgid "Celtic harp"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
-msgid "Didgeridoo"
+msgid "Tin whistles"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
+msgid "Viola, violin"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title
@@ -2084,102 +2076,118 @@ msgid "Chat Timestamp"
 msgstr "発言時刻"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
+msgid "How you want to be addressed in Single Player matches."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[0].label
+msgid "Playername (Single Player)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].tooltip
+msgid "How you want to be addressed in Multiplayer matches (except lobby)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].label
+msgid "Playername (Multiplayer)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "ウィンドウ内で0 A.D.を起動"
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
 msgstr "ウィンドウモード"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "ウィンドウがフォーカスを外れたとき、シングルプレイヤーのゲームを休止します"
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.jsongeneralSetting[3].label
 msgid "Background Pause"
 msgstr "フォーカス外で休止"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "このスクリーン表示を完全に無効にすると、重要な告知を見逃す可能性があります。\nその場合もメインメニューから表示させることができます。"
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
 msgstr "歓迎スクリーンを隠す"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.jsongeneralSetting[5].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "ユニット養成施設で養成可能なユニットの詳細なツールチップを表示します。"
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.jsongeneralSetting[5].label
 msgid "Detailed Tooltips"
 msgstr "詳細なツールチップ"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Network Warnings"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "1秒あたりの表示更新回数を右上隅に表示します。"
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
 msgstr "FPSオーバーレイ"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "現在時刻を右上隅に表示します。"
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "Realtime Overlay"
 msgstr "現在時刻オーバーレイ"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "現在のシミュレーション時間を右上隅に表示します。"
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Gametime Overlay"
 msgstr "ゲーム時間オーバーレイ"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "停戦の残り時間を常に表示します。"
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "停戦時間オーバーレイ"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "対戦設定を保存、復元して、別のゲームをホストする際に手早く再利用します"
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Persist Match Settings"
 msgstr "対戦設定の保持"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Late Observer Joins"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr ""
 
@@ -2877,20 +2885,16 @@ msgid "STOA"
 msgstr "柱廊"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for Greek factions."
-msgstr "- ギリシア勢力特有のスタート時建造物。"
+msgid "- A special structure for Greek factions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Grants +10 Population."
-msgstr "- 人口上限を10増やします。"
+msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
+msgstr ""
 
 #: gui/text/tips/stoa.txt:6
-msgid "- Only present on some maps."
-msgstr "- 一部のマップのみに存在します。"
-
-#: gui/text/tips/stoa.txt:8
-msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr "- Atlasエディターでカスタムシナリオ用として見つけられます。"
+msgid "- Grants +10 Population."
+msgstr "- 人口上限を10増やします。"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

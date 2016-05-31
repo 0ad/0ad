@@ -108,9 +108,9 @@ m.returnResources = function(gameState, ent)
 		distmin = dist;
 		closestDropsite = dropsite;
 	});
-	
+
 	if (!closestDropsite)
-		return false;	
+		return false;
 	ent.returnResources(closestDropsite);
 	return true;
 };
@@ -177,7 +177,7 @@ m.getHolder = function(gameState, ent)
 };
 
 /**
- * return true if it is not worth finishing this building (it would surely decay) 
+ * return true if it is not worth finishing this building (it would surely decay)
  * TODO implement the other conditions
  */
 m.isNotWorthBuilding = function(gameState, ent)

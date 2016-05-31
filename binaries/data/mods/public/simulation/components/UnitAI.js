@@ -2738,7 +2738,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					let dropsiteTypes = cmpResourceDropsite.GetTypes();
 					cmpResourceGatherer.CommitResources(dropsiteTypes);
 					this.SetGathererAnimationOverride();
-				} 
+				}
 
 				// We finished building it.
 				// Switch to the next order (if any)
@@ -3450,7 +3450,7 @@ UnitAI.prototype.UpdateRangeQueries = function()
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
 		this.SetupRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losRangeQuery));
- 
+
 	if (this.IsHealer() && this.losHealRangeQuery)
 		this.SetupHealRangeQuery(cmpRangeManager.IsActiveQueryEnabled(this.losHealRangeQuery));
 };
@@ -5226,7 +5226,7 @@ UnitAI.prototype.SetTargetMarket = function(target, source)
 UnitAI.prototype.SwitchMarketOrder = function(oldMarket, newMarket)
 {
 	if (this.order.data && this.order.data.target && this.order.data.target == oldMarket)
-		this.order.data.target == newMarket;
+		this.order.data.target = newMarket;
 };
 
 UnitAI.prototype.MoveToMarket = function(targetMarket)

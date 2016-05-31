@@ -13,6 +13,13 @@
       units/athen_infantry_marine_archer_b
       units/athen_champion_marine
     </Entities>
+    <TechCostMultiplier>
+      <food>1.0</food>
+      <wood>1.0</wood>
+      <stone>1.0</stone>
+      <metal>1.0</metal>
+      <time>1.0</time>
+    </TechCostMultiplier>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/trireme.xml</Actor>

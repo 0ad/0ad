@@ -174,7 +174,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			if (!ent || !ent.isOwn(PlayerID))
 				continue;
 
-			if (ent.getMetadata(PlayerID, "baseAnchor") == true)
+			if (ent.getMetadata(PlayerID, "baseAnchor") === true)
 			{
 				let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
 				if (base.constructing)
@@ -426,7 +426,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	var numberOfWorkers = 0;   // all workers
 	var numberOfSupports = 0;  // only support workers (i.e. non fighting)
 	gameState.getOwnUnits().forEach (function (ent) {
-		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
+		if (ent.getMetadata(PlayerID, "role") === "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
 		{
 			++numberOfWorkers;
 			if (ent.hasClass("Support"))
@@ -437,7 +437,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
 		ent.trainingQueue().forEach(function(item) {
 			numberInTraining += item.count;
-			if (item.metadata && item.metadata.role && item.metadata.role == "worker" && item.metadata.plan == undefined)
+			if (item.metadata && item.metadata.role && item.metadata.role === "worker" && item.metadata.plan === undefined)
 			{
 				numberOfWorkers += item.count;
 				if (item.metadata.support)
@@ -1043,9 +1043,9 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
 		// do not try on the border of our territory
-		if (this.frontierMap.map[j] == 2)
+		if (this.frontierMap.map[j] === 2)
 			continue;
-		if (this.basesMap.map[j] == 0)   // only in our territory
+		if (this.basesMap.map[j] === 0)   // only in our territory
 			continue;
 		// with enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -1154,12 +1154,12 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		if (!wonderMode)
 		{
 			// do not try if well inside or outside territory
-			if (this.frontierMap.map[j] == 0)
+			if (this.frontierMap.map[j] === 0)
 				continue;
-			if (this.frontierMap.map[j] == 1 && isTower)
+			if (this.frontierMap.map[j] === 1 && isTower)
 				continue;
 		}
-		if (this.basesMap.map[j] == 0)   // inaccessible cell
+		if (this.basesMap.map[j] === 0)   // inaccessible cell
 			continue;
 		// with enough room around to build the cc
 		var i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -1303,12 +1303,17 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 	if (queues.corral.hasQueuedUnits())
 		return;
 
-	// Only build one corral for the time being
-	if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities())
+	let nCorral = gameState.getOwnEntitiesByClass("Corral", true).length;
+	if (nCorral === 0 ||
+		(gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) &&
+		 nCorral < gameState.currentPhase() && gameState.getPopulation() > 30*nCorral))
 	{
 		if (this.canBuild(gameState, "structures/{civ}_corral"))
+		{
 			queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral"));
-		return;
+			return;
+		}
+		if (nCorral === 0) return;
 	}
 
 	// And train some animals
@@ -1327,7 +1332,7 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 			let count = gameState.countEntitiesByType(trainable, true);
 			for (let item of corral.trainingQueue())
 				count += item.count;
-			if (count > 1)
+			if (count > nCorral)
 				continue;
 			queues.corral.addPlan(new m.TrainingPlan(gameState, trainable, { "trainer": corral.id() }));
 			return;
@@ -1839,7 +1844,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			continue;
 		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
 		{
-			if (this.basesMap.map[j] == 0)
+			if (this.basesMap.map[j] === 0)
 				continue;
 			let base = this.getBaseByID(this.basesMap.map[j]);
 			let index = base.territoryIndices.indexOf(j);
@@ -1851,7 +1856,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			base.territoryIndices.splice(index, 1);
 			this.basesMap.map[j] = 0;
 		}
-		else if (this.basesMap.map[j] == 0)
+		else if (this.basesMap.map[j] === 0)
 		{
 			let landPassable = false;
 			let ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);

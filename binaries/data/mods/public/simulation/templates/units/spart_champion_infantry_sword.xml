@@ -7,6 +7,12 @@
       -structures/{civ}_wallset_stone
     </Entities>
   </Builder>
+  <Cost>
+    <Resources>
+      <food op="add">-10.0</food>
+      <metal op="add">+10.0</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>spart</Civ>
     <Lang>greek</Lang>

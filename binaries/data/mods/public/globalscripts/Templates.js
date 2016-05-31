@@ -30,7 +30,7 @@ function GetVisibleIdentityClasses(template)
  * Check if the classes given in the identity template
  * match a list of classes
  * @param classes List of the classes to check against
- * @param match Either a string in the form 
+ * @param match Either a string in the form
  *     "Class1 Class2+Class3"
  * where spaces are handled as OR and '+'-signs as AND,
  * and ! is handled as NOT, thus Class1+!Class2 = Class1 AND NOT Class2
@@ -247,13 +247,20 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			ret.speed.run = func("UnitMotion/Run/Speed", +template.UnitMotion.Run.Speed, player, template);
 	}
 
+	if (template.ProductionQueue)
+	{
+		ret.techCostMultiplier = {};
+		for (let res in template.ProductionQueue.TechCostMultiplier)
+			ret.techCostMultiplier[res] = func("ProductionQueue/TechCostMultiplier/"+res, +template.ProductionQueue.TechCostMultiplier[res], player, template);
+	}
+
 	if (template.Trader)
 	{
 		ret.trader = {
 			"GainMultiplier": func("Trader/GainMultiplier", +template.Trader.GainMultiplier, player, template)
 		};
 	}
-	    
+
 	if (template.WallSet)
 	{
 		ret.wallSet = {
@@ -284,7 +291,7 @@ function GetTechnologyDataHelper(template, civ)
 {
 	var ret = {};
 
-	// Get specific name for this civ or else the generic specific name 
+	// Get specific name for this civ or else the generic specific name
 	var specific = undefined;
 	if (template.specificName)
 	{

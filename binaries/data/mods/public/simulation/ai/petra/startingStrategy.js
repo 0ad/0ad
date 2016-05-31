@@ -519,7 +519,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			gameState.ai.queues.dropsites.addPlan(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
 		}
 	}
-	// and build immediately a corral if not much wood
+	// and build immediately a corral if needed
 	if (this.needCorral)
 	{
 		template = gameState.applyCiv("structures/{civ}_corral");

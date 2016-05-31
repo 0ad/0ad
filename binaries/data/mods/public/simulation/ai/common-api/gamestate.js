@@ -20,7 +20,6 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.entities = SharedScript.entities;
 	this.player = player;
 	this.playerData = SharedScript.playersData[this.player];
-	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 	this.gameType = SharedScript.gameType;
 
@@ -61,7 +60,6 @@ m.GameState.prototype.update = function(SharedScript, state) {
 	this._entities = SharedScript._entities;
 	this.entities = SharedScript.entities;
 	this.playerData = SharedScript.playersData[this.player];
-	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 };
 
@@ -129,11 +127,11 @@ m.GameState.prototype.getTemplate = function(type)
 {
 	if (this.techTemplates[type] !== undefined)
 		return new m.Technology(this.techTemplates, type);
-	
+
 	if (!this.templates[type])
 		return null;
-	
-	return new m.Template(this.templates[type], this.techModifications);
+
+	return new m.Template(this.templates[type]);
 };
 
 m.GameState.prototype.applyCiv = function(str)
@@ -231,7 +229,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 
 // Private function for checking a set of requirements is met
 // basically copies TechnologyManager's
-m.GameState.prototype.checkTechRequirements = function (reqs)
+m.GameState.prototype.checkTechRequirements = function(reqs)
 {
 	// If there are no requirements then all requirements are met
 	if (!reqs)
@@ -520,10 +518,9 @@ m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain)
 		// Count entities in building production queues
 		// TODO: maybe this fails for corrals.
 		this.getOwnTrainingFacilities().forEach(function(ent) {
-			ent.trainingQueue().forEach(function(item) {
+			for (let item of ent.trainingQueue())
 				if (item.unitTemplate == type)
 					count += item.count;
-			});
 		});
 	}
 	
@@ -547,7 +544,7 @@ m.GameState.prototype.countFoundationsByType = function(type, maintain)
 
 m.GameState.prototype.countOwnEntitiesByRole = function(role)
 {
-	return this.getOwnEntitiesByRole(role).length;
+	return this.getOwnEntitiesByRole(role, "true").length;
 };
 
 m.GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role)
@@ -556,10 +553,9 @@ m.GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role)
 	
 	// Count entities in building production queues
 	this.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
-			if (item.metadata && item.metadata.role == role)
+		for (let item of ent.trainingQueue())
+			if (item.metadata && item.metadata.role && item.metadata.role == role)
 				count += item.count;
-		});
 	});
 	return count;
 };
@@ -569,10 +565,9 @@ m.GameState.prototype.countOwnQueuedEntitiesWithMetadata = function(data, value)
 	// Count entities in building production queues
 	var count = 0;
 	this.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
+		for (let item of ent.trainingQueue())
 			if (item.metadata && item.metadata[data] && item.metadata[data] == value)
 				count += item.count;
-		});
 	});
 	return count;
 };

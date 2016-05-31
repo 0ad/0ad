@@ -526,7 +526,7 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 		{
 			if (m_Displayed && IsSet())
 			{
-				markerCmpPosition->JumpTo(m_RallyPoints[i].X, m_RallyPoints[i].Y);
+				markerCmpPosition->MoveTo(m_RallyPoints[i].X, m_RallyPoints[i].Y);
 			}
 			else
 			{
@@ -556,7 +556,7 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 
 		CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityIds[i]);
 		if (cmpVisualActor)
-			cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
+			cmpVisualActor->SetVariant("civ", CStrW(cmpPlayer->GetCiv()).ToUTF8());
 	}
 	m_LastMarkerCount = m_RallyPoints.size() - 1;
 }

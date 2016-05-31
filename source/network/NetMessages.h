@@ -37,15 +37,18 @@
 // positive values.
 enum NetMessageType
 {
-	NMT_CONNECT_COMPLETE = -256,	// Connection is complete
+	NMT_CONNECT_COMPLETE = -256,
 	NMT_CONNECTION_LOST,
-	NMT_INVALID = 0,		// Invalid message
-	NMT_SERVER_HANDSHAKE,	// Handshake stage
+	NMT_INVALID = 0,
+
+	NMT_SERVER_HANDSHAKE,
 	NMT_CLIENT_HANDSHAKE,
 	NMT_SERVER_HANDSHAKE_RESPONSE,
-	NMT_AUTHENTICATE,		// Authentication stage
+
+	NMT_AUTHENTICATE,
 	NMT_AUTHENTICATE_RESULT,
-	NMT_CHAT,		// Common chat message
+
+	NMT_CHAT,
 	NMT_READY,
 	NMT_GAME_SETUP,
 	NMT_PLAYER_ASSIGNMENT,
@@ -67,10 +70,11 @@ enum NetMessageType
 	NMT_LOADED_GAME,
 	NMT_GAME_START,
 	NMT_END_COMMAND_BATCH,
+
 	NMT_SYNC_CHECK,	// OOS-detection hash checking
 	NMT_SYNC_ERROR,	// OOS-detection error
-	NMT_SIMULATION_COMMAND,
-	NMT_LAST				// Last message in the list
+
+	NMT_SIMULATION_COMMAND
 };
 
 // Authentication result codes
@@ -110,7 +114,7 @@ START_NMT_CLASS_(SrvHandshakeResponse, NMT_SERVER_HANDSHAKE_RESPONSE)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Authenticate, NMT_AUTHENTICATE)
-	NMT_FIELD(CStr8, m_GUID)
+	NMT_FIELD(CStr, m_GUID)
 	NMT_FIELD(CStrW, m_Name)
 	NMT_FIELD(CStrW, m_Password)
 	NMT_FIELD_INT(m_IsLocalClient, u8, 1)
@@ -123,18 +127,18 @@ START_NMT_CLASS_(AuthenticateResult, NMT_AUTHENTICATE_RESULT)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Chat, NMT_CHAT)
-	NMT_FIELD(CStr8, m_GUID) // ignored when client->server, valid when server->client
+	NMT_FIELD(CStr, m_GUID) // ignored when client->server, valid when server->client
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Ready, NMT_READY)
-	NMT_FIELD(CStr8, m_GUID)
+	NMT_FIELD(CStr, m_GUID)
 	NMT_FIELD_INT(m_Status, u8, 1)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(PlayerAssignment, NMT_PLAYER_ASSIGNMENT)
 	NMT_START_ARRAY(m_Hosts)
-		NMT_FIELD(CStr8, m_GUID)
+		NMT_FIELD(CStr, m_GUID)
 		NMT_FIELD(CStrW, m_Name)
 		NMT_FIELD_INT(m_PlayerID, i8, 1)
 		NMT_FIELD_INT(m_Status, u8, 1)
@@ -152,7 +156,7 @@ END_NMT_CLASS()
 
 START_NMT_CLASS_(FileTransferData, NMT_FILE_TRANSFER_DATA)
 	NMT_FIELD_INT(m_RequestID, u32, 4)
-	NMT_FIELD(CStr8, m_Data)
+	NMT_FIELD(CStr, m_Data)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(FileTransferAck, NMT_FILE_TRANSFER_ACK)
@@ -164,7 +168,7 @@ START_NMT_CLASS_(JoinSyncStart, NMT_JOIN_SYNC_START)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Rejoined, NMT_REJOINED)
-	NMT_FIELD(CStr8, m_GUID)
+	NMT_FIELD(CStr, m_GUID)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Kicked, NMT_KICKED)
@@ -173,13 +177,13 @@ START_NMT_CLASS_(Kicked, NMT_KICKED)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(ClientTimeout, NMT_CLIENT_TIMEOUT)
-	NMT_FIELD(CStr8, m_GUID)
+	NMT_FIELD(CStr, m_GUID)
 	NMT_FIELD_INT(m_LastReceivedTime, u32, 4)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(ClientPerformance, NMT_CLIENT_PERFORMANCE)
 	NMT_START_ARRAY(m_Clients)
-		NMT_FIELD(CStr8, m_GUID)
+		NMT_FIELD(CStr, m_GUID)
 		NMT_FIELD_INT(m_MeanRTT, u32, 4)
 	NMT_END_ARRAY()
 END_NMT_CLASS()

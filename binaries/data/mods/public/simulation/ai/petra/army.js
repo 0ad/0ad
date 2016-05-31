@@ -1,7 +1,8 @@
 var PETRA = function(m)
 {
 
-/* Defines an army
+/**
+ * Defines an army
  * An army is a collection of own entities and enemy entities.
  * This doesn't use entity collections are they aren't really useful
  * and it would probably slow the rest of the system down too much.
@@ -52,15 +53,15 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	if (!force && this.positionLastUpdate === gameState.ai.elapsedTime)
 		return;
 
-	var npos = 0;
-	var pos = [0, 0];
-	for (var id of this.foeEntities)
+	let npos = 0;
+	let pos = [0, 0];
+	for (let id of this.foeEntities)
 	{
-		var ent = gameState.getEntityById(id);
+		let ent = gameState.getEntityById(id);
 		if (!ent || !ent.position())
 			continue;
 		npos++;
-		var epos = ent.position();
+		let epos = ent.position();
 		pos[0] += epos[0];
 		pos[1] += epos[1];
 	}
@@ -74,7 +75,6 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	this.positionLastUpdate = gameState.ai.elapsedTime;
 };
 
-// helper
 m.Army.prototype.recalculateStrengths = function (gameState)
 {
 	this.ownStrength  = 0;
@@ -88,10 +88,10 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 		this.evaluateStrength(gameState.getEntityById(id), true);
 };
 
-// adds or remove the strength of the entity either to the enemy or to our units.
+/** adds or remove the strength of the entity either to the enemy or to our units. */
 m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 {
-	var entStrength;
+	let entStrength;
 	if (ent.hasClass("Structure"))
 	{
 		if (ent.owner() !== PlayerID)
@@ -116,10 +116,12 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 		this.foeStrength += entStrength;
 };
 
-// add an entity to the enemy army
-// Will return true if the entity was added and false otherwise.
-// won't recalculate our position but will dirty it.
-// force is true at army creation or when merging armies, so in this case we should add it even if far
+/**
+ * add an entity to the enemy army
+ * Will return true if the entity was added and false otherwise.
+ * won't recalculate our position but will dirty it.
+ * force is true at army creation or when merging armies, so in this case we should add it even if far
+ */
 m.Army.prototype.addFoe = function (gameState, enemyId, force)
 {
 	if (this.foeEntities.indexOf(enemyId) !== -1)
@@ -141,8 +143,10 @@ m.Army.prototype.addFoe = function (gameState, enemyId, force)
 	return true;
 };
 
-// returns true if the entity was removed and false otherwise.
-// TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs will happen.
+/**
+ * returns true if the entity was removed and false otherwise.
+ * TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs will happen.
+ */
 m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 {
 	let idx = this.foeEntities.indexOf(enemyId);
@@ -166,13 +170,15 @@ m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 	return true;
 };
 
-// adds a defender but doesn't assign him yet.
-// force is true when merging armies, so in this case we should add it even if no position as it can be in a ship
+/**
+ * adds a defender but doesn't assign him yet.
+ * force is true when merging armies, so in this case we should add it even if no position as it can be in a ship
+ */
 m.Army.prototype.addOwn = function (gameState, id, force)
 {
 	if (this.ownEntities.indexOf(id) !== -1)
 		return false;
-	var ent = gameState.getEntityById(id);
+	let ent = gameState.getEntityById(id);
 	if (!ent || (!ent.position() && !force))
 		return false;
 
@@ -181,12 +187,12 @@ m.Army.prototype.addOwn = function (gameState, id, force)
 	ent.setMetadata(PlayerID, "PartOfArmy", this.ID);
 	this.assignedTo[id] = 0;
 
-	var plan = ent.getMetadata(PlayerID, "plan");
+	let plan = ent.getMetadata(PlayerID, "plan");
 	if (plan !== undefined)
 		ent.setMetadata(PlayerID, "plan", -2);
 	else
  		ent.setMetadata(PlayerID, "plan", -3);
-	var subrole = ent.getMetadata(PlayerID, "subrole");
+	let subrole = ent.getMetadata(PlayerID, "subrole");
 	if (subrole === undefined || subrole !== "defender")
 		ent.setMetadata(PlayerID, "formerSubrole", subrole);
 	ent.setMetadata(PlayerID, "subrole", "defender");
@@ -195,7 +201,7 @@ m.Army.prototype.addOwn = function (gameState, id, force)
 
 m.Army.prototype.removeOwn = function (gameState, id, Entity)
 {
-	var idx = this.ownEntities.indexOf(id);
+	let idx = this.ownEntities.indexOf(id);
 	if (idx === -1)
 		return false;
 
@@ -245,8 +251,10 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	return true;
 };
 
-// Special army set to capture a gaia building.
-// It must only contain one foe (the building to capture) and never be merged
+/**
+ * Special army set to capture a gaia building.
+ * It must only contain one foe (the building to capture) and never be merged
+ */
 m.Army.prototype.isCapturing = function (gameState)
 {
 	if (this.foeEntities.length != 1)
@@ -255,15 +263,19 @@ m.Army.prototype.isCapturing = function (gameState)
 	return ent && ent.hasClass("Structure");
 };    
 
-// this one is "undefined entity" proof because it's called at odd times.
-// Orders a unit to attack an enemy.
-// overridden by specific army classes.
+/**
+ * this one is "undefined entity" proof because it's called at odd times.
+ * Orders a unit to attack an enemy.
+ * overridden by specific army classes.
+ */
 m.Army.prototype.assignUnit = function (gameState, entID)
 {
 };
 
-// resets the army properly.
-// assumes we already cleared dead units.
+/**
+ * resets the army properly.
+ * assumes we already cleared dead units.
+ */
 m.Army.prototype.clear = function (gameState)
 {
 	while (this.foeEntities.length > 0)
@@ -278,9 +290,11 @@ m.Army.prototype.clear = function (gameState)
 	this.recalculatePosition(gameState);
 };
 
-// merge this army with another properly.
-// assumes units are in only one army.
-// also assumes that all have been properly cleaned up (no dead units).
+/**
+ * merge this army with another properly.
+ * assumes units are in only one army.
+ * also assumes that all have been properly cleaned up (no dead units).
+ */
 m.Army.prototype.merge = function (gameState, otherArmy)
 {
 	// copy over all parameters.
@@ -324,7 +338,7 @@ m.Army.prototype.checkEvents = function (gameState, events)
 			this.assignedAgainst[evt.newentity] = this.assignedAgainst[evt.entity];
 			this.assignedAgainst[evt.entity] = undefined;
 			for (let to in this.assignedTo)
-				if (this.assignedTo[to] == evt.entity)
+				if (this.assignedTo[to] === evt.entity)
 					this.assignedTo[to] = evt.newentity;
 		}
 		else if (this.ownEntities.indexOf(evt.entity) !== -1)
@@ -386,7 +400,7 @@ m.Army.prototype.onUpdate = function (gameState)
 		return [];
 	}
 
-	var breakaways = [];
+	let breakaways = [];
 	// TODO: assign unassigned defenders, cleanup of a few things.
 	// perhaps occasional strength recomputation
 	

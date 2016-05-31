@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,8 +64,9 @@ public:
 	void UpdateModel(float frameTime);
 
 	// Sets the entity-selection, and updates the unit to use the new
-	// actor variation.
-	void SetEntitySelection(const CStr& selection);
+	// actor variation. Either set one key at a time, or a complete map.
+	void SetEntitySelection(const CStr& key, const CStr& selection);
+	void SetEntitySelection(const std::map<CStr, CStr>& selections);
 
 	// Most units have a hopefully-unique ID number, so they can be referred to
 	// persistently despite saving/loading maps. Default for new units is -1; should
@@ -95,7 +96,7 @@ private:
 	// actor-level selections for this unit
 	std::set<CStr> m_ActorSelections;
 	// entity-level selections for this unit
-	std::set<CStr> m_EntitySelections;
+	std::map<CStr, CStr> m_EntitySelections;
 
 	// object manager which looks after this unit's objectentry
 	CObjectManager& m_ObjectManager;

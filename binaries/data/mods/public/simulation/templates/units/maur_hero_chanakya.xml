@@ -5,13 +5,7 @@
     <Pierce>8.0</Pierce>
     <Crush>4.0</Crush>
   </Armour>
-  <Heal>
-    <Range>20</Range>
-    <HP>12</HP>
-    <Rate>2000</Rate>
-    <UnhealableClasses datatype="tokens"/>
-    <HealableClasses datatype="tokens">Human</HealableClasses>
-  </Heal>
+  <Auras datatype="tokens">maur_hero_chanakya</Auras>
   <Cost>
     <Population>2</Population>
     <BuildTime>60</BuildTime>
@@ -20,18 +14,24 @@
       <metal>250</metal>
     </Resources>
   </Cost>
+  <Heal>
+    <Range>20</Range>
+    <HP>12</HP>
+    <Rate>2000</Rate>
+    <UnhealableClasses datatype="tokens"/>
+    <HealableClasses datatype="tokens">Human</HealableClasses>
+  </Heal>
   <Health>
     <Max>600</Max>
   </Health>
   <Identity>
     <Civ>maur</Civ>
-    <Classes datatype="tokens">Human Organic</Classes>
+    <Classes datatype="tokens">Human Organic Support</Classes>
     <VisibleClasses datatype="tokens">Hero Healer</VisibleClasses>
     <GenericName>Acharya Chanakya</GenericName>
     <SpecificName>Acharya Chāṇakya</SpecificName>
     <Icon>units/maur_hero_chanakya.png</Icon>
     <Tooltip>Hero Special: "Healer" - Heal units at an accelerated rate.
-Hero Special: "Teacher" - Empower a building to research and train +50% faster.
 Hero Special: "Philosopher" - Research 4 special technologies only available to Chanakya.</Tooltip>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>

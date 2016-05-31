@@ -238,7 +238,7 @@ for (var i=0; i < numPlayers; i++)
 
 	// Place starting entities
 
-	rectangularSmoothToHeight([x,z] , 20, 20, playerHeight, 0.8);
+	rectangularSmoothToHeight({"x": x,"y": z} , 20, 20, playerHeight, 0.8);
 
 	placeCivDefaultEntities(x, z, i+1, { 'iberWall': false });
 	

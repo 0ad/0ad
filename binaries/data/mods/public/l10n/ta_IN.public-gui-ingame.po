@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-13 09:00+0200\n"
-"PO-Revision-Date: 2016-05-13 09:32+0000\n"
+"POT-Creation-Date: 2016-05-20 09:00+0200\n"
+"PO-Revision-Date: 2016-05-20 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -40,147 +40,147 @@ msgstr "இங்கு சுவர் கட்ட முடியாது!"
 msgid "Are you sure you want to resign?"
 msgstr "நிச்சயமாக பதவி விலக விரும்புகிறீர்களா?"
 
-#: gui/session/menu.js:112 gui/session/menu.js:145 gui/session/menu.js:157
+#: gui/session/menu.js:112 gui/session/menu.js:144 gui/session/menu.js:155
 msgid "Confirmation"
 msgstr "உறுதிசெய்"
 
-#: gui/session/menu.js:114 gui/session/menu.js:147 gui/session/menu.js:179
-#: gui/session/session.js:624 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
+#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "இல்லை"
 
-#: gui/session/menu.js:114 gui/session/menu.js:147 gui/session/menu.js:179
-#: gui/session/session.js:624 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
+#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "ஆம்"
 
-#: gui/session/menu.js:126
+#: gui/session/menu.js:125
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "நிச்சயமாக நிறுத்த விரும்புகிறீர்களா? இதனால் மற்ற ஆட்டக்கார்களின் இணைப்புகள் துண்டுக்கப்படும்."
 
-#: gui/session/menu.js:130 gui/session/menu.js:134
+#: gui/session/menu.js:129 gui/session/menu.js:133
 msgid "Are you sure you want to quit?"
 msgstr "நிச்சயமாக நிறுத்த விரும்புகிறீர்களா?"
 
-#: gui/session/menu.js:156
+#: gui/session/menu.js:154
 msgid "Do you want to resign or will you return soon?"
 msgstr "நீங்கள் விலகிக்கொள்ள விரும்புகிறீர்களா அல்லது திரும்ப வருவீர்களா?"
 
-#: gui/session/menu.js:159
+#: gui/session/menu.js:156
 msgid "I will return"
 msgstr "நான் திரும்ப வருவேன்"
 
-#: gui/session/menu.js:159
+#: gui/session/menu.js:156
 msgid "I resign"
 msgstr "நான் விலகுகிறேன்"
 
-#: gui/session/menu.js:176
+#: gui/session/menu.js:173
 msgid "Destroy everything currently selected?"
 msgstr "தெரிவு செய்த அனைத்தையும் அழித்துவிடவா?"
 
-#: gui/session/menu.js:177 gui/session/unit_actions.js:718
+#: gui/session/menu.js:174 gui/session/unit_actions.js:718
 msgid "Delete"
 msgstr "அழி"
 
-#: gui/session/menu.js:309
+#: gui/session/menu.js:305
 msgctxt "team"
 msgid "None"
 msgstr "ஏதுமில்லை"
 
-#: gui/session/menu.js:313 gui/session/messages.js:86
+#: gui/session/menu.js:309 gui/session/messages.js:87
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "நட்பு நாடு"
 
-#: gui/session/menu.js:314 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:310 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "நடுநிலை"
 
-#: gui/session/menu.js:314 gui/session/messages.js:87
+#: gui/session/menu.js:310 gui/session/messages.js:88
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "எதிரி"
 
-#: gui/session/menu.js:326
+#: gui/session/menu.js:322
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:387
+#: gui/session/menu.js:383
 msgid "Request your allies to attack this enemy"
 msgstr ""
 
-#: gui/session/menu.js:507
+#: gui/session/menu.js:503
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr ""
 
-#: gui/session/menu.js:508
+#: gui/session/menu.js:504
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:511 gui/session/menu.js:582
+#: gui/session/menu.js:507 gui/session/menu.js:578
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:512 gui/session/menu.js:581
+#: gui/session/menu.js:508 gui/session/menu.js:577
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:517
+#: gui/session/menu.js:513
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr ""
 
-#: gui/session/menu.js:518
+#: gui/session/menu.js:514
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:521 gui/session/menu.js:585
+#: gui/session/menu.js:517 gui/session/menu.js:581
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:522
+#: gui/session/menu.js:518
 msgid "There are no land traders."
 msgstr "நில வியாபாரிகள் யாருமில்லை."
 
-#: gui/session/menu.js:530
+#: gui/session/menu.js:526
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s நில வியாபாரி விற்றுக்கொண்டிருக்கிறார்"
 msgstr[1] "%(numberTrading)s நில வியாபாரிகள் விற்றுக்கொண்டிருக்கிறார்கள்"
 
-#: gui/session/menu.js:539
+#: gui/session/menu.js:535
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s செயல்பாட்டிலில்லை"
 msgstr[1] "%(numberOfLandTraders)s செயல்பாட்டிலில்லை"
 
-#: gui/session/menu.js:544
+#: gui/session/menu.js:540
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:553
+#: gui/session/menu.js:549
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:558
+#: gui/session/menu.js:554
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -191,268 +191,260 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:586
+#: gui/session/menu.js:582
 msgid "There are no merchant ships."
 msgstr "வணிகக்கப்பல்கள் ஏதுமில்லை"
 
-#: gui/session/menu.js:593
+#: gui/session/menu.js:589
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:602
+#: gui/session/menu.js:598
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s செயல்பாட்டிலில்லை"
 msgstr[1] "%(numberOfShipTraders)s செயல்பாட்டிலில்லை"
 
-#: gui/session/menu.js:607
+#: gui/session/menu.js:603
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:655
+#: gui/session/menu.js:651
 msgid "Current Scores"
 msgstr ""
 
-#: gui/session/menu.js:680 gui/session/menu.js:702
+#: gui/session/menu.js:741
 msgid "Resume"
 msgstr "ஆட்டத்தை தொடர்க"
 
-#: gui/session/menu.js:687 gui/session/menu.js:702
-#: gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:741 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "தற்காலிகமாக நிறுத்து"
 
-#: gui/session/menu.js:714 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:745
+#, javascript-format
+msgid "Paused by %(players)s"
+msgstr ""
+
+#: gui/session/menu.js:746
+msgid ", "
+msgstr ""
+
+#: gui/session/menu.js:759 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "கைமுறை"
 
-#: gui/session/menu.js:730
+#: gui/session/menu.js:775
 msgid "The Developer Overlay was closed."
 msgstr ""
 
-#: gui/session/menu.js:731
+#: gui/session/menu.js:776
 msgid "The Developer Overlay was opened."
 msgstr ""
 
-#: gui/session/menu.js:752
+#: gui/session/menu.js:797
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr ""
 
-#: gui/session/messages.js:35
+#: gui/session/messages.js:36
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr ""
 
-#: gui/session/messages.js:36
+#: gui/session/messages.js:37
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr ""
 
-#: gui/session/messages.js:45
+#: gui/session/messages.js:46
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr ""
 
-#: gui/session/messages.js:46
+#: gui/session/messages.js:47
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr ""
 
-#: gui/session/messages.js:47
+#: gui/session/messages.js:48
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr ""
 
-#: gui/session/messages.js:60
+#: gui/session/messages.js:61
 msgid "Connection to the server has been authenticated."
 msgstr ""
 
-#: gui/session/messages.js:61
+#: gui/session/messages.js:62
 msgid "Connected to the server."
 msgstr "வழங்கியுடன் இணைக்கப்பட்டது. "
 
-#: gui/session/messages.js:62
+#: gui/session/messages.js:63
 msgid "Connection to the server has been lost."
 msgstr ""
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:64
+#: gui/session/messages.js:65
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr ""
 
-#: gui/session/messages.js:65
+#: gui/session/messages.js:66
 msgid "Waiting for other players to connect..."
 msgstr ""
 
-#: gui/session/messages.js:66
+#: gui/session/messages.js:67
 msgid "Synchronising gameplay with other players..."
-msgstr ""
-
-#: gui/session/messages.js:75
-#, javascript-format
-msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
 #: gui/session/messages.js:76
 #, javascript-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr ""
+
+#: gui/session/messages.js:77
+#, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:79
+#: gui/session/messages.js:80
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:80
+#: gui/session/messages.js:81
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:85 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:86 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "அணி"
 
-#: gui/session/messages.js:88 gui/session/session.js:260
+#: gui/session/messages.js:89 gui/session/session.js:275
 msgid "Observer"
 msgstr ""
 
-#: gui/session/messages.js:89
+#: gui/session/messages.js:90
 msgid "Private"
-msgstr ""
-
-#: gui/session/messages.js:124
-#, javascript-format
-msgid "You are now allied with %(player)s."
 msgstr ""
 
 #: gui/session/messages.js:125
 #, javascript-format
-msgid "You are now at war with %(player)s."
+msgid "You are now allied with %(player)s."
 msgstr ""
 
 #: gui/session/messages.js:126
 #, javascript-format
-msgid "You are now neutral with %(player)s."
+msgid "You are now at war with %(player)s."
 msgstr ""
 
-#: gui/session/messages.js:129
+#: gui/session/messages.js:127
 #, javascript-format
-msgid "%(player)s is now allied with you."
+msgid "You are now neutral with %(player)s."
 msgstr ""
 
 #: gui/session/messages.js:130
 #, javascript-format
-msgid "%(player)s is now at war with you."
+msgid "%(player)s is now allied with you."
 msgstr ""
 
 #: gui/session/messages.js:131
 #, javascript-format
-msgid "%(player)s is now neutral with you."
+msgid "%(player)s is now at war with you."
 msgstr ""
 
-#: gui/session/messages.js:134
+#: gui/session/messages.js:132
 #, javascript-format
-msgid "%(player)s is now allied with %(player2)s."
+msgid "%(player)s is now neutral with you."
 msgstr ""
 
 #: gui/session/messages.js:135
 #, javascript-format
-msgid "%(player)s is now at war with %(player2)s."
+msgid "%(player)s is now allied with %(player2)s."
 msgstr ""
 
 #: gui/session/messages.js:136
 #, javascript-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr ""
+
+#: gui/session/messages.js:137
+#, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr ""
 
-#: gui/session/messages.js:504
+#: gui/session/messages.js:511
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr ""
 
-#: gui/session/messages.js:512
+#: gui/session/messages.js:519
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr ""
 
-#: gui/session/messages.js:516
+#: gui/session/messages.js:523
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr ""
 
-#: gui/session/messages.js:522
+#: gui/session/messages.js:529
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr ""
 
-#: gui/session/messages.js:650
+#: gui/session/messages.js:657
 msgid "Unknown Player"
-msgstr ""
-
-#. Translation: String used to colorize the word "You" of that sentence
-#: gui/session/messages.js:662
-msgctxt "You have been defeated"
-msgid "You"
 msgstr ""
 
 #: gui/session/messages.js:664
 #, javascript-format
-msgid "%(You)s have resigned."
-msgstr ""
-
-#: gui/session/messages.js:666
-#, javascript-format
-msgid "%(You)s have been defeated."
-msgstr ""
-
-#: gui/session/messages.js:672
-#, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: gui/session/messages.js:674
+#: gui/session/messages.js:665
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr ""
 
-#: gui/session/messages.js:707
+#: gui/session/messages.js:694
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:709
+#: gui/session/messages.js:696
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:724
+#: gui/session/messages.js:711
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:725
+#: gui/session/messages.js:712
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:768
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "<%(user)s>"
 msgstr ""
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:375
-#: gui/session/selection_details.js:407 gui/session/session.js:808
+#: gui/session/selection_details.js:407 gui/session/session.js:822
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr ""
@@ -584,7 +576,7 @@ msgstr "%(resource)s வாங்கு"
 msgid "Sell %(resource)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1122
+#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1124
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s தேவை"
@@ -631,14 +623,14 @@ msgstr ""
 msgid "%(population)s %(neededSlots)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:850
+#: gui/session/selection_panels.js:852
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/selection_panels.js:1110 gui/session/session.js:807
+#: gui/session/selection_panels.js:1112 gui/session/session.js:821
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr ""
@@ -734,102 +726,97 @@ msgstr ""
 msgid "%(action)s to train %(number)s."
 msgstr ""
 
-#: gui/session/session.js:77 gui/session/utility_functions.js:91
-#: gui/session/utility_functions.js:97 gui/session/utility_functions.js:102
-msgid "You"
-msgstr "நீங்கள்"
-
-#: gui/session/session.js:246
+#: gui/session/session.js:261
 msgid "Gaia"
 msgstr ""
 
-#: gui/session/session.js:386
+#: gui/session/session.js:401
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:453 gui/session/session.js:469
+#: gui/session/session.js:468 gui/session/session.js:484
 msgid "You have left the game."
 msgstr ""
 
-#: gui/session/session.js:460
+#: gui/session/session.js:475
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/session/session.js:462
+#: gui/session/session.js:477
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/session/session.js:464
+#: gui/session/session.js:479
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/session/session.js:472
+#: gui/session/session.js:487
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/session/session.js:618
+#: gui/session/session.js:633
 msgid "OK"
 msgstr "சரி"
 
-#: gui/session/session.js:620
+#: gui/session/session.js:635
 msgid "Press OK to continue"
 msgstr "தொடர OK சொடுக்கவும்"
 
-#: gui/session/session.js:626
+#: gui/session/session.js:641
 msgid "Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:631
+#: gui/session/session.js:646
 msgid "DEFEATED!"
 msgstr ""
 
-#: gui/session/session.js:636
+#: gui/session/session.js:651
 msgid "VICTORIOUS!"
 msgstr ""
 
-#: gui/session/session.js:732
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:733
+#: gui/session/session.js:748
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr ""
 
-#: gui/session/session.js:735
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "No"
 msgstr ""
 
-#: gui/session/session.js:735
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr ""
 
-#: gui/session/session.js:900
+#: gui/session/session.js:914
 msgid "Population (current / limit)"
 msgstr ""
 
-#: gui/session/session.js:901
+#: gui/session/session.js:915
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:1041
+#: gui/session/session.js:1055
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr ""
 
-#: gui/session/session.js:1047
+#: gui/session/session.js:1062
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr ""
 
-#: gui/session/session.js:1048
+#: gui/session/session.js:1063
 msgid "Time warp mode"
 msgstr ""
 
@@ -1005,7 +992,7 @@ msgstr ""
 msgid "Resign"
 msgstr ""
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):362
+#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):357
 msgid "Exit"
 msgstr "வெளியேறு"
 
@@ -1065,38 +1052,38 @@ msgstr ""
 msgid "Hierarchical pathfinder overlay"
 msgstr ""
 
-#: gui/session/session.xml:(caption):186
+#: gui/session/session.xml:(caption):180
 msgid "Game Paused"
 msgstr "ஆட்டம் தற்காலிகமாக நிறுத்தப்பட்டது"
 
-#: gui/session/session.xml:(caption):189
+#: gui/session/session.xml:(caption):183
 msgid "Click to Resume Game"
 msgstr ""
 
-#: gui/session/session.xml:(caption):216
+#: gui/session/session.xml:(caption):211
 msgctxt "chat input"
 msgid "To:"
 msgstr ""
 
-#: gui/session/session.xml:(caption):224
+#: gui/session/session.xml:(caption):219
 msgctxt "chat input"
 msgid "Text:"
 msgstr ""
 
-#: gui/session/session.xml:(caption):239
+#: gui/session/session.xml:(caption):234
 msgid "Cancel"
 msgstr "ரத்து"
 
-#: gui/session/session.xml:(caption):245
+#: gui/session/session.xml:(caption):240
 msgid "Send"
 msgstr "அனுப்பு"
 
-#: gui/session/session.xml:(tooltip):219
+#: gui/session/session.xml:(tooltip):214
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
 msgstr ""
 
-#: gui/session/session.xml:(tooltip):227
+#: gui/session/session.xml:(tooltip):222
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr ""

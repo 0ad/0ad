@@ -70,7 +70,10 @@ function draw()
 				{
 					for (let prod of stru.production.technology[prod_pha])
 					{
-						prod = (depath(prod).slice(0,5) == "phase") ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod];
+						prod = clone(depath(prod).slice(0,5) == "phase" ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod]);
+						for (let res in stru.techCostMultiplier)
+							if (prod.cost[res])
+								prod.cost[res] *= stru.techCostMultiplier[res];
 						if (!drawProdIcon(i, s, r, p, prod))
 							break;
 						p++;
@@ -123,12 +126,28 @@ function draw()
 		thisEle.hidden = false;
 		
 		let p = 0;
-		for (let prod of trainer.trainer)
+		for (let prodType in trainer.production)
 		{
-			prod = g_ParsedData.units[prod];
-			if (!drawProdIcon(null, t, null, p, prod))
-				break;
-			p++;
+			for (let prod of trainer.production[prodType])
+			{
+				switch (prodType)
+				{
+				case "units":
+					prod = g_ParsedData.units[prod];
+					break;
+				case "techs":
+					prod = clone(g_ParsedData.techs[prod]);
+					for (let res in trainer.techCostMultiplier)
+						if (prod.cost[res])
+							prod.cost[res] *= trainer.techCostMultiplier[res];
+					break;
+				default:
+					continue;
+				}
+				if (!drawProdIcon(null, t, null, p, prod))
+					break;
+				++p;
+			}
 		}
 		hideRemaining("trainer["+t+"]_prod[", p, "]");
 

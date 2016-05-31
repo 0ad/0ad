@@ -56,13 +56,27 @@ function loadUnit(templateName)
 
 	if (template.ProductionQueue)
 	{
-		unit.trainer = [];
-		for (let build of template.ProductionQueue.Entities._string.split(" "))
+		unit.production = {};
+		if (template.ProductionQueue.Entities)
 		{
-			build = build.replace("{civ}", g_SelectedCiv);
-			unit.trainer.push(build);
-			if (g_Lists.units.indexOf(build) === -1)
-				g_Lists.units.push(build);
+			unit.production.units = [];
+			for (let build of template.ProductionQueue.Entities._string.split(" "))
+			{
+				build = build.replace("{civ}", g_SelectedCiv);
+				unit.production.units.push(build);
+				if (g_Lists.units.indexOf(build) < 0)
+					g_Lists.units.push(build);
+			}
+		}
+		if (template.ProductionQueue.Technologies)
+		{
+			unit.production.techs = [];
+			for (let research of template.ProductionQueue.Technologies._string.split(" "))
+			{
+				unit.production.techs.push(research);
+				if (g_Lists.techs.indexOf(research) < 0)
+					g_Lists.techs.push(research);
+			}
 		}
 	}
 
@@ -130,6 +144,10 @@ function loadStructure(templateName)
 		let struct = loadStructure(structure.wallSet.templates.long);
 		structure.armour = struct.armour;
 		structure.auras = struct.auras;
+
+		// For technology cost multiplier, we need to use the tower
+		struct = loadStructure(structure.wallSet.templates.tower);
+		structure.techCostMultiplier = struct.techCostMultiplier;
 
 		let health;
 
@@ -208,7 +226,7 @@ function loadTechnology(techName)
 				break;
 
 			case "all":
-				if (req[0].length < 1)
+				if (!req[0].length)
 					tech.reqs.generic = req[1];
 				else
 					for (let r of req[0])

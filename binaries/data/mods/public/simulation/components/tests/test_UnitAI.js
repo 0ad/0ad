@@ -109,7 +109,7 @@ function TestFormationExiting(mode)
 	unitAI.SetupRangeQuery(1);
 
 
-	if (mode == 1) 
+	if (mode == 1)
 	{
 		AddMock(enemy, IID_Health, {
 			GetHitpoints: function() { return 10; },
@@ -117,7 +117,7 @@ function TestFormationExiting(mode)
 		AddMock(enemy, IID_UnitAI, {
 			IsAnimal: function() { return false; }
 		});
-	}			
+	}
 	else if (mode == 2)
 		AddMock(enemy, IID_Health, {
 			GetHitpoints: function() { return 0; },
@@ -210,19 +210,19 @@ function TestMoveIntoFormationWhileAttacking()
 
 	// create units
 	for (var i = 0; i < unitCount; i++) {
-	
+
 		units.push(unit + i);
-		
+
 		var unitAI = ConstructComponent(unit + i, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
-	
+
 		AddMock(unit + i, IID_Identity, {
 			GetClassesList: function() { return []; },
 		});
-	
+
 		AddMock(unit + i, IID_Ownership, {
 			GetOwner: function() { return 1; },
 		});
-	
+
 		AddMock(unit + i, IID_Position, {
 			GetTurretParent: function() { return INVALID_ENTITY; },
 			GetPosition: function() { return new Vector3D(); },
@@ -230,7 +230,7 @@ function TestMoveIntoFormationWhileAttacking()
 			GetRotation: function() { return { "y": 0 }; },
 			IsInWorld: function() { return true; },
 		});
-	
+
 		AddMock(unit + i, IID_UnitMotion, {
 			GetWalkSpeed: function() { return 1; },
 			MoveToFormationOffset: function(target, x, z) { },
@@ -239,11 +239,11 @@ function TestMoveIntoFormationWhileAttacking()
 			StopMoving: function() { },
 			GetPassabilityClassName: function() { return "default"; },
 		});
-	
+
 		AddMock(unit + i, IID_Vision, {
 			GetRange: function() { return 10; },
 		});
-	
+
 		AddMock(unit + i, IID_Attack, {
 			GetRange: function() { return {"max":10, "min": 0}; },
 			GetFullAttackRange: function() { return { "max": 40, "min": 0}; },
@@ -252,14 +252,14 @@ function TestMoveIntoFormationWhileAttacking()
 			CanAttack: function(v) { return true; },
 			CompareEntitiesByPreference: function(a, b) { return 0; },
 		});
-		
+
 		unitAI.OnCreate();
-		
+
 		unitAI.SetupRangeQuery(1);
-		
+
 		unitAIs.push(unitAI);
 	}
-	
+
 	// create enemy
 	AddMock(enemy, IID_Health, {
 		GetHitpoints: function() { return 40; },
@@ -292,15 +292,15 @@ function TestMoveIntoFormationWhileAttacking()
 	controllerAI.OnCreate();
 
 	controllerFormation.SetMembers(units);
-	
+
 	controllerAI.Attack(enemy, []);
-	
+
 	for each (var ent in unitAIs) {
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
 	}
-	
+
 	controllerAI.MoveIntoFormation({"name": "Circle"});
-	
+
 	// let all units be in position
 	for each (var ent in unitAIs) {
 		controllerFormation.SetInPosition(ent);
@@ -309,7 +309,7 @@ function TestMoveIntoFormationWhileAttacking()
 	for each (var ent in unitAIs) {
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
 	}
-	
+
 	controllerFormation.Disband();
 }
 

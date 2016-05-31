@@ -77,9 +77,9 @@ function getTradingTooltip(gain)
 	if (!gain)
 		return "";
 
-	var playerID = Engine.GetPlayerID();
+	var playerID = g_ViewedPlayer;
 	var simState = GetSimState();
-	
+
 	var gainString = gain.traderGain;
 	if (gain.market1Gain && gain.market1Owner == gain.traderOwner)
 		gainString += translate("+") + gain.market1Gain;
@@ -90,12 +90,13 @@ function getTradingTooltip(gain)
 		"gain": gainString,
 		"player": simState.players[gain.traderOwner].name
 	});
-	
+
 	if (gain.market1Gain && gain.market1Owner != gain.traderOwner)
 		tooltip += translateWithContext("Separation mark in an enumeration", ", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			"gain": gain.market1Gain,
 			"player": simState.players[gain.market1Owner].name
 		});
+
 	if (gain.market2Gain && gain.market2Owner != gain.traderOwner)
 		tooltip += translateWithContext("Separation mark in an enumeration", ", ") + sprintf(translate("%(gain)s (%(player)s)"), {
 			"gain": gain.market2Gain,
@@ -111,7 +112,7 @@ function getTradingTooltip(gain)
 function getEntityOrHolder(ent)
 {
 	var entState = GetEntityState(ent);
-	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length > 0 &&
+	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length &&
 			(entState.unitAI.orders[0].type == "Garrison" || entState.unitAI.orders[0].type == "Autogarrison"))
 		return entState.unitAI.orders[0].data.target;
 

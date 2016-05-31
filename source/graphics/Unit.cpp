@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,17 +77,21 @@ void CUnit::SetID(entity_id_t id)
 		m_Animation->SetEntityID(id);
 }
 
-void CUnit::SetEntitySelection(const CStr& selection)
+void CUnit::SetEntitySelection(const CStr& key, const CStr& selection)
 {
 	CStr selection_lc = selection.LowerCase();
 
-	// If we've already selected this, don't do anything
-	if (m_EntitySelections.find(selection_lc) != m_EntitySelections.end())
+	if (m_EntitySelections[key] == selection_lc)
 		return;
+	m_EntitySelections[key] = selection_lc;
 
-	// Just allow one selection at a time
-	m_EntitySelections.clear();
-	m_EntitySelections.insert(selection_lc);
+	ReloadObject();
+}
+
+void CUnit::SetEntitySelection(const std::map<CStr, CStr>& selections)
+{
+	for (const std::pair<CStr, CStr>& s : selections)
+		m_EntitySelections[s.first] = s.second.LowerCase();
 
 	ReloadObject();
 }
@@ -100,9 +104,11 @@ void CUnit::SetActorSelections(const std::set<CStr>& selections)
 
 void CUnit::ReloadObject()
 {
+	std::set<CStr> entitySelections;
+	for (const std::pair<CStr, CStr>& selection : m_EntitySelections)
+		entitySelections.insert(selection.second);
 	std::vector<std::set<CStr> > selections;
-	// TODO: push world selections (seasons, etc) (and reload whenever they're changed)
-	selections.push_back(m_EntitySelections);
+	selections.push_back(entitySelections);
 	selections.push_back(m_ActorSelections);
 
 	// randomly select any remain selections necessary to completely identify a variation (e.g., the new selection

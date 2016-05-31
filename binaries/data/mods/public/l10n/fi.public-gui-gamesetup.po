@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:00+0200\n"
-"PO-Revision-Date: 2016-05-08 20:52+0000\n"
-"Last-Translator: Max Ihalempia\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 08:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +77,7 @@ msgstr "* %(username)s on valmis!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s ei ole valmis."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1327
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
 msgid "Default"
 msgstr "Oletus"
 
@@ -90,54 +90,79 @@ msgid "Demo Maps"
 msgstr "Demokartat"
 
 #: gui/gamesetup/gamesetup.js:83
+msgid "Trigger Maps"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
 msgstr "Kaikki kartat"
 
-#: gui/gamesetup/gamesetup.js:137
+#: gui/gamesetup/gamesetup.js:142
 msgctxt "map type"
 msgid "Random"
 msgstr "Satunnainen"
 
-#: gui/gamesetup/gamesetup.js:142
+#: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
 msgid "Random"
 msgstr "Satunnainen"
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:268
 msgid "Return to the lobby."
 msgstr "Palaa aulaan."
 
-#: gui/gamesetup/gamesetup.js:238
+#: gui/gamesetup/gamesetup.js:268
 msgid "Return to the main menu."
 msgstr "Palaa päävalikkoon."
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:572
 msgid "Yes"
 msgstr "Kyllä"
 
-#: gui/gamesetup/gamesetup.js:546
+#: gui/gamesetup/gamesetup.js:572
 msgid "No"
 msgstr "Ei"
 
-#: gui/gamesetup/gamesetup.js:585
+#: gui/gamesetup/gamesetup.js:611
 msgctxt "team"
 msgid "None"
 msgstr "Ei mitään"
 
-#: gui/gamesetup/gamesetup.js:1166
-msgid "You"
-msgstr "Sinä"
-
-#: gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1275
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1398
+#: gui/gamesetup/gamesetup.js:1427
 msgid "Loading..."
 msgstr "Ladataan..."
 
-#: gui/gamesetup/gamesetup.js:1450
+#: gui/gamesetup/gamesetup.js:1476
+msgctxt "map selection"
+msgid "Random"
+msgstr "Satunnainen"
+
+#: gui/gamesetup/gamesetup.js:1480
+#, javascript-format
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] "%(number)s pelaaja"
+msgstr[1] "%(number)s pelaajaa."
+
+#: gui/gamesetup/gamesetup.js:1490
+msgid "Randomly selects a map from the list"
+msgstr "Valitsee satunnaisen kartan listasta."
+
+#: gui/gamesetup/gamesetup.js:1493
+msgid "Sorry, no description available."
+msgstr "Pahoittelut, kuvausta ei saatavilla."
+
+#: gui/gamesetup/gamesetup.js:1499
+msgctxt "victory condition"
+msgid "Unknown"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1504
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -145,65 +170,45 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Ihme (%(min)s minuutti)"
 msgstr[1] "Ihme (%(min)s minuuttia)"
 
-#: gui/gamesetup/gamesetup.js:1464
-msgid "Sorry, no description available."
-msgstr "Pahoittelut, kuvausta ei saatavilla."
-
-#: gui/gamesetup/gamesetup.js:1466
-msgid "Randomly selects a map from the list"
-msgstr "Valitsee satunnaisen kartan listasta."
-
-#: gui/gamesetup/gamesetup.js:1468
-#, javascript-format
-msgid "%(number)s player. "
-msgid_plural "%(number)s players. "
-msgstr[0] "%(number)s pelaaja"
-msgstr[1] "%(number)s pelaajaa."
-
-#: gui/gamesetup/gamesetup.js:1469 gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.js:1521 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Voiton edellytys:"
 
-#: gui/gamesetup/gamesetup.js:1472
-msgctxt "map selection"
-msgid "Random"
-msgstr "Satunnainen"
-
-#: gui/gamesetup/gamesetup.js:1564
+#: gui/gamesetup/gamesetup.js:1612
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1569
+#: gui/gamesetup/gamesetup.js:1617
 msgid "Unassigned"
 msgstr "Määrittelemätön"
 
-#: gui/gamesetup/gamesetup.js:1722
+#: gui/gamesetup/gamesetup.js:1778
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1785
 msgid "Unknown Player"
 msgstr "Tuntematon pelaaja"
 
-#: gui/gamesetup/gamesetup.js:1771
+#: gui/gamesetup/gamesetup.js:1835
 msgid "I'm not ready"
 msgstr "En ole valmis"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1836
 msgid "State that you are not ready to play."
 msgstr "Ilmoita, ettet ole valmis pelaamaan."
 
-#: gui/gamesetup/gamesetup.js:1777 gui/gamesetup/gamesetup.js:1855
+#: gui/gamesetup/gamesetup.js:1841 gui/gamesetup/gamesetup.js:1919
 msgid "I'm ready!"
 msgstr "Olen valmis!"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1842
 msgid "State that you are ready to play!"
 msgstr "Ilmoita, että olet valmis pelaamaan!"
 
-#: gui/gamesetup/gamesetup.js:1856
+#: gui/gamesetup/gamesetup.js:1920
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Ilmoita, että hyväksyt tämänhetkiset asetukset ja olet valmis pelaamaan!"
 
@@ -233,7 +238,21 @@ msgstr "Peli on jo alkanut, liitytään uudelleen..."
 msgid "Game name already in use."
 msgstr "Pelinimi on jo käytössä."
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:224
+#, javascript-format
+msgid "Cannot host game: %(message)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+msgid "Error"
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:253
+#, javascript-format
+msgid "Cannot join game: %(message)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.js:276
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Pelaajan %(playername)s peli"
@@ -261,12 +280,12 @@ msgid "AI Difficulty:"
 msgstr "Tekoälyn vaikeustaso:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):104
+#: gui/gamesetup/gamesetup_mp.xml:(caption):105
 msgid "Cancel"
 msgstr "Peruuta"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):408
+#: gui/gamesetup/gamesetup.xml:(caption):418
 msgid "OK"
 msgstr "Ok"
 
@@ -298,96 +317,96 @@ msgstr "Pelaajan sijainti"
 msgid "Civilization"
 msgstr "Sivilisaatio"
 
-#: gui/gamesetup/gamesetup.xml:(caption):69
+#: gui/gamesetup/gamesetup.xml:(caption):79
 msgid "Team"
 msgstr "Joukkue"
 
-#: gui/gamesetup/gamesetup.xml:(caption):110
+#: gui/gamesetup/gamesetup.xml:(caption):120
 msgid "Map Type:"
 msgstr "Kartan tyyppi:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):113
+#: gui/gamesetup/gamesetup.xml:(caption):123
 msgid "Map Filter:"
 msgstr "Karttasuodatin:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):116
+#: gui/gamesetup/gamesetup.xml:(caption):126
 msgid "Select Map:"
 msgstr "Valitse kartta:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):119
+#: gui/gamesetup/gamesetup.xml:(caption):129
 msgid "Number of Players:"
 msgstr "Pelaajien lukumäärä:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):122
+#: gui/gamesetup/gamesetup.xml:(caption):132
 msgid "Map Size:"
 msgstr "Kartan koko:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):201
+#: gui/gamesetup/gamesetup.xml:(caption):211
 msgid "Send"
 msgstr "Lähetä"
 
-#: gui/gamesetup/gamesetup.xml:(caption):219
+#: gui/gamesetup/gamesetup.xml:(caption):229
 msgid "Cheats enabled."
 msgstr "Huijaukset käytössä."
 
-#: gui/gamesetup/gamesetup.xml:(caption):232
+#: gui/gamesetup/gamesetup.xml:(caption):242
 msgid "Start game!"
 msgstr "Aloita peli!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):250
+#: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Back"
 msgstr "Takaisin"
 
-#: gui/gamesetup/gamesetup.xml:(caption):264
-#: gui/gamesetup/gamesetup.xml:(caption):276
+#: gui/gamesetup/gamesetup.xml:(caption):274
+#: gui/gamesetup/gamesetup.xml:(caption):286
 msgid "More Options"
 msgstr "LIsää asetuksia"
 
-#: gui/gamesetup/gamesetup.xml:(caption):281
+#: gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Game Speed:"
 msgstr "Pelin nopeus:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Wonder Victory:"
 msgstr "Ihmevoitto:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):311
+#: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "Population Cap:"
 msgstr "Väkilukuraja:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):321
+#: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Starting Resources:"
 msgstr "Aloitusresurssit:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):331
+#: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Ceasefire:"
 msgstr "Tulitauko:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):341
+#: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Revealed Map:"
 msgstr "Koko kartan näyttö"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):351
+#: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Explored Map:"
 msgstr "Tutkittu kartan alue"
 
-#: gui/gamesetup/gamesetup.xml:(caption):361
+#: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "Disable Treasures:"
 msgstr "Poista aarteet:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):381
 msgid "Teams Locked:"
 msgstr "Joukkueet lukittu:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):381
+#: gui/gamesetup/gamesetup.xml:(caption):391
 msgid "Cheats:"
 msgstr "Huijauskoodit:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):391
+#: gui/gamesetup/gamesetup.xml:(caption):401
 msgid "Rated Game:"
 msgstr "Arvosteltu peli:"
 
@@ -395,138 +414,143 @@ msgstr "Arvosteltu peli:"
 msgid "View civilization info"
 msgstr "Näytä sivilisaation tiedot"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):78
+#: gui/gamesetup/gamesetup.xml:(tooltip):75
+msgid ""
+"Reset any civilizations that have been selected to the default (random)"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid "Pick a color."
 msgstr "Valitse väri."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):81
+#: gui/gamesetup/gamesetup.xml:(tooltip):91
 msgid "Select player."
 msgstr "Valitse pelaaja."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):91
+#: gui/gamesetup/gamesetup.xml:(tooltip):101
 msgid "Configure AI settings."
 msgstr "Määritä tekoälyn asetukset."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):94
+#: gui/gamesetup/gamesetup.xml:(tooltip):104
 msgid "Select player's civilization."
 msgstr "Valitse pelaajan sivilisaatio."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):98
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Select player's team."
 msgstr "Valitse pelaajan joukkue."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):139
+#: gui/gamesetup/gamesetup.xml:(tooltip):149
 msgid "Select a map type."
 msgstr "Valitse kartan tyyppi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):147
+#: gui/gamesetup/gamesetup.xml:(tooltip):157
 msgid "Select a map filter."
 msgstr "Valitse kartan suodatin."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):156
+#: gui/gamesetup/gamesetup.xml:(tooltip):166
 msgid "Select a map to play on."
 msgstr "Valitse kartta pelattavaksi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):166
+#: gui/gamesetup/gamesetup.xml:(tooltip):176
 msgid "Select number of players."
 msgstr "Valitse pelaajien lukumäärä."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):170
+#: gui/gamesetup/gamesetup.xml:(tooltip):180
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Valitse kartan koko. (Isommat koot saattavat vaikuttaa suorituskykyyn)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):233
+#: gui/gamesetup/gamesetup.xml:(tooltip):243
 msgid "Start a new game with the current settings."
 msgstr "Aloita uusi peli tämänhetkisillä asetuksilla."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):265
+#: gui/gamesetup/gamesetup.xml:(tooltip):275
 msgid "See more game options"
 msgstr "Näe lisää pelin asetuksia"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):285
+#: gui/gamesetup/gamesetup.xml:(tooltip):295
 msgid "Select game speed."
 msgstr "Valitse pelin nopeus."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):295
+#: gui/gamesetup/gamesetup.xml:(tooltip):305
 msgid "Select victory condition."
 msgstr "Valitse voiton edellytys."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):305
+#: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):315
+#: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select population cap."
 msgstr "Valitse yksikköraja:"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):325
+#: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid "Select the game's starting resources."
 msgstr "Valitse pelin aloitusresurssit"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):335
+#: gui/gamesetup/gamesetup.xml:(tooltip):345
 msgid "Set time where no attacks are possible."
 msgstr "Aseta aika, jolloin ei voi hyökätä"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):345
+#: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Toggle revealed map (see everything)."
 msgstr "Näytä koko kartta (näet kaiken)"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):355
+#: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Toggle explored map (see initial map)."
 msgstr "Näytä tutkitun kartan alue (aloituskartta)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):365
+#: gui/gamesetup/gamesetup.xml:(tooltip):375
 msgid "Disable all treasures on the map."
 msgstr "Poista kaikki aarteet kartalta."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):375
+#: gui/gamesetup/gamesetup.xml:(tooltip):385
 msgid "Toggle locked teams."
 msgstr "Lukitut joukkueet."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):385
+#: gui/gamesetup/gamesetup.xml:(tooltip):395
 msgid "Toggle the usability of cheats."
 msgstr "Huijauksien käyttö."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):395
+#: gui/gamesetup/gamesetup.xml:(tooltip):405
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Valitse jos haluat pelin viralliseksi ja vaikuttavan tilastoihin."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):409
+#: gui/gamesetup/gamesetup.xml:(tooltip):419
 msgid "Close more game options window"
 msgstr "Sulje lisäasetuksien ikkuna"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):19
+#: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
 msgstr "Moninpeli"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):25
+#: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
 msgstr "Liitytään käynnissä olevaan peliin."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):29
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
+#: gui/gamesetup/gamesetup_mp.xml:(caption):30
+#: gui/gamesetup/gamesetup_mp.xml:(caption):68
 msgid "Player name:"
 msgstr "Pelaajan nimi:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):39
+#: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
 msgstr "Palvelimen nimi tai IP-osoite:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):49
-#: gui/gamesetup/gamesetup_mp.xml:(caption):91
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):92
 msgid "Continue"
 msgstr "Jatka"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):62
+#: gui/gamesetup/gamesetup_mp.xml:(caption):63
 msgid "Set up your server to host."
 msgstr "Pystytä palvelin hostiksi."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):80
+#: gui/gamesetup/gamesetup_mp.xml:(caption):81
 msgid "Server name:"
 msgstr "Palvelimen nimi:"
 

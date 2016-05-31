@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-13 09:00+0200\n"
-"PO-Revision-Date: 2016-05-13 10:00+0000\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 09:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -56,30 +56,30 @@ msgstr "英雄"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 的历史"
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "正在打开%(url)s\n在默认浏览器中。请稍后..."
 
-#: gui/common/functions_global_object.js:73
+#: gui/common/functions_global_object.js:60
 msgid "Opening page"
 msgstr "-- 正在打开"
 
-#: gui/common/functions_global_object.js:84
+#: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "帧率：%(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/common/functions_global_object.js:101
+#: gui/common/functions_global_object.js:89
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/common/functions_global_object.js:118
+#: gui/common/functions_global_object.js:106
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
@@ -318,7 +318,7 @@ msgstr "%(previousAmounts)s 至 %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:120 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -347,73 +347,83 @@ msgstr "与服务器的连接不稳定(%(milliseconds)s 毫秒)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "与 %(player)s 的连接不稳定(%(milliseconds)s 毫秒)"
 
-#: gui/common/network.js:53
+#: gui/common/network.js:54
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr ""
 
-#: gui/common/network.js:54
+#: gui/common/network.js:55
+msgid ""
+"This is often caused by UDP port 20595 not being forwarded on the host side,"
+" by a firewall or anti-virus software"
+msgstr ""
+
+#: gui/common/network.js:56
 msgid "The host has ended the game"
 msgstr "主持人已结束游戏。"
 
-#: gui/common/network.js:55
+#: gui/common/network.js:57
 msgid "Incorrect network protocol version"
 msgstr "网络协议版本错误"
 
-#: gui/common/network.js:56
+#: gui/common/network.js:58
 msgid "Game is loading, please try later"
 msgstr "游戏载入中，请稍后再试"
 
-#: gui/common/network.js:57
+#: gui/common/network.js:59
 msgid "Game has already started, no observers allowed"
 msgstr "游戏已经开始，不允许观察者"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:60
 msgid "You have been kicked"
 msgstr "您已被踢出"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:61
 msgid "You have been banned"
 msgstr "您已经被禁止"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:62
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "玩家名已被使用。如果您已断开连接，请过几秒后重试"
 
-#: gui/common/network.js:61
+#: gui/common/network.js:63
 msgid "Server full"
 msgstr "服务器已满"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "[无效的数值 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:76
+#: gui/common/network.js:78
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因: %(reason)s."
 
-#: gui/common/network.js:77
+#: gui/common/network.js:83
 msgid "Lost connection to the server."
 msgstr "与服务器连接中断"
 
-#: gui/common/network.js:77
+#: gui/common/network.js:84
+msgid "Failed to connect to the server."
+msgstr ""
+
+#: gui/common/network.js:86
 msgid "Disconnected"
 msgstr "断开"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr " 不能禁止 %(name)s 。"
 
-#: gui/common/network.js:85
+#: gui/common/network.js:95
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "不能踢出 %(name)s 。"
 
-#: gui/common/network.js:119
+#: gui/common/network.js:129
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "用户: %(users)s"
@@ -584,8 +594,8 @@ msgid "Armor:"
 msgstr "护甲:"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -800,38 +810,10 @@ msgstr "无"
 msgid "<invalid>"
 msgstr "<无效>"
 
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "Yes"
-msgstr "是"
-
-#: gui/msgbox/msgbox.js:40 gui/options/options.js:271
-#: gui/options/options.js:335 gui/pregame/mainmenu.js:287
-#: gui/replaymenu/replay_actions.js:154 gui/savedgames/load.js:87
-#: gui/savedgames/load.js:125 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:93
-msgid "No"
-msgstr "否"
-
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:165
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "确定"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Retry"
-msgstr "重试"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Ignore"
-msgstr "忽略"
-
-#: gui/msgbox/msgbox.js:48
-msgid "Abort"
-msgstr "退出"
 
 #: gui/options/options.js:273
 msgid ""
@@ -839,12 +821,26 @@ msgid ""
 "continue?"
 msgstr "重置选项会清除您已保存的设置。是否要继续?"
 
-#: gui/options/options.js:274 gui/options/options.js:338
+#: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:85
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:337
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "No"
+msgstr "否"
+
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
+#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+msgid "Yes"
+msgstr "是"
+
+#: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未保存的更改，是否要关闭窗口?"
 
@@ -879,7 +875,7 @@ msgstr "上传失败 (%(errorMessage)s)"
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -892,24 +888,24 @@ msgstr "%(startWarning)sWarning:%(endWarning)s 你似乎在使用不支持着色
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "点击“获取更多信息”或者点击\"确定\"继续游戏"
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "警告！"
 
-#: gui/pregame/mainmenu.js:165
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "获取更多"
 
-#: gui/pregame/mainmenu.js:258
+#: gui/pregame/mainmenu.js:256
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "确定要退出 0 A.D. 吗?"
 
@@ -917,32 +913,28 @@ msgstr "确定要退出 0 A.D. 吗?"
 msgid "Confirmation"
 msgstr "确认"
 
-#: gui/pregame/mainmenu.js:299
+#: gui/pregame/mainmenu.js:304
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "脚本编辑器不可用或加载失败。请查看日志了解详情。"
 
-#: gui/pregame/mainmenu.js:299 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "错误"
 
-#: gui/pregame/mainmenu.js:304
+#: gui/pregame/mainmenu.js:311
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "启动多人游戏大厅.[编译时被禁用]"
 
-#: gui/pregame/mainmenu.js:309 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "技术详情"
 
-#: gui/pregame/mainmenu.js:314 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "手册"
-
-#: gui/replaymenu/replay_actions.js:67 gui/summary/summary.js:143
-msgid "You"
-msgstr "您"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
@@ -976,10 +968,6 @@ msgstr ""
 msgid "Incompatible replay"
 msgstr "重播不兼容"
 
-#: gui/replaymenu/replay_actions.js:99 gui/replaymenu/replay_actions.js:116
-msgid "Ok"
-msgstr "确定"
-
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
 msgstr "无可用摘要数据。"
@@ -988,13 +976,13 @@ msgstr "无可用摘要数据。"
 msgid "Scores at the end of the game."
 msgstr "游戏结束时的积分。"
 
-#: gui/replaymenu/replay_actions.js:157
-msgid "Delete replay"
-msgstr "删除重播。"
-
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:155
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "确定要永久删除此重播?"
+
+#: gui/replaymenu/replay_actions.js:156
+msgid "Delete replay"
+msgstr "删除重播。"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1152,17 +1140,17 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr "您仍要继续吗？"
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:89
+#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
+#: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "确定要永久的删除保存的游戏吗？"
 
-#: gui/savedgames/load.js:123 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
 msgid "DELETE"
 msgstr "删除"
 
@@ -1174,20 +1162,20 @@ msgstr "确定要覆盖此保存记录吗？"
 msgid "OVERWRITE SAVE"
 msgstr "覆盖"
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr "生命值："
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr "采集速率："
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s 至 %(val2)s"
@@ -1372,12 +1360,12 @@ msgstr "地图控制"
 msgid "Team total"
 msgstr "队伍总计"
 
-#: gui/summary/summary.js:160
+#: gui/summary/summary.js:162
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "游戏时间已过: %(time)s"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1915,7 +1903,7 @@ msgstr "市场"
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):181
 msgid "Continue"
 msgstr "继续"
 
@@ -1952,8 +1940,8 @@ msgid "3D Art"
 msgstr "3D 美工"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
-msgid "Additional music, percussion"
-msgstr "附加音乐、打击乐"
+msgid "Additional music, percussion, djembe, sampling"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -1964,28 +1952,32 @@ msgid "Flute"
 msgstr "长笛"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr "中提琴、小提琴"
-
-#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr "凯尔特竖琴"
-
-#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr "小号"
-
-#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr "非洲鼓"
 
-#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
-msgid "Percussion"
-msgstr "打击乐"
+#: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr ""
 
-#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+#: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "迪吉里杜管"
+
+#: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "小号"
+
+#: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "凯尔特竖琴"
+
+#: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr ""
+
+#: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "中提琴、小提琴"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2086,102 +2078,118 @@ msgid "Chat Timestamp"
 msgstr "聊天时间戳"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
+msgid "How you want to be addressed in Single Player matches."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[0].label
+msgid "Playername (Single Player)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].tooltip
+msgid "How you want to be addressed in Multiplayer matches (except lobby)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[1].label
+msgid "Playername (Multiplayer)"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "启动0 A.D. 在新窗口"
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
 msgstr "窗口模式"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "离开游戏窗口时暂停单人游戏"
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.jsongeneralSetting[3].label
 msgid "Background Pause"
 msgstr "窗口失去焦点时暂停"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
 msgstr "如果您完全禁用此屏幕，可能或错过重要声明。\n您仍然可以在主菜单中访问此屏幕。"
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
 msgstr "禁用欢迎屏幕"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.jsongeneralSetting[5].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.jsongeneralSetting[5].label
 msgid "Detailed Tooltips"
 msgstr "详细工具提示"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "显示多人游戏连接不稳定的玩家。"
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Network Warnings"
 msgstr "网络警告"
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "在右上角显示帧率。"
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
 msgstr "每秒帧数覆盖层"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "在右上角显示目前的系统时间。"
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "Realtime Overlay"
 msgstr "实际时间覆盖层"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "在右上角显示目前的模拟时间。"
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Gametime Overlay"
 msgstr "游戏时间覆盖层"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "总是显示剩余的停火时间。"
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "停火时间覆盖层"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "储存及复原遭遇战设定以供另一场游戏快速利用"
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Persist Match Settings"
 msgstr "保持遭遇战设定"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr "允许观察者在游戏开始后加入"
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Late Observer Joins"
 msgstr "最近加入的观察者"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr "达到上限时，阻止其他观察者加入游戏"
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr "观察者上限"
 
@@ -2879,20 +2887,16 @@ msgid "STOA"
 msgstr "拱廊"
 
 #: gui/text/tips/stoa.txt:2
-msgid "- A special starting structure for Greek factions."
+msgid "- A special structure for Greek factions."
 msgstr ""
 
 #: gui/text/tips/stoa.txt:4
-msgid "- Grants +10 Population."
-msgstr "- 增加+10人口"
-
-#: gui/text/tips/stoa.txt:6
-msgid "- Only present on some maps."
+msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
 msgstr ""
 
-#: gui/text/tips/stoa.txt:8
-msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr "- 可以在场景编辑器找到。"
+#: gui/text/tips/stoa.txt:6
+msgid "- Grants +10 Population."
+msgstr "- 增加+10人口"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

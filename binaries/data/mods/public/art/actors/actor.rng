@@ -94,6 +94,11 @@
                       <interleave>
                         <attribute name="name"/>
                         <optional>
+                          <attribute name="frequency">
+                            <data type="nonNegativeInteger"/>
+                          </attribute>
+                        </optional>
+                        <optional>
                           <attribute name="file"/>
                         </optional>
                         <attribute name="speed">

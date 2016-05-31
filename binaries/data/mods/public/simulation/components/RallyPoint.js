@@ -52,7 +52,7 @@ RallyPoint.prototype.GetPositions = function()
 		if (this.pos[i].x == targetPosition.x && this.pos[i].z == targetPosition.y)
 			continue;
 
-		ret[i] = {"x": targetPosition.x, "z": targetPosition.y};
+		ret[i] = { "x": targetPosition.x, "z": targetPosition.y };
 		var cmpRallyPointRenderer = Engine.QueryInterface(this.entity, IID_RallyPointRenderer);
 		if (cmpRallyPointRenderer)
 			cmpRallyPointRenderer.UpdatePosition(i, targetPosition);

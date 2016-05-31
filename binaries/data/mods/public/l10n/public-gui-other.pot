@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2016-05-16 09:00+0200\n"
-"PO-Revision-Date: 2016-05-16 09:00+0200\n"
+"POT-Creation-Date: 2016-05-27 09:00+0200\n"
+"PO-Revision-Date: 2016-05-27 09:00+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -564,8 +564,8 @@ msgid "Armor:"
 msgstr ""
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:347
-#: gui/structree/draw.js:373
+#: gui/common/tooltips.js:174 gui/structree/draw.js:366
+#: gui/structree/draw.js:392
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -1138,20 +1138,20 @@ msgstr ""
 msgid "OVERWRITE SAVE"
 msgstr ""
 
-#: gui/structree/draw.js:348
+#: gui/structree/draw.js:367
 msgid "Health:"
 msgstr ""
 
-#: gui/structree/draw.js:368
+#: gui/structree/draw.js:387
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr ""
 
-#: gui/structree/draw.js:374
+#: gui/structree/draw.js:393
 msgid "Gather Rates:"
 msgstr ""
 
-#: gui/structree/load.js:161
+#: gui/structree/load.js:179
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr ""
@@ -1912,7 +1912,7 @@ msgid "3D Art"
 msgstr ""
 
 #: gui/credits/texts/art.json:Content[5].Content[1].Subtitle
-msgid "Additional music, percussion"
+msgid "Additional music, percussion, djembe, sampling"
 msgstr ""
 
 #: gui/credits/texts/art.json:Content[5].Content[2].Subtitle
@@ -1924,27 +1924,31 @@ msgid "Flute"
 msgstr ""
 
 #: gui/credits/texts/art.json:Content[5].Content[4].Subtitle
-msgid "Viola, violin"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[5].Subtitle
-msgid "Celtic harp"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[6].Subtitle
-msgid "Trumpet"
-msgstr ""
-
-#: gui/credits/texts/art.json:Content[5].Content[7].Subtitle
 msgid "Djembe"
 msgstr ""
 
+#: gui/credits/texts/art.json:Content[5].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr ""
+
+#: gui/credits/texts/art.json:Content[5].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr ""
+
+#: gui/credits/texts/art.json:Content[5].Content[7].Subtitle
+msgid "Trumpet"
+msgstr ""
+
 #: gui/credits/texts/art.json:Content[5].Content[8].Subtitle
-msgid "Percussion"
+msgid "Celtic harp"
 msgstr ""
 
 #: gui/credits/texts/art.json:Content[5].Content[9].Subtitle
-msgid "Didgeridoo"
+msgid "Tin whistles"
+msgstr ""
+
+#: gui/credits/texts/art.json:Content[5].Content[10].Subtitle
+msgid "Viola, violin"
 msgstr ""
 
 #: gui/credits/texts/art.json:Content[5].Title
@@ -2046,7 +2050,7 @@ msgid "Chat Timestamp"
 msgstr ""
 
 #: gui/options/options.json:generalSetting[0].tooltip
-msgid "How you want to be addressed in Single Player matches)."
+msgid "How you want to be addressed in Single Player matches."
 msgstr ""
 
 #: gui/options/options.json:generalSetting[0].label

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,11 +63,20 @@ public:
 
 	std::wstring m_ProjectileModelName;
 
-	// Returns a randomly-chosen animation matching the given name.
-	// If none is found, returns NULL.
+	/**
+	 * Returns a randomly-chosen animation matching the given name.
+	 * The chosen animation is picked randomly from the GetAnimations list
+	 * with the frequencies as weights (if there are any defined).
+	 * This method should always return an animation
+	 */
 	CSkeletonAnim* GetRandomAnimation(const CStr& animationName) const;
 
-	// Returns all the animations matching the given name.
+	/**
+	 * Returns all the animations matching the given name.
+	 * - Prefers the animations names like the animationName
+	 * - Second choice are animations with a frequency
+	 * - Last choice are the Idle animations (which are always added)
+	 */
 	std::vector<CSkeletonAnim*> GetAnimations(const CStr& animationName) const;
 
 	// corresponding model

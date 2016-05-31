@@ -45,7 +45,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	{
 		let tilePlayer = (territoryMap.data[k] & m.TERRITORY_PLAYER_MASK);
 		let isConnected = (territoryMap.data[k] & m.TERRITORY_BLINKING_MASK) == 0;
-		if (tilePlayer == PlayerID)
+		if (tilePlayer === PlayerID)
 		{
 			if (!buildOwn || !buildNeutral && !isConnected)
 				continue;
@@ -55,7 +55,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 			if (!buildAlly || !buildNeutral && !isConnected)
 				continue;
 		}
-		else if (tilePlayer == 0)
+		else if (tilePlayer === 0)
 		{
 			if (!buildNeutral)
 				continue;
@@ -127,7 +127,7 @@ m.createBorderMap = function(gameState)
 	var border = Math.round(80 / map.cellSize);
 	var passabilityMap = gameState.sharedScript.passabilityMap;
 	var obstructionMask = gameState.getPassabilityClassMask("unrestricted");
-	if (gameState.ai.circularMap)
+	if (gameState.circularMap)
 	{
 		let ic = (width - 1) / 2;
 		let radcut = (ic - border) * (ic - border);

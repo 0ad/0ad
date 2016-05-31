@@ -351,9 +351,7 @@
                         "FromClass": {},
                         "Rank": {
                             "tagAsContext": true
-                        },
-                        "AuraName": {},
-                        "AuraDescription": {}
+                        }
                     }
                 }
             }
@@ -385,9 +383,7 @@
                         "FromClass": {},
                         "Rank": {
                             "tagAsContext": true
-                        },
-                        "AuraName": {},
-                        "AuraDescription": {}
+                        }
                     }
                 }
             }
@@ -426,10 +422,28 @@
                         "FromClass": {},
                         "Rank": {
                             "tagAsContext": true
-                        },
-                        "AuraName": {},
-                        "AuraDescription": {}
+                        }
                     }
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-simulation-auras.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/auras/**.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "auraName",
+                        "auraDescription"
+                    ]
                 }
             }
         ]

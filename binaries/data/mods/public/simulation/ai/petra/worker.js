@@ -282,7 +282,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			// not in ennemy territory
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
-			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+			if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				continue;
 			gameState.ai.HQ.AddTCGatherer(supplies[i].id);
 			ent.setMetadata(PlayerID, "supply", supplies[i].id);
@@ -588,14 +588,14 @@ m.Worker.prototype.startHunting = function(gameState, position)
 
 		// Avoid ennemy territory
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
-		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
 		var dropsiteDist = nearestDropsiteDist(supply);
 		if (dropsiteDist > 35000)
 			return;
 		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
-		if (!isCavalry && (dropsiteDist > 12000 || ((dropsiteDist > 7000 || territoryOwner == 0 ) && canFlee)))
+		if (!isCavalry && (dropsiteDist > 12000 || ((dropsiteDist > 7000 || territoryOwner === 0 ) && canFlee)))
 			return;
 
 		if (dist < nearestSupplyDist)
@@ -681,7 +681,7 @@ m.Worker.prototype.startFishing = function(gameState)
 
 		// Avoid ennemy territory
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
-		if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
 		var dropsiteDist = nearestDropsiteDist(supply);
