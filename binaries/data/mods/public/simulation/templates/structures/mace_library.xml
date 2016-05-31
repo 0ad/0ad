@@ -1,46 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
-  <Auras datatype="tokens">library</Auras>
-  <BuildRestrictions>
-    <Category>Library</Category>
-  </BuildRestrictions>
-  <Footprint>
-    <Square width="29.0" depth="34.0"/>
-    <Height>9.0</Height>
-  </Footprint>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
-  </Health>
+<Entity parent="template_structure_special_library">
   <Identity>
     <Civ>mace</Civ>
-    <GenericName>Library</GenericName>
     <SpecificName>Bibliothḗkē</SpecificName>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
-    <Tooltip>Research special technologies.</Tooltip>
-    <History>Alexander the Great founded libraries all over his new empire. These became centers of learning for an entirely new synthesized culture: the Hellenistic culture.</History>
-    <Icon>structures/library_scroll.png</Icon>
   </Identity>
-  <Obstruction>
-    <Static width="25.0" depth="30.0"/>
-  </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      successors/special_hellenistic_metropolis
-    </Technologies>
-  </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_temple.xml</select>
-      <constructed>interface/complete/building/complete_temple.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence>
-    <Radius>50</Radius>
-  </TerritoryInfluence>
-  <VisualActor>
-    <Actor>structures/macedonians/library.xml</Actor>
-    <FoundationActor>structures/fndn_4x6.xml</FoundationActor>
-  </VisualActor>
 </Entity>
