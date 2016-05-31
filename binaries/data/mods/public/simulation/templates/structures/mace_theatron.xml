@@ -1,47 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
-  <Auras datatype="tokens">theatron</Auras>
-  <BuildRestrictions>
-    <Category>Theater</Category>
-  </BuildRestrictions>
-  <Cost>
-    <BuildTime>550</BuildTime>
-    <Resources>
-      <wood>0</wood>
-      <stone>500</stone>
-      <metal>500</metal>
-    </Resources>
-  </Cost>
-  <Footprint replace="">
-    <Circle radius="24.0"/>
-    <Height>10.0</Height>
-  </Footprint>
-  <Health>
-    <Max>2000</Max>
-  </Health>
+<Entity parent="template_structure_special_theatron">
   <Identity>
     <Civ>mace</Civ>
-	<GenericName>Greek Theater</GenericName>
-    <SpecificName>Théātron</SpecificName>
-    <Classes datatype="tokens">Theater -ConquestCritical</Classes>
-    <Tooltip>Hellēnízein (Hellenization): +20% territory influence for all buildings while the Theatron exists.</Tooltip>
-    <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture and spreading its influence.</History>
-    <Icon>structures/theatron.png</Icon>
   </Identity>
-  <Obstruction>
-    <Static width="46.0" depth="46.0"/>
-  </Obstruction>
-  <ProductionQueue disable=""/>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_greek_theater.xml</select>
-      <constructed>interface/complete/building/complete_greek_theater.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence>
-    <Radius>100</Radius>
-  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/macedonians/theatron.xml</Actor>
     <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
