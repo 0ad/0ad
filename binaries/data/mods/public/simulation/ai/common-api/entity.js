@@ -273,7 +273,7 @@ m.Template = m.Class({
 	countersClasses: function(classes) {
 		if (!this.get("Attack"))
 			return false;
-		var mcounter = [];
+		let mcounter = [];
 		for (let type in this.get("Attack"))
 		{
 			let bonuses = this.get("Attack/" + type + "/Bonuses");

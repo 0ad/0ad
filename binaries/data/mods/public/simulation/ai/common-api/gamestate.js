@@ -86,7 +86,7 @@ m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection
 	if (this.EntCollecNames.has(id))
 		return this.EntCollecNames.get(id);
 
-	var newCollection = collection !== undefined ? collection.filter(filter) : this.entities.filter(filter);
+	let newCollection = collection !== undefined ? collection.filter(filter) : this.entities.filter(filter);
 	newCollection.registerUpdates();
 	this.EntCollecNames.set(id, newCollection);	
 	return newCollection;
@@ -193,7 +193,7 @@ m.GameState.prototype.isResearching = function(template)
 // this is an "in-absolute" check that doesn't check if we have a building to research from.
 m.GameState.prototype.canResearch = function(techTemplateName, noRequirementCheck)
 {
-	var template = this.getTemplate(techTemplateName);
+	let template = this.getTemplate(techTemplateName);
 	if (!template)
 		return false;
 
@@ -462,7 +462,7 @@ m.GameState.prototype.getOwnEntitiesByRole = function(role, maintain)
 
 m.GameState.prototype.getOwnEntitiesByType = function(type, maintain)
 {
-	var filter = m.Filters.byType(type);
+	let filter = m.Filters.byType(type);
 	if (maintain === true)
 		return this.updatingCollection("type-" + type, filter, this.getOwnEntities());
 	return this.getOwnEntities().filter(filter);
@@ -470,7 +470,7 @@ m.GameState.prototype.getOwnEntitiesByType = function(type, maintain)
 
 m.GameState.prototype.getOwnEntitiesByClass = function(cls, maintain)
 {
-	var filter = m.Filters.byClass(cls);
+	let filter = m.Filters.byClass(cls);
 	if (maintain)
 		return this.updatingCollection("class-" + cls, filter, this.getOwnEntities());
 	return this.getOwnEntities().filter(filter);
@@ -478,7 +478,7 @@ m.GameState.prototype.getOwnEntitiesByClass = function(cls, maintain)
 
 m.GameState.prototype.getOwnFoundationsByClass = function(cls, maintain)
 {
-	var filter = m.Filters.byClass(cls);
+	let filter = m.Filters.byClass(cls);
 	if (maintain)
 		return this.updatingCollection("foundations-class-" + cls, filter, this.getOwnFoundations());
 	return this.getOwnFoundations().filter(filter);
@@ -502,12 +502,12 @@ m.GameState.prototype.countEntitiesByType = function(type, maintain)
 
 m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain)
 {
-	var template = this.getTemplate(type);
+	let template = this.getTemplate(type);
 	if (!template)
 		return 0;
 
-	var count = this.countEntitiesByType(type, maintain);
-	
+	let count = this.countEntitiesByType(type, maintain);
+
 	// Count building foundations
 	if (template.hasClass("Structure") === true)
 		count += this.countFoundationsByType(type, true);
@@ -523,18 +523,18 @@ m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain)
 					count += item.count;
 		});
 	}
-	
+
 	return count;
 };
 
 m.GameState.prototype.countFoundationsByType = function(type, maintain)
 {
-	var foundationType = "foundation|" + type;
+	let foundationType = "foundation|" + type;
 
 	if (maintain === true)
 		return this.updatingCollection("foundation-type-" + type, m.Filters.byType(foundationType), this.getOwnFoundations()).length;
 
-	var count = 0;
+	let count = 0;
 	this.getOwnStructures().forEach(function(ent) {
 		if (ent.templateName() == foundationType)
 			++count;
@@ -549,8 +549,8 @@ m.GameState.prototype.countOwnEntitiesByRole = function(role)
 
 m.GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role)
 {
-	var count = this.countOwnEntitiesByRole(role);
-	
+	let count = this.countOwnEntitiesByRole(role);
+
 	// Count entities in building production queues
 	this.getOwnTrainingFacilities().forEach(function(ent) {
 		for (let item of ent.trainingQueue())
@@ -563,7 +563,7 @@ m.GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role)
 m.GameState.prototype.countOwnQueuedEntitiesWithMetadata = function(data, value)
 {
 	// Count entities in building production queues
-	var count = 0;
+	let count = 0;
 	this.getOwnTrainingFacilities().forEach(function(ent) {
 		for (let item of ent.trainingQueue())
 			if (item.metadata && item.metadata[data] && item.metadata[data] == value)
@@ -602,19 +602,19 @@ m.GameState.prototype.getFishableSupplies = function()
 // This returns only units from buildings.
 m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 {
-	var allTrainable = [];
-	var civ = this.playerData.civ;
+	let allTrainable = [];
+	let civ = this.playerData.civ;
 	this.getOwnStructures().forEach(function(ent) {
-		var trainable = ent.trainableEntities(civ);
+		let trainable = ent.trainableEntities(civ);
 		if (!trainable)
 			return;
 		for (let unit of trainable)
 			if (allTrainable.indexOf(unit) === -1)
 				allTrainable.push(unit);
 	});
-	var ret = [];
-	var limits = this.getEntityLimits();
-	var current = this.getEntityCounts();
+	let ret = [];
+	let limits = this.getEntityLimits();
+	let current = this.getEntityCounts();
 	for (let trainable of allTrainable)
 	{
 		if (this.isDisabledTemplates(trainable))
@@ -658,8 +658,8 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 // If there are pairs, both techs are returned.
 m.GameState.prototype.findAvailableTech = function()
 {	
-	var allResearchable = [];
-	var civ = this.playerData.civ;
+	let allResearchable = [];
+	let civ = this.playerData.civ;
 	this.getOwnEntities().forEach(function(ent) {
 		let searchable = ent.researchableTechs(civ);
 		if (!searchable)
@@ -668,7 +668,7 @@ m.GameState.prototype.findAvailableTech = function()
 			if (allResearchable.indexOf(tech) === -1)
 				allResearchable.push(tech);
 	});
-	
+
 	let ret = [];
 	for (let tech of allResearchable)
 	{
@@ -682,7 +682,8 @@ m.GameState.prototype.findAvailableTech = function()
 				ret.push([techs[1]._templateName, techs[1]] );
 		}
 		else
-			if (this.canResearch(tech) && template._templateName != this.townPhase() && template._templateName != this.cityPhase())
+			if (this.canResearch(tech) && template._templateName != this.townPhase() &&
+			                              template._templateName != this.cityPhase())
 				ret.push( [tech, template] );
 	}
 	return ret;
@@ -693,7 +694,7 @@ m.GameState.prototype.findAvailableTech = function()
  */
 m.GameState.prototype.findTrainers = function(template)
 {	
-	var civ = this.playerData.civ;
+	let civ = this.playerData.civ;
 	return this.getOwnTrainingFacilities().filter(function(ent) {
 		let trainable = ent.trainableEntities(civ);
 		return trainable && trainable.indexOf(template) != -1;
@@ -714,14 +715,14 @@ m.GameState.prototype.findBuilder = function(template)
 	return undefined;
 };
 
-// Return true if one of the buildings is capable of researching the given tech
+/** Return true if one of the buildings is capable of researching the given tech */
 m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck)
 {
 	// let's check we can research the tech.
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return false;
 
-	var civ = this.playerData.civ;
+	let civ = this.playerData.civ;
 
 	for (let ent of this.getOwnResearchFacilities().values())
 	{
@@ -732,7 +733,8 @@ m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck
 			if (temp.pairDef())
 			{
 				let pairedTechs = temp.getPairedTechs();
-				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
+				if (pairedTechs[0]._templateName == templateName ||
+				    pairedTechs[1]._templateName == templateName)
 					return true;
 			}
 			else if (tech == templateName)
@@ -742,15 +744,15 @@ m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck
 	return false;
 };
 
-// Find buildings that are capable of researching the given tech
+/** Find buildings that are capable of researching the given tech */
 m.GameState.prototype.findResearchers = function(templateName, noRequirementCheck)
 {
 	// let's check we can research the tech.
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return [];
 
-	var self = this;
-	var civ = this.playerData.civ;
+	let self = this;
+	let civ = this.playerData.civ;
 
 	return this.getOwnResearchFacilities().filter(function(ent) {
 		let techs = ent.researchableTechs(civ);
@@ -759,8 +761,9 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 			let thisTemp = self.getTemplate(tech);
 			if (thisTemp.pairDef())
 			{
-				var pairedTechs = thisTemp.getPairedTechs();
-				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
+				let pairedTechs = thisTemp.getPairedTechs();
+				if (pairedTechs[0]._templateName == templateName ||
+				    pairedTechs[1]._templateName == templateName)
 					return true;
 			}
 			else if (tech == templateName)

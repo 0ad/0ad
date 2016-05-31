@@ -46,10 +46,12 @@ m.EntityCollection.prototype.Deserialize = function(data, sharedAI)
 		this.defreeze();
 };
 
-// If an entitycollection is frozen, it will never automatically add a unit.
-// But can remove one.
-// this makes it easy to create entity collection that will auto-remove dead units
-// but never add new ones.
+/**
+ * If an entitycollection is frozen, it will never automatically add a unit.
+ * But can remove one.
+ * this makes it easy to create entity collection that will auto-remove dead units
+ * but never add new ones.
+ */
 m.EntityCollection.prototype.freeze = function()
 {
 	this.frozen = true;
@@ -184,14 +186,14 @@ m.EntityCollection.prototype.attack = function(unitId)
 	return this;
 };
 
-// violent, aggressive, defensive, passive, standground
+/** violent, aggressive, defensive, passive, standground */
 m.EntityCollection.prototype.setStance = function(stance)
 {
 	Engine.PostCommand(PlayerID,{"type": "stance", "entities": this.toIdArray(), "name" : stance, "queued": false});
 	return this;
 };
 
-// Returns the average position of all units
+/** Returns the average position of all units */
 m.EntityCollection.prototype.getCentrePosition = function()
 {
 	let sumPos = [0, 0];
@@ -208,9 +210,11 @@ m.EntityCollection.prototype.getCentrePosition = function()
 	return count ? [sumPos[0]/count, sumPos[1]/count] : undefined;
 };
 
-// returns the average position from the sample first units.
-// This might be faster for huge collections, but there's
-// always a risk that it'll be unprecise.
+/**
+ * returns the average position from the sample first units.
+ * This might be faster for huge collections, but there's
+ * always a risk that it'll be unprecise.
+ */
 m.EntityCollection.prototype.getApproximatePosition = function(sample)
 {
 	let sumPos = [0, 0];
@@ -229,8 +233,12 @@ m.EntityCollection.prototype.getApproximatePosition = function(sample)
 	return i ? [sumPos[0]/i, sumPos[1]/i] : undefined;
 };
 
+m.EntityCollection.prototype.hasEntId = function(id)
+{
+	return this._entities.has(id);
+};
 
-// Removes an entity from the collection, returns true if the entity was a member, false otherwise
+/** Removes an entity from the collection, returns true if the entity was a member, false otherwise */
 m.EntityCollection.prototype.removeEnt = function(ent)
 {
 	if (!this._entities.has(ent.id()))
@@ -239,7 +247,7 @@ m.EntityCollection.prototype.removeEnt = function(ent)
 	return true;
 };
 
-// Adds an entity to the collection, returns true if the entity was not member, false otherwise
+/** Adds an entity to the collection, returns true if the entity was not member, false otherwise */
 m.EntityCollection.prototype.addEnt = function(ent)
 {
 	if (this._entities.has(ent.id()))
@@ -248,11 +256,13 @@ m.EntityCollection.prototype.addEnt = function(ent)
 	return true;
 };
 
-// Checks the entity against the filters, and adds or removes it appropriately, returns true if the
-// entity collection was modified.
-// Force can add a unit despite a freezing.
-// If an entitycollection is frozen, it will never automatically add a unit.
-// But can remove one.
+/**
+ * Checks the entity against the filters, and adds or removes it appropriately, returns true if the
+ * entity collection was modified.
+ * Force can add a unit despite a freezing.
+ * If an entitycollection is frozen, it will never automatically add a unit.
+ * But can remove one.
+ */
 m.EntityCollection.prototype.updateEnt = function(ent, force)
 {
 	let passesFilters = true;
