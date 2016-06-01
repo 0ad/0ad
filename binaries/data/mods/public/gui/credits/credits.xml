@@ -8,59 +8,26 @@
 
 <objects>
 	<script file="gui/common/functions_global_object.js"/>
-	<script file="gui/credits/credits.js"/>
+	<script directory="gui/credits/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
 
 	<object type="image" style="ModernDialog" size="50%-473 24 50%+473 100%-24">
-		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+		<object style="ModernLabelText" name="dialogTitle" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">0 A.D. Credits</translatableAttribute>
 		</object>
 
-		<object name="specialPanelButton" type="button" sprite="BackgroundBox" size="20 50 150 80">
-			<action on="Press">selectPanel(0);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Special Credits</translatableAttribute>
-			</object>
+		<object type="image" size="20 30 210 100%-54">
+			<repeat count="20">
+				<object name="creditsPanelButton[n]" type="button" sprite="BackgroundBox" size="0 0 190 30">
+					<object type="text" name="creditsPanelButtonText[n]" style="ModernLabelText" ghost="true">
+					</object>
+				</object>
+			</repeat>
 		</object>
 
-		<object name="programmingPanelButton" type="button" sprite="BackgroundBox" size="155 50 305 80">
-			<action on="Press">selectPanel(1);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Programming</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="artPanelButton" type="button" sprite="BackgroundBox" size="310 50 460 80">
-			<action on="Press">selectPanel(2);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Art</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="translatorsPanelButton" type="button" sprite="BackgroundBox" size="465 50 615 80">
-			<action on="Press">selectPanel(3);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Translators</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="miscPanelButton" type="button" sprite="BackgroundBox" size="620 50 770 80">
-			<action on="Press">selectPanel(4);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Miscellaneous</translatableAttribute>
-			</object>
-		</object>
-
-		<object name="donatorsPanelButton" type="button" sprite="BackgroundBox" size="775 50 925 80">
-			<action on="Press">selectPanel(5);</action>
-			<object type="text" style="ModernLabelText" ghost="true">
-				<translatableAttribute id="caption">Donors</translatableAttribute>
-			</object>
-		</object>
-
-		<object type="image" sprite="ModernFade" size="20 85 100%-20 100%-54">
+		<object type="image" sprite="ModernFade" size="220 30 100%-20 100%-54">
 			<object name="creditsText" type="text" style="textPanel"/>
 		</object>
 
