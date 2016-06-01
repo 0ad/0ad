@@ -5,14 +5,14 @@
 		"spart": "Olympic Pantheon",
 		"athen": "Olympic Pantheon"
 	},
-	"description": "Increases the healing range of all healers.",
-	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 250},
+	"description": "Increases the healing and vision range of all healers.",
+	"cost": {"food": 400, "wood": 0, "stone": 0, "metal": 200},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "healing_range.png",
 	"researchTime": 40,
-	"tooltip": "Healers +8 Healing Range.",
-	"modifications": [{"value": "Heal/Range", "add": 8.0}],
+	"tooltip": "Healers +5 Healing and Vision Range.",
+	"modifications": [{"value": "Heal/Range", "add": 5.0}, {"value": "Vision/Range", "add": 5.0}],
 	"affects": ["Healer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

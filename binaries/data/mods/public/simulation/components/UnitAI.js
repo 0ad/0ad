@@ -5485,6 +5485,11 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 		this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": true });
 		return true;
 	}
+
+	// healers on a walk-and-fight order should heal injured units
+	if (this.IsHealer())
+		return this.FindNewHealTargets();
+	
 	return false;
 };
 

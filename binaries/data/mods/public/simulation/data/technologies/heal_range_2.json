@@ -5,15 +5,15 @@
 		"spart": "Akadḗmeia",
 		"athen": "Akadḗmeia"
 	},
-	"description": "Increases the healing range of all healers.",
-	"cost": {"food": 1000, "wood": 0, "stone": 0, "metal": 500},
+	"description": "Increases the healing and vision range of all healers.",
+	"cost": {"food": 800, "wood": 0, "stone": 0, "metal": 400},
 	"supersedes": "heal_range",
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "healing_range.png",
 	"researchTime": 40,
-	"tooltip": "Healers +8 Healing Range.",
-	"modifications": [{"value": "Heal/Range", "add": 8.0}],
+	"tooltip": "Healers +5 Healing and Vision Range.",
+	"modifications": [{"value": "Heal/Range", "add": 5.0}, {"value": "Vision/Range", "add": 5.0}],
 	"affects": ["Healer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
