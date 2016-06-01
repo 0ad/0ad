@@ -159,12 +159,18 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		CStr name = it->first.LowerCase();
 
-		if (!it->second.m_FileName.empty())
-		{
-			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Frequency, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2, it->second.m_SoundPos);
-			if (anim)
-				m_Animations.insert(std::make_pair(name, anim));
-		}
+		if (it->second.m_FileName.empty())
+			continue;
+		CSkeletonAnim* anim = model->BuildAnimation(
+			it->second.m_FileName,
+			name,
+			it->second.m_Frequency,
+			it->second.m_Speed,
+			it->second.m_ActionPos,
+			it->second.m_ActionPos2,
+			it->second.m_SoundPos);
+		if (anim)
+			m_Animations.insert(std::make_pair(name, anim));
 	}
 
 	// ensure there's always an idle animation
@@ -173,6 +179,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		CSkeletonAnim* anim = new CSkeletonAnim();
 		anim->m_Name = "idle";
 		anim->m_AnimDef = NULL;
+		anim->m_Frequency = 0;
 		anim->m_Speed = 0.f;
 		anim->m_ActionPos = 0.f;
 		anim->m_ActionPos2 = 0.f;
@@ -264,7 +271,7 @@ CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName) const
 		if (r < 0)
 			return anim;
 	}
-	LOGERROR("No animation found");
+	LOGERROR("No animation found for name %s", animationName);
 	return NULL;
 }
 
