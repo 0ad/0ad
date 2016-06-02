@@ -346,6 +346,9 @@ function selectViewPlayer(playerID)
 	if (playerID < -1 || playerID > g_Players.length - 1)
 		return;
 
+	if (g_ShowAllStatusBars)
+		recalculateStatusBarDisplay(true);
+
 	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
 
 	let changeView = g_IsObserver || g_DevSettings.changePerspective;
@@ -993,11 +996,13 @@ function updateResearchDisplay()
 
 /**
  * Toggles the display of status bars for all of the player's entities.
+ *
+ * @param {Boolean} remove - Whether to hide all previously shown status bars.
  */
-function recalculateStatusBarDisplay()
+function recalculateStatusBarDisplay(remove = false)
 {
 	let entities;
-	if (g_ShowAllStatusBars)
+	if (g_ShowAllStatusBars && !remove)
 		entities = g_ViewedPlayer == -1 ?
 			Engine.PickNonGaiaEntitiesOnScreen() :
 			Engine.PickPlayerEntitiesOnScreen(g_ViewedPlayer);
@@ -1017,7 +1022,7 @@ function recalculateStatusBarDisplay()
 
 	Engine.GuiInterfaceCall("SetStatusBars", {
 		"entities": entities,
-		"enabled": g_ShowAllStatusBars
+		"enabled": g_ShowAllStatusBars && !remove
 	});
 }
 
