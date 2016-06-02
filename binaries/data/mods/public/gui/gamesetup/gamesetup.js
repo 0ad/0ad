@@ -342,26 +342,14 @@ function initMapFilters()
 function resizeMoreOptionsWindow()
 {
 	const elementHeight = 30;
-	const elements = [
-		"optionGameSpeed",
-		"optionVictoryCondition",
-		"optionWonderDuration",
-		"optionPopulationCap",
-		"optionStartingResources",
-		"optionCeasefire",
-		"optionRevealMap",
-		"optionExploreMap",
-		"optionDisableTreasures",
-		"optionLockTeams",
-		"optionCheats",
-		"optionRating",
-		"hideMoreOptions"
-	];
 
 	let yPos = undefined;
-	for (let element of elements)
+
+	for (let guiOption of Engine.GetGUIObjectByName("moreOptions").children)
 	{
-		let guiOption = Engine.GetGUIObjectByName(element);
+		if (guiOption.name == "moreOptionsLabel")
+			continue;
+
 		let gSize = guiOption.size;
 		yPos = yPos || gSize.top;
 
