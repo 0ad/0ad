@@ -12,15 +12,15 @@
         <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
       </props>
       <textures>
-<texture file="structural/hele_struct_b.dds" name="baseTex"/>
-<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
-<texture file="structural/ao/hele_storehouse.png" name="aoTex"/>
-</textures>
+        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_storehouse.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
