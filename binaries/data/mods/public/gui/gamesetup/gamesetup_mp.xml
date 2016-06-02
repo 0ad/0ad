@@ -45,16 +45,6 @@
 					this.caption = Engine.ConfigDB_GetValue("user", "multiplayerserver");
 				</action>
 			</object>
-
-			<object hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed">
-				<translatableAttribute id="caption">Continue</translatableAttribute>
-				<action on="Press">
-					var joinPlayerName = Engine.GetGUIObjectByName("joinPlayerName").caption;
-					var joinServer = Engine.GetGUIObjectByName("joinServer").caption;
-					if (startJoin(joinPlayerName, joinServer))
-						switchSetupPage("pageJoin", "pageConnecting");
-				</action>
-			</object>
 		</object>
 
 		<object name="pageHost" size="0 32 100% 100%" hidden="true">
@@ -87,19 +77,14 @@
 					</action>
 				</object>
 			</object>
-
-			<object type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed">
-				<translatableAttribute id="caption">Continue</translatableAttribute>
-				<action on="Press">
-					var hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
-					var hostServerName = Engine.GetGUIObjectByName("hostServerName").caption;
-					if (startHost(hostPlayerName, hostServerName))
-						switchSetupPage("pageHost", "pageConnecting");
-				</action>
-			</object>
 		</object>
 
 		<object name="hostFeedback" type="text" style="ModernLabelText" size="50 100%-90 100%-50 100%-50" textcolor="red" />
+
+		<object hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed">
+			<translatableAttribute id="caption">Continue</translatableAttribute>
+			<action on="Press">confirmSetup();</action>
+		</object>
 
 		<object type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>

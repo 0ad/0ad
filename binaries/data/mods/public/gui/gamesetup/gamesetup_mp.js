@@ -54,6 +54,24 @@ function cancelSetup()
 	Engine.PopGuiPage();
 }
 
+function confirmSetup()
+{
+	if (Engine.GetGUIObjectByName("pageHost").hidden)
+	{
+		let joinPlayerName = Engine.GetGUIObjectByName("joinPlayerName").caption;
+		let joinServer = Engine.GetGUIObjectByName("joinServer").caption;
+		if (startJoin(joinPlayerName, joinServer))
+			switchSetupPage("pageJoin", "pageConnecting");
+	}
+	else
+	{
+		let hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
+		let hostServerName = Engine.GetGUIObjectByName("hostServerName").caption;
+		if (startHost(hostPlayerName, hostServerName))
+			switchSetupPage("pageHost", "pageConnecting");
+	}
+}
+
 function startConnectionStatus(type)
 {
 	g_GameType = type;
