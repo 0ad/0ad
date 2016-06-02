@@ -2,6 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
+    <variant name="base" frequency="1">
+	  <textures>
+	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="brit house a">
       <mesh>structural/brit_house_a.dae</mesh>
       <props>
@@ -9,9 +18,6 @@
         <prop actor="props/structures/britons/house_a_props_new.xml" attachpoint="root"/>
       </props>
 	  <textures>
-	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
 		<texture file="structural/ao/brit_house_a.png" name="aoTex"/>
 	  </textures>
     </variant>
@@ -22,9 +28,6 @@
         <prop actor="props/structures/britons/house_b_props_1.xml" attachpoint="root"/>
       </props>
 	  <textures>
-	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
 		<texture file="structural/ao/brit_house_b.png" name="aoTex"/>
 	  </textures>
     </variant>
@@ -35,9 +38,6 @@
         <prop actor="props/structures/britons/house_c_props_1.xml" attachpoint="root"/>
       </props>
 	  <textures>
-	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
 		<texture file="structural/ao/brit_house_c.png" name="aoTex"/>
 	  </textures>
     </variant>
@@ -48,15 +48,12 @@
         <prop actor="props/structures/britons/house_d_props_1.xml" attachpoint="root"/>
       </props>
 	  <textures>
-	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
 		<texture file="structural/ao/brit_house_d.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="dust"/>
