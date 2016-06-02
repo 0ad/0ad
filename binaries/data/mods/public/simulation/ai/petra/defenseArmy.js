@@ -1,7 +1,7 @@
 var PETRA = function(m)
 {
 
-// Specialization of Armies used by the defense manager.
+/** Specialization of Armies used by the defense manager. */
 m.DefenseArmy = function(gameState, ownEntities, foeEntities)
 {
 	if (!m.Army.call(this, gameState, ownEntities, foeEntities))
@@ -17,17 +17,17 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	// we'll assume this defender is ours already.
 	// we'll also override any previous assignment
 
-	var ent = gameState.getEntityById(entID);
+	let ent = gameState.getEntityById(entID);
 	if (!ent || !ent.position())
 		return false;
 
 	// try to return its resources, and if any, the attack order will be queued
-	var queued = m.returnResources(gameState, ent);
+	let queued = m.returnResources(gameState, ent);
 
-	var idMin;
-	var distMin;
-	var idMinAll;
-	var distMinAll;
+	let idMin;
+	let distMin;
+	let idMinAll;
+	let distMinAll;
 	for (let id of this.foeEntities)
 	{
 		let eEnt = gameState.getEntityById(id);
@@ -84,7 +84,6 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	return true;
 };
 
-// TODO: this should return cleverer results ("needs anti-elephant"…)
 m.DefenseArmy.prototype.needsDefenders = function (gameState)
 {
 	// some preliminary checks because we don't update for tech so entStrength removed can be > entStrength added

@@ -23,8 +23,10 @@ m.SquareVectorDistance = function(a, b)
 	return dx*dx + dz*dz;
 };
 
-// A is the reference, B must be in "range" of A
-// this supposes the range is already squared
+/**
+ * A is the reference, B must be in "range" of A
+ * this supposes the range is already squared
+ */
 m.inRange = function(a, b, range)// checks for X distance
 {
 	// will avoid unnecessary checking for position in some rare cases... I'm lazy
@@ -36,7 +38,7 @@ m.inRange = function(a, b, range)// checks for X distance
 	return dx*dx + dz*dz  < range;
 };
 
-// slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate.
+/** Slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate. */
 m.ManhattanDistance = function(a, b)
 {
 	let dx = a[0] - b[0];
@@ -61,7 +63,7 @@ m.PickRandom = function(list)
 // Utility functions for conversions of maps of different sizes
 
 /**
- *return the index of map2 with max content from indices contained inside the cell i of map1
+ * Returns the index of map2 with max content from indices contained inside the cell i of map1
  * map1.cellSize must be a multiple of map2.cellSize
  */
 m.getMaxMapIndex = function(i, map1, map2)
@@ -78,7 +80,7 @@ m.getMaxMapIndex = function(i, map1, map2)
 };
 
 /**
- * return the list of indices of map2 contained inside the cell i of map1
+ * Returns the list of indices of map2 contained inside the cell i of map1
  * map1.cellSize must be a multiple of map2.cellSize
  */
 m.getMapIndices = function(i, map1, map2)
@@ -94,7 +96,7 @@ m.getMapIndices = function(i, map1, map2)
 };
 
 /**
- * return the list of points of map2 contained inside the cell i of map1 
+ * Returns the list of points of map2 contained inside the cell i of map1 
  * map1.cellSize must be a multiple of map2.cellSize
  */
 m.getMapPoints = function(i, map1, map2)

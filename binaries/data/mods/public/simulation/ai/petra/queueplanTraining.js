@@ -11,7 +11,7 @@ m.TrainingPlan = function(gameState, type, metadata, number = 1, maxMerge = 5)
 
 	this.category = "unit";
 	this.cost = new API3.Resources(this.template.cost(), +this.template._template.Cost.Population);
-	
+
 	this.number = number;
 	this.maxMerge = maxMerge;
 
@@ -113,10 +113,10 @@ m.TrainingPlan.prototype.addItem = function(amount = 1)
 // Find the promoted types corresponding to this.type
 m.TrainingPlan.prototype.promotedTypes = function(gameState)
 {
-	var types = [];
-	var promotion = this.template.promotion();
-	var previous;
-	var template;
+	let types = [];
+	let promotion = this.template.promotion();
+	let previous;
+	let template;
 	while (promotion)
 	{
 		types.push(promotion);

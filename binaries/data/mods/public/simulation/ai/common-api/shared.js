@@ -231,12 +231,12 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 {
 	Engine.ProfileStart("Shared ApplyEntitiesDelta");
 
-	var foundationFinished = {};
+	let foundationFinished = {};
 	
 	// by order of updating:
 	// we "Destroy" last because we want to be able to switch Metadata first.
 
-	var CreateEvents = state.events.Create;
+	let CreateEvents = state.events.Create;
 	for (let i = 0; i < CreateEvents.length; ++i)
 	{
 		let evt = CreateEvents[i];
@@ -289,7 +289,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key]);
 	}
 	
-	var DestroyEvents = state.events.Destroy;
+	let DestroyEvents = state.events.Destroy;
 	for (let i = 0; i < DestroyEvents.length; ++i)
 	{
 		let evt = DestroyEvents[i];
@@ -404,7 +404,7 @@ m.SharedScript.prototype.updateEntityCollections = function(property, ent)
 
 m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 {
-	var metadata = this._entityMetadata[player][ent.id()];
+	let metadata = this._entityMetadata[player][ent.id()];
 	if (!metadata)
 		metadata = this._entityMetadata[player][ent.id()] = {};
 	metadata[key] = value;
@@ -415,7 +415,7 @@ m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 
 m.SharedScript.prototype.getMetadata = function(player, ent, key)
 {
-	var metadata = this._entityMetadata[player][ent.id()];
+	let metadata = this._entityMetadata[player][ent.id()];
 
 	if (!metadata || !(key in metadata))
 		return undefined;
@@ -424,7 +424,7 @@ m.SharedScript.prototype.getMetadata = function(player, ent, key)
 
 m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 {
-	var metadata = this._entityMetadata[player][ent.id()];
+	let metadata = this._entityMetadata[player][ent.id()];
 
 	if (!metadata || !(key in metadata))
 		return true;
@@ -437,8 +437,8 @@ m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 
 m.copyPrototype = function(descendant, parent)
 {
-	var sConstructor = parent.toString();
-	var aMatch = sConstructor.match( /\s*function (.*)\(/ );
+	let sConstructor = parent.toString();
+	let aMatch = sConstructor.match( /\s*function (.*)\(/ );
 
 	if ( aMatch != null )
 		descendant.prototype[aMatch[1]] = parent;

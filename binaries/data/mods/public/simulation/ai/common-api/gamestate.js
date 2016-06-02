@@ -1,7 +1,6 @@
 var API3 = function(m)
 {
 
-
 /**
  * Provides an API for the rest of the AI scripts to query the world state at a
  * higher level than the raw data.
@@ -183,14 +182,14 @@ m.GameState.prototype.isResearched = function(template)
 	return this.playerData.researchedTechs[template] !== undefined;
 };
 
-// true if started or queued
+/** true if started or queued */
 m.GameState.prototype.isResearching = function(template)
 {
 	return this.playerData.researchStarted[template] !== undefined ||
 	       this.playerData.researchQueued[template] !== undefined;
 };
 
-// this is an "in-absolute" check that doesn't check if we have a building to research from.
+/** this is an "in-absolute" check that doesn't check if we have a building to research from. */
 m.GameState.prototype.canResearch = function(techTemplateName, noRequirementCheck)
 {
 	let template = this.getTemplate(techTemplateName);
@@ -227,8 +226,10 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	return this.checkTechRequirements(template.requirements());
 };
 
-// Private function for checking a set of requirements is met
-// basically copies TechnologyManager's
+/**
+ * Private function for checking a set of requirements is met
+ * basically copies TechnologyManager
+ */
 m.GameState.prototype.checkTechRequirements = function(reqs)
 {
 	// If there are no requirements then all requirements are met
@@ -447,7 +448,7 @@ m.GameState.prototype.getEnemyUnits = function(enemyID)
 	return this.updatingGlobalCollection("" + enemyID + "-units", m.Filters.byClass("Unit"), this.getEnemyEntities(enemyID));
 };
 
-// if maintain is true, this will be stored. Otherwise it's one-shot.
+/** if maintain is true, this will be stored. Otherwise it's one-shot. */
 m.GameState.prototype.getOwnEntitiesByMetadata = function(key, value, maintain)
 {
 	if (maintain === true)
@@ -599,7 +600,7 @@ m.GameState.prototype.getFishableSupplies = function()
 	return this.updatingGlobalCollection("resource-fish", m.Filters.isFishable(), this.getEntities());
 };
 
-// This returns only units from buildings.
+/** This returns only units from buildings. */
 m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 {
 	let allTrainable = [];
@@ -653,9 +654,11 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	return ret;
 };
 
-// Return all techs which can currently be researched
-// Does not factor cost.
-// If there are pairs, both techs are returned.
+/**
+ * Return all techs which can currently be researched
+ * Does not factor cost.
+ * If there are pairs, both techs are returned.
+ */
 m.GameState.prototype.findAvailableTech = function()
 {	
 	let allResearchable = [];
@@ -790,7 +793,7 @@ m.GameState.prototype.isDisabledTemplates = function(template)
 	return this.playerData.disabledTemplates[template];
 };
 
-// Checks whether the maximum number of buildings have been cnstructed for a certain catergory
+/** Checks whether the maximum number of buildings have been constructed for a certain catergory */
 m.GameState.prototype.isEntityLimitReached = function(category)
 {
 	if (this.playerData.entityLimits[category] === undefined ||
