@@ -123,13 +123,11 @@ JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::ws
 	if (!cmpGuiInterface)
 		return JS::UndefinedValue();
 
-	int player = g_Game->GetPlayerID();
-
 	JSContext* cxSim = sim->GetScriptInterface().GetContext();
 	JSAutoRequest rqSim(cxSim);
 	JS::RootedValue arg(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data));
 	JS::RootedValue ret(cxSim);
-	cmpGuiInterface->ScriptCall(player, name, arg, &ret);
+	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
 
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret);
 }

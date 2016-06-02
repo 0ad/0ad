@@ -48,7 +48,7 @@ GuiInterface.prototype.Init = function()
  * Returns global information about the current game state.
  * This is used by the GUI and also by AI scripts.
  */
-GuiInterface.prototype.GetSimulationState = function(player)
+GuiInterface.prototype.GetSimulationState = function()
 {
 	let ret = {
 		"players": []
@@ -169,7 +169,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
  * Note: Amongst statistics, the team exploration map percentage is computed from
  * scratch, so the extended simulation state should not be requested too often.
  */
-GuiInterface.prototype.GetExtendedSimulationState = function(player)
+GuiInterface.prototype.GetExtendedSimulationState = function()
 {
 	// Get basic simulation info
 	let ret = this.GetSimulationState();
@@ -196,7 +196,7 @@ GuiInterface.prototype.GetRenamedEntities = function(player)
 		return this.renamedEntities;
 };
 
-GuiInterface.prototype.ClearRenamedEntities = function(player)
+GuiInterface.prototype.ClearRenamedEntities = function()
 {
 	this.renamedEntities = [];
 	this.miragedEntities = [];
@@ -650,9 +650,9 @@ GuiInterface.prototype.CheckTechnologyRequirements = function(player, data)
 
 // Returns technologies that are being actively researched, along with
 // which entity is researching them and how far along the research is.
-GuiInterface.prototype.GetStartedResearch = function(player, viewedPlayer)
+GuiInterface.prototype.GetStartedResearch = function(player)
 {
-	let cmpTechnologyManager = QueryPlayerIDInterface(viewedPlayer, IID_TechnologyManager);
+	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	if (!cmpTechnologyManager)
 		return {};
 
@@ -670,9 +670,9 @@ GuiInterface.prototype.GetStartedResearch = function(player, viewedPlayer)
 };
 
 // Returns the battle state of the player.
-GuiInterface.prototype.GetBattleState = function(player, viewedPlayer)
+GuiInterface.prototype.GetBattleState = function(player)
 {
-	let cmpBattleDetection = QueryPlayerIDInterface(viewedPlayer, IID_BattleDetection);
+	let cmpBattleDetection = QueryPlayerIDInterface(player, IID_BattleDetection);
 
 	if (!cmpBattleDetection)
 		return false;
@@ -726,11 +726,11 @@ GuiInterface.prototype.DeleteTimeNotification = function(notificationID)
 	this.timeNotifications = this.timeNotifications.filter(n => n.id != notificationID);
 };
 
-GuiInterface.prototype.GetTimeNotifications = function(playerID, viewedPlayer)
+GuiInterface.prototype.GetTimeNotifications = function(player)
 {
 	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
 	// filter on players and time, since the delete timer might be executed with a delay
-	return this.timeNotifications.filter(n => n.players.indexOf(viewedPlayer) != -1 && n.endTime > time);
+	return this.timeNotifications.filter(n => n.players.indexOf(player) != -1 && n.endTime > time);
 };
 
 GuiInterface.prototype.PushNotification = function(notification)
@@ -889,9 +889,9 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 	}
 };
 
-GuiInterface.prototype.GetPlayerEntities = function(player, data)
+GuiInterface.prototype.GetPlayerEntities = function(player)
 {
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(data.viewedPlayer);
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(player);
 };
 
 GuiInterface.prototype.GetNonGaiaEntities = function()
@@ -1649,7 +1649,6 @@ GuiInterface.prototype.PlaySound = function(player, data)
 /**
  * Find any idle units.
  *
- * @param data.viewedPlayer	The player for which to find idle units.
  * @param data.idleClasses		Array of class names to include.
  * @param data.prevUnit		The previous idle unit, if calling a second time to iterate through units.  May be left undefined.
  * @param data.limit			The number of idle units to return.  May be left undefined (will return all idle units).
@@ -1664,7 +1663,7 @@ GuiInterface.prototype.FindIdleUnits = function(player, data)
 	// The general case is that only the 'first' idle unit is required; filtering would examine every unit.
 	// This loop imitates a grouping/aggregation on the first matching idle class.
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	for (let entity of cmpRangeManager.GetEntitiesByPlayer(data.viewedPlayer))
+	for (let entity of cmpRangeManager.GetEntitiesByPlayer(player))
 	{
 		let filtered = this.IdleUnitFilter(entity, data.idleClasses, data.excludeUnits);
 		if (!filtered.idle)
@@ -1695,7 +1694,6 @@ GuiInterface.prototype.FindIdleUnits = function(player, data)
 /**
  * Discover if the player has idle units.
  *
- * @param data.viewedPlayer	The player for which to find idle units.
  * @param data.idleClasses	Array of class names to include.
  * @param data.excludeUnits	Array of units to exclude.
  *
@@ -1704,7 +1702,7 @@ GuiInterface.prototype.FindIdleUnits = function(player, data)
 GuiInterface.prototype.HasIdleUnits = function(player, data)
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	return cmpRangeManager.GetEntitiesByPlayer(data.viewedPlayer).some(unit => this.IdleUnitFilter(unit, data.idleClasses, data.excludeUnits).idle);
+	return cmpRangeManager.GetEntitiesByPlayer(player).some(unit => this.IdleUnitFilter(unit, data.idleClasses, data.excludeUnits).idle);
 };
 
 /**
@@ -1867,10 +1865,10 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).SetDebugOverlay(enabled);
 };
 
-GuiInterface.prototype.GetTraderNumber = function(player, viewedPlayer)
+GuiInterface.prototype.GetTraderNumber = function(player)
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let traders = cmpRangeManager.GetEntitiesByPlayer(viewedPlayer).filter(e => Engine.QueryInterface(e, IID_Trader));
+	let traders = cmpRangeManager.GetEntitiesByPlayer(player).filter(e => Engine.QueryInterface(e, IID_Trader));
 
 	let landTrader = { "total": 0, "trading": 0, "garrisoned": 0 };
 	let shipTrader = { "total": 0, "trading": 0 };
@@ -1906,9 +1904,9 @@ GuiInterface.prototype.GetTraderNumber = function(player, viewedPlayer)
 	return { "landTrader": landTrader, "shipTrader": shipTrader };
 };
 
-GuiInterface.prototype.GetTradingGoods = function(player, viewedPlayer)
+GuiInterface.prototype.GetTradingGoods = function(player)
 {
-	return QueryPlayerIDInterface(viewedPlayer).GetTradingGoods();
+	return QueryPlayerIDInterface(player).GetTradingGoods();
 };
 
 GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
