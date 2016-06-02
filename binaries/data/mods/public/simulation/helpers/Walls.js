@@ -20,70 +20,88 @@
  */
 function GetWallPlacement(placementData, wallSet, start, end)
 {
-	var result = [];
-	
-	var candidateSegments = [
-		{"template": wallSet.templates.long,   "len": placementData[wallSet.templates.long].templateData.wallPiece.length},
-		{"template": wallSet.templates.medium, "len": placementData[wallSet.templates.medium].templateData.wallPiece.length},
-		{"template": wallSet.templates.short,  "len": placementData[wallSet.templates.short].templateData.wallPiece.length},
-	];
-	
-	var towerWidth = placementData[wallSet.templates.tower].templateData.wallPiece.length;
-	
-	var dir = {"x": end.pos.x - start.pos.x, "z": end.pos.z - start.pos.z};
-	var len = Math.sqrt(dir.x * dir.x + dir.z * dir.z);
-	
+	let candidateSegments = ["long", "medium", "short"].map(size => ({
+		"template": wallSet.templates[size],
+		"len": placementData[wallSet.templates[size]].templateData.wallPiece.length
+	}));
+
+	let towerWidth = placementData[wallSet.templates.tower].templateData.wallPiece.length;
+
+	let dir = {
+		"x": end.pos.x - start.pos.x,
+		"z": end.pos.z - start.pos.z
+	};
+
+	let len = Math.sqrt(dir.x * dir.x + dir.z * dir.z);
+
 	// we'll need room for at least our starting and ending towers to fit next to eachother
 	if (len <= towerWidth)
-		return result;
-	
-	var placement = GetWallSegmentsRec(len, candidateSegments, wallSet.minTowerOverlap, wallSet.maxTowerOverlap, towerWidth, 0, []);
-	
+		return [];
+
+	let placement = GetWallSegmentsRec(
+		len,
+		candidateSegments,
+		wallSet.minTowerOverlap,
+		wallSet.maxTowerOverlap,
+		towerWidth,
+		0, []
+	);
+
 	// TODO: make sure intermediate towers are spaced out far enough for their obstructions to not overlap, implying that
 	// tower's wallpiece lengths should be > their obstruction width, which is undesirable because it prevents towers with
 	// wide bases
-	if (placement)
+	if (!placement)
 	{
-		var placedEntities = placement.segments; // list of chosen candidate segments
-		var r = placement.r; // remaining distance to target without towers (must be <= (N-1) * towerWidth)
-		var s = r / (2 * placedEntities.length); // spacing
-		
-		var dirNormalized = {"x": dir.x / len, "z": dir.z / len};
-		var angle = -Math.atan2(dir.z, dir.x);    // angle of this wall segment (relative to world-space X/Z axes)
-		
-		var progress = 0;
-		for (var i = 0; i < placedEntities.length; i++)
+		error("No placement possible for distance=" +
+			Math.round(len * 1000) / 1000.0 +
+			", minOverlap=" + wallSet.minTowerOverlap +
+			", maxOverlap=" + wallSet.maxTowerOverlap);
+
+		return [];
+	}
+
+	// List of chosen candidate segments
+	let placedEntities = placement.segments
+
+	// placement.r is the remaining distance to target without towers (must be <= (N-1) * towerWidth)
+	let spacing = placement.r / (2 * placedEntities.length);
+
+	let dirNormalized = { "x": dir.x / len, "z": dir.z / len };
+
+	// Angle of this wall segment (relative to world-space X/Z axes)
+	let angle = -Math.atan2(dir.z, dir.x);
+
+	let progress = 0;
+	let result = [];
+
+	for (let i = 0; i < placedEntities.length; ++i)
+	{
+		let placedEntity = placedEntities[i];
+
+		result.push({
+			"template": placedEntity.template,
+			"pos": {
+				"x": start.pos.x + (progress + spacing + placedEntity.len/2) * dirNormalized.x,
+				"z": start.pos.z + (progress + spacing + placedEntity.len/2) * dirNormalized.z
+			},
+			"angle": angle,
+		});
+
+		if (i < placedEntities.length - 1)
 		{
-			var placedEntity = placedEntities[i];
-			var targetX = start.pos.x + (progress + s + placedEntity.len/2) * dirNormalized.x;
-			var targetZ = start.pos.z + (progress + s + placedEntity.len/2) * dirNormalized.z;
-			
 			result.push({
-				"template": placedEntity.template,
-				"pos": {"x": targetX, "z": targetZ},
+				"template": wallSet.templates.tower,
+				"pos": {
+					"x": start.pos.x + (progress + placedEntity.len + 2 * spacing) * dirNormalized.x,
+					"z": start.pos.z + (progress + placedEntity.len + 2 * spacing) * dirNormalized.z
+				},
 				"angle": angle,
 			});
-			
-			if (i < placedEntities.length - 1)
-			{
-				var towerX = start.pos.x + (progress + placedEntity.len + 2*s) * dirNormalized.x;
-				var towerZ = start.pos.z + (progress + placedEntity.len + 2*s) * dirNormalized.z;
-				
-    			result.push({
-    				"template": wallSet.templates.tower,
-    				"pos": {"x": towerX, "z": towerZ},
-    				"angle": angle,
-    			});
-			}
-			
-			progress += placedEntity.len + 2*s;
 		}
+
+		progress += placedEntity.len + 2 * spacing;
 	}
-	else
-	{
-		error("No placement possible for distance=" + Math.round(len*1000)/1000.0 + ", minOverlap=" + wallSet.minTowerOverlap + ", maxOverlap=" + wallSet.maxTowerOverlap);
-	}
-	
+
 	return result;
 }
 
@@ -160,15 +178,15 @@ function GetWallSegmentsRec(d, candidateSegments, minOverlap, maxOverlap, t, dis
 	// backtrack and try a wall segment of the next length instead. Note that we should prefer to use the long segments first since
 	// they can be replaced by gates.
 	
-	for each (var candSegment in candidateSegments)
+	for (let candSegment of candidateSegments)
 	{
 		segments.push(candSegment);
 		
-		var newDistSoFar = distSoFar + candSegment.len;
-		var r = d - newDistSoFar;
+		let newDistSoFar = distSoFar + candSegment.len;
+		let r = d - newDistSoFar;
 		
-		var rLowerBound = (1 - 2 * maxOverlap) * segments.length * t;
-		var rUpperBound = (1 - 2 * minOverlap) * segments.length * t;
+		let rLowerBound = (1 - 2 * maxOverlap) * segments.length * t;
+		let rUpperBound = (1 - 2 * minOverlap) * segments.length * t;
 		
 		if (r < rLowerBound)
 		{
@@ -179,24 +197,20 @@ function GetWallSegmentsRec(d, candidateSegments, minOverlap, maxOverlap, t, dis
 		}
 		else if (r > rUpperBound)
 		{
-			var recursiveResult = GetWallSegmentsRec(d, candidateSegments, minOverlap, maxOverlap, t, newDistSoFar, segments);
+			let recursiveResult = GetWallSegmentsRec(d, candidateSegments, minOverlap, maxOverlap, t, newDistSoFar, segments);
 			if (!recursiveResult)
 			{
 				// recursive search with this piece yielded no results, pop it and try the next one
 				segments.pop();
 				continue;
 			}
-			else
-				return recursiveResult;
+
+			return recursiveResult;
 		}
-		else
-		{
-			// found a placement
-			return {"segments": segments, "r": r};
-		}
+
+		return { "segments": segments, "r": r };
 	}
 	
-	// no placement possible :(
 	return false;
 }
 
