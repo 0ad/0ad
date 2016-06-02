@@ -56,14 +56,14 @@ function cancelSetup()
 
 function confirmSetup()
 {
-	if (Engine.GetGUIObjectByName("pageHost").hidden)
+	if (!Engine.GetGUIObjectByName("pageJoin").hidden)
 	{
 		let joinPlayerName = Engine.GetGUIObjectByName("joinPlayerName").caption;
 		let joinServer = Engine.GetGUIObjectByName("joinServer").caption;
 		if (startJoin(joinPlayerName, joinServer))
 			switchSetupPage("pageJoin", "pageConnecting");
 	}
-	else
+	else if (!Engine.GetGUIObjectByName("pageHost").hidden)
 	{
 		let hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
 		let hostServerName = Engine.GetGUIObjectByName("hostServerName").caption;
@@ -207,6 +207,7 @@ function switchSetupPage(oldpage, newpage)
 {
 	Engine.GetGUIObjectByName(oldpage).hidden = true;
 	Engine.GetGUIObjectByName(newpage).hidden = false;
+	Engine.GetGUIObjectByName("continueButton").hidden = true;
 }
 
 function startHost(playername, servername)
