@@ -273,8 +273,6 @@ function initGUIObjects()
 
 	if (g_IsController)
 	{
-		// Unique ID to be used for identifying the same game reports for the lobby
-		g_GameAttributes.matchID = Engine.GetMatchID();
 		g_GameAttributes.settings.CheatsEnabled = !g_IsNetworked;
 		g_GameAttributes.settings.RatingEnabled = Engine.IsRankedGame() || undefined;
 
@@ -898,9 +896,6 @@ function loadPersistMatchSettings()
 	let mapSettings = attrs.settings;
 
 	g_GameAttributes = attrs;
-	g_GameAttributes.matchID = Engine.GetMatchID();
-	mapSettings.Seed = Math.floor(Math.random() * 65536);
-	mapSettings.AISeed = Math.floor(Math.random() * 65536);
 
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
@@ -1115,10 +1110,8 @@ function selectMapType(type)
 	if (type != "scenario")
 		g_GameAttributes.settings = {
 			"PlayerData": g_DefaultPlayerData.slice(0, 4),
-			"Seed": Math.floor(Math.random() * 65536),
 			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
 		};
-	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
 
 	initMapNameList();
 
@@ -1263,13 +1256,22 @@ function launchGame()
 		g_GameAttributes.settings.PlayerData[i].Name = !usedName ? chosenName : sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": g_RomanNumbers[usedName+1] });
 	}
 
-	// Copy playernames from initial player assignment to the settings
+	// Copy playernames for the purpose of replays
 	for (let guid in g_PlayerAssignments)
 	{
 		let player = g_PlayerAssignments[guid];
 		if (player.player > 0)	// not observer or GAIA
 			g_GameAttributes.settings.PlayerData[player.player - 1].Name = player.name;
 	}
+
+	// This seed is only used for map-generation
+	if (g_GameAttributes.mapType == "random")
+		g_GameAttributes.settings.Seed = Math.floor(Math.random() * 65536);
+
+	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
+
+	// Used for identifying rated game reports for the lobby
+	g_GameAttributes.matchID = Engine.GetMatchID();
 
 	if (g_IsNetworked)
 	{
