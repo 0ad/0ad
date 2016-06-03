@@ -2,169 +2,112 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="House A">
-      <mesh>structural/iber_house_a.dae</mesh>
-      <props>
-        <prop actor="props/structures/iberians/house_a.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/iber_house_a.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="House B">
-      <mesh>structural/iber_house_b.dae</mesh>
-      <props>
-        <prop actor="props/structures/iberians/house_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/iber_house_b.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="House C">
-      <mesh>structural/iber_house_c.dae</mesh>
-      <props>
-        <prop actor="props/structures/iberians/house_c.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/iber_house_c.png" name="aoTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="House 1">
       <mesh>structural/iber_house_1.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/iber_house_1_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="House 1a">
-      <mesh>structural/iber_house_1.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/woodcord.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
         <texture file="structural/ao/iber_house_1_AO.png" name="aoTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="House 2">
       <mesh>structural/iber_house_2.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/woodcord.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/iber_house_2_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="House 2a">
-      <mesh>structural/iber_house_2.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
         <texture file="structural/ao/iber_house_2_AO.png" name="aoTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="House 3">
       <mesh>structural/iber_house_3.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/well_1_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
         <texture file="structural/ao/iber_house_3_AO.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="House 3a">
-      <mesh>structural/iber_house_3.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/woodcord.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/wood_1_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/iber_house_3_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="House 4">
+    <variant frequency="1" name="House 4">
       <mesh>structural/iber_house_4.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/woodcord.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
         <texture file="structural/ao/iber_house_4_AO.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="House 5">
+    <variant frequency="1" name="House 5">
       <mesh>structural/iber_house_5.dae</mesh>
-      <props>
-        <prop actor="props/special/eyecandy/woodcord.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
         <texture file="structural/ao/iber_house_5_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant>
+    <variant name="vase 1" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+    <variant name="basket 1" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_1" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="vase 2" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+    <variant name="basket 2" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_2" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="vase 3" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+    <variant name="basket 3" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_3" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="vase 4" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+    <variant name="basket 4" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_4" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="vase 5" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/vase_iberians_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+    <variant name="basket 5" frequency="1">
+      <props>
+        <prop actor="props/special/eyecandy/basket_iber_a.xml" attachpoint="vase_5" maxheight="20" minheight="-20"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="base" frequency="1">
       <textures>
         <texture file="structural/iber_struct.dds" name="baseTex"/>
         <texture file="structural/iber_struct_norm.png" name="normTex"/>
         <texture file="structural/iber_struct_spec.png" name="specTex"/>
       </textures>
+      <props>
+        <prop actor="props/special/eyecandy/woodcord.xml" attachpoint="woodpile" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>

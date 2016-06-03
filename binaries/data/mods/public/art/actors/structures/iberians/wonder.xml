@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="2" name="House 5">
+    <variant frequency="1" name="Base">
       <mesh>structural/iber_wonder.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_theatron.xml" attachpoint="root"/>
@@ -25,12 +25,6 @@
       </props>
       <textures>
         <texture file="structural/ao/iber_wonder_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant>
-      <textures>
         <texture file="structural/iber_struct.dds" name="baseTex"/>
         <texture file="structural/iber_struct_norm.png" name="normTex"/>
         <texture file="structural/iber_struct_spec.png" name="specTex"/>
@@ -38,7 +32,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
