@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/hele_cc.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/civil_centre.xml" attachpoint="props_main"/>
+      </props>
+      <textures><texture file="structural/hele_struct_2.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
