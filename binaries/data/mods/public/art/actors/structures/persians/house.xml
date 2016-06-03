@@ -2,6 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
+    <variant name="base" frequency="1">
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="House A">
       <mesh>structural/pers_house_a.dae</mesh>
       <props>
@@ -9,10 +18,7 @@
         <prop actor="props/structures/persians/house_a_plants.xml" attachpoint="root"/>
       </props>
       <textures>
-          <texture file="structural/pers_struct.png" name="baseTex"/>
-          <texture file="structural/pers_struct_norm.png" name="normTex"/>
-          <texture file="structural/pers_struct_spec.png" name="specTex"/>
-          <texture file="structural/ao/pers_house_a.png" name="aoTex"/>
+        <texture file="structural/ao/pers_house_a.png" name="aoTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="House B">
@@ -21,9 +27,6 @@
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
       <textures>
-          <texture file="structural/pers_struct.png" name="baseTex"/>
-          <texture file="structural/pers_struct_norm.png" name="normTex"/>
-          <texture file="structural/pers_struct_spec.png" name="specTex"/>
           <texture file="structural/ao/pers_house_b.png" name="aoTex"/>
       </textures>
     </variant>
@@ -34,9 +37,6 @@
         <prop actor="props/structures/persians/house_c_plants.xml" attachpoint="root"/>
       </props>
       <textures>
-          <texture file="structural/pers_struct.png" name="baseTex"/>
-          <texture file="structural/pers_struct_norm.png" name="normTex"/>
-          <texture file="structural/pers_struct_spec.png" name="specTex"/>
           <texture file="structural/ao/pers_house_c.png" name="aoTex"/>
       </textures>
     </variant>
@@ -47,15 +47,12 @@
         <prop actor="props/structures/persians/house_d_plants.xml" attachpoint="root"/>
       </props>
       <textures>
-          <texture file="structural/pers_struct.png" name="baseTex"/>
-          <texture file="structural/pers_struct_norm.png" name="normTex"/>
-          <texture file="structural/pers_struct_spec.png" name="specTex"/>
           <texture file="structural/ao/pers_house_d.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
@@ -65,5 +62,5 @@
       </props>
     </variant>
   </group>
-      <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
