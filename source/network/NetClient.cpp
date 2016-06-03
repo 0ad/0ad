@@ -275,19 +275,19 @@ void CNetClient::PostPlayerAssignmentsToScript()
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue msg(cx);
-	GetScriptInterface().Eval("({'type':'players', 'hosts':{}})", &msg);
+	GetScriptInterface().Eval("({'type':'players', 'newAssignments':{}})", &msg);
 
-	JS::RootedValue hosts(cx);
-	GetScriptInterface().GetProperty(msg, "hosts", &hosts);
+	JS::RootedValue newAssignments(cx);
+	GetScriptInterface().GetProperty(msg, "newAssignments", &newAssignments);
 
 	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
-		JS::RootedValue host(cx);
-		GetScriptInterface().Eval("({})", &host);
-		GetScriptInterface().SetProperty(host, "name", std::wstring(p.second.m_Name), false);
-		GetScriptInterface().SetProperty(host, "player", p.second.m_PlayerID, false);
-		GetScriptInterface().SetProperty(host, "status", p.second.m_Status, false);
-		GetScriptInterface().SetProperty(hosts, p.first.c_str(), host, false);
+		JS::RootedValue assignment(cx);
+		GetScriptInterface().Eval("({})", &assignment);
+		GetScriptInterface().SetProperty(assignment, "name", CStrW(p.second.m_Name), false);
+		GetScriptInterface().SetProperty(assignment, "player", p.second.m_PlayerID, false);
+		GetScriptInterface().SetProperty(assignment, "status", p.second.m_Status, false);
+		GetScriptInterface().SetProperty(newAssignments, p.first.c_str(), assignment, false);
 	}
 
 	PushGuiMessage(msg);

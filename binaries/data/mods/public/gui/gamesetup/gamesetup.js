@@ -708,54 +708,53 @@ function handleGamesetupMessage(message)
  */
 function handlePlayerAssignmentMessage(message)
 {
-	let resetReady = false;
-	let newGUID = "";
+	for (let guid in message.newAssignments)
+		if (!g_PlayerAssignments[guid])
+			onClientJoin(guid, message.newAssignments);
 
-	// Report joinings
-	for (let guid in message.hosts)
-	{
-		if (g_PlayerAssignments[guid])
-			continue;
-
-		addChatMessage({ "type": "connect", "guid": guid, "username": message.hosts[guid].name });
-		newGUID = guid;
-
-		// Assign the new player
-		if (!g_IsController || message.hosts[guid].player != -1)
-			continue;
-
-		let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
-			Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
-		);
-
-		if (freeSlot != -1)
-			Engine.AssignNetworkPlayer(freeSlot+1, guid);
-	}
-
-	// Report leavings
 	for (let guid in g_PlayerAssignments)
-	{
-		if (message.hosts[guid])
-			continue;
+		if (!message.newAssignments[guid])
+			onClientLeave(guid);
 
-		addChatMessage({ "type": "disconnect", "guid": guid });
+	g_PlayerAssignments = message.newAssignments;
 
-		if (g_PlayerAssignments[guid].player != -1)
-			resetReady = true; // Observers shouldn't reset ready.
-	}
-
-	g_PlayerAssignments = message.hosts;
 	updatePlayerList();
-
-	if (g_PlayerAssignments[newGUID] && g_PlayerAssignments[newGUID].player != -1)
-		resetReady = true;
-
-	if (resetReady)
-		resetReadyData();
-
 	updateReadyUI();
-
 	sendRegisterGameStanza();
+}
+
+function onClientJoin(newGUID, newAssignments)
+{
+	addChatMessage({
+		"type": "connect",
+		"guid": newGUID,
+		"username": newAssignments[newGUID].name
+	});
+
+	// Assign joining observers to unused player numbers
+	if (!g_IsController || newAssignments[newGUID].player != -1)
+		return;
+
+	let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
+		Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
+	);
+
+	if (freeSlot == -1)
+		return;
+
+	Engine.AssignNetworkPlayer(freeSlot + 1, newGUID);
+	resetReadyData();
+}
+
+function onClientLeave(guid)
+{
+	addChatMessage({
+		"type": "disconnect",
+		"guid": guid
+	});
+
+	if (g_PlayerAssignments[guid].player != -1)
+		resetReadyData();
 }
 
 function getMapDisplayName(map)
@@ -1446,7 +1445,6 @@ function updateGUIObjects()
 	// Game attributes include AI settings, so update the player list
 	updatePlayerList();
 
-	// We should have everyone confirm that the new settings are acceptable.
 	resetReadyData();
 
 	// Refresh AI config page
@@ -1489,7 +1487,7 @@ function updateMapDescription()
 	let victoryTitle;
 
 	if (victoryIdx == -1)
-		victoryTitle = translateWithContext("victory condition", "Unknown")
+		victoryTitle = translateWithContext("victory condition", "Unknown");
 	else
 	{
 		if (g_VictoryConditions.Name[victoryIdx] == "wonder")
@@ -1817,9 +1815,18 @@ function resetCivilizations()
 
 function toggleReady()
 {
-	g_IsReady = !g_IsReady;
+	setReady(!g_IsReady);
+}
 
-	Engine.SendNetworkReady(+g_IsReady);
+function setReady(ready, sendMessage = true)
+{
+	g_IsReady = ready;
+
+	if (sendMessage)
+		Engine.SendNetworkReady(+g_IsReady);
+
+	if (g_IsController)
+		return;
 
 	let button = Engine.GetGUIObjectByName("startGame");
 
@@ -1899,15 +1906,10 @@ function resetReadyData()
 	else if (g_IsController)
 	{
 		Engine.ClearAllPlayerReady();
-		g_IsReady = true;
-		Engine.SendNetworkReady(1);
+		setReady(true);
 	}
 	else
-	{
-		g_IsReady = false;
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
-		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you accept the current settings and are ready to play!");
-	}
+		setReady(false, false);
 }
 
 /**
