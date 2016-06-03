@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 10:38+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 18:49+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -465,13 +465,11 @@ msgid "Théātron"
 msgstr "Théātron"
 
 #: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
 #: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Hellēnízein (helenizace - pořečtění): +20% na územním vlivu pro všechny budovy, po dobu existence Théātronu."
+"Hellēnízein (Hellenization): +20% territory influence for all buildings with"
+" every Theatron owned."
+msgstr "Hellēnízein (helenizace - pořečtění): +20% na územním vlivu pro všechny budovy s každým vlastněným divadlem (Théātron)."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -960,6 +958,13 @@ msgstr "Stavějte obléhací stroje. Zkoumejte obléhací technologie."
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
 msgstr "Asklēpieîon"
+
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
+"while the Theatron exists."
+msgstr "Hellēnízein (helenizace - pořečtění): +20% na územním vlivu pro všechny budovy, po dobu existence Théātronu."
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"

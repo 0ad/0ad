@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 13:26+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 10:30+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -173,8 +173,10 @@ msgid "Library Aura"
 msgstr "Aura de biblioteca"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr "Reduce un 10% el coste de todas las tecnologías restantes."
+msgid ""
+"Reduce the cost and research time of technologies by 10% with every Library "
+"owned."
+msgstr "Cada biblioteca reduce un 10% el coste y tiempo de investigación de todas las tecnologías restantes."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -214,8 +216,8 @@ msgid "Teacher Aura"
 msgstr "Aura de instructor"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr "Bonifica edificios con una investigación un 50% más rápida."
+msgid "Empower a building with -50% research time when garrisoning it."
+msgstr "Bonifica edificios con una investigación un 50% más rápida al guarnecerse en su interior."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -349,8 +351,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Sana a las unidades cercanas con 1 PV por segundo."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr "Amplía la influencia territorial."
+msgid "Increase territory influence by 20% with every Theatron owned."
+msgstr "Aumenta en +20% la influencia territorial con cada Theatron construido."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -361,17 +363,22 @@ msgid "Units on walls have 3 extra Armor levels and higher vision."
 msgstr "Las unidades que se encuentren sobre las murallas tendrán 3 niveles de protección adicional y mejor campo de visión."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Aura de la maravilla"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr "Amplia a +10 el límite de población."
+msgid "Increase the population limit by 10 with every Wonder owned."
+msgstr "Amplia a +10 el límite de población con cada maravilla construida."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Aura de Gloriosa expansión"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr "Amplia a +40 el límite de población. (Necesita «Gloriosa expansión»)"
+msgid ""
+"Further increase the population limit by 40 with every Wonder owned "
+"(requires \"Glorious Expansion\" tech)."
+msgstr "Amplia a +40 el límite de población con cada maravilla construida. (Necesita «Gloriosa expansión»)"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

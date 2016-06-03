@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 10:40+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 09:56+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -173,8 +173,10 @@ msgid "Library Aura"
 msgstr "Aura Leabharlainn"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr "Ìslich a' chosgais air gach teicneolas a tha air fhàgail le 10%."
+msgid ""
+"Reduce the cost and research time of technologies by 10% with every Library "
+"owned."
+msgstr "Ìslichidh gach leabharlann a th' agad a' chosgais air gach teicneolas a tha air fhàgail le 10%."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -214,8 +216,8 @@ msgid "Teacher Aura"
 msgstr "Aura oide"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr "Cuir cumhachd dhe -50% air ùine rannsachaidh togalaich."
+msgid "Empower a building with -50% research time when garrisoning it."
+msgstr "Cuir cumhachd dhe -50% air ùine rannsachaidh togalaich nuair a bhios gearastan ann."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -349,8 +351,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Slànaichidh e aonadan am fagas le 1 PB gach diog."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr "Meudaich buaidh an ranntair."
+msgid "Increase territory influence by 20% with every Theatron owned."
+msgstr "Meudaichidh gach tèatron a th' agad a' bhuaidh ranntair le 20%."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -361,17 +363,22 @@ msgid "Units on walls have 3 extra Armor levels and higher vision."
 msgstr "Bidh 3 a bharrachd de dh’armachd agus barrachd lèirsinne aig aonad air balla."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Aura mìorbhail"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr "+10% ris an tomhas-shluaigh as àirde"
+msgid "Increase the population limit by 10 with every Wonder owned."
+msgstr "Meudaichidh gach mìorbhail a th' agad an tomhas-sluaigh le 10."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Aura a' mheudachaidh ghlòrmhoir"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr "+40 a bharrachd air an tomhas-sluaigh (le feum air am teicneolas \"Meudachadh glòrmhor\")"
+msgid ""
+"Further increase the population limit by 40 with every Wonder owned "
+"(requires \"Glorious Expansion\" tech)."
+msgstr "Cuiridh gach mìorbhail a th' agad 40 a bharrachd ris an tomhas-sluaigh (le feum air an teicneolas \"Meudachadh glòrmhor\")"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:42+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 09:32+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -173,8 +173,10 @@ msgid "Library Aura"
 msgstr "Книжовна аура"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr "Намалява цената на всички останали технологии с 10%."
+msgid ""
+"Reduce the cost and research time of technologies by 10% with every Library "
+"owned."
+msgstr "Намалява цената и времето за проучване на всички технологии с 10% за всяка притежавана библиотека."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -214,8 +216,8 @@ msgid "Teacher Aura"
 msgstr "Учителска аура"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr "Намалява времето за извършване на проучвания в една сграда с -50%."
+msgid "Empower a building with -50% research time when garrisoning it."
+msgstr "Намалява времето за извършване на проучвания в една сграда с -50% при наличие на гарнизон."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -349,8 +351,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Лекува околните единици с 1 ЖТ в секунда"
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr "Увеличава териториалното влияние."
+msgid "Increase territory influence by 20% with every Theatron owned."
+msgstr "Увеличава териториалното влияние с 20% за всеки притежаван тѐатрон."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -361,17 +363,22 @@ msgid "Units on walls have 3 extra Armor levels and higher vision."
 msgstr "Единиците на стените получават 3 допълнителни точки броня и по-добра видимост."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Чудодейна аура"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr "+10 максимално население"
+msgid "Increase the population limit by 10 with every Wonder owned."
+msgstr "Максималното население се увеличава с 10 за всяко притежавано чудо."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Аура на славното разрастване"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr "+40 максимално население (изисква технологията „Славно разрастване“)"
+msgid ""
+"Further increase the population limit by 40 with every Wonder owned "
+"(requires \"Glorious Expansion\" tech)."
+msgstr "Максималното население се увеличава с още 10 за всяко притежавано чудо (изисква технологията „Славно разрастване“)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

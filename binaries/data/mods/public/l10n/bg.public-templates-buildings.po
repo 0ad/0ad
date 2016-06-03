@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:43+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 09:19+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -472,13 +472,11 @@ msgid "Théātron"
 msgstr "Тѐатрон"
 
 #: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
 #: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Еленѝзен (Елинизация): +20% териториално влияние за всички сгради докато съществува тѐатронът."
+"Hellēnízein (Hellenization): +20% territory influence for all buildings with"
+" every Theatron owned."
+msgstr "Еленѝзен (Елинизация): +20% териториално влияние за всички сгради за всеки притежаван тѐатрон."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -967,6 +965,13 @@ msgstr "Строи обсадни оръжия. Проучва обсадни т
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
 msgstr "Асклепиейон"
+
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
+"while the Theatron exists."
+msgstr "Еленѝзен (Елинизация): +20% териториално влияние за всички сгради докато съществува тѐатронът."
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"

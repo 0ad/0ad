@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-29 13:16+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 23:22+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -466,13 +466,11 @@ msgid "Théātron"
 msgstr "希臘劇院"
 
 #: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
 #: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Hellēnízein（希臘化）：當希臘戲劇院仍存在時，所有建築物+20%領土範圍。"
+"Hellēnízein (Hellenization): +20% territory influence for all buildings with"
+" every Theatron owned."
+msgstr "Hellēnízein（希臘化）：每個擁有的希臘戲劇院都會讓所有建築物 +20% 領土範圍。"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -961,6 +959,13 @@ msgstr "建造攻城武器。研究攻城武器科技。"
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
 msgstr "Asklēpieîon"
+
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
+"while the Theatron exists."
+msgstr "Hellēnízein（希臘化）：當希臘戲劇院仍存在時，所有建築物+20%領土範圍。"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"

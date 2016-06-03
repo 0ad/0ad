@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:41+0000\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-05-30 08:34+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -462,12 +462,10 @@ msgid "Théātron"
 msgstr ""
 
 #: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
 #: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
+"Hellēnízein (Hellenization): +20% territory influence for all buildings with"
+" every Theatron owned."
 msgstr ""
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
@@ -956,6 +954,13 @@ msgstr ""
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
+msgstr ""
+
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
+"while the Theatron exists."
 msgstr ""
 
 #: simulation/templates/structures/maur_barracks.xml:9

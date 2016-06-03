@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Amin Behshad, 2015
+# Hamed Farri <hamed.farri@gmail.com>, 2016
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-06-02 12:32+0000\n"
+"Last-Translator: Hamed Farri <hamed.farri@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "مرکز شهر"
+msgstr "ساختمان اصلی شهر"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
@@ -33,7 +34,7 @@ msgstr "مرکز شهر"
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr ""
+msgstr "برای بدست آوردن دستگاه های بزرگ از اراضی و آموزش شهروندان و ... ."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -42,11 +43,11 @@ msgstr "مرکز تمدن"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "ایوان"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "ایوان سلطنتی یونانی"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Add +10 to Population Cap. Recruit special units."
@@ -65,7 +66,7 @@ msgstr "افزایش حد جمعیت"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Village"
-msgstr "روستا"
+msgstr "دهکده"
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_civic_house.xml:33
@@ -464,12 +465,10 @@ msgid "Théātron"
 msgstr "Théātron"
 
 #: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
 #: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
+"Hellēnízein (Hellenization): +20% territory influence for all buildings with"
+" every Theatron owned."
 msgstr ""
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
@@ -960,6 +959,13 @@ msgstr ""
 msgid "Asklēpieîon"
 msgstr ""
 
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
+"while the Theatron exists."
+msgstr ""
+
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
 msgstr "Sainyavasa"
@@ -1090,7 +1096,7 @@ msgstr "کاخ پارسیان"
 
 #: simulation/templates/structures/pers_apadana.xml:27
 msgid "Apadana"
-msgstr "آپادانا"
+msgstr "کاخ آپادانا"
 
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""

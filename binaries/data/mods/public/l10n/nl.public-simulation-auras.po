@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Sander Deryckere, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-06-02 18:52+0000\n"
+"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +120,7 @@ msgstr "Schipherstellingsaura"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr "Herstelt een ship in deze haven aan 3 HP per seconde."
+msgstr "In de scheepswerf herstelt een schip aan 3 HP per seconde."
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -170,11 +171,13 @@ msgstr "Geef alle Iberische eenheden met zicht op het aura +2 slag- en +3 steek 
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
-msgstr ""
+msgstr "Bibliotheekaura"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr ""
+msgid ""
+"Reduce the cost and research time of technologies by 10% with every Library "
+"owned."
+msgstr "Verminder de kost en onderzoekstijd van technologieën met 10% per bibliotheek."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -202,20 +205,20 @@ msgstr "+5 aanvalskracht en +2 veroveringspunten voor kampioenen."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Evangelism Aura"
-msgstr ""
+msgstr "Evangelisme aura"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid ""
 "All player and allied Temple technologies -50% cost and -50% research time."
-msgstr ""
+msgstr "Technologieën in eigen en geallieerde tempels kosten 50% minder aan grondstoffen en tijd."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
-msgstr ""
+msgstr "Lerarenaura"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr ""
+msgid "Empower a building with -50% research time when garrisoning it."
+msgstr "50% minder onderzoekstijd voor gebouwen die bemand worden door deze held."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -349,8 +352,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Genees nabije eenheden aan 1 leven per seconde."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr "Vergroot het territorium voor alle gebouwen."
+msgid "Increase territory influence by 20% with every Theatron owned."
+msgstr "Verhoog de het territorium voor alle gebouwen met 20% per Theater."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -361,17 +364,22 @@ msgid "Units on walls have 3 extra Armor levels and higher vision."
 msgstr "Eenheden op de muren hebben +3 pantser en een groter gezichtsveld."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Wonder aura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr "+10 extra maximale bevolkingslimiet."
+msgid "Increase the population limit by 10 with every Wonder owned."
+msgstr "Verhoog de maximale bevolkingslimiet met 10 per Wonder."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Glorieus Expansieaura"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr "+40 extra maximale bevolkingslimiet (vereist \"Glorieuze Expansie\" technologie)."
+msgid ""
+"Further increase the population limit by 40 with every Wonder owned "
+"(requires \"Glorious Expansion\" tech)."
+msgstr "Verhoog de maximale bevolkingslimiet verder met 40 per Wonder (vereist de \"Glorieuze Expansie\" technologie)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

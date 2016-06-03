@@ -26,12 +26,13 @@
 # Woratiklis, 2015
 # Woratiklis, 2015
 # Виталий Орехов <7opex0@mail.ru>, 2016
+# Николай Авдеев <nickkolok@mail.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-05-30 09:01+0200\n"
+"PO-Revision-Date: 2016-06-01 19:38+0000\n"
+"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -485,13 +486,11 @@ msgid "Théātron"
 msgstr "Театрон"
 
 #: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
 #: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
 msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Экселлинисмос (Эллинизация): до тех пор пока имеется театрон, все здания увеличивают влияние на территорию на 20%."
+"Hellēnízein (Hellenization): +20% territory influence for all buildings with"
+" every Theatron owned."
+msgstr "Hellēnízein (Эллинизация): +20% территориального влияния с каждым имеющимся Театроном."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -962,7 +961,7 @@ msgstr "Библиотеке"
 #: simulation/templates/structures/ptol_library.xml:19
 #: simulation/templates/structures/sele_library.xml:19
 msgid "Research special technologies."
-msgstr ""
+msgstr "Изучение особых технологий."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -980,6 +979,13 @@ msgstr "Позволяет строить осадные орудия и исс�
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
 msgstr "Асклепион"
+
+#: simulation/templates/structures/mace_theatron.xml:27
+#: simulation/templates/structures/theb_theatron.xml:27
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence for all buildings "
+"while the Theatron exists."
+msgstr "Экселлинисмос (Эллинизация): до тех пор пока имеется театрон, все здания увеличивают влияние на территорию на 20%."
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
