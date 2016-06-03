@@ -102,7 +102,7 @@ Map.prototype.validT = function(x, z, distance)
 	}
 	else
 		// Within map square
-		return x >= 0 && z >= 0 && x < this.size && z < this.size;
+		return x >= distance && z >= distance && x < this.size - distance && z < this.size - distance;
 };
 
 // Check bounds on tile map
