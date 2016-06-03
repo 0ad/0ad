@@ -124,7 +124,7 @@ function pollAndHandleNetworkClient()
 				break;
 
 			case "players":
-				g_PlayerAssignments = message.hosts;
+				g_PlayerAssignments = message.newAssignments;
 				break;
 
 			case "start":

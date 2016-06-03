@@ -461,37 +461,16 @@ function handleNetStatusMessage(message)
 
 function handlePlayerAssignmentsMessage(message)
 {
-	// Find and report all leavings
 	for (let guid in g_PlayerAssignments)
-	{
-		if (message.hosts[guid])
-			continue;
+		if (!message.newAssignments[guid])
+			onClientLeave(guid);
 
-		setClientPauseState(guid, false);
+	let joins = Object.keys(message.newAssignments).filter(guid => !g_PlayerAssignments[guid]);
 
-		addChatMessage({ "type": "disconnect", "guid": guid });
+	g_PlayerAssignments = message.newAssignments;
 
-		for (let id in g_Players)
-			if (g_Players[id].guid == guid)
-				g_Players[id].offline = true;
-	}
-
-	let joins = Object.keys(message.hosts).filter(guid => !g_PlayerAssignments[guid]);
-
-	g_PlayerAssignments = message.hosts;
-
-	// Report all joinings
 	joins.forEach(guid => {
-
-		let playerID = g_PlayerAssignments[guid].player;
-		if (g_Players[playerID])
-		{
-			g_Players[playerID].guid = guid;
-			g_Players[playerID].name = g_PlayerAssignments[guid].name;
-			g_Players[playerID].offline = false;
-		}
-
-		addChatMessage({ "type": "connect", "guid": guid });
+		onClientJoin(guid);
 	});
 
 	updateChatAddressees();
@@ -502,6 +481,37 @@ function handlePlayerAssignmentsMessage(message)
 		let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
 		Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
 	}
+}
+
+function onClientJoin(guid)
+{
+	let playerID = g_PlayerAssignments[guid].player;
+
+	if (g_Players[playerID])
+	{
+		g_Players[playerID].guid = guid;
+		g_Players[playerID].name = g_PlayerAssignments[guid].name;
+		g_Players[playerID].offline = false;
+	}
+
+	addChatMessage({
+		"type": "connect",
+		"guid": guid
+	});
+}
+
+function onClientLeave(guid)
+{
+	setClientPauseState(guid, false);
+
+	for (let id in g_Players)
+		if (g_Players[id].guid == guid)
+			g_Players[id].offline = true;
+
+	addChatMessage({
+		"type": "disconnect",
+		"guid": guid
+	});
 }
 
 function updateChatAddressees()
