@@ -763,7 +763,7 @@ function getMapDisplayName(map)
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{
-		log("Map data missing in scenario '" + map + "' - likely unsupported format");
+		warn("Map without name: " + map);
 		return map;
 	}
 
@@ -818,11 +818,13 @@ function initMapNameList()
 {
 	if (!g_MapPath[g_GameAttributes.mapType])
 	{
-		error("initMapNameList: Unexpected map type " + g_GameAttributes.mapType);
+		error("Unexpected map type: " + g_GameAttributes.mapType);
 		return;
 	}
 
-	let mapFiles = g_GameAttributes.mapType == "random" ? getJSONFileList(g_GameAttributes.mapPath) : getXMLFileList(g_GameAttributes.mapPath);
+	let mapFiles = g_GameAttributes.mapType == "random" ?
+		getJSONFileList(g_GameAttributes.mapPath) :
+		getXMLFileList(g_GameAttributes.mapPath);
 
 	// Apply map filter, if any defined
 	// TODO: Should verify these are valid maps before adding to list
@@ -869,7 +871,9 @@ function loadMapData(name)
 		return { "settings": { "Name": "", "Description": "" } };
 
 	if (!g_MapData[name])
-		g_MapData[name] = g_GameAttributes.mapType == "random" ? Engine.ReadJSONFile(name + ".json") : Engine.LoadMapSettings(name);
+		g_MapData[name] = g_GameAttributes.mapType == "random" ?
+			Engine.ReadJSONFile(name + ".json") :
+			Engine.LoadMapSettings(name);
 
 	return g_MapData[name];
 }
@@ -1028,7 +1032,6 @@ function onTick()
  */
 function selectNumPlayers(num)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController || g_GameAttributes.mapType != "random")
 		return;
 
@@ -1092,7 +1095,6 @@ function ensureUniquePlayerColors(playerData)
  */
 function selectMapType(type)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
@@ -1120,7 +1122,6 @@ function selectMapType(type)
 
 function selectMapFilter(id)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
@@ -1133,7 +1134,6 @@ function selectMapFilter(id)
 
 function selectMap(name)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController || !name)
 		return;
 
@@ -1174,21 +1174,24 @@ function selectMap(name)
 			g_GameAttributes.settings.PlayerData[i].AIDiff = g_DefaultPlayerData[i].AIDiff;
 	}
 
-	// Reset player assignments on map change
-	if (!g_IsNetworked)
-		g_PlayerAssignments = { "local": { "name": singleplayerName(), "player": 1, "civ": "", "team": -1, "ready": 0 } };
-
-	else
-	{
-		let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;
-
+	if (g_IsNetworked)
+		// Unassign excess players
 		for (let guid in g_PlayerAssignments)
-		{	// Unassign extra players
+		{
 			let player = g_PlayerAssignments[guid].player;
-			if (player <= g_MaxPlayers && player > numPlayers)
+			if (player > g_GameAttributes.settings.PlayerData.length)
 				Engine.AssignNetworkPlayer(player, "");
 		}
-	}
+	else
+		g_PlayerAssignments = {
+			"local": {
+				"name": singleplayerName(),
+				"player": 1,
+				"civ": "",
+				"team": -1,
+				"ready": 0
+			}
+		};
 
 	updateGameAttributes();
 }
@@ -1556,10 +1559,7 @@ function AIConfigCallback(ai)
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
 
-	if (g_IsNetworked)
-		Engine.SetNetworkGameAttributes(g_GameAttributes);
-	else
-		updatePlayerList();
+	updateGameAttributes();
 }
 
 function updatePlayerList()
@@ -1739,7 +1739,6 @@ function swapPlayers(guid, newSlot)
 	else
 		g_PlayerAssignments[guid].player = newPlayerID;
 
-	// Remove AI from this player slot
 	g_GameAttributes.settings.PlayerData[newSlot].AI = "";
 }
 
@@ -1819,18 +1818,18 @@ function resetCivilizations()
 function toggleReady()
 {
 	g_IsReady = !g_IsReady;
-	if (g_IsReady)
-	{
-		Engine.SendNetworkReady(1);
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm not ready");
-		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are not ready to play.");
-	}
-	else
-	{
-		Engine.SendNetworkReady(0);
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
-		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are ready to play!");
-	}
+
+	Engine.SendNetworkReady(+g_IsReady);
+
+	let button = Engine.GetGUIObjectByName("startGame");
+
+	button.caption = g_IsReady ?
+		translate("I'm not ready!") :
+		translate("I'm ready");
+
+	button.tooltip = g_IsReady ?
+		translate("State that you are not ready to play.") :
+		translate("State that you are ready to play!");
 }
 
 function updateReadyUI()
