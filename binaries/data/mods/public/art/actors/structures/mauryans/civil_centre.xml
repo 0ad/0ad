@@ -9,28 +9,27 @@
       <mesh>structural/maur_cc_struct.dae</mesh>
       <props>
         <prop actor="props/structures/mauryans/cc_lions.xml" attachpoint="root"/>
-		<prop actor="props/structures/mauryans/cc_pillars.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryans/cc_pillars.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryans/cc_plants.xml" attachpoint="root"/>
-		<prop actor="props/structures/mauryans/cc_struct_b.xml" attachpoint="root"/>
-		<prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/structures/mauryans/cc_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-    <textures>
-	  <texture file="structural/maur_struct.png" name="baseTex"/>
-	  <texture file="structural/maur_struct_spec.png" name="specTex"/>
-	  <texture file="structural/maur_struct_norm.png" name="normTex"/>
-      <texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
-    </textures>
+      <textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+        <texture file="structural/maur_struct_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_civic_ao.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_mauryans.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
   </group>
-  
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
