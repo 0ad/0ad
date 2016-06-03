@@ -24,18 +24,16 @@ function init()
 
 function placeButtons()
 {
-	const numButtons = 20;
-	if (g_PanelNames.length > numButtons)
-		warn("Could not display some credits.");
 
-	for (let i = 0; i < numButtons; ++i)
+	for (let i = 0; i < g_PanelNames.length; ++i)
 	{
 		let button = Engine.GetGUIObjectByName("creditsPanelButton[" + i + "]");
-		if (i >= g_PanelNames.length)
+		if (!button)
 		{
-			button.hidden = true;
-			continue;
+			warn("Could not display some credits.");
+			break;
 		}
+		button.hidden = false;
 		let size = button.size;
 		size.top = i * 35;
 		size.bottom = size.top + 30;
