@@ -2,16 +2,13 @@ const g_MaxHeadingTitle= 8;
 
 // const for filtering long collective headings
 const g_LongHeadingWidth = 250;
-// Vertical size of player box
+
 const g_PlayerBoxYSize = 30;
-// Gap between players boxes
 const g_PlayerBoxGap = 2;
-// Alpha for player box
 const g_PlayerBoxAlpha = " 32";
-// Alpha for player color box
 const g_PlayerColorBoxAlpha = " 255";
-// yStart value for spacing teams boxes (and noTeamsBox)
 const g_TeamsBoxYStart = 65;
+
 // Colors used for units and buildings
 const g_TrainedColor = '[color="201 255 200"]';
 const g_LostColor = '[color="255 213 213"]';
@@ -25,40 +22,51 @@ const g_ResourcesTypes = [ "food", "wood", "stone", "metal" ];
 const g_IncomeColor = '[color="201 255 200"]';
 const g_OutcomeColor = '[color="255 213 213"]';
 
-const g_DefaultDecimal = "0.00";
 const g_InfiniteSymbol = "\u221E";
-// Load data
+
 var g_CivData = loadCivData();
 var g_Teams = [];
+
 // TODO set g_PlayerCount as playerCounters.length
 var g_PlayerCount = 0;
+
 // Count players without team (or all if teams are not displayed)
 var g_WithoutTeam = 0;
 var g_GameData;
 
-/**
- * Select active panel
- * @param panelNumber Number of panel, which should get active state (integer)
- */
-function selectPanel(panelNumber)
+function selectPanel(panel)
 {
-	let panelNames = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel' ];
+	// TODO: move panel buttons to a custom parent object
 
-	function adjustTabDividers(tabSize)
-	{
-		let leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
-		let rightSpacer = Engine.GetGUIObjectByName("tabDividerRight");
-		leftSpacer.size = "20 " + leftSpacer.size.top + " " + (tabSize.left + 2) + " " + leftSpacer.size.bottom;
-		rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
-	}
+	for (let button of Engine.GetGUIObjectByName("summaryWindow").children)
+		if (button.name.endsWith("PanelButton"))
+			button.sprite = "BackgroundTab";
 
-	for (let i = 0; i < panelNames.length; ++i)
-		Engine.GetGUIObjectByName(panelNames[i] + 'Button').sprite = "BackgroundTab";
+	panel.sprite = "ForegroundTab";
 
-	Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').sprite = "ForegroundTab";
-	adjustTabDividers(Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').size);
+	adjustTabDividers(panel.size);
 
-	updatePanelData(g_ScorePanelsData[panelNumber]);
+	updatePanelData(g_ScorePanelsData[panel.name.substr(0, panel.name.length - "PanelButton".length)]);
+}
+
+function adjustTabDividers(tabSize)
+{
+	let leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
+	let rightSpacer = Engine.GetGUIObjectByName("tabDividerRight");
+
+	leftSpacer.size = [
+		20,
+		leftSpacer.size.top,
+		tabSize.left + 2,
+		leftSpacer.size.bottom
+	].join(" ");
+
+	rightSpacer.size = [
+		tabSize.right - 2,
+		rightSpacer.size.top,
+		"100%-20",
+		rightSpacer.size.bottom
+	].join(" ");
 }
 
 function updatePanelData(panelInfo)
@@ -104,6 +112,7 @@ function updatePanelData(panelInfo)
 		let rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
 		rowPlayerObject.sprite = colorString + g_PlayerBoxAlpha;
+
 		let boxSize = rowPlayerObject.size;
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
@@ -114,16 +123,14 @@ function updatePanelData(panelInfo)
 		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.players[i+1].name;
 
 		let civIcon = Engine.GetGUIObjectByName(playerCivicBoxColumn);
-		civIcon.sprite = "stretched:"+g_CivData[playerState.civ].Emblem;
+		civIcon.sprite = "stretched:" + g_CivData[playerState.civ].Emblem;
 		civIcon.tooltip = g_CivData[playerState.civ].Name;
 
-		// Update counters
 		updateCountersPlayer(playerState, panelInfo.counters, playerCounterValue);
 
-		// Calculate g_TeamHelperData
 		calculateTeamCounters(playerState);
 	}
-	// Update team counters
+
 	let teamCounterFn = panelInfo.teamCounterFn;
 	if (g_Teams && teamCounterFn)
 		teamCounterFn(panelInfo.counters);
@@ -176,7 +183,7 @@ function init(data)
 	// Panels
 	g_PlayerCount = data.playerStates.length - 1;
 
-	if (data.mapSettings.LockTeams)	// teams ARE locked
+	if (data.mapSettings.LockTeams)
 	{
 		// Count teams
 		for (let t = 0; t < g_PlayerCount; ++t)
@@ -188,7 +195,7 @@ function init(data)
 		if (g_Teams.length == g_PlayerCount)
 			g_Teams = false;	// Each player has his own team. Displaying teams makes no sense.
 	}
-	else				// teams are NOT locked
+	else
 		g_Teams = false;
 
 	// Erase teams data if teams are not displayed
@@ -206,5 +213,5 @@ function init(data)
 			g_WithoutTeam -= g_Teams[i] ? g_Teams[i] : 0;
 	}
 
-	selectPanel(0);
+	selectPanel(Engine.GetGUIObjectByName("scorePanelButton"));
 }

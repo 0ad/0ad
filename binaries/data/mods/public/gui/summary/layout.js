@@ -1,6 +1,6 @@
-var g_ScorePanelsData = [
-	{	// Scores panel
-		"headings": [	// headings on score panel
+var g_ScorePanelsData = {
+	"score": {
+		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Economy score"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Military score"), "yStart": 16, "width": 100 },
@@ -8,7 +8,7 @@ var g_ScorePanelsData = [
 			{ "caption": translate("Total score"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
-		"counters": [	// counters on score panel
+		"counters": [
 			{ "width": 100, "fn": calculateEconomyScore },
 			{ "width": 100, "fn": calculateMilitaryScore },
 			{ "width": 100, "fn": calculateExplorationScore },
@@ -16,8 +16,8 @@ var g_ScorePanelsData = [
 		],
 		"teamCounterFn": calculateScoreTeam
 	},
-	{	// buildings panel
-		"headings": [	// headings on buildings panel
+	"buildings": {
+		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 105 },
 			{ "caption": translate("Houses"), "yStart": 34, "width": 85 },
@@ -31,7 +31,7 @@ var g_ScorePanelsData = [
 		"titleHeadings": [
 			{ "caption": translate("Buildings Statistics (Constructed / Lost / Destroyed)"), "yStart": 16, "width": (85 * 7 + 105) },	// width = 700
 		],
-		"counters": [	// counters on buildings panel
+		"counters": [
 			{ "width": 105, "fn": calculateBuildings },
 			{ "width": 85, "fn": calculateBuildings },
 			{ "width": 85, "fn": calculateBuildings },
@@ -43,8 +43,8 @@ var g_ScorePanelsData = [
 		],
 		"teamCounterFn": calculateColorsTeam
 	},
-	{	// units panel
-		"headings": [	// headings on units panel
+	"units": {
+		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 120 },
 			{ "caption": translate("Infantry"), "yStart": 34, "width": 100 },
@@ -58,7 +58,7 @@ var g_ScorePanelsData = [
 		"titleHeadings": [
 			{ "caption": translate("Units Statistics (Trained / Lost / Killed)"), "yStart": 16, "width": (100 * 7 + 120) },	// width = 820
 		],
-		"counters": [	// counters on units panel
+		"counters": [
 			{ "width": 120, "fn": calculateUnits },
 			{ "width": 100, "fn": calculateUnits },
 			{ "width": 100, "fn": calculateUnits },
@@ -70,8 +70,8 @@ var g_ScorePanelsData = [
 		],
 		"teamCounterFn": calculateColorsTeam
 	},
-	{	// resources panel
-		"headings": [	// headings on resources panel
+	"resources": {
+		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Food"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Wood"), "yStart": 34, "width": 100 },
@@ -85,7 +85,7 @@ var g_ScorePanelsData = [
 		"titleHeadings": [
 			{ "caption": translate("Resource Statistics (Gathered / Used)"), "yStart": 16, "width": (100 * 4 + 110) }, // width = 510
 		],
-		"counters": [	// counters on resources panel
+		"counters": [
 			{ "width": 100, "fn": calculateResources },
 			{ "width": 100, "fn": calculateResources },
 			{ "width": 100, "fn": calculateResources },
@@ -97,8 +97,8 @@ var g_ScorePanelsData = [
 		],
 		"teamCounterFn": calculateResourcesTeam
 	},
-	{	// market panel
-		"headings": [	// headings on market panel
+	"market": {
+		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Food exchanged"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Wood exchanged"), "yStart": 16, "width": 100 },
@@ -108,7 +108,7 @@ var g_ScorePanelsData = [
 			{ "caption": translate("Trade income"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
-		"counters": [	// counters on market panel
+		"counters": [
 			{ "width": 100, "fn": calculateResourceExchanged },
 			{ "width": 100, "fn": calculateResourceExchanged },
 			{ "width": 100, "fn": calculateResourceExchanged },
@@ -118,8 +118,8 @@ var g_ScorePanelsData = [
 		],
 		"teamCounterFn": calculateMarketTeam
 	},
-	{	// miscellaneous panel
-		"headings": [	// headings on miscellaneous panel
+	"misc": {
+		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			{ "caption": translate("Vegetarian\nratio"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Feminization"), "yStart": 16, "width": 100 },
@@ -131,7 +131,7 @@ var g_ScorePanelsData = [
 		"titleHeadings": [
 			{ "caption": translate("Map control"), "xOffset": 400, "yStart": 16, "width": 200 }
 		],
-		"counters": [	// counters on miscellaneous panel
+		"counters": [
 			{ "width": 100, "fn": calculateVegetarianRatio },
 			{ "width": 100, "fn": calculateFeminization },
 			{ "width": 100, "fn": calculateKillDeathRatio },
@@ -141,7 +141,7 @@ var g_ScorePanelsData = [
 		],
 		"teamCounterFn": calculateMiscellaneous
 	}
-];
+};
 
 function resetGeneralPanel()
 {
