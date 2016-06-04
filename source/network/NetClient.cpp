@@ -323,6 +323,21 @@ void CNetClient::HandleDisconnect(u32 reason)
 	SetCurrState(NCS_UNCONNECTED);
 }
 
+void CNetClient::SendGameSetupMessage(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface)
+{
+	CGameSetupMessage gameSetup(scriptInterface);
+	gameSetup.m_Data = attrs;
+	SendMessage(&gameSetup);
+}
+
+void CNetClient::SendAssignPlayerMessage(const int playerID, const CStr& guid)
+{
+	CAssignPlayerMessage assignPlayer;
+	assignPlayer.m_PlayerID = playerID;
+	assignPlayer.m_GUID = guid;
+	SendMessage(&assignPlayer);
+}
+
 void CNetClient::SendChatMessage(const std::wstring& text)
 {
 	CChatMessage chat;
@@ -337,10 +352,30 @@ void CNetClient::SendReadyMessage(const int status)
 	SendMessage(&readyStatus);
 }
 
+void CNetClient::SendClearAllReadyMessage()
+{
+	CClearAllReadyMessage clearAllReady;
+	SendMessage(&clearAllReady);
+}
+
+void CNetClient::SendStartGameMessage()
+{
+	CGameStartMessage gameStart;
+	SendMessage(&gameStart);
+}
+
 void CNetClient::SendRejoinedMessage()
 {
 	CRejoinedMessage rejoinedMessage;
 	SendMessage(&rejoinedMessage);
+}
+
+void CNetClient::SendKickPlayerMessage(const CStrW& playerName, bool ban)
+{
+	CKickedMessage kickPlayer;
+	kickPlayer.m_Name = playerName;
+	kickPlayer.m_Ban = ban;
+	SendMessage(&kickPlayer);
 }
 
 void CNetClient::SendPausedMessage(bool pause)

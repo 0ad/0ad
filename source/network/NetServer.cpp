@@ -404,10 +404,7 @@ bool CNetServerWorker::RunStep()
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
-	std::vector<std::pair<int, CStr>> newAssignPlayer;
 	std::vector<bool> newStartGame;
-	std::vector<std::pair<CStr, int>> newPlayerReady;
-	std::vector<bool> newPlayerResetReady;
 	std::vector<std::string> newGameAttributes;
 	std::vector<u32> newTurnLength;
 
@@ -418,21 +415,9 @@ bool CNetServerWorker::RunStep()
 			return false;
 
 		newStartGame.swap(m_StartGameQueue);
-		newPlayerReady.swap(m_PlayerReadyQueue);
-		newPlayerResetReady.swap(m_PlayerResetReadyQueue);
-		newAssignPlayer.swap(m_AssignPlayerQueue);
 		newGameAttributes.swap(m_GameAttributesQueue);
 		newTurnLength.swap(m_TurnLengthQueue);
 	}
-
-	for (const std::pair<int, CStr8>& p : newAssignPlayer)
-		AssignPlayer(p.first, p.second);
-
-	for (const std::pair<CStr8, int>& p : newPlayerReady)
-		SetPlayerReady(p.first, p.second);
-
-	if (!newPlayerResetReady.empty())
-		ClearAllPlayerReady();
 
 	if (!newGameAttributes.empty())
 	{
@@ -649,12 +634,19 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CHAT, NSS_PREGAME, (void*)&OnChat, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_READY, NSS_PREGAME, (void*)&OnReady, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_CLEAR_ALL_READY, NSS_PREGAME, (void*)&OnClearAllReady, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_GAME_SETUP, NSS_PREGAME, (void*)&OnGameSetup, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_ASSIGN_PLAYER, NSS_PREGAME, (void*)&OnAssignPlayer, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_KICKED, NSS_PREGAME, (void*)&OnKickPlayer, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_GAME_START, NSS_PREGAME, (void*)&OnStartGame, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
 
+	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_KICKED, NSS_JOIN_SYNCING, (void*)&OnKickPlayer, context);
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnJoinSyncingLoadedGame, context);
 
 	session->AddTransition(NSS_INGAME, (uint)NMT_REJOINED, NSS_INGAME, (void*)&OnRejoined, context);
+	session->AddTransition(NSS_INGAME, (uint)NMT_KICKED, NSS_INGAME, (void*)&OnKickPlayer, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CLIENT_PAUSED, NSS_INGAME, (void*)&OnClientPaused, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CHAT, NSS_INGAME, (void*)&OnChat, context);
@@ -784,7 +776,7 @@ void CNetServerWorker::ClearAllPlayerReady()
 	SendPlayerAssignments();
 }
 
-bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
+void CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 {
 	// Find the user with that name
 	std::vector<CNetServerSession*>::iterator it = std::find_if(m_Sessions.begin(), m_Sessions.end(),
@@ -792,7 +784,7 @@ bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 
 	// and return if no one or the host has that name
 	if (it == m_Sessions.end() || (*it)->GetGUID() == m_HostGUID)
-		return false;
+		return;
 
 	if (ban)
 	{
@@ -814,8 +806,6 @@ bool CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 	kickedMessage.m_Name = playerName;
 	kickedMessage.m_Ban = ban;
 	Broadcast(&kickedMessage);
-
-	return true;
 }
 
 void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
@@ -1108,6 +1098,61 @@ bool CNetServerWorker::OnReady(void* context, CFsmEvent* event)
 	message->m_GUID = session->GetGUID();
 
 	server.Broadcast(message);
+	server.SetPlayerReady(message->m_GUID, message->m_Status);
+
+	return true;
+}
+
+bool CNetServerWorker::OnClearAllReady(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_CLEAR_ALL_READY);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	if (session->GetGUID() == server.m_HostGUID)
+		server.ClearAllPlayerReady();
+
+	return true;
+}
+
+bool CNetServerWorker::OnGameSetup(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_GAME_SETUP);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	if (session->GetGUID() == server.m_HostGUID)
+	{
+		CGameSetupMessage* message = (CGameSetupMessage*)event->GetParamRef();
+		server.UpdateGameAttributes(&(message->m_Data));
+	}
+	return true;
+}
+
+bool CNetServerWorker::OnAssignPlayer(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_ASSIGN_PLAYER);
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	if (session->GetGUID() == server.m_HostGUID)
+	{
+		CAssignPlayerMessage* message = (CAssignPlayerMessage*)event->GetParamRef();
+		server.AssignPlayer(message->m_PlayerID, message->m_GUID);
+	}
+	return true;
+}
+
+bool CNetServerWorker::OnStartGame(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_GAME_START);
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	if (session->GetGUID() == server.m_HostGUID)
+		server.StartGame();
 
 	return true;
 }
@@ -1201,6 +1246,21 @@ bool CNetServerWorker::OnRejoined(void* context, CFsmEvent* event)
 		session->SendMessage(&pausedMessage);
 	}
 
+	return true;
+}
+
+bool CNetServerWorker::OnKickPlayer(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_KICKED);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	if (session->GetGUID() == server.m_HostGUID)
+	{
+		CKickedMessage* message = (CKickedMessage*)event->GetParamRef();
+		server.KickPlayer(message->m_Name, message->m_Ban);
+	}
 	return true;
 }
 
@@ -1370,30 +1430,6 @@ CNetServer::~CNetServer()
 bool CNetServer::SetupConnection()
 {
 	return m_Worker->SetupConnection();
-}
-
-bool CNetServer::KickPlayer(const CStrW& playerName, const bool ban)
-{
-	CScopeLock lock(m_Worker->m_WorkerMutex);
-	return m_Worker->KickPlayer(playerName, ban);
-}
-
-void CNetServer::AssignPlayer(int playerID, const CStr& guid)
-{
-	CScopeLock lock(m_Worker->m_WorkerMutex);
-	m_Worker->m_AssignPlayerQueue.emplace_back(playerID, guid);
-}
-
-void CNetServer::SetPlayerReady(const CStr& guid, int ready)
-{
-	CScopeLock lock(m_Worker->m_WorkerMutex);
-	m_Worker->m_PlayerReadyQueue.emplace_back(guid, ready);
-}
-
-void CNetServer::ClearAllPlayerReady()
-{
-	CScopeLock lock(m_Worker->m_WorkerMutex);
-	m_Worker->m_PlayerResetReadyQueue.push_back(false);
 }
 
 void CNetServer::StartGame()

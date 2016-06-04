@@ -116,31 +116,6 @@ public:
 	bool SetupConnection();
 
 	/**
-	 * Call from the GUI to update the player assignments.
-	 * The given GUID will be (re)assigned to the given player ID.
-	 * Any player currently using that ID will be unassigned.
-	 * The changes will be asynchronously propagated to all clients.
-	 */
-	void AssignPlayer(int playerID, const CStr& guid);
-
-	/**
-	 * Call from the GUI to update the player readiness.
-	 * The changes will be asynchronously propagated to all clients.
-	 */
-	void SetPlayerReady(const CStr& guid, int ready);
-
-	/**
-	 * Call from the GUI to set the all player readiness to 0.
-	 * The changes will be asynchronously propagated to all clients.
-	 */
-	void ClearAllPlayerReady();
-
-	/**
-	 * Disconnects a player from gamesetup or session.
-	 */
-	bool KickPlayer(const CStrW& playerName, const bool ban);
-
-	/**
 	 * Call from the GUI to asynchronously notify all clients that they should start loading the game.
 	 */
 	void StartGame();
@@ -190,7 +165,7 @@ public:
 	/**
 	 * Disconnects a player from gamesetup or session.
 	 */
-	bool KickPlayer(const CStrW& playerName, const bool ban);
+	void KickPlayer(const CStrW& playerName, const bool ban);
 
 	/**
 	 * Send a message to all clients who have completed the full connection process
@@ -270,9 +245,14 @@ private:
 	static bool OnInGame(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
 	static bool OnReady(void* context, CFsmEvent* event);
+	static bool OnClearAllReady(void* context, CFsmEvent* event);
+	static bool OnGameSetup(void* context, CFsmEvent* event);
+	static bool OnAssignPlayer(void* context, CFsmEvent* event);
+	static bool OnStartGame(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);
+	static bool OnKickPlayer(void* context, CFsmEvent* event);
 	static bool OnDisconnect(void* context, CFsmEvent* event);
 	static bool OnClientPaused(void* context, CFsmEvent* event);
 
@@ -367,10 +347,7 @@ private:
 	bool m_Shutdown; // protected by m_WorkerMutex
 
 	// Queues for messages sent by the game thread:
-	std::vector<std::pair<int, CStr>> m_AssignPlayerQueue; // protected by m_WorkerMutex
 	std::vector<bool> m_StartGameQueue; // protected by m_WorkerMutex
-	std::vector<std::pair<CStr, int>> m_PlayerReadyQueue; // protected by m_WorkerMutex
-	std::vector<bool> m_PlayerResetReadyQueue; // protected by m_WorkerMutex
 	std::vector<std::string> m_GameAttributesQueue; // protected by m_WorkerMutex
 	std::vector<u32> m_TurnLengthQueue; // protected by m_WorkerMutex
 };

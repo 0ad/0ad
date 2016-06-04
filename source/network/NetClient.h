@@ -187,15 +187,28 @@ public:
 	 */
 	void LoadFinished();
 
+	void SendGameSetupMessage(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface);
+
+	void SendAssignPlayerMessage(const int playerID, const CStr& guid);
+
 	void SendChatMessage(const std::wstring& text);
 
 	void SendReadyMessage(const int status);
+
+	void SendClearAllReadyMessage();
+
+	void SendStartGameMessage();
 
 	/**
 	 * Call when the client has rejoined a running match and finished
 	 * the loading screen.
 	 */
 	void SendRejoinedMessage();
+
+	/**
+	 * Call to kick/ban a client
+	 */
+	void SendKickPlayerMessage(const CStrW& playerName, bool ban);
 
 	/**
 	 * Call when the client has paused or unpaused the game.

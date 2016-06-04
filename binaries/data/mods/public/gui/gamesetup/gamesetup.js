@@ -656,7 +656,6 @@ function handleReadyMessage(message)
 		return;
 
 	g_PlayerAssignments[message.guid].status = +message.status == 1;
-	Engine.SetNetworkPlayerStatus(message.guid, +message.status);
 	updateReadyUI();
 }
 

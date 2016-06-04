@@ -246,8 +246,8 @@ JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	ENSURE(g_NetServer);
-	g_NetServer->StartGame();
+	ENSURE(g_NetClient);
+	g_NetClient->SendStartGameMessage();
 }
 
 void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID)
@@ -330,14 +330,15 @@ void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& 
 
 void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1)
 {
-	ENSURE(g_NetServer);
+	ENSURE(g_NetClient);
+
 	//TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere
 	// (with no obvious reason).
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue attribs(cx, attribs1);
 
-	g_NetServer->UpdateGameAttributes(&attribs, *(pCxPrivate->pScriptInterface));
+	g_NetClient->SendGameSetupMessage(&attribs, *(pCxPrivate->pScriptInterface));
 }
 
 void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& playerName)
@@ -400,12 +401,11 @@ std::string GetPlayerGUID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return g_NetClient->GetGUID();
 }
 
-bool KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& playerName, bool ban)
+void KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& playerName, bool ban)
 {
-	if (!g_NetServer)
-		return false;
+	ENSURE(g_NetClient);
 
-	return g_NetServer->KickPlayer(playerName, ban);
+	g_NetClient->SendKickPlayerMessage(playerName, ban);
 }
 
 JS::Value PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
@@ -423,23 +423,16 @@ JS::Value PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 
 void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, const std::string& guid)
 {
-	ENSURE(g_NetServer);
+	ENSURE(g_NetClient);
 
-	g_NetServer->AssignPlayer(playerID, guid);
-}
-
-void SetNetworkPlayerStatus(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& guid, int ready)
-{
-	ENSURE(g_NetServer);
-
-	g_NetServer->SetPlayerReady(guid, ready);
+	g_NetClient->SendAssignPlayerMessage(playerID, guid);
 }
 
 void ClearAllPlayerReady (ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	ENSURE(g_NetServer);
+	ENSURE(g_NetClient);
 
-	g_NetServer->ClearAllPlayerReady();
+	g_NetClient->SendClearAllReadyMessage();
 }
 
 void SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& message)
@@ -1038,11 +1031,10 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, std::string, &StartNetworkJoin>("StartNetworkJoin");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
 	scriptInterface.RegisterFunction<std::string, &GetPlayerGUID>("GetPlayerGUID");
-	scriptInterface.RegisterFunction<bool, CStrW, bool, &KickPlayer>("KickPlayer");
+	scriptInterface.RegisterFunction<void, CStrW, bool, &KickPlayer>("KickPlayer");
 	scriptInterface.RegisterFunction<JS::Value, &PollNetworkClient>("PollNetworkClient");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
 	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");
-	scriptInterface.RegisterFunction<void, std::string, int, &SetNetworkPlayerStatus>("SetNetworkPlayerStatus");
 	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
