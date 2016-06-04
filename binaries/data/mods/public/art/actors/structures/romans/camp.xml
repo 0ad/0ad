@@ -28,7 +28,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
@@ -37,6 +37,9 @@
         <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned4"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>

@@ -6,26 +6,25 @@
       <mesh>structural/rome_blacksmith_struct_b.dae</mesh>
       <props>
         <prop actor="props/structures/romans/blacksmith_armorlegion.xml" attachpoint="root"/>
-<prop actor="props/structures/romans/blacksmith_armorstand_armor.xml" attachpoint="rome-armorstand"/>
-<prop actor="props/structures/romans/blacksmith_armorstand_wood.xml" attachpoint="rome-armorstand"/>
-<prop actor="props/structures/romans/blacksmith_barrel.xml" attachpoint="barrel"/>
+        <prop actor="props/structures/romans/blacksmith_armorstand_armor.xml" attachpoint="rome-armorstand"/>
+        <prop actor="props/structures/romans/blacksmith_armorstand_wood.xml" attachpoint="rome-armorstand"/>
+        <prop actor="props/structures/romans/blacksmith_barrel.xml" attachpoint="barrel" minheight="-20" maxheight="20"/>
 
         <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
         <prop actor="particle/flame.xml" attachpoint="fire"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
 
-<prop actor="props/structures/romans/blacksmith_barrels.xml" attachpoint="romebarrels"/>
-<prop actor="props/structures/romans/blacksmith_bucket_water.xml" attachpoint="bucket"/>
-<prop actor="props/structures/romans/blacksmith_bucket.xml" attachpoint="bucket"/>
-<prop actor="props/structures/romans/blacksmith_shields.xml" attachpoint="romeshields"/>
+        <prop actor="props/structures/romans/blacksmith_barrels.xml" attachpoint="romebarrels" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/romans/blacksmith_bucket_water.xml" attachpoint="bucket" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/romans/blacksmith_bucket.xml" attachpoint="bucket" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/romans/blacksmith_shields.xml" attachpoint="romeshields" minheight="-20" maxheight="20"/>
 
-<prop actor="props/units/heads/rome_monte_e.xml" attachpoint="rome_helmet_b"/>
-<prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="rome_helmet_b1"/>
-<prop actor="props/units/heads/rome_helmet_hero.xml" attachpoint="rome_helmet_c"/>
-<prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="rome_helmet_c1"/>
-<prop actor="props/units/heads/rome_imp_gallic_g_cent.xml" attachpoint="rome_helmet_c2"/>
-<prop actor="props/units/heads/rome_monte_e.xml" attachpoint="rome_helmet_c_3"/>
-
+        <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="rome_helmet_b"/>
+        <prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="rome_helmet_b1"/>
+        <prop actor="props/units/heads/rome_helmet_hero.xml" attachpoint="rome_helmet_c"/>
+        <prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="rome_helmet_c1"/>
+        <prop actor="props/units/heads/rome_imp_gallic_g_cent.xml" attachpoint="rome_helmet_c2"/>
+        <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="rome_helmet_c_3"/>
       </props>
       <textures>
         <texture file="structural/rome_struct_2.png" name="baseTex"/>
