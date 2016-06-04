@@ -5800,11 +5800,11 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 			return false;
 	}
 
-	// Verify that the dropsite is owned by this entity's player (or an a mutual allied if allowed)
+	// Verify that the dropsite is owned by this entity's player (or a mutual ally's if allowed)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var cmpPlayer = QueryOwnerInterface(this.entity);
 	if (cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
 		return true;
+	var cmpPlayer = QueryOwnerInterface(this.entity);
 	return cmpPlayer && cmpPlayer.HasSharedDropsites() && cmpResourceDropsite.IsShared() &&
 	       cmpOwnership && IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target);
 };

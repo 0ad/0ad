@@ -773,7 +773,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	if (workers.length < 2)
 	{
 		let fromOtherBase = gameState.ai.HQ.bulkPickWorkers(gameState, this, 2);
-		if(fromOtherBase)
+		if (fromOtherBase)
 		{
 			let baseID = this.ID;
 			fromOtherBase.forEach(function (worker) {
