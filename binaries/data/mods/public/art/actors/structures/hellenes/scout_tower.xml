@@ -15,19 +15,23 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
-<texture file="structural/hele_struct_b.dds" name="baseTex"/>
-<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
-<texture file="structural/ao/hele_scout_tower.png" name="aoTex"/></textures>
+        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_scout_tower.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>

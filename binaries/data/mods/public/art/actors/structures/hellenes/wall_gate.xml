@@ -2,20 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Gate A">
-      <animations>
-        <animation file="mechanical/hele_wall_gate_closed.dae" name="gate_closed" speed="65"/>
-        <animation file="mechanical/hele_wall_gate_opening.dae" name="gate_opening" speed="65"/>
-        <animation file="mechanical/hele_wall_gate_open.dae" name="gate_open" speed="65"/>
-        <animation file="mechanical/hele_wall_gate_closing.dae" name="gate_closing" speed="65"/>
-      </animations>
-      <mesh>structural/hele_wall_gate.dae</mesh>
-      <props>
-        <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
-      </props>
-      <textures><texture file="props/hele_gate.png" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="100" name="Gate B">
+    <variant frequency="100" name="Gate">
       <animations>
         <animation file="mechanical/hele_wall_gate_closed.dae" name="gate_closed" speed="65"/>
         <animation file="mechanical/hele_wall_gate_opening.dae" name="gate_opening" speed="65"/>
@@ -30,7 +17,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
