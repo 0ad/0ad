@@ -18,10 +18,10 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
-	  <prop actor="props/structures/ptolemies/farmstead_cart.xml" attachpoint="cart"/>
+	    <prop actor="props/structures/ptolemies/farmstead_cart.xml" attachpoint="cart"/>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
