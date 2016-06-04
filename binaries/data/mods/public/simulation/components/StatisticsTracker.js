@@ -5,7 +5,6 @@ StatisticsTracker.prototype.Schema =
 
 StatisticsTracker.prototype.Init = function()
 {
-	// units
 	this.unitsClasses = [
 		"Infantry",
 		"Worker",
@@ -15,7 +14,7 @@ StatisticsTracker.prototype.Init = function()
 		"Hero",
 		"Ship",
 		"Trader"
-	];	
+	];
 	this.unitsTrained = {
 		"Infantry": 0,
 		"Worker": 0,
@@ -51,7 +50,7 @@ StatisticsTracker.prototype.Init = function()
 		"total": 0
 	};
 	this.enemyUnitsKilledValue = 0;
-	// buildings
+
 	this.buildingsClasses = [
 		"House",
 		"Economic",
@@ -69,7 +68,7 @@ StatisticsTracker.prototype.Init = function()
 		"Fortress": 0,
 		"CivCentre": 0,
 		"Wonder": 0,
-		"total": 0	
+		"total": 0
 	};
 	this.buildingsLost = {
 		"House": 0,
@@ -93,7 +92,7 @@ StatisticsTracker.prototype.Init = function()
 		"total": 0
 		};
 	this.enemyBuildingsDestroyedValue = 0;
-	// resources
+
 	this.resourcesGathered = {
 		"food": 0,
 		"wood": 0,
@@ -119,6 +118,7 @@ StatisticsTracker.prototype.Init = function()
 		"metal": 0,
 		"stone": 0
 	};
+
 	this.tributesSent = 0;
 	this.tributesReceived = 0;
 	this.tradeIncome = 0;
@@ -186,15 +186,15 @@ StatisticsTracker.prototype.CounterIncrement = function(cmpIdentity, counter, ty
 	var classes = cmpIdentity.GetClassesList();
 	if (!classes)
 		return;
+
 	if (classes.indexOf(type) != -1)
-		this[counter][type]++;
+		++this[counter][type];
 };
 
-/** 
- * Counts the total number of units trained as well as an individual count for 
+/**
+ * Counts the total number of units trained as well as an individual count for
  * each unit type. Based on templates.
- * @param trainedUnit The unit that has been trained 
- */ 
+ */
 StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 {
 	var cmpUnitEntityIdentity = Engine.QueryInterface(trainedUnit, IID_Identity);
@@ -202,28 +202,27 @@ StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 	if (!cmpUnitEntityIdentity)
 		return;
 
-	for each (var type in this.unitsClasses)
+	for (let type of this.unitsClasses)
 		this.CounterIncrement(cmpUnitEntityIdentity, "unitsTrained", type);
 
-	this.unitsTrained.total++;
+	++this.unitsTrained.total;
 };
 
-/** 
- * Counts the total number of buildings constructed as well as an individual count for 
+/**
+ * Counts the total number of buildings constructed as well as an individual count for
  * each building type. Based on templates.
- * @param constructedBuilding The building that has been constructed 
- */ 
+ */
 StatisticsTracker.prototype.IncreaseConstructedBuildingsCounter = function(constructedBuilding)
 {
 	var cmpBuildingEntityIdentity = Engine.QueryInterface(constructedBuilding, IID_Identity);
-		
+
 	if (!cmpBuildingEntityIdentity)
 		return;
 
-	for each(var type in this.buildingsClasses)
+	for (let type of this.buildingsClasses)
 		this.CounterIncrement(cmpBuildingEntityIdentity, "buildingsConstructed", type);
 
-	this.buildingsConstructed.total++;
+	++this.buildingsConstructed.total;
 };
 
 StatisticsTracker.prototype.KilledEntity = function(targetEntity)
@@ -234,38 +233,33 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 	if (!cmpTargetEntityIdentity)
 		return;
 
-	var cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
-	// We want to deal only with real structures, not foundations
-	var targetIsStructure = cmpTargetEntityIdentity.HasClass("Structure") && cmpFoundation == null;
-	var targetIsDomesticAnimal = cmpTargetEntityIdentity.HasClass("Animal") && cmpTargetEntityIdentity.HasClass("Domestic");
-	// Don't count domestic animals as units
-	var targetIsUnit = cmpTargetEntityIdentity.HasClass("Unit") && !targetIsDomesticAnimal;
-
 	var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-    
-	// Don't increase counters if target player is gaia (player 0)
+
+	// Ignore gaia
 	if (cmpTargetOwnership.GetOwner() == 0)
 		return;
 
-	if (targetIsUnit)
+	if (cmpTargetEntityIdentity.HasClass("Unit") && !cmpTargetEntityIdentity.HasClass("Domestic"))
 	{
-		for each (var type in this.unitsClasses)
+		for (let type of this.unitsClasses)
 			this.CounterIncrement(cmpTargetEntityIdentity, "enemyUnitsKilled", type);
 
-		this.enemyUnitsKilled.total++;
-		
-		for each (var cost in costs)
-			this.enemyUnitsKilledValue += cost;
-	}	
-	if (targetIsStructure)
+		++this.enemyUnitsKilled.total;
+
+		for (let type in costs)
+			this.enemyUnitsKilledValue += costs[type];
+	}
+
+	let cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
+	if (cmpTargetEntityIdentity.HasClass("Structure") && cmpFoundation == null)
 	{
-		for each (var type in this.buildingsClasses)
+		for (let type of this.buildingsClasses)
 			this.CounterIncrement(cmpTargetEntityIdentity, "enemyBuildingsDestroyed", type);
 
-		this.enemyBuildingsDestroyed.total++;
-		
-		for each (var cost in costs)
-			this.enemyBuildingsDestroyedValue += cost;
+		++this.enemyBuildingsDestroyed.total;
+
+		for (let type in costs)
+			this.enemyBuildingsDestroyedValue += costs[type];
 	}
 };
 
@@ -276,33 +270,28 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 	var costs = cmpCost.GetResourceCosts();
 	if (!cmpLostEntityIdentity)
 		return;
-	
-	var cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
-	// We want to deal only with real structures, not foundations
-	var lostEntityIsStructure = cmpLostEntityIdentity.HasClass("Structure") && cmpFoundation == null;
-	var lostEntityIsDomesticAnimal = cmpLostEntityIdentity.HasClass("Animal") && cmpLostEntityIdentity.HasClass("Domestic");
-	// Don't count domestic animals as units
-	var lostEntityIsUnit = cmpLostEntityIdentity.HasClass("Unit") && !lostEntityIsDomesticAnimal;
 
-	if (lostEntityIsUnit)
+	if (cmpLostEntityIdentity.HasClass("Unit") && !cmpLostEntityIdentity.HasClass("Domestic"))
 	{
-		for each (var type in this.unitsClasses)
+		for (let type of this.unitsClasses)
 			this.CounterIncrement(cmpLostEntityIdentity, "unitsLost", type);
 
-		this.unitsLost.total++;
-		
-		for each (var cost in costs)
-			this.unitsLostValue += cost;	
-	}	
-	if (lostEntityIsStructure)
+		++this.unitsLost.total;
+
+		for (let type of costs)
+			this.unitsLostValue += costs[type];
+	}
+
+	let cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
+	if (cmpLostEntityIdentity.HasClass("Structure") && cmpFoundation == null)
 	{
-		for each (var type in this.buildingsClasses)
+		for (let type of this.buildingsClasses)
 			this.CounterIncrement(cmpLostEntityIdentity, "buildingsLost", type);
 
-		this.buildingsLost.total++;
-		
-		for each (var cost in costs)
-			this.buildingsLostValue += cost;
+		++this.buildingsLost.total;
+
+		for (let type in costs)
+			this.buildingsLostValue += costs[type];
 	}
 };
 
@@ -314,7 +303,7 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amount, specificType)
 {
 	this.resourcesGathered[type] += amount;
-	
+
 	if (type == "food" && (specificType == "fruit" || specificType == "grain"))
 		this.resourcesGathered.vegetarianFood += amount;
 };
@@ -330,7 +319,7 @@ StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 {
-	this.treasuresCollected++;
+	++this.treasuresCollected;
 };
 
 StatisticsTracker.prototype.IncreaseLootCollectedCounter = function(amount)
