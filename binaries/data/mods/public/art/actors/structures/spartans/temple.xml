@@ -5,7 +5,7 @@
     <variant frequency="1" name="Spartan temple">
       <mesh>structural/spart_temple_struct.dae</mesh>
       <props>
-		<prop actor="particle/sparks.xml" attachpoint="flame01"/>
+        <prop actor="particle/sparks.xml" attachpoint="flame01"/>
         <prop actor="particle/flame_firepit_1.xml" attachpoint="flame01"/>
         <prop actor="particle/flame_firepit_2.xml" attachpoint="flame01"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame01"/>
@@ -13,19 +13,19 @@
         <prop actor="particle/flame_firepit_1.xml" attachpoint="flame02"/>
         <prop actor="particle/flame_firepit_2.xml" attachpoint="flame02"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame02"/>
-		<prop actor="props/structures/spartans/temple_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/temple_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/temple_tile_c.xml" attachpoint="root"/>
       </props>
       <textures>
-			<texture file="structural/hele_struct.dds" name="baseTex"/>
-			<texture file="structural/hele_struct_norm.png" name="normTex"/>
-			<texture file="structural/hele_struct_spec.png" name="specTex"/>
-			<texture file="structural/ao/spart_temple.png" name="aoTex"/>
-		</textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/spart_temple.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>    
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
