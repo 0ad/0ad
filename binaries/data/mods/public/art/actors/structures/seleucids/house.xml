@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Seleucid_Civic_Centre">
+    <variant frequency="1" name="Base">
       <props>
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="props/flora/bush.xml" attachpoint="bush"/>
@@ -44,8 +44,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="garrisoned"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
