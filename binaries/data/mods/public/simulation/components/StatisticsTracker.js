@@ -251,7 +251,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 	}
 
 	let cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
-	if (cmpTargetEntityIdentity.HasClass("Structure") && cmpFoundation == null)
+	if (cmpTargetEntityIdentity.HasClass("Structure") && !cmpFoundation)
 	{
 		for (let type of this.buildingsClasses)
 			this.CounterIncrement(cmpTargetEntityIdentity, "enemyBuildingsDestroyed", type);
@@ -278,12 +278,12 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 
 		++this.unitsLost.total;
 
-		for (let type of costs)
+		for (let type in costs)
 			this.unitsLostValue += costs[type];
 	}
 
 	let cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
-	if (cmpLostEntityIdentity.HasClass("Structure") && cmpFoundation == null)
+	if (cmpLostEntityIdentity.HasClass("Structure") && !cmpFoundation)
 	{
 		for (let type of this.buildingsClasses)
 			this.CounterIncrement(cmpLostEntityIdentity, "buildingsLost", type);

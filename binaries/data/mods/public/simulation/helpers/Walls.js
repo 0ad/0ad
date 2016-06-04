@@ -61,7 +61,7 @@ function GetWallPlacement(placementData, wallSet, start, end)
 	}
 
 	// List of chosen candidate segments
-	let placedEntities = placement.segments
+	let placedEntities = placement.segments;
 
 	// placement.r is the remaining distance to target without towers (must be <= (N-1) * towerWidth)
 	let spacing = placement.r / (2 * placedEntities.length);
