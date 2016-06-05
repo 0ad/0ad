@@ -1,15 +1,16 @@
 var PETRA = function(m)
 {
-/* Base Manager
+
+/**
+ * Base Manager
  * Handles lower level economic stuffs.
  * Some tasks:
-	-tasking workers: gathering/hunting/building/repairing?/scouting/plans.
-	-giving feedback/estimates on GR
-	-achieving building stuff plans (scouting/getting ressource/building) or other long-staying plans, if I ever get any.
-	-getting good spots for dropsites
-	-managing dropsite use in the base
-		> warning HQ if we'll need more space
-	-updating whatever needs updating, keeping track of stuffs (rebuilding needs…)
+ *  -tasking workers: gathering/hunting/building/repairing?/scouting/plans.
+ *  -giving feedback/estimates on GR
+ *  -achieving building stuff plans (scouting/getting ressource/building) or other long-staying plans.
+ *  -getting good spots for dropsites
+ *  -managing dropsite use in the base
+ *  -updating whatever needs updating, keeping track of stuffs (rebuilding needs…)
  */
 
 m.BaseManager = function(gameState, Config)
@@ -75,7 +76,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 {
 	if (!anchorEntity.hasClass("Structure") || !anchorEntity.hasTerritoryInfluence())
 	{
-		warn("Error: Petra base " + this.ID + " has been assigned an anchor building that has no territorial influence. Please report this on the forum.");
+		warn("Error: Petra base " + this.ID + " has been assigned an anchor building that has no territorial influence.");
 		return false;
 	}
 	this.anchor = anchorEntity;
@@ -249,7 +250,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 		medium.sort((r1, r2) => r1.dist - r2.dist);
 		faraway.sort((r1, r2) => r1.dist - r2.dist);
 
-/*		var debug = false;
+/*		let debug = false;
 		if (debug)
 		{
 			faraway.forEach(function(res){ 
@@ -279,7 +280,7 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 	if (!ent.id())
 		return;
 
-	var removeSupply = function(entId, supply){
+	let removeSupply = function(entId, supply){
 		for (let i = 0; i < supply.length; ++i)
 		{
 			// exhausted resource, remove it from this list
@@ -302,13 +303,14 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 	return;
 };
 
-// Returns the position of the best place to build a new dropsite for the specified resource 
-// TODO check dropsites of other bases ... may-be better to do a simultaneous liste of dp and foundations
+/**
+ * Returns the position of the best place to build a new dropsite for the specified resource 
+ */
 m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 {
 	
-	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
-	var halfSize = 0;
+	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
+	let halfSize = 0;
 	if (template.get("Footprint/Square"))
 		halfSize = Math.max(+template.get("Footprint/Square/@depth"), +template.get("Footprint/Square/@width")) / 2;
 	else if (template.get("Footprint/Circle"))
@@ -319,19 +321,19 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
 
-	var obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
+	let obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
 
-	var dpEnts = gameState.getOwnEntitiesByClass("Storehouse", true).toEntityArray();
-	var ccEnts = gameState.getOwnEntitiesByClass("CivCentre", true).toEntityArray();
+	let dpEnts = gameState.getOwnEntitiesByClass("Storehouse", true).toEntityArray();
+	let ccEnts = gameState.getOwnEntitiesByClass("CivCentre", true).toEntityArray();
 
-	var bestIdx;
-	var bestVal = 0;
-	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	let bestIdx;
+	let bestVal = 0;
+	let radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
-	var territoryMap = gameState.ai.HQ.territoryMap;
-	var width = territoryMap.width;
-	var cellSize = territoryMap.cellSize;
-    
+	let territoryMap = gameState.ai.HQ.territoryMap;
+	let width = territoryMap.width;
+	let cellSize = territoryMap.cellSize;
+
 	for (let j of this.territoryIndices)
 	{
 		let i = territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -407,8 +409,8 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly = false)
 {
-	var count = 0;
-	var check = {};
+	let count = 0;
+	let check = {};
 	for (let supply of this.dropsiteSupplies[type].nearby)
 	{
 		if (check[supply.id])    // avoid double counting as same resource can appear several time
@@ -429,7 +431,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 	return count;
 };
 
-// check our resource levels and react accordingly
+/** check our resource levels and react accordingly */
 m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 {
 	for (let type of this.Config.resources)
@@ -478,7 +480,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 		{
 			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
 			{
-				var self = this;
+				let self = this;
 				this.gatherersByType(gameState, type).forEach(function (ent) {
 					if (ent.unitAIState() === "INDIVIDUAL.GATHER.GATHERING")
 						++self.gatherers[type].used;
@@ -522,7 +524,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 	
 };
 
-// Adds the estimated gather rates from this base to the currentRates
+/** Adds the estimated gather rates from this base to the currentRates */
 m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 {
 	for (let res in currentRates)
@@ -574,22 +576,24 @@ m.BaseManager.prototype.assignRolelessUnits = function(gameState, roleless)
 	}
 };
 
-// If the numbers of workers on the resources is unbalanced then set some of workers to idle so
-// they can be reassigned by reassignIdleWorkers.
-// TODO: actually this probably should be in the HQ.
+/**
+ * If the numbers of workers on the resources is unbalanced then set some of workers to idle so
+ * they can be reassigned by reassignIdleWorkers.
+ * TODO: actually this probably should be in the HQ.
+ */
 m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 {
 	// change resource only towards one which is more needed, and if changing will not change this order
-	var nb = 1;    // no more than 1 change per turn (otherwise we should update the rates)
-	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-	var sumWanted = 0;
-	var sumCurrent = 0;
+	let nb = 1;    // no more than 1 change per turn (otherwise we should update the rates)
+	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+	let sumWanted = 0;
+	let sumCurrent = 0;
 	for (let need of mostNeeded)
 	{
 		sumWanted += need.wanted;
 		sumCurrent += need.current;
 	}
-	var scale = 1;
+	let scale = 1;
 	if (sumWanted > 0)
 		scale = sumCurrent / sumWanted;
 
@@ -642,7 +646,7 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorkers)
 		let filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
 		idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers).values();
 	}
-	
+
 	for (let ent of idleWorkers)
 	{
 		// Check that the worker isn't garrisoned
@@ -695,12 +699,13 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type)
 	return gameState.updatingCollection("workers-gathering-" + type +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "gather-type", type), this.workersBySubrole(gameState, "gatherer"));
 };
 
-
-// returns an entity collection of workers.
-// They are idled immediatly and their subrole set to idle.
+/**
+ * returns an entity collection of workers.
+ * They are idled immediatly and their subrole set to idle.
+ */
 m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 {
-	var availableWorkers = this.workers.filter(function (ent) {
+	let availableWorkers = this.workers.filter(function (ent) {
 		if (!ent.position() || !ent.isBuilder())
 			return false;
 		if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
@@ -726,7 +731,7 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 			valb = -20;
 		return vala - valb;
 	});
-	var needed = Math.min(number, availableWorkers.length - 3);
+	let needed = Math.min(number, availableWorkers.length - 3);
 	for (let i = 0; i < needed; ++i)
 	{
 		availableWorkers[i].stopMoving();
@@ -743,17 +748,17 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
  */
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 {	
-	var foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
+	let foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
 
-	var damagedBuildings = this.buildings.filter(ent => ent.foundationProgress() === undefined && ent.needsRepair());
+	let damagedBuildings = this.buildings.filter(ent => ent.foundationProgress() === undefined && ent.needsRepair());
 
 	// Check if nothing to build
 	if (!foundations.length && !damagedBuildings.length)
 		return;
 
-	var workers = this.workers.filter(ent => ent.isBuilder());
-	var builderWorkers = this.workersBySubrole(gameState, "builder");
-	var idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
+	let workers = this.workers.filter(ent => ent.isBuilder());
+	let builderWorkers = this.workersBySubrole(gameState, "builder");
+	let idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
 
 	// if we're constructing and we have the foundations to our base anchor, only try building that.
 	if (this.constructing === true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).hasEntities())
@@ -786,8 +791,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		}
 	}
 
-	var builderTot = builderWorkers.length - idleBuilderWorkers.length;	
-	
+	let builderTot = builderWorkers.length - idleBuilderWorkers.length;	
+
 	for (let target of foundations)
 	{
 		if (target.hasClass("Field"))
@@ -889,10 +894,10 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 				continue;
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
-		
+
 		if (target.decaying())
 			continue;
-		
+
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		let maxTotalBuilders = Math.ceil(workers.length * 0.2);
 		let targetNB = 1;
