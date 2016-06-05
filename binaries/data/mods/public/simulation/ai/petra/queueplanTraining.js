@@ -110,7 +110,7 @@ m.TrainingPlan.prototype.addItem = function(amount = 1)
 	this.number += amount;
 };
 
-// Find the promoted types corresponding to this.type
+/** Find the promoted types corresponding to this.type */
 m.TrainingPlan.prototype.promotedTypes = function(gameState)
 {
 	let types = [];

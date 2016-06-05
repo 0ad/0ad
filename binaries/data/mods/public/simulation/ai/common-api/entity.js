@@ -103,24 +103,34 @@ m.Template = m.Class({
 		return this.get("Identity/Civ");
 	},
 
-	cost: function() {
+	"cost": function(productionQueue) {
 		if (!this.get("Cost"))
 			return undefined;
 
 		let ret = {};
+		let typeCost;
 		for (let type in this.get("Cost/Resources"))
-			ret[type] = +this.get("Cost/Resources/" + type);
+		{
+			typeCost = +this.get("Cost/Resources/" + type);
+			if (productionQueue)
+				typeCost *= productionQueue.techCostMultiplier(type);
+			ret[type] = typeCost;
+		}
 		return ret;
 	},
 
-	costSum: function() {
-		if (!this.get("Cost"))
+	"costSum": function(productionQueue) {
+		let cost = this.cost(productionQueue);
+		if (!cost)
 			return undefined;
-
 		let ret = 0;
-		for (let type in this.get("Cost/Resources"))
-			ret += +this.get("Cost/Resources/" + type);
+		for (let type in cost)
+			ret += cost[type];
 		return ret;
+	},
+
+	"techCostMultiplier": function(type) {
+		return +(this.get("ProductionQueue/TechCostMultiplier/"+type) || 1);
 	},
 
 	/**
@@ -462,8 +472,11 @@ m.Template = m.Class({
 		return this.get("BuildRestrictions/Category");
 	},
 
-	buildTime: function() {
-		return +this.get("Cost/BuildTime");
+	"buildTime": function(productionQueue) {
+		let time = +this.get("Cost/BuildTime");
+		if (productionQueue)
+			time *= productionQueue.techCostMultiplier("time");
+		return time;
 	},
 
 	buildDistance: function() {

@@ -65,11 +65,29 @@ m.Technology.prototype.pairedWith = function()
 	return this._pairedWith;
 };
 
-m.Technology.prototype.cost = function()
+m.Technology.prototype.cost = function(productionQueue)
 {
 	if (!this._template.cost)
 		return undefined;
-	return this._template.cost;
+	let cost = {};
+	for (let type in this._template.cost)
+	{
+		cost[type] = +this._template.cost[type];
+		if (productionQueue)
+			cost[type] *= productionQueue.techCostMultiplier(type);
+	}
+	return cost;
+};
+
+m.Technology.prototype.costSum = function(productionQueue)
+{
+	let cost = this.cost(productionQueue);
+	if (!cost)
+		return undefined;
+	let ret = 0;
+	for (let type in cost)
+		ret += cost[type];
+	return ret;
 };
 
 // seconds

@@ -12,13 +12,12 @@ m.QueuePlan = function(gameState, type, metadata)
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template)
 	{
-		API3.warn("Tried to add the inexisting template " + this.type + " to Petra. Please report this on the forums");
+		API3.warn("Tried to add the inexisting template " + this.type + " to Petra.");
 		return false;
 	}
 	this.ID = gameState.ai.uniqueIDs.plans++;
 	this.cost = new API3.Resources(this.template.cost());
 	this.number = 1;
-
 	this.category = "";
 
 	return true;

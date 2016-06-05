@@ -693,14 +693,29 @@ m.GameState.prototype.findAvailableTech = function()
 };
 
 /**
- * Find buildings that are capable of training that template.
+ * Return true if we have a building able to train that template
+ */
+m.GameState.prototype.hasTrainer = function(template)
+{	
+	let civ = this.playerData.civ;
+	for (let ent of this.getOwnTrainingFacilities().values())
+	{
+		let trainable = ent.trainableEntities(civ);
+		if (trainable && trainable.indexOf(template) !== -1)
+			return true;
+	}
+	return false;
+};
+
+/**
+ * Find buildings able to train that template.
  */
 m.GameState.prototype.findTrainers = function(template)
 {	
 	let civ = this.playerData.civ;
 	return this.getOwnTrainingFacilities().filter(function(ent) {
 		let trainable = ent.trainableEntities(civ);
-		return trainable && trainable.indexOf(template) != -1;
+		return trainable && trainable.indexOf(template) !== -1;
 	});
 };
 
@@ -718,7 +733,7 @@ m.GameState.prototype.findBuilder = function(template)
 	return undefined;
 };
 
-/** Return true if one of the buildings is capable of researching the given tech */
+/** Return true if one of our buildings is capable of researching the given tech */
 m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck)
 {
 	// let's check we can research the tech.
@@ -752,7 +767,7 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 {
 	// let's check we can research the tech.
 	if (!this.canResearch(templateName, noRequirementCheck))
-		return [];
+		return undefined;
 
 	let self = this;
 	let civ = this.playerData.civ;
