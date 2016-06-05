@@ -457,7 +457,7 @@ function getHealerTooltip(template)
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.HP), {
 			"label": g_TooltipTextFormats.header[0] + translate("Heal:") + g_TooltipTextFormats.header[1],
 			"val": template.healer.HP,
-			// Translation: Short for hitpoints (that are healed in one healing action)
+			// Translation: Short for hit points (or health points) that are healed in one healing action
 			"unit": g_TooltipTextFormats.unit[0] + translatePlural("HP", "HP", template.healer.HP) + g_TooltipTextFormats.unit[1]
 		}),
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Range), {

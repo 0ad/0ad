@@ -2,7 +2,7 @@ As a free, open source game, we don't have the resources to test on a wide range
 
 The following data will be sent to our server:
 
-• A random user ID (stored in %APPDATA%\0ad\config\user.cfg on Windows, $HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports from the same user.
+• A random user ID (stored in %APPDATA%\0ad\config\user.cfg on Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports from the same user.
 • Game version number and basic build settings (optimisation mode, CPU architecture, timestamp, compiler version).
 • Hardware details: OS version, graphics driver version, OpenGL capabilities, screen size, CPU details, RAM size.
 • Performance details: a snapshot of timing data a few seconds after you start a match or change graphics settings.
