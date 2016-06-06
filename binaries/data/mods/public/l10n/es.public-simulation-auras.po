@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-30 10:30+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 10:11+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -174,8 +174,7 @@ msgstr "Aura de biblioteca"
 
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
-"Reduce the cost and research time of technologies by 10% with every Library "
-"owned."
+"Reduce the cost and research time of technologies by 10% per Library owned."
 msgstr "Cada biblioteca reduce un 10% el coste y tiempo de investigación de todas las tecnologías restantes."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
@@ -216,7 +215,7 @@ msgid "Teacher Aura"
 msgstr "Aura de instructor"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time when garrisoning it."
+msgid "Empower a building with -50% research time when garrisoned it."
 msgstr "Bonifica edificios con una investigación un 50% más rápida al guarnecerse en su interior."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
@@ -351,7 +350,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Sana a las unidades cercanas con 1 PV por segundo."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% with every Theatron owned."
+msgid "Increase territory influence by 20% per Theatron owned."
 msgstr "Aumenta en +20% la influencia territorial con cada Theatron construido."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
@@ -367,7 +366,7 @@ msgid "Wonder Aura"
 msgstr "Aura de la maravilla"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 with every Wonder owned."
+msgid "Increase the population limit by 10 per Wonder owned."
 msgstr "Amplia a +10 el límite de población con cada maravilla construida."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
@@ -376,8 +375,8 @@ msgstr "Aura de Gloriosa expansión"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 with every Wonder owned "
-"(requires \"Glorious Expansion\" tech)."
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
 msgstr "Amplia a +40 el límite de población con cada maravilla construida. (Necesita «Gloriosa expansión»)"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName

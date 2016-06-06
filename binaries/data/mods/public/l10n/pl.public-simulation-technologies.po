@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-30 08:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 17:32+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1076,13 +1076,13 @@ msgstr "Warunki życia"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
-msgid "Increases the healing range of all healers."
-msgstr "Zwiększa zasięg leczenia wszystkich uzdrowicieli."
+msgid "Increases the healing and vision range of all healers."
+msgstr "Zwiększa moc leczenia i zasięg widzenia wszystkich uzdrowicieli."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +8 Healing Range."
-msgstr "Uzdrowiciele +8 zasięgu leczenia."
+msgid "Healers +5 Healing and Vision Range."
+msgstr "Uzdrowiciele +5 do leczenia i zasięgu widzenia."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1310,7 +1310,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Awansuj do fazy dużego miasta, która odblokowuje więcej budowli i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +50%. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +9 do szybkości uzdrawiania. "
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1341,7 +1341,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Awansuj do fazy dużego miasta, która odblokowuje więcej budynków i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +50%. Bonus \"Srebrna Sowa\" daje dodatkowe +10% szybkości zdobywania metalu przez każdego pracownika. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +9 do szybkości uzdrawiania. "
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1353,7 +1353,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Awansuj do fazy miasta,  która odblokowuje więcej budowli i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +30%. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +7 do szybkości uzdrawiania."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1385,7 +1385,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Awansuj do fazy dużego miasta, która odblokowuje więcej budynków i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +30%. Bonus \"Srebrna Sowa\" daje dodatkowe +10% szybkości zdobywania metalu przez każdego pracownika. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +7 do szybkości uzdrawiania."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1486,8 +1486,9 @@ msgstr "Cuda rozsławiają wielkość Twej cywilizacji wśród innych ludów."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
-"Enable Glorious Expansion. Further increase the population limit by 40."
-msgstr ""
+"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Wonder owned."
+msgstr "Odblokuj Zdumiewającą Ekspansję. Podnieś limit populacji o 40 na cud."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"

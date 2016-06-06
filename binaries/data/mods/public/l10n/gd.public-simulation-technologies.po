@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-30 08:59+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 11:23+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1059,13 +1059,13 @@ msgstr "Suidheachadh-còmhnaidh"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
-msgid "Increases the healing range of all healers."
-msgstr "Meudaich astar slànachaidh nan lighichean uile."
+msgid "Increases the healing and vision range of all healers."
+msgstr "Meudaich astar an t-slànachaidh 's na lèirsinne aig na lighichean uile."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +8 Healing Range."
-msgstr "+8 air astar slànachaidh nan lighichean."
+msgid "Healers +5 Healing and Vision Range."
+msgstr "+5 air astar slànachaidh is lèirsinne nan lighichean."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1469,8 +1469,9 @@ msgstr "Tarraingidh am mìorbhail barrachd dhaoine dhan t-sìobhaltas agad. "
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
-"Enable Glorious Expansion. Further increase the population limit by 40."
-msgstr "Cuir am meudachadh glòrmhor an comas. Cuir 40 a bharrachd ris an tomhas-shluaigh agad."
+"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Wonder owned."
+msgstr "Cuir am meudachadh glòrmhor an comas. Cuir 40 a bharrachd ris an tomhas-shluaigh agad leis gach mìorbhail a th' agad."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"

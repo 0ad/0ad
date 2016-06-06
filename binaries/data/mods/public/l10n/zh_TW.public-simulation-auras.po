@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-30 23:21+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 12:06+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -175,8 +175,7 @@ msgstr "圖書館靈氣"
 
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
-"Reduce the cost and research time of technologies by 10% with every Library "
-"owned."
+"Reduce the cost and research time of technologies by 10% per Library owned."
 msgstr "每個擁有的圖書館都會讓研發科技的花費與研究時間減少 10%。"
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
@@ -217,7 +216,7 @@ msgid "Teacher Aura"
 msgstr "導師靈氣"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time when garrisoning it."
+msgid "Empower a building with -50% research time when garrisoned it."
 msgstr "當駐守其中時，賦予一棟建築科技研發時間 -50%。"
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
@@ -352,7 +351,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "治療附近的單位每秒1點生命值。"
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% with every Theatron owned."
+msgid "Increase territory influence by 20% per Theatron owned."
 msgstr "每個擁有的希臘戲劇院都會 +20% 領土範圍。"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
@@ -368,7 +367,7 @@ msgid "Wonder Aura"
 msgstr "奇蹟靈氣"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 with every Wonder owned."
+msgid "Increase the population limit by 10 per Wonder owned."
 msgstr "每擁有一個奇觀就會讓人口上限增加 10。"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
@@ -377,8 +376,8 @@ msgstr "光榮擴展靈氣"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 with every Wonder owned "
-"(requires \"Glorious Expansion\" tech)."
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
 msgstr "每擁有一座奇觀就會讓人口上限 +40（需要「光榮擴展」科技）。"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName

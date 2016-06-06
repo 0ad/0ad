@@ -11,7 +11,7 @@
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
-# faradundamarti <faradundamarti@yandex.com>, 2013
+# mahmut özcan <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
 # Kudret <kudretemre@hotmail.com.tr>, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-28 23:38+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2016-06-03 09:00+0200\n"
+"PO-Revision-Date: 2016-06-03 09:32+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +98,7 @@ msgstr "* %(username)s hazır!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s hazır değil."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1352
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -136,54 +136,54 @@ msgstr "Bekleme salonuna geri dön."
 msgid "Return to the main menu."
 msgstr "Ana menüye dönün."
 
-#: gui/gamesetup/gamesetup.js:572
+#: gui/gamesetup/gamesetup.js:558
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/gamesetup/gamesetup.js:572
+#: gui/gamesetup/gamesetup.js:558
 msgid "No"
 msgstr "Hayır"
 
-#: gui/gamesetup/gamesetup.js:611
+#: gui/gamesetup/gamesetup.js:597
 msgctxt "team"
 msgid "None"
 msgstr "Yok"
 
-#: gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1258
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1427
+#: gui/gamesetup/gamesetup.js:1419
 msgid "Loading..."
 msgstr "Yükleniyor..."
 
-#: gui/gamesetup/gamesetup.js:1476
+#: gui/gamesetup/gamesetup.js:1467
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1480
+#: gui/gamesetup/gamesetup.js:1471
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s oyuncu."
 msgstr[1] "%(number)s oyuncu."
 
-#: gui/gamesetup/gamesetup.js:1490
+#: gui/gamesetup/gamesetup.js:1481
 msgid "Randomly selects a map from the list"
 msgstr "Listeden rastgele bir harita seçer"
 
-#: gui/gamesetup/gamesetup.js:1493
+#: gui/gamesetup/gamesetup.js:1484
 msgid "Sorry, no description available."
 msgstr "Üzgünüm, herhangi bir açıklama mevcut değil."
 
-#: gui/gamesetup/gamesetup.js:1499
+#: gui/gamesetup/gamesetup.js:1490
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1495
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -191,89 +191,85 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1521 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1512 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Galibiyet Koşulu:"
 
-#: gui/gamesetup/gamesetup.js:1612
+#: gui/gamesetup/gamesetup.js:1600
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "YZ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1617
+#: gui/gamesetup/gamesetup.js:1605
 msgid "Unassigned"
 msgstr "Atanmamış"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1765
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1772
 msgid "Unknown Player"
 msgstr "Bilinmeyen Oyuncu"
 
-#: gui/gamesetup/gamesetup.js:1835
-msgid "I'm not ready"
-msgstr "Hazır değilim"
+#: gui/gamesetup/gamesetup.js:1834
+msgid "I'm not ready!"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1836
+#: gui/gamesetup/gamesetup.js:1835
+msgid "I'm ready"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1838
 msgid "State that you are not ready to play."
 msgstr "Oynamaya hazır olmadığını beyan et."
 
-#: gui/gamesetup/gamesetup.js:1841 gui/gamesetup/gamesetup.js:1919
-msgid "I'm ready!"
-msgstr "Hazırım!"
-
-#: gui/gamesetup/gamesetup.js:1842
+#: gui/gamesetup/gamesetup.js:1839
 msgid "State that you are ready to play!"
 msgstr "Oynamaya hazır olduğunu beyan et."
-
-#: gui/gamesetup/gamesetup.js:1920
-msgid "State that you accept the current settings and are ready to play!"
-msgstr "Geçerli ayarları kabul ettiğini ve ve oynamaya hazır oldğunu beyan et!"
 
 #: gui/gamesetup/gamesetup_mp.js:35
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)s'in oyunu"
 
-#: gui/gamesetup/gamesetup_mp.js:62
+#: gui/gamesetup/gamesetup_mp.js:80
 msgid "Connecting to server..."
 msgstr "Sunucuya bağlanılıyor..."
 
-#: gui/gamesetup/gamesetup_mp.js:81
+#: gui/gamesetup/gamesetup_mp.js:99
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Ağ mesajı: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:150
+#: gui/gamesetup/gamesetup_mp.js:168
 msgid "Registering with server..."
 msgstr "Sunucuya kaydediliyor"
 
-#: gui/gamesetup/gamesetup_mp.js:156
+#: gui/gamesetup/gamesetup_mp.js:174
 msgid "Game has already started, rejoining..."
 msgstr "Oyun zaten başladı, tekrar katılıyor..."
 
-#: gui/gamesetup/gamesetup_mp.js:207
+#: gui/gamesetup/gamesetup_mp.js:226
 msgid "Game name already in use."
 msgstr "Oyun ismi zaten kullanılıyor."
 
-#: gui/gamesetup/gamesetup_mp.js:224
+#: gui/gamesetup/gamesetup_mp.js:243
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
 msgid "Error"
 msgstr "Hata"
 
-#: gui/gamesetup/gamesetup_mp.js:253
+#: gui/gamesetup/gamesetup_mp.js:272
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:276
+#: gui/gamesetup/gamesetup_mp.js:295
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s'nin oyunu"
@@ -301,7 +297,7 @@ msgid "AI Difficulty:"
 msgstr "Yapay Zeka Zorluğu:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):105
+#: gui/gamesetup/gamesetup_mp.xml:(caption):90
 msgid "Cancel"
 msgstr "İptal"
 
@@ -554,7 +550,7 @@ msgid "Joining an existing game."
 msgstr "Varolan bir oyuna katıl."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):68
+#: gui/gamesetup/gamesetup_mp.xml:(caption):58
 msgid "Player name:"
 msgstr "Oyuncu adı:"
 
@@ -562,18 +558,17 @@ msgstr "Oyuncu adı:"
 msgid "Server Hostname or IP:"
 msgstr "Sunucu adı veya IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):92
-msgid "Continue"
-msgstr "Devam et"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):63
+#: gui/gamesetup/gamesetup_mp.xml:(caption):53
 msgid "Set up your server to host."
 msgstr "Sunucunu evsahibi olarak ayarla."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):81
+#: gui/gamesetup/gamesetup_mp.xml:(caption):71
 msgid "Server name:"
 msgstr "Sunucu adı:"
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+msgid "Continue"
+msgstr "Devam et"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

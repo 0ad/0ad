@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-31 04:36+0000\n"
-"Last-Translator: Tibor Buzási\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 12:37+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,9 +176,8 @@ msgstr "Könyvtár aura"
 
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
-"Reduce the cost and research time of technologies by 10% with every Library "
-"owned."
-msgstr "A technológiák költségének és a kutatási idejének csökkentése 10%-kal minden birtokolt Könyvtár után."
+"Reduce the cost and research time of technologies by 10% per Library owned."
+msgstr "A technológiák költségének és a kutatási idejének csökkentése 10%-kal minden birtokolt könyvtár után."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -218,8 +217,8 @@ msgid "Teacher Aura"
 msgstr "Tanár aura"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time when garrisoning it."
-msgstr "Egy épület felruházása -50% kutatási idővel elszállásoláskor."
+msgid "Empower a building with -50% research time when garrisoned it."
+msgstr "Egy épület felruházása -50% kutatási idővel beszállásoláskor."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -353,7 +352,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Másodpercenként 1 ÉP-vel gyógyítja a közeli egységeket."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% with every Theatron owned."
+msgid "Increase territory influence by 20% per Theatron owned."
 msgstr "A területi befolyás növelése 20%-kal minden birtokolt Theatron után."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
@@ -369,7 +368,7 @@ msgid "Wonder Aura"
 msgstr "Csoda aura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 with every Wonder owned."
+msgid "Increase the population limit by 10 per Wonder owned."
 msgstr "A népességkorlát növelése 10-zel minden birtokolt Csoda után."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
@@ -378,9 +377,9 @@ msgstr "Dicsőséges hódítás aura"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 with every Wonder owned "
-"(requires \"Glorious Expansion\" tech)."
-msgstr "A népességkorlát további növelése 40-nel minden birtokolt csoda után (szükséges a \"Dicsőséges hódítások\" technológia)."
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
+msgstr "A népességkorlát további növelése 40-nel, minden birtokolt csoda után (szükséges a „Dicsőséges hódítás” technológia)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 10:50+0000\n"
-"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
+"POT-Creation-Date: 2016-06-03 09:00+0200\n"
+"PO-Revision-Date: 2016-06-03 09:34+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +83,7 @@ msgstr "* %(username)s je připraven!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s není připraven."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1352
 msgid "Default"
 msgstr "Výchozí"
 
@@ -121,34 +121,34 @@ msgstr "Návrat k zájmové skupině."
 msgid "Return to the main menu."
 msgstr "Vrátit se do hlavní nabídky."
 
-#: gui/gamesetup/gamesetup.js:572
+#: gui/gamesetup/gamesetup.js:558
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/gamesetup/gamesetup.js:572
+#: gui/gamesetup/gamesetup.js:558
 msgid "No"
 msgstr "Ne"
 
-#: gui/gamesetup/gamesetup.js:611
+#: gui/gamesetup/gamesetup.js:597
 msgctxt "team"
 msgid "None"
 msgstr "Žádný"
 
-#: gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1258
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1427
+#: gui/gamesetup/gamesetup.js:1419
 msgid "Loading..."
 msgstr "Nahrává se..."
 
-#: gui/gamesetup/gamesetup.js:1476
+#: gui/gamesetup/gamesetup.js:1467
 msgctxt "map selection"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/gamesetup/gamesetup.js:1480
+#: gui/gamesetup/gamesetup.js:1471
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -156,20 +156,20 @@ msgstr[0] "%(number)s hráč."
 msgstr[1] "%(number)s hráči."
 msgstr[2] "%(number)s hráčů."
 
-#: gui/gamesetup/gamesetup.js:1490
+#: gui/gamesetup/gamesetup.js:1481
 msgid "Randomly selects a map from the list"
 msgstr "Náhodně vybere mapu ze seznamu"
 
-#: gui/gamesetup/gamesetup.js:1493
+#: gui/gamesetup/gamesetup.js:1484
 msgid "Sorry, no description available."
 msgstr "Bohužel, popis není dostupný."
 
-#: gui/gamesetup/gamesetup.js:1499
+#: gui/gamesetup/gamesetup.js:1490
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1495
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -178,89 +178,85 @@ msgstr[0] "Div světa (%(min)s min)"
 msgstr[1] "Div světa (%(min)s min)"
 msgstr[2] "Div světa (%(min)s min)"
 
-#: gui/gamesetup/gamesetup.js:1521 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1512 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Podmínka vítězství:"
 
-#: gui/gamesetup/gamesetup.js:1612
+#: gui/gamesetup/gamesetup.js:1600
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "UI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1617
+#: gui/gamesetup/gamesetup.js:1605
 msgid "Unassigned"
 msgstr "Nepřiřazeno"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1765
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1772
 msgid "Unknown Player"
 msgstr "Neznámý hráč"
 
-#: gui/gamesetup/gamesetup.js:1835
-msgid "I'm not ready"
-msgstr "Nejsem připraven"
+#: gui/gamesetup/gamesetup.js:1834
+msgid "I'm not ready!"
+msgstr "Nejsem připraven!"
 
-#: gui/gamesetup/gamesetup.js:1836
+#: gui/gamesetup/gamesetup.js:1835
+msgid "I'm ready"
+msgstr "Jsem připraven"
+
+#: gui/gamesetup/gamesetup.js:1838
 msgid "State that you are not ready to play."
 msgstr "Oznamte, že nejste připraveni hrát."
 
-#: gui/gamesetup/gamesetup.js:1841 gui/gamesetup/gamesetup.js:1919
-msgid "I'm ready!"
-msgstr "Jsem připraven!"
-
-#: gui/gamesetup/gamesetup.js:1842
+#: gui/gamesetup/gamesetup.js:1839
 msgid "State that you are ready to play!"
 msgstr "Oznamte, že jste připraveni hrát!"
-
-#: gui/gamesetup/gamesetup.js:1920
-msgid "State that you accept the current settings and are ready to play!"
-msgstr "Oznamte, že přijímáte nynější nastavení a že jste připraveni hrát!"
 
 #: gui/gamesetup/gamesetup_mp.js:35
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)s-ho hra"
 
-#: gui/gamesetup/gamesetup_mp.js:62
+#: gui/gamesetup/gamesetup_mp.js:80
 msgid "Connecting to server..."
 msgstr "Připojuji se k serveru..."
 
-#: gui/gamesetup/gamesetup_mp.js:81
+#: gui/gamesetup/gamesetup_mp.js:99
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Síťová zpráva: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:150
+#: gui/gamesetup/gamesetup_mp.js:168
 msgid "Registering with server..."
 msgstr "Přihlašuje se k serveru..."
 
-#: gui/gamesetup/gamesetup_mp.js:156
+#: gui/gamesetup/gamesetup_mp.js:174
 msgid "Game has already started, rejoining..."
 msgstr "Hra již byla spuštěna. Znovu se připojuje…"
 
-#: gui/gamesetup/gamesetup_mp.js:207
+#: gui/gamesetup/gamesetup_mp.js:226
 msgid "Game name already in use."
 msgstr "Jméno hry je již používáno."
 
-#: gui/gamesetup/gamesetup_mp.js:224
+#: gui/gamesetup/gamesetup_mp.js:243
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Nelze pořádat hru: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
 msgid "Error"
 msgstr "Chyba"
 
-#: gui/gamesetup/gamesetup_mp.js:253
+#: gui/gamesetup/gamesetup_mp.js:272
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Nelze se připojit ke hře: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:276
+#: gui/gamesetup/gamesetup_mp.js:295
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s-ho hra"
@@ -288,7 +284,7 @@ msgid "AI Difficulty:"
 msgstr "Obtížnost umělé inteligence:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):105
+#: gui/gamesetup/gamesetup_mp.xml:(caption):90
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -541,7 +537,7 @@ msgid "Joining an existing game."
 msgstr "Připojuji se ke hře."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):68
+#: gui/gamesetup/gamesetup_mp.xml:(caption):58
 msgid "Player name:"
 msgstr "Jméno hráče:"
 
@@ -549,18 +545,17 @@ msgstr "Jméno hráče:"
 msgid "Server Hostname or IP:"
 msgstr "Název hostitelského serveru nebo IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):92
-msgid "Continue"
-msgstr "Pokračovat"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):63
+#: gui/gamesetup/gamesetup_mp.xml:(caption):53
 msgid "Set up your server to host."
 msgstr "Nastavte váš hostitelský server."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):81
+#: gui/gamesetup/gamesetup_mp.xml:(caption):71
 msgid "Server name:"
 msgstr "Název serveru:"
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+msgid "Continue"
+msgstr "Pokračovat"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

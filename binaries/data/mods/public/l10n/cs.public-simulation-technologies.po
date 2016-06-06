@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-06-02 13:10+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 12:32+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1064,13 +1064,13 @@ msgstr "Životní podmínky"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
-msgid "Increases the healing range of all healers."
-msgstr "Zvětší léčivý dosah všech léčitelů."
+msgid "Increases the healing and vision range of all healers."
+msgstr "Zvětší léčivý dosah a rozhled všech léčitelů."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +8 Healing Range."
-msgstr "Léčitelé získají +8 na dosahu léčení."
+msgid "Healers +5 Healing and Vision Range."
+msgstr "Léčitelé získají +5 na dosahu léčení a rozhledu."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1474,8 +1474,9 @@ msgstr "Div přitahuje k vaší kultuře spoustu dalších lidí."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
-"Enable Glorious Expansion. Further increase the population limit by 40."
-msgstr "Povolit Velkolepý rozmach. Další nárůst populačního limitu o 40."
+"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Wonder owned."
+msgstr "Povolit Velkolepý rozmach. Další nárůst populačního limitu o 40 za každý vlastněný div."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"

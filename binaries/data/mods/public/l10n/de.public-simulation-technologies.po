@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-30 15:03+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-04 20:38+0000\n"
 "Last-Translator: Maximilian Wagenbach <foaly.f@web.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -666,7 +666,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr "Fernkampf-Infanterie-Masterclass"
+msgstr "Fernkampf-Infanterie-Meisterklasse"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -1038,7 +1038,7 @@ msgstr "Hammer und Meißel"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsonrequirementsTooltip
 msgid "Equip your workers with helpful tools. No requirements."
-msgstr "Statte diene Arbeiter mit hilfreichen Werkzeugen aus. Keine Voraussetzungen."
+msgstr "Statte deine Arbeiter mit hilfreichen Werkzeugen aus. Keine Voraussetzungen."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
@@ -1066,13 +1066,13 @@ msgstr "Wohnverhältnisse"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
-msgid "Increases the healing range of all healers."
-msgstr "Erhöht die Reichweite von Heilern."
+msgid "Increases the healing and vision range of all healers."
+msgstr "Erhöht die Heilungsreichweite und Sichtweite aller Heilern."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +8 Healing Range."
-msgstr "Heiler erhalten +8 auf Heilungsreichweite."
+msgid "Healers +5 Healing and Vision Range."
+msgstr "Heiler erhalten +5 auf Heilungsreichweite und Sichtweite."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1476,8 +1476,9 @@ msgstr "Das Wunder gewinnt viel mehr Menschen für deine Zivilisation."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
-"Enable Glorious Expansion. Further increase the population limit by 40."
-msgstr "Aktiviert Glorreiche Expansion. Erhöht das Bevölkerungslimit um weitere 40."
+"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Wonder owned."
+msgstr "Aktiviert Glorreiche Expansion. Erhöht das Bevölkerungslimit um weitere 40 für jedes Wunder in deinem Besitz."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
