@@ -29,6 +29,11 @@
   <Health>
     <Max>500</Max>
     <RegenRate>-3</RegenRate>
+    <DamageVariants>
+      <lightdamage>0.85</lightdamage> 
+      <mediumdamage>0.65</mediumdamage> 
+      <heavydamage>0.35</heavydamage> 
+    </DamageVariants>
   </Health>
   <Identity>
     <GenericName>Fire Ship</GenericName>
@@ -41,6 +46,7 @@
     <BarHeight>0.5</BarHeight>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
+  <Repairable disable=""/>
   <ResourceGatherer disable=""/>
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
