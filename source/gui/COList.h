@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,9 @@
 #include "GUI.h"
 #include "CList.h"
 
+/**
+ * Represents a column.
+ */
 struct ObjectDef
 {
   CColor m_TextColor;
@@ -34,7 +37,7 @@ struct ObjectDef
  * Individual cells are clipped if the contained text is too long.
  *
  * The list can be sorted dynamically by JS code when a
- * heading is ckicked.
+ * heading is clicked.
  * A scroll-bar will appear when needed.
  */
 class COList : public CList
@@ -57,8 +60,19 @@ protected:
 
 	virtual CRect GetListRect() const;
 
+	/**
+	 * Available columns.
+	 */
 	std::vector<ObjectDef> m_ObjectsDefs;
+
+	/**
+	 * Index of the selected column.
+	 */
 	size_t m_SelectedDef;
+
+	/**
+	 * +1 for ascending, -1 for descending sort order.
+	 */
 	int m_SelectedColumnOrder;
 
 private:

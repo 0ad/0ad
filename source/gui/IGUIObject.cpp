@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -186,22 +186,16 @@ CPos IGUIObject::GetMousePos() const
 
 void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 {
-	// Check if this is the object being hovered.
 	if (pMouseOver == this)
 	{
 		if (!m_MouseHovering)
-		{
-			// It wasn't hovering, so that must mean it just entered
 			SendEvent(GUIM_MOUSE_ENTER, "mouseenter");
-		}
 
-		// Either way, set to true
 		m_MouseHovering = true;
 
-		// call mouse over
 		SendEvent(GUIM_MOUSE_OVER, "mousemove");
 	}
-	else // Some other object (or none) is hovered
+	else
 	{
 		if (m_MouseHovering)
 		{
@@ -226,7 +220,6 @@ PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const b
 	if (!SettingExists(Setting))
 		return PSRETURN_GUI_InvalidSetting;
 
-	// Get setting
 	SGUISetting set = m_Settings[Setting];
 
 #define TYPE(type) \
@@ -240,7 +233,6 @@ PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const b
 
 	if (0)
 		;
-	// else...
 #include "GUItypes.h"
 #undef TYPE
 	else

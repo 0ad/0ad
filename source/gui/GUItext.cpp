@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,11 +25,11 @@
 #include "ps/CLogger.h"
 
 
-// List of word demlimitor bounds
-// The list contains ranges of word delimitors. The odd indexed chars are the start
+// List of word delimiter bounds
+// The list contains ranges of word delimiters. The odd indexed chars are the start
 // of a range, the even are the end of a range. The list must be sorted in INCREASING ORDER
-static const int NUM_WORD_DELIMITORS = 4*2;
-static const u16 WordDelimitors[NUM_WORD_DELIMITORS] = {
+static const int NUM_WORD_DELIMITERS = 4*2;
+static const u16 WordDelimiters[NUM_WORD_DELIMITERS] = {
 	' '   , ' ',    // spaces
 	'-'   , '-',    // hyphens
 	0x3000, 0x31FF, // ideographic symbols
@@ -92,9 +92,9 @@ void CGUIString::GenerateTextCall(const CGUI* pGUI, SFeedback& Feedback, CStrInt
 			}
 
 			const TextChunk::Tag& tag = textChunk.m_Tags[0];
-			ENSURE(tag.m_TagType == TextChunk::Tag::TAG_IMGLEFT
-			       || tag.m_TagType == TextChunk::Tag::TAG_IMGRIGHT
-			       || tag.m_TagType == TextChunk::Tag::TAG_ICON);
+			ENSURE(tag.m_TagType == TextChunk::Tag::TAG_IMGLEFT ||
+			       tag.m_TagType == TextChunk::Tag::TAG_IMGRIGHT ||
+			       tag.m_TagType == TextChunk::Tag::TAG_ICON);
 
 			const std::string& path = utf8_from_wstring(tag.m_TagValue);
 			if (!pGUI->IconExists(path))
@@ -450,13 +450,13 @@ void CGUIString::SetValue(const CStrW& str)
 			m_Words.push_back((int)i+1);
 			continue;
 		}
-		for (int n = 0; n < NUM_WORD_DELIMITORS; n += 2)
+		for (int n = 0; n < NUM_WORD_DELIMITERS; n += 2)
 		{
-			if (c <= WordDelimitors[n+1])
+			if (c <= WordDelimiters[n+1])
 			{
-				if (c >= WordDelimitors[n])
+				if (c >= WordDelimiters[n])
 					m_Words.push_back((int)i+1);
-				// assume the WordDelimitors list is stored in increasing order
+				// assume the WordDelimiters list is stored in increasing order
 				break;
 			}
 		}
