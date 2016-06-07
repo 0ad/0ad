@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,8 +41,10 @@ void CGUIScrollBarVertical::SetPosFromMousePos(const CPos& mouse)
 	 * Calculate the position for the top of the item being scrolled
 	 */
 	float emptyBackground = m_Length - m_BarSize;
+
 	if (GetStyle()->m_UseEdgeButtons)
 		emptyBackground -= GetStyle()->m_Width * 2;
+
 	m_Pos = m_PosWhenPressed + GetMaxPos() * (mouse.y - m_BarPressedAtPos.y) / emptyBackground;
 }
 
@@ -58,23 +60,23 @@ void CGUIScrollBarVertical::Draw()
 	{
 		CRect outline = GetOuterRect();
 
-		// Draw background
-		GetGUI()->DrawSprite(GetStyle()->m_SpriteBackVertical,
-							 0,
-							 m_Z+0.1f,
-							 CRect(outline.left,
-								   outline.top+(GetStyle()->m_UseEdgeButtons?GetStyle()->m_Width:0),
-								   outline.right,
-								   outline.bottom-(GetStyle()->m_UseEdgeButtons?GetStyle()->m_Width:0))
-							 );
+		GetGUI()->DrawSprite(
+			GetStyle()->m_SpriteBackVertical,
+			0,
+			m_Z+0.1f,
+			CRect(
+				outline.left,
+				outline.top + (GetStyle()->m_UseEdgeButtons ? GetStyle()->m_Width : 0),
+				outline.right,
+				outline.bottom - (GetStyle()->m_UseEdgeButtons ? GetStyle()->m_Width : 0)
+			)
+		);
 
 		if (GetStyle()->m_UseEdgeButtons)
 		{
-			// Get Appropriate sprites
 			const CGUISpriteInstance* button_top;
 			const CGUISpriteInstance* button_bottom;
 
-			// figure out what sprite to use for top button
 			if (m_ButtonMinusHovered)
 			{
 				if (m_ButtonMinusPressed)
@@ -85,7 +87,6 @@ void CGUIScrollBarVertical::Draw()
 			else
 				button_top = &GetStyle()->m_SpriteButtonTop;
 
-			// figure out what sprite to use for bottom button
 			if (m_ButtonPlusHovered)
 			{
 				if (m_ButtonPlusPressed)
@@ -96,32 +97,37 @@ void CGUIScrollBarVertical::Draw()
 			else
 				button_bottom = &GetStyle()->m_SpriteButtonBottom;
 
-			// Draw top button
-			GetGUI()->DrawSprite(*button_top,
-								 0,
-								 m_Z+0.2f,
-								 CRect(outline.left,
-									   outline.top,
-									   outline.right,
-									   outline.top+GetStyle()->m_Width)
-								);
+			GetGUI()->DrawSprite(
+				*button_top,
+				0,
+				m_Z+0.2f,
+				CRect(
+					outline.left,
+					outline.top,
+					outline.right,
+					outline.top+GetStyle()->m_Width
+				)
+			);
 
-			// Draw bottom button
-			GetGUI()->DrawSprite(*button_bottom,
-								 0,
-								 m_Z+0.2f,
-								 CRect(outline.left,
-									   outline.bottom-GetStyle()->m_Width,
-									   outline.right,
-									   outline.bottom)
-								);
+			GetGUI()->DrawSprite(
+				*button_bottom,
+				0,
+				m_Z+0.2f,
+				CRect(
+					outline.left,
+					outline.bottom-GetStyle()->m_Width,
+					outline.right,
+					outline.bottom
+				)
+			);
 		}
 
-		// Draw bar
-		GetGUI()->DrawSprite(GetStyle()->m_SpriteBarVertical,
-							 0,
-							 m_Z + 0.2f,
-							 GetBarRect());
+		GetGUI()->DrawSprite(
+			GetStyle()->m_SpriteBarVertical,
+			0,
+			m_Z + 0.2f,
+			GetBarRect()
+		);
 	}
 }
 
@@ -146,10 +152,9 @@ CRect CGUIScrollBarVertical::GetBarRect() const
 		to -= GetStyle()->m_Width;
 	}
 
-	// Setup rectangle
-	ret.top = from + (to - from) * (m_Pos / GetMaxPos());
+	ret.top = from + (to - from) * m_Pos / GetMaxPos();
 	ret.bottom = ret.top + m_BarSize;
-	ret.right = m_X + ((m_RightAligned)?(0.f):(GetStyle()->m_Width));
+	ret.right = m_X + (m_RightAligned ? 0 : GetStyle()->m_Width);
 	ret.left = ret.right - GetStyle()->m_Width;
 
 	return ret;
@@ -163,7 +168,7 @@ CRect CGUIScrollBarVertical::GetOuterRect() const
 
 	ret.top = m_Y;
 	ret.bottom = m_Y+m_Length;
-	ret.right = m_X + ((m_RightAligned)?(0):(GetStyle()->m_Width));
+	ret.right = m_X + (m_RightAligned ? 0 : GetStyle()->m_Width);
 	ret.left = ret.right - GetStyle()->m_Width;
 
 	return ret;
@@ -174,12 +179,12 @@ bool CGUIScrollBarVertical::HoveringButtonMinus(const CPos& mouse)
 	if (!GetStyle())
 		return false;
 
-	float StartX = (m_RightAligned)?(m_X-GetStyle()->m_Width):(m_X);
+	float StartX = m_RightAligned ? m_X-GetStyle()->m_Width : m_X;
 
-	return (mouse.x >= StartX &&
-			mouse.x <= StartX + GetStyle()->m_Width &&
-			mouse.y >= m_Y &&
-			mouse.y <= m_Y + GetStyle()->m_Width);
+	return mouse.x >= StartX &&
+	       mouse.x <= StartX + GetStyle()->m_Width &&
+	       mouse.y >= m_Y &&
+	       mouse.y <= m_Y + GetStyle()->m_Width;
 }
 
 bool CGUIScrollBarVertical::HoveringButtonPlus(const CPos& mouse)
@@ -187,10 +192,10 @@ bool CGUIScrollBarVertical::HoveringButtonPlus(const CPos& mouse)
 	if (!GetStyle())
 		return false;
 
-	float StartX = (m_RightAligned)?(m_X-GetStyle()->m_Width):(m_X);
+	float StartX = m_RightAligned ? m_X-GetStyle()->m_Width : m_X;
 
-	return (mouse.x > StartX &&
-			mouse.x < StartX + GetStyle()->m_Width &&
-			mouse.y > m_Y + m_Length - GetStyle()->m_Width &&
-			mouse.y < m_Y + m_Length);
+	return mouse.x > StartX &&
+	       mouse.x < StartX + GetStyle()->m_Width &&
+	       mouse.y > m_Y + m_Length - GetStyle()->m_Width &&
+	       mouse.y < m_Y + m_Length;
 }
