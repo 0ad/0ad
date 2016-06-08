@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="pediment">
+      <mesh>structural/sele_blacksmith_shields.dae</mesh>
+      <textures>
+        <texture file="props/shield/sele_round_a_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/sele_round_a_norm.png" name="normTex"/>
+        <texture file="props/shield/sele_round_a_spec.png" name="specTex"/>
+        <texture file="structural/ao/sele_blacksmith_shields_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

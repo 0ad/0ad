@@ -2,8 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="House A">
-      <mesh>structural/ptol_house_a.dae</mesh>
+    <variant name="base" frequency="1">
       <props>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
@@ -11,72 +10,49 @@
 		<texture file="structural/ptol_struct.png" name="baseTex"/>
 		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
         <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="House A">
+      <mesh>structural/ptol_house_a.dae</mesh>
+      <textures>
 		<texture file="structural/ao/ptol_house_a.png" name="aoTex"/>
 	  </textures>
     </variant>
     <variant frequency="1" name="House B">
       <mesh>structural/ptol_house_b.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
-        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
 		<texture file="structural/ao/ptol_house_b.png" name="aoTex"/>
 	  </textures>
     </variant>
     <variant frequency="1" name="House C">
       <mesh>structural/ptol_house_c.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
-        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
 		<texture file="structural/ao/ptol_house_c.png" name="aoTex"/>
 	  </textures>
     </variant>
     <variant frequency="1" name="House D">
       <mesh>structural/ptol_house_d.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
-        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
 		<texture file="structural/ao/ptol_house_d.png" name="aoTex"/>
 	  </textures>
     </variant>
     <variant frequency="1" name="House E">
       <mesh>structural/ptol_house_e.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
-        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
 		<texture file="structural/ao/ptol_house_e.png" name="aoTex"/>
 	  </textures>
     </variant>
     <variant frequency="1" name="House F">
       <mesh>structural/ptol_house_f.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
       <textures>
-		<texture file="structural/ptol_struct.png" name="baseTex"/>
-		<texture file="structural/ptol_struct_norm.png" name="normTex"/>
-        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
 		<texture file="structural/ao/ptol_house_f.png" name="aoTex"/>
 	  </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
-# Amin Behshad <behshadn1-ted@yahoo.com>, 2015
+# Amin Behshad, 2015
+# Hamed Farri <hamed.farri@gmail.com>, 2016
 # Spahbod <myops37@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-01-08 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-06-02 08:52+0000\n"
+"Last-Translator: Hamed Farri <hamed.farri@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:823
 #, c-format
 msgid "%s (custom build)"
-msgstr "%s (custom build)"
+msgstr "%s ( ساخت سفارشی )"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
@@ -34,130 +35,130 @@ msgstr "%s (%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:849
 msgid "custom build"
-msgstr "custom build"
+msgstr "ساخت سفارشی"
 
 #: i18n/L10n.cpp:252
 msgid "Long strings"
-msgstr "Long strings"
+msgstr "رشته های طولانی"
 
 #: lobby/XmppClient.cpp:750
 msgid "unknown subtype (see logs)"
-msgstr "زیرشاخه شناخته نشده(یادداشتها را ببینید)"
+msgstr "زیرشاخه شناخته نشده ( یادداشتها را ببینید )"
 
 #: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
 #: lobby/XmppClient.cpp:1084
 msgid "Error"
-msgstr ""
+msgstr "خطا"
 
 #: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
 msgid "No error"
-msgstr ""
+msgstr "خطایی نیست ."
 
 #: lobby/XmppClient.cpp:1006
 msgid "Player already logged in"
-msgstr ""
+msgstr "بازیکن در حال حاضر وارد بازی شد ."
 
 #: lobby/XmppClient.cpp:1008
 msgid "Forbidden"
-msgstr "ممنوع شده است"
+msgstr "ممنوع شده است ."
 
 #: lobby/XmppClient.cpp:1010
 msgid "Internal server error"
-msgstr "اشکال داخلی سرور"
+msgstr "خطای داخلی سرور"
 
 #: lobby/XmppClient.cpp:1014
 msgid "Not allowed"
-msgstr "مجاز نیست"
+msgstr "مجاز نیست ."
 
 #: lobby/XmppClient.cpp:1015
 msgid "Not authorized"
-msgstr "معتبر نیست"
+msgstr "معتبر نیست ."
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "گیرنده به طور موقت در دسترس نیست ."
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
-msgstr "ثبت‌نام کنید"
+msgstr "باید ثبت‌نام کنید !"
 
 #: lobby/XmppClient.cpp:1024
 msgid "Service unavailable"
-msgstr "سرویس در دسترس نیست"
+msgstr "سرویس در دسترس نیست ."
 
 #: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
 #: lobby/XmppClient.cpp:1097
 msgid "Unknown error"
-msgstr ""
+msgstr "خطای ناشناخته"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
-msgstr ""
+msgstr "خطای استریم"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "نسخه استریم ورودی پشتیبانی نشده است ."
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "استریم توسط سرور بسته شده است ."
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr ""
+msgstr "یک خطای I / O رخ داده است ."
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "ارتباط توسط سرور رد شد ."
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "حل و فصل نام میزبان سرور شکست خورده است ."
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr ""
+msgstr "این سیستم با مشکل کمبود رم یا همان حافظه مواجهه است ."
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "گواهی سرور تأیید نشده است و یا هندشیک TLS با موفقیت کامل نشده است ."
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "سرور کدگذاری TLS لازم را ارائه نمیدهد ."
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "احراز هویت شکست خورده است . رمز ورود نادرست یا حساب وجود ندارد ."
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "یک کاربر یا سیستم درخواست لغو اتصال داده است ."
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "هیچ ارتباط فعالی وجود ندارد ."
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
-msgstr ""
+msgstr "موفقیت"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "همه اطلاعات لازم آماده نیست ."
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "نام بازیکن قبلا انتخاب شده است ."
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "بازی در '%s' ذخیره شد"
+msgstr "بازی در '%s' ذخیره شد ."
 
 #: ps/Util.cpp:275 ps/Util.cpp:408
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "تصویر نمایشگر در '%s' ذخیره شد"
+msgstr "تصویر نمایشگر در '%s' ذخیره شد ."

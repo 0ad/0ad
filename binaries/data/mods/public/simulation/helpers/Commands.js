@@ -740,7 +740,7 @@ function notifyAlertFailure(player)
 	cmpGUIInterface.PushNotification({
 		"type": "text",
 		"players": [player],
-		"message": "You can't raise the alert to a higher level !",
+		"message": "You can't raise the alert to a higher level!",
 		"translateMessage": true
 	});
 }

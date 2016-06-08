@@ -20,7 +20,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>

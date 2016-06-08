@@ -209,7 +209,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 
 	if (this.assignedTo[id] !== 0)
 	{
-		var temp = this.assignedAgainst[this.assignedTo[id]];
+		let temp = this.assignedAgainst[this.assignedTo[id]];
 		if (temp)
 			temp.splice(temp.indexOf(id), 1);
 	}
@@ -235,13 +235,13 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		// TODO be sure that all units in the transport need the cancelation
 /*		if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
 		{
-			var planID = ent.getMetadata(PlayerID, "transport");
+			let planID = ent.getMetadata(PlayerID, "transport");
 			// no plans must mean that the unit was in a ship which was destroyed, so do nothing
 			if (planID)
 			{
 				if (gameState.ai.Config.debug > 0)
 					warn("ent from army still in transport plan: plan " + planID + " canceled");
-				var plan = gameState.ai.HQ.navalManager.getPlan(planID);
+				let plan = gameState.ai.HQ.navalManager.getPlan(planID);
 				if (plan && !plan.canceled)
 					plan.cancelTransport(gameState);
 			}

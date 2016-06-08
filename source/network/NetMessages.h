@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE		0x50630121		// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION				0x01010013		// Arbitrary protocol
+#define PS_PROTOCOL_VERSION				0x01010014		// Arbitrary protocol
 #define PS_DEFAULT_PORT					0x5073			// 'P', 's'
 
 // Defines the list of message types. The order of the list must not change.
@@ -50,7 +50,9 @@ enum NetMessageType
 
 	NMT_CHAT,
 	NMT_READY,
+	NMT_CLEAR_ALL_READY,
 	NMT_GAME_SETUP,
+	NMT_ASSIGN_PLAYER,
 	NMT_PLAYER_ASSIGNMENT,
 
 	NMT_FILE_TRANSFER_REQUEST,
@@ -136,6 +138,9 @@ START_NMT_CLASS_(Ready, NMT_READY)
 	NMT_FIELD_INT(m_Status, u8, 1)
 END_NMT_CLASS()
 
+START_NMT_CLASS_(ClearAllReady, NMT_CLEAR_ALL_READY)
+END_NMT_CLASS()
+
 START_NMT_CLASS_(PlayerAssignment, NMT_PLAYER_ASSIGNMENT)
 	NMT_START_ARRAY(m_Hosts)
 		NMT_FIELD(CStr, m_GUID)
@@ -216,6 +221,11 @@ START_NMT_CLASS_(SyncError, NMT_SYNC_ERROR)
 	NMT_START_ARRAY(m_PlayerNames)
 		NMT_FIELD(CStrW, m_Name)
 	NMT_END_ARRAY()
+END_NMT_CLASS()
+
+START_NMT_CLASS_(AssignPlayer, NMT_ASSIGN_PLAYER)
+	NMT_FIELD_INT(m_PlayerID, i8, 1)
+	NMT_FIELD(CStr, m_GUID)
 END_NMT_CLASS()
 
 END_NMTS()

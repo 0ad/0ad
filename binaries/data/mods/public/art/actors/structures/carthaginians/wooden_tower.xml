@@ -20,7 +20,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>

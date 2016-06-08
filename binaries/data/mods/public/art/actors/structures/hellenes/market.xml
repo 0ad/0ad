@@ -8,19 +8,19 @@
         <prop actor="props/structures/hellenes/market_struct_b.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/market_tile_c.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/market_decor.xml" attachpoint="root"/>
-<prop actor="props/structures/hellenes/market_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
       <textures>
-<texture file="structural/hele_struct.dds" name="baseTex"/>
-<texture file="structural/hele_struct_norm.png" name="normTex"/>
-<texture file="structural/hele_struct_spec.png" name="specTex"/>
-<texture file="structural/ao/hele_market.png" name="aoTex"/>
-</textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_market.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>

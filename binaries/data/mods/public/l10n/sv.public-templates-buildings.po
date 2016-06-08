@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:41+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 09:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,18 @@ msgstr "Bygg för att förvärva stora landområden. Träna invånare. Garnisone
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Medborgarcentrum"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+msgid "Colony"
+msgstr "Koloni"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+msgid "Military Colony"
+msgstr "Militärkoloni "
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+msgid "Klēroukhía"
+msgstr "Klēroukhía"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -328,6 +340,39 @@ msgstr "Unik byggnad"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Detta är en speciell byggnad, unik för enskild civilisation."
 
+#: simulation/templates/template_structure_special_library.xml:15
+msgid "Library"
+msgstr "Bibliotek"
+
+#: simulation/templates/template_structure_special_library.xml:17
+msgid "Research special technologies."
+msgstr "Forska fram unika teknologier."
+
+#: simulation/templates/template_structure_special_rotarymill.xml:20
+msgid "Rotary Mill"
+msgstr "Roterande kvarn"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:21
+msgid "Melonas"
+msgstr "Melonas"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:23
+msgid "Increase nearby farming output +25%."
+msgstr "Ökar närliggande åkrars produktion med +25%."
+
+#: simulation/templates/template_structure_special_theatron.xml:23
+msgid "Greek Theater"
+msgstr "Grekisk teater"
+
+#: simulation/templates/template_structure_special_theatron.xml:24
+msgid "Théātron"
+msgstr "Théātron"
+
+#: simulation/templates/template_structure_special_theatron.xml:26
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
+msgstr ""
+
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
 msgstr "Underverk"
@@ -458,29 +503,6 @@ msgstr "Apothḗkē"
 msgid "Neṓs"
 msgstr "Neṓs"
 
-#: simulation/templates/structures/athen_theatron.xml:24
-#: simulation/templates/structures/mace_theatron.xml:24
-#: simulation/templates/structures/spart_theatron.xml:24
-#: simulation/templates/structures/theb_theatron.xml:24
-msgid "Greek Theater"
-msgstr "Grekisk teater"
-
-#: simulation/templates/structures/athen_theatron.xml:25
-#: simulation/templates/structures/mace_theatron.xml:25
-#: simulation/templates/structures/spart_theatron.xml:25
-#: simulation/templates/structures/theb_theatron.xml:25
-msgid "Théātron"
-msgstr "Théātron"
-
-#: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
-#: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Hellēnízein (Hellenisation): +20% territoriellt inflytande för alla byggnader medan Theatron finns."
-
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
@@ -610,21 +632,6 @@ msgstr "Marchnaty"
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
 msgstr "Brythonsk utpost"
-
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/gaul_rotarymill.xml:21
-msgid "Rotary Mill"
-msgstr "Roterande kvarn"
-
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/templates/structures/brit_rotarymill.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:24
-msgid "Increase nearby farming output +25%."
-msgstr "Ökar närliggande åkrars produktion med +25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -935,22 +942,10 @@ msgid ""
 "defense."
 msgstr "Träna mästare och hjältar. Garnisonera upp till 20 soldater för ståndaktigt försvar."
 
-#: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/ptol_library.xml:16
-#: simulation/templates/structures/sele_library.xml:16
-msgid "Library"
-msgstr "Bibliotek"
-
-#: simulation/templates/structures/mace_library.xml:17
-#: simulation/templates/structures/ptol_library.xml:17
+#: simulation/templates/structures/mace_library.xml:5
+#: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
 msgstr "Bibliothḗkē"
-
-#: simulation/templates/structures/mace_library.xml:19
-#: simulation/templates/structures/ptol_library.xml:19
-#: simulation/templates/structures/sele_library.xml:19
-msgid "Research special technologies."
-msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -993,15 +988,15 @@ msgstr "Udarka"
 msgid "Naukasthanaka"
 msgstr "Naukasthanaka"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:21
+#: simulation/templates/structures/maur_elephant_stables.xml:24
 msgid "Elephant Stables"
 msgstr "Elefantstall"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:22
+#: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:25
+#: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
 msgstr "Träna elefantenheter."
 
@@ -1105,7 +1100,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Satraptribut\": Få ett långsamt tillflöde av extra mat, trä, sten och metall. Träna persiska hjältar och deras \"Odödliga\" livvakter."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1168,7 +1163,7 @@ msgstr "Duvarthi Visadahyu"
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Unik byggnad.\nTräna stridselefanter och kardakiska legosoldater."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1186,7 +1181,7 @@ msgstr "Istarporten från Babylon"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Ökar lojalitetsregenereringen av närliggande strukturer, vilket gör dem svårare att erövra."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1317,21 +1312,7 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Billig baracker-liknande struktur som är byggbar i neutralt territorium, men som inte har något territorieinflytande.\n- Utbilda legosoldater.\n- Min. avstånd från andra militära byggnader: 100 meter."
 
-#: simulation/templates/structures/ptol_military_colony.xml:25
-#: simulation/templates/structures/sele_military_colony.xml:25
-msgid "Colony"
-msgstr "Koloni"
-
-#: simulation/templates/structures/ptol_military_colony.xml:47
-#: simulation/templates/structures/sele_military_colony.xml:47
-msgid "Military Colony"
-msgstr "Militärkoloni "
-
-#: simulation/templates/structures/ptol_military_colony.xml:48
-msgid "Klēroukhía"
-msgstr "Klēroukhía"
-
-#: simulation/templates/structures/ptol_military_colony.xml:51
+#: simulation/templates/structures/ptol_military_colony.xml:6
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1569,7 +1550,7 @@ msgid ""
 "for stout defense."
 msgstr "Bygg belägringsvapen och träna mästare. Garnisonera upp till 20 soldater inuti för starkt försvar."
 
-#: simulation/templates/structures/sele_library.xml:17
+#: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 
@@ -1577,11 +1558,7 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:48
-msgid "Klēroukhia"
-msgstr "Klēroukhia"
-
-#: simulation/templates/structures/sele_military_colony.xml:51
+#: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

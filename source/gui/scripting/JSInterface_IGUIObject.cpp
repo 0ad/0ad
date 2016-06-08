@@ -97,30 +97,36 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		return true;
 	}
 
-
-	// Handle the "parent" property specially
 	if (propName == "parent")
 	{
 		IGUIObject* parent = e->GetParent();
+
 		if (parent)
-		{
-			// If the object isn't parentless, return a new object
 			vp.set(JS::ObjectValue(*parent->GetJSObject()));
-		}
 		else
-		{
-			// Return null if there's no parent
 			vp.set(JS::NullValue());
-		}
+
 		return true;
 	}
-	// Also handle "name" specially
+	else if (propName == "children")
+	{
+		JS::RootedObject obj(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+		vp.setObject(*obj);
+
+		for (size_t i = 0; i < e->m_Children.size(); ++i)
+		{
+			JS::RootedValue val(cx);
+			ScriptInterface::ToJSVal(cx, &val, e->m_Children[i]);
+			JS_SetElement(cx, obj, i, val);
+		}
+
+		return true;
+	}
 	else if (propName == "name")
 	{
 		vp.set(JS::StringValue(JS_NewStringCopyZ(cx, e->GetName().c_str())));
 		return true;
 	}
-	// Handle all other properties
 	else
 	{
 		// Retrieve the setting's type (and make sure it actually exists)

@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:41+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 09:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -47,6 +47,18 @@ msgstr "Postavením získate veľké časti územia. Umožňuje tréning občano
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Občianske centrum"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+msgid "Colony"
+msgstr "Kolónia"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+msgid "Military Colony"
+msgstr "Vojenská kolónia"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+msgid "Klēroukhía"
+msgstr "Klēroukhía"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -327,6 +339,39 @@ msgstr "Špeciálna budova"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Toto je špeciálna budova jedinečná pre príslušnú civilizáciu."
 
+#: simulation/templates/template_structure_special_library.xml:15
+msgid "Library"
+msgstr "Knižnica"
+
+#: simulation/templates/template_structure_special_library.xml:17
+msgid "Research special technologies."
+msgstr ""
+
+#: simulation/templates/template_structure_special_rotarymill.xml:20
+msgid "Rotary Mill"
+msgstr "Otočný mlyn"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:21
+msgid "Melonas"
+msgstr "Melonas"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:23
+msgid "Increase nearby farming output +25%."
+msgstr "Zvyšuje okolitú produkciu farmenia o +25%."
+
+#: simulation/templates/template_structure_special_theatron.xml:23
+msgid "Greek Theater"
+msgstr "Grécke divadlo"
+
+#: simulation/templates/template_structure_special_theatron.xml:24
+msgid "Théātron"
+msgstr "Théātron"
+
+#: simulation/templates/template_structure_special_theatron.xml:26
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
+msgstr ""
+
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
 msgstr "Div sveta"
@@ -457,29 +502,6 @@ msgstr "Apothḗkē"
 msgid "Neṓs"
 msgstr "Neṓs"
 
-#: simulation/templates/structures/athen_theatron.xml:24
-#: simulation/templates/structures/mace_theatron.xml:24
-#: simulation/templates/structures/spart_theatron.xml:24
-#: simulation/templates/structures/theb_theatron.xml:24
-msgid "Greek Theater"
-msgstr "Grécke divadlo"
-
-#: simulation/templates/structures/athen_theatron.xml:25
-#: simulation/templates/structures/mace_theatron.xml:25
-#: simulation/templates/structures/spart_theatron.xml:25
-#: simulation/templates/structures/theb_theatron.xml:25
-msgid "Théātron"
-msgstr "Théātron"
-
-#: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
-#: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Hellēnízein (Helenizácia): +20% vplyv teritória pre všetky budovy pokiaľ je postavený Theatron."
-
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
@@ -609,21 +631,6 @@ msgstr "Marchnaty"
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
 msgstr "Brytónska rozhľadňa"
-
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/gaul_rotarymill.xml:21
-msgid "Rotary Mill"
-msgstr "Otočný mlyn"
-
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/templates/structures/brit_rotarymill.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:24
-msgid "Increase nearby farming output +25%."
-msgstr "Zvyšuje okolitú produkciu farmenia o +25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -934,22 +941,10 @@ msgid ""
 "defense."
 msgstr "Trénuje Šampiónov a Hrdinov. Pre pevnejšiu obranu je možné vo vnútri mať posádku až 20 vojakov."
 
-#: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/ptol_library.xml:16
-#: simulation/templates/structures/sele_library.xml:16
-msgid "Library"
-msgstr "Knižnica"
-
-#: simulation/templates/structures/mace_library.xml:17
-#: simulation/templates/structures/ptol_library.xml:17
+#: simulation/templates/structures/mace_library.xml:5
+#: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
 msgstr "Bibliothḗkē"
-
-#: simulation/templates/structures/mace_library.xml:19
-#: simulation/templates/structures/ptol_library.xml:19
-#: simulation/templates/structures/sele_library.xml:19
-msgid "Research special technologies."
-msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -992,15 +987,15 @@ msgstr "Udarka"
 msgid "Naukasthanaka"
 msgstr "Naukasthanaka"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:21
+#: simulation/templates/structures/maur_elephant_stables.xml:24
 msgid "Elephant Stables"
 msgstr "Slonia stajňa"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:22
+#: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:25
+#: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
 msgstr "Trénuje slonie jednotky."
 
@@ -1316,21 +1311,7 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Lacná, kasárniam podobná stavba, ktorú je možné vybudovať na neutrálnom území, bohužiaľ však nezaručuje žiaden územný vplyv.\n- Trénuje žoldnierov.\n- Minimálna vzdialenosť od ostatných vojenských osád: 100 metrov."
 
-#: simulation/templates/structures/ptol_military_colony.xml:25
-#: simulation/templates/structures/sele_military_colony.xml:25
-msgid "Colony"
-msgstr "Kolónia"
-
-#: simulation/templates/structures/ptol_military_colony.xml:47
-#: simulation/templates/structures/sele_military_colony.xml:47
-msgid "Military Colony"
-msgstr "Vojenská kolónia"
-
-#: simulation/templates/structures/ptol_military_colony.xml:48
-msgid "Klēroukhía"
-msgstr "Klēroukhía"
-
-#: simulation/templates/structures/ptol_military_colony.xml:51
+#: simulation/templates/structures/ptol_military_colony.xml:6
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1568,7 +1549,7 @@ msgid ""
 "for stout defense."
 msgstr "Buduje obliehacie stroje a trénuje šampiónov. Vo vnútri je možné pre pevnejšiu obranu mať posádku až 20 vojakov."
 
-#: simulation/templates/structures/sele_library.xml:17
+#: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 
@@ -1576,11 +1557,7 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:48
-msgid "Klēroukhia"
-msgstr "Klēroukhia"
-
-#: simulation/templates/structures/sele_military_colony.xml:51
+#: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

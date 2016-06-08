@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -419,7 +419,6 @@ bool CDropDown::MouseOver()
 		CRect rect(m_CachedActualSize.left, m_CachedActualSize.top,
 				   m_CachedActualSize.right, GetListRect().bottom);
 
-
 		return rect.PointInside(GetMousePos());
 	}
 	else
@@ -481,7 +480,6 @@ void CDropDown::Draw()
 
 	if (selected != -1) // TODO: Maybe check validity completely?
 	{
-		// figure out clipping rectangle
 		CRect cliparea(m_CachedActualSize.left, m_CachedActualSize.top,
 					   m_CachedActualSize.right-button_width, m_CachedActualSize.bottom);
 

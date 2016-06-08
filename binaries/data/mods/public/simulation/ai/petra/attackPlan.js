@@ -92,7 +92,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	this.maxCompletingTime = 0;
 
 	// priority of the queues we'll create.
-	var priority = 70;
+	let priority = 70;
 
 	// unitStat priority is relative. If all are 0, the only relevant criteria is "currentsize/targetsize".
 	// if not, this is a "bonus". The higher the priority, the faster this unit will get built.
@@ -158,7 +158,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	}
 
 	// Put some randomness on the attack size
-	var variation = 0.8 + 0.4*Math.random();
+	let variation = 0.8 + 0.4*Math.random();
 	// and lower priority and smaller sizes for easier difficulty levels
 	if (this.Config.difficulty < 2)
 	{
@@ -311,7 +311,7 @@ m.AttackPlan.prototype.forceStart = function()
 	}
 };
 
-/** Adds a build order. If resetQueue is true, this will reset the queue.*/
+/** Adds a build order. If resetQueue is true, this will reset the queue. */
 m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, resetQueue)
 {
 	if (!this.isStarted())
@@ -349,7 +349,7 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	return true;
 };
 
-/** Three returns possible: 1 is "keep going", 0 is "failed plan", 2 is "start" */
+/** Three returns possible: 1 is "keep going", 0 is "failed plan", 2 is "start". */
 m.AttackPlan.prototype.updatePreparation = function(gameState)
 {
 	// the completing step is used to return resources and regroup the units
@@ -466,8 +466,8 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "target": this.targetPlayer});
 	}
 
-	var rallyPoint = this.rallyPoint;
-	var rallyIndex = gameState.ai.accessibility.getAccessValue(rallyPoint);
+	let rallyPoint = this.rallyPoint;
+	let rallyIndex = gameState.ai.accessibility.getAccessValue(rallyPoint);
 	for (let ent of this.unitCollection.values())
 	{
 		// For the time being, if occupied in a transport, remove the unit from this plan   TODO improve that
@@ -585,8 +585,8 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 
 m.AttackPlan.prototype.assignUnits = function(gameState)
 {
-	var plan = this.name;
-	var added = false;
+	let plan = this.name;
+	let added = false;
 	// If we can not build units, assign all available except those affected to allied defense to the current attack
 	if (!this.canBuildUnits)
 	{
@@ -695,7 +695,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	return added;
 };
 
-/** Reassign one (at each turn) Cav unit to fasten raid preparation */
+/** Reassign one (at each turn) Cav unit to fasten raid preparation. */
 m.AttackPlan.prototype.reassignCavUnit = function(gameState)
 {
 	let found;
@@ -1176,16 +1176,15 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	Engine.ProfileStart("Update Attack");
 
 	this.position = this.unitCollection.getCentrePosition();
-	var IDs = this.unitCollection.toIdArray();
 
-	var self = this;
+	let self = this;
 
 	// we are transporting our units, let's wait
 	// TODO instead of state "arrived", made a state "walking" with a new path
 	if (this.state === "transporting")
-		this.UpdateTransporting(gameState, events, IDs);
+		this.UpdateTransporting(gameState, events);
 
-	if (this.state === "walking" && !this.UpdateWalking(gameState, events, IDs))
+	if (this.state === "walking" && !this.UpdateWalking(gameState, events))
 	{
 		Engine.ProfileStop();
 		return 0;
@@ -1214,95 +1213,22 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	// basic state of attacking.
 	if (this.state === "")
 	{
-		// First update the target position in case it's a unit (and check if it has garrisoned)
-		if (this.target && this.target.hasClass("Unit"))
+		// First update the target and/or its position if needed
+		if (!this.UpdateTarget(gameState, events))
 		{
-			this.targetPos = this.target.position();
-			if (!this.targetPos)
-			{
-				let holder = m.getHolder(gameState, this.target);
-				if (holder && gameState.isPlayerEnemy(holder.owner()))
-				{
-					this.target = holder;
-					this.targetPos = holder.position();
-				}
-				else
-					this.target = undefined;
-			}
-		}
-		// Then update the target if needed:
-	    	if (this.targetPlayer === undefined)
-		{
-			this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
-			if (this.targetPlayer === undefined)
-			{
-				Engine.ProfileStop();
-				return false;
-			}
-			if (this.target && this.target.owner() !== this.targetPlayer)
-				this.target = undefined;
-		}
-		if (this.target && this.target.owner() === 0 && this.targetPlayer !== 0)  // this enemy has resigned
-			this.target = undefined;
-		if (!this.target || !gameState.getEntityById(this.target.id()))
-		{
-			if (this.Config.debug > 1)
-				API3.warn("Seems like our target has been destroyed. Switching.");
-			this.target = this.getNearestTarget(gameState, this.position, true);
-			if (!this.target)
-			{
-				// Check if we could help any current attack
-				let attackManager = gameState.ai.HQ.attackManager;
-				let accessIndex = gameState.ai.accessibility.getAccessValue(this.position);
-				for (let attackType in attackManager.startedAttacks)
-				{
-					if (this.target)
-						break;
-					for (let attack of attackManager.startedAttacks[attackType])
-					{
-						if (attack.name === this.name)
-							continue;
-						if (!attack.target || !gameState.getEntityById(attack.target.id()))
-							continue;
-						if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
-							continue;
-						if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned
-							continue;
-						this.target = attack.target;
-						this.targetPlayer = attack.targetPlayer;
-						break;
-					}
-				}
-
-				// If not, let's look for another enemy
-				if (!this.target)
-				{
-					this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
-					if (this.targetPlayer !== undefined)
-						this.target = this.getNearestTarget(gameState, this.position, true);
-					if (!this.target)
-					{
-						if (this.Config.debug > 1)
-							API3.warn("No new target found. Remaining units " + this.unitCollection.length);
-						Engine.ProfileStop();
-						return false;
-					}
-				}
-				if (this.Config.debug > 1)
-					API3.warn("We will help one of our other attacks");
-			}
-			this.targetPos = this.target.position();
+			Engine.ProfileStop();
+			return false;
 		}
 
-		var time = gameState.ai.elapsedTime;
+		let time = gameState.ai.elapsedTime;
 		for (let evt of events.Attacked)
 		{
-			if (IDs.indexOf(evt.target) == -1)
+			if (!this.unitCollection.hasEntId(evt.target))
 				continue;
 			let attacker = gameState.getEntityById(evt.attacker);
 			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
 				continue;
-			var ourUnit = gameState.getEntityById(evt.target);
+			let ourUnit = gameState.getEntityById(evt.target);
 			if (this.isSiegeUnit(gameState, ourUnit))
 			{	// if our siege units are attacked, we'll send some units to deal with enemies.
 				let collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
@@ -1358,8 +1284,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 		}
 
-		var enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
-		var enemyStructures = gameState.getEnemyStructures(this.targetPlayer);
+		let enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
+		let enemyStructures = gameState.getEnemyStructures(this.targetPlayer);
 
 		// Count the number of times an enemy is targeted, to prevent all units to follow the same target
 		let unitTargets = {};
@@ -1390,8 +1316,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (unitTargets[target] > 0)
 				veto[target] = true;
 
-		var targetClassesUnit;
-		var targetClassesSiege;
+		let targetClassesUnit;
+		let targetClassesSiege;
 		if (this.type === "Rush")
 			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Palisade", "StoneWall", "Tower", "Fortress"], "vetoEntities": veto};
 		else
@@ -1419,7 +1345,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
 		// Let's check a few units each time we update (currently 10) except when attack starts
-		var lgth = (this.unitCollUpdateArray.length < 15 || this.startingAttack) ? this.unitCollUpdateArray.length : 10;
+		let lgth = (this.unitCollUpdateArray.length < 15 || this.startingAttack) ? this.unitCollUpdateArray.length : 10;
 		for (let check = 0; check < lgth; check++)
 		{
 			let ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
@@ -1687,7 +1613,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	return this.unitCollection.length;
 };
 
-m.AttackPlan.prototype.UpdateTransporting = function(gameState, events, IDs)
+m.AttackPlan.prototype.UpdateTransporting = function(gameState, events)
 {
 	let done = true;
 	for (let ent of this.unitCollection.values())
@@ -1711,7 +1637,7 @@ m.AttackPlan.prototype.UpdateTransporting = function(gameState, events, IDs)
 	// if we are attacked while waiting the rest of the army, retaliate
 	for (let evt of events.Attacked)
 	{
-		if (IDs.indexOf(evt.target) == -1)
+		if (!this.unitCollection.hasEntId(evt.target))
 			continue;
 		let attacker = gameState.getEntityById(evt.attacker);
 		if (!attacker || !gameState.getEntityById(evt.target))
@@ -1728,7 +1654,7 @@ m.AttackPlan.prototype.UpdateTransporting = function(gameState, events, IDs)
 	}
 };
 
-m.AttackPlan.prototype.UpdateWalking = function(gameState, events, IDs)
+m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 {
 	// we're marching towards the target
 	// Let's check if any of our unit has been attacked.
@@ -1738,7 +1664,7 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events, IDs)
 	let attackedUnitNB = 0;
 	for (let evt of events.Attacked)
 	{
-		if (IDs.indexOf(evt.target) === -1)
+		if (!this.unitCollection.hasEntId(evt.target))
 			continue;
 		let attacker = gameState.getEntityById(evt.attacker);
 		if (attacker && (attacker.owner() !== 0 || this.targetPlayer === 0))
@@ -1803,9 +1729,9 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events, IDs)
 				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
 			return false;
 		}
-		else
-			//this.unitCollection.move(this.path[0][0], this.path[0][1]);
-			this.unitCollection.moveIndiv(this.path[0][0], this.path[0][1]);
+
+		//this.unitCollection.move(this.path[0][0], this.path[0][1]);
+		this.unitCollection.moveIndiv(this.path[0][0], this.path[0][1]);
 	}
 
 	// check if our units are close enough from the next waypoint.
@@ -1830,6 +1756,87 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events, IDs)
 		}
 	}
 
+	return true;
+};
+
+m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
+{
+	// First update the target position in case it's a unit (and check if it has garrisoned)
+	if (this.target && this.target.hasClass("Unit"))
+	{
+		this.targetPos = this.target.position();
+		if (!this.targetPos)
+		{
+			let holder = m.getHolder(gameState, this.target);
+			if (holder && gameState.isPlayerEnemy(holder.owner()))
+			{
+				this.target = holder;
+				this.targetPos = holder.position();
+			}
+			else
+				this.target = undefined;
+		}
+	}
+	// Then update the target if needed:
+	if (this.targetPlayer === undefined)
+	{
+		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
+		if (this.targetPlayer === undefined)
+			return false;
+
+		if (this.target && this.target.owner() !== this.targetPlayer)
+			this.target = undefined;
+	}
+	if (this.target && this.target.owner() === 0 && this.targetPlayer !== 0)  // this enemy has resigned
+		this.target = undefined;
+
+	if (!this.target || !gameState.getEntityById(this.target.id()))
+	{
+		if (this.Config.debug > 1)
+			API3.warn("Seems like our target has been destroyed. Switching.");
+		this.target = this.getNearestTarget(gameState, this.position, true);
+		if (!this.target)
+		{
+			// Check if we could help any current attack
+			let attackManager = gameState.ai.HQ.attackManager;
+			let accessIndex = gameState.ai.accessibility.getAccessValue(this.position);
+			for (let attackType in attackManager.startedAttacks)
+			{
+				for (let attack of attackManager.startedAttacks[attackType])
+				{
+					if (attack.name === this.name)
+						continue;
+					if (!attack.target || !gameState.getEntityById(attack.target.id()))
+						continue;
+					if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
+						continue;
+					if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned
+						continue;
+					this.target = attack.target;
+					this.targetPlayer = attack.targetPlayer;
+					this.targetPos = this.target.position();
+					return true;
+				}
+			}
+
+			// If not, let's look for another enemy
+			if (!this.target)
+			{
+				this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
+				if (this.targetPlayer !== undefined)
+					this.target = this.getNearestTarget(gameState, this.position, true);
+				if (!this.target)
+				{
+					if (this.Config.debug > 1)
+						API3.warn("No new target found. Remaining units " + this.unitCollection.length);
+					return false;
+				}
+			}
+			if (this.Config.debug > 1)
+				API3.warn("We will help one of our other attacks");
+		}
+		this.targetPos = this.target.position();
+	}
 	return true;
 };
 
@@ -1885,7 +1892,7 @@ m.AttackPlan.prototype.checkEvents = function(gameState, events)
 
 	for (let evt of events.OwnershipChanged)	// capture event
 		if (this.target && this.target.id() == evt.entity && gameState.isPlayerAlly(evt.to))
-		    this.target = undefined;
+			this.target = undefined;
 
 	for (let evt of events.PlayerDefeated)
 	{

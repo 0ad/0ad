@@ -273,8 +273,6 @@ function initGUIObjects()
 
 	if (g_IsController)
 	{
-		// Unique ID to be used for identifying the same game reports for the lobby
-		g_GameAttributes.matchID = Engine.GetMatchID();
 		g_GameAttributes.settings.CheatsEnabled = !g_IsNetworked;
 		g_GameAttributes.settings.RatingEnabled = Engine.IsRankedGame() || undefined;
 
@@ -342,26 +340,14 @@ function initMapFilters()
 function resizeMoreOptionsWindow()
 {
 	const elementHeight = 30;
-	const elements = [
-		"optionGameSpeed",
-		"optionVictoryCondition",
-		"optionWonderDuration",
-		"optionPopulationCap",
-		"optionStartingResources",
-		"optionCeasefire",
-		"optionRevealMap",
-		"optionExploreMap",
-		"optionDisableTreasures",
-		"optionLockTeams",
-		"optionCheats",
-		"optionRating",
-		"hideMoreOptions"
-	];
 
 	let yPos = undefined;
-	for (let element of elements)
+
+	for (let guiOption of Engine.GetGUIObjectByName("moreOptions").children)
 	{
-		let guiOption = Engine.GetGUIObjectByName(element);
+		if (guiOption.name == "moreOptionsLabel")
+			continue;
+
 		let gSize = guiOption.size;
 		yPos = yPos || gSize.top;
 
@@ -670,7 +656,6 @@ function handleReadyMessage(message)
 		return;
 
 	g_PlayerAssignments[message.guid].status = +message.status == 1;
-	Engine.SetNetworkPlayerStatus(message.guid, +message.status);
 	updateReadyUI();
 }
 
@@ -722,54 +707,53 @@ function handleGamesetupMessage(message)
  */
 function handlePlayerAssignmentMessage(message)
 {
-	let resetReady = false;
-	let newGUID = "";
+	for (let guid in message.newAssignments)
+		if (!g_PlayerAssignments[guid])
+			onClientJoin(guid, message.newAssignments);
 
-	// Report joinings
-	for (let guid in message.hosts)
-	{
-		if (g_PlayerAssignments[guid])
-			continue;
-
-		addChatMessage({ "type": "connect", "guid": guid, "username": message.hosts[guid].name });
-		newGUID = guid;
-
-		// Assign the new player
-		if (!g_IsController || message.hosts[guid].player != -1)
-			continue;
-
-		let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
-			Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
-		);
-
-		if (freeSlot != -1)
-			Engine.AssignNetworkPlayer(freeSlot+1, guid);
-	}
-
-	// Report leavings
 	for (let guid in g_PlayerAssignments)
-	{
-		if (message.hosts[guid])
-			continue;
+		if (!message.newAssignments[guid])
+			onClientLeave(guid);
 
-		addChatMessage({ "type": "disconnect", "guid": guid });
+	g_PlayerAssignments = message.newAssignments;
 
-		if (g_PlayerAssignments[guid].player != -1)
-			resetReady = true; // Observers shouldn't reset ready.
-	}
-
-	g_PlayerAssignments = message.hosts;
 	updatePlayerList();
-
-	if (g_PlayerAssignments[newGUID] && g_PlayerAssignments[newGUID].player != -1)
-		resetReady = true;
-
-	if (resetReady)
-		resetReadyData();
-
 	updateReadyUI();
-
 	sendRegisterGameStanza();
+}
+
+function onClientJoin(newGUID, newAssignments)
+{
+	addChatMessage({
+		"type": "connect",
+		"guid": newGUID,
+		"username": newAssignments[newGUID].name
+	});
+
+	// Assign joining observers to unused player numbers
+	if (!g_IsController || newAssignments[newGUID].player != -1)
+		return;
+
+	let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
+		Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
+	);
+
+	if (freeSlot == -1)
+		return;
+
+	Engine.AssignNetworkPlayer(freeSlot + 1, newGUID);
+	resetReadyData();
+}
+
+function onClientLeave(guid)
+{
+	addChatMessage({
+		"type": "disconnect",
+		"guid": guid
+	});
+
+	if (g_PlayerAssignments[guid].player != -1)
+		resetReadyData();
 }
 
 function getMapDisplayName(map)
@@ -777,7 +761,7 @@ function getMapDisplayName(map)
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{
-		log("Map data missing in scenario '" + map + "' - likely unsupported format");
+		warn("Map without name: " + map);
 		return map;
 	}
 
@@ -832,11 +816,13 @@ function initMapNameList()
 {
 	if (!g_MapPath[g_GameAttributes.mapType])
 	{
-		error("initMapNameList: Unexpected map type " + g_GameAttributes.mapType);
+		error("Unexpected map type: " + g_GameAttributes.mapType);
 		return;
 	}
 
-	let mapFiles = g_GameAttributes.mapType == "random" ? getJSONFileList(g_GameAttributes.mapPath) : getXMLFileList(g_GameAttributes.mapPath);
+	let mapFiles = g_GameAttributes.mapType == "random" ?
+		getJSONFileList(g_GameAttributes.mapPath) :
+		getXMLFileList(g_GameAttributes.mapPath);
 
 	// Apply map filter, if any defined
 	// TODO: Should verify these are valid maps before adding to list
@@ -883,7 +869,9 @@ function loadMapData(name)
 		return { "settings": { "Name": "", "Description": "" } };
 
 	if (!g_MapData[name])
-		g_MapData[name] = g_GameAttributes.mapType == "random" ? Engine.ReadJSONFile(name + ".json") : Engine.LoadMapSettings(name);
+		g_MapData[name] = g_GameAttributes.mapType == "random" ?
+			Engine.ReadJSONFile(name + ".json") :
+			Engine.LoadMapSettings(name);
 
 	return g_MapData[name];
 }
@@ -910,9 +898,6 @@ function loadPersistMatchSettings()
 	let mapSettings = attrs.settings;
 
 	g_GameAttributes = attrs;
-	g_GameAttributes.matchID = Engine.GetMatchID();
-	mapSettings.Seed = Math.floor(Math.random() * 65536);
-	mapSettings.AISeed = Math.floor(Math.random() * 65536);
 
 	if (!g_IsNetworked)
 		mapSettings.CheatsEnabled = true;
@@ -1045,7 +1030,6 @@ function onTick()
  */
 function selectNumPlayers(num)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController || g_GameAttributes.mapType != "random")
 		return;
 
@@ -1109,7 +1093,6 @@ function ensureUniquePlayerColors(playerData)
  */
 function selectMapType(type)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
@@ -1127,10 +1110,8 @@ function selectMapType(type)
 	if (type != "scenario")
 		g_GameAttributes.settings = {
 			"PlayerData": g_DefaultPlayerData.slice(0, 4),
-			"Seed": Math.floor(Math.random() * 65536),
 			"CheatsEnabled": g_GameAttributes.settings.CheatsEnabled
 		};
-	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
 
 	initMapNameList();
 
@@ -1139,7 +1120,6 @@ function selectMapType(type)
 
 function selectMapFilter(id)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController)
 		return;
 
@@ -1152,7 +1132,6 @@ function selectMapFilter(id)
 
 function selectMap(name)
 {
-	// Avoid recursion
 	if (g_IsInGuiUpdate || !g_IsController || !name)
 		return;
 
@@ -1193,21 +1172,24 @@ function selectMap(name)
 			g_GameAttributes.settings.PlayerData[i].AIDiff = g_DefaultPlayerData[i].AIDiff;
 	}
 
-	// Reset player assignments on map change
-	if (!g_IsNetworked)
-		g_PlayerAssignments = { "local": { "name": singleplayerName(), "player": 1, "civ": "", "team": -1, "ready": 0 } };
-
-	else
-	{
-		let numPlayers = mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length;
-
+	if (g_IsNetworked)
+		// Unassign excess players
 		for (let guid in g_PlayerAssignments)
-		{	// Unassign extra players
+		{
 			let player = g_PlayerAssignments[guid].player;
-			if (player <= g_MaxPlayers && player > numPlayers)
+			if (player > g_GameAttributes.settings.PlayerData.length)
 				Engine.AssignNetworkPlayer(player, "");
 		}
-	}
+	else
+		g_PlayerAssignments = {
+			"local": {
+				"name": singleplayerName(),
+				"player": 1,
+				"civ": "",
+				"team": -1,
+				"ready": 0
+			}
+		};
 
 	updateGameAttributes();
 }
@@ -1275,13 +1257,22 @@ function launchGame()
 		g_GameAttributes.settings.PlayerData[i].Name = !usedName ? chosenName : sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": g_RomanNumbers[usedName+1] });
 	}
 
-	// Copy playernames from initial player assignment to the settings
+	// Copy playernames for the purpose of replays
 	for (let guid in g_PlayerAssignments)
 	{
 		let player = g_PlayerAssignments[guid];
 		if (player.player > 0)	// not observer or GAIA
 			g_GameAttributes.settings.PlayerData[player.player - 1].Name = player.name;
 	}
+
+	// This seed is only used for map-generation
+	if (g_GameAttributes.mapType == "random")
+		g_GameAttributes.settings.Seed = Math.floor(Math.random() * 65536);
+
+	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
+
+	// Used for identifying rated game reports for the lobby
+	g_GameAttributes.matchID = Engine.GetMatchID();
 
 	if (g_IsNetworked)
 	{
@@ -1453,7 +1444,6 @@ function updateGUIObjects()
 	// Game attributes include AI settings, so update the player list
 	updatePlayerList();
 
-	// We should have everyone confirm that the new settings are acceptable.
 	resetReadyData();
 
 	// Refresh AI config page
@@ -1496,7 +1486,7 @@ function updateMapDescription()
 	let victoryTitle;
 
 	if (victoryIdx == -1)
-		victoryTitle = translateWithContext("victory condition", "Unknown")
+		victoryTitle = translateWithContext("victory condition", "Unknown");
 	else
 	{
 		if (g_VictoryConditions.Name[victoryIdx] == "wonder")
@@ -1566,10 +1556,7 @@ function AIConfigCallback(ai)
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
 
-	if (g_IsNetworked)
-		Engine.SetNetworkGameAttributes(g_GameAttributes);
-	else
-		updatePlayerList();
+	updateGameAttributes();
 }
 
 function updatePlayerList()
@@ -1749,7 +1736,6 @@ function swapPlayers(guid, newSlot)
 	else
 		g_PlayerAssignments[guid].player = newPlayerID;
 
-	// Remove AI from this player slot
 	g_GameAttributes.settings.PlayerData[newSlot].AI = "";
 }
 
@@ -1828,19 +1814,28 @@ function resetCivilizations()
 
 function toggleReady()
 {
-	g_IsReady = !g_IsReady;
-	if (g_IsReady)
-	{
-		Engine.SendNetworkReady(1);
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm not ready");
-		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are not ready to play.");
-	}
-	else
-	{
-		Engine.SendNetworkReady(0);
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
-		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you are ready to play!");
-	}
+	setReady(!g_IsReady);
+}
+
+function setReady(ready, sendMessage = true)
+{
+	g_IsReady = ready;
+
+	if (sendMessage)
+		Engine.SendNetworkReady(+g_IsReady);
+
+	if (g_IsController)
+		return;
+
+	let button = Engine.GetGUIObjectByName("startGame");
+
+	button.caption = g_IsReady ?
+		translate("I'm not ready!") :
+		translate("I'm ready");
+
+	button.tooltip = g_IsReady ?
+		translate("State that you are not ready to play.") :
+		translate("State that you are ready to play!");
 }
 
 function updateReadyUI()
@@ -1910,15 +1905,10 @@ function resetReadyData()
 	else if (g_IsController)
 	{
 		Engine.ClearAllPlayerReady();
-		g_IsReady = true;
-		Engine.SendNetworkReady(1);
+		setReady(true);
 	}
 	else
-	{
-		g_IsReady = false;
-		Engine.GetGUIObjectByName("startGame").caption = translate("I'm ready!");
-		Engine.GetGUIObjectByName("startGame").tooltip = translate("State that you accept the current settings and are ready to play!");
-	}
+		setReady(false, false);
 }
 
 /**

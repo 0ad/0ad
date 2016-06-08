@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Me Lazzi, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-04 16:37+0000\n"
+"Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,11 +111,11 @@ msgstr "Aura del Comandante"
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid ""
 "+5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 Attacco della carica di Cavalleria nel suo campo visivo (al momento inutile)."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
-msgstr ""
+msgstr "Aura Riparazione della nave"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 3 HP per second."
@@ -127,7 +128,7 @@ msgstr "Aura Curatrice"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraDescription
 msgid "Heals nearby units at 3 HP per second."
-msgstr ""
+msgstr "Cura le unità vicine a 3 Punto Vita al secondo."
 
 #: simulation/data/auras/female_inspiration.jsonauraName
 msgid "Inspiration Aura"
@@ -161,27 +162,28 @@ msgstr "Quando presidiato in una struttura o arma d'assedio, l'eroe gli fornisce
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
-msgstr ""
+msgstr "Aura Difensiva"
 
 #: simulation/data/auras/iber_monument.jsonauraDescription
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
-msgstr ""
+msgstr "Aumenta per tutte le unità Iberiche nella sua Aura le abilità ferire +2 e perforare +3."
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
-msgstr ""
+msgstr "Aura Biblioteca"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr ""
+msgid ""
+"Reduce the cost and research time of technologies by 10% per Library owned."
+msgstr "Riduce il tempo e i costi di ricerca di tecnologie del 10% per ogni biblioteca presente."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
-msgstr ""
+msgstr "Aura Lealtà"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "Tutte le strutture nella visuale hanno un tasso di rigenerazione fedeltà di 1.5x presidianti."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -201,20 +203,20 @@ msgstr "+5 Attacco e +2 Cattura per le Unità Campioni."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Evangelism Aura"
-msgstr ""
+msgstr "Aura Predicazione"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid ""
 "All player and allied Temple technologies -50% cost and -50% research time."
-msgstr ""
+msgstr "Le tecnologie dei Templi del giocatore e degli alleati costano -50% e il tempo di ricerca è -50%."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
-msgstr ""
+msgstr "Aura Insegnante"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr ""
+msgid "Empower a building with -50% research time when garrisoned it."
+msgstr "Potenzia un edificio con tempo di ricerca -50% quando presidiato."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -234,7 +236,7 @@ msgstr "Aura del Comando"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% Movement Speed for all units."
-msgstr ""
+msgstr "+15% Velocità di Movimento per tutte le unità."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -242,7 +244,7 @@ msgstr "Aura dell'Amministratore"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% Velocità di Raccolta e Velocità di Costruzione delle unità vicine."
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
 msgid "Patriot Aura"
@@ -306,7 +308,7 @@ msgstr "Aura degli Ilarchi"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All Cavalry gains +2 levels of all armour types."
-msgstr ""
+msgstr "Tutte le unità di Cavalleria guadagnano +2 livelli di armatura."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -316,7 +318,7 @@ msgstr "Aura della Conquista"
 msgid ""
 "All nearby enemy Buildings, Siege engines, and Ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Tutti gli Edifici, le Navi ed i Meccanismi d'Assedio nemici vicini hanno la salute ridotta del 20%."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -348,8 +350,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Cura le unità vicine a 1 Punto Vita al secondo"
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr ""
+msgid "Increase territory influence by 20% per Theatron owned."
+msgstr "Aumenta l'influenza territoriale del 20% per ogni Theatron posseduto."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -357,20 +359,25 @@ msgstr "Protezione delle Mura"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Units on walls have 3 extra Armor levels and higher vision."
-msgstr ""
+msgstr "Le unità sulle mura hanno 3 livelli extra di Armatura e visuale maggiore."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Aura della Meraviglia"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr ""
+msgid "Increase the population limit by 10 per Wonder owned."
+msgstr "Aumenta il limite di popolazione di 10 per ogni Meraviglia posseduta."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Aura Espansione Gloriosa"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr ""
+msgid ""
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
+msgstr "Incrementa ulteriormente il limite di popolazione di 40 per ogni Meraviglia posseduta (richiede \"Espansione Gloriosa\")."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -392,13 +399,13 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr ""
+msgstr "Riduce il costo degli schermagliatori cittadino-soldato con il 20% per gli alleati di giocatori iberici"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syryan Tetrapolis"
-msgstr ""
+msgstr "Tetrapolis Siriana"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr ""
+msgstr "Riduce il costo dei centri cittadini del 20% per gli alleati di giocatori Seleucidi"

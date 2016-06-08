@@ -397,34 +397,34 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	}
 };
 
-// Called by the "town phase" research plan once it's started
+/** Called by the "town phase" research plan once it's started */
 m.HQ.prototype.OnTownPhase = function(gameState)
 {
-	var phaseName = gameState.getTemplate(gameState.townPhase()).name();
+	let phaseName = gameState.getTemplate(gameState.townPhase()).name();
 	m.chatNewPhase(gameState, phaseName, true);
 };
 
-// Called by the "city phase" research plan once it's started
+/** Called by the "city phase" research plan once it's started */
 m.HQ.prototype.OnCityPhase = function(gameState)
 {
 	// increase the priority of defense buildings to free this queue for our first fortress
 	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
 
-	var phaseName = gameState.getTemplate(gameState.cityPhase()).name();
+	let phaseName = gameState.getTemplate(gameState.cityPhase()).name();
 	m.chatNewPhase(gameState, phaseName, true);
 };
 
-// This code trains citizen workers, trying to keep close to a ratio of worker/soldiers
+/** This code trains citizen workers, trying to keep close to a ratio of worker/soldiers */
 m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
 	// default template
-	var requirementsDef = [["cost", 1], ["costsResource", 1, "food"]];
-	var classesDef = ["Support", "Worker"];
-	var templateDef = this.findBestTrainableUnit(gameState, classesDef, requirementsDef);
+	let requirementsDef = [["cost", 1], ["costsResource", 1, "food"]];
+	let classesDef = ["Support", "Worker"];
+	let templateDef = this.findBestTrainableUnit(gameState, classesDef, requirementsDef);
 
 	// counting the workers that aren't part of a plan
-	var numberOfWorkers = 0;   // all workers
-	var numberOfSupports = 0;  // only support workers (i.e. non fighting)
+	let numberOfWorkers = 0;   // all workers
+	let numberOfSupports = 0;  // only support workers (i.e. non fighting)
 	gameState.getOwnUnits().forEach (function (ent) {
 		if (ent.getMetadata(PlayerID, "role") === "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
 		{
@@ -433,9 +433,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 				++numberOfSupports;
 		}
 	});
-	var numberInTraining = 0;
+	let numberInTraining = 0;
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
-		ent.trainingQueue().forEach(function(item) {
+		for (let item of ent.trainingQueue())
+		{
 			numberInTraining += item.count;
 			if (item.metadata && item.metadata.role && item.metadata.role === "worker" && item.metadata.plan === undefined)
 			{
@@ -443,14 +444,14 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 				if (item.metadata.support)
 					numberOfSupports += item.count;
 			}
-		});
+		}
 	});
 
 	// Anticipate the optimal batch size when this queue will start
 	// and adapt the batch size of the first and second queued workers to the present population
 	// to ease a possible recovery if our population was drastically reduced by an attack
 	// (need to go up to second queued as it is accounted in queueManager)
-	var size = numberOfWorkers < 12 ? 1 : Math.min(5, Math.ceil(numberOfWorkers / 10));
+	let size = numberOfWorkers < 12 ? 1 : Math.min(5, Math.ceil(numberOfWorkers / 10));
 	if (queues.villager.plans[0])
 	{
 		queues.villager.plans[0].number = Math.min(queues.villager.plans[0].number, size);
@@ -464,10 +465,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			queues.citizenSoldier.plans[1].number = Math.min(queues.citizenSoldier.plans[1].number, size);
 	}
 
-	var numberOfQueuedSupports = queues.villager.countQueuedUnits();
-	var numberOfQueuedSoldiers = queues.citizenSoldier.countQueuedUnits();
-	var numberQueued = numberOfQueuedSupports + numberOfQueuedSoldiers;
-	var numberTotal = numberOfWorkers + numberQueued;
+	let numberOfQueuedSupports = queues.villager.countQueuedUnits();
+	let numberOfQueuedSoldiers = queues.citizenSoldier.countQueuedUnits();
+	let numberQueued = numberOfQueuedSupports + numberOfQueuedSoldiers;
+	let numberTotal = numberOfWorkers + numberQueued;
 
 	if (this.saveResources && numberTotal > this.Config.Economy.popForTown + 10)
 		return;
@@ -510,7 +511,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		queues.citizenSoldier.addPlan(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
 };
 
-// picks the best template based on parameters and classes
+/** picks the best template based on parameters and classes */
 m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements)
 {
 	var units;
@@ -595,8 +596,10 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	return units[0][0];
 };
 
-// returns an entity collection of workers through BaseManager.pickBuilders
-// TODO: when same accessIndex, sort by distance
+/**
+ * returns an entity collection of workers through BaseManager.pickBuilders
+ * TODO: when same accessIndex, sort by distance
+ */
 m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 {
 	var accessIndex = baseRef.accessIndex;
@@ -630,7 +633,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 
 m.HQ.prototype.getTotalResourceLevel = function(gameState)
 {
-	var total = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let total = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	for (let base of this.baseManagers)
 		for (let type in total)
 			total[type] += base.getResourceLevel(gameState, type);
@@ -665,8 +668,8 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 	return this.currentRates;
 };
 
-
-/* Pick the resource which most needs another worker
+/**
+ * Pick the resource which most needs another worker
  * How this works:
  * We get the rates we would want to have to be able to deal with our plans
  * We get our current rates
@@ -676,9 +679,9 @@ m.HQ.prototype.GetCurrentGatherRates = function(gameState)
 m.HQ.prototype.pickMostNeededResources = function(gameState)
 {
 	this.wantedRates = gameState.ai.queueManager.wantedGatherRates(gameState);
-	var currentRates = this.GetCurrentGatherRates(gameState);
+	let currentRates = this.GetCurrentGatherRates(gameState);
 
-	var needed = [];
+	let needed = [];
 	for (let res in this.wantedRates)
 		needed.push({ "type": res, "wanted": this.wantedRates[res], "current": currentRates[res] });
 
@@ -693,8 +696,10 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 	return needed;
 };
 
-// Returns the best position to build a new Civil Centre
-// Whose primary function would be to reach new resources of type "resource".
+/**
+ * Returns the best position to build a new Civil Centre
+ * Whose primary function would be to reach new resources of type "resource".
+ */
 m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, proximity, fromStrategic)
 {
 	// This builds a map. The procedure is fairly simple. It adds the resource maps
@@ -868,8 +873,10 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	return [x, z];
 };
 
-// Returns the best position to build a new Civil Centre
-// Whose primary function would be to assure territorial continuity with our allies
+/**
+ * Returns the best position to build a new Civil Centre
+ * Whose primary function would be to assure territorial continuity with our allies
+ */
 m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 {
 	// This builds a map. The procedure is fairly simple.
@@ -1008,10 +1015,12 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	return [x, z];
 };
 
-// Returns the best position to build a new market: if the allies already have a market, build it as far as possible
-// from it, although not in our border to be able to defend it easily. If no allied market, our second market will
-// follow the same logic
-// TODO check that it is on same accessIndex
+/**
+ * Returns the best position to build a new market: if the allies already have a market, build it as far as possible
+ * from it, although not in our border to be able to defend it easily. If no allied market, our second market will
+ * follow the same logic
+ * TODO check that it is on same accessIndex
+ */
 m.HQ.prototype.findMarketLocation = function(gameState, template)
 {
 	var markets = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
@@ -1105,8 +1114,10 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	return [x, z, this.basesMap.map[bestJdx], expectedGain];
 };
 
-// Returns the best position to build defensive buildings (fortress and towers)
-// Whose primary function is to defend our borders
+/**
+ * Returns the best position to build defensive buildings (fortress and towers)
+ * Whose primary function is to defend our borders
+ */
 m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 {
 	// We take the point in our territory which is the nearest to any enemy cc
@@ -1273,12 +1284,12 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 		return;
 
 	gameState.ai.queueManager.changePriority("economicBuilding", 3*this.Config.priorities.economicBuilding);
-	var plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
+	let plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
 	plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };
 	queues.economicBuilding.addPlan(plan);
 };
 
-// Build a farmstead
+/** Build a farmstead */
 m.HQ.prototype.buildFarmstead = function(gameState, queues)
 {
 	// Only build one farmstead for the time being ("DropsiteFood" does not refer to CCs)
@@ -1297,7 +1308,7 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues)
 	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_farmstead"));
 };
 
-// Build a corral, and train animals there
+/** Build a corral, and train animals there */
 m.HQ.prototype.manageCorral = function(gameState, queues)
 {
 	if (queues.corral.hasQueuedUnits())

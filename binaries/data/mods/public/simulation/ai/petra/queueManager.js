@@ -355,10 +355,14 @@ m.QueueManager.prototype.startNextItems = function(gameState)
 			let item = queue.getNext();
 			if (this.accounts[name].canAfford(item.getCost()) && item.canStart(gameState))
 			{
-				this.finishingTime = gameState.ai.elapsedTime;
-				this.accounts[name].subtract(item.getCost());
-				queue.startNext(gameState);
-				queue.switched = 0;
+				// canStart may update the cost because of the costMultiplier so we must check it again
+				if (this.accounts[name].canAfford(item.getCost()))
+				{
+					this.finishingTime = gameState.ai.elapsedTime;
+					this.accounts[name].subtract(item.getCost());
+					queue.startNext(gameState);
+					queue.switched = 0;
+				}
 			}
 		}
 		else if (!queue.hasQueuedUnits())

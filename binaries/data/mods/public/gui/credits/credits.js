@@ -1,14 +1,48 @@
 var g_PanelNames = ["special", "programming", "art", "translators", "misc", "donators"];
-var g_PanelTexts = [];
+var g_ButtonNames = {};
+var g_PanelTexts = {};
 var g_ActivePanel = -1;
 
 function init()
 {
 	// Load credits list from the disk and parse them
 	for (let name of g_PanelNames)
-		g_PanelTexts.push(parseJSONCredits(name));
+	{
+		let json = Engine.ReadJSONFile("gui/credits/texts/" + name + ".json");
+		if (!json || !json.Content)
+		{
+			error("Could not load credits for " + name + "!");
+			continue;
+		}
+		g_ButtonNames[name] = json.Title || name;
+		g_PanelTexts[name] = parseHelper(json.Content);
+	}
 
+	placeButtons();
 	selectPanel(0);
+}
+
+function placeButtons()
+{
+
+	for (let i = 0; i < g_PanelNames.length; ++i)
+	{
+		let button = Engine.GetGUIObjectByName("creditsPanelButton[" + i + "]");
+		if (!button)
+		{
+			warn("Could not display some credits.");
+			break;
+		}
+		button.hidden = false;
+		let size = button.size;
+		size.top = i * 35;
+		size.bottom = size.top + 30;
+		button.size = size;
+
+		button.onPress = (i => function() {selectPanel(i);})(i);
+		let buttonText = Engine.GetGUIObjectByName("creditsPanelButtonText[" + i + "]");
+		buttonText.caption = translate(g_ButtonNames[g_PanelNames[i]]);
+	}
 }
 
 // Run through a "Content" list and parse elements for formatting and translation
@@ -48,30 +82,15 @@ function parseHelper(list)
 	return result;
 }
 
-function parseJSONCredits(panelName)
-{
-	let json = Engine.ReadJSONFile("gui/credits/texts/" + panelName + ".json");
-	if (!json || !json.Content)
-	{
-		error("Could not load credits for " + panelName + "!");
-		return "";
-	}
-
-	return parseHelper(json.Content);
-}
-
 function selectPanel(i)
 {
 	if (g_ActivePanel != -1)
 	{
-		let oldPanelButton = Engine.GetGUIObjectByName(g_PanelNames[g_ActivePanel] + "PanelButton");
+		let oldPanelButton = Engine.GetGUIObjectByName("creditsPanelButton[" + g_ActivePanel+ "]");
 		oldPanelButton.sprite = "BackgroundBox";
 	}
 
 	g_ActivePanel = i;
-	let newPanelButton = Engine.GetGUIObjectByName(g_PanelNames[g_ActivePanel] + "PanelButton");
-	newPanelButton.sprite = "ForegroundBox";
-
-	let creditsText = Engine.GetGUIObjectByName("creditsText");
-	creditsText.caption = g_PanelTexts[i];
+	Engine.GetGUIObjectByName("creditsPanelButton[" + i + "]").sprite = "ForegroundBox";
+	Engine.GetGUIObjectByName("creditsText").caption = g_PanelTexts[g_PanelNames[i]];
 }

@@ -15,14 +15,16 @@ m.DiplomacyManager = function(Config)
 	this.nextTributeRequest.set("all", 240);
 };
 
-// Check if any allied needs help (tribute) and sent it if we have enough resource
-// or ask for a tribute if we are in need and one ally can help
+/**
+ * Check if any allied needs help (tribute) and sent it if we have enough resource
+ * or ask for a tribute if we are in need and one ally can help
+ */
 m.DiplomacyManager.prototype.tributes = function(gameState)
 {
 	this.nextTributeUpdate = gameState.ai.elapsedTime + 30;
-	var totalResources = gameState.getResources();
-	var availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
-	var mostNeeded;
+	let totalResources = gameState.getResources();
+	let availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
+	let mostNeeded;
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (i === PlayerID || !gameState.isPlayerAlly(i) || gameState.ai.HQ.attackManager.defeated[i])

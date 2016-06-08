@@ -1,8 +1,7 @@
 var PETRA = function(m)
 {
-/* 
+/**
  * Common functions and variables to all queue plans.
- * has a "--" suffix because it needs to be loaded before the other queueplan files.
  */
 
 m.QueuePlan = function(gameState, type, metadata)
@@ -13,37 +12,36 @@ m.QueuePlan = function(gameState, type, metadata)
 	this.template = gameState.getTemplate(this.type);
 	if (!this.template)
 	{
-		API3.warn("Tried to add the inexisting template " + this.type + " to Petra. Please report this on the forums");
+		API3.warn("Tried to add the inexisting template " + this.type + " to Petra.");
 		return false;
 	}
 	this.ID = gameState.ai.uniqueIDs.plans++;
 	this.cost = new API3.Resources(this.template.cost());
 	this.number = 1;
-
 	this.category = "";
 
 	return true;
 };
 
-// Check the content of this queue
+/** Check the content of this queue */
 m.QueuePlan.prototype.isInvalid = function(gameState)
 {
 	return false;
 };
 
-// if true, the queue manager will begin increasing this plan's account.
+/** if true, the queue manager will begin increasing this plan's account. */
 m.QueuePlan.prototype.isGo = function(gameState)
 {
 	return true;
 };
 
-// can we start this plan immediately?
+/** can we start this plan immediately? */
 m.QueuePlan.prototype.canStart = function(gameState)
 {
 	return false;
 };
 
-// process the plan.
+/** process the plan. */
 m.QueuePlan.prototype.start = function(gameState)
 {
 	// should call onStart.
@@ -51,17 +49,19 @@ m.QueuePlan.prototype.start = function(gameState)
 
 m.QueuePlan.prototype.getCost = function()
 {
-	var costs = new API3.Resources();
+	let costs = new API3.Resources();
 	costs.add(this.cost);
 	if (this.number !== 1)
 		costs.multiply(this.number);
 	return costs;
 };
 
-// On Event functions.
-// Can be used to do some specific stuffs
-// Need to be updated to actually do something if you want them to.
-// this is called by "Start" if it succeeds.
+/**
+ * On Event functions.
+ * Can be used to do some specific stuffs
+ * Need to be updated to actually do something if you want them to.
+ * this is called by "Start" if it succeeds.
+ */
 m.QueuePlan.prototype.onStart = function(gameState)
 {
 };

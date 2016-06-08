@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-20 09:00+0200\n"
-"PO-Revision-Date: 2016-05-21 03:05+0000\n"
+"POT-Creation-Date: 2016-05-30 09:00+0200\n"
+"PO-Revision-Date: 2016-05-30 23:27+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -48,12 +48,12 @@ msgid "Confirmation"
 msgstr "確認"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:654 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:654 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "是"
 
@@ -82,7 +82,7 @@ msgstr "我要退出"
 msgid "Destroy everything currently selected?"
 msgstr "摧毀目前所選的任何事物？"
 
-#: gui/session/menu.js:174 gui/session/unit_actions.js:718
+#: gui/session/menu.js:174
 msgid "Delete"
 msgstr "刪除"
 
@@ -214,36 +214,36 @@ msgstr[0] "%(numberOfShipTraders)s 艘商船閒置"
 msgid "Current Scores"
 msgstr "目前分數"
 
-#: gui/session/menu.js:741
+#: gui/session/menu.js:734
 msgid "Resume"
 msgstr "繼續遊戲"
 
-#: gui/session/menu.js:741 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "暫停"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:738
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "由 %(players)s 暫停"
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:739
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:759 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:752 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "手冊"
 
-#: gui/session/menu.js:775
+#: gui/session/menu.js:768
 msgid "The Developer Overlay was closed."
 msgstr "開發者覆蓋層已關閉。"
 
-#: gui/session/menu.js:776
+#: gui/session/menu.js:769
 msgid "The Developer Overlay was opened."
 msgstr "開發者覆蓋層已開啟。"
 
-#: gui/session/menu.js:797
+#: gui/session/menu.js:790
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -438,7 +438,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:375
-#: gui/session/selection_details.js:407 gui/session/session.js:822
+#: gui/session/selection_details.js:407 gui/session/session.js:837
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -507,9 +507,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s："
 
-#: gui/session/selection_details.js:226 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:337 gui/session/unit_actions.js:347
-#: gui/session/unit_actions.js:553
+#: gui/session/selection_details.js:226 gui/session/unit_actions.js:510
+#: gui/session/unit_actions.js:519 gui/session/unit_actions.js:533
+#: gui/session/unit_actions.js:843
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "收益: %(gain)s"
@@ -546,82 +546,82 @@ msgstr "類型："
 msgid "Capture points:"
 msgstr "捕獲點： "
 
-#: gui/session/selection_panels.js:71
+#: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
 msgstr "增加警報等級以保護更多單位"
 
-#: gui/session/selection_panels.js:73
+#: gui/session/selection_panels.js:62
 msgid "Raise an alert!"
 msgstr "引發警報！"
 
-#: gui/session/selection_panels.js:76
+#: gui/session/selection_panels.js:65
 msgid "End of alert."
 msgstr "警報結束。"
 
-#: gui/session/selection_panels.js:141
+#: gui/session/selection_panels.js:123
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "購買 %(resource)s"
 
-#: gui/session/selection_panels.js:142
+#: gui/session/selection_panels.js:124
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "賣出 %(resource)s"
 
-#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1124
+#: gui/session/selection_panels.js:315 gui/session/selection_panels.js:999
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/session/selection_panels.js:479
+#: gui/session/selection_panels.js:418
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下 %(name)s"
 
-#: gui/session/selection_panels.js:480
+#: gui/session/selection_panels.js:419
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 
-#: gui/session/selection_panels.js:544
+#: gui/session/selection_panels.js:481
 msgid "Lock Gate"
 msgstr "鎖住大門"
 
-#: gui/session/selection_panels.js:550
+#: gui/session/selection_panels.js:487
 msgid "Unlock Gate"
 msgstr "開放大門"
 
-#: gui/session/selection_panels.js:657
+#: gui/session/selection_panels.js:587
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:659
+#: gui/session/selection_panels.js:589
 msgid "Unpack"
 msgstr "解壓縮"
 
-#: gui/session/selection_panels.js:661
+#: gui/session/selection_panels.js:591
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:663
+#: gui/session/selection_panels.js:593
 msgid "Cancel Unpacking"
 msgstr "取消解壓縮"
 
-#: gui/session/selection_panels.js:738
+#: gui/session/selection_panels.js:653
 msgid "Insufficient population capacity:"
 msgstr "人口上限不足："
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:654
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:852
+#: gui/session/selection_panels.js:772
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels.js:1112 gui/session/session.js:821
+#: gui/session/selection_panels.js:983 gui/session/session.js:836
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "血:"
@@ -721,192 +721,216 @@ msgstr "%(action)s 訓練 %(number)s."
 msgid "Gaia"
 msgstr "蓋雅"
 
-#: gui/session/session.js:401
+#: gui/session/session.js:316
+msgid "Find idle worker"
+msgstr "尋找閒置工人"
+
+#: gui/session/session.js:319
+msgid ""
+"Select one goods as origin of the changes, then use the arrows of the target"
+" goods to make the changes."
+msgstr "選擇一種貨物做為交換的原始貨物，然後使用目標貨物的箭頭以做出交換。"
+
+#: gui/session/session.js:321
+#, javascript-format
+msgid "Using %(hotkey)s will put the selected resource to 100%%."
+msgstr "使用 %(hotkey)s 將會把選定的資源置於 100%%。"
+
+#: gui/session/session.js:416
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 建築樹"
 
-#: gui/session/session.js:468 gui/session/session.js:484
+#: gui/session/session.js:483 gui/session/session.js:499
 msgid "You have left the game."
 msgstr "您已經離開遊戲。"
 
-#: gui/session/session.js:475
+#: gui/session/session.js:490
 msgid "You have been disconnected."
 msgstr "您已中斷連線。"
 
-#: gui/session/session.js:477
+#: gui/session/session.js:492
 msgid "You have won the battle!"
 msgstr "您已得勝！"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:494
 msgid "You have been defeated..."
 msgstr "您被擊敗..."
 
-#: gui/session/session.js:487
+#: gui/session/session.js:502
 msgid "You have abandoned the game."
 msgstr "您已放棄遊戲。"
 
-#: gui/session/session.js:633
+#: gui/session/session.js:648
 msgid "OK"
 msgstr "確定"
 
-#: gui/session/session.js:635
+#: gui/session/session.js:650
 msgid "Press OK to continue"
 msgstr "請按下「確定」繼續"
 
-#: gui/session/session.js:641
+#: gui/session/session.js:656
 msgid "Do you want to quit?"
 msgstr "您是否要退出？"
 
-#: gui/session/session.js:646
+#: gui/session/session.js:661
 msgid "DEFEATED!"
 msgstr "戰敗！"
 
-#: gui/session/session.js:651
+#: gui/session/session.js:666
 msgid "VICTORIOUS!"
 msgstr "勝利！"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:762
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "重播已結束。您想要退出嗎？"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:763
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:764
 msgctxt "replayFinished"
 msgid "No"
 msgstr "否"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:764
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "是"
 
-#: gui/session/session.js:914
+#: gui/session/session.js:929
 msgid "Population (current / limit)"
 msgstr "人口 (目前/上限)"
 
-#: gui/session/session.js:915
+#: gui/session/session.js:930
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "最大人口：%(popCap)s"
 
-#: gui/session/session.js:1055
+#: gui/session/session.js:1079
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "組建： %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1062
+#: gui/session/session.js:1086
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
 
-#: gui/session/session.js:1063
+#: gui/session/session.js:1087
 msgid "Time warp mode"
 msgstr "時空隧道模式"
 
-#: gui/session/unit_actions.js:328
+#: gui/session/unit_actions.js:508
 msgid "Origin trade market."
 msgstr "貿易市集起點。"
 
-#: gui/session/unit_actions.js:334
+#: gui/session/unit_actions.js:514
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "右鍵點擊另一個市集以將它設定為目的地貿易市集。"
 
-#: gui/session/unit_actions.js:337
+#: gui/session/unit_actions.js:518
 msgid "Destination trade market."
 msgstr "貿易市集目的地。"
 
-#: gui/session/unit_actions.js:342
+#: gui/session/unit_actions.js:525
 msgid "Right-click to set as origin trade market"
 msgstr "右鍵點擊以設為貿易市集起點。"
 
-#: gui/session/unit_actions.js:347
+#: gui/session/unit_actions.js:532
 msgid "Right-click to set as destination trade market."
 msgstr "右鍵點擊以設為貿易市集目的地。"
 
-#: gui/session/unit_actions.js:379 gui/session/unit_actions.js:515
+#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:793
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "目前駐軍: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:551
+#: gui/session/unit_actions.js:840
 msgid "Right-click to establish a default route for new traders."
 msgstr "右鍵單擊以幫商人設定預設貿易路線。"
 
-#: gui/session/unit_actions.js:555
+#: gui/session/unit_actions.js:844
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "預期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:687 gui/session/unit_actions.js:958
+#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1278
 msgid "Unload All"
 msgstr "卸下所有"
 
-#: gui/session/unit_actions.js:706
+#: gui/session/unit_actions.js:994
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "因為這個物體在戰爭迷霧中，所以您無法摧毀這個物體。"
 
-#: gui/session/unit_actions.js:712
+#: gui/session/unit_actions.js:1000
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "您無法破壞此實體，因為您的捕獲點不到一半"
 
-#: gui/session/unit_actions.js:744
-msgid "Stop"
-msgstr "停止"
+#: gui/session/unit_actions.js:1007
+msgid "Destroy the selected units or buildings."
+msgstr "破壞選定的單位或建築物。"
 
-#: gui/session/unit_actions.js:762
-msgid "Garrison"
-msgstr "駐防"
+#: gui/session/unit_actions.js:1009
+#, javascript-format
+msgid "Use %(hotkey)s to avoid the confirmation dialog."
+msgstr "使用 %(hotkey)s 以避免確認對話框。"
 
-#: gui/session/unit_actions.js:783
+#: gui/session/unit_actions.js:1047
+msgid "Abort the current order."
+msgstr "放棄目前的命令。"
+
+#: gui/session/unit_actions.js:1067
+msgid "Order the selected units to garrison a building or unit."
+msgstr "命令選定的單位駐守至建築物或單位內。"
+
+#: gui/session/unit_actions.js:1089
 msgid "Unload"
 msgstr "卸下"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:1106
 msgid "Repair"
 msgstr "修復"
 
-#: gui/session/unit_actions.js:816
+#: gui/session/unit_actions.js:1124
 msgid "Focus on Rally Point"
 msgstr "在集合點集中"
 
-#: gui/session/unit_actions.js:839
+#: gui/session/unit_actions.js:1148
 msgid "Back to Work"
 msgstr "回去工作"
 
-#: gui/session/unit_actions.js:855
-msgid "Guard"
-msgstr "護衛"
+#: gui/session/unit_actions.js:1167
+msgid "Order the selected units to guard a building or unit."
+msgstr "命令選定的單位保護建築物或單位。"
 
-#: gui/session/unit_actions.js:872
+#: gui/session/unit_actions.js:1185
 msgid "Remove guard"
 msgstr "移除護衛"
 
-#: gui/session/unit_actions.js:888
+#: gui/session/unit_actions.js:1202
 msgid "Select trading goods"
 msgstr "選取貿易貨品"
 
-#: gui/session/unit_actions.js:908
+#: gui/session/unit_actions.js:1224
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以避免盟友使用此放置點"
 
-#: gui/session/unit_actions.js:912
+#: gui/session/unit_actions.js:1229
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允許盟友使用這個資源放置點"
 
-#: gui/session/unit_actions.js:978
+#: gui/session/unit_actions.js:1299
 msgid "You are allowed to use this dropsite"
 msgstr "您被允許使用此資源放置點"
 
-#: gui/session/unit_actions.js:982
+#: gui/session/unit_actions.js:1304
 msgid "The use of this dropsite is prohibited"
 msgstr "禁止使用此資源放置點"
 
@@ -915,12 +939,12 @@ msgid "+"
 msgstr "+"
 
 #: gui/session/utility_functions.js:89 gui/session/utility_functions.js:95
-#: gui/session/utility_functions.js:100
+#: gui/session/utility_functions.js:101
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:95 gui/session/utility_functions.js:100
+#: gui/session/utility_functions.js:95 gui/session/utility_functions.js:101
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -959,7 +983,7 @@ msgid "Tribute"
 msgstr "貢物"
 
 #: gui/session/diplomacy_window.xml:(caption):79
-#: gui/session/trade_window.xml:(caption):47
+#: gui/session/trade_window.xml:(caption):46
 msgid "Close"
 msgstr "關閉"
 
@@ -986,10 +1010,6 @@ msgstr "放棄"
 #: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):357
 msgid "Exit"
 msgstr "退出"
-
-#: gui/session/minimap_panel.xml:(tooltip):14
-msgid "Find idle worker"
-msgstr "尋找閒置工人"
 
 #: gui/session/session.xml:(caption):62
 msgid "Control all units"
@@ -1100,13 +1120,6 @@ msgstr "貿易"
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
 msgstr "貿易商品選擇："
-
-#: gui/session/trade_window.xml:(tooltip):35
-msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes (using Shift to select will put the selected "
-"resource to 100%)."
-msgstr "選擇一種貨物做為交換的原始貨物，然後使用目標貨物的箭頭以做出交換(使用 Shift 將會把選定的資源置於100%)"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

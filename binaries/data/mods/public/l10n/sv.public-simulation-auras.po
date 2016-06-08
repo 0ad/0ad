@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# pilino1234 <mhilgendrf@aol.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:22+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 09:25+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -110,11 +111,11 @@ msgstr "Kommendant Aura"
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid ""
 "+5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 Kavalleri stormattack inom hans synhåll (ej implementerad än)."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
-msgstr ""
+msgstr "Skepplagnings aura"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 3 HP per second."
@@ -127,7 +128,7 @@ msgstr "Helande Aura"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraDescription
 msgid "Heals nearby units at 3 HP per second."
-msgstr ""
+msgstr "Läker alla enheter i närheten med 3 HP per sekund."
 
 #: simulation/data/auras/female_inspiration.jsonauraName
 msgid "Inspiration Aura"
@@ -161,7 +162,7 @@ msgstr "När hjälten är garnisonerad i en struktur eller ett belägringsvapen 
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
-msgstr ""
+msgstr "Försvarsaura"
 
 #: simulation/data/auras/iber_monument.jsonauraDescription
 msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
@@ -172,12 +173,13 @@ msgid "Library Aura"
 msgstr ""
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
+msgid ""
+"Reduce the cost and research time of technologies by 10% per Library owned."
 msgstr ""
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
-msgstr ""
+msgstr "Lojalitetsaura"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
@@ -206,14 +208,14 @@ msgstr ""
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid ""
 "All player and allied Temple technologies -50% cost and -50% research time."
-msgstr ""
+msgstr "Alla spelare och allierade Tempel teknologier -50% kostnad och -50% forskningstid."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
-msgstr ""
+msgstr "Läraraura"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
+msgid "Empower a building with -50% research time when garrisoned it."
 msgstr ""
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
@@ -234,7 +236,7 @@ msgstr "Lederskapsaura"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% Movement Speed for all units."
-msgstr ""
+msgstr "+15% Rörelsehastighet för alla enheter."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -242,7 +244,7 @@ msgstr "Administratör Aura"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% Insamlings och Konstruktionstakt för enheter i närheten."
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
 msgid "Patriot Aura"
@@ -306,7 +308,7 @@ msgstr "Ilarchès Aura"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All Cavalry gains +2 levels of all armour types."
-msgstr ""
+msgstr "All Kavalleri får +2 för alla sorters rustning."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -316,7 +318,7 @@ msgstr "Erövrings Aura"
 msgid ""
 "All nearby enemy Buildings, Siege engines, and Ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Alla fientliga Byggnader, Belägringsvapen och Skepp får -20% hälsa."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -348,7 +350,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Läker alla enheter i närheten med 1 HP per sekund"
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
+msgid "Increase territory influence by 20% per Theatron owned."
 msgstr ""
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
@@ -357,19 +359,24 @@ msgstr "Väggskydd"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Units on walls have 3 extra Armor levels and higher vision."
-msgstr ""
+msgstr "Enheter på murar har 3 extra rustningsnivåer och ökat synhåll."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Underaura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
+msgid "Increase the population limit by 10 per Wonder owned."
 msgstr ""
 
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Strålande Expansion Aura"
+
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
+msgid ""
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
@@ -382,7 +389,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Strax efter de stora marina segrarna på Salamis och Mykale de grekiska stadsstaterna instiftade så kallade Delian League i 478 f.Kr., vars syfte var att driva perserna ur Egeiska regionen. De allierade staterna bidrog med fartyg och pengar, medan atenarna erbjuds hela sin flotta."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -396,7 +403,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syryan Tetrapolis"
-msgstr ""
+msgstr "Syrisk Tetrapolis"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""

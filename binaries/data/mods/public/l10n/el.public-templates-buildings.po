@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 09:41+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 09:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,18 @@ msgstr "Χτίσε για να αποκτήσεις μεγάλες εκτάσε�
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Κέντρο Πόλης"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+msgid "Colony"
+msgstr "Αποικία"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+msgid "Military Colony"
+msgstr "Στρατιωτική Αποικία"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+msgid "Klēroukhía"
+msgstr "Κληρουχία"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -337,6 +349,39 @@ msgstr "Ειδικό κτήριο"
 msgid "This is a special building unique to a particular civilization."
 msgstr "Αυτό είναι ένα ειδικό κτίριο, μοναδικό για ένα συγκεκριμένο πολιτισμό."
 
+#: simulation/templates/template_structure_special_library.xml:15
+msgid "Library"
+msgstr "Βιβλιοθήκη"
+
+#: simulation/templates/template_structure_special_library.xml:17
+msgid "Research special technologies."
+msgstr ""
+
+#: simulation/templates/template_structure_special_rotarymill.xml:20
+msgid "Rotary Mill"
+msgstr "Μύλος"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:21
+msgid "Melonas"
+msgstr "Μέλανας"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:23
+msgid "Increase nearby farming output +25%."
+msgstr "Αυξάνει την γειτονική γεωργική παραγωγή +25"
+
+#: simulation/templates/template_structure_special_theatron.xml:23
+msgid "Greek Theater"
+msgstr "Ελληνικό Θέατρο"
+
+#: simulation/templates/template_structure_special_theatron.xml:24
+msgid "Théātron"
+msgstr "Θέατρο"
+
+#: simulation/templates/template_structure_special_theatron.xml:26
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
+msgstr ""
+
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
 msgstr "Θαύμα"
@@ -467,29 +512,6 @@ msgstr "Αποθήκη"
 msgid "Neṓs"
 msgstr "Νέος"
 
-#: simulation/templates/structures/athen_theatron.xml:24
-#: simulation/templates/structures/mace_theatron.xml:24
-#: simulation/templates/structures/spart_theatron.xml:24
-#: simulation/templates/structures/theb_theatron.xml:24
-msgid "Greek Theater"
-msgstr "Ελληνικό Θέατρο"
-
-#: simulation/templates/structures/athen_theatron.xml:25
-#: simulation/templates/structures/mace_theatron.xml:25
-#: simulation/templates/structures/spart_theatron.xml:25
-#: simulation/templates/structures/theb_theatron.xml:25
-msgid "Théātron"
-msgstr "Θέατρο"
-
-#: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
-#: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Hellēnízein (Εξελληνισμός): +20% εδαφική επιρροή για όλα τα κτήρια όσο το Θέατρο υπάρχει."
-
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
@@ -619,21 +641,6 @@ msgstr "Αγορά"
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
 msgstr "Βρυθονική Προφυλακή"
-
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/gaul_rotarymill.xml:21
-msgid "Rotary Mill"
-msgstr "Μύλος"
-
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Melonas"
-msgstr "Μέλανας"
-
-#: simulation/templates/structures/brit_rotarymill.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:24
-msgid "Increase nearby farming output +25%."
-msgstr "Αυξάνει την γειτονική γεωργική παραγωγή +25"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -944,22 +951,10 @@ msgid ""
 "defense."
 msgstr "Εκπαίδευσε πρωταθλητές και ήρωες. Συγκεντρώνει μέχρι 20 στρατιώτες μέσα για σθεναρή άμυνα"
 
-#: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/ptol_library.xml:16
-#: simulation/templates/structures/sele_library.xml:16
-msgid "Library"
-msgstr "Βιβλιοθήκη"
-
-#: simulation/templates/structures/mace_library.xml:17
-#: simulation/templates/structures/ptol_library.xml:17
+#: simulation/templates/structures/mace_library.xml:5
+#: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
 msgstr "Βιβλιοθήκη"
-
-#: simulation/templates/structures/mace_library.xml:19
-#: simulation/templates/structures/ptol_library.xml:19
-#: simulation/templates/structures/sele_library.xml:19
-msgid "Research special technologies."
-msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -1002,15 +997,15 @@ msgstr "Udarka"
 msgid "Naukasthanaka"
 msgstr "Naukasthanaka"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:21
+#: simulation/templates/structures/maur_elephant_stables.xml:24
 msgid "Elephant Stables"
 msgstr "Στάβλοι Ελεφάντων"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:22
+#: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:25
+#: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
 msgstr "Εκπαίδευση Ελεφάντων"
 
@@ -1326,21 +1321,7 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Φτηνά παρόμοια με στρατώνα κτήρια τα οποία μπορούν να χτιστούν και σε ουδέτερη περιοχή, αλλά δεν δίνει επιρροή περιοχής.\n- Εκπαίδευσε Μισθοφόρους\n- Ελάχιστη απόσταση από άλλους στρατιωτικούς οικισμούς: 100 μέτρα"
 
-#: simulation/templates/structures/ptol_military_colony.xml:25
-#: simulation/templates/structures/sele_military_colony.xml:25
-msgid "Colony"
-msgstr "Αποικία"
-
-#: simulation/templates/structures/ptol_military_colony.xml:47
-#: simulation/templates/structures/sele_military_colony.xml:47
-msgid "Military Colony"
-msgstr "Στρατιωτική Αποικία"
-
-#: simulation/templates/structures/ptol_military_colony.xml:48
-msgid "Klēroukhía"
-msgstr "Κληρουχία"
-
-#: simulation/templates/structures/ptol_military_colony.xml:51
+#: simulation/templates/structures/ptol_military_colony.xml:6
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1578,7 +1559,7 @@ msgid ""
 "for stout defense."
 msgstr "Κατασκευάστε πολιορκητικές μηχανές και εκπαιδεύστε Πρωταθλητές.Περιφρουρίστε με παραπάνω απο 20 στρατιώτες στο εσωτερικό του για πιο σταθερή άμυνα"
 
-#: simulation/templates/structures/sele_library.xml:17
+#: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
 msgstr "Βιβλιοθήκη"
 
@@ -1586,11 +1567,7 @@ msgstr "Βιβλιοθήκη"
 msgid "Empórion"
 msgstr "Εμπόριον"
 
-#: simulation/templates/structures/sele_military_colony.xml:48
-msgid "Klēroukhia"
-msgstr "Κληρουχία"
-
-#: simulation/templates/structures/sele_military_colony.xml:51
+#: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Celt Henge Monument">
+      <mesh>structural/stone_monument.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/temple_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/temple_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_temple.png" name="baseTex"/>
+        <texture file="structural/celt_temple_norm.png" name="normTex"/>
+        <texture file="structural/celt_temple_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

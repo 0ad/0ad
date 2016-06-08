@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/celt_pc.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/dock.xml" attachpoint="props_main"/>
+      </props>
+      <textures><texture file="structural/celt_struct_1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+</actor>

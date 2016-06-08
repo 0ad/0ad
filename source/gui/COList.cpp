@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,7 +73,6 @@ void COList::SetupText()
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	// Cache width for other use
 	m_TotalAvalibleColumnWidth = width;
 
 	float buffer_zone = 0.f;
@@ -124,7 +123,6 @@ void COList::SetupText()
 
 	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;
 
-	// Setup scrollbar
 	if (scrollbar)
 	{
 		GetScrollBar(0).SetScrollRange(m_ItemsYPositions.back());
@@ -301,7 +299,6 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 {
 	float bz = GetBufferedZ();
 
-	// First call draw on ScrollBarOwner
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 

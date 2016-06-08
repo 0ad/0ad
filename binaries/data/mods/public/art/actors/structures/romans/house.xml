@@ -4,22 +4,15 @@
   <group>
     <variant frequency="1" name="House A">
       <mesh>structural/roman_house_a.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
-      </props>
       <textures><texture file="structural/ao/rome_house_a.png" name="aoTex"/></textures>
     </variant>
     <variant frequency="1" name="House B">
       <mesh>structural/roman_house_b.dae</mesh>
-      <props>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
-      </props>
       <textures><texture file="structural/ao/rome_house_b.png" name="aoTex"/></textures>
     </variant>
     <variant frequency="1" name="House C">
       <mesh>structural/roman_house_c.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
         <prop actor="props/flora/plant_medit_artichoke.xml" attachpoint="plant_a"/>
         <prop actor="props/flora/bush_tempe_sm.xml" attachpoint="plant_b"/>
       </props>
@@ -28,7 +21,6 @@
     <variant frequency="1" name="House D">
       <mesh>structural/roman_house_d.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
         <prop actor="props/flora/plant_medit_artichoke.xml" attachpoint="plant_b"/>
         <prop actor="props/flora/bush_tempe_sm.xml" attachpoint="plant_a"/>
       </props>
@@ -37,6 +29,9 @@
   </group>
   <group>
     <variant>
+      <props>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
       <textures>
 	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
 	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
@@ -45,7 +40,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>

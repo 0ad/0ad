@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 08:35+0000\n"
+"POT-Creation-Date: 2016-06-03 09:00+0200\n"
+"PO-Revision-Date: 2016-06-03 09:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "%(username)s तैयार है"
 msgid "* %(username)s is not ready."
 msgstr "%(username)s तैयार नहीं है"
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1352
 msgid "Default"
 msgstr "डिफ़ॉल्ट"
 
@@ -115,54 +115,54 @@ msgstr "लॉबी में वापस जाएँ"
 msgid "Return to the main menu."
 msgstr "मुख्य मीनु में वापस जाएँ"
 
-#: gui/gamesetup/gamesetup.js:572
+#: gui/gamesetup/gamesetup.js:558
 msgid "Yes"
 msgstr "हाँ"
 
-#: gui/gamesetup/gamesetup.js:572
+#: gui/gamesetup/gamesetup.js:558
 msgid "No"
 msgstr "नहीं"
 
-#: gui/gamesetup/gamesetup.js:611
+#: gui/gamesetup/gamesetup.js:597
 msgctxt "team"
 msgid "None"
 msgstr "कोई नहीं"
 
-#: gui/gamesetup/gamesetup.js:1275
+#: gui/gamesetup/gamesetup.js:1258
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1427
+#: gui/gamesetup/gamesetup.js:1419
 msgid "Loading..."
 msgstr "लोड हो रहा है..."
 
-#: gui/gamesetup/gamesetup.js:1476
+#: gui/gamesetup/gamesetup.js:1467
 msgctxt "map selection"
 msgid "Random"
 msgstr "क्रम रहित"
 
-#: gui/gamesetup/gamesetup.js:1480
+#: gui/gamesetup/gamesetup.js:1471
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "% (number)s खिलाड़ी. "
 msgstr[1] "% (number)s खिलाड़ी. "
 
-#: gui/gamesetup/gamesetup.js:1490
+#: gui/gamesetup/gamesetup.js:1481
 msgid "Randomly selects a map from the list"
 msgstr "निरुद्देश्य ढंग से सूची से एक नक्शे का चयन करता है"
 
-#: gui/gamesetup/gamesetup.js:1493
+#: gui/gamesetup/gamesetup.js:1484
 msgid "Sorry, no description available."
 msgstr "क्षमा करें, कोई उपलब्ध विवरण नहीं."
 
-#: gui/gamesetup/gamesetup.js:1499
+#: gui/gamesetup/gamesetup.js:1490
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1495
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -170,89 +170,85 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1521 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1512 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "विजय शर्त : "
 
-#: gui/gamesetup/gamesetup.js:1612
+#: gui/gamesetup/gamesetup.js:1600
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ए.आइ.: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1617
+#: gui/gamesetup/gamesetup.js:1605
 msgid "Unassigned"
 msgstr "असाइन नहीं की गई"
 
-#: gui/gamesetup/gamesetup.js:1778
+#: gui/gamesetup/gamesetup.js:1765
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1785
+#: gui/gamesetup/gamesetup.js:1772
 msgid "Unknown Player"
 msgstr "अज्ञात प्लेयर"
 
-#: gui/gamesetup/gamesetup.js:1835
-msgid "I'm not ready"
-msgstr "मैं तैयार नहीं हूँ"
+#: gui/gamesetup/gamesetup.js:1834
+msgid "I'm not ready!"
+msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1836
+#: gui/gamesetup/gamesetup.js:1835
+msgid "I'm ready"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1838
 msgid "State that you are not ready to play."
 msgstr "बताएं कि आप खेलने के लिए तैयार नहीं हैं."
 
-#: gui/gamesetup/gamesetup.js:1841 gui/gamesetup/gamesetup.js:1919
-msgid "I'm ready!"
-msgstr "मैं तैयार हूँ"
-
-#: gui/gamesetup/gamesetup.js:1842
+#: gui/gamesetup/gamesetup.js:1839
 msgid "State that you are ready to play!"
 msgstr "बताएं कि आप खेलने के लिए तैयार हैं !"
-
-#: gui/gamesetup/gamesetup.js:1920
-msgid "State that you accept the current settings and are ready to play!"
-msgstr "शर्तेँ मान्य और खेलने के लिए तैयार"
 
 #: gui/gamesetup/gamesetup_mp.js:35
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)s's खेल"
 
-#: gui/gamesetup/gamesetup_mp.js:62
+#: gui/gamesetup/gamesetup_mp.js:80
 msgid "Connecting to server..."
 msgstr "सर्वर से कनेक्ट हो रहा है....."
 
-#: gui/gamesetup/gamesetup_mp.js:81
+#: gui/gamesetup/gamesetup_mp.js:99
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "नेट संदेश: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:150
+#: gui/gamesetup/gamesetup_mp.js:168
 msgid "Registering with server..."
 msgstr "सर्वर के साथ पंजीयन......"
 
-#: gui/gamesetup/gamesetup_mp.js:156
+#: gui/gamesetup/gamesetup_mp.js:174
 msgid "Game has already started, rejoining..."
 msgstr "खेल पहले से ही शुरू हो गया है, फिर से शामिल कर रहे है ..."
 
-#: gui/gamesetup/gamesetup_mp.js:207
+#: gui/gamesetup/gamesetup_mp.js:226
 msgid "Game name already in use."
 msgstr "खेल का नाम पहले से उपयोग में है ."
 
-#: gui/gamesetup/gamesetup_mp.js:224
+#: gui/gamesetup/gamesetup_mp.js:243
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:225 gui/gamesetup/gamesetup_mp.js:254
+#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
 msgid "Error"
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:253
+#: gui/gamesetup/gamesetup_mp.js:272
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:276
+#: gui/gamesetup/gamesetup_mp.js:295
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s's खेल"
@@ -280,7 +276,7 @@ msgid "AI Difficulty:"
 msgstr "AI कठिनाई:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):105
+#: gui/gamesetup/gamesetup_mp.xml:(caption):90
 msgid "Cancel"
 msgstr "रद्द करें"
 
@@ -533,7 +529,7 @@ msgid "Joining an existing game."
 msgstr "एक मौजूदा खेल में शामिल हो जाये."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):68
+#: gui/gamesetup/gamesetup_mp.xml:(caption):58
 msgid "Player name:"
 msgstr "खिलाड़ी का नाम:"
 
@@ -541,18 +537,17 @@ msgstr "खिलाड़ी का नाम:"
 msgid "Server Hostname or IP:"
 msgstr "सर्वर मेजबाननाम या IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):92
-msgid "Continue"
-msgstr "जारी रखें"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):63
+#: gui/gamesetup/gamesetup_mp.xml:(caption):53
 msgid "Set up your server to host."
 msgstr "मेजबानी के लिए अपने सर्वर सेट करें."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):81
+#: gui/gamesetup/gamesetup_mp.xml:(caption):71
 msgid "Server name:"
 msgstr "सर्वर का नाम:"
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+msgid "Continue"
+msgstr "जारी रखें"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

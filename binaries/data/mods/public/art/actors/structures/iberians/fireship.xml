@@ -2,34 +2,58 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="firea">
+    <variant frequency="1" name="base">
       <mesh>structural/iber_fireship.dae</mesh>
       <props>
         <prop actor="props/structures/iberians/fireship_wood.xml" attachpoint="root"/>
-        <prop actor="particle/flame_med.xml" attachpoint="fire1"/>
-        <prop actor="particle/smoke_med.xml" attachpoint="fire1"/>
-        <prop actor="particle/flame.xml" attachpoint="fire2"/>
-        <prop actor="" attachpoint="fire3"/>
-        <prop actor="particle/flame_jav.xml" attachpoint="fire4"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="fire4"/>
-        <prop actor="particle/flame.xml" attachpoint="fire5"/>
-        <prop actor="particle/smoke_catapult.xml" attachpoint="fire5"/>
       </props>
       <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="fireb">
-      <mesh>structural/iber_fireship.dae</mesh>
+  </group>
+  <group>
+    <variant name="healthy" frequency="1">
       <props>
-        <prop actor="props/structures/iberians/fireship_wood.xml" attachpoint="root"/>
         <prop actor="particle/flame_jav.xml" attachpoint="fire1"/>
-        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
-        <prop actor="particle/flame.xml" attachpoint="fire2"/>
-        <prop actor="particle/flame_med.xml" attachpoint="fire3"/>
-        <prop actor="particle/smoke_med.xml" attachpoint="fire3"/>
-        <prop actor="particle/flame_jav.xml" attachpoint="fire5"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="fire5"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire4"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire4"/>
       </props>
-      <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
+    </variant>
+    <variant name="lightDamage">
+      <props>
+        <prop actor="particle/flame.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire3"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire3"/>
+        <prop actor="particle/flame.xml" attachpoint="fire4"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire4"/>
+      </props>
+    </variant>
+    <variant name="mediumDamage">
+      <props>
+        <prop actor="particle/flame.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire2"/>
+        <prop actor="particle/flame.xml" attachpoint="fire3"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire3"/>
+        <prop actor="particle/flame.xml" attachpoint="fire4"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire4"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire5"/>
+      </props>
+    </variant>
+    <variant name="heavyDamage">
+      <props>
+        <prop actor="particle/flame_large.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke_med.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame.xml" attachpoint="fire2"/>
+        <prop actor="particle/flame_large.xml" attachpoint="fire3"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire3"/>
+        <prop actor="particle/flame.xml" attachpoint="fire4"/>
+        <prop actor="particle/flame_large.xml" attachpoint="fire4"/>
+        <prop actor="particle/smoke_med.xml" attachpoint="fire5"/>
+      </props>
+    </variant>
+    <variant name="death">
     </variant>
   </group>
   <material>player_trans.xml</material>

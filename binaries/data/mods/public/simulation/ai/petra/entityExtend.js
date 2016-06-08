@@ -1,11 +1,11 @@
 var PETRA = function(m)
 {
 
-// returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too.
+/** returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too. */
 m.getMaxStrength = function(ent, againstClass)
 {
-	var strength = 0.0;
-	var attackTypes = ent.attackTypes();
+	let strength = 0;
+	let attackTypes = ent.attackTypes();
 	if (!attackTypes)
 		return strength;
 
@@ -58,7 +58,7 @@ m.getMaxStrength = function(ent, againstClass)
 		}
 	}
 
-	var armourStrength = ent.armourStrengths();
+	let armourStrength = ent.armourStrengths();
 	for (let str in armourStrength)
 	{
 		let val = parseFloat(armourStrength[str]);
@@ -81,24 +81,24 @@ m.getMaxStrength = function(ent, againstClass)
 	return strength * ent.maxHitpoints() / 100.0;
 };
 
-// Decide if we should try to capture or destroy
+/** Decide if we should try to capture or destroy */
 m.allowCapture = function(ent, target)
 {
 	return !target.hasClass("Siege") || !ent.hasClass("Melee") ||
 		!target.isGarrisonHolder() || !target.garrisoned().length;
 };
 
-// Makes the worker deposit the currently carried resources at the closest accessible dropsite
+/** Makes the worker deposit the currently carried resources at the closest accessible dropsite */
 m.returnResources = function(gameState, ent)
 {
 	if (!ent.resourceCarrying() || !ent.resourceCarrying().length || !ent.position())
 		return false;
 
-	var resource = ent.resourceCarrying()[0].type;
+	let resource = ent.resourceCarrying()[0].type;
 
-	var closestDropsite;
-	var distmin = Math.min();
-	var access = gameState.ai.accessibility.getAccessValue(ent.position());
+	let closestDropsite;
+	let distmin = Math.min();
+	let access = gameState.ai.accessibility.getAccessValue(ent.position());
 	gameState.getOwnDropsites(resource).forEach(function(dropsite) {
 		if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
 			return;
@@ -115,13 +115,13 @@ m.returnResources = function(gameState, ent)
 	return true;
 };
 
-// is supply full taking into account gatherers affected during this turn
+/** is supply full taking into account gatherers affected during this turn */
 m.IsSupplyFull = function(gameState, ent)
 {
 	if (ent.isFull() === true)
 	    return true;
-	var turnCache = gameState.ai.HQ.turnCache;
-	var count = ent.resourceSupplyNumGatherers();
+	let turnCache = gameState.ai.HQ.turnCache;
+	let count = ent.resourceSupplyNumGatherers();
 	if (turnCache.resourceGatherer && turnCache.resourceGatherer[ent.id()])
 		count += turnCache.resourceGatherer[ent.id()];
 	if (count >= ent.maxGatherers())
@@ -134,7 +134,7 @@ m.IsSupplyFull = function(gameState, ent)
  */
 m.getBestBase = function(gameState, ent)
 {
-	var pos = ent.position();
+	let pos = ent.position();
 	if (!pos)
 	{
 		let holder = m.getHolder(gameState, ent);
@@ -146,9 +146,9 @@ m.getBestBase = function(gameState, ent)
 		}
 		pos = holder.position();
 	}
-	var distmin = Math.min();
-	var bestbase;
-	var accessIndex = gameState.ai.accessibility.getAccessValue(pos);
+	let distmin = Math.min();
+	let bestbase;
+	let accessIndex = gameState.ai.accessibility.getAccessValue(pos);
 	for (let base of gameState.ai.HQ.baseManagers)
 	{
 		if (!base.anchor)

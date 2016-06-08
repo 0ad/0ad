@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="House A">
+      <mesh>structural/hele_ho_a.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_a.xml" attachpoint="props_main"/>
+      </props>
+      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant name="House B">
+      <mesh>structural/hele_ho_b.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_b.xml" attachpoint="props_main"/>
+      </props>
+      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant name="House C">
+      <mesh>structural/hele_ho_c.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_c.xml" attachpoint="props_main"/>
+      </props>
+      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

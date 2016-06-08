@@ -1,27 +1,27 @@
 var PETRA = function(m)
 {
 
-/*
- Describes a transport plan
- Constructor assign units (units is an ID array), a destionation (position).
- The naval manager will try to deal with it accordingly.
- 
- By this I mean that the naval manager will find how to go from access point 1 to access point 2 (relying on in-game pathfinder for mvt)
- And then carry units from there.
- 
- Note: only assign it units currently over land, or it won't work.
- Also: destination should probably be land, otherwise the units will be lost at sea.
-
- metadata for units:
-   transport = this.ID
-   onBoard = ship.id() when affected to a ship but not yet garrisoned
-           = "onBoard" when garrisoned in a ship
-           = undefined otherwise
-   endPos  = position of destination
-  
-   metadata for ships
-   transporter = this.ID
-*/
+/**
+ * Describes a transport plan
+ * Constructor assign units (units is an ID array), a destination (position).
+ * The naval manager will try to deal with it accordingly.
+ *
+ * By this I mean that the naval manager will find how to go from access point 1 to access point 2
+ * and then carry units from there.
+ *
+ * Note: only assign it units currently over land, or it won't work.
+ * Also: destination should probably be land, otherwise the units will be lost at sea.
+ *
+ * metadata for units:
+ *   transport = this.ID
+ *   onBoard = ship.id() when affected to a ship but not yet garrisoned
+ *           = "onBoard" when garrisoned in a ship
+ *           = undefined otherwise
+ *   endPos  = position of destination
+ * 
+ *   metadata for ships
+ *   transporter = this.ID
+ */
 
 m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 {
@@ -89,11 +89,11 @@ m.TransportPlan.prototype.init = function(gameState)
 	this.boardingRange = 18*18;	// TODO compute it from the ship clearance and garrison range
 };
 
-// count available slots
+/** count available slots */
 m.TransportPlan.prototype.countFreeSlots = function()
 {
-	var self = this;
-	var slots = 0;
+	let self = this;
+	let slots = 0;
 	this.transportShips.forEach(function (ship) { slots += self.countFreeSlotsOnShip(ship); });
 	return slots;
 };
@@ -135,7 +135,7 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 
 m.TransportPlan.prototype.assignShip = function(gameState)
 {
-	var pos;
+	let pos;
 	// choose a unit of this plan not yet assigned to a ship
 	for (let ent of this.units.values())
 	{
@@ -145,8 +145,8 @@ m.TransportPlan.prototype.assignShip = function(gameState)
 		break;
 	}
 	// and choose the nearest available ship from this unit
-	var distmin = Math.min();
-	var nearest;
+	let distmin = Math.min();
+	let nearest;
 	gameState.ai.HQ.navalManager.seaTransportShips[this.sea].forEach(function (ship) {
 		if (ship.getMetadata(PlayerID, "transporter"))
 			return;
@@ -171,7 +171,7 @@ m.TransportPlan.prototype.assignShip = function(gameState)
 	return true;
 };
 
-// add a unit to this plan
+/** add a unit to this plan */
 m.TransportPlan.prototype.addUnit = function(unit, endPos)
 {
 	unit.setMetadata(PlayerID, "transport", this.ID);
@@ -199,8 +199,8 @@ m.TransportPlan.prototype.releaseAll = function()
 
 m.TransportPlan.prototype.cancelTransport = function(gameState)
 {
-	var ent = this.units.toEntityArray()[0];
-	var base = gameState.ai.HQ.getBaseByID(ent.getMetadata(PlayerID, "base"));
+	let ent = this.units.toEntityArray()[0];
+	let base = gameState.ai.HQ.getBaseByID(ent.getMetadata(PlayerID, "base"));
 	if (!base.anchor || !base.anchor.position())
 	{
 		for (let newbase of gameState.ai.HQ.baseManagers)
@@ -224,11 +224,11 @@ m.TransportPlan.prototype.cancelTransport = function(gameState)
 };
 
 
-/*
-  try to move on. There are two states:
- - "boarding" means we're trying to board units onto our ships
- - "sailing" means we're moving ships and eventually unload units
- - then the plan is cleared
+/**
+ * try to move on. There are two states:
+ * - "boarding" means we're trying to board units onto our ships
+ * - "sailing" means we're moving ships and eventually unload units
+ * - then the plan is cleared
  */
 
 m.TransportPlan.prototype.update = function(gameState)
@@ -243,9 +243,9 @@ m.TransportPlan.prototype.update = function(gameState)
 
 m.TransportPlan.prototype.onBoarding = function(gameState)
 {
-	var ready = true;
-	var self = this;
-	var time = gameState.ai.elapsedTime;
+	let ready = true;
+	let self = this;
+	let time = gameState.ai.elapsedTime;
 	this.units.forEach(function (ent) {
 		if (!ent.getMetadata(PlayerID, "onBoard"))
 		{
@@ -342,7 +342,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 	this.recovered = [];
 };
 
-// tell if a unit is garrisoned in one of the ships of this plan, and update its metadata if yes
+/** tell if a unit is garrisoned in one of the ships of this plan, and update its metadata if yes */
 m.TransportPlan.prototype.isOnBoard = function(ent)
 {
 	for (let ship of this.transportShips.values())
@@ -355,7 +355,7 @@ m.TransportPlan.prototype.isOnBoard = function(ent)
 	return false;
 };
 
-// when avoidEnnemy is true, we try to not board/unboard in ennemy territory
+/** when avoidEnnemy is true, we try to not board/unboard in ennemy territory */
 m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, seaIndex, destination, avoidEnnemy)
 {
 	if (!gameState.ai.HQ.navalManager.landingZones[landIndex])
@@ -369,11 +369,11 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 		return destination;
 	}
 
-	var startPos = ship.position();
-	var distmin = Math.min();
-	var posmin = destination;
-	var width = gameState.getMap().width;
-	var cell = gameState.getMap().cellSize;
+	let startPos = ship.position();
+	let distmin = Math.min();
+	let posmin = destination;
+	let width = gameState.getMap().width;
+	let cell = gameState.getMap().cellSize;
 	let alliedDocks = gameState.getAllyStructures().filter(API3.Filters.and(
 		API3.Filters.byClass("Dock"), API3.Filters.byMetadata(PlayerID, "sea", seaIndex))).toEntityArray();
 	for (let i of gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
@@ -392,8 +392,9 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 		// require a small distance between all ships of the transport plan to avoid path finder problems
 		// this is also used when the ship is blocked and we want to find a new boarding point
 		for (let shipId in this.boardingPos)
-			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < this.boardingRange)
-			    dist += 1000000;
+			if (this.boardingPos[shipId] !== undefined &&
+			    API3.SquareVectorDistance(this.boardingPos[shipId], pos) < this.boardingRange)
+				dist += 1000000;
 		// and not too near our allied docks to not disturb naval traffic
 		for (let dock of alliedDocks)
 		{
@@ -452,7 +453,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 	this.recovered = [];
 
 	// Check that the units unloaded on the previous turn have been really unloaded and in the right position
-	var shipsToMove = {};
+	let shipsToMove = {};
 	for (let entId of this.unloaded)
 	{
 		let ent = gameState.getEntityById(entId);
@@ -529,9 +530,9 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 	{
 		if (ship.unitAIState() === "INDIVIDUAL.WALKING")
 			continue;
-		var shipId = ship.id();
-		var dist = API3.SquareVectorDistance(ship.position(), this.boardingPos[shipId]);
-		var remaining = 0;
+		let shipId = ship.id();
+		let dist = API3.SquareVectorDistance(ship.position(), this.boardingPos[shipId]);
+		let remaining = 0;
 		for (let entId of ship.garrisoned())
 		{
 			let ent = gameState.getEntityById(entId);
@@ -546,7 +547,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			}
 		}
 
-		var recovering = 0;
+		let recovering = 0;
 		for (let recov of this.recovered)
 			if (recov.shipId === shipId)
 				recovering++;

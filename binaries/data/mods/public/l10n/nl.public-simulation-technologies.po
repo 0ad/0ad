@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-23 09:01+0200\n"
-"PO-Revision-Date: 2016-05-25 16:50+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 09:53+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1065,13 +1065,13 @@ msgstr "Leefomstandigheden"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
-msgid "Increases the healing range of all healers."
-msgstr "Verhoogd het bereik van alle helers."
+msgid "Increases the healing and vision range of all healers."
+msgstr ""
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +8 Healing Range."
-msgstr "Helers +8 bereik"
+msgid "Healers +5 Healing and Vision Range."
+msgstr ""
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1474,8 +1474,10 @@ msgid "The wonder attracts many more people to your civilization."
 msgstr "Het wonder lokt meer mensen naar je beschaving."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
-msgid "enable +50 wonder aura"
-msgstr "Activeer +50 wonder aura"
+msgid ""
+"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Wonder owned."
+msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"

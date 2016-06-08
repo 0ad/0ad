@@ -6,21 +6,17 @@ var API3 = function(m)
  */
 m.Class = function(data)
 {
-	var ctor;
+	let ctor;
 	if (data._init)
 		ctor = data._init;
 	else
 		ctor = function() { };
 
 	if (data._super)
-	{
 		ctor.prototype = { "__proto__": data._super.prototype };
-	}
 
-	for (var key in data)
-	{
+	for (let key in data)
 		ctor.prototype[key] = data[key];
-	}
 
 	return ctor;
 };

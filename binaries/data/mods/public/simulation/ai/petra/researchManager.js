@@ -18,8 +18,8 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	if (queues.majorTech.hasQueuedUnits())
 		return;
 
-	var townPhase = gameState.townPhase();
-	var cityPhase = gameState.cityPhase();
+	let townPhase = gameState.townPhase();
+	let cityPhase = gameState.cityPhase();
 		
 	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10 &&
 		gameState.hasResearchers(townPhase, true))
@@ -51,8 +51,8 @@ m.ResearchManager.prototype.researchPopulationBonus = function(gameState, queues
 	if (queues.minorTech.hasQueuedUnits())
 		return;
 
-	var techs = gameState.findAvailableTech();
-	for (var tech of techs)
+	let techs = gameState.findAvailableTech();
+	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
@@ -69,8 +69,8 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 	if (queues.minorTech.hasQueuedUnits())
 		return;
 
-	var techs = gameState.findAvailableTech();
-	for (var tech of techs)
+	let techs = gameState.findAvailableTech();
+	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications || !tech[1]._template.affects)
 			continue;
@@ -85,11 +85,11 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 	}
 };
 
-// Techs to be searched for as soon as they are available
+/** Techs to be searched for as soon as they are available */
 m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 {
-	var available = gameState.currentPhase() === 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
-	var numWorkers = gameState.currentPhase() === 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
+	let available = gameState.currentPhase() === 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
+	let numWorkers = gameState.currentPhase() === 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
@@ -123,11 +123,11 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 	return false;
 };
 
-// Techs to be searched for as soon as they are available, but only after phase 2
+/** Techs to be searched for as soon as they are available, but only after phase 2 */
 m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 {
-	var available = gameState.currentPhase() === 2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
-	var numWorkers = gameState.currentPhase() === 2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
+	let available = gameState.currentPhase() === 2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
+	let numWorkers = gameState.currentPhase() === 2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
@@ -164,9 +164,9 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	if (queues.minorTech.hasQueuedUnits() || queues.majorTech.hasQueuedUnits())
 		return;
 
-	var techs = gameState.findAvailableTech();
+	let techs = gameState.findAvailableTech();
 
-	var techName = this.researchWantedTechs(gameState, techs);
+	let techName = this.researchWantedTechs(gameState, techs);
 	if (techName)
 	{
 		queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName));
@@ -208,7 +208,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	if (!techs.length)
 		return;
 	// randomly pick one. No worries about pairs in that case.
-	var p = Math.floor(Math.random()*techs.length);
+	let p = Math.floor(Math.random()*techs.length);
 	queues.minorTech.addPlan(new m.ResearchPlan(gameState, techs[p][0]));
 };
 

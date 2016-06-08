@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2016-05-30 09:01+0200\n"
-"PO-Revision-Date: 2016-05-30 09:01+0200\n"
+"POT-Creation-Date: 2016-06-06 09:01+0200\n"
+"PO-Revision-Date: 2016-06-06 09:01+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -160,7 +160,9 @@ msgid "Defensive Aura"
 msgstr ""
 
 #: simulation/data/auras/iber_monument.json:auraDescription
-msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
+msgid ""
+"Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost. Effect "
+"Range: 50 meters"
 msgstr ""
 
 #: simulation/data/auras/library.json:auraName
@@ -169,8 +171,7 @@ msgstr ""
 
 #: simulation/data/auras/library.json:auraDescription
 msgid ""
-"Reduce the cost and research time of technologies by 10% with every Library "
-"owned."
+"Reduce the cost and research time of technologies by 10% per Library owned."
 msgstr ""
 
 #: simulation/data/auras/loyalty_regen.json:auraName
@@ -211,7 +212,7 @@ msgid "Teacher Aura"
 msgstr ""
 
 #: simulation/data/auras/maur_hero_chanakya.json:auraDescription
-msgid "Empower a building with -50% research time when garrisoning it."
+msgid "Empower a building with -50% research time when garrisoned it."
 msgstr ""
 
 #: simulation/data/auras/maur_pillar.json:auraDescription
@@ -346,7 +347,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr ""
 
 #: simulation/data/auras/theatron.json:auraDescription
-msgid "Increase territory influence by 20% with every Theatron owned."
+msgid "Increase territory influence by 20% per Theatron owned."
 msgstr ""
 
 #: simulation/data/auras/wall_garrisoned.json:auraName
@@ -362,7 +363,7 @@ msgid "Wonder Aura"
 msgstr ""
 
 #: simulation/data/auras/wonder_pop_1.json:auraDescription
-msgid "Increase the population limit by 10 with every Wonder owned."
+msgid "Increase the population limit by 10 per Wonder owned."
 msgstr ""
 
 #: simulation/data/auras/wonder_pop_2.json:auraName
@@ -371,8 +372,8 @@ msgstr ""
 
 #: simulation/data/auras/wonder_pop_2.json:auraDescription
 msgid ""
-"Further increase the population limit by 40 with every Wonder owned "
-"(requires \"Glorious Expansion\" tech)."
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraName

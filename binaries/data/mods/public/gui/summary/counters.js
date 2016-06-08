@@ -1,9 +1,40 @@
-// FUNCTIONS FOR CALCULATING SCORES
 var g_TeamHelperData = [];
 
 function resetDataHelpers()
 {
 	g_TeamHelperData = [];
+}
+
+function formatTrained(trained, lost, killed)
+{
+	return g_TrainedColor + trained + '[/color] / ' +
+		g_LostColor + lost + '[/color] / ' +
+		g_KilledColor + killed + '[/color]';
+}
+
+function formatIncome(income, outcome)
+{
+	return g_IncomeColor + income + '[/color] / ' +
+		g_OutcomeColor + outcome + '[/color]';
+}
+
+function formatPercent(divident, divisor)
+{
+	if (!divisor)
+		return "0%";
+
+	return Math.floor(100 * divident / divisor) + "%";
+}
+
+function formatRatio(divident, divisor)
+{
+	if (!divident)
+		return "0.00";
+
+	if (!divisor)
+		return g_InfiniteSymbol;
+
+	return Math.round(divident / divisor * 100) / 100;
 }
 
 function updateCountersPlayer(playerState, counters, idGUI)
@@ -113,9 +144,11 @@ function calculateScoreTeam(counters)
 function calculateBuildings(playerState, position)
 {
 	let type = g_BuildingsTypes[position];
-	return g_TrainedColor + playerState.statistics.buildingsConstructed[type] + '[/color] / ' +
-		g_LostColor + playerState.statistics.buildingsLost[type] + '[/color] / ' +
-		g_KilledColor + playerState.statistics.enemyBuildingsDestroyed[type] + '[/color]';
+
+	return formatTrained(
+		playerState.statistics.buildingsConstructed[type],
+		playerState.statistics.buildingsLost[type],
+		playerState.statistics.enemyBuildingsDestroyed[type]);
 }
 
 function calculateColorsTeam(counters)
@@ -128,9 +161,9 @@ function calculateColorsTeam(counters)
 		for (let w in counters)
 		{
 			let total = {
-				"c": 0,
-				"l": 0,
-				"d": 0
+				"constructed": 0,
+				"lost": 0,
+				"destroyed": 0
 			};
 
 			for (let p = 0; p < g_Teams[t]; ++p)
@@ -141,15 +174,13 @@ function calculateColorsTeam(counters)
 
 				let splitCaption = caption.split("/");
 
-				total.c += (+splitCaption[0]);
-				total.l += (+splitCaption[1]);
-				total.d += (+splitCaption[2]);
+				total.constructed += +splitCaption[0];
+				total.lost += +splitCaption[1];
+				total.destroyed += +splitCaption[2];
 			}
 
-			let teamTotal = g_TrainedColor + total.c + '[/color] / ' +
-				g_LostColor + total.l + '[/color] / ' + g_KilledColor + total.d + '[/color]';
-
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
+			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption =
+				formatTrained(total.constructed, total.lost, total.destroyed);
 		}
 	}
 }
@@ -157,16 +188,20 @@ function calculateColorsTeam(counters)
 function calculateUnits(playerState, position)
 {
 	let type = g_UnitsTypes[position];
-	return g_TrainedColor + playerState.statistics.unitsTrained[type] + '[/color] / ' +
-		g_LostColor + playerState.statistics.unitsLost[type] + '[/color] / ' +
-		g_KilledColor + playerState.statistics.enemyUnitsKilled[type] + '[/color]';
+
+	return formatTrained(
+		playerState.statistics.unitsTrained[type],
+		playerState.statistics.unitsLost[type],
+		playerState.statistics.enemyUnitsKilled[type]);
 }
 
 function calculateResources(playerState, position)
 {
 	let type = g_ResourcesTypes[position];
-	return g_IncomeColor + playerState.statistics.resourcesGathered[type] + '[/color] / ' +
-		g_OutcomeColor + (playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type]) + '[/color]';
+
+	return formatIncome(
+		playerState.statistics.resourcesGathered[type],
+		playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type]);
 }
 
 function calculateTotalResources(playerState)
@@ -180,7 +215,7 @@ function calculateTotalResources(playerState)
 		totalUsed += playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type];
 	}
 
-	return g_IncomeColor + totalGathered + '[/color] / ' + g_OutcomeColor + totalUsed + '[/color]';
+	return formatIncome(totalGathered, totalUsed);
 }
 
 function calculateTreasureCollected(playerState)
@@ -195,8 +230,9 @@ function calculateLootCollected(playerState)
 
 function calculateTributeSent(playerState)
 {
-	return g_IncomeColor + playerState.statistics.tributesSent + "[/color] / " +
-	       g_OutcomeColor + playerState.statistics.tributesReceived + "[/color]";
+	return formatIncome(
+		playerState.statistics.tributesSent,
+		playerState.statistics.tributesReceived);
 }
 
 function calculateResourcesTeam(counters)
@@ -208,11 +244,9 @@ function calculateResourcesTeam(counters)
 
 		for (let w in counters)
 		{
-			let teamTotal = "undefined";
-
 			let total = {
-				i : 0,
-				o : 0
+				"income": 0,
+				"outcome": 0
 			};
 
 			for (let p = 0; p < g_Teams[t]; ++p)
@@ -222,20 +256,21 @@ function calculateResourcesTeam(counters)
 				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s/g, "");
 
 				if (w >= 6)
-					total.i += (+caption);
+					total.income += +caption;
 				else
 				{
 					let splitCaption = caption.split("/");
 
-					total.i += (+splitCaption[0]);
-					total.o += (+splitCaption[1]);
+					total.income += +splitCaption[0];
+					total.outcome += +splitCaption[1];
 				}
 			}
 
+			let teamTotal;
 			if (w >= 6)
-				teamTotal = total.i;
+				teamTotal = total.income;
 			else
-				teamTotal = g_IncomeColor + total.i + "[/color] / " + g_OutcomeColor + total.o + "[/color]";
+				teamTotal = formatIncome(total.income, total.outcome);
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
@@ -245,8 +280,10 @@ function calculateResourcesTeam(counters)
 function calculateResourceExchanged(playerState, position)
 {
 	let type = g_ResourcesTypes[position];
-	return g_IncomeColor + '+' + playerState.statistics.resourcesBought[type] + '[/color] ' +
-		g_OutcomeColor + '-' + playerState.statistics.resourcesSold[type] + '[/color]';
+
+	return formatIncome(
+		playerState.statistics.resourcesBought[type],
+		playerState.statistics.resourcesSold[type]);
 }
 
 function calculateBarterEfficiency(playerState)
@@ -260,7 +297,7 @@ function calculateBarterEfficiency(playerState)
 	for (let type in playerState.statistics.resourcesSold)
 		totalSold += playerState.statistics.resourcesSold[type];
 
-	return Math.floor(totalSold > 0 ? (totalBought / totalSold) * 100 : 0) + "%";
+	return formatPercent(totalBought, totalSold);
 }
 
 function calculateTradeIncome(playerState)
@@ -277,11 +314,9 @@ function calculateMarketTeam(counters)
 
 		for (let w in counters)
 		{
-			let teamTotal = "undefined";
-
 			let total = {
-				"i": 0,
-				"o": 0
+				"income": 0,
+				"outcome": 0
 			};
 
 			for (let p = 0; p < g_Teams[t]; ++p)
@@ -291,21 +326,22 @@ function calculateMarketTeam(counters)
 				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s|\+|\%/g, "");
 
 				if (w >= 4)
-					total.i += (+caption);
+					total.income += +caption;
 				else
 				{
 					let splitCaption = caption.split("-");
-					total.i += (+splitCaption[0]);
-					total.o += (+splitCaption[1]);
+					total.income += +splitCaption[0];
+					total.outcome += +splitCaption[1];
 				}
 			}
 
+			let teamTotal;
 			if (w == 4)
-				teamTotal = Math.floor(g_TeamHelperData[t].totalSold > 0 ? (g_TeamHelperData[t].totalBought / g_TeamHelperData[t].totalSold) * 100 : 0) + "%"
+				teamTotal = formatPercent(g_TeamHelperData[t].totalBought, g_TeamHelperData[t].totalSold);
 			else if (w > 4)
-				teamTotal = total.i;
+				teamTotal = total.income;
 			else
-				teamTotal = g_IncomeColor + '+' + total.i + '[/color] ' + g_OutcomeColor + '-' + total.o + '[/color]';
+				teamTotal = formatIncome(total.income, total.outcome);
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}
@@ -314,29 +350,23 @@ function calculateMarketTeam(counters)
 
 function calculateVegetarianRatio(playerState)
 {
-	if (playerState.statistics.resourcesGathered.vegetarianFood && playerState.statistics.resourcesGathered.food)
-		return Math.floor((playerState.statistics.resourcesGathered.vegetarianFood / playerState.statistics.resourcesGathered.food) * 100) + "%";
-	else
-		return 0 + "%";
+	return formatPercent(
+		playerState.statistics.resourcesGathered.vegetarianFood,
+		playerState.statistics.resourcesGathered.food);
 }
 
 function calculateFeminization(playerState)
 {
-	if (playerState.statistics.unitsTrained.Worker && playerState.statistics.unitsTrained.Female)
-		return Math.floor((playerState.statistics.unitsTrained.Female / playerState.statistics.unitsTrained.Worker) * 100) + "%";
-	else
-		return 0 + "%";
+	return formatPercent(
+		playerState.statistics.unitsTrained.Female,
+		playerState.statistics.unitsTrained.Worker);
 }
 
 function calculateKillDeathRatio(playerState)
 {
-	if (!playerState.statistics.enemyUnitsKilled.total)
-		return g_DefaultDecimal;
-
-	if (!playerState.statistics.unitsLost.total)	// and enemyUnitsKilled.total > 0
-		return g_InfiniteSymbol; // infinity symbol
-
-	return Math.round((playerState.statistics.enemyUnitsKilled.total / playerState.statistics.unitsLost.total)*100)/100;
+	return formatRatio(
+		playerState.statistics.enemyUnitsKilled.total,
+		playerState.statistics.unitsLost.total);
 }
 
 function calculateMapExploration(playerState)
@@ -363,21 +393,14 @@ function calculateMiscellaneous(counters)
 
 		for (let w in counters)
 		{
-			let teamTotal = "undefined";
+			let teamTotal;
 
 			if (w == 0)
-				teamTotal = (g_TeamHelperData[t].food == 0 ? "0" : Math.floor((g_TeamHelperData[t].vegetarianFood / g_TeamHelperData[t].food) * 100)) + "%";
+				teamTotal = formatPercent(g_TeamHelperData[t].vegetarianFood, g_TeamHelperData[t].food);
 			else if (w == 1)
-				teamTotal = (g_TeamHelperData[t].worker == 0 ? "0" : Math.floor((g_TeamHelperData[t].female / g_TeamHelperData[t].worker) * 100)) + "%";
+				teamTotal = formatPercent(g_TeamHelperData[t].female, g_TeamHelperData[t].worker);
 			else if (w == 2)
-			{
-				if (!g_TeamHelperData[t].enemyUnitsKilled)
-					teamTotal = g_DefaultDecimal;
-				else if (!g_TeamHelperData[t].unitsLost)	// and enemyUnitsKilled.total > 0
-					teamTotal = g_InfiniteSymbol; // infinity symbol
-				else
-					teamTotal = Math.round((g_TeamHelperData[t].enemyUnitsKilled / g_TeamHelperData[t].unitsLost) * 100) / 100;
-			}
+				teamTotal = formatRatio(g_TeamHelperData[t].enemyUnitsKilled, g_TeamHelperData[t].unitsLost);
 			else if (w == 3)
 				teamTotal = g_TeamHelperData[t].percentMapExplored + "%";
 			else if (w == 4)

@@ -54,6 +54,24 @@ function cancelSetup()
 	Engine.PopGuiPage();
 }
 
+function confirmSetup()
+{
+	if (!Engine.GetGUIObjectByName("pageJoin").hidden)
+	{
+		let joinPlayerName = Engine.GetGUIObjectByName("joinPlayerName").caption;
+		let joinServer = Engine.GetGUIObjectByName("joinServer").caption;
+		if (startJoin(joinPlayerName, joinServer))
+			switchSetupPage("pageJoin", "pageConnecting");
+	}
+	else if (!Engine.GetGUIObjectByName("pageHost").hidden)
+	{
+		let hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
+		let hostServerName = Engine.GetGUIObjectByName("hostServerName").caption;
+		if (startHost(hostPlayerName, hostServerName))
+			switchSetupPage("pageHost", "pageConnecting");
+	}
+}
+
 function startConnectionStatus(type)
 {
 	g_GameType = type;
@@ -106,7 +124,7 @@ function pollAndHandleNetworkClient()
 				break;
 
 			case "players":
-				g_PlayerAssignments = message.hosts;
+				g_PlayerAssignments = message.newAssignments;
 				break;
 
 			case "start":
@@ -189,6 +207,7 @@ function switchSetupPage(oldpage, newpage)
 {
 	Engine.GetGUIObjectByName(oldpage).hidden = true;
 	Engine.GetGUIObjectByName(newpage).hidden = false;
+	Engine.GetGUIObjectByName("continueButton").hidden = true;
 }
 
 function startHost(playername, servername)

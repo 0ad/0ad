@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Kamil Łapiński <k.lapinski@onet.pl>, 2016
 # Marcin S <dzidek1003@o2.pl>, 2016
 # Michał Karol, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-28 17:23+0000\n"
-"Last-Translator: Michał Karol\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 13:08+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,8 +175,9 @@ msgid "Library Aura"
 msgstr "Aura biblioteki"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr "Redukuje koszta wszystkich pozostałych technologii o 10%."
+msgid ""
+"Reduce the cost and research time of technologies by 10% per Library owned."
+msgstr "Redukuje koszty i czas badania technologii o 10% z posiadaną Biblioteką."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -203,20 +205,20 @@ msgstr "+5 atak i +2 pojmanie dla elitarnych jednostek."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Evangelism Aura"
-msgstr ""
+msgstr "Aura Ewanelizacji"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid ""
 "All player and allied Temple technologies -50% cost and -50% research time."
-msgstr ""
+msgstr "Technologie świątynne wszystkich graczy i sojuszników mają -50 kosztu i -50 czasu badania."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
 msgstr "Aura nauczyciela"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr ""
+msgid "Empower a building with -50% research time when garrisoned it."
+msgstr "Upoważnia budynek do -50% czasu badania, kiedy znajduje się w nim garnizon."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -350,8 +352,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Leczy jednostki w pobliżu w tempie 1 PZ na sekundę."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr "Zwiększa wpływy terytorium."
+msgid "Increase territory influence by 20% per Theatron owned."
+msgstr "Zwiększa wpływy terytorium Theatrona o 20%. "
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -362,17 +364,22 @@ msgid "Units on walls have 3 extra Armor levels and higher vision."
 msgstr "Jednostki znajdujące się na murach otrzymują 3 dodatkowe poziomy pancerza. "
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Cud Aury"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr "+10 do maksymalnego poziomu populacji"
+msgid "Increase the population limit by 10 per Wonder owned."
+msgstr "Zwiększ limit populacji o 10 na Cud."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Wspaniała Rozszerzona Aura"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr "+40 do maksymalnego poziomu populacji (wymaga technologii \"zdumiewająca ekspansja\")"
+msgid ""
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
+msgstr "Podnieś limit populacji o 40 na cud (wymaga technologii \"zdumiewająca ekspansja\")"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -394,7 +401,7 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr ""
+msgstr "Redukuje koszty mieszkańca-żołnierza piechura o 20% dla Iberyjskich sojuszników."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syryan Tetrapolis"
@@ -403,4 +410,4 @@ msgstr "Syryjski Tetrapolis"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Reduces the cost for civil centers with 20% for allies of Seleucid players"
-msgstr ""
+msgstr "Redukuje koszty Center Osad o 20% dla Seleucydzkich sojuszników."

@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-28 17:20+0000\n"
-"Last-Translator: Michał Karol\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 12:43+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,6 +53,18 @@ msgstr "Zbuduj aby pozyskać duże połacie ziemi. Trenuj obywateli. Garnizon: 2
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
 msgid "CivilCentre"
 msgstr "Centrum osady"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+msgid "Colony"
+msgstr "Kolonia"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+msgid "Military Colony"
+msgstr "Kolonia wojskowa"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+msgid "Klēroukhía"
+msgstr "Klēroukhía"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -333,6 +345,39 @@ msgstr "Budynek specjalny"
 msgid "This is a special building unique to a particular civilization."
 msgstr "To jest specjalny budynek, unikalny dla danej cywilizacji."
 
+#: simulation/templates/template_structure_special_library.xml:15
+msgid "Library"
+msgstr "Biblioteka"
+
+#: simulation/templates/template_structure_special_library.xml:17
+msgid "Research special technologies."
+msgstr "Badaj technologie specjalne."
+
+#: simulation/templates/template_structure_special_rotarymill.xml:20
+msgid "Rotary Mill"
+msgstr "Młyn obrotowy"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:21
+msgid "Melonas"
+msgstr "Melonas"
+
+#: simulation/templates/template_structure_special_rotarymill.xml:23
+msgid "Increase nearby farming output +25%."
+msgstr "Zwiększa plony z pobliskich pól o +25%"
+
+#: simulation/templates/template_structure_special_theatron.xml:23
+msgid "Greek Theater"
+msgstr "Teatr grecki"
+
+#: simulation/templates/template_structure_special_theatron.xml:24
+msgid "Théātron"
+msgstr "Theatron"
+
+#: simulation/templates/template_structure_special_theatron.xml:26
+msgid ""
+"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
+msgstr "Hellēnízein (Hellenizacja): +20% zajmowanego terenu, który jest własnością Theatrona."
+
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
 msgstr "Cud"
@@ -463,29 +508,6 @@ msgstr "Apothḗkē"
 msgid "Neṓs"
 msgstr "Neṓs"
 
-#: simulation/templates/structures/athen_theatron.xml:24
-#: simulation/templates/structures/mace_theatron.xml:24
-#: simulation/templates/structures/spart_theatron.xml:24
-#: simulation/templates/structures/theb_theatron.xml:24
-msgid "Greek Theater"
-msgstr "Teatr grecki"
-
-#: simulation/templates/structures/athen_theatron.xml:25
-#: simulation/templates/structures/mace_theatron.xml:25
-#: simulation/templates/structures/spart_theatron.xml:25
-#: simulation/templates/structures/theb_theatron.xml:25
-msgid "Théātron"
-msgstr "Theatron"
-
-#: simulation/templates/structures/athen_theatron.xml:27
-#: simulation/templates/structures/mace_theatron.xml:27
-#: simulation/templates/structures/spart_theatron.xml:27
-#: simulation/templates/structures/theb_theatron.xml:27
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence for all buildings "
-"while the Theatron exists."
-msgstr "Hellēnízein (Hellenizacja): +20% zasięgu zajmowanego terenu jeśli jest zbudowany Theatron."
-
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
 #: simulation/templates/structures/sele_wall_gate.xml:9
@@ -615,21 +637,6 @@ msgstr "Rynek"
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
 msgstr "Brytyjski posterunek"
-
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/gaul_rotarymill.xml:21
-msgid "Rotary Mill"
-msgstr "Młyn obrotowy"
-
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid "Melonas"
-msgstr "Melonas"
-
-#: simulation/templates/structures/brit_rotarymill.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:24
-msgid "Increase nearby farming output +25%."
-msgstr "Zwiększa plony z pobliskich pól o +25%"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -940,22 +947,10 @@ msgid ""
 "defense."
 msgstr "Pozwala tworzyć bohaterów i elitarne jednostki. Może przechować do 20 żołnierzy dla wzmocnienia obrony."
 
-#: simulation/templates/structures/mace_library.xml:16
-#: simulation/templates/structures/ptol_library.xml:16
-#: simulation/templates/structures/sele_library.xml:16
-msgid "Library"
-msgstr "Biblioteka"
-
-#: simulation/templates/structures/mace_library.xml:17
-#: simulation/templates/structures/ptol_library.xml:17
+#: simulation/templates/structures/mace_library.xml:5
+#: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
 msgstr "Biblioteka"
-
-#: simulation/templates/structures/mace_library.xml:19
-#: simulation/templates/structures/ptol_library.xml:19
-#: simulation/templates/structures/sele_library.xml:19
-msgid "Research special technologies."
-msgstr "Badaj technologie specjalne."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
@@ -998,15 +993,15 @@ msgstr "Udarka"
 msgid "Naukasthanaka"
 msgstr "Naukasthanaka"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:21
+#: simulation/templates/structures/maur_elephant_stables.xml:24
 msgid "Elephant Stables"
 msgstr "Stajnie dla słoni"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:22
+#: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
-#: simulation/templates/structures/maur_elephant_stables.xml:25
+#: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
 msgstr "Stwórz słonie i jednostki na słoniach."
 
@@ -1322,21 +1317,7 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Tanie baraki, budowane na Neutralnym terytorium, nie zajmujące nowego terenu.\n- Pozwala szkolić najemników.\n- Minimalna odległość od innych Wojskowych budynków: 100 metrów."
 
-#: simulation/templates/structures/ptol_military_colony.xml:25
-#: simulation/templates/structures/sele_military_colony.xml:25
-msgid "Colony"
-msgstr "Kolonia"
-
-#: simulation/templates/structures/ptol_military_colony.xml:47
-#: simulation/templates/structures/sele_military_colony.xml:47
-msgid "Military Colony"
-msgstr "Kolonia wojskowa"
-
-#: simulation/templates/structures/ptol_military_colony.xml:48
-msgid "Klēroukhía"
-msgstr "Klēroukhía"
-
-#: simulation/templates/structures/ptol_military_colony.xml:51
+#: simulation/templates/structures/ptol_military_colony.xml:6
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1574,7 +1555,7 @@ msgid ""
 "for stout defense."
 msgstr "Pozwala tworzyć machiny oblężnicze i szkolić elitarne jednostki. Umieść wewnątrz do 20 żołnierzy dla wzmocnienia obrony."
 
-#: simulation/templates/structures/sele_library.xml:17
+#: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
 msgstr "Biblioteka"
 
@@ -1582,11 +1563,7 @@ msgstr "Biblioteka"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:48
-msgid "Klēroukhia"
-msgstr "Klēroukhia"
-
-#: simulation/templates/structures/sele_military_colony.xml:51
+#: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

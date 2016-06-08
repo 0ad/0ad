@@ -7,6 +7,7 @@
 # crolidge, 2015
 # Danny Reese <danny@angolateam.org>, 2016
 # Luis Neves <luisjneves@gmail.com>, 2015
+# Maria Manuela Silva, 2016
 # mogafi, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
 # Sérgio Marques <smarquespt@gmail.com>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-06-05 02:44+0000\n"
+"Last-Translator: Maria Manuela Silva\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "Características dos %(civilization)s"
+msgstr "Caraterísticas dos %(civilization)s"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
@@ -37,8 +38,8 @@ msgstr[1] "Bónus da Civilização"
 #: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Bónus de equipa"
-msgstr[1] "Bónus de equipa"
+msgstr[0] "Bónus de Equipa"
+msgstr[1] "Bónus de Equipa"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
@@ -64,7 +65,7 @@ msgstr "História dos %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr "A abrir %(url)s\nno navegador pré-definido. Por favor, aguarde..."
+msgstr "A abrir %(url)s\nno navegador predefinido. Por favor, aguarde..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -466,8 +467,8 @@ msgstr "Muito Difícil"
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuto"
+msgstr[1] "%(min)s minutos"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -512,17 +513,17 @@ msgstr "Ilimitado"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -532,12 +533,12 @@ msgstr "Padrão"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: gui/common/tooltips.js:27 gui/common/tooltips.js:90
 #: gui/common/tooltips.js:124
@@ -970,12 +971,12 @@ msgstr "Esta repetição não é compatível com a sua versão do jogo!"
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "A sua versão: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Versão necessária: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
@@ -1070,11 +1071,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "Jogos classificados"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "Jogos não classificados"
 
 #: gui/replaymenu/replay_menu.js:276
 msgid "yyyy-MM-dd HH:mm"
@@ -1960,11 +1961,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "Música Adicional"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "Flauta"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
@@ -1980,11 +1981,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "Trompete"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "Arpa céltica"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
@@ -1992,7 +1993,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "Viola, violino"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2004,15 +2005,15 @@ msgstr "Áudio"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "Grego"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "Latim"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "Vozes"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -2903,11 +2904,11 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr ""
+msgstr "- Uma estrutura especial para as fações Gregas."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "- Trains Heavy Skirmishers e Sword Infantry Champions."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."

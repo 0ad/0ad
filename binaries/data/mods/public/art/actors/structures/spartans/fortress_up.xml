@@ -21,12 +21,15 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
@@ -36,7 +39,7 @@
         <prop actor="props/structures/hellenes/fortress_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_gate.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_props.xml" attachpoint="root"/>
-<prop actor="props/structures/hellenes/fortress_tile_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/fortress_tile_b.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
     </variant>

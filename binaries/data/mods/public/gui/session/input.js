@@ -464,7 +464,7 @@ var unitFilters = {
 		var entState = GetEntityState(entity);
 		if (!entState)
 			return false;
-		return hasClass(entState, "Unit") && entState.unitAI && entState.unitAI.isIdle;
+		return hasClass(entState, "Unit") && entState.unitAI && entState.unitAI.isIdle && !hasClass(entState, "Domestic");
 	},
 	"isAnything": function (entity) {
 		return true;

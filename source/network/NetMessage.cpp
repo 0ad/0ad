@@ -203,6 +203,14 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		pNewMessage = new CSimulationMessage(scriptInterface);
 		break;
 
+	case NMT_CLEAR_ALL_READY:
+		pNewMessage = new CClearAllReadyMessage;
+		break;
+
+	case NMT_ASSIGN_PLAYER:
+		pNewMessage = new CAssignPlayerMessage;
+		break;
+
 	default:
 		LOGERROR("CNetMessageFactory::CreateMessage(): Unknown message type '%d' received", header.GetType());
 		break;

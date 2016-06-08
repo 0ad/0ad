@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-20 09:00+0200\n"
-"PO-Revision-Date: 2016-05-28 16:28+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2016-05-30 09:00+0200\n"
+"PO-Revision-Date: 2016-05-30 09:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,12 +51,12 @@ msgid "Confirmation"
 msgstr "Confirmació"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:654 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "No"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:639 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:654 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Si"
 
@@ -85,7 +85,7 @@ msgstr "Em rendeixo"
 msgid "Destroy everything currently selected?"
 msgstr "Voleu destruir tot el que hi ha seleccionat?"
 
-#: gui/session/menu.js:174 gui/session/unit_actions.js:718
+#: gui/session/menu.js:174
 msgid "Delete"
 msgstr "Esborra"
 
@@ -226,36 +226,36 @@ msgstr[1] "%(numberOfShipTraders)s vaixells mercants inactius"
 msgid "Current Scores"
 msgstr "Puntuacions actuals"
 
-#: gui/session/menu.js:741
+#: gui/session/menu.js:734
 msgid "Resume"
 msgstr "Continua"
 
-#: gui/session/menu.js:741 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Pausa"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:738
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Pausat per %(players)s"
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:739
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:759 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:752 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:775
+#: gui/session/menu.js:768
 msgid "The Developer Overlay was closed."
 msgstr "S'han tancat les eines de desenvolupador."
 
-#: gui/session/menu.js:776
+#: gui/session/menu.js:769
 msgid "The Developer Overlay was opened."
 msgstr "S'han obert les eines de desenvolupador."
 
-#: gui/session/menu.js:797
+#: gui/session/menu.js:790
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -450,7 +450,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:375
-#: gui/session/selection_details.js:407 gui/session/session.js:822
+#: gui/session/selection_details.js:407 gui/session/session.js:837
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -520,9 +520,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:226 gui/session/unit_actions.js:330
-#: gui/session/unit_actions.js:337 gui/session/unit_actions.js:347
-#: gui/session/unit_actions.js:553
+#: gui/session/selection_details.js:226 gui/session/unit_actions.js:510
+#: gui/session/unit_actions.js:519 gui/session/unit_actions.js:533
+#: gui/session/unit_actions.js:843
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Guany: %(gain)s"
@@ -560,83 +560,83 @@ msgstr "Classes:"
 msgid "Capture points:"
 msgstr "Punts de captura:"
 
-#: gui/session/selection_panels.js:71
+#: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
 msgstr "Augmenta el nivell d'alerta per protegir més unitats"
 
-#: gui/session/selection_panels.js:73
+#: gui/session/selection_panels.js:62
 msgid "Raise an alert!"
 msgstr "Toc d'alerta!"
 
-#: gui/session/selection_panels.js:76
+#: gui/session/selection_panels.js:65
 msgid "End of alert."
 msgstr "Fi de l'alerta."
 
-#: gui/session/selection_panels.js:141
+#: gui/session/selection_panels.js:123
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Compra %(resource)s"
 
-#: gui/session/selection_panels.js:142
+#: gui/session/selection_panels.js:124
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Ven %(resource)s"
 
-#: gui/session/selection_panels.js:358 gui/session/selection_panels.js:1124
+#: gui/session/selection_panels.js:315 gui/session/selection_panels.js:999
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Necessita %(technology)s"
 
-#: gui/session/selection_panels.js:479
+#: gui/session/selection_panels.js:418
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Expulsa %(name)s"
 
-#: gui/session/selection_panels.js:480
+#: gui/session/selection_panels.js:419
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Feu clic per expulsar-ne 1. Maj + clic per expulsar tots els d'aquest tipus."
 
-#: gui/session/selection_panels.js:544
+#: gui/session/selection_panels.js:481
 msgid "Lock Gate"
 msgstr "Tanca la porta"
 
-#: gui/session/selection_panels.js:550
+#: gui/session/selection_panels.js:487
 msgid "Unlock Gate"
 msgstr "Obre la porta"
 
-#: gui/session/selection_panels.js:657
+#: gui/session/selection_panels.js:587
 msgid "Pack"
 msgstr "Desmunta"
 
-#: gui/session/selection_panels.js:659
+#: gui/session/selection_panels.js:589
 msgid "Unpack"
 msgstr "Munta"
 
-#: gui/session/selection_panels.js:661
+#: gui/session/selection_panels.js:591
 msgid "Cancel Packing"
 msgstr "Cancel·la el desmuntatge"
 
-#: gui/session/selection_panels.js:663
+#: gui/session/selection_panels.js:593
 msgid "Cancel Unpacking"
 msgstr "Cancel·la el muntatge"
 
-#: gui/session/selection_panels.js:738
+#: gui/session/selection_panels.js:653
 msgid "Insufficient population capacity:"
 msgstr "La capacitat de població és insuficient:"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:654
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:852
+#: gui/session/selection_panels.js:772
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "En falta %(number)s per construir."
 msgstr[1] "En falten %(number)s per construir."
 
-#: gui/session/selection_panels.js:1112 gui/session/session.js:821
+#: gui/session/selection_panels.js:983 gui/session/session.js:836
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salut:"
@@ -736,192 +736,216 @@ msgstr "%(action)s per reclutar %(number)s."
 msgid "Gaia"
 msgstr "Natura"
 
-#: gui/session/session.js:401
+#: gui/session/session.js:316
+msgid "Find idle worker"
+msgstr "Busca un treballador inactiu"
+
+#: gui/session/session.js:319
+msgid ""
+"Select one goods as origin of the changes, then use the arrows of the target"
+" goods to make the changes."
+msgstr ""
+
+#: gui/session/session.js:321
+#, javascript-format
+msgid "Using %(hotkey)s will put the selected resource to 100%%."
+msgstr ""
+
+#: gui/session/session.js:416
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Arbre d'estructures"
 
-#: gui/session/session.js:468 gui/session/session.js:484
+#: gui/session/session.js:483 gui/session/session.js:499
 msgid "You have left the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/session/session.js:475
+#: gui/session/session.js:490
 msgid "You have been disconnected."
 msgstr "Us heu desconnectat."
 
-#: gui/session/session.js:477
+#: gui/session/session.js:492
 msgid "You have won the battle!"
 msgstr "Heu guanyat la batalla!"
 
-#: gui/session/session.js:479
+#: gui/session/session.js:494
 msgid "You have been defeated..."
 msgstr "Heu estat vençut..."
 
-#: gui/session/session.js:487
+#: gui/session/session.js:502
 msgid "You have abandoned the game."
 msgstr "Heu abandonat el joc."
 
-#: gui/session/session.js:633
+#: gui/session/session.js:648
 msgid "OK"
 msgstr "D'acord"
 
-#: gui/session/session.js:635
+#: gui/session/session.js:650
 msgid "Press OK to continue"
 msgstr "Premeu \"D'acord\" per continuar"
 
-#: gui/session/session.js:641
+#: gui/session/session.js:656
 msgid "Do you want to quit?"
 msgstr "Voleu sortir?"
 
-#: gui/session/session.js:646
+#: gui/session/session.js:661
 msgid "DEFEATED!"
 msgstr "DERROTAT!"
 
-#: gui/session/session.js:651
+#: gui/session/session.js:666
 msgid "VICTORIOUS!"
 msgstr "VICTORIÓS!"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:762
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "La repetició ha acabat. Voleu sortir?"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:763
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:764
 msgctxt "replayFinished"
 msgid "No"
 msgstr "No"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:764
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/session/session.js:914
+#: gui/session/session.js:929
 msgid "Population (current / limit)"
 msgstr "Població (actual / límit)"
 
-#: gui/session/session.js:915
+#: gui/session/session.js:930
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Límit de població: %(popCap)s"
 
-#: gui/session/session.js:1055
+#: gui/session/session.js:1079
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versió: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1062
+#: gui/session/session.js:1086
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: el mode de distorsió temporal és una opció per a desenvolupadors, i no està destinat a un ús prolongat. Un ús incorrecte pot provocar que el joc es quedi sense memòria o es pengi."
 
-#: gui/session/session.js:1063
+#: gui/session/session.js:1087
 msgid "Time warp mode"
 msgstr "Mode de distorsió temporal"
 
-#: gui/session/unit_actions.js:328
+#: gui/session/unit_actions.js:508
 msgid "Origin trade market."
 msgstr "Mercat d'origen."
 
-#: gui/session/unit_actions.js:334
+#: gui/session/unit_actions.js:514
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Feu clic dret sobre un altre mercat per assignar-lo com a mercat de destinació."
 
-#: gui/session/unit_actions.js:337
+#: gui/session/unit_actions.js:518
 msgid "Destination trade market."
 msgstr "Mercat de destinació."
 
-#: gui/session/unit_actions.js:342
+#: gui/session/unit_actions.js:525
 msgid "Right-click to set as origin trade market"
 msgstr "Feu clic dret per assignar-lo com a mercat d'origen"
 
-#: gui/session/unit_actions.js:347
+#: gui/session/unit_actions.js:532
 msgid "Right-click to set as destination trade market."
 msgstr "Feu clic dret per assignar-lo com a mercat de destinació."
 
-#: gui/session/unit_actions.js:379 gui/session/unit_actions.js:515
+#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:793
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Unitats refugiades actuals: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:551
+#: gui/session/unit_actions.js:840
 msgid "Right-click to establish a default route for new traders."
 msgstr "Feu clic dret per establir una ruta per defecte per a mercaders nous."
 
-#: gui/session/unit_actions.js:555
+#: gui/session/unit_actions.js:844
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Guany esperat: %(gain)s"
 
-#: gui/session/unit_actions.js:687 gui/session/unit_actions.js:958
+#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1278
 msgid "Unload All"
 msgstr "Expulsa a tothom"
 
-#: gui/session/unit_actions.js:706
+#: gui/session/unit_actions.js:994
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "No podeu destruir aquesta entitat perquè està dins de la boira de guerra"
 
-#: gui/session/unit_actions.js:712
+#: gui/session/unit_actions.js:1000
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "No podeu destruir aquesta entitat perquè teniu menys de la meitat dels punts de captura"
 
-#: gui/session/unit_actions.js:744
-msgid "Stop"
-msgstr "Atura"
+#: gui/session/unit_actions.js:1007
+msgid "Destroy the selected units or buildings."
+msgstr ""
 
-#: gui/session/unit_actions.js:762
-msgid "Garrison"
-msgstr "Refugia"
+#: gui/session/unit_actions.js:1009
+#, javascript-format
+msgid "Use %(hotkey)s to avoid the confirmation dialog."
+msgstr ""
 
-#: gui/session/unit_actions.js:783
+#: gui/session/unit_actions.js:1047
+msgid "Abort the current order."
+msgstr ""
+
+#: gui/session/unit_actions.js:1067
+msgid "Order the selected units to garrison a building or unit."
+msgstr ""
+
+#: gui/session/unit_actions.js:1089
 msgid "Unload"
 msgstr "Expulsa"
 
-#: gui/session/unit_actions.js:799
+#: gui/session/unit_actions.js:1106
 msgid "Repair"
 msgstr "Repara"
 
-#: gui/session/unit_actions.js:816
+#: gui/session/unit_actions.js:1124
 msgid "Focus on Rally Point"
 msgstr "Vés al punt de reunió"
 
-#: gui/session/unit_actions.js:839
+#: gui/session/unit_actions.js:1148
 msgid "Back to Work"
 msgstr "Torna a la feina"
 
-#: gui/session/unit_actions.js:855
-msgid "Guard"
-msgstr "Protegeix"
+#: gui/session/unit_actions.js:1167
+msgid "Order the selected units to guard a building or unit."
+msgstr ""
 
-#: gui/session/unit_actions.js:872
+#: gui/session/unit_actions.js:1185
 msgid "Remove guard"
 msgstr "Desprotegeix"
 
-#: gui/session/unit_actions.js:888
+#: gui/session/unit_actions.js:1202
 msgid "Select trading goods"
 msgstr "Selecciona els béns de comerç"
 
-#: gui/session/unit_actions.js:908
+#: gui/session/unit_actions.js:1224
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Feu clic per evitar que els aliats utilitzin aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:912
+#: gui/session/unit_actions.js:1229
 msgid "Press to allow allies to use this dropsite"
 msgstr "Feu clic per permetre que els aliats utilitzin aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:978
+#: gui/session/unit_actions.js:1299
 msgid "You are allowed to use this dropsite"
 msgstr "Podeu utilitzar aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:982
+#: gui/session/unit_actions.js:1304
 msgid "The use of this dropsite is prohibited"
 msgstr "No podeu utilitzar aquest punt de descàrrega"
 
@@ -930,12 +954,12 @@ msgid "+"
 msgstr "+"
 
 #: gui/session/utility_functions.js:89 gui/session/utility_functions.js:95
-#: gui/session/utility_functions.js:100
+#: gui/session/utility_functions.js:101
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:95 gui/session/utility_functions.js:100
+#: gui/session/utility_functions.js:95 gui/session/utility_functions.js:101
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -974,7 +998,7 @@ msgid "Tribute"
 msgstr "Tribut"
 
 #: gui/session/diplomacy_window.xml:(caption):79
-#: gui/session/trade_window.xml:(caption):47
+#: gui/session/trade_window.xml:(caption):46
 msgid "Close"
 msgstr "Tanca"
 
@@ -1001,10 +1025,6 @@ msgstr "Rendeix-te"
 #: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):357
 msgid "Exit"
 msgstr "Surt"
-
-#: gui/session/minimap_panel.xml:(tooltip):14
-msgid "Find idle worker"
-msgstr "Busca un treballador inactiu"
 
 #: gui/session/session.xml:(caption):62
 msgid "Control all units"
@@ -1115,13 +1135,6 @@ msgstr "Comerç"
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
 msgstr "Selecció de béns per al comerç:"
-
-#: gui/session/trade_window.xml:(tooltip):35
-msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes (using Shift to select will put the selected "
-"resource to 100%)."
-msgstr "Seleccioneu un recurs com a origen de l'intercanvi, després feu servir les fletxes del recurs de destinació per fer els canvis (seleccionar amb Maj posarà el recurs seleccionat al 100%)."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

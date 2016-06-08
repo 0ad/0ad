@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 10:50+0000\n"
+"POT-Creation-Date: 2016-06-03 09:01+0200\n"
+"PO-Revision-Date: 2016-06-03 09:36+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -175,8 +175,9 @@ msgid "Library Aura"
 msgstr "Aura knihovny"
 
 #: simulation/data/auras/library.jsonauraDescription
-msgid "Reduces the cost of all remaining technologies by 10%."
-msgstr "Snižuje náklady na všechny zbývající technologie o 10%."
+msgid ""
+"Reduce the cost and research time of technologies by 10% per Library owned."
+msgstr "Sniží náklady a dobu výzkumu techonologií o 10% za každou vlastněnou knihovnu."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -216,8 +217,8 @@ msgid "Teacher Aura"
 msgstr "Aura učitele"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
-msgid "Empower a building with -50% research time."
-msgstr "Umožnit budovu za -50% času na výzkum."
+msgid "Empower a building with -50% research time when garrisoned it."
+msgstr "Umožní výstavbu za -50% času na výzkum, když je obsazena."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -351,8 +352,8 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Hojte jednotky poblíž rychlostí 1 zdravotní bod za sekundu"
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence."
-msgstr "Zvyšuje územní vliv"
+msgid "Increase territory influence by 20% per Theatron owned."
+msgstr "Zvýší územní vliv o 20% s každým vlastněným divadlem (Théātron)."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -363,17 +364,22 @@ msgid "Units on walls have 3 extra Armor levels and higher vision."
 msgstr "Jednotky na zdech mají +3 k úrovni brnění a větší viditelnost."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
-#: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Wonder Aura"
 msgstr "Aura divu světa"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "+10 max. population cap"
-msgstr "+10 k maximální populaci"
+msgid "Increase the population limit by 10 per Wonder owned."
+msgstr "Zvýší populační limit o 10 za každý vlastněný div."
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr "Aura velkolepého rozmachu"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
-msgid "+40 extra max. population cap (requires \"Glorious Expansion\" tech)"
-msgstr "+40 navíc k populačnímu limitu (vyžaduje technologii: \"Oslňující rozšíření\")"
+msgid ""
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
+msgstr "Další nárůst populačního limitu o 40 za každý vlastněný div (vyžaduje technologii Velkolepého rozmachu)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

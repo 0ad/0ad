@@ -17,8 +17,16 @@ Health.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='SpawnEntityOnDeath' a:help='Entity template to spawn when this entity dies. Note: this is different than the corpse, which retains the original entity&apos;s appearance'>" +
-			"<text/>" +
+		"<element name='DamageVariants'>" + 
+			"<oneOrMore>" + 
+				"<element a:help='Name of the variant to select when health drops under the defined ratio'>" + 
+					"<anyName/>" + 
+					"<data type='decimal'>" + 
+						"<param name='minInclusive'>0</param>" + 
+						"<param name='maxInclusive'>1</param>" + 
+					"</data>" + 
+				"</element>" + 
+			"</oneOrMore>" + 
 		"</element>" +
 	"</optional>" +
 	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second.'>" +
@@ -34,6 +42,11 @@ Health.prototype.Schema =
 			"<value a:help='Remain in the world with 0 health'>remain</value>" +
 		"</choice>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='SpawnEntityOnDeath' a:help='Entity template to spawn when this entity dies. Note: this is different than the corpse, which retains the original entity&apos;s appearance'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='Undeletable' a:help='Prevent players from deleting this entity.'>" +
 		"<data type='boolean'/>" +
 	"</element>" +
@@ -51,6 +64,7 @@ Health.prototype.Init = function()
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
 	this.idleRegenRate = ApplyValueModificationsToEntity("Health/IdleRegenRate", +this.template.IdleRegenRate, this.entity);
 	this.CheckRegenTimer();
+	this.UpdateActor();
 };
 
 //// Interface functions ////
@@ -92,7 +106,7 @@ Health.prototype.SetHitpoints = function(value)
 			cmpRangeManager.SetEntityFlag(this.entity, "injured", false);
 	}
 
-	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
+	this.RegisterHealthChanged(old);
 };
 
 Health.prototype.IsRepairable = function()
@@ -223,16 +237,14 @@ Health.prototype.Reduce = function(amount)
 			}
 
 			this.hitpoints = 0;
-
-			Engine.PostMessage(this.entity, MT_HealthChanged, { "from": oldHitpoints, "to": this.hitpoints });
+			this.RegisterHealthChanged(oldHitpoints);
 		}
 
 	}
 	else
 	{
 		this.hitpoints -= amount;
-
-		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": oldHitpoints, "to": this.hitpoints });
+		this.RegisterHealthChanged(oldHitpoints);
 	}
 	state.change = this.hitpoints - oldHitpoints;
 	return state;
@@ -262,8 +274,8 @@ Health.prototype.Increase = function(amount)
 			cmpRangeManager.SetEntityFlag(this.entity, "injured", false);
 	}
 
-	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
-	// We return the old and the actual hp
+	this.RegisterHealthChanged(old);
+
 	return { "old": old, "new": this.hitpoints};
 };
 
@@ -337,6 +349,37 @@ Health.prototype.CreateDeathSpawnedEntity = function()
 	return spawnedEntity;
 };
 
+Health.prototype.UpdateActor = function()
+{
+	if (!this.template.DamageVariants)
+		return;
+	let ratio = this.GetHitpoints() / this.GetMaxHitpoints();
+	let newDamageVariant = "alive";
+	if (ratio > 0) 
+	{ 
+		let minTreshold = 1;
+		for (let key in this.template.DamageVariants) 
+		{ 
+			let treshold = +this.template.DamageVariants[key];
+			if (treshold < ratio || treshold > minTreshold) 
+				continue;
+			newDamageVariant = key;
+			minTreshold = treshold;
+		} 
+	} 
+	else 
+		newDamageVariant = "death";
+
+	if (this.damageVariant && this.damageVariant == newDamageVariant)
+		return;
+
+	this.damageVariant = newDamageVariant;
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SetVariant("health", newDamageVariant);
+};
+
 Health.prototype.OnValueModification = function(msg)
 {
 	if (msg.component != "Health")
@@ -361,9 +404,11 @@ Health.prototype.OnValueModification = function(msg)
 		this.CheckRegenTimer();
 };
 
-Health.prototype.OnHealthChanged = function()
+Health.prototype.RegisterHealthChanged = function(from)
 {
 	this.CheckRegenTimer();
+	this.UpdateActor()
+	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": from, "to": this.hitpoints });
 };
 
 Engine.RegisterComponentType(IID_Health, "Health", Health);

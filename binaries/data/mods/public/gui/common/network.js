@@ -89,7 +89,9 @@ function reportDisconnect(reason, wasConnected)
 
 function kickPlayer(username, ban)
 {
-	if (!Engine.KickPlayer(username, ban))
+	if (g_IsController)
+		Engine.KickPlayer(username, ban);
+	else
 		addChatMessage({
 			"type": "system",
 			"text": sprintf(ban ? translate("Could not ban %(name)s.") : translate("Could not kick %(name)s."), {

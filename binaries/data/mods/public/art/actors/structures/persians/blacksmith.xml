@@ -18,12 +18,12 @@
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
       </props>
       <textures>
-          <texture file="structural/pers_struct.png" name="baseTex"/>
-          <texture file="structural/pers_struct_norm.png" name="normTex"/>
-          <texture file="structural/pers_struct_spec.png" name="specTex"/>
-		      <texture file="structural/ao/pers_blacksmith.png" name="aoTex"/>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/pers_blacksmith.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-      <material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

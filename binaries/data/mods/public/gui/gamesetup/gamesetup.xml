@@ -282,7 +282,7 @@
 			<!-- More Options -->
 			<object hidden="true" name="moreOptionsFade" type="image" z="60" sprite="ModernFade"/>
 			<object name="moreOptions" type="image" sprite="ModernDialog" size="50%-200 50%-195 50%+200 50%+220" z="70" hidden="true">
-				<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+				<object name="moreOptionsLabel" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 				</object>
 

@@ -72,7 +72,7 @@ creditsFile.close()
 langsLists = {}
 
 # Create the new JSON data
-newJSONData = {'Content': []}
+newJSONData = {'Title': 'Translators', 'Content': []}
 
 # First get the already existing lists. If they correspond with some of the credited languages,
 # add them to the new data after processing, else add them immediately.

@@ -10,29 +10,6 @@
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/tower_nature.xml" attachpoint="root"/>
-        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/rome_struct_2.png" name="baseTex"/>
-        <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
-        <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
-        <texture file="structural/ao/rome_tower.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="no ivy">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
-      <mesh>structural/rome_tower.dae</mesh>
-      <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
-        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/rome_struct_2.png" name="baseTex"/>
@@ -43,12 +20,32 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="ivy" frequency="1">
+      <props>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/tower_nature.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="no ivy" frequency="1">
+      <props>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
