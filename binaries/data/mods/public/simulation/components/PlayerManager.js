@@ -23,7 +23,7 @@ PlayerManager.prototype.AddPlayer = function(ent)
 		newDiplo[i] = -1;
 	}
 	newDiplo[id] = 1;
-	cmpPlayer.SetDiplomacy(newDiplo);
+	cmpPlayer.SetDiplomacy(newDiplo, true);
 	
 	return id;
 };

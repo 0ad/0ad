@@ -51,6 +51,8 @@ function LoadMapSettings(settings)
 		cmpEndGameManager.SetGameType(settings.GameType);
 	if (settings.WonderDuration)
 		cmpEndGameManager.SetWonderDuration(settings.WonderDuration * 60 * 1000);
+	if (settings.LastManStanding)
+		cmpEndGameManager.SetAlliedVictory(false);
 
 	if (settings.Garrison)
 	{

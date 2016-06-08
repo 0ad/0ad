@@ -12,15 +12,14 @@ EndGameManager.prototype.Schema =
 	
 EndGameManager.prototype.Init = function()
 {
-	// Game type, initialised from the map settings.
-	// One of: "conquest" (default) and "endless"
 	this.gameType = "conquest";
-
 	this.wonderDuration = 10 * 60 * 1000;
 
 	// Allied victory means allied players can win if victory conditions are met for each of them
-	// Would be false for a "last man standing" game (when diplomacy is fully implemented)
+	// False for a "last man standing" game
 	this.alliedVictory = true;
+
+	this.lastManStandingMessage = undefined;
 };
 
 EndGameManager.prototype.GetGameType = function()
@@ -59,10 +58,14 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 		var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
 		if (cmpPlayer.GetState() != "active")
 			continue;
+
 		if (playerID == cmpPlayer.GetPlayerID() || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
 			cmpPlayer.SetState("won");
 		else
-			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i, "skip": true } );
+			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, {
+				"playerId": i,
+				"skipAlliedVictoryCheck": true
+			});
 	}
 
 	// Reveal the map to all players
@@ -75,41 +78,66 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 	this.alliedVictory = flag;
 };
 
-EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
+EndGameManager.prototype.AlliedVictoryCheck = function()
 {
-	if (msg.skip)
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpGuiInterface || !cmpPlayerManager)
 		return;
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayers = [];
+	cmpGuiInterface.DeleteTimeNotification(this.lastManStandingMessage);
 
-	var allies = [];
-	var onlyAlliesLeft = true;
-
-	var numPlayers = cmpPlayerManager.GetNumPlayers(); 
-
-	for (var i = 1; i < numPlayers; ++i)
+	// Proceed if only allies are remaining
+	let allies = [];
+	for (let playerID = 1; playerID < cmpPlayerManager.GetNumPlayers(); ++playerID)
 	{
-		cmpPlayers[i] = QueryPlayerIDInterface(i);
-		if (cmpPlayers[i].GetState() != "active" || i == msg.playerId) 
+		let cmpPlayer = QueryPlayerIDInterface(playerID);
+		if (cmpPlayer.GetState() != "active")
 			continue;
 
-		if (!allies.length || cmpPlayers[allies[0]].IsMutualAlly(i))
-			allies.push(i);
-		else
-			onlyAlliesLeft = false;
+		if (allies.length && !cmpPlayer.IsMutualAlly(allies[0]))
+			return;
+
+		allies.push(playerID);
 	}
 
-	// check if there are winners, or the game needs to continue
-	if (!allies.length || !onlyAlliesLeft || !this.alliedVictory)
-		return; 
+	if (this.alliedVictory || allies.length == 1)
+	{
+		for (let playerID of allies)
+		{
+			let cmpPlayer = QueryPlayerIDInterface(playerID);
+			if (cmpPlayer)
+				cmpPlayer.SetState("won");
+		}
 
-	for (var p of allies)
-		cmpPlayers[p].SetState("won");
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			cmpRangeManager.SetLosRevealAll(-1, true);
+	}
+	else
+	{
+		this.lastManStandingMessage = cmpGuiInterface.AddTimeNotification({
+			"message": markForTranslation("Last remaining player wins."),
+			"translateMessage": true,
+		}, 12 * 60 * 60 * 1000); // 12 hours
+	}
+};
 
-	// Reveal the map to all players
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	cmpRangeManager.SetLosRevealAll(-1, true);
+EndGameManager.prototype.OnInitGame = function(msg)
+{
+	this.AlliedVictoryCheck();
+};
+
+EndGameManager.prototype.OnGlobalDiplomacyChanged = function(msg)
+{
+	if (!msg.skipAlliedVictoryCheck)
+		this.AlliedVictoryCheck();
+};
+
+EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
+{
+	if (!msg.skipAlliedVictoryCheck)
+		this.AlliedVictoryCheck();
 };
 
 Engine.RegisterSystemComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);

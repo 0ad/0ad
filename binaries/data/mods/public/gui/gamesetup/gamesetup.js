@@ -494,6 +494,7 @@ function initRadioButtons()
 		"ExploreMap": "exploreMap",
 		"DisableTreasures": "disableTreasures",
 		"LockTeams": "lockTeams",
+		"LastManStanding" : "lastManStanding",
 		"CheatsEnabled": "enableCheats"
 	};
 
@@ -509,6 +510,12 @@ function initRadioButtons()
 		Engine.SetRankedGame(this.checked);
 		Engine.GetGUIObjectByName("enableCheats").enabled = !this.checked;
 		Engine.GetGUIObjectByName("lockTeams").enabled = !this.checked;
+		updateGameAttributes();
+	};
+
+	Engine.GetGUIObjectByName("lockTeams").onPress = function() {
+		g_GameAttributes.settings.LockTeams = this.checked;
+		g_GameAttributes.settings.LastManStanding = false;
 		updateGameAttributes();
 	};
 }
@@ -1151,7 +1158,10 @@ function selectMap(name)
 	}
 
 	if (g_GameAttributes.mapType == "scenario")
+	{
 		delete g_GameAttributes.settings.WonderDuration;
+		delete g_GameAttributes.settings.LastManStanding;
+	}
 
 	if (mapSettings.PlayerData)
 		sanitizePlayerData(mapSettings.PlayerData);
@@ -1362,11 +1372,13 @@ function updateGUIObjects()
 	setGUIBoolean("exploreMap", "exploreMapText", !!mapSettings.ExploreMap);
 	setGUIBoolean("revealMap", "revealMapText", !!mapSettings.RevealMap);
 	setGUIBoolean("lockTeams", "lockTeamsText", !!mapSettings.LockTeams);
+	setGUIBoolean("lastManStanding", "lastManStandingText", !!mapSettings.LastManStanding);
 	setGUIBoolean("enableRating", "enableRatingText", !!mapSettings.RatingEnabled);
 
 	Engine.GetGUIObjectByName("optionWonderDuration").hidden =
 		g_GameAttributes.settings.GameType &&
 		g_GameAttributes.settings.GameType != "wonder";
+	Engine.GetGUIObjectByName("optionLastManStanding").hidden = mapSettings.LockTeams;
 
 	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !mapSettings.CheatsEnabled;
 
@@ -1384,7 +1396,7 @@ function updateGUIObjects()
 
 	for (let ctrl of ["victoryCondition", "wonderDuration", "populationCap",
 	                  "startingResources", "ceasefire", "revealMap",
-	                  "exploreMap", "disableTreasures", "lockTeams"])
+	                  "exploreMap", "disableTreasures", "lockTeams", "lastManStanding"])
 		hideControl(ctrl, ctrl + "Text", notScenario);
 
 	Engine.GetGUIObjectByName("civResetButton").hidden = !notScenario;
