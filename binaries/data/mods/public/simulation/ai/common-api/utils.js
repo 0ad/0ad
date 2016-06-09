@@ -46,21 +46,22 @@ m.ManhattanDistance = function(a, b)
 	return Math.abs(dx) + Math.abs(dz);
 };
 
-m.AssocArraytoArray = function(assocArray) {
+m.AssocArraytoArray = function(assocArray)
+{
 	let endArray = [];
 	for (let i in assocArray)
 		endArray.push(assocArray[i]);
 	return endArray;
 };
 
-// Picks a random element from an array
+/** Picks a random element from an array */
 m.PickRandom = function(list)
 {
 	return list.length ? list[Math.floor(Math.random()*list.length)] : undefined;
 };
 
 
-// Utility functions for conversions of maps of different sizes
+/** Utility functions for conversions of maps of different sizes */
 
 /**
  * Returns the index of map2 with max content from indices contained inside the cell i of map1

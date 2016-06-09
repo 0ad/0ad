@@ -214,7 +214,7 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 	}
 };
 
-// Add this holder in the list managed by the garrisonManager
+/** Add this holder in the list managed by the garrisonManager */
 m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 {
 	if (this.holders.has(holder.id()))    // already registered
@@ -223,9 +223,11 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 
-// Garrison units in decaying structures to stop their decay
-// do it only for structures useful for defense, except if we are expanding (justCaptured=true)
-// in which case we also do it for structures useful for unit trainings (TODO only Barracks are done)
+/**
+ * Garrison units in decaying structures to stop their decay
+ * do it only for structures useful for defense, except if we are expanding (justCaptured=true)
+ * in which case we also do it for structures useful for unit trainings (TODO only Barracks are done)
+ */
 m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId, justCaptured)
 {
 	if (this.decayingStructures.has(entId))

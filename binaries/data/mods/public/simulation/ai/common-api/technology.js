@@ -1,12 +1,12 @@
 var API3 = function(m)
 {
 
-// Wrapper around a technology template
+/** Wrapper around a technology template */
 
 m.Technology = function(allTemplates, templateName)
 {
 	this._templateName = templateName;
-	var template = allTemplates[templateName];
+	let template = allTemplates[templateName];
 
 	// check if this is one of two paired technologies.
 	this._isPair = template.pair !== undefined;
@@ -23,7 +23,7 @@ m.Technology = function(allTemplates, templateName)
 	this._techTemplates = allTemplates;
 };
 
-// returns generic, or specific if civ provided.
+/** returns generic, or specific if civ provided. */
 m.Technology.prototype.name = function(civ)
 {
 	if (civ === undefined)
@@ -39,14 +39,14 @@ m.Technology.prototype.pairDef = function()
 	return this._definesPair;
 };
 
-// in case this defines a pair only, returns the two paired technologies.
+/** in case this defines a pair only, returns the two paired technologies. */
 m.Technology.prototype.getPairedTechs = function()
 {
 	if (!this._definesPair)
 		return undefined;
 
-	var techOne = new m.Technology(this._techTemplates, this._template.top);
-	var techTwo = new m.Technology(this._techTemplates, this._template.bottom);
+	let techOne = new m.Technology(this._techTemplates, this._template.top);
+	let techTwo = new m.Technology(this._techTemplates, this._template.bottom);
 
 	return [techOne,techTwo];
 };
@@ -90,7 +90,6 @@ m.Technology.prototype.costSum = function(productionQueue)
 	return ret;
 };
 
-// seconds
 m.Technology.prototype.researchTime = function()
 {
 	if (!this._template.researchTime)

@@ -1,7 +1,7 @@
 var PETRA = function(m)
 {
 
-// Keep in sync with gui/common/l10n.js
+/** Keep in sync with gui/common/l10n.js */
 const resourceNames = {
 	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
 	"food": markForTranslationWithContext("withinSentence", "Food"),
@@ -15,8 +15,8 @@ const resourceNames = {
 
 m.chatLaunchAttack = function(gameState, player, type)
 {
-	var message;
-	var proba = Math.random();
+	let message;
+	let proba = Math.random();
 	if (type === "HugeAttack" && proba > 0.25 && proba < 0.75)
 		message = "/team " + markForTranslation("I am starting a massive military campaign against %(_player_)s, come and join me.");
 	else if (proba < 0.5)
@@ -35,10 +35,10 @@ m.chatLaunchAttack = function(gameState, player, type)
 
 m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 {
-	var message;
+	let message;
 	if (answer)
 	{
-		var proba = Math.random();
+		let proba = Math.random();
 		if (proba < 0.5)
 			message = "/allies " + markForTranslation("Let me regroup my army and I am with you against %(_player_)s.");
 		else
@@ -52,7 +52,7 @@ m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 			message = "/allies " + markForTranslation("Sorry, I do not have enough soldiers currently, but my next attack will target %(_player_)s.");
 	}
 
-	var chat = {
+	let chat = {
 		"type": "aichat",
 		"message": message,
 		"translateMessage": true,
@@ -69,8 +69,8 @@ m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 
 m.chatSentTribute = function(gameState, player)
 {
-	var message;
-	var proba = Math.random();
+	let message;
+	let proba = Math.random();
 	if (proba < 0.33)
 		message = "/team " + markForTranslation("Here is a gift for %(_player_)s, make a good use of it.");
 	else if (proba < 0.66)
@@ -89,8 +89,8 @@ m.chatSentTribute = function(gameState, player)
 
 m.chatRequestTribute = function(gameState, resource)
 {
-	var message;
-	var proba = Math.random();
+	let message;
+	let proba = Math.random();
 	if (proba < 0.33)
 		message = "/team " + markForTranslation("I am in need of %(resource)s, can you help? I will make it up to you.");
 	else if (proba < 0.66)
@@ -109,8 +109,8 @@ m.chatRequestTribute = function(gameState, resource)
 
 m.chatNewTradeRoute = function(gameState, player)
 {
-	var message;
-	var proba = Math.random();
+	let message;
+	let proba = Math.random();
 	if (proba < 0.5)
 		message = "/team " + markForTranslation("I have set up a new route with %(_player_)s. Trading will be profitable for all of us.");
 	else
@@ -127,12 +127,12 @@ m.chatNewTradeRoute = function(gameState, player)
 
 m.chatNewPhase = function(gameState, phase, started)
 {
-	var message;
+	let message;
 	if (started)
 		message = "/allies " + markForTranslation("I am advancing to the %(phase)s.");
 	else
 		message = "/allies " + markForTranslation("I have reached the %(phase)s.");
-	
+
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": message,

@@ -15,20 +15,18 @@ m.BaseAI = function(settings)
 	this.turn = 0;
 };
 
-//Return a simple object (using no classes etc) that will be serialized into saved games
+/** Return a simple object (using no classes etc) that will be serialized into saved games */
 m.BaseAI.prototype.Serialize = function()
 {
-	// TODO: ought to get the AI script subclass to serialize its own state
-	// TODO: actually this is part of a larger reflection on wether AIs should or not.
 	return {};
 };
 
-//Called after the constructor when loading a saved game, with 'data' being
-//whatever Serialize() returned
+/**
+ * Called after the constructor when loading a saved game, with 'data' being
+ * whatever Serialize() returned
+ */
 m.BaseAI.prototype.Deserialize = function(data, sharedScript)
 {
-	// TODO: ought to get the AI script subclass to deserialize its own state
-	// TODO: actually this is part of a larger reflection on wether AIs should or not.
 	this.isDeserialized = true;
 };
 
@@ -43,18 +41,19 @@ m.BaseAI.prototype.Init = function(state, playerID, sharedAI)
 	this.territoryMap = sharedAI.territoryMap;
 	this.accessibility = sharedAI.accessibility;
 	this.terrainAnalyzer = sharedAI.terrainAnalyzer;
-	
+
 	this.gameState = sharedAI.gameState[this.player];
 	this.gameState.ai = this;
 	this.sharedScript = sharedAI;
-	
+
 	this.timeElapsed = sharedAI.timeElapsed;
 
 	this.CustomInit(this.gameState, this.sharedScript);
 };
 
+/** AIs override this function */
 m.BaseAI.prototype.CustomInit = function()
-{	// AIs override this function
+{
 };
 
 m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
@@ -72,8 +71,9 @@ m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 	this.OnUpdate(sharedAI);
 };
 
+/** AIs override this function */
 m.BaseAI.prototype.OnUpdate = function()
-{	// AIs override this function
+{
 };
 
 m.BaseAI.prototype.chat = function(message)

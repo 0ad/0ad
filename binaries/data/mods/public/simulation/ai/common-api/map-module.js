@@ -1,11 +1,12 @@
 var API3 = function(m)
 {
 
-/* The map module.
+/**
+ * The map module.
  * Copied with changes from QuantumState's original for qBot, it's a component for storing 8 bit values.
  */
 
-// The function needs to be named too because of the copyConstructor functionality
+/** The function needs to be named too because of the copyConstructor functionality */
 m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 {
 	// get the correct dimensions according to the map type
@@ -55,14 +56,14 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 {
 	strength = strength ? strength : maxDist;
 
-	var x0 = Math.floor(Math.max(0, cx - maxDist));
-	var y0 = Math.floor(Math.max(0, cy - maxDist));
-	var x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
-	var y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
-	var maxDist2 = maxDist * maxDist;
+	let x0 = Math.floor(Math.max(0, cx - maxDist));
+	let y0 = Math.floor(Math.max(0, cy - maxDist));
+	let x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
+	let y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
+	let maxDist2 = maxDist * maxDist;
 
 	// code duplicating for speed
-	if (type === 'linear' || type === "linear")
+	if (type === "linear")
 	{
 		let str = strength / maxDist;	
 		for (let y = y0; y < y1; ++y)
@@ -72,21 +73,20 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 			{
 				let dx = x - cx;
 				let r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2)
-				{
-					let quant = str * (maxDist - Math.sqrt(r2));
-					let w = x + y * this.width;
-					if (this.map[w] + quant < 0)
-						this.map[w] = 0;
-					else if (this.map[w] + quant > this.maxVal)
-						this.map[w] = this.maxVal;	// avoids overflow.
-					else
-						this.map[w] += quant;
-				}
+				if (r2 >= maxDist2)
+					continue;
+				let quant = str * (maxDist - Math.sqrt(r2));
+				let w = x + y * this.width;
+				if (this.map[w] + quant < 0)
+					this.map[w] = 0;
+				else if (this.map[w] + quant > this.maxVal)
+					this.map[w] = this.maxVal;	// avoids overflow.
+				else
+					this.map[w] += quant;
 			}
 		}
 	}
-	else if (type === 'quadratic' || type === "quadratic")
+	else if (type === "quadratic")
 	{
 		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
@@ -96,21 +96,20 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 			{
 				let dx = x - cx;
 				let r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2)
-				{
-					let quant = str * (maxDist2 - r2);
-					let w = x + y * this.width;				    
-					if (this.map[w] + quant < 0)
-						this.map[w] = 0;
-					else if (this.map[w] + quant > this.maxVal)
-						this.map[w] = this.maxVal;	// avoids overflow.
-					else
-						this.map[w] += quant;
-				}
+				if (r2 >= maxDist2)
+					continue;
+				let quant = str * (maxDist2 - r2);
+				let w = x + y * this.width;				    
+				if (this.map[w] + quant < 0)
+					this.map[w] = 0;
+				else if (this.map[w] + quant > this.maxVal)
+					this.map[w] = this.maxVal;	// avoids overflow.
+				else
+					this.map[w] += quant;
 			}
 		}
 	}
-	else if (type === 'constant' || type === "constant")
+	else
 	{
 		for (let y = y0; y < y1; ++y)
 		{
@@ -119,48 +118,33 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 			{
 				let dx = x - cx;
 				let r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2)
-				{
-					let w = x + y * this.width;				
-					if (this.map[w] + strength < 0)
-						this.map[w] = 0;
-					else if (this.map[w] + strength > this.maxVal)
-						this.map[w] = this.maxVal;	// avoids overflow.
-					else
-						this.map[w] += strength;
-				}
+				if (r2 >= maxDist2)
+					continue;
+				let w = x + y * this.width;				
+				if (this.map[w] + strength < 0)
+					this.map[w] = 0;
+				else if (this.map[w] + strength > this.maxVal)
+					this.map[w] = this.maxVal;	// avoids overflow.
+				else
+					this.map[w] += strength;
 			}
 		}
 	}
 };
 
-m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
+m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "constant")
 {
 	strength = strength ? +strength : +maxDist;
-	type = type ? type : 'constant';
 
-	var x0 = Math.max(0, cx - maxDist);
-	var y0 = Math.max(0, cy - maxDist);
-	var x1 = Math.min(this.width, cx + maxDist);
-	var y1 = Math.min(this.height, cy + maxDist);
-	var maxDist2 = maxDist * maxDist;
+	let x0 = Math.max(0, cx - maxDist);
+	let y0 = Math.max(0, cy - maxDist);
+	let x1 = Math.min(this.width, cx + maxDist);
+	let y1 = Math.min(this.height, cy + maxDist);
+	let maxDist2 = maxDist * maxDist;
 
-	var str = 0.0;
-	switch (type)
+	if (type === "linear")
 	{
-		case 'linear':
-			str = strength / maxDist;
-			break;
-		case 'quadratic':
-			str = strength / maxDist2;
-			break;
-		case 'constant':
-			str = strength;
-			break;
-	}
-
-	if (type === 'linear' || type === "linear")
-	{
+		let str = strength / maxDist;
 		for (let y = y0; y < y1; ++y)
 		{
 			for (let x = x0; x < x1; ++x)
@@ -168,23 +152,21 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 				let dx = x - cx;
 				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2)
-				{
-					let quant = str * (maxDist - Math.sqrt(r2));					
-					let machin = this.map[x + y * this.width] * quant;
-					if (machin < 0)
-						this.map[x + y * this.width] = 0;
-					else if (machin > this.maxVal)
-						this.map[x + y * this.width] = this.maxVal;
-					else
-						this.map[x + y * this.width] = machin;
-
-				}
+				if (r2 >= maxDist2)
+					continue;
+				let quant = str * (maxDist - Math.sqrt(r2)) * this.map[x + y * this.width];
+				if (quant < 0)
+					this.map[x + y * this.width] = 0;
+				else if (quant > this.maxVal)
+					this.map[x + y * this.width] = this.maxVal;
+				else
+					this.map[x + y * this.width] = quant;
 			}
 		}
 	}
-	else if (type === 'quadratic' || type === "quadratic")
+	else if (type === "quadratic")
 	{
+		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
 		{
 			for (let x = x0; x < x1; ++x)
@@ -192,22 +174,19 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 				let dx = x - cx;
 				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2)
-				{
-					let quant = str * (maxDist2 - r2);
-					let machin = this.map[x + y * this.width] * quant;
-					if (machin < 0)
-						this.map[x + y * this.width] = 0;
-					else if (machin > this.maxVal)
-						this.map[x + y * this.width] = this.maxVal;
-					else
-						this.map[x + y * this.width] = machin;
-
-				}
+				if (r2 >= maxDist2)
+					continue;
+				let quant = str * (maxDist2 - r2) * this.map[x + y * this.width];
+				if (quant < 0)
+					this.map[x + y * this.width] = 0;
+				else if (quant > this.maxVal)
+					this.map[x + y * this.width] = this.maxVal;
+				else
+					this.map[x + y * this.width] = quant;
 			}
 		}
 	}
-	else if (type === 'constant' || type === "constant")
+	else
 	{
 		for (let y = y0; y < y1; ++y)
 		{
@@ -216,30 +195,29 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type)
 				let dx = x - cx;
 				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
-				if (r2 < maxDist2)
-				{
-					let machin = this.map[x + y * this.width] * str;
-					if (machin < 0)
-						this.map[x + y * this.width] = 0;
-					else if (machin > this.maxVal)
-						this.map[x + y * this.width] = this.maxVal;
-					else
-						this.map[x + y * this.width] = machin;
-				}
+				if (r2 >= maxDist2)
+					continue;
+				let quant = this.map[x + y * this.width] * strength;
+				if (quant < 0)
+					this.map[x + y * this.width] = 0;
+				else if (quant > this.maxVal)
+					this.map[x + y * this.width] = this.maxVal;
+				else
+					this.map[x + y * this.width] = quant;
 			}
 		}
 	}
 };
 
-// doesn't check for overflow.
+/** doesn't check for overflow. */
 m.Map.prototype.setInfluence = function(cx, cy, maxDist, value = 0)
 {
-	var x0 = Math.max(0, cx - maxDist);
-	var y0 = Math.max(0, cy - maxDist);
-	var x1 = Math.min(this.width, cx + maxDist);
-	var y1 = Math.min(this.height, cy + maxDist);
-	var maxDist2 = maxDist * maxDist;
-	
+	let x0 = Math.max(0, cx - maxDist);
+	let y0 = Math.max(0, cy - maxDist);
+	let x1 = Math.min(this.width, cx + maxDist);
+	let y1 = Math.min(this.height, cy + maxDist);
+	let maxDist2 = maxDist * maxDist;
+
 	for (let y = y0; y < y1; ++y)
 	{
 		for (let x = x0; x < x1; ++x)
@@ -254,14 +232,13 @@ m.Map.prototype.setInfluence = function(cx, cy, maxDist, value = 0)
 
 m.Map.prototype.sumInfluence = function(cx, cy, radius)
 {
-	var x0 = Math.max(0, cx - radius);
-	var y0 = Math.max(0, cy - radius);
-	var x1 = Math.min(this.width, cx + radius);
-	var y1 = Math.min(this.height, cy + radius);
-	var radius2 = radius * radius;
+	let x0 = Math.max(0, cx - radius);
+	let y0 = Math.max(0, cy - radius);
+	let x1 = Math.min(this.width, cx + radius);
+	let y1 = Math.min(this.height, cy + radius);
+	let radius2 = radius * radius;
 
-	var sum = 0;
-
+	let sum = 0;
 	for (let y = y0; y < y1; ++y)
 	{
 		for (let x = x0; x < x1; ++x)
@@ -279,10 +256,8 @@ m.Map.prototype.sumInfluence = function(cx, cy, radius)
  * neighbours' values. (If the grid is initialised with 0s and 65535s or 255s, the
  * result of each cell is its Manhattan distance to the nearest 0.)
  */
-m.Map.prototype.expandInfluences = function(maximum, map)
+m.Map.prototype.expandInfluences = function(maximum = this.maxVal, grid = this.map)
 {
-	maximum = maximum !== undefined ? maximum : this.maxVal;
-	let grid = map !== undefined ? map : this.map;
 	let w = this.width;
 	let h = this.height;
 
@@ -301,7 +276,7 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 			if (min > maximum)
 				min = maximum;
 		}
-		
+
 		for (let x = w - 2; x >= 0; --x)
 		{
 			let g = grid[x + x0];
@@ -344,7 +319,7 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 	}
 };
 
-// Multiplies current map by the parameter map pixelwise
+/** Multiplies current map by the parameter map pixelwise */
 m.Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier)
 {
 	for (let i = 0; i < this.length; ++i)
@@ -352,7 +327,7 @@ m.Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier)
 			this.map[i] = Math.min(maxMultiplier*this.map[i], this.map[i] * (map.map[i]/divider));
 };
 
-// add to current map by the parameter map pixelwise
+/** add to current map by the parameter map pixelwise */
 m.Map.prototype.add = function(map)
 {
 	for (let i = 0; i < this.length; ++i)
@@ -366,7 +341,7 @@ m.Map.prototype.add = function(map)
 	}
 };
 
-// Find the best non-obstructed tile
+/** Find the best non-obstructed tile */
 m.Map.prototype.findBestTile = function(radius, obstruction)
 {
 	let bestIdx;
@@ -381,11 +356,11 @@ m.Map.prototype.findBestTile = function(radius, obstruction)
 		bestVal = this.map[j];
 		bestIdx = i;
 	}
-	
+
 	return [bestIdx, bestVal];
 };
 
-// return any non obstructed (small) tile inside the (big) tile i from obstruction map
+/** return any non obstructed (small) tile inside the (big) tile i from obstruction map */
 m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 {
 	let ratio = this.cellSize / obstruction.cellSize;
@@ -408,7 +383,7 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 	return -1;
 };
 
-// return true if the area centered on tile kx-ky and with radius is obstructed
+/** return true if the area centered on tile kx-ky and with radius is obstructed */
 m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 {
 	let w = this.width;
@@ -426,14 +401,16 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 	return false;
 };
 
-// returns the nearest obstructed point
-// TODO check that the landpassmap index is the same
+/**
+ * returns the nearest obstructed point
+ * TODO check that the landpassmap index is the same
+ */
 m.Map.prototype.findNearestObstructed = function(k, radius)
 {
-	var w = this.width;
-	var ix = k % w;
-	var iy = Math.floor(k / w);
-	var n = this.cellSize > 8 ? 1 : Math.floor(8 / this.cellSize);
+	let w = this.width;
+	let ix = k % w;
+	let iy = Math.floor(k / w);
+	let n = this.cellSize > 8 ? 1 : Math.floor(8 / this.cellSize);
 	for (let i = 1; i <= n; ++i)
 	{
 		let kx = ix - i;

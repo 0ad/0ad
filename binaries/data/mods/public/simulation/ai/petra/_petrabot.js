@@ -3,8 +3,10 @@ Engine.IncludeModule("common-api");
 var PETRA = (function() {
 var m = {};
 
-// "local" global variables for stuffs that will need a unique ID
-// Note that since order of loading is alphabetic, this means this file must go before any other file using them.
+/**
+ * "local" global variables for stuffs that will need a unique ID
+ * Note that since order of loading is alphabetic, this means this file must go before any other file using them.
+ */
 m.playerGlobals = [];
 
 m.PetraBot = function PetraBot(settings)

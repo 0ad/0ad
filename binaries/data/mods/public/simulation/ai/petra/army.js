@@ -47,7 +47,7 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	return true;
 };
 
-// if not forced, will only recalculate if on a different turn.
+/** if not forced, will only recalculate if on a different turn. */
 m.Army.prototype.recalculatePosition = function(gameState, force)
 {
 	if (!force && this.positionLastUpdate === gameState.ai.elapsedTime)
@@ -320,7 +320,6 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 	return true;
 };
 
-// TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs might happen.
 m.Army.prototype.checkEvents = function (gameState, events)
 {
 	// Warning the metadata is already cloned in shared.js. Futhermore, changes should be done before destroyEvents
@@ -377,7 +376,7 @@ m.Army.prototype.checkEvents = function (gameState, events)
 	}
 };
 
-// assumes cleaned army.
+/** assumes cleaned army. */
 m.Army.prototype.onUpdate = function (gameState)
 {
 	if (this.isCapturing(gameState))
@@ -409,7 +408,7 @@ m.Army.prototype.onUpdate = function (gameState)
 	{
 		this.recalculatePosition(gameState);
 		this.positionLastUpdate = gameState.ai.elapsedTime;
-	
+
 		// Check for breakaways.
 		for (let i = 0; i < this.foeEntities.length; ++i)
 		{
@@ -424,7 +423,7 @@ m.Army.prototype.onUpdate = function (gameState)
 					i--;
 			}
 		}
-		
+
 		this.recalculatePosition(gameState);
 	}
 
