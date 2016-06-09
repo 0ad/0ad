@@ -1,5 +1,5 @@
 var g_LobbyIsConnecting = false;
-var g_EncrytedPassword = "";
+var g_EncryptedPassword = "";
 var g_PasswordInputIsHidden = false;
 var g_TermsOfServiceRead = false;
 var g_TermsOfUseRead = false;
@@ -7,8 +7,8 @@ var g_DisplayingSystemMessage = false;
 
 function init()
 {
-	g_EncrytedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
-	if (Engine.ConfigDB_GetValue("user", "lobby.login") && g_EncrytedPassword)
+	g_EncryptedPassword = Engine.ConfigDB_GetValue("user", "lobby.password");
+	if (Engine.ConfigDB_GetValue("user", "lobby.login") && g_EncryptedPassword)
 		switchPage("connect");
 }
 
@@ -31,18 +31,18 @@ function lobbyStartConnect()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
-	var username = Engine.GetGUIObjectByName("connectUsername").caption;
-	var password = Engine.GetGUIObjectByName("connectPassword").caption;
-	var feedback = Engine.GetGUIObjectByName("feedback");
-	var room = Engine.ConfigDB_GetValue("user", "lobby.room");
-	var history = Number(Engine.ConfigDB_GetValue("user", "lobby.history"));
+	let username = Engine.GetGUIObjectByName("connectUsername").caption;
+	let password = Engine.GetGUIObjectByName("connectPassword").caption;
+	let feedback = Engine.GetGUIObjectByName("feedback");
+	let room = Engine.ConfigDB_GetValue("user", "lobby.room");
+	let history = Number(Engine.ConfigDB_GetValue("user", "lobby.history"));
 
 	feedback.caption = translate("Connecting...");
 	// If they enter a different password, re-encrypt.
-	if (password != g_EncrytedPassword.substring(0, 10))
-		g_EncrytedPassword = Engine.EncryptPassword(password, username);
+	if (password != g_EncryptedPassword.substring(0, 10))
+		g_EncryptedPassword = Engine.EncryptPassword(password, username);
 	// We just use username as nick for simplicity.
-	Engine.StartXmppClient(username, g_EncrytedPassword, room, username, history);
+	Engine.StartXmppClient(username, g_EncryptedPassword, room, username, history);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
 }
@@ -55,27 +55,27 @@ function lobbyStartRegister()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
-	var account = Engine.GetGUIObjectByName("registerUsername").caption;
-	var password = Engine.GetGUIObjectByName("registerPassword").caption;
-	var feedback = Engine.GetGUIObjectByName("feedback");
+	let account = Engine.GetGUIObjectByName("registerUsername").caption;
+	let password = Engine.GetGUIObjectByName("registerPassword").caption;
+	let feedback = Engine.GetGUIObjectByName("feedback");
 
 	feedback.caption = translate("Registering...");
-	g_EncrytedPassword = Engine.EncryptPassword(password, account);
-	Engine.StartRegisterXmppClient(account, g_EncrytedPassword);
+	g_EncryptedPassword = Engine.EncryptPassword(password, account);
+	Engine.StartRegisterXmppClient(account, g_EncryptedPassword);
 	g_LobbyIsConnecting = true;
 	Engine.ConnectXmppClient();
 }
 
 function onTick()
 {
-	var pageRegisterHidden = Engine.GetGUIObjectByName("pageRegister").hidden;
-	var username = Engine.GetGUIObjectByName(pageRegisterHidden ? "connectUsername" : "registerUsername").caption;
-	var password = Engine.GetGUIObjectByName(pageRegisterHidden ? "connectPassword" : "registerPassword").caption;
-	var passwordAgain = Engine.GetGUIObjectByName("registerPasswordAgain").caption;
+	let pageRegisterHidden = Engine.GetGUIObjectByName("pageRegister").hidden;
+	let username = Engine.GetGUIObjectByName(pageRegisterHidden ? "connectUsername" : "registerUsername").caption;
+	let password = Engine.GetGUIObjectByName(pageRegisterHidden ? "connectPassword" : "registerPassword").caption;
+	let passwordAgain = Engine.GetGUIObjectByName("registerPasswordAgain").caption;
 
-	var agreeTerms = Engine.GetGUIObjectByName("registerAgreeTerms");
-	var feedback = Engine.GetGUIObjectByName("feedback");
-	var continueButton = Engine.GetGUIObjectByName("continue");
+	let agreeTerms = Engine.GetGUIObjectByName("registerAgreeTerms");
+	let feedback = Engine.GetGUIObjectByName("feedback");
+	let continueButton = Engine.GetGUIObjectByName("continue");
 
 	// Do not change feedback while connecting.
 	if (g_LobbyIsConnecting) {}
@@ -149,7 +149,7 @@ function onTick()
 	}
 
 	// Handle queued messages from the XMPP client (if running and if any)
-	var message;
+	let message;
 	while ((message = Engine.LobbyGuiPollMessage()) != undefined)
 	{
 		// TODO: Properly deal with unrecognized messages
@@ -184,10 +184,10 @@ function onTick()
 			Engine.ConfigDB_CreateValue("user", "lobby.login", username);
 			Engine.ConfigDB_WriteValueToFile("user", "lobby.login", username, "config/user.cfg");
 			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
-			if (password != g_EncrytedPassword.substring(0, 10))
-				g_EncrytedPassword = Engine.EncryptPassword(password, username);
-			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncrytedPassword);
-			Engine.ConfigDB_WriteValueToFile("user", "lobby.password", g_EncrytedPassword, "config/user.cfg");
+			if (password != g_EncryptedPassword.substring(0, 10))
+				g_EncryptedPassword = Engine.EncryptPassword(password, username);
+			Engine.ConfigDB_CreateValue("user", "lobby.password", g_EncryptedPassword);
+			Engine.ConfigDB_WriteValueToFile("user", "lobby.password", g_EncryptedPassword, "config/user.cfg");
 			break;
 		}
 		}
@@ -205,8 +205,8 @@ function switchPage(page)
 	{
 		Engine.GetGUIObjectByName("pageRegister").hidden = true;
 		Engine.GetGUIObjectByName("continue").hidden = true;
-		var dialog = Engine.GetGUIObjectByName("dialog");
-		var newSize = dialog.size;
+		let dialog = Engine.GetGUIObjectByName("dialog");
+		let newSize = dialog.size;
 		newSize.bottom -= 150;
 		dialog.size = newSize;
 	}
@@ -223,14 +223,17 @@ function switchPage(page)
 		Engine.GetGUIObjectByName("pageWelcome").hidden = false;
 		break;
 	case "register":
-		var dialog = Engine.GetGUIObjectByName("dialog");
-		var newSize = dialog.size;
+	{
+		let dialog = Engine.GetGUIObjectByName("dialog");
+		let newSize = dialog.size;
 		newSize.bottom += 150;
 		dialog.size = newSize;
+
 		Engine.GetGUIObjectByName("pageRegister").hidden = false;
 		Engine.GetGUIObjectByName("continue").caption = translate("Register");
 		Engine.GetGUIObjectByName("continue").hidden = false;
 		break;
+	}
 	case "connect":
 		Engine.GetGUIObjectByName("pageConnect").hidden = false;
 		Engine.GetGUIObjectByName("continue").caption = translate("Connect");
