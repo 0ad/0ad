@@ -362,12 +362,12 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 	}
 
 	// XXX rewrite this stuff
-
+	std::vector<u16> segmentsR;
+	std::vector<u16> segmentsL;
 	for (int j = j0; j < j1; ++j)
 	{
-		std::vector<u16> segmentsR;
-		std::vector<u16> segmentsL;
-
+		segmentsR.clear();
+		segmentsL.clear();
 		for (int i = i0; i <= i1; ++i)
 		{
 			bool a = IS_PASSABLE(grid.get(i, j+1), passClass);
@@ -420,12 +420,12 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 			}
 		}
 	}
-
+	std::vector<u16> segmentsU;
+	std::vector<u16> segmentsD;
 	for (int i = i0; i < i1; ++i)
 	{
-		std::vector<u16> segmentsU;
-		std::vector<u16> segmentsD;
-
+		segmentsU.clear();
+		segmentsD.clear();
 		for (int j = j0; j <= j1; ++j)
 		{
 			bool a = IS_PASSABLE(grid.get(i+1, j), passClass);
@@ -487,10 +487,6 @@ static void SplitAAEdges(const CFixedVector2D& a,
 		std::vector<EdgeAA>& edgesLeft, std::vector<EdgeAA>& edgesRight,
 		std::vector<EdgeAA>& edgesBottom, std::vector<EdgeAA>& edgesTop)
 {
-	edgesLeft.reserve(squares.size());
-	edgesRight.reserve(squares.size());
-	edgesBottom.reserve(squares.size());
-	edgesTop.reserve(squares.size());
 
 	for (const Square& square : squares)
 	{
@@ -594,8 +590,8 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// List of collision edges - paths must never cross these.
 	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
-	std::vector<Edge> edges;
-	std::vector<Square> edgeSquares; // axis-aligned squares; equivalent to 4 edges
+	edges.clear();
+	edgeSquares.clear(); // axis-aligned squares; equivalent to 4 edges
 
 	// Create impassable edges at the max-range boundary, so we can't escape the region
 	// where we're meant to be searching
@@ -609,7 +605,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
 	// the graph defined by these vertexes
-	std::vector<Vertex> vertexes;
+	vertexes.clear();
 
 	// Add the start point to the graph
 	CFixedVector2D posStart(x0, z0);
@@ -833,11 +829,11 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		if (edgeSquares.size() > 8)
 			std::partial_sort(edgeSquares.begin(), edgeSquares.begin() + 8, edgeSquares.end(), SquareSort(vertexes[curr.id].p));
 
-		std::vector<Edge> edgesUnaligned;
-		std::vector<EdgeAA> edgesLeft;
-		std::vector<EdgeAA> edgesRight;
-		std::vector<EdgeAA> edgesBottom;
-		std::vector<EdgeAA> edgesTop;
+		edgesUnaligned.clear();
+		edgesLeft.clear();
+		edgesRight.clear();
+		edgesBottom.clear();
+		edgesTop.clear();
 		SplitAAEdges(vertexes[curr.id].p, edges, edgeSquares, edgesUnaligned, edgesLeft, edgesRight, edgesBottom, edgesTop);
 
 		// Check the lines to every other vertex

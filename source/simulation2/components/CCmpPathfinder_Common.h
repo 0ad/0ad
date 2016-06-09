@@ -72,6 +72,49 @@ struct AsyncShortPathRequest
 	entity_id_t notify;
 };
 
+// A vertex around the corners of an obstruction
+// (paths will be sequences of these vertexes)
+struct Vertex
+{
+	enum
+	{
+		UNEXPLORED,
+		OPEN,
+		CLOSED,
+	};
+	
+	CFixedVector2D p;
+	fixed g, h;
+	u16 pred;
+	u8 status;
+	u8 quadInward : 4; // the quadrant which is inside the shape (or NONE)
+	u8 quadOutward : 4; // the quadrants of the next point on the path which this vertex must be in, given 'pred'
+};
+
+// Obstruction edges (paths will not cross any of these).
+// Defines the two points of the edge.
+struct Edge
+{
+	CFixedVector2D p0, p1;
+};
+
+// Axis-aligned obstruction squares (paths will not cross any of these).
+// Defines the opposing corners of an axis-aligned square
+// (from which four individual edges can be trivially computed), requiring p0 <= p1
+struct Square
+{
+	CFixedVector2D p0, p1;
+};
+
+// Axis-aligned obstruction edges.
+// p0 defines one end; c1 is either the X or Y coordinate of the other end,
+// depending on the context in which this is used.
+struct EdgeAA
+{
+	CFixedVector2D p0;
+	fixed c1;
+};
+
 /**
  * Implementation of ICmpPathfinder
  */
@@ -122,6 +165,21 @@ public:
 	
 	u16 m_MaxSameTurnMoves; // max number of moves that can be created and processed in the same turn
 
+	// memory optimizations: those vectors are created once, reused for all calculations;
+	std::vector<Edge> edgesUnaligned;
+	std::vector<EdgeAA> edgesLeft;
+	std::vector<EdgeAA> edgesRight;
+	std::vector<EdgeAA> edgesBottom;
+	std::vector<EdgeAA> edgesTop;
+	
+	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
+	// the graph defined by these vertexes
+	std::vector<Vertex> vertexes;
+	// List of collision edges - paths must never cross these.
+	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
+	std::vector<Edge> edges;
+	std::vector<Square> edgeSquares; // axis-aligned squares; equivalent to 4 edges
+	
 	bool m_DebugOverlay;
 	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
 	AtlasOverlay* m_AtlasOverlay;
