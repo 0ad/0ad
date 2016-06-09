@@ -81,49 +81,6 @@ static const u8 QUADRANT_BLTR = QUADRANT_BL|QUADRANT_TR;
 static const u8 QUADRANT_TLBR = QUADRANT_TL|QUADRANT_BR;
 static const u8 QUADRANT_ALL = QUADRANT_BLTR|QUADRANT_TLBR;
 
-// A vertex around the corners of an obstruction
-// (paths will be sequences of these vertexes)
-struct Vertex
-{
-	enum
-	{
-		UNEXPLORED,
-		OPEN,
-		CLOSED,
-	};
-
-	CFixedVector2D p;
-	fixed g, h;
-	u16 pred;
-	u8 status;
-	u8 quadInward : 4; // the quadrant which is inside the shape (or NONE)
-	u8 quadOutward : 4; // the quadrants of the next point on the path which this vertex must be in, given 'pred'
-};
-
-// Obstruction edges (paths will not cross any of these).
-// Defines the two points of the edge.
-struct Edge
-{
-	CFixedVector2D p0, p1;
-};
-
-// Axis-aligned obstruction squares (paths will not cross any of these).
-// Defines the opposing corners of an axis-aligned square
-// (from which four individual edges can be trivially computed), requiring p0 <= p1
-struct Square
-{
-	CFixedVector2D p0, p1;
-};
-
-// Axis-aligned obstruction edges.
-// p0 defines one end; c1 is either the X or Y coordinate of the other end,
-// depending on the context in which this is used.
-struct EdgeAA
-{
-	CFixedVector2D p0;
-	fixed c1;
-};
-
 // When computing vertexes to insert into the search graph,
 // add a small delta so that the vertexes of an edge don't get interpreted
 // as crossing the edge (given minor numerical inaccuracies)
