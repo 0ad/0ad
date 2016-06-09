@@ -1522,7 +1522,8 @@ function performCommand(entity, commandName)
 		return;
 	var entState = GetExtendedEntityState(entity);
 
-	if (!controlsPlayer(entState.player))
+	if (!controlsPlayer(entState.player) &&
+	    !(g_IsObserver && commandName == "focus-rally"))
 		return;
 
 	if (g_EntityCommands[commandName])
