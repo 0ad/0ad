@@ -317,14 +317,13 @@ function getCheatsData()
 
 /**
  * Reads userinput from the chat and sends a simulation command in case it is a known cheat.
- * Hence cheats won't be sent as chat over network.
  *
- * @param {string} text
  * @returns {boolean} - True if a cheat was executed.
  */
 function executeCheat(text)
 {
-	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+	if (!controlsPlayer(Engine.GetPlayerID()) ||
+	    !g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		return false;
 
 	// Find the cheat code that is a prefix of the user input

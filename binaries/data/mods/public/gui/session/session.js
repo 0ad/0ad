@@ -402,7 +402,13 @@ function isPlayerObserver(playerID)
  */
 function controlsPlayer(playerID)
 {
-	return Engine.GetPlayerID() == playerID && !g_IsObserver || g_DevSettings.controlAll;
+	if (Engine.GetPlayerID() != playerID)
+		return false;
+
+	let playerState = GetSimState().players[playerID];
+
+	return playerState && (
+		playerState.state != "defeated" || playerState.controlsAll);
 }
 
 /**
