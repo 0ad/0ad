@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 15:23+0000\n"
-"Last-Translator: Micky Jault <micky037@hotmail.fr>\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-06 09:14+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +335,7 @@ msgstr "%(previousAmounts)s et %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -430,17 +430,17 @@ msgstr "Echec de connection au serveur"
 msgid "Disconnected"
 msgstr "Déconnecté"
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Impossible de bannir %(name)s."
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Impossible d'éjecter %(name)s."
 
-#: gui/common/network.js:129
+#: gui/common/network.js:131
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Utilisateurs : %(users)s"
@@ -793,7 +793,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgid "Heal:"
 msgstr "Guérir :"
 
-#. Translation: Short for hitpoints (that are healed in one healing action)
+#. Translation: Short for hit points (or health points) that are healed in one
+#. healing action
 #: gui/common/tooltips.js:461
 msgid "HP"
 msgid_plural "HP"
@@ -823,7 +824,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Classes :"
 
-#: gui/credits/credits.js:35
+#: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1211,7 +1212,7 @@ msgstr "de %(val1)s à %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):107
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
 msgid "Player name"
 msgstr "Nom du joueur"
 
@@ -1389,12 +1390,12 @@ msgstr "Contrôle de la carte"
 msgid "Team total"
 msgstr "Total de l'équipe"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Temps de jeu écoulé : %(time)s"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:176
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1407,7 +1408,7 @@ msgstr "Civilisations"
 msgid "Civilization Selection"
 msgstr "Civilisation sélectionnée"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):69
+#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
@@ -1416,30 +1417,6 @@ msgstr "Fermer"
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
 msgstr "Générique de 0 A.D."
-
-#: gui/credits/credits.xml:(caption):24
-msgid "Special Credits"
-msgstr "Remerciements"
-
-#: gui/credits/credits.xml:(caption):31
-msgid "Programming"
-msgstr "Programmation"
-
-#: gui/credits/credits.xml:(caption):38
-msgid "Art"
-msgstr "Art"
-
-#: gui/credits/credits.xml:(caption):45
-msgid "Translators"
-msgstr "Traduction"
-
-#: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
-msgid "Miscellaneous"
-msgstr "Divers"
-
-#: gui/credits/credits.xml:(caption):59
-msgid "Donors"
-msgstr "Donateurs"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1838,7 +1815,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):25
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Résumé"
 
@@ -1908,31 +1885,35 @@ msgstr "Civilisation : "
 msgid "Trainer Units"
 msgstr "Unités entraîneuses"
 
-#: gui/summary/summary.xml:(caption):65
+#: gui/summary/summary.xml:(caption):66
 msgid "Score"
 msgstr "Score"
 
-#: gui/summary/summary.xml:(caption):72
+#: gui/summary/summary.xml:(caption):73
 msgid "Buildings"
 msgstr "Bâtiments"
 
-#: gui/summary/summary.xml:(caption):79
+#: gui/summary/summary.xml:(caption):80
 msgid "Units"
 msgstr "Unités"
 
-#: gui/summary/summary.xml:(caption):86
+#: gui/summary/summary.xml:(caption):87
 msgid "Resources"
 msgstr "Ressources"
 
-#: gui/summary/summary.xml:(caption):93
+#: gui/summary/summary.xml:(caption):94
 msgid "Market"
 msgstr "Marché"
 
-#: gui/summary/summary.xml:(caption):161
+#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#: gui/summary/summary.xml:(caption):162
 msgid "Replay"
 msgstr "Rejouer."
 
-#: gui/summary/summary.xml:(caption):181
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "Continuer"
 
@@ -2028,6 +2009,10 @@ msgstr "Latin"
 msgid "Voices"
 msgstr "Voix"
 
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr "Art"
+
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
 msgstr "Pledgie n°1"
@@ -2041,6 +2026,10 @@ msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr "Campagne Indiegogo 2013\nPlus de 1000 donateurs et donatrices (!), dont :"
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
+msgstr "Donateurs"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -2061,6 +2050,10 @@ msgstr "Directeurs de la programmation"
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
 msgstr "Remerciements particuliers envers"
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
+msgstr "Programmation"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -2089,6 +2082,14 @@ msgstr "Et merci à toute la communauté pour avoir rendu 0 A.D. possible."
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "Aucun historien n'a été blessé durant le développement de ce projet."
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr "Remerciements"
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
+msgstr "Traduction"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2567,9 +2568,8 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Un navire de guerre intermédiaire de type \"trirème\"."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid ""
-"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr "- Disponible pour les peuples celtes (Bretons, Gaulois), Maurya et Ibères."
+msgid "- Available to the Celtic Factions (Britons, Gauls)."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."

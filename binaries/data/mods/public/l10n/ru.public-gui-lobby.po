@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-03-14 13:34+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-09 16:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,149 +29,150 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: gui/lobby/lobby.js:49
+#: gui/lobby/lobby.js:54
 msgid "Online"
 msgstr "В сети"
 
-#: gui/lobby/lobby.js:50
+#: gui/lobby/lobby.js:55
 msgid "Away"
 msgstr "Отошел"
 
-#: gui/lobby/lobby.js:51
+#: gui/lobby/lobby.js:56
 msgid "Busy"
 msgstr "Занят"
 
-#: gui/lobby/lobby.js:52
+#: gui/lobby/lobby.js:57
 msgid "Offline"
 msgstr "Не в сети"
 
-#: gui/lobby/lobby.js:53
+#: gui/lobby/lobby.js:58
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/lobby/lobby.js:114
+#: gui/lobby/lobby.js:119
 msgid "Disconnected."
 msgstr "Отключен."
 
-#: gui/lobby/lobby.js:126
+#: gui/lobby/lobby.js:131
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s присоединился."
 
-#: gui/lobby/lobby.js:133
+#: gui/lobby/lobby.js:138
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s вышел."
 
-#: gui/lobby/lobby.js:141
+#: gui/lobby/lobby.js:146
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s теперь известен как %(newnick)s."
 
-#: gui/lobby/lobby.js:209
+#: gui/lobby/lobby.js:213
 msgctxt "map size"
 msgid "Any"
 msgstr "Любой"
 
-#: gui/lobby/lobby.js:214
+#: gui/lobby/lobby.js:218
 msgctxt "player number"
 msgid "Any"
 msgstr "Любой"
 
-#: gui/lobby/lobby.js:218
+#: gui/lobby/lobby.js:222
 msgctxt "map"
 msgid "Any"
 msgstr "Любой"
 
-#: gui/lobby/lobby.js:390
+#: gui/lobby/lobby.js:397
 msgid "Moderator"
 msgstr "Модератор"
 
-#: gui/lobby/lobby.js:390
+#: gui/lobby/lobby.js:397
 msgid "Player"
 msgstr "Игрок"
 
-#: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
-#: gui/lobby/lobby.js:394 gui/lobby/lobby.js:395 gui/lobby/lobby.js:396
+#: gui/lobby/lobby.js:398 gui/lobby/lobby.js:399 gui/lobby/lobby.js:400
+#: gui/lobby/lobby.js:401 gui/lobby/lobby.js:402 gui/lobby/lobby.js:403
 msgid "N/A"
 msgstr "Н/Д"
 
-#: gui/lobby/lobby.js:419 gui/lobby/lobby.js:449
+#: gui/lobby/lobby.js:426 gui/lobby/lobby.js:456
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:437 gui/lobby/lobby.js:467
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:432 gui/lobby/lobby.js:462
+#: gui/lobby/lobby.js:439 gui/lobby/lobby.js:469
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:598
-msgid "Players:"
-msgstr "Игроки:"
+#: gui/lobby/lobby.js:606
+#, javascript-format
+msgid "Players: %(current)s/%(total)s"
+msgstr ""
 
-#: gui/lobby/lobby.js:634
+#: gui/lobby/lobby.js:647
 msgid "The game has already started."
 msgstr "Игра уже началась."
 
-#: gui/lobby/lobby.js:635
+#: gui/lobby/lobby.js:648
 msgid "Do you want to join as observer?"
 msgstr "Вы хотите подключиться как наблюдатель?"
 
-#: gui/lobby/lobby.js:636
+#: gui/lobby/lobby.js:649
 msgid "Confirmation"
 msgstr "Подтверждение"
 
-#: gui/lobby/lobby.js:638
+#: gui/lobby/lobby.js:650
 msgid "No"
 msgstr "Нет"
 
-#: gui/lobby/lobby.js:638
+#: gui/lobby/lobby.js:650
 msgid "Yes"
 msgstr "Да"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:669
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Адрес игры '%(ip)s' не является действительным."
 
-#: gui/lobby/lobby.js:770
+#: gui/lobby/lobby.js:782
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "К сожалению, команда '%(cmd)s' не поддерживается."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:844
+#: gui/lobby/lobby.js:856
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:846
+#: gui/lobby/lobby.js:858
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:850 gui/lobby/lobby.js:861 gui/lobby/lobby.js:871
+#: gui/lobby/lobby.js:862 gui/lobby/lobby.js:873 gui/lobby/lobby.js:883
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:852 gui/lobby/lobby.js:863 gui/lobby/lobby.js:873
+#: gui/lobby/lobby.js:864 gui/lobby/lobby.js:875 gui/lobby/lobby.js:885
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:857
+#: gui/lobby/lobby.js:869
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -181,24 +182,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:908
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:899
+#: gui/lobby/lobby.js:911
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:902
+#: gui/lobby/lobby.js:914
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:948
+#: gui/lobby/lobby.js:969
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Пожалуйста, не распространяйте спам. Вы заблокированы на 30 секунд."
 
@@ -266,80 +267,80 @@ msgstr "Условия использования"
 msgid "Multiplayer Lobby"
 msgstr "Многопользовательская комната"
 
-#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):298
+#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):299
 msgid "Current Rank:"
 msgstr "Текущий Ранг:"
 
-#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):302
+#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):303
 msgid "Highest Rating:"
 msgstr "Наивысший Рейтинг:"
 
-#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):306
+#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):307
 msgid "Total Games:"
 msgstr "Игр всего:"
 
-#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):310
+#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):311
 msgid "Wins:"
 msgstr "Победы:"
 
-#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):314
+#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):315
 msgid "Losses:"
 msgstr "Поражения:"
 
-#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):318
+#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):319
 msgid "Win Rate:"
 msgstr "Частота Побед:"
 
-#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):246
+#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):247
 msgid "Leaderboard"
 msgstr "Таблица лидеров"
 
-#: gui/lobby/lobby.xml:(caption):88 gui/lobby/lobby.xml:(caption):281
+#: gui/lobby/lobby.xml:(caption):89 gui/lobby/lobby.xml:(caption):282
 msgid "User Profile Lookup"
 msgstr "Просмотр Профиля"
 
-#: gui/lobby/lobby.xml:(caption):117
+#: gui/lobby/lobby.xml:(caption):118
 msgid "Map Type:"
 msgstr "Тип карты:"
 
-#: gui/lobby/lobby.xml:(caption):129
+#: gui/lobby/lobby.xml:(caption):130
 msgid "Map Size:"
 msgstr "Размер карты:"
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):152
+#: gui/lobby/lobby.xml:(caption):153
 msgid "Join Game"
 msgstr "Присоединиться к игре"
 
-#: gui/lobby/lobby.xml:(caption):158
+#: gui/lobby/lobby.xml:(caption):159
 msgid "Host Game"
 msgstr "Создать игру"
 
-#: gui/lobby/lobby.xml:(caption):165
+#: gui/lobby/lobby.xml:(caption):166
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: gui/lobby/lobby.xml:(caption):220
+#: gui/lobby/lobby.xml:(caption):221
 msgid "Show full games"
 msgstr "Показать полные игры"
 
-#: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
+#: gui/lobby/lobby.xml:(caption):267 gui/lobby/lobby.xml:(caption):329
 msgid "Back"
 msgstr "Назад"
 
-#: gui/lobby/lobby.xml:(caption):274
+#: gui/lobby/lobby.xml:(caption):275
 msgid "Update"
 msgstr "Обновить"
 
-#: gui/lobby/lobby.xml:(caption):284
+#: gui/lobby/lobby.xml:(caption):285
 msgid "Enter username:"
 msgstr "Введите имя пользователя:"
 
-#: gui/lobby/lobby.xml:(caption):290
+#: gui/lobby/lobby.xml:(caption):291
 msgid "View Profile"
 msgstr "Найти"
 
-#: gui/lobby/lobby.xml:(caption):323
+#: gui/lobby/lobby.xml:(caption):324
 msgid "Player not found."
 msgstr "Игрок не найден."
 
@@ -347,34 +348,34 @@ msgstr "Игрок не найден."
 msgid "Status"
 msgstr "Статус"
 
-#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):177
-#: gui/lobby/lobby.xml:(heading):256
+#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):178
+#: gui/lobby/lobby.xml:(heading):257
 msgid "Name"
 msgstr "Имя"
 
-#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):259
+#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):260
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: gui/lobby/lobby.xml:(heading):181
+#: gui/lobby/lobby.xml:(heading):182
 msgid "Map Name"
 msgstr "Название карты"
 
-#: gui/lobby/lobby.xml:(heading):184
+#: gui/lobby/lobby.xml:(heading):185
 msgctxt "map"
 msgid "Size"
 msgstr "Размер"
 
-#: gui/lobby/lobby.xml:(heading):187
+#: gui/lobby/lobby.xml:(heading):188
 msgctxt "map"
 msgid "Type"
 msgstr "Тип"
 
-#: gui/lobby/lobby.xml:(heading):190
+#: gui/lobby/lobby.xml:(heading):191
 msgid "Players"
 msgstr "Игроки"
 
-#: gui/lobby/lobby.xml:(heading):253
+#: gui/lobby/lobby.xml:(heading):254
 msgid "Rank"
 msgstr "Ранг"
 

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 10:47+0000\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-06 10:13+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr "%(previousAmounts)s ’s %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -418,17 +418,17 @@ msgstr "Cha deach leinn ceangal ris an fhrithealaiche."
 msgid "Disconnected"
 msgstr "Air a dhì-cheangal"
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Cha b’ urrainn dhuinn %(name)s a thoirmeasg."
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Cha b’ urrainn dhuinn a’ bhròg a thoirt dha %(name)s."
 
-#: gui/common/network.js:129
+#: gui/common/network.js:131
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Cleachdaichean: %(users)s"
@@ -799,7 +799,8 @@ msgstr[3] "%(label)s %(val)s %(unit)s"
 msgid "Heal:"
 msgstr "Slànachadh:"
 
-#. Translation: Short for hitpoints (that are healed in one healing action)
+#. Translation: Short for hit points (or health points) that are healed in one
+#. healing action
 #: gui/common/tooltips.js:461
 msgid "HP"
 msgid_plural "HP"
@@ -831,7 +832,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Seòrsa:"
 
-#: gui/credits/credits.js:35
+#: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s – %(name)s"
@@ -1223,7 +1224,7 @@ msgstr "%(val1)s gu %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):107
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
 msgid "Player name"
 msgstr "Ainm a’ chluicheadair"
 
@@ -1401,12 +1402,12 @@ msgstr "Smachd air a’ mhapa"
 msgid "Team total"
 msgstr "Iomlan an sgioba"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "An ùine a dh’fhalbh sa gheama: %(time)s"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:176
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1419,7 +1420,7 @@ msgstr "Sìobhaltasan"
 msgid "Civilization Selection"
 msgstr "Tagh sìobhaltasan"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):69
+#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
@@ -1428,30 +1429,6 @@ msgstr "Dùin"
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
 msgstr "Urram 0 A.D."
-
-#: gui/credits/credits.xml:(caption):24
-msgid "Special Credits"
-msgstr "Urram sònraichte"
-
-#: gui/credits/credits.xml:(caption):31
-msgid "Programming"
-msgstr "Prògramachadh"
-
-#: gui/credits/credits.xml:(caption):38
-msgid "Art"
-msgstr "Obair-ealain"
-
-#: gui/credits/credits.xml:(caption):45
-msgid "Translators"
-msgstr "Eadar-theangadairean"
-
-#: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
-msgid "Miscellaneous"
-msgstr "Eile"
-
-#: gui/credits/credits.xml:(caption):59
-msgid "Donors"
-msgstr "Luchd-tabhartais"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1850,7 +1827,7 @@ msgid "Delete"
 msgstr "Sguab às"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):25
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Gearr-chunntas"
 
@@ -1920,31 +1897,35 @@ msgstr "Sìobhaltas:"
 msgid "Trainer Units"
 msgstr "Aonadan trèanaidh"
 
-#: gui/summary/summary.xml:(caption):65
+#: gui/summary/summary.xml:(caption):66
 msgid "Score"
 msgstr "Sgòr"
 
-#: gui/summary/summary.xml:(caption):72
+#: gui/summary/summary.xml:(caption):73
 msgid "Buildings"
 msgstr "Togalaichean"
 
-#: gui/summary/summary.xml:(caption):79
+#: gui/summary/summary.xml:(caption):80
 msgid "Units"
 msgstr "Aonadan"
 
-#: gui/summary/summary.xml:(caption):86
+#: gui/summary/summary.xml:(caption):87
 msgid "Resources"
 msgstr "Stòrasan"
 
-#: gui/summary/summary.xml:(caption):93
+#: gui/summary/summary.xml:(caption):94
 msgid "Market"
 msgstr "Margaid"
 
-#: gui/summary/summary.xml:(caption):161
+#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+msgid "Miscellaneous"
+msgstr "Eile"
+
+#: gui/summary/summary.xml:(caption):162
 msgid "Replay"
 msgstr "Ath-chluiche"
 
-#: gui/summary/summary.xml:(caption):181
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "Lean air adhart"
 
@@ -2040,6 +2021,10 @@ msgstr "Laideann"
 msgid "Voices"
 msgstr "Guthan"
 
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr "Obair-ealain"
+
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
 msgstr "Pledgie Drive 1"
@@ -2053,6 +2038,10 @@ msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr "Iomairt Indiegogo 2013\nCorr is 1000 tabhartair (!), a’ gabhail a-steach:"
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
+msgstr "Luchd-tabhartais"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -2073,6 +2062,10 @@ msgstr "Manaidsearan a’ phrògramachaidh"
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
 msgstr "Taing shònraichte dha"
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
+msgstr "Prògramachadh"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -2101,6 +2094,14 @@ msgstr "Mòran taing dhan choimhearsnachd gu lèir o nach biodh 0 A.D. ann às u
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "Cha deach cron a dhèanamh air eachdraiche sam bith rè leasachadh a’ phròiseict seo."
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr "Urram sònraichte"
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
+msgstr "Eadar-theangadairean"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2579,9 +2580,8 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Long-chogaidh “trì-ràmhach” meadhanach."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid ""
-"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr "- Tha seo ri fhaighinn dha na Ceiltich (Breatannaich is Muinntir na Gaille), na Mauraidhich is na h-Ibèirich."
+msgid "- Available to the Celtic Factions (Britons, Gauls)."
+msgstr "- Tha seo ri fhaighinn dha na Ceiltich (Breatannaich is Muinntir na Gaille)."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."

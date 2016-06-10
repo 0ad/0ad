@@ -8,7 +8,7 @@
 # Laurene Albrand, 2015
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014
-# leper <leper@wildfiregames.com>, 2014-2015
+# leper <leper@wildfiregames.com>, 2014-2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-05-30 09:00+0200\n"
-"PO-Revision-Date: 2016-05-30 09:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-06-06 18:50+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -746,12 +746,12 @@ msgstr "Find idle worker"
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
-msgstr ""
+msgstr "Select one goods as origin of the changes, then use the arrows of the target goods to make the changes."
 
 #: gui/session/session.js:321
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "Using %(hotkey)s will put the selected resource to 100%%."
 
 #: gui/session/session.js:416
 #, javascript-format
@@ -892,20 +892,20 @@ msgstr "You cannot destroy this entity as you own less than half the capture poi
 
 #: gui/session/unit_actions.js:1007
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Destroy the selected units or buildings."
 
 #: gui/session/unit_actions.js:1009
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Use %(hotkey)s to avoid the confirmation dialog."
 
 #: gui/session/unit_actions.js:1047
 msgid "Abort the current order."
-msgstr ""
+msgstr "Abort the current order."
 
 #: gui/session/unit_actions.js:1067
 msgid "Order the selected units to garrison a building or unit."
-msgstr ""
+msgstr "Order the selected units to garrison a building or unit."
 
 #: gui/session/unit_actions.js:1089
 msgid "Unload"
@@ -925,7 +925,7 @@ msgstr "Back to Work"
 
 #: gui/session/unit_actions.js:1167
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Order the selected units to guard a building or unit."
 
 #: gui/session/unit_actions.js:1185
 msgid "Remove guard"

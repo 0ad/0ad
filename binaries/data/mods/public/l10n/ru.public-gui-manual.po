@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:00+0200\n"
-"PO-Revision-Date: 2016-06-01 11:45+0000\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-06 09:51+0000\n"
 "Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -597,9 +597,9 @@ msgstr "Следующие данные будут отправлены на с�
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
-"$HOME/.config/0ad/config/user.cfg on Unix), to let us detect repeated "
-"reports from the same user."
-msgstr "• Случайный идентификатор пользователя (хранящийся в %APPDATA%\\0ad\\config\\user.cfg в Windows, $HOME/.config/0ad/config/user.cfg в Unix), который позволяет определить повторные отчеты от того же пользователя."
+"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
+"from the same user."
+msgstr "• Случайный идентификатор пользователя (хранится в ~/.config/0ad/config/user.cfg в Linux и других UNIX-подобный ОС, %APPDATA%\\0ad\\config\\user.cfg в закрытой ОС windows),позволяет определить повторные отчеты от данного пользователя."
 
 #: gui/manual/userreport.txt:6
 msgid ""
