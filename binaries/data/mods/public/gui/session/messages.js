@@ -413,19 +413,24 @@ function updateTimeNotifications()
 }
 
 /**
- * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
+ * Process every CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  * Saves the received object to mainlog.html.
- *
- * @param {Object} msg
  */
-function handleNetMessage(msg)
+function handleNetMessages()
 {
-	log("Net message: " + uneval(msg));
+	while (true)
+	{
+		let msg = Engine.PollNetworkClient();
+		if (!msg)
+			return;
 
-	if (g_NetMessageTypes[msg.type])
-		g_NetMessageTypes[msg.type](msg);
-	else
-		error("Unrecognised net message type '" + msg.type + "'");
+		log("Net message: " + uneval(msg));
+
+		if (g_NetMessageTypes[msg.type])
+			g_NetMessageTypes[msg.type](msg);
+		else
+			error("Unrecognised net message type '" + msg.type + "'");
+	}
 }
 
 /**

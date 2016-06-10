@@ -584,13 +584,8 @@ function onTick()
 	lastTickTime = now;
 
 	checkPlayerState();
-	while (true)
-	{
-		let message = Engine.PollNetworkClient();
-		if (!message)
-			break;
-		handleNetMessage(message);
-	}
+
+	handleNetMessages();
 
 	updateCursorAndTooltip();
 
