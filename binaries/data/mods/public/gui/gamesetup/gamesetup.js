@@ -1194,10 +1194,7 @@ function selectMap(name)
 		g_PlayerAssignments = {
 			"local": {
 				"name": singleplayerName(),
-				"player": 1,
-				"civ": "",
-				"team": -1,
-				"ready": 0
+				"player": 1
 			}
 		};
 

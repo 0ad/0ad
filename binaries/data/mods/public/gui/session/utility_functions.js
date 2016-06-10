@@ -1,5 +1,4 @@
-// Get the basic player data
-function getPlayerData(playerAssignments, previousData = undefined)
+function getPlayerData(previousData = undefined)
 {
 	let players = [];
 
@@ -32,14 +31,16 @@ function getPlayerData(playerAssignments, previousData = undefined)
 		});
 	}
 
-	if (playerAssignments)
-		for (let playerGuid in playerAssignments)
+	if (g_PlayerAssignments)
+		for (let guid in g_PlayerAssignments)
 		{
-			let playerAssignment = playerAssignments[playerGuid];
-			if (!players[playerAssignment.player])
+			let playerID = g_PlayerAssignments[guid].player;
+
+			if (!players[playerID])
 				continue;
-			players[playerAssignment.player].guid = playerGuid;
-			players[playerAssignment.player].name = playerAssignment.name;
+
+			players[playerID].guid = guid;
+			players[playerID].name = g_PlayerAssignments[guid].name;
 		}
 
 	return players;

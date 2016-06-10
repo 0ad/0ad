@@ -131,6 +131,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	OsPath realPath;
 	WARN_RETURN_STATUS_IF_ERR(g_VFS->GetRealPath(filename, realPath));
 	LOGMESSAGERENDER(g_L10n.Translate("Saved game to '%s'"), realPath.string8());
+	debug_printf("Saved game to '%s'\n", realPath.string8().c_str());
 
 	return INFO::OK;
 }
