@@ -105,8 +105,8 @@ function reallyLoadGame(gameId)
 		"isNetworked" : false,
 		"playerAssignments": {
 			"local": {
-				"name": metadata.initAttributes.settings.PlayerData[metadata.gui.assignedPlayer].Name,
-				"player": metadata.gui.assignedPlayer
+				"name": metadata.initAttributes.settings.PlayerData[metadata.playerID].Name,
+				"player": metadata.playerID
 			}
 		},
 		"savedGUIData": metadata.gui

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,10 +44,9 @@ namespace SavedGames
  * @param description A user-given description of the save
  * @param simulation
  * @param gui if not NULL, store some UI-related data with the saved game
- * @param playerID ID of the player who saved this file
  * @return INFO::OK if successfully saved, else an error Status
  */
-Status Save(const std::wstring& name, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID);
+Status Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone);
 
 /**
  * Create new saved game archive with given prefix and simulation data
@@ -56,10 +55,9 @@ Status Save(const std::wstring& name, const std::wstring& description, CSimulati
  * @param description A user-given description of the save
  * @param simulation
  * @param gui if not NULL, store some UI-related data with the saved game
- * @param playerID ID of the player who saved this file
  * @return INFO::OK if successfully saved, else an error Status
  */
-Status SavePrefix(const std::wstring& prefix, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID);
+Status SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone);
 
 /**
  * Load saved game archive with the given name

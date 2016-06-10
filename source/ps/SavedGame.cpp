@@ -39,7 +39,7 @@ static const int SAVED_GAME_VERSION_MINOR = 0; // increment on compatible change
 // TODO: we ought to check version numbers when loading files
 
 
-Status SavedGames::SavePrefix(const std::wstring& prefix, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID)
+Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone)
 {
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + prefix + L"-%04d");
@@ -51,10 +51,10 @@ Status SavedGames::SavePrefix(const std::wstring& prefix, const std::wstring& de
 	size_t nextSaveNumber = 0;
 	vfs::NextNumberedFilename(g_VFS, filenameFormat, nextSaveNumber, filename);
 
-	return Save(filename.Filename().string(), description, simulation, guiMetadataClone, playerID);
+	return Save(filename.Filename().string(), description, simulation, guiMetadataClone);
 }
 
-Status SavedGames::Save(const std::wstring& name, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID)
+Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone)
 {
 	JSContext* cx = simulation.GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
@@ -90,7 +90,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(metadata, "engine_version", std::string(engine_version));
 	simulation.GetScriptInterface().SetProperty(metadata, "mods", g_modsLoaded);
 	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
-	simulation.GetScriptInterface().SetProperty(metadata, "player", playerID);
+	simulation.GetScriptInterface().SetProperty(metadata, "playerID", g_Game->GetPlayerID());
 	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", initAttributes);
 
 	JS::RootedValue guiMetadata(cx);

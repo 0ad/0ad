@@ -544,10 +544,7 @@ function getHotloadData()
 
 function getSavedGameData()
 {
-	let guid = g_IsNetworked ? Engine.GetPlayerGUID() : "local";
-
 	return {
-		"assignedPlayer": g_PlayerAssignments[guid].player,
 		"groups": g_Groups.groups
 	};
 }
