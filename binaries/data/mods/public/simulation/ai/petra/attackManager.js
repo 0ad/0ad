@@ -1,8 +1,7 @@
 var PETRA = function(m)
 {
 
-/* Attack Manager
- */
+/** Attack Manager */
 
 m.AttackManager = function(Config)
 {
@@ -21,7 +20,7 @@ m.AttackManager = function(Config)
 	this.defeated = {};
 };
 
-// More initialisation for stuff that needs the gameState
+/** More initialisation for stuff that needs the gameState */
 m.AttackManager.prototype.init = function(gameState)
 {
 	this.outOfPlan = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", -1));
@@ -103,8 +102,10 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 		m.chatAnswerRequestAttack(gameState, targetPlayer, answer, other);
 };
 
-// Some functions are run every turn
-// Others once in a while
+/**
+ * Some functions are run every turn
+ * Others once in a while
+ */
 m.AttackManager.prototype.update = function(gameState, queues, events)
 {
 	if (this.Config.debug > 2 && gameState.ai.elapsedTime > this.debugTime + 60)

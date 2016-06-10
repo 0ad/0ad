@@ -1,7 +1,7 @@
 var API3 = function(m)
 {
 
-// Shared script handling templates and basic terrain analysis
+/** Shared script handling templates and basic terrain analysis */
 m.SharedScript = function(settings)
 {
 	if (!settings)
@@ -34,7 +34,7 @@ m.SharedScript = function(settings)
 	this.decreaseFactor = {"wood": 50.0, "stone": 90.0, "metal": 90.0};
 };
 
-//Return a simple object (using no classes etc) that will be serialized into saved games
+/** Return a simple object (using no classes etc) that will be serialized into saved games */
 m.SharedScript.prototype.Serialize = function()
 {
 	return {
@@ -46,8 +46,10 @@ m.SharedScript.prototype.Serialize = function()
 	};
 };
 
-// Called after the constructor when loading a saved game, with 'data' being
-// whatever Serialize() returned
+/**
+ * Called after the constructor when loading a saved game, with 'data' being
+ * whatever Serialize() returned
+ */
 m.SharedScript.prototype.Deserialize = function(data)
 {
 	this._players = data.players;
@@ -60,10 +62,12 @@ m.SharedScript.prototype.Deserialize = function(data)
 	this.isDeserialized = true;
 };
 
-// Components that will be disabled in foundation entity templates.
-// (This is a bit yucky and fragile since it's the inverse of
-// CCmpTemplateManager::CopyFoundationSubset and only includes components
-// that our Template class currently uses.)
+/**
+ * Components that will be disabled in foundation entity templates.
+ * (This is a bit yucky and fragile since it's the inverse of
+ * CCmpTemplateManager::CopyFoundationSubset and only includes components
+ * that our Template class currently uses.)
+ */
 m.g_FoundationForbiddenComponents = {
 	"ProductionQueue": 1,
 	"ResourceSupply": 1,
@@ -71,8 +75,10 @@ m.g_FoundationForbiddenComponents = {
 	"GarrisonHolder": 1,
 };
 
-// Components that will be disabled in resource entity templates.
-// Roughly the inverse of CCmpTemplateManager::CopyResourceSubset.
+/**
+ * Components that will be disabled in resource entity templates.
+ * Roughly the inverse of CCmpTemplateManager::CopyResourceSubset.
+ */
 m.g_ResourceForbiddenComponents = {
 	"Cost": 1,
 	"Decay": 1,
@@ -120,9 +126,11 @@ m.SharedScript.prototype.GetTemplate = function(name)
 	return null;
 };
 
-// Initialize the shared component.
-// We need to know the initial state of the game for this, as we will use it.
-// This is called right at the end of the map generation.
+/**
+ * Initialize the shared component.
+ * We need to know the initial state of the game for this, as we will use it.
+ * This is called right at the end of the map generation.
+ */
 m.SharedScript.prototype.init = function(state, deserialization)
 {
 	if (!deserialization)
@@ -153,11 +161,11 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 
 /*
-	var landPassMap = new Uint8Array(this.passabilityMap.data.length);
-	var waterPassMap = new Uint8Array(this.passabilityMap.data.length);
-	var obstructionMaskLand = this.passabilityClasses["default-terrain-only"];
-	var obstructionMaskWater = this.passabilityClasses["ship-terrain-only"];
-	for (var i = 0; i < this.passabilityMap.data.length; ++i)
+	let landPassMap = new Uint8Array(this.passabilityMap.data.length);
+	let waterPassMap = new Uint8Array(this.passabilityMap.data.length);
+	let obstructionMaskLand = this.passabilityClasses["default-terrain-only"];
+	let obstructionMaskWater = this.passabilityClasses["ship-terrain-only"];
+	for (let i = 0; i < this.passabilityMap.data.length; ++i)
 	{
 		landPassMap[i] = (this.passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
 		waterPassMap[i] = (this.passabilityMap.data[i] & obstructionMaskWater) ? 0 : 255;
@@ -190,8 +198,10 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	}
 };
 
-// General update of the shared script, before each AI's update
-// applies entity deltas, and each gamestate.
+/**
+ * General update of the shared script, before each AI's update
+ * applies entity deltas, and each gamestate.
+ */
 m.SharedScript.prototype.onUpdate = function(state)
 {
 	if (this.isDeserialized)
@@ -219,7 +229,7 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 	
 	for (let i in this.gameState)
-		this.gameState[i].update(this,state);
+		this.gameState[i].update(this);
 
 	// TODO: merge this with "ApplyEntitiesDelta" since after all they do the same.
 	this.updateResourceMaps(this, this.events);

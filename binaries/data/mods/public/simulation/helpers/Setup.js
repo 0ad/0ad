@@ -52,6 +52,10 @@ function LoadMapSettings(settings)
 	if (settings.WonderDuration)
 		cmpEndGameManager.SetWonderDuration(settings.WonderDuration * 60 * 1000);
 
+	cmpEndGameManager.SetAlliedVictory(settings.LockTeams || !settings.LastManStanding);
+	if (settings.LockTeams && settings.LastManStanding)
+		warn("Last man standing is only available in games with unlocked teams!");
+
 	if (settings.Garrison)
 	{
 		for (let holder in settings.Garrison)

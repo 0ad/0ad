@@ -9,9 +9,12 @@ m.TrainingPlan = function(gameState, type, metadata, number = 1, maxMerge = 5)
 		return false;
 	}
 
-	this.category = "unit";
-	this.cost = new API3.Resources(this.template.cost(), +this.template._template.Cost.Population);
+	// Refine the estimated cost and add pop cost
+	let trainers = this.getBestTrainers(gameState);
+	let trainer = trainers ? trainers[0] : undefined;
+	this.cost = new API3.Resources(this.template.cost(trainer), +this.template._template.Cost.Population);
 
+	this.category = "unit";
 	this.number = number;
 	this.maxMerge = maxMerge;
 
@@ -22,11 +25,45 @@ m.TrainingPlan.prototype = Object.create(m.QueuePlan.prototype);
 
 m.TrainingPlan.prototype.canStart = function(gameState)
 {
-	let trainers = gameState.findTrainers(this.type);
-	if (this.metadata && this.metadata.sea)
-		trainers = trainers.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
+	this.trainers = this.getBestTrainers(gameState);
+	if (!this.trainers)
+		return false;
+	this.cost = new API3.Resources(this.template.cost(this.trainers[0]), +this.template._template.Cost.Population);
+	return true;
+};
 
-	return trainers.length !== 0;
+m.TrainingPlan.prototype.getBestTrainers = function(gameState)
+{
+	if (this.metadata && this.metadata.trainer)
+	{
+		let trainer = gameState.getEntityById(this.metadata.trainer);
+		if (trainer)
+			return [trainer];
+	}
+
+	let allTrainers = gameState.findTrainers(this.type);
+	if (this.metadata && this.metadata.sea)
+		allTrainers = allTrainers.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
+	if (this.metadata && this.metadata.base)
+		allTrainers = allTrainers.filter(API3.Filters.byMetadata(PlayerID, "base", this.metadata.base));
+	if (!allTrainers || !allTrainers.hasEntities())
+		return undefined;
+
+	// Keep only trainers with smallest cost
+	let costMin = Math.min();
+	let trainers;
+	for (let ent of allTrainers.values())
+	{
+		let cost = this.template.costSum(ent);
+		if (cost === costMin)
+			trainers.push(ent);
+		else if (cost < costMin)
+		{
+			costMin = cost;
+			trainers = [ent];
+		}
+	}
+	return trainers;
 };
 
 m.TrainingPlan.prototype.start = function(gameState)
@@ -37,37 +74,26 @@ m.TrainingPlan.prototype.start = function(gameState)
 		for (let key in this.metadata)
 			if (key !== "trainer")
 				metadata[key] = this.metadata[key];
-		let trainer = gameState.getEntityById(this.metadata.trainer);
-		if (trainer)
-			trainer.train(gameState.civ(), this.type, this.number, metadata, this.promotedTypes(gameState));
-		this.onStart(gameState);
-		return;
+		this.metadata = metadata;
 	}
 
-	let trainersColl = gameState.findTrainers(this.type);
-	if (this.metadata && this.metadata.sea)
-		trainersColl = trainersColl.filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
-	else if (this.metadata && this.metadata.base)
-		trainersColl = trainersColl.filter(API3.Filters.byMetadata(PlayerID, "base", this.metadata.base));
-
-	// Prefer training buildings with short queues
-	// (TODO: this should also account for units added to the queue by
-	// plans that have already been executed this turn)
-	if (trainersColl.length)
+	if (this.trainers.length > 1)
 	{
-		let trainers = trainersColl.toEntityArray();
 		let wantedIndex;
 		if (this.metadata && this.metadata.index)
 			wantedIndex = this.metadata.index;
 		let workerUnit = this.metadata && this.metadata.role && this.metadata.role == "worker";
 		let supportUnit = this.template.hasClass("Support");
-		trainers.sort(function(a, b) {
+		this.trainers.sort(function(a, b) {
+			// Prefer training buildings with short queues
 			let aa = a.trainingQueueTime();
 			let bb = b.trainingQueueTime();
+			// Give priority to support units in the cc
 			if (a.hasClass("Civic") && !supportUnit)
 				aa += 10;
 			if (b.hasClass("Civic") && !supportUnit)
 				bb += 10;
+			// And support units should not be too near to dangerous place
 			if (supportUnit)
 			{
 				if (gameState.ai.HQ.isNearInvadingArmy(a.position()))
@@ -75,6 +101,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 				if (gameState.ai.HQ.isNearInvadingArmy(b.position()))
 					bb += 50;
 			}
+			// Give also priority to buildings with the right accessibility
 			let aBase = a.getMetadata(PlayerID, "base");
 			let bBase = b.getMetadata(PlayerID, "base");
 			if (wantedIndex)
@@ -84,7 +111,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 				if (!bBase || gameState.ai.HQ.getBaseByID(bBase).accessIndex != wantedIndex)
 					bb += 30;
 			}
-			// then, if worker, small preference for bases with less workers
+			// Then, if workers, small preference for bases with less workers
 			if (workerUnit && aBase && bBase && aBase != bBase)
 			{
 				let apop = gameState.ai.HQ.getBaseByID(aBase).workers.length;
@@ -96,12 +123,12 @@ m.TrainingPlan.prototype.start = function(gameState)
 			}
 			return aa - bb;
 		});
-		if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
-			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
-		trainers[0].train(gameState.civ(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
 	}
-	else if (gameState.ai.Config.debug > 1)
-		warn(" no trainers for this queue " + this.type);
+
+	if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
+		this.metadata.base = this.trainers[0].getMetadata(PlayerID, "base");
+	this.trainers[0].train(gameState.civ(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
+
 	this.onStart(gameState);
 };
 

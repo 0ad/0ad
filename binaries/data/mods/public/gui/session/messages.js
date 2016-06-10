@@ -317,14 +317,13 @@ function getCheatsData()
 
 /**
  * Reads userinput from the chat and sends a simulation command in case it is a known cheat.
- * Hence cheats won't be sent as chat over network.
  *
- * @param {string} text
  * @returns {boolean} - True if a cheat was executed.
  */
 function executeCheat(text)
 {
-	if (g_IsObserver || !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+	if (!controlsPlayer(Engine.GetPlayerID()) ||
+	    !g_Players[Engine.GetPlayerID()].cheatsEnabled)
 		return false;
 
 	// Find the cheat code that is a prefix of the user input
@@ -383,7 +382,7 @@ function handleNotifications()
  */
 function updateDiplomacy()
 {
-	g_Players = getPlayerData(g_PlayerAssignments, g_Players);
+	g_Players = getPlayerData(g_Players);
 
 	if (g_IsDiplomacyOpen)
 		openDiplomacy();
@@ -414,19 +413,24 @@ function updateTimeNotifications()
 }
 
 /**
- * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
+ * Process every CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  * Saves the received object to mainlog.html.
- *
- * @param {Object} msg
  */
-function handleNetMessage(msg)
+function handleNetMessages()
 {
-	log("Net message: " + uneval(msg));
+	while (true)
+	{
+		let msg = Engine.PollNetworkClient();
+		if (!msg)
+			return;
 
-	if (g_NetMessageTypes[msg.type])
-		g_NetMessageTypes[msg.type](msg);
-	else
-		error("Unrecognised net message type '" + msg.type + "'");
+		log("Net message: " + uneval(msg));
+
+		if (g_NetMessageTypes[msg.type])
+			g_NetMessageTypes[msg.type](msg);
+		else
+			error("Unrecognised net message type '" + msg.type + "'");
+	}
 }
 
 /**

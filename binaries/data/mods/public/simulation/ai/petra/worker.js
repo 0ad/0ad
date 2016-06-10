@@ -27,7 +27,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	else
 		this.accessIndex = this.base.accessIndex;
 
-	var subrole = ent.getMetadata(PlayerID, "subrole");
+	let subrole = ent.getMetadata(PlayerID, "subrole");
 	if (!subrole)	// subrole may-be undefined after a transport, garrisoning, army, ...
 	{
 		ent.setMetadata(PlayerID, "subrole", "idle");
@@ -38,8 +38,9 @@ m.Worker.prototype.update = function(gameState, ent)
 
 	this.ent = ent;
 
-	var unitAIState = ent.unitAIState();
-	if (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" || unitAIState === "INDIVIDUAL.COMBAT.APPROACHING")
+	let unitAIState = ent.unitAIState();
+	if (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" ||
+	    unitAIState === "INDIVIDUAL.COMBAT.APPROACHING")
 	{
 		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState)) ||
 			(subrole === "gatherer" && !this.startGathering(gameState))))
@@ -48,7 +49,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	else if (ent.getMetadata(PlayerID, "approachingTarget"))
 		ent.setMetadata(PlayerID, "approachingTarget", undefined);
 
-	var unitAIStateOrder = unitAIState.split(".")[1];
+	let unitAIStateOrder = unitAIState.split(".")[1];
 	// If we're fighting or hunting, let's not start gathering
 	// but for fishers where UnitAI must have made us target a moving whale.
 	if (unitAIStateOrder === "COMBAT")
@@ -143,7 +144,7 @@ m.Worker.prototype.update = function(gameState, ent)
 		}
 		// okay so apparently we aren't working.
 		// Unless we've been explicitely told to keep our role, make us idle.
-		var target = gameState.getEntityById(ent.getMetadata(PlayerID, "target-foundation"));
+		let target = gameState.getEntityById(ent.getMetadata(PlayerID, "target-foundation"));
 		if (!target || (target.foundationProgress() === undefined && target.needsRepair() === false))
 		{
 			ent.setMetadata(PlayerID, "subrole", "idle");
@@ -247,21 +248,21 @@ m.Worker.prototype.update = function(gameState, ent)
 
 m.Worker.prototype.startGathering = function(gameState)
 {
-	var self = this;
-	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+	let self = this;
+	let access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 
 	// First look for possible treasure if any
 	if (this.gatherTreasure(gameState))
 		return true;
 
-	var resource = this.ent.getMetadata(PlayerID, "gather-type");
+	let resource = this.ent.getMetadata(PlayerID, "gather-type");
 
 	// If we are gathering food, try to hunt first
 	if (resource === "food" && this.startHunting(gameState))
 		return true;
 	
-	var findSupply = function(ent, supplies) {
-		var ret = false;
+	let findSupply = function(ent, supplies) {
+		let ret = false;
 		for (let i = 0; i < supplies.length; ++i)
 		{
 			// exhausted resource, remove it from this list
@@ -276,7 +277,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
-			var nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
+			let nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
 			if (supplies[i].ent.resourceSupplyType().specific !== "grain" &&
 				nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
@@ -292,8 +293,8 @@ m.Worker.prototype.startGathering = function(gameState)
 		return ret;
 	};
 
-	var navalManager = gameState.ai.HQ.navalManager;
-	var supply;
+	let navalManager = gameState.ai.HQ.navalManager;
+	let supply;
 
 	// first look in our own base if accessible from our present position
 	if (this.accessIndex === access)
@@ -529,20 +530,20 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	if (!position && this.gatherTreasure(gameState))
 		return true;
 
-	var resources = gameState.getHuntableSupplies();	
+	let resources = gameState.getHuntableSupplies();	
 	if (!resources.hasEntities())
 		return false;
 
-	var nearestSupplyDist = Math.min();
-	var nearestSupply;
+	let nearestSupplyDist = Math.min();
+	let nearestSupply;
 
-	var isCavalry = this.ent.hasClass("Cavalry");
-	var isRanged = this.ent.hasClass("Ranged");
-	var foodDropsites = gameState.getOwnDropsites("food");
-	var entPosition = position ? position : this.ent.position();
-	var access = gameState.ai.accessibility.getAccessValue(entPosition);
+	let isCavalry = this.ent.hasClass("Cavalry");
+	let isRanged = this.ent.hasClass("Ranged");
+	let foodDropsites = gameState.getOwnDropsites("food");
+	let entPosition = position ? position : this.ent.position();
+	let access = gameState.ai.accessibility.getAccessValue(entPosition);
 
-	var nearestDropsiteDist = function(supply) {
+	let nearestDropsiteDist = function(supply) {
 		let distMin = 1000000;
 		let pos = supply.position();
 		foodDropsites.forEach(function (dropsite) {
@@ -567,21 +568,21 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (m.IsSupplyFull(gameState, supply))
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
+		let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
-		var canFlee = !supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1;
+		let canFlee = !supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1;
 		// Only cavalry and range units should hunt fleeing animals 
 		if (canFlee && !isCavalry && !isRanged)
 			return;
 		  
-		var supplyAccess = gameState.ai.accessibility.getAccessValue(supply.position());
+		let supplyAccess = gameState.ai.accessibility.getAccessValue(supply.position());
 		if (supplyAccess !== access)
 			return;
 
 		// measure the distance to the resource
-		var dist = API3.SquareVectorDistance(entPosition, supply.position());
+		let dist = API3.SquareVectorDistance(entPosition, supply.position());
 		// Only cavalry should hunt faraway
 		if (!isCavalry && dist > 25000)
 			return;
@@ -591,7 +592,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
-		var dropsiteDist = nearestDropsiteDist(supply);
+		let dropsiteDist = nearestDropsiteDist(supply);
 		if (dropsiteDist > 35000)
 			return;
 		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
@@ -625,7 +626,7 @@ m.Worker.prototype.startFishing = function(gameState)
 
 	// So here we're doing it basic. We check what we can hunt, we hunt it. No fancies.
 
-	var resources = gameState.getFishableSupplies();
+	let resources = gameState.getFishableSupplies();
 	if (!resources.hasEntities())
 	{
 		gameState.ai.HQ.navalManager.resetFishingBoats(gameState);
@@ -633,16 +634,16 @@ m.Worker.prototype.startFishing = function(gameState)
 		return false;
 	}
 
-	var nearestSupplyDist = Math.min();
-	var nearestSupply;
+	let nearestSupplyDist = Math.min();
+	let nearestSupply;
 
-	var entPosition = this.ent.position();
-	var fisherSea = this.ent.getMetadata(PlayerID, "sea");
-	var docks = gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt());
+	let entPosition = this.ent.position();
+	let fisherSea = this.ent.getMetadata(PlayerID, "sea");
+	let docks = gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt());
 
-	var nearestDropsiteDist = function(supply) {
-		var distMin = 1000000;
-		var pos = supply.position();
+	let nearestDropsiteDist = function(supply) {
+		let distMin = 1000000;
+		let pos = supply.position();
 		docks.forEach(function (dock) {
 			if (!dock.position() || dock.getMetadata(PlayerID, "sea") !== fisherSea)
 				return;
@@ -653,7 +654,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		return distMin;
 	};
 	
-	var exhausted = true;
+	let exhausted = true;
 	resources.forEach(function(supply)
 	{
 		if (!supply.position())
@@ -670,12 +671,12 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (m.IsSupplyFull(gameState, supply))
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		var nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
+		let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
 		// measure the distance to the resource
-		var dist = API3.SquareVectorDistance(entPosition, supply.position());
+		let dist = API3.SquareVectorDistance(entPosition, supply.position());
 		if (dist > 40000)
 			return;
 
@@ -684,7 +685,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
 
-		var dropsiteDist = nearestDropsiteDist(supply);
+		let dropsiteDist = nearestDropsiteDist(supply);
 		if (dropsiteDist > 35000)
 			return;
 
@@ -701,7 +702,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		this.ent.destroy();
 		return false;
 	}
-	
+
 	if (nearestSupply)
 	{
 		gameState.ai.HQ.AddTCGatherer(nearestSupply.id());
@@ -717,9 +718,9 @@ m.Worker.prototype.startFishing = function(gameState)
 
 m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 {
-	var ownFields = gameState.getOwnEntitiesByClass("Field", true).filter(API3.Filters.isBuilt()).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
-	var bestFarmEnt = false;
-	var bestFarmDist = 10000000;
+	let ownFields = gameState.getOwnEntitiesByClass("Field", true).filter(API3.Filters.isBuilt()).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
+	let bestFarmEnt = false;
+	let bestFarmDist = 10000000;
 
 	for (let field of ownFields.values())
 	{
@@ -746,11 +747,11 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
  */
 m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
-	var baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));	
-	var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
-	var bestFarmEnt = false;
-	var bestFarmDist = 10000000;
-	var pos = this.ent.position();
+	let baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));	
+	let maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
+	let bestFarmEnt = false;
+	let bestFarmDist = 10000000;
+	let pos = this.ent.position();
 	for (let found of baseFoundations.values())
 	{
 		if (!found.hasClass("Field"))
@@ -772,12 +773,12 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
  */
 m.Worker.prototype.gatherTreasure = function(gameState)
 {
-	var rates = this.ent.resourceGatherRates();
+	let rates = this.ent.resourceGatherRates();
 	if (!rates || !rates.treasure || rates.treasure <= 0)
 		return false;
-	var treasureFound;
-	var distmin = Math.min();
-	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+	let treasureFound;
+	let distmin = Math.min();
+	let access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 	for (let treasure of gameState.ai.HQ.treasures.values())
 	{
 		// let some time for the previous gatherer to reach the treasure befor trying again
@@ -818,10 +819,10 @@ m.Worker.prototype.gatherTreasure = function(gameState)
  */
 m.Worker.prototype.moveAway = function(gameState)
 {
-	var gatherers = this.base.workersBySubrole(gameState, "gatherer");
-	var pos = this.ent.position();
-	var dist = Math.min();
-	var destination = pos;
+	let gatherers = this.base.workersBySubrole(gameState, "gatherer");
+	let pos = this.ent.position();
+	let dist = Math.min();
+	let destination = pos;
 	for (let gatherer of gatherers.values())
 	{
 		if (!gatherer.position() || gatherer.getMetadata(PlayerID, "transport") !== undefined)
@@ -837,9 +838,11 @@ m.Worker.prototype.moveAway = function(gameState)
 	this.ent.move(destination[0], destination[1]);
 };
 
-// Check accessibility of the target when in approach (in RMS maps, we quite often have chicken or bushes
-// inside obstruction of other entities). The resource will be flagged as inaccessible during 10 mn (in case
-// it will be cleared later).
+/**
+ * Check accessibility of the target when in approach (in RMS maps, we quite often have chicken or bushes
+ * inside obstruction of other entities). The resource will be flagged as inaccessible during 10 mn (in case
+ * it will be cleared later).
+ */
 m.Worker.prototype.isInaccessibleSupply = function(gameState)
 {
 	if (!this.ent.unitAIOrderData()[0] || !this.ent.unitAIOrderData()[0].target)

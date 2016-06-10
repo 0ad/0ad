@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Tony Chyi <tonychee1989@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-03 09:01+0200\n"
-"PO-Revision-Date: 2016-06-03 09:25+0000\n"
+"POT-Creation-Date: 2016-06-06 09:01+0200\n"
+"PO-Revision-Date: 2016-06-06 10:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +63,7 @@ msgstr "造船工程师光环"
 
 #: simulation/data/auras/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time for ships during his lifespan."
-msgstr ""
+msgstr "在他活着的时候，船只建造速度 -20%。"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -89,7 +90,7 @@ msgstr "所有单位 +15% 速度。"
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
-msgstr ""
+msgstr "对所有单位每秒生命值回复速率 +1 HP"
 
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraName
 msgid "Lightning Aura"
@@ -114,11 +115,11 @@ msgstr ""
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
-msgstr ""
+msgstr "船只修复光环"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 3 HP per second."
-msgstr ""
+msgstr "回复所驻守船只每秒 3 HP"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -127,7 +128,7 @@ msgstr "治疗光环"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraDescription
 msgid "Heals nearby units at 3 HP per second."
-msgstr ""
+msgstr "回复周围单位每秒 3 HP"
 
 #: simulation/data/auras/female_inspiration.jsonauraName
 msgid "Inspiration Aura"
@@ -135,7 +136,7 @@ msgstr "鼓舞光环"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby males work 10% faster."
-msgstr ""
+msgstr "附近男性工作速度 +10%"
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -164,7 +165,9 @@ msgid "Defensive Aura"
 msgstr ""
 
 #: simulation/data/auras/iber_monument.jsonauraDescription
-msgid "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost."
+msgid ""
+"Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost. Effect "
+"Range: 50 meters"
 msgstr ""
 
 #: simulation/data/auras/library.jsonauraName
@@ -362,7 +365,7 @@ msgstr ""
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
-msgstr ""
+msgstr "奇迹光环"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per Wonder owned."

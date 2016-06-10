@@ -240,9 +240,7 @@ function init(initData, hotloadData)
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;
 
-		// Cache the player data
-		// (This may be updated at runtime by handleNetMessage)
-		g_Players = getPlayerData(g_PlayerAssignments);
+		g_Players = getPlayerData();
 
 		if (initData.savedGUIData)
 			restoreSavedGameData(initData.savedGUIData);
@@ -254,7 +252,7 @@ function init(initData, hotloadData)
 		if (g_IsReplay)
 			g_PlayerAssignments.local.player = -1;
 
-		g_Players = getPlayerData(null);
+		g_Players = getPlayerData();
 	}
 
 	g_CivData = loadCivData();
@@ -402,7 +400,13 @@ function isPlayerObserver(playerID)
  */
 function controlsPlayer(playerID)
 {
-	return Engine.GetPlayerID() == playerID && !g_IsObserver || g_DevSettings.controlAll;
+	if (Engine.GetPlayerID() != playerID)
+		return false;
+
+	let playerState = GetSimState().players[playerID];
+
+	return playerState && (
+		playerState.state != "defeated" || playerState.controlsAll);
 }
 
 /**
@@ -538,12 +542,9 @@ function getHotloadData()
 	return { "selection": g_Selection.selected };
 }
 
-// Return some data that will be stored in saved game files
 function getSavedGameData()
 {
-	// TODO: any other gui state?
 	return {
-		"playerAssignments": g_PlayerAssignments,
 		"groups": g_Groups.groups
 	};
 }
@@ -580,13 +581,8 @@ function onTick()
 	lastTickTime = now;
 
 	checkPlayerState();
-	while (true)
-	{
-		let message = Engine.PollNetworkClient();
-		if (!message)
-			break;
-		handleNetMessage(message);
-	}
+
+	handleNetMessages();
 
 	updateCursorAndTooltip();
 

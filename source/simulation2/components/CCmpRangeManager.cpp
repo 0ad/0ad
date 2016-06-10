@@ -320,6 +320,7 @@ public:
 	EntityMap<EntityData> m_EntityData;
 
 	FastSpatialSubdivision m_Subdivision; // spatial index of m_EntityData
+	std::vector<entity_id_t> m_SubdivisionResults;
 
 	// LOS state:
 	static const player_id_t MAX_LOS_PLAYER_ID = 16;
@@ -378,6 +379,8 @@ public:
 		// Initialise with bogus values (these will get replaced when
 		// SetBounds is called)
 		ResetSubdivisions(entity_pos_t::FromInt(1024), entity_pos_t::FromInt(1024));
+
+		m_SubdivisionResults.reserve(4096);
 
 		// The whole map should be visible to Gaia by default, else e.g. animals
 		// will get confused when trying to run from enemies
@@ -1064,18 +1067,18 @@ public:
 			CFixedVector3D pos3d = cmpSourcePosition->GetPosition()+
 			    CFixedVector3D(entity_pos_t::Zero(), q.elevationBonus, entity_pos_t::Zero()) ;
 			// Get a quick list of entities that are potentially in range, with a cutoff of 2*maxRange
-			std::vector<entity_id_t> ents;
-			m_Subdivision.GetNear(ents, pos, q.maxRange*2);
+			m_SubdivisionResults.clear();
+			m_Subdivision.GetNear(m_SubdivisionResults, pos, q.maxRange * 2);
 
-			for (size_t i = 0; i < ents.size(); ++i)
+			for (size_t i = 0; i < m_SubdivisionResults.size(); ++i)
 			{
-				EntityMap<EntityData>::const_iterator it = m_EntityData.find(ents[i]);
+				EntityMap<EntityData>::const_iterator it = m_EntityData.find(m_SubdivisionResults[i]);
 				ENSURE(it != m_EntityData.end());
 
 				if (!TestEntityQuery(q, it->first, it->second))
 					continue;
 
-				CmpPtr<ICmpPosition> cmpSecondPosition(GetSimContext(), ents[i]);
+				CmpPtr<ICmpPosition> cmpSecondPosition(GetSimContext(), m_SubdivisionResults[i]);
 				if (!cmpSecondPosition || !cmpSecondPosition->IsInWorld())
 					continue;
 				CFixedVector3D secondPosition = cmpSecondPosition->GetPosition();
@@ -1102,12 +1105,12 @@ public:
 		else
 		{
 			// Get a quick list of entities that are potentially in range
-			std::vector<entity_id_t> ents;
-			m_Subdivision.GetNear(ents, pos, q.maxRange);
+			m_SubdivisionResults.clear();
+			m_Subdivision.GetNear(m_SubdivisionResults, pos, q.maxRange);
 
-			for (size_t i = 0; i < ents.size(); ++i)
+			for (size_t i = 0; i < m_SubdivisionResults.size(); ++i)
 			{
-				EntityMap<EntityData>::const_iterator it = m_EntityData.find(ents[i]);
+				EntityMap<EntityData>::const_iterator it = m_EntityData.find(m_SubdivisionResults[i]);
 				ENSURE(it != m_EntityData.end());
 
 				if (!TestEntityQuery(q, it->first, it->second))

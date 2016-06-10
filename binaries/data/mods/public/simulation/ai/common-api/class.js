@@ -21,18 +21,6 @@ m.Class = function(data)
 	return ctor;
 };
 
-/* Test inheritance:
-var A = Class({foo:1, bar:10});
-print((new A).foo+" "+(new A).bar+"\n");
-var B = Class({foo:2, bar:20});
-print((new A).foo+" "+(new A).bar+"\n");
-print((new B).foo+" "+(new B).bar+"\n");
-var C = Class({_super:A, foo:3});
-print((new A).foo+" "+(new A).bar+"\n");
-print((new B).foo+" "+(new B).bar+"\n");
-print((new C).foo+" "+(new C).bar+"\n");
-//*/
-
 return m;
 
 }(API3);

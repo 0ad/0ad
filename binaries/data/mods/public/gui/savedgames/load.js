@@ -103,7 +103,12 @@ function reallyLoadGame(gameId)
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": metadata.initAttributes,
 		"isNetworked" : false,
-		"playerAssignments": metadata.gui.playerAssignments,
+		"playerAssignments": {
+			"local": {
+				"name": metadata.initAttributes.settings.PlayerData[metadata.playerID].Name,
+				"player": metadata.playerID
+			}
+		},
 		"savedGUIData": metadata.gui
 	});
 }

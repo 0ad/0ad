@@ -32,7 +32,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	for (let i = 0; i < this.phases.length; ++i)
 	{
 		let k = techs.indexOf(this.phases[i].name);
-		if (k != -1)
+		if (k !== -1)
 		{
 			this.phases[i].requirements = (this.getTemplate(techs[k]))._template.requirements;
 			continue;
@@ -50,14 +50,9 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	}
 };
 
-m.GameState.prototype.update = function(SharedScript, state) {
-	this.sharedScript = SharedScript;
-	this.EntCollecNames = SharedScript._entityCollectionsName;
+m.GameState.prototype.update = function(SharedScript)
+{
 	this.timeElapsed = SharedScript.timeElapsed;
-	this.templates = SharedScript._templates;
-	this.techTemplates = SharedScript._techTemplates;
-	this._entities = SharedScript._entities;
-	this.entities = SharedScript.entities;
 	this.playerData = SharedScript.playersData[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 };

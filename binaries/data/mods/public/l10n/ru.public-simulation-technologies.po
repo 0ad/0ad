@@ -33,12 +33,14 @@
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 # Григорий Световидов <grin.sv@gmail.com>, 2015
+# Дмитрий <polsha_d@mail.ru>, 2016
+# Николай Авдеев <nickkolok@mail.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-03 09:01+0200\n"
-"PO-Revision-Date: 2016-06-03 09:53+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-06-06 09:01+0200\n"
+"PO-Revision-Date: 2016-06-09 20:06+0000\n"
+"Last-Translator: Дмитрий <polsha_d@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1087,7 +1089,7 @@ msgstr "Жилищные условия"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr ""
+msgstr "Увеличивается силу и радиус исцеления всех целителей."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
@@ -1790,13 +1792,13 @@ msgstr "Бона Дея"
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
-"and their families in foreign countries, allowing them to exploit these "
-"countries wealth."
-msgstr "Расширение торговли приводит к постоянному контакту владельцев магазинов и их семей в зарубежных странах, что позволяет им использовать богатства этих стран."
+"and their families in foreign countries, allowing them to exploit the wealth"
+" of these countries."
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
-msgid "Player can use his allies dropsites."
-msgstr "Игрок может использовать точки сбора ресурсов союзников."
+msgid "Allows using allied dropsites."
+msgstr "Позволяет использовать точки сбора ресурсов союзников."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"

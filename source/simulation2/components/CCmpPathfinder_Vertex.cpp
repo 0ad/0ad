@@ -81,49 +81,6 @@ static const u8 QUADRANT_BLTR = QUADRANT_BL|QUADRANT_TR;
 static const u8 QUADRANT_TLBR = QUADRANT_TL|QUADRANT_BR;
 static const u8 QUADRANT_ALL = QUADRANT_BLTR|QUADRANT_TLBR;
 
-// A vertex around the corners of an obstruction
-// (paths will be sequences of these vertexes)
-struct Vertex
-{
-	enum
-	{
-		UNEXPLORED,
-		OPEN,
-		CLOSED,
-	};
-
-	CFixedVector2D p;
-	fixed g, h;
-	u16 pred;
-	u8 status;
-	u8 quadInward : 4; // the quadrant which is inside the shape (or NONE)
-	u8 quadOutward : 4; // the quadrants of the next point on the path which this vertex must be in, given 'pred'
-};
-
-// Obstruction edges (paths will not cross any of these).
-// Defines the two points of the edge.
-struct Edge
-{
-	CFixedVector2D p0, p1;
-};
-
-// Axis-aligned obstruction squares (paths will not cross any of these).
-// Defines the opposing corners of an axis-aligned square
-// (from which four individual edges can be trivially computed), requiring p0 <= p1
-struct Square
-{
-	CFixedVector2D p0, p1;
-};
-
-// Axis-aligned obstruction edges.
-// p0 defines one end; c1 is either the X or Y coordinate of the other end,
-// depending on the context in which this is used.
-struct EdgeAA
-{
-	CFixedVector2D p0;
-	fixed c1;
-};
-
 // When computing vertexes to insert into the search graph,
 // add a small delta so that the vertexes of an edge don't get interpreted
 // as crossing the edge (given minor numerical inaccuracies)
@@ -362,12 +319,12 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 	}
 
 	// XXX rewrite this stuff
-
+	std::vector<u16> segmentsR;
+	std::vector<u16> segmentsL;
 	for (int j = j0; j < j1; ++j)
 	{
-		std::vector<u16> segmentsR;
-		std::vector<u16> segmentsL;
-
+		segmentsR.clear();
+		segmentsL.clear();
 		for (int i = i0; i <= i1; ++i)
 		{
 			bool a = IS_PASSABLE(grid.get(i, j+1), passClass);
@@ -420,12 +377,12 @@ static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& verte
 			}
 		}
 	}
-
+	std::vector<u16> segmentsU;
+	std::vector<u16> segmentsD;
 	for (int i = i0; i < i1; ++i)
 	{
-		std::vector<u16> segmentsU;
-		std::vector<u16> segmentsD;
-
+		segmentsU.clear();
+		segmentsD.clear();
 		for (int j = j0; j <= j1; ++j)
 		{
 			bool a = IS_PASSABLE(grid.get(i+1, j), passClass);
@@ -487,10 +444,6 @@ static void SplitAAEdges(const CFixedVector2D& a,
 		std::vector<EdgeAA>& edgesLeft, std::vector<EdgeAA>& edgesRight,
 		std::vector<EdgeAA>& edgesBottom, std::vector<EdgeAA>& edgesTop)
 {
-	edgesLeft.reserve(squares.size());
-	edgesRight.reserve(squares.size());
-	edgesBottom.reserve(squares.size());
-	edgesTop.reserve(squares.size());
 
 	for (const Square& square : squares)
 	{
@@ -594,8 +547,8 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// List of collision edges - paths must never cross these.
 	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
-	std::vector<Edge> edges;
-	std::vector<Square> edgeSquares; // axis-aligned squares; equivalent to 4 edges
+	edges.clear();
+	edgeSquares.clear(); // axis-aligned squares; equivalent to 4 edges
 
 	// Create impassable edges at the max-range boundary, so we can't escape the region
 	// where we're meant to be searching
@@ -609,7 +562,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
 	// the graph defined by these vertexes
-	std::vector<Vertex> vertexes;
+	vertexes.clear();
 
 	// Add the start point to the graph
 	CFixedVector2D posStart(x0, z0);
@@ -833,11 +786,11 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		if (edgeSquares.size() > 8)
 			std::partial_sort(edgeSquares.begin(), edgeSquares.begin() + 8, edgeSquares.end(), SquareSort(vertexes[curr.id].p));
 
-		std::vector<Edge> edgesUnaligned;
-		std::vector<EdgeAA> edgesLeft;
-		std::vector<EdgeAA> edgesRight;
-		std::vector<EdgeAA> edgesBottom;
-		std::vector<EdgeAA> edgesTop;
+		edgesUnaligned.clear();
+		edgesLeft.clear();
+		edgesRight.clear();
+		edgesBottom.clear();
+		edgesTop.clear();
 		SplitAAEdges(vertexes[curr.id].p, edges, edgeSquares, edgesUnaligned, edgesLeft, edgesRight, edgesBottom, edgesTop);
 
 		// Check the lines to every other vertex

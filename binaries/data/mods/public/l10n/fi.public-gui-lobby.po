@@ -4,16 +4,16 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
-# Max, 2016
-# Max, 2015-2016
+# Max Ihalempia, 2016
+# Max Ihalempia, 2015-2016
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Riku Viitanen <riisseli4@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-29 18:25+0000\n"
-"Last-Translator: Max\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-06 10:06+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,149 +21,150 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/lobby/lobby.js:49
+#: gui/lobby/lobby.js:54
 msgid "Online"
 msgstr "Paikalla"
 
-#: gui/lobby/lobby.js:50
+#: gui/lobby/lobby.js:55
 msgid "Away"
 msgstr "Poissa"
 
-#: gui/lobby/lobby.js:51
+#: gui/lobby/lobby.js:56
 msgid "Busy"
 msgstr "Kiireinen"
 
-#: gui/lobby/lobby.js:52
+#: gui/lobby/lobby.js:57
 msgid "Offline"
 msgstr "Pois linjoilta"
 
-#: gui/lobby/lobby.js:53
+#: gui/lobby/lobby.js:58
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: gui/lobby/lobby.js:114
+#: gui/lobby/lobby.js:119
 msgid "Disconnected."
 msgstr "Yhteys katkaistu."
 
-#: gui/lobby/lobby.js:126
+#: gui/lobby/lobby.js:131
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s liittyi."
 
-#: gui/lobby/lobby.js:133
+#: gui/lobby/lobby.js:138
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s poistui."
 
-#: gui/lobby/lobby.js:141
+#: gui/lobby/lobby.js:146
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s tunnetaan nyt nimellä %(newnick)s."
 
-#: gui/lobby/lobby.js:209
+#: gui/lobby/lobby.js:213
 msgctxt "map size"
 msgid "Any"
 msgstr "Mikä tahansa"
 
-#: gui/lobby/lobby.js:214
+#: gui/lobby/lobby.js:218
 msgctxt "player number"
 msgid "Any"
 msgstr "Mikä tahansa"
 
-#: gui/lobby/lobby.js:218
+#: gui/lobby/lobby.js:222
 msgctxt "map"
 msgid "Any"
 msgstr "Mikä tahansa"
 
-#: gui/lobby/lobby.js:390
+#: gui/lobby/lobby.js:397
 msgid "Moderator"
 msgstr "Moderaattori"
 
-#: gui/lobby/lobby.js:390
+#: gui/lobby/lobby.js:397
 msgid "Player"
 msgstr "Pelaaja"
 
-#: gui/lobby/lobby.js:391 gui/lobby/lobby.js:392 gui/lobby/lobby.js:393
-#: gui/lobby/lobby.js:394 gui/lobby/lobby.js:395 gui/lobby/lobby.js:396
+#: gui/lobby/lobby.js:398 gui/lobby/lobby.js:399 gui/lobby/lobby.js:400
+#: gui/lobby/lobby.js:401 gui/lobby/lobby.js:402 gui/lobby/lobby.js:403
 msgid "N/A"
 msgstr "Ei saatavilla"
 
-#: gui/lobby/lobby.js:419 gui/lobby/lobby.js:449
+#: gui/lobby/lobby.js:426 gui/lobby/lobby.js:456
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:437 gui/lobby/lobby.js:467
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:432 gui/lobby/lobby.js:462
+#: gui/lobby/lobby.js:439 gui/lobby/lobby.js:469
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:598
-msgid "Players:"
-msgstr "Pelaajat:"
+#: gui/lobby/lobby.js:606
+#, javascript-format
+msgid "Players: %(current)s/%(total)s"
+msgstr ""
 
-#: gui/lobby/lobby.js:634
+#: gui/lobby/lobby.js:647
 msgid "The game has already started."
 msgstr "Peli on jo alkanut."
 
-#: gui/lobby/lobby.js:635
+#: gui/lobby/lobby.js:648
 msgid "Do you want to join as observer?"
 msgstr "Haluatko liittyä tarkkailijana?"
 
-#: gui/lobby/lobby.js:636
+#: gui/lobby/lobby.js:649
 msgid "Confirmation"
 msgstr "Vahvistus"
 
-#: gui/lobby/lobby.js:638
+#: gui/lobby/lobby.js:650
 msgid "No"
 msgstr "Ei"
 
-#: gui/lobby/lobby.js:638
+#: gui/lobby/lobby.js:650
 msgid "Yes"
 msgstr "Kyllä"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:669
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Tämän pelin osoite '%(ip)s' ei kelpaa."
 
-#: gui/lobby/lobby.js:770
+#: gui/lobby/lobby.js:782
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Olemme pahoillamme,  '%(cmd)s' komento ei ole tuettu."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:844
+#: gui/lobby/lobby.js:856
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:846
+#: gui/lobby/lobby.js:858
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:850 gui/lobby/lobby.js:861 gui/lobby/lobby.js:871
+#: gui/lobby/lobby.js:862 gui/lobby/lobby.js:873 gui/lobby/lobby.js:883
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:852 gui/lobby/lobby.js:863 gui/lobby/lobby.js:873
+#: gui/lobby/lobby.js:864 gui/lobby/lobby.js:875 gui/lobby/lobby.js:885
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:857
+#: gui/lobby/lobby.js:869
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -173,24 +174,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:908
 msgid "HH:mm"
 msgstr "TT:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:899
+#: gui/lobby/lobby.js:911
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:902
+#: gui/lobby/lobby.js:914
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:948
+#: gui/lobby/lobby.js:969
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Älä spämmää. Sinut on estetty 30 sekunniksi."
 
@@ -258,80 +259,80 @@ msgstr "Käyttöehdot"
 msgid "Multiplayer Lobby"
 msgstr "Moninpelin aula"
 
-#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):298
+#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):299
 msgid "Current Rank:"
 msgstr "Tämänhetkinen sija:"
 
-#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):302
+#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):303
 msgid "Highest Rating:"
 msgstr "Korkein pistemäärä:"
 
-#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):306
+#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):307
 msgid "Total Games:"
 msgstr "Pelejä pelattu yhteensä:"
 
-#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):310
+#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):311
 msgid "Wins:"
 msgstr "Voitot:"
 
-#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):314
+#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):315
 msgid "Losses:"
 msgstr "Häviöt:"
 
-#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):318
+#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):319
 msgid "Win Rate:"
 msgstr "Voitto-osuus:"
 
-#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):246
+#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):247
 msgid "Leaderboard"
 msgstr "Tulostaulukko"
 
-#: gui/lobby/lobby.xml:(caption):88 gui/lobby/lobby.xml:(caption):281
+#: gui/lobby/lobby.xml:(caption):89 gui/lobby/lobby.xml:(caption):282
 msgid "User Profile Lookup"
 msgstr "Käyttäjän profiilin haku"
 
-#: gui/lobby/lobby.xml:(caption):117
+#: gui/lobby/lobby.xml:(caption):118
 msgid "Map Type:"
 msgstr "Kartan tyyppi:"
 
-#: gui/lobby/lobby.xml:(caption):129
+#: gui/lobby/lobby.xml:(caption):130
 msgid "Map Size:"
 msgstr "Kartan koko:"
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):152
+#: gui/lobby/lobby.xml:(caption):153
 msgid "Join Game"
 msgstr "Liity peliin"
 
-#: gui/lobby/lobby.xml:(caption):158
+#: gui/lobby/lobby.xml:(caption):159
 msgid "Host Game"
 msgstr "Aloita moninpeli"
 
-#: gui/lobby/lobby.xml:(caption):165
+#: gui/lobby/lobby.xml:(caption):166
 msgid "Main Menu"
 msgstr "Päävalikko"
 
-#: gui/lobby/lobby.xml:(caption):220
+#: gui/lobby/lobby.xml:(caption):221
 msgid "Show full games"
 msgstr "Näytä täydet pelit"
 
-#: gui/lobby/lobby.xml:(caption):266 gui/lobby/lobby.xml:(caption):328
+#: gui/lobby/lobby.xml:(caption):267 gui/lobby/lobby.xml:(caption):329
 msgid "Back"
 msgstr "Takaisin"
 
-#: gui/lobby/lobby.xml:(caption):274
+#: gui/lobby/lobby.xml:(caption):275
 msgid "Update"
 msgstr "Päivitä"
 
-#: gui/lobby/lobby.xml:(caption):284
+#: gui/lobby/lobby.xml:(caption):285
 msgid "Enter username:"
 msgstr "Kirjoita käyttäjänimesi:"
 
-#: gui/lobby/lobby.xml:(caption):290
+#: gui/lobby/lobby.xml:(caption):291
 msgid "View Profile"
 msgstr "Näytä profiili"
 
-#: gui/lobby/lobby.xml:(caption):323
+#: gui/lobby/lobby.xml:(caption):324
 msgid "Player not found."
 msgstr "Pelaajaa ei löytynyt"
 
@@ -339,34 +340,34 @@ msgstr "Pelaajaa ei löytynyt"
 msgid "Status"
 msgstr "Asian tila"
 
-#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):177
-#: gui/lobby/lobby.xml:(heading):256
+#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):178
+#: gui/lobby/lobby.xml:(heading):257
 msgid "Name"
 msgstr "Nimi"
 
-#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):259
+#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):260
 msgid "Rating"
 msgstr "Luokitus"
 
-#: gui/lobby/lobby.xml:(heading):181
+#: gui/lobby/lobby.xml:(heading):182
 msgid "Map Name"
 msgstr "Kartan nimi"
 
-#: gui/lobby/lobby.xml:(heading):184
+#: gui/lobby/lobby.xml:(heading):185
 msgctxt "map"
 msgid "Size"
 msgstr "Koko"
 
-#: gui/lobby/lobby.xml:(heading):187
+#: gui/lobby/lobby.xml:(heading):188
 msgctxt "map"
 msgid "Type"
 msgstr "Tyyppi"
 
-#: gui/lobby/lobby.xml:(heading):190
+#: gui/lobby/lobby.xml:(heading):191
 msgid "Players"
 msgstr "Pelaajat"
 
-#: gui/lobby/lobby.xml:(heading):253
+#: gui/lobby/lobby.xml:(heading):254
 msgid "Rank"
 msgstr "Taso"
 

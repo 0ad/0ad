@@ -197,9 +197,11 @@ g_SelectionPanels.Command = {
 
 		data.countDisplay.caption = data.item.count || "";
 
-		data.button.enabled = controlsPlayer(data.unitEntState.player);
-		let grayscale = data.button.enabled ? "" : "grayscale:";
-		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
+		data.button.enabled =
+			controlsPlayer(data.unitEntState.player) ||
+			(g_IsObserver && data.item.name == "focus-rally");
+
+		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 
 		let size = data.button.size;
 		// count on square buttons, so size.bottom is the width too
@@ -246,7 +248,8 @@ g_SelectionPanels.AllyCommand = {
 
 		data.countDisplay.caption = data.item.count || "";
 
-		data.button.enabled = data.item.count != undefined && data.item.count > 0;
+		data.button.enabled = !!data.item.count;
+
 		let grayscale = data.button.enabled ? "" : "grayscale:";
 		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
 
@@ -398,13 +401,16 @@ g_SelectionPanels.Garrison = {
 	{
 		if (!unitEntState.garrisonHolder)
 			return [];
+
 		let groups = new EntityGroups();
+
 		for (let ent of selection)
 		{
 			let state = GetEntityState(ent);
 			if (state.garrisonHolder)
 				groups.add(state.garrisonHolder.entities);
 		}
+
 		return groups.getEntsGrouped();
 	},
 	"setupButton": function(data)
@@ -413,26 +419,25 @@ g_SelectionPanels.Garrison = {
 		if (!template)
 			return false;
 
-		data.button.onPress = function() { unloadTemplate(data.item.template); };
+		data.button.onPress = function() {
+			unloadTemplate(data.item.template);
+		};
 
-		let tooltip = sprintf(translate("Unload %(name)s"), { "name": getEntityNames(template) }) + "\n";
-		tooltip += translate("Single-click to unload 1. Shift-click to unload all of this type.");
-		data.button.tooltip = tooltip;
+		data.button.tooltip = sprintf(
+			translate("Unload %(name)s"),
+			{ "name": getEntityNames(template) }) + "\n" +
+			translate("Single-click to unload 1. Shift-click to unload all of this type.");
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
-		let grayscale = "";
-		let ents = data.item.ents;
-		let entplayer = GetEntityState(ents[0]).player;
-		data.button.sprite = "color:" + rgbToGuiColor(g_Players[entplayer].color) +":";
+		let garrisonedUnitOwner = GetEntityState(data.item.ents[0]).player;
 
-		if (!controlsPlayer(data.unitEntState.player) && !controlsPlayer(entplayer))
-		{
-			data.button.enabled = false;
-			grayscale = "grayscale:";
-		}
+		data.button.sprite = "color:" + rgbToGuiColor(g_Players[garrisonedUnitOwner].color) + ":";
+		data.button.enabled =
+			controlsPlayer(data.unitEntState.player) ||
+			controlsPlayer(garrisonedUnitOwner);
 
-		data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
+		data.icon.sprite = "stretched:session/portraits/" + template.icon;
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);
 		return true;

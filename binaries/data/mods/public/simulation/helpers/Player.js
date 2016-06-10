@@ -125,7 +125,7 @@ function LoadPlayerSettings(settings, newPlayers)
 
 		// If diplomacy explicitly defined, use that; otherwise use teams
 		if (getSetting(playerData, playerDefaults, i, "Diplomacy") !== undefined)
-			cmpPlayer.SetDiplomacy(getSetting(playerData, playerDefaults, i, "Diplomacy"));
+			cmpPlayer.SetDiplomacy(getSetting(playerData, playerDefaults, i, "Diplomacy"), true);
 		else
 		{
 			// Init diplomacy
@@ -139,7 +139,7 @@ function LoadPlayerSettings(settings, newPlayers)
 				else
 					cmpPlayer.SetEnemy(j);
 			}
-			cmpPlayer.SetTeam((myTeam !== undefined) ? myTeam : -1);
+			cmpPlayer.SetTeam(myTeam === undefined ? -1 : myTeam, true);
 		}
 
 		// If formations explicitly defined, use that; otherwise use civ defaults

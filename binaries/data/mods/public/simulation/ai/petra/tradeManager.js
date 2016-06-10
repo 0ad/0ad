@@ -225,7 +225,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 			continue;
 
 		// pick the best resource to barter.
-		let bestToSell = undefined;
+		let bestToSell;
 		let bestRate = 0;
 		for (let sell of needs.types)
 		{

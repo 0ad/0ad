@@ -369,7 +369,7 @@ Player.prototype.GetTeam = function()
 	return this.team;
 };
 
-Player.prototype.SetTeam = function(team)
+Player.prototype.SetTeam = function(team, skipAlliedVictoryCheck = false)
 {
 	if (this.teamsLocked)
 		return;
@@ -385,11 +385,15 @@ Player.prototype.SetTeam = function(team)
 			if (this.team != cmpPlayer.GetTeam())
 				continue;
 
-			this.SetAlly(i);
-			cmpPlayer.SetAlly(this.playerID);
+			this.SetAlly(i, skipAlliedVictoryCheck);
+			cmpPlayer.SetAlly(this.playerID, skipAlliedVictoryCheck);
 		}
 
-	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID, "otherPlayer": null });
+	Engine.BroadcastMessage(MT_DiplomacyChanged, {
+		"player": this.playerID,
+		"otherPlayer": null,
+		"skipAlliedVictoryCheck": skipAlliedVictoryCheck
+	});
 };
 
 Player.prototype.SetLockTeams = function(value)
@@ -407,13 +411,18 @@ Player.prototype.GetDiplomacy = function()
 	return this.diplomacy;
 };
 
-Player.prototype.SetDiplomacy = function(dipl)
+Player.prototype.SetDiplomacy = function(dipl, skipAlliedVictoryCheck = false)
 {
 	this.diplomacy = dipl;
-	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID, "otherPlayer": null });
+
+	Engine.BroadcastMessage(MT_DiplomacyChanged, {
+		"player": this.playerID,
+		"otherPlayer": null,
+		"skipAlliedVictoryCheck": skipAlliedVictoryCheck
+	});
 };
 
-Player.prototype.SetDiplomacyIndex = function(idx, value)
+Player.prototype.SetDiplomacyIndex = function(idx, value, skipAlliedVictoryCheck = false)
 {
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	if (!cmpPlayerManager)
@@ -427,11 +436,16 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 		return;
 
 	this.diplomacy[idx] = value;
-	Engine.BroadcastMessage(MT_DiplomacyChanged, { "player": this.playerID, "otherPlayer": cmpPlayer.GetPlayerID() });
+
+	Engine.BroadcastMessage(MT_DiplomacyChanged, {
+		"player": this.playerID,
+		"otherPlayer": cmpPlayer.GetPlayerID(),
+		"skipAlliedVictoryCheck": skipAlliedVictoryCheck
+	});
 
 	// Mutual worsening of relations
 	if (cmpPlayer.diplomacy[this.playerID] > value)
-		cmpPlayer.SetDiplomacyIndex(this.playerID, value);
+		cmpPlayer.SetDiplomacyIndex(this.playerID, value, skipAlliedVictoryCheck);
 };
 
 Player.prototype.UpdateSharedLos = function()
@@ -510,9 +524,9 @@ Player.prototype.IsAI = function()
 	return this.isAI;
 };
 
-Player.prototype.SetAlly = function(id)
+Player.prototype.SetAlly = function(id, skipAlliedVictoryCheck = false)
 {
-	this.SetDiplomacyIndex(id, 1);
+	this.SetDiplomacyIndex(id, 1, skipAlliedVictoryCheck);
 };
 
 /**
@@ -548,9 +562,9 @@ Player.prototype.IsExclusiveMutualAlly = function(id)
 	return this.playerID != id && this.IsMutualAlly(id);
 };
 
-Player.prototype.SetEnemy = function(id)
+Player.prototype.SetEnemy = function(id, skipAlliedVictoryCheck = false)
 {
-	this.SetDiplomacyIndex(id, -1);
+	this.SetDiplomacyIndex(id, -1, skipAlliedVictoryCheck);
 };
 
 /**
@@ -573,9 +587,9 @@ Player.prototype.IsEnemy = function(id)
 	return this.diplomacy[id] < 0;
 };
 
-Player.prototype.SetNeutral = function(id)
+Player.prototype.SetNeutral = function(id, skipAlliedVictoryCheck = false)
 {
-	this.SetDiplomacyIndex(id, 0);
+	this.SetDiplomacyIndex(id, 0, skipAlliedVictoryCheck);
 };
 
 /**

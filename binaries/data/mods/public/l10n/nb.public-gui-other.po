@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 09:51+0000\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-06 09:14+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,7 @@ msgstr "%(previousAmounts)s og %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -415,17 +415,17 @@ msgstr ""
 msgid "Disconnected"
 msgstr "Frakoblet"
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Kunne ikke utestenge %(name)s."
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Kunne ikke kaste ut %(name)s. "
 
-#: gui/common/network.js:129
+#: gui/common/network.js:131
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Brukere: %(users)s"
@@ -778,7 +778,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgid "Heal:"
 msgstr "Leg:"
 
-#. Translation: Short for hitpoints (that are healed in one healing action)
+#. Translation: Short for hit points (or health points) that are healed in one
+#. healing action
 #: gui/common/tooltips.js:461
 msgid "HP"
 msgid_plural "HP"
@@ -808,7 +809,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "Klasser:"
 
-#: gui/credits/credits.js:35
+#: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1196,7 +1197,7 @@ msgstr "%(val1)s til %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):107
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
 msgid "Player name"
 msgstr "Spillernavn"
 
@@ -1374,12 +1375,12 @@ msgstr "Kartkontroll"
 msgid "Team total"
 msgstr "Totalt for lag"
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Spilltid forløpt: %(time)s"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:176
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1392,7 +1393,7 @@ msgstr "Sivilisasjoner"
 msgid "Civilization Selection"
 msgstr "Siviliasjons Valg"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):69
+#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
@@ -1401,30 +1402,6 @@ msgstr "Lukk"
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
 msgstr "0 A.D bidragsytere"
-
-#: gui/credits/credits.xml:(caption):24
-msgid "Special Credits"
-msgstr "Spesielle æreshenvisninger"
-
-#: gui/credits/credits.xml:(caption):31
-msgid "Programming"
-msgstr "Programmering"
-
-#: gui/credits/credits.xml:(caption):38
-msgid "Art"
-msgstr "Kunst"
-
-#: gui/credits/credits.xml:(caption):45
-msgid "Translators"
-msgstr "Oversettere"
-
-#: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
-msgid "Miscellaneous"
-msgstr "Diverse"
-
-#: gui/credits/credits.xml:(caption):59
-msgid "Donors"
-msgstr "Donorer"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1823,7 +1800,7 @@ msgid "Delete"
 msgstr "Slett"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):25
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Oppsummering"
 
@@ -1893,31 +1870,35 @@ msgstr "Sivilisasjon:"
 msgid "Trainer Units"
 msgstr "Treningsenheter"
 
-#: gui/summary/summary.xml:(caption):65
+#: gui/summary/summary.xml:(caption):66
 msgid "Score"
 msgstr "Poeng"
 
-#: gui/summary/summary.xml:(caption):72
+#: gui/summary/summary.xml:(caption):73
 msgid "Buildings"
 msgstr "Bygninger"
 
-#: gui/summary/summary.xml:(caption):79
+#: gui/summary/summary.xml:(caption):80
 msgid "Units"
 msgstr "Enheter"
 
-#: gui/summary/summary.xml:(caption):86
+#: gui/summary/summary.xml:(caption):87
 msgid "Resources"
 msgstr "Ressurser"
 
-#: gui/summary/summary.xml:(caption):93
+#: gui/summary/summary.xml:(caption):94
 msgid "Market"
 msgstr "Marked"
 
-#: gui/summary/summary.xml:(caption):161
+#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+msgid "Miscellaneous"
+msgstr "Diverse"
+
+#: gui/summary/summary.xml:(caption):162
 msgid "Replay"
 msgstr "Spill av igjen"
 
-#: gui/summary/summary.xml:(caption):181
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "Fortsett"
 
@@ -2013,6 +1994,10 @@ msgstr "Latin"
 msgid "Voices"
 msgstr "Stemmer"
 
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr "Kunst"
+
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
 msgstr "Pledgie-kronerulling 1"
@@ -2026,6 +2011,10 @@ msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
 msgstr "Indiegogo-kampanje fra 2013\nOver 1000 donorer (!), inkludert:"
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
+msgstr "Donorer"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -2046,6 +2035,10 @@ msgstr "Programmeringsledere"
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
 msgstr "Spesiell takk til"
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
+msgstr "Programmering"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -2074,6 +2067,14 @@ msgstr "Og takk til hele gemenskapen for å gjøre 0 A.D mulig"
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
 msgstr "Ingen historikere kom til skade under utviklingen av dette prosjektet."
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr "Spesielle æreshenvisninger"
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
+msgstr "Oversettere"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2552,9 +2553,8 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr "- Et middels stort \"trireme\"-klasse krigsskip."
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid ""
-"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
-msgstr "- Tilgjengelig for keltiske fraksjoner (Britoner, Gallere), Mauryanere og Iberere."
+msgid "- Available to the Celtic Factions (Britons, Gauls)."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Can transport up to 40 units across the waters."

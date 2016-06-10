@@ -1,7 +1,7 @@
 var API3 = function(m)
 {
 
-/*
+/**
  * TerrainAnalysis, inheriting from the Map Component.
  * 
  * This creates a suitable passability map.
@@ -20,15 +20,15 @@ m.copyPrototype(m.TerrainAnalysis, m.Map);
 
 m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 {
-	var passabilityMap = rawState.passabilityMap;
+	let passabilityMap = rawState.passabilityMap;
 	this.width = passabilityMap.width;
 	this.height = passabilityMap.height;
 	this.cellSize = passabilityMap.cellSize;
 
-	var obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
-	var obstructionMaskWater = rawState.passabilityClasses["ship-terrain-only"];
+	let obstructionMaskLand = rawState.passabilityClasses["default-terrain-only"];
+	let obstructionMaskWater = rawState.passabilityClasses["ship-terrain-only"];
 
-	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
+	let obstructionTiles = new Uint8Array(passabilityMap.data.length);
 
 	/* Generated map legend:
 	 0 is impassable
@@ -51,7 +51,7 @@ m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 	this.Map(rawState, "passability", obstructionTiles);
 };
 
-/*
+/**
  * Accessibility inherits from TerrainAnalysis
  *  
  * This can easily and efficiently determine if any two points are connected.
@@ -82,7 +82,7 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 	// So start at 2.
 	this.regionID = 2;
 	
-	for (var i = 0; i < this.landPassMap.length; ++i)
+	for (let i = 0; i < this.landPassMap.length; ++i)
 	{
 		if (this.map[i] !== 0)
 		{	// any non-painted, non-inacessible area.
@@ -100,18 +100,18 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 	
 	// calculating region links. Regions only touching diagonaly are not linked.
 	// since we're checking all of them, we'll check from the top left to the bottom right
-	var w = this.width;
-	for (var x = 0; x < this.width-1; ++x)
+	let w = this.width;
+	for (let x = 0; x < this.width-1; ++x)
 	{
-		for (var y = 0; y < this.height-1; ++y)
+		for (let y = 0; y < this.height-1; ++y)
 		{
 			// checking right.
-			var thisLID = this.landPassMap[x+y*w];
-			var thisNID = this.navalPassMap[x+y*w];
-			var rightLID = this.landPassMap[x+1+y*w];
-			var rightNID = this.navalPassMap[x+1+y*w];
-			var bottomLID = this.landPassMap[x+y*w+w];
-			var bottomNID = this.navalPassMap[x+y*w+w];
+			let thisLID = this.landPassMap[x+y*w];
+			let thisNID = this.navalPassMap[x+y*w];
+			let rightLID = this.landPassMap[x+1+y*w];
+			let rightNID = this.navalPassMap[x+1+y*w];
+			let bottomLID = this.landPassMap[x+y*w+w];
+			let bottomNID = this.navalPassMap[x+y*w+w];
 			if (thisLID > 1)
 			{
 				if (rightNID > 1)
@@ -136,22 +136,20 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 		}
 	}
 	
-	//warn(uneval(this.regionLinks));
-
 	//Engine.DumpImage("LandPassMap.png", this.landPassMap, this.width, this.height, 255);
 	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
 };
 
 m.Accessibility.prototype.getAccessValue = function(position, onWater)
 {
-	var gamePos = this.gamePosToMapPos(position);
-	if (onWater === true)
+	let gamePos = this.gamePosToMapPos(position);
+	if (onWater)
 		return this.navalPassMap[gamePos[0] + this.width*gamePos[1]];
-	var ret = this.landPassMap[gamePos[0] + this.width*gamePos[1]];
+	let ret = this.landPassMap[gamePos[0] + this.width*gamePos[1]];
 	if (ret === 1)
 	{
 		// quick spiral search.
-		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]];
+		let indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]];
 		for (let i of indx)
 		{
 			let id0 = gamePos[0] + i[0];
@@ -168,30 +166,32 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater)
 
 m.Accessibility.prototype.getTrajectTo = function(start, end)
 {
-	var pstart = this.gamePosToMapPos(start);
-	var istart = pstart[0] + pstart[1]*this.width;
-	var pend = this.gamePosToMapPos(end);
-	var iend = pend[0] + pend[1]*this.width;
+	let pstart = this.gamePosToMapPos(start);
+	let istart = pstart[0] + pstart[1]*this.width;
+	let pend = this.gamePosToMapPos(end);
+	let iend = pend[0] + pend[1]*this.width;
 
-	var onLand = true;
+	let onLand = true;
 	if (this.landPassMap[istart] <= 1 && this.navalPassMap[istart] > 1)
 		onLand = false;
 	if (this.landPassMap[istart] <= 1 && this.navalPassMap[istart] <= 1)
 		return false;
 
-	var endRegion = this.landPassMap[iend];
+	let endRegion = this.landPassMap[iend];
 	if (endRegion <= 1 && this.navalPassMap[iend] > 1)
 		endRegion = this.navalPassMap[iend];
 	else if (endRegion <= 1)
 		return false;
 
-	var startRegion = onLand ? this.landPassMap[istart] : this.navalPassMap[istart];
+	let startRegion = onLand ? this.landPassMap[istart] : this.navalPassMap[istart];
 	return this.getTrajectToIndex(startRegion, endRegion);
 };
 
-// Return a "path" of accessibility indexes from one point to another, including the start and the end indexes
-// this can tell you what sea zone you need to have a dock on, for example.
-// assumes a land unit unless start point is over deep water.
+/**
+ * Return a "path" of accessibility indexes from one point to another, including the start and the end indexes
+ * this can tell you what sea zone you need to have a dock on, for example.
+ * assumes a land unit unless start point is over deep water.
+ */
 m.Accessibility.prototype.getTrajectToIndex = function(istart, iend)
 {
 	if (istart === iend)
@@ -223,9 +223,9 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend)
 
 m.Accessibility.prototype.getRegionSize = function(position, onWater)
 {
-	var pos = this.gamePosToMapPos(position);
-	var index = pos[0] + pos[1]*this.width;
-	var ID = onWater === true ? this.navalPassMap[index] : this.landPassMap[index];
+	let pos = this.gamePosToMapPos(position);
+	let index = pos[0] + pos[1]*this.width;
+	let ID = onWater === true ? this.navalPassMap[index] : this.landPassMap[index];
 	if (this.regionSize[ID] === undefined)
 		return 0;
 	return this.regionSize[ID];
@@ -240,7 +240,7 @@ m.Accessibility.prototype.getRegionSizei = function(index, onWater)
 	return this.regionSize[this.landPassMap[index]];
 };
 
-// Implementation of a fast flood fill. Reasonably good performances for JS.
+/** Implementation of a fast flood fill. Reasonably good performances for JS. */
 m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
 	if (value > this.maxRegions)
@@ -254,7 +254,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	if ((!onWater && this.landPassMap[startIndex] !== 0) || (onWater && this.navalPassMap[startIndex] !== 0) )
 		return false;	// already painted.
 
-	var floodFor = "land";
+	let floodFor = "land";
 	if (this.map[startIndex] === 0)
 	{
 		this.landPassMap[startIndex] = 1;
@@ -284,13 +284,13 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		this.regionSize.push(0);
 		this.regionType.push("inaccessible");
 	}
-	var w = this.width;
-	var h = this.height;
+	let w = this.width;
+	let h = this.height;
 
-	var y = 0;
+	let y = 0;
 	// Get x and y from index
-	var IndexArray = [startIndex];
-	var newIndex;
+	let IndexArray = [startIndex];
+	let newIndex;
 	while(IndexArray.length)
 	{		
 		newIndex = IndexArray.pop();
@@ -380,9 +380,9 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	return true;
 };
 
-// creates a map of resource density
+/** creates a map of resource density */
 m.SharedScript.prototype.createResourceMaps = function(sharedScript)
-{	
+{
 	for (let resource in this.decreaseFactor)
 	{
 		// if there is no resourceMap create one with an influence for everything with that resource
@@ -420,13 +420,14 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript)
 	}
 };
 
-
-// TODO: make it regularly update stone+metal mines and their resource levels.
-// creates and maintains a map of unused resource density
-// this also takes dropsites into account.
-// resources that are "part" of a dropsite are not counted.
+/**
+ * TODO: make it regularly update stone+metal mines and their resource levels.
+ * creates and maintains a map of unused resource density
+ * this also takes dropsites into account.
+ * resources that are "part" of a dropsite are not counted.
+ */
 m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
-{	
+{
 	for (let resource in this.decreaseFactor)
 	{
 		// if there is no resourceMap create one with an influence for everything with that resource

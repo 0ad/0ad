@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 09:51+0000\n"
+"POT-Creation-Date: 2016-06-06 09:00+0200\n"
+"PO-Revision-Date: 2016-06-06 09:14+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -313,7 +313,7 @@ msgstr ""
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:130 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
@@ -408,17 +408,17 @@ msgstr ""
 msgid "Disconnected"
 msgstr ""
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr ""
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr ""
 
-#: gui/common/network.js:129
+#: gui/common/network.js:131
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr ""
@@ -762,7 +762,8 @@ msgstr[0] ""
 msgid "Heal:"
 msgstr ""
 
-#. Translation: Short for hitpoints (that are healed in one healing action)
+#. Translation: Short for hit points (or health points) that are healed in one
+#. healing action
 #: gui/common/tooltips.js:461
 msgid "HP"
 msgid_plural "HP"
@@ -791,7 +792,7 @@ msgstr "???"
 msgid "Classes:"
 msgstr "계급:"
 
-#: gui/credits/credits.js:35
+#: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr ""
@@ -1177,7 +1178,7 @@ msgstr ""
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
 #: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):107
+#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
 msgid "Player name"
 msgstr ""
 
@@ -1355,12 +1356,12 @@ msgstr ""
 msgid "Team total"
 msgstr ""
 
-#: gui/summary/summary.js:162
+#: gui/summary/summary.js:169
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:176
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
@@ -1373,7 +1374,7 @@ msgstr "문명들"
 msgid "Civilization Selection"
 msgstr "문명 선택하기"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):69
+#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
 #: gui/structree/structree.xml:(caption):119
 msgid "Close"
@@ -1381,30 +1382,6 @@ msgstr "닫기"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
-
-#: gui/credits/credits.xml:(caption):24
-msgid "Special Credits"
-msgstr ""
-
-#: gui/credits/credits.xml:(caption):31
-msgid "Programming"
-msgstr ""
-
-#: gui/credits/credits.xml:(caption):38
-msgid "Art"
-msgstr ""
-
-#: gui/credits/credits.xml:(caption):45
-msgid "Translators"
-msgstr ""
-
-#: gui/credits/credits.xml:(caption):52 gui/summary/summary.xml:(caption):100
-msgid "Miscellaneous"
-msgstr ""
-
-#: gui/credits/credits.xml:(caption):59
-msgid "Donors"
 msgstr ""
 
 #: gui/locale/locale.xml:(caption):14
@@ -1804,7 +1781,7 @@ msgid "Delete"
 msgstr "없애기"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):25
+#: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "요약"
 
@@ -1874,31 +1851,35 @@ msgstr ""
 msgid "Trainer Units"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):65
+#: gui/summary/summary.xml:(caption):66
 msgid "Score"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):72
+#: gui/summary/summary.xml:(caption):73
 msgid "Buildings"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):79
+#: gui/summary/summary.xml:(caption):80
 msgid "Units"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):86
+#: gui/summary/summary.xml:(caption):87
 msgid "Resources"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):93
+#: gui/summary/summary.xml:(caption):94
 msgid "Market"
 msgstr "시장"
 
-#: gui/summary/summary.xml:(caption):161
+#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+msgid "Miscellaneous"
+msgstr ""
+
+#: gui/summary/summary.xml:(caption):162
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):181
+#: gui/summary/summary.xml:(caption):182
 msgid "Continue"
 msgstr "계속"
 
@@ -1994,6 +1975,10 @@ msgstr ""
 msgid "Voices"
 msgstr ""
 
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr ""
+
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
 msgstr ""
@@ -2006,6 +1991,10 @@ msgstr ""
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
+msgstr ""
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
 msgstr ""
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
@@ -2026,6 +2015,10 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
+msgstr ""
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
 msgstr ""
 
 #: gui/credits/texts/special.jsonContent[0].Title
@@ -2054,6 +2047,14 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
+msgstr ""
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr ""
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
 msgstr ""
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
@@ -2533,8 +2534,7 @@ msgid "- A medium \"trireme\"-class warship."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:4
-msgid ""
-"- Available to the Celtic Factions (Britons, Gauls), Mauryans and Iberians."
+msgid "- Available to the Celtic Factions (Britons, Gauls)."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:6

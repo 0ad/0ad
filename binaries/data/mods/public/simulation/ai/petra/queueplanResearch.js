@@ -15,7 +15,6 @@ m.ResearchPlan = function(gameState, type, rush = false)
 		this.cost = new API3.Resources(this.template.cost(researchers[0]));
 
 	this.category = "technology";
-
 	this.rush = rush;
 
 	return true;

@@ -386,7 +386,17 @@
 					</object>
 				</object>
 
-				<object name="optionCheats" size="14 338 94% 366" hidden="true">
+				<object name="optionLastManStanding" size="14 338 94% 366">
+					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
+						<translatableAttribute id="caption">Last Man Standing:</translatableAttribute>
+					</object>
+					<object name="lastManStandingText" size="40% 0 100% 28" type="text" style="ModernLeftLabelText"/>
+					<object name="lastManStanding" size="40%+10 5 40%+30 100%-5" type="checkbox" style="ModernTickBox" hidden="true" tooltip_style="onscreenToolTip">
+						<translatableAttribute id="tooltip">Toggle whether the last remaining player or the last remaining set of allies wins.</translatableAttribute>
+					</object>
+				</object>
+
+				<object name="optionCheats" size="14 368 94% 396" hidden="true">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Cheats:</translatableAttribute>
 					</object>
@@ -396,7 +406,7 @@
 					</object>
 				</object>
 
-				<object name="optionRating" size="14 368 94% 396" hidden="true">
+				<object name="optionRating" size="14 398 94% 426" hidden="true">
 					<object size="0 0 40% 28" hidden="false" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Rated Game:</translatableAttribute>
 					</object>
@@ -411,7 +421,7 @@
 					name="hideMoreOptions"
 					type="button"
 					style="StoneButton"
-					size="50%-70 370 50%+70 396"
+					size="50%-70 428 50%+70 456"
 					tooltip_style="onscreenToolTip"
 					hotkey="cancel"
 				>
