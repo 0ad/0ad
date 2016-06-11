@@ -423,23 +423,39 @@ g_SelectionPanels.Garrison = {
 			unloadTemplate(data.item.template);
 		};
 
-		data.button.tooltip = sprintf(
-			translate("Unload %(name)s"),
-			{ "name": getEntityNames(template) }) + "\n" +
-			translate("Single-click to unload 1. Shift-click to unload all of this type.");
-
 		data.countDisplay.caption = data.item.ents.length || "";
 
 		let garrisonedUnitOwner = GetEntityState(data.item.ents[0]).player;
 
-		data.button.sprite = "color:" + rgbToGuiColor(g_Players[garrisonedUnitOwner].color) + ":";
-		data.button.enabled =
-			controlsPlayer(data.unitEntState.player) ||
-			controlsPlayer(garrisonedUnitOwner);
+		let canUngarrison =
+			g_ViewedPlayer == data.unitEntState.player ||
+			g_ViewedPlayer == garrisonedUnitOwner;
 
-		data.icon.sprite = "stretched:session/portraits/" + template.icon;
+		data.button.enabled = canUngarrison && controlsPlayer(g_ViewedPlayer);
+
+		let tooltip = canUngarrison || g_IsObserver ?
+			sprintf(translate("Unload %(name)s"),
+			{ "name": getEntityNames(template) }) + "\n" +
+			translate("Single-click to unload 1. Shift-click to unload all of this type.") :
+			getEntityNames(template);
+
+		tooltip += "\n" + sprintf(translate("Player: %(playername)s"), {
+			"playername": g_Players[garrisonedUnitOwner].name
+		});
+
+		data.button.tooltip = tooltip;
+
+		data.button.sprite = "color:" + rgbToGuiColor(g_Players[garrisonedUnitOwner].color) + ":";
+		data.button.sprite_disabled = data.button.sprite;
+
+		// Selection panel buttons only appear disabled if they
+		// also appear disabled to the owner of the building.
+		data.icon.sprite =
+			(canUngarrison || g_IsObserver ? "" : "grayscale:") +
+			"stretched:session/portraits/" + template.icon;
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);
+
 		return true;
 	}
 };
