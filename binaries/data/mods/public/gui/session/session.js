@@ -143,9 +143,9 @@ var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
 /**
- * Blink the hero selection if that entity has lost health since the last turn.
+ * Display data of the current players heroes.
  */
-var g_PreviousHeroHitPoints;
+var g_Heroes = [];
 
 /**
  * Unit classes to be checked for the idle-worker-hotkey.
@@ -269,6 +269,9 @@ function init(initData, hotloadData)
 	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); };
 	initMenuPosition();
 
+	for (let slot in Engine.GetGUIObjectByName("unitHeroPanel").children)
+		initGUIHeroes(slot);
+
 	// Populate player selection dropdown
 	let playerNames = [translate("Observer")];
 	let playerIDs = [-1];
@@ -318,6 +321,29 @@ function initHotkeyTooltips()
 		colorizeHotkey(
 			"\n" + translate("Using %(hotkey)s will put the selected resource to 100%%."),
 			"session.fulltradeswap");
+}
+
+function initGUIHeroes(slot)
+{
+	let button = Engine.GetGUIObjectByName("unitHeroButton[" + slot + "]");
+
+	button.onPress = function()
+	{
+		let hero = g_Heroes.find(hero => hero.slot !== undefined && hero.slot == slot);
+		if (!hero)
+			return;
+
+		if (!Engine.HotkeyIsPressed("selection.add"))
+			g_Selection.reset();
+
+		g_Selection.addList([hero.ent]);
+	};
+
+	button.onDoublePress = function() {
+		let hero = g_Heroes.find(hero => hero.slot !== undefined && hero.slot == slot);
+		if (hero)
+			selectAndMoveTo(getEntityOrHolder(hero.ent));
+	};
 }
 
 function initializeMusic()
@@ -726,7 +752,9 @@ function updateGUIObjects()
 	if (g_ShowGuarding || g_ShowGuarded)
 		updateAdditionalHighlight();
 
-	updateHero();
+	updateHeroes();
+	displayHeroes();
+
 	updateGroups();
 	updateDebug();
 	updatePlayerDisplay();
@@ -802,67 +830,106 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 }
 
 
-function updateHero()
+function updateHeroes()
 {
-	let unitHeroPanel = Engine.GetGUIObjectByName("unitHeroPanel");
-	let heroButton = Engine.GetGUIObjectByName("unitHeroButton");
-
 	let playerState = GetSimState().players[g_ViewedPlayer];
-	if (!playerState || playerState.heroes.length <= 0)
+	let heroes = playerState ? playerState.heroes : [];
+
+	 g_Heroes = g_Heroes.filter(hero => heroes.find(ent => ent == hero.ent));
+
+	for (let ent of heroes)
 	{
-		g_PreviousHeroHitPoints = undefined;
-		unitHeroPanel.hidden = true;
-		return;
+		let heroState = GetExtendedEntityState(ent);
+		let template = GetTemplateData(heroState.template);
+
+		let hero = g_Heroes.find(hero => ent == hero.ent);
+		if (!hero)
+		{
+			hero = {
+				"ent": ent,
+				"tooltip": undefined,
+				"sprite": "stretched:session/portraits/" + template.icon,
+				"maxHitpoints": undefined,
+				"currentHitpoints": heroState.hitpoints,
+				"previousHitpoints": undefined
+			};
+			g_Heroes.push(hero);
+		}
+
+		hero.tooltip = createHeroTooltip(heroState, template);
+
+		hero.previousHitpoints = hero.currentHitpoints;
+		hero.currentHitpoints = heroState.hitpoints;
+		hero.maxHitpoints = heroState.maxHitpoints;
 	}
+}
 
-	let heroImage = Engine.GetGUIObjectByName("unitHeroImage");
-	let heroState = GetExtendedEntityState(playerState.heroes[0]);
-	let template = GetTemplateData(heroState.template);
-	heroImage.sprite = "stretched:session/portraits/" + template.icon;
-	let hero = playerState.heroes[0];
+function createHeroTooltip(heroState, template)
+{
+	let tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]" + "\n" +
+		sprintf(translate("%(label)s %(current)s / %(max)s"), {
+			"label": "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]",
+			"current": Math.ceil(heroState.hitpoints),
+			"max": Math.ceil(heroState.maxHitpoints)
+		});
 
-	heroButton.onpress = function()
-	{
-		if (!Engine.HotkeyIsPressed("selection.add"))
-			g_Selection.reset();
-		g_Selection.addList([hero]);
-	};
-	heroButton.ondoublepress = function() { selectAndMoveTo(getEntityOrHolder(hero)); };
-	unitHeroPanel.hidden = false;
-
-	// Setup tooltip
-	let tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
-	let healthLabel = "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]";
-	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { 
-		"label": healthLabel,
-		"current": Math.ceil(heroState.hitpoints),
-		"max": Math.ceil(heroState.maxHitpoints)
-	});
 	if (heroState.attack)
 		tooltip += "\n" + getAttackTooltip(heroState);
 
 	tooltip += "\n" + getArmorTooltip(heroState.armour);
+
 	if (template.tooltip)
 		tooltip += "\n" + template.tooltip;
 
-	heroButton.tooltip = tooltip;
+	return tooltip;
+}
 
-	// update heros health bar
-	updateGUIStatusBar("heroHealthBar", heroState.hitpoints, heroState.maxHitpoints);
+function displayHeroes()
+{
+	let buttons = Engine.GetGUIObjectByName("unitHeroPanel").children;
 
-	let heroHP = {
-		"hitpoints": heroState.hitpoints,
-		"player": g_ViewedPlayer
-	};
+	buttons.forEach((button, slot) =>
+	{
+		if (button.hidden || g_Heroes.some(hero => hero.slot !== undefined && hero.slot == slot))
+			return;
 
-	if (!g_PreviousHeroHitPoints)
-		g_PreviousHeroHitPoints = heroHP;
+		button.hidden = true;
+		stopColorFade("heroHitOverlay[" + slot + "]");
 
-	// if the health of the hero changed since the last update, trigger the animation
-	if (g_PreviousHeroHitPoints.player == heroHP.player && g_PreviousHeroHitPoints.hitpoints > heroHP.hitpoints)
-		startColorFade("heroHitOverlay", 100, 0, colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
+	});
 
-	g_PreviousHeroHitPoints = heroHP;
+	// The slot identifies the button, displayIndex determines its position.
+	for (let displayIndex = 0; displayIndex < Math.min(g_Heroes.length, buttons.length); ++displayIndex)
+	{
+		let hero = g_Heroes[displayIndex];
+
+		// Find the first unused slot if new, otherwise reuse previous.
+		let slot = hero.slot === undefined ?
+			buttons.findIndex(button => button.hidden) :
+			hero.slot;
+
+		let heroButton = Engine.GetGUIObjectByName("unitHeroButton[" + slot + "]");
+		heroButton.tooltip = hero.tooltip;
+
+		updateGUIStatusBar("heroHealthBar[" + slot + "]", hero.currentHitpoints, hero.maxHitpoints);
+
+		if (hero.slot === undefined)
+		{
+			let heroImage = Engine.GetGUIObjectByName("unitHeroImage[" + slot + "]");
+			heroImage.sprite = hero.sprite;
+
+			heroButton.hidden = false;
+			hero.slot = slot;
+		}
+
+		// If the health of the hero changed since the last update, trigger the animation.
+		if (hero.previousHitpoints > hero.currentHitpoints)
+			startColorFade("heroHitOverlay[" + slot + "]", 100, 0,
+				colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
+
+		// TODO: Instead of instant position changes, animate button movement.
+		setPanelObjectPosition(heroButton, displayIndex, buttons.length);
+	}
 }
 
 function updateGroups()
