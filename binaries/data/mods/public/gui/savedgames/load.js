@@ -100,12 +100,14 @@ function reallyLoadGame(gameId)
 		return;
 	}
 
+	let pData = metadata.initAttributes.settings.PlayerData[metadata.playerID];
+
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": metadata.initAttributes,
 		"isNetworked" : false,
 		"playerAssignments": {
 			"local": {
-				"name": metadata.initAttributes.settings.PlayerData[metadata.playerID].Name,
+				"name": pData ? pData.Name : singleplayerName(),
 				"player": metadata.playerID
 			}
 		},
