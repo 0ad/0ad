@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_archer">
+  <Attack>
+    <Capture disable=""/>
+  </Attack>
   <Footprint replace="">
     <Circle radius="3.5"/>
     <Height>8.0</Height>
