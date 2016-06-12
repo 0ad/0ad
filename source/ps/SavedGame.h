@@ -46,7 +46,7 @@ namespace SavedGames
  * @param guiMetadataClone if not NULL, store some UI-related data with the saved game
  * @return INFO::OK if successfully saved, else an error Status
  */
-Status Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadata);
+Status Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone);
 
 /**
  * Create new saved game archive with given prefix and simulation data
@@ -57,7 +57,7 @@ Status Save(const CStrW& name, const CStrW& description, CSimulation2& simulatio
  * @param guiMetadataClone if not NULL, store some UI-related data with the saved game
  * @return INFO::OK if successfully saved, else an error Status
  */
-Status SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadata);
+Status SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone);
 
 /**
  * Load saved game archive with the given name
