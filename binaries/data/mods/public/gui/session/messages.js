@@ -520,6 +520,11 @@ function onClientLeave(guid)
 
 function updateChatAddressees()
 {
+	// Remember previously selected item
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	let selectedName = chatAddressee.list_data[chatAddressee.selected] || "";
+	selectedName = selectedName.substr(0, 4) == "/msg" && selectedName.substr(5);
+
 	let addressees = [
 		{
 			"label": translateWithContext("chat addressee", "Everyone"),
@@ -545,7 +550,8 @@ function updateChatAddressees()
 	});
 
 	// Add playernames for private messages
-	for (let guid of sortGUIDsByPlayerID())
+	let guids = sortGUIDsByPlayerID();
+	for (let guid of guids)
 	{
 		if (guid == Engine.GetPlayerGUID())
 			continue;
@@ -564,10 +570,17 @@ function updateChatAddressees()
 		});
 	}
 
-	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	// Select mock item if the selected addressee went offline
+	if (selectedName && guids.every(guid => g_PlayerAssignments[guid].name != selectedName))
+		addressees.push({
+			"cmd": "/msg " + selectedName,
+			"label": sprintf(translate("\\[OFFLINE] %(player)s"), { "player": selectedName })
+		});
+
+	let oldChatAddressee = chatAddressee.list_data[chatAddressee.selected];
 	chatAddressee.list = addressees.map(adressee => adressee.label);
 	chatAddressee.list_data = addressees.map(adressee => adressee.cmd);
-	chatAddressee.selected = 0;
+	chatAddressee.selected = Math.max(0, chatAddressee.list_data.indexOf(oldChatAddressee));
 }
 
 /**
