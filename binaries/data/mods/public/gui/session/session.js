@@ -327,8 +327,7 @@ function initGUIHeroes(slot)
 {
 	let button = Engine.GetGUIObjectByName("unitHeroButton[" + slot + "]");
 
-	button.onPress = function()
-	{
+	button.onPress = function() {
 		let hero = g_Heroes.find(hero => hero.slot !== undefined && hero.slot == slot);
 		if (!hero)
 			return;
@@ -835,7 +834,7 @@ function updateHeroes()
 	let playerState = GetSimState().players[g_ViewedPlayer];
 	let heroes = playerState ? playerState.heroes : [];
 
-	 g_Heroes = g_Heroes.filter(hero => heroes.find(ent => ent == hero.ent));
+	g_Heroes = g_Heroes.filter(hero => heroes.find(ent => ent == hero.ent));
 
 	for (let ent of heroes)
 	{
@@ -888,14 +887,13 @@ function displayHeroes()
 {
 	let buttons = Engine.GetGUIObjectByName("unitHeroPanel").children;
 
-	buttons.forEach((button, slot) =>
-	{
+	buttons.forEach((button, slot) => {
+
 		if (button.hidden || g_Heroes.some(hero => hero.slot !== undefined && hero.slot == slot))
 			return;
 
 		button.hidden = true;
 		stopColorFade("heroHitOverlay[" + slot + "]");
-
 	});
 
 	// The slot identifies the button, displayIndex determines its position.
