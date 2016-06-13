@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-22 08:18+0000\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-10 08:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -687,6 +687,10 @@ msgstr "Ви можете атакувати о %(time)s"
 msgid "You can attack now!"
 msgstr "Уже можете атакувати!"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr ""
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -745,11 +749,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceType1)s, та %(resourceAmount2)s %(resourceType2)s, та %(resourceAmount3)s %(resourceType3)s, та %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr "Черга виробництва заповнена."
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Немає вільного місця, щоб готувати натреновані підрозділи"
 

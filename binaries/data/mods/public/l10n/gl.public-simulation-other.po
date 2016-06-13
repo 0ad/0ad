@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-05-12 11:45+0000\n"
-"Last-Translator: mandruis <manuiglesias96@yahoo.es>\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-10 08:31+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,6 +685,10 @@ msgstr "Podes atacar en %(time)s"
 msgid "You can attack now!"
 msgstr "Xa podes atacar!"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr ""
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -743,11 +747,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(resourceType1)s, %(resourceAmount2)s unidades de %(resourceType2)s, %(resourceAmount3)s unidades de %(resourceType3)s e %(resourceAmount4)s unidades de %(resourceType4)s."
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr "A cola de produción está completa."
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Non é posíbel atopar espazo libre no que facer aparecer as unidades adestradas."
 

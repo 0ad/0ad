@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-22 08:31+0000\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-12 17:16+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -689,6 +689,10 @@ msgstr "’S urrainn dhut ionnsaigh a thoirt an ceann %(time)s"
 msgid "You can attack now!"
 msgstr "’S urrainn dhut ionnsaigh a thoirt a-nis!"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr "Buannaichidh an cluicheadair a sheasas thar càich."
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -747,11 +751,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Tha stòras a dhìth - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr "Tha an ciutha làn."
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an trèanadh a shìoladh"
 
@@ -786,7 +790,7 @@ msgstr "Cha deach na riatanasan teicneòlais airson an togalaich a choileanadh."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "Gaia"
+msgstr "Gaìa"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"

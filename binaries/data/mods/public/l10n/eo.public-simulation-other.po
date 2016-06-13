@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Joop Kiefte <ikojba@gmail.com>, 2014
+# Joop Kiefte (LaPingvino) <ikojba@gmail.com>, 2014
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-22 08:18+0000\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-10 08:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -684,6 +684,10 @@ msgstr "Vi povas ataki en %(time)s"
 msgid "You can attack now!"
 msgstr "Vi povas ataki nun!"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr ""
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -742,11 +746,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 

@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-03 09:00+0200\n"
-"PO-Revision-Date: 2016-06-03 09:45+0000\n"
+"POT-Creation-Date: 2016-06-10 09:00+0200\n"
+"PO-Revision-Date: 2016-06-10 10:51+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgstr "* %(username)s jest gotowy!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nie jest gotowy."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
 msgid "Default"
 msgstr "Domyślny"
 
@@ -147,34 +147,34 @@ msgstr "Powróć do menu głównego."
 msgid "Return to the main menu."
 msgstr "Powróć do menu głównego."
 
-#: gui/gamesetup/gamesetup.js:558
+#: gui/gamesetup/gamesetup.js:565
 msgid "Yes"
 msgstr "Tak"
 
-#: gui/gamesetup/gamesetup.js:558
+#: gui/gamesetup/gamesetup.js:565
 msgid "No"
 msgstr "Nie"
 
-#: gui/gamesetup/gamesetup.js:597
+#: gui/gamesetup/gamesetup.js:604
 msgctxt "team"
 msgid "None"
 msgstr "Żaden"
 
-#: gui/gamesetup/gamesetup.js:1258
+#: gui/gamesetup/gamesetup.js:1267
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1419
+#: gui/gamesetup/gamesetup.js:1430
 msgid "Loading..."
 msgstr "Wczytywanie..."
 
-#: gui/gamesetup/gamesetup.js:1467
+#: gui/gamesetup/gamesetup.js:1478
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe "
 
-#: gui/gamesetup/gamesetup.js:1471
+#: gui/gamesetup/gamesetup.js:1482
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -182,20 +182,20 @@ msgstr[0] "%(number)s gracz. "
 msgstr[1] "%(number)s graczy. "
 msgstr[2] "%(number)s graczy. "
 
-#: gui/gamesetup/gamesetup.js:1481
+#: gui/gamesetup/gamesetup.js:1492
 msgid "Randomly selects a map from the list"
 msgstr "Losowo wybiera mapę z listy"
 
-#: gui/gamesetup/gamesetup.js:1484
+#: gui/gamesetup/gamesetup.js:1495
 msgid "Sorry, no description available."
 msgstr "Przepraszamy, opis niedostępny."
 
-#: gui/gamesetup/gamesetup.js:1490
+#: gui/gamesetup/gamesetup.js:1501
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1506
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -204,41 +204,41 @@ msgstr[0] "Cud (%(min)s minutes) "
 msgstr[1] "Cud (%(min)s minutes) "
 msgstr[2] "Cud (%(min)s minutes) "
 
-#: gui/gamesetup/gamesetup.js:1512 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Warunek zwycięstwa:"
 
-#: gui/gamesetup/gamesetup.js:1600
+#: gui/gamesetup/gamesetup.js:1611
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1605
+#: gui/gamesetup/gamesetup.js:1616
 msgid "Unassigned"
 msgstr "Nieprzypisane"
 
-#: gui/gamesetup/gamesetup.js:1765
+#: gui/gamesetup/gamesetup.js:1776
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1783
 msgid "Unknown Player"
 msgstr "Nieznany gracz"
 
-#: gui/gamesetup/gamesetup.js:1834
+#: gui/gamesetup/gamesetup.js:1845
 msgid "I'm not ready!"
 msgstr "Nie jestem gotowy!"
 
-#: gui/gamesetup/gamesetup.js:1835
+#: gui/gamesetup/gamesetup.js:1846
 msgid "I'm ready"
 msgstr "Jestem gotowy"
 
-#: gui/gamesetup/gamesetup.js:1838
+#: gui/gamesetup/gamesetup.js:1849
 msgid "State that you are not ready to play."
 msgstr "Oświadcz, że nie jesteś gotowy do gry."
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1850
 msgid "State that you are ready to play!"
 msgstr "Oświadcz, że jesteś gotowy do gry!"
 
@@ -315,7 +315,7 @@ msgid "Cancel"
 msgstr "Anuluj"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):418
+#: gui/gamesetup/gamesetup.xml:(caption):428
 msgid "OK"
 msgstr "OK"
 
@@ -433,10 +433,14 @@ msgid "Teams Locked:"
 msgstr "Sztywne drużyny:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):391
+msgid "Last Man Standing:"
+msgstr "Ostatni Stojący Mężczyzna:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):401
 msgid "Cheats:"
 msgstr "Kody:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):401
+#: gui/gamesetup/gamesetup.xml:(caption):411
 msgid "Rated Game:"
 msgstr "Ocena gry:"
 
@@ -543,14 +547,20 @@ msgid "Toggle locked teams."
 msgstr "Wł./Wył. sztywne drużyny."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):395
+msgid ""
+"Toggle whether the last remaining player or the last remaining set of allies"
+" wins."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):405
 msgid "Toggle the usability of cheats."
 msgstr "Wł./Wył. kody."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):405
+#: gui/gamesetup/gamesetup.xml:(tooltip):415
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Wł./Wył. ocenę gry w tabeli wyników."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):419
+#: gui/gamesetup/gamesetup.xml:(tooltip):429
 msgid "Close more game options window"
 msgstr "Zamknij okno dodatkowych opcji gry"
 

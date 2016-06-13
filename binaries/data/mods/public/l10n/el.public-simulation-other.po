@@ -7,15 +7,15 @@
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Ilias Giannaros <iliasgnrs@gmail.com>, 2015
 # MasterWord, 2015
-# jason <manitarious@gmail.com>, 2015
+# manitarious gr <manitarious@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015-2016
 # Marinus Savoritias <savoritias@gmail.com>, 2015-2016
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-04-22 08:18+0000\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-10 08:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -690,6 +690,10 @@ msgstr "Μπορείτε να επιτεθείτε σε %(time)s"
 msgid "You can attack now!"
 msgstr "Μπορείτε να επιτεθείτε τώρα!"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr ""
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -748,11 +752,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr "Η σειρά παραγωγής είναι πλήρης."
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 

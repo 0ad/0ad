@@ -12,14 +12,15 @@
 # Mortimer <doug.mortimer@netcourrier.com>, 2016
 # Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
+# nicolas t <phidias2052@yahoo.fr>, 2016
 # silure <silure@openmailbox.org>, 2014
 # Polakrity <sxk-fr@live.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-05-27 15:25+0000\n"
-"Last-Translator: Micky Jault <micky037@hotmail.fr>\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-12 17:29+0000\n"
+"Last-Translator: nicolas t <phidias2052@yahoo.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -693,6 +694,10 @@ msgstr "Vous pouvez attaquer dans %(time)s"
 msgid "You can attack now!"
 msgstr "Vous pouvez attaquer maintenant !"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr "Le dernier joueur survivant obtient la victoire."
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -751,11 +756,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr "La file de production est pleine."
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Pas suffisamment d'espace libre pour produire les unités entrainés"
 
