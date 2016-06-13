@@ -43,6 +43,14 @@ var g_NetworkCommands = {
 	"/clear": argument => clearChatMessages()
 };
 
+function getValidPort(port)
+{
+	if (isNaN(+port) || +port <= 0 || +port > 65535)
+		return Engine.GetDefaultPort();
+
+	return +port;
+}
+
 /**
  * Must be kept in sync with source/network/NetHost.h
  */

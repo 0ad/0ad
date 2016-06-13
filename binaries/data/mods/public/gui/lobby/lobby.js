@@ -102,6 +102,11 @@ var g_SelectedPlayer = "";
 var g_SelectedGameIP = "";
 
 /**
+ * Used to restore the selection after updating the gamelist.
+ */
+var g_SelectedGamePort = "";
+
+/**
  * Notifications sent by XmppClient.cpp
  */
 var g_NetMessageTypes = {
@@ -509,7 +514,10 @@ function updateGameList()
 	var sortOrder = gamesBox.selected_column_order || 1;
 
 	if (gamesBox.selected > -1)
+	{
 		g_SelectedGameIP = g_GameList[gamesBox.selected].ip;
+		g_SelectedGamePort = g_GameList[gamesBox.selected].port;
+	}
 
 	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
 		var sortA, sortB;
@@ -556,7 +564,7 @@ function updateGameList()
 		let gameName = escapeText(game.name);
 		let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
 
-		if (game.ip == g_SelectedGameIP)
+		if (game.ip == g_SelectedGameIP && game.port == g_SelectedGamePort)
 			selectedGameIndex = +i;
 
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
@@ -676,6 +684,7 @@ function joinSelectedGame()
 	Engine.PushGuiPage("page_gamesetup_mp.xml", {
 		"multiplayerGameType": "join",
 		"ip": game.ip,
+		"port": game.port,
 		"name": g_Username,
 		"rating": g_UserRating
 	});

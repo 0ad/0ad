@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,8 @@
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 #include "network/NetTurnManager.h"
+#include "network/NetMessage.h"
+#include "network/NetMessages.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Filesystem.h"
@@ -71,9 +73,9 @@ public:
 
 	void connect(CNetServer& server, const std::vector<CNetClient*>& clients)
 	{
-		TS_ASSERT(server.SetupConnection());
+		TS_ASSERT(server.SetupConnection(PS_DEFAULT_PORT));
 		for (size_t j = 0; j < clients.size(); ++j)
-			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1"));
+			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1", PS_DEFAULT_PORT));
 
 		for (size_t i = 0; ; ++i)
 		{
@@ -273,7 +275,7 @@ public:
 		client2B.SetUserName(L"bob");
 		clients.push_back(&client2B);
 
-		TS_ASSERT(client2B.SetupConnection("127.0.0.1"));
+		TS_ASSERT(client2B.SetupConnection("127.0.0.1", PS_DEFAULT_PORT));
 
 		for (size_t i = 0; ; ++i)
 		{

@@ -51,7 +51,7 @@ CNetClientSession::~CNetClientSession()
 	}
 }
 
-bool CNetClientSession::Connect(u16 port, const CStr& server, bool isLocalClient)
+bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool isLocalClient)
 {
 	ENSURE(!m_Host);
 	ENSURE(!m_Server);

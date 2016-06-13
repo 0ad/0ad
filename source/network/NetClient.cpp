@@ -154,10 +154,10 @@ void CNetClient::SetUserName(const CStrW& username)
 	m_UserName = username;
 }
 
-bool CNetClient::SetupConnection(const CStr& server)
+bool CNetClient::SetupConnection(const CStr& server, const u16 port)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
-	bool ok = session->Connect(PS_DEFAULT_PORT, server, m_IsLocalClient);
+	bool ok = session->Connect(server, port, m_IsLocalClient);
 	SetAndOwnSession(session);
 	return ok;
 }

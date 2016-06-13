@@ -26,7 +26,7 @@
 				<translatableAttribute id="caption">Joining an existing game.</translatableAttribute>
 			</object>
 
-			<object type="text" size="20 40 50% 70" style="ModernLabelText" text_align="right">
+			<object type="text" size="20 36 50% 66" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Player name:</translatableAttribute>
 			</object>
 
@@ -36,13 +36,27 @@
 				</action>
 			</object>
 
-			<object type="text" size="20 80 50% 110" style="ModernLabelText" text_align="right">
+			<object type="text" size="20 76 50% 106" style="ModernLabelText" text_align="right">
 				<translatableAttribute id="caption">Server Hostname or IP:</translatableAttribute>
 			</object>
 
 			<object name="joinServer" type="input" size="50%+10 80 100%-20 104" style="ModernInput">
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "multiplayerserver");
+				</action>
+			</object>
+
+			<object type="text" size="20 116 50% 146" style="ModernLabelText" text_align="right">
+				<translatableAttribute id="caption">Server Port:</translatableAttribute>
+			</object>
+
+			<object name="joinPort" type="input" size="50%+10 120 100%-20 144" style="ModernInput">
+				<translatableAttribute id="tooltip">Leave blank to use the default port.</translatableAttribute>
+				<action on="Load">
+					this.caption = getValidPort(Engine.ConfigDB_GetValue("user", "multiplayerjoining.port"));
+				</action>
+				<action on="Press">
+					this.caption = getValidPort(this.caption);
 				</action>
 			</object>
 		</object>
@@ -54,26 +68,42 @@
 			</object>
 
 			<object name="hostPlayerNameWrapper" hidden="true">
-			<object type="text" size="20 40 50% 70" style="ModernLabelText" text_align="right">
-				<translatableAttribute id="caption">Player name:</translatableAttribute>
-			</object>
+				<object type="text" size="20 36 50% 66" style="ModernLabelText" text_align="right">
+					<translatableAttribute id="caption">Player name:</translatableAttribute>
+				</object>
 
-			<object name="hostPlayerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
-				<action on="Load">
-					this.caption = multiplayerName();
-				</action>
-			</object>
+				<object name="hostPlayerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
+					<action on="Load">
+						this.caption = multiplayerName();
+					</action>
+				</object>
 			</object>
 
 			<!-- Host server name is only used on games started through the lobby. -->
 			<object name="hostServerNameWrapper" hidden="true">
-				<object type="text" size="20 80 50% 110" style="ModernLabelText" text_align="right">
+				<object type="text" size="20 36 50% 66" style="ModernLabelText" text_align="right">
 					<translatableAttribute id="caption">Server name:</translatableAttribute>
 				</object>
 
-				<object name="hostServerName" type="input" size="50%+10 80 100%-20 104" style="ModernInput">
+				<object name="hostServerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
 					<action on="Load">
 						this.caption = getDefaultGameName();
+					</action>
+				</object>
+			</object>
+
+			<object>
+				<object type="text" size="20 66 50% 116" style="ModernLabelText" text_align="right">
+					<translatableAttribute id="caption">Server Port:</translatableAttribute>
+				</object>
+
+				<object name="hostPort" type="input" size="50%+10 80 100%-20 104" style="ModernInput">
+					<translatableAttribute id="tooltip">Leave blank to use the default port.</translatableAttribute>
+					<action on="Load">
+						this.caption = getValidPort(Engine.ConfigDB_GetValue("user", "multiplayerhosting.port"));
+					</action>
+					<action on="Press">
+						this.caption = getValidPort(this.caption);
 					</action>
 				</object>
 			</object>
