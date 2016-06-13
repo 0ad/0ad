@@ -10,7 +10,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>
 
-	<object type="image" style="ModernDialog" size="50%-230 50%-120 50%+230 50%+120">
+	<object name="multiplayerPages" type="image" style="ModernDialog" size="50%-230 50%-120 50%+230 50%+120">
 
 		<action on="Tick">
 			onTick();
