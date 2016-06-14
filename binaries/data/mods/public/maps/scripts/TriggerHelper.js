@@ -5,17 +5,19 @@ var TriggerHelper = {};
 
 TriggerHelper.GetPlayerIDFromEntity = function(ent)
 {
-	var cmpPlayer = Engine.QueryInterface(ent, IID_Player);
+	let cmpPlayer = Engine.QueryInterface(ent, IID_Player);
 	if (cmpPlayer)
 		return cmpPlayer.GetPlayerID();
+
 	return -1;
 };
 
 TriggerHelper.GetOwner = function(ent)
 {
-	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	if (cmpOwnership)
 		return cmpOwnership.GetOwner();
+
 	return -1;
 };
 
@@ -30,42 +32,50 @@ TriggerHelper.GetOwner = function(ent)
  */
 TriggerHelper.SpawnUnits = function(source, template, count, owner)
 {
-	var r = []; // array of entities to return;
-	var cmpFootprint = Engine.QueryInterface(source, IID_Footprint);
-	var cmpPosition = Engine.QueryInterface(source, IID_Position);
+	let entities = [];
+	let cmpFootprint = Engine.QueryInterface(source, IID_Footprint);
+	let cmpPosition = Engine.QueryInterface(source, IID_Position);
+
 	if (!cmpPosition || !cmpPosition.IsInWorld())
 	{
 		error("tried to create entity from a source without position");
-		return r;
+		return entities;
 	}
+
 	if (owner == null)
 		owner = TriggerHelper.GetOwner(source);
 
-	for (var i = 0; i < count; i++)
+	for (let i = 0; i < count; i++)
 	{
-		var ent = Engine.AddEntity(template);
-		var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
+		let ent = Engine.AddEntity(template);
+		let cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpEntPosition)
 		{
 			error("tried to create entity without position");
 			continue;
 		}
-		var cmpEntOwnership = Engine.QueryInterface(ent, IID_Ownership);
+
+		let cmpEntOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpEntOwnership)
 			cmpEntOwnership.SetOwner(owner);
-		r.push(ent);
-		var pos;
+
+		entities.push(ent);
+
+		let pos;
 		if (cmpFootprint)
 			pos = cmpFootprint.PickSpawnPoint(ent);
+
 		// TODO this can happen if the player build on the place 
 		// where our trigger point is
 		// We should probably warn the trigger maker in some way,
 		// but not interrupt the game for the player
 		if (!pos || pos.y < 0)
 			pos = cmpPosition.GetPosition();
+
 		cmpEntPosition.JumpTo(pos.x, pos.z);
 	}
-	return r;
+
+	return entities;
 }; 
 
 /**
@@ -81,12 +91,14 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
  */
 TriggerHelper.SpawnUnitsFromTriggerPoints = function(ref, template, count, owner = null)          
 {
-	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	var triggerPoints = cmpTrigger.GetTriggerPoints(ref);
-	var r = {};
-	for (var point of triggerPoints)
-		r[point] = TriggerHelper.SpawnUnits(point, template, count, owner);
-	return r;
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	let triggerPoints = cmpTrigger.GetTriggerPoints(ref);
+
+	let entities = {};
+	for (let point of triggerPoints)
+		entities[point] = TriggerHelper.SpawnUnits(point, template, count, owner);
+
+	return entities;
 };
 
 /**
@@ -95,9 +107,9 @@ TriggerHelper.SpawnUnitsFromTriggerPoints = function(ref, template, count, owner
 TriggerHelper.GetPlayerFilter = function(playerID)
 {
 	return function(entity) {
-		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+		let cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
 		return cmpOwnership && cmpOwnership.GetOwner() == playerID;
-	}
+	};
 };
 
 /**
@@ -105,9 +117,10 @@ TriggerHelper.GetPlayerFilter = function(playerID)
  */
 TriggerHelper.GetResourceType = function(entity)
 {
-	var cmpResourceSupply = Engine.QueryInterface(entity, IID_ResourceSupply);
+	let cmpResourceSupply = Engine.QueryInterface(entity, IID_ResourceSupply);
 	if (!cmpResourceSupply)
 		return undefined;
+
 	return cmpResourceSupply.GetType();
 }; 
 
@@ -116,7 +129,7 @@ TriggerHelper.GetResourceType = function(entity)
  */
 TriggerHelper.SetPlayerWon = function(playerID)
 {
-	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	cmpEndGameManager.MarkPlayerAsWon(playerID);
 };
 
@@ -125,8 +138,9 @@ TriggerHelper.SetPlayerWon = function(playerID)
  */
 TriggerHelper.DefeatPlayer = function(playerID)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var playerEnt = cmpPlayerMan.GetPlayerByID(playerID);
+	let cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let playerEnt = cmpPlayerMan.GetPlayerByID(playerID);
+
 	Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": playerID } );
 };
 
@@ -135,7 +149,7 @@ TriggerHelper.DefeatPlayer = function(playerID)
  */
 TriggerHelper.GetNumberOfPlayers = function()
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	return cmpPlayerManager.GetNumPlayers();
 };
 
@@ -144,7 +158,7 @@ TriggerHelper.GetNumberOfPlayers = function()
  */
 TriggerHelper.GetPlayerComponent = function(playerID)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	return Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(playerID), IID_Player);
 };
 
@@ -155,11 +169,12 @@ TriggerHelper.GetPlayerComponent = function(playerID)
  */
 TriggerHelper.EntityHasClass = function(entity, classname)
 {
-	var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 	if (!cmpIdentity)
 		return false;
-	var classes = cmpIdentity.GetClassesList();;
-	return (classes && classes.indexOf(classname) != -1);
+
+	let classes = cmpIdentity.GetClassesList();
+	return classes && classes.indexOf(classname) != -1;
 };
 
 Engine.RegisterGlobal("TriggerHelper", TriggerHelper);

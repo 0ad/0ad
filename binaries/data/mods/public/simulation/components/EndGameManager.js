@@ -50,12 +50,14 @@ EndGameManager.prototype.GetWonderDuration = function()
 
 EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-	for (var i = 1; i < numPlayers; i++)
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let numPlayers = cmpPlayerManager.GetNumPlayers();
+
+	for (let i = 1; i < numPlayers; i++)
 	{
-		var playerEntityId = cmpPlayerManager.GetPlayerByID(i);
-		var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+		let playerEntityId = cmpPlayerManager.GetPlayerByID(i);
+		let cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+
 		if (cmpPlayer.GetState() != "active")
 			continue;
 
@@ -69,7 +71,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 	}
 
 	// Reveal the map to all players
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	cmpRangeManager.SetLosRevealAll(-1, true);
 };
 
@@ -115,12 +117,10 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 			cmpRangeManager.SetLosRevealAll(-1, true);
 	}
 	else
-	{
 		this.lastManStandingMessage = cmpGuiInterface.AddTimeNotification({
 			"message": markForTranslation("Last remaining player wins."),
 			"translateMessage": true,
 		}, 12 * 60 * 60 * 1000); // 12 hours
-	}
 };
 
 EndGameManager.prototype.OnInitGame = function(msg)
