@@ -126,10 +126,19 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 			Engine.GetGUIObjectByName("hostButton").enabled = false;
-			addChatMessage({ "from": "system", "text": translate("Disconnected.") + msg.text, "color": g_SystemColor });
+
+			addChatMessage({
+				"from": "system",
+				"text": translate("Disconnected.") + msg.text,
+				"color": g_SystemColor
+			});
 		},
 		"error": msg => {
-			addChatMessage({ "from": "system", "text": msg.text, "color": g_SystemColor });
+			addChatMessage({
+				"from": "system",
+				"text": msg.text,
+				"color": g_SystemColor
+			});
 		}
 	},
 	"chat": {
@@ -138,14 +147,18 @@ var g_NetMessageTypes = {
 		},
 		"join": msg => {
 			addChatMessage({
-				"text": "/special " + sprintf(translate("%(nick)s has joined."), { "nick": msg.text }),
+				"text": "/special " + sprintf(translate("%(nick)s has joined."), {
+					"nick": msg.text
+				}),
 				"isSpecial": true
 			});
 			Engine.SendGetRatingList();
 		},
 		"leave": msg => {
 			addChatMessage({
-				"text": "/special " + sprintf(translate("%(nick)s has left."), { "nick": msg.text }),
+				"text": "/special " + sprintf(translate("%(nick)s has left."), {
+					"nick": msg.text
+				}),
 				"isSpecial": true
 			});
 		},
@@ -169,9 +182,10 @@ var g_NetMessageTypes = {
 		},
 		"private-message": msg => {
 			if (Engine.LobbyGetPlayerRole(msg.from) == "moderator")
+				// some XMPP clients send trailing whitespace
 				addChatMessage({
 					"from": escapeText(msg.from),
-					"text": escapeText(msg.text.trim()), // some XMPP clients send trailing whitespace
+					"text": escapeText(msg.text.trim()),
 					"datetime": msg.datetime,
 					"private" : true
 				});
@@ -266,12 +280,18 @@ function filterGame(game)
 	let showFullFilter = Engine.GetGUIObjectByName("showFullFilter");
 
 	// We assume index 0 means display all for any given filter.
-	if (mapSizeFilter.selected != 0 && game.mapSize != mapSizeFilter.list_data[mapSizeFilter.selected])
+	if (mapSizeFilter.selected != 0 &&
+	    game.mapSize != mapSizeFilter.list_data[mapSizeFilter.selected])
 		return true;
-	if (playersNumberFilter.selected != 0 && game.tnbp != playersNumberFilter.list_data[playersNumberFilter.selected])
+
+	if (playersNumberFilter.selected != 0 &&
+	    game.tnbp != playersNumberFilter.list_data[playersNumberFilter.selected])
 		return true;
-	if (mapTypeFilter.selected != 0 && game.mapType != mapTypeFilter.list_data[mapTypeFilter.selected])
+
+	if (mapTypeFilter.selected != 0 &&
+	    game.mapType != mapTypeFilter.list_data[mapTypeFilter.selected])
 		return true;
+
 	if (!showFullFilter.checked && game.tnbp <= game.nbp)
 		return true;
 
@@ -417,8 +437,6 @@ function displayProfile(caller)
  */
 function updateProfile()
 {
-	let user;
-	let playerList;
 	let attributes = Engine.GetProfile();
 
 	if (!Engine.GetGUIObjectByName("profileFetch").hidden)
@@ -430,25 +448,24 @@ function updateProfile()
 		if (!profileFound)
 			return;
 
-		user = attributes[0].player;
 		if (attributes[0].rating != "")
-			user = sprintf(translate("%(nick)s (%(rating)s)"), { "nick": user, "rating": attributes[0].rating });
+			user = sprintf(translate("%(nick)s (%(rating)s)"), {
+				"nick": attributes[0].player,
+				"rating": attributes[0].rating
+			});
 
-		Engine.GetGUIObjectByName("profileUsernameText").caption = user;
+		Engine.GetGUIObjectByName("profileUsernameText").caption = attributes[0].player;
 		Engine.GetGUIObjectByName("profileRankText").caption = attributes[0].rank;
 		Engine.GetGUIObjectByName("profileHighestRatingText").caption = attributes[0].highestRating;
 		Engine.GetGUIObjectByName("profileTotalGamesText").caption = attributes[0].totalGamesPlayed;
 		Engine.GetGUIObjectByName("profileWinsText").caption = attributes[0].wins;
 		Engine.GetGUIObjectByName("profileLossesText").caption = attributes[0].losses;
-
-		let winRate = (attributes[0].wins / attributes[0].totalGamesPlayed * 100).toFixed(2);
-		if (attributes[0].totalGamesPlayed != 0)
-			Engine.GetGUIObjectByName("profileRatioText").caption = sprintf(translate("%(percentage)s%%"), { "percentage": winRate });
-		else
-			Engine.GetGUIObjectByName("profileRatioText").caption = translateWithContext("Used for an undefined winning rate", "-");
+		Engine.GetGUIObjectByName("profileRatioText").caption = formatWinRate(attributes[0]);
 		return;
 	}
-	else if (!Engine.GetGUIObjectByName("leaderboard").hidden)
+
+	let playerList;
+	if (!Engine.GetGUIObjectByName("leaderboard").hidden)
 		playerList = Engine.GetGUIObjectByName("leaderboardBox");
 	else
 		playerList = Engine.GetGUIObjectByName("playersBox");
@@ -460,9 +477,13 @@ function updateProfile()
 	if (attributes[0].player != playerList.list[playerList.selected])
 		return;
 
-	user = playerList.list_name[playerList.selected];
-	if (attributes[0].rating != "")
-		user = sprintf(translate("%(nick)s (%(rating)s)"), { "nick": user, "rating": attributes[0].rating });
+	let user = playerList.list_name[playerList.selected];
+
+	if (attributes[0].rating)
+		user = sprintf(translate("%(nick)s (%(rating)s)"), {
+			"nick": user,
+			"rating": attributes[0].rating
+		});
 
 	Engine.GetGUIObjectByName("usernameText").caption = user;
 	Engine.GetGUIObjectByName("rankText").caption = attributes[0].rank;
@@ -470,12 +491,7 @@ function updateProfile()
 	Engine.GetGUIObjectByName("totalGamesText").caption = attributes[0].totalGamesPlayed;
 	Engine.GetGUIObjectByName("winsText").caption = attributes[0].wins;
 	Engine.GetGUIObjectByName("lossesText").caption = attributes[0].losses;
-
-	let winRate = (attributes[0].wins / attributes[0].totalGamesPlayed * 100).toFixed(2);
-	if (attributes[0].totalGamesPlayed != 0)
-		Engine.GetGUIObjectByName("ratioText").caption = sprintf(translate("%(percentage)s%%"), { "percentage": winRate });
-	else
-		Engine.GetGUIObjectByName("ratioText").caption = translateWithContext("Used for an undefined winning rate", "-");
+	Engine.GetGUIObjectByName("ratioText").caption = formatWinRate(attributes[0]);
 }
 
 /**
@@ -574,7 +590,7 @@ function updateGameList()
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
 		list_mapName.push(translate(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
-		list_mapType.push(mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "");
+		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
 		list_nPlayers.push(game.nbp + "/" + game.tnbp);
 		list.push(gameName);
 		list_data.push(i);
@@ -599,20 +615,14 @@ function updateGameList()
 function updateGameSelection()
 {
 	let game = selectedGame();
+
+	Engine.GetGUIObjectByName("gameInfo").hidden = !game;
+	Engine.GetGUIObjectByName("joinGameButton").hidden = !game;
+	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = game;
+
 	if (!game)
-	{
-		Engine.GetGUIObjectByName("gameInfo").hidden = true;
-		Engine.GetGUIObjectByName("joinGameButton").hidden = true;
-		Engine.GetGUIObjectByName("gameInfoEmpty").hidden = false;
 		return;
-	}
 
-	// Show the game info panel and join button.
-	Engine.GetGUIObjectByName("gameInfo").hidden = false;
-	Engine.GetGUIObjectByName("joinGameButton").hidden = false;
-	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
-
-	// Display the map name, number of players, the names of the players, the map size and the map type.
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(
 		translate("Players: %(current)s/%(total)s"), {
@@ -624,10 +634,11 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(game.mapSize);
 
 	let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
-	Engine.GetGUIObjectByName("sgMapType").caption = mapTypeIdx != -1 ? g_MapTypes.Title[mapTypeIdx] : "";
+	Engine.GetGUIObjectByName("sgMapType").caption = g_MapTypes.Title[mapTypeIdx] || "";
 
 	let mapData = getMapDescriptionAndPreview(game.mapType, game.mapName);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
+
 	setMapPreviewImage("sgMapPreview", mapData.preview);
 }
 
@@ -732,7 +743,8 @@ function onTick()
 		}
 		g_NetMessageTypes[msg.type][msg.level](msg);
 
-		// To improve performance, only update the playerlist GUI when the last update in the current stack is processed
+		// To improve performance, only update the playerlist GUI when
+		// the last update in the current stack is processed
 		if (msg.type == "chat" && Engine.LobbyGetMucMessageCount() == 0)
 			updatePlayerList();
 	}
@@ -745,10 +757,13 @@ function submitChatInput()
 {
 	let input = Engine.GetGUIObjectByName("chatInput");
 	let text = input.caption;
+
 	if (!text.length)
 		return;
+
 	if (!handleSpecialCommand(text) && !isSpam(text, g_Username))
 		Engine.LobbySendMessage(text);
+
 	input.caption = "";
 }
 
@@ -773,11 +788,11 @@ function handleSpecialCommand(text)
 	case "back":
 		Engine.LobbySetPlayerPresence("available");
 		break;
-	case "kick": // TODO: Split reason from nick and pass it too, for now just support "/kick nick"
-			// also allow quoting nicks (and/or prevent users from changing it here, but that doesn't help if the spammer uses a different client)
+	case "kick":
+		// TODO: Split reason from nick and pass it too
 		Engine.LobbyKick(nick, "");
 		break;
-	case "ban": // TODO: Split reason from nick and pass it too, for now just support "/ban nick"
+	case "ban":
 		Engine.LobbyBan(nick, "");
 		break;
 	case "quit":
@@ -792,7 +807,10 @@ function handleSpecialCommand(text)
 	default:
 		addChatMessage({
 			"from": "system",
-			"text": sprintf(translate("We're sorry, the '%(cmd)s' command is not supported."), { "cmd": cmd })
+			"text": sprintf(
+				translate("We're sorry, the '%(cmd)s' command is not supported."),
+				{ "cmd": cmd }
+			)
 		});
 	}
 	return true;
@@ -834,15 +852,14 @@ function addChatMessage(msg)
 
 /**
  * Splits given input into command and argument.
- *
- * @param {string} string
- * @returns {Array}
  */
 function ircSplit(string)
 {
 	let idx = string.indexOf(' ');
+
 	if (idx != -1)
 		return [string.substr(1,idx-1), string.substr(idx+1)];
+
 	return [string.substr(1), ""];
 }
 
@@ -854,7 +871,6 @@ function ircSplit(string)
  */
 function ircFormat(msg)
 {
-	let senderString = "";
 	let formattedMessage = "";
 
 	let coloredFrom = !msg.from ? "" :
@@ -869,46 +885,78 @@ function ircFormat(msg)
 		switch (command)
 		{
 		case "me":
+		{
 			// Translation: IRC message prefix when the sender uses the /me command.
-			senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("* %(sender)s"), { "sender": coloredFrom }) + '[/font]';
+			let senderString = sprintf(translate("* %(sender)s"), {
+				"sender": coloredFrom
+			});
+
 			// Translation: IRC message issued using the ‘/me’ command.
-			formattedMessage = sprintf(translate("%(sender)s %(action)s"), { "sender": senderString, "action": message });
+			formattedMessage = sprintf(translate("%(sender)s %(action)s"), {
+				"sender": senderFont(senderString),
+				"action": message
+			});
 			break;
+		}
 		case "say":
+		{
 			// Translation: IRC message prefix.
-			senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
+			let senderString = sprintf(translate("<%(sender)s>"), {
+				"sender": coloredFrom
+			});
+
 			// Translation: IRC message.
-			formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
+			formattedMessage = sprintf(translate("%(sender)s %(message)s"), {
+				"sender": senderFont(senderString),
+				"message": message
+			});
 			break;
+		}
 		case "special":
+		{
 			if (msg.isSpecial)
 				// Translation: IRC system message.
-				formattedMessage = '[font="' + g_SenderFont + '"]' + sprintf(translate("== %(message)s"), { "message": message }) + '[/font]';
+				formattedMessage = senderFont(sprintf(translate("== %(message)s"), {
+					"message": message
+				}));
 			else
 			{
 				// Translation: IRC message prefix.
-				senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
+				let senderString = sprintf(translate("<%(sender)s>"), {
+					"sender": coloredFrom
+				});
+
 				// Translation: IRC message.
-				formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": message });
+				formattedMessage = sprintf(translate("%(sender)s %(message)s"), {
+					"sender": senderFont(senderString),
+					"message": message
+				});
 			}
 			break;
+		}
 		}
 	}
 	else
 	{
+		let senderString;
+
 		// Translation: IRC message prefix.
 		if (msg.private)
 			senderString = sprintf(translateWithContext("lobby private message", "(%(private)s) <%(sender)s>"), {
-				"private": '[color="' + g_PrivateMessageColor + '"]' + translate("Private")  + '[/color]',
+				"private": '[color="' + g_PrivateMessageColor + '"]' +
+							translate("Private")  + '[/color]',
 				"sender": coloredFrom
 			});
 		else
-			senderString = sprintf(translate("<%(sender)s>"), { "sender": coloredFrom });
-
-		senderString = '[font="' + g_SenderFont + '"]' + senderString + '[/font]';
+			senderString = sprintf(translate("<%(sender)s>"), {
+				"sender": coloredFrom
+			});
 
 		// Translation: IRC message.
-		formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": msg.text });
+		formattedMessage = sprintf(translate("%(sender)s %(message)s"), {
+			"sender": senderFont(senderString),
+			"message": msg.text
+		});
 	}
 
 	// Add chat message timestamp
@@ -923,7 +971,8 @@ function ircFormat(msg)
 		let parserTime = dTime[1].split(":");
 		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
 		// Date takes Year, Month, Day, Hour, Minute, Second
-		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2], parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
+		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2],
+			parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
 	}
 	else
 		time = new Date(Date.now());
@@ -934,10 +983,15 @@ function ircFormat(msg)
 	let timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
 
 	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
-	let timePrefixString = '[font="' + g_SenderFont + '"]' + sprintf(translate("\\[%(time)s]"), { "time": timeString }) + '[/font]';
+	let timePrefixString = sprintf(translate("\\[%(time)s]"), {
+		"time": timeString
+	});
 
 	// Translation: IRC message format when there is a time prefix.
-	return sprintf(translate("%(time)s %(message)s"), { "time": timePrefixString, "message": formattedMessage });
+	return sprintf(translate("%(time)s %(message)s"), {
+		"time": senderFont(timePrefixString),
+		"message": formattedMessage
+	});
  }
 
 /**
@@ -986,13 +1040,17 @@ function isSpam(text, from)
 	if (g_SpamMonitor[from].lastBlock + g_SpamBlockDuration >= time)
 		return true;
 
-	// Block users who exceed the rate of 1 message per second for five seconds and are not already blocked.
+	// Block users who exceed the rate of 1 message per second for
+	// five seconds and are not already blocked.
 	if (g_SpamMonitor[from].count == g_SpamBlockTimeframe + 1)
 	{
 		g_SpamMonitor[from].lastBlock = time;
 
 		if (from == g_Username)
-			addChatMessage({ "from": "system", "text": translate("Please do not spam. You have been blocked for thirty seconds.") });
+			addChatMessage({
+				"from": "system",
+				"text": translate("Please do not spam. You have been blocked for thirty seconds.")
+			});
 
 		return true;
 	}
@@ -1007,6 +1065,7 @@ function isSpam(text, from)
 function checkSpamMonitor()
 {
 	let time = Math.floor(Date.now() / 1000);
+
 	for (let i in g_SpamMonitor)
 	{
 		// Reset the spam-status after being silent long enough
@@ -1020,8 +1079,7 @@ function checkSpamMonitor()
 
 /**
  *  Generate a (mostly) unique color for this player based on their name.
- *  See http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
- *
+ *  @see http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
  *  @param {string} playername
  */
 function getPlayerColor(playername)
@@ -1046,5 +1104,21 @@ function getPlayerColor(playername)
  */
 function colorPlayerName(playername)
 {
-	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' + playername + '[/color]';
+	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' +
+		playername + '[/color]';
+}
+
+function senderFont(text)
+{
+	return '[font="' + g_SenderFont + '"]' + text + "[/font]";
+}
+
+function formatWinRate(attr)
+{
+	if (!attr.totalGamesPlayed)
+		return translateWithContext("Used for an undefined winning rate", "-");
+
+	return sprintf(translate("%(percentage)s%%"), {
+		"percentage": (attr.wins / attr.totalGamesPlayed * 100).toFixed(2)
+	});
 }
