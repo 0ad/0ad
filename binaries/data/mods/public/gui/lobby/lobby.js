@@ -64,6 +64,11 @@ const g_PlayerStatuses = {
 const g_SystemColor = "150 0 0";
 
 /**
+ * Color for private messages in the chat.
+ */
+const g_PrivateMessageColor = "0 150 0";
+
+/**
  * Used for highlighting the sender of chat messages.
  */
 const g_SenderFont = "sans-bold-13";
@@ -165,9 +170,10 @@ var g_NetMessageTypes = {
 		"private-message": msg => {
 			if (Engine.LobbyGetPlayerRole(msg.from) == "moderator")
 				addChatMessage({
-					"from": "(Private) " + escapeText(msg.from), // TODO: placeholder
+					"from": escapeText(msg.from),
 					"text": escapeText(msg.text.trim()), // some XMPP clients send trailing whitespace
-					"datetime": msg.datetime
+					"datetime": msg.datetime,
+					"private" : true
 				});
 		}
 	},
@@ -889,7 +895,16 @@ function ircFormat(msg)
 	else
 	{
 		// Translation: IRC message prefix.
-		senderString = '[font="' + g_SenderFont + '"]' + sprintf(translate("<%(sender)s>"), { "sender": coloredFrom }) + '[/font]';
+		if (msg.private)
+			senderString = sprintf(translateWithContext("lobby private message", "(%(private)s) <%(sender)s>"), {
+				"private": '[color="' + g_PrivateMessageColor + '"]' + translate("Private")  + '[/color]',
+				"sender": coloredFrom
+			});
+		else
+			senderString = sprintf(translate("<%(sender)s>"), { "sender": coloredFrom });
+
+		senderString = '[font="' + g_SenderFont + '"]' + senderString + '[/font]';
+
 		// Translation: IRC message.
 		formattedMessage = sprintf(translate("%(sender)s %(message)s"), { "sender": senderString, "message": msg.text });
 	}
