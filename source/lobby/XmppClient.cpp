@@ -646,13 +646,13 @@ int XmppClient::GetMucMessageCount()
 /**
  * Handle a room message.
  */
-void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Message& msg, bool)
+void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Message& msg, bool priv)
 {
 	DbgXMPP(msg.from().resource() << " said " << msg.body());
 
 	GUIMessage message;
 	message.type = L"chat";
-	message.level = L"room-message";
+	message.level = priv ? L"private-message" : L"room-message";
 	message.from = wstring_from_utf8(msg.from().resource().to_string());
 	message.text = wstring_from_utf8(msg.body().to_string());
 	if (msg.when())
