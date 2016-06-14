@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,9 +125,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Now we'll call UpdateMouseOver on *all* objects,
 		//  we'll input the one hovered, and they will each
 		//  update their own data and send messages accordingly
-		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
-										&IGUIObject::UpdateMouseOver,
-										pNearest);
+		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST,
+			m_BaseObject, &IGUIObject::UpdateMouseOver, pNearest);
 
 		if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
 		{
@@ -150,18 +149,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				break;
 			}
 		}
-		else if (ev->ev.type == SDL_MOUSEWHEEL)
+		else if (ev->ev.type == SDL_MOUSEWHEEL && pNearest)
 		{
 			if (ev->ev.wheel.y < 0)
-			{
-				if (pNearest)
-					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
-			}
+				ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
 			else if (ev->ev.wheel.y > 0)
-			{
-				if (pNearest)
-					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
-			}
+				ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
 		}
 		else if (ev->ev.type == SDL_MOUSEBUTTONUP)
 		{
@@ -173,15 +166,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_LEFT];
 					pNearest->m_LastClickTime[SDL_BUTTON_LEFT] = timer_Time();
 
-					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
-					{
 						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT, "mouseleftdoubleclick");
-					}
 					else
-					{
 						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_LEFT, "mouseleftrelease");
-					}
 				}
 				break;
 			case SDL_BUTTON_RIGHT:
@@ -190,15 +178,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_RIGHT];
 					pNearest->m_LastClickTime[SDL_BUTTON_RIGHT] = timer_Time();
 
-					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
-					{
 						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_RIGHT, "mouserightdoubleclick");
-					}
 					else
-					{
 						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_RIGHT, "mouserightrelease");
-					}
 				}
 				break;
 			}
@@ -208,9 +191,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 									&IGUIObject::ResetStates);
 
 			// Since the hover state will have been reset, we reload it.
-			GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
-											&IGUIObject::UpdateMouseOver,
-											pNearest);
+			GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST,
+				m_BaseObject, &IGUIObject::UpdateMouseOver, pNearest);
 		}
 	}
 	catch (PSERROR_GUI& e)
@@ -239,21 +221,18 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 
 	// Restore m_MousePos (for delayed mouse button events)
 	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
-	{
 		m_MousePos = oldMousePos;
-	}
 
 	// Handle keys for input boxes
 	if (GetFocusedObject())
 	{
-		if (
-			(ev->ev.type == SDL_KEYDOWN &&
-				ev->ev.key.keysym.sym != SDLK_ESCAPE &&
-				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
-				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT])
-			|| ev->ev.type == SDL_HOTKEYDOWN
-			|| ev->ev.type == SDL_TEXTINPUT || ev->ev.type == SDL_TEXTEDITING
-			)
+		if ((ev->ev.type == SDL_KEYDOWN &&
+		     ev->ev.key.keysym.sym != SDLK_ESCAPE &&
+		     !g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
+		     !g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) ||
+		    ev->ev.type == SDL_HOTKEYDOWN ||
+		    ev->ev.type == SDL_TEXTINPUT ||
+		    ev->ev.type == SDL_TEXTEDITING)
 		{
 			ret = GetFocusedObject()->ManuallyHandleEvent(ev);
 		}
@@ -269,7 +248,6 @@ void CGUI::TickObjects()
 	GUI<CStr>::RecurseObject(0, m_BaseObject,
 							&IGUIObject::ScriptEvent, action);
 
-	// Also update tooltips:
 	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, this);
 }
 
@@ -404,13 +382,11 @@ void CGUI::AddObject(IGUIObject* pObject)
 		// Add CGUI pointer
 		GUI<CGUI*>::RecurseObject(0, pObject, &IGUIObject::SetGUI, this);
 
-		// Add child to base object
-		m_BaseObject->AddChild(pObject); // can throw
+		m_BaseObject->AddChild(pObject);
 
 		// Cache tree
 		GUI<>::RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 
-		// Loaded
 		SGUIMessage msg(GUIM_LOAD);
 		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, msg);
 	}
@@ -422,8 +398,7 @@ void CGUI::AddObject(IGUIObject* pObject)
 
 void CGUI::UpdateObjects()
 {
-	// We'll fill a temporary map until we know everything
-	//  succeeded
+	// We'll fill a temporary map until we know everything succeeded
 	map_pObjects AllObjects;
 
 	try
@@ -433,7 +408,6 @@ void CGUI::UpdateObjects()
 	}
 	catch (PSERROR_GUI&)
 	{
-		// Throw the same error
 		throw;
 	}
 
@@ -458,9 +432,10 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 IGUIObject* CGUI::FindObjectUnderMouse() const
 {
 	IGUIObject* pNearest = NULL;
+
 	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
-									&IGUIObject::ChooseMouseOverAndClosest,
-									pNearest);
+		&IGUIObject::ChooseMouseOverAndClosest, pNearest);
+
 	return pNearest;
 }
 
@@ -524,7 +499,7 @@ struct SGenerateTextImage
 
 SGUIText CGUI::GenerateText(const CGUIString& string, const CStrW& FontW, const float& Width, const float& BufferZone, const IGUIObject* pObject)
 {
-	SGUIText Text; // object we're generating
+	SGUIText Text;
 
 	CStrIntern Font(FontW.ToUTF8());
 
@@ -874,15 +849,11 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, Filename, "gui") != PSRETURN_OK)
-		// Fail silently
 		return;
 
 	XMBElement node = XeroFile.GetRoot();
 
-	// Check root element's (node) name so we know what kind of
-	//  data we'll be expecting
 	CStr root_name(XeroFile.GetElementString(node.GetNodeName()));
-
 	try
 	{
 		if (root_name == "objects")
@@ -933,30 +904,20 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boos
 
 void CGUI::Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile)
 {
-	// Iterate main children
-	//  they should all be <sprite> elements
 	for (XMBElement child : Element.GetChildNodes())
-		// Read in this whole object into the GUI
 		Xeromyces_ReadSprite(child, pFile);
 }
 
 void CGUI::Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile)
 {
-	// Iterate main children
-	//  they should all be <styles> elements
 	for (XMBElement child : Element.GetChildNodes())
-		// Read in this whole object into the GUI
 		Xeromyces_ReadStyle(child, pFile);
 }
 
 void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 {
-	// Iterate main children
-	//  they should all be <icon>, <scrollbar> or <tooltip>.
 	for (XMBElement child : Element.GetChildNodes())
 	{
-		// Read in this whole object into the GUI
-
 		CStr name(pFile->GetElementString(child.GetNodeName()));
 
 		if (name == "scrollbar")
@@ -976,12 +937,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 {
 	ENSURE(pParent);
 
-	// Our object we are going to create
-	IGUIObject* object = NULL;
-
 	XMBAttributeList attributes = Element.GetAttributes();
 
-	// Well first of all we need to determine the type
 	CStr type(attributes.GetNamedItem(pFile->GetAttributeID("type")));
 	if (type.empty())
 		type = "empty";
@@ -989,11 +946,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
 	//  i.e. releasing this object
-	object = ConstructObject(type);
+	IGUIObject* object = ConstructObject(type);
 
 	if (!object)
 	{
-		// Report error that object was unsuccessfully loaded
 		LOGERROR("GUI: Unrecognized object type \"%s\"", type.c_str());
 		return;
 	}
@@ -1034,24 +990,18 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	if (!argStyle.empty())
 	{
-		// additional check
 		if (m_Styles.count(argStyle) == 0)
 			LOGERROR("GUI: Trying to use style '%s' that doesn't exist.", argStyle.c_str());
 		else
 			object->LoadStyle(*this, argStyle);
 	}
 
-	//
-	//	Read Attributes
-	//
-
 	bool NameSet = false;
-	bool ManuallySetZ = false; // if z has been manually set, this turn true
+	bool ManuallySetZ = false;
 
 	CStrW inclusionPath;
 	CStr hotkeyTag;
 
-	// Now we can iterate all attributes and store
 	for (XMBAttribute attr : attributes)
 	{
 		// If value is "null", then it is equivalent as never being entered
@@ -1062,12 +1012,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (attr.Name == attr_type || attr.Name == attr_style)
 			continue;
 
-		// Also the name needs some special attention
 		if (attr.Name == attr_name)
 		{
 			CStr name(attr.Value);
 
-			// Apply the requested substitutions
 			for (const std::pair<CStr, CStr>& sub : NameSubst)
 				name.Replace(sub.first, sub.second);
 
@@ -1076,20 +1024,14 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			continue;
 		}
 
-		// Wire up the hotkey tag, if it has one
 		if (attr.Name == attr_hotkey)
 			hotkeyTag = attr.Value;
 
 		if (attr.Name == attr_z)
 			ManuallySetZ = true;
 
-		// Try setting the value
 		if (object->SetSetting(pFile->GetAttributeString(attr.Name), attr.Value.FromUTF8(), true) != PSRETURN_OK)
-		{
 			LOGERROR("GUI: (object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName(), pFile->GetAttributeString(attr.Name), attr.Value);
-
-			// This is not a fatal error
-		}
 	}
 
 	// Check if name isn't set, generate an internal name in that case.
@@ -1099,23 +1041,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		++m_InternalNameNumber;
 	}
 
-	// Attempt to register the hotkey tag, if one was provided
 	if (!hotkeyTag.empty())
 		m_HotkeyObjects[hotkeyTag].push_back(object);
 
 	CStrW caption(Element.GetText().FromUTF8());
 	if (!caption.empty())
-	{
-		// Set the setting caption to this
 		object->SetSetting("caption", caption, true);
-
-		// There is no harm if the object didn't have a "caption"
-	}
-
-
-	//
-	//	Read Children
-	//
 
 	for (XMBElement child : Element.GetChildNodes())
 	{
@@ -1297,9 +1228,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 	}
 
-	//
-	//	Check if Z wasn't manually set
-	//
 	if (!ManuallySetZ)
 	{
 		// Set it automatically to 10 plus its parents
@@ -1314,11 +1242,6 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// If the object is relative, then we'll just store Z as "10"
 			GUI<float>::SetSetting(object, "z", 10.f, true);
 	}
-
-
-	//
-	//	Input Child
-	//
 
 	try
 	{
@@ -1355,9 +1278,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		XERO_ITER_EL(Element, child)
 		{
 			if (child.GetNodeName() == elmt_object)
-			{
 				Xeromyces_ReadObject(child, pFile, pParent, NameSubst, Paths, nesting_depth);
-			}
 		}
 		NameSubst.pop_back();
 	}
@@ -1392,7 +1313,6 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 		{
 			// Only load new files (so when the insert succeeds)
 			if (Paths.insert(path).second)
-			{
 				try
 				{
 					m_ScriptInterface->LoadGlobalScriptFile(path);
@@ -1401,7 +1321,6 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 				{
 					LOGERROR("GUI: Error executing script %s: %s", path.string8(), e.what());
 				}
-			}
 		}
 	}
 
@@ -1420,25 +1339,13 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 {
-	// Sprite object we're adding
 	CGUISprite* Sprite = new CGUISprite;
 
-	// and what will be its reference name
-	CStr name;
-
-	//
-	//	Read Attributes
-	//
-
 	// Get name, we know it exists because of DTD requirements
-	name = Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("name"));
+	CStr name = Element.GetAttributes().GetNamedItem(pFile->GetAttributeID("name"));
 
 	if (m_Sprites.find(name) != m_Sprites.end())
 		LOGWARNING("GUI sprite name '%s' used more than once; first definition will be discarded", name.c_str());
-
-	//
-	//	Read Children (the images)
-	//
 
 	SGUIImageEffects* effects = NULL;
 
@@ -1447,15 +1354,11 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 		CStr ElementName(pFile->GetElementString(child.GetNodeName()));
 
 		if (ElementName == "image")
-		{
 			Xeromyces_ReadImage(child, pFile, *Sprite);
-		}
 		else if (ElementName == "effect")
 		{
 			if (effects)
-			{
 				LOGERROR("GUI <sprite> must not have more than one <effect>");
-			}
 			else
 			{
 				effects = new SGUIImageEffects;
@@ -1463,9 +1366,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 			}
 		}
 		else
-		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
-		}
 	}
 
 	// Apply the effects to every image (unless the image overrides it with
@@ -1477,30 +1378,18 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 
 	delete effects;
 
-	//
-	//	Add Sprite
-	//
-
 	m_Sprites[name] = Sprite;
 }
 
 void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite& parent)
 {
-
-	// Image object we're adding
 	SGUIImage* Image = new SGUIImage;
 
-	// Set defaults to "0 0 100% 100%"
 	Image->m_TextureSize = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 	Image->m_Size = CClientArea(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
-	//
-	//	Read Attributes
-	//
-
-	// Now we can iterate all attributes and store
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
@@ -1602,9 +1491,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				Image->m_Border = b;
 		}
 		else
-		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
-		}
 	}
 
 	// Look for effects
@@ -1614,9 +1501,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		if (ElementName == "effect")
 		{
 			if (Image->m_Effects)
-			{
 				LOGERROR("GUI <image> must not have more than one <effect>");
-			}
 			else
 			{
 				Image->m_Effects = new SGUIImageEffects;
@@ -1624,14 +1509,8 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			}
 		}
 		else
-		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
-		}
 	}
-
-	//
-	//	Input
-	//
 
 	parent.AddImage(Image);
 }
@@ -1651,27 +1530,17 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 			else effects.m_AddColor = color;
 		}
 		else if (attr_name == "grayscale")
-		{
 			effects.m_Greyscale = true;
-		}
 		else
-		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
-		}
 	}
 }
 
 void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 {
-	// style object we're adding
 	SGUIStyle style;
 	CStr name;
 
-	//
-	// Read Attributes
-	//
-
-	// Now we can iterate all attributes and store
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
 		CStr attr_name(pFile->GetAttributeString(attr.Name));
@@ -1684,16 +1553,11 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 			style.m_SettingsDefaults[attr_name] = attr.Value.FromUTF8();
 	}
 
-	//
-	// Add to CGUI
-	//
-
 	m_Styles[name] = style;
 }
 
 void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 {
-	// style object we're adding
 	SGUIScrollBarStyle scrollbar;
 	CStr name;
 
@@ -1703,11 +1567,6 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	scrollbar.m_MaximumBarSize = 1.0e10;
 	scrollbar.m_UseEdgeButtons = false;
 
-	//
-	// Read Attributes
-	//
-
-	// Now we can iterate all attributes and store
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
 		CStr attr_name = pFile->GetAttributeString(attr.Name);
@@ -1776,16 +1635,11 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			scrollbar.m_SpriteBarVerticalPressed = attr_value;
 	}
 
-	//
-	//	Add to CGUI
-	//
-
 	m_ScrollBarStyles[name] = scrollbar;
 }
 
 void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 {
-	// Icon we're adding
 	SGUIIcon icon;
 	CStr name;
 
@@ -1818,9 +1672,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 				icon.m_CellID = cell_id;
 		}
 		else
-		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
-		}
 	}
 
 	m_Icons[name] = icon;
@@ -1828,8 +1680,6 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 {
-	// Read the tooltip, and store it as a specially-named object
-
 	IGUIObject* object = new CTooltip;
 
 	for (XMBAttribute attr : Element.GetAttributes())
@@ -1846,11 +1696,8 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 	AddObject(object);
 }
 
-// Reads Custom Color
 void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 {
-	// Read the color and stor in m_PreDefinedColors
-
 	XMBAttributeList attributes = Element.GetAttributes();
 
 	CColor color;
@@ -1868,6 +1715,5 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 		return;
 	}
 
-	// input color
 	m_PreDefinedColors[name] = color;
 }
