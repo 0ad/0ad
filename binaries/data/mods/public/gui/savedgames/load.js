@@ -72,9 +72,13 @@ function loadGame()
 		if (!metadata.mods)
 			metadata.mods = [];
 
-		message += translate("The savegame needs a different set of mods:") + "\n";
-		errMsg += sprintf(translate("Required: %(mods)s"), { "mods": metadata.mods.join(translate(", ")) }) + "\n";
-		errMsg += sprintf(translate("Active: %(mods)s"), { "mods": engineInfo.mods.join(translate(", ")) });
+		message += translate("The savegame needs a different set of mods:") + "\n" +
+			sprintf(translate("Required: %(mods)s"), {
+				"mods": metadata.mods.join(translate(", "))
+			}) + "\n" +
+			sprintf(translate("Active: %(mods)s"), {
+				"mods": engineInfo.mods.join(translate(", "))
+			});
 	}
 
 	message += "\n" + translate("Do you still want to proceed?");
