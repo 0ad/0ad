@@ -605,12 +605,9 @@ function submitChatDirectly(text)
  */
 function submitChatInput()
 {
-	let input = Engine.GetGUIObjectByName("chatInput");
-	let text = input.caption;
+	let text = Engine.GetGUIObjectByName("chatInput").caption;
 
-	input.blur(); // Remove focus
-	input.caption = ""; // Clear chat input
-	toggleChatWindow();
+	closeChat();
 
 	if (!text.length)
 		return;

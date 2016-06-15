@@ -4,17 +4,14 @@
 		<action on="Press">closeOpenDialogs();</action>
 	</object>
 
-	<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
 	<object hotkey="chat">
-		<action on="Press">toggleChatWindow();</action>
+		<action on="Press">openChat(false);</action>
 	</object>
 
-	<!-- Team Chat: Does the same as the above, but sets the window up to only send messages to teammates. -->
 	<object hotkey="teamchat">
-	    <action on="Press">toggleChatWindow(true);</action>
+	    <action on="Press">openChat(true);</action>
 	</object>
 
-	<!-- Menu -->
 	<object hotkey="menu.toggle">
 		<action on="Press">toggleMenu();</action>
 	</object>
@@ -35,25 +32,22 @@
 		</action>
 	</object>
 
-	<!-- Pause -->
 	<object hotkey="pause">
 		<action on="Press">togglePause();</action>
 	</object>
 
-	<!-- Quicksave/load -->
 	<object hotkey="quicksave">
 		<action on="Press">Engine.QuickSave();</action>
 	</object>
+
 	<object hotkey="quickload">
 		<action on="Press">Engine.QuickLoad();</action>
 	</object>
 
-	<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
 	<object hotkey="session.kill">
 		<action on="Press">performCommand(g_Selection.getFirstSelected(), "delete");</action>
 	</object>
 
-	<!-- Stop the selected units -->
 	<object hotkey="session.stop">
 		<action on="Press">stopUnits(g_Selection.toList());</action>
 	</object>
@@ -65,6 +59,6 @@
 
 	<!-- Unselect any selected entities -->
 	<object hotkey="selection.cancel">
-		<action on="Press">clearSelection()</action>
+		<action on="Press">clearSelection();</action>
 	</object>
 </object>

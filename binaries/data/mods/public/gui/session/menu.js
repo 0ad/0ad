@@ -49,7 +49,10 @@ function updateMenuPosition(dt)
 {
 	let menu = Engine.GetGUIObjectByName("menu");
 
-	let maxOffset = g_IsMenuOpen ? (END_MENU_POSITION - menu.size.bottom) : (menu.size.top - MENU_TOP);
+	let maxOffset = g_IsMenuOpen ?
+		END_MENU_POSITION - menu.size.bottom :
+		menu.size.top - MENU_TOP;
+
 	if (maxOffset <= 0)
 		return;
 
@@ -165,7 +168,10 @@ function openDeleteDialog(selection)
 
 	let deleteSelectedEntities = function (selectionArg)
 	{
-		Engine.PostNetworkCommand({ "type": "delete-entities", "entities": selectionArg });
+		Engine.PostNetworkCommand({
+			"type": "delete-entities",
+			"entities": selectionArg
+		});
 	};
 
 	messageBox(
@@ -182,77 +188,43 @@ function openSave()
 {
 	closeOpenDialogs();
 	pauseGame();
-	Engine.PushGuiPage("page_savegame.xml", { "savedGameData": getSavedGameData(), "callback": "resumeGame" });
+
+	Engine.PushGuiPage("page_savegame.xml", {
+		"savedGameData": getSavedGameData(),
+		"callback": "resumeGame"
+	});
 }
 
 function openOptions()
 {
 	closeOpenDialogs();
 	pauseGame();
-	Engine.PushGuiPage("page_options.xml", { "callback": "resumeGame" });
+
+	Engine.PushGuiPage("page_options.xml", {
+		"callback": "resumeGame"
+	});
 }
 
-function openChat()
+function openChat(teamChat = false)
 {
 	if (g_Disconnected)
 		return;
 
 	closeOpenDialogs();
 
-	setTeamChat(false);
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	let command = teamChat ? (g_IsObserver ? "/observers" : "/allies") : "";
+	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
 
-	Engine.GetGUIObjectByName("chatInput").focus(); // Grant focus to the input area
+	Engine.GetGUIObjectByName("chatInput").focus();
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
 }
 
 function closeChat()
 {
-	Engine.GetGUIObjectByName("chatInput").caption = ""; // Clear chat input
+	Engine.GetGUIObjectByName("chatInput").caption = "";
 	Engine.GetGUIObjectByName("chatInput").blur(); // Remove focus
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = true;
-}
-
-/**
- * If the teamchat hotkey was pressed, set allies or observers as addressees,
- * otherwise send to everyone.
- */
-function setTeamChat(teamChat = false)
-{
-	let command = teamChat ? (g_IsObserver ? "/observers" : "/allies") : "";
-	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
-	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
-}
-
-/**
- * Opens chat-window or closes it and sends the userinput.
- */
-function toggleChatWindow(teamChat)
-{
-	if (g_Disconnected)
-		return;
-
-	let chatWindow = Engine.GetGUIObjectByName("chatDialogPanel");
-	let chatInput = Engine.GetGUIObjectByName("chatInput");
-	let hidden = chatWindow.hidden;
-
-	closeOpenDialogs();
-
-	if (hidden)
-	{
-		setTeamChat(teamChat);
-		chatInput.focus();
-	}
-	else
-	{
-		if (chatInput.caption.length)
-		{
-			submitChatInput();
-			return;
-		}
-		chatInput.caption = "";
-	}
-
-	chatWindow.hidden = !hidden;
 }
 
 function openDiplomacy()
@@ -295,7 +267,6 @@ function diplomacySetupTexts(i, rowsize)
 	size.bottom = rowsize * i;
 	row.size = size;
 
-	// Set background color
 	row.sprite = "color: " + rgbToGuiColor(g_Players[i].color) + " 32";
 
 	Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = colorizePlayernameByID(i);
@@ -321,8 +292,13 @@ function diplomacyFormatStanceButtons(i, hidden)
 
 		button.caption = g_Players[g_ViewedPlayer]["is" + stance][i] ? translate("x") : "";
 		button.enabled = controlsPlayer(g_ViewedPlayer);
-		button.onpress = (function(player, stance) { return function() {
-			Engine.PostNetworkCommand({ "type": "diplomacy", "player": i, "to": stance.toLowerCase() });
+
+		button.onPress = (function(player, stance) { return function() {
+			Engine.PostNetworkCommand({
+				"type": "diplomacy",
+				"player": i,
+				"to": stance.toLowerCase()
+			});
 		}; })(i, stance);
 	}
 }
@@ -715,7 +691,7 @@ function togglePause()
 function setClientPauseState(guid, paused)
 {
 	// Update the list of pausing clients.
-	let index = g_PausingClients.indexOf(guid)
+	let index = g_PausingClients.indexOf(guid);
 	if (paused && index == -1)
 		g_PausingClients.push(guid);
 	else if (!paused && index != -1)
