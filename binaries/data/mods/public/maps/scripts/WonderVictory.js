@@ -28,7 +28,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 	// Add -1 to notify observers too
 	let players = [-1];
-	for (let i = 1; i < numPlayers; i++)
+	for (let i = 1; i < numPlayers; ++i)
 		if (i != data.to)
 			players.push(i);
 

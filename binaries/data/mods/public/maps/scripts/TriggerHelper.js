@@ -45,7 +45,7 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 	if (owner == null)
 		owner = TriggerHelper.GetOwner(source);
 
-	for (let i = 0; i < count; i++)
+	for (let i = 0; i < count; ++i)
 	{
 		let ent = Engine.AddEntity(template);
 		let cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
@@ -102,17 +102,6 @@ TriggerHelper.SpawnUnitsFromTriggerPoints = function(ref, template, count, owner
 };
 
 /**
- * Returs a function that can be used to filter an array of entities by player
- */
-TriggerHelper.GetPlayerFilter = function(playerID)
-{
-	return function(entity) {
-		let cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-		return cmpOwnership && cmpOwnership.GetOwner() == playerID;
-	};
-};
-
-/**
  * Returns the resource type that can be gathered from an entity
  */
 TriggerHelper.GetResourceType = function(entity)
@@ -138,8 +127,8 @@ TriggerHelper.SetPlayerWon = function(playerID)
  */
 TriggerHelper.DefeatPlayer = function(playerID)
 {
-	let cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let playerEnt = cmpPlayerMan.GetPlayerByID(playerID);
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let playerEnt = cmpPlayerManager.GetPlayerByID(playerID);
 
 	Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": playerID } );
 };
@@ -151,15 +140,6 @@ TriggerHelper.GetNumberOfPlayers = function()
 {
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	return cmpPlayerManager.GetNumPlayers();
-};
-
-/**
- * Returns the player component. For more information on its functions, see simulation/components/Player.js
- */
-TriggerHelper.GetPlayerComponent = function(playerID)
-{
-	let cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	return Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(playerID), IID_Player);
 };
 
 /**
