@@ -4,13 +4,15 @@ var g_DebugCommands = false;
 
 function ProcessCommand(player, cmd)
 {
-	// Do some basic checks here that commanding player is valid
-	var data = {};
-	data.cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!data.cmpPlayerMan || player < 0)
+	let data = {
+		"cmpPlayerManager": Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager)
+	};
+
+	if (!data.cmpPlayerManager || player < 0)
 		return;
 
-	data.playerEnt = data.cmpPlayerMan.GetPlayerByID(player);
+	data.playerEnt = data.cmpPlayerManager.GetPlayerByID(player);
+
 	if (data.playerEnt == INVALID_ENTITY)
 		return;
 
@@ -1450,7 +1452,6 @@ function ClusterEntities(ents, separationDistance)
 	while (clusters.length > 1)
 	{
 		// search two clusters that are closer than the required distance
-		var smallDist = Infinity;
 		var closeClusters = undefined;
 
 		for (var i = matrix.length - 1; i >= 0 && !closeClusters; --i)
@@ -1517,7 +1518,6 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
 		return false;
 
 	var count = 0;
-	var reqClasses = requirements.classesRequired || [];
 	for (let ent of ents)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
@@ -1579,7 +1579,7 @@ function TryTransformWallToGate(ent, cmpPlayer, cmd)
 	if (!cmpIdentity.HasClass("LongWall"))
 	{
 		if (g_DebugCommands)
-			warn("Invalid command: invalid wall conversion to gate for player "+player+": "+uneval(cmd));
+			warn("Invalid command: invalid wall conversion to gate for player: " + uneval(cmd));
 		return;
 	}
 
@@ -1589,7 +1589,7 @@ function TryTransformWallToGate(ent, cmpPlayer, cmd)
 	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 	{
 		if (g_DebugCommands)
-			warn("Invalid command: convert gate cost check failed for player "+player+": "+uneval(cmd));
+			warn("Invalid command: convert gate cost check failed: " + uneval(cmd));
 
 		Engine.DestroyEntity(gate);
 		return;

@@ -381,7 +381,7 @@ StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 	var teamPlayers = [];
 	for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
 	{
-		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		let cmpOtherPlayer = QueryPlayerIDInterface(i);
 		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
 			teamPlayers.push(i);
 	}
@@ -414,7 +414,7 @@ StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
 	var teamPercent = 0;
 	for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
 	{
-		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		let cmpOtherPlayer = QueryPlayerIDInterface(i);
 		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
 			teamPercent += cmpTerritoryManager.GetTerritoryPercentage(i);
 	}

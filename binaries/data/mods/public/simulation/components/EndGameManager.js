@@ -1,6 +1,3 @@
-// Repetition interval (msecs) for checking end game conditions
-var g_ProgressInterval = 1000;
-
 /**
  * System component which regularly checks victory/defeat conditions
  * and if they are satisfied then it marks the player as victorious/defeated.
@@ -53,7 +50,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
 
-	for (let i = 1; i < numPlayers; i++)
+	for (let i = 1; i < numPlayers; ++i)
 	{
 		let playerEntityId = cmpPlayerManager.GetPlayerByID(i);
 		let cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);

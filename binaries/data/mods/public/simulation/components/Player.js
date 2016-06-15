@@ -381,7 +381,7 @@ Player.prototype.SetTeam = function(team, skipAlliedVictoryCheck = false)
 	if (cmpPlayerManager && this.team != -1)
 		for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
 		{
-			let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			let cmpPlayer = QueryPlayerIDInterface(i);
 			if (this.team != cmpPlayer.GetTeam())
 				continue;
 
@@ -428,7 +428,7 @@ Player.prototype.SetDiplomacyIndex = function(idx, value, skipAlliedVictoryCheck
 	if (!cmpPlayerManager)
 		return;
 
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(idx), IID_Player);
+	var cmpPlayer = QueryPlayerIDInterface(idx);
 	if (!cmpPlayer)
 		return;
 

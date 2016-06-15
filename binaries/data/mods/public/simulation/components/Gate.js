@@ -65,8 +65,8 @@ Gate.prototype.OnDestroy = function()
 Gate.prototype.SetupRangeQuery = function(owner)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+	var cmpPlayer = QueryPlayerIDInterface(owner);
+
 	if (this.unitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
 

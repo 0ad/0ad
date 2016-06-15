@@ -820,7 +820,6 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let playerColors = {}; // cache of owner -> color map
 
 	for each (let ent in cmd.entities)
@@ -839,7 +838,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!color)
 		{
 			color = { "r":1, "g":1, "b":1 };
-			let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+			let cmpPlayer = QueryPlayerIDInterface(owner);
 			if (cmpPlayer)
 				color = cmpPlayer.GetColor();
 			playerColors[owner] = color;

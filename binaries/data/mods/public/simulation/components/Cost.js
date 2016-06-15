@@ -79,15 +79,13 @@ Cost.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.from != -1)
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.from), IID_Player);
+		let cmpPlayer = QueryPlayerIDInterface(msg.from);
 		if (cmpPlayer)
 			cmpPlayer.AddPopulationBonuses(-this.GetPopBonus());
 	}
 	if (msg.to != -1)
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.to), IID_Player);
+		let cmpPlayer = QueryPlayerIDInterface(msg.to);
 		if (cmpPlayer)
 			cmpPlayer.AddPopulationBonuses(this.GetPopBonus());
 	}
@@ -104,12 +102,12 @@ Cost.prototype.OnValueModification = function(msg)
 		return;
 
 	// update the population costs
-	var newPopCost = Math.round(ApplyValueModificationsToEntity("Cost/Population",  +this.template.Population, this.entity));
+	var newPopCost = Math.round(ApplyValueModificationsToEntity("Cost/Population", +this.template.Population, this.entity));
 	var popCostDifference = newPopCost - this.populationCost;
 	this.populationCost = newPopCost;
 
 	// update the population bonuses
-	var newPopBonus = Math.round(ApplyValueModificationsToEntity("Cost/PopulationBonus",  +this.template.PopulationBonus, this.entity));
+	var newPopBonus = Math.round(ApplyValueModificationsToEntity("Cost/PopulationBonus", +this.template.PopulationBonus, this.entity));
 	var popDifference = newPopBonus - this.populationBonus;
 	this.populationBonus = newPopBonus;
 
