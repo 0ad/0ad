@@ -40,7 +40,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).hasEntities())
 	{
 		let template = gameState.applyCiv("structures/{civ}_civil_centre");
-		if (gameState.isDisabledTemplates(template) || !gameState.getTemplate(template).available(gameState))
+		if (gameState.isTemplateDisabled(template) || !gameState.getTemplate(template).available(gameState))
 		{
 			if (this.Config.debug > 1)
 				API3.warn(" this AI is unable to produce any units");
@@ -236,7 +236,7 @@ m.HQ.prototype.structureAnalysis = function(gameState)
 	civ = civref in this.Config.buildings.advanced ? civref : 'default';
 	this.bAdvanced = [];
 	for (let advanced of this.Config.buildings.advanced[civ])
-		if (!gameState.isDisabledTemplates(gameState.applyCiv(advanced)))
+		if (!gameState.isTemplateDisabled(gameState.applyCiv(advanced)))
 			this.bAdvanced.push(gameState.applyCiv(advanced));
 };
 
@@ -248,7 +248,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 {
 	let total = gameState.getResources();
 	let template = gameState.applyCiv("structures/{civ}_civil_centre");
-	if (gameState.isDisabledTemplates(template))
+	if (gameState.isTemplateDisabled(template))
 		return;
 	template = gameState.getTemplate(template);
 	let goal = "civil_centre";
@@ -259,7 +259,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 		if (gameState.ai.queues.dock.hasQueuedUnits())
 			return;
 		template = gameState.applyCiv("structures/{civ}_dock");
-		if (gameState.isDisabledTemplates(template))
+		if (gameState.isTemplateDisabled(template))
 			return;
 		template = gameState.getTemplate(template);
 		if (!total.canAfford(new API3.Resources(template.cost())))

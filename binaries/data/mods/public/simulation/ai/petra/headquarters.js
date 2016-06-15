@@ -482,7 +482,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		return;
 
 	// Choose whether we want soldiers or support units.
-	let supportRatio = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.1) : this.supportRatio;
+	let supportRatio = gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.1) : this.supportRatio;
 	let supportMax = supportRatio * this.targetNumWorkers;
 	let supportNum = supportMax * Math.atan(numberTotal/supportMax) / 1.570796;
 
@@ -1321,7 +1321,7 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 
 	let nCorral = gameState.getOwnEntitiesByClass("Corral", true).length;
 	if (nCorral === 0 ||
-		(gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) &&
+		(gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) &&
 		 nCorral < gameState.currentPhase() && gameState.getPopulation() > 30*nCorral))
 	{
 		if (this.canBuild(gameState, "structures/{civ}_corral"))
@@ -1337,10 +1337,10 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 	{
 		if (corral.foundationProgress() !== undefined)
 			continue;
-		let trainables = corral.trainableEntities("");
+		let trainables = corral.trainableEntities();
 		for (let trainable of trainables)
 		{
-			if (gameState.isDisabledTemplates(trainable))
+			if (gameState.isTemplateDisabled(trainable))
 				continue;
 			let template = gameState.getTemplate(trainable);
 			if (!template || !template.isHuntable())
@@ -1742,7 +1742,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	let garrisonArrowClasses = nearestAnchor.getGarrisonArrowClasses();
 	for (let trainable of trainables)
 	{
-		if (gameState.isDisabledTemplates(trainable))
+		if (gameState.isTemplateDisabled(trainable))
 			continue;
 		let template = gameState.getTemplate(trainable);
 		if (!template || !template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
@@ -1793,7 +1793,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 		this.stopBuilding.delete(type);
 	}
 
-	if (gameState.isDisabledTemplates(type))
+	if (gameState.isTemplateDisabled(type))
 	{
 		this.stopBuilding.set(type, Infinity);
 		return false;

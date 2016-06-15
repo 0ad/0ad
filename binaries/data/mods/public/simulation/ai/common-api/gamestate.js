@@ -613,7 +613,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	let current = this.getEntityCounts();
 	for (let trainable of allTrainable)
 	{
-		if (this.isDisabledTemplates(trainable))
+		if (this.isTemplateDisabled(trainable))
 			continue;
 		let template = this.getTemplate(trainable);
 		if (!template || !template.available(this))
@@ -796,7 +796,7 @@ m.GameState.prototype.getEntityCounts = function()
 	return this.playerData.entityCounts;
 };
 
-m.GameState.prototype.isDisabledTemplates = function(template)
+m.GameState.prototype.isTemplateDisabled = function(template)
 {
 	if (!this.playerData.disabledTemplates[template])
 		return false;
@@ -816,8 +816,8 @@ m.GameState.prototype.getTraderTemplatesGains = function()
 {
 	let shipMechantTemplateName = this.applyCiv("units/{civ}_ship_merchant");
 	let supportTraderTemplateName = this.applyCiv("units/{civ}_support_trader");
-	let shipMerchantTemplate = !this.isDisabledTemplates(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
-	let supportTraderTemplate = !this.isDisabledTemplates(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
+	let shipMerchantTemplate = !this.isTemplateDisabled(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
+	let supportTraderTemplate = !this.isTemplateDisabled(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
 	return {
 		"navalGainMultiplier": shipMerchantTemplate && shipMerchantTemplate.gainMultiplier(),
 		"landGainMultiplier": supportTraderTemplate && supportTraderTemplate.gainMultiplier()

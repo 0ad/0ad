@@ -340,28 +340,30 @@ m.Template = m.Class({
 		return true;
 	},
 
-	buildableEntities: function() {
-		if (!this.get("Builder/Entities/_string"))
+	"buildableEntities": function() {
+		let templates = this.get("Builder/Entities/_string");
+		if (!templates)
 			return [];
 		let civ = this.civ();
-		let templates = this.get("Builder/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
-		return templates; // TODO: map to Entity?
+		return templates.replace(/\{civ\}/g, civ).split(/\s+/);
 	},
 
-	trainableEntities: function(civ) {
-		if (!this.get("ProductionQueue/Entities/_string"))
+	"trainableEntities": function(civ) {
+		let templates = this.get("ProductionQueue/Entities/_string");
+		if (!templates)
 			return undefined;
-		let templates = this.get("ProductionQueue/Entities/_string").replace(/\{civ\}/g, civ).split(/\s+/);
-		return templates;
+		if (civ)
+			templates = templates.replace(/\{civ\}/g, civ);
+		return templates.split(/\s+/);
 	},
 
-	researchableTechs: function(civ) {
-		if (this.civ() !== civ)     // techs can only be researched in structure from the player civ
+	"researchableTechs": function(civ) {
+		if (this.civ() !== civ)     // techs can only be researched in structures from the player civ TODO no more true
 			return undefined;
-		if (!this.get("ProductionQueue/Technologies/_string"))
+		let templates = this.get("ProductionQueue/Technologies/_string");
+		if (!templates)
 			return undefined;
-		let templates = this.get("ProductionQueue/Technologies/_string").split(/\s+/);
-		return templates;
+		return templates.split(/\s+/);
 	},
 
 	resourceSupplyType: function() {
