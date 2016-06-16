@@ -314,7 +314,10 @@ function displaySingle(entState)
 	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
 	{
 		iconTooltip += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
-		iconTooltip += "[font=\"sans-13\"]" + template.visibleIdentityClasses.map(c => translate(c)).join(", ") + "[/font]";
+
+		iconTooltip += "[font=\"sans-13\"]" +
+			template.visibleIdentityClasses.map(c => translate(c)).join(translate(", ")) +
+			"[/font]";
 	}
 
 	if (template.auras)

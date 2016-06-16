@@ -255,7 +255,7 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	// If the selection isn't friendly units, no action
-	var allOwnedByPlayer = selection.every(function(ent) {
+	var allOwnedByPlayer = selection.every(ent => {
 		var entState = GetEntityState(ent);
 		return entState && entState.player == g_ViewedPlayer;
 	});
@@ -339,7 +339,6 @@ function tryPlaceBuilding(queued)
 
 	var selection = g_Selection.toList();
 
-	// Start the construction
 	Engine.PostNetworkCommand({
 		"type": "construct",
 		"template": placementSupport.template,
@@ -442,31 +441,32 @@ function updateBandbox(bandbox, ev, hidden)
 
 // Define some useful unit filters for getPreferredEntities
 var unitFilters = {
-	"isUnit": function (entity) {
+	"isUnit": entity => {
 		var entState = GetEntityState(entity);
-		if (!entState)
-			return false;
-		return hasClass(entState, "Unit");
+		return entState && hasClass(entState, "Unit");
 	},
-	"isDefensive": function (entity) {
+	"isDefensive": entity => {
 		var entState = GetEntityState(entity);
-		if (!entState)
-			return false;
-		return hasClass(entState, "Defensive");
+		return entState && hasClass(entState, "Defensive");
 	},
-	"isNotSupport": function (entity) {
+	"isNotSupport": entity => {
 		var entState = GetEntityState(entity);
-		if (!entState)
-			return false;
-		return hasClass(entState, "Unit") && !hasClass(entState, "Support") && !hasClass(entState, "Domestic");
+
+		return entState &&
+			hasClass(entState, "Unit") &&
+			!hasClass(entState, "Support") &&
+			!hasClass(entState, "Domestic");
 	},
-	"isIdle": function (entity) {
+	"isIdle": entity => {
 		var entState = GetEntityState(entity);
-		if (!entState)
-			return false;
-		return hasClass(entState, "Unit") && entState.unitAI && entState.unitAI.isIdle && !hasClass(entState, "Domestic");
+
+		return entState &&
+			hasClass(entState, "Unit") &&
+			entState.unitAI &&
+			entState.unitAI.isIdle &&
+			!hasClass(entState, "Domestic");
 	},
-	"isAnything": function (entity) {
+	"isAnything": entity => {
 		return true;
 	}
 };
@@ -1226,18 +1226,6 @@ function startBuildingPlacement(buildTemplate, playerState)
 	}
 }
 
-// Called by GUI when user changes required trading goods
-function selectRequiredGoods(data)
-{
-	Engine.PostNetworkCommand({ "type": "select-required-goods", "entities": data.entities, "requiredGoods": data.requiredGoods} );
-}
-
-// Called by GUI when user clicks exchange resources button
-function exchangeResources(command)
-{
-	Engine.PostNetworkCommand({ "type": "barter", "sell": command.sell, "buy": command.buy, "amount": command.amount });
-}
-
 // Camera jumping: when the user presses a hotkey the current camera location is marked.
 // When they press another hotkey the camera jumps back to that position. If the camera is already roughly at that location,
 // jump back to where it was previously.
@@ -1312,7 +1300,7 @@ function flushTrainingBatch()
 
 function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 {
-	return entitiesToCheck.filter(function(entity) {
+	return entitiesToCheck.filter(entity => {
 		var state = GetEntityState(entity);
 		var canTrain = state && state.production && state.production.entities.length &&
 			state.production.entities.indexOf(trainEntType) != -1;
@@ -1648,7 +1636,7 @@ function transformWallToGate(template)
 	var selection = g_Selection.toList();
 	Engine.PostNetworkCommand({
 		"type": "wall-to-gate",
-		"entities": selection.filter( function(e) { return getWallGateTemplate(e) == template; } ),
+		"entities": selection.filter(e => getWallGateTemplate(e) == template),
 		"template": template,
 	});
 }
@@ -1758,7 +1746,7 @@ function unload(garrisonHolder, entities)
 function unloadTemplate(template)
 {
 	// Filter out all entities that aren't garrisonable.
-	var garrisonHolders = g_Selection.toList().filter(function(e) {
+	var garrisonHolders = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
 		if (state && state.garrisonHolder)
 			return true;
@@ -1796,7 +1784,7 @@ function unloadSelection()
 
 function unloadAllByOwner()
 {
-	var garrisonHolders = g_Selection.toList().filter(function(e) {
+	var garrisonHolders = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
 		return state && state.garrisonHolder;
 	});
@@ -1806,11 +1794,9 @@ function unloadAllByOwner()
 function unloadAll()
 {
 	// Filter out all entities that aren't garrisonable.
-	var garrisonHolders = g_Selection.toList().filter(function(e) {
+	var garrisonHolders = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
-		if (state && state.garrisonHolder)
-			return true;
-		return false;
+		return state && state.garrisonHolder;
 	});
 
 	Engine.PostNetworkCommand({ "type": "unload-all", "garrisonHolders": garrisonHolders });
@@ -1819,9 +1805,9 @@ function unloadAll()
 function backToWork()
 {
 	// Filter out all entities that can't go back to work.
-	var workers = g_Selection.toList().filter(function(e) {
+	var workers = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
-		return (state && state.unitAI && state.unitAI.hasWorkOrders);
+		return state && state.unitAI && state.unitAI.hasWorkOrders;
 	});
 
 	Engine.PostNetworkCommand({ "type": "back-to-work", "entities": workers });
@@ -1830,9 +1816,9 @@ function backToWork()
 function removeGuard()
 {
 	// Filter out all entities that are currently guarding/escorting.
-	var entities = g_Selection.toList().filter(function(e) {
+	var entities = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
-		return (state && state.unitAI && state.unitAI.isGuarding);
+		return state && state.unitAI && state.unitAI.isGuarding;
 	});
 
 	Engine.PostNetworkCommand({ "type": "remove-guard", "entities": entities });
@@ -1840,9 +1826,9 @@ function removeGuard()
 
 function increaseAlertLevel()
 {
-	var entities = g_Selection.toList().filter(function(e) {
+	var entities = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
-		return (state && state.alertRaiser && state.alertRaiser.canIncreaseLevel);
+		return state && state.alertRaiser && state.alertRaiser.canIncreaseLevel;
 	});
 
 	Engine.PostNetworkCommand({ "type": "increase-alert-level", "entities": entities });
@@ -1850,9 +1836,9 @@ function increaseAlertLevel()
 
 function endOfAlert()
 {
-	var entities = g_Selection.toList().filter(function(e) {
+	var entities = g_Selection.toList().filter(e => {
 		var state = GetEntityState(e);
-		return (state && state.alertRaiser && state.alertRaiser.hasRaisedAlert);
+		return state && state.alertRaiser && state.alertRaiser.hasRaisedAlert;
 	});
 
 	Engine.PostNetworkCommand({ "type": "alert-end", "entities": entities });
@@ -1897,7 +1883,7 @@ function getTrainingQueueItems(selection)
 			queue.push(item);
 			foundNewItems = true;
 		}
-		i++;
+		++i;
 	}
 	while (foundNewItems);
 	return queue;

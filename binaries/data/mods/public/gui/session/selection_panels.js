@@ -123,13 +123,18 @@ g_SelectionPanels.Barter = {
 		button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
 		button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
 
-		button.Sell.onPress = function() { g_BarterSell = data.item; };
-		let exchangeResourcesParameters = {
-			"sell": g_BarterSell,
-			"buy": data.item,
-			"amount": amountToSell
+		button.Sell.onPress = function() {
+			g_BarterSell = data.item;
 		};
-		button.Buy.onPress = function() { exchangeResources(exchangeResourcesParameters); };
+
+		button.Buy.onPress = function() { 
+			Engine.PostNetworkCommand({
+				"type": "barter",
+				"sell": g_BarterSell,
+				"buy": data.item,
+				"amount": amountToSell
+			});
+		};
 
 		let isSelected = data.item == g_BarterSell;
 		let grayscale = isSelected ? "color: 0 0 0 100:grayscale:" : "";
@@ -1047,8 +1052,6 @@ g_SelectionPanels.Training = {
 		return true;
 	}
 };
-
-
 
 /**
  * If two panels need the same space, so they collide,
