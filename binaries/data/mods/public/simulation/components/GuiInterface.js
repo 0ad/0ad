@@ -598,7 +598,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		let auraTemplate = cmpDataTemplateManager.GetAuraTemplate(name);
 		if (!auraTemplate)
 		{
-			// the following warning is perhaps useless since it's yet done in DataTemplateManager
+			// The following warning is perhaps useless since it's yet done in DataTemplateManager
 			warn("Tried to get data for invalid aura: " + name);
 			continue;
 		}

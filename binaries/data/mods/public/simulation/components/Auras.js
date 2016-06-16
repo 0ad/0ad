@@ -1,10 +1,10 @@
 function Auras() {}
 
 Auras.prototype.Schema =
-			"<attribute name='datatype'>" +
-				"<value>tokens</value>" +
-			"</attribute>" +
-			"<text/>";
+	"<attribute name='datatype'>" +
+		"<value>tokens</value>" +
+	"</attribute>" +
+	"<text a:help='A whitespace-separated list of aura files, placed under simulation/data/auras/'/>";
 
 Auras.prototype.Init = function()
 {
@@ -112,9 +112,9 @@ Auras.prototype.CanApply = function(name)
 	if (!this.auras[name].requiredTechnology)
 		return true;
 	let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (!cmpTechnologyManager || !cmpTechnologyManager.IsTechnologyResearched(this.auras[name].requiredTechnology))
+	if (!cmpTechnologyManager)
 		return false;
-	return true;
+	return cmpTechnologyManager.IsTechnologyResearched(this.auras[name].requiredTechnology);
 };
 
 Auras.prototype.HasFormationAura = function()
@@ -407,12 +407,10 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 		let requiredTech = this.auras[name].requiredTechnology;
 		if (requiredTech && requiredTech == msg.tech)
 		{
-			needsClean = true;
-			break;
+			this.Clean();
+			return;
 		}
 	}
-	if (needsClean)
-		this.Clean();
 };
 
 Engine.RegisterComponentType(IID_Auras, "Auras", Auras);
