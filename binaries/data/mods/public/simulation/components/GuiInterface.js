@@ -315,8 +315,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 	if (cmpTrader)
 		ret.trader = {
-			"goods": cmpTrader.GetGoods(),
-			"requiredGoods": cmpTrader.GetRequiredGoods()
+			"goods": cmpTrader.GetGoods()
 		};
 
 	let cmpFogging = Engine.QueryInterface(ent, IID_Fogging);

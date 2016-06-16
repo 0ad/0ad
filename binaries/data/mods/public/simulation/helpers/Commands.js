@@ -608,16 +608,6 @@ var g_Commands = {
 		});
 	},
 
-	"select-required-goods": function(player, cmd, data)
-	{
-		for (let ent of data.entities)
-		{
-			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
-			if (cmpTrader)
-				cmpTrader.SetRequiredGoods(cmd.requiredGoods);
-		}
-	},
-
 	"set-trading-goods": function(player, cmd, data)
 	{
 		data.cmpPlayer.SetTradingGoods(cmd.tradingGoods);
