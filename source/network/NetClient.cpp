@@ -711,7 +711,8 @@ bool CNetClient::OnKicked(void *context, CFsmEvent* event)
 
 	client->GetScriptInterface().Eval("({})", &msg);
 	client->GetScriptInterface().SetProperty(msg, "username", message->m_Name);
-	client->GetScriptInterface().SetProperty(msg, "type", message->m_Ban ? std::string("banned") : std::string("kicked"));
+	client->GetScriptInterface().SetProperty(msg, "type", CStr("kicked"));
+	client->GetScriptInterface().SetProperty(msg, "banned", message->m_Ban != 0);
 	client->PushGuiMessage(msg);
 
 	return true;
