@@ -116,6 +116,7 @@ function loadStructure(templateName)
 		"technology": [],
 		"units": []
 	};
+
 	if (template.ProductionQueue)
 	{
 		if (template.ProductionQueue.Entities && template.ProductionQueue.Entities._string)
@@ -266,7 +267,7 @@ function loadTechnologyPair(pairCode)
 
 	return {
 		"techs": [ pairInfo.top, pairInfo.bottom ],
-		"req": (pairInfo.supersedes !== undefined) ? pairInfo.supersedes : ""
+		"req": pairInfo.supersedes || ""
 	};
 }
 

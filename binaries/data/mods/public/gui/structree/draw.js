@@ -15,7 +15,7 @@ function draw()
 	let defMargin = 4;
 	let phaseList = g_ParsedData.phaseList;
 
-	Engine.GetGUIObjectByName("civEmblem").sprite = "stretched:"+g_CivData[g_SelectedCiv].Emblem;
+	Engine.GetGUIObjectByName("civEmblem").sprite = "stretched:" + g_CivData[g_SelectedCiv].Emblem;
 	Engine.GetGUIObjectByName("civName").caption = g_CivData[g_SelectedCiv].Name;
 	Engine.GetGUIObjectByName("civHistory").caption = g_CivData[g_SelectedCiv].History;
 
@@ -30,16 +30,24 @@ function draw()
 			let thisEle = Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]");
 			if (thisEle === undefined)
 			{
-				error("\""+g_SelectedCiv+"\" has more structures in phase "+pha+" than can be supported by the current GUI layout");
+				error("\""+g_SelectedCiv+"\" has more structures in phase " +
+				      pha + " than can be supported by the current GUI layout");
 				break;
 			}
 
 			let c = 0;
 			let rowCounts = [];
 			stru = g_ParsedData.structures[stru];
-			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_icon").sprite = "stretched:session/portraits/"+stru.icon;
-			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_icon").tooltip = assembleTooltip(stru);
-			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_name").caption = translate(stru.name.specific);
+
+			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_icon").sprite =
+				"stretched:session/portraits/"+stru.icon;
+
+			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_icon").tooltip =
+				assembleTooltip(stru);
+
+			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_name").caption =
+				translate(stru.name.specific);
+
 			thisEle.hidden = false;
 
 			for (let r in g_DrawLimits[pha].prodQuant)
@@ -47,8 +55,8 @@ function draw()
 				let p = 0;
 				r = +r; // force int
 				let prod_pha = phaseList[phaseList.indexOf(pha) + r];
+
 				if (stru.production.units[prod_pha])
-				{
 					for (let prod of stru.production.units[prod_pha])
 					{
 						prod = g_ParsedData.units[prod];
@@ -56,32 +64,37 @@ function draw()
 							break;
 						p++;
 					}
-				}
+
 				if (stru.wallset && prod_pha == pha)
-				{
 					for (let prod of [stru.wallset.gate, stru.wallset.tower])
 					{
 						if (!drawProdIcon(i, s, r, p, prod))
 							break;
 						p++;
 					}
-				}
+
 				if (stru.production.technology[prod_pha])
-				{
 					for (let prod of stru.production.technology[prod_pha])
 					{
-						prod = clone(depath(prod).slice(0,5) == "phase" ? g_ParsedData.phases[prod] : g_ParsedData.techs[prod]);
+						prod = clone(depath(prod).slice(0,5) == "phase" ?
+							g_ParsedData.phases[prod] :
+							g_ParsedData.techs[prod]);
+
 						for (let res in stru.techCostMultiplier)
 							if (prod.cost[res])
 								prod.cost[res] *= stru.techCostMultiplier[res];
+
 						if (!drawProdIcon(i, s, r, p, prod))
 							break;
-						p++;
+
+						++p;
 					}
-				}
+
 				rowCounts[r] = p;
+
 				if (p>c)
 					c = p;
+
 				hideRemaining("phase["+i+"]_struct["+s+"]_row["+r+"]_prod[", p, "]");
 			}
 
@@ -152,7 +165,7 @@ function draw()
 		hideRemaining("trainer["+t+"]_prod[", p, "]");
 
 		let size = thisEle.size;
-		size.right = size.left + ((p*24 < defWidth)?defWidth:p*24)+4;
+		size.right = size.left + Math.max(p*24, defWidth) + 4;
 		thisEle.size = size;
 
 		let eleWidth = size.right - size.left;
@@ -175,12 +188,14 @@ function draw()
 function drawProdIcon(pha, s, r, p, prod)
 {
 	let prodEle = Engine.GetGUIObjectByName("phase["+pha+"]_struct["+s+"]_row["+r+"]_prod["+p+"]");
+
 	if (pha === null)
 		prodEle = Engine.GetGUIObjectByName("trainer["+s+"]_prod["+p+"]");
 
 	if (prodEle === undefined)
 	{
-		error("The "+(pha === null ? "trainer units" : "structures")+" of \""+g_SelectedCiv+"\" have more production icons than can be supported by the current GUI layout");
+		error("The "+(pha === null ? "trainer units" : "structures") + " of \"" + g_SelectedCiv +
+		      "\" have more production icons than can be supported by the current GUI layout");
 		return false;
 	}
 
@@ -205,12 +220,12 @@ function getPositionOffset(idx)
 
 function hideRemaining(prefix, idx, suffix)
 {
-	let obj = Engine.GetGUIObjectByName(prefix+idx+suffix);
+	let obj = Engine.GetGUIObjectByName(prefix + idx + suffix);
 	while (obj)
 	{
 		obj.hidden = true;
 		++idx;
-		obj = Engine.GetGUIObjectByName(prefix+idx+suffix);
+		obj = Engine.GetGUIObjectByName(prefix + idx + suffix);
 	}
 }
 
@@ -233,7 +248,7 @@ function predraw()
 	{
 		let offset = getPositionOffset(i);
 		// Align the phase row
-		Engine.GetGUIObjectByName("phase["+i+"]").size = "8 16+"+offset+" 100% 100%";
+		Engine.GetGUIObjectByName("phase["+i+"]").size = "8 16+" + offset + " 100% 100%";
 
 		// Set phase icon
 		let phaseIcon = Engine.GetGUIObjectByName("phase["+i+"]_phase");
