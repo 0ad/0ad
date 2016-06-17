@@ -12,6 +12,14 @@ function formatTrained(trained, lost, killed)
 		g_KilledColor + killed + '[/color]';
 }
 
+function formatCaptured(constructed, destroyed, captured, lost)
+{
+	return g_TrainedColor + constructed + '[/color] / ' +
+		g_KilledColor + destroyed + '[/color]\n' +
+		g_CapturedColor + captured + '[/color] / ' +
+		g_LostColor + lost + '[/color]\n'
+}
+
 function formatIncome(income, outcome)
 {
 	return g_IncomeColor + income + '[/color] / ' +
@@ -35,6 +43,19 @@ function formatRatio(divident, divisor)
 		return g_InfiniteSymbol;
 
 	return Math.round(divident / divisor * 100) / 100;
+}
+
+/**
+ * Clean [Color=""], [/Color], white space, + and % for make the sum more easy
+ * Remove \n only when removeLineFeed == true
+ */
+function cleanGUICaption(team, player, counter, removeLineFeed = true)
+{
+	let caption = Engine.GetGUIObjectByName("valueDataTeam[" + team + "][" + player + "][" + counter + "]").caption;
+	if (removeLineFeed)
+		return caption.replace(/\[([\w\' \\\"\/\=]*)\]|\+|\%|\s/g, "");
+	else
+		return caption.replace(/\[([\w\' \\\"\/\=]*)\]|[\t\r \f]/g, "");
 }
 
 function updateCountersPlayer(playerState, counters, idGUI)
@@ -97,7 +118,8 @@ function calculateEconomyScore(playerState)
 function calculateMilitaryScore(playerState)
 {
 	return Math.round((playerState.statistics.enemyUnitsKilledValue +
-		playerState.statistics.enemyBuildingsDestroyedValue) / 10);
+		playerState.statistics.enemyBuildingsDestroyedValue +
+		playerState.statistics.buildingsCapturedValue) / 10);
 }
 
 function calculateExplorationScore(playerState)
@@ -144,14 +166,48 @@ function calculateScoreTeam(counters)
 function calculateBuildings(playerState, position)
 {
 	let type = g_BuildingsTypes[position];
-
-	return formatTrained(
+	return formatCaptured(
 		playerState.statistics.buildingsConstructed[type],
-		playerState.statistics.buildingsLost[type],
-		playerState.statistics.enemyBuildingsDestroyed[type]);
+		playerState.statistics.enemyBuildingsDestroyed[type],
+		playerState.statistics.buildingsCaptured[type],
+		playerState.statistics.buildingsLost[type]);
 }
 
-function calculateColorsTeam(counters)
+function calculateBuildingsTeam(counters)
+{
+	for (let t in g_Teams)
+	{
+		if (t == -1)
+			continue;
+
+		for (let w in counters)
+		{
+			let total = {
+				"constructed" : 0,
+				"destroyed" : 0,
+				"captured" : 0,
+				"lost" : 0
+			};
+
+			for (let p = 0; p < g_Teams[t]; ++p)
+			{
+				let splitCaption = cleanGUICaption(t, p, w, false).split("\n");
+				let first = splitCaption[0].split("/");
+				let second = splitCaption[1].split("/");
+
+				total.constructed += +first[0];
+				total.destroyed += +first[1];
+				total.captured += +second[0];
+				total.lost += +second[1];
+			}
+
+			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption =
+				formatCaptured(total.constructed, total.destroyed, total.captured, total.lost);
+		}
+	}
+}
+
+function calculateUnitsTeam(counters)
 {
 	for (let t in g_Teams)
 	{
@@ -168,11 +224,7 @@ function calculateColorsTeam(counters)
 
 			for (let p = 0; p < g_Teams[t]; ++p)
 			{
-				let caption = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
-				// clean [Color=""], [/Color] and white space for make the sum more easy
-				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s/g, "");
-
-				let splitCaption = caption.split("/");
+				let splitCaption = cleanGUICaption(t, p, w).split("/");
 
 				total.constructed += +splitCaption[0];
 				total.lost += +splitCaption[1];
@@ -251,9 +303,7 @@ function calculateResourcesTeam(counters)
 
 			for (let p = 0; p < g_Teams[t]; ++p)
 			{
-				let caption = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
-				// clean [Color=""], [/Color] and white space for make the sum more easy
-				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s/g, "");
+				let caption = cleanGUICaption(t, p, w);
 
 				if (w >= 6)
 					total.income += +caption;
@@ -321,15 +371,13 @@ function calculateMarketTeam(counters)
 
 			for (let p = 0; p < g_Teams[t]; ++p)
 			{
-				let caption = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
-				// clean [Color=""], [/Color], white space, + and % for make the sum more easy
-				caption = caption.replace(/\[([\w\' \\\"\/\=]*)\]|\s|\+|\%/g, "");
+				let caption = cleanGUICaption(t, p, w);
 
 				if (w >= 4)
 					total.income += +caption;
 				else
 				{
-					let splitCaption = caption.split("-");
+					let splitCaption = caption.split("/");
 					total.income += +splitCaption[0];
 					total.outcome += +splitCaption[1];
 				}

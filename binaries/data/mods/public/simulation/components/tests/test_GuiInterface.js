@@ -126,6 +126,7 @@ AddMock(100, IID_StatisticsTracker, {
 			"unitsTrained": 10,
 			"unitsLost": 9,
 			"buildingsConstructed": 5,
+			"buildingsCaptured": 7,
 			"buildingsLost": 4,
 			"civCentresBuilt": 1,
 			"resourcesGathered": {
@@ -208,6 +209,7 @@ AddMock(101, IID_StatisticsTracker, {
 			"unitsTrained": 10,
 			"unitsLost": 9,
 			"buildingsConstructed": 5,
+			"buildingsCaptured": 7,
 			"buildingsLost": 4,
 			"civCentresBuilt": 1,
 			"resourcesGathered": {
@@ -362,6 +364,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 				unitsTrained: 10,
 				unitsLost: 9,
 				buildingsConstructed: 5,
+				buildingsCaptured: 7,
 				buildingsLost: 4,
 				civCentresBuilt: 1,
 				resourcesGathered: {
@@ -415,6 +418,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 				unitsTrained: 10,
 				unitsLost: 9,
 				buildingsConstructed: 5,
+				buildingsCaptured: 7,
 				buildingsLost: 4,
 				civCentresBuilt: 1,
 				resourcesGathered: {
