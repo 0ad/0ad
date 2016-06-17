@@ -948,7 +948,7 @@ function updateGroups()
 
 function updateDebug()
 {
-	let debug = Engine.GetGUIObjectByName("debug");
+	let debug = Engine.GetGUIObjectByName("debugEntityState");
 
 	if (!Engine.GetGUIObjectByName("devDisplayState").checked)
 	{

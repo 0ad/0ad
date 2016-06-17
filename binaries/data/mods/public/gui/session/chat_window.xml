@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<object name="chatDialogPanel" size="50%-180 50%-66 50%+180 50%+54" type="image" hidden="true" sprite="genericPanel">
+
+	<!-- Message addressee -->
+	<object size="16 14 50 38" type="text" style="chatPanel">
+		<translatableAttribute id="caption" context="chat input">To:</translatableAttribute>
+	</object>
+	<object size="75 12 100%-16 36" name="chatAddressee" type="dropdown" style="ModernDropDown" tooltip_style="sessionToolTipBold">
+		<translatableAttribute id="tooltip" context="chat input">Select chatmessage addressee</translatableAttribute>
+	</object>
+
+	<!-- Message text -->
+	<object size="16 46 50 70" type="text" style="chatPanel">
+		<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
+	</object>
+	<object name="chatInput" size="75 44 100%-16 68" type="input" style="ModernInput" max_length="80">
+		<translatableAttribute id="tooltip" context="chat input">Type the message to send.</translatableAttribute>
+		<action on="Press">submitChatInput();</action>
+		<action on="Tab">
+			let playernames = [];
+			for (let player in g_PlayerAssignments)
+				playernames.push(g_PlayerAssignments[player].name);
+			autoCompleteNick(this, playernames);
+		</action>
+	</object>
+
+	<!-- Cancel Button -->
+	<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
+		<translatableAttribute id="caption">Cancel</translatableAttribute>
+		<action on="Press">closeChat();</action>
+	</object>
+
+	<!-- Send Button -->
+	<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
+		<translatableAttribute id="caption">Send</translatableAttribute>
+		<action on="Press">submitChatInput();</action>
+	</object>
+
+</object>

@@ -39,7 +39,9 @@
 
 				<object name="playersFilter" type="input" style="ModernInput" size="12%-5 0 56%-10 100%" font="sans-bold-13">
 					<action on="Press">displayReplayList();</action>
-					<action on="Tab">autoCompleteNick("playersFilter", g_Playernames.map(name => ({ "name": name })));</action>
+					<action on="Tab">
+						autoCompleteNick(this, g_Playernames);
+					</action>
 				</object>
 
 				<object name="mapNameFilter" type="dropdown" style="ModernDropDown" size="56%-5 0 70%-10 100%" font="sans-bold-13">

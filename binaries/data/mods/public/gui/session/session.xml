@@ -13,7 +13,7 @@
 <script file="gui/common/settings.js"/>
 <script file="gui/common/timer.js"/>
 <script file="gui/common/tooltips.js"/>
-<!-- load all scripts in this directory -->
+
 <script directory="gui/session/"/>
 
 <object name="sn" hotkey="session.gui.toggle">
@@ -33,147 +33,24 @@
 		this.hidden = !this.hidden;
 	</action>
 
-	<!-- ================================  ================================ -->
-	<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
-	<!-- ================================  ================================ -->
-
-	<!-- hotkeys are in a separate directory -->
+	<!-- Hotkeys won't work properly unless outside menu) -->
 	<include directory="gui/session/hotkeys/"/>
 
-	<!-- ================================  ================================ -->
-	<!-- Developer / Debug items -->
-	<!-- ================================  ================================ -->
-
-	<!-- Debug text -->
-	<object name="debug"
-		type="text"
-		size="0 70 80% 100%"
-		ghost="true"
-		textcolor="yellow"
-		font="mono-stroke-10"
-	/>
-
-	<!-- Dev/cheat commands -->
-	<object name="devCommands" size="100%-225 50%-88 100%-8 50%+120" type="image" sprite="devCommandsBackground" z="40"
-		hidden="true" hotkey="session.devcommands.toggle">
-		<action on="Press">toggleDeveloperOverlay();</action>
-
-		<object size="0 0 100%-18 16" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Control all units</translatableAttribute>
-		</object>
-		<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="ModernTickBox">
-			<action on="Press">
-				Engine.PostNetworkCommand({ "type": "control-all", "flag": this.checked });
-			</action>
-		</object>
-
-		<object size="0 16 100%-18 32" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Change perspective</translatableAttribute>
-		</object>
-		<object size="100%-16 16 100% 32" type="checkbox" style="ModernTickBox">
-			<action on="Press">toggleChangePerspective(this.checked);</action>
-		</object>
-
-		<object size="0 32 100%-18 48" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Display selection state</translatableAttribute>
-		</object>
-		<object size="100%-16 32 100% 48" type="checkbox" name="devDisplayState" style="ModernTickBox"/>
-
-		<object size="0 48 100%-18 64" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Pathfinder overlay</translatableAttribute>
-		</object>
-		<object size="100%-16 48 100% 64" type="checkbox" style="ModernTickBox">
-			<action on="Press">Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);</action>
-		</object>
-
-		<object size="0 64 100%-18 80" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Obstruction overlay</translatableAttribute>
-		</object>
-		<object size="100%-16 64 100% 80" type="checkbox" style="ModernTickBox">
-			<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
-		</object>
-
-		<object size="0 80 100%-18 96" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Unit motion overlay</translatableAttribute>
-		</object>
-		<object size="100%-16 80 100% 96" type="checkbox" style="ModernTickBox">
-			<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
-		</object>
-
-		<object size="0 96 100%-18 112" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Range overlay</translatableAttribute>
-		</object>
-		<object size="100%-16 96 100% 112" type="checkbox" style="ModernTickBox">
-			<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
-		</object>
-
-		<object size="0 112 100%-18 128" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Bounding box overlay</translatableAttribute>
-		</object>
-		<object size="100%-16 112 100% 128" type="checkbox" style="ModernTickBox">
-			<action on="Press">Engine.SetBoundingBoxDebugOverlay(this.checked);</action>
-		</object>
-
-		<object size="0 128 100%-18 144" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Restrict camera</translatableAttribute>
-		</object>
-		<object size="100%-16 128 100% 144" type="checkbox" style="ModernTickBox" checked="true">
-			<action on="Press">
-				Engine.GameView_SetConstrainCameraEnabled(this.checked);
-			</action>
-		</object>
-
-		<object size="0 144 100%-18 160" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Reveal map</translatableAttribute>
-		</object>
-		<object size="100%-16 144 100% 160" type="checkbox" name="devCommandsRevealMap" style="ModernTickBox">
-			<action on="Load">this.checked = Engine.GuiInterfaceCall("IsMapRevealed");</action>
-			<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
-		</object>
-
-		<object size="0 160 100%-18 176" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Enable time warp</translatableAttribute>
-		</object>
-			<object size="100%-16 160 100% 176" type="checkbox" name="devTimeWarp" style="ModernTickBox">
-			<action on="Press">
-				if (this.checked)
-				showTimeWarpMessageBox();
-				Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
-		</object>
-
-		<object size="0 176 100%-18 192" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Promote selected units</translatableAttribute>
-		</object>
-		<object size="100%-16 176 100% 192" type="button" style="ModernTickBox">
-			<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
-		</object>
-
-	    <object size="0 192 100%-18 208" type="text" style="devCommandsText">
-			<translatableAttribute id="caption">Hierarchical pathfinder overlay</translatableAttribute>
-		</object>
-	    <object size="100%-16 192 100% 208" type="checkbox" style="ModernTickBox">
-			<action on="Press">Engine.GuiInterfaceCall("SetPathfinderHierDebugOverlay", this.checked);</action>
-	    </object>
-	</object>
-
-	<!-- ================================  ================================ -->
 	<!-- Time elapsed counter -->
-	<!-- ================================  ================================ -->
-
 	<object size="100%-250 45 100%-140 65" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
 			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", ""+(Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") !== "true"));
-			</action>
-	</object>
-	<object size="100%-250 80 100%-140 100" type="text" name="ceasefireCounter" style="SettingsText" hotkey="ceasefirecounter.toggle" hidden="true">
-			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "gui.session.ceasefirecounter", ""+(Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") !== "true"));
+				Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", String(Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") !== "true"));
 			</action>
 	</object>
 
-	<!-- ================================  ================================ -->
+	<!-- Ceasefire counter -->
+	<object size="100%-250 80 100%-140 100" type="text" name="ceasefireCounter" style="SettingsText" hotkey="ceasefirecounter.toggle" hidden="true">
+			<action on="Press">
+				Engine.ConfigDB_CreateValue("user", "gui.session.ceasefirecounter", String(Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") !== "true"));
+			</action>
+	</object>
+
 	<!-- Pause Overlay -->
-	<!-- ================================  ================================ -->
 	<object type="button" name="pauseOverlay" size="0 0 100% 100%" tooltip_style="sessionToolTip" hidden="true" z="0">
 	    <object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
 	    <object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true" z="0">
@@ -186,120 +63,51 @@
 	    <action on="Press">togglePause();</action>
 	</object>
 
-	<!-- ================================  ================================ -->
 	<!-- Notification Area -->
-	<!-- ================================  ================================ -->
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
 	    <object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 	</object>
 
-
-	<!-- ================================  ================================ -->
-	<!-- Chat -->
-	<!-- ================================  ================================ -->
-
-	<!-- Chat panel -->
+	<!-- Chat messages -->
 	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">
 	    <object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
 	</object>
 
-	<!-- Chat window -->
-	<object name="chatDialogPanel" size="50%-180 50%-66 50%+180 50%+54" type="image" hidden="true" sprite="genericPanel">
+	<!-- Entity selection state text -->
+	<object name="debugEntityState"
+		type="text"
+		size="0 70 80% 100%"
+		ghost="true"
+		textcolor="yellow"
+		font="mono-stroke-10"
+	/>
 
-		<!-- Message addressee -->
-		<object size="16 14 50 38" type="text" style="chatPanel">
-			<translatableAttribute id="caption" context="chat input">To:</translatableAttribute>
-		</object>
-		<object size="75 12 100%-16 36" name="chatAddressee" type="dropdown" style="ModernDropDown" tooltip_style="sessionToolTipBold">
-			<translatableAttribute id="tooltip" context="chat input">Select chatmessage addressee</translatableAttribute>
-		</object>
-
-		<!-- Message text -->
-		<object size="16 46 50 70" type="text" style="chatPanel">
-			<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
-		</object>
-		<object name="chatInput" size="75 44 100%-16 68" type="input" style="ModernInput" max_length="80">
-			<translatableAttribute id="tooltip" context="chat input">Type the message to send.</translatableAttribute>
-			<action on="Press">submitChatInput();</action>
-			<action on="Tab">
-				var players = [];
-				for (var player in g_PlayerAssignments)
-					players.push(g_PlayerAssignments[player]);
-				autoCompleteNick("chatInput", players);
-			</action>
-		</object>
-
-		<!-- Cancel -->
-		<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
-			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">closeChat();</action>
-		</object>
-
-		<!-- Send -->
-		<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
-			<translatableAttribute id="caption">Send</translatableAttribute>
-			<action on="Press">submitChatInput();</action>
-		</object>
-	</object>
-
-	<!-- ================================  ================================ -->
-	<!-- Custom dialogs -->
-	<!-- ================================  ================================ -->
 	<include directory="gui/session/dialogs/"/>
-
-	<!-- ================================  ================================ -->
-	<!-- Diplomacy Window -->
-	<!-- ================================  ================================ -->
+	<include file="gui/session/chat_window.xml"/>
+	<include file="gui/session/developer_overlay.xml"/>
 	<include file="gui/session/diplomacy_window.xml"/>
-
-	<!-- ================================  ================================ -->
-	<!-- Trade Window -->
-	<!-- ================================  ================================ -->
 	<include file="gui/session/trade_window.xml"/>
-
-	<!-- ================================  ================================ -->
-	<!-- Top Panel  -->
-	<!-- ================================  ================================ -->
 	<include file="gui/session/top_panel.xml"/>
-
-	<!-- ================================  ================================ -->
-	<!-- Menu -->
-	<!-- ================================  ================================ -->
 	<include file="gui/session/menu.xml"/>
 
-	<!-- ================================  ================================ -->
-	<!-- Session objects                                                    -->
 	<!-- Contains miscellanious objects s.a.: the technology research -->
 	<!-- progress, group selection icons, and the hero selection icon -->
-	<!-- ================================  ================================ -->
 	<include directory="gui/session/session_objects/"/>
 
-	<!-- ================================  ================================ -->
 	<!-- Information tooltip -->
 	<!-- Follows the mouse around if 'independent' is set to 'true'. -->
-	<!-- ================================  ================================ -->
 	<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
-	<!-- ================================  ================================ -->
 	<!-- Building placement info tooltip -->
-	<!-- ================================  ================================ -->
 	<object name="placementTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
-	<!-- ================================  ================================ -->
 	<!-- START of BOTTOM PANEL -->
 	<!-- limit to the minimal supported width of 1024px -->
-	<!-- ================================  ================================ -->
 	<object size="50%-512 0 50%+512 100%">
 
-		<!-- ================================  ================================ -->
-		<!-- Minimap -->
-		<!-- ================================  ================================ -->
 		<include file="gui/session/minimap_panel.xml"/>
 
-
-		<!-- ================================  ================================ -->
 		<!-- Supplemental Details Panel (Left of Selection Details) -->
-		<!-- ================================  ================================ -->
 		<object
 			size="50%-304 100%-170 50%-110 100%"
 			name="supplementalSelectionDetails"
@@ -310,10 +118,7 @@
 			<include directory="gui/session/selection_panels_left/"/>
 		</object>
 
-
-	    <!-- ================================  ================================ -->
 	    <!-- Selection Details Panel (Middle) -->
-	    <!-- ================================  ================================ -->
 	    <object name="selectionDetails"
 		    type="image"
 		    sprite="selectionDetailsPanel"
@@ -323,9 +128,7 @@
 			<include directory="gui/session/selection_panels_middle/"/>
 	    </object>
 
-	    <!-- ================================  ================================ -->
 	    <!-- Commands Panel (Right of Selection Details) -->
-	    <!-- ================================  ================================ -->
 	    <object name="unitCommands"
 		    type="image"
 		    sprite="unitCommandsPanel"
@@ -336,16 +139,12 @@
 			<include directory="gui/session/selection_panels_right/"/>
 		</object>
 	</object><!-- END OF BOTTOM PANEL -->
-</object> <!-- END OF SN OBJECT -->
+</object> <!-- END OF SESSION OBJECT -->
 
-<!-- ================================  ================================ -->
 <!-- Selection bandbox -->
-<!-- ================================  ================================ -->
 <object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="200"/>
 
-<!-- ================================  ================================ -->
 <!-- Network status -->
-<!-- ================================  ================================ -->
 <object name="netStatus" type="text" style="netStatus" z="200" hidden="true">
 	<object type="button"
 		name="disconnectedExitButton"
@@ -356,7 +155,7 @@
 		<object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">
 			<translatableAttribute id="caption">Exit</translatableAttribute>
 		</object>
-		<action on="Press">leaveGame()</action>
+		<action on="Press">leaveGame();</action>
 	</object>
 </object>
 
