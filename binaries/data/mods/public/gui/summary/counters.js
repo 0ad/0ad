@@ -17,7 +17,7 @@ function formatCaptured(constructed, destroyed, captured, lost)
 	return g_TrainedColor + constructed + '[/color] / ' +
 		g_KilledColor + destroyed + '[/color]\n' +
 		g_CapturedColor + captured + '[/color] / ' +
-		g_LostColor + lost + '[/color]\n'
+		g_LostColor + lost + '[/color]\n';
 }
 
 function formatIncome(income, outcome)
@@ -46,8 +46,9 @@ function formatRatio(divident, divisor)
 }
 
 /**
- * Clean [Color=""], [/Color], white space, + and % for make the sum more easy
+ * Remove color tags, whitespace, + and % to read numerical values from the GUI objects.
  * Remove \n only when removeLineFeed == true
+ * TODO: access the data directly instead of this ugly hack.
  */
 function cleanGUICaption(team, player, counter, removeLineFeed = true)
 {
