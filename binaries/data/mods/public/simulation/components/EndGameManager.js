@@ -10,7 +10,10 @@ EndGameManager.prototype.Schema =
 EndGameManager.prototype.Init = function()
 {
 	this.gameType = "conquest";
-	this.wonderDuration = 10 * 60 * 1000;
+
+	// Contains settings specific to the victory condition,
+	// for example wonder victory duration.
+	this.gameTypeSettings = {};
 
 	// Allied victory means allied players can win if victory conditions are met for each of them
 	// False for a "last man standing" game
@@ -24,10 +27,9 @@ EndGameManager.prototype.GetGameType = function()
 	return this.gameType;
 };
 
-EndGameManager.prototype.SetGameType = function(newGameType)
+EndGameManager.prototype.GetGameTypeSettings = function()
 {
-	this.gameType = newGameType;
-	Engine.BroadcastMessage(MT_GameTypeChanged, {});
+	return this.gameTypeSettings;
 };
 
 EndGameManager.prototype.CheckGameType = function(type)
@@ -35,14 +37,12 @@ EndGameManager.prototype.CheckGameType = function(type)
 	return this.gameType == type;
 };
 
-EndGameManager.prototype.SetWonderDuration = function(wonderDuration)
+EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
 {
-	this.wonderDuration = wonderDuration;
-};
+	this.gameType = newGameType;
+	this.gameTypeSettings = newSettings;
 
-EndGameManager.prototype.GetWonderDuration = function()
-{
-	return this.wonderDuration;
+	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
 
 EndGameManager.prototype.MarkPlayerAsWon = function(playerID)

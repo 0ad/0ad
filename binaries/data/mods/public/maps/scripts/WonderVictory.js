@@ -11,7 +11,6 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
-	// Remove existing messages if any
 	if (timer)
 	{
 		cmpTimer.CancelTimer(timer);
@@ -32,24 +31,28 @@ Trigger.prototype.CheckWonderVictory = function(data)
 		if (i != data.to)
 			players.push(i);
 
-	let time = cmpWonder.GetVictoryDuration();
 	let cmpPlayer = QueryOwnerInterface(ent, IID_Player);
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().wonderDuration || 20 * 60 * 1000;
 
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("%(player)s will have won in %(time)s"),
 		"players": players,
-		"parameters": {"player": cmpPlayer.GetName()},
+		"parameters": {
+			"player": cmpPlayer.GetName()
+		},
 		"translateMessage": true,
 		"translateParameters": [],
-	}, time);
+	}, wonderDuration);
 
 	messages.ownMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("You will have won in %(time)s"),
 		"players": [data.to],
 		"translateMessage": true,
-	}, time);
+	}, wonderDuration);
 
-	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager, "MarkPlayerAsWon", time, data.to);
+	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager,
+		"MarkPlayerAsWon", wonderDuration, data.to);
 
 	this.wonderVictoryTimers[ent] = timer;
 	this.wonderVictoryMessages[ent] = messages;
@@ -57,7 +60,6 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
-var data = {"enabled": true};
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", data);
+cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", { "enabled": true });
 cmpTrigger.wonderVictoryTimers = {};
 cmpTrigger.wonderVictoryMessages = {};

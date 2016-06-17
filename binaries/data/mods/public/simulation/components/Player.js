@@ -424,11 +424,7 @@ Player.prototype.SetDiplomacy = function(dipl, skipAlliedVictoryCheck = false)
 
 Player.prototype.SetDiplomacyIndex = function(idx, value, skipAlliedVictoryCheck = false)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpPlayerManager)
-		return;
-
-	var cmpPlayer = QueryPlayerIDInterface(idx);
+	let cmpPlayer = QueryPlayerIDInterface(idx);
 	if (!cmpPlayer)
 		return;
 
