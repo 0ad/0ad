@@ -123,13 +123,18 @@ g_SelectionPanels.Barter = {
 		button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
 		button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
 
-		button.Sell.onPress = function() { g_BarterSell = data.item; };
-		let exchangeResourcesParameters = {
-			"sell": g_BarterSell,
-			"buy": data.item,
-			"amount": amountToSell
+		button.Sell.onPress = function() {
+			g_BarterSell = data.item;
 		};
-		button.Buy.onPress = function() { exchangeResources(exchangeResourcesParameters); };
+
+		button.Buy.onPress = function() { 
+			Engine.PostNetworkCommand({
+				"type": "barter",
+				"sell": g_BarterSell,
+				"buy": data.item,
+				"amount": amountToSell
+			});
+		};
 
 		let isSelected = data.item == g_BarterSell;
 		let grayscale = isSelected ? "color: 0 0 0 100:grayscale:" : "";
@@ -423,23 +428,39 @@ g_SelectionPanels.Garrison = {
 			unloadTemplate(data.item.template);
 		};
 
-		data.button.tooltip = sprintf(
-			translate("Unload %(name)s"),
-			{ "name": getEntityNames(template) }) + "\n" +
-			translate("Single-click to unload 1. Shift-click to unload all of this type.");
-
 		data.countDisplay.caption = data.item.ents.length || "";
 
 		let garrisonedUnitOwner = GetEntityState(data.item.ents[0]).player;
 
-		data.button.sprite = "color:" + rgbToGuiColor(g_Players[garrisonedUnitOwner].color) + ":";
-		data.button.enabled =
-			controlsPlayer(data.unitEntState.player) ||
-			controlsPlayer(garrisonedUnitOwner);
+		let canUngarrison =
+			g_ViewedPlayer == data.unitEntState.player ||
+			g_ViewedPlayer == garrisonedUnitOwner;
 
-		data.icon.sprite = "stretched:session/portraits/" + template.icon;
+		data.button.enabled = canUngarrison && controlsPlayer(g_ViewedPlayer);
+
+		let tooltip = canUngarrison || g_IsObserver ?
+			sprintf(translate("Unload %(name)s"),
+			{ "name": getEntityNames(template) }) + "\n" +
+			translate("Single-click to unload 1. Shift-click to unload all of this type.") :
+			getEntityNames(template);
+
+		tooltip += "\n" + sprintf(translate("Player: %(playername)s"), {
+			"playername": g_Players[garrisonedUnitOwner].name
+		});
+
+		data.button.tooltip = tooltip;
+
+		data.button.sprite = "color:" + rgbToGuiColor(g_Players[garrisonedUnitOwner].color) + ":";
+		data.button.sprite_disabled = data.button.sprite;
+
+		// Selection panel buttons only appear disabled if they
+		// also appear disabled to the owner of the building.
+		data.icon.sprite =
+			(canUngarrison || g_IsObserver ? "" : "grayscale:") +
+			"stretched:session/portraits/" + template.icon;
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);
+
 		return true;
 	}
 };
@@ -1031,8 +1052,6 @@ g_SelectionPanels.Training = {
 		return true;
 	}
 };
-
-
 
 /**
  * If two panels need the same space, so they collide,

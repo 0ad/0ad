@@ -18,12 +18,13 @@
 # Woratiklis, 2015-2016
 # Yegor <revolver45@inbox.ru>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
+# Николай Авдеев <nickkolok@mail.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-04-22 09:01+0200\n"
-"PO-Revision-Date: 2016-05-17 10:38+0000\n"
-"Last-Translator: John Smith <mae_mbllo@mail.ru>\n"
+"POT-Creation-Date: 2016-06-10 09:01+0200\n"
+"PO-Revision-Date: 2016-06-15 23:32+0000\n"
+"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -701,6 +702,10 @@ msgstr "Можешь атаковать через %(time)s"
 msgid "You can attack now!"
 msgstr "Можешь атаковать прямо сейчас!"
 
+#: simulation/components/EndGameManager.js:125
+msgid "Last remaining player wins."
+msgstr "Последний оставшийся игрок выигрывает."
+
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
@@ -759,11 +764,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:373
+#: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
 msgstr "Очередь заполнена."
 
-#: simulation/components/ProductionQueue.js:750
+#: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
 msgstr "Невозможно найти свободное место для подготовленных юнитов"
 

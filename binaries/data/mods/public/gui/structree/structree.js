@@ -1,9 +1,10 @@
 var g_ParsedData = {
-	units: {},
-	structures: {},
-	techs: {},
-	phases: {}
+	"units": {},
+	"structures": {},
+	"techs": {},
+	"phases": {}
 };
+
 var g_Lists = {};
 var g_CivData = {};
 var g_SelectedCiv = "";
@@ -16,15 +17,14 @@ function init(data = {})
 {
 	g_CivData = loadCivData(true);
 
-	if (!Object.keys(g_CivData).length)
+	let civList = Object.keys(g_CivData).map(civ => ({
+		"name": g_CivData[civ].Name,
+		"code": civ,
+	})).sort(sortNameIgnoreCase);
+
+	if (!civList.length)
 		return;
 
-	var civList = [ { "name": civ.Name, "code": civ.Code } for each (civ in g_CivData) ];
-
-	// Alphabetically sort the list, ignoring case
-	civList.sort(sortNameIgnoreCase);
-
-	// Set civ control
 	var civSelection = Engine.GetGUIObjectByName("civSelection");
 	civSelection.list = civList.map(c => c.name);
 	civSelection.list_data = civList.map(c => c.code);
@@ -55,9 +55,11 @@ function selectCiv(civCode)
 		return;
 	}
 
-	g_Lists.units = [];
-	g_Lists.structures = [];
-	g_Lists.techs = [];
+	g_Lists = {
+		"units": [],
+		"structures": [],
+		"techs": []
+	};
 
 	// get initial units
 	var startStructs = [];
@@ -207,11 +209,14 @@ function selectCiv(civCode)
 						phase = req;
 			}
 
-			if (depath(phase).slice(0,5) !== "phase" || g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+			if (depath(phase).slice(0,5) !== "phase" ||
+			    g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+			{
 				if (structInfo.phase !== false)
 					phase = structInfo.phase;
 				else
 					phase = g_ParsedData.phaseList[0];
+			}
 
 			if (!(phase in newProdTech))
 				newProdTech[phase] = [];
@@ -295,7 +300,6 @@ function selectCiv(civCode)
 	g_CivData[g_SelectedCiv].buildList = buildList;
 	g_CivData[g_SelectedCiv].trainList = trainerList;
 
-	// Draw tree
 	draw();
 }
 

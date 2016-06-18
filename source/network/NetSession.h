@@ -70,7 +70,7 @@ public:
 	CNetClientSession(CNetClient& client);
 	~CNetClientSession();
 
-	bool Connect(u16 port, const CStr& server, bool isLocalClient);
+	bool Connect(const CStr& server, const u16 port, const bool isLocalClient);
 
 	/**
 	 * Process queued incoming messages.

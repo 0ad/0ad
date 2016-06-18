@@ -113,7 +113,7 @@ public:
 	 * This function is synchronous (it won't return until the connection is established).
 	 * @return true on success, false on error (e.g. port already in use)
 	 */
-	bool SetupConnection();
+	bool SetupConnection(const u16 port);
 
 	/**
 	 * Call from the GUI to asynchronously notify all clients that they should start loading the game.
@@ -184,7 +184,7 @@ private:
 	 * Begin listening for network connections.
 	 * @return true on success, false on error (e.g. port already in use)
 	 */
-	bool SetupConnection();
+	bool SetupConnection(const u16 port);
 
 	/**
 	 * Call from the GUI to update the player assignments.

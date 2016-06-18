@@ -1,16 +1,16 @@
 Trigger.prototype.CheckWonderVictory = function(data)
 {
-	var ent = data.entity;
-	var cmpWonder = Engine.QueryInterface(ent, IID_Wonder);
+	let ent = data.entity;
+	let cmpWonder = Engine.QueryInterface(ent, IID_Wonder);
 	if (!cmpWonder)
 		return;
 
-	var timer = this.wonderVictoryTimers[ent];
-	var messages = this.wonderVictoryMessages[ent] || {};
+	let timer = this.wonderVictoryTimers[ent];
+	let messages = this.wonderVictoryMessages[ent] || {};
 
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	// Remove existing messages if any
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+
 	if (timer)
 	{
 		cmpTimer.CancelTimer(timer);
@@ -22,29 +22,37 @@ Trigger.prototype.CheckWonderVictory = function(data)
 		return;
 
 	// Create new messages, and start timer to register defeat.
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-	var cmpPlayer = QueryOwnerInterface(ent, IID_Player);
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let numPlayers = cmpPlayerManager.GetNumPlayers();
+
 	// Add -1 to notify observers too
-	var players = [-1];
-	for (var i = 1; i < numPlayers; i++)
+	let players = [-1];
+	for (let i = 1; i < numPlayers; ++i)
 		if (i != data.to)
 			players.push(i);
 
-	var time = cmpWonder.GetVictoryDuration();
+	let cmpPlayer = QueryOwnerInterface(ent, IID_Player);
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().wonderDuration || 20 * 60 * 1000;
+
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("%(player)s will have won in %(time)s"),
 		"players": players,
-		"parameters": {"player": cmpPlayer.GetName()},
+		"parameters": {
+			"player": cmpPlayer.GetName()
+		},
 		"translateMessage": true,
 		"translateParameters": [],
-	}, time);
+	}, wonderDuration);
+
 	messages.ownMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("You will have won in %(time)s"),
 		"players": [data.to],
 		"translateMessage": true,
-	}, time);
-	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager, "MarkPlayerAsWon", time, data.to);
+	}, wonderDuration);
+
+	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager,
+		"MarkPlayerAsWon", wonderDuration, data.to);
 
 	this.wonderVictoryTimers[ent] = timer;
 	this.wonderVictoryMessages[ent] = messages;
@@ -52,7 +60,6 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
-var data = {"enabled": true};
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", data);
+cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", { "enabled": true });
 cmpTrigger.wonderVictoryTimers = {};
 cmpTrigger.wonderVictoryMessages = {};

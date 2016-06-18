@@ -28,24 +28,76 @@ var g_ChatTimers = [];
  * Handle all netmessage types that can occur.
  */
 var g_NetMessageTypes = {
-	"netstatus": msg => handleNetStatusMessage(msg),
-	"netwarn": msg => addNetworkWarning(msg),
-	"players": msg => handlePlayerAssignmentsMessage(msg),
-	"paused": msg => setClientPauseState(msg.guid, msg.pause),
-	"rejoined": msg => addChatMessage({ "type": "rejoined", "guid": msg.guid }),
-	"kicked": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been kicked"), { "username": msg.username }) }),
-	"banned": msg => addChatMessage({ "type": "system", "text": sprintf(translate("%(username)s has been banned"), { "username": msg.username }) }),
-	"chat": msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text }),
-	"aichat": msg => addChatMessage({ "type": "message", "guid": msg.guid, "text": msg.text, "translate": true }),
-	"gamesetup": msg => "", // Needed for autostart
-	"start": msg => ""
+	"netstatus": msg => {
+		handleNetStatusMessage(msg);
+	},
+	"netwarn": msg => {
+		addNetworkWarning(msg);
+	},
+	"players": msg => {
+		handlePlayerAssignmentsMessage(msg);
+	},
+	"paused": msg => {
+		setClientPauseState(msg.guid, msg.pause);
+	},
+	"rejoined": msg => {
+		addChatMessage({
+			"type": "rejoined",
+			"guid": msg.guid
+		});
+	},
+	"kicked": msg => {
+		addChatMessage({
+			"type": "kicked",
+			"username": msg.username,
+			"banned": msg.banned
+		});
+	},
+	"chat": msg => {
+		addChatMessage({
+			"type": "message",
+			"guid": msg.guid,
+			"text": msg.text
+		});
+	},
+	"aichat": msg => {
+		addChatMessage({
+			"type": "message",
+			"guid": msg.guid,
+			"text": msg.text,
+			"translate": true
+		});
+	},
+	"gamesetup": msg => {}, // Needed for autostart
+	"start": msg => {}
 };
 
 var g_FormatChatMessage = {
 	"system": msg => msg.text,
-	"connect": msg => sprintf(translate("%(player)s is starting to rejoin the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
-	"disconnect": msg => sprintf(translate("%(player)s has left the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
-	"rejoined": msg => sprintf(translate("%(player)s has rejoined the game."), { "player": colorizePlayernameByGUID(msg.guid) }),
+	"connect": msg =>
+		sprintf(translate("%(player)s is starting to rejoin the game."), {
+			"player": colorizePlayernameByGUID(msg.guid)
+		}),
+	"disconnect": msg =>
+		sprintf(translate("%(player)s has left the game."), {
+			"player": colorizePlayernameByGUID(msg.guid)
+		}),
+	"rejoined": msg =>
+		sprintf(translate("%(player)s has rejoined the game."), {
+			"player": colorizePlayernameByGUID(msg.guid)
+		}),
+	"kicked": msg =>
+		sprintf(
+			msg.banned ?
+				translate("%(username)s has been banned") :
+				translate("%(username)s has been kicked"),
+			{
+				"username": colorizePlayernameHelper(
+					msg.username,
+					g_Players.findIndex(p => p.name == msg.username)
+				)
+			}
+		),
 	"clientlist": msg => getUsernameList(),
 	"message": msg => formatChatCommand(msg),
 	"defeat": msg => formatDefeatMessage(msg),
@@ -62,7 +114,9 @@ var g_StatusMessageTypes = {
 	"connected": msg => translate("Connected to the server."),
 	"disconnected": msg => translate("Connection to the server has been lost.") + "\n" +
 		// Translation: States the reason why the client disconnected from the server.
-		sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(msg.reason, true) }),
+		sprintf(translate("Reason: %(reason)s."), {
+			"reason": getDisconnectReason(msg.reason, true)
+		}),
 	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
 	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
 	"active": msg => ""
@@ -520,6 +574,11 @@ function onClientLeave(guid)
 
 function updateChatAddressees()
 {
+	// Remember previously selected item
+	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	let selectedName = chatAddressee.list_data[chatAddressee.selected] || "";
+	selectedName = selectedName.substr(0, 4) == "/msg" && selectedName.substr(5);
+
 	let addressees = [
 		{
 			"label": translateWithContext("chat addressee", "Everyone"),
@@ -545,7 +604,8 @@ function updateChatAddressees()
 	});
 
 	// Add playernames for private messages
-	for (let guid of sortGUIDsByPlayerID())
+	let guids = sortGUIDsByPlayerID();
+	for (let guid of guids)
 	{
 		if (guid == Engine.GetPlayerGUID())
 			continue;
@@ -564,10 +624,17 @@ function updateChatAddressees()
 		});
 	}
 
-	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
+	// Select mock item if the selected addressee went offline
+	if (selectedName && guids.every(guid => g_PlayerAssignments[guid].name != selectedName))
+		addressees.push({
+			"cmd": "/msg " + selectedName,
+			"label": sprintf(translate("\\[OFFLINE] %(player)s"), { "player": selectedName })
+		});
+
+	let oldChatAddressee = chatAddressee.list_data[chatAddressee.selected];
 	chatAddressee.list = addressees.map(adressee => adressee.label);
 	chatAddressee.list_data = addressees.map(adressee => adressee.cmd);
-	chatAddressee.selected = 0;
+	chatAddressee.selected = Math.max(0, chatAddressee.list_data.indexOf(oldChatAddressee));
 }
 
 /**
@@ -592,12 +659,9 @@ function submitChatDirectly(text)
  */
 function submitChatInput()
 {
-	let input = Engine.GetGUIObjectByName("chatInput");
-	let text = input.caption;
+	let text = Engine.GetGUIObjectByName("chatInput").caption;
 
-	input.blur(); // Remove focus
-	input.caption = ""; // Clear chat input
-	toggleChatWindow();
+	closeChat();
 
 	if (!text.length)
 		return;

@@ -14,8 +14,10 @@
 
 	<!-- After settings.js, which defines g_Settings and g_MaxPlayers. -->
 	<script file="gui/summary/counters.js"/>
-	<script file="gui/summary/layout.js"/>
 	<script file="gui/summary/summary.js"/>
+
+	<!-- Needs the colors from summary.js -->
+	<script file="gui/summary/layout.js"/>
 
 	<object name="summaryWindow"
 		type="image"
@@ -123,9 +125,11 @@
 					<object size="0 30 100% 100%">
 						<repeat count="8" var="n">
 							<object type="image" name="playerBoxt[i][n]" size="10 0 10 30" hidden="true">
-								<object name="playerColorBoxt[i][n]" type="image" size="10 4 30 24"/>
-								<object name="playerNamet[i][n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText" />
-								<object name="civIcont[i][n]" type="image" size="208 0 240 32"/>
+								<object type="image" sprite="ForegroundBox" size="10 9 34 33">
+									<object name="playerColorBoxt[i][n]" type="image" size="2 2 22 22"/>
+								</object>
+								<object name="playerNamet[i][n]" type="text" size="40 2 208 100%" style="ModernLeftLabelText"/>
+								<object name="civIcont[i][n]" type="image" size="208 5 240 37" />
 								<repeat var="x" count="8">
 									<object name="valueDataTeam[i][n][x]" type="text" style="ModernTabLabelText">
 									</object>
@@ -144,11 +148,11 @@
 			<object type="image" name="noTeamsBox" size="0 65 100% 100%-50" hidden="true">
 				<repeat count="8">
 					<object type="image" name="playerBox[n]" size="10 0 10 30" hidden="true">
-						<object type="image" sprite="ForegroundBox" size="10 4 34 28">
+						<object type="image" sprite="ForegroundBox" size="10 9 34 33">
 							<object name="playerColorBox[n]" type="image" size="2 2 22 22"/>
 						</object>
 						<object name="playerName[n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText"/>
-						<object name="civIcon[n]" type="image" size="208 0 240 32"/>
+						<object name="civIcon[n]" type="image" size="208 5 240 37"/>
 						<repeat var="x" count="8">
 							<object name="valueData[n][x]" type="text" style="ModernTabLabelText">
 							</object>

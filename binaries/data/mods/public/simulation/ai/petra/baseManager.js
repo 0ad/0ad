@@ -463,7 +463,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						queues.field.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base": this.ID }));
 				}
 			}
-			else if (gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) &&
+			else if (gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) &&
 				 !queues.corral.hasQueuedUnits() &&
 				 !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
 				 gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))

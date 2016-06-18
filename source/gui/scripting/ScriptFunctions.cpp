@@ -341,14 +341,14 @@ void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::Handle
 	g_NetClient->SendGameSetupMessage(&attribs, *(pCxPrivate->pScriptInterface));
 }
 
-void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& playerName)
+void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
 	g_NetServer = new CNetServer();
-	if (!g_NetServer->SetupConnection())
+	if (!g_NetServer->SetupConnection(serverPort))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to start server");
 		SAFE_DELETE(g_NetServer);
@@ -359,7 +359,7 @@ void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring
 	g_NetClient = new CNetClient(g_Game, true);
 	g_NetClient->SetUserName(playerName);
 
-	if (!g_NetClient->SetupConnection("127.0.0.1"))
+	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
@@ -367,7 +367,7 @@ void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring
 	}
 }
 
-void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& playerName, const std::string& serverAddress)
+void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -376,12 +376,17 @@ void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game, false);
 	g_NetClient->SetUserName(playerName);
-	if (!g_NetClient->SetupConnection(serverAddress))
+	if (!g_NetClient->SetupConnection(serverAddress, serverPort))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
+}
+
+u16 GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return PS_DEFAULT_PORT;
 }
 
 void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -1027,8 +1032,9 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &StartNetworkGame>("StartNetworkGame");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
 	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
-	scriptInterface.RegisterFunction<void, std::wstring, &StartNetworkHost>("StartNetworkHost");
-	scriptInterface.RegisterFunction<void, std::wstring, std::string, &StartNetworkJoin>("StartNetworkJoin");
+	scriptInterface.RegisterFunction<void, CStrW, u16, &StartNetworkHost>("StartNetworkHost");
+	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, &StartNetworkJoin>("StartNetworkJoin");
+	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
 	scriptInterface.RegisterFunction<std::string, &GetPlayerGUID>("GetPlayerGUID");
 	scriptInterface.RegisterFunction<void, CStrW, bool, &KickPlayer>("KickPlayer");

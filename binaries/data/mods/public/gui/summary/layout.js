@@ -9,10 +9,10 @@ var g_ScorePanelsData = {
 		],
 		"titleHeadings": [],
 		"counters": [
-			{ "width": 100, "fn": calculateEconomyScore },
-			{ "width": 100, "fn": calculateMilitaryScore },
-			{ "width": 100, "fn": calculateExplorationScore },
-			{ "width": 100, "fn": calculateScoreTotal}
+			{ "width": 100, "fn": calculateEconomyScore, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMilitaryScore, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateExplorationScore, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateScoreTotal, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateScoreTeam
 	},
@@ -29,19 +29,29 @@ var g_ScorePanelsData = {
 			{ "caption": translate("Wonders"), "yStart": 34, "width": 85 }
 		],
 		"titleHeadings": [
-			{ "caption": translate("Buildings Statistics (Constructed / Lost / Destroyed)"), "yStart": 16, "width": (85 * 7 + 105) },	// width = 700
+			{
+				"caption": sprintf(translate("Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"),
+					{
+						"constructed": g_TrainedColor + translate("Constructed") + '[/color]',
+						"destroyed": g_KilledColor + translate("Destroyed") + '[/color]',
+						"captured": g_CapturedColor + translate("Captured") + '[/color]',
+						"lost": g_LostColor + translate("Lost") + '[/color]'
+					}),
+				"yStart": 16,
+				"width": (85 * 7 + 105)
+			},	// width = 700
 		],
 		"counters": [
-			{ "width": 105, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings },
-			{ "width": 85, "fn": calculateBuildings }
+			{ "width": 105, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateBuildings, "verticalOffset": 3 }
 		],
-		"teamCounterFn": calculateColorsTeam
+		"teamCounterFn": calculateBuildingsTeam
 	},
 	"units": {
 		"headings": [
@@ -56,19 +66,28 @@ var g_ScorePanelsData = {
 			{ "caption": translate("Traders"), "yStart": 34, "width": 100 }
 		],
 		"titleHeadings": [
-			{ "caption": translate("Units Statistics (Trained / Lost / Killed)"), "yStart": 16, "width": (100 * 7 + 120) },	// width = 820
+			{
+				"caption": sprintf(translate("Units Statistics (%(trained)s / %(lost)s / %(killed)s)"),
+					{
+						"trained": g_TrainedColor + translate("Trained") + '[/color]',
+						"lost": g_LostColor + translate("Lost") + '[/color]',
+						"killed": g_KilledColor + translate("Killed") + '[/color]'
+					}),
+				"yStart": 16,
+				"width": (100 * 7 + 120)
+			},	// width = 820
 		],
 		"counters": [
-			{ "width": 120, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits },
-			{ "width": 100, "fn": calculateUnits }
+			{ "width": 120, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 }
 		],
-		"teamCounterFn": calculateColorsTeam
+		"teamCounterFn": calculateUnitsTeam
 	},
 	"resources": {
 		"headings": [
@@ -78,22 +97,38 @@ var g_ScorePanelsData = {
 			{ "caption": translate("Stone"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Metal"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 110 },
-			{ "caption": translate("Tributes (Sent / Received)"), "yStart": 16, "width": 121 },
+			{
+				"caption": sprintf(translate("Tributes \n(%(sent)s / %(received)s)"),
+					{
+						"sent": g_IncomeColor + translate("Sent") + '[/color]',
+						"received": g_OutcomeColor + translate("Received") + '[/color]'
+					}),
+				"yStart": 16,
+				"width": 121
+			},
 			{ "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Loot"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [
-			{ "caption": translate("Resource Statistics (Gathered / Used)"), "yStart": 16, "width": (100 * 4 + 110) }, // width = 510
+			{
+				"caption": sprintf(translate("Resource Statistics (%(gathered)s / %(used)s)"),
+					{
+						"gathered": g_IncomeColor + translate("Gathered") + '[/color]',
+						"used": g_OutcomeColor + translate("Used") + '[/color]'
+					}),
+				"yStart": 16,
+				"width": (100 * 4 + 110)
+			}, // width = 510
 		],
 		"counters": [
-			{ "width": 100, "fn": calculateResources },
-			{ "width": 100, "fn": calculateResources },
-			{ "width": 100, "fn": calculateResources },
-			{ "width": 100, "fn": calculateResources },
-			{ "width": 110, "fn": calculateTotalResources },
-			{ "width": 121, "fn": calculateTributeSent },
-			{ "width": 100, "fn": calculateTreasureCollected },
-			{ "width": 100, "fn": calculateLootCollected }
+			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
+			{ "width": 110, "fn": calculateTotalResources, "verticalOffset": 12 },
+			{ "width": 121, "fn": calculateTributeSent, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateTreasureCollected, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateLootCollected, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateResourcesTeam
 	},
@@ -109,12 +144,12 @@ var g_ScorePanelsData = {
 		],
 		"titleHeadings": [],
 		"counters": [
-			{ "width": 100, "fn": calculateResourceExchanged },
-			{ "width": 100, "fn": calculateResourceExchanged },
-			{ "width": 100, "fn": calculateResourceExchanged },
-			{ "width": 100, "fn": calculateResourceExchanged },
-			{ "width": 100, "fn": calculateBarterEfficiency },
-			{ "width": 100, "fn": calculateTradeIncome }
+			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateBarterEfficiency, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateTradeIncome, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateMarketTeam
 	},
@@ -132,12 +167,12 @@ var g_ScorePanelsData = {
 			{ "caption": translate("Map control"), "xOffset": 400, "yStart": 16, "width": 200 }
 		],
 		"counters": [
-			{ "width": 100, "fn": calculateVegetarianRatio },
-			{ "width": 100, "fn": calculateFeminization },
-			{ "width": 100, "fn": calculateKillDeathRatio },
-			{ "width": 100, "fn": calculateMapExploration },
-			{ "width": 100, "fn": calculateMapPeakControl },
-			{ "width": 100, "fn": calculateMapFinalControl }
+			{ "width": 100, "fn": calculateVegetarianRatio, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateFeminization, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateKillDeathRatio, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMapExploration, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMapPeakControl, "verticalOffset": 12 },
+			{ "width": 100, "fn": calculateMapFinalControl, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateMiscellaneous
 	}
@@ -214,7 +249,7 @@ function updateGeneralPanelCounter(counters)
 		for (let w in counters)
 		{
 			counterObject = Engine.GetGUIObjectByName("valueData[" + p + "][" + w + "]");
-			counterObject.size = left + " 6 " + (left + counters[w].width) + " 100%";
+			counterObject.size = left + " " + counters[w].verticalOffset + " " + (left + counters[w].width) + " 100%";
 			counterObject.hidden = false;
 			left += counters[w].width;
 		}
@@ -229,12 +264,12 @@ function updateGeneralPanelCounter(counters)
 			for (let w in counters)
 			{
 				counterObject = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]");
-				counterObject.size = left + " 6 " + (left + counters[w].width) + " 100%";
+				counterObject.size = left + " " + counters[w].verticalOffset + " " + (left + counters[w].width) + " 100%";
 				counterObject.hidden = false;
 
 				if (g_Teams[t])
 				{
-					let yStart = 30 + g_Teams[t] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 2;
+					let yStart = 25 + g_Teams[t] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 3 + counters[w].verticalOffset;
 					counterTotalObject = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]");
 					counterTotalObject.size = (left + 20) + " " + yStart + " " + (left + counters[w].width) + " 100%";
 					counterTotalObject.hidden = false;
@@ -272,8 +307,8 @@ function updateGeneralPanelTeams()
 		Engine.GetGUIObjectByName("teamNameHeadingt["+i+"]").caption = "Team "+(i+1);
 
 		let teamHeading = Engine.GetGUIObjectByName("teamHeadingt["+i+"]");
-		let yStartTotal = 30 + g_Teams[i] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 2;
-		teamHeading.size = "50 "+yStartTotal+" 100% "+(yStartTotal+20);
+		let yStartTotal = 30 + g_Teams[i] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 10;
+		teamHeading.size = "50 " + yStartTotal + " 100% " + (yStartTotal + 20);
 		teamHeading.caption = translate("Team total");
 	}
 

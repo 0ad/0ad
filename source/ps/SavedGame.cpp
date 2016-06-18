@@ -39,7 +39,7 @@ static const int SAVED_GAME_VERSION_MINOR = 0; // increment on compatible change
 // TODO: we ought to check version numbers when loading files
 
 
-Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone)
+Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
 {
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + prefix + L"-%04d");
@@ -54,7 +54,7 @@ Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSi
 	return Save(filename.Filename().string(), description, simulation, guiMetadataClone);
 }
 
-Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone)
+Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
 {
 	JSContext* cx = simulation.GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);

@@ -5,59 +5,56 @@
  */
 function LoadMapSettings(settings)
 {
-	// Default settings
 	if (!settings)
 		settings = {};
-	
+
 	if (settings.DefaultStance)
 	{
-		for each (var ent in Engine.GetEntitiesWithInterface(IID_UnitAI))
+		for (let ent of Engine.GetEntitiesWithInterface(IID_UnitAI))
 		{
-			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			cmpUnitAI.SwitchToStance(settings.DefaultStance);
 		}
 	}
 
 	if (settings.RevealMap)
 	{
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager)
 			cmpRangeManager.SetLosRevealAll(-1, true);
 	}
 
 	if (settings.DisableTreasures)
-	{
 		for (let ent of Engine.GetEntitiesWithInterface(IID_ResourceSupply))
 		{
 			let cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 			if (cmpResourceSupply.GetType().generic == "treasure")
 				Engine.DestroyEntity(ent);
 		}
-	}
 
 	if (settings.CircularMap)
 	{
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager)
 			cmpRangeManager.SetLosCircular(true);
 
-		var cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+		let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 		if (cmpObstructionManager)
 			cmpObstructionManager.SetPassabilityCircular(true);
 	}
 
-	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	if (settings.GameType)
-		cmpEndGameManager.SetGameType(settings.GameType);
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	let gameTypeSettings = {};
 	if (settings.WonderDuration)
-		cmpEndGameManager.SetWonderDuration(settings.WonderDuration * 60 * 1000);
+		gameTypeSettings.wonderDuration = settings.WonderDuration * 60 * 1000;
+	if (settings.GameType)
+		cmpEndGameManager.SetGameType(settings.GameType, gameTypeSettings);
 
 	cmpEndGameManager.SetAlliedVictory(settings.LockTeams || !settings.LastManStanding);
 	if (settings.LockTeams && settings.LastManStanding)
 		warn("Last man standing is only available in games with unlocked teams!");
 
 	if (settings.Garrison)
-	{
 		for (let holder in settings.Garrison)
 		{
 			let cmpGarrisonHolder = Engine.QueryInterface(+holder, IID_GarrisonHolder);
@@ -66,9 +63,8 @@ function LoadMapSettings(settings)
 			else
 				cmpGarrisonHolder.initGarrison = settings.Garrison[holder];
 		}
-	}
 	
-	var cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
+	let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
 	if (settings.Ceasefire)
 		cmpCeasefireManager.StartCeasefire(settings.Ceasefire * 60 * 1000);
 }

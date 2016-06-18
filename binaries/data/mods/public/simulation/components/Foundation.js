@@ -96,8 +96,7 @@ Foundation.prototype.OnDestroy = function()
 	if (this.IsFinished())
 		return;
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(this.owner), IID_Player);
+	let cmpPlayer = QueryPlayerIDInterface(this.owner);
 
 	for (var r in this.costs)
 	{

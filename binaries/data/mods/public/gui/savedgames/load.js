@@ -72,9 +72,13 @@ function loadGame()
 		if (!metadata.mods)
 			metadata.mods = [];
 
-		message += translate("The savegame needs a different set of mods:") + "\n";
-		errMsg += sprintf(translate("Required: %(mods)s"), { "mods": metadata.mods.join(translate(", ")) }) + "\n";
-		errMsg += sprintf(translate("Active: %(mods)s"), { "mods": engineInfo.mods.join(translate(", ")) });
+		message += translate("The savegame needs a different set of mods:") + "\n" +
+			sprintf(translate("Required: %(mods)s"), {
+				"mods": metadata.mods.join(translate(", "))
+			}) + "\n" +
+			sprintf(translate("Active: %(mods)s"), {
+				"mods": engineInfo.mods.join(translate(", "))
+			});
 	}
 
 	message += "\n" + translate("Do you still want to proceed?");
@@ -100,12 +104,14 @@ function reallyLoadGame(gameId)
 		return;
 	}
 
+	let pData = metadata.initAttributes.settings.PlayerData[metadata.playerID];
+
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": metadata.initAttributes,
 		"isNetworked" : false,
 		"playerAssignments": {
 			"local": {
-				"name": metadata.initAttributes.settings.PlayerData[metadata.playerID].Name,
+				"name": pData ? pData.Name : singleplayerName(),
 				"player": metadata.playerID
 			}
 		},

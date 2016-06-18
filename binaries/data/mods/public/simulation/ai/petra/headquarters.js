@@ -124,6 +124,12 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
 		this.updateTerritories(gameState);
 
+	if (events.DiplomacyChanged.length)
+	{
+		gameState.resetAllyStructures();
+		gameState.resetEnemyStructures();
+	}
+
 	for (let evt of events.Create)
 	{
 		// Let's check if we have a building set to create a new base.
@@ -482,7 +488,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		return;
 
 	// Choose whether we want soldiers or support units.
-	let supportRatio = gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.1) : this.supportRatio;
+	let supportRatio = gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.1) : this.supportRatio;
 	let supportMax = supportRatio * this.targetNumWorkers;
 	let supportNum = supportMax * Math.atan(numberTotal/supportMax) / 1.570796;
 
@@ -1130,7 +1136,16 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	// and not in range of any enemy defensive structure to avoid building under fire.
 
 	let ownStructures = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Fortress", "Tower"])).toEntityArray();
-	let enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"])).toEntityArray();
+	let enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.not(API3.Filters.byOwner(0))).
+		filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"]));
+	if (!enemyStructures.hasEntities())	// we may be in cease fire mode, build defense against neutrals
+	{
+		enemyStructures = gameState.getNeutralStructures().filter(API3.Filters.not(API3.Filters.byOwner(0))).
+			filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"]));
+		if (!enemyStructures.hasEntities())
+			return undefined;
+	}
+	enemyStructures = enemyStructures.toEntityArray();
 
 	let wonderMode = gameState.getGameType() === "wonder";
 	let wonderDistmin;
@@ -1226,7 +1241,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 				break;
 			}
 		}
-		if (minDist < 0)
+		if (minDist < 0 || minDist === Math.min())
 			continue;
 		if (bestVal !== undefined && minDist > bestVal)
 			continue;
@@ -1321,7 +1336,7 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 
 	let nCorral = gameState.getOwnEntitiesByClass("Corral", true).length;
 	if (nCorral === 0 ||
-		(gameState.isDisabledTemplates(gameState.applyCiv("structures/{civ}_field")) &&
+		(gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) &&
 		 nCorral < gameState.currentPhase() && gameState.getPopulation() > 30*nCorral))
 	{
 		if (this.canBuild(gameState, "structures/{civ}_corral"))
@@ -1337,10 +1352,10 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 	{
 		if (corral.foundationProgress() !== undefined)
 			continue;
-		let trainables = corral.trainableEntities("");
+		let trainables = corral.trainableEntities();
 		for (let trainable of trainables)
 		{
-			if (gameState.isDisabledTemplates(trainable))
+			if (gameState.isTemplateDisabled(trainable))
 				continue;
 			let template = gameState.getTemplate(trainable);
 			if (!template || !template.isHuntable())
@@ -1742,7 +1757,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	let garrisonArrowClasses = nearestAnchor.getGarrisonArrowClasses();
 	for (let trainable of trainables)
 	{
-		if (gameState.isDisabledTemplates(trainable))
+		if (gameState.isTemplateDisabled(trainable))
 			continue;
 		let template = gameState.getTemplate(trainable);
 		if (!template || !template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
@@ -1793,7 +1808,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 		this.stopBuilding.delete(type);
 	}
 
-	if (gameState.isDisabledTemplates(type))
+	if (gameState.isTemplateDisabled(type))
 	{
 		this.stopBuilding.set(type, Infinity);
 		return false;

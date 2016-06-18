@@ -79,7 +79,7 @@ StatisticsTracker.prototype.Init = function()
 		"CivCentre": 0,
 		"Wonder": 0,
 		"total": 0
-		};
+	};
 	this.buildingsLostValue = 0;
 	this.enemyBuildingsDestroyed = {
 		"House": 0,
@@ -90,8 +90,19 @@ StatisticsTracker.prototype.Init = function()
 		"CivCentre": 0,
 		"Wonder": 0,
 		"total": 0
-		};
+	};
 	this.enemyBuildingsDestroyedValue = 0;
+	this.buildingsCaptured = {
+		"House": 0,
+		"Economic": 0,
+		"Outpost": 0,
+		"Military": 0,
+		"Fortress": 0,
+		"CivCentre": 0,
+		"Wonder": 0,
+		"total": 0
+	};
+	this.buildingsCapturedValue = 0;
 
 	this.resourcesGathered = {
 		"food": 0,
@@ -157,6 +168,8 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"buildingsLostValue": this.buildingsLostValue,
 		"enemyBuildingsDestroyed": this.enemyBuildingsDestroyed,
 		"enemyBuildingsDestroyedValue": this.enemyBuildingsDestroyedValue,
+		"buildingsCaptured": this.buildingsCaptured,
+		"buildingsCapturedValue": this.buildingsCapturedValue,
 		"resourcesGathered": this.resourcesGathered,
 		"resourcesUsed": this.resourcesUsed,
 		"resourcesSold": this.resourcesSold,
@@ -295,6 +308,26 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 	}
 };
 
+StatisticsTracker.prototype.CapturedBuilding = function(capturedBuilding)
+{
+	let cmpCapturedBuildingIdentity = Engine.QueryInterface(capturedBuilding, IID_Identity);
+	if (!cmpCapturedBuildingIdentity)
+		return;
+
+	for (let type of this.buildingsClasses)
+		this.CounterIncrement(cmpCapturedBuildingIdentity, "buildingsCaptured", type);
+
+	++this.buildingsCaptured.total;
+
+	let cmpCost = Engine.QueryInterface(capturedBuilding, IID_Cost);
+	if (!cmpCost)
+		return;
+
+	let costs = cmpCost.GetResourceCosts();
+	for (let type in costs)
+		this.buildingsCapturedValue += costs[type];
+};
+
 /**
  * @param type Generic type of resource (string)
  * @param amount Amount of resource, whick should be added (integer)
@@ -381,7 +414,7 @@ StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 	var teamPlayers = [];
 	for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
 	{
-		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		let cmpOtherPlayer = QueryPlayerIDInterface(i);
 		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
 			teamPlayers.push(i);
 	}
@@ -414,7 +447,7 @@ StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
 	var teamPercent = 0;
 	for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
 	{
-		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		let cmpOtherPlayer = QueryPlayerIDInterface(i);
 		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
 			teamPercent += cmpTerritoryManager.GetTerritoryPercentage(i);
 	}

@@ -1232,17 +1232,9 @@ var g_EntityCommands =
 		},
 		"execute": function(entState)
 		{
-			let entities = [];
-			for (let ent of g_Selection.toList())
-			{
-				let state = GetExtendedEntityState(ent);
-				if (state && state.resourceDropsite && state.resourceDropsite.sharable)
-					entities.push(state.id);
-			}
-
 			Engine.PostNetworkCommand({
 				"type": "set-dropsite-sharing",
-				"entities": entities,
+				"entities": g_Selection.toList(),
 				"shared": !entState.resourceDropsite.shared
 			});
 		},

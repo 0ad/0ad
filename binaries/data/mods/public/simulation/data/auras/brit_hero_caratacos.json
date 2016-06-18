@@ -2,7 +2,7 @@
 	"type": "global",
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-	{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
 	],
 	"auraName": "Hero Aura",
 	"auraDescription": "All Units +15% speed."

@@ -169,7 +169,7 @@ CNetServerWorker::~CNetServerWorker()
 	delete m_ServerTurnManager;
 }
 
-bool CNetServerWorker::SetupConnection()
+bool CNetServerWorker::SetupConnection(const u16 port)
 {
 	ENSURE(m_State == SERVER_STATE_UNCONNECTED);
 	ENSURE(!m_Host);
@@ -177,7 +177,7 @@ bool CNetServerWorker::SetupConnection()
 	// Bind to default host
 	ENetAddress addr;
 	addr.host = ENET_HOST_ANY;
-	addr.port = PS_DEFAULT_PORT;
+	addr.port = port;
 
 	// Create ENet server
 	m_Host = enet_host_create(&addr, MAX_CLIENTS, CHANNEL_COUNT, 0, 0);
@@ -1427,9 +1427,9 @@ CNetServer::~CNetServer()
 	delete m_Worker;
 }
 
-bool CNetServer::SetupConnection()
+bool CNetServer::SetupConnection(const u16 port)
 {
-	return m_Worker->SetupConnection();
+	return m_Worker->SetupConnection(port);
 }
 
 void CNetServer::StartGame()

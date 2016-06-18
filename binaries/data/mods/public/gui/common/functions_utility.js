@@ -179,22 +179,18 @@ function tryAutoComplete(text, autoCompleteList)
 	return text;
 }
 
-function autoCompleteNick(guiName, playerList)
+function autoCompleteNick(guiObject, playernames)
 {
-	var input = Engine.GetGUIObjectByName(guiName);
-	var text = input.caption;
+	let text = guiObject.caption;
 	if (!text.length)
 		return;
 
-	var autoCompleteList = [];
-	for (var player of playerList)
-		autoCompleteList.push(player.name);
+	let bufferPosition = guiObject.buffer_position;
+	let textTillBufferPosition = text.substring(0, bufferPosition);
+	let newText = tryAutoComplete(textTillBufferPosition, playernames);
 
-	var bufferPosition = input.buffer_position;
-	var textTillBufferPosition = text.substring(0, bufferPosition);
-	var newText = tryAutoComplete(textTillBufferPosition, autoCompleteList);
-	input.caption = newText + text.substring(bufferPosition);
-	input.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);
+	guiObject.caption = newText + text.substring(bufferPosition);
+	guiObject.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);
 }
 
 function clearChatMessages()

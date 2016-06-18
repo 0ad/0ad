@@ -66,7 +66,7 @@ m.GameState.prototype.updatingCollection = function(id, filter, collection)
 m.GameState.prototype.destroyCollection = function(id)
 {
 	let gid = this.player + "-" + id;	// automatically add the player ID
-	return this.destroyGlobalCollection(gid);
+	this.destroyGlobalCollection(gid);
 };
 
 m.GameState.prototype.getEC = function(id)
@@ -320,6 +320,15 @@ m.GameState.prototype.getEnemies = function()
 	return ret;
 };
 
+m.GameState.prototype.getNeutrals = function()
+{
+	let ret = [];
+	for (let i in this.playerData.isNeutral)
+		if (this.playerData.isNeutral[i])
+			ret.push(+i);
+	return ret;
+};
+
 m.GameState.prototype.getAllies = function()
 {
 	let ret = [];
@@ -387,6 +396,11 @@ m.GameState.prototype.getEntities = function()
 	return this.entities;
 };
 
+m.GameState.prototype.getStructures = function()
+{
+	return this.updatingGlobalCollection("structures", m.Filters.byClass("Structure"), this.entities);
+};
+
 m.GameState.prototype.getOwnEntities = function()
 {
 	return this.updatingGlobalCollection("" + this.player + "-entities", m.Filters.byOwner(this.player));
@@ -417,7 +431,15 @@ m.GameState.prototype.getAllyStructures = function()
 	return this.updatingCollection("ally-structures", m.Filters.byClass("Structure"), this.getAllyEntities());
 };
 
-// Try to use a parameter for those three, it'll be a lot faster.
+m.GameState.prototype.resetAllyStructures = function()
+{
+	this.destroyCollection("ally-structures");
+};
+
+m.GameState.prototype.getNeutralStructures = function()
+{
+	return this.getStructures().filter(m.Filters.byOwners(this.getNeutrals()));
+};
 
 m.GameState.prototype.getEnemyEntities = function(enemyID)
 {
@@ -433,6 +455,11 @@ m.GameState.prototype.getEnemyStructures = function(enemyID)
 		return this.updatingCollection("enemy-structures", m.Filters.byClass("Structure"), this.getEnemyEntities());
 
 	return this.updatingGlobalCollection("" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEnemyEntities(enemyID));
+};
+
+m.GameState.prototype.resetEnemyStructures = function()
+{
+	this.destroyCollection("enemy-structures");
 };
 
 m.GameState.prototype.getEnemyUnits = function(enemyID)
@@ -613,7 +640,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	let current = this.getEntityCounts();
 	for (let trainable of allTrainable)
 	{
-		if (this.isDisabledTemplates(trainable))
+		if (this.isTemplateDisabled(trainable))
 			continue;
 		let template = this.getTemplate(trainable);
 		if (!template || !template.available(this))
@@ -796,7 +823,7 @@ m.GameState.prototype.getEntityCounts = function()
 	return this.playerData.entityCounts;
 };
 
-m.GameState.prototype.isDisabledTemplates = function(template)
+m.GameState.prototype.isTemplateDisabled = function(template)
 {
 	if (!this.playerData.disabledTemplates[template])
 		return false;
@@ -816,8 +843,8 @@ m.GameState.prototype.getTraderTemplatesGains = function()
 {
 	let shipMechantTemplateName = this.applyCiv("units/{civ}_ship_merchant");
 	let supportTraderTemplateName = this.applyCiv("units/{civ}_support_trader");
-	let shipMerchantTemplate = !this.isDisabledTemplates(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
-	let supportTraderTemplate = !this.isDisabledTemplates(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
+	let shipMerchantTemplate = !this.isTemplateDisabled(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
+	let supportTraderTemplate = !this.isTemplateDisabled(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
 	return {
 		"navalGainMultiplier": shipMerchantTemplate && shipMerchantTemplate.gainMultiplier(),
 		"landGainMultiplier": supportTraderTemplate && supportTraderTemplate.gainMultiplier()

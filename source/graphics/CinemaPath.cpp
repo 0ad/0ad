@@ -172,7 +172,7 @@ void CCinemaPath::DrawNodes(const RNSpline& spline, const CVector4D& RGBA) const
 
 	glColor4f(RGBA.X, RGBA.Y, RGBA.Z, RGBA.W);
 	glBegin(GL_POINTS);
-	const std::vector<SplineData> nodes = spline.GetAllNodes();
+	const std::vector<SplineData>& nodes = spline.GetAllNodes();
 	for (size_t i = 0; i < nodes.size(); ++i)
 		glVertex3f(nodes[i].Position.X.ToFloat(), nodes[i].Position.Y.ToFloat(), nodes[i].Position.Z.ToFloat());
 	glEnd();

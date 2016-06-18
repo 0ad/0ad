@@ -160,6 +160,7 @@ var g_IsController;
  * To report the game to the lobby bot.
  */
 var g_ServerName;
+var g_ServerPort;
 
 /**
  * States whether the GUI is currently updated in response to network messages instead of user input
@@ -242,7 +243,8 @@ function init(attribs)
 
 	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
-	g_ServerName = attribs.serverName || undefined;
+	g_ServerName = attribs.serverName;
+	g_ServerPort = attribs.serverPort;
 
 	// Replace empty playername when entering a singleplayermatch for the first time
 	if (!g_IsNetworked)
@@ -1937,6 +1939,7 @@ function sendRegisterGameStanza()
 
 	let stanza = {
 		"name": g_ServerName,
+		"port": g_ServerPort,
 		"mapName": g_GameAttributes.map,
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
 		"mapSize": mapSize,

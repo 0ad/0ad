@@ -52,8 +52,10 @@
     <Amount>Infinity</Amount>
     <Type>food.grain</Type>
     <MaxGatherers>5</MaxGatherers>
-	<!-- Note to people looking to change this: see the comments
-		 around line 260 in simulation/components/ResourceGatherer.js -->
+	<!--
+	     See the comment of the function GetTargetGatherRate
+	     of the ResourceGatherer component.
+	-->
     <DiminishingReturns>14</DiminishingReturns>
   </ResourceSupply>
   <Sound>

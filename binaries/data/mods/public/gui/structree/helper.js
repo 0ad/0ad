@@ -63,14 +63,15 @@ function fetchValue(templateName, keypath)
 	var keys = keypath.split("/");
 	var template = loadTemplate(templateName);
 
-	let k = 0;
-	for (; k < keys.length-1; ++k)
+	let k;
+	for (k = 0; k < keys.length - 1; ++k)
 	{
 		if (template[keys[k]] === undefined)
 			return [];
 
 		template = template[keys[k]];
 	}
+
 	if (template[keys[k]] === undefined)
 		return [];
 
@@ -93,7 +94,7 @@ function fetchTokens(templateName, keypath)
 
 function depath(path)
 {
-	return path.slice(path.lastIndexOf("/")+1);
+	return path.slice(path.lastIndexOf("/") + 1);
 }
 
 /**

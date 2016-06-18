@@ -315,8 +315,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 	if (cmpTrader)
 		ret.trader = {
-			"goods": cmpTrader.GetGoods(),
-			"requiredGoods": cmpTrader.GetRequiredGoods()
+			"goods": cmpTrader.GetGoods()
 		};
 
 	let cmpFogging = Engine.QueryInterface(ent, IID_Fogging);
@@ -598,7 +597,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		let auraTemplate = cmpDataTemplateManager.GetAuraTemplate(name);
 		if (!auraTemplate)
 		{
-			// the following warning is perhaps useless since it's yet done in DataTemplateManager
+			// The following warning is perhaps useless since it's yet done in DataTemplateManager
 			warn("Tried to get data for invalid aura: " + name);
 			continue;
 		}
@@ -820,7 +819,6 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let playerColors = {}; // cache of owner -> color map
 
 	for each (let ent in cmd.entities)
@@ -839,7 +837,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!color)
 		{
 			color = { "r":1, "g":1, "b":1 };
-			let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+			let cmpPlayer = QueryPlayerIDInterface(owner);
 			if (cmpPlayer)
 				color = cmpPlayer.GetColor();
 			playerColors[owner] = color;

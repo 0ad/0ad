@@ -3,7 +3,7 @@
 	"radius": 60,
 	"affects": ["Human"],
 	"modifications": [
-	{ "value": "Health/RegenRate", "add": 3 }
+		{ "value": "Health/RegenRate", "add": 3 }
 	],
 	"auraName": "Healing Aura",
 	"auraDescription": "Heals nearby units at 3 HP per second.",

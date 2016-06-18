@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ const char* html_header0 =
 	".error { color: red; } "
 	".warning { color: blue; }"
 	"</style>\n"
-	"<h2>0 A.D. ";
+	"<h2>0 A.D. (";
 
 const char* html_header1 = "</h2>\n";
 
@@ -97,11 +97,8 @@ void CLogger::Init()
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
 	
-	//Write Headers for the HTML documents
-	*m_MainLog << html_header0 << "Main log" << html_header1;
-
-	//Write Headers for the HTML documents
-	*m_InterestingLog << html_header0 << "Main log (warnings and errors only)" << html_header1;
+	*m_MainLog << html_header0 << engine_version << ") Main log" << html_header1;
+	*m_InterestingLog << html_header0 << engine_version << ") Main log (warnings and errors only)" << html_header1;
 }
 
 CLogger::~CLogger()

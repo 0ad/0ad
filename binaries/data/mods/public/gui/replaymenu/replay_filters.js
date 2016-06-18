@@ -237,8 +237,9 @@ function filterReplay(replay)
 
 	// Filter by singleplayer / multiplayer
 	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
-	if (singleplayerFilter.selected == 1 && replay.isMultiplayer ||
-	    singleplayerFilter.selected == 2 && !replay.isMultiplayer)
+	let selectedSingleplayerFilter = singleplayerFilter.list_data[singleplayerFilter.selected] || "";
+	if (selectedSingleplayerFilter == "Singleplayer" && replay.isMultiplayer ||
+	    selectedSingleplayerFilter == "Multiplayer" && !replay.isMultiplayer)
 		return false;
 
 	// Filter by victory condition
@@ -248,8 +249,9 @@ function filterReplay(replay)
 
 	// Filter by rating
 	let ratedGamesFilter = Engine.GetGUIObjectByName("ratedGamesFilter");
-	if (ratedGamesFilter.selected == 1 && !replay.isRated ||
-	    ratedGamesFilter.selected == 2 && replay.isRated)
+	let selectedRatedGamesFilter = ratedGamesFilter.list_data[ratedGamesFilter.selected] || "";
+	if (selectedRatedGamesFilter == "rated" && !replay.isRated ||
+	    selectedRatedGamesFilter == "not rated" && replay.isRated)
 		return false
 
 	// Filter date/time (select a month)

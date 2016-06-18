@@ -3,9 +3,9 @@
 	"radius": 60,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-	{ "value": "Attack/Ranged/Pierce", "add": 2 },
-	{ "value": "Attack/Melee/Hack", "add": 2 },
-	{ "value": "Attack/Capture/Value", "add": 1 }
+		{ "value": "Attack/Ranged/Pierce", "add": 2 },
+		{ "value": "Attack/Melee/Hack", "add": 2 },
+		{ "value": "Attack/Capture/Value", "add": 1 }
 	],
 	"auraName": "Hero Aura",
 	"auraDescription": "+2 Attack and +1 Capture for all units within his aura.",

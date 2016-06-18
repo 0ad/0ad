@@ -166,7 +166,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 
 	var techs = string.split(/\s+/);
 
-	// Remove any technologies that can't be searched by this civ (after capture for example)
+	// Remove any technologies that can't be researched by this civ
 	techs = techs.filter(tech => {
 		let reqs = cmpTechnologyManager.GetTechnologyTemplate(tech).requirements || null;
 		return cmpTechnologyManager.CheckTechnologyRequirements(reqs, true);

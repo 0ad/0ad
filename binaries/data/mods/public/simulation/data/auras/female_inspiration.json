@@ -3,8 +3,8 @@
 	"radius": 10,
 	"affects": ["Citizen Soldier"],
 	"modifications": [
-	{ "value": "Builder/Rate", "multiply": 1.1 },
-	{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.1 }
+		{ "value": "Builder/Rate", "multiply": 1.1 },
+		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.1 }
 	],
 	"auraName": "Inspiration Aura",
 	"auraDescription": "Nearby males work 10% faster.",

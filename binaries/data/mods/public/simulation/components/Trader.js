@@ -22,10 +22,11 @@ Trader.prototype.Init = function()
 {
 	this.markets = [];
 	this.index = -1;
-	// Selected resource for trading
-	this.requiredGoods = undefined;
-	// Currently carried goods
-	this.goods = { "type": null, "amount": null, "origin": null };
+	this.goods = {
+		"type": null,
+		"amount": null,
+		"origin": null
+	};
 };
 
 Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
@@ -141,43 +142,27 @@ Trader.prototype.HasBothMarkets = function()
 	return this.markets.length >= 2;
 };
 
-Trader.prototype.GetRequiredGoods = function()
-{
-	return this.requiredGoods;
-};
-
-Trader.prototype.SetRequiredGoods = function(requiredGoods)
-{
-	// Check that argument is a correct resource name
-	if (!requiredGoods || RESOURCES.indexOf(requiredGoods) == -1)
-		this.requiredGoods = undefined;
-	else
-		this.requiredGoods = requiredGoods;
-};
-
 Trader.prototype.CanTrade = function(target)
 {
 	var cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	// Check that the target exists
+
 	var cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
 	if (!cmpTargetMarket)
 		return false;
-	// Check that the target is not a foundation
+
 	var cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
 	if (cmpTargetFoundation)
 		return false;
-	var landTradingPossible = cmpTraderIdentity.HasClass("Organic") && cmpTargetMarket.HasType("land");
-	var seaTradingPossible = cmpTraderIdentity.HasClass("Ship") && cmpTargetMarket.HasType("naval");
-	if (!landTradingPossible && !seaTradingPossible)
+
+	if (!(cmpTraderIdentity.HasClass("Organic") && cmpTargetMarket.HasType("land")) &&
+		!(cmpTraderIdentity.HasClass("Ship") && cmpTargetMarket.HasType("naval")))
 		return false;
 
 	var cmpTraderPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
 	var targetPlayerId = cmpTargetPlayer.GetPlayerID();
-	var ownershipSuitableForTrading = cmpTraderPlayer.IsAlly(targetPlayerId) || cmpTraderPlayer.IsNeutral(targetPlayerId);
-	if (!ownershipSuitableForTrading)
-		return false;
-	return true;
+
+	return !cmpTraderPlayer.IsEnemy(targetPlayerId);
 };
 
 Trader.prototype.PerformTrade = function(currentMarket)
@@ -225,21 +210,11 @@ Trader.prototype.PerformTrade = function(currentMarket)
 		}
 	}
 
-	// First take the preferred goods of the trader if any,
-	// otherwise choose one according to the player's trading priorities
-	// if still nothing (but should never happen), choose metal
-	// and recomputes the gain in case it has changed (for example by technology)
-	var nextGoods = this.GetRequiredGoods();
-	if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
-	{
-		let cmpPlayer = QueryOwnerInterface(this.entity);
-		if (cmpPlayer)
-			nextGoods = cmpPlayer.GetNextTradingGoods();
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	if (!cmpPlayer)
+		return;
 
-		if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
-			nextGoods = "metal";
-	}
-	this.goods.type = nextGoods;
+	this.goods.type = cmpPlayer.GetNextTradingGoods();
 	this.goods.amount = this.CalculateGain(currentMarket, nextMarket);
 	this.goods.origin = currentMarket;
 };
@@ -295,9 +270,7 @@ Trader.prototype.StopTrading = function()
 	}
 	this.index = -1;
 	this.markets = [];
-	// Drop carried goods
 	this.goods.amount = null;
-	// Reset markets
 	this.markets = [];
 };
 

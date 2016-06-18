@@ -2,7 +2,7 @@
 	"type": "global",
 	"affects": ["Worker"],
 	"modifications": [
-	{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.15 }
+		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.15 }
 	],
 	"auraName": "Hero Aura",
 	"auraDescription": "Gathering rates increased with +15% during his lifetime."

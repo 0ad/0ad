@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-03 09:00+0200\n"
-"PO-Revision-Date: 2016-06-03 12:33+0000\n"
+"POT-Creation-Date: 2016-06-10 09:00+0200\n"
+"PO-Revision-Date: 2016-06-12 17:21+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "*%(username)s készen áll!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nem áll készen."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1352
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
 msgid "Default"
 msgstr "Alapértelmezett"
 
@@ -126,54 +126,54 @@ msgstr "Visszatérés a váróba."
 msgid "Return to the main menu."
 msgstr "Visszatérés a főmenübe."
 
-#: gui/gamesetup/gamesetup.js:558
+#: gui/gamesetup/gamesetup.js:565
 msgid "Yes"
 msgstr "Igen"
 
-#: gui/gamesetup/gamesetup.js:558
+#: gui/gamesetup/gamesetup.js:565
 msgid "No"
 msgstr "Nem"
 
-#: gui/gamesetup/gamesetup.js:597
+#: gui/gamesetup/gamesetup.js:604
 msgctxt "team"
 msgid "None"
 msgstr "Nincs"
 
-#: gui/gamesetup/gamesetup.js:1258
+#: gui/gamesetup/gamesetup.js:1267
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1419
+#: gui/gamesetup/gamesetup.js:1430
 msgid "Loading..."
 msgstr "Betöltés…"
 
-#: gui/gamesetup/gamesetup.js:1467
+#: gui/gamesetup/gamesetup.js:1478
 msgctxt "map selection"
 msgid "Random"
 msgstr "Véletlenszerű"
 
-#: gui/gamesetup/gamesetup.js:1471
+#: gui/gamesetup/gamesetup.js:1482
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s játékos."
 msgstr[1] "%(number)s játékos."
 
-#: gui/gamesetup/gamesetup.js:1481
+#: gui/gamesetup/gamesetup.js:1492
 msgid "Randomly selects a map from the list"
 msgstr "Véletlenszerűen választ a listán szereplő térképekből"
 
-#: gui/gamesetup/gamesetup.js:1484
+#: gui/gamesetup/gamesetup.js:1495
 msgid "Sorry, no description available."
 msgstr "Sajnos nem érhető el leírás."
 
-#: gui/gamesetup/gamesetup.js:1490
+#: gui/gamesetup/gamesetup.js:1501
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1506
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -181,41 +181,41 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Csoda (%(min)s perc)"
 msgstr[1] "Csoda (%(min)s perc)"
 
-#: gui/gamesetup/gamesetup.js:1512 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Győzelmi feltétel:"
 
-#: gui/gamesetup/gamesetup.js:1600
+#: gui/gamesetup/gamesetup.js:1611
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "MI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1605
+#: gui/gamesetup/gamesetup.js:1616
 msgid "Unassigned"
 msgstr "Nincs hozzárendelve"
 
-#: gui/gamesetup/gamesetup.js:1765
+#: gui/gamesetup/gamesetup.js:1776
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1772
+#: gui/gamesetup/gamesetup.js:1783
 msgid "Unknown Player"
 msgstr "Ismeretlen játékos"
 
-#: gui/gamesetup/gamesetup.js:1834
+#: gui/gamesetup/gamesetup.js:1845
 msgid "I'm not ready!"
 msgstr "Nem állok készen!"
 
-#: gui/gamesetup/gamesetup.js:1835
+#: gui/gamesetup/gamesetup.js:1846
 msgid "I'm ready"
 msgstr "Készen állok"
 
-#: gui/gamesetup/gamesetup.js:1838
+#: gui/gamesetup/gamesetup.js:1849
 msgid "State that you are not ready to play."
 msgstr "Kijelented, hogy nem állsz készen a játékra."
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1850
 msgid "State that you are ready to play!"
 msgstr "Kijelented, hogy készen állsz a játékra!"
 
@@ -292,7 +292,7 @@ msgid "Cancel"
 msgstr "Mégse"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):418
+#: gui/gamesetup/gamesetup.xml:(caption):428
 msgid "OK"
 msgstr "OK"
 
@@ -410,10 +410,14 @@ msgid "Teams Locked:"
 msgstr "Zárolt csapatok:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):391
+msgid "Last Man Standing:"
+msgstr "Utolsó emberig:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):401
 msgid "Cheats:"
 msgstr "Csalások:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):401
+#: gui/gamesetup/gamesetup.xml:(caption):411
 msgid "Rated Game:"
 msgstr "Pontozott játék:"
 
@@ -520,14 +524,20 @@ msgid "Toggle locked teams."
 msgstr "Csapat zárolás váltása."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):395
+msgid ""
+"Toggle whether the last remaining player or the last remaining set of allies"
+" wins."
+msgstr "Kapcsold be, hogy az utolsó megmaradt játékos vagy szövetség nyerjen."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):405
 msgid "Toggle the usability of cheats."
 msgstr "Csalás használhatóság váltása."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):405
+#: gui/gamesetup/gamesetup.xml:(tooltip):415
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Kapcsold be, ha szerentél pontozott játékot indítani. "
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):419
+#: gui/gamesetup/gamesetup.xml:(tooltip):429
 msgid "Close more game options window"
 msgstr "További beállítások ablak bezárása"
 

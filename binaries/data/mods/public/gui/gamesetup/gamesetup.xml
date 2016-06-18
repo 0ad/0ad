@@ -200,10 +200,10 @@
 				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
 					<action on="Press">submitChatInput();</action>
 					<action on="Tab">
-						var players = [];
-						for (var player in g_PlayerAssignments)
+						let players = [];
+						for (let player in g_PlayerAssignments)
 							players.push(g_PlayerAssignments[player]);
-						autoCompleteNick("chatInput", players);
+						autoCompleteNick(this, players);
 					</action>
 				</object>
 

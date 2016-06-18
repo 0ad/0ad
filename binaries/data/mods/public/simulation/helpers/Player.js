@@ -1,4 +1,3 @@
-
 /**
  * Used to create player entities prior to reading the rest of a map,
  * all other initialization must be done after loading map (terrain/entities).
@@ -26,10 +25,8 @@ function LoadPlayerSettings(settings, newPlayers)
 	var playerDefaults = rawData.PlayerData;
 	var playerData = settings.PlayerData;
 
-	// Get player manager
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
-
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	// Remove existing players or add new ones
@@ -79,9 +76,10 @@ function LoadPlayerSettings(settings, newPlayers)
 	// Initialize the player data
 	for (var i = 0; i < numPlayers; ++i)
 	{
-		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		let cmpPlayer = QueryPlayerIDInterface(i);
 		cmpPlayer.SetName(getSetting(playerData, playerDefaults, i, "Name"));
 		cmpPlayer.SetCiv(getSetting(playerData, playerDefaults, i, "Civ"));
+
 		var color = getSetting(playerData, playerDefaults, i, "Color");
 		cmpPlayer.SetColor(color.r, color.g, color.b);
 
@@ -165,12 +163,12 @@ function LoadPlayerSettings(settings, newPlayers)
 	if (settings.LockTeams)
 		for (var i = 0; i < numPlayers; ++i)
 		{
-			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			let cmpPlayer = QueryPlayerIDInterface(i);
 			cmpPlayer.SetLockTeams(true);
 		}
 
 	// Disable the AIIinterface when no AI players are present
-	if (playerData && !playerData.some(function(v) { return v && v.AI ? true : false; }))
+	if (playerData && !playerData.some(v => v && v.AI))
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 }
 
@@ -194,8 +192,6 @@ function getSetting(settings, defaults, idx, property)
  */
 function QueryOwnerInterface(ent, iid = IID_Player)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	if (!cmpOwnership)
 		return null;
@@ -204,11 +200,7 @@ function QueryOwnerInterface(ent, iid = IID_Player)
 	if (owner == -1)
 		return null;
 
-	var playerEnt = cmpPlayerManager.GetPlayerByID(owner);
-	if (!playerEnt)
-		return null;
-
-	return Engine.QueryInterface(playerEnt, iid);
+	return QueryPlayerIDInterface(owner, iid);
 }
 
 /**
@@ -258,54 +250,31 @@ function QueryBuilderListInterface(ent)
  */
 function IsOwnedByAllyOfEntity(entity, target)
 {
-	// Figure out which player controls us
-	var owner = 0;
-	var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-	if (cmpOwnership)
-		owner = cmpOwnership.GetOwner();
-
-	// Figure out which player controls the target entity
-	var targetOwner = 0;
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	if (cmpOwnershipTarget)
-		targetOwner = cmpOwnershipTarget.GetOwner();
-
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
-
-	// Check for allied diplomacy status
-	if (cmpPlayer.IsAlly(targetOwner))
-		return true;
-
-	return false;
+	return IsOwnedByEntityHelper(entity, target, "IsAlly");
 }
 
-/**
- * Returns true if the entity 'target' is owned by a mutual ally of
- * the owner of 'entity'.
- */
 function IsOwnedByMutualAllyOfEntity(entity, target)
 {
+	return IsOwnedByEntityHelper(entity, target, "IsMutualAlly");
+}
+
+function IsOwnedByEntityHelper(entity, target, check)
+{
 	// Figure out which player controls us
-	var owner = 0;
-	var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+	let owner = 0;
+	let cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
 	if (cmpOwnership)
 		owner = cmpOwnership.GetOwner();
 
 	// Figure out which player controls the target entity
-	var targetOwner = 0;
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	let targetOwner = 0;
+	let cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+	let cmpPlayer = QueryPlayerIDInterface(owner);
 
-	// Check for mutual allied diplomacy status
-	if (cmpPlayer.IsMutualAlly(targetOwner))
-		return true;
-
-	return false;
+	return cmpPlayer && cmpPlayer[check](targetOwner);
 }
 
 /**
@@ -314,16 +283,12 @@ function IsOwnedByMutualAllyOfEntity(entity, target)
 function IsOwnedByPlayer(player, target)
 {
 	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	return (cmpOwnershipTarget && player == cmpOwnershipTarget.GetOwner());
+	return cmpOwnershipTarget && player == cmpOwnershipTarget.GetOwner();
 }
 
-/**
- * Returns true if the entity 'target' is owned by gaia (player 0)
- */
 function IsOwnedByGaia(target)
 {
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	return (cmpOwnershipTarget && cmpOwnershipTarget.GetOwner() == 0);
+	return IsOwnedByPlayer(0, target);
 }
 
 /**
@@ -331,79 +296,34 @@ function IsOwnedByGaia(target)
  */
 function IsOwnedByAllyOfPlayer(player, target)
 {
-	var targetOwner = 0;
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	if (cmpOwnershipTarget)
-		targetOwner = cmpOwnershipTarget.GetOwner();
-
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
-
-	// Check for allied diplomacy status
-	if (cmpPlayer.IsAlly(targetOwner))
-		return true;
-
-	return false;
+	return IsOwnedByHelper(player, target, "IsAlly");
 }
 
-/**
- * Returns true if the entity 'target' is owned by a mutual ally of player
- */
 function IsOwnedByMutualAllyOfPlayer(player, target)
 {
-	var targetOwner = 0;
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	if (cmpOwnershipTarget)
-		targetOwner = cmpOwnershipTarget.GetOwner();
-
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
-
-	// Check for mutual allied diplomacy status
-	if (cmpPlayer.IsMutualAlly(targetOwner))
-		return true;
-
-	return false;
+	return IsOwnedByHelper(player, target, "IsMutualAlly");
 }
 
-/**
- * Returns true if the entity 'target' is owned by someone neutral to player
- */
 function IsOwnedByNeutralOfPlayer(player,target)
 {
-	var targetOwner = 0;
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	if (cmpOwnershipTarget)
-		targetOwner = cmpOwnershipTarget.GetOwner();
-
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
-
-	// Check for neutral diplomacy status
-	if (cmpPlayer.IsNeutral(targetOwner))
-		return true;
-
-	return false;
+	return IsOwnedByHelper(player, target, "IsNeutral");
 }
 
-/**
- * Returns true if the entity 'target' is owned by an enemy of player
- */
 function IsOwnedByEnemyOfPlayer(player, target)
 {
-	var targetOwner = 0;
-	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	return IsOwnedByHelper(player, target, "IsEnemy");
+}
+
+function IsOwnedByHelper(player, target, check)
+{
+	let targetOwner = 0;
+	let cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+	let cmpPlayer = QueryPlayerIDInterface(player);
 
-	// Check for enemy diplomacy status
-	if (cmpPlayer.IsEnemy(targetOwner))
-		return true;
-
-	return false;
+	return cmpPlayer && cmpPlayer[check](targetOwner);
 }
 
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);

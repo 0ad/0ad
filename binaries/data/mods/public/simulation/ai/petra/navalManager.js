@@ -647,7 +647,7 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 		let trainables = ent.trainableEntities(civ);
 		for (let trainable of trainables)
 		{
-			if (gameState.isDisabledTemplates(trainable))
+			if (gameState.isTemplateDisabled(trainable))
 				continue;
 			let template = gameState.getTemplate(trainable);
 			if (template && template.hasClass("Ship") && trainableShips.indexOf(trainable) === -1)

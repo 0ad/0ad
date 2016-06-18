@@ -3,8 +3,8 @@
 	"radius": 60,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-	{ "value": "Attack/Melee/RepeatTime", "multiply": 0.8 },
-	{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.8 }
+		{ "value": "Attack/Melee/RepeatTime", "multiply": 0.8 },
+		{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.8 }
 	],
 	"auraName": "Patriot Aura",
 	"auraDescription": "Egyptian units fight 25% faster in her vision range.",

@@ -154,10 +154,10 @@ void CNetClient::SetUserName(const CStrW& username)
 	m_UserName = username;
 }
 
-bool CNetClient::SetupConnection(const CStr& server)
+bool CNetClient::SetupConnection(const CStr& server, const u16 port)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
-	bool ok = session->Connect(PS_DEFAULT_PORT, server, m_IsLocalClient);
+	bool ok = session->Connect(server, port, m_IsLocalClient);
 	SetAndOwnSession(session);
 	return ok;
 }
@@ -711,7 +711,8 @@ bool CNetClient::OnKicked(void *context, CFsmEvent* event)
 
 	client->GetScriptInterface().Eval("({})", &msg);
 	client->GetScriptInterface().SetProperty(msg, "username", message->m_Name);
-	client->GetScriptInterface().SetProperty(msg, "type", message->m_Ban ? std::string("banned") : std::string("kicked"));
+	client->GetScriptInterface().SetProperty(msg, "type", CStr("kicked"));
+	client->GetScriptInterface().SetProperty(msg, "banned", message->m_Ban != 0);
 	client->PushGuiMessage(msg);
 
 	return true;

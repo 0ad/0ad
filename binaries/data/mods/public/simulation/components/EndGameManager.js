@@ -1,6 +1,3 @@
-// Repetition interval (msecs) for checking end game conditions
-var g_ProgressInterval = 1000;
-
 /**
  * System component which regularly checks victory/defeat conditions
  * and if they are satisfied then it marks the player as victorious/defeated.
@@ -13,7 +10,10 @@ EndGameManager.prototype.Schema =
 EndGameManager.prototype.Init = function()
 {
 	this.gameType = "conquest";
-	this.wonderDuration = 10 * 60 * 1000;
+
+	// Contains settings specific to the victory condition,
+	// for example wonder victory duration.
+	this.gameTypeSettings = {};
 
 	// Allied victory means allied players can win if victory conditions are met for each of them
 	// False for a "last man standing" game
@@ -27,10 +27,9 @@ EndGameManager.prototype.GetGameType = function()
 	return this.gameType;
 };
 
-EndGameManager.prototype.SetGameType = function(newGameType)
+EndGameManager.prototype.GetGameTypeSettings = function()
 {
-	this.gameType = newGameType;
-	Engine.BroadcastMessage(MT_GameTypeChanged, {});
+	return this.gameTypeSettings;
 };
 
 EndGameManager.prototype.CheckGameType = function(type)
@@ -38,24 +37,24 @@ EndGameManager.prototype.CheckGameType = function(type)
 	return this.gameType == type;
 };
 
-EndGameManager.prototype.SetWonderDuration = function(wonderDuration)
+EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
 {
-	this.wonderDuration = wonderDuration;
-};
+	this.gameType = newGameType;
+	this.gameTypeSettings = newSettings;
 
-EndGameManager.prototype.GetWonderDuration = function()
-{
-	return this.wonderDuration;
+	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
 
 EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 {
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-	for (var i = 1; i < numPlayers; i++)
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let numPlayers = cmpPlayerManager.GetNumPlayers();
+
+	for (let i = 1; i < numPlayers; ++i)
 	{
-		var playerEntityId = cmpPlayerManager.GetPlayerByID(i);
-		var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+		let playerEntityId = cmpPlayerManager.GetPlayerByID(i);
+		let cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+
 		if (cmpPlayer.GetState() != "active")
 			continue;
 
@@ -69,7 +68,7 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 	}
 
 	// Reveal the map to all players
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	cmpRangeManager.SetLosRevealAll(-1, true);
 };
 
@@ -115,12 +114,10 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 			cmpRangeManager.SetLosRevealAll(-1, true);
 	}
 	else
-	{
 		this.lastManStandingMessage = cmpGuiInterface.AddTimeNotification({
 			"message": markForTranslation("Last remaining player wins."),
 			"translateMessage": true,
 		}, 12 * 60 * 60 * 1000); // 12 hours
-	}
 };
 
 EndGameManager.prototype.OnInitGame = function(msg)

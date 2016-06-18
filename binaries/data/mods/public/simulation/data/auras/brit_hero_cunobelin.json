@@ -3,7 +3,7 @@
 	"radius": 60,
 	"affects": ["Human"],
 	"modifications": [
-	{ "value": "Health/RegenRate", "add": 1 }
+		{ "value": "Health/RegenRate", "add": 1 }
 	],
 	"auraName": "Hero Aura",
 	"auraDescription": "+1 HP per second healing rate for all units.",

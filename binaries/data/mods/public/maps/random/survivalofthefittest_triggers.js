@@ -149,7 +149,7 @@ Trigger.prototype.InitGame = function()
 	/* Until we can do something about limiting the victory conditions available for this map to "None"
 	for (var i = 1; i < numberOfPlayers; ++i)
 	{
-		var cmpPlayer = TriggerHelper.GetPlayerComponent(i);
+		var cmpPlayer = QueryPlayerIDInterface(i);
 		for (var j = 1; j < numberOfPlayers; ++j)
 			if (i != j) 
 				cmpPlayer.SetAlly(j);
@@ -157,7 +157,7 @@ Trigger.prototype.InitGame = function()
 	}*/
 	
 	// Make gaia black
-	TriggerHelper.GetPlayerComponent(0).SetColor(0, 0, 0);
+	QueryPlayerIDInterface(0).SetColor(0, 0, 0);
 	
 	// Place the treasures
 	this.PlaceTreasures();
@@ -165,7 +165,7 @@ Trigger.prototype.InitGame = function()
 	// Disable farms, civic centers and walls for all players 
  	for (var i = 1; i < numberOfPlayers; ++i) 
  	{ 
-		var cmpPlayer = TriggerHelper.GetPlayerComponent(i); 
+		let cmpPlayer = QueryPlayerIDInterface(i);
 		var civ = cmpPlayer.GetCiv(); 
 		cmpPlayer.SetDisabledTemplates([
 			"structures/" + civ + "_field",
@@ -215,7 +215,7 @@ Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 		var numberOfPlayers = TriggerHelper.GetNumberOfPlayers();
 		for (var i = 1; i < numberOfPlayers; ++i)
 		{
-			if (TriggerHelper.GetPlayerComponent(i).GetState() == "active")
+			if (QueryPlayerIDInterface(i).GetState() == "active")
 			{
 				lastPlayerStanding = i;
 				++numPlayersStanding;

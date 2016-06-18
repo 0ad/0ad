@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,56 +85,31 @@ const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
 bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 {
-	if (obj && obj->SettingExists("_icon_tooltip_style") && obj->MouseOverIcon())
+	CStrW text;
+
+	if (obj && obj->SettingExists("_icon_tooltip_style") && obj->MouseOverIcon() &&
+	    GUI<CStr>::GetSetting(obj, "_icon_tooltip_style", style) == PSRETURN_OK &&
+	    GUI<CStrW>::GetSetting(obj, "_icon_tooltip", text) == PSRETURN_OK && !text.empty())
 	{
-		// Special code to handle icon tooltips in text objects
-		if (GUI<CStr>::GetSetting(obj, "_icon_tooltip_style", style) == PSRETURN_OK)
-		{
-			// Check if icon tooltip text exists
-			CStrW text;
-			if (GUI<CStrW>::GetSetting(obj, "_icon_tooltip", text) == PSRETURN_OK)
-			{
-				if (text.empty())
-				{
-					// No tooltip
-					return false;
-				}
+		if (style.empty())
+			style = "default";
 
-				if (style.empty())
-				{
-					// Text, but no style - use default
-					style = "default";
-				}
-
-				m_IsIconTooltip = true;
-				return true;
-			}
-		}
-	}
-	else if (obj && obj->SettingExists("tooltip_style")
-		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PSRETURN_OK)
-	{
-		CStrW text;
-		if (GUI<CStrW>::GetSetting(obj, "tooltip", text) == PSRETURN_OK)
-		{
-			if (text.empty())
-			{
-				// No tooltip
-				return false;
-			}
-
-			if (style.empty())
-			{
-				// Text, but no style - use default
-				style = "default";
-			}
-
-			m_IsIconTooltip = false;
-			return true;
-		}
+		m_IsIconTooltip = true;
+		return true;
 	}
 
-	// Failed while retrieving tooltip_style or tooltip
+	if (obj && obj->SettingExists("tooltip_style") &&
+	    GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PSRETURN_OK &&
+	    GUI<CStrW>::GetSetting(obj, "tooltip", text) == PSRETURN_OK &&
+	    !text.empty())
+	{
+		if (style.empty())
+			style = "default";
+
+		m_IsIconTooltip = false;
+		return true;
+	}
+
 	return false;
 }
 
@@ -142,11 +117,9 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 {
 	ENSURE(obj);
 
-	// Ignore attempts to use tooltip ""
 	if (style.empty())
 		return;
 
-	// Get the object referenced by 'tooltip_style'
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (!tooltipobj)
 	{
@@ -157,8 +130,8 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 	IGUIObject* usedobj = tooltipobj; // object actually used to display the tooltip in
 
 	CStr usedObjectName;
-	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK
-		&& !usedObjectName.empty())
+	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK &&
+	    !usedObjectName.empty())
 	{
 		usedobj = gui->FindObjectByName(usedObjectName);
 		if (!usedobj)
@@ -166,48 +139,30 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 			LOGERROR("Cannot find object named '%s' used by tooltip '%s'", usedObjectName.c_str(), style.c_str());
 			return;
 		}
-
-		// Unhide the object. (If it had use_object and hide_object="true",
-		// still unhide it, because the used object might be hidden by default)
-		GUI<bool>::SetSetting(usedobj, "hidden", false);
 	}
-	else
-	{
-		// Unhide the object
-		GUI<bool>::SetSetting(usedobj, "hidden", false);
+	else if (GUI<CPos>::SetSetting(usedobj, "_mousepos", pos) != PSRETURN_OK)
+		debug_warn(L"Failed to set tooltip mouse position");
 
-		// Store mouse position inside the CTooltip
-		if (GUI<CPos>::SetSetting(usedobj, "_mousepos", pos) != PSRETURN_OK)
-			debug_warn(L"Failed to set tooltip mouse position");
-	}
+	GUI<bool>::SetSetting(usedobj, "hidden", false);
 
-	// Retrieve object's 'tooltip' setting
 	CStrW text;
 	if (m_IsIconTooltip)
 	{
-		// Use icon tooltip property
 		if (GUI<CStrW>::GetSetting(obj, "_icon_tooltip", text) != PSRETURN_OK)
-			debug_warn(L"Failed to retrieve icon tooltip text"); // shouldn't fail
+			debug_warn(L"Failed to retrieve icon tooltip text");
 	}
-	else
-	{
-		// Use normal tooltip property
-		if (GUI<CStrW>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
-			debug_warn(L"Failed to retrieve tooltip text"); // shouldn't fail
-	}
+	else if (GUI<CStrW>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
+		debug_warn(L"Failed to retrieve tooltip text");
 
-	// Set tooltip's caption
 	if (usedobj->SetSetting("caption", text) != PSRETURN_OK)
-		debug_warn(L"Failed to set tooltip caption"); // shouldn't fail
+		debug_warn(L"Failed to set tooltip caption");
 
-	// Make the tooltip object regenerate its text
 	SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
 	usedobj->HandleMessage(msg);
 }
 
 void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 {
-	// Ignore attempts to use tooltip ""
 	if (style.empty())
 		return;
 
@@ -219,8 +174,8 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 	}
 
 	CStr usedObjectName;
-	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK
-		&& !usedObjectName.empty())
+	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK &&
+	    !usedObjectName.empty())
 	{
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
 		if (!usedobj)
@@ -229,7 +184,6 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 			return;
 		}
 
-		// Clear the caption
 		usedobj->SetSetting("caption", L"");
 		SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
 		usedobj->HandleMessage(msg);
@@ -237,15 +191,11 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		bool hideobject = true;
 		GUI<bool>::GetSetting(tooltipobj, "hide_object", hideobject);
 
-		// If hide_object was enabled, hide it
 		if (hideobject)
 			GUI<bool>::SetSetting(usedobj, "hidden", true);
 	}
 	else
-	{
 		GUI<bool>::SetSetting(tooltipobj, "hidden", true);
-	}
-
 }
 
 static int GetTooltipDelay(const CStr& style, CGUI* gui)
@@ -265,12 +215,9 @@ static int GetTooltipDelay(const CStr& style, CGUI* gui)
 void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI)
 {
 	// Called once per frame, so efficiency isn't vital
-
-
 	double now = timer_Time();
 
 	CStr style;
-
 	int nextstate = -1;
 
 	switch (m_State)
@@ -330,7 +277,6 @@ void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI)
 		else
 		{
 			// Mouse moved onto a new object
-
 			if (GetTooltip(Nearest, style))
 			{
 				CStr style_old;
@@ -354,9 +300,7 @@ void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI)
 				}
 			}
 			else
-			{
 				nextstate = ST_COOLING;
-			}
 		}
 		break;
 
@@ -369,7 +313,6 @@ void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI* GUI)
 	}
 
 	// Handle state-entry code:
-
 	if (nextstate != -1)
 	{
 		switch (nextstate)

@@ -6,13 +6,13 @@
 # Rayan <nitro361@gmail.com>, 2015
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
-# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-06 09:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-06-13 19:39+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,11 +99,11 @@ msgstr ""
 
 #: gui/common/functions_utility.js:77
 msgid "A randomly selected map."
-msgstr ""
+msgstr "خريطة محدّدة عشوائيًّا."
 
 #: gui/common/functions_utility.js:84
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "آسفون، لا وصف متوفّر."
 
 #: gui/common/functions_utility.js:109
 msgid "mm:ss"
@@ -428,17 +428,17 @@ msgstr "قُطِع الاتّصال"
 #: gui/common/network.js:97
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "تعذّر حظر %(name)s."
 
 #: gui/common/network.js:97
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "تعذّر طرد %(name)s."
 
 #: gui/common/network.js:131
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "المستخدمون: %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -475,12 +475,12 @@ msgstr ""
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا دقائق"
+msgstr[1] "دقيقة واحدة"
+msgstr[2] "دقيقتان"
+msgstr[3] "%(min)s دقائق"
+msgstr[4] "%(min)s دقيقة"
+msgstr[5] "%(min)s دقيقة"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -587,44 +587,44 @@ msgstr "سحق"
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(second)s"
+msgstr[1] "%(second)s"
+msgstr[2] "%(second)s"
+msgstr[3] "%(time)s %(second)s"
+msgstr[4] "%(time)s %(second)s"
+msgstr[5] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:58 gui/common/tooltips.js:241
 #: gui/common/tooltips.js:252 gui/common/tooltips.js:471
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] "صفر"
+msgstr[0] "لا ثوان"
 msgstr[1] "ثانية"
 msgstr[2] "ثانيتان"
 msgstr[3] "ثوان"
 msgstr[4] "ثانية"
-msgstr[5] "ثوان"
+msgstr[5] "ثانية"
 
 #: gui/common/tooltips.js:66
 #, javascript-format
 msgid "%(arrowcount)s %(arrow)s"
 msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(arrow)s"
+msgstr[1] "%(arrow)s"
+msgstr[2] "%(arrow)s"
+msgstr[3] "%(arrowcount)s %(arrow)s"
+msgstr[4] "%(arrowcount)s %(arrow)s"
+msgstr[5] "%(arrowcount)s %(arrow)s"
 
 #: gui/common/tooltips.js:68
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] "لا أسّهم"
+msgstr[0] "لا أسهم"
 msgstr[1] "سهم"
 msgstr[2] "سهمان"
-msgstr[3] "أسّهم"
-msgstr[4] "سهام"
-msgstr[5] "سهام"
+msgstr[3] "أسهم"
+msgstr[4] "سهما"
+msgstr[5] "سهم"
 
 #: gui/common/tooltips.js:71
 #, javascript-format
@@ -905,7 +905,7 @@ msgstr "نعم"
 
 #: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "ثمّة تعديلات غير محفوظة، أتريد إغلاق هذه النّافذة؟"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1196,7 +1196,7 @@ msgstr "تتطلّب الإصدار %(requiredVersion)s من 0 ب.م، إلّا 
 
 #: gui/savedgames/load.js:61
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "تتطلّب إصدارة قديمة من 0ب.م."
 
 #: gui/savedgames/load.js:65
 #, javascript-format
@@ -1702,11 +1702,11 @@ msgstr "أبلِغ عن علّة"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "ترجم اللعبة"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "إشادات"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1818,7 +1818,7 @@ msgstr "انقر هنا لفتح صفحة ترجمة 0 ب.م في المتصفّ
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "انقر لرؤية من وراء 0ب.م."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -1962,15 +1962,15 @@ msgstr "تابع"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "قادة الرّسوم"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "مدير الصّو"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "الملحّن"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -1978,19 +1978,19 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "إنشاء الخرائط"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "سكربتات الخرائط العشوائيّة"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "الرّسوم ثنائيّة الأبعاد"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "الرّسوم ثلاثيّة الأبعاد"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2215,7 +2215,7 @@ msgstr "أظهر الإطارات في الثانية في الركن العلو
 
 #: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
-msgstr "اظهر اط/ث"
+msgstr "أظهر إطار/ثا"
 
 #: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."

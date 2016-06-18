@@ -44,11 +44,10 @@ function InitGame(settings)
 
 	// Sandbox, Very Easy, Easy, Medium, Hard, Very Hard
 	let rate = [ 0.50, 0.64, 0.80, 1.00, 1.25, 1.56 ];
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (let i = 1; i < settings.PlayerData.length; ++i)
 	{
-		let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		let cmpPlayer = QueryPlayerIDInterface(i);
 		cmpPlayer.SetCheatsEnabled(!!settings.CheatsEnabled);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{

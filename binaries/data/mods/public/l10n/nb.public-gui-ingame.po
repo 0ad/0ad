@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-30 09:00+0200\n"
-"PO-Revision-Date: 2016-05-30 09:24+0000\n"
+"POT-Creation-Date: 2016-06-13 09:00+0200\n"
+"PO-Revision-Date: 2016-06-13 09:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -53,12 +53,12 @@ msgid "Confirmation"
 msgstr "Bekreftelse"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:654 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:678 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nei"
 
 #: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:175
-#: gui/session/session.js:654 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:678 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -339,7 +339,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Lag"
 
-#: gui/session/messages.js:89 gui/session/session.js:275
+#: gui/session/messages.js:89 gui/session/session.js:276
 msgid "Observer"
 msgstr "Observatør"
 
@@ -392,67 +392,72 @@ msgstr "%(player)s er nå i krig med %(player2)s. "
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s er nå nøytral med %(player2)s."
 
-#: gui/session/messages.js:511
+#: gui/session/messages.js:530
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Alle"
 
-#: gui/session/messages.js:519
+#: gui/session/messages.js:538
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Allierte"
 
-#: gui/session/messages.js:523
+#: gui/session/messages.js:542
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Fiender"
 
-#: gui/session/messages.js:529
+#: gui/session/messages.js:548
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Observatører"
 
-#: gui/session/messages.js:657
+#: gui/session/messages.js:577 gui/session/selection_details.js:80
+#, javascript-format
+msgid "\\[OFFLINE] %(player)s"
+msgstr "\\[OFFLINE] %(player)s"
+
+#: gui/session/messages.js:684
 msgid "Unknown Player"
 msgstr "Ukjent spiller"
 
-#: gui/session/messages.js:664
+#: gui/session/messages.js:691
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: gui/session/messages.js:665
+#: gui/session/messages.js:692
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s har blitt beseiret."
 
-#: gui/session/messages.js:694
+#: gui/session/messages.js:721
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s har sendt %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:696
+#: gui/session/messages.js:723
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s har sendt deg %(amounts)s."
 
-#: gui/session/messages.js:711
+#: gui/session/messages.js:738
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Dine husdyr har blitt angrepet av %(attacker)s!"
 
-#: gui/session/messages.js:712
+#: gui/session/messages.js:739
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Du har blitt angrepet av %(attacker)s!"
 
-#: gui/session/messages.js:755
+#: gui/session/messages.js:782
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:375
-#: gui/session/selection_details.js:407 gui/session/session.js:837
+#: gui/session/selection_details.js:407 gui/session/session.js:869
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -465,11 +470,6 @@ msgstr "Treffpoeng:"
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — Nedpakket"
-
-#: gui/session/selection_details.js:80
-#, javascript-format
-msgid "\\[OFFLINE] %(player)s"
-msgstr "\\[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:85
 #, javascript-format
@@ -584,61 +584,66 @@ msgstr "Kjøp %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Selg %(resource)s"
 
-#: gui/session/selection_panels.js:315 gui/session/selection_panels.js:999
+#: gui/session/selection_panels.js:318 gui/session/selection_panels.js:1020
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Krever %(technology)s"
 
-#: gui/session/selection_panels.js:418
+#: gui/session/selection_panels.js:437
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Send ut %(name)s"
 
-#: gui/session/selection_panels.js:419
+#: gui/session/selection_panels.js:439
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klikk for å laste ut 1. Shift+klikk for å laste ut alle av denne typen."
 
-#: gui/session/selection_panels.js:481
+#: gui/session/selection_panels.js:442
+#, javascript-format
+msgid "Player: %(playername)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:502
 msgid "Lock Gate"
 msgstr "Lås port"
 
-#: gui/session/selection_panels.js:487
+#: gui/session/selection_panels.js:508
 msgid "Unlock Gate"
 msgstr "Lås opp port"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:608
 msgid "Pack"
 msgstr "Pakk"
 
-#: gui/session/selection_panels.js:589
+#: gui/session/selection_panels.js:610
 msgid "Unpack"
 msgstr "Pakk ut"
 
-#: gui/session/selection_panels.js:591
+#: gui/session/selection_panels.js:612
 msgid "Cancel Packing"
 msgstr "Avbryt pakking"
 
-#: gui/session/selection_panels.js:593
+#: gui/session/selection_panels.js:614
 msgid "Cancel Unpacking"
 msgstr "Avbryt utpakking"
 
-#: gui/session/selection_panels.js:653
+#: gui/session/selection_panels.js:674
 msgid "Insufficient population capacity:"
 msgstr "Utilstrekkelig befolkningskapasitet:"
 
-#: gui/session/selection_panels.js:654
+#: gui/session/selection_panels.js:675
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:772
+#: gui/session/selection_panels.js:793
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Gjenstår: %(number)s å bygge."
 msgstr[1] "Gjenstår: %(number)s å bygge."
 
-#: gui/session/selection_panels.js:983 gui/session/session.js:836
+#: gui/session/selection_panels.js:1004 gui/session/session.js:870
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Helse:"
@@ -734,112 +739,112 @@ msgstr "%(action)s for å trene %(number)s (%(fullBatch)s)."
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s for å trene %(number)s."
 
-#: gui/session/session.js:261
+#: gui/session/session.js:259
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:316
+#: gui/session/session.js:317
 msgid "Find idle worker"
 msgstr "Finn ledig arbeider"
 
-#: gui/session/session.js:319
+#: gui/session/session.js:320
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
 msgstr ""
 
-#: gui/session/session.js:321
+#: gui/session/session.js:322
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr ""
 
-#: gui/session/session.js:416
+#: gui/session/session.js:448
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Bygningstre"
 
-#: gui/session/session.js:483 gui/session/session.js:499
+#: gui/session/session.js:515 gui/session/session.js:531
 msgid "You have left the game."
 msgstr "Du har forlatt spillet."
 
-#: gui/session/session.js:490
+#: gui/session/session.js:522
 msgid "You have been disconnected."
 msgstr "Du har blitt frakoblet."
 
-#: gui/session/session.js:492
+#: gui/session/session.js:524
 msgid "You have won the battle!"
 msgstr "Du har vunnet slaget!"
 
-#: gui/session/session.js:494
+#: gui/session/session.js:526
 msgid "You have been defeated..."
 msgstr "Du har blitt beseiret..."
 
-#: gui/session/session.js:502
+#: gui/session/session.js:534
 msgid "You have abandoned the game."
 msgstr "Du har forlatt spillet."
 
-#: gui/session/session.js:648
+#: gui/session/session.js:672
 msgid "OK"
 msgstr "OK"
 
-#: gui/session/session.js:650
+#: gui/session/session.js:674
 msgid "Press OK to continue"
 msgstr "Trykk OK for å fortsette"
 
-#: gui/session/session.js:656
+#: gui/session/session.js:680
 msgid "Do you want to quit?"
 msgstr "Vil du avslutte?"
 
-#: gui/session/session.js:661
+#: gui/session/session.js:685
 msgid "DEFEATED!"
 msgstr "BESEIRET!"
 
-#: gui/session/session.js:666
+#: gui/session/session.js:690
 msgid "VICTORIOUS!"
 msgstr "SEIER!"
 
-#: gui/session/session.js:762
+#: gui/session/session.js:788
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Reprisen er over. Vil du avslutte?"
 
-#: gui/session/session.js:763
+#: gui/session/session.js:789
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bekreftelse"
 
-#: gui/session/session.js:764
+#: gui/session/session.js:790
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nei"
 
-#: gui/session/session.js:764
+#: gui/session/session.js:790
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:929
+#: gui/session/session.js:993
 msgid "Population (current / limit)"
 msgstr "Befolkning (nåværende / grense)"
 
-#: gui/session/session.js:930
+#: gui/session/session.js:994
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksimal populasjon: %(popCap)s"
 
-#: gui/session/session.js:1079
+#: gui/session/session.js:1145
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Bygg: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1086
+#: gui/session/session.js:1152
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Time warp modus er ment for utviklere og ikke for bruk over lengre tid. Ukorrekt bruk kan føre til at spillet går tom for minne eller krasjer."
 
-#: gui/session/session.js:1087
+#: gui/session/session.js:1153
 msgid "Time warp mode"
 msgstr "Spillhastighet"
 
@@ -951,17 +956,17 @@ msgstr "Du har tillatelse til å bruke dette droppstedet"
 msgid "The use of this dropsite is prohibited"
 msgstr "Bruk av dette droppstedet er ikke tillatt"
 
-#: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
+#: gui/session/utility_functions.js:86 gui/session/utility_functions.js:88
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:89 gui/session/utility_functions.js:95
-#: gui/session/utility_functions.js:101
+#: gui/session/utility_functions.js:90 gui/session/utility_functions.js:96
+#: gui/session/utility_functions.js:102
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:95 gui/session/utility_functions.js:101
+#: gui/session/utility_functions.js:96 gui/session/utility_functions.js:102
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ","

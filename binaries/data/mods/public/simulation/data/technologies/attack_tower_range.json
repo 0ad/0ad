@@ -7,7 +7,10 @@
 	"icon": "arrow.png",
 	"researchTime": 40,
 	"tooltip": "Increases defense tower maximum range by 8 meters.",
-	"modifications": [{"value": "Attack/Ranged/MaxRange", "add": 8}],
+	"modifications": [
+		{ "value": "Attack/Ranged/MaxRange", "add": 8 },
+		{ "value": "Vision/Range","add": 8 }
+	],
 	"affects": ["DefenseTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

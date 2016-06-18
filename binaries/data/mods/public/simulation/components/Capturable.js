@@ -151,7 +151,15 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 		if (this.cp[i] >= this.cp[bestPlayer])
 			bestPlayer = +i;
 
+	let cmpLostPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpLostPlayerStatisticsTracker)
+		cmpLostPlayerStatisticsTracker.LostEntity(this.entity);
+
 	cmpOwnership.SetOwner(bestPlayer);
+
+	let cmpCapturedPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpCapturedPlayerStatisticsTracker)
+		cmpCapturedPlayerStatisticsTracker.CapturedBuilding(this.entity);
 };
 
 Capturable.prototype.GetRegenRate = function()

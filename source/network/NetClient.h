@@ -99,7 +99,7 @@ public:
 	 * @param server IP address or host name to connect to
 	 * @return true on success, false on connection failure
 	 */
-	bool SetupConnection(const CStr& server);
+	bool SetupConnection(const CStr& server, const u16 port);
 
 	/**
 	 * Destroy the connection to the server.

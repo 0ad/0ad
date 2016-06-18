@@ -50,6 +50,8 @@
 #include "maths/MathUtil.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
+#include "network/NetMessage.h"
+#include "network/NetMessages.h"
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -1483,12 +1485,12 @@ bool Autostart(const CmdLineArgs& args)
 
 		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
 
-		bool ok = g_NetServer->SetupConnection();
+		bool ok = g_NetServer->SetupConnection(PS_DEFAULT_PORT);
 		ENSURE(ok);
 
 		g_NetClient = new CNetClient(g_Game, true);
 		g_NetClient->SetUserName(userName);
-		g_NetClient->SetupConnection("127.0.0.1");
+		g_NetClient->SetupConnection("127.0.0.1", PS_DEFAULT_PORT);
 	}
 	else if (args.Has("autostart-client"))
 	{
@@ -1501,7 +1503,7 @@ bool Autostart(const CmdLineArgs& args)
 		if (ip.empty())
 			ip = "127.0.0.1";
 
-		bool ok = g_NetClient->SetupConnection(ip);
+		bool ok = g_NetClient->SetupConnection(ip, PS_DEFAULT_PORT);
 		ENSURE(ok);
 	}
 	else

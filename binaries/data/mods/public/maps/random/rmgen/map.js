@@ -88,17 +88,14 @@ Map.prototype.getEntityID = function()
 }
 
 // Check bounds on tile map
-Map.prototype.validT = function(x, z, distance)
+Map.prototype.validT = function(x, z, distance = 0)
 {
 	if (g_MapSettings.CircularMap)
 	{	// Within map circle
 		var halfSize = Math.floor(0.5*this.size);
 		var dx = (x - halfSize);
 		var dz = (z - halfSize);
-		if (distance === undefined)
-			return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - 1;
-		else
-			return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - distance - 1;
+		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - distance - 1;
 	}
 	else
 		// Within map square

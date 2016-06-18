@@ -3,16 +3,17 @@ const g_MaxHeadingTitle= 8;
 // const for filtering long collective headings
 const g_LongHeadingWidth = 250;
 
-const g_PlayerBoxYSize = 30;
+const g_PlayerBoxYSize = 40;
 const g_PlayerBoxGap = 2;
 const g_PlayerBoxAlpha = " 32";
 const g_PlayerColorBoxAlpha = " 255";
-const g_TeamsBoxYStart = 65;
+const g_TeamsBoxYStart = 40;
 
 // Colors used for units and buildings
 const g_TrainedColor = '[color="201 255 200"]';
 const g_LostColor = '[color="255 213 213"]';
 const g_KilledColor = '[color="196 198 255"]';
+const g_CapturedColor = '[color="255 255 157"]';
 
 const g_BuildingsTypes = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
 const g_UnitsTypes = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship", "Trader" ];
