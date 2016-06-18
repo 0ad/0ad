@@ -66,7 +66,7 @@ m.GameState.prototype.updatingCollection = function(id, filter, collection)
 m.GameState.prototype.destroyCollection = function(id)
 {
 	let gid = this.player + "-" + id;	// automatically add the player ID
-	return this.destroyGlobalCollection(gid);
+	this.destroyGlobalCollection(gid);
 };
 
 m.GameState.prototype.getEC = function(id)
@@ -433,7 +433,7 @@ m.GameState.prototype.getAllyStructures = function()
 
 m.GameState.prototype.resetAllyStructures = function()
 {
-	return this.destroyCollection("ally-structures");
+	this.destroyCollection("ally-structures");
 };
 
 m.GameState.prototype.getNeutralStructures = function()
@@ -459,7 +459,7 @@ m.GameState.prototype.getEnemyStructures = function(enemyID)
 
 m.GameState.prototype.resetEnemyStructures = function()
 {
-	return this.destroyCollection("enemy-structures");
+	this.destroyCollection("enemy-structures");
 };
 
 m.GameState.prototype.getEnemyUnits = function(enemyID)
