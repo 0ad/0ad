@@ -3,9 +3,9 @@
 	"radius": 60,
 	"affects": ["Cavalry"],
 	"modifications": [
-	{ "value": "Attack/Ranged/Pierce", "add": 2 },
-	{ "value": "Attack/Melee/Hack", "add": 2 },
-	{ "value": "Attack/Capture/Value", "add": 1 }
+		{ "value": "Attack/Ranged/Pierce", "add": 2 },
+		{ "value": "Attack/Melee/Hack", "add": 2 },
+		{ "value": "Attack/Capture/Value", "add": 1 }
 	],
 	"auraName": "Lead from the Front Aura",
 	"auraDescription": "+2 Attack and +1 Capture for nearby cavalry units.",

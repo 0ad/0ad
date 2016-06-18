@@ -3,10 +3,10 @@
 	"radius": 30,
 	"affects": ["Spear"],
 	"modifications": [
-	{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
-	{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
-	{ "value": "Attack/Melee/Crush", "multiply": 1.2 },
-	{ "value": "Attack/Capture/Value", "add": 1 }
+		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Capture/Value", "add": 1 }
 	],
 	"auraName": "Last Stand Aura",
 	"auraDescription": "+20% Attack and +1 Capture for nearby Hoplites and Spartiates.",

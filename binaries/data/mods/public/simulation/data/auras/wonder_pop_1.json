@@ -1,7 +1,9 @@
 {
 	"type": "global",
 	"affects": ["Player"],
-	"modifications": [ { "value": "Player/MaxPopulation", "add": 10 } ],
+	"modifications": [
+		{ "value": "Player/MaxPopulation", "add": 10 }
+	],
 	"auraName": "Wonder Aura",
 	"auraDescription": "Increase the population limit by 10 per Wonder owned.",
 	"stackable": true

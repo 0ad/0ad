@@ -3,7 +3,7 @@
 	"radius": 75,
 	"affects": ["Structure"],
 	"modifications": [
-	{ "value": "Capturable/GarrisonRegenRate", "multiply": 1.5 }
+		{ "value": "Capturable/GarrisonRegenRate", "multiply": 1.5 }
 	],
 	"auraName": "Loyalty Aura",
 	"auraDescription": "All structures in range 1.5x garrisoned loyalty regeneration rate.",

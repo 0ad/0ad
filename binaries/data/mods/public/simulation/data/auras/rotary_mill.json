@@ -3,7 +3,7 @@
 	"radius": 60,
 	"affects": ["Worker"],
 	"modifications": [
-	{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.25 }
 	],
 	"auraDescription" : "Boosts nearby farming with +25% gathering rate.",
 	"auraName": "Farming bonus",

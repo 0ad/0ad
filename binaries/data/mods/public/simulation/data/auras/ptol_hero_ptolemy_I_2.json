@@ -2,10 +2,10 @@
 	"type": "global",
 	"affects": ["Mercenary"],
 	"modifications": [
-	{ "value": "Cost/Resources/food", "multiply": 0.5 },
-	{ "value": "Cost/Resources/wood", "multiply": 0.5 },
-	{ "value": "Cost/Resources/stone", "multiply": 0.5 },
-	{ "value": "Cost/Resources/metal", "multiply": 0.5 }
+		{ "value": "Cost/Resources/food", "multiply": 0.5 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.5 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.5 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.5 }
 	],
 	"auraName": "Mercenary Patron Aura",
 	"auraDescription": "Mercenaries cost -50% resources during his lifetime."
