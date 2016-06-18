@@ -124,6 +124,12 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
 		this.updateTerritories(gameState);
 
+	if (events.DiplomacyChanged.length)
+	{
+		gameState.resetAllyStructures();
+		gameState.resetEnemyStructures();
+	}
+
 	for (let evt of events.Create)
 	{
 		// Let's check if we have a building set to create a new base.
@@ -1130,7 +1136,16 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	// and not in range of any enemy defensive structure to avoid building under fire.
 
 	let ownStructures = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Fortress", "Tower"])).toEntityArray();
-	let enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"])).toEntityArray();
+	let enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.not(API3.Filters.byOwner(0))).
+		filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"]));
+	if (!enemyStructures.hasEntities())	// we may be in cease fire mode, build defense against neutrals
+	{
+		enemyStructures = gameState.getNeutralStructures().filter(API3.Filters.not(API3.Filters.byOwner(0))).
+			filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"]));
+		if (!enemyStructures.hasEntities())
+			return undefined;
+	}
+	enemyStructures = enemyStructures.toEntityArray();
 
 	let wonderMode = gameState.getGameType() === "wonder";
 	let wonderDistmin;
@@ -1226,7 +1241,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 				break;
 			}
 		}
-		if (minDist < 0)
+		if (minDist < 0 || minDist === Math.min())
 			continue;
 		if (bestVal !== undefined && minDist > bestVal)
 			continue;

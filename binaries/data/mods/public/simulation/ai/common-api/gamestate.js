@@ -320,6 +320,15 @@ m.GameState.prototype.getEnemies = function()
 	return ret;
 };
 
+m.GameState.prototype.getNeutrals = function()
+{
+	let ret = [];
+	for (let i in this.playerData.isNeutral)
+		if (this.playerData.isNeutral[i])
+			ret.push(+i);
+	return ret;
+};
+
 m.GameState.prototype.getAllies = function()
 {
 	let ret = [];
@@ -387,6 +396,11 @@ m.GameState.prototype.getEntities = function()
 	return this.entities;
 };
 
+m.GameState.prototype.getStructures = function()
+{
+	return this.updatingGlobalCollection("structures", m.Filters.byClass("Structure"), this.entities);
+};
+
 m.GameState.prototype.getOwnEntities = function()
 {
 	return this.updatingGlobalCollection("" + this.player + "-entities", m.Filters.byOwner(this.player));
@@ -417,7 +431,15 @@ m.GameState.prototype.getAllyStructures = function()
 	return this.updatingCollection("ally-structures", m.Filters.byClass("Structure"), this.getAllyEntities());
 };
 
-// Try to use a parameter for those three, it'll be a lot faster.
+m.GameState.prototype.resetAllyStructures = function()
+{
+	return this.destroyCollection("ally-structures");
+};
+
+m.GameState.prototype.getNeutralStructures = function()
+{
+	return this.getStructures().filter(m.Filters.byOwners(this.getNeutrals()));
+};
 
 m.GameState.prototype.getEnemyEntities = function(enemyID)
 {
@@ -433,6 +455,11 @@ m.GameState.prototype.getEnemyStructures = function(enemyID)
 		return this.updatingCollection("enemy-structures", m.Filters.byClass("Structure"), this.getEnemyEntities());
 
 	return this.updatingGlobalCollection("" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEnemyEntities(enemyID));
+};
+
+m.GameState.prototype.resetEnemyStructures = function()
+{
+	return this.destroyCollection("enemy-structures");
 };
 
 m.GameState.prototype.getEnemyUnits = function(enemyID)
