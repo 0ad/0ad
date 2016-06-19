@@ -168,7 +168,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		}
 
 	// Disable the AIIinterface when no AI players are present
-	if (playerData && !playerData.some(v => v && v.AI))
+	if (playerData && !playerData.some(v => v && !!v.AI))
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 }
 
