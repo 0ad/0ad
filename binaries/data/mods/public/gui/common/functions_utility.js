@@ -205,3 +205,55 @@ function clearChatMessages()
 	} catch (e) {
 	}
 }
+
+/**
+ * Returns a formatted string describing the player assignments.
+ * Including civs, teams, AI settings and player colors
+ * which are given in data (array of objects per player).
+ *
+ * @returns {string}
+ */
+function formatPlayerInfo(data)
+{
+	let playerDescriptions = {};
+	let playerIdx = 0;
+	for (let playerData of data)
+	{
+		++playerIdx;
+		let teamIdx = playerData.Team;
+		let showDefeated = playerData.state && playerData.state == "defeated";
+		let isAI = playerData.AI && playerData.AI != "";
+
+		let translated;
+		if (!isAI && !showDefeated)
+			translated = translateWithContext("replay", "%(playerName)s (%(civ)s)");
+		else if (!isAI && showDefeated)
+			translated = translateWithContext("replay", "%(playerName)s (%(civ)s, defeated)");
+		else if (isAI && !showDefeated)
+			translated = translateWithContext("replay", "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+		else
+			translated = translateWithContext("replay", "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)");
+
+		// Sort player descriptions by team
+		if (!playerDescriptions[teamIdx])
+			playerDescriptions[teamIdx] = [];
+		playerDescriptions[teamIdx].push(sprintf(translated, {
+			"playerName": '[color="' + rgbToGuiColor(playerData.Color) + '"]' + escapeText(playerData.Name) + "[/color]",
+			"civ": playerData.Civ,
+			"AIname": isAI ? translateAIName(playerData.AI) : "",
+			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : ""
+		}));
+	}
+
+	let teams = Object.keys(playerDescriptions);
+
+	// If there are no teams, merge all playersDescriptions
+	if (teams.length == 1)
+		return playerDescriptions[teams[0]].join("\n") + "\n";
+
+	// If there are teams, merge "Team N:" + playerDescriptions
+	return teams.map(team => {
+		let teamCaption = (team == -1) ? translate("No Team") : sprintf(translate("Team %(team)s"), { "team": +team + 1 });
+		return '[font="sans-bold-14"]' + teamCaption + "[/font]:\n" + playerDescriptions[team].join("\n");
+	}).join("\n\n");
+}

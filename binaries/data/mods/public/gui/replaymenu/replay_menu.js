@@ -346,50 +346,22 @@ function getReplayTeamText(replay)
 	const metadata = Engine.GetReplayMetadata(replay.directory);
 	const spoiler = Engine.GetGUIObjectByName("showSpoiler").checked;
 
-	var playerDescriptions = {};
-	var playerIdx = 0;
+	let data = [];
+	let playerIdx = 0;
 	for (let playerData of replay.attribs.settings.PlayerData)
 	{
-		// Get player info
 		++playerIdx;
-		let teamIdx = playerData.Team;
-		let playerColor = playerData.Color ? playerData.Color : g_Settings.PlayerDefaults[playerIdx].Color;
-		let playerCiv = !playerData.Civ ? translate("Unknown Civilization") : (g_CivData[playerData.Civ] && g_CivData[playerData.Civ].Name ? translate(g_CivData[playerData.Civ].Name) : playerData.Civ);
-		let showDefeated = spoiler && metadata && metadata.playerStates && metadata.playerStates[playerIdx].state == "defeated";
-		let isAI = playerData.AI;
-
-		// Create human-readable player description
-		let playerDetails = {
-			"playerName": '[color="' + rgbToGuiColor(playerColor) + '"]' + escapeText(playerData.Name) + "[/color]",
-			"civ": playerCiv,
-			"AIname": isAI ? translateAIName(playerData.AI) : "",
-			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : ""
-		};
-
-		if (!isAI && !showDefeated)
-			playerDetails = sprintf(translateWithContext("replay", "%(playerName)s (%(civ)s)"), playerDetails);
-		else if (!isAI && showDefeated)
-			playerDetails = sprintf(translateWithContext("replay", "%(playerName)s (%(civ)s, defeated)"), playerDetails);
-		else if (isAI && !showDefeated)
-			playerDetails = sprintf(translateWithContext("replay", "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"), playerDetails);
-		else
-			playerDetails = sprintf(translateWithContext("replay", "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"), playerDetails);
-
-		// Sort player descriptions by team
-		if (!playerDescriptions[teamIdx])
-			playerDescriptions[teamIdx] = [];
-		playerDescriptions[teamIdx].push(playerDetails);
+		data.push({
+			"Team": playerData.Team,
+			"Name": playerData.Name,
+			"Civ": !playerData.Civ ? translate("Unknown Civilization") :
+				(g_CivData[playerData.Civ] && g_CivData[playerData.Civ].Name ? translate(g_CivData[playerData.Civ].Name) : playerData.Civ),
+			"Color": playerData.Color ? playerData.Color : g_Settings.PlayerDefaults[playerIdx].Color,
+			"AI": playerData.AI,
+			"AIDiff": playerData.AIDiff,
+			"Defeated": spoiler && metadata && metadata.playerStates && metadata.playerStates[playerIdx].state == "defeated"
+		});
 	}
 
-	var teams = Object.keys(playerDescriptions);
-
-	// If there are no teams, merge all playersDescriptions
-	if (teams.length == 1)
-		return playerDescriptions[teams[0]].join("\n") + "\n";
-
-	// If there are teams, merge "Team N:" + playerDescriptions
-	return teams.map(team => {
-		let teamCaption = (team == -1) ? translate("No Team") : sprintf(translate("Team %(team)s"), { "team": +team + 1 });
-		return '[font="sans-bold-14"]' + teamCaption + "[/font]:\n" + playerDescriptions[team].join("\n");
-	}).join("\n");
+	return formatPlayerInfo(data);
 }

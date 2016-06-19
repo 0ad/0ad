@@ -4,46 +4,86 @@
 
 	<script file="gui/common/functions_global_object.js" />
 	<script file="gui/common/functions_utility.js" />
+	<script file="gui/common/settings.js" />
+
+	<script file="gui/common/color.js" />
+
 	<script file="gui/common/functions_utility_loadsave.js" />
 	<script file="gui/savedgames/load.js" />
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
-	<object type="image" style="ModernDialog" size="50%-300 50%-200 50%+300 50%+200">
+	<object type="image" style="ModernDialog" size="50%-400 50%-325 50%+400 50%+325">
 
 		<object type="text" style="TitleText" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Load Game</translatableAttribute>
 		</object>
 
-		<object name="gameSelection"
-			style="ModernList"
-			type="list"
-			size="24 24 100%-24 100%-100">
+		<object type="image" size="0 20 550 100%">
+			<object name="gameSelection" style="ModernList" type="list" size="24 12 100%-24 100%-90">
+				<action on="SelectionChange">selectionChanged();</action>
+			</object>
+
+			<object type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
+				<translatableAttribute id="caption">Cancel</translatableAttribute>
+				<action on="Press">Engine.PopGuiPage();</action>
+			</object>
+
+			<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" hotkey="session.savedgames.delete">
+				<translatableAttribute id="caption">Delete</translatableAttribute>
+				<action on="Press">
+					if (!this.enabled)
+						return;
+					if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
+						deleteGameWithoutConfirmation();
+					else
+						deleteGame();
+				</action>
+			</object>
+
+			<object name="loadGameButton" type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">
+				<translatableAttribute id="caption">Load</translatableAttribute>
+				<action on="Press">loadGame();</action>
+			</object>
+
 		</object>
 
-		<object type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
-			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">Engine.PopGuiPage();</action>
+		<object name="validGame" type="image" size="550 20 100%-20 100%">
+			<object name="savedMapName" size="0 0 100% 20" type="text" style="ModernLabelText" />
+			<object name="savedInfoPreview" size="0 20 220 240"  type="image" sprite="" />
+
+			<object size="0 250 45% 270" type="text" style="ModernLabelText" text_align="left">
+				<translatableAttribute id="caption">Players:</translatableAttribute>
+			</object>
+			<object name="savedPlayers" size="45% 250 100%-15 270" type="text" style="ModernLabelText" text_align="left" />
+			<object size="0 270 45% 290" type="text" style="ModernLabelText" text_align="left">
+				<translatableAttribute id="caption">Played time:</translatableAttribute>
+			</object>
+			<object name="savedPlayedTime" size="45% 270 100%-15 290" type="text" style="ModernLabelText" text_align="left" />
+			<object size="0 290 45% 310" type="text" style="ModernLabelText" text_align="left">
+				<translatableAttribute id="caption">Map Type:</translatableAttribute>
+			</object>
+			<object name="savedMapType" size="45% 290 100%-15 310" type="text" style="ModernLabelText" text_align="left" />
+			<object size="0 310 45% 330" type="text" style="ModernLabelText" text_align="left">
+				<translatableAttribute id="caption">Map Size:</translatableAttribute>
+			</object>
+			<object name="savedMapSize" size="45% 310 100%-15 330" type="text" style="ModernLabelText" text_align="left" />
+			<object size="0 330 45% 350" type="text" style="ModernLabelText" text_align="left">
+				<translatableAttribute id="caption">Victory:</translatableAttribute>
+			</object>
+			<object name="savedVictory" size="45% 330 100%-15 350" type="text" style="ModernLabelText" text_align="left" />
+
+			<object size="0 352 100%-15 353" type="image" sprite="ModernWhiteLine" z="25" />
+
+			<object name="savedMods" size="0 355 100%-15 395" type="text" style="ModernLabelText" text_align="left" />
+
+			<object size="0 397 100%-15 398" type="image" sprite="ModernWhiteLine" z="25" />
+			<object name="savedPlayersNames" size="0 400 100%-10 100%-32" type="text" style="MapPlayerList" />
+			<object size="0 100%-32 100%-15 100%-31" type="image" sprite="ModernWhiteLine" z="25" />
 		</object>
 
-		<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" hotkey="session.savedgames.delete">
-			<translatableAttribute id="caption">Delete</translatableAttribute>
-			<action on="Press">
-				if (!this.enabled)
-					return;
-				if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
-					deleteGameWithoutConfirmation();
-				else
-					deleteGame();
-			</action>
-		</object>
-
-		<object name="loadGameButton" type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">
-			<translatableAttribute id="caption">Load</translatableAttribute>
-			<action on="Press">loadGame();</action>
-		</object>
-
+		<object name="invalidGame" size="550 55 770 155" type="image" sprite="logo" />
 	</object>
 
-	</objects>
+</objects>
