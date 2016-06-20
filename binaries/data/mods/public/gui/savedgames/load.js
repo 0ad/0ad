@@ -65,7 +65,6 @@ function loadGame()
 {
 	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	var gameId = gameSelection.list_data[gameSelection.selected];
-	var gameLabel = gameSelection.list[gameSelection.selected];
 	var metadata = g_SavedGamesMetadata[gameSelection.selected];
 
 	// Check compatibility before really loading it
@@ -191,7 +190,7 @@ function getPlayerInfoText(metadata)
 	let playerIdx = 0;
 	for (let playerData of metadata.initAttributes.settings.PlayerData)
 	{
-		if (playerData == null || playerData.Name == "gaia")
+		if (playerData == null || playerData.Civ == "gaia")
 			continue;
 		++playerIdx;
 		data.push({

@@ -273,7 +273,7 @@ function greyout(text, isCompatible)
  */
 function getReplayDateTime(replay)
 {
-	return Engine.FormatMillisecondsIntoDateString(replay.timestamp * 1000, translate("yyyy-MM-dd HH:mm"))
+	return Engine.FormatMillisecondsIntoDateString(replay.timestamp * 1000, translate("yyyy-MM-dd HH:mm"));
 }
 
 /**
