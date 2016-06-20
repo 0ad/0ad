@@ -33,7 +33,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 	let cmpPlayer = QueryOwnerInterface(ent, IID_Player);
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().wonderDuration || 20 * 60 * 1000;
+	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().wonderDuration || 0;
 
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("%(player)s will have won in %(time)s"),
@@ -59,7 +59,6 @@ Trigger.prototype.CheckWonderVictory = function(data)
 };
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-
 cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", { "enabled": true });
 cmpTrigger.wonderVictoryTimers = {};
 cmpTrigger.wonderVictoryMessages = {};
