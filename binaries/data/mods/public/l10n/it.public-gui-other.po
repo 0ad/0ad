@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-16 19:26+0000\n"
-"Last-Translator: Me Lazzi\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-17 09:34+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Edificio Speciale"
 msgstr[1] "Edifici Speciali"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
 msgid "Heroes"
 msgstr "Eroi"
 
@@ -327,12 +327,12 @@ msgstr "%(previousAmounts)s e %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:140 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:76
-#: gui/savedgames/load.js:77
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
+#: gui/savedgames/load.js:80
 msgid ", "
 msgstr ", "
 
@@ -356,83 +356,83 @@ msgstr "Cattiva connessione al server (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Cattiva connessione a %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:54
+#: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Motivo sconosciuto"
 
-#: gui/common/network.js:55
+#: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
 msgstr "Questo è spesso causato quando vengono bloccati gli invii dalla porta UDP 20595, da un software firewall o antivirus"
 
-#: gui/common/network.js:56
+#: gui/common/network.js:64
 msgid "The host has ended the game"
 msgstr "L'host ha finito la partita."
 
-#: gui/common/network.js:57
+#: gui/common/network.js:65
 msgid "Incorrect network protocol version"
 msgstr "Errata versione del protocollo di rete"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:66
 msgid "Game is loading, please try later"
 msgstr "Caricamento in corso, prova più tardi"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
 msgstr "La partita è già iniziata, non sono permessi osservatori"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:68
 msgid "You have been kicked"
 msgstr "Sei stato espulso"
 
-#: gui/common/network.js:61
+#: gui/common/network.js:69
 msgid "You have been banned"
 msgstr "Sei stato bannato"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Nome del giocatore in uso. Se sarai disconnesso, riprova tra pochi secondi."
 
-#: gui/common/network.js:63
+#: gui/common/network.js:71
 msgid "Server full"
 msgstr "Server pieno"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:74
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valore non valido %(id)s] "
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:78
+#: gui/common/network.js:86
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Motivo: %(reason)s."
 
-#: gui/common/network.js:83
+#: gui/common/network.js:91
 msgid "Lost connection to the server."
 msgstr "Connessione col server interrotta"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:92
 msgid "Failed to connect to the server."
 msgstr "Connesso al server fallita."
 
-#: gui/common/network.js:86
+#: gui/common/network.js:94
 msgid "Disconnected"
 msgstr "Disconnesso"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Impossibile bannare %(name)s."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Impossibile espellere %(name)s."
 
-#: gui/common/network.js:131
+#: gui/common/network.js:139
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Utenti: %(users)s"
@@ -609,8 +609,8 @@ msgid "Armor:"
 msgstr "Armatura:"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:366
-#: gui/structree/draw.js:392
+#: gui/common/tooltips.js:174 gui/structree/draw.js:381
+#: gui/structree/draw.js:407
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -842,20 +842,20 @@ msgid ""
 msgstr "Resettare le opzioni cancellerà le tue impostazioni salvate. Vuoi continuare ?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:85
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "Attenzione"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:91
 msgid "No"
 msgstr "No"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:91
 msgid "Yes"
 msgstr "Sì"
@@ -965,7 +965,7 @@ msgstr "Non hai attivato gli stessi mod del replay."
 msgid "Required: %(mods)s"
 msgstr "Richiede: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:79
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Attiva: %(mods)s"
@@ -1158,21 +1158,21 @@ msgstr "Richiede una versione del salvataggio %(requiredVersion)s di 0 A.D., men
 msgid "The savegame needs a different set of mods:"
 msgstr "Il salvataggio richiede un differente gruppo di modifiche:"
 
-#: gui/savedgames/load.js:80
+#: gui/savedgames/load.js:84
 msgid "Do you still want to proceed?"
 msgstr "Vuoi comunque procedere?"
 
-#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
+#: gui/savedgames/load.js:131 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:132 gui/savedgames/save.js:89
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Il salvataggio verrà eliminato definitivamente, sei sicuro?"
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:133 gui/savedgames/save.js:90
 msgid "DELETE"
 msgstr "ELIMINA"
 
@@ -1184,27 +1184,27 @@ msgstr "Il salvataggio verrà sovrascritto definitivamente, sei sicuro?"
 msgid "OVERWRITE SAVE"
 msgstr "SALVA SOVRASCRIVENDO"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:382
 msgid "Health:"
 msgstr "Salute:"
 
-#: gui/structree/draw.js:387
+#: gui/structree/draw.js:402
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:393
+#: gui/structree/draw.js:408
 msgid "Gather Rates:"
 msgstr "Tassi di Raccolta:"
 
-#: gui/structree/load.js:179
+#: gui/structree/load.js:180
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s a %(val2)s"
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
+#: gui/summary/layout.js:94 gui/summary/layout.js:137
+#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):110
 msgid "Player name"
 msgstr "Nome del giocatore"
 
@@ -1224,7 +1224,7 @@ msgstr "Punteggio Esplorazione"
 msgid "Total score"
 msgstr "Punteggio Totale"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
+#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:99
 msgid "Total"
 msgstr "Totale"
 
@@ -1256,138 +1256,186 @@ msgstr "Centri civici"
 msgid "Wonders"
 msgstr "Meraviglie"
 
-#: gui/summary/layout.js:32
-msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Statistiche Edifici (Costruiti / Persi / Distrutti)"
+#: gui/summary/layout.js:33
+#, javascript-format
+msgid ""
+"Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
+"%(lost)s)"
+msgstr ""
 
-#: gui/summary/layout.js:50
+#: gui/summary/layout.js:35
+msgid "Constructed"
+msgstr ""
+
+#: gui/summary/layout.js:36
+msgid "Destroyed"
+msgstr ""
+
+#: gui/summary/layout.js:37
+msgid "Captured"
+msgstr ""
+
+#: gui/summary/layout.js:38 gui/summary/layout.js:73
+msgid "Lost"
+msgstr ""
+
+#: gui/summary/layout.js:60
 msgid "Infantry"
 msgstr "Fanteria"
 
-#: gui/summary/layout.js:51
+#: gui/summary/layout.js:61
 msgid "Worker"
 msgstr "Lavoratore"
 
-#: gui/summary/layout.js:52
+#: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Cavalleria"
 
-#: gui/summary/layout.js:53
+#: gui/summary/layout.js:63
 msgid "Champion"
 msgstr "Campione"
 
-#: gui/summary/layout.js:55
+#: gui/summary/layout.js:65
 msgid "Navy"
 msgstr "Marina"
 
-#: gui/summary/layout.js:56
+#: gui/summary/layout.js:66
 msgid "Traders"
 msgstr "Commercianti"
 
-#: gui/summary/layout.js:59
-msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Statistiche Unità (Addestrate / Perse / Uccise)"
+#: gui/summary/layout.js:70
+#, javascript-format
+msgid "Units Statistics (%(trained)s / %(lost)s / %(killed)s)"
+msgstr ""
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:72
+msgid "Trained"
+msgstr ""
+
+#: gui/summary/layout.js:74
+msgid "Killed"
+msgstr ""
+
+#: gui/summary/layout.js:95
 msgid "Food"
 msgstr "Cibo"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:96
 msgid "Wood"
 msgstr "Legno"
 
-#: gui/summary/layout.js:78
+#: gui/summary/layout.js:97
 msgid "Stone"
 msgstr "Pietra"
 
-#: gui/summary/layout.js:79
+#: gui/summary/layout.js:98
 msgid "Metal"
 msgstr "Metallo"
 
-#: gui/summary/layout.js:81
-msgid "Tributes (Sent / Received)"
-msgstr "Tributi (Inviati / Ricevuti)"
+#: gui/summary/layout.js:101
+#, javascript-format
+msgid ""
+"Tributes \n"
+"(%(sent)s / %(received)s)"
+msgstr ""
 
-#: gui/summary/layout.js:82
+#: gui/summary/layout.js:103
+msgid "Sent"
+msgstr ""
+
+#: gui/summary/layout.js:104
+msgid "Received"
+msgstr ""
+
+#: gui/summary/layout.js:109
 msgid "Treasures collected"
 msgstr "Tesori raccolti"
 
-#: gui/summary/layout.js:83
+#: gui/summary/layout.js:110
 msgid "Loot"
 msgstr "Bottino"
 
-#: gui/summary/layout.js:86
-msgid "Resource Statistics (Gathered / Used)"
-msgstr "Statistiche Risorse (Raccolte / Utilizzate)"
+#: gui/summary/layout.js:114
+#, javascript-format
+msgid "Resource Statistics (%(gathered)s / %(used)s)"
+msgstr ""
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:116
+msgid "Gathered"
+msgstr ""
+
+#: gui/summary/layout.js:117
+msgid "Used"
+msgstr ""
+
+#: gui/summary/layout.js:138
 msgid "Food exchanged"
 msgstr "Cibo scambiato"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:139
 msgid "Wood exchanged"
 msgstr "Legna scambiata"
 
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:140
 msgid "Stone exchanged"
 msgstr "Pietra scambiata"
 
-#: gui/summary/layout.js:106
+#: gui/summary/layout.js:141
 msgid "Metal exchanged"
 msgstr "Metallo scambiato"
 
-#: gui/summary/layout.js:107
+#: gui/summary/layout.js:142
 msgid "Barter efficiency"
 msgstr "Efficienza dello scambio"
 
-#: gui/summary/layout.js:108
+#: gui/summary/layout.js:143
 msgid "Trade income"
 msgstr "Proventi del commercio"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:159
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Rapporto\nVegetariani"
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:160
 msgid "Feminization"
 msgstr "Femminilizzazione"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:161
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Rapporto\nUccisi / Morti"
 
-#: gui/summary/layout.js:127
+#: gui/summary/layout.js:162
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Esplorazione\nMappa"
 
-#: gui/summary/layout.js:128
+#: gui/summary/layout.js:163
 msgid "At peak"
 msgstr "All'apice"
 
-#: gui/summary/layout.js:129
+#: gui/summary/layout.js:164
 msgid "At finish"
 msgstr "Alla fine"
 
-#: gui/summary/layout.js:132
+#: gui/summary/layout.js:167
 msgid "Map control"
 msgstr "Controllo Mappa"
 
-#: gui/summary/layout.js:277
+#: gui/summary/layout.js:312
 msgid "Team total"
 msgstr "Totale Squadra"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:170
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo di gioco trascorso: %(time)s"
 
-#: gui/summary/summary.js:176
+#: gui/summary/summary.js:177
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1431,7 +1479,7 @@ msgstr "Locale:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):26 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Cancella"
 
@@ -1588,7 +1636,7 @@ msgstr "Partita Singola"
 msgid "Campaigns"
 msgstr "Campagne"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):16
 msgid "Load Game"
 msgstr "Carica Partita"
 
@@ -1802,12 +1850,12 @@ msgid "Main Menu"
 msgstr "Menù Principale"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):31 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Elimina"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):26
+#: gui/summary/summary.xml:(caption):28
 msgid "Summary"
 msgstr "Riepilogo"
 
@@ -1845,7 +1893,7 @@ msgctxt "replay"
 msgid "Duration"
 msgstr "Durata"
 
-#: gui/savedgames/load.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):43
 msgid "Load"
 msgstr "Carica"
 
@@ -1877,35 +1925,35 @@ msgstr "Civiltà:"
 msgid "Trainer Units"
 msgstr "Unità Allenatore"
 
-#: gui/summary/summary.xml:(caption):66
+#: gui/summary/summary.xml:(caption):68
 msgid "Score"
 msgstr "Punteggio"
 
-#: gui/summary/summary.xml:(caption):73
+#: gui/summary/summary.xml:(caption):75
 msgid "Buildings"
 msgstr "Edifici"
 
-#: gui/summary/summary.xml:(caption):80
+#: gui/summary/summary.xml:(caption):82
 msgid "Units"
 msgstr "Unità"
 
-#: gui/summary/summary.xml:(caption):87
+#: gui/summary/summary.xml:(caption):89
 msgid "Resources"
 msgstr "Risorse"
 
-#: gui/summary/summary.xml:(caption):94
+#: gui/summary/summary.xml:(caption):96
 msgid "Market"
 msgstr "Mercato"
 
-#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+#: gui/summary/summary.xml:(caption):103 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Miscellanea"
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):166
 msgid "Replay"
 msgstr "Replay"
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):186
 msgid "Continue"
 msgstr "Continua"
 

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:00+0200\n"
-"PO-Revision-Date: 2016-06-10 12:57+0000\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-18 02:50+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "* %(username)s 準備好了！"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s 尚未準備好。"
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
 msgid "Default"
 msgstr "預設"
 
@@ -105,146 +105,146 @@ msgctxt "civilization"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the lobby."
 msgstr "返回大廳。"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the main menu."
 msgstr "返回主選單。"
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "Yes"
 msgstr "是"
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "No"
 msgstr "否"
 
-#: gui/gamesetup/gamesetup.js:604
+#: gui/gamesetup/gamesetup.js:606
 msgctxt "team"
 msgid "None"
 msgstr "無"
 
-#: gui/gamesetup/gamesetup.js:1267
+#: gui/gamesetup/gamesetup.js:1266
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1430
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Loading..."
 msgstr "載入中..."
 
-#: gui/gamesetup/gamesetup.js:1478
+#: gui/gamesetup/gamesetup.js:1477
 msgctxt "map selection"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/gamesetup.js:1482
+#: gui/gamesetup/gamesetup.js:1481
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s 個玩家。"
 
-#: gui/gamesetup/gamesetup.js:1492
+#: gui/gamesetup/gamesetup.js:1491
 msgid "Randomly selects a map from the list"
 msgstr "隨機從列表中選取地圖"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1494
 msgid "Sorry, no description available."
 msgstr "抱歉，沒有可用的描述。"
 
-#: gui/gamesetup/gamesetup.js:1501
+#: gui/gamesetup/gamesetup.js:1500
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1505
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "奇觀（%(min)s 分鐘）"
 
-#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1522 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "勝利條件："
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1610
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI：%(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1615
 msgid "Unassigned"
 msgstr "未指派"
 
-#: gui/gamesetup/gamesetup.js:1776
+#: gui/gamesetup/gamesetup.js:1775
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1782
 msgid "Unknown Player"
 msgstr "未知玩家"
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1844
 msgid "I'm not ready!"
 msgstr "我還沒準備好！"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1845
 msgid "I'm ready"
 msgstr "我準備好了"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1848
 msgid "State that you are not ready to play."
 msgstr "表明您尚未準備就緒。"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1849
 msgid "State that you are ready to play!"
 msgstr "表明您準備好了！"
 
-#: gui/gamesetup/gamesetup_mp.js:35
+#: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)s 的遊戲"
 
-#: gui/gamesetup/gamesetup_mp.js:80
+#: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
 msgstr "正在連線到伺服器..."
 
-#: gui/gamesetup/gamesetup_mp.js:99
+#: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "網路訊息：%(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:168
+#: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
 msgstr "正與伺服器註冊..."
 
-#: gui/gamesetup/gamesetup_mp.js:174
+#: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
 msgstr "遊戲已經開始，正重新加入..."
 
-#: gui/gamesetup/gamesetup_mp.js:226
+#: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
 msgstr "遊戲名稱現正被使用中。"
 
-#: gui/gamesetup/gamesetup_mp.js:243
+#: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "無法主持遊戲：%(message)s。"
 
-#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
+#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
 msgstr "錯誤"
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "無法加入遊戲：%(message)s。"
 
-#: gui/gamesetup/gamesetup_mp.js:295
+#: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s 的遊戲"
@@ -272,7 +272,7 @@ msgid "AI Difficulty:"
 msgstr "AI 難度："
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):90
+#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "取消"
 
@@ -535,7 +535,7 @@ msgid "Joining an existing game."
 msgstr "加入既有的遊戲。"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):58
+#: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
 msgstr "玩家名稱："
 
@@ -543,17 +543,27 @@ msgstr "玩家名稱："
 msgid "Server Hostname or IP:"
 msgstr "伺服器主機名稱或 IP："
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):53
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):97
+msgid "Server Port:"
+msgstr "伺服器埠："
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
 msgstr "設置您的伺服器以主持。"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):71
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
 msgstr "伺服器名稱："
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+#: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
 msgstr "繼續"
+
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
+msgid "Leave blank to use the default port."
+msgstr "留空以使用預設埠。"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

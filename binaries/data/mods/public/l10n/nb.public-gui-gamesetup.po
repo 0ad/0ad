@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:00+0200\n"
-"PO-Revision-Date: 2016-06-10 08:51+0000\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-17 09:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "* %(username)s er klar!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s er ikke klar."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
 msgid "Default"
 msgstr "Standard"
 
@@ -110,62 +110,62 @@ msgctxt "civilization"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the lobby."
 msgstr "Tilbake til lobby"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the main menu."
 msgstr "Gå tilbake til hovedmeny."
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "No"
 msgstr "Nei"
 
-#: gui/gamesetup/gamesetup.js:604
+#: gui/gamesetup/gamesetup.js:606
 msgctxt "team"
 msgid "None"
 msgstr "Ingen"
 
-#: gui/gamesetup/gamesetup.js:1267
+#: gui/gamesetup/gamesetup.js:1266
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1430
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Loading..."
 msgstr "Laster..."
 
-#: gui/gamesetup/gamesetup.js:1478
+#: gui/gamesetup/gamesetup.js:1477
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: gui/gamesetup/gamesetup.js:1482
+#: gui/gamesetup/gamesetup.js:1481
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s spiller. "
 msgstr[1] "%(number)s spillere."
 
-#: gui/gamesetup/gamesetup.js:1492
+#: gui/gamesetup/gamesetup.js:1491
 msgid "Randomly selects a map from the list"
 msgstr "Velger et tilfeldig kart fra listen"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1494
 msgid "Sorry, no description available."
 msgstr "Beklager, ingen beskrivelse tilgjengelig."
 
-#: gui/gamesetup/gamesetup.js:1501
+#: gui/gamesetup/gamesetup.js:1500
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1505
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -173,85 +173,85 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Underverk (%(min)s minutt)"
 msgstr[1] "Underverk (%(min)s minutter)"
 
-#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1522 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Seiersbetingelse:"
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1610
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Maskin: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1615
 msgid "Unassigned"
 msgstr "Utilordnet"
 
-#: gui/gamesetup/gamesetup.js:1776
+#: gui/gamesetup/gamesetup.js:1775
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1782
 msgid "Unknown Player"
 msgstr "Ukjent spiller"
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1844
 msgid "I'm not ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1845
 msgid "I'm ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1848
 msgid "State that you are not ready to play."
 msgstr "Vis at du ikke er klar til å spille"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1849
 msgid "State that you are ready to play!"
 msgstr "Vis at du er klar til å spille!"
 
-#: gui/gamesetup/gamesetup_mp.js:35
+#: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)ss spill"
 
-#: gui/gamesetup/gamesetup_mp.js:80
+#: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
 msgstr "Kobler til tjener..."
 
-#: gui/gamesetup/gamesetup_mp.js:99
+#: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Nett-melding: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:168
+#: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
 msgstr "Registrerer på tjeneren..."
 
-#: gui/gamesetup/gamesetup_mp.js:174
+#: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
 msgstr "Spillet har allerede startet, blir med igjen..."
 
-#: gui/gamesetup/gamesetup_mp.js:226
+#: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
 msgstr "Spillnavnet er allerede i bruk."
 
-#: gui/gamesetup/gamesetup_mp.js:243
+#: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
+#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:295
+#: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)ss spill"
@@ -279,7 +279,7 @@ msgid "AI Difficulty:"
 msgstr "Maskinspiller vanskelighetsgrad:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):90
+#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -542,7 +542,7 @@ msgid "Joining an existing game."
 msgstr "Å delta i et eksisterende spill."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):58
+#: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
 msgstr "Spillernavn:"
 
@@ -550,17 +550,27 @@ msgstr "Spillernavn:"
 msgid "Server Hostname or IP:"
 msgstr "Tjener \"Hostname\" eller IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):53
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):97
+msgid "Server Port:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
 msgstr "Klargjør din tjener som arrangør"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):71
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
 msgstr "Tjener-navn:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+#: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
 msgstr "Fortsett"
+
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
+msgid "Leave blank to use the default port."
+msgstr ""
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

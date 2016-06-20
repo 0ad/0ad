@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-06 10:06+0000\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-17 09:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -38,158 +38,168 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "അജ്ഞാതം"
 
-#: gui/lobby/lobby.js:119
+#: gui/lobby/lobby.js:132
 msgid "Disconnected."
 msgstr ""
 
-#: gui/lobby/lobby.js:131
+#: gui/lobby/lobby.js:150
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr ""
 
-#: gui/lobby/lobby.js:138
+#: gui/lobby/lobby.js:159
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s പോയി."
 
-#: gui/lobby/lobby.js:146
+#: gui/lobby/lobby.js:169
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:213
+#: gui/lobby/lobby.js:238
 msgctxt "map size"
 msgid "Any"
 msgstr "ഏതെങ്കിലും"
 
-#: gui/lobby/lobby.js:218
+#: gui/lobby/lobby.js:243
 msgctxt "player number"
 msgid "Any"
 msgstr "ഏതെങ്കിലും"
 
-#: gui/lobby/lobby.js:222
+#: gui/lobby/lobby.js:247
 msgctxt "map"
 msgid "Any"
 msgstr "ഏതെങ്കിലും"
 
-#: gui/lobby/lobby.js:397
+#: gui/lobby/lobby.js:426
 msgid "Moderator"
 msgstr ""
 
-#: gui/lobby/lobby.js:397
+#: gui/lobby/lobby.js:426
 msgid "Player"
 msgstr ""
 
-#: gui/lobby/lobby.js:398 gui/lobby/lobby.js:399 gui/lobby/lobby.js:400
-#: gui/lobby/lobby.js:401 gui/lobby/lobby.js:402 gui/lobby/lobby.js:403
+#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
+#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:431 gui/lobby/lobby.js:432
 msgid "N/A"
 msgstr "അജ്ഞാതം"
 
-#: gui/lobby/lobby.js:426 gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:452 gui/lobby/lobby.js:483
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:437 gui/lobby/lobby.js:467
-#, javascript-format
-msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
-
-#: gui/lobby/lobby.js:439 gui/lobby/lobby.js:469
-msgctxt "Used for an undefined winning rate"
-msgid "-"
-msgstr ""
-
-#: gui/lobby/lobby.js:606
+#: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:647
+#: gui/lobby/lobby.js:670
 msgid "The game has already started."
 msgstr ""
 
-#: gui/lobby/lobby.js:648
+#: gui/lobby/lobby.js:671
 msgid "Do you want to join as observer?"
 msgstr ""
 
-#: gui/lobby/lobby.js:649
+#: gui/lobby/lobby.js:672
 msgid "Confirmation"
 msgstr ""
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:673
 msgid "No"
 msgstr ""
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:673
 msgid "Yes"
 msgstr ""
 
-#: gui/lobby/lobby.js:669
+#: gui/lobby/lobby.js:692
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:782
+#: gui/lobby/lobby.js:811
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:856
+#: gui/lobby/lobby.js:890
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:858
+#: gui/lobby/lobby.js:895
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:862 gui/lobby/lobby.js:873 gui/lobby/lobby.js:883
+#: gui/lobby/lobby.js:904 gui/lobby/lobby.js:925 gui/lobby/lobby.js:951
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:864 gui/lobby/lobby.js:875 gui/lobby/lobby.js:885
+#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:930 gui/lobby/lobby.js:956
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:869
+#: gui/lobby/lobby.js:919
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
+
+#: gui/lobby/lobby.js:945
+#, javascript-format
+msgctxt "lobby private message"
+msgid "(%(private)s) <%(sender)s>"
+msgstr ""
+
+#: gui/lobby/lobby.js:947
+msgid "Private"
+msgstr ""
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:908
+#: gui/lobby/lobby.js:983
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:911
+#: gui/lobby/lobby.js:986
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:914
+#: gui/lobby/lobby.js:991
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:969
+#: gui/lobby/lobby.js:1052
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
+
+#: gui/lobby/lobby.js:1119
+msgctxt "Used for an undefined winning rate"
+msgid "-"
+msgstr ""
+
+#: gui/lobby/lobby.js:1121
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -235,19 +245,19 @@ msgstr ""
 msgid "Registered"
 msgstr ""
 
-#: gui/lobby/prelobby.js:231
+#: gui/lobby/prelobby.js:233
 msgid "Register"
 msgstr "അംഗത്വമെടുക്കൂ"
 
-#: gui/lobby/prelobby.js:236 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:239 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
 msgstr "ബന്ധിപ്പിക്കൂ"
 
-#: gui/lobby/prelobby.js:246 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr ""
 
-#: gui/lobby/prelobby.js:255 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:258 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr ""
 

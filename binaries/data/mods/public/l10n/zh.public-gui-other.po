@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-06 09:14+0000\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-17 09:34+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "特殊建筑"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
 msgid "Heroes"
 msgstr "英雄"
 
@@ -318,12 +318,12 @@ msgstr "%(previousAmounts)s 至 %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
+#: gui/common/l10n.js:92 gui/common/network.js:140 gui/common/tooltips.js:49
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:76
-#: gui/savedgames/load.js:77
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
+#: gui/savedgames/load.js:80
 msgid ", "
 msgstr "，"
 
@@ -347,83 +347,83 @@ msgstr "与服务器的连接不稳定(%(milliseconds)s 毫秒)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "与 %(player)s 的连接不稳定(%(milliseconds)s 毫秒)"
 
-#: gui/common/network.js:54
+#: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr ""
 
-#: gui/common/network.js:55
+#: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
 msgstr ""
 
-#: gui/common/network.js:56
+#: gui/common/network.js:64
 msgid "The host has ended the game"
 msgstr "主持人已结束游戏。"
 
-#: gui/common/network.js:57
+#: gui/common/network.js:65
 msgid "Incorrect network protocol version"
 msgstr "网络协议版本错误"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:66
 msgid "Game is loading, please try later"
 msgstr "游戏载入中，请稍后再试"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
 msgstr "游戏已经开始，不允许观察者"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:68
 msgid "You have been kicked"
 msgstr "您已被踢出"
 
-#: gui/common/network.js:61
+#: gui/common/network.js:69
 msgid "You have been banned"
 msgstr "您已经被禁止"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "玩家名已被使用。如果您已断开连接，请过几秒后重试"
 
-#: gui/common/network.js:63
+#: gui/common/network.js:71
 msgid "Server full"
 msgstr "服务器已满"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:74
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "[无效的数值 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:78
+#: gui/common/network.js:86
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因: %(reason)s."
 
-#: gui/common/network.js:83
+#: gui/common/network.js:91
 msgid "Lost connection to the server."
 msgstr "与服务器连接中断"
 
-#: gui/common/network.js:84
+#: gui/common/network.js:92
 msgid "Failed to connect to the server."
 msgstr ""
 
-#: gui/common/network.js:86
+#: gui/common/network.js:94
 msgid "Disconnected"
 msgstr "断开"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr " 不能禁止 %(name)s 。"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "不能踢出 %(name)s 。"
 
-#: gui/common/network.js:131
+#: gui/common/network.js:139
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "用户: %(users)s"
@@ -594,8 +594,8 @@ msgid "Armor:"
 msgstr "护甲:"
 
 #: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:366
-#: gui/structree/draw.js:392
+#: gui/common/tooltips.js:174 gui/structree/draw.js:381
+#: gui/structree/draw.js:407
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -823,20 +823,20 @@ msgid ""
 msgstr "重置选项会清除您已保存的设置。是否要继续?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:85
+#: gui/savedgames/load.js:89
 msgid "Warning"
 msgstr "警告"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:91
 msgid "No"
 msgstr "否"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
+#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:91
 msgid "Yes"
 msgstr "是"
@@ -946,7 +946,7 @@ msgstr "您所激活的 Mod 与重播所用 Mod 不同。"
 msgid "Required: %(mods)s"
 msgstr "需要: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:79
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "已激活: %(mods)s"
@@ -1137,21 +1137,21 @@ msgstr "需要 0 A.D. 的 %(requiredVersion)s 存档版本，但是您的存档�
 msgid "The savegame needs a different set of mods:"
 msgstr ""
 
-#: gui/savedgames/load.js:80
+#: gui/savedgames/load.js:84
 msgid "Do you still want to proceed?"
 msgstr "您仍要继续吗？"
 
-#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
+#: gui/savedgames/load.js:131 gui/savedgames/save.js:56
 #: gui/savedgames/save.js:88
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:132 gui/savedgames/save.js:89
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "确定要永久的删除保存的游戏吗？"
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:133 gui/savedgames/save.js:90
 msgid "DELETE"
 msgstr "删除"
 
@@ -1163,27 +1163,27 @@ msgstr "确定要覆盖此保存记录吗？"
 msgid "OVERWRITE SAVE"
 msgstr "覆盖"
 
-#: gui/structree/draw.js:367
+#: gui/structree/draw.js:382
 msgid "Health:"
 msgstr "生命值："
 
-#: gui/structree/draw.js:387
+#: gui/structree/draw.js:402
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/structree/draw.js:393
+#: gui/structree/draw.js:408
 msgid "Gather Rates:"
 msgstr "采集速率："
 
-#: gui/structree/load.js:179
+#: gui/structree/load.js:180
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s 至 %(val2)s"
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
+#: gui/summary/layout.js:94 gui/summary/layout.js:137
+#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):110
 msgid "Player name"
 msgstr "玩家名字"
 
@@ -1203,7 +1203,7 @@ msgstr "探索得分"
 msgid "Total score"
 msgstr "总得分"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
+#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:99
 msgid "Total"
 msgstr "总计"
 
@@ -1235,138 +1235,186 @@ msgstr "城镇中心"
 msgid "Wonders"
 msgstr "奇迹"
 
-#: gui/summary/layout.js:32
-msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "建筑统计 (建造 / 损失 / 摧毁 )"
+#: gui/summary/layout.js:33
+#, javascript-format
+msgid ""
+"Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
+"%(lost)s)"
+msgstr ""
 
-#: gui/summary/layout.js:50
+#: gui/summary/layout.js:35
+msgid "Constructed"
+msgstr ""
+
+#: gui/summary/layout.js:36
+msgid "Destroyed"
+msgstr ""
+
+#: gui/summary/layout.js:37
+msgid "Captured"
+msgstr ""
+
+#: gui/summary/layout.js:38 gui/summary/layout.js:73
+msgid "Lost"
+msgstr ""
+
+#: gui/summary/layout.js:60
 msgid "Infantry"
 msgstr "步兵"
 
-#: gui/summary/layout.js:51
+#: gui/summary/layout.js:61
 msgid "Worker"
 msgstr "工人"
 
-#: gui/summary/layout.js:52
+#: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "骑兵"
 
-#: gui/summary/layout.js:53
+#: gui/summary/layout.js:63
 msgid "Champion"
 msgstr "步行骑士"
 
-#: gui/summary/layout.js:55
+#: gui/summary/layout.js:65
 msgid "Navy"
 msgstr "海军"
 
-#: gui/summary/layout.js:56
+#: gui/summary/layout.js:66
 msgid "Traders"
 msgstr "贸易商人"
 
-#: gui/summary/layout.js:59
-msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "单位统计（训练/阵亡/歼灭）"
+#: gui/summary/layout.js:70
+#, javascript-format
+msgid "Units Statistics (%(trained)s / %(lost)s / %(killed)s)"
+msgstr ""
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:72
+msgid "Trained"
+msgstr ""
+
+#: gui/summary/layout.js:74
+msgid "Killed"
+msgstr ""
+
+#: gui/summary/layout.js:95
 msgid "Food"
 msgstr "食物"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:96
 msgid "Wood"
 msgstr "木材"
 
-#: gui/summary/layout.js:78
+#: gui/summary/layout.js:97
 msgid "Stone"
 msgstr "石头"
 
-#: gui/summary/layout.js:79
+#: gui/summary/layout.js:98
 msgid "Metal"
 msgstr "金矿"
 
-#: gui/summary/layout.js:81
-msgid "Tributes (Sent / Received)"
-msgstr "贡品(贡出/纳入)"
+#: gui/summary/layout.js:101
+#, javascript-format
+msgid ""
+"Tributes \n"
+"(%(sent)s / %(received)s)"
+msgstr ""
 
-#: gui/summary/layout.js:82
+#: gui/summary/layout.js:103
+msgid "Sent"
+msgstr ""
+
+#: gui/summary/layout.js:104
+msgid "Received"
+msgstr ""
+
+#: gui/summary/layout.js:109
 msgid "Treasures collected"
 msgstr "收集的宝藏"
 
-#: gui/summary/layout.js:83
+#: gui/summary/layout.js:110
 msgid "Loot"
 msgstr "战利品"
 
-#: gui/summary/layout.js:86
-msgid "Resource Statistics (Gathered / Used)"
-msgstr "资源统计(收集/使用)"
+#: gui/summary/layout.js:114
+#, javascript-format
+msgid "Resource Statistics (%(gathered)s / %(used)s)"
+msgstr ""
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:116
+msgid "Gathered"
+msgstr ""
+
+#: gui/summary/layout.js:117
+msgid "Used"
+msgstr ""
+
+#: gui/summary/layout.js:138
 msgid "Food exchanged"
 msgstr "交换的食物"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:139
 msgid "Wood exchanged"
 msgstr "交换的木材"
 
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:140
 msgid "Stone exchanged"
 msgstr "交换的石头"
 
-#: gui/summary/layout.js:106
+#: gui/summary/layout.js:141
 msgid "Metal exchanged"
 msgstr "交换的金属"
 
-#: gui/summary/layout.js:107
+#: gui/summary/layout.js:142
 msgid "Barter efficiency"
 msgstr "贸易效率"
 
-#: gui/summary/layout.js:108
+#: gui/summary/layout.js:143
 msgid "Trade income"
 msgstr "贸易收入"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:159
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "食物比例"
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:160
 msgid "Feminization"
 msgstr "女性化"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:161
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "歼灭 / 阵亡\n比例"
 
-#: gui/summary/layout.js:127
+#: gui/summary/layout.js:162
 msgid ""
 "Map\n"
 "exploration"
 msgstr "地图\n探索"
 
-#: gui/summary/layout.js:128
+#: gui/summary/layout.js:163
 msgid "At peak"
 msgstr " 在巔峰"
 
-#: gui/summary/layout.js:129
+#: gui/summary/layout.js:164
 msgid "At finish"
 msgstr "终点"
 
-#: gui/summary/layout.js:132
+#: gui/summary/layout.js:167
 msgid "Map control"
 msgstr "地图控制"
 
-#: gui/summary/layout.js:277
+#: gui/summary/layout.js:312
 msgid "Team total"
 msgstr "队伍总计"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:170
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "游戏时间已过: %(time)s"
 
-#: gui/summary/summary.js:176
+#: gui/summary/summary.js:177
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1410,7 +1458,7 @@ msgstr "所在区域:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):26 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "取消"
 
@@ -1567,7 +1615,7 @@ msgstr "对战"
 msgid "Campaigns"
 msgstr "战役"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):16
 msgid "Load Game"
 msgstr "载入游戏"
 
@@ -1781,12 +1829,12 @@ msgid "Main Menu"
 msgstr "主菜单"
 
 #: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):31 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "删除"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):26
+#: gui/summary/summary.xml:(caption):28
 msgid "Summary"
 msgstr "摘要"
 
@@ -1824,7 +1872,7 @@ msgctxt "replay"
 msgid "Duration"
 msgstr "时长"
 
-#: gui/savedgames/load.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):43
 msgid "Load"
 msgstr "加载"
 
@@ -1856,35 +1904,35 @@ msgstr "文明："
 msgid "Trainer Units"
 msgstr "教练单位"
 
-#: gui/summary/summary.xml:(caption):66
+#: gui/summary/summary.xml:(caption):68
 msgid "Score"
 msgstr "得分"
 
-#: gui/summary/summary.xml:(caption):73
+#: gui/summary/summary.xml:(caption):75
 msgid "Buildings"
 msgstr "建筑"
 
-#: gui/summary/summary.xml:(caption):80
+#: gui/summary/summary.xml:(caption):82
 msgid "Units"
 msgstr "单位"
 
-#: gui/summary/summary.xml:(caption):87
+#: gui/summary/summary.xml:(caption):89
 msgid "Resources"
 msgstr "资源"
 
-#: gui/summary/summary.xml:(caption):94
+#: gui/summary/summary.xml:(caption):96
 msgid "Market"
 msgstr "市场"
 
-#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+#: gui/summary/summary.xml:(caption):103 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "杂项"
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):166
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):186
 msgid "Continue"
 msgstr "继续"
 

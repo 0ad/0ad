@@ -67,8 +67,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:00+0200\n"
-"PO-Revision-Date: 2016-06-15 23:31+0000\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-18 00:39+0000\n"
 "Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "* %(username)s готов!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s не готов."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -160,42 +160,42 @@ msgctxt "civilization"
 msgid "Random"
 msgstr "Случайно"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the lobby."
 msgstr "Вернуться в комнату."
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the main menu."
 msgstr "Вернуться в главное меню."
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "Yes"
 msgstr "Да"
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "No"
 msgstr "Нет"
 
-#: gui/gamesetup/gamesetup.js:604
+#: gui/gamesetup/gamesetup.js:606
 msgctxt "team"
 msgid "None"
 msgstr "Нет"
 
-#: gui/gamesetup/gamesetup.js:1267
+#: gui/gamesetup/gamesetup.js:1266
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1430
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Loading..."
 msgstr "Загрузка…"
 
-#: gui/gamesetup/gamesetup.js:1478
+#: gui/gamesetup/gamesetup.js:1477
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайный"
 
-#: gui/gamesetup/gamesetup.js:1482
+#: gui/gamesetup/gamesetup.js:1481
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -204,20 +204,20 @@ msgstr[1] "игрока %(number)s."
 msgstr[2] "игроков %(number)s."
 msgstr[3] "игроков %(number)s."
 
-#: gui/gamesetup/gamesetup.js:1492
+#: gui/gamesetup/gamesetup.js:1491
 msgid "Randomly selects a map from the list"
 msgstr "Выбрать случайную карту из списка"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1494
 msgid "Sorry, no description available."
 msgstr "К сожалению, описание недоступно."
 
-#: gui/gamesetup/gamesetup.js:1501
+#: gui/gamesetup/gamesetup.js:1500
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1505
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -227,85 +227,85 @@ msgstr[1] "Чудо (%(min)s минуты)"
 msgstr[2] "Чудо (%(min)s минут)"
 msgstr[3] "Чудо (%(min)s мин.)"
 
-#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1522 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Условия победы:"
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1610
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ИИ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1615
 msgid "Unassigned"
 msgstr "Не назначено"
 
-#: gui/gamesetup/gamesetup.js:1776
+#: gui/gamesetup/gamesetup.js:1775
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1782
 msgid "Unknown Player"
 msgstr "Неизвестный Игрок"
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1844
 msgid "I'm not ready!"
 msgstr "Я не готов!"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1845
 msgid "I'm ready"
 msgstr "Я готов"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1848
 msgid "State that you are not ready to play."
 msgstr "Выберите если не готовы играть."
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1849
 msgid "State that you are ready to play!"
 msgstr "Выберите если готовы играть!"
 
-#: gui/gamesetup/gamesetup_mp.js:35
+#: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "Игра %(name)s"
 
-#: gui/gamesetup/gamesetup_mp.js:80
+#: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
 msgstr "Соединение с сервером..."
 
-#: gui/gamesetup/gamesetup_mp.js:99
+#: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Новое сообщение: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:168
+#: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
 msgstr "Регистрация на сервере..."
 
-#: gui/gamesetup/gamesetup_mp.js:174
+#: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
 msgstr "Игра уже началась, подключение..."
 
-#: gui/gamesetup/gamesetup_mp.js:226
+#: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
 msgstr "Название игры уже используется"
 
-#: gui/gamesetup/gamesetup_mp.js:243
+#: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Не удалось создать игру: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
+#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
 msgstr "Ошибка"
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Не удалось подключится к игре: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:295
+#: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "игра игрока %(playername)s"
@@ -333,7 +333,7 @@ msgid "AI Difficulty:"
 msgstr "Сложность ИИ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):90
+#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -596,7 +596,7 @@ msgid "Joining an existing game."
 msgstr "Присоединиться к существующей игре"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):58
+#: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
 msgstr "Имя игрока:"
 
@@ -604,17 +604,27 @@ msgstr "Имя игрока:"
 msgid "Server Hostname or IP:"
 msgstr "Имя или IP-адрес сервера:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):53
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):97
+msgid "Server Port:"
+msgstr "Порт сервера:"
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
 msgstr "Настроить сервер в качестве хоста."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):71
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
 msgstr "Название сервера:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+#: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
 msgstr "Продолжить"
+
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
+msgid "Leave blank to use the default port."
+msgstr "Оставьте пустым для использования порта по умолчанию."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

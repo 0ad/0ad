@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:00+0200\n"
-"PO-Revision-Date: 2016-06-12 22:43+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2016-06-17 09:00+0200\n"
+"PO-Revision-Date: 2016-06-17 09:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +79,7 @@ msgstr "* %(username)s està a punt!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s no està a punt."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
 msgid "Default"
 msgstr "Per defecte"
 
@@ -109,62 +109,62 @@ msgctxt "civilization"
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the lobby."
 msgstr "Torna a la sala multijugador."
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the main menu."
 msgstr "Torna al menú principal."
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "No"
 msgstr "No"
 
-#: gui/gamesetup/gamesetup.js:604
+#: gui/gamesetup/gamesetup.js:606
 msgctxt "team"
 msgid "None"
 msgstr "Cap"
 
-#: gui/gamesetup/gamesetup.js:1267
+#: gui/gamesetup/gamesetup.js:1266
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1430
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Loading..."
 msgstr "S'està carregant..."
 
-#: gui/gamesetup/gamesetup.js:1478
+#: gui/gamesetup/gamesetup.js:1477
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/gamesetup/gamesetup.js:1482
+#: gui/gamesetup/gamesetup.js:1481
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] "%(number)s jugador. "
 msgstr[1] "%(number)s jugadors. "
 
-#: gui/gamesetup/gamesetup.js:1492
+#: gui/gamesetup/gamesetup.js:1491
 msgid "Randomly selects a map from the list"
 msgstr "Selecciona aleatòriament un mapa de la llista"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1494
 msgid "Sorry, no description available."
 msgstr "No hi ha cap descripció disponible."
 
-#: gui/gamesetup/gamesetup.js:1501
+#: gui/gamesetup/gamesetup.js:1500
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1505
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -172,85 +172,85 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Meravella (%(min)s minut)"
 msgstr[1] "Meravella (%(min)s minuts)"
 
-#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1522 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Condicions de victòria:"
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1610
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1615
 msgid "Unassigned"
 msgstr "Sense assignar"
 
-#: gui/gamesetup/gamesetup.js:1776
+#: gui/gamesetup/gamesetup.js:1775
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1782
 msgid "Unknown Player"
 msgstr "Jugador desconegut"
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1844
 msgid "I'm not ready!"
 msgstr "No estic a punt!"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1845
 msgid "I'm ready"
 msgstr "Estic a punt"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1848
 msgid "State that you are not ready to play."
 msgstr "Digueu que no esteu a punt per jugar."
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1849
 msgid "State that you are ready to play!"
 msgstr "Digueu que esteu a punt per jugar!"
 
-#: gui/gamesetup/gamesetup_mp.js:35
+#: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "Joc de %(name)s"
 
-#: gui/gamesetup/gamesetup_mp.js:80
+#: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
 msgstr "S'està connectant al servidor..."
 
-#: gui/gamesetup/gamesetup_mp.js:99
+#: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Missatge de la xarxa: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:168
+#: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
 msgstr "S'està registrant amb el servidor..."
 
-#: gui/gamesetup/gamesetup_mp.js:174
+#: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
 msgstr "El joc ja ha començat, us hi esteu unint de nou..."
 
-#: gui/gamesetup/gamesetup_mp.js:226
+#: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
 msgstr "Aquest nom ja està en ús."
 
-#: gui/gamesetup/gamesetup_mp.js:243
+#: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
+#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
 msgstr "Error"
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup_mp.js:295
+#: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Partida de %(playername)s"
@@ -278,7 +278,7 @@ msgid "AI Difficulty:"
 msgstr "Dificultat de la IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):90
+#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -541,7 +541,7 @@ msgid "Joining an existing game."
 msgstr "Entra en un joc ja creat."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):58
+#: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
 msgstr "Nom del jugador:"
 
@@ -549,17 +549,27 @@ msgstr "Nom del jugador:"
 msgid "Server Hostname or IP:"
 msgstr "Adreça del servidor o IP:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):53
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):97
+msgid "Server Port:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
 msgstr "Posa a punt el servidor per començar una partida."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):71
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
 msgstr "Nom del servidor:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+#: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
 msgstr "Continua"
+
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
+msgid "Leave blank to use the default port."
+msgstr ""
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
