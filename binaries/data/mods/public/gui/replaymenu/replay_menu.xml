@@ -103,7 +103,7 @@
 		<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
 
 			<!-- Compatibility Filter Checkbox -->
-			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 4 20 100%" font="sans-bold-13">
+			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 4 20 100%">
 					<action on="Press">displayReplayList();</action>
 			</object>
 
@@ -212,7 +212,7 @@
 				</object>
 
 				<!-- "Show Spoiler" Checkbox -->
-				<object name="showSpoiler" type="checkbox" checked="false" style="ModernTickBox" size="10 100%-27 30 100%" font="sans-bold-13">
+				<object name="showSpoiler" type="checkbox" checked="false" style="ModernTickBox" size="10 100%-27 30 100%">
 					<action on="Press">displayReplayDetails();</action>
 				</object>
 

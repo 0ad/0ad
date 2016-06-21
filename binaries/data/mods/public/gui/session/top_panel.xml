@@ -13,7 +13,7 @@
 	<object name="optionFollowPlayer" size="50%+64 4 50%+256 100%" hidden="true">
 
 		<!-- Checkbox -->
-		<object name="followPlayer" type="checkbox" checked="false" style="ModernTickBox" size="0 4 20 100%" font="sans-bold-13">
+		<object name="followPlayer" type="checkbox" checked="false" style="ModernTickBox" size="0 4 20 100%">
 			<action on="Press">g_FollowPlayer = !g_FollowPlayer;</action>
 		</object>
 
