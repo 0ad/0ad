@@ -16,7 +16,6 @@
 		<action on="Press">toggleMenu();</action>
 	</object>
 
-	<!-- Unit silhouettes -->
 	<object hotkey="silhouettes">
 		<action on="Press">
 			var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
@@ -24,7 +23,6 @@
 		</action>
 	</object>
 
-	<!-- Sky -->
 	<object hotkey="showsky">
 		<action on="Press">
 			var newSetting = !Engine.Renderer_GetShowSkyEnabled();
@@ -57,8 +55,8 @@
 		<action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship", "Dog"]);</action>
 	</object>
 
-	<!-- Unselect any selected entities -->
 	<object hotkey="selection.cancel">
 		<action on="Press">clearSelection();</action>
 	</object>
+
 </object>

@@ -38,16 +38,16 @@
 
 	<!-- Time elapsed counter -->
 	<object size="100%-250 45 100%-140 65" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
-			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") != "true");
-			</action>
+		<action on="Press">
+			Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", String(Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") != "true"));
+		</action>
 	</object>
 
 	<!-- Ceasefire counter -->
 	<object size="100%-250 80 100%-140 100" type="text" name="ceasefireCounter" style="SettingsText" hotkey="ceasefirecounter.toggle" hidden="true">
-			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "gui.session.ceasefirecounter", Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") != "true");
-			</action>
+		<action on="Press">
+			Engine.ConfigDB_CreateValue("user", "gui.session.ceasefirecounter", String(Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") != "true"));
+		</action>
 	</object>
 
 	<!-- Pause Overlay -->
