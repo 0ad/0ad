@@ -125,6 +125,7 @@ g_SelectionPanels.Barter = {
 
 		button.Sell.onPress = function() {
 			g_BarterSell = data.item;
+			updateSelectionDetails();
 		};
 
 		button.Buy.onPress = function() { 
