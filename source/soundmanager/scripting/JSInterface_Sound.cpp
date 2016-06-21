@@ -23,6 +23,7 @@
 #include "lib/utf8.h"
 #include "maths/Vector3D.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
 #include "soundmanager/SoundManager.h"
 
 #include <sstream>

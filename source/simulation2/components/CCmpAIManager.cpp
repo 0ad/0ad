@@ -28,6 +28,7 @@
 #include "lib/allocators/shared_ptr.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
 #include "ps/Util.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"

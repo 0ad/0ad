@@ -26,6 +26,8 @@
 #include "ICmpTerrain.h"
 #include "ICmpVisual.h"
 
+#include "ps/Profile.h"
+
 /**
  * Fairly basic decay implementation, for units and buildings etc.
  * The decaying entity remains stationary for some time period, then falls downwards

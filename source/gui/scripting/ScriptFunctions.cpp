@@ -49,6 +49,7 @@
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/Hotkey.h"
 #include "ps/ProfileViewer.h"
+#include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
 #include "ps/SavedGame.h"

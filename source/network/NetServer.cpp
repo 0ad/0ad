@@ -28,6 +28,7 @@
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"

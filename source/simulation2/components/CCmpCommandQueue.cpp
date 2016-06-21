@@ -22,6 +22,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/Game.h"
+#include "ps/Profile.h"
 #include "network/NetTurnManager.h"
 
 class CCmpCommandQueue : public ICmpCommandQueue

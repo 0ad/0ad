@@ -27,6 +27,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Mod.h"
+#include "ps/Profile.h"
 #include "ps/scripting/JSInterface_Mod.h"
 
 #include <algorithm>

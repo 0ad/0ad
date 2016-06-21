@@ -661,6 +661,7 @@ REGISTER_COMPONENT_TYPE(ObstructionManager)
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits)
 {
 	PROFILE("TestLine");
+	PROFILE2_IFSPIKE("TestLine", 0.001);
 
 	// Check that both end points are within the world (which means the whole line must be)
 	if (!IsInWorld(x0, z0, r) || !IsInWorld(x1, z1, r))
@@ -992,7 +993,7 @@ void CCmpObstructionManager::GetStaticObstructionsInRange(const IObstructionTest
 
 void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict)
 {
-	PROFILE3("GetUnitsOnObstruction");
+	PROFILE("GetUnitsOnObstruction");
 
 	// In order to avoid getting units on impassable cells, we want to find all
 	// units s.t. the RasterizeRectWithClearance of the building's shape with the

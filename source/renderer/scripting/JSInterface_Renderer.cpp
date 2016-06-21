@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "JSInterface_Renderer.h"
+#include "ps/Profile.h"
 #include "renderer/Renderer.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME, SCRIPTNAME) \

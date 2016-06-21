@@ -38,6 +38,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/Config.h"

@@ -34,6 +34,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 /**
  * Basic ICmpPosition implementation.

@@ -21,13 +21,14 @@
 #include "ICmpOverlayRenderer.h"
 
 #include "ICmpPosition.h"
+
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/TextureManager.h"
 #include "renderer/Renderer.h"
-
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 class CCmpOverlayRenderer : public ICmpOverlayRenderer
 {

@@ -21,6 +21,7 @@
 
 #include "i18n/L10n.h"
 #include "lib/utf8.h"
+#include "ps/Profile.h"
 
 // Returns a translation of the specified English string into the current language.
 std::wstring JSI_L10n::Translate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& sourceString)

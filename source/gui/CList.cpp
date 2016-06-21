@@ -23,6 +23,7 @@
 
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "soundmanager/ISoundManager.h"
 
 

@@ -27,6 +27,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector2D.h"
+#include "ps/Profile.h"
 #include "renderer/Scene.h"
 #include "renderer/Renderer.h"
 #include "simulation2/MessageTypes.h"

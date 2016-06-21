@@ -26,7 +26,6 @@
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 #include "ps/Errors.h"
-#include "ps/Profile.h"
 
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);

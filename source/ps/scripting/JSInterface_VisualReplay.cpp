@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "ps/Profile.h"
 #include "ps/VisualReplay.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
 
