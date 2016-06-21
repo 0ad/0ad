@@ -661,7 +661,6 @@ REGISTER_COMPONENT_TYPE(ObstructionManager)
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits)
 {
 	PROFILE("TestLine");
-	PROFILE2_IFSPIKE("TestLine", 0.001);
 
 	// Check that both end points are within the world (which means the whole line must be)
 	if (!IsInWorld(x0, z0, r) || !IsInWorld(x1, z1, r))
