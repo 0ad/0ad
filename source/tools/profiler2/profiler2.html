@@ -1,28 +1,83 @@
 <!DOCTYPE html>
+<head>
 <title>0 A.D. profiler UI</title>
 <script src="jquery-1.6.4.js"></script>
+<script src="utilities.js"></script>
+<script src="ReportDraw.js"></script>
+<script src="Profiler2Report.js"></script>
 <script src="profiler2.js"></script>
-<script>
-$(refresh);
-</script>
 <style>
-canvas { border: 1px #ddd solid; }
+@keyframes rotate
+{
+	0% {transform:translateY(-50%) rotate(0deg);}
+	100% {transform:translateY(-50%) rotate(360deg);}
+}
+html { font-size: 14px; font-family: "Source Code Pro", monospace; padding:10px;}
+* { box-sizing:border-box; margin:0; padding: 0; }
+canvas { border: 1px #ddd solid; display:block;}
+header h1 { font-size:2em; }
+header nav { height:50px; margin:5px; border:1px solid gray; }
+header nav p { display:inline-block; height:100%; padding: 15px 10px; background:#aaa; cursor:pointer; border-right:1px solid gray; position:relative;}
+header nav p.loading { background:#ccf; cursor:progress; padding-right:15px; }
+header nav p.loading:after { content:""; position:absolute; right:5px; top:50%; transform:translateY(-50%); height:5px;width:5px;background:#ccc;border:1px solid gray; animation:rotate 2s infinite; }
+header nav p.fail { background:#faa;cursor:not-allowed;}
+header nav p.active { cursor:pointer; background:#eee; box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);font-weight:bold;}
 #tooltip { background: #ffd; padding: 4px; font: 12px sans-serif; border: 1px #880 solid; }
 #tooltip.long { -moz-column-count: 2; }
+#choices { display: flex; flex-wrap:wrap;}
+#choices section { position:relative;}
+#choices section h2 { height:25px; }
+#choices section aside { width:200px; position:absolute; top: 26px; right : 1px; border-left:1px solid gray;border-bottom:1px solid gray; background:rgba(255,255,255,0.5);}
+#choices section aside:hover { opacity:0.2; }
+#choices section aside p { margin:4px 0px 4px 2px; border-left:15px solid; padding-left: 5px; font-size:0.8rem; }
+#choices nav { flex-shrink:0; width:300px; height:600px; overflow-y: scroll;}
+#choices nav p { margin:2px; cursor:pointer;}
+#choices nav p:hover { background:#eee;}
+#choices nav p.active { background:#fee;}
+#comparison { min-width:400px; }
+#comparison table { border-collapse:collapse; margin: 20px 10px;}
+#comparison td,#comparison th { min-width:80px;height:25px;text-align: center;}
+#comparison th { border: 1px solid #888; background:#eee; }
+#comparison td { border: 1px solid #bbb; }
 </style>
+</head>
+<body>
+<button onclick="save_as_file()">Save Live Report to file</button>
 
-<button onclick="refresh()">Refresh</button>
-<br>
-<div id="timelines"></div>
+<header>
+	<h1>Open reports</h1>
+	<p>Use the input field below to load a new report (from JSON)</p>
+	<input type="file" id="report_load_input" name="files[]" />
+	<nav></nav>
+</header>
 
+<p>Click on the following timelines to zoom.</p>
+</a><div id="timelines"></div>
+
+<div id="choices">
+	<div style="width:100%">
+		<h1>Analysis</h1>
+		<p>Click on any of the event names in "choices" to see more details about them. Load more reports to compare.</p>
+	</div>
+	<section id="frequency_graph">
+		<h2>Frequency Graph</h2>
+		<aside></aside>
+		<canvas id="canvas_frequency" width="600" height="600"></canvas>
+	</section>
+	<section id="history_graph">
+		<h2>Frame-by-Frame Graph</h2>
+		<aside></aside>
+		<div style="width:602px;overflow:auto;"><canvas id="canvas_history" width="600" height="600"></canvas></div>
+	</section>
+	<nav>
+		<h3>Choices</h3>
+	</nav>
+	<div id="comparison">
+		<h3>Report Comparison</h3>
+	</div>
+</div>
 <div id="tooltip" style="position: absolute; visibility: hidden"></div>
 
-Search: <input id="regionsearch" oninput="search_regions(this.value)">
-<table id="regionsearchresult">
-<thead>
-<tr><th>Frame<th>Region<th>Time (msec)
-</thead>
-<tbody>
-</table>
-
 <pre id="debug"></pre>
+</body>
+</html>

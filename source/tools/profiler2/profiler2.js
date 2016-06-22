@@ -1,849 +1,497 @@
-// TODO: this code needs a load of cleaning up and documenting,
-// and feature additions and general improvement and unrubbishing
+// Copyright (c) 2016 Wildfire Games
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
-// Item types returned by the engine
-var ITEM_EVENT = 1;
-var ITEM_ENTER = 2;
-var ITEM_LEAVE = 3;
-var ITEM_ATTRIBUTE = 4;
+// This file is the main handler, which deals with loading reports and showing the analysis graphs
+// the latter could probably be put in a separate module
 
+// global array of Profiler2Report objects
+var g_reports = [];
 
-function hslToRgb(h, s, l, a)
-{
-    var r, g, b;
+var g_main_thread = 0;
+var g_current_report = 0;
 
-    if (s == 0)
-    {
-        r = g = b = l;
-    }
-    else
-    {
-        function hue2rgb(p, q, t)
-        {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1/6) return p + (q - p) * 6 * t;
-            if (t < 1/2) return q;
-            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-            return p;
-        }
+var g_profile_path = null;
+var g_active_elements = [];
+var g_loading_timeout = null;
 
-        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        var p = 2 * l - q;
-        r = hue2rgb(p, q, h + 1/3);
-        g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1/3);
-    }
-
-    return 'rgba(' + Math.floor(r * 255) + ',' + Math.floor(g * 255) + ',' + Math.floor(b * 255) + ',' + a + ')';
-}
-
-function new_colour(id)
-{
-    var hs = [0, 1/3, 2/3, 1/4, 2/4, 3/4, 1/5, 3/5, 2/5, 4/5];
-    var ss = [1, 0.5];
-    var ls = [0.8, 0.6, 0.9, 0.7];
-    return hslToRgb(hs[id % hs.length], ss[Math.floor(id / hs.length) % ss.length], ls[Math.floor(id / (hs.length*ss.length)) % ls.length], 1);
-}
-
-var g_used_colours = {};
-
-
-var g_data;
-
-function refresh()
-{
-    if (1)
-        refresh_live();
-    else
-        refresh_jsonp('../../../binaries/system/profile2.jsonp');
-}
-
-function concat_events(data)
-{
-    var events = [];
-    data.events.forEach(function(ev) {
-        ev.pop(); // remove the dummy null markers
-        Array.prototype.push.apply(events, ev);
-    });
-    return events;
-}
-
-function refresh_jsonp(url)
-{
-    var script = document.createElement('script');
-    
-    window.profileDataCB = function(data)
-    {
-        script.parentNode.removeChild(script);
-
-        var threads = [];
-        data.threads.forEach(function(thread) {
-            var canvas = $('<canvas width="1600" height="160"></canvas>');
-            threads.push({'name': thread.name, 'data': { 'events': concat_events(thread.data) }, 'canvas': canvas.get(0)});
-        });
-        g_data = { 'threads': threads };
-
-        var range = {'seconds': 0.05};
-
-        rebuild_canvases();
-        update_display(range);
-    };
-
-    script.src = url;
-    document.body.appendChild(script);
-}
-
-function refresh_live()
+function save_as_file()
 {
     $.ajax({
-        url: 'http://127.0.0.1:8000/overview',
-        dataType: 'json',
-        success: function (data) {
-            var threads = [];
-            data.threads.forEach(function(thread) {
-                var canvas = $('<canvas width="1600" height="160"></canvas>');
-                threads.push({'name': thread.name, 'canvas': canvas.get(0)});
-            });
-            var callback_data = { 'threads': threads, 'completed': 0 };
-            threads.forEach(function(thread) {
-                refresh_thread(thread, callback_data);
-            });
+        url: 'http://127.0.0.1:8000/download',
+        success: function () {
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert('Failed to connect to server ("'+textStatus+'")');
         }
     });
 }
 
-function refresh_thread(thread, callback_data)
+function get_history_data(report, thread, type)
 {
-    $.ajax({
-        url: 'http://127.0.0.1:8000/query',
-        dataType: 'json',
-        data: { 'thread': thread.name },
-        success: function (data) {
-            data.events = concat_events(data);
-            
-            thread.data = data;
-            
-            if (++callback_data.completed == callback_data.threads.length)
-            {
-                g_data = { 'threads': callback_data.threads };
+    var ret = {"time_by_frame":[], "max" : 0, "log_scale" : null};
+ 
+    var report_data = g_reports[report].data().threads[thread];
+    var interval_data = report_data.intervals;
 
-                //var range = {'numframes': 5};
-                var range = {'seconds': 0.05};
+    let data = report_data.intervals_by_type_frame[type];
+    if (!data)
+        return ret;
 
-                rebuild_canvases();
-                update_display(range);
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('Failed to connect to server ("'+textStatus+'")');
-        }
-    });
+    let max = 0;
+    let avg = [];
+    let current_frame = 0;
+    for (let i = 0; i < data.length; i++)
+    {
+        ret.time_by_frame.push(0);
+        for (let p = 0; p < data[i].length; p++)
+            ret.time_by_frame[ret.time_by_frame.length-1] += interval_data[data[i][p]].duration;
+    }
+
+    // somehow JS sorts 0.03 lower than 3e-7 otherwise
+    let sorted = ret.time_by_frame.slice(0).sort((a,b) => a-b);
+    ret.max = sorted[sorted.length-1];
+    avg = sorted[Math.round(avg.length/2)];
+
+    if (ret.max > avg * 3)
+        ret.log_scale = true;
+
+    return ret;
 }
 
-function rebuild_canvases()
+function draw_frequency_graph()
 {
-    g_data.canvas_frames = $('<canvas width="1600" height="128"></canvas>').get(0);
-    g_data.canvas_zoom = $('<canvas width="1600" height="128"></canvas>').get(0);
-    g_data.text_output = $('<pre></pre>').get(0);
-    
-    set_frames_zoom_handlers(g_data.canvas_frames);
-    set_tooltip_handlers(g_data.canvas_frames);
-
-    $('#timelines').empty();
-    $('#timelines').append(g_data.canvas_frames);
-    g_data.threads.forEach(function(thread) {
-        $('#timelines').append($(thread.canvas));
-    });
-    $('#timelines').append(g_data.canvas_zoom);
-    $('#timelines').append(g_data.text_output);
-}
-
-function update_display(range)
-{
-    $(g_data.text_output).empty();
-
-    var main_events = g_data.threads[0].data.events;
-
-    var processed_main = g_data.threads[0].processed_events = compute_intervals(main_events, range);
-
-//    display_top_items(main_events, g_data.text_output);
-
-    display_frames(processed_main, g_data.canvas_frames);
-    display_events(processed_main, g_data.canvas_frames);
-
-    $(g_data.threads[0].canvas).unbind();
-    $(g_data.canvas_zoom).unbind();
-    display_hierarchy(processed_main, processed_main, g_data.threads[0].canvas, {}, undefined);
-    set_zoom_handlers(processed_main, processed_main, g_data.threads[0].canvas, g_data.canvas_zoom);
-    set_tooltip_handlers(g_data.threads[0].canvas);
-    set_tooltip_handlers(g_data.canvas_zoom);
-
-    g_data.threads.slice(1).forEach(function(thread) {
-        var processed_data = compute_intervals(thread.data.events, {'tmin': processed_main.tmin, 'tmax': processed_main.tmax});
-
-        $(thread.canvas).unbind();
-        display_hierarchy(processed_main, processed_data, thread.canvas, {}, undefined);
-        set_zoom_handlers(processed_main, processed_data, thread.canvas, g_data.canvas_zoom);
-        set_tooltip_handlers(thread.canvas);
-    });
- }
-
-function display_top_items(data, output)
-{
-    var items = {};
-    for (var i = 0; i < data.length; ++i)
-    {
-        var type = data[i][0];
-        if (!(type == ITEM_EVENT || type == ITEM_ENTER || type == ITEM_LEAVE))
-            continue;
-        var id = data[i][2];
-        if (!items[id])
-            items[id] = { 'count': 0 };
-        items[id].count++;
-    }
-
-    var topitems = [];
-    for (var k in items)
-        topitems.push([k, items[k].count]);
-    topitems.sort(function(a, b) {
-        return b[1] - a[1];
-    });
-    topitems.splice(16);
-    
-    topitems.forEach(function(item) {
-        output.appendChild(document.createTextNode(item[1] + 'x -- ' + item[0] + '\n'));
-    });
-    output.appendChild(document.createTextNode('(' + data.length + ' items)'));
-}
-
-function compute_intervals(data, range)
-{
-    var start, end;
-    var tmin, tmax;
-    
-    var frames = [];
-    var last_frame_time = undefined;
-    for (var i = 0; i < data.length; ++i)
-    {
-        if (data[i][0] == ITEM_EVENT && data[i][2] == '__framestart')
-        {
-            var t = data[i][1];
-            if (last_frame_time)
-                frames.push({'t0': last_frame_time, 't1': t});
-            last_frame_time = t;
-        }
-    }
-    
-    if (range.numframes)
-    {
-        for (var i = data.length - 1; i > 0; --i)
-        {
-            if (data[i][0] == ITEM_EVENT && data[i][2] == '__framestart')
-            {
-                end = i;
-                break;
-            }
-        }
-        
-        var framesfound = 0;
-        for (var i = end - 1; i > 0; --i)
-        {
-            if (data[i][0] == ITEM_EVENT && data[i][2] == '__framestart')
-            {
-                start = i;
-                if (++framesfound == range.numframes)
-                    break;
-            }
-        }
-        
-        tmin = data[start][1];
-        tmax = data[end][1];
-    }
-    else if (range.seconds)
-    {
-        var end = data.length - 1;
-        for (var i = end; i > 0; --i)
-        {
-            var type = data[i][0];
-            if (type == ITEM_EVENT || type == ITEM_ENTER || type == ITEM_LEAVE)
-            {
-                tmax = data[i][1];
-                break;
-            }
-        }
-        tmin = tmax - range.seconds;
-        
-        for (var i = end; i > 0; --i)
-        {
-            var type = data[i][0];
-            if ((type == ITEM_EVENT || type == ITEM_ENTER || type == ITEM_LEAVE) && data[i][1] < tmin)
-                break;
-            start = i;
-        }
-    }
-    else
-    {
-        start = 0;
-        end = data.length - 1;
-        tmin = range.tmin;
-        tmax = range.tmax;
-
-        for (var i = data.length-1; i > 0; --i)
-        {
-            var type = data[i][0];
-            if ((type == ITEM_EVENT || type == ITEM_ENTER || type == ITEM_LEAVE) && data[i][1] < tmax)
-            {
-                end = i;
-                break;
-            }
-        }
-
-        for (var i = end; i > 0; --i)
-        {
-            var type = data[i][0];
-            if ((type == ITEM_EVENT || type == ITEM_ENTER || type == ITEM_LEAVE) && data[i][1] < tmin)
-                break;
-            start = i;
-        }
-
-        // Move the start/end outwards by another frame, so we don't lose data at the edges
-        while (start > 0)
-        {
-            --start;
-            if (data[start][0] == ITEM_EVENT && data[start][2] == '__framestart')
-                break;
-        }
-        while (end < data.length-1)
-        {
-            ++end;
-            if (data[end][0] == ITEM_EVENT && data[end][2] == '__framestart')
-                break;
-        }
-    }
-
-    var num_colours = 0;
-    
-    var events = [];
-
-    // Read events for the entire data period (not just start..end)
-    var lastWasEvent = false;
-    for (var i = 0; i < data.length; ++i)
-    {
-        if (data[i][0] == ITEM_EVENT)
-        {
-            events.push({'t': data[i][1], 'id': data[i][2]});
-            lastWasEvent = true;
-        }
-        else if (data[i][0] == ITEM_ATTRIBUTE)
-        {
-            if (lastWasEvent)
-            {
-                if (!events[events.length-1].attrs)
-                    events[events.length-1].attrs = [];
-                events[events.length-1].attrs.push(data[i][1]);
-            }
-        }
-        else
-        {
-            lastWasEvent = false;
-        }
-    }
-    
-    
-    var intervals = [];
-    
-    // Read intervals from the focused data period (start..end)
-    var stack = [];
-    var lastT = 0;
-    var lastWasEvent = false;
-    for (var i = start; i <= end; ++i)
-    {
-        if (data[i][0] == ITEM_EVENT)
-        {
-//            if (data[i][1] < lastT)
-//                console.log('Time went backwards: ' + (data[i][1] - lastT));
-
-            lastT = data[i][1];
-            lastWasEvent = true;
-        }
-        else if (data[i][0] == ITEM_ENTER)
-        {
-//            if (data[i][1] < lastT)
-//                console.log('Time went backwards: ' + (data[i][1] - lastT));
-
-            stack.push({'t0': data[i][1], 'id': data[i][2]});
-
-            lastT = data[i][1];
-            lastWasEvent = false;
-        }
-        else if (data[i][0] == ITEM_LEAVE)
-        {
-//            if (data[i][1] < lastT)
-//                console.log('Time went backwards: ' + (data[i][1] - lastT));
-
-            lastT = data[i][1];
-            lastWasEvent = false;
-            
-            if (!stack.length)
-                continue;
-            var interval = stack.pop();
-
-            if (data[i][2] != interval.id && data[i][2] != '(ProfileStop)')
-                alert('inconsistent interval ids ('+interval.id+' / '+data[i][2]+')');
-
-            if (!g_used_colours[interval.id])
-                g_used_colours[interval.id] = new_colour(num_colours++);
-            
-            interval.colour = g_used_colours[interval.id];
-                
-            interval.t1 = data[i][1];
-            interval.duration = interval.t1 - interval.t0;
-            interval.depth = stack.length;
-            
-            intervals.push(interval);
-        }
-        else if (data[i][0] == ITEM_ATTRIBUTE)
-        {
-            if (!lastWasEvent && stack.length)
-            {
-                if (!stack[stack.length-1].attrs)
-                    stack[stack.length-1].attrs = [];
-                stack[stack.length-1].attrs.push(data[i][1]);
-            }
-        }
-    }
-
-    return { 'frames': frames, 'events': events, 'intervals': intervals, 'tmin': tmin, 'tmax': tmax };
-}
-
-function time_label(t)
-{
-    if (t > 1e-3)
-        return (t * 1e3).toFixed(2) + 'ms';
-    else
-        return (t * 1e6).toFixed(2) + 'us';
-}
-
-function display_frames(data, canvas)
-{
+    let canvas = document.getElementById("canvas_frequency");
     canvas._tooltips = [];
 
-    var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.save();
+    let context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    var xpadding = 8;
-    var padding_top = 40;
-    var width = canvas.width - xpadding*2;
-    var height = canvas.height - padding_top - 4;
+    let legend = document.getElementById("frequency_graph").querySelector("aside");
+    legend.innerHTML = "";
 
-    var tmin = data.frames[0].t0;
-    var tmax = data.frames[data.frames.length-1].t1;
-    var dx = width / (tmax-tmin);
-    
-    canvas._zoomData = {
-        'x_to_t': function(x) {
-            return tmin + (x - xpadding) / dx;
-        },
-        't_to_x': function(t) {
-            return (t - tmin) * dx + xpadding;
+    if (!g_active_elements.length)
+        return;
+
+    var series_data = {};
+    var use_log_scale = null;
+
+    var x_scale = 0;
+    var y_scale = 0;
+    var padding = 10;
+
+    var item_nb = 0;
+
+    var tooltip_helper = {};
+
+    for (let typeI in g_active_elements)
+    {
+        for (let rep in g_reports)
+        {
+            item_nb++;
+            let data = get_history_data(rep, g_main_thread, g_active_elements[typeI]);
+            let name = rep + "/" + g_active_elements[typeI];
+            series_data[name] = data.time_by_frame.filter(a=>a).sort((a,b) => a-b);
+            if (series_data[name].length > x_scale)
+                x_scale = series_data[name].length;
+            if (data.max > y_scale)
+                y_scale = data.max;
+            if (use_log_scale === null && data.log_scale)
+                use_log_scale = true;
         }
-    };
-    
-//    var y_per_second = 1000;
-    var y_per_second = 100;
+    }
+    if (use_log_scale)
+    {
+        let legend_item = document.createElement("p");
+        legend_item.style.borderColor = "transparent";
+        legend_item.textContent = " -- log x scale -- ";
+        legend.appendChild(legend_item);
+    }
+    let id = 0;
+    for (let type in series_data)
+    {
+        let colour = graph_colour(id);
+        let time_by_frame = series_data[type];
+        let p = 0;
+        let last_val = 0;
 
-    [16, 33, 200, 500].forEach(function(t) {
-        var y1 = canvas.height;
-        var y0 = y1 - t/1000*y_per_second;
-        var y = Math.floor(y0) + 0.5;
+        let nb = document.createElement("p");
+        nb.style.borderColor = colour;
+        nb.textContent = type + " - n=" + time_by_frame.length;
+        legend.appendChild(nb);
 
-        ctx.beginPath();
-        ctx.moveTo(xpadding, y);
-        ctx.lineTo(canvas.width - xpadding, y);
-        ctx.strokeStyle = 'rgb(255, 0, 0)';
-        ctx.stroke();
-        ctx.fillStyle = 'rgb(255, 0, 0)';
-        ctx.fillText(t+'ms', 0, y-2);
+        for (var i = 0; i < time_by_frame.length; i++)
+        {
+            let x0 = i/time_by_frame.length*(canvas.width-padding*2) + padding;
+            if (i == 0)
+                x0 = 0;
+            let x1 = (i+1)/time_by_frame.length*(canvas.width-padding*2) + padding;
+            if (i == time_by_frame.length-1)
+                x1 = (time_by_frame.length-1)*canvas.width;
+
+            let y = time_by_frame[i]/y_scale;
+            if (use_log_scale)
+                y = Math.log10(1 + time_by_frame[i]/y_scale * 9);
+
+            context.globalCompositeOperation = "lighter";
+
+            context.beginPath();
+            context.strokeStyle = colour
+            context.lineWidth = 0.5;
+            context.moveTo(x0,canvas.height * (1 - last_val));
+            context.lineTo(x1,canvas.height * (1 - y));
+            context.stroke();
+
+            last_val = y;
+            if (!tooltip_helper[Math.floor(x0)])
+                tooltip_helper[Math.floor(x0)] = [];
+            tooltip_helper[Math.floor(x0)].push([y, type]);
+        }
+        id++;
+    }
+
+    for (let i in tooltip_helper)
+    {
+        let tooltips = tooltip_helper[i];
+        let text = "";
+        for (let j in tooltips)
+            if (tooltips[j][0] != undefined && text.search(tooltips[j][1])===-1)
+                text += "Series " + tooltips[j][1] + ": " + time_label((tooltips[j][0])*y_scale,1) + "<br>";
+        canvas._tooltips.push({
+                'x0': +i, 'x1': +i+1,
+                'y0': 0, 'y1': canvas.height,
+                'text': function(text) { return function() { return text; } }(text)
+            });
+    }
+    set_tooltip_handlers(canvas);
+
+    [0.02,0.05,0.1,0.25,0.5,0.75].forEach(function(y_val)
+    {
+        let y = y_val;
+        if (use_log_scale)
+            y = Math.log10(1 + y_val * 9);
+
+        context.beginPath();
+        context.lineWidth="1";
+        context.strokeStyle = "rgba(0,0,0,0.2)";
+        context.moveTo(0,canvas.height * (1- y));
+        context.lineTo(canvas.width,canvas.height * (1 - y));
+        context.stroke();
+        context.fillStyle = "gray";
+        context.font = "10px Arial";
+        context.textAlign="left";
+        context.fillText(time_label(y*y_scale,0), 2, canvas.height * (1 - y) - 2 );
     });
-
-    ctx.strokeStyle = 'rgb(0, 0, 0)';
-    ctx.fillStyle = 'rgb(255, 255, 255)';
-    for (var i = 0; i < data.frames.length; ++i)
-    {
-        var frame = data.frames[i];
-        
-        var duration = frame.t1 - frame.t0;
-        var x0 = xpadding + dx*(frame.t0 - tmin);
-        var x1 = x0 + dx*duration;
-        var y1 = canvas.height;
-        var y0 = y1 - duration*y_per_second;
-        
-        ctx.beginPath();
-        ctx.rect(x0, y0, x1-x0, y1-y0);
-        ctx.stroke();
-        
-        canvas._tooltips.push({
-            'x0': x0, 'x1': x1,
-            'y0': y0, 'y1': y1,
-            'text': function(frame, duration) { return function() {
-                var t = '<b>Frame</b><br>';
-                t += 'Length: ' + time_label(duration) + '<br>';
-                if (frame.attrs)
-                {
-                    frame.attrs.forEach(function(attr) {
-                        t += attr + '<br>';
-                    });
-                }
-                return t;
-            }} (frame, duration)
-        });
-    }
-
-    ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
-    ctx.fillStyle = 'rgba(128, 128, 255, 0.2)';
-    ctx.beginPath();
-    ctx.rect(xpadding + dx*(data.tmin - tmin), 0, dx*(data.tmax - data.tmin), canvas.height);
-    ctx.fill();
-    ctx.stroke();
-    
-    ctx.restore();
 }
 
-function display_events(data, canvas)
+function draw_history_graph()
 {
-    var ctx = canvas.getContext('2d');
-    ctx.save();
-    
-    var x_to_time = canvas._zoomData.x_to_t;
-    var time_to_x = canvas._zoomData.t_to_x;
-    
-    for (var i = 0; i < data.events.length; ++i)
-    {
-        var event = data.events[i];
-        
-        if (event.id == '__framestart')
-            continue;
-        
-        if (event.id == 'gui event' && event.attrs && event.attrs[0] == 'type: mousemove')
-            continue;
-        
-        var x = time_to_x(event.t);
-        var y = 32;
-        
-        var x0 = x;
-        var x1 = x;
-        var y0 = y-4;
-        var y1 = y+4;
-
-        ctx.strokeStyle = 'rgb(255, 0, 0)';
-        ctx.beginPath();
-        ctx.moveTo(x0, y0);
-        ctx.lineTo(x1, y1);
-        ctx.stroke();
-        canvas._tooltips.push({
-            'x0': x0, 'x1': x1,
-            'y0': y0, 'y1': y1,
-            'text': function(event) { return function() {
-                var t = '<b>' + event.id + '</b><br>';
-                if (event.attrs)
-                {
-                    event.attrs.forEach(function(attr) {
-                        t += attr + '<br>';
-                    });
-                }
-                return t;
-            }} (event)
-        });
-    }
-    
-    ctx.restore();
-}
-
-function display_hierarchy(main_data, data, canvas, range, zoom)
-{
+    let canvas = document.getElementById("canvas_history");
     canvas._tooltips = [];
 
-    var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.save();
+    let context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.font = '12px sans-serif';
+    let legend = document.getElementById("history_graph").querySelector("aside");
+    legend.innerHTML = "";
 
-    var xpadding = 8;
-    var padding_top = 40;
-    var width = canvas.width - xpadding*2;
-    var height = canvas.height - padding_top - 4;
-    
-    var tmin, tmax, start, end;
+    if (!g_active_elements.length)
+        return;
 
-    if (range.tmin)
+    var series_data = {};
+    var use_log_scale = null;
+
+    var frames_nb = Infinity;
+    var x_scale = 0;
+    var y_scale = 0;
+
+    var item_nb = 0;
+
+    var tooltip_helper = {};
+
+    for (let typeI in g_active_elements)
     {
-        tmin = range.tmin;
-        tmax = range.tmax;
-    }
-    else
-    {
-        tmin = data.tmin;
-        tmax = data.tmax;
-    }
-
-    canvas._hierarchyData = { 'range': range, 'tmin': tmin, 'tmax': tmax };
-    
-    function time_to_x(t)
-    {
-        return xpadding + (t - tmin) / (tmax - tmin) * width;
-    }
-    
-    function x_to_time(x)
-    {
-        return tmin + (x - xpadding) * (tmax - tmin) / width;
-    }
-
-    ctx.save();
-    ctx.textAlign = 'center';
-    ctx.strokeStyle = 'rgb(192, 192, 192)';
-    ctx.beginPath();
-    var precision = -3;
-    while ((tmax-tmin)*Math.pow(10, 3+precision) < 25)
-        ++precision;
-    var ticks_per_sec = Math.pow(10, 3+precision);
-    var major_tick_interval = 5;
-    for (var i = 0; i < (tmax-tmin)*ticks_per_sec; ++i)
-    {
-        var major = (i % major_tick_interval == 0);
-        var x = Math.floor(time_to_x(tmin + i/ticks_per_sec));
-        ctx.moveTo(x-0.5, padding_top - (major ? 4 : 2));
-        ctx.lineTo(x-0.5, padding_top + height);
-        if (major)
-            ctx.fillText((i*1000/ticks_per_sec).toFixed(precision), x, padding_top - 8);
-    }
-    ctx.stroke();
-    ctx.restore();
-
-    var BAR_SPACING = 16;
-    
-    for (var i = 0; i < data.intervals.length; ++i)
-    {
-        var interval = data.intervals[i];
-        
-        if (interval.tmax <= tmin || interval.tmin > tmax)
-            continue;
-
-        var label = interval.id;
-        if (interval.attrs)
+        for (let rep in g_reports)
         {
-            if (/^\d+$/.exec(interval.attrs[0]))
-                label += ' ' + interval.attrs[0];
+            if (g_reports[rep].data().threads[g_main_thread].frames.length < frames_nb)
+                frames_nb = g_reports[rep].data().threads[g_main_thread].frames.length;
+            item_nb++;
+            let data = get_history_data(rep, g_main_thread, g_active_elements[typeI]);
+            series_data[rep + "/" + g_active_elements[typeI]] = smooth_1D_array(data.time_by_frame, 3);
+            if (data.max > y_scale)
+                y_scale = data.max;
+            if (use_log_scale === null && data.log_scale)
+                use_log_scale = true;
+        }
+    }
+    if (use_log_scale)
+    {
+        let legend_item = document.createElement("p");
+        legend_item.style.borderColor = "transparent";
+        legend_item.textContent = " -- log y scale -- ";
+        legend.appendChild(legend_item);
+    }
+    canvas.width = Math.max(frames_nb,600);
+    x_scale = frames_nb / canvas.width;
+    let id = 0;
+    for (let type in series_data)
+    {
+        let colour = graph_colour(id);
+
+        let legend_item = document.createElement("p");
+        legend_item.style.borderColor = colour;
+        legend_item.textContent = type;
+        legend.appendChild(legend_item);
+
+        let time_by_frame = series_data[type];
+        let last_val = 0;
+        for (var i = 0; i < frames_nb; i++)
+        {
+            let smoothed_time = time_by_frame[i];//smooth_1D(time_by_frame.slice(0), i, 3);
+
+            let y = smoothed_time/y_scale;
+            if (use_log_scale)
+                y = Math.log10(1 + smoothed_time/y_scale * 9);
+
+            if (item_nb === 1)
+            {   
+                context.beginPath();
+                context.fillStyle = colour;
+                context.fillRect(i/x_scale,canvas.height,1/x_scale,-y*canvas.height);
+            }
             else
-                label += ' [...]';
+            {
+                if ( i == frames_nb-1)
+                    continue;
+                context.globalCompositeOperation = "lighten";
+                context.beginPath();
+                context.strokeStyle = colour
+                context.lineWidth = 0.5;
+                context.moveTo(i/x_scale,canvas.height * (1 - last_val));
+                context.lineTo((i+1)/x_scale,canvas.height * (1 - y));
+                context.stroke();
+            }
+            last_val = y;
+            if (!tooltip_helper[Math.floor(i/x_scale)])
+                tooltip_helper[Math.floor(i/x_scale)] = [];
+            tooltip_helper[Math.floor(i/x_scale)].push([y, type]);
         }
-        var x0 = Math.floor(time_to_x(interval.t0));
-        var x1 = Math.floor(time_to_x(interval.t1));
-        var y0 = padding_top + interval.depth * BAR_SPACING;
-        var y1 = y0 + BAR_SPACING;
-        
-        ctx.fillStyle = interval.colour;
-        ctx.strokeStyle = 'black';
-        ctx.beginPath();
-        ctx.rect(x0-0.5, y0-0.5, x1-x0, y1-y0);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = 'black';
-        ctx.fillText(label, x0+2, y0+BAR_SPACING-4, Math.max(1, x1-x0-4));
-        
+        id++;
+    }
+
+    for (let i in tooltip_helper)
+    {
+        let tooltips = tooltip_helper[i];
+        let text = "Frame " + i*x_scale + "<br>";
+        for (let j in tooltips)
+            if (tooltips[j][0] != undefined && text.search(tooltips[j][1])===-1)
+                text += "Series " + tooltips[j][1] + ": " + time_label((tooltips[j][0])*y_scale,1) + "<br>";
         canvas._tooltips.push({
-            'x0': x0, 'x1': x1,
-            'y0': y0, 'y1': y1,
-            'text': function(interval) { return function() {
-                var t = '<b>' + interval.id + '</b><br>';
-                t += 'Length: ' + time_label(interval.duration) + '<br>';
-                if (interval.attrs)
-                {
-                    interval.attrs.forEach(function(attr) {
-                        t += attr + '<br>';
-                    });
-                }
-                return t;
-            }} (interval)
-        });
-
+                'x0': +i, 'x1': +i+1,
+                'y0': 0, 'y1': canvas.height,
+                'text': function(text) { return function() { return text; } }(text)
+            });
     }
+    set_tooltip_handlers(canvas);
 
-    for (var i = 0; i < main_data.frames.length; ++i)
+    [0.1,0.25,0.5,0.75].forEach(function(y_val)
     {
-        var frame = main_data.frames[i];
+        let y = y_val;
+        if (use_log_scale)
+            y = Math.log10(1 + y_val * 9);
 
-        if (frame.t0 < tmin || frame.t0 > tmax)
-            continue;
-
-        var x = Math.floor(time_to_x(frame.t0));
-        
-        ctx.save();
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
-        ctx.beginPath();
-        ctx.moveTo(x+0.5, 0);
-        ctx.lineTo(x+0.5, canvas.height);
-        ctx.stroke();
-        ctx.fillText(((frame.t1 - frame.t0) * 1000).toFixed(0)+'ms', x+2, padding_top - 24);
-        ctx.restore();
-    }
-
-    if (zoom)
-    {
-        var x0 = time_to_x(zoom.tmin);
-        var x1 = time_to_x(zoom.tmax);
-        ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
-        ctx.fillStyle = 'rgba(128, 128, 255, 0.2)';
-        ctx.beginPath();
-        ctx.moveTo(x0+0.5, 0.5);
-        ctx.lineTo(x1+0.5, 0.5);
-        ctx.lineTo(x1+0.5 + 4, canvas.height-0.5);
-        ctx.lineTo(x0+0.5 - 4, canvas.height-0.5);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-    }
-    
-    ctx.restore();
+        context.beginPath();
+        context.lineWidth="1";
+        context.strokeStyle = "rgba(0,0,0,0.2)";
+        context.moveTo(0,canvas.height * (1- y));
+        context.lineTo(canvas.width,canvas.height * (1 - y));
+        context.stroke();
+        context.fillStyle = "gray";
+        context.font = "10px Arial";
+        context.textAlign="left";
+        context.fillText(time_label(y*y_scale,0), 2, canvas.height * (1 - y) - 2 );
+    });
 }
 
-function set_frames_zoom_handlers(canvas0)
+function compare_reports()
 {
-    function do_zoom(event)
+    let section = document.getElementById("comparison");
+    section.innerHTML = "<h3>Report Comparison</h3>";
+
+    if (g_reports.length < 2)
     {
-        var zdata = canvas0._zoomData;
-
-        var relativeX = event.pageX - this.offsetLeft;
-        var relativeY = event.pageY - this.offsetTop;
-        
-//        var width = 0.001 + 0.5 * relativeY / canvas0.height;
-        var width = 0.001 + 5 * relativeY / canvas0.height;
-
-        var tavg = zdata.x_to_t(relativeX);
-        var tmax = tavg + width/2;
-        var tmin = tavg - width/2;
-        var range = {'tmin': tmin, 'tmax': tmax};
-        update_display(range);
+        section.innerHTML += "<p>Too few reports loaded</p>";
+        return;
     }
 
-    var mouse_is_down = false;
-    $(canvas0).unbind();
-    $(canvas0).mousedown(function(event) {
-        mouse_is_down = true;
-        do_zoom.call(this, event);
-    });
-    $(canvas0).mouseup(function(event) {
-        mouse_is_down = false;
-    });
-    $(canvas0).mousemove(function(event) {
-        if (mouse_is_down)
-            do_zoom.call(this, event);
-    });
+    if (g_active_elements.length != 1)
+    {
+        section.innerHTML += "<p>Too many of too few elements selected</p>";
+        return;
+    }
+
+    let frames_nb = g_reports[0].data().threads[g_main_thread].frames.length;
+    for (let rep in g_reports)
+        if (g_reports[rep].data().threads[g_main_thread].frames.length < frames_nb)
+            frames_nb = g_reports[rep].data().threads[g_main_thread].frames.length;
+
+    if (frames_nb != g_reports[0].data().threads[g_main_thread].frames.length)
+        section.innerHTML += "<p>Only the first " + frames_nb + " frames will be considered.</p>";
+
+    let reports_data = [];
+
+    for (let rep in g_reports)
+    {
+        let raw_data = get_history_data(rep, g_main_thread, g_active_elements[0]).time_by_frame;
+        reports_data.push({"time_data" : raw_data.slice(0,frames_nb), "sorted_data" : raw_data.slice(0,frames_nb).sort((a,b) => a-b)});
+    }
+
+    let table_output = "<table><tr><th>Profiler Variable</th><th>Median</th><th>Maximum</th><th>% better frames</th><th>time difference per frame</th></tr>"
+    for (let rep in reports_data)
+    {
+        let report = reports_data[rep];
+        table_output += "<tr><td>Report " + rep + (rep == 0 ? " (reference)":"") + "</td>";
+        // median
+        table_output += "<td>" + time_label(report.sorted_data[Math.floor(report.sorted_data.length/2)]) + "</td>"
+        // max
+        table_output += "<td>" + time_label(report.sorted_data[report.sorted_data.length-1]) + "</td>"
+        let frames_better = 0;
+        let frames_diff = 0;
+        for (let f in report.time_data)
+        {
+            if (report.time_data[f] <= reports_data[0].time_data[f])
+                frames_better++;
+            frames_diff += report.time_data[f] - reports_data[0].time_data[f];
+        }
+        table_output += "<td>" + (frames_better/frames_nb*100).toFixed(0) + "%</td><td>" + time_label((frames_diff/frames_nb),2) + "</td>";
+        table_output += "</tr>";
+    }
+    section.innerHTML += table_output + "</table>";
+}
+
+function recompute_choices(report, thread)
+{
+    var choices = document.getElementById("choices").querySelector("nav");
+    choices.innerHTML = "<h3>Choices</h3>";
+    var types = {};
+    var data = report.data().threads[thread];
+
+    for (let i = 0; i < data.intervals.length; i++)
+        types[data.intervals[i].id] = 0;
+    
+    var sorted_keys = Object.keys(types).sort();
+
+    for (let key in sorted_keys)
+    {
+        let type = sorted_keys[key];
+        let p = document.createElement("p");
+        p.textContent = type;
+        if (g_active_elements.indexOf(p.textContent) !== -1)
+            p.className = "active";
+        choices.appendChild(p);
+        p.onclick = function()
+        {
+            if (g_active_elements.indexOf(p.textContent) !== -1)
+            {
+                p.className = "";
+                g_active_elements = g_active_elements.filter( x => x != p.textContent);
+                update_analysis();
+                return;
+            }
+            g_active_elements.push(p.textContent);
+            p.className = "active";
+            update_analysis();
+        }
+    }
+    update_analysis();
+}
+
+function update_analysis()
+{
+    compare_reports();
+    draw_history_graph();
+    draw_frequency_graph();
 }
  
-function set_zoom_handlers(main_data, data, canvas0, canvas1)
+function load_report_from_file(evt)
 {
-    function do_zoom(event)
-    {
-        var hdata = canvas0._hierarchyData;
-        
-        function x_to_time(x)
-        {
-            return hdata.tmin + x * (hdata.tmax - hdata.tmin) / canvas0.width;
-        }
-        
-        var relativeX = event.pageX - this.offsetLeft;
-        var relativeY = event.pageY - this.offsetTop;
-        var width = 8 + 64 * relativeY / canvas0.height;
-        var zoom = { tmin: x_to_time(relativeX-width/2), tmax: x_to_time(relativeX+width/2) };
-        display_hierarchy(main_data, data, canvas0, hdata.range, zoom);
-        display_hierarchy(main_data, data, canvas1, zoom, undefined);
-    }
-
-    var mouse_is_down = false;
-    $(canvas0).mousedown(function(event) {
-        mouse_is_down = true;
-        do_zoom.call(this, event);
-    });
-    $(canvas0).mouseup(function(event) {
-        mouse_is_down = false;
-    });
-    $(canvas0).mousemove(function(event) {
-        if (mouse_is_down)
-            do_zoom.call(this, event);
-    });
+    var file = evt.target.files[0];
+    if (!file)
+        return;
+    load_report(false, file);
+    evt.target.value = null;
 }
 
-function set_tooltip_handlers(canvas)
+function load_report(trylive, file)
 {
-    function do_tooltip(event)
-    {
-        var tooltips = canvas._tooltips;
-        if (!tooltips)
-            return;
-        
-        var relativeX = event.pageX - this.offsetLeft;
-        var relativeY = event.pageY - this.offsetTop;
+    if (g_loading_timeout != undefined)
+        return;
 
-        var text = undefined;
-        for (var i = 0; i < tooltips.length; ++i)
-        {
-            var t = tooltips[i];
-            if (t.x0-1 <= relativeX && relativeX <= t.x1+1 && t.y0 <= relativeY && relativeY <= t.y1)
-            {
-                text = t.text();
-                break;
-            }
-        }
-        if (text)
-        {
-            if (text.length > 512)
-                $('#tooltip').addClass('long');
-            else
-                $('#tooltip').removeClass('long');
-            $('#tooltip').css('left', (event.pageX+16)+'px');
-            $('#tooltip').css('top', (event.pageY+8)+'px');
-            $('#tooltip').html(text);
-            $('#tooltip').css('visibility', 'visible');
-        }
-        else
-        {
-            $('#tooltip').css('visibility', 'hidden');
-        }
-    }
+    let reportID = g_reports.length;
+    let nav = document.querySelector("header nav");
+    let newRep = document.createElement("p");
+    newRep.textContent = file.name;
+    newRep.className = "loading";
+    newRep.id = "Report" + reportID;
+    newRep.dataset.id = reportID;
+    nav.appendChild(newRep);
 
-    $(canvas).mousemove(function(event) {
-        do_tooltip.call(this, event);
-    });
+    g_reports.push(Profiler2Report(on_report_loaded, trylive, file));
+    g_loading_timeout = setTimeout(function() { on_report_loaded(false); }, 5000);
 }
 
-function search_regions(query)
+function on_report_loaded(success)
 {
-    var re = new RegExp(query);
-    var data = g_data.threads[0].processed_events;
-    
-    var found = [];
-    for (var i = 0; i < data.intervals.length; ++i)
+    let element = document.getElementById("Report" + (g_reports.length-1));
+    let report = g_reports[g_reports.length-1];
+    if (!success)
     {
-        var interval = data.intervals[i];
-        if (interval.id.match(re))
-        {
-            found.push(interval);
-            if (found.length > 100)
-                break;
-        }
+        element.className = "fail";
+        setTimeout(function() { element.parentNode.removeChild(element); clearTimeout(g_loading_timeout); g_loading_timeout = null; }, 1000 );
+        g_reports = g_reports.slice(0,-1);
+        if (g_reports.length === 0)
+            g_current_report = null;
+        return;
     }
-    
-    var out = $('#regionsearchresult > tbody');
-    out.empty();
-    for (var i = 0; i < found.length; ++i)
-    {
-        out.append($('<tr><td>?</td><td>' + found[i].id + '</td><td>' + (found[i].duration*1000) + '</td></tr>'));
-    }
+    clearTimeout(g_loading_timeout);
+    g_loading_timeout = null;
+    select_report(+element.dataset.id);
+    element.onclick = function() { select_report(+element.dataset.id);};
+}
+
+function select_report(id)
+{
+    if (g_current_report != undefined)
+        document.getElementById("Report" + g_current_report).className = "";
+    document.getElementById("Report" + id).className = "active";
+    g_current_report = id;
+    // Load up our canvas
+    g_report_draw.rebuild_canvases(g_reports[id].raw_data());
+    g_report_draw.update_display(g_reports[id].data(),{"seconds":5});
+
+    recompute_choices(g_reports[id], g_main_thread);
+}
+
+window.onload = function()
+{
+    // Try loading the report live
+    load_report(true, {"name":"live"});
+
+    // add new reports
+    document.getElementById('report_load_input').addEventListener('change', load_report_from_file, false); 
 }

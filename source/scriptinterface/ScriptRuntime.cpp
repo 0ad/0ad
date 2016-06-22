@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	{
 		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 			g_Profiler.Stop();
-    	g_Profiler2.RecordRegionLeave("GCSlice");
+    	g_Profiler2.RecordRegionLeave();
 	}
 	else if (progress == JS::GC_CYCLE_BEGIN)
 	{
@@ -58,7 +58,7 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	{
 		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 			g_Profiler.Stop();
-    	g_Profiler2.RecordRegionLeave("GCSlice");
+    	g_Profiler2.RecordRegionLeave();
 	}
 
 	// The following code can be used to print some information aobut garbage collection

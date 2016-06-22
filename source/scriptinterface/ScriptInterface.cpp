@@ -262,7 +262,7 @@ bool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* vp)
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 		g_Profiler.Stop();
 
-	g_Profiler2.RecordRegionLeave("(ProfileStop)");
+	g_Profiler2.RecordRegionLeave();
 
 	rec.rval().setUndefined();
 	return true;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,6 +31,7 @@
 #include "third_party/mongoose/mongoose.h"
 
 #include <iomanip>
+#include <unordered_map>
 
 CProfiler2 g_Profiler2;
 
@@ -80,7 +81,12 @@ static void* MgCallback(mg_event event, struct mg_connection *conn, const struct
 		std::stringstream stream;
 
 		std::string uri = request_info->uri;
-		if (uri == "/overview")
+
+		if (uri == "/download")
+		{
+			profiler->SaveToFile();
+		}
+		else if (uri == "/overview")
 		{
 			profiler->ConstructJSONOverview(stream);
 		}
@@ -301,7 +307,7 @@ void CProfiler2::RemoveThreadStorage(ThreadStorage* storage)
 }
 
 CProfiler2::ThreadStorage::ThreadStorage(CProfiler2& profiler, const std::string& name) :
-	m_Profiler(profiler), m_Name(name), m_BufferPos0(0), m_BufferPos1(0), m_LastTime(timer_Time())
+m_Profiler(profiler), m_Name(name), m_BufferPos0(0), m_BufferPos1(0), m_LastTime(timer_Time()), m_HeldDepth(0)
 {
 	m_Buffer = new u8[BUFFER_SIZE];
 	memset(m_Buffer, ITEM_NOP, BUFFER_SIZE);
@@ -310,6 +316,55 @@ CProfiler2::ThreadStorage::ThreadStorage(CProfiler2& profiler, const std::string
 CProfiler2::ThreadStorage::~ThreadStorage()
 {
 	delete[] m_Buffer;
+}
+
+void CProfiler2::ThreadStorage::Write(EItem type, const void* item, u32 itemSize)
+{
+	if (m_HeldDepth > 0)
+	{
+		WriteHold(type, item, itemSize);
+		return;
+	}
+	// See m_BufferPos0 etc for comments on synchronisation
+
+	u32 size = 1 + itemSize;
+	u32 start = m_BufferPos0;
+	if (start + size > BUFFER_SIZE)
+	{
+		// The remainder of the buffer is too small - fill the rest
+		// with NOPs then start from offset 0, so we don't have to
+		// bother splitting the real item across the end of the buffer
+
+		m_BufferPos0 = size;
+		COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
+
+		memset(m_Buffer + start, 0, BUFFER_SIZE - start);
+		start = 0;
+	}
+	else
+	{
+		m_BufferPos0 = start + size;
+		COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
+	}
+
+	m_Buffer[start] = (u8)type;
+	memcpy(&m_Buffer[start + 1], item, itemSize);
+
+	COMPILER_FENCE; // must write m_BufferPos1 after m_Buffer
+	m_BufferPos1 = start + size;
+}
+
+void CProfiler2::ThreadStorage::WriteHold(EItem type, const void* item, u32 itemSize)
+{
+	u32 size = 1 + itemSize;
+
+	if (m_HoldBuffers[m_HeldDepth - 1].pos + size > CProfiler2::HOLD_BUFFER_SIZE)
+		return;	// we held on too much data, ignore the rest
+
+	m_HoldBuffers[m_HeldDepth - 1].buffer[m_HoldBuffers[m_HeldDepth - 1].pos] = (u8)type;
+	memcpy(&m_HoldBuffers[m_HeldDepth - 1].buffer[m_HoldBuffers[m_HeldDepth - 1].pos + 1], item, itemSize);
+
+	m_HoldBuffers[m_HeldDepth - 1].pos += size;
 }
 
 std::string CProfiler2::ThreadStorage::GetBuffer()
@@ -355,6 +410,314 @@ void CProfiler2::ThreadStorage::RecordAttribute(const char* fmt, va_list argp)
 	Write(ITEM_ATTRIBUTE, buffer, 4 + len);
 }
 
+size_t CProfiler2::ThreadStorage::HoldLevel()
+{
+	return m_HeldDepth;
+}
+
+u8 CProfiler2::ThreadStorage::HoldType()
+{
+	return m_HoldBuffers[m_HeldDepth - 1].type;
+}
+
+void CProfiler2::ThreadStorage::PutOnHold(u8 newType)
+{
+	m_HeldDepth++;
+	m_HoldBuffers[m_HeldDepth - 1].clear();
+	m_HoldBuffers[m_HeldDepth - 1].setType(newType);
+}
+
+// this flattens the stack, use it sensibly
+void rewriteBuffer(u8* buffer, u32& bufferSize)
+{
+	double startTime = timer_Time();
+
+	u32 size = bufferSize;
+	u32 readPos = 0;
+
+	double initialTime = -1;
+	double total_time = -1;
+	const char* regionName;
+	std::set<std::string> topLevelArgs;
+
+	typedef std::tuple<const char*, double, std::set<std::string> > infoPerType;
+	std::unordered_map<std::string, infoPerType> timeByType;
+	std::vector<double> last_time_stack;
+	std::vector<const char*> last_names;
+
+	// never too many hacks
+	std::string current_attribute = "";
+	std::map<std::string, double> time_per_attribute;
+
+	// Let's read the first event
+	{
+		u8 type = buffer[readPos];
+		++readPos;
+		if (type != CProfiler2::ITEM_ENTER)
+		{
+			debug_warn("Profiler2: Condensing a region should run into ITEM_ENTER first");
+			return; // do nothing
+		}
+		CProfiler2::SItem_dt_id item;
+		memcpy(&item, buffer + readPos, sizeof(item));
+		readPos += sizeof(item);
+
+		regionName = item.id;
+		last_names.push_back(item.id);
+		initialTime = (double)item.dt;
+	}
+	int enter = 1;
+	int leaves = 0;
+	// Read subsequent events. Flatten hierarchy because it would get too complicated otherwise.
+	// To make sure time doesn't bloat, subtract time from nested events
+	while (readPos < size)
+	{
+		u8 type = buffer[readPos];
+		++readPos;
+
+		switch (type)
+		{
+		case CProfiler2::ITEM_NOP:
+		{
+			// ignore
+			break;
+		}
+		case CProfiler2::ITEM_SYNC:
+		{
+			debug_warn("Aggregated regions should not be used across frames");
+			// still try to act sane
+			readPos += sizeof(double);
+			readPos += sizeof(CProfiler2::RESYNC_MAGIC);
+			break;
+		}
+		case CProfiler2::ITEM_EVENT:
+		{
+			// skip for now
+			readPos += sizeof(CProfiler2::SItem_dt_id);
+			break;
+		}
+		case CProfiler2::ITEM_ENTER:
+		{
+			enter++;
+			CProfiler2::SItem_dt_id item;
+			memcpy(&item, buffer + readPos, sizeof(item));
+			readPos += sizeof(item);
+			last_time_stack.push_back((double)item.dt);
+			last_names.push_back(item.id);
+			current_attribute = "";
+			break;
+		}
+		case CProfiler2::ITEM_LEAVE:
+		{
+			float item_time;
+			memcpy(&item_time, buffer + readPos, sizeof(float));
+			readPos += sizeof(float);
+
+			leaves++;
+			if (last_names.empty())
+			{
+				// we somehow lost the first entry in the process
+				debug_warn("Invalid buffer for condensing");
+			}
+			const char* item_name = last_names.back();
+			last_names.pop_back();
+
+			if (last_time_stack.empty())
+			{
+				// this is the leave for the whole scope
+				total_time = (double)item_time;
+				break;
+			}
+			double time = (double)item_time - last_time_stack.back();
+
+			std::string name = std::string(item_name);
+			auto TimeForType = timeByType.find(name);
+			if (TimeForType == timeByType.end())
+			{
+				// keep reference to the original char pointer to make sure we don't break things down the line
+				std::get<0>(timeByType[name]) = item_name;
+				std::get<1>(timeByType[name]) = 0;
+			}
+			std::get<1>(timeByType[name]) += time;
+
+			last_time_stack.pop_back();
+			// if we were nested, subtract our time from the below scope by making it look like it starts later
+			if (!last_time_stack.empty())
+				last_time_stack.back() += time;
+
+			if (!current_attribute.empty())
+			{
+				time_per_attribute[current_attribute] += time;
+			}
+
+			break;
+		}
+		case CProfiler2::ITEM_ATTRIBUTE:
+		{
+			// skip for now
+			u32 len;
+			memcpy(&len, buffer + readPos, sizeof(len));
+			ENSURE(len <= CProfiler2::MAX_ATTRIBUTE_LENGTH);
+			readPos += sizeof(len);
+			
+			char message[CProfiler2::MAX_ATTRIBUTE_LENGTH] = {0};
+			memcpy(&message[0], buffer + readPos, len);
+			CStr mess = CStr((const char*)message, len);
+			if (!last_names.empty())
+			{
+				auto it = timeByType.find(std::string(last_names.back()));
+				if (it == timeByType.end())
+					topLevelArgs.insert(mess);
+				else
+					std::get<2>(timeByType[std::string(last_names.back())]).insert(mess);
+			}
+			readPos += len;
+			current_attribute = mess;
+			break;
+		}
+		default:
+			debug_warn(L"Invalid profiler item when condensing buffer");
+			continue;
+		}
+	}
+
+	// rewrite the buffer
+	// what we rewrite will always be smaller than the current buffer's size
+	u32 writePos = 0;
+	double curTime = initialTime;
+	// the region enter
+	{
+		CProfiler2::SItem_dt_id item = { curTime, regionName };
+		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
+		memcpy(buffer + writePos + 1, &item, sizeof(item));
+		writePos += sizeof(item) + 1;
+		// add a nanosecond for sanity
+		curTime += 0.000001;
+	}
+	// sub-events, aggregated
+	for (auto& type : timeByType)
+	{
+		CProfiler2::SItem_dt_id item = { curTime, std::get<0>(type.second) };
+		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
+		memcpy(buffer + writePos + 1, &item, sizeof(item));
+		writePos += sizeof(item) + 1;
+
+		// write relevant attributes if present
+		for (const auto& attrib : std::get<2>(type.second))
+		{
+			buffer[writePos] = (u8)CProfiler2::ITEM_ATTRIBUTE;
+			writePos++;
+			std::string basic = attrib;
+			auto time_attrib = time_per_attribute.find(attrib);
+			if (time_attrib != time_per_attribute.end())
+				basic += " " + CStr::FromInt(1000000*time_attrib->second) + "us";
+
+			u32 length = basic.size();
+			memcpy(buffer + writePos, &length, sizeof(length));
+			writePos += sizeof(length);
+			memcpy(buffer + writePos, basic.c_str(), length);
+			writePos += length;
+		}
+
+		curTime += std::get<1>(type.second);
+		
+		float leave_time = (float)curTime;
+		buffer[writePos] = (u8)CProfiler2::ITEM_LEAVE;
+		memcpy(buffer + writePos + 1, &leave_time, sizeof(float));
+		writePos += sizeof(float) + 1;
+	}
+	// Time of computation
+	{
+		CProfiler2::SItem_dt_id item = { curTime, "CondenseBuffer" };
+		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
+		memcpy(buffer + writePos + 1, &item, sizeof(item));
+		writePos += sizeof(item) + 1;
+	}
+	{
+		float time_out = (float)(curTime + timer_Time() - startTime);
+		buffer[writePos] = (u8)CProfiler2::ITEM_LEAVE;
+		memcpy(buffer + writePos + 1, &time_out, sizeof(float));
+		writePos += sizeof(float) + 1;
+		// add a nanosecond for sanity
+		curTime += 0.000001;
+	}
+
+	// the region leave
+	{
+		if (total_time < 0)
+		{
+			total_time = curTime + 0.000001;
+
+			buffer[writePos] = (u8)CProfiler2::ITEM_ATTRIBUTE;
+			writePos++;
+			u32 length = sizeof("buffer overflow");
+			memcpy(buffer + writePos, &length, sizeof(length));
+			writePos += sizeof(length);
+			memcpy(buffer + writePos, "buffer overflow", length);
+			writePos += length;
+		}
+		else if (total_time < curTime)
+		{
+			// this seems to happen on rare occasions.
+			curTime = total_time;
+		}
+		float leave_time = (float)total_time;
+		buffer[writePos] = (u8)CProfiler2::ITEM_LEAVE;
+		memcpy(buffer + writePos + 1, &leave_time, sizeof(float));
+		writePos += sizeof(float) + 1;
+	}
+	bufferSize = writePos;
+}
+
+void CProfiler2::ThreadStorage::HoldToBuffer(bool condensed)
+{
+	ENSURE(m_HeldDepth);
+	if (condensed)
+	{
+		// rewrite the buffer to show aggregated data
+		rewriteBuffer(m_HoldBuffers[m_HeldDepth - 1].buffer, m_HoldBuffers[m_HeldDepth - 1].pos);
+	}
+
+	if (m_HeldDepth > 1)
+	{
+		// copy onto buffer below
+		HoldBuffer& copied = m_HoldBuffers[m_HeldDepth - 1];
+		HoldBuffer& target = m_HoldBuffers[m_HeldDepth - 2];
+		if (target.pos + copied.pos > HOLD_BUFFER_SIZE)
+			return;	// too much data, too bad
+
+		memcpy(&target.buffer[target.pos], copied.buffer, copied.pos);
+
+		target.pos += copied.pos;
+	}
+	else
+	{
+		u32 size = m_HoldBuffers[m_HeldDepth - 1].pos;
+		u32 start = m_BufferPos0;
+		if (start + size > BUFFER_SIZE)
+		{
+			m_BufferPos0 = size;
+			COMPILER_FENCE;
+			memset(m_Buffer + start, 0, BUFFER_SIZE - start);
+			start = 0;
+		}
+		else
+		{
+			m_BufferPos0 = start + size;
+			COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
+		}
+		memcpy(&m_Buffer[start], m_HoldBuffers[m_HeldDepth - 1].buffer, size);
+		COMPILER_FENCE; // must write m_BufferPos1 after m_Buffer
+		m_BufferPos1 = start + size;
+	}
+	m_HeldDepth--;
+}
+void CProfiler2::ThreadStorage::ThrowawayHoldBuffer()
+{
+	if (!m_HeldDepth)
+		return;
+	m_HeldDepth--;
+}
 
 void CProfiler2::ConstructJSONOverview(std::ostream& stream)
 {
@@ -438,8 +801,7 @@ void RunBufferVisitor(const std::string& buffer, V& visitor)
 			pos += sizeof(item);
 			if (lastTime >= 0)
 			{
-				lastTime = lastTime + (double)item.dt;
-				visitor.OnEvent(lastTime, item.id);
+				visitor.OnEvent(lastTime + (double)item.dt, item.id);
 			}
 			break;
 		}
@@ -450,20 +812,18 @@ void RunBufferVisitor(const std::string& buffer, V& visitor)
 			pos += sizeof(item);
 			if (lastTime >= 0)
 			{
-				lastTime = lastTime + (double)item.dt;
-				visitor.OnEnter(lastTime, item.id);
+				visitor.OnEnter(lastTime + (double)item.dt, item.id);
 			}
 			break;
 		}
 		case CProfiler2::ITEM_LEAVE:
 		{
-			CProfiler2::SItem_dt_id item;
-			memcpy(&item, buffer.c_str()+pos, sizeof(item));
-			pos += sizeof(item);
+			float leave_time;
+			memcpy(&leave_time, buffer.c_str() + pos, sizeof(float));
+			pos += sizeof(float);
 			if (lastTime >= 0)
 			{
-				lastTime = lastTime + (double)item.dt;
-				visitor.OnLeave(lastTime, item.id);
+				visitor.OnLeave(lastTime + (double)leave_time);
 			}
 			break;
 		}
@@ -519,10 +879,9 @@ public:
 		m_Stream << ",\"" << CStr(id).EscapeToPrintableASCII() << "\"],\n";
 	}
 
-	void OnLeave(double time, const char* id)
+	void OnLeave(double time)
 	{
-		m_Stream << "[3," << std::fixed << std::setprecision(9) << time;
-		m_Stream << ",\"" << CStr(id).EscapeToPrintableASCII() << "\"],\n";
+		m_Stream << "[3," << std::fixed << std::setprecision(9) << time << "],\n";
 	}
 
 	void OnAttribute(const std::string& attr)
@@ -595,4 +954,46 @@ void CProfiler2::SaveToFile()
 		stream << "\n}";
 	}
 	stream << "\n]});\n";
+}
+
+CProfile2SpikeRegion::CProfile2SpikeRegion(const char* name, double spikeLimit) :
+	m_Name(name), m_Limit(spikeLimit), m_PushedHold(true)
+{
+	if (g_Profiler2.HoldLevel() < 8 &&  g_Profiler2.HoldType() != CProfiler2::ThreadStorage::BUFFER_AGGREGATE)
+		g_Profiler2.HoldMessages(CProfiler2::ThreadStorage::BUFFER_SPIKE);
+	else
+		m_PushedHold = false;
+	COMPILER_FENCE;
+	g_Profiler2.RecordRegionEnter(m_Name);
+	m_StartTime = g_Profiler2.GetTime();
+}
+CProfile2SpikeRegion::~CProfile2SpikeRegion()
+{
+	double time = g_Profiler2.GetTime();
+	g_Profiler2.RecordRegionLeave();
+	bool shouldWrite = time - m_StartTime > m_Limit;
+
+	if (m_PushedHold)
+		g_Profiler2.StopHoldingMessages(shouldWrite);
+}
+
+CProfile2AggregatedRegion::CProfile2AggregatedRegion(const char* name, double spikeLimit) :
+	m_Name(name), m_Limit(spikeLimit), m_PushedHold(true)
+{
+	if (g_Profiler2.HoldLevel() < 8 && g_Profiler2.HoldType() != CProfiler2::ThreadStorage::BUFFER_AGGREGATE)
+		g_Profiler2.HoldMessages(CProfiler2::ThreadStorage::BUFFER_AGGREGATE);
+	else
+		m_PushedHold = false;
+	COMPILER_FENCE;
+	g_Profiler2.RecordRegionEnter(m_Name);
+	m_StartTime = g_Profiler2.GetTime();
+}
+CProfile2AggregatedRegion::~CProfile2AggregatedRegion()
+{
+	double time = g_Profiler2.GetTime();
+	g_Profiler2.RecordRegionLeave();
+	bool shouldWrite = time - m_StartTime > m_Limit;
+
+	if (m_PushedHold)
+		g_Profiler2.StopHoldingMessages(shouldWrite, true);
 }
