@@ -1262,7 +1262,6 @@ var batchTrainingEntities;
 var batchTrainingType;
 var batchTrainingCount;
 var batchTrainingEntityAllowedCount;
-const batchIncrementSize = 5;
 
 function flushTrainingBatch()
 {
@@ -1372,6 +1371,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	if (!decrement)
 		var template = GetTemplateData(trainEntType);
 
+	let batchIncrementSize = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");
+
 	if (Engine.HotkeyIsPressed("session.batchtrain") && batchTrainingPossible)
 	{
 		if (inputState == INPUT_BATCHTRAINING)
@@ -1455,6 +1456,7 @@ function addResearchToQueue(entity, researchType)
 // the training button with shift down
 function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 {
+	let batchIncrementSize = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");
 	var appropriateBuildings = [entity];
 	if (selection && selection.indexOf(entity) != -1)
 		appropriateBuildings = getBuildingsWhichCanTrainEntity(selection, trainEntType);
