@@ -86,6 +86,9 @@ function time_label(t, precision = 2)
 
 function slice_intervals(data, range)
 {
+    if (!data.frames.length)
+        return {"tmin":0,"tmax":0,"intervals":[]};
+
     var tmin = 0;
     var tmax = 0;
     if (range.seconds)

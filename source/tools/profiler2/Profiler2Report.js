@@ -190,6 +190,8 @@ function process_raw_data(data, range)
             stack.pop();
         }
     }
+    if (!frames.length)
+        return { 'frames': [], 'events': [], 'intervals': [], 'intervals_by_type' : {}, 'tmin': 0, 'tmax': 0 };
     if(!range)
     {
         range = { "tmin" : frames[0].t0, "tmax" : frames[frames.length-1].t1 };

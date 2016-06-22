@@ -587,7 +587,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 	double curTime = initialTime;
 	// the region enter
 	{
-		CProfiler2::SItem_dt_id item = { curTime, regionName };
+		CProfiler2::SItem_dt_id item = { (float)curTime, regionName };
 		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
 		memcpy(buffer + writePos + 1, &item, sizeof(item));
 		writePos += sizeof(item) + 1;
@@ -597,7 +597,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 	// sub-events, aggregated
 	for (auto& type : timeByType)
 	{
-		CProfiler2::SItem_dt_id item = { curTime, std::get<0>(type.second) };
+		CProfiler2::SItem_dt_id item = { (float)curTime, std::get<0>(type.second) };
 		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
 		memcpy(buffer + writePos + 1, &item, sizeof(item));
 		writePos += sizeof(item) + 1;
@@ -628,7 +628,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 	}
 	// Time of computation
 	{
-		CProfiler2::SItem_dt_id item = { curTime, "CondenseBuffer" };
+		CProfiler2::SItem_dt_id item = { (float)curTime, "CondenseBuffer" };
 		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;
 		memcpy(buffer + writePos + 1, &item, sizeof(item));
 		writePos += sizeof(item) + 1;
