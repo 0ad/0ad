@@ -2,9 +2,9 @@ var g_SavedGamesMetadata = [];
 
 function init()
 {
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
 
-	var savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
 	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];
@@ -16,7 +16,7 @@ function init()
 	}
 
 	// Get current game version and loaded mods
-	var engineInfo = Engine.GetEngineInfo();
+	let engineInfo = Engine.GetEngineInfo();
 
 	g_SavedGamesMetadata = savedGames.map(game => game.metadata);
 
@@ -58,20 +58,38 @@ function selectionChanged()
 		caption = "[color=\"orange\"]" + caption + "[/color]";
 	Engine.GetGUIObjectByName("savedMods").caption = caption;
 
-	Engine.GetGUIObjectByName("savedPlayersNames").caption = getPlayerInfoText(metadata);
+	let data = [];
+	let playerIdx = 0;
+	for (let playerData of metadata.initAttributes.settings.PlayerData)
+	{
+		if (playerData == null || playerData.Civ == "gaia")
+			continue;
+		++playerIdx;
+		data.push({
+			"Team": playerData.Team,
+			"Name": playerData.Name,
+			"Civ": playerData.Civ,
+			"Color": playerData.Color,
+			"AI": playerData.AI,
+			"AIDiff": playerData.AIDiff,
+			"Defeated": metadata.gui.states && metadata.gui.states[playerIdx] == "defeated"
+		});
+	}
+
+	Engine.GetGUIObjectByName("savedPlayersNames").caption = formatPlayerInfo(data);
 }
 
 function loadGame()
 {
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	var gameId = gameSelection.list_data[gameSelection.selected];
-	var metadata = g_SavedGamesMetadata[gameSelection.selected];
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameId = gameSelection.list_data[gameSelection.selected];
+	let metadata = g_SavedGamesMetadata[gameSelection.selected];
 
 	// Check compatibility before really loading it
-	var engineInfo = Engine.GetEngineInfo();
-	var sameMods = hasSameMods(metadata, engineInfo);
-	var sameEngineVersion = hasSameEngineVersion(metadata, engineInfo);
-	var sameSavegameVersion = hasSameSavegameVersion(metadata, engineInfo);
+	let engineInfo = Engine.GetEngineInfo();
+	let sameMods = hasSameMods(metadata, engineInfo);
+	let sameEngineVersion = hasSameEngineVersion(metadata, engineInfo);
+	let sameSavegameVersion = hasSameSavegameVersion(metadata, engineInfo);
 
 	if (sameEngineVersion && sameSavegameVersion && sameMods)
 	{
@@ -80,7 +98,7 @@ function loadGame()
 	}
 
 	// Version not compatible ... ask for confirmation
-	var message = translate("This saved game may not be compatible:");
+	let message = translate("This saved game may not be compatible:");
 
 	if (!sameEngineVersion)
 	{
@@ -126,7 +144,7 @@ function loadGame()
 
 function reallyLoadGame(gameId)
 {
-	var metadata = Engine.StartSavedGame(gameId);
+	let metadata = Engine.StartSavedGame(gameId);
 	if (!metadata)
 	{
 		// Probably the file wasn't found
@@ -153,56 +171,22 @@ function reallyLoadGame(gameId)
 
 function deleteGame()
 {
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	var gameLabel = gameSelection.list[gameSelection.selected];
-	var gameID = gameSelection.list_data[gameSelection.selected];
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameID = gameSelection.list_data[gameSelection.selected];
 
-	// Ask for confirmation
-	messageBox(
-		500, 200,
-		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
-			translate("Saved game will be permanently deleted, are you sure?"),
-		translate("DELETE"),
-		[translate("No"), translate("Yes")],
-		[null, function(){ reallyDeleteGame(gameID); }]
-	);
-}
+	if (!gameID)
+		return;
 
-function deleteGameWithoutConfirmation()
-{
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	var gameID = gameSelection.list_data[gameSelection.selected];
-	reallyDeleteGame(gameID);
-}
-
-function reallyDeleteGame(gameID)
-{
-	if (!Engine.DeleteSavedGame(gameID))
-		error("Could not delete saved game: " + gameID);
-
-	// Run init again to refresh saved game list
-	init();
-}
-
-function getPlayerInfoText(metadata)
-{
-	let data = [];
-	let playerIdx = 0;
-	for (let playerData of metadata.initAttributes.settings.PlayerData)
-	{
-		if (playerData == null || playerData.Civ == "gaia")
-			continue;
-		++playerIdx;
-		data.push({
-			"Team": playerData.Team,
-			"Name": playerData.Name,
-			"Civ": playerData.Civ,
-			"Color": playerData.Color,
-			"AI": playerData.AI,
-			"AIDiff": playerData.AIDiff,
-			"Defeated": metadata.gui.states && metadata.gui.states[playerIdx] == "defeated"
-		});
-	}
-
-	return formatPlayerInfo(data);
+	if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
+		reallyDeleteGame(gameID);
+	else
+		messageBox(
+			500, 200,
+			sprintf(translate("\"%(label)s\""), {
+				"label": gameSelection.list[gameSelection.selected]
+			}) + "\n" + translate("Saved game will be permanently deleted, are you sure?"),
+			translate("DELETE"),
+			[translate("No"), translate("Yes")],
+			[null, function(){ reallyDeleteGame(gameID); }]
+		);
 }

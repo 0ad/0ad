@@ -55,7 +55,6 @@ function saveGame()
 		return;
 	}
 
-	// Ask for confirmation
 	messageBox(
 		500, 200,
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
@@ -87,7 +86,6 @@ function deleteGame()
 	let gameLabel = gameSelection.list[gameSelection.selected];
 	let gameID = gameSelection.list_data[gameSelection.selected];
 
-	// Ask for confirmation
 	messageBox(
 		500, 200,
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
@@ -96,15 +94,6 @@ function deleteGame()
 		[translate("No"), translate("Yes")],
 		[null, function(){ reallyDeleteGame(gameID); }]
 	);
-}
-
-function reallyDeleteGame(gameID)
-{
-	if (!Engine.DeleteSavedGame(gameID))
-		error("Could not delete saved game: " + gameID);
-
-	// Run init again to refresh saved game list
-	init();
 }
 
 // HACK: Engine.SaveGame* expects this function to be defined on the current page.
