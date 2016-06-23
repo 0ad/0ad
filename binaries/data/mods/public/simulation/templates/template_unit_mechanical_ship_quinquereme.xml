@@ -2,10 +2,10 @@
 <Entity parent="template_unit_mechanical_ship">
   <Attack>
     <Ranged>
-      <Hack>30.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>30.0</Crush>
-      <MaxRange>65.0</MaxRange>
+      <Hack>0.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>100.0</Crush>
+      <MaxRange>72.0</MaxRange>
       <MinRange>10.0</MinRange>
       <ProjectileSpeed>28.0</ProjectileSpeed>
       <PrepareTime>2000</PrepareTime>
@@ -13,17 +13,17 @@
       <Spread>6.0</Spread>
       <Splash>
         <Shape>Circular</Shape>
-        <Range>8</Range>
+        <Range>10</Range>
         <FriendlyFire>true</FriendlyFire>
-        <Hack>40.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>40.0</Crush>
+        <Hack>0.0</Hack>
+        <Pierce>15.0</Pierce>
+        <Crush>35.0</Crush>
       </Splash>
     </Ranged>
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>1</DefaultArrowCount>
-    <MaxArrowCount>10</MaxArrowCount>
+    <MaxArrowCount>11</MaxArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Catapult</GarrisonArrowClasses>
   </BuildingAI>
@@ -31,8 +31,9 @@
     <Population>3</Population>
     <BuildTime>30</BuildTime>
     <Resources>
-      <wood>200</wood>
+      <wood>350</wood>
       <metal>200</metal>
+      <stone>350</stone>
     </Resources>
   </Cost>
   <Footprint>
