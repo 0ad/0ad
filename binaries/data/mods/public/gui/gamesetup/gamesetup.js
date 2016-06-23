@@ -139,7 +139,7 @@ const g_VictoryColor = "orange";
 /**
  * Placeholder item for the map-dropdownlist.
  */
-const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map type", "Random") + "[/color]";
+const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map selection", "Random") + "[/color]";
 
 /**
  * Placeholder item for the civ-dropdownlists.
@@ -765,8 +765,15 @@ function onClientLeave(guid)
 		resetReadyData();
 }
 
+/**
+ * Doesn't translate, so that lobby clients can do that locally
+ * (even if they don't have that map).
+ */
 function getMapDisplayName(map)
 {
+	if (map == "random")
+		return map;
+
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{
@@ -852,7 +859,6 @@ function initMapNameList()
 	let mapListNames = mapList.map(map => map.name);
 	let mapListFiles = mapList.map(map => map.file);
 
-	// Scenario/skirmish maps have a fixed playercount
 	if (g_GameAttributes.mapType == "random")
 	{
 		mapListNames.unshift(g_RandomMap);
@@ -1473,9 +1479,7 @@ function updateMapDescription()
 	setMapPreviewImage("mapPreview", getMapPreview(g_GameAttributes.map));
 
 	Engine.GetGUIObjectByName("mapInfoName").caption =
-		g_GameAttributes.map == "random" ?
-			translateWithContext("map selection", "Random") :
-			translate(getMapDisplayName(g_GameAttributes.map));
+		translateMapTitle(getMapDisplayName(g_GameAttributes.map));
 
 	let numPlayers = sprintf(
 		translatePlural(

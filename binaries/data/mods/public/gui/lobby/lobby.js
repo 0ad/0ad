@@ -588,7 +588,7 @@ function updateGameList()
 			selectedGameIndex = +i;
 
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
-		list_mapName.push(translate(game.niceMapName));
+		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
 		list_nPlayers.push(game.nbp + "/" + game.tnbp);
@@ -623,7 +623,7 @@ function updateGameSelection()
 	if (!game)
 		return;
 
-	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
+	Engine.GetGUIObjectByName("sgMapName").caption = translateMapTitle(game.niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(
 		translate("Players: %(current)s/%(total)s"), {
 			"current": game.nbp,

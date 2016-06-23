@@ -67,6 +67,11 @@ function escapeText(text)
 	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
 }
 
+function translateMapTitle(mapTitle)
+{
+	return mapTitle == "random" ? translateWithContext("map selection", "Random") : translate(mapTitle);
+}
+
 /**
  * Returns map description and preview image or placeholder.
  */
