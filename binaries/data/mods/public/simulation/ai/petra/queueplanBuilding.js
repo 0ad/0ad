@@ -743,7 +743,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 			if (dy === 0)
 				continue;
 			ky = iy - dy;
-			if (ky  >= 0 && ky < w)
+			if (ky >= 0 && ky < w)
 			{
 				for (let dx = -dxmax; dx <= dxmax; ++dx)
 				{

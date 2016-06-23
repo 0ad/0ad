@@ -77,10 +77,8 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 
 m.Army.prototype.recalculateStrengths = function (gameState)
 {
-	this.ownStrength  = 0;
-	this.foeStrength  = 0;
-
-	// todo: deal with specifics.
+	this.ownStrength = 0;
+	this.foeStrength = 0;
 
 	for (let id of this.foeEntities)
 		this.evaluateStrength(gameState.getEntityById(id));

@@ -356,7 +356,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 	if (entity.getMetadata(PlayerID, "transport") !== undefined)
 	{
 		if (this.Config.debug > 0)
-			API3.warn("Petra naval manager error: unit " + entity.id() +  " has already required a transport");
+			API3.warn("Petra naval manager error: unit " + entity.id() + " has already required a transport");
 		return false;
 	}
 

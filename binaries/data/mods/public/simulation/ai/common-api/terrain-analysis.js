@@ -388,7 +388,7 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript)
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (!this.resourceMaps[resource])
 		{
-			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
+			// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
 			this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
@@ -397,7 +397,8 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript)
 	let cellSize = this.resourceMaps.wood.cellSize;
 	for (let ent of sharedScript._entities.values())
 	{
-		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
+		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
+		{
 			let resource = ent.resourceSupplyType().generic;
 			if (!this.resourceMaps[resource])
 				continue;
@@ -433,7 +434,7 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (!this.resourceMaps[resource])
 		{
-			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
+			// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
 			this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");

@@ -234,7 +234,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			}
 			if (ent.hasClass("Ship"))
 				ent.setMetadata(PlayerID, "sea", gameState.ai.accessibility.getAccessValue(ent.position(), true));
-			if (!ent.hasClass("Support") && !ent.hasClass("Ship") &&  ent.attackTypes() !== undefined)
+			if (!ent.hasClass("Support") && !ent.hasClass("Ship") && ent.attackTypes() !== undefined)
 				ent.setMetadata(PlayerID, "plan", -1);
 			continue;
 		}
@@ -920,7 +920,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 
 	let bestIdx;
 	let bestVal;
-	let radius =  Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	let radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	let width = this.territoryMap.width;
 	let cellSize = this.territoryMap.cellSize;
@@ -1928,7 +1928,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		}
 	}
 
-	this.frontierMap =  m.createFrontierMap(gameState);
+	this.frontierMap = m.createFrontierMap(gameState);
 
 	if (!expansion)
 		return;

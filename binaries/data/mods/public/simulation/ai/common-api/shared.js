@@ -153,11 +153,11 @@ m.SharedScript.prototype.init = function(state, deserialization)
 
 	this.passabilityMap = state.passabilityMap;
 	if (this.mapSize % this.passabilityMap.width !== 0)
-		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while passability=" +  this.passabilityMap.width);
+		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while passability=" + this.passabilityMap.width);
 	this.passabilityMap.cellSize = this.mapSize / this.passabilityMap.width;
 	this.territoryMap = state.territoryMap;
 	if (this.mapSize % this.territoryMap.width !== 0)
-		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while territory=" +  this.territoryMap.width);
+		 error("AI shared component inconsistent sizes: map=" + this.mapSize + " while territory=" + this.territoryMap.width);
 	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
 
 /*
@@ -453,7 +453,7 @@ m.copyPrototype = function(descendant, parent)
 	if ( aMatch != null )
 		descendant.prototype[aMatch[1]] = parent;
 
-	for (let  p in parent.prototype)
+	for (let p in parent.prototype)
 		descendant.prototype[p] = parent.prototype[p];
 };
 

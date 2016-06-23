@@ -260,7 +260,7 @@ m.GameState.prototype.getMap = function()
 
 m.GameState.prototype.getPassabilityClassMask = function(name)
 {
-	if (!(name in this.sharedScript.passabilityClasses))
+	if (!this.sharedScript.passabilityClasses[name])
 		error("Tried to use invalid passability class name '" + name + "'");
 	return this.sharedScript.passabilityClasses[name];
 };
@@ -349,38 +349,30 @@ m.GameState.prototype.getExclusiveAllies = function()
 
 m.GameState.prototype.isEntityAlly = function(ent)
 {
-	if (!ent || !ent.owner)
+	if (!ent)
 		return false;
-	if (typeof ent.owner === "function")
-		return this.playerData.isAlly[ent.owner()];
-	return this.playerData.isAlly[ent.owner];
+	return this.playerData.isAlly[ent.owner()];
 };
 
 m.GameState.prototype.isEntityExclusiveAlly = function(ent)
 {
-	if (!ent || !ent.owner)
+	if (!ent)
 		return false;
-	if (typeof ent.owner === "function")
-		return this.playerData.isAlly[ent.owner()] && ent.owner() !== this.player;
-	return this.playerData.isAlly[ent.owner] && ent.owner !== this.player;
+	return this.playerData.isAlly[ent.owner()] && ent.owner() !== this.player;
 };
 
 m.GameState.prototype.isEntityEnemy = function(ent)
 {
-	if (!ent || !ent.owner)
+	if (!ent)
 		return false;
-	if (typeof ent.owner === "function")
-		return this.playerData.isEnemy[ent.owner()];
-	return this.playerData.isEnemy[ent.owner];
+	return this.playerData.isEnemy[ent.owner()];
 };
  
 m.GameState.prototype.isEntityOwn = function(ent)
 {
-	if (!ent || !ent.owner)
+	if (!ent)
 		return false;
-	if (typeof ent.owner === "function")
-		return ent.owner() === this.player;
-	return ent.owner === this.player;
+	return ent.owner() === this.player;
 };
 
 m.GameState.prototype.getEntityById = function(id)

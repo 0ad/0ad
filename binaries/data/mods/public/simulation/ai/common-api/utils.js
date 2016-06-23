@@ -35,7 +35,7 @@ m.inRange = function(a, b, range)// checks for X distance
 
 	let dx = a[0] - b[0];
 	let dz = a[1] - b[1];
-	return dx*dx + dz*dz  < range;
+	return dx*dx + dz*dz < range;
 };
 
 /** Slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate. */

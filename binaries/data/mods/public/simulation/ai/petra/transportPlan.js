@@ -66,7 +66,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 	}
 
 	if (this.debug > 1)
-		API3.warn("Starting a new transport plan with ID " +  this.ID +
+		API3.warn("Starting a new transport plan with ID " + this.ID +
 			" to index " + endIndex + " with units length " + units.length);
 
 	this.state = "boarding";

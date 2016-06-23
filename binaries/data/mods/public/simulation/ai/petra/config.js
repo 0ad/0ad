@@ -171,12 +171,12 @@ m.Config.prototype.setConfig = function(gameState)
 	if (maxPop < 300)
 	{
 		this.popScaling = Math.sqrt(maxPop / 300);
-		this.Military.popForBarracks1 =  Math.min(Math.max(Math.floor(this.Military.popForBarracks1 * this.popScaling), 12), Math.floor(maxPop/5));
-		this.Military.popForBarracks2 =  Math.min(Math.max(Math.floor(this.Military.popForBarracks2 * this.popScaling), 45), Math.floor(maxPop*2/3));
-		this.Military.popForBlacksmith =  Math.min(Math.max(Math.floor(this.Military.popForBlacksmith * this.popScaling), 30), Math.floor(maxPop/2));
-		this.Economy.popForTown =  Math.min(Math.max(Math.floor(this.Economy.popForTown * this.popScaling), 25), Math.floor(maxPop/2));
-		this.Economy.workForCity =  Math.min(Math.max(Math.floor(this.Economy.workForCity * this.popScaling), 50), Math.floor(maxPop*2/3));
-		this.Economy.popForMarket =  Math.min(Math.max(Math.floor(this.Economy.popForMarket * this.popScaling), 25), Math.floor(maxPop/2));
+		this.Military.popForBarracks1 = Math.min(Math.max(Math.floor(this.Military.popForBarracks1 * this.popScaling), 12), Math.floor(maxPop/5));
+		this.Military.popForBarracks2 = Math.min(Math.max(Math.floor(this.Military.popForBarracks2 * this.popScaling), 45), Math.floor(maxPop*2/3));
+		this.Military.popForBlacksmith = Math.min(Math.max(Math.floor(this.Military.popForBlacksmith * this.popScaling), 30), Math.floor(maxPop/2));
+		this.Economy.popForTown = Math.min(Math.max(Math.floor(this.Economy.popForTown * this.popScaling), 25), Math.floor(maxPop/2));
+		this.Economy.workForCity = Math.min(Math.max(Math.floor(this.Economy.workForCity * this.popScaling), 50), Math.floor(maxPop*2/3));
+		this.Economy.popForMarket = Math.min(Math.max(Math.floor(this.Economy.popForMarket * this.popScaling), 25), Math.floor(maxPop/2));
 		this.Economy.targetNumTraders = Math.round(this.Economy.targetNumTraders * this.popScaling);
 	}
 	this.Economy.targetNumWorkers = Math.max(this.Economy.targetNumWorkers, this.Economy.popForTown);
