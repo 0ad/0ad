@@ -273,11 +273,13 @@ private:
 		 * occasionally so it can check its timer.
 		 */
 
-		g_Profiler2.RecordRegionEnter("semaphore wait");
-
 		// Wait until the main thread wakes us up
-		while (SDL_SemWait(m_WorkerSem) == 0)
+		while (true)
 		{
+			g_Profiler2.RecordRegionEnter("semaphore wait");
+
+			ENSURE(SDL_SemWait(m_WorkerSem) == 0);
+
 			g_Profiler2.RecordRegionLeave();
 
 			// Handle shutdown requests as soon as possible
@@ -301,8 +303,6 @@ private:
 					return;
 			}
 		}
-
-		g_Profiler2.RecordRegionLeave();
 	}
 
 	bool GetEnabled()
