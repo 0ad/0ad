@@ -401,7 +401,6 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 	if ((!cmpPlayer || cmpPlayer.GetPlayerID() != msg.player) && !IsOwnedByPlayer(msg.player, this.entity))
 		return;
 	let auraNames = this.GetAuraNames();
-	let needsClean = false;
 	for (let name of auraNames)
 	{
 		let requiredTech = this.auras[name].requiredTechnology;
