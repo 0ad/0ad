@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-17 18:01+0000\n"
+"PO-Revision-Date: 2016-06-21 20:57+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +258,7 @@ msgstr "Oyun ismi zaten kullanılıyor."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Oyun kurma başarısız: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
@@ -267,7 +267,7 @@ msgstr "Hata"
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Oyuna giriş başarısız: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
@@ -385,7 +385,7 @@ msgstr "Oyun Hızı:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Harika Zafer:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "Population Cap:"

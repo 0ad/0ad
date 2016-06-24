@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-17 09:34+0000\n"
+"POT-Creation-Date: 2016-06-20 09:00+0200\n"
+"PO-Revision-Date: 2016-06-20 08:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -111,6 +111,39 @@ msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:111
 msgid "HH:mm:ss"
+msgstr ""
+
+#: gui/common/functions_utility.js:229
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s)"
+msgstr ""
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, defeated)"
+msgstr ""
+
+#: gui/common/functions_utility.js:233
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr ""
+
+#: gui/common/functions_utility.js:235
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgstr ""
+
+#: gui/common/functions_utility.js:256
+msgid "No Team"
+msgstr ""
+
+#: gui/common/functions_utility.js:256
+#, javascript-format
+msgid "Team %(team)s"
 msgstr ""
 
 #: gui/common/functions_utility_error.js:22
@@ -334,8 +367,8 @@ msgstr ""
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
-#: gui/savedgames/load.js:80
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:56
+#: gui/savedgames/load.js:110 gui/savedgames/load.js:113
 msgid ", "
 msgstr "، و "
 
@@ -885,21 +918,21 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:89
+#: gui/savedgames/load.js:122
 msgid "Warning"
 msgstr "تحذير"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
+#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
 msgid "No"
 msgstr "لا"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
+#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
 msgid "Yes"
 msgstr "نعم"
 
@@ -1003,12 +1036,12 @@ msgstr "الكُتيِّب"
 msgid "You don't have the same mods active as the replay does."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:76
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:109
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:79
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:112
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr ""
@@ -1146,92 +1179,64 @@ msgstr ""
 msgid "Unknown Civilization"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:370
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.js:372
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.js:374
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.js:376
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.js:392
-msgid "No Team"
-msgstr ""
-
-#: gui/replaymenu/replay_menu.js:392
-#, javascript-format
-msgid "Team %(team)s"
-msgstr ""
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:25
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
 msgstr "لم تُعثر على ألعاب محفوظة"
 
-#: gui/savedgames/load.js:51
+#: gui/savedgames/load.js:56
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr ""
+
+#: gui/savedgames/load.js:84
 msgid "This saved game may not be compatible:"
 msgstr "قد لا تكون هذه اللعبة المحفوظة متوافقة:"
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:89
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "تتطلّب الإصدار %(requiredVersion)s من 0 ب.م، إلّا أنّك تشغّل الإصدار %(currentVersion)s."
 
-#: gui/savedgames/load.js:61
+#: gui/savedgames/load.js:94
 msgid "It needs an older version of 0 A.D."
 msgstr "تتطلّب إصدارة قديمة من 0ب.م."
 
-#: gui/savedgames/load.js:65
+#: gui/savedgames/load.js:98
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:75
+#: gui/savedgames/load.js:108
 msgid "The savegame needs a different set of mods:"
 msgstr ""
 
-#: gui/savedgames/load.js:84
+#: gui/savedgames/load.js:117
 msgid "Do you still want to proceed?"
 msgstr "أما زلت تريد المضيّ قدمًا؟"
 
-#: gui/savedgames/load.js:131 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:88
+#: gui/savedgames/load.js:164 gui/savedgames/save.js:61
+#: gui/savedgames/save.js:93
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:132 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:165 gui/savedgames/save.js:94
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "ستُحذف اللعبة المحفوظة إلى الأبد، أمتأكّد من ذلك؟"
 
-#: gui/savedgames/load.js:133 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:166 gui/savedgames/save.js:95
 msgid "DELETE"
 msgstr "احذف"
 
-#: gui/savedgames/save.js:57
+#: gui/savedgames/save.js:62
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "سيُكتب فوق اللعبة المحفوظة إلى الأبد، أمتأكّد من ذلك؟"
 
-#: gui/savedgames/save.js:58
+#: gui/savedgames/save.js:63
 msgid "OVERWRITE SAVE"
 msgstr "اكتب فوق المحفوظة"
 
@@ -1530,7 +1535,7 @@ msgstr "المحليّة:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):26 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "ألغِ"
 
@@ -1687,7 +1692,7 @@ msgstr "مبارزات"
 msgid "Campaigns"
 msgstr "حملات"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "حمّل لعبة"
 
@@ -1872,81 +1877,89 @@ msgstr "انقر لرؤية من وراء 0ب.م."
 msgid "Replay Games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):110
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):151
+#: gui/replaymenu/replay_menu.xml:(caption):153
+#: gui/savedgames/load.xml:(caption):65
 msgid "Map Type:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):166
+#: gui/replaymenu/replay_menu.xml:(caption):168
+#: gui/savedgames/load.xml:(caption):69
 msgid "Map Size:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):181
+#: gui/replaymenu/replay_menu.xml:(caption):183
+#: gui/savedgames/load.xml:(caption):73
 msgid "Victory:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):202
+#: gui/replaymenu/replay_menu.xml:(caption):204
+#: gui/savedgames/load.xml:(caption):57
 msgid "Players:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):219
+#: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):31 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "احذف"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/summary/summary.xml:(caption):28
 msgid "Summary"
 msgstr "الملخّص"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):93
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
 msgstr ""
 
-#: gui/savedgames/load.xml:(caption):43
+#: gui/savedgames/load.xml:(caption):46
 msgid "Load"
 msgstr "حمّل"
+
+#: gui/savedgames/load.xml:(caption):61
+msgid "Played time:"
+msgstr ""
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"

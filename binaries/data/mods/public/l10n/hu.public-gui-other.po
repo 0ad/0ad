@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-17 10:41+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-06-20 09:00+0200\n"
+"PO-Revision-Date: 2016-06-20 08:57+0000\n"
+"Last-Translator: Gellért Gyuris <gellert.gyuris@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,6 +106,39 @@ msgstr "mm:ss"
 #: gui/common/functions_utility.js:111
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
+
+#: gui/common/functions_utility.js:229
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, vesztett)"
+
+#: gui/common/functions_utility.js:233
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#: gui/common/functions_utility.js:235
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, vesztett)"
+
+#: gui/common/functions_utility.js:256
+msgid "No Team"
+msgstr "Nincs csapat"
+
+#: gui/common/functions_utility.js:256
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "%(team)s csapat"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -328,8 +361,8 @@ msgstr "%(previousAmounts)s és %(lastAmount)s"
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
-#: gui/savedgames/load.js:80
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:56
+#: gui/savedgames/load.js:110 gui/savedgames/load.js:113
 msgid ", "
 msgstr ", "
 
@@ -839,21 +872,21 @@ msgid ""
 msgstr "A beállítások helyreállítása törli a mentett beállításaid. Folytatni szeretnéd?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:89
+#: gui/savedgames/load.js:122
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
+#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
 msgid "No"
 msgstr "Nem"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
+#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
 msgid "Yes"
 msgstr "Igen"
 
@@ -957,12 +990,12 @@ msgstr "Kézikönyv"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Nincsenek aktiválva azok a modok, amelyek a visszajátszásban szerepelnek."
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:76
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:109
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Szükséges: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:79
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:112
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Aktív: %(mods)s"
@@ -1092,92 +1125,64 @@ msgstr "éééé-HH"
 msgid "Unknown Civilization"
 msgstr "Ismeretlen civilizáció"
 
-#: gui/replaymenu/replay_menu.js:370
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
-
-#: gui/replaymenu/replay_menu.js:372
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, vesztett)"
-
-#: gui/replaymenu/replay_menu.js:374
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-
-#: gui/replaymenu/replay_menu.js:376
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, vesztett)"
-
-#: gui/replaymenu/replay_menu.js:392
-msgid "No Team"
-msgstr "Nincs csapat"
-
-#: gui/replaymenu/replay_menu.js:392
-#, javascript-format
-msgid "Team %(team)s"
-msgstr "%(team)s csapat"
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:25
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
 msgstr "Nincsenek mentett játékok"
 
-#: gui/savedgames/load.js:51
+#: gui/savedgames/load.js:56
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Modok: %(mods)s"
+
+#: gui/savedgames/load.js:84
 msgid "This saved game may not be compatible:"
 msgstr "Ezzel a játékmentéssel kompatibilitási problémák lehetnek:"
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:89
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Ehhez a 0 A.D. következő verziója szükséges: %(requiredVersion)s, te jelenleg a következő verziót használod: %(currentVersion)s"
 
-#: gui/savedgames/load.js:61
+#: gui/savedgames/load.js:94
 msgid "It needs an older version of 0 A.D."
 msgstr "Ehhez egy régebbi 0 A.D. verzió szükséges."
 
-#: gui/savedgames/load.js:65
+#: gui/savedgames/load.js:98
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Ehhez a 0 A.D. következő játékmentési verziója szükséges: %(requiredVersion)s, te jelenleg a következő játékmentési verziót használod: %(currentVersion)s"
 
-#: gui/savedgames/load.js:75
+#: gui/savedgames/load.js:108
 msgid "The savegame needs a different set of mods:"
 msgstr "A játékmentés más mod-csomagot igényel:"
 
-#: gui/savedgames/load.js:84
+#: gui/savedgames/load.js:117
 msgid "Do you still want to proceed?"
 msgstr "Biztosan folytatni akarod?"
 
-#: gui/savedgames/load.js:131 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:88
+#: gui/savedgames/load.js:164 gui/savedgames/save.js:61
+#: gui/savedgames/save.js:93
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:132 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:165 gui/savedgames/save.js:94
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "A mentett játék véglegesen törlődik. Biztos vagy benne?"
 
-#: gui/savedgames/load.js:133 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:166 gui/savedgames/save.js:95
 msgid "DELETE"
 msgstr "TÖRLÉS"
 
-#: gui/savedgames/save.js:57
+#: gui/savedgames/save.js:62
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "A mentett játék véglegesen felülíródik. Biztos vagy benne?"
 
-#: gui/savedgames/save.js:58
+#: gui/savedgames/save.js:63
 msgid "OVERWRITE SAVE"
 msgstr "MENTÉS FELÜLÍRÁSA"
 
@@ -1476,7 +1481,7 @@ msgstr "Területi beállítás:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):26 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -1633,7 +1638,7 @@ msgstr "Játszmák"
 msgid "Campaigns"
 msgstr "Hadjáratok"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Játék betöltése"
 
@@ -1818,81 +1823,89 @@ msgstr "Kattints a 0 A.D. stáblistájának megtekintéséhez."
 msgid "Replay Games"
 msgstr "Játékok visszajátszása"
 
-#: gui/replaymenu/replay_menu.xml:(caption):110
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "Kompatibilis visszajátszások szűrése"
 
-#: gui/replaymenu/replay_menu.xml:(caption):151
+#: gui/replaymenu/replay_menu.xml:(caption):153
+#: gui/savedgames/load.xml:(caption):65
 msgid "Map Type:"
 msgstr "Térkép típusa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):166
+#: gui/replaymenu/replay_menu.xml:(caption):168
+#: gui/savedgames/load.xml:(caption):69
 msgid "Map Size:"
 msgstr "Térkép mérete:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):181
+#: gui/replaymenu/replay_menu.xml:(caption):183
+#: gui/savedgames/load.xml:(caption):73
 msgid "Victory:"
 msgstr "Győzelem:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):202
+#: gui/replaymenu/replay_menu.xml:(caption):204
+#: gui/savedgames/load.xml:(caption):57
 msgid "Players:"
 msgstr "Játékosok:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):219
+#: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
 msgstr "Végkifejlet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):31 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Törlés"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/summary/summary.xml:(caption):28
 msgid "Summary"
 msgstr "Összefoglaló"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
 msgstr "Visszajátszás kezdése"
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Dátum / idő"
 
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
 msgstr "Játékosok"
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Térkép neve"
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
 msgstr "Méret"
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
 msgstr "Lakosság"
 
-#: gui/replaymenu/replay_menu.xml:(heading):93
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
 msgstr "Időtartam"
 
-#: gui/savedgames/load.xml:(caption):43
+#: gui/savedgames/load.xml:(caption):46
 msgid "Load"
 msgstr "Betöltés"
+
+#: gui/savedgames/load.xml:(caption):61
+msgid "Played time:"
+msgstr "Játékidő:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"

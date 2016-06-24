@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-17 09:34+0000\n"
+"POT-Creation-Date: 2016-06-20 09:00+0200\n"
+"PO-Revision-Date: 2016-06-20 08:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -100,6 +100,39 @@ msgstr "mm:ss"
 #: gui/common/functions_utility.js:111
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
+
+#: gui/common/functions_utility.js:229
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#: gui/common/functions_utility.js:231
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, 战败)"
+
+#: gui/common/functions_utility.js:233
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#: gui/common/functions_utility.js:235
+#, javascript-format
+msgctxt "replay"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, 战败)"
+
+#: gui/common/functions_utility.js:256
+msgid "No Team"
+msgstr "未组队"
+
+#: gui/common/functions_utility.js:256
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "%(team)s 队"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -322,8 +355,8 @@ msgstr "%(previousAmounts)s 至 %(lastAmount)s"
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
-#: gui/savedgames/load.js:80
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:56
+#: gui/savedgames/load.js:110 gui/savedgames/load.js:113
 msgid ", "
 msgstr "，"
 
@@ -823,21 +856,21 @@ msgid ""
 msgstr "重置选项会清除您已保存的设置。是否要继续?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:89
+#: gui/savedgames/load.js:122
 msgid "Warning"
 msgstr "警告"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
+#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
 msgid "No"
 msgstr "否"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:90 gui/savedgames/load.js:134
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
+#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
 msgid "Yes"
 msgstr "是"
 
@@ -941,12 +974,12 @@ msgstr "手册"
 msgid "You don't have the same mods active as the replay does."
 msgstr "您所激活的 Mod 与重播所用 Mod 不同。"
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:76
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:109
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "需要: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:79
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:112
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "已激活: %(mods)s"
@@ -1074,92 +1107,64 @@ msgstr "yyyy-MM"
 msgid "Unknown Civilization"
 msgstr "未知文明"
 
-#: gui/replaymenu/replay_menu.js:370
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
-
-#: gui/replaymenu/replay_menu.js:372
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, 战败)"
-
-#: gui/replaymenu/replay_menu.js:374
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-
-#: gui/replaymenu/replay_menu.js:376
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, 战败)"
-
-#: gui/replaymenu/replay_menu.js:392
-msgid "No Team"
-msgstr "未组队"
-
-#: gui/replaymenu/replay_menu.js:392
-#, javascript-format
-msgid "Team %(team)s"
-msgstr "%(team)s 队"
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:25
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
 msgstr "没有找到保存的游戏"
 
-#: gui/savedgames/load.js:51
+#: gui/savedgames/load.js:56
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr ""
+
+#: gui/savedgames/load.js:84
 msgid "This saved game may not be compatible:"
 msgstr "不兼容此保存游戏："
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:89
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "需要安装 0 A.D. 的 %(requiredVersion)s 版本, 正在使用版本 %(currentVersion)s."
 
-#: gui/savedgames/load.js:61
+#: gui/savedgames/load.js:94
 msgid "It needs an older version of 0 A.D."
 msgstr "它需要较旧版本的 0 A.D。"
 
-#: gui/savedgames/load.js:65
+#: gui/savedgames/load.js:98
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "需要 0 A.D. 的 %(requiredVersion)s 存档版本，但是您的存档版本为 %(currentVersion)s。"
 
-#: gui/savedgames/load.js:75
+#: gui/savedgames/load.js:108
 msgid "The savegame needs a different set of mods:"
 msgstr ""
 
-#: gui/savedgames/load.js:84
+#: gui/savedgames/load.js:117
 msgid "Do you still want to proceed?"
 msgstr "您仍要继续吗？"
 
-#: gui/savedgames/load.js:131 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:88
+#: gui/savedgames/load.js:164 gui/savedgames/save.js:61
+#: gui/savedgames/save.js:93
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:132 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:165 gui/savedgames/save.js:94
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "确定要永久的删除保存的游戏吗？"
 
-#: gui/savedgames/load.js:133 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:166 gui/savedgames/save.js:95
 msgid "DELETE"
 msgstr "删除"
 
-#: gui/savedgames/save.js:57
+#: gui/savedgames/save.js:62
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "确定要覆盖此保存记录吗？"
 
-#: gui/savedgames/save.js:58
+#: gui/savedgames/save.js:63
 msgid "OVERWRITE SAVE"
 msgstr "覆盖"
 
@@ -1458,7 +1463,7 @@ msgstr "所在区域:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):26 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "取消"
 
@@ -1615,7 +1620,7 @@ msgstr "对战"
 msgid "Campaigns"
 msgstr "战役"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "载入游戏"
 
@@ -1800,81 +1805,89 @@ msgstr "单击查看 0 A.D. 职员名单。"
 msgid "Replay Games"
 msgstr "重玩游戏"
 
-#: gui/replaymenu/replay_menu.xml:(caption):110
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "筛选兼容的重播"
 
-#: gui/replaymenu/replay_menu.xml:(caption):151
+#: gui/replaymenu/replay_menu.xml:(caption):153
+#: gui/savedgames/load.xml:(caption):65
 msgid "Map Type:"
 msgstr "地图类型:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):166
+#: gui/replaymenu/replay_menu.xml:(caption):168
+#: gui/savedgames/load.xml:(caption):69
 msgid "Map Size:"
 msgstr "地图大小:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):181
+#: gui/replaymenu/replay_menu.xml:(caption):183
+#: gui/savedgames/load.xml:(caption):73
 msgid "Victory:"
 msgstr "胜利:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):202
+#: gui/replaymenu/replay_menu.xml:(caption):204
+#: gui/savedgames/load.xml:(caption):57
 msgid "Players:"
 msgstr "玩家:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):219
+#: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
 msgstr "剧透"
 
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
 msgstr "主菜单"
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):31 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "删除"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/summary/summary.xml:(caption):28
 msgid "Summary"
 msgstr "摘要"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
 msgstr "开始重播"
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "日期/时间"
 
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
 msgstr "玩家"
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
 msgstr "地图名称"
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
 msgstr "大小"
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
 msgstr "人口"
 
-#: gui/replaymenu/replay_menu.xml:(heading):93
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
 msgstr "时长"
 
-#: gui/savedgames/load.xml:(caption):43
+#: gui/savedgames/load.xml:(caption):46
 msgid "Load"
 msgstr "加载"
+
+#: gui/savedgames/load.xml:(caption):61
+msgid "Played time:"
+msgstr ""
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
