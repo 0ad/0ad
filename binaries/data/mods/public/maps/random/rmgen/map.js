@@ -279,33 +279,41 @@ Map.prototype.cornerHeight = function(x, z)
 	return sumHeight / count;
 };
 
-Map.prototype.getMapData = function()
+Map.prototype.getFullEntityList = function(rotateForMapExport = false)
 {
-	var data = {};
-	
 	// Build entity array
-	var entities = [];
+	let entities = [];
 	
 	// Terrain objects first (trees)
-	var size = this.size;
-	for (var x = 0; x < size; ++x)
-		for (var z = 0; z < size; ++z)
+	let size = this.size;
+	for (let x = 0; x < size; ++x)
+		for (let z = 0; z < size; ++z)
 			if (this.terrainObjects[x][z] !== undefined)
 				entities.push(this.terrainObjects[x][z]);
 
 	// Now other entities
-	for (var i = 0; i < this.objects.length; ++i)
+	for (let i = 0; i < this.objects.length; ++i)
 	{
 		// Change rotation from simple 2d to 3d befor giving to engine
-		this.objects[i].rotation.y = PI/2 - this.objects[i].rotation.y;
+		if (rotateForMapExport)
+			this.objects[i].rotation.y = PI/2 - this.objects[i].rotation.y;
 		entities.push(this.objects[i]);
 	}
-	data.entities = entities;
 	
-	log("Number of entities: "+entities.length);
+	return entities;
+};
+
+Map.prototype.getMapData = function()
+{
+	var data = {};
+	
+	data.entities = this.getFullEntityList(true);
+	
+	log("Number of entities: "+ data.entities.length);
 	
 	// Terrain
-	data.size = this.size;
+	var size = this.size;
+	data.size = size;
 	
 	// Convert 2D heightmap array to flat array
 	//	Flat because it's easier to handle by the engine
