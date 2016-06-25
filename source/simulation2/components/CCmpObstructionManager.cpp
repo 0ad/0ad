@@ -839,7 +839,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 void CCmpObstructionManager::Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate)
 {
-	PROFILE3("Rasterize");
+	PROFILE3("Rasterize Obstructions");
 
 	// Cells are only marked as blocked if the whole cell is strictly inside the shape.
 	// (That ensures the shape's geometric border is always reachable.)

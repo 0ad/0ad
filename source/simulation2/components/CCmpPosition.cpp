@@ -759,7 +759,7 @@ public:
 		{
 		case MT_Interpolate:
 		{
-			PROFILE3("Position::Interpolate");
+			PROFILE("Position::Interpolate");
 
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 

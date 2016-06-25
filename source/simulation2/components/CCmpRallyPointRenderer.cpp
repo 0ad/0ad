@@ -218,7 +218,7 @@ public:
 		{
 		case MT_RenderSubmit:
 			{
-				PROFILE3("RallyPoint::RenderSubmit");
+				PROFILE("RallyPoint::RenderSubmit");
 				if (m_Displayed && IsSet())
 				{
 					const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);

@@ -131,7 +131,7 @@ public:
 		{
 		case MT_Interpolate:
 		{
-			PROFILE3("Decay::Interpolate");
+			PROFILE("Decay::Interpolate");
 
 			if (!m_Active)
 				break;
