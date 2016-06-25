@@ -139,12 +139,19 @@ function compute_data(range)
 {
     g_data = { "threads" : [] };
     g_data_by_frame = { "threads" : [] };
-    for (var thread = 0; thread < g_raw_data.threads.length; thread++)
+    for (let thread = 0; thread < g_raw_data.threads.length; thread++)
     {
-        g_data.threads[thread] = process_raw_data(g_raw_data.threads[thread].data.events, range );
+        let processed_data = process_raw_data(g_raw_data.threads[thread].data.events, range );
+        if (!processed_data.intervals.length && !processed_data.events.length)
+            continue;
+
+        g_data.threads[thread] = processed_data; 
 
         g_data.threads[thread].intervals_by_type_frame = {};
 
+        if (!g_data.threads[thread].frames.length)
+            continue
+        // compute intervals by types and frames if there are frames.
         for (let type in g_data.threads[thread].intervals_by_type)
         {
             let current_frame = 0;
@@ -152,12 +159,13 @@ function compute_data(range)
             for (let i = 0; i < g_data.threads[thread].intervals_by_type[type].length;i++)
             {
                 let event = g_data.threads[thread].intervals[g_data.threads[thread].intervals_by_type[type][i]];
-                while (event.t0 > g_data.threads[thread].frames[current_frame].t1 && current_frame < g_data.threads[thread].frames.length)
+                while (current_frame < g_data.threads[thread].frames.length && event.t0 > g_data.threads[thread].frames[current_frame].t1)
                 {
                     g_data.threads[thread].intervals_by_type_frame[type].push([]);
                     current_frame++;
                 }
-                g_data.threads[thread].intervals_by_type_frame[type][current_frame].push(g_data.threads[thread].intervals_by_type[type][i]);
+                if (current_frame < g_data.threads[thread].frames.length)
+                    g_data.threads[thread].intervals_by_type_frame[type][current_frame].push(g_data.threads[thread].intervals_by_type[type][i]);
             }
         }
     };
@@ -165,6 +173,9 @@ function compute_data(range)
 
 function process_raw_data(data, range)
 {
+    if (!data.length)
+        return { 'frames': [], 'events': [], 'intervals': [], 'intervals_by_type' : {}, 'tmin': 0, 'tmax': 0 };
+
     var start, end;
     var tmin, tmax;
 
@@ -190,11 +201,9 @@ function process_raw_data(data, range)
             stack.pop();
         }
     }
-    if (!frames.length)
-        return { 'frames': [], 'events': [], 'intervals': [], 'intervals_by_type' : {}, 'tmin': 0, 'tmax': 0 };
     if(!range)
     {
-        range = { "tmin" : frames[0].t0, "tmax" : frames[frames.length-1].t1 };
+        range = { "tmin" : data[0][1], "tmax" : data[data.length-1][1] };
     }
     if (range.numframes)
     {
@@ -320,9 +329,6 @@ function process_raw_data(data, range)
     var lastT = 0;
     var lastWasEvent = false;
  
-    console.log(start + ","+end + " -- " + tmin+","+tmax)
-    console.log(start + ","+end + " -- " + range.tmin+","+range.tmax)
-
     for (var i = start; i <= end; ++i)
     {
         if (data[i][0] == ITEM_EVENT)

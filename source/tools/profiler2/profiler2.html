@@ -27,9 +27,11 @@ header nav p.active { cursor:pointer; background:#eee; box-shadow: 0px 0px 2px 0
 #choices { display: flex; flex-wrap:wrap;}
 #choices section { position:relative;}
 #choices section h2 { height:25px; }
-#choices section aside { width:200px; position:absolute; top: 26px; right : 1px; border-left:1px solid gray;border-bottom:1px solid gray; background:rgba(255,255,255,0.5);}
+#choices section aside { width:200px; position:absolute; top: 0px; right : 1px; border-left:1px solid gray;border-bottom:1px solid gray; background:rgba(255,255,255,0.5);}
 #choices section aside:hover { opacity:0.2; }
 #choices section aside p { margin:4px 0px 4px 2px; border-left:15px solid; padding-left: 5px; font-size:0.8rem; }
+#choices section input { height:25px; vertical-align:top; }
+#choices section label { line-height:25px; padding-left:5px; }
 #choices nav { flex-shrink:0; width:300px; height:600px; overflow-y: scroll;}
 #choices nav p { margin:2px; cursor:pointer;}
 #choices nav p:hover { background:#eee;}
@@ -61,13 +63,19 @@ header nav p.active { cursor:pointer; background:#eee; box-shadow: 0px 0px 2px 0
 	</div>
 	<section id="frequency_graph">
 		<h2>Frequency Graph</h2>
-		<aside></aside>
-		<canvas id="canvas_frequency" width="600" height="600"></canvas>
+		<input type="checkbox" id="fulln" name="fulln" value="fulln" onchange="update_analysis()"><label for="fulln">Show for all frames</label>
+		<div style="position:relative">
+			<aside></aside>
+			<canvas id="canvas_frequency" width="600" height="600"></canvas
+html5 >		</div>
 	</section>
 	<section id="history_graph">
 		<h2>Frame-by-Frame Graph</h2>
-		<aside></aside>
-		<div style="width:602px;overflow:auto;"><canvas id="canvas_history" width="600" height="600"></canvas></div>
+		<input type="range" id="smooth" name="smooth" onchange="update_analysis()" min="0" max="10" step="1" value="3"/><label for="smooth">Degree of smoothing</label>
+		<div style="position:relative">
+			<aside></aside>
+			<div style="width:602px;overflow:auto;"><canvas id="canvas_history" width="600" height="600"></canvas></div>
+		</div>
 	</section>
 	<nav>
 		<h3>Choices</h3>

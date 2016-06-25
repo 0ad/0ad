@@ -40,27 +40,36 @@ function rebuild_canvases(raw_data)
     g_canvas.text_output = $('<pre></pre>').get(0);
     
     $('#timelines').empty();
+        $('#timelines').append("<h3>Main thread frames</h3>");        
     $('#timelines').append(g_canvas.canvas_frames);
     for (var thread = 0; thread < raw_data.threads.length; thread++)
+    {
+        $('#timelines').append("<h3>" + raw_data.threads[thread].name + "</h3>");        
         $('#timelines').append($(g_canvas.threads[thread]));
+    }
 
+    $('#timelines').append("<h3>Zoomed frames</h3>");        
     $('#timelines').append(g_canvas.canvas_zoom);
     $('#timelines').append(g_canvas.text_output);
 }
-outInterface.rebuild_canvases = rebuild_canvases;
 
-function update_display(data, range)
+function update_display(report, range)
 {
-    let mainData = data.threads[g_main_thread];
+    let data = report.data();
+    let raw_data = report.raw_data();
+    let main_data = data.threads[g_main_thread];
+
+    rebuild_canvases(raw_data);
+
     if (range.seconds)
     {
-        range.tmax = mainData.frames[mainData.frames.length-1].t1;
-        range.tmin = mainData.frames[mainData.frames.length-1].t1-range.seconds;
+        range.tmax = main_data.frames[main_data.frames.length-1].t1;
+        range.tmin = main_data.frames[main_data.frames.length-1].t1-range.seconds;
     }
     else if (range.frames)
     {
-        range.tmax = mainData.frames[mainData.frames.length-1].t1;
-        range.tmin = mainData.frames[mainData.frames.length-1-range.frames].t0;
+        range.tmax = main_data.frames[main_data.frames.length-1].t1;
+        range.tmin = main_data.frames[main_data.frames.length-1-range.frames].t0;
     }
 
     $(g_canvas.text_output).empty();
@@ -68,9 +77,8 @@ function update_display(data, range)
     display_frames(data.threads[g_main_thread], g_canvas.canvas_frames, range);
     display_events(data.threads[g_main_thread], g_canvas.canvas_frames, range);
 
-    set_frames_zoom_handlers(data, g_canvas.canvas_frames);
+    set_frames_zoom_handlers(report, g_canvas.canvas_frames);
     set_tooltip_handlers(g_canvas.canvas_frames);
-
 
     $(g_canvas.canvas_zoom).unbind();
 
@@ -389,9 +397,9 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
 }
 outInterface.display_hierarchy = display_hierarchy;
 
-function set_frames_zoom_handlers(data, canvas0)
+function set_frames_zoom_handlers(report, canvas0)
 {
-    function do_zoom(data, event)
+    function do_zoom(report, event)
     {
         var zdata = canvas0._zoomData;
 
@@ -406,14 +414,14 @@ function set_frames_zoom_handlers(data, canvas0)
         var tmax = tavg + width/2;
         var tmin = tavg - width/2;
         var range = {'tmin': tmin, 'tmax': tmax};
-        update_display(data, range);
+        update_display(report, range);
     }
 
     $(canvas0).unbind();
     $(canvas0).mousedown(function(event)
     {
         mouse_is_down = canvas0;
-        do_zoom.call(this, data, event);
+        do_zoom.call(this, report, event);
     });
     $(canvas0).mouseup(function(event)
     {
@@ -422,7 +430,7 @@ function set_frames_zoom_handlers(data, canvas0)
     $(canvas0).mousemove(function(event)
     {
         if (mouse_is_down)
-            do_zoom.call(this, data, event);
+            do_zoom.call(this, report, event);
     });
 }
  

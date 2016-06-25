@@ -106,7 +106,10 @@ function draw_frequency_graph()
             item_nb++;
             let data = get_history_data(rep, g_main_thread, g_active_elements[typeI]);
             let name = rep + "/" + g_active_elements[typeI];
-            series_data[name] = data.time_by_frame.filter(a=>a).sort((a,b) => a-b);
+            if (document.getElementById('fulln').checked)
+                series_data[name] = data.time_by_frame.sort((a,b) => a-b);
+            else
+                series_data[name] = data.time_by_frame.filter(a=>a).sort((a,b) => a-b);
             if (series_data[name].length > x_scale)
                 x_scale = series_data[name].length;
             if (data.max > y_scale)
@@ -232,7 +235,10 @@ function draw_history_graph()
                 frames_nb = g_reports[rep].data().threads[g_main_thread].frames.length;
             item_nb++;
             let data = get_history_data(rep, g_main_thread, g_active_elements[typeI]);
-            series_data[rep + "/" + g_active_elements[typeI]] = smooth_1D_array(data.time_by_frame, 3);
+            if (!document.getElementById('smooth').value)
+                series_data[rep + "/" + g_active_elements[typeI]] = data.time_by_frame;
+            else
+                series_data[rep + "/" + g_active_elements[typeI]] = smooth_1D_array(data.time_by_frame, +document.getElementById('smooth').value);
             if (data.max > y_scale)
                 y_scale = data.max;
             if (use_log_scale === null && data.log_scale)
@@ -480,9 +486,9 @@ function select_report(id)
         document.getElementById("Report" + g_current_report).className = "";
     document.getElementById("Report" + id).className = "active";
     g_current_report = id;
+
     // Load up our canvas
-    g_report_draw.rebuild_canvases(g_reports[id].raw_data());
-    g_report_draw.update_display(g_reports[id].data(),{"seconds":5});
+    g_report_draw.update_display(g_reports[id],{"seconds":5});
 
     recompute_choices(g_reports[id], g_main_thread);
 }

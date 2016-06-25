@@ -86,17 +86,17 @@ function time_label(t, precision = 2)
 
 function slice_intervals(data, range)
 {
-    if (!data.frames.length)
+    if (!data.intervals.length)
         return {"tmin":0,"tmax":0,"intervals":[]};
 
     var tmin = 0;
     var tmax = 0;
-    if (range.seconds)
+    if (range.seconds && data.frames.length)
     {
         tmax = data.frames[data.frames.length-1].t1;
         tmin = data.frames[data.frames.length-1].t1-range.seconds;
     }
-    else if (range.frames)
+    else if (range.frames && data.frames.length)
     {
         tmax = data.frames[data.frames.length-1].t1;
         tmin = data.frames[data.frames.length-1-range.frames].t0;
@@ -110,7 +110,7 @@ function slice_intervals(data, range)
     for (let itv in data.intervals)
     {
         let interval = data.intervals[itv];
-        if (interval.t0 > tmin && interval.t0 < tmax)
+        if (interval.t1 > tmin && interval.t0 < tmax)
             events.intervals.push(interval);
     }
     return events;
