@@ -250,7 +250,7 @@ private:
 				if (frame.events[i].isEnter)
 					m_Storage.Record(CProfiler2::ITEM_ENTER, t, frame.events[i].id);
 				else
-					m_Storage.Record(CProfiler2::ITEM_LEAVE, t, frame.events[i].id);
+					m_Storage.RecordLeave(t);
 
 				// Associate the frame number with the "frame" region
 				if (i == 0)
@@ -402,7 +402,7 @@ private:
 				if (frame.events[i].isEnter)
 					m_Storage.Record(CProfiler2::ITEM_ENTER, t, frame.events[i].id);
 				else
-					m_Storage.Record(CProfiler2::ITEM_LEAVE, t, frame.events[i].id);
+					m_Storage.RecordLeave(t);
 
 				// Associate the frame number with the "frame" region
 				if (i == 0)
@@ -690,7 +690,7 @@ private:
 							}
 							else
 							{
-								debug_warn(L"unrecognised Intel performance counter type");
+								//debug_warn(L"unrecognised Intel performance counter type");
 							}
 						}
 
@@ -703,7 +703,7 @@ private:
 				{
 					lastTime = endTimes.top();
 					endTimes.pop();
-					m_Storage.Record(CProfiler2::ITEM_LEAVE, lastTime, frame.events[i].id);
+					m_Storage.RecordLeave(lastTime);
 				}
 			}
 
