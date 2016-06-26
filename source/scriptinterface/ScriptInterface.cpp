@@ -288,7 +288,7 @@ bool ProfileAttribute(JSContext* cx, uint argc, jsval* vp)
 		name = StringFlyweight(str).get().c_str();
 	}
 
-	g_Profiler2.RecordAttribute(name);
+	g_Profiler2.RecordAttribute("%s", name);
 
 	args.rval().setUndefined();
 	return true;
