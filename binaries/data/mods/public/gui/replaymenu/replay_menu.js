@@ -4,7 +4,7 @@
 const g_EngineInfo = Engine.GetEngineInfo();
 
 /**
- * To show the titles of the selected civs in the replay details.
+ * Needed for formatPlayerInfo to show the player civs in the details.
  */
 const g_CivData = loadCivData();
 
@@ -190,7 +190,6 @@ function displayReplayList()
 
 	filterReplays();
 
-	// Create GUI list data
 	var list = g_ReplaysFiltered.map(replay => {
 		let works = replay.isCompatible;
 		return {
@@ -204,7 +203,6 @@ function displayReplayList()
 		};
 	});
 
-	// Extract arrays
 	if (list.length)
 		list = prepareForDropdown(list);
 
@@ -221,7 +219,6 @@ function displayReplayList()
 	replaySelection.list = list.directories || [];
 	replaySelection.list_data = list.directories || [];
 
-	// Restore selection
 	replaySelection.selected = replaySelection.list.findIndex(directory => directory == g_SelectedReplayDirectory);
 
 	displayReplayDetails();
@@ -232,8 +229,8 @@ function displayReplayList()
  */
 function displayReplayDetails()
 {
-	var selected = Engine.GetGUIObjectByName("replaySelection").selected;
-	var replaySelected = selected > -1;
+	let selected = Engine.GetGUIObjectByName("replaySelection").selected;
+	let replaySelected = selected > -1;
 
 	Engine.GetGUIObjectByName("replayInfo").hidden = !replaySelected;
 	Engine.GetGUIObjectByName("replayInfoEmpty").hidden = replaySelected;
@@ -244,17 +241,27 @@ function displayReplayDetails()
 	if (!replaySelected)
 		return;
 
-	var replay = g_ReplaysFiltered[selected];
-	var mapData = getMapDescriptionAndPreview(replay.attribs.settings.mapType, replay.attribs.map);
+	let replay = g_ReplaysFiltered[selected];
 
-	// Update GUI
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(replay.attribs.settings.Name);
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(replay.attribs.settings.Size);
 	Engine.GetGUIObjectByName("sgMapType").caption = translateMapType(replay.attribs.settings.mapType);
 	Engine.GetGUIObjectByName("sgVictory").caption = translateVictoryCondition(replay.attribs.settings.GameType);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = replay.attribs.settings.PlayerData.length;
-	Engine.GetGUIObjectByName("sgPlayersNames").caption = getReplayTeamText(replay);
+
+	let metadata = Engine.GetReplayMetadata(replay.directory);
+	Engine.GetGUIObjectByName("sgPlayersNames").caption =
+		formatPlayerInfo(
+			replay.attribs.settings.PlayerData,
+			Engine.GetGUIObjectByName("showSpoiler").checked &&
+				metadata &&
+				metadata.playerStates &&
+				metadata.playerStates.map(pState => pState.state)
+		);
+
+	let mapData = getMapDescriptionAndPreview(replay.attribs.settings.mapType, replay.attribs.map);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = mapData.description;
+
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);
 
 	setMapPreviewImage("sgMapPreview", mapData.preview);
@@ -330,38 +337,4 @@ function isReplayCompatible(replay)
 function replayHasSameEngineVersion(replay)
 {
 	return replay.attribs.engine_version && replay.attribs.engine_version == g_EngineInfo.engine_version;
-}
-
-/**
- * Returns a description of the player assignments.
- * Including civs, teams, AI settings and player colors.
- *
- * If the spoiler-checkbox is checked, it also shows defeated players.
- *
- * @returns {string}
- */
-function getReplayTeamText(replay)
-{
-	// Load replay metadata
-	const metadata = Engine.GetReplayMetadata(replay.directory);
-	const spoiler = Engine.GetGUIObjectByName("showSpoiler").checked;
-
-	let data = [];
-	let playerIdx = 0;
-	for (let playerData of replay.attribs.settings.PlayerData)
-	{
-		++playerIdx;
-		data.push({
-			"Team": playerData.Team,
-			"Name": playerData.Name,
-			"Civ": !playerData.Civ ? translate("Unknown Civilization") :
-				(g_CivData[playerData.Civ] && g_CivData[playerData.Civ].Name ? translate(g_CivData[playerData.Civ].Name) : playerData.Civ),
-			"Color": playerData.Color ? playerData.Color : g_Settings.PlayerDefaults[playerIdx].Color,
-			"AI": playerData.AI,
-			"AIDiff": playerData.AIDiff,
-			"Defeated": spoiler && metadata && metadata.playerStates && metadata.playerStates[playerIdx].state == "defeated"
-		});
-	}
-
-	return formatPlayerInfo(data);
 }

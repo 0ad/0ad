@@ -317,7 +317,7 @@ function updateGeneralPanelTeams()
 		Engine.GetGUIObjectByName("playerNameHeading").caption = "";
 }
 
-function updateObjectPlayerPosition()
+function initPlayerBoxPositions()
 {
 	for (let h = 0; h < g_MaxPlayers; ++h)
 	{

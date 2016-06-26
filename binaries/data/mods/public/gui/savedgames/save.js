@@ -17,9 +17,7 @@ function init(data)
 	g_SavedGameData = data && data.savedGameData || {};
 	let simulationState = Engine.GuiInterfaceCall("GetSimulationState");
 	g_SavedGameData.timeElapsed = simulationState.timeElapsed;
-	g_SavedGameData.states = [];
-	for (let player of simulationState.players)
-		g_SavedGameData.states.push(player.state);
+	g_SavedGameData.states = simulationState.players.map(pState => pState.state);
 
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;

@@ -213,38 +213,70 @@ function clearChatMessages()
 
 /**
  * Returns a formatted string describing the player assignments.
- * Including civs, teams, AI settings and player colors
- * which are given in data (array of objects per player).
+ * Needs g_CivData to translate!
  *
+ * @param {object} playerDataArray - As known from gamesetup and simstate.
+ * @param {(string[]|false)} playerStates - One of "won", "defeated", "active" for each player.
  * @returns {string}
  */
-function formatPlayerInfo(data)
+function formatPlayerInfo(playerDataArray, playerStates)
 {
 	let playerDescriptions = {};
 	let playerIdx = 0;
-	for (let playerData of data)
+
+	for (let playerData of playerDataArray)
 	{
+		if (playerData == null || playerData.Civ == "gaia")
+			continue;
+
 		++playerIdx;
 		let teamIdx = playerData.Team;
-		let showDefeated = playerData.state && playerData.state == "defeated";
 		let isAI = playerData.AI && playerData.AI != "";
+		let playerState = playerStates && playerStates[playerIdx];
+		let isActive = !playerState || playerState == "active";
 
-		let translated;
-		if (!isAI && !showDefeated)
-			translated = translateWithContext("replay", "%(playerName)s (%(civ)s)");
-		else if (!isAI && showDefeated)
-			translated = translateWithContext("replay", "%(playerName)s (%(civ)s, defeated)");
-		else if (isAI && !showDefeated)
-			translated = translateWithContext("replay", "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+		let playerDescription;
+		if (isAI)
+		{
+			if (isActive)
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+			else
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)");
+		}
 		else
-			translated = translateWithContext("replay", "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)");
+		{
+			if (isActive)
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s)");
+			else
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s, %(state)s)");
+		}
 
 		// Sort player descriptions by team
 		if (!playerDescriptions[teamIdx])
 			playerDescriptions[teamIdx] = [];
-		playerDescriptions[teamIdx].push(sprintf(translated, {
-			"playerName": '[color="' + rgbToGuiColor(playerData.Color) + '"]' + escapeText(playerData.Name) + "[/color]",
-			"civ": playerData.Civ,
+
+		playerDescriptions[teamIdx].push(sprintf(playerDescription, {
+			"playerName":
+				'[color="' +
+				rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color) +
+				'"]' + escapeText(playerData.Name) + "[/color]",
+
+			"civ":
+				!playerData.Civ ?
+					translate("Unknown Civilization") :
+						g_CivData && g_CivData[playerData.Civ] && g_CivData[playerData.Civ].Name ?
+						translate(g_CivData[playerData.Civ].Name) :
+						playerData.Civ,
+
+			"state":
+				playerState == "defeated" ?
+					translateWithContext("playerstate", "defeated") :
+					translateWithContext("playerstate", "won"),
+
 			"AIname": isAI ? translateAIName(playerData.AI) : "",
 			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : ""
 		}));
@@ -258,7 +290,15 @@ function formatPlayerInfo(data)
 
 	// If there are teams, merge "Team N:" + playerDescriptions
 	return teams.map(team => {
-		let teamCaption = (team == -1) ? translate("No Team") : sprintf(translate("Team %(team)s"), { "team": +team + 1 });
-		return '[font="sans-bold-14"]' + teamCaption + "[/font]:\n" + playerDescriptions[team].join("\n");
+
+		let teamCaption = team == -1 ?
+			translate("No Team") :
+			sprintf(translate("Team %(team)s"), { "team": +team + 1 });
+
+		// Translation: Describe players of one team in a selected game, f.e. in the replay- or savegame menu or lobby
+		return sprintf(translate("%(team)s:\n%(playerDescriptions)s"), {
+			"team": '[font="sans-bold-14"]' + teamCaption + "[/font]",
+			"playerDescriptions": playerDescriptions[team].join("\n")
+		});
 	}).join("\n\n");
 }

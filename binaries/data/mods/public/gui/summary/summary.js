@@ -82,7 +82,7 @@ function updatePanelData(panelInfo)
 	let playerBoxesCounts = [ ];
 	for (let i = 0; i < g_PlayerCount; ++i)
 	{
-		let playerState = g_GameData.playerStates[i+1];
+		let playerState = g_GameData.sim.playerStates[i+1];
 
 		if (!playerBoxesCounts[playerState.team+1])
 			playerBoxesCounts[playerState.team+1] = 1;
@@ -106,9 +106,9 @@ function updatePanelData(panelInfo)
 		}
 
 		let colorString = "color: " +
-				Math.floor(playerState.color.r * 255) + " " +
-				Math.floor(playerState.color.g * 255) + " " +
-				Math.floor(playerState.color.b * 255);
+			Math.floor(playerState.color.r * 255) + " " +
+			Math.floor(playerState.color.g * 255) + " " +
+			Math.floor(playerState.color.b * 255);
 
 		let rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
@@ -121,7 +121,7 @@ function updatePanelData(panelInfo)
 		let playerColorBox = Engine.GetGUIObjectByName(playerColorBoxColumn);
 		playerColorBox.sprite = colorString + g_PlayerColorBoxAlpha;
 
-		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.players[i+1].name;
+		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.sim.playerStates[i+1].name;
 
 		let civIcon = Engine.GetGUIObjectByName(playerCivicBoxColumn);
 		civIcon.sprite = "stretched:" + g_CivData[playerState.civ].Emblem;
@@ -137,14 +137,42 @@ function updatePanelData(panelInfo)
 		teamCounterFn(panelInfo.counters);
 }
 
+function confirmStartReplay()
+{
+	if (Engine.HasXmppClient())
+		messageBox(
+			400, 200,
+			translate("Are you sure you want to quit the lobby?"),
+			translate("Confirmation"),
+			[translate("No"), translate("Yes")],
+			[null, startReplay]
+		);
+	else
+		startReplay();
+}
+
+function continueButton()
+{
+	if (g_GameData.gui.isInGame)
+		Engine.PopGuiPageCB(0);
+	else if (g_GameData.gui.isReplay)
+		Engine.SwitchGuiPage("page_replaymenu.xml", {
+			"replaySelectionData": g_GameData.gui.replaySelectionData
+		});
+	else if (Engine.HasXmppClient())
+		Engine.SwitchGuiPage("page_lobby.xml");
+	else
+		Engine.SwitchGuiPage("page_pregame.xml");
+}
+
 function startReplay()
 {
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
-	Engine.StartVisualReplay(g_GameData.replayDirectory);
+	Engine.StartVisualReplay(g_GameData.gui.replayDirectory);
 	Engine.SwitchGuiPage("page_loading.xml", {
-		"attribs": Engine.GetReplayAttributes(g_GameData.replayDirectory),
+		"attribs": Engine.GetReplayAttributes(g_GameData.gui.replayDirectory),
 		"isNetworked": false,
 		"playerAssignments": {
 			"local": {
@@ -154,42 +182,56 @@ function startReplay()
 		},
 		"savedGUIData": "",
 		"isReplay": true,
-		"replaySelectionData": g_GameData.replaySelectionData
+		"replaySelectionData": g_GameData.gui.replaySelectionData
 	});
 }
 
 function init(data)
 {
-	updateObjectPlayerPosition();
 	g_GameData = data;
 
-	let mapSize = data.mapSettings.Size && g_Settings.MapSizes.find(size => size.Tiles == data.mapSettings.Size);
-	let mapType = g_Settings.MapTypes.find(mapType => mapType.Name == data.mapSettings.mapType);
+	let assignedState = g_GameData.sim.playerStates[g_GameData.gui.assignedPlayer || -1];
 	
+	Engine.GetGUIObjectByName("summaryText").caption =
+		g_GameData.gui.isReplay ?
+			translate("Scores at the end of the game.") :
+		g_GameData.gui.disconnected ?
+				translate("You have been disconnected.") :
+		!assignedState ?
+			translate("You have left the game.") :
+		assignedState.state == "won" ?
+			translate("You have won the battle!") :
+		assignedState.state == "defeated" ?
+			translate("You have been defeated...") :
+			translate("You have abandoned the game.");
+
+	initPlayerBoxPositions();
+
 	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(
 		translate("Game time elapsed: %(time)s"), {
-			"time": timeToString(data.timeElapsed)
+			"time": timeToString(g_GameData.sim.timeElapsed)
 	});
 
-	Engine.GetGUIObjectByName("summaryText").caption = data.gameResult;
+	let mapType = g_Settings.MapTypes.find(mapType => mapType.Name == g_GameData.sim.mapSettings.mapType);
+	let mapSize = g_Settings.MapSizes.find(size => size.Tiles == g_GameData.sim.mapSettings.Size || 0);
 
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(
 		translate("%(mapName)s - %(mapType)s"), {
-			"mapName": translate(data.mapSettings.Name),
+			"mapName": translate(g_GameData.sim.mapSettings.Name),
 			"mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "")
 		});
 
-	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.isInGame || !g_GameData.replayDirectory;
+	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.gui.isInGame || !g_GameData.gui.replayDirectory;
 
 	// Panels
-	g_PlayerCount = data.playerStates.length - 1;
+	g_PlayerCount = g_GameData.sim.playerStates.length - 1;
 
-	if (data.mapSettings.LockTeams)
+	if (g_GameData.sim.mapSettings.LockTeams)
 	{
 		// Count teams
 		for (let t = 0; t < g_PlayerCount; ++t)
 		{
-			let playerTeam = data.playerStates[t+1].team;
+			let playerTeam = g_GameData.sim.playerStates[t+1].team;
 			g_Teams[playerTeam] = (g_Teams[playerTeam] || 0) + 1;
 		}
 
@@ -203,7 +245,7 @@ function init(data)
 	if (!g_Teams)
 	{
 		for (let p = 0; p < g_PlayerCount; ++p)
-			data.playerStates[p+1].team = -1;
+			g_GameData.sim.playerStates[p+1].team = -1;
 	}
 
 	g_WithoutTeam = g_PlayerCount;

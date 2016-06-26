@@ -507,58 +507,35 @@ function resignGame(leaveGameAfterResign)
 function leaveGame(willRejoin)
 {
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-	let mapSettings = Engine.GetMapSettings();
-	let gameResult;
-
-	if (Engine.GetPlayerID() == -1)
-	{
-		gameResult = translate("You have left the game.");
-		global.music.setState(global.music.states.VICTORY);
-	}
-	else
-	{
-		let playerState = extendedSimState.players[Engine.GetPlayerID()];
-		if (g_Disconnected)
-			gameResult = translate("You have been disconnected.");
-		else if (playerState.state == "won")
-			gameResult = translate("You have won the battle!");
-		else if (playerState.state == "defeated")
-			gameResult = translate("You have been defeated...");
-		else // "active"
-		{
-			global.music.setState(global.music.states.DEFEAT);
-			if (willRejoin)
-				gameResult = translate("You have left the game.");
-			else
-			{
-				gameResult = translate("You have abandoned the game.");
-				resignGame(true);
-			}
-		}
-	}
-
-	let summary = {
+	let simData = {
 		"timeElapsed" : extendedSimState.timeElapsed,
 		"playerStates": extendedSimState.players,
-		"players": g_Players,
-		"mapSettings": Engine.GetMapSettings(),
+		"mapSettings": Engine.GetMapSettings()
 	};
 
 	if (!g_IsReplay)
-		Engine.SaveReplayMetadata(JSON.stringify(summary));
+		Engine.SaveReplayMetadata(JSON.stringify(simData));
 
-	if (!g_HasRejoined)
-		summary.replayDirectory = Engine.GetCurrentReplayDirectory();
-	summary.replaySelectionData = g_ReplaySelectionData;
+	if (!willRejoin &&
+	    simData.playerStates[Engine.GetPlayerID()] &&
+	    simData.playerStates[Engine.GetPlayerID()].state == "active")
+		resignGame(true);
 
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
 
-	summary.gameResult = gameResult;
-	summary.isReplay = g_IsReplay;
-	Engine.SwitchGuiPage("page_summary.xml", summary);
+	Engine.SwitchGuiPage("page_summary.xml", {
+		"sim": simData,
+		"gui": {
+			"assignedPlayer": Engine.GetPlayerID(),
+			"disconnected": g_Disconnected,
+			"isReplay": g_IsReplay,
+			"replayDirectory": !g_HasRejoined && Engine.GetCurrentReplayDirectory(),
+			"replaySelectionData": g_ReplaySelectionData
+		}
+	});
 }
 
 // Return some data that we'll use when hotloading this file after changes

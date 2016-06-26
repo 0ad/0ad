@@ -3,6 +3,7 @@
 <objects>
 
 	<script file="gui/common/color.js" />
+	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/common/functions_global_object.js" />
 	<script file="gui/common/functions_utility.js" />
 	<script file="gui/common/functions_utility_loadsave.js" />
@@ -30,14 +31,7 @@
 
 			<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" hotkey="session.savedgames.delete">
 				<translatableAttribute id="caption">Delete</translatableAttribute>
-				<action on="Press">
-					if (!this.enabled)
-						return;
-					if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
-						deleteGameWithoutConfirmation();
-					else
-						deleteGame();
-				</action>
+				<action on="Press">deleteGame();</action>
 			</object>
 
 			<object name="loadGameButton" type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">

@@ -109,20 +109,22 @@ function showReplaySummary()
 		return;
 
 	// Load summary screen data from the selected replay directory
-	var summary = Engine.GetReplayMetadata(g_ReplaysFiltered[selected].directory);
+	let simData = Engine.GetReplayMetadata(g_ReplaysFiltered[selected].directory);
 
-	if (!summary)
+	if (!simData)
 	{
 		messageBox(500, 200, translate("No summary data available."), translate("Error"));
 		return;
 	}
 
-	// Open summary screen
-	summary.isReplay = true;
-	summary.gameResult = translate("Scores at the end of the game.");
-	summary.replayDirectory = g_ReplaysFiltered[selected].directory;
-	summary.replaySelectionData = createReplaySelectionData(g_ReplaysFiltered[selected].directory);
-	Engine.SwitchGuiPage("page_summary.xml", summary);
+	Engine.SwitchGuiPage("page_summary.xml", {
+		"sim": simData,
+		"gui": {
+			"isReplay": true,
+			"replayDirectory": g_ReplaysFiltered[selected].directory,
+			"replaySelectionData": createReplaySelectionData(g_ReplaysFiltered[selected].directory)
+		}
+	});
 }
 
 /**

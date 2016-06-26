@@ -1,5 +1,10 @@
 var g_SavedGamesMetadata = [];
 
+/**
+ * Needed for formatPlayerInfo to show the player civs in the details.
+ */
+const g_CivData = loadCivData();
+
 function init()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
@@ -58,25 +63,10 @@ function selectionChanged()
 		caption = "[color=\"orange\"]" + caption + "[/color]";
 	Engine.GetGUIObjectByName("savedMods").caption = caption;
 
-	let data = [];
-	let playerIdx = 0;
-	for (let playerData of metadata.initAttributes.settings.PlayerData)
-	{
-		if (playerData == null || playerData.Civ == "gaia")
-			continue;
-		++playerIdx;
-		data.push({
-			"Team": playerData.Team,
-			"Name": playerData.Name,
-			"Civ": playerData.Civ,
-			"Color": playerData.Color,
-			"AI": playerData.AI,
-			"AIDiff": playerData.AIDiff,
-			"Defeated": metadata.gui.states && metadata.gui.states[playerIdx] == "defeated"
-		});
-	}
-
-	Engine.GetGUIObjectByName("savedPlayersNames").caption = formatPlayerInfo(data);
+	Engine.GetGUIObjectByName("savedPlayersNames").caption = formatPlayerInfo(
+		metadata.initAttributes.settings.PlayerData,
+		metadata.gui.states
+	);
 }
 
 function loadGame()
