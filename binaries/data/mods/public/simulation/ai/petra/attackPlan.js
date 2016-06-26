@@ -837,6 +837,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	if (!target)
 		return undefined;
 	// Rushes can change their enemy target if nothing found with the preferred enemy
+	// Obstruction also can change the enemy target
 	this.targetPlayer = target.owner();
 	return target;
 };
@@ -1592,7 +1593,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 								return;
 							distmin = dist;
 							attackerId = unit.unitAIOrderData()[0].target;
-
 						});
 						if (attackerId)
 							ent.attack(attackerId, !this.noCapture.has(attackerId));
@@ -1778,7 +1778,7 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
 		}
 	}
 	// Then update the target if needed:
-	if (this.targetPlayer === undefined)
+	if (this.targetPlayer === undefined || !gameState.isPlayerEnemy(this.targetPlayer))
 	{
 		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 		if (this.targetPlayer === undefined)
@@ -1811,6 +1811,8 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
 					if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
 						continue;
 					if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned
+						continue;
+					if (!gameState.isPlayerEnemy(attack.targetPlayer))
 						continue;
 					this.target = attack.target;
 					this.targetPlayer = attack.targetPlayer;

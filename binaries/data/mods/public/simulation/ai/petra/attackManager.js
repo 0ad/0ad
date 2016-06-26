@@ -236,8 +236,11 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		for (let targetId of gameState.ai.HQ.defenseManager.targetList)
 		{
 			target = gameState.getEntityById(targetId);
-			if (target)
+			if (!target)
+				continue;
+			if (gameState.isPlayerEnemy(target.owner()))
 				break;
+			target = undefined;
 		}
 		if (target)
 		{
@@ -383,6 +386,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	{
 		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined &&
 			!this.defeated[this.currentEnemyPlayer] &&
+			gameState.isPlayerEnemy(this.currentEnemyPlayer) &&
 			gameState.getEnemyEntities(this.currentEnemyPlayer).hasEntities())
 			return this.currentEnemyPlayer;
 
