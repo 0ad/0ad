@@ -101,6 +101,7 @@ var g_FormatChatMessage = {
 	"clientlist": msg => getUsernameList(),
 	"message": msg => formatChatCommand(msg),
 	"defeat": msg => formatDefeatMessage(msg),
+	"won": msg => formatWinMessage(msg),
 	"diplomacy": msg => formatDiplomacyMessage(msg),
 	"tribute": msg => formatTributeMessage(msg),
 	"attack": msg => formatAttackMessage(msg)
@@ -194,6 +195,8 @@ var g_DiplomacyMessages = {
 
 /**
  * Defines how the GUI reacts to notifications that are sent by the simulation.
+ * Don't open new pages (message boxes) here! Otherwise further notifications
+ * handled in the same turn can't access the GUI objects anymore.
  */
 var g_NotificationsTypes =
 {
@@ -246,9 +249,16 @@ var g_NotificationsTypes =
 			"player": player,
 			"resign": !!notification.resign
 		});
-
-		updateDiplomacy();
-		updateChatAddressees();
+		playerFinished(player, false);
+	},
+	"won": function(notification, player)
+	{
+		addChatMessage({
+			"type": "won",
+			"guid": findGuidForPlayerID(player),
+			"player": player
+		});
+		playerFinished(player, true);
 	},
 	"diplomacy": function(notification, player)
 	{
@@ -417,8 +427,7 @@ function findGuidForPlayerID(playerID)
  */
 function handleNotifications()
 {
-	let notifications = Engine.GuiInterfaceCall("GetNotifications");
-	for (let notification of notifications)
+	for (let notification of Engine.GuiInterfaceCall("GetNotifications"))
 	{
 		if (!notification.players || !notification.type || !g_NotificationsTypes[notification.type])
 		{
@@ -743,6 +752,13 @@ function formatDefeatMessage(msg)
 			translate("%(player)s has been defeated."),
 		{ "player": colorizePlayernameByID(msg.player) }
 	);
+}
+
+function formatWinMessage(msg)
+{
+	return sprintf(translate("%(player)s has won."), {
+		"player": colorizePlayernameByID(msg.player)
+	});
 }
 
 function formatDiplomacyMessage(msg)

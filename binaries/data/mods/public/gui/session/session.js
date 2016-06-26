@@ -38,6 +38,11 @@ var g_IsObserver = false;
 var g_HasRejoined = false;
 
 /**
+ * Shows a message box asking the user to leave if "won" or "defeated".
+ */
+var g_ConfirmExit = false;
+
+/**
  * True if the current player has paused the game explicitly.
  */
 var g_Paused = false;
@@ -117,17 +122,6 @@ var g_EntityStates = {};
 var g_TemplateData = {};
 var g_TemplateDataWithoutLocalization = {};
 var g_TechnologyData = {};
-
-/**
- * Cache concatenated list of player states ("active", "defeated" or "won").
- */
-var g_CachedLastStates = "";
-
-/**
- * Whether the current player has lost/won and reached the end of their game.
- * Used for reporting the gamestate and showing the game-end message only once.
- */
-var g_GameEnded = false;
 
 /**
  * Top coordinate of the research list.
@@ -240,8 +234,6 @@ function init(initData, hotloadData)
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;
 
-		g_Players = getPlayerData();
-
 		if (initData.savedGUIData)
 			restoreSavedGameData(initData.savedGUIData);
 
@@ -251,15 +243,14 @@ function init(initData, hotloadData)
 	{
 		if (g_IsReplay)
 			g_PlayerAssignments.local.player = -1;
-
-		g_Players = getPlayerData();
 	}
+
+	g_Players = getPlayerData();
 
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
 	initializeMusic(); // before changing the perspective
-	selectViewPlayer(g_ViewedPlayer);
 
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.list = g_GameSpeeds.Title;
@@ -281,10 +272,12 @@ function init(initData, hotloadData)
 		playerNames.push(colorizePlayernameHelper("■", player) + " " + g_Players[player].name);
 	}
 
+	// Select "observer" item when rejoining as a defeated player
+	let viewedPlayer = g_Players[Engine.GetPlayerID()];
 	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayerDropdown.list = playerNames;
 	viewPlayerDropdown.list_data = playerIDs;
-	viewPlayerDropdown.selected = Engine.GetPlayerID() + 1;
+	viewPlayerDropdown.selected = viewedPlayer && viewedPlayer.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
 
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
@@ -435,6 +428,31 @@ function controlsPlayer(playerID)
 }
 
 /**
+ * Called when a player has won or was defeated.
+ */
+function playerFinished(player, won)
+{
+	reportGame();
+	updateDiplomacy();
+	updateChatAddressees();
+
+	if (player != Engine.GetPlayerID() || Engine.IsAtlasRunning())
+		return;
+
+	global.music.setState(
+		won ?
+			global.music.states.VICTORY :
+			global.music.states.DEFEAT
+	);
+
+	// Select "observer" item
+	if (!won)
+		Engine.GetGUIObjectByName("viewPlayer").selected = 0;
+
+	g_ConfirmExit = won ? "won" : "defeated";
+}
+
+/**
  * Sets civ icon for the currently viewed player.
  * Hides most gui objects for observers.
  */
@@ -491,8 +509,6 @@ function resignGame(leaveGameAfterResign)
 		"playerId": Engine.GetPlayerID(),
 		"resign": true
 	});
-
-	updateTopPanel();
 
 	global.music.setState(global.music.states.DEFEAT);
 
@@ -582,8 +598,6 @@ function onTick()
 	let tickLength = new Date() - lastTickTime;
 	lastTickTime = now;
 
-	checkPlayerState();
-
 	handleNetMessages();
 
 	updateCursorAndTooltip();
@@ -607,71 +621,6 @@ function onTick()
 	Engine.GetGUIObjectByName("resourcePop").textcolor = g_IsTrainingBlocked && Date.now() % 1000 < 500 ? g_PopulationAlertColor : g_DefaultPopulationColor;
 
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
-}
-
-function checkPlayerState()
-{
-	if (g_GameEnded || Engine.GetPlayerID() < 1)
-		return;
-
-	// Send a game report for each player in this game.
-	let m_simState = GetSimState();
-	let playerState = m_simState.players[Engine.GetPlayerID()];
-	let tempStates = "";
-	for (let player of m_simState.players)
-		tempStates += player.state + ",";
-
-	if (g_CachedLastStates != tempStates)
-	{
-		g_CachedLastStates = tempStates;
-		reportGame();
-	}
-
-	if (playerState.state == "active")
-		return;
-
-	// Make sure nothing is open to avoid stacking.
-	closeOpenDialogs();
-
-	// Make sure this doesn't run again.
-	g_GameEnded = true;
-
-	// Select observermode
-	Engine.GetGUIObjectByName("viewPlayer").selected = playerState.state == "won" ? g_ViewedPlayer + 1 : 0;
-
-	let btCaptions;
-	let btCode;
-	let message;
-	let title;
-	if (Engine.IsAtlasRunning())
-	{
-		// If we're in Atlas, we can't leave the game
-		btCaptions = [translate("OK")];
-		btCode = [null];
-		message = translate("Press OK to continue");
-	}
-	else
-	{
-		btCaptions = [translate("No"), translate("Yes")];
-		btCode = [null, leaveGame];
-		message = translate("Do you want to quit?");
-	}
-
-	if (playerState.state == "defeated")
-	{
-		title = translate("DEFEATED!");
-		global.music.setState(global.music.states.DEFEAT);
-	}
-	else if (playerState.state == "won")
-	{
-		title = translate("VICTORIOUS!");
-		global.music.setState(global.music.states.VICTORY);
-		// TODO: Reveal map directly instead of this silly proxy.
-		if (!Engine.GetGUIObjectByName("devCommandsRevealMap").checked)
-			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
-	}
-
-	messageBox(400, 200, message, title, btCaptions, btCode);
 }
 
 function changeGameSpeed(speed)
@@ -714,8 +663,39 @@ function onSimulationUpdate()
 		return;
 
 	handleNotifications();
-
 	updateGUIObjects();
+
+	if (g_ConfirmExit)
+		confirmExit();
+}
+
+/**
+ * Don't show the message box before all playerstate changes are processed.
+ */
+function confirmExit()
+{
+	closeOpenDialogs();
+
+	let subject = g_ConfirmExit == "won" ?
+		translate("You have won!") :
+		translate("You have been defeated!");
+
+	subject += "\n" + translate("Do you want to quit?");
+
+	if (g_IsNetworked && g_IsController)
+		subject += "\n" + translate("Leaving will disconnect all other players.");
+
+	messageBox(
+		400, 200,
+		subject,
+		g_ConfirmExit == "won" ?
+			translate("VICTORIOUS!") :
+			translate("DEFEATED!"),
+		[translate("No"), translate("Yes")],
+		[resumeGame, leaveGame]
+	);
+
+	g_ConfirmExit = false;
 }
 
 function updateGUIObjects()
@@ -747,7 +727,7 @@ function updateGUIObjects()
 		Engine.GetGUIObjectByName("devControlAll").checked = g_DevSettings.controlAll;
 	}
 
-	if (g_ViewedPlayer != -1 && !g_GameEnded)
+	if (!g_IsObserver)
 	{
 		// Update music state on basis of battle state.
 		let battleState = Engine.GuiInterfaceCall("GetBattleState", g_ViewedPlayer);
@@ -804,7 +784,6 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 
 	statusBar.size = healthSize;
 }
-
 
 function updateHeroes()
 {
@@ -1119,7 +1098,10 @@ function playAmbient()
 
 function getBuildString()
 {
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { "buildDate": Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
+		"buildDate": Engine.GetBuildTimestamp(0),
+		"revision": Engine.GetBuildTimestamp(2)
+	});
 }
 
 function showTimeWarpMessageBox()
@@ -1137,7 +1119,8 @@ function showTimeWarpMessageBox()
 function reportGame()
 {
 	// Only 1v1 games are rated (and Gaia is part of g_Players)
-	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() || g_Players.length != 3)
+	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() ||
+	    g_Players.length != 3 || Engine.GetPlayerID() == -1)
 		return;
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");

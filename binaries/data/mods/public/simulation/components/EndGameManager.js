@@ -1,6 +1,6 @@
 /**
- * System component which regularly checks victory/defeat conditions
- * and if they are satisfied then it marks the player as victorious/defeated.
+ * System component to store the gametype, gametype settings and
+ * check for allied victory / last-man-standing.
  */
 function EndGameManager() {}
 
@@ -18,6 +18,10 @@ EndGameManager.prototype.Init = function()
 	// Allied victory means allied players can win if victory conditions are met for each of them
 	// False for a "last man standing" game
 	this.alliedVictory = true;
+
+	// Don't do any checks before the diplomacies were set for each player
+	// or when marking a player as won.
+	this.skipAlliedVictoryCheck = true;
 
 	this.lastManStandingMessage = undefined;
 };
@@ -41,6 +45,7 @@ EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
 {
 	this.gameType = newGameType;
 	this.gameTypeSettings = newSettings;
+	this.skipAlliedVictoryCheck = false;
 
 	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
@@ -50,26 +55,20 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
 
-	for (let i = 1; i < numPlayers; ++i)
-	{
-		let playerEntityId = cmpPlayerManager.GetPlayerByID(i);
-		let cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+	this.skipAlliedVictoryCheck = true;
 
-		if (cmpPlayer.GetState() != "active")
-			continue;
+	// Group win/defeat messages
+	for (let won of [false, true])
+		for (let i = 1; i < numPlayers; ++i)
+		{
+			let cmpPlayer = QueryPlayerIDInterface(i);
+			let hasWon = playerID == i || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID);
 
-		if (playerID == cmpPlayer.GetPlayerID() || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
-			cmpPlayer.SetState("won");
-		else
-			Engine.PostMessage(playerEntityId, MT_PlayerDefeated, {
-				"playerId": i,
-				"skipAlliedVictoryCheck": true
-			});
-	}
+			if (hasWon == won)
+				cmpPlayer.SetState(won ? "won" : "defeated");
+		}
 
-	// Reveal the map to all players
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	cmpRangeManager.SetLosRevealAll(-1, true);
+	this.skipAlliedVictoryCheck = false;
 };
 
 EndGameManager.prototype.SetAlliedVictory = function(flag)
@@ -79,6 +78,9 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 
 EndGameManager.prototype.AlliedVictoryCheck = function()
 {
+	if (this.skipAlliedVictoryCheck)
+		return;
+
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	if (!cmpGuiInterface || !cmpPlayerManager)
@@ -101,18 +103,12 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 	}
 
 	if (this.alliedVictory || allies.length == 1)
-	{
 		for (let playerID of allies)
 		{
 			let cmpPlayer = QueryPlayerIDInterface(playerID);
 			if (cmpPlayer)
 				cmpPlayer.SetState("won");
 		}
-
-		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		if (cmpRangeManager)
-			cmpRangeManager.SetLosRevealAll(-1, true);
-	}
 	else
 		this.lastManStandingMessage = cmpGuiInterface.AddTimeNotification({
 			"message": markForTranslation("Last remaining player wins."),
@@ -127,14 +123,12 @@ EndGameManager.prototype.OnInitGame = function(msg)
 
 EndGameManager.prototype.OnGlobalDiplomacyChanged = function(msg)
 {
-	if (!msg.skipAlliedVictoryCheck)
-		this.AlliedVictoryCheck();
+	this.AlliedVictoryCheck();
 };
 
 EndGameManager.prototype.OnGlobalPlayerDefeated = function(msg)
 {
-	if (!msg.skipAlliedVictoryCheck)
-		this.AlliedVictoryCheck();
+	this.AlliedVictoryCheck();
 };
 
 Engine.RegisterSystemComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);

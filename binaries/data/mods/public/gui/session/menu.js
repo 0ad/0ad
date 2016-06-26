@@ -755,6 +755,7 @@ function toggleDeveloperOverlay()
 
 function closeOpenDialogs()
 {
+	 // TODO: also close message boxes
 	closeMenu();
 	closeChat();
 	closeDiplomacy();

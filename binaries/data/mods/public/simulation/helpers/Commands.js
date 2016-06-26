@@ -414,8 +414,9 @@ var g_Commands = {
 
 	"defeat-player": function(player, cmd, data)
 	{
-		// Send "OnPlayerDefeated" message to player
-		Engine.PostMessage(data.playerEnt, MT_PlayerDefeated, { "playerId": player, "resign": !!cmd.resign });
+		let cmpPlayer = QueryPlayerIDInterface(player);
+		if (cmpPlayer)
+			cmpPlayer.SetState("defeated", !!cmd.resign);
 	},
 
 	"garrison": function(player, cmd, data)

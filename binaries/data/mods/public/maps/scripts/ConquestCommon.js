@@ -25,8 +25,12 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 	if (index >= 0)
 	{
 		entities.splice(index, 1);
-		if (!entities.length && Engine.QueryInterface(this.conquestEntitiesByPlayer[msg.from].player, IID_Player).GetState() == "active")
-			Engine.PostMessage(this.conquestEntitiesByPlayer[msg.from].player, MT_PlayerDefeated, { "playerId": msg.from } );
+		if (!entities.length)
+		{
+			let cmpPlayer = QueryPlayerIDInterface(msg.from);
+			if (cmpPlayer)
+				cmpPlayer.SetState("defeated");
+		}
 	}
 }
 
@@ -67,7 +71,7 @@ Trigger.prototype.ConquestTrainingFinished = function(msg)
 		return;	
 	}
 	this.conquestEntitiesByPlayer[player].entities.push(...msg.entities);
-}
+};
 
 Trigger.prototype.ConquestStartGameCount = function()
 {
@@ -90,7 +94,7 @@ Trigger.prototype.ConquestStartGameCount = function()
 	});
 
 	this.conquestDataInit = true;
-}
+};
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
