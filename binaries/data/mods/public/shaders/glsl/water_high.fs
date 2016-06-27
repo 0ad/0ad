@@ -176,7 +176,9 @@ void main()
 	
 	// Specular lighting vectors
 	vec3 specVector = reflect(sunDir, ww1);
-	float specIntensity = pow(dot(specVector, v), 100.0);
+
+	// pow is undefined for null or negative values, except on intel it seems. 
+	float specIntensity = clamp(pow(abs(dot(specVector, v)), 100.0), 0.0, 1.0);
 
 	specular = specIntensity*1.2 * mix(vec3(1.5), sunColor,0.5);
 
