@@ -18,6 +18,7 @@
 # Nick Zhivotenko <niko.zvt@gmail.com>, 2015
 # sad2shade <sad.2.shade@gmail.com>, 2015
 # Simple88, 2016
+# Simple88, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # webslavic <webslavic@yahoo.com>, 2014-2015
@@ -28,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-20 09:00+0200\n"
-"PO-Revision-Date: 2016-06-22 00:48+0000\n"
+"POT-Creation-Date: 2016-06-24 09:00+0200\n"
+"PO-Revision-Date: 2016-06-24 15:10+0000\n"
 "Last-Translator: Simple88\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -109,51 +110,56 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Времени до возобновления военных действий: %(time)s."
 
-#: gui/common/functions_utility.js:77
+#: gui/common/functions_utility.js:72
+msgctxt "map selection"
+msgid "Random"
+msgstr "Случайно"
+
+#: gui/common/functions_utility.js:82
 msgid "A randomly selected map."
 msgstr "Случайно выбранная карта."
 
-#: gui/common/functions_utility.js:84
+#: gui/common/functions_utility.js:89
 msgid "Sorry, no description available."
 msgstr "К сожалению, описание недоступно."
 
-#: gui/common/functions_utility.js:109
+#: gui/common/functions_utility.js:114
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:116
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
-#: gui/common/functions_utility.js:229
+#: gui/common/functions_utility.js:234
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
-#: gui/common/functions_utility.js:231
+#: gui/common/functions_utility.js:236
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, defeated)"
 msgstr "%(playerName)s (%(civ)s, повержен)"
 
-#: gui/common/functions_utility.js:233
+#: gui/common/functions_utility.js:238
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
-#: gui/common/functions_utility.js:235
+#: gui/common/functions_utility.js:240
 #, javascript-format
 msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, повержен)"
 
-#: gui/common/functions_utility.js:256
+#: gui/common/functions_utility.js:261
 msgid "No Team"
 msgstr "Нет Команды"
 
-#: gui/common/functions_utility.js:256
+#: gui/common/functions_utility.js:261
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Команда %(team)s"
@@ -171,12 +177,12 @@ msgstr "dd.MM.yyyy HH:mm:ss"
 msgid "\\[%(date)s]"
 msgstr "\\[%(date)s]"
 
-#: gui/common/functions_utility_loadsave.js:18
+#: gui/common/functions_utility_loadsave.js:21
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
-#: gui/common/functions_utility_loadsave.js:20
+#: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
@@ -380,7 +386,7 @@ msgstr "%(previousAmounts)s и %(lastAmount)s"
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:56
-#: gui/savedgames/load.js:110 gui/savedgames/load.js:113
+#: gui/savedgames/load.js:127 gui/savedgames/load.js:130
 msgid ", "
 msgstr ", "
 
@@ -910,21 +916,21 @@ msgid ""
 msgstr "Восстановление удалит сохраненные настройки. Вы уверены, что хотите продолжить?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:122
+#: gui/savedgames/load.js:139
 msgid "Warning"
 msgstr "Предупреждение"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
-#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
+#: gui/savedgames/load.js:140 gui/savedgames/load.js:189
+#: gui/savedgames/save.js:63 gui/savedgames/save.js:94
 msgid "No"
 msgstr "Нет"
 
 #: gui/options/options.js:275 gui/options/options.js:342
 #: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:123 gui/savedgames/load.js:167
-#: gui/savedgames/save.js:64 gui/savedgames/save.js:96
+#: gui/savedgames/load.js:140 gui/savedgames/load.js:189
+#: gui/savedgames/save.js:63 gui/savedgames/save.js:94
 msgid "Yes"
 msgstr "Да"
 
@@ -1028,12 +1034,12 @@ msgstr "Руководство"
 msgid "You don't have the same mods active as the replay does."
 msgstr "У вас нет активных модов, которые есть в повторе"
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:109
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:126
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Требуются: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:112
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:129
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Активны: %(mods)s"
@@ -1176,55 +1182,55 @@ msgstr "Не найдено сохранённых игр "
 msgid "Mods: %(mods)s"
 msgstr "Моды: %(mods)s"
 
-#: gui/savedgames/load.js:84
+#: gui/savedgames/load.js:101
 msgid "This saved game may not be compatible:"
 msgstr "Сохранённая игра может быть несовместима:"
 
-#: gui/savedgames/load.js:89
+#: gui/savedgames/load.js:106
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Нужна 0 A.D. версии %(requiredVersion)s, а запущенна версия  %(currentVersion)s."
 
-#: gui/savedgames/load.js:94
+#: gui/savedgames/load.js:111
 msgid "It needs an older version of 0 A.D."
 msgstr "Требуется более ранняя версия 0 A.D."
 
-#: gui/savedgames/load.js:98
+#: gui/savedgames/load.js:115
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Необходимы сохранения 0 A.D. версии %(requiredVersion)s, но у Вас имеются сохранения версии %(currentVersion)s."
 
-#: gui/savedgames/load.js:108
+#: gui/savedgames/load.js:125
 msgid "The savegame needs a different set of mods:"
 msgstr "Сохранённая игра требует другой набор модов:"
 
-#: gui/savedgames/load.js:117
+#: gui/savedgames/load.js:134
 msgid "Do you still want to proceed?"
 msgstr "Вы хотите продолжить?"
 
-#: gui/savedgames/load.js:164 gui/savedgames/save.js:61
-#: gui/savedgames/save.js:93
+#: gui/savedgames/load.js:185 gui/savedgames/save.js:60
+#: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:165 gui/savedgames/save.js:94
+#: gui/savedgames/load.js:187 gui/savedgames/save.js:92
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Сохраненная игра будет безвозвратно удалена. Уверены?"
 
-#: gui/savedgames/load.js:166 gui/savedgames/save.js:95
+#: gui/savedgames/load.js:188 gui/savedgames/save.js:93
 msgid "DELETE"
 msgstr "УДАЛИТЬ"
 
-#: gui/savedgames/save.js:62
+#: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Сохраненная игра будет перезаписана. Уверены?"
 
-#: gui/savedgames/save.js:63
+#: gui/savedgames/save.js:62
 msgid "OVERWRITE SAVE"
 msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
 
@@ -1523,7 +1529,7 @@ msgstr "Место:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):27 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1680,7 +1686,7 @@ msgstr "Матчи"
 msgid "Campaigns"
 msgstr "Кампании"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):18
 msgid "Load Game"
 msgstr "Загрузить игру"
 
@@ -1870,22 +1876,22 @@ msgid "Filter compatible replays"
 msgstr "Скрыть несовместимые повторы"
 
 #: gui/replaymenu/replay_menu.xml:(caption):153
-#: gui/savedgames/load.xml:(caption):65
+#: gui/savedgames/load.xml:(caption):63
 msgid "Map Type:"
 msgstr "Тип карты:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
-#: gui/savedgames/load.xml:(caption):69
+#: gui/savedgames/load.xml:(caption):67
 msgid "Map Size:"
 msgstr "Размер карты:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
-#: gui/savedgames/load.xml:(caption):73
+#: gui/savedgames/load.xml:(caption):71
 msgid "Victory:"
 msgstr "Победа:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
-#: gui/savedgames/load.xml:(caption):57
+#: gui/savedgames/load.xml:(caption):55
 msgid "Players:"
 msgstr "Игроки:"
 
@@ -1898,7 +1904,7 @@ msgid "Main Menu"
 msgstr "Главное меню"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
-#: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):32 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Удалить"
 
@@ -1941,11 +1947,11 @@ msgctxt "replay"
 msgid "Duration"
 msgstr "Продолжительность"
 
-#: gui/savedgames/load.xml:(caption):46
+#: gui/savedgames/load.xml:(caption):44
 msgid "Load"
 msgstr "Загрузить"
 
-#: gui/savedgames/load.xml:(caption):61
+#: gui/savedgames/load.xml:(caption):59
 msgid "Played time:"
 msgstr "Время игры:"
 
@@ -2314,6 +2320,14 @@ msgstr "Максимальное количество зрителей, кото
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr "Лимит зрителей"
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid "Number of units trained per batch"
+msgstr "Количество юнитов, обученных за игру"
+
+#: gui/options/options.jsongeneralSetting[14].label
+msgid "Batch Training Size"
+msgstr "Охват обучения за игру"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"

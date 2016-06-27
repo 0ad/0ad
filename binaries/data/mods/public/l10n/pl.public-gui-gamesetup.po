@@ -46,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-18 07:37+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2016-06-24 09:00+0200\n"
+"PO-Revision-Date: 2016-06-26 09:25+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +109,7 @@ msgstr "* %(username)s jest gotowy!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nie jest gotowy."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1366
 msgid "Default"
 msgstr "Domyślny"
 
@@ -130,9 +130,9 @@ msgid "All Maps"
 msgstr "Wszystkie mapy"
 
 #: gui/gamesetup/gamesetup.js:142
-msgctxt "map type"
+msgctxt "map selection"
 msgid "Random"
-msgstr "Losowe"
+msgstr "Losowe "
 
 #: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
@@ -160,21 +160,16 @@ msgctxt "team"
 msgid "None"
 msgstr "Żaden"
 
-#: gui/gamesetup/gamesetup.js:1266
+#: gui/gamesetup/gamesetup.js:1272
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1429
+#: gui/gamesetup/gamesetup.js:1435
 msgid "Loading..."
 msgstr "Wczytywanie..."
 
-#: gui/gamesetup/gamesetup.js:1477
-msgctxt "map selection"
-msgid "Random"
-msgstr "Losowe "
-
-#: gui/gamesetup/gamesetup.js:1481
+#: gui/gamesetup/gamesetup.js:1485
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -182,20 +177,20 @@ msgstr[0] "%(number)s gracz. "
 msgstr[1] "%(number)s graczy. "
 msgstr[2] "%(number)s graczy. "
 
-#: gui/gamesetup/gamesetup.js:1491
+#: gui/gamesetup/gamesetup.js:1495
 msgid "Randomly selects a map from the list"
 msgstr "Losowo wybiera mapę z listy"
 
-#: gui/gamesetup/gamesetup.js:1494
+#: gui/gamesetup/gamesetup.js:1498
 msgid "Sorry, no description available."
 msgstr "Przepraszamy, opis niedostępny."
 
-#: gui/gamesetup/gamesetup.js:1500
+#: gui/gamesetup/gamesetup.js:1504
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: gui/gamesetup/gamesetup.js:1505
+#: gui/gamesetup/gamesetup.js:1509
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -204,41 +199,41 @@ msgstr[0] "Cud (%(min)s minutes) "
 msgstr[1] "Cud (%(min)s minutes) "
 msgstr[2] "Cud (%(min)s minutes) "
 
-#: gui/gamesetup/gamesetup.js:1522 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1526 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "Warunek zwycięstwa:"
 
-#: gui/gamesetup/gamesetup.js:1610
+#: gui/gamesetup/gamesetup.js:1614
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1619
 msgid "Unassigned"
 msgstr "Nieprzypisane"
 
-#: gui/gamesetup/gamesetup.js:1775
+#: gui/gamesetup/gamesetup.js:1779
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1782
+#: gui/gamesetup/gamesetup.js:1786
 msgid "Unknown Player"
 msgstr "Nieznany gracz"
 
-#: gui/gamesetup/gamesetup.js:1844
+#: gui/gamesetup/gamesetup.js:1848
 msgid "I'm not ready!"
 msgstr "Nie jestem gotowy!"
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1849
 msgid "I'm ready"
 msgstr "Jestem gotowy"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1852
 msgid "State that you are not ready to play."
 msgstr "Oświadcz, że nie jesteś gotowy do gry."
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1853
 msgid "State that you are ready to play!"
 msgstr "Oświadcz, że jesteś gotowy do gry!"
 

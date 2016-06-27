@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-17 09:40+0000\n"
+"POT-Creation-Date: 2016-06-24 09:00+0200\n"
+"PO-Revision-Date: 2016-06-24 09:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "* %(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1360
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1366
 msgid "Default"
 msgstr "అప్రమేయం"
 
@@ -91,7 +91,7 @@ msgid "All Maps"
 msgstr "అన్ని పటాలు"
 
 #: gui/gamesetup/gamesetup.js:142
-msgctxt "map type"
+msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
@@ -121,41 +121,36 @@ msgctxt "team"
 msgid "None"
 msgstr "ఏదీకాదు"
 
-#: gui/gamesetup/gamesetup.js:1266
+#: gui/gamesetup/gamesetup.js:1272
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1429
+#: gui/gamesetup/gamesetup.js:1435
 msgid "Loading..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1477
-msgctxt "map selection"
-msgid "Random"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1481
+#: gui/gamesetup/gamesetup.js:1485
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1491
+#: gui/gamesetup/gamesetup.js:1495
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1494
+#: gui/gamesetup/gamesetup.js:1498
 msgid "Sorry, no description available."
 msgstr "క్షమించండి, ఎటువంటి వివరణ అందుబాటులోలేదు."
 
-#: gui/gamesetup/gamesetup.js:1500
+#: gui/gamesetup/gamesetup.js:1504
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1505
+#: gui/gamesetup/gamesetup.js:1509
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -163,41 +158,41 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1522 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1526 gui/gamesetup/gamesetup.xml:(caption):301
 msgid "Victory Condition:"
 msgstr "గెలుపు పరిస్థితి:"
 
-#: gui/gamesetup/gamesetup.js:1610
+#: gui/gamesetup/gamesetup.js:1614
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1619
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1775
+#: gui/gamesetup/gamesetup.js:1779
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1782
+#: gui/gamesetup/gamesetup.js:1786
 msgid "Unknown Player"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1844
+#: gui/gamesetup/gamesetup.js:1848
 msgid "I'm not ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1849
 msgid "I'm ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1852
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1853
 msgid "State that you are ready to play!"
 msgstr ""
 
