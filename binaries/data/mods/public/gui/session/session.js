@@ -537,6 +537,9 @@ function leaveGame(willRejoin)
 	    simData.playerStates[Engine.GetPlayerID()].state == "active")
 		resignGame(true);
 
+	// Before ending the game
+	let replayDirectory = Engine.GetCurrentReplayDirectory();
+
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
@@ -548,7 +551,7 @@ function leaveGame(willRejoin)
 			"assignedPlayer": Engine.GetPlayerID(),
 			"disconnected": g_Disconnected,
 			"isReplay": g_IsReplay,
-			"replayDirectory": !g_HasRejoined && Engine.GetCurrentReplayDirectory(),
+			"replayDirectory": !g_HasRejoined && replayDirectory,
 			"replaySelectionData": g_ReplaySelectionData
 		}
 	});

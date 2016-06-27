@@ -189,14 +189,15 @@ function startReplay()
 function init(data)
 {
 	g_GameData = data;
-
 	let assignedState = g_GameData.sim.playerStates[g_GameData.gui.assignedPlayer || -1];
-	
+
 	Engine.GetGUIObjectByName("summaryText").caption =
+		g_GameData.gui.isInGame ?
+			translate("Current Scores") :
 		g_GameData.gui.isReplay ?
 			translate("Scores at the end of the game.") :
 		g_GameData.gui.disconnected ?
-				translate("You have been disconnected.") :
+			translate("You have been disconnected.") :
 		!assignedState ?
 			translate("You have left the game.") :
 		assignedState.state == "won" ?
