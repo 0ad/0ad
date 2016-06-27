@@ -350,7 +350,7 @@ void main()
 gl_FragColor.a = 1.0;
 
 #if !USE_REFRACTION
-gl_FragColor.a = 1.1-extFact;
+gl_FragColor.a = 1.4-extFact;
 #endif
 	
 #if USE_FANCY_EFFECTS
