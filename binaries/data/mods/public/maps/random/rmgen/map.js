@@ -1,80 +1,76 @@
-//////////////////////////////////////////////////////////////////////
-//	Map
-//
-//	Class for holding map data and providing basic API to change it
-//
-//	size: Size of the map in tiles
-//	baseHeight: Starting height of the map
-//
-//////////////////////////////////////////////////////////////////////
-
+/**
+ * Class for holding map data and providing basic API to change it
+ * 
+ * @param {int} [size] - Size of the map in tiles
+ * @param {float} [baseHeight] - Starting height of the map
+ */
 function Map(size, baseHeight)
 {
 	// Size must be 0 to 1024, divisible by patches
 	this.size = size;
 	
 	// Create 2D arrays for textures, object, and areas
-	this.texture = new Array(size);
-	this.terrainObjects = new Array(size);
-	this.area = new Array(size);
+	this.texture = [];
+	this.terrainObjects = [];
+	this.area = [];
 	
 	for (let i = 0; i < size; ++i)
 	{
-		this.texture[i] = new Uint16Array(size);	// uint16 - texture IDs
-		this.terrainObjects[i] = new Array(size);				// array of entities
-		this.area[i] = new Uint16Array(size);		// uint16 - area IDs
+		// Texture IDs
+		this.texture[i] = new Uint16Array(size);
+		// Entities
+		this.terrainObjects[i] = [];
+		// Area IDs
+		this.area[i] = new Uint16Array(size);
 		
 		for (let j = 0; j < size; ++j)
 			this.terrainObjects[i][j] = [];
 	}
-
-	// Create 2D array for heightmap
-	var mapSize;
-	if (TILE_CENTERED_HEIGHT_MAP)
-		mapSize = size;
-	else
-		mapSize = size+1;
 	
-	this.height = new Array(mapSize);
+	// Create 2D array for heightmap
+	let mapSize = size;
+	if (!TILE_CENTERED_HEIGHT_MAP)
+		++mapSize;
+	
+	this.height = [];
 	for (let i = 0; i < mapSize; ++i)
 	{
-		this.height[i] = new Float32Array(mapSize);		// float32
+		this.height[i] = new Float32Array(mapSize);
 		
 		for (let j = 0; j < mapSize; ++j)
 			this.height[i][j] = baseHeight;
 	}
-
+	
 	// Create name <-> id maps for textures
 	this.nameToID = {};
-	this.IDToName = [];				//string
+	this.IDToName = [];
 	
-	// Other arrays
-	this.objects = [];				//object
-	this.tileClasses = [];				//int
+	// Array of objects (entitys/actors)
+	this.objects = [];
+	// Array of integers
+	this.tileClasses = [];
 	
 	this.areaID = 0;
 	
-	// Starting entity ID
+	// Starting entity ID, arbitrary number to leave some space for player entities
 	this.entityCount = 150;
 }
 
 Map.prototype.initTerrain = function(baseTerrain)
 {
-	var size = this.size;
-
-	for (let i = 0; i < size; ++i)
-		for (let j = 0; j < size; ++j)
+	for (let i = 0; i < this.size; ++i)
+		for (let j = 0; j < this.size; ++j)
 			baseTerrain.place(i, j);
 };
 
 // Return ID of texture (by name)
 Map.prototype.getTextureID = function(texture)
 {
-	if (texture in (this.nameToID))
+	if (texture in this.nameToID)
 		return this.nameToID[texture];
 	
 	// Add new texture
-	var id = this.IDToName.length;
+	let id = this.IDToName.length;
 	this.nameToID[texture] = id;
 	this.IDToName[id] = texture;
 	
@@ -85,20 +81,17 @@ Map.prototype.getTextureID = function(texture)
 Map.prototype.getEntityID = function()
 {
 	return this.entityCount++;
-}
+};
 
 // Check bounds on tile map
 Map.prototype.validT = function(x, z, distance = 0)
 {
 	if (g_MapSettings.CircularMap)
-	{	// Within map circle
-		var halfSize = Math.floor(0.5*this.size);
-		var dx = (x - halfSize);
-		var dz = (z - halfSize);
-		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize - distance - 1;
+	{
+		let halfSize = Math.floor(this.size / 2);
+		return Math.round(getDistance(x, z, halfSize, halfSize)) < halfSize - distance - 1;
 	}
 	else
-		// Within map square
 		return x >= distance && z >= distance && x < this.size - distance && z < this.size - distance;
 };
 
@@ -106,15 +99,16 @@ Map.prototype.validT = function(x, z, distance = 0)
 Map.prototype.inMapBounds = function(x, z)
 {
 	return x >= 0 && z >= 0 && x < this.size && z < this.size;
-}
+};
 
-// Check bounds on height map if TILE_CENTERED_HEIGHT_MAP==false then this is (size + 1 by size + 1) otherwise (size, size)
+// Check bounds on height map if TILE_CENTERED_HEIGHT_MAP==true then it's (size, size) otherwise (size + 1 by size + 1)
 Map.prototype.validH = function(x, z)
 {
+	if (x < 0 || z < 0)
+		return false;
 	if (TILE_CENTERED_HEIGHT_MAP)
-		return x >= 0 && z >= 0 && x < this.size && z < this.size;
-	else
-		return x >= 0 && z >= 0 && x <= this.size && z <= this.size;
+		return x < this.size && z < this.size;
+	return x <= this.size && z <= this.size;
 };
 
 // Check bounds on tile class
@@ -126,7 +120,7 @@ Map.prototype.validClass = function(c)
 Map.prototype.getTexture = function(x, z)
 {
 	if (!this.validT(x, z))
-		throw("getTexture: invalid tile position ("+x+", "+z+")");
+		throw "getTexture: invalid tile position (" + x + ", " + z + ")";
 	
 	return this.IDToName[this.texture[x][z]];
 };
@@ -134,7 +128,7 @@ Map.prototype.getTexture = function(x, z)
 Map.prototype.setTexture = function(x, z, texture)
 {
 	if (!this.validT(x, z))
-		throw("setTexture: invalid tile position ("+x+", "+z+")");
+		throw "setTexture: invalid tile position (" + x + ", " + z + ")";
 	
 	 this.texture[x][z] = this.getTextureID(texture);
 };
@@ -142,7 +136,7 @@ Map.prototype.setTexture = function(x, z, texture)
 Map.prototype.getHeight = function(x, z)
 {
 	if (!this.validH(x, z))
-		throw("getHeight: invalid vertex position ("+x+", "+z+")");
+		throw "getHeight: invalid vertex position (" + x + ", " + z + ")";
 	
 	return this.height[x][z];
 };
@@ -150,7 +144,7 @@ Map.prototype.getHeight = function(x, z)
 Map.prototype.setHeight = function(x, z, height)
 {
 	if (!this.validH(x, z))
-		throw("setHeight: invalid vertex position ("+x+", "+z+")");
+		throw "setHeight: invalid vertex position (" + x + ", " + z + ")";
 	
 	this.height[x][z] = height;
 };
@@ -158,16 +152,16 @@ Map.prototype.setHeight = function(x, z, height)
 Map.prototype.getTerrainObjects = function(x, z)
 {
 	if (!this.validT(x, z))
-		throw("getTerrainObjects: invalid tile position ("+x+", "+z+")");
-
+		throw "getTerrainObjects: invalid tile position (" + x + ", " + z + ")";
+	
 	return this.terrainObjects[x][z];
 };
 
 Map.prototype.setTerrainObject = function(x, z, object)
 {
 	if (!this.validT(x, z, 2))
-		throw("setTerrainObject: invalid tile position ("+x+", "+z+")");
-
+		throw "setTerrainObject: invalid tile position (" + x + ", " + z + ")";
+	
 	this.terrainObjects[x][z] = object;
 };
 
@@ -185,32 +179,22 @@ Map.prototype.createArea = function(placer, painter, constraint)
 {
 	// Check for multiple painters
 	if (painter instanceof Array)
-	{
-		var painterArray = painter;
-		painter = new MultiPainter(painterArray);
-	}
+		painter = new MultiPainter(painter);
 	
-	// Check for null constraint
 	if (constraint === undefined || constraint === null)
-	{
 		constraint = new NullConstraint();
-	}
 	else if (constraint instanceof Array)
-	{	// Check for multiple constraints
-		var constraintArray = constraint;
-		constraint = new AndConstraint(constraintArray);
-	}
+		// Check for multiple constraints
+		constraint = new AndConstraint(constraint);
 	
-	var points = placer.place(constraint);
+	let points = placer.place(constraint);
 	if (!points)
 		return undefined;
 	
-	var newID = ++this.areaID;
-	var area = new Area(points, newID);
-	for (var i=0; i < points.length; i++)
-	{
-		this.area[points[i].x][points[i].z] = newID;
-	}
+	let newID = ++this.areaID;
+	let area = new Area(points, newID);
+	for (let p of points)
+		this.area[p.x][p.z] = newID;
 	
 	painter.paint(area);
 	
@@ -221,21 +205,16 @@ Map.prototype.createObjectGroup = function(placer, player, constraint)
 {
 	// Check for null constraint
 	if (constraint === undefined || constraint === null)
-	{
 		constraint = new NullConstraint();
-	}
 	else if (constraint instanceof Array)
-	{	// Check for multiple constraints
-		var constraintArray = constraint;
-		constraint = new AndConstraint(constraintArray);
-	}
+		constraint = new AndConstraint(constraint);
 	
 	return placer.place(player, constraint);
 };
 
 Map.prototype.createTileClass = function()
 {
-	var newID = this.tileClasses.length;
+	let newID = this.tileClasses.length;
 	this.tileClasses.push(new TileClass(this.size, newID));
 	
 	return newID;
@@ -244,34 +223,31 @@ Map.prototype.createTileClass = function()
 // Get height taking into account terrain curvature
 Map.prototype.getExactHeight = function(x, z)
 {
-	var xi = min(Math.floor(x), this.size);
-	var zi = min(Math.floor(z), this.size);
-	var xf = x - xi;
-	var zf = z - zi;
-
-	var h00 = this.height[xi][zi];
-	var h01 = this.height[xi][zi+1];
-	var h10 = this.height[xi+1][zi];
-	var h11 = this.height[xi+1][zi+1];
-
-	return ( 1 - zf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + zf * ( ( 1 - xf ) * h01 + xf * h11 ) ;
+	let xi = Math.min(Math.floor(x), this.size);
+	let zi = Math.min(Math.floor(z), this.size);
+	let xf = x - xi;
+	let zf = z - zi;
+	
+	let h00 = this.height[xi][zi];
+	let h01 = this.height[xi][zi + 1];
+	let h10 = this.height[xi + 1][zi];
+	let h11 = this.height[xi + 1][zi + 1];
+	
+	return (1 - zf) * ((1 - xf) * h00 + xf * h10) + zf * ((1 - xf) * h01 + xf * h11);
 };
 
 // Converts from the tile centered height map to the corner based height map, used when TILE_CENTERED_HEIGHT_MAP = true
 Map.prototype.cornerHeight = function(x, z)
 {
-	var count = 0;
-	var sumHeight = 0;
+	let count = 0;
+	let sumHeight = 0;
 	
-	var dirs = [[-1,-1], [-1,0], [0,-1], [0,0]];
-	for each (var dir in dirs)
-	{
+	for (let dir of [[-1, -1], [-1, 0], [0, -1], [0, 0]])
 		if (this.validH(x + dir[0], z + dir[1]))
 		{
-			count++;
+			++count;
 			sumHeight += this.height[x + dir[0]][z + dir[1]];
 		}
-	}
 	
 	if (count == 0)
 		return 0;
@@ -281,84 +257,69 @@ Map.prototype.cornerHeight = function(x, z)
 
 Map.prototype.getFullEntityList = function(rotateForMapExport = false)
 {
-	// Build entity array
-	let entities = [];
+	// Change rotation from simple 2d to 3d befor giving to engine
+	if (rotateForMapExport)
+		for (let obj of this.objects)
+			obj.rotation.y = PI / 2 - obj.rotation.y;
 	
-	// Terrain objects first (trees)
+	// All non terrain objects
+	let entities = this.objects;
+	
+	// Terrain objects e.g. trees
 	let size = this.size;
 	for (let x = 0; x < size; ++x)
 		for (let z = 0; z < size; ++z)
 			if (this.terrainObjects[x][z] !== undefined)
 				entities.push(this.terrainObjects[x][z]);
-
-	// Now other entities
-	for (let i = 0; i < this.objects.length; ++i)
-	{
-		// Change rotation from simple 2d to 3d befor giving to engine
-		if (rotateForMapExport)
-			this.objects[i].rotation.y = PI/2 - this.objects[i].rotation.y;
-		entities.push(this.objects[i]);
-	}
 	
 	return entities;
 };
 
 Map.prototype.getMapData = function()
 {
-	var data = {};
-	
-	data.entities = this.getFullEntityList(true);
-	
-	log("Number of entities: "+ data.entities.length);
-	
-	// Terrain
-	var size = this.size;
-	data.size = size;
+	let data = {};
 	
 	// Convert 2D heightmap array to flat array
-	//	Flat because it's easier to handle by the engine
-	var mapSize = size+1;
-	var height16 = new Uint16Array(mapSize*mapSize);	// uint16
-	for (var x = 0; x < mapSize; x++)
-	{
-		for (var z = 0; z < mapSize; z++)
+	// Flat because it's easier to handle by the engine
+	let mapSize = this.size + 1;
+	let height = new Uint16Array(mapSize * mapSize);
+	for (let x = 0; x < mapSize; ++x)
+		for (let z = 0; z < mapSize; ++z)
 		{
-			var intHeight;
+			let currentHeight;
 			if (TILE_CENTERED_HEIGHT_MAP)
-				intHeight = Math.floor((this.cornerHeight(x, z) + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
+				currentHeight = this.cornerHeight(x, z);
 			else
-				intHeight = Math.floor((this.height[x][z] + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
+				currentHeight = this.height[x][z];
 			
-			// Prevent under/overflow in terrain data
-			if (intHeight > 0xFFFF)
-				intHeight = 0xFFFF;
-			else if (intHeight < 0)
-				intHeight = 0;
-			
-			height16[z*mapSize + x] = intHeight;
+			// Correct height by SEA_LEVEL and prevent under/overflow in terrain data
+			height[z * mapSize + x] = Math.max(0, Math.min(0xFFFF, Math.floor((currentHeight + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE)));
 		}
-	}
-	data.height = height16;
+	
+	data.height = height;
 	data.seaLevel = SEA_LEVEL;
 	
+	// Terrain, map width in tiles
+	data.size = this.size;
+	
 	// Get array of textures used in this map
-	var textureNames = [];
-	for (var name in this.nameToID)
-		textureNames.push(name);
-	data.textureNames = textureNames;
+	data.textureNames = this.IDToName;
+	
+	// Entities
+	data.entities = this.getFullEntityList(true);
+	log("Number of entities: "+ data.entities.length);
 	
 	//  Convert 2D tile data to flat array
-	var tileIndex = new Uint16Array(size*size);		// uint16
-	var tilePriority = new Uint16Array(size*size);	// uint16
-	for (let x = 0; x < size; ++x)
-	{
-		for (let z = 0; z < size; ++z)
+	let tileIndex = new Uint16Array(this.size * this.size);
+	let tilePriority = new Uint16Array(this.size * this.size);
+	for (let x = 0; x < this.size; ++x)
+		for (let z = 0; z < this.size; ++z)
 		{
 			// TODO: For now just use the texture's index as priority, might want to do this another way
-			tileIndex[z*size + x] = this.texture[x][z];
-			tilePriority[z*size + x] = this.texture[x][z];
+			tileIndex[z * this.size + x] = this.texture[x][z];
+			tilePriority[z * this.size + x] = this.texture[x][z];
 		}
-	}
+	
 	data.tileData = { "index": tileIndex, "priority": tilePriority };
 	
 	return data;
