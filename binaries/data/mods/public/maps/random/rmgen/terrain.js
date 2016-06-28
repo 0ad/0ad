@@ -31,9 +31,7 @@ Terrain.prototype.placeNew = function() {};
 function SimpleTerrain(texture, treeType)
 {
 	if (texture === undefined)
-	{
 		throw("SimpleTerrain: texture not defined");
-	}
 	
 	this.texture = texture;
 	this.treeType = treeType;
@@ -43,10 +41,8 @@ SimpleTerrain.prototype = new Terrain();
 SimpleTerrain.prototype.constructor = SimpleTerrain;
 SimpleTerrain.prototype.placeNew = function(x, z)
 {
-	if (this.treeType !== undefined && g_Map.validT(round(x), round(z), 3))
-	{
+	if (this.treeType !== undefined && g_Map.validT(round(x), round(z), MAP_BORDER_WIDTH))
 		g_Map.terrainObjects[x][z] = new Entity(this.treeType, 0, x+0.5, z+0.5, randFloat()*TWO_PI);
-	}
 	
 	g_Map.texture[x][z] = g_Map.getTextureID(this.texture);
 };
@@ -63,9 +59,7 @@ SimpleTerrain.prototype.placeNew = function(x, z)
 function RandomTerrain(terrains)
 {
 	if (!(terrains instanceof Array) || !terrains.length)
-	{
 		throw("RandomTerrain: Invalid terrains array");
-	}
 	
 	this.terrains = terrains;
 }

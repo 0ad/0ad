@@ -453,9 +453,7 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 			{
 				failCount++;
 				if (failCount > maxFailCount)
-				{
 					return undefined;
-				}
 			}
 		}
 	}
@@ -555,9 +553,7 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 			{
 				failCount++;
 				if (failCount > maxFailCount)
-				{
 					return undefined;
-				}
 			}
 		}
 	}
@@ -602,9 +598,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 		else
 		{
 			for (var j = 0; j < objs.length; ++j)
-			{
 				resultObjs.push(objs[j]);
-			}
 		}
 	}
 	
@@ -612,13 +606,12 @@ SimpleGroup.prototype.place = function(player, constraint)
 	length = resultObjs.length;
 	for (var i=0; i < length; i++)
 	{
-		if (g_Map.validT(round(resultObjs[i].position.x/CELL_SIZE), round(resultObjs[i].position.z/CELL_SIZE), 3))
+		if (g_Map.validT(resultObjs[i].position.x / CELL_SIZE, resultObjs[i].position.z / CELL_SIZE, MAP_BORDER_WIDTH))
 			g_Map.addObject(resultObjs[i]);
 		
+		// Convert position to integer number of tiles
 		if (this.tileClass !== undefined)
-		{	// Convert position to integer number of tiles
 			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
-		}
 	}
 	
 	return true;
@@ -653,16 +646,15 @@ RandomGroup.prototype.place = function(player, constraint)
 	var placer = this.elements[randInt(this.elements.length)];
 	
 	var objs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
+	// Failure
 	if (objs === undefined)
-	{	// Failure
+	{
 		return false;
 	}
 	else
 	{
 		for (var j = 0; j < objs.length; ++j)
-		{
 			resultObjs.push(objs[j]);
-		}
 	}
 	
 	// Add placed objects to map
@@ -671,10 +663,9 @@ RandomGroup.prototype.place = function(player, constraint)
 	{
 		g_Map.addObject(resultObjs[i]);
 		
+		// Convert position to integer number of tiles
 		if (this.tileClass !== undefined)
-		{	// Convert position to integer number of tiles
 			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
-		}
 	}
 	
 	return true;
