@@ -13,6 +13,11 @@ const g_PopulationAlertColor = "orange";
 const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 
 /**
+ * Map, player and match settings set in gamesetup.
+ */
+var g_GameAttributes;
+
+/**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
  */
 var g_IsController;
@@ -62,11 +67,6 @@ var g_ViewedPlayer = Engine.GetPlayerID();
  * and select the affected units.
  */
 var g_FollowPlayer = false;
-
-/**
- * Unique ID for lobby reports.
- */
-var g_MatchID;
 
 /**
  * Cache the basic player data (name, civ, color).
@@ -230,7 +230,7 @@ function init(initData, hotloadData)
 		g_IsNetworked = initData.isNetworked;
 		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
-		g_MatchID = initData.attribs.matchID;
+		g_GameAttributes = initData.attribs;
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;
 
@@ -485,7 +485,7 @@ function updateTopPanel()
 
 function reportPerformance(time)
 {
-	let settings = Engine.GetMapSettings();
+	let settings = g_GameAttributes.settings;
 	Engine.SubmitUserReport("profile", 3, JSON.stringify({
 		"time": time,
 		"map": settings.Name,
@@ -526,7 +526,7 @@ function leaveGame(willRejoin)
 	let simData = {
 		"timeElapsed" : extendedSimState.timeElapsed,
 		"playerStates": extendedSimState.players,
-		"mapSettings": Engine.GetMapSettings()
+		"mapSettings": g_GameAttributes.settings
 	};
 
 	if (!g_IsReplay)
@@ -1225,7 +1225,7 @@ function reportGame()
 	playerStatistics.feminisation = "";
 	playerStatistics.percentMapExplored = "";
 
-	let mapName = Engine.GetMapSettings().Name;
+	let mapName = g_GameAttributes.settings.Name;
 	let playerStates = "";
 	let playerCivs = "";
 	let teams = "";
@@ -1275,7 +1275,7 @@ function reportGame()
 	reportObject.timeElapsed = extendedSimState.timeElapsed;
 	reportObject.playerStates = playerStates;
 	reportObject.playerID = Engine.GetPlayerID();
-	reportObject.matchID = g_MatchID;
+	reportObject.matchID = g_GameAttributes.matchID;
 	reportObject.civs = playerCivs;
 	reportObject.teams = teams;
 	reportObject.teamsLocked = String(teamsLocked);

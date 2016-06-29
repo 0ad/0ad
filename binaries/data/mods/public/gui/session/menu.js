@@ -619,7 +619,7 @@ function openGameSummary()
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 	Engine.PushGuiPage("page_summary.xml", {
 		"sim": {
-			"mapSettings": Engine.GetMapSettings(),
+			"mapSettings": g_GameAttributes.settings,
 			"playerStates": extendedSimState.players,
 			"timeElapsed" : extendedSimState.timeElapsed
 		},

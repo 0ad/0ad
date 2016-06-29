@@ -510,21 +510,6 @@ JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath&
 	return settings;
 }
 
-JS::Value GetMapSettings(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	if (!g_Game)
-		return JS::UndefinedValue();
-
-	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue mapSettings(cx);
-	g_Game->GetSimulation2()->GetMapSettings(&mapSettings);
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
-		g_Game->GetSimulation2()->GetScriptInterface(),
-		mapSettings);
-}
-
 /**
  * Get the current X coordinate of the camera.
  */
@@ -1070,7 +1055,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<JS::Value, VfsPath, &LoadMapSettings>("LoadMapSettings");
-	scriptInterface.RegisterFunction<JS::Value, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<float, &CameraGetX>("CameraGetX");
 	scriptInterface.RegisterFunction<float, &CameraGetZ>("CameraGetZ");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
