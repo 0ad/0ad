@@ -1406,6 +1406,7 @@ function updateGUIObjects()
 		hideControl(ctrl, ctrl + "Text", notScenario);
 
 	Engine.GetGUIObjectByName("civResetButton").hidden = !notScenario;
+	Engine.GetGUIObjectByName("teamResetButton").hidden = !notScenario;
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -1824,6 +1825,14 @@ function resetCivilizations()
 {
 	for (let i in g_GameAttributes.settings.PlayerData)
 		g_GameAttributes.settings.PlayerData[i].Civ = "random";
+
+	updateGameAttributes();
+}
+
+function resetTeams()
+{
+	for (let i in g_GameAttributes.settings.PlayerData)
+		g_GameAttributes.settings.PlayerData[i].Team = -1;
 
 	updateGameAttributes();
 }

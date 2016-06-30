@@ -41,18 +41,23 @@
 			<!-- Player assignments -->
 			<object size="24 49 100%-440 345" type="image" sprite="ModernDarkBoxGold" name="playerAssignmentsPanel">
 				<object size="0 6 100% 30">
+
 					<object name="playerNameHeading" type="text" style="ModernLabelText" size="0 0 22% 100%">
 						<translatableAttribute id="caption">Player Name</translatableAttribute>
 					</object>
+
 					<object name="playerColorHeading" type="text" style="ModernLabelText" size="22%+5 0 22%+40 100%">
 						<translatableAttribute id="caption">Color</translatableAttribute>
 					</object>
+
 					<object name="playerPlacementHeading" type="text" style="ModernLabelText" size="22%+45 0 50%+35 100%">
 						<translatableAttribute id="caption">Player Placement</translatableAttribute>
 					</object>
+
 					<object name="playerCivHeading" type="text" style="ModernLabelText" size="50%+65 0 85%-26 100%">
 						<translatableAttribute id="caption">Civilization</translatableAttribute>
 					</object>
+
 					<object name="civInfoButton"
 						type="button"
 						sprite="iconInfoGold"
@@ -65,6 +70,7 @@
 							Engine.PushGuiPage("page_civinfo.xml");
 						]]></action>
 					</object>
+
 					<object name="civResetButton"
 						type="button"
 						sprite="iconResetGold"
@@ -75,10 +81,23 @@
 						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random)</translatableAttribute>
 						<action on="Press">resetCivilizations();</action>
 					</object>
-					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+15 0 100%-15 100%">
+
+					<object name="playerTeamHeading" type="text" style="ModernLabelText" size="85%+15 0 100%-30 100%">
 						<translatableAttribute id="caption">Team</translatableAttribute>
 					</object>
+
+					<object name="teamResetButton"
+						type="button"
+						sprite="iconResetGold"
+						sprite_over="iconResetWhite"
+						size="100%-30 0 100%-15 16"
+						tooltip_style="onscreenToolTip"
+					>
+						<translatableAttribute id="tooltip">Reset all teams to the default.</translatableAttribute>
+						<action on="Press">resetTeams();</action>
+					</object>
 				</object>
+
 				<object size="1 36 100%-1 100%">
 					<repeat count="8">
 						<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
