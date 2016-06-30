@@ -74,28 +74,33 @@ function MatchesClassList(classes, match)
  */
 function GetTemplateDataHelper(template, player, auraTemplates)
 {
-	var ret = {};
+	let getEntityValue = function(tech_type) {
 
-	var func;
-	if (player)
-		func = ApplyValueModificationsToTemplate;
-	else
-		func = function(a, val, c, d) { return val; }
+		let current_value = template;
+		for (let property of tech_type.split("/"))
+			current_value = current_value[property] || 0;
+		current_value = +current_value;
+
+		if (!player)
+			return current_value;
+
+		return ApplyValueModificationsToTemplate(tech_type, current_value, player, template);
+	};
+
+	let ret = {};
 
 	if (template.Armour)
-	{
 		ret.armour = {
-			"hack": func("Armour/Hack", +template.Armour.Hack, player, template),
-			"pierce": func("Armour/Pierce", +template.Armour.Pierce, player, template),
-			"crush": func("Armour/Crush", +template.Armour.Crush, player, template),
+			"hack": getEntityValue("Armour/Hack"),
+			"pierce": getEntityValue("Armour/Pierce"),
+			"crush": getEntityValue("Armour/Crush")
 		};
-	}
 
 	if (template.Attack)
 	{
 		let getAttackStat = function(type, stat)
 		{
-			return func("Attack/"+type+"/"+stat, +(template.Attack[type][stat] || 0), player, template);
+			return getEntityValue("Attack/" + type + "/"+stat);
 		};
 
 		ret.attack = {};
@@ -136,11 +141,11 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 	{
 		ret.buildingAI = {};
 		if (template.BuildingAI.DefaultArrowCount)
-			ret.buildingAI.defaultArrowCount = func("BuildingAI/DefaultArrowCount", +template.BuildingAI.DefaultArrowCount, player, template);
+			ret.buildingAI.defaultArrowCount = getEntityValue("BuildingAI/DefaultArrowCount");
 		if (template.BuildingAI.GarrisonArrowMultiplier)
-			ret.buildingAI.garrisonArrowMultiplier = func("BuildingAI/GarrisonArrowMultiplier", +template.BuildingAI.GarrisonArrowMultiplier, player, template);
+			ret.buildingAI.garrisonArrowMultiplier = getEntityValue("BuildingAI/GarrisonArrowMultiplier");
 		if (template.BuildingAI.MaxArrowCount)
-			ret.buildingAI.maxArrowCount = func("BuildingAI/MaxArrowCount", +template.BuildingAI.MaxArrowCount, player, template);
+			ret.buildingAI.maxArrowCount = getEntityValue("BuildingAI/MaxArrowCount");
 	}
 
 	if (template.BuildRestrictions)
@@ -158,38 +163,56 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			ret.buildRestrictions.distance = {
 				"fromClass": template.BuildRestrictions.Distance.FromClass,
 			};
-			if (template.BuildRestrictions.Distance.MinDistance) ret.buildRestrictions.distance.min = +template.BuildRestrictions.Distance.MinDistance;
-			if (template.BuildRestrictions.Distance.MaxDistance) ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
+
+			if (template.BuildRestrictions.Distance.MinDistance)
+				ret.buildRestrictions.distance.min = +template.BuildRestrictions.Distance.MinDistance;
+
+			if (template.BuildRestrictions.Distance.MaxDistance)
+				ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
 		}
 	}
 
 	if (template.TrainingRestrictions)
-	{
 		ret.trainingRestrictions = {
 			"category": template.TrainingRestrictions.Category,
 		};
-	}
 
 	if (template.Cost)
 	{
 		ret.cost = {};
-		if (template.Cost.Resources.food) ret.cost.food = func("Cost/Resources/food", +template.Cost.Resources.food, player, template);
-		if (template.Cost.Resources.wood) ret.cost.wood = func("Cost/Resources/wood", +template.Cost.Resources.wood, player, template);
-		if (template.Cost.Resources.stone) ret.cost.stone = func("Cost/Resources/stone", +template.Cost.Resources.stone, player, template);
-		if (template.Cost.Resources.metal) ret.cost.metal = func("Cost/Resources/metal", +template.Cost.Resources.metal, player, template);
-		if (template.Cost.Population) ret.cost.population = func("Cost/Population", +template.Cost.Population, player, template);
-		if (template.Cost.PopulationBonus) ret.cost.populationBonus = func("Cost/PopulationBonus", +template.Cost.PopulationBonus, player, template);
-		if (template.Cost.BuildTime) ret.cost.time = func("Cost/BuildTime", +template.Cost.BuildTime, player, template);
+		if (template.Cost.Resources.food)
+			ret.cost.food = getEntityValue("Cost/Resources/food");
+
+		if (template.Cost.Resources.wood)
+			ret.cost.wood = getEntityValue("Cost/Resources/wood");
+
+		if (template.Cost.Resources.stone)
+			ret.cost.stone = getEntityValue("Cost/Resources/stone");
+
+		if (template.Cost.Resources.metal)
+			ret.cost.metal = getEntityValue("Cost/Resources/metal");
+
+		if (template.Cost.Population)
+			ret.cost.population = getEntityValue("Cost/Population");
+
+		if (template.Cost.PopulationBonus)
+			ret.cost.populationBonus = getEntityValue("Cost/PopulationBonus");
+
+		if (template.Cost.BuildTime)
+			ret.cost.time = getEntityValue("Cost/BuildTime");
 	}
 
 	if (template.Footprint)
 	{
-		ret.footprint = {"height": template.Footprint.Height};
+		ret.footprint = { "height": template.Footprint.Height };
 
 		if (template.Footprint.Square)
-			ret.footprint.square = {"width": +template.Footprint.Square["@width"], "depth": +template.Footprint.Square["@depth"]};
+			ret.footprint.square = {
+				"width": +template.Footprint.Square["@width"],
+				"depth": +template.Footprint.Square["@depth"]
+			};
 		else if (template.Footprint.Circle)
-			ret.footprint.circle = {"radius": +template.Footprint.Circle["@radius"]};
+			ret.footprint.circle = { "radius": +template.Footprint.Circle["@radius"] };
 		else
 			warn("GetTemplateDataHelper(): Unrecognized Footprint type");
 	}
@@ -198,7 +221,7 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 	{
 		ret.garrisonHolder = {};
 		if (template.GarrisonHolder.Max)
-			ret.garrisonHolder.max = func("GarrisonHolder/Max", +template.GarrisonHolder.Max, player, template);
+			ret.garrisonHolder.max = getEntityValue("GarrisonHolder/Max");
 	}
 
 	if (template.Obstruction)
@@ -226,21 +249,17 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			ret.obstruction.shape.radius = +template.Obstruction.Unit["@radius"];
 		}
 		else
-		{
 			ret.obstruction.shape.type = "cluster";
-		}
 	}
 
 	if (template.Pack)
-	{
 		ret.pack = {
 			"state": template.Pack.State,
-			"time": func("Pack/Time", +template.Pack.Time, player, template),
+			"time": getEntityValue("Pack/Time"),
 		};
-	}
 
 	if (template.Health)
-		ret.health = Math.round(func("Health/Max", +template.Health.Max, player, template));
+		ret.health = Math.round(getEntityValue("Health/Max"));
 
 	if (template.Identity)
 	{
@@ -259,28 +278,25 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 	if (template.UnitMotion)
 	{
 		ret.speed = {
-			"walk": func("UnitMotion/WalkSpeed", +template.UnitMotion.WalkSpeed, player, template),
+			"walk": getEntityValue("UnitMotion/WalkSpeed"),
 		};
 		if (template.UnitMotion.Run)
-			ret.speed.run = func("UnitMotion/Run/Speed", +template.UnitMotion.Run.Speed, player, template);
+			ret.speed.run = getEntityValue("UnitMotion/Run/Speed");
 	}
 
 	if (template.ProductionQueue)
 	{
 		ret.techCostMultiplier = {};
 		for (let res in template.ProductionQueue.TechCostMultiplier)
-			ret.techCostMultiplier[res] = func("ProductionQueue/TechCostMultiplier/"+res, +template.ProductionQueue.TechCostMultiplier[res], player, template);
+			ret.techCostMultiplier[res] = getEntityValue("ProductionQueue/TechCostMultiplier/" + res);
 	}
 
 	if (template.Trader)
-	{
 		ret.trader = {
-			"GainMultiplier": func("Trader/GainMultiplier", +template.Trader.GainMultiplier, player, template)
+			"GainMultiplier": getEntityValue("Trader/GainMultiplier")
 		};
-	}
 
 	if (template.WallSet)
-	{
 		ret.wallSet = {
 			"templates": {
 				"tower": template.WallSet.Templates.Tower,
@@ -292,10 +308,9 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			"maxTowerOverlap": +template.WallSet.MaxTowerOverlap,
 			"minTowerOverlap": +template.WallSet.MinTowerOverlap,
 		};
-	}
 
 	if (template.WallPiece)
-		ret.wallPiece = {"length": +template.WallPiece.Length};
+		ret.wallPiece = { "length": +template.WallPiece.Length };
 
 	return ret;
 }
@@ -310,7 +325,7 @@ function GetTechnologyDataHelper(template, civ)
 	var ret = {};
 
 	// Get specific name for this civ or else the generic specific name
-	var specific = undefined;
+	var specific;
 	if (template.specificName)
 	{
 		if (template.specificName[civ])
@@ -324,26 +339,24 @@ function GetTechnologyDataHelper(template, civ)
 		"generic": template.genericName,
 	};
 
-	if (template.icon)
-		ret.icon = "technologies/" + template.icon;
-	else
-		ret.icon = null;
-	ret.cost = {
-		"food": template.cost ? (+template.cost.food) : 0,
-		"wood": template.cost ? (+template.cost.wood) : 0,
-		"metal": template.cost ? (+template.cost.metal) : 0,
-		"stone": template.cost ? (+template.cost.stone) : 0,
-		"time": template.researchTime ? (+template.researchTime) : 0,
-	}
-	ret.tooltip = template.tooltip;
+	ret.icon = template.icon ? "technologies/" + template.icon : null;
 
-	if (template.requirementsTooltip)
-		ret.requirementsTooltip = template.requirementsTooltip;
-	else
-		ret.requirementsTooltip = "";
+	ret.cost = {
+		"food": template.cost ? +template.cost.food : 0,
+		"wood": template.cost ? +template.cost.wood : 0,
+		"metal": template.cost ? +template.cost.metal : 0,
+		"stone": template.cost ? +template.cost.stone : 0,
+		"time": template.researchTime ? +template.researchTime : 0,
+	}
+
+	ret.tooltip = template.tooltip;
+	ret.requirementsTooltip = template.requirementsTooltip || "";
 
 	if (template.requirements && template.requirements.class)
-		ret.classRequirements = {"class": template.requirements.class, "number": template.requirements.number};
+		ret.classRequirements = {
+			"class": template.requirements.class,
+			"number": template.requirements.number
+		};
 
 	ret.description = template.description;
 
