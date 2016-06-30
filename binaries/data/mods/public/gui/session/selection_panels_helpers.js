@@ -1,20 +1,11 @@
-// Constants
-// Barter constants
 const BARTER_RESOURCE_AMOUNT_TO_SELL = 100;
 const BARTER_BUNCH_MULTIPLIER = 5;
 const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
-
-// Gate constants
 const GATE_ACTIONS = ["lock", "unlock"];
 
-// ==============================================
-// BARTER HELPERS
-// Resources to sell on barter panel
 var g_BarterSell = "food";
 
-// FORMATION HELPERS
-// Check if the selection can move into formation, and cache the result
 function canMoveSelectionIntoFormation(formationTemplate)
 {
 	if (!(formationTemplate in g_canMoveIntoFormation))
@@ -26,9 +17,6 @@ function canMoveSelectionIntoFormation(formationTemplate)
 	}
 	return g_canMoveIntoFormation[formationTemplate];
 }
-
-// ==============================================
-// STANCE HELPERS
 
 function getStanceDisplayName(name)
 {
@@ -69,8 +57,6 @@ function getStanceTooltip(name)
 	}
 }
 
-// ==============================================
-// TRAINING / CONSTRUCTION HELPERS
 /**
  * Format entity count/limit message for the tooltip
  */
@@ -79,17 +65,27 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 	if (trainEntLimit == undefined)
 		return "";
 
-	var text = "\n\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), { "count": trainEntCount, "limit": trainEntLimit });
+	var text = "\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), {
+		"count": trainEntCount,
+		"limit": trainEntLimit
+	});
 
 	if (trainEntCount >= trainEntLimit)
 		text = "[color=\"red\"]" + text + "[/color]";
 
 	for (var c in trainEntLimitChangers)
 	{
-		if (trainEntLimitChangers[c] > 0)
-			text += "\n" + sprintf(translate("%(changer)s enlarges the limit with %(change)s."), { "changer": translate(c), "change": trainEntLimitChangers[c] });
-		else if (trainEntLimitChangers[c] < 0)
-			text += "\n" + sprintf(translate("%(changer)s lessens the limit with %(change)s."), { "changer": translate(c), "change": (-trainEntLimitChangers[c]) });
+		if (!trainEntLimitChangers[c])
+			continue;
+
+		let string = trainEntLimitChangers[c] > 0 ?
+			translate("%(changer)s enlarges the limit with %(change)s.") :
+			translate("%(changer)s lessens the limit with %(change)s.");
+
+		text += "\n" + sprintf(string, {
+			"changer": translate(c),
+			"change": trainEntLimitChangers[c]
+		});
 	}
 	return text;
 }
@@ -113,7 +109,6 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	if (totalBatchTrainingCount < 2)
 		return "";
 
-	var batchTrainingString = "";
 	var fullBatchesString = "";
 	if (buildingsCountToTrainFullBatch > 0)
 	{
@@ -126,34 +121,26 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 			fullBatchesString = fullBatchSize;
 	}
 
-	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
-	var batchDetailsString = "";
-	var action = "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]";
-
 	// We need to display the batch details part if there is either more than
 	// one building with full batch or one building with the full batch and
 	// another with a partial batch
+	let batchString;
 	if (buildingsCountToTrainFullBatch > 1 ||
-		(buildingsCountToTrainFullBatch == 1 && remainderBatch > 0))
+	    buildingsCountToTrainFullBatch == 1 && remainderBatch > 0)
 	{
 		if (remainderBatch > 0)
-			return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."), {
-				"action": action,
-				"number": totalBatchTrainingCount,
-				"fullBatch": fullBatchesString,
-				"remainderBatch": remainderBatch
-			}) + "[/font]";
-
-		return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s)."), {
-			"action": action,
-			"number": totalBatchTrainingCount,
-			"fullBatch": fullBatchesString
-		}) + "[/font]";
+			batchString = translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s).");
+		else
+			batchString = translate("%(action)s to train %(number)s (%(fullBatch)s).");
 	}
+	else
+		batchString = translate("%(action)s to train %(number)s.");
 
-	return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s."), {
-		"action": action,
-		"number": totalBatchTrainingCount
+	return "[font=\"sans-13\"]" + sprintf(batchString, {
+		"action": "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]",
+		"number": totalBatchTrainingCount,
+		"fullBatch": fullBatchesString,
+		"remainderBatch": remainderBatch
 	}) + "[/font]";
 }
 

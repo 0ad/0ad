@@ -301,34 +301,31 @@ g_SelectionPanels.Construction = {
 				"player": data.unitEntState.player
 			});
 
-		let limits = getEntityLimitAndCount(data.playerState, data.item);
-
 		if (template.wallSet)
 			template.auras = GetTemplateData(template.wallSet.templates.long).auras;
 
 		data.button.onPress = function () { startBuildingPlacement(data.item, data.playerState); };
 
-		let tooltip = getEntityNamesFormatted(template);
-		tooltip += getVisibleEntityClassesFormatted(template);
-		tooltip += getAurasTooltip(template);
+		let tooltips = [
+			getEntityNamesFormatted,
+			getVisibleEntityClassesFormatted,
+			getAurasTooltip,
+			getEntityTooltip,
+			getEntityCostTooltip,
+			getPopulationBonusTooltip
+		].map(func => func(template));
 
-		if (template.tooltip)
-			tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
-
-		tooltip += "\n" + getEntityCostTooltip(template);
-		tooltip += getPopulationBonusTooltip(template);
-
-		tooltip += formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
+		let limits = getEntityLimitAndCount(data.playerState, data.item);
+		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers));
 
 		if (!technologyEnabled)
-			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), {
+			tooltips.push(sprintf(translate("Requires %(technology)s"), {
 				"technology": getEntityNames(GetTechnologyData(template.requiredTechnology))
-			});
+			}));
 
-		if (neededResources)
-			tooltip += getNeededResourcesTooltip(neededResources);
+		tooltips.push(getNeededResourcesTooltip(neededResources));
 
-		data.button.tooltip = tooltip;
+		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 		let modifier = "";
 		if (!technologyEnabled || limits.canBeAddedCount == 0)
@@ -529,27 +526,26 @@ g_SelectionPanels.Gate = {
 	{
 		data.button.onPress = function() {data.item.callback(data.item); };
 
-		let tooltip = data.item.tooltip;
+		let tooltips = [data.item.tooltip];
 		if (data.item.template)
 		{
 			data.template = GetTemplateData(data.item.template);
-			data.wallCount = data.selection.reduce(function (count, ent) {
+			data.wallCount = data.selection.reduce(count, ent => {
 					let state = GetEntityState(ent);
 					if (hasClass(state, "LongWall") && !state.gate)
 						++count;
 					return count;
 				}, 0);
 
-			tooltip += "\n" + getEntityCostTooltip(data.template, data.wallCount);
+			tooltips.push(getEntityCostTooltip(data.template, data.wallCount));
 
 			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": multiplyEntityCosts(data.template, data.wallCount)
 			});
 
-			if (data.neededResources)
-				tooltip += getNeededResourcesTooltip(data.neededResources);
+			tooltips.push(getNeededResourcesTooltip(data.neededResources));
 		}
-		data.button.tooltip = tooltip;
+		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 		data.button.enabled = controlsPlayer(data.unitEntState.player);
 		let gateIcon;
@@ -679,7 +675,7 @@ g_SelectionPanels.Queue = {
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
 			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
-				"population": getCostComponentDisplayIcon("population"),
+				"population": g_CostDisplayIcons.population,
 				"neededSlots": data.item.neededSlots
 			});
 		}
@@ -783,25 +779,28 @@ g_SelectionPanels.Research = {
 			let button = Engine.GetGUIObjectByName("unitResearchButton[" + position + "]");
 			let icon = Engine.GetGUIObjectByName("unitResearchIcon[" + position + "]");
 
-			let tooltip = getEntityNamesFormatted(template);
-			if (template.tooltip)
-				tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
+			let tooltips = [
+				getEntityNamesFormatted,
+				getEntityTooltip,
+				getEntityCostTooltip
+			].map(func => func(template));
 
-			tooltip += "\n" + getEntityCostTooltip(template);
 			if (!requirementsPassed)
 			{
-				tooltip += "\n" + template.requirementsTooltip;
+				let tip = template.requirementsTooltip;
 				if (template.classRequirements)
 				{
 					let player = data.unitEntState.player;
 					let current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
 					let remaining = template.classRequirements.number - current;
-					tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { "number": remaining });
+					tip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), {
+						"number": remaining
+					});
 				}
+				tooltips.push(tip);
 			}
-			if (neededResources)
-				tooltip += getNeededResourcesTooltip(neededResources);
-			button.tooltip = tooltip;
+			tooltips.push(getNeededResourcesTooltip(neededResources));
+			button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 			button.onPress = function () {
 				addResearchToQueue(data.unitEntState.id, tech);
@@ -988,47 +987,41 @@ g_SelectionPanels.Training = {
 
 		data.countDisplay.caption = trainNum > 1 ? trainNum : "";
 
-		let tooltip = "[font=\"sans-bold-16\"]" +
-		colorizeHotkey("%(hotkey)s", "session.queueunit." + (data.i + 1)) +
-			"[/font]"; 
-
-		tooltip += getEntityNamesFormatted(template);
-		tooltip += getVisibleEntityClassesFormatted(template);
-		tooltip += getAurasTooltip(template);
-
-		if (template.tooltip)
-			tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
-
-		tooltip += "\n" + getEntityCostTooltip(template, trainNum, data.unitEntState.id);
+		let tooltips = [
+			"[font=\"sans-bold-16\"]" +
+				colorizeHotkey("%(hotkey)s", "session.queueunit." + (data.i + 1)) +
+				"[/font]" + " " + getEntityNamesFormatted(template),
+			getVisibleEntityClassesFormatted(template),
+			getAurasTooltip(template),
+			getEntityTooltip(template),
+			getEntityCostTooltip(template, trainNum, data.unitEntState.id)
+		];
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
+		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers));
 
-		tooltip += formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
 		if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
-		{
-			if (template.health)
-				tooltip += "\n[font=\"sans-bold-13\"]" + translate("Health:") + "[/font] " + template.health;
-			if (template.attack)
-				tooltip += "\n" + getAttackTooltip(template);
-			if (template.armour)
-				tooltip += "\n" + getArmorTooltip(template.armour);
-			if (template.speed)
-				tooltip += "\n" + getSpeedTooltip(template);
-		}
+			tooltips.push(
+				getHealthTooltip(template),
+				getAttackTooltip(template),
+				getArmorTooltip(template),
+				getSpeedTooltip(template)
+			);
 
-		tooltip += "[color=\"" + g_HotkeyColor + "\"]" +
+		tooltips.push(
+			"[color=\"" + g_HotkeyColor + "\"]" + " " +
 			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) +
-			"[/color]";
+			"[/color]");
 
 		if (!technologyEnabled)
-		{
-			let techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
-			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { "technology": techName });
-		}
-		if (neededResources)
-			tooltip += getNeededResourcesTooltip(neededResources);
+			tooltips.push(sprintf(translate("Requires %(technology)s"), {
+				"technology": getEntityNames(GetTechnologyData(template.requiredTechnology))
+			}));
 
-		data.button.tooltip = tooltip;
+		if (neededResources)
+			tooltips.push(getNeededResourcesTooltip(neededResources));
+
+		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 		let modifier = "";
 		if (!technologyEnabled || limits.canBeAddedCount == 0)

@@ -10,62 +10,80 @@ const g_CostDisplayIcons = {
 const g_TooltipTextFormats = {
 	"unit": ['[font="sans-10"][color="orange"]', '[/color][/font]'],
 	"header": ['[font="sans-bold-13"]', '[/font]'],
-	"body": ['[font="sans-13"]', '[/font]']
+	"body": ['[font="sans-13"]', '[/font]'],
+	"comma": ['[font="sans-12"]', '[/font]']
 };
 
-function damageValues(dmg)
-{
-	if (!dmg)
-		return [0, 0, 0];
+const g_AttackTypes = {
+	"Charge": translate("Charge Attack:"),
+	"Melee": translate("Melee Attack:"),
+	"Ranged": translate("Ranged Attack:"),
+	"Capture": translate("Capture Attack:")
+};
 
-	return [dmg.hack || 0, dmg.pierce || 0, dmg.crush || 0];
+const g_DamageTypes = {
+	"hack": translate("Hack"),
+	"pierce": translate("Pierce"),
+	"crush": translate("Crush"),
+};
+
+function bodyFont(text)
+{
+	return g_TooltipTextFormats.body[0] + text + g_TooltipTextFormats.body[1];
 }
 
-function damageTypeDetails(dmg)
+function headerFont(text)
 {
-	if (!dmg)
-		return '[font="sans-12"]' + translate("(None)") + '[/font]';
-
-	let dmgArray = [];
-
-	if (dmg.hack)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg.hack.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Hack") + g_TooltipTextFormats.unit[1]
-		}));
-
-	if (dmg.pierce)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg.pierce.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Pierce") + g_TooltipTextFormats.unit[1]
-		}));
-
-	if (dmg.crush)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg.crush.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Crush") + g_TooltipTextFormats.unit[1]
-		}));
-
-	return dmgArray.join(translate(", "));
+	return g_TooltipTextFormats.header[0] + text + g_TooltipTextFormats.header[1];
 }
 
-function attackRateDetails(entState, type)
+function unitFont(text)
+{
+	return g_TooltipTextFormats.unit[0] + text + g_TooltipTextFormats.unit[1];
+}
+
+function commaFont(text)
+{
+	return g_TooltipTextFormats.comma[0] + text + g_TooltipTextFormats.comma[1];
+}
+
+function getEntityTooltip(template)
+{
+	if (!template.tooltip)
+		return "";
+
+	return bodyFont(template.tooltip);
+}
+
+function getHealthTooltip(template)
+{
+	if (!template.health)
+		return "";
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Health:")),
+		"details": template.health
+	});
+}
+
+function attackRateDetails(template, type)
 {
 	// Either one arrow shot by UnitAI,
-	let time = entState.attack[type].repeatTime / 1000;
+	let time = template.attack[type].repeatTime / 1000;
 	let timeString = sprintf(translatePlural("%(time)s %(second)s", "%(time)s %(second)s", time), {
 		"time": time,
-		"second": g_TooltipTextFormats.unit[0] + translatePlural("second", "seconds", time) + g_TooltipTextFormats.unit[1]
+		"second": unitFont(translatePlural("second", "seconds", time))
 	});
 
 	// or multiple arrows shot by BuildingAI
-	if (!entState.buildingAI)
+	if (!template.buildingAI || type != "Ranged")
 		return timeString;
 
-	let arrows = entState.buildingAI.arrowCount;
-	let arrowString = sprintf(translatePlural("%(arrowcount)s %(arrow)s", "%(arrowcount)s %(arrow)s", arrows), {
+	// Show either current rate from simulation or default count if the sim is not running
+	let arrows = template.buildingAI.arrowCount || template.buildingAI.defaultArrowCount;
+	let arrowString = sprintf(translatePlural("%(arrowcount)s %(arrows)s", "%(arrowcount)s %(arrows)s", arrows), {
 		"arrowcount": arrows,
-		"arrow": g_TooltipTextFormats.unit[0] + translatePlural("arrow", "arrows", arrows) + g_TooltipTextFormats.unit[1]
+		"arrows": unitFont(translatePlural("arrow", "arrows", arrows))
 	});
 
 	return sprintf(translate("%(arrowString)s / %(timeString)s"), {
@@ -74,47 +92,35 @@ function attackRateDetails(entState, type)
 	});
 }
 
-// Converts an armor level into the actual reduction percentage
+/**
+ * Converts an armor level into the actual reduction percentage
+ */
 function armorLevelToPercentageString(level)
 {
-	return (100 - Math.round(Math.pow(0.9, level) * 100)) + "%";
-	// 	return sprintf(translate("%(armorPercentage)s%"), { armorPercentage: (100 - Math.round(Math.pow(0.9, level) * 100)) }); // Not supported by our sprintf implementation.
+	return sprintf(translate("%(percentage)s%%"), {
+		"percentage": (100 - Math.round(Math.pow(0.9, level) * 100))
+	});
 }
 
-function getArmorTooltip(dmg)
+function getArmorTooltip(template)
 {
-	let label = g_TooltipTextFormats.header[0] + translate("Armor:") + g_TooltipTextFormats.header[1];
-	if (!dmg)
-		return sprintf(translate("%(label)s %(details)s"), {
-			"label": label,
-			"details": '[font="sans-12"]' + translate("(None)") + '[/font]'
-		});
-
-	let dmgArray = [];
-	if (dmg.hack)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.hack.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Hack") + g_TooltipTextFormats.unit[1],
-			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.hack) }) + '[/font]'
-		}));
-
-	if (dmg.pierce)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.pierce.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Pierce") + g_TooltipTextFormats.unit[1],
-			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.pierce) }) + '[/font]'
-		}));
-
-	if (dmg.crush)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			"damage": dmg.crush.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Crush") + g_TooltipTextFormats.unit[1],
-			"armorPercentage": '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { "armorPercentage": armorLevelToPercentageString(dmg.crush) }) + '[/font]'
-		}));
+	if (!template.armour)
+		return "";
 
 	return sprintf(translate("%(label)s %(details)s"), {
-		"label": label,
-		"details": dmgArray.join('[font="sans-12"]' + translate(", ") + '[/font]')
+		"label": headerFont(translate("Armor:")),
+		"details":
+			Object.keys(template.armour).map(
+				dmgType => sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
+					"damage": template.armour[dmgType].toFixed(1),
+					"damageType": unitFont(g_DamageTypes[dmgType]),
+					"armorPercentage":
+						'[font="sans-10"]' +
+						sprintf(translate("(%(armorPercentage)s)"), {
+							"armorPercentage": armorLevelToPercentageString(template.armour[dmgType])
+						}) + '[/font]'
+				})
+			).join(commaFont(translate(", ")))
 	});
 }
 
@@ -123,74 +129,46 @@ function damageTypesToText(dmg)
 	if (!dmg)
 		return '[font="sans-12"]' + translate("(None)") + '[/font]';
 
-	let dmgArray = [];
-	if (dmg.hack)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg.hack.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Hack") + g_TooltipTextFormats.unit[1]
-		}));
-
-	if (dmg.pierce)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg.pierce.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Pierce") + g_TooltipTextFormats.unit[1]
-		}));
-
-	if (dmg.crush)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			"damage": dmg.crush.toFixed(1),
-			"damageType": g_TooltipTextFormats.unit[0] + translate("Crush") + g_TooltipTextFormats.unit[1]
-		}));
-
-	return dmgArray.join('[font="sans-12"]' + translate(", ") + '[/font]');
+	return Object.keys(g_DamageTypes).filter(
+		dmgType => dmg[dmgType]).map(
+		dmgType => sprintf(translate("%(damage)s %(damageType)s"), {
+			"damage": dmg[dmgType].toFixed(1),
+			"damageType": unitFont(g_DamageTypes[dmgType])
+		})).join(commaFont(translate(", ")));
 }
 
-function getAttackTypeLabel(type)
-{
-	if (type === "Charge") return translate("Charge Attack:");
-	if (type === "Melee") return translate("Melee Attack:");
-	if (type === "Ranged") return translate("Ranged Attack:");
-	if (type === "Capture") return translate("Capture Attack:");
-
-	warn(sprintf("Internationalization: Unexpected attack type found with code ‘%(attackType)s’. This attack type must be internationalized.", { "attackType": type }));
-	return translate("Attack:");
-}
-
+// TODO: should also show minRange and splash damage
 function getAttackTooltip(template)
 {
-	let attacks = [];
 	if (!template.attack)
 		return "";
 
-	let rateLabel = g_TooltipTextFormats.header[0] + (template.buildingAI ? translate("Interval:") : translate("Rate:")) + g_TooltipTextFormats.header[1];
-
+	let attacks = [];
 	for (let type in template.attack)
 	{
 		if (type == "Slaughter")
-			continue; // Slaughter is not a real attack, so do not show it.
+			continue; // Slaughter is used to kill animals, so do not show it.
 		if (type == "Charge")
 			continue; // Charging isn't implemented yet and shouldn't be displayed.
 
 		let rate = sprintf(translate("%(label)s %(details)s"), {
-			"label": rateLabel,
+			"label":
+				headerFont(
+					template.buildingAI && type == "Ranged" ?
+						translate("Interval:") :
+						translate("Rate:")),
 			"details": attackRateDetails(template, type)
 		});
 
-		let attackLabel = g_TooltipTextFormats.header[0] + getAttackTypeLabel(type) + g_TooltipTextFormats.header[1];
-		if (type == "Capture")
+		let attackLabel = headerFont(g_AttackTypes[type]);
+		if (type == "Capture" || type != "Ranged")
 		{
 			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
 				"attackLabel": attackLabel,
-				"details": template.attack[type].value,
-				"rate": rate
-			}));
-			continue;
-		}
-		if (type != "Ranged")
-		{
-			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
-				"attackLabel": attackLabel,
-				"details": damageTypesToText(template.attack[type]),
+				"details":
+					type == "Capture" ?
+						template.attack.Capture.value :
+						damageTypesToText(template.attack[type]),
 				"rate": rate
 			}));
 			continue;
@@ -198,73 +176,54 @@ function getAttackTooltip(template)
 
 		let realRange = template.attack[type].elevationAdaptedRange;
 		let range = Math.round(template.attack[type].maxRange);
-		let rangeLabel = g_TooltipTextFormats.header[0] + translate("Range:") + g_TooltipTextFormats.header[1];
-		let relativeRange = Math.round((realRange - range));
-		let meters = g_TooltipTextFormats.unit[0] + translatePlural("meter", "meters", range) + g_TooltipTextFormats.unit[1];
+		let relativeRange = realRange ? Math.round(realRange - range) : 0;
 
-		if (relativeRange) // show if it is non-zero
-			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"), {
-				"attackLabel": attackLabel,
-				"details": damageTypesToText(template.attack[type]),
-				"rangeLabel": rangeLabel,
-				"rangeString": sprintf(
-					translatePlural("%(range)s %(meters)s", "%(range)s %(meters)s", range), {
-						"range": range,
-						"meters": meters
-					}),
-				"relative": relativeRange > 0 ? "+" + relativeRange : relativeRange,
-				"rate": rate
-			}));
-		else
-			attacks.push(sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"), {
-				"attackLabel": attackLabel,
-				"damageTypes": damageTypesToText(template.attack[type]),
-				"rangeLabel": rangeLabel,
-				"rangeString": sprintf(
-					translatePlural("%(range)s %(meters)s", "%(range)s %(meters)s", range), {
-						"range": range,
-						"meters": meters
-					}),
-				rate: rate
-			}));
+		let rangeString = relativeRange ?
+			translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s") :
+			translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s");
+
+		attacks.push(sprintf(rangeString, {
+			"attackLabel": attackLabel,
+			"damageTypes": damageTypesToText(template.attack[type]),
+			"rangeLabel": translate("Range:"),
+			"rangeString": sprintf(
+				translatePlural("%(range)s %(meters)s", "%(range)s %(meters)s", range), {
+					"range": range,
+					"meters": unitFont(translatePlural("meter", "meters", range))
+				}),
+			"rate": rate,
+			"relative": relativeRange > 0 ? "+" + relativeRange : relativeRange,
+		}));
 	}
-
 	return attacks.join("\n");
 }
 
-function getRepairRateTooltip(rate)
+function getRepairRateTooltip(template)
 {
-	return "\n" + sprintf(translate("%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
-		"repairRateLabel": g_TooltipTextFormats.header[0] + translate("Repair Rate:") + g_TooltipTextFormats.header[1],
-		"value": Math.round(rate * 10) / 10,
-		"health": g_TooltipTextFormats.unit[0] + translate("health") + g_TooltipTextFormats.unit[1],
-		"second": g_TooltipTextFormats.unit[0] + translate("second") + g_TooltipTextFormats.unit[1],
-		"worker": g_TooltipTextFormats.unit[0] + translate("worker") + g_TooltipTextFormats.unit[1]
+	if (!template.repairRate)
+		return "";
+
+	return sprintf(translate("%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
+		"repairRateLabel": headerFont(translate("Repair Rate:")),
+		"value": Math.round(template.repairRate * 10) / 10,
+		"health": unitFont(translate("health")),
+		"second": unitFont(translate("second")),
+		"worker": unitFont(translate("worker"))
 	});
 }
 
-function getBuildRateTooltip(rate)
+function getBuildRateTooltip(template)
 {
-	return "\n" + sprintf(translate("%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
-		"buildRateLabel": g_TooltipTextFormats.header[0] + translate("Build Rate:") + g_TooltipTextFormats.header[1],
-		"value": Math.round(rate * 10) / 10,
-		"health": g_TooltipTextFormats.unit[0] + translate("health") + g_TooltipTextFormats.unit[1],
-		"second": g_TooltipTextFormats.unit[0] + translate("second") + g_TooltipTextFormats.unit[1],
-		"worker": g_TooltipTextFormats.unit[0] + translate("worker") + g_TooltipTextFormats.unit[1]
+	if (!template.buildRate)
+		return "";
+
+	return sprintf(translate("%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
+		"buildRateLabel": headerFont(translate("Build Rate:")),
+		"value": Math.round(template.buildRate * 10) / 10,
+		"health": unitFont(translate("health")),
+		"second": unitFont(translate("second")),
+		"worker": unitFont(translate("worker"))
 	});
-}
-
-/**
- * Translates a cost component identifier as they are used internally
- * (e.g. "population", "food", etc.) to proper display names.
- */
-function getCostComponentDisplayIcon(costComponentName)
-{
-	if (costComponentName in g_CostDisplayIcons)
-		return g_CostDisplayIcons[costComponentName];
-
-	warn(sprintf("The specified cost component, ‘%(component)s’, is not currently supported.", { "component": costComponentName }));
-	return "";
 }
 
 /**
@@ -295,11 +254,27 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 	for (let type in g_CostDisplayIcons)
 		if (totalCosts[type])
 			costs.push(sprintf(translate("%(component)s %(cost)s"), {
-				"component": getCostComponentDisplayIcon(type),
+				"component": g_CostDisplayIcons[type],
 				"cost": totalCosts[type]
 			}));
 
 	return costs;
+}
+function getGatherTooltip(template)
+{
+	if (!template.gather)
+		return "";
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Gather Rates:")),
+		"details":
+			Object.keys(template.gather).map(
+				type => sprintf(translate("%(resourceIcon)s %(rate)s"), {
+					"resourceIcon": g_CostDisplayIcons[type],
+					"rate": template.gather[type]
+				})
+			).join("  ")
+	});
 }
 
 /**
@@ -321,7 +296,6 @@ function getWallPieceTooltip(wallTypes)
 	for (let i = 1; i < wallTypes.length; ++i)
 	{
 		for (let resource in wallTypes[i].cost)
-		{
 			// Break out of the same-type mode if this wall requires
 			// resource types that the first didn't.
 			if (wallTypes[i].cost[resource] && !resourceCount[resource])
@@ -329,10 +303,8 @@ function getWallPieceTooltip(wallTypes)
 				sameTypes = false;
 				break;
 			}
-		}
 
 		for (let resource in resourceCount)
-		{
 			if (wallTypes[i].cost[resource])
 				resourceCount[resource].push(wallTypes[i].cost[resource]);
 			else
@@ -340,25 +312,17 @@ function getWallPieceTooltip(wallTypes)
 				sameTypes = false;
 				break;
 			}
-		}
 	}
 
 	if (sameTypes)
-	{
 		for (let resource in resourceCount)
-		{
-			let resourceMin = Math.min.apply(Math, resourceCount[resource]);
-			let resourceMax = Math.max.apply(Math, resourceCount[resource]);
-
 			// Translation: This string is part of the resources cost string on
 			// the tooltip for wall structures.
 			out.push(sprintf(translate("%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"), {
-				"resourceIcon": getCostComponentDisplayIcon(resource),
-				"minimum": resourceMin,
-				"maximum": resourceMax
+				"resourceIcon": g_CostDisplayIcons[resource],
+				"minimum": Math.min.apply(Math, resourceCount[resource]),
+				"maximum": Math.max.apply(Math, resourceCount[resource])
 			}));
-		}
-	}
 	else
 		for (let i = 0; i < wallTypes.length; ++i)
 			out.push(getEntityCostComponentsTooltipString(wallTypes[i]).join(", "));
@@ -400,8 +364,8 @@ function getPopulationBonusTooltip(template)
 {
 	let popBonus = "";
 	if (template.cost && template.cost.populationBonus)
-		popBonus = "\n" + sprintf(translate("%(label)s %(populationBonus)s"), {
-			"label": g_TooltipTextFormats.header[0] + translate("Population Bonus:") + g_TooltipTextFormats.header[1],
+		popBonus = sprintf(translate("%(label)s %(populationBonus)s"), {
+			"label": headerFont(translate("Population Bonus:")),
 			"populationBonus": template.cost.populationBonus
 		});
 	return popBonus;
@@ -412,14 +376,17 @@ function getPopulationBonusTooltip(template)
  */
 function getNeededResourcesTooltip(resources)
 {
+	if (!resources)
+		return "";
+
 	let formatted = [];
 	for (let resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
-			"component": '[font="sans-12"]' + getCostComponentDisplayIcon(resource) + '[/font]',
+			"component": '[font="sans-12"]' + g_CostDisplayIcons[resource] + '[/font]',
 			"cost": resources[resource]
 		}));
 
-	return '\n\n[font="sans-bold-13"][color="red"]' + translate("Insufficient resources:") + '[/color][/font]\n' + formatted.join("  ");
+	return '\n[font="sans-bold-13"][color="red"]' + translate("Insufficient resources:") + '[/color][/font]\n' + formatted.join("  ");
 }
 
 function getSpeedTooltip(template)
@@ -427,23 +394,22 @@ function getSpeedTooltip(template)
 	if (!template.speed)
 		return "";
 
-	let label = g_TooltipTextFormats.header[0] + translate("Speed:") + g_TooltipTextFormats.header[1];
 	let speeds = [];
 
 	if (template.speed.walk)
 		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
 			"speed": Math.round(template.speed.walk),
-			"movementType": g_TooltipTextFormats.unit[0] + translate("Walk") + g_TooltipTextFormats.unit[1]
+			"movementType": unitFont(translate("Walk"))
 		}));
 
 	if (template.speed.run)
 		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
 			"speed": Math.round(template.speed.run),
-			"movementType": g_TooltipTextFormats.unit[0] + translate("Run") + g_TooltipTextFormats.unit[1]
+			"movementType": unitFont(translate("Run"))
 		}));
 
 	return sprintf(translate("%(label)s %(speeds)s"), {
-		"label": label,
+		"label": headerFont(translate("Speed:")),
 		"speeds": speeds.join(translate(", "))
 	});
 }
@@ -453,25 +419,24 @@ function getHealerTooltip(template)
 	if (!template.healer)
 		return "";
 
-	let healer = [
+	return [
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.HP), {
-			"label": g_TooltipTextFormats.header[0] + translate("Heal:") + g_TooltipTextFormats.header[1],
+			"label": headerFont(translate("Heal:")),
 			"val": template.healer.HP,
 			// Translation: Short for hit points (or health points) that are healed in one healing action
-			"unit": g_TooltipTextFormats.unit[0] + translatePlural("HP", "HP", template.healer.HP) + g_TooltipTextFormats.unit[1]
+			"unit": unitFont(translatePlural("HP", "HP", template.healer.HP))
 		}),
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Range), {
-			"label": g_TooltipTextFormats.header[0] + translate("Range:") + g_TooltipTextFormats.header[1],
+			"label": headerFont(translate("Range:")),
 			"val": template.healer.Range,
-			"unit": g_TooltipTextFormats.unit[0] + translatePlural("meter", "meters", template.healer.Range) + g_TooltipTextFormats.unit[1]
+			"unit": unitFont(translatePlural("meter", "meters", template.healer.Range))
 		}),
 		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Rate/1000), {
-			"label": g_TooltipTextFormats.header[0] + translate("Rate:") + g_TooltipTextFormats.header[1],
+			"label": headerFont(translate("Rate:")),
 			"val": template.healer.Rate/1000,
-			"unit": g_TooltipTextFormats.unit[0] + translatePlural("second", "seconds", template.healer.Rate/1000) + g_TooltipTextFormats.unit[1]
+			"unit": unitFont(translatePlural("second", "seconds", template.healer.Rate / 1000))
 		})
-	];
-	return healer.join(translate(", "));
+	].join(translate(", "));
 }
 
 function getAurasTooltip(template)
@@ -479,67 +444,50 @@ function getAurasTooltip(template)
 	if (!template.auras)
 		return "";
 
-	let txt = "";
-	for (let aura in template.auras)
-		txt += '\n' + sprintf(translate("%(auralabel)s %(aurainfo)s"), {
-			"auralabel": g_TooltipTextFormats.header[0] + sprintf(translate("%(auraname)s:"), {
+	let tooltips = Object.keys(template.auras).map(
+		aura => sprintf(translate("%(auralabel)s %(aurainfo)s"), {
+			"auralabel": headerFont(sprintf(translate("%(auraname)s:"), {
 				"auraname": translate(template.auras[aura].name)
-			}) + g_TooltipTextFormats.header[1],
-			"aurainfo": g_TooltipTextFormats.body[0] + translate(template.auras[aura].description) + g_TooltipTextFormats.body[1]
-		});
-	return txt;
+			})),
+			"aurainfo": bodyFont(translate(template.auras[aura].description))
+		}));
+	return tooltips.join("\n");
 }
 
 function getEntityNames(template)
 {
-	if (template.name.specific)
-	{
-		if (template.name.generic && template.name.specific != template.name.generic)
-			return sprintf(translate("%(specificName)s (%(genericName)s)"), {
-				"specificName": template.name.specific,
-				"genericName": template.name.generic
-			});
-		return template.name.specific;
-	}
-	if (template.name.generic)
+	if (!template.name.specific)
 		return template.name.generic;
 
-	warn("Entity name requested on an entity without a name, specific or generic.");
-	return translate("???");
-}
+	if (template.name.specific == template.name.generic)
+		return template.name.specific;
 
+	return sprintf(translate("%(specificName)s (%(genericName)s)"), {
+		"specificName": template.name.specific,
+		"genericName": template.name.generic
+	});
+
+}
 function getEntityNamesFormatted(template)
 {
-	let names = "";
-	let generic = template.name.generic;
-	let specific = template.name.specific;
-	if (specific)
-	{
-		// drop caps for specific name
-		names += '[font="sans-bold-16"]' + specific[0] + '[/font]' +
-			'[font="sans-bold-12"]' + specific.slice(1).toUpperCase() + '[/font]';
+	if (!template.name.specific)
+		return '[font="sans-bold-16"]' + template.name.generic + "[/font]";
 
-		if (generic)
-			names += '[font="sans-bold-16"] (' + generic + ')[/font]';
-	}
-	else if (generic)
-		names = '[font="sans-bold-16"]' + generic + "[/font]";
-	else
-		names = "???";
-
-	return names;
+	return sprintf(translate("%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"), {
+		"specificName":
+			'[font="sans-bold-16"]' + template.name.specific[0] + '[/font]' +
+			'[font="sans-bold-12"]' + template.name.specific.slice(1).toUpperCase() + '[/font]',
+		"genericName": template.name.generic,
+		"fontStart": '[font="sans-bold-16"]',
+		"fontEnd": '[/font]'
+	});
 }
 
 function getVisibleEntityClassesFormatted(template)
 {
-	let r = "";
-	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
-	{
-		r += '\n' + g_TooltipTextFormats.header[0] + translate("Classes:") + g_TooltipTextFormats.header[1];
-		let classes = [];
-		for (let c of template.visibleIdentityClasses)
-			classes.push(translate(c));
-		r += ' ' + g_TooltipTextFormats.body[0] + classes.join(translate(", ")) + g_TooltipTextFormats.body[1];
-	}
-	return r;
+	if (!template.visibleIdentityClasses || !template.visibleIdentityClasses.length)
+		return "";
+
+	return headerFont(translate("Classes:")) + ' ' +
+		bodyFont(template.visibleIdentityClasses.map(c => translate(c)).join(translate(", ")));
 }

@@ -177,10 +177,10 @@ function displaySingle(entState)
 	if (entState.resourceSupply)
 	{
 		let resources = entState.resourceSupply.isInfinite ? translate("∞") :  // Infinity symbol
-						sprintf(translate("%(amount)s / %(max)s"), {
-							"amount": Math.ceil(+entState.resourceSupply.amount),
-							"max": entState.resourceSupply.max
-						});
+			sprintf(translate("%(amount)s / %(max)s"), {
+				"amount": Math.ceil(+entState.resourceSupply.amount),
+				"max": entState.resourceSupply.max
+			});
 
 		let resourceType = getResourceTypeDisplayName(entState.resourceSupply.type);
 
@@ -267,68 +267,41 @@ function displaySingle(entState)
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = true;
 	}
 
-	// Set Player details
 	Engine.GetGUIObjectByName("specific").caption = specificName;
 	Engine.GetGUIObjectByName("player").caption = playerName;
 	Engine.GetGUIObjectByName("playerColorBackground").sprite = "color: " + playerColor;
-	
-	if (genericName !== specificName)
-		Engine.GetGUIObjectByName("generic").caption = sprintf(translate("(%(genericName)s)"), { "genericName": genericName });
-	else
-		Engine.GetGUIObjectByName("generic").caption = "";
+	Engine.GetGUIObjectByName("generic").caption = genericName == specificName ? "" :
+		sprintf(translate("(%(genericName)s)"), {
+			"genericName": genericName
+		});
 
-	if ("gaia" != playerState.civ)
-	{
-		Engine.GetGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
-		Engine.GetGUIObjectByName("player").tooltip = civName;
-	}
-	else
-	{
-		Engine.GetGUIObjectByName("playerCivIcon").sprite = "";
-		Engine.GetGUIObjectByName("player").tooltip = "";
-	}
+	let isGaia = "gaia" == playerState.civ;
+	Engine.GetGUIObjectByName("playerCivIcon").sprite = isGaia ? "" : "stretched:grayscale:" + civEmblem;
+	Engine.GetGUIObjectByName("player").tooltip = isGaia ? "" : civName;
 
-	// Icon image
 	// TODO: we should require all entities to have icons
 	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "bkFillBlack";
 
-	let armorString = getArmorTooltip(entState.armour);
+	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = [
+		getAttackTooltip,
+		getArmorTooltip,
+		getRepairRateTooltip,
+		getBuildRateTooltip
+	].map(func => func(entState)).filter(tip => tip).join("\n");
 
-	// Attack and Armor
-	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = entState.attack ? (getAttackTooltip(entState) + "\n" + armorString) : armorString;
-
-	// Repair Rate
-	if (entState.repairRate)
-		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip += getRepairRateTooltip(entState.repairRate);
-
-	// Build Rate
-	if (entState.buildRate)
-		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip += getBuildRateTooltip(entState.buildRate);
-
-	// Icon Tooltip
-	let iconTooltip = "";
+	let iconTooltips = [];
 
 	if (genericName)
-		iconTooltip = "[font=\"sans-bold-16\"]" + genericName + "[/font]";
+		iconTooltips.push("[font=\"sans-bold-16\"]" + genericName + "[/font]");
 
-	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
-	{
-		iconTooltip += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
+	iconTooltips = iconTooltips.concat([
+		getVisibleEntityClassesFormatted,
+		getAurasTooltip,
+		getEntityTooltip
+	].map(func => func(template)));
 
-		iconTooltip += "[font=\"sans-13\"]" +
-			template.visibleIdentityClasses.map(c => translate(c)).join(translate(", ")) +
-			"[/font]";
-	}
+	Engine.GetGUIObjectByName("iconBorder").tooltip = iconTooltips.filter(tip => tip).join("\n");
 
-	if (template.auras)
-		iconTooltip += getAurasTooltip(template);
-
-	if (template.tooltip)
-		iconTooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
-
-	Engine.GetGUIObjectByName("iconBorder").tooltip = iconTooltip;
-
-	// Unhide Details Area
 	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = false;
 	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = true;
 }
@@ -417,7 +390,7 @@ function displayMultiple(selection)
 	let numberOfUnits = Engine.GetGUIObjectByName("numberOfUnits");
 	numberOfUnits.caption = selection.length;
 	numberOfUnits.tooltip = Object.keys(totalResourcesCarried).map(res =>
-		getCostComponentDisplayIcon(res) + totalResourcesCarried[res]
+		g_CostDisplayIcons[res] + totalResourcesCarried[res]
 	).join(" ");
 
 	// Unhide Details Area

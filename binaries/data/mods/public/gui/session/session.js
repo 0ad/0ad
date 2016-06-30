@@ -824,22 +824,17 @@ function updateHeroes()
 
 function createHeroTooltip(heroState, template)
 {
-	let tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]" + "\n" +
-		sprintf(translate("%(label)s %(current)s / %(max)s"), {
-			"label": "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]",
-			"current": Math.ceil(heroState.hitpoints),
-			"max": Math.ceil(heroState.maxHitpoints)
-		});
-
-	if (heroState.attack)
-		tooltip += "\n" + getAttackTooltip(heroState);
-
-	tooltip += "\n" + getArmorTooltip(heroState.armour);
-
-	if (template.tooltip)
-		tooltip += "\n" + template.tooltip;
-
-	return tooltip;
+	return [
+		"[font=\"sans-bold-16\"]" + template.name.specific + "[/font]" + "\n" +
+			sprintf(translate("%(label)s %(current)s / %(max)s"), {
+				"label": "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]",
+				"current": Math.ceil(heroState.hitpoints),
+				"max": Math.ceil(heroState.maxHitpoints)
+			}),
+		getAttackTooltip(heroState),
+		getArmorTooltip(heroState),
+		getEntityTooltip(heroState)
+	].filter(tip => tip).join("\n");
 }
 
 function displayHeroes()

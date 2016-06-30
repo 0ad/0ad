@@ -1,5 +1,19 @@
 var g_DrawLimits = {}; // GUI limits. Populated by predraw()
 
+var g_TooltipFunctions = [
+	getEntityNamesFormatted,
+	getEntityCostTooltip,
+	getEntityTooltip,
+	getAurasTooltip,
+	getHealthTooltip,
+	getHealerTooltip,
+	getAttackTooltip,
+	getArmorTooltip,
+	getSpeedTooltip,
+	getGatherTooltip,
+	getPopulationBonusTooltip
+];
+
 /**
  * Draw the structree
  *
@@ -363,54 +377,9 @@ function predraw()
  * Assemble a tooltip text
  *
  * @param  template Information about a Unit, a Structure or a Technology
- *
  * @return  The tooltip text, formatted.
  */
 function assembleTooltip(template)
 {
-	let txt = getEntityNamesFormatted(template);
-	txt += '\n' + getEntityCostTooltip(template, 1);
-
-	if (template.tooltip)
-		txt += '\n' + g_TooltipTextFormats.body[0] +  translate(template.tooltip) + g_TooltipTextFormats.body[1];
-
-	if (template.auras)
-		txt += getAurasTooltip(template);
-
-	if (template.health)
-		txt += '\n' + sprintf(translate("%(label)s %(details)s"), {
-			"label": g_TooltipTextFormats.header[0] + translate("Health:") + g_TooltipTextFormats.header[1],
-			"details": template.health
-		});
-
-	if (template.healer)
-		txt += '\n' + getHealerTooltip(template);
-
-	if (template.attack)
-		txt += '\n' + getAttackTooltip(template);
-
-	if (template.armour)
-		txt += '\n' + getArmorTooltip(template.armour);
-
-	if (template.speed)
-		txt += '\n' + getSpeedTooltip(template);
-
-	if (template.gather)
-	{
-		let rates = [];
-		for (let type in template.gather)
-			rates.push(sprintf(translate("%(resourceIcon)s %(rate)s"), {
-				"resourceIcon": getCostComponentDisplayIcon(type),
-				"rate": template.gather[type]
-			}));
-
-		txt += '\n' + sprintf(translate("%(label)s %(details)s"), {
-			"label": g_TooltipTextFormats.header[0] + translate("Gather Rates:") + g_TooltipTextFormats.header[1],
-			"details": rates.join("  ")
-		});
-	}
-
-	txt += getPopulationBonusTooltip(template);
-
-	return txt;
+	return g_TooltipFunctions.map(func => func(template)).filter(tip => tip).join("\n");
 }
