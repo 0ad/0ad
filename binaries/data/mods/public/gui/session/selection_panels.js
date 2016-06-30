@@ -1013,7 +1013,7 @@ g_SelectionPanels.Training = {
 			);
 
 		tooltips.push(
-			"[color=\"" + g_HotkeyColor + "\"]" + " " +
+			"[color=\"" + g_HotkeyColor + "\"]" +
 			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) +
 			"[/color]");
 
