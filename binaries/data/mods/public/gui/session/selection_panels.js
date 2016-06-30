@@ -904,7 +904,7 @@ g_SelectionPanels.Selection = {
 		let tooltip = getEntityNames(template);
 		if (data.carried)
 			tooltip += "\n" + Object.keys(data.carried).map(res =>
-				getCostComponentDisplayIcon(res) + data.carried[res]
+				g_CostDisplayIcons[res] + data.carried[res]
 			).join(" ");
 		data.button.tooltip = tooltip;
 
