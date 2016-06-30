@@ -198,6 +198,50 @@ function getAttackTooltip(template)
 	return attacks.join("\n");
 }
 
+function getGarrisonTooltip(template)
+{
+	if (!template.garrisonHolder)
+		return "";
+
+	return sprintf(translate("%(label)s: %(garrisonLimit)s"), {
+		"label": headerFont(translate("Garrison Limit")),
+		"garrisonLimit": template.garrisonHolder.capacity || template.garrisonHolder.max
+	});
+}
+
+function getProjectilesTooltip(template)
+{
+	if (!template.garrisonHolder || !template.buildingAI)
+		return "";
+
+	let limit = Math.min(
+		template.buildingAI.maxArrowCount || Infinity,
+		template.buildingAI.defaultArrowCount +
+			template.buildingAI.garrisonArrowMultiplier *
+			(template.garrisonHolder.capacity || template.garrisonHolder.max)
+	);
+
+	if (!limit)
+		return "";
+
+	return [
+		sprintf(translate("%(label)s: %(value)s"), {
+			"label": headerFont(translate("Projectile Limit")),
+			"value": limit
+		}),
+
+		sprintf(translate("%(label)s: %(value)s"), {
+			"label": headerFont(translateWithContext("projectiles", "Default")),
+			"value": template.buildingAI.defaultArrowCount
+		}),
+
+		sprintf(translate("%(label)s: %(value)s"), {
+			"label": headerFont(translateWithContext("projectiles", "Per Unit")),
+			"value": template.buildingAI.garrisonArrowMultiplier
+		})
+	].join(commaFont(translate(", ")));
+}
+
 function getRepairRateTooltip(template)
 {
 	if (!template.repairRate)

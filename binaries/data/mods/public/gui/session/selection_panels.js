@@ -312,6 +312,8 @@ g_SelectionPanels.Construction = {
 			getAurasTooltip,
 			getEntityTooltip,
 			getEntityCostTooltip,
+			getGarrisonTooltip,
+			getProjectilesTooltip,
 			getPopulationBonusTooltip
 		].map(func => func(template));
 
@@ -1005,6 +1007,8 @@ g_SelectionPanels.Training = {
 				getHealthTooltip(template),
 				getAttackTooltip(template),
 				getArmorTooltip(template),
+				getGarrisonTooltip(template),
+				getProjectilesTooltip(template),
 				getSpeedTooltip(template)
 			);
 

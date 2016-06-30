@@ -9,6 +9,8 @@ var g_TooltipFunctions = [
 	getHealerTooltip,
 	getAttackTooltip,
 	getArmorTooltip,
+	getGarrisonTooltip,
+	getProjectilesTooltip,
 	getSpeedTooltip,
 	getGatherTooltip,
 	getPopulationBonusTooltip

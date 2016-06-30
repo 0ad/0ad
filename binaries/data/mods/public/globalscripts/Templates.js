@@ -132,6 +132,17 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 		}
 	}
 
+	if (template.BuildingAI)
+	{
+		ret.buildingAI = {};
+		if (template.BuildingAI.DefaultArrowCount)
+			ret.buildingAI.defaultArrowCount = func("BuildingAI/DefaultArrowCount", +template.BuildingAI.DefaultArrowCount, player, template);
+		if (template.BuildingAI.GarrisonArrowMultiplier)
+			ret.buildingAI.garrisonArrowMultiplier = func("BuildingAI/GarrisonArrowMultiplier", +template.BuildingAI.GarrisonArrowMultiplier, player, template);
+		if (template.BuildingAI.MaxArrowCount)
+			ret.buildingAI.maxArrowCount = func("BuildingAI/MaxArrowCount", +template.BuildingAI.MaxArrowCount, player, template);
+	}
+
 	if (template.BuildRestrictions)
 	{
 		// required properties
@@ -181,6 +192,13 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			ret.footprint.circle = {"radius": +template.Footprint.Circle["@radius"]};
 		else
 			warn("GetTemplateDataHelper(): Unrecognized Footprint type");
+	}
+
+	if (template.GarrisonHolder)
+	{
+		ret.garrisonHolder = {};
+		if (template.GarrisonHolder.Max)
+			ret.garrisonHolder.max = func("GarrisonHolder/Max", +template.GarrisonHolder.Max, player, template);
 	}
 
 	if (template.Obstruction)

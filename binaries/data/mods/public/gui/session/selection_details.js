@@ -286,7 +286,9 @@ function displaySingle(entState)
 		getAttackTooltip,
 		getArmorTooltip,
 		getRepairRateTooltip,
-		getBuildRateTooltip
+		getBuildRateTooltip,
+		getGarrisonTooltip,
+		getProjectilesTooltip
 	].map(func => func(entState)).filter(tip => tip).join("\n");
 
 	let iconTooltips = [];
