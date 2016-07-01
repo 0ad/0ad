@@ -208,21 +208,15 @@ Attack.prototype.Serialize = null; // we have no dynamic state to save
 
 Attack.prototype.GetAttackTypes = function()
 {
-	let ret = [];
-	if (this.template.Charge) ret.push("Charge");
-	if (this.template.Melee) ret.push("Melee");
-	if (this.template.Ranged) ret.push("Ranged");
-	if (this.template.Capture) ret.push("Capture");
-	return ret;
+	return ["Melee", "Ranged", "Capture", "Charge"].filter(type => this.template[type]);
 };
 
 Attack.prototype.GetPreferredClasses = function(type)
 {
 	if (this.template[type] && this.template[type].PreferredClasses &&
 	    this.template[type].PreferredClasses._string)
-	{
 		return this.template[type].PreferredClasses._string.split(/\s+/);
-	}
+
 	return [];
 };
 
@@ -230,9 +224,8 @@ Attack.prototype.GetRestrictedClasses = function(type)
 {
 	if (this.template[type] && this.template[type].RestrictedClasses &&
 	    this.template[type].RestrictedClasses._string)
-	{
 		return this.template[type].RestrictedClasses._string.split(/\s+/);
-	}
+
 	return [];
 };
 
@@ -273,16 +266,7 @@ Attack.prototype.CanAttack = function(target)
 		if (!restrictedClasses.length)
 			return true;
 
-		let canAttack = true;
-		for (let targetClass of targetClasses)
-		{
-			if (restrictedClasses.indexOf(targetClass) == -1)
-				continue;
-			canAttack = false;
-			break;
-		}
-		if (canAttack)
-			return true;
+		return targetClasses.every(c => restrictedClasses.indexOf(c) == -1);
 	}
 
 	return false;
@@ -327,10 +311,8 @@ Attack.prototype.GetFullAttackRange = function()
 		if (type == "Slaughter")
 			continue;
 		let range = this.GetRange(type);
-		if (range.min < ret.min)
-			ret.min = range.min;
-		if (range.max > ret.max)
-			ret.max = range.max;
+		ret.min = Math.min(ret.min, range.min);
+		ret.max = Math.max(ret.max, range.max);
 	}
 	return ret;
 };
@@ -341,12 +323,8 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	if (cmpFormation)
 	{
 		// TODO: Formation against formation needs review
-		let best = ["Ranged", "Melee", "Capture"];
 		let types = this.GetAttackTypes();
-		for (let attack of best)
-			if (types.indexOf(attack) != -1)
-				return attack;
-		return undefined;
+		return ["Ranged", "Melee", "Capture"].find(types.indexOf(attack) != -1);
 	}
 
 	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
@@ -354,16 +332,14 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		return undefined;
 
 	let targetClasses = cmpIdentity.GetClassesList();
-	let isTargetClass = function (className) { return targetClasses.indexOf(className) != -1; };
+	let isTargetClass = className => targetClasses.indexOf(className) != -1;
 
 	// Always slaughter domestic animals instead of using a normal attack
 	if (isTargetClass("Domestic") && this.template.Slaughter)
 		return "Slaughter";
 
 	let attack = this;
-	let isAllowed = function (type) { return !attack.GetRestrictedClasses(type).some(isTargetClass); };
-
-	let types = this.GetAttackTypes().filter(isAllowed);
+	let types = this.GetAttackTypes().filter(type => attack.GetRestrictedClasses(type).every(isTargetClass));
 
 	// check if the target is capturable
 	let captureIndex = types.indexOf("Capture");
@@ -378,10 +354,11 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		types.splice(captureIndex, 1);
 	}
 
-	let isPreferred = function (className) { return attack.GetPreferredClasses(className).some(isTargetClass); };
-	let byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); };
+	let isPreferred = className => attack.GetPreferredClasses(className).some(isTargetClass);
 
-	return types.sort(byPreference).pop();
+	return types.sort((a, b) =>
+		(types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) -
+		(types.indexOf(b) + (isPreferred(b) ? types.length : 0))).pop();
 };
 
 Attack.prototype.CompareEntitiesByPreference = function(a, b)
@@ -739,12 +716,9 @@ Attack.prototype.OnValueModification = function(msg)
 	if (!cmpUnitAI)
 		return;
 
-	for (let type of this.GetAttackTypes())
-		if (msg.valueNames.indexOf("Attack/"+type+"/MaxRange") !== -1)
-		{
-			cmpUnitAI.UpdateRangeQueries();
-			return;
-		}
+	if (this.GetAttackTypes().some(msg =>
+	      msg.valueNames.indexOf("Attack/" + type + "/MaxRange") != -1))
+		cmpUnitAI.UpdateRangeQueries();
 };
 
 Engine.RegisterComponentType(IID_Attack, "Attack", Attack);
