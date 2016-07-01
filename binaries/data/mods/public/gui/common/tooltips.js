@@ -249,7 +249,7 @@ function getRepairRateTooltip(template)
 
 	return sprintf(translate("%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
 		"repairRateLabel": headerFont(translate("Repair Rate:")),
-		"value": Math.round(template.repairRate * 10) / 10,
+		"value": template.repairRate.toFixed(1),
 		"health": unitFont(translate("health")),
 		"second": unitFont(translate("second")),
 		"worker": unitFont(translate("worker"))
@@ -263,7 +263,7 @@ function getBuildRateTooltip(template)
 
 	return sprintf(translate("%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
 		"buildRateLabel": headerFont(translate("Build Rate:")),
-		"value": Math.round(template.buildRate * 10) / 10,
+		"value": template.buildRate.toFixed(1),
 		"health": unitFont(translate("health")),
 		"second": unitFont(translate("second")),
 		"worker": unitFont(translate("worker"))
@@ -442,13 +442,13 @@ function getSpeedTooltip(template)
 
 	if (template.speed.walk)
 		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
-			"speed": Math.round(template.speed.walk),
+			"speed": template.speed.walk.toFixed(1),
 			"movementType": unitFont(translate("Walk"))
 		}));
 
 	if (template.speed.run)
 		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
-			"speed": Math.round(template.speed.run),
+			"speed": template.speed.run.toFixed(1),
 			"movementType": unitFont(translate("Run"))
 		}));
 
