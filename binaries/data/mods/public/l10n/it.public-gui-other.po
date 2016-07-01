@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-24 09:00+0200\n"
-"PO-Revision-Date: 2016-06-24 08:21+0000\n"
+"POT-Creation-Date: 2016-06-27 09:00+0200\n"
+"PO-Revision-Date: 2016-06-27 09:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -115,38 +115,65 @@ msgstr "mm:ss"
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
-#: gui/common/functions_utility.js:234
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:243
 #, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
-
-#: gui/common/functions_utility.js:236
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, defeated)"
-
-#: gui/common/functions_utility.js:238
-#, javascript-format
-msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr ""
 
-#: gui/common/functions_utility.js:240
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:246
 #, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr ""
 
-#: gui/common/functions_utility.js:261
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:252
+#, javascript-format
+msgid "%(playerName)s (%(civ)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:255
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(state)s)"
+msgstr ""
+
+#: gui/common/functions_utility.js:270
+msgid "Unknown Civilization"
+msgstr "Civiltà Sconosciuta"
+
+#: gui/common/functions_utility.js:277
+msgctxt "playerstate"
+msgid "defeated"
+msgstr ""
+
+#: gui/common/functions_utility.js:278
+msgctxt "playerstate"
+msgid "won"
+msgstr ""
+
+#: gui/common/functions_utility.js:295
 msgid "No Team"
 msgstr "Nessuna Squadra"
 
-#: gui/common/functions_utility.js:261
+#: gui/common/functions_utility.js:296
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Squadra %(team)s"
+
+#. Translation: Describe players of one team in a selected game, f.e. in the
+#. replay- or savegame menu or lobby
+#: gui/common/functions_utility.js:299
+#, javascript-format
+msgid ""
+"%(team)s:\n"
+"%(playerDescriptions)s"
+msgstr ""
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -369,8 +396,8 @@ msgstr "%(previousAmounts)s e %(lastAmount)s"
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:56
-#: gui/savedgames/load.js:127 gui/savedgames/load.js:130
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:61
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:120
 msgid ", "
 msgstr ", "
 
@@ -880,21 +907,23 @@ msgid ""
 msgstr "Resettare le opzioni cancellerà le tue impostazioni salvate. Vuoi continuare ?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:139
+#: gui/savedgames/load.js:129
 msgid "Warning"
 msgstr "Attenzione"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:140 gui/savedgames/load.js:189
-#: gui/savedgames/save.js:63 gui/savedgames/save.js:94
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "No"
 msgstr "No"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:140 gui/savedgames/load.js:189
-#: gui/savedgames/save.js:63 gui/savedgames/save.js:94
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "Yes"
 msgstr "Sì"
 
@@ -967,7 +996,7 @@ msgstr "Build: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Sei sicuro di voler uscire da 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
 msgid "Confirmation"
 msgstr "Conferma"
 
@@ -998,12 +1027,12 @@ msgstr "Manuale"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Non hai attivato gli stessi mod del replay."
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:126
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:116
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Richiede: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:129
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Attiva: %(mods)s"
@@ -1030,15 +1059,11 @@ msgstr "Replay non compatibile"
 msgid "No summary data available."
 msgstr "Nessun dato di riepilogo disponibile."
 
-#: gui/replaymenu/replay_actions.js:122
-msgid "Scores at the end of the game."
-msgstr "Punteggi al termine della partita."
-
-#: gui/replaymenu/replay_actions.js:155
+#: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Sei sicuro di voler eliminare questa registrazione permanentemente ?"
 
-#: gui/replaymenu/replay_actions.js:156
+#: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
 msgstr "Cancella replay"
 
@@ -1121,76 +1146,72 @@ msgstr "Partite classificate"
 msgid "Unrated games"
 msgstr "Partite non classificate"
 
-#: gui/replaymenu/replay_menu.js:276
+#: gui/replaymenu/replay_menu.js:283
 msgid "yyyy-MM-dd HH:mm"
 msgstr "aaaa-MM-gg HH:mm"
 
-#: gui/replaymenu/replay_menu.js:306
+#: gui/replaymenu/replay_menu.js:313
 msgid "yyyy-MM"
 msgstr "aaaa-MM"
 
-#: gui/replaymenu/replay_menu.js:357
-msgid "Unknown Civilization"
-msgstr "Civiltà Sconosciuta"
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
 msgstr "Nessun salvataggio trovato"
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:61
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr ""
 
-#: gui/savedgames/load.js:101
+#: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
 msgstr "Questo partita salvata potrebbe non essere compatibile:"
 
-#: gui/savedgames/load.js:106
+#: gui/savedgames/load.js:96
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Ha bisogno della versione 0 A.D. %(requiredVersion)s, mentre quella attuale è la versione %(currentVersion)s."
 
-#: gui/savedgames/load.js:111
+#: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
 msgstr "Richiede una versione più vecchia di 0 A.D."
 
-#: gui/savedgames/load.js:115
+#: gui/savedgames/load.js:105
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Richiede una versione del salvataggio %(requiredVersion)s di 0 A.D., mentre il salvataggio attuale è per la versione %(currentVersion)s."
 
-#: gui/savedgames/load.js:125
+#: gui/savedgames/load.js:115
 msgid "The savegame needs a different set of mods:"
 msgstr "Il salvataggio richiede un differente gruppo di modifiche:"
 
-#: gui/savedgames/load.js:134
+#: gui/savedgames/load.js:124
 msgid "Do you still want to proceed?"
 msgstr "Vuoi comunque procedere?"
 
-#: gui/savedgames/load.js:185 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:175 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:187 gui/savedgames/save.js:92
+#: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Il salvataggio verrà eliminato definitivamente, sei sicuro?"
 
-#: gui/savedgames/load.js:188 gui/savedgames/save.js:93
+#: gui/savedgames/load.js:178 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "ELIMINA"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:59
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Il salvataggio verrà sovrascritto definitivamente, sei sicuro?"
 
-#: gui/savedgames/save.js:62
+#: gui/savedgames/save.js:60
 msgid "OVERWRITE SAVE"
 msgstr "SALVA SOVRASCRIVENDO"
 
@@ -1214,7 +1235,7 @@ msgstr "%(val1)s a %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
 #: gui/summary/layout.js:94 gui/summary/layout.js:137
-#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):110
+#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Nome del giocatore"
 
@@ -1440,12 +1461,40 @@ msgstr "Controllo Mappa"
 msgid "Team total"
 msgstr "Totale Squadra"
 
-#: gui/summary/summary.js:170
+#: gui/summary/summary.js:145
+msgid "Are you sure you want to quit the lobby?"
+msgstr ""
+
+#: gui/summary/summary.js:197
+msgid "Scores at the end of the game."
+msgstr "Punteggi al termine della partita."
+
+#: gui/summary/summary.js:199
+msgid "You have been disconnected."
+msgstr ""
+
+#: gui/summary/summary.js:201
+msgid "You have left the game."
+msgstr ""
+
+#: gui/summary/summary.js:203
+msgid "You have won the battle!"
+msgstr ""
+
+#: gui/summary/summary.js:205
+msgid "You have been defeated..."
+msgstr ""
+
+#: gui/summary/summary.js:206
+msgid "You have abandoned the game."
+msgstr ""
+
+#: gui/summary/summary.js:211
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo di gioco trascorso: %(time)s"
 
-#: gui/summary/summary.js:177
+#: gui/summary/summary.js:219
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1489,7 +1538,7 @@ msgstr "Locale:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):27 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):28 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Cancella"
 
@@ -1646,7 +1695,7 @@ msgstr "Partita Singola"
 msgid "Campaigns"
 msgstr "Campagne"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):18
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):19
 msgid "Load Game"
 msgstr "Carica Partita"
 
@@ -1836,22 +1885,22 @@ msgid "Filter compatible replays"
 msgstr "Filtrare Replay Compatibili"
 
 #: gui/replaymenu/replay_menu.xml:(caption):153
-#: gui/savedgames/load.xml:(caption):63
+#: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
 msgstr "Tipo di Mappa:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
-#: gui/savedgames/load.xml:(caption):67
+#: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
 msgstr "Dimensione della Mappa"
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
-#: gui/savedgames/load.xml:(caption):71
+#: gui/savedgames/load.xml:(caption):65
 msgid "Victory:"
 msgstr "Vittoria:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
-#: gui/savedgames/load.xml:(caption):55
+#: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
 msgstr "Giocatori:"
 
@@ -1864,12 +1913,12 @@ msgid "Main Menu"
 msgstr "Menù Principale"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
-#: gui/savedgames/load.xml:(caption):32 gui/savedgames/save.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Elimina"
 
 #: gui/replaymenu/replay_menu.xml:(caption):245
-#: gui/summary/summary.xml:(caption):28
+#: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "Riepilogo"
 
@@ -1907,11 +1956,11 @@ msgctxt "replay"
 msgid "Duration"
 msgstr "Durata"
 
-#: gui/savedgames/load.xml:(caption):44
+#: gui/savedgames/load.xml:(caption):38
 msgid "Load"
 msgstr "Carica"
 
-#: gui/savedgames/load.xml:(caption):59
+#: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
 msgstr ""
 
@@ -1943,35 +1992,35 @@ msgstr "Civiltà:"
 msgid "Trainer Units"
 msgstr "Unità Allenatore"
 
-#: gui/summary/summary.xml:(caption):68
+#: gui/summary/summary.xml:(caption):62
 msgid "Score"
 msgstr "Punteggio"
 
-#: gui/summary/summary.xml:(caption):75
+#: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
 msgstr "Edifici"
 
-#: gui/summary/summary.xml:(caption):82
+#: gui/summary/summary.xml:(caption):76
 msgid "Units"
 msgstr "Unità"
 
-#: gui/summary/summary.xml:(caption):89
+#: gui/summary/summary.xml:(caption):83
 msgid "Resources"
 msgstr "Risorse"
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):90
 msgid "Market"
 msgstr "Mercato"
 
-#: gui/summary/summary.xml:(caption):103 gui/credits/texts/misc.jsonTitle
+#: gui/summary/summary.xml:(caption):97 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Miscellanea"
 
-#: gui/summary/summary.xml:(caption):166
+#: gui/summary/summary.xml:(caption):160
 msgid "Replay"
 msgstr "Replay"
 
-#: gui/summary/summary.xml:(caption):186
+#: gui/summary/summary.xml:(caption):165
 msgid "Continue"
 msgstr "Continua"
 

@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-24 09:00+0200\n"
-"PO-Revision-Date: 2016-06-24 08:21+0000\n"
+"POT-Creation-Date: 2016-06-27 09:00+0200\n"
+"PO-Revision-Date: 2016-06-27 09:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -110,37 +110,64 @@ msgstr "λλ:δδ"
 msgid "HH:mm:ss"
 msgstr "ΩΩ:λλ:δδ"
 
-#: gui/common/functions_utility.js:234
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:243
 #, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr ""
-
-#: gui/common/functions_utility.js:236
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr ""
-
-#: gui/common/functions_utility.js:238
-#, javascript-format
-msgctxt "replay"
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
-#: gui/common/functions_utility.js:240
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:246
 #, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr ""
 
-#: gui/common/functions_utility.js:261
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:252
+#, javascript-format
+msgid "%(playerName)s (%(civ)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:255
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(state)s)"
+msgstr ""
+
+#: gui/common/functions_utility.js:270
+msgid "Unknown Civilization"
+msgstr "Άγνωστος Πολιτισμός"
+
+#: gui/common/functions_utility.js:277
+msgctxt "playerstate"
+msgid "defeated"
+msgstr ""
+
+#: gui/common/functions_utility.js:278
+msgctxt "playerstate"
+msgid "won"
+msgstr ""
+
+#: gui/common/functions_utility.js:295
 msgid "No Team"
 msgstr ""
 
-#: gui/common/functions_utility.js:261
+#: gui/common/functions_utility.js:296
 #, javascript-format
 msgid "Team %(team)s"
+msgstr ""
+
+#. Translation: Describe players of one team in a selected game, f.e. in the
+#. replay- or savegame menu or lobby
+#: gui/common/functions_utility.js:299
+#, javascript-format
+msgid ""
+"%(team)s:\n"
+"%(playerDescriptions)s"
 msgstr ""
 
 #: gui/common/functions_utility_error.js:22
@@ -364,8 +391,8 @@ msgstr ""
 #: gui/common/tooltips.js:117 gui/common/tooltips.js:145
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:474
 #: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:56
-#: gui/savedgames/load.js:127 gui/savedgames/load.js:130
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:61
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:120
 msgid ", "
 msgstr ", "
 
@@ -875,21 +902,23 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:139
+#: gui/savedgames/load.js:129
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:140 gui/savedgames/load.js:189
-#: gui/savedgames/save.js:63 gui/savedgames/save.js:94
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "No"
 msgstr "Όχι"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:140 gui/savedgames/load.js:189
-#: gui/savedgames/save.js:63 gui/savedgames/save.js:94
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "Yes"
 msgstr "Ναι"
 
@@ -962,7 +991,7 @@ msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
@@ -993,12 +1022,12 @@ msgstr "Εγχειρίδιο χρήσης"
 msgid "You don't have the same mods active as the replay does."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:126
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:116
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:129
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr ""
@@ -1025,15 +1054,11 @@ msgstr ""
 msgid "No summary data available."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:122
-msgid "Scores at the end of the game."
-msgstr ""
-
-#: gui/replaymenu/replay_actions.js:155
+#: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:156
+#: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
 msgstr ""
 
@@ -1116,76 +1141,72 @@ msgstr ""
 msgid "Unrated games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:276
+#: gui/replaymenu/replay_menu.js:283
 msgid "yyyy-MM-dd HH:mm"
 msgstr "εεεε-ΜΜ-ηη ΩΩ:λλ:δδ"
 
-#: gui/replaymenu/replay_menu.js:306
+#: gui/replaymenu/replay_menu.js:313
 msgid "yyyy-MM"
 msgstr "εεεε-ΜΜ"
 
-#: gui/replaymenu/replay_menu.js:357
-msgid "Unknown Civilization"
-msgstr "Άγνωστος Πολιτισμός"
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
 msgstr "Δεν βρέθηκαν αποθηκευμένα παιχνίδια"
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:61
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr ""
 
-#: gui/savedgames/load.js:101
+#: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
 msgstr "Αυτό το αποθηκευμένο παιχνίδι ίσως να μήν είναι συμβατό:"
 
-#: gui/savedgames/load.js:106
+#: gui/savedgames/load.js:96
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:111
+#: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
 msgstr ""
 
-#: gui/savedgames/load.js:115
+#: gui/savedgames/load.js:105
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:125
+#: gui/savedgames/load.js:115
 msgid "The savegame needs a different set of mods:"
 msgstr ""
 
-#: gui/savedgames/load.js:134
+#: gui/savedgames/load.js:124
 msgid "Do you still want to proceed?"
 msgstr "Θέλετε ακόμα να συνεχίσετε?"
 
-#: gui/savedgames/load.js:185 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:91
+#: gui/savedgames/load.js:175 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:187 gui/savedgames/save.js:92
+#: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr ""
 
-#: gui/savedgames/load.js:188 gui/savedgames/save.js:93
+#: gui/savedgames/load.js:178 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:59
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr ""
 
-#: gui/savedgames/save.js:62
+#: gui/savedgames/save.js:60
 msgid "OVERWRITE SAVE"
 msgstr ""
 
@@ -1209,7 +1230,7 @@ msgstr "%(val1)s σε %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
 #: gui/summary/layout.js:94 gui/summary/layout.js:137
-#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):110
+#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Όνομα παίκτη"
 
@@ -1435,12 +1456,40 @@ msgstr ""
 msgid "Team total"
 msgstr ""
 
-#: gui/summary/summary.js:170
+#: gui/summary/summary.js:145
+msgid "Are you sure you want to quit the lobby?"
+msgstr ""
+
+#: gui/summary/summary.js:197
+msgid "Scores at the end of the game."
+msgstr ""
+
+#: gui/summary/summary.js:199
+msgid "You have been disconnected."
+msgstr ""
+
+#: gui/summary/summary.js:201
+msgid "You have left the game."
+msgstr ""
+
+#: gui/summary/summary.js:203
+msgid "You have won the battle!"
+msgstr ""
+
+#: gui/summary/summary.js:205
+msgid "You have been defeated..."
+msgstr ""
+
+#: gui/summary/summary.js:206
+msgid "You have abandoned the game."
+msgstr ""
+
+#: gui/summary/summary.js:211
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:177
+#: gui/summary/summary.js:219
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1484,7 +1533,7 @@ msgstr "Περιοχή:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):27 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):28 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -1641,7 +1690,7 @@ msgstr "Αναμετρήσεις"
 msgid "Campaigns"
 msgstr "Εκστρατείες"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):18
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):19
 msgid "Load Game"
 msgstr "Φόρτωση παιχνιδιού"
 
@@ -1831,22 +1880,22 @@ msgid "Filter compatible replays"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):153
-#: gui/savedgames/load.xml:(caption):63
+#: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
-#: gui/savedgames/load.xml:(caption):67
+#: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
-#: gui/savedgames/load.xml:(caption):71
+#: gui/savedgames/load.xml:(caption):65
 msgid "Victory:"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
-#: gui/savedgames/load.xml:(caption):55
+#: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
 msgstr ""
 
@@ -1859,12 +1908,12 @@ msgid "Main Menu"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
-#: gui/savedgames/load.xml:(caption):32 gui/savedgames/save.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Διαγραφή"
 
 #: gui/replaymenu/replay_menu.xml:(caption):245
-#: gui/summary/summary.xml:(caption):28
+#: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "Σύνοψη"
 
@@ -1902,11 +1951,11 @@ msgctxt "replay"
 msgid "Duration"
 msgstr ""
 
-#: gui/savedgames/load.xml:(caption):44
+#: gui/savedgames/load.xml:(caption):38
 msgid "Load"
 msgstr "Φόρτωση"
 
-#: gui/savedgames/load.xml:(caption):59
+#: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
 msgstr ""
 
@@ -1938,35 +1987,35 @@ msgstr "Πολιτισμός:"
 msgid "Trainer Units"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):68
+#: gui/summary/summary.xml:(caption):62
 msgid "Score"
 msgstr "Βαθμολογία"
 
-#: gui/summary/summary.xml:(caption):75
+#: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
 msgstr "Κτίρια"
 
-#: gui/summary/summary.xml:(caption):82
+#: gui/summary/summary.xml:(caption):76
 msgid "Units"
 msgstr "Μονάδες"
 
-#: gui/summary/summary.xml:(caption):89
+#: gui/summary/summary.xml:(caption):83
 msgid "Resources"
 msgstr "Πόροι"
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):90
 msgid "Market"
 msgstr "Αγορά"
 
-#: gui/summary/summary.xml:(caption):103 gui/credits/texts/misc.jsonTitle
+#: gui/summary/summary.xml:(caption):97 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Διάφορα"
 
-#: gui/summary/summary.xml:(caption):166
+#: gui/summary/summary.xml:(caption):160
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):186
+#: gui/summary/summary.xml:(caption):165
 msgid "Continue"
 msgstr "Συνέχεια"
 
