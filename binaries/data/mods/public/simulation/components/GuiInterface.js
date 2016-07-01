@@ -237,6 +237,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"market": null,
 		"mirage": null,
 		"pack": null,
+		"upgrade" : null,
 		"player": -1,
 		"position": null,
 		"production": null,
@@ -301,6 +302,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.pack = {
 			"packed": cmpPack.IsPacked(),
 			"progress": cmpPack.GetProgress(),
+		};
+
+	var cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
+	if (cmpUpgrade)
+		ret.upgrade = {
+			"upgrades" : cmpUpgrade.GetUpgrades(),
+			"progress": cmpUpgrade.GetProgress(),
+			"template": cmpUpgrade.GetUpgradingTo()
 		};
 
 	let cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);

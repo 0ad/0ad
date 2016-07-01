@@ -291,7 +291,8 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 		trainNum = 1;
 
 	let totalCosts = multiplyEntityCosts(template, trainNum);
-	totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", { "entity": entity, "batchSize": trainNum }) : 1));
+	if (template.cost.time)
+		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", { "entity": entity, "batchSize": trainNum }) : 1));
 
 	let costs = [];
 

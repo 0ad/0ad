@@ -38,6 +38,15 @@
   <Identity>
     <Classes datatype="tokens">LongWall</Classes>
     <Tooltip>Long wall segments can be converted to gates.</Tooltip>
-    <GateConversionTooltip>Convert Stone Wall into City Gate</GateConversionTooltip>
   </Identity>
+  <Upgrade>
+    <Gate>
+      <Entity>structures/{civ}_wall_gate</Entity>
+      <Tooltip>This will allow you to let units circulate through your fortifications.</Tooltip>
+      <Cost>
+        <stone>60</stone>
+      </Cost>
+      <Time>10000</Time>
+    </Gate>
+  </Upgrade>
 </Entity>

@@ -4,6 +4,13 @@ const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 const GATE_ACTIONS = ["lock", "unlock"];
 
+// upgrade constants
+const UPGRADING_NOT_STARTED = -2;
+const UPGRADING_CHOSEN_OTHER = -1;
+
+// ==============================================
+// BARTER HELPERS
+// Resources to sell on barter panel
 var g_BarterSell = "food";
 
 function canMoveSelectionIntoFormation(formationTemplate)

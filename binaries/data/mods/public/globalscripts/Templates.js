@@ -277,7 +277,6 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 		};
 		ret.icon = template.Identity.Icon;
 		ret.tooltip =  template.Identity.Tooltip;
-		ret.gateConversionTooltip =  template.Identity.GateConversionTooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
 		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
 	}

@@ -1632,27 +1632,25 @@ function cancelPackUnit(pack)
 	});
 }
 
-// Transform a wall to a gate
-function transformWallToGate(template)
+// Upgrade an entity to another
+function upgradeEntity(Template)
 {
-	var selection = g_Selection.toList();
 	Engine.PostNetworkCommand({
-		"type": "wall-to-gate",
-		"entities": selection.filter(e => getWallGateTemplate(e) == template),
-		"template": template,
+		"type": "upgrade",
+		"entities": g_Selection.toList(),
+		"template": Template,
+		"queued": false
 	});
 }
 
-// Gets the gate form (if any) of a given long wall piece
-function getWallGateTemplate(entity)
+// Cancel upgrading entities
+function cancelUpgradeEntity()
 {
-	// TODO: find the gate template name in a better way
-	var entState = GetEntityState(entity);
-	var index;
-
-	if (entState && !entState.foundation && hasClass(entState, "LongWall") && (index = entState.template.indexOf("long")) >= 0)
-		return entState.template.substr(0, index) + "gate";
-	return undefined;
+	Engine.PostNetworkCommand({
+		"type": "cancel-upgrade",
+		"entities": g_Selection.toList(),
+		"queued": false
+	});
 }
 
 // Set the camera to follow the given unit

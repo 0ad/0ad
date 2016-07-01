@@ -33,7 +33,7 @@ Pack.prototype.CancelTimer = function()
 {
 	if (this.timer)
 	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		cmpTimer.CancelTimer(this.timer);
 		this.timer = undefined;
 	}
@@ -56,9 +56,9 @@ Pack.prototype.Pack = function()
 		return;
 
 	this.packing = true;
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.timer = cmpTimer.SetInterval(this.entity, IID_Pack, "PackProgress", 0, PACKING_INTERVAL, {"packing": true});
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("packing", true, 1.0, "packing");
 };
@@ -70,9 +70,9 @@ Pack.prototype.Unpack = function()
 		return;
 
 	this.packing = true;
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.timer = cmpTimer.SetInterval(this.entity, IID_Pack, "PackProgress", 0, PACKING_INTERVAL, {"packing": false});
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("unpacking", true, 1.0, "unpacking");
 };
@@ -88,7 +88,7 @@ Pack.prototype.CancelPack = function()
 	this.SetElapsedTime(0);
 
 	// Clear animation
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("idle", false, 1.0, "");
 };
@@ -116,87 +116,22 @@ Pack.prototype.SetElapsedTime = function(time)
 
 Pack.prototype.PackProgress = function(data, lateness)
 {
-	if (this.elapsedTime >= this.GetPackTime())
+	if (this.elapsedTime < this.GetPackTime())
 	{
+		this.SetElapsedTime(this.GetElapsedTime() + PACKING_INTERVAL + lateness);
+		return;
+	}
+
 		this.CancelTimer();
 
 		this.packed = !this.packed;
-		this.packing = false;
 		Engine.PostMessage(this.entity, MT_PackFinished, { packed: this.packed });
 
-		// Done un/packing, copy our parameters to the final entity
-		var newEntity = Engine.AddEntity(this.template.Entity);
-		if (newEntity == INVALID_ENTITY)
-		{
-			// Error (e.g. invalid template names)
-			error("PackProgress: Error creating entity for '" + this.template.Entity + "'");
-			return;
-		}
+	let newEntity = ChangeEntityTemplate(this.entity, this.template.Entity);
 
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		var cmpNewPosition = Engine.QueryInterface(newEntity, IID_Position);
-		if (cmpPosition.IsInWorld())
-		{
-			var pos = cmpPosition.GetPosition2D();
-			cmpNewPosition.JumpTo(pos.x, pos.y);
-		}
-		var rot = cmpPosition.GetRotation();
-		cmpNewPosition.SetYRotation(rot.y);
-		cmpNewPosition.SetXZRotation(rot.x, rot.z);
-		cmpNewPosition.SetHeightOffset(cmpPosition.GetHeightOffset());
+	if (newEntity)
+		PlaySound(this.packed ? "packed" : "unpacked", newEntity);
 
-		var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-		var cmpNewOwnership = Engine.QueryInterface(newEntity, IID_Ownership);
-		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
-
-		// rescale capture points
-		var cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
-		var cmpNewCapturable = Engine.QueryInterface(newEntity, IID_Capturable);
-		if (cmpCapturable && cmpNewCapturable)
-		{
-			let scale = cmpCapturable.GetMaxCapturePoints() / cmpNewCapturable.GetMaxCapturePoints();
-			let newCp = cmpCapturable.GetCapturePoints().map(function (v) { return v / scale; });
-			cmpNewCapturable.SetCapturePoints(newCp);
-		}
-
-		// Maintain current health level
-		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-		var cmpNewHealth = Engine.QueryInterface(newEntity, IID_Health);
-		var healthLevel = Math.max(0, Math.min(1, cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints()));
-		cmpNewHealth.SetHitpoints(Math.round(cmpNewHealth.GetMaxHitpoints() * healthLevel));
-
-		var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-		var cmpNewUnitAI = Engine.QueryInterface(newEntity, IID_UnitAI);
-		if (cmpUnitAI && cmpNewUnitAI)
-		{
-			var pos = cmpUnitAI.GetHeldPosition();
-			if (pos)
-				cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
-			if (cmpUnitAI.GetStanceName())
-				cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
-			cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
-			cmpNewUnitAI.SetGuardOf(cmpUnitAI.IsGuardOf());
-		}
-
-		// Maintain the list of guards
-		var cmpGuard = Engine.QueryInterface(this.entity, IID_Guard);
-		var cmpNewGuard = Engine.QueryInterface(newEntity, IID_Guard);
-		if (cmpGuard && cmpNewGuard)
-			cmpNewGuard.SetEntities(cmpGuard.GetEntities());
-
-		Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: newEntity });
-
-		// Play notification sound
-		var sound = this.packed ? "packed" : "unpacked";
-		PlaySound(sound, newEntity);
-
-		// Destroy current entity
-		Engine.DestroyEntity(this.entity);
-	}
-	else
-	{
-		this.SetElapsedTime(this.GetElapsedTime() + PACKING_INTERVAL + lateness);
-	}
 };
 
 Engine.RegisterComponentType(IID_Pack, "Pack", Pack);
