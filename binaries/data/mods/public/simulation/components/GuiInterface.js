@@ -545,7 +545,10 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 
 	let cmpHeal = Engine.QueryInterface(ent, IID_Heal);
 	if (cmpHeal)
-		ret.healer = {
+		ret.heal = {
+			"hp": cmpHeal.GetHP(),
+			"range": cmpHeal.GetRange().max,
+			"rate": cmpHeal.GetRate(),
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses(),
 		};

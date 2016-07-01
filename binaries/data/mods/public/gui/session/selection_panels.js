@@ -1006,6 +1006,7 @@ g_SelectionPanels.Training = {
 			tooltips.push(
 				getHealthTooltip(template),
 				getAttackTooltip(template),
+				getHealerTooltip(template),
 				getArmorTooltip(template),
 				getGarrisonTooltip(template),
 				getProjectilesTooltip(template),

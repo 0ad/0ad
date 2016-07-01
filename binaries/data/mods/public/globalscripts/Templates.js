@@ -224,6 +224,13 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			ret.garrisonHolder.max = getEntityValue("GarrisonHolder/Max");
 	}
 
+	if (template.Heal)
+		ret.heal = {
+			"hp": getEntityValue("Heal/HP"),
+			"range": getEntityValue("Heal/Range"),
+			"rate": getEntityValue("Heal/Rate")
+		};
+
 	if (template.Obstruction)
 	{
 		ret.obstruction = {

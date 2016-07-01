@@ -228,17 +228,17 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.healer ||
+			if (!entState.heal ||
 			    !hasClass(targetState, "Unit") || !targetState.needsHeal ||
 			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
 			    entState.id == targetState.id) // Healers can't heal themselves.
 				return false;
 
-			let unhealableClasses = entState.healer.unhealableClasses;
+			let unhealableClasses = entState.heal.unhealableClasses;
 			if (MatchesClassList(targetState.identity.classes, unhealableClasses))
 				return false;
 
-			let healableClasses = entState.healer.healableClasses;
+			let healableClasses = entState.heal.healableClasses;
 			if (!MatchesClassList(targetState.identity.classes, healableClasses))
 				return false;
 

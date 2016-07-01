@@ -460,25 +460,29 @@ function getSpeedTooltip(template)
 
 function getHealerTooltip(template)
 {
-	if (!template.healer)
+	if (!template.heal)
 		return "";
 
+	let hp = +(template.heal.hp.toFixed(1));
+	let range = +(template.heal.range.toFixed(0));
+	let rate = +((template.heal.rate / 1000).toFixed(1));
+
 	return [
-		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.HP), {
+		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", hp), {
 			"label": headerFont(translate("Heal:")),
-			"val": template.healer.HP,
+			"val": hp,
 			// Translation: Short for hit points (or health points) that are healed in one healing action
-			"unit": unitFont(translatePlural("HP", "HP", template.healer.HP))
+			"unit": unitFont(translatePlural("HP", "HP", hp))
 		}),
-		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Range), {
+		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", range), {
 			"label": headerFont(translate("Range:")),
-			"val": template.healer.Range,
-			"unit": unitFont(translatePlural("meter", "meters", template.healer.Range))
+			"val": range,
+			"unit": unitFont(translatePlural("meter", "meters", range))
 		}),
-		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", template.healer.Rate/1000), {
+		sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", rate), {
 			"label": headerFont(translate("Rate:")),
-			"val": template.healer.Rate/1000,
-			"unit": unitFont(translatePlural("second", "seconds", template.healer.Rate / 1000))
+			"val": rate,
+			"unit": unitFont(translatePlural("second", "seconds", rate))
 		})
 	].join(translate(", "));
 }

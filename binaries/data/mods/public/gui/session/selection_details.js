@@ -284,6 +284,7 @@ function displaySingle(entState)
 
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = [
 		getAttackTooltip,
+		getHealerTooltip,
 		getArmorTooltip,
 		getRepairRateTooltip,
 		getBuildRateTooltip,
