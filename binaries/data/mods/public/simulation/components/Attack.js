@@ -208,7 +208,7 @@ Attack.prototype.Serialize = null; // we have no dynamic state to save
 
 Attack.prototype.GetAttackTypes = function()
 {
-	return ["Melee", "Ranged", "Capture", "Charge"].filter(type => this.template[type]);
+	return ["Melee", "Ranged", "Capture", "Charge"].filter(type => !!this.template[type]);
 };
 
 Attack.prototype.GetPreferredClasses = function(type)
@@ -716,7 +716,7 @@ Attack.prototype.OnValueModification = function(msg)
 	if (!cmpUnitAI)
 		return;
 
-	if (this.GetAttackTypes().some(msg =>
+	if (this.GetAttackTypes().some(type =>
 	      msg.valueNames.indexOf("Attack/" + type + "/MaxRange") != -1))
 		cmpUnitAI.UpdateRangeQueries();
 };
