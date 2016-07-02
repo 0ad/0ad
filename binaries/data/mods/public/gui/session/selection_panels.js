@@ -483,8 +483,8 @@ g_SelectionPanels.Gate = {
 					"tooltip": translate("Lock Gate"),
 					"locked": true,
 					"callback": function (item) { lockGate(item.locked); }
-				});
-				gates.push({
+				},
+				{
 					"gate": state.gate,
 					"tooltip": translate("Unlock Gate"),
 					"locked": false,
@@ -1034,20 +1034,14 @@ g_SelectionPanels.Upgrade = {
 		if (!unitEntState.upgrade)
 			return false;
  
-		var items = [];
-
-		for (let upgrade of unitEntState.upgrade.upgrades)
-		{
-			items.push({
-				"entity": upgrade.entity,
-				"cost": upgrade.cost,
-				"time": upgrade.time,
-				"icon": upgrade.icon,
-				"tooltip": upgrade.tooltip,
-				"requiredTechnology": upgrade.requiredTechnology,
-			});
-		}
-		return items;
+		return unitEntState.upgrade.upgrades.map(upgrade => ({
+			"entity": upgrade.entity,
+			"cost": upgrade.cost,
+			"time": upgrade.time,
+			"icon": upgrade.icon,
+			"tooltip": upgrade.tooltip,
+			"requiredTechnology": upgrade.requiredTechnology
+		}));
 	},
 	"setupButton" : function(data)
 	{
@@ -1084,7 +1078,9 @@ g_SelectionPanels.Upgrade = {
 					"tooltip": data.item.tooltip
 				});
 			else
-				tooltip = sprintf(translate("Upgrade into a %(name)s."), {"name": template.name.generic});
+				tooltip = sprintf(translate("Upgrade into a %(name)s."), {
+					"name": template.name.generic
+				});
 
 			if (data.item.cost)
 				tooltip += "\n" + getEntityCostTooltip(data.item);

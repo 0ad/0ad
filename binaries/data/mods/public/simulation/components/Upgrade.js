@@ -192,10 +192,7 @@ Upgrade.prototype.GetRequiredTechnology = function(templateArg)
 		entType = entType.replace(/\{civ\}/g, cmpIdentity.GetCiv());
 
 	let template = cmpTemplateManager.GetTemplate(entType);
-	if (template.Identity.RequiredTechnology)
-		return template.Identity.RequiredTechnology;
-
-	return undefined;
+	return template.Identity.RequiredTechnology || undefined;
 };
 
 Upgrade.prototype.GetResourceCosts = function(template)
@@ -209,9 +206,8 @@ Upgrade.prototype.GetResourceCosts = function(template)
 
 	let costs = {};
 	for (let r in this.template[choice].Cost)
-	{
 		costs[r] = ApplyValueModificationsToEntity("Upgrade/Cost/"+r, +this.template[choice].Cost[r], this.entity);
-	}
+
 	return costs;
 };
 

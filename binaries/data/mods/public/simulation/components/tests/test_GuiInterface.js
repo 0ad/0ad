@@ -29,6 +29,7 @@ Engine.LoadComponentScript("interfaces/Trader.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
+Engine.LoadComponentScript("interfaces/Upgrade.js");
 Engine.LoadComponentScript("interfaces/BuildingAI.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
@@ -503,6 +504,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	market: null,
 	mirage: null,
 	pack: null,
+	upgrade: null,
 	player: -1,
 	position: {x:1, y:2, z:3},
 	production: null,
