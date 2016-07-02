@@ -1059,7 +1059,7 @@ g_SelectionPanels.Upgrade = {
 
 		if (data.item.requiredTechnology)
 			technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-				"tech": requiredTechnology,
+				"tech": data.item.requiredTechnology,
 				"player": data.unitEntState.player
 			});
 
@@ -1131,8 +1131,11 @@ g_SelectionPanels.Upgrade = {
 
 		let progressOverlay = Engine.GetGUIObjectByName("unitUpgradeProgressSlider[" + data.i + "]");
 		if (isUpgrading)
-			progressOverlay.size.top = progressOverlay.size.left + Math.round(progress * (progressOverlay.size.right - progressOverlay.size.left));
-
+		{
+			let size = progressOverlay.size; 
+ 			size.top = size.left + Math.round(progress * (size.right - size.left)); 
+ 			progressOverlay.size = size;
+		}
 		progressOverlay.hidden = !isUpgrading;
 
 		let index = data.i + getNumberOfRightPanelButtons();

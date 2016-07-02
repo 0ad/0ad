@@ -21,7 +21,7 @@ Upgrade.prototype.Schema =
 					"</element>" +
 				"</optional>" +
 				"<optional>" +
-					"<element name='Time' a:help='Time required to upgrade this entity, in milliseconds'>" +
+					"<element name='Time' a:help='Time required to upgrade this entity, in seconds'>" +
 						"<data type='nonNegativeInteger'/>" +
 					"</element>" +
 				"</optional>" +
@@ -76,8 +76,7 @@ Upgrade.prototype.Init = function()
 // This will also deal with the "OnDestroy" case.
 Upgrade.prototype.OnOwnershipChanged = function(msg)
 {
-	this.CancelUpgrade();
-
+	this.CancelUpgrade(msg.from);
 	if (msg.to !== -1)
 		this.owner = msg.to;
 };
@@ -132,12 +131,12 @@ Upgrade.prototype.GetUpgrades = function()
 		if (choice.Time)
 		{
 			hasCosts = true;
-			cost.time = ApplyValueModificationsToTemplate("Upgrade/Time", +choice.Time/1000.0, this.owner, entType);
+			cost.time = ApplyValueModificationsToTemplate("Upgrade/Time", +choice.Time, this.owner, entType);
 		}
 		ret.push({
 			"entity": entType,
 			"icon": choice.Icon || undefined,
-			"cost": hasCosts,
+			"cost": hasCosts ? cost : undefined,
 			"tooltip": choice.Tooltip || undefined,
 			"requiredTechnology": this.GetRequiredTechnology(option),
 		});
@@ -242,17 +241,14 @@ Upgrade.prototype.Upgrade = function(template)
 	return true;
 };
 
-Upgrade.prototype.CancelUpgrade = function()
+Upgrade.prototype.CancelUpgrade = function(owner = undefined)
 {
 	if (!this.IsUpgrading())
 		return;
 
-	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let cmpPlayer = owner ? QueryPlayerIDInterface(owner, IID_Player) : QueryOwnerInterface(this.entity, IID_Player);
 	if (cmpPlayer)
-	{
-		let costs = this.GetResourceCosts(this.upgrading);
-		cmpPlayer.AddResources(costs);
-	}
+		cmpPlayer.AddResources(this.GetResourceCosts(this.upgrading));
 
 	this.ChangeUpgradedEntityCount(-1);
 
@@ -279,7 +275,7 @@ Upgrade.prototype.GetProgress = function()
 {
 	if (!this.IsUpgrading())
 		return undefined;
-	return this.GetUpgradeTime() == 0 ? 1 : this.elapsedTime / this.GetUpgradeTime();
+	return this.GetUpgradeTime() == 0 ? 1 : Math.min(this.elapsedTime / 1000.0 / this.GetUpgradeTime(), 1.0);
 };
 
 Upgrade.prototype.SetElapsedTime = function(time)
@@ -289,7 +285,7 @@ Upgrade.prototype.SetElapsedTime = function(time)
 
 Upgrade.prototype.UpgradeProgress = function(data, lateness)
 {
-	if (this.elapsedTime < this.GetUpgradeTime())
+	if (this.elapsedTime/1000.0 < this.GetUpgradeTime())
 	{
 		this.SetElapsedTime(this.GetElapsedTime() + UPGRADING_PROGRESS_INTERVAL + lateness);
 		return;

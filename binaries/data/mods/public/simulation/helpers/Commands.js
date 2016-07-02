@@ -714,7 +714,7 @@ var g_Commands = {
 		{
 			let cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
 			if (cmpUpgrade)
-				cmpUpgrade.CancelUpgrade(data.cmpPlayer);
+				cmpUpgrade.CancelUpgrade(data.cmpPlayer.playerID);
 		}
 	},
 	
