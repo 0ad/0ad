@@ -64,11 +64,19 @@
     <DecayRate>1</DecayRate>
   </TerritoryDecay>
   <TerritoryInfluence disable=""/>
+  <Upgrade>
+    <Gate>
+      <Entity>structures/rome_siege_wall_gate</Entity>
+      <Cost>
+        <wood>80</wood>
+        <stone>0</stone>
+      </Cost>
+    </Gate>
+  </Upgrade>
   <VisualActor>
     <Actor>structures/romans/siege_wall_long.xml</Actor>
     <FoundationActor>structures/fndn_wall.xml</FoundationActor>
   </VisualActor>
-  <WallPiece>
-    <Length>36.0</Length>
+  <WallPiece>    <Length>36.0</Length>
   </WallPiece>
 </Entity>
