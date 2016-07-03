@@ -9,7 +9,7 @@ m.Resources = function(amounts = {}, population = 0)
 	this.population = population > 0 ? population : 0;
 };
 
-m.Resources.prototype.types = [ "food", "wood", "stone", "metal" ];
+m.Resources.prototype.types = []; // This array will be filled in SharedScript.init
 
 m.Resources.prototype.reset = function()
 {

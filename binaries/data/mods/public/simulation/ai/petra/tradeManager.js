@@ -153,33 +153,35 @@ m.TradeManager.prototype.updateTrader = function(gameState, ent)
 
 m.TradeManager.prototype.setTradingGoods = function(gameState)
 {
-	let tradingGoods = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let tradingGoods = {};
+	for (let res in gameState.ai.HQ.wantedRates)
+		tradingGoods[res] = 0;
 	// first, try to anticipate future needs 
 	let stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
 	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 	let remaining = 100;
 	let targetNum = this.Config.Economy.targetNumTraders;
-	for (let type in stocks)
+	for (let res in stocks)
 	{
-		if (type == "food")
+		if (res === "food")
 			continue;
-		let wantedRate = gameState.ai.HQ.wantedRates[type];
-		if (stocks[type] < 200)
+		let wantedRate = gameState.ai.HQ.wantedRates[res];
+		if (stocks[res] < 200)
 		{
-			tradingGoods[type] = wantedRate > 0 ? 20 : 10;
+			tradingGoods[res] = wantedRate > 0 ? 20 : 10;
 			targetNum += Math.min(5, 3 + Math.ceil(wantedRate/30));
 		}
-		else if (stocks[type] < 500)
+		else if (stocks[res] < 500)
 		{
-			tradingGoods[type] = wantedRate > 0 ? 15 : 10;
+			tradingGoods[res] = wantedRate > 0 ? 15 : 10;
 			targetNum += 2;
 		}
-		else if (stocks[type] < 1000)
+		else if (stocks[res] < 1000)
 		{
-			tradingGoods[type] = 10;
+			tradingGoods[res] = 10;
 			targetNum += 1;
 		}
-		remaining -= tradingGoods[type];
+		remaining -= tradingGoods[res];
 	}
 	this.targetNumTraders = Math.round(this.Config.popScaling * targetNum);
 

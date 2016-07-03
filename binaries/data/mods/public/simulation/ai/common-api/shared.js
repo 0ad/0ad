@@ -24,14 +24,6 @@ m.SharedScript = function(settings)
 	this._entityCollectionsName = new Map();
 	this._entityCollectionsByDynProp = {};
 	this._entityCollectionsUID = 0;
-
-	// A few notes about these maps. They're updated by checking for "create" and "destroy" events for all resources
-	// TODO: change the map when the resource amounts change for at least stone and metal mines.
-	this.resourceMaps = {}; // Contains maps showing the density of wood, stone and metal
-	this.CCResourceMaps = {}; // Contains maps showing the density of wood, stone and metal, optimized for CC placement.
-	// Resource maps data.
-	// By how much to divide the resource amount when filling the map (ie a tree having 200 wood is "4").
-	this.decreaseFactor = {"wood": 50.0, "stone": 90.0, "metal": 90.0};
 };
 
 /** Return a simple object (using no classes etc) that will be serialized into saved games */
@@ -187,8 +179,35 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.accessibility = new m.Accessibility();
 	this.accessibility.init(state, this.terrainAnalyzer);
 	
-	// defined in TerrainAnalysis.js
+	// Setup resources
+	this.resourceTypes = { "food": 0, "wood": 1, "stone": 2, "metal": 2 };
+	this.resourceList = [];
+	for (let res in this.resourceTypes)
+		this.resourceList.push(res);
+	m.Resources.prototype.types = this.resourceList;
+	// Resource types: 0 = not used for resource maps
+	//                 1 = abondant resource with small amount each
+	//                 2 = spare resource, but huge amount each
+	// The following maps are defined in TerrainAnalysis.js and are used for some building placement (cc, dropsites)
+	// They are updated by checking for create and destroy events for all resources
+	this.normalizationFactor = { "1": 50, "2": 90 };
+	this.influenceRadius = { "1": 36, "2": 48 };
+	this.ccInfluenceRadius = { "1": 60, "2": 120 };
+	this.resourceMaps = {};   // Contains maps showing the density of resources
+	this.ccResourceMaps = {}; // Contains maps showing the density of resources, optimized for CC placement.
 	this.createResourceMaps(this);
+
+	/** Keep in sync with gui/common/l10n.js */
+	this.resourceNames = {
+		// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+		"food": markForTranslationWithContext("withinSentence", "Food"),
+		// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+		"wood": markForTranslationWithContext("withinSentence", "Wood"),
+		// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+		"metal": markForTranslationWithContext("withinSentence", "Metal"),
+		// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+		"stone": markForTranslationWithContext("withinSentence", "Stone"),
+	};
 
 	this.gameState = {};
 	for (let i in this._players)

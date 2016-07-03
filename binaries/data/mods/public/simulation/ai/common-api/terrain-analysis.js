@@ -383,122 +383,94 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 /** creates a map of resource density */
 m.SharedScript.prototype.createResourceMaps = function(sharedScript)
 {
-	for (let resource in this.decreaseFactor)
+	for (let resource of this.resourceList)
 	{
+		if (this.resourceTypes[resource] !== 1 && this.resourceTypes[resource] !== 2)
+			continue;
 		// if there is no resourceMap create one with an influence for everything with that resource
-		if (!this.resourceMaps[resource])
-		{
-			// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
-			// But at that point the precision is not really important anyway. And it saves memory.
-			this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
-			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
-		}
+		if (this.resourceMaps[resource])
+			continue;
+		// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
+		// But at that point the precision is not really important anyway. And it saves memory.
+		this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
+		this.ccResourceMaps[resource] = new m.Map(sharedScript, "resource");
 	}
-	let cellSize = this.resourceMaps.wood.cellSize;
 	for (let ent of sharedScript._entities.values())
 	{
-		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
-		{
-			let resource = ent.resourceSupplyType().generic;
-			if (!this.resourceMaps[resource])
-				continue;
-			let x = Math.floor(ent.position()[0] / cellSize);
-			let z = Math.floor(ent.position()[1] / cellSize);
-			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood")
-			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2);
-			}
-			else if (resource === "stone" || resource === "metal")
-			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 120/cellSize, strength, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2);
-			}
-		}
+		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
+			continue;
+		let resource = ent.resourceSupplyType().generic;
+		if (!this.resourceMaps[resource])
+			continue;
+		let cellSize = this.resourceMaps[resource].cellSize;
+		let x = Math.floor(ent.position()[0] / cellSize);
+		let z = Math.floor(ent.position()[1] / cellSize);
+		let type = this.resourceTypes[resource];
+		let strength = Math.floor(ent.resourceSupplyMax()/this.normalizationFactor[type]);
+		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[type]/cellSize, strength/2, "constant");
+		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[type]/cellSize, strength/2);
+		this.ccResourceMaps[resource].addInfluence(x, z, this.ccInfluenceRadius[type]/cellSize, strength, "constant");
 	}
 };
 
 /**
- * TODO: make it regularly update stone+metal mines and their resource levels.
  * creates and maintains a map of unused resource density
  * this also takes dropsites into account.
  * resources that are "part" of a dropsite are not counted.
  */
 m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 {
-	for (let resource in this.decreaseFactor)
+	for (let resource of this.resourceList)
 	{
+		if (this.resourceTypes[resource] !== 1 && this.resourceTypes[resource] !== 2)
+			continue;
 		// if there is no resourceMap create one with an influence for everything with that resource
-		if (!this.resourceMaps[resource])
-		{
-			// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
-			// But at that point the precision is not really important anyway. And it saves memory.
-			this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
-			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
-		}
+		if (this.resourceMaps[resource])
+			continue;
+		// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
+		// But at that point the precision is not really important anyway. And it saves memory.
+		this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
+		this.ccResourceMaps[resource] = new m.Map(sharedScript, "resource");
 	}
-	let cellSize = this.resourceMaps.wood.cellSize;
-	// Look for destroy events and subtract the entities original influence from the resourceMap
-	// TODO: perhaps do something when dropsites appear/disappear.
-	let destEvents = events.Destroy;
-	let createEvents = events.Create;
-	
-	for (let e of destEvents)
+
+	// Look for destroy (or create) events and subtract (or add) the entities original influence from the resourceMap
+	for (let e of events.Destroy)
 	{
 		if (!e.entityObj)
 			continue;
 		let ent = e.entityObj;
-		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
-		{
-			let resource = ent.resourceSupplyType().generic;
-			if (!this.resourceMaps[resource])
-				continue;
-			let x = Math.floor(ent.position()[0] / cellSize);
-			let z = Math.floor(ent.position()[1] / cellSize);
-			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood")
-			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, -strength, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, -strength/2, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, -strength/2);
-			}
-			else if (resource === "stone" || resource === "metal")
-			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 120/cellSize, -strength, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, -strength/2, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, -strength/2);
-			}
-		}
+		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
+			continue;
+		let resource = ent.resourceSupplyType().generic;
+		if (!this.resourceMaps[resource])
+			continue;
+		let cellSize = this.resourceMaps[resource].cellSize;
+		let x = Math.floor(ent.position()[0] / cellSize);
+		let z = Math.floor(ent.position()[1] / cellSize);
+		let type = this.resourceTypes[resource];
+		let strength = -Math.floor(ent.resourceSupplyMax()/this.normalizationFactor[type]);
+		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[type]/cellSize, strength/2, "constant");
+		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[type]/cellSize, strength/2);
+		this.ccResourceMaps[resource].addInfluence(x, z, this.ccInfluenceRadius[type]/cellSize, strength, "constant");
 	}
-	for (let e of createEvents)
+	for (let e of events.Create)
 	{
 		if (!e.entity || !sharedScript._entities.has(e.entity))
 			continue;
 		let ent = sharedScript._entities.get(e.entity);
-		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
-		{
-			let resource = ent.resourceSupplyType().generic;
-			if (!this.resourceMaps[resource])
-				continue;
-			let x = Math.floor(ent.position()[0] / cellSize);
-			let z = Math.floor(ent.position()[1] / cellSize);
-			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood")
-			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 60/cellSize, strength, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 36/cellSize, strength/2);
-			}
-			else if (resource === "stone" || resource === "metal")
-			{
-				this.CCResourceMaps[resource].addInfluence(x, z, 120/cellSize, strength, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2, "constant");
-				this.resourceMaps[resource].addInfluence(x, z, 48/cellSize, strength/2);
-			}
-		}
+		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
+			continue;
+		let resource = ent.resourceSupplyType().generic;
+		if (!this.resourceMaps[resource])
+			continue;
+		let cellSize = this.resourceMaps[resource].cellSize;
+		let x = Math.floor(ent.position()[0] / cellSize);
+		let z = Math.floor(ent.position()[1] / cellSize);
+		let type = this.resourceTypes[resource];
+		let strength = Math.floor(ent.resourceSupplyMax()/this.normalizationFactor[type]);
+		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[type]/cellSize, strength/2, "constant");
+		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[type]/cellSize, strength/2);
+		this.ccResourceMaps[resource].addInfluence(x, z, this.ccInfluenceRadius[type]/cellSize, strength, "constant");
 	}
 };
 

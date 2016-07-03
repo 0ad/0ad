@@ -22,11 +22,12 @@ m.HQ = function(Config)
 	this.econState = "growth";	// existing values: growth, townPhasing.
 	this.currentPhase = undefined;
 
-	// cache the rates.
+	// Cache the rates.
 	this.turnCache = {};
-	this.wantedRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
-	this.currentRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
-	this.lastFailedGather = { "wood": undefined, "stone": undefined, "metal": undefined };
+	// Some resources objects (will be filled in init)
+	this.wantedRates = {};
+	this.currentRates = {};
+	this.lastFailedGather = {};
 
 	// workers configuration
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
@@ -67,6 +68,12 @@ m.HQ.prototype.init = function(gameState, queues)
 	// try to determine if we have a water map
 	this.navalMap = false;
 	this.navalRegions = {};
+
+	for (let res of gameState.sharedScript.resourceList)
+	{
+		this.wantedRates[res] = 0;
+		this.currentRates[res] = 0;
+	}
 
 	this.treasures = gameState.getEntities().filter(function (ent) {
 		let type = ent.resourceSupplyType();
@@ -642,10 +649,12 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 
 m.HQ.prototype.getTotalResourceLevel = function(gameState)
 {
-	let total = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let total = {};
+	for (let res of gameState.sharedScript.resourceList)
+		total[res] = 0;
 	for (let base of this.baseManagers)
-		for (let type in total)
-			total[type] += base.getResourceLevel(gameState, type);
+		for (let res in total)
+			total[res] += base.getResourceLevel(gameState, res);
 
 	return total;
 };
@@ -842,10 +851,10 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
 			norm *= 0.5;
 
-		let val = 2*gameState.sharedScript.CCResourceMaps[resource].map[j] +
-			    gameState.sharedScript.CCResourceMaps.wood.map[j] +
-			    gameState.sharedScript.CCResourceMaps.stone.map[j] +
-			    gameState.sharedScript.CCResourceMaps.metal.map[j];
+		let val = 2*gameState.sharedScript.ccResourceMaps[resource].map[j] +
+			    gameState.sharedScript.ccResourceMaps.wood.map[j] +
+			    gameState.sharedScript.ccResourceMaps.stone.map[j] +
+			    gameState.sharedScript.ccResourceMaps.metal.map[j];
 		val *= norm;
 
 		if (bestVal !== undefined && val < bestVal)
