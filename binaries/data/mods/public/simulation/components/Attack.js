@@ -324,7 +324,7 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	{
 		// TODO: Formation against formation needs review
 		let types = this.GetAttackTypes();
-		return ["Ranged", "Melee", "Capture"].find(types.indexOf(attack) != -1);
+		return ["Ranged", "Melee", "Capture"].find(attack => types.indexOf(attack) != -1);
 	}
 
 	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
