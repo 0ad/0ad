@@ -7,8 +7,8 @@
 		"rome": "Bona Dea"
 	},
 	"description": "A festival attended by women-only, to celebrate female fertility.",
-	"cost": {"food": 250, "wood": 0, "stone": 0, "metal": 250},
-	"requirements": {"tech": "phase_town"},
+	"cost": { "food": 250, "wood": 100, "stone": 0, "metal": 100 },
+	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "wives_festival.png",
 	"researchTime": 60,
