@@ -439,6 +439,13 @@ function updateProfile()
 {
 	let attributes = Engine.GetProfile();
 
+	let user = attributes[0].name;
+	if (attributes[0].rating)
+		user = sprintf(translate("%(nick)s (%(rating)s)"), {
+			"nick": attributes[0].player,
+			"rating": attributes[0].rating
+		});
+
 	if (!Engine.GetGUIObjectByName("profileFetch").hidden)
 	{
 		let profileFound = attributes[0].rating != "-2";
@@ -448,13 +455,7 @@ function updateProfile()
 		if (!profileFound)
 			return;
 
-		if (attributes[0].rating != "")
-			user = sprintf(translate("%(nick)s (%(rating)s)"), {
-				"nick": attributes[0].player,
-				"rating": attributes[0].rating
-			});
-
-		Engine.GetGUIObjectByName("profileUsernameText").caption = attributes[0].player;
+		Engine.GetGUIObjectByName("profileUsernameText").caption = user;
 		Engine.GetGUIObjectByName("profileRankText").caption = attributes[0].rank;
 		Engine.GetGUIObjectByName("profileHighestRatingText").caption = attributes[0].highestRating;
 		Engine.GetGUIObjectByName("profileTotalGamesText").caption = attributes[0].totalGamesPlayed;
@@ -476,14 +477,6 @@ function updateProfile()
 	// Make sure the stats we have received coincide with the selected player.
 	if (attributes[0].player != playerList.list[playerList.selected])
 		return;
-
-	let user = playerList.list_name[playerList.selected];
-
-	if (attributes[0].rating)
-		user = sprintf(translate("%(nick)s (%(rating)s)"), {
-			"nick": user,
-			"rating": attributes[0].rating
-		});
 
 	Engine.GetGUIObjectByName("usernameText").caption = user;
 	Engine.GetGUIObjectByName("rankText").caption = attributes[0].rank;
