@@ -137,7 +137,7 @@ function damageTypesToText(dmg)
 		})).join(commaFont(translate(", ")));
 }
 
-// TODO: should also show minRange and splash damage
+// TODO: should also show minRange
 function getAttackTooltip(template)
 {
 	if (!template.attack)
@@ -196,6 +196,33 @@ function getAttackTooltip(template)
 		}));
 	}
 	return attacks.join("\n");
+}
+
+function getSplashDamageTooltip(template)
+{
+	if (!template.attack)
+		return "";
+
+	let tooltips = [];
+	for (let type in template.attack)
+	{
+		let splash = template.attack[type].splash;
+		if (!splash)
+			continue;
+
+		tooltips.push([
+			sprintf(translate("%(attackLabel)s %(damageTypes)s"), {
+				"attackLabel": headerFont(translate("Splash Damage:")),
+				"damageTypes": damageTypesToText(splash)
+			}),
+			sprintf(translate("Friendly Fire: %(enabled)s"), {
+				"enabled": splash.friendlyFire ? translate("Yes") : translate("No")
+			})
+		].join(commaFont(translate(", "))));
+	}
+
+	// If multiple attack types deal splash damage, the attack type should be shown to differentiate.
+	return tooltips.join("\n");
 }
 
 function getGarrisonTooltip(template)

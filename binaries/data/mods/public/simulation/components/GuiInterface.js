@@ -329,12 +329,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpFogging = Engine.QueryInterface(ent, IID_Fogging);
 	if (cmpFogging)
-	{
-		if (cmpFogging.IsMiraged(player))
-			ret.fogging = { "mirage": cmpFogging.GetMirage(player) };
-		else
-			ret.fogging = { "mirage": null };
-	}
+		ret.fogging = {
+			"mirage": cmpFogging.IsMiraged(player) ? cmpFogging.GetMirage(player) : null
+		};
 
 	let cmpFoundation = QueryMiragedInterface(ent, IID_Foundation);
 	if (cmpFoundation)
@@ -444,12 +441,16 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		for (let type of types)
 		{
 			ret.attack[type] = cmpAttack.GetAttackStrengths(type);
+			ret.attack[type].splash = cmpAttack.GetSplashDamage(type);
+
 			let range = cmpAttack.GetRange(type);
 			ret.attack[type].minRange = range.min;
 			ret.attack[type].maxRange = range.max;
+
 			let timers = cmpAttack.GetTimers(type);
 			ret.attack[type].prepareTime = timers.prepare;
 			ret.attack[type].repeatTime = timers.repeat;
+
 			if (type != "Ranged")
 			{
 				// not a ranged attack, set some defaults
@@ -459,12 +460,14 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			}
 
 			ret.attack[type].elevationBonus = range.elevationBonus;
+
 			let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
 			if (cmpUnitAI && cmpPosition && cmpPosition.IsInWorld())
 			{
-				// For units, take the rage in front of it, no spread. So angle = 0
+				// For units, take the range in front of it, no spread. So angle = 0
 				ret.attack[type].elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
 			}
 			else if(cmpPosition && cmpPosition.IsInWorld())

@@ -98,28 +98,37 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 
 	if (template.Attack)
 	{
-		let getAttackStat = function(type, stat)
-		{
-			return getEntityValue("Attack/" + type + "/"+stat);
-		};
-
 		ret.attack = {};
 		for (let type in template.Attack)
 		{
+			let getAttackStat = function(stat) {
+				return getEntityValue("Attack/" + type + "/" + stat);
+			};
+
 			if (type == "Capture")
 				ret.attack.Capture = {
-					"value": getAttackStat(type,"Value"),
+					"value": getAttackStat("Value")
 				};
 			else
 				ret.attack[type] = {
-					"hack": getAttackStat(type, "Hack"),
-					"pierce": getAttackStat(type, "Pierce"),
-					"crush": getAttackStat(type, "Crush"),
-					"minRange": getAttackStat(type, "MinRange"),
-					"maxRange": getAttackStat(type, "MaxRange"),
-					"elevationBonus": getAttackStat(type, "ElevationBonus"),
+					"hack": getAttackStat("Hack"),
+					"pierce": getAttackStat("Pierce"),
+					"crush": getAttackStat("Crush"),
+					"minRange": getAttackStat("MinRange"),
+					"maxRange": getAttackStat("MaxRange"),
+					"elevationBonus": getAttackStat("ElevationBonus")
 				};
-			ret.attack[type].repeatTime = +(template.Attack[type].RepeatTime || 0);
+
+			ret.attack[type].repeatTime = getAttackStat("RepeatTime");
+
+			if (template.Attack[type].Splash)
+				ret.attack[type].splash = {
+					"hack": getAttackStat("Splash/Hack"),
+					"pierce": getAttackStat("Splash/Pierce"),
+					"crush": getAttackStat("Splash/Crush"),
+					// true if undefined
+					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false"
+				};
 		}
 	}
 

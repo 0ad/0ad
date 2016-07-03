@@ -975,15 +975,16 @@ g_SelectionPanels.Training = {
 		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers));
 
 		if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
-			tooltips.push(
-				getHealthTooltip(template),
-				getAttackTooltip(template),
-				getHealerTooltip(template),
-				getArmorTooltip(template),
-				getGarrisonTooltip(template),
-				getProjectilesTooltip(template),
-				getSpeedTooltip(template)
-			);
+			tooltips = tooltips.concat([
+				getHealthTooltip,
+				getAttackTooltip,
+				getSplashDamageTooltip,
+				getHealerTooltip,
+				getArmorTooltip,
+				getGarrisonTooltip,
+				getProjectilesTooltip,
+				getSpeedTooltip
+			].map(func => func(template)));
 
 		tooltips.push(
 			"[color=\"" + g_HotkeyColor + "\"]" +

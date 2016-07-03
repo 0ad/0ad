@@ -407,6 +407,17 @@ Attack.prototype.GetAttackStrengths = function(type)
 	};
 };
 
+Attack.prototype.GetSplashDamage = function(type)
+{
+	if (!this.template[type].Splash)
+		return false;
+
+	return {
+		"friendlyFire": this.template[type].Splash.FriendlyFire,
+		"attackStrengths": this.GetAttackStrengths(type + ".Splash")
+	};
+};
+
 Attack.prototype.GetRange = function(type)
 {
 	let max = +this.template[type].MaxRange;
@@ -645,19 +656,20 @@ Attack.prototype.MissileHit = function(data, lateness)
 	if (!targetPosition)
 		return;
 
-	if (this.template.Ranged.Splash) // splash damage, do this first in case the direct hit kills the target
+	// Do this first in case the direct hit kills the target
+	if (this.template.Ranged.Splash)
 	{
 		let friendlyFire = this.template.Ranged.Splash.FriendlyFire;
 		let splashRadius = this.template.Ranged.Splash.Range;
 		let splashShape = this.template.Ranged.Splash.Shape;
 		let playersToDamage;
-		// If friendlyFire isn't enabled, get all player enemies to pass to "Damage.CauseSplashDamage".
+
 		if (friendlyFire == "false")
 		{
 			let cmpPlayer = QueryPlayerIDInterface(data.playerId);
 			playersToDamage = cmpPlayer.GetEnemies();
 		}
-		// Damage the units.
+
 		Damage.CauseSplashDamage({
 			"attacker": this.entity,
 			"origin": Vector2D.from3D(data.position),
@@ -666,7 +678,7 @@ Attack.prototype.MissileHit = function(data, lateness)
 			"strengths": this.GetAttackStrengths(data.type),
 			"direction": data.direction,
 			"playersToDamage": playersToDamage,
-			"type":data.type
+			"type": data.type
 		});
 	}
 
@@ -690,19 +702,20 @@ Attack.prototype.MissileHit = function(data, lateness)
 
 		for (let i = 0; i < ents.length; ++i)
 		{
-			if (this.testCollision(ents[i], data.position, lateness))
-			{
-				Damage.CauseDamage({
-						"strengths": this.GetAttackStrengths(data.type),
-						"target": ents[i],
-						"attacker": this.entity,
-						"multiplier": this.GetAttackBonus(data.type, ents[i]),
-						"type": data.type
-				});
-				// Remove the projectile
-				let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-				cmpProjectileManager.RemoveProjectile(data.projectileId);
-			}
+			if (!this.testCollision(ents[i], data.position, lateness))
+				continue;
+
+			Damage.CauseDamage({
+				"strengths": this.GetAttackStrengths(data.type),
+				"target": ents[i],
+				"attacker": this.entity,
+				"multiplier": this.GetAttackBonus(data.type, ents[i]),
+				"type": data.type
+			});
+
+			// Remove the projectile
+			let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+			cmpProjectileManager.RemoveProjectile(data.projectileId);
 		}
 	}
 };
