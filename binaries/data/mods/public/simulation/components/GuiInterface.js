@@ -430,6 +430,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
+		"speed": null,
 	};
 
 	let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
@@ -560,6 +561,13 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"rate": cmpHeal.GetRate(),
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses(),
+		};
+
+	let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
+	if (cmpUnitMotion)
+		ret.speed = {
+			"walk": cmpUnitMotion.GetWalkSpeed(),
+			"run": cmpUnitMotion.GetRunSpeed()
 		};
 
 	return ret;
