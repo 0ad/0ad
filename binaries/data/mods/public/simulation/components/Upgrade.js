@@ -72,7 +72,6 @@ Upgrade.prototype.Init = function()
 	}
 };
 
-// On owner change, abort the upgrade
 // This will also deal with the "OnDestroy" case.
 Upgrade.prototype.OnOwnershipChanged = function(msg)
 {
@@ -131,7 +130,9 @@ Upgrade.prototype.GetUpgrades = function()
 		if (choice.Time)
 		{
 			hasCosts = true;
-			cost.time = ApplyValueModificationsToTemplate("Upgrade/Time", +choice.Time, this.owner, entType);
+			let cmpPlayer = QueryPlayerIDInterface(this.owner, IID_Player);
+			cost.time = ApplyValueModificationsToTemplate("Upgrade/Time", +choice.Time, this.owner, entType) *
+				cmpPlayer.GetCheatTimeMultiplier();
 		}
 		ret.push({
 			"entity": entType,
@@ -237,12 +238,12 @@ Upgrade.prototype.Upgrade = function(template)
 	return true;
 };
 
-Upgrade.prototype.CancelUpgrade = function(owner = undefined)
+Upgrade.prototype.CancelUpgrade = function(owner)
 {
 	if (!this.IsUpgrading())
 		return;
 
-	let cmpPlayer = owner ? QueryPlayerIDInterface(owner, IID_Player) : QueryOwnerInterface(this.entity, IID_Player);
+	let cmpPlayer = QueryPlayerIDInterface(owner, IID_Player);
 	if (cmpPlayer)
 		cmpPlayer.AddResources(this.GetResourceCosts(this.upgrading));
 
@@ -257,9 +258,16 @@ Upgrade.prototype.GetUpgradeTime = function(templateArg)
 {
 	let template = this.upgrading || templateArg;
 	let choice = this.upgradeTemplates[template];
+
 	if (!choice)
 		return undefined;
-	return this.template[choice].Time ? ApplyValueModificationsToEntity("Upgrade/Time", +this.template[choice].Time, this.entity) : 0;
+
+	if (!this.template[choice].Time)
+		return 0;
+
+	let cmpPlayer = QueryPlayerIDInterface(this.owner, IID_Player);
+	return ApplyValueModificationsToEntity("Upgrade/Time", +this.template[choice].Time, this.entity) *
+		cmpPlayer.GetCheatTimeMultiplier();
 };
 
 Upgrade.prototype.GetElapsedTime = function()

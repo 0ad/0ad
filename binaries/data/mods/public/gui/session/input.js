@@ -1463,33 +1463,35 @@ function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 	var nextBatchTrainingCount = 0;
 	var currentBatchTrainingCount = 0;
 
+	var limits;
 	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 &&
-		batchTrainingType == trainEntType)
+	    batchTrainingType == trainEntType)
 	{
 		nextBatchTrainingCount = batchTrainingCount;
 		currentBatchTrainingCount = batchTrainingCount;
-		var limits = {
+		limits = {
 			"canBeAddedCount": batchTrainingEntityAllowedCount
 		};
 	}
 	else
-	{
-		var limits = getEntityLimitAndCount(playerState, trainEntType);
-	}
+		limits = getEntityLimitAndCount(playerState, trainEntType);
+
 	// We need to calculate count after the next increment if it's possible
 	if (limits.canBeAddedCount == undefined ||
 		limits.canBeAddedCount > nextBatchTrainingCount * appropriateBuildings.length)
 		nextBatchTrainingCount += batchIncrementSize;
+
 	// If training limits don't allow us to train batchTrainingCount in each appropriate building
 	// train as many full batches as we can and remainer in one more building.
 	var buildingsCountToTrainFullBatch = appropriateBuildings.length;
 	var remainderToTrain = 0;
 	if (limits.canBeAddedCount !== undefined &&
-		limits.canBeAddedCount < nextBatchTrainingCount * appropriateBuildings.length)
+	    limits.canBeAddedCount < nextBatchTrainingCount * appropriateBuildings.length)
 	{
 		buildingsCountToTrainFullBatch = Math.floor(limits.canBeAddedCount / nextBatchTrainingCount);
 		remainderToTrain = limits.canBeAddedCount % nextBatchTrainingCount;
 	}
+
 	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain, currentBatchTrainingCount];
 }
 
@@ -1505,7 +1507,6 @@ function changePrimarySelectionGroup(templateName, deselectGroup)
 	g_Selection.makePrimarySelection(templateName, Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup);
 }
 
-// Performs the specified command (delete, town bell, repair, etc.)
 function performCommand(entity, commandName)
 {
 	if (!entity)
@@ -1520,7 +1521,6 @@ function performCommand(entity, commandName)
 		g_EntityCommands[commandName].execute(entState);
 }
 
-// Performs the specified command for ally unit
 function performAllyCommand(entity, commandName)
 {
 	if (!entity)
@@ -1535,7 +1535,6 @@ function performAllyCommand(entity, commandName)
 		g_AllyEntityCommands[commandName].execute(entState);
 }
 
-// Performs the specified formation
 function performFormation(entity, formationTemplate)
 {
 	if (entity)
@@ -1546,7 +1545,6 @@ function performFormation(entity, formationTemplate)
 		});
 }
 
-// Performs the specified group
 function performGroup(action, groupId)
 {
 	switch (action)
@@ -1583,7 +1581,7 @@ function performGroup(action, groupId)
 		break;
 	}
 }
-// Performs the specified stance
+
 function performStance(entity, stanceName)
 {
 	if (entity)
@@ -1597,7 +1595,6 @@ function performStance(entity, stanceName)
 	}
 }
 
-// Lock / Unlock the gate
 function lockGate(lock)
 {
 	var selection = g_Selection.toList();
@@ -1608,7 +1605,6 @@ function lockGate(lock)
 	});
 }
 
-// Pack / unpack unit(s)
 function packUnit(pack)
 {
 	var selection = g_Selection.toList();
@@ -1620,7 +1616,6 @@ function packUnit(pack)
 	});
 }
 
-// Cancel un/packing unit(s)
 function cancelPackUnit(pack)
 {
 	var selection = g_Selection.toList();
@@ -1632,7 +1627,6 @@ function cancelPackUnit(pack)
 	});
 }
 
-// Upgrade an entity to another
 function upgradeEntity(Template)
 {
 	Engine.PostNetworkCommand({
@@ -1643,7 +1637,6 @@ function upgradeEntity(Template)
 	});
 }
 
-// Cancel upgrading entities
 function cancelUpgradeEntity()
 {
 	Engine.PostNetworkCommand({

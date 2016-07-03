@@ -538,22 +538,23 @@ g_SelectionPanels.Pack = {
 			let state = GetEntityState(ent);
 			if (!state.pack)
 				continue;
+
 			if (state.pack.progress == 0)
 			{
-				if (!state.pack.packed)
-					checks.packButton = true;
-				else if (state.pack.packed)
+				if (state.pack.packed)
 					checks.unpackButton = true;
+				else
+					checks.packButton = true;
 			}
 			else
 			{
-				// Already un/packing - show cancel button
-				if (!state.pack.packed)
-					checks.packCancelButton = true;
-				else if (state.pack.packed)
+				if (state.pack.packed)
 					checks.unpackCancelButton = true;
+				else
+					checks.packCancelButton = true;
 			}
 		}
+
 		let items = [];
 		if (checks.packButton)
 			items.push({
@@ -562,6 +563,7 @@ g_SelectionPanels.Pack = {
 				"tooltip": translate("Pack"),
 				"callback": function() { packUnit(true); }
 			});
+
 		if (checks.unpackButton)
 			items.push({
 				"packing": false,
@@ -569,6 +571,7 @@ g_SelectionPanels.Pack = {
 				"tooltip": translate("Unpack"),
 				"callback": function() { packUnit(false); }
 			});
+
 		if (checks.packCancelButton)
 			items.push({
 				"packing": true,
@@ -576,6 +579,7 @@ g_SelectionPanels.Pack = {
 				"tooltip": translate("Cancel Packing"),
 				"callback": function() { cancelPackUnit(true); }
 			});
+
 		if (checks.unpackCancelButton)
 			items.push({
 				"packing": true,
@@ -583,6 +587,7 @@ g_SelectionPanels.Pack = {
 				"tooltip": translate("Cancel Unpacking"),
 				"callback": function() { cancelPackUnit(false); }
 			});
+
 		return items;
 	},
 	"setupButton": function(data)
@@ -1031,17 +1036,7 @@ g_SelectionPanels.Upgrade = {
 		if (selection.length > 1)
 			return false;
  
-		if (!unitEntState.upgrade)
-			return false;
- 
-		return unitEntState.upgrade.upgrades.map(upgrade => ({
-			"entity": upgrade.entity,
-			"cost": upgrade.cost,
-			"time": upgrade.time,
-			"icon": upgrade.icon,
-			"tooltip": upgrade.tooltip,
-			"requiredTechnology": upgrade.requiredTechnology
-		}));
+		return unitEntState.upgrade && unitEntState.upgrade.upgrades;
 	},
 	"setupButton" : function(data)
 	{
@@ -1065,7 +1060,6 @@ g_SelectionPanels.Upgrade = {
 			});
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item.entity);
-
 		let progress = data.unitEntState.upgrade.progress || 0;
 		let isUpgrading = data.unitEntState.upgrade.template == data.item.entity;
 
@@ -1090,8 +1084,8 @@ g_SelectionPanels.Upgrade = {
 				tooltip += "\n" + sprintf(translate("Requires %(technology)s"), {
 					"technology": getEntityNames(GetTechnologyData(data.item.requiredTechnology))
 				});
-			if (neededResources)
-				tooltip += getNeededResourcesTooltip(neededResources);
+
+			tooltip += getNeededResourcesTooltip(neededResources);
 
 			data.button.onPress = function() { upgradeEntity(data.item.entity); };
 		}

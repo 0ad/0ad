@@ -717,7 +717,7 @@ var g_Commands = {
 				cmpUpgrade.CancelUpgrade(data.cmpPlayer.playerID);
 		}
 	},
-	
+
 	"attack-request": function(player, cmd, data)
 	{
 		// Send a chat message to human players
