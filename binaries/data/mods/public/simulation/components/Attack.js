@@ -208,7 +208,7 @@ Attack.prototype.Serialize = null; // we have no dynamic state to save
 
 Attack.prototype.GetAttackTypes = function()
 {
-	return ["Melee", "Ranged", "Capture", "Charge"].filter(type => !!this.template[type]);
+	return ["Melee", "Ranged", "Capture"].filter(type => !!this.template[type]);
 };
 
 Attack.prototype.GetPreferredClasses = function(type)

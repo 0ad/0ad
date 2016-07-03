@@ -4655,12 +4655,9 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
 	{
 		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
 		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
-		if (cmpUnitAI && cmpAttack)
-		{
-			for each (var targetType in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, targetType))
-					return false;
-		}
+		if (cmpUnitAI && cmpAttack &&
+		    cmpAttack.GetAttackTypes().some(type => cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type)))
+				return false;
 	}
 
 	// Stop if we're in hold-ground mode and it's too far from the holding point
@@ -4705,12 +4702,9 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 	{
 		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
 		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
-		if (cmpUnitAI && cmpAttack)
-		{
-			for each (var type in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type))
-					return true;
-		}
+		if (cmpUnitAI && cmpAttack &&
+		    cmpAttack.GetAttackTypes().some(type => cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type)))
+			return true;
 	}
 
 	if (force)
