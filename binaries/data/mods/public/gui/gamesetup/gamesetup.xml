@@ -221,7 +221,7 @@
 					<action on="Tab">
 						let players = [];
 						for (let player in g_PlayerAssignments)
-							players.push(g_PlayerAssignments[player]);
+							players.push(g_PlayerAssignments[player].name);
 						autoCompleteNick(this, players);
 					</action>
 				</object>
