@@ -67,6 +67,10 @@ function MatchesClassList(classes, match)
 
 /**
  * Get information about a template with or without technology modifications.
+ *
+ * NOTICE: The data returned here should have the same structure as
+ * the object returned by GetEntityState and GetExtendedEntityState!
+ *
  * @param template A valid template as returned by the template loader.
  * @param player An optional player id to get the technology modifications
  *               of properties.
@@ -74,6 +78,7 @@ function MatchesClassList(classes, match)
  */
 function GetTemplateDataHelper(template, player, auraTemplates)
 {
+	// Return data either from template (in tech tree) or sim state (ingame)
 	let getEntityValue = function(tech_type) {
 
 		let current_value = template;
@@ -140,22 +145,18 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			let aura = auraTemplates[auraID];
 			if (aura.auraName)
 				ret.auras[auraID] = {
-					"name": aura.auraName || null,
+					"name": aura.auraName,
 					"description": aura.auraDescription || null
 				};
 		}
 	}
 
 	if (template.BuildingAI)
-	{
-		ret.buildingAI = {};
-		if (template.BuildingAI.DefaultArrowCount)
-			ret.buildingAI.defaultArrowCount = getEntityValue("BuildingAI/DefaultArrowCount");
-		if (template.BuildingAI.GarrisonArrowMultiplier)
-			ret.buildingAI.garrisonArrowMultiplier = getEntityValue("BuildingAI/GarrisonArrowMultiplier");
-		if (template.BuildingAI.MaxArrowCount)
-			ret.buildingAI.maxArrowCount = getEntityValue("BuildingAI/MaxArrowCount");
-	}
+		ret.buildingAI = {
+			"defaultArrowCount": getEntityValue("BuildingAI/DefaultArrowCount"),
+			"garrisonArrowMultiplier": getEntityValue("BuildingAI/GarrisonArrowMultiplier"),
+			"maxArrowCount": getEntityValue("BuildingAI/MaxArrowCount")
+		};
 
 	if (template.BuildRestrictions)
 	{

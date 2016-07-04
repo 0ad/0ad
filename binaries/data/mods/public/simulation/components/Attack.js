@@ -412,10 +412,9 @@ Attack.prototype.GetSplashDamage = function(type)
 	if (!this.template[type].Splash)
 		return false;
 
-	return {
-		"friendlyFire": this.template[type].Splash.FriendlyFire,
-		"attackStrengths": this.GetAttackStrengths(type + ".Splash")
-	};
+	let splash = this.GetAttackStrengths(type + ".Splash");
+	splash.friendlyFire = this.template[type].Splash.FriendlyFire != "false";
+	return splash;
 };
 
 Attack.prototype.GetRange = function(type)
@@ -659,12 +658,9 @@ Attack.prototype.MissileHit = function(data, lateness)
 	// Do this first in case the direct hit kills the target
 	if (this.template.Ranged.Splash)
 	{
-		let friendlyFire = this.template.Ranged.Splash.FriendlyFire;
-		let splashRadius = this.template.Ranged.Splash.Range;
-		let splashShape = this.template.Ranged.Splash.Shape;
 		let playersToDamage;
 
-		if (friendlyFire == "false")
+		if (this.template.Ranged.Splash.FriendlyFire == "false")
 		{
 			let cmpPlayer = QueryPlayerIDInterface(data.playerId);
 			playersToDamage = cmpPlayer.GetEnemies();
@@ -673,8 +669,8 @@ Attack.prototype.MissileHit = function(data, lateness)
 		Damage.CauseSplashDamage({
 			"attacker": this.entity,
 			"origin": Vector2D.from3D(data.position),
-			"radius": splashRadius,
-			"shape": splashShape,
+			"radius": this.template.Ranged.Splash.Range,
+			"shape": this.template.Ranged.Splash.Shape,
 			"strengths": this.GetAttackStrengths(data.type),
 			"direction": data.direction,
 			"playersToDamage": playersToDamage,
