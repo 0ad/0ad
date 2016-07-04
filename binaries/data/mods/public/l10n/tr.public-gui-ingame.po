@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-27 09:00+0200\n"
-"PO-Revision-Date: 2016-06-27 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-02 16:58+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,12 +68,12 @@ msgid "Confirmation"
 msgstr "Onay"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Hayır"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Evet"
 
@@ -239,40 +239,36 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s ticari gemi devredışı"
 msgstr[1] "%(numberOfShipTraders)s ticari gemiler devredışı"
 
-#: gui/session/menu.js:627
-msgid "Current Scores"
-msgstr "Geçerli Skorlar"
-
-#: gui/session/menu.js:710
+#: gui/session/menu.js:711
 msgid "Resume"
 msgstr "Devam ettir"
 
-#: gui/session/menu.js:710 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Duraklat"
 
-#: gui/session/menu.js:714
+#: gui/session/menu.js:715
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "%(players)s tarafından durduruldu"
 
-#: gui/session/menu.js:715 gui/session/selection_details.js:319
+#: gui/session/menu.js:716
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:728 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Kılavuz"
 
-#: gui/session/menu.js:744
+#: gui/session/menu.js:745
 msgid "The Developer Overlay was closed."
 msgstr "Bu Geliştirici Kaplaması kapandı."
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:746
 msgid "The Developer Overlay was opened."
 msgstr "Bu Geliştirici Kaplaması açıldı."
 
-#: gui/session/menu.js:767
+#: gui/session/menu.js:768
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -449,7 +445,7 @@ msgstr "%(player)s kaybetti."
 #: gui/session/messages.js:759
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s kazandı."
 
 #: gui/session/messages.js:788
 #, javascript-format
@@ -476,13 +472,13 @@ msgstr "%(attacker)s tarafından saldırıya uğradın!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:378
-#: gui/session/selection_details.js:410 gui/session/session.js:825
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
+#: gui/session/selection_details.js:385 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:379
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
 msgid "Hitpoints:"
 msgstr "Vuruş puanları:"
 
@@ -568,16 +564,12 @@ msgstr "İşçi sayısı."
 msgid "Current/max gatherers"
 msgstr "Olan/en fazla toplayıcı"
 
-#: gui/session/selection_details.js:276
+#: gui/session/selection_details.js:274
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:316
-msgid "Classes:"
-msgstr "Sınıflar:"
-
-#: gui/session/selection_details.js:411
+#: gui/session/selection_details.js:386
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Saldırı noktaları:"
@@ -604,160 +596,155 @@ msgstr "Satın al %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Sat %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1026
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s gerekli"
 
-#: gui/session/selection_panels.js:443
+#: gui/session/selection_panels.js:442
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Kaldır %(name)s"
 
-#: gui/session/selection_panels.js:445
+#: gui/session/selection_panels.js:444
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Tek tıklamayla 1 tane kaldır. Üst karakter + tıklama ile bu tipteki tümünü kaldır."
 
-#: gui/session/selection_panels.js:448
+#: gui/session/selection_panels.js:447
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Oyuncu: %(playername)s"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "Geçidi Kilitle"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "Geçidi Aç"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:612
 msgid "Pack"
 msgstr "Paketle"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:614
 msgid "Unpack"
 msgstr "Paketi aç"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:616
 msgid "Cancel Packing"
 msgstr "Paketlemeyi Durdu"
 
-#: gui/session/selection_panels.js:620
+#: gui/session/selection_panels.js:618
 msgid "Cancel Unpacking"
 msgstr "Paketi Açmayı Durdur"
 
-#: gui/session/selection_panels.js:680
+#: gui/session/selection_panels.js:678
 msgid "Insufficient population capacity:"
 msgstr "Yetersiz nüfüs kapasitesi:"
 
-#: gui/session/selection_panels.js:681
+#: gui/session/selection_panels.js:679
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:799
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Kalan: %(number)s inşa."
 msgstr[1] "Kalan: %(number)s inşa."
 
-#: gui/session/selection_panels.js:1010 gui/session/session.js:826
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
-msgid "Health:"
-msgstr "Sağlık:"
-
-#: gui/session/selection_panels_helpers.js:38
+#: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
 msgid "Violent"
 msgstr "Şiddetli"
 
-#: gui/session/selection_panels_helpers.js:40
+#: gui/session/selection_panels_helpers.js:28
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Saldırgan"
 
-#: gui/session/selection_panels_helpers.js:42
+#: gui/session/selection_panels_helpers.js:30
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Savunmacı"
 
-#: gui/session/selection_panels_helpers.js:44
+#: gui/session/selection_panels_helpers.js:32
 msgctxt "stance"
 msgid "Passive"
 msgstr "Etkisiz"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:34
 msgctxt "stance"
 msgid "Standground"
 msgstr "Çanakkale geçilmez."
 
-#: gui/session/selection_panels_helpers.js:58
+#: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Yakındaki düşmana saldır, saldırganlara odaklan ve hazır görünebilirlerken yakala"
 
-#: gui/session/selection_panels_helpers.js:60
+#: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Yakındaki rakiplerden saldırı"
 
-#: gui/session/selection_panels_helpers.js:62
+#: gui/session/selection_panels_helpers.js:50
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Yakındaki rakiplere saldır, kısa bir mesafe takip et ve asıl mevkiine geri dön."
 
-#: gui/session/selection_panels_helpers.js:64
+#: gui/session/selection_panels_helpers.js:52
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Saldırı olursa kaçar"
 
-#: gui/session/selection_panels_helpers.js:66
+#: gui/session/selection_panels_helpers.js:54
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Düşmana belirli bir mesafeden saldır ama yaklaşma"
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:68
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Mevcut Sayı: %(count)s, sınır: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:90
+#: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s ile %(change)s kadar sınır büyür."
 
-#: gui/session/selection_panels_helpers.js:92
+#: gui/session/selection_panels_helpers.js:83
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s ile %(change)s kadar sınır küçültülür."
 
-#: gui/session/selection_panels_helpers.js:121
+#: gui/session/selection_panels_helpers.js:116
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:131
-msgid "Shift-click"
-msgstr "Üst karakter-tıklama"
-
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:132
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s  %(number)s (%(fullBatch)s + %(remainderBatch)s) yetiştir."
 
-#: gui/session/selection_panels_helpers.js:147
+#: gui/session/selection_panels_helpers.js:134
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s %(number)s (%(fullBatch)s) yetiştirin."
 
-#: gui/session/selection_panels_helpers.js:154
+#: gui/session/selection_panels_helpers.js:137
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(number)s tane eğitmek için %(action)s."
+
+#: gui/session/selection_panels_helpers.js:140
+msgid "Shift-click"
+msgstr "Üst karakter-tıklama"
 
 #: gui/session/session.js:251
 msgid "Gaia"
@@ -783,72 +770,77 @@ msgstr ""
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Yapı Ağacı"
 
-#: gui/session/session.js:680
-msgid "You have won!"
-msgstr ""
-
-#: gui/session/session.js:681
-msgid "You have been defeated!"
-msgstr ""
-
 #: gui/session/session.js:683
+msgid "You have won!"
+msgstr "Kazandın!"
+
+#: gui/session/session.js:684
+msgid "You have been defeated!"
+msgstr "Yenildin!"
+
+#: gui/session/session.js:686
 msgid "Do you want to quit?"
 msgstr "Çıkmak istiyor musun?"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:689
 msgid "Leaving will disconnect all other players."
 msgstr ""
 
-#: gui/session/session.js:692
+#: gui/session/session.js:695
 msgid "VICTORIOUS!"
 msgstr "ZAFER!"
 
-#: gui/session/session.js:693
+#: gui/session/session.js:696
 msgid "DEFEATED!"
 msgstr "YENİLDİN!"
 
-#: gui/session/session.js:745
+#: gui/session/session.js:748
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Yeniden oynatma tamamladı. Çıkmak istiyor musunuz?"
 
-#: gui/session/session.js:746
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:750
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Hayır"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:750
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/session/session.js:949
+#: gui/session/session.js:830
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+msgid "Health:"
+msgstr "Sağlık:"
+
+#: gui/session/session.js:947
 msgid "Population (current / limit)"
 msgstr "Nüfus (olan/limit)"
 
-#: gui/session/session.js:950
+#: gui/session/session.js:948
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "En fazla nüfus: %(popCap)s"
 
-#: gui/session/session.js:1101
+#: gui/session/session.js:1099
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sürüm: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1109
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Not: zaman tüneli modu geliştirici seçeneğidir, ve zamanda büyük bölümlerin kullanımı için tasarlanmamıştır. Yanlış kullanımı oyunda bellek dolması veya çökmesine neden olabilir."
 
-#: gui/session/session.js:1112
+#: gui/session/session.js:1110
 msgid "Time warp mode"
 msgstr "Zaman tüneli modu"
 

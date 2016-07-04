@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-13 01:35+0000\n"
-"Last-Translator: manitarious gr <manitarious@gmail.com>\n"
+"POT-Creation-Date: 2016-07-01 09:01+0200\n"
+"PO-Revision-Date: 2016-07-01 09:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,9 +50,8 @@ msgid "Civic Center"
 msgstr "Aστικό Κέντρο"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
-msgid ""
-"Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Χτίσε για να αποκτήσεις μεγάλες εκτάσεις περιοχής. Εκπαίδευσε πολίτες. Οχυρώνει: 20 μονάδες."
+msgid "Build to acquire large tracts of territory. Train citizens."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -105,9 +104,9 @@ msgstr "Σπίτι"
 
 #: simulation/templates/template_structure_civic_temple.xml:32
 msgid ""
-"Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
-"per second). Research healing and religious improvements."
-msgstr "Εκπαιδεύστε θεραπευτές. Οχυρώνει μέχρι και 20 μονάδες για να τις θεραπεύσει με γρήγορο ρυθμό(3 HP το δευτερόλεπτο). Eρεύνησε θεραπευτικές και θρησκευτικές αναβαθμίσεις."
+"Train healers. Garrison units to heal them at a quick rate (3 HP per "
+"second). Research healing and religious improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -262,8 +261,8 @@ msgid "Military"
 msgstr "Στρατιωτική"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
-msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Εκπαίδευσε πολίτες-στρατιώτες. Ερεύνησε βελτιώσεις της εκπαίδευσης. Οχύρωση: 10 μονάδες"
+msgid "Train citizen-soldiers. Research training improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -300,8 +299,8 @@ msgstr "Πρεσβεία"
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements. Garrison: 20."
-msgstr "Εκπαίδευσε ήρωες, πρωταθλητές και κατασκεύασε πολιορκητικές μηχανές. Ερεύνησε για αναβαθμίσεις των πολιορκητικών μηχανών. Οχύρωση: 20 μονάδες."
+"improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -448,10 +447,8 @@ msgid "Epiteíkhisma"
 msgstr "Επιτείχισμα"
 
 #: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Κατασκευάστε πολιορκητικές μηχανές. Συγκεντρώνει μέχρι 20 στρατιώτες για σθεναρή άμυνα."
+msgid "Build siege engines. Garrison soldiers inside for stout defense."
+msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -559,8 +556,8 @@ msgstr "Παρθενώνας"
 #: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας. Φρουρήστε εώς 30 μονάδες για να τις γιατρέψετε με εξαιρετικά γρήγορο ρυθμό."
+"empire. Garrison units to heal them at an extremely quick rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -801,8 +798,8 @@ msgstr "Maqdaš"
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
-"up to 20 units to heal them at a quick rate."
-msgstr "Εκπαιδεύστε ιέριες για να γιατρέψουν τα στρατεύματά σας.Περιφρουρήστε με πάνω από 20 μονάδες για να γιατρευτούν ταχύτερα"
+"units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -948,9 +945,8 @@ msgstr "Τόιχισμα"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
-"Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
-"defense."
-msgstr "Εκπαίδευσε πρωταθλητές και ήρωες. Συγκεντρώνει μέχρι 20 στρατιώτες μέσα για σθεναρή άμυνα"
+"Train Champions and Heroes. Garrison soldiers inside for stout defense."
+msgstr ""
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1252,8 +1248,8 @@ msgstr "ḥwt-n-mš'"
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements. Garrison: 10."
-msgstr "Εκπαίδευσε Αιγύπτιους και Μέσης Ανατολής πολίτες-στρατιώτες. Έρευνα εκπαίδευσης βελτιώσεις. Φρουρά : 10."
+"improvements."
+msgstr ""
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1483,8 +1479,8 @@ msgid "Aedes Martis"
 msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Εκπαίδευσε θεραπευτές. Οχύρωσε έως 30 μονάδες για να θεραπεύτουν με γρήγορο ρυθμό."
+msgid "Train healers. Garrison units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
@@ -1556,9 +1552,9 @@ msgstr "Φρούριον"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Build siege engines and train Champions. Garrison up to 20 soldiers inside "
-"for stout defense."
-msgstr "Κατασκευάστε πολιορκητικές μηχανές και εκπαιδεύστε Πρωταθλητές.Περιφρουρίστε με παραπάνω απο 20 στρατιώτες στο εσωτερικό του για πιο σταθερή άμυνα"
+"Build siege engines and train Champions. Garrison soldiers inside for stout "
+"defense."
+msgstr ""
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1591,6 +1587,11 @@ msgstr "Ναός του Πυθίου Απόλλωνα."
 msgid "Teíkhisma"
 msgstr "Τείχισμα"
 
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
+msgstr "Κατασκευάστε πολιορκητικές μηχανές. Συγκεντρώνει μέχρι 20 στρατιώτες για σθεναρή άμυνα."
+
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
 msgstr "Σπαρτιατική Γερουσία"
@@ -1618,5 +1619,5 @@ msgstr "Εκπαίδευσε Σπαρτιάτες ήρωες και Σπαρτι
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.Περιφρουρήστε με πάνω απο 30 μονάδες γιανα γιατρευτούν με ταχύτερο ρυθμό"
+"empire. Garrison units to heal them at a quick rate."
+msgstr ""

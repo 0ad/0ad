@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-27 09:00+0200\n"
-"PO-Revision-Date: 2016-06-27 09:36+0000\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-01 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -56,12 +56,12 @@ msgid "Confirmation"
 msgstr "Підтвердження"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ні"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Так"
 
@@ -236,40 +236,36 @@ msgstr[0] "%(numberOfShipTraders)s торгове судно не діє"
 msgstr[1] "%(numberOfShipTraders)s торгових суден не діє"
 msgstr[2] "%(numberOfShipTraders)s торгових суден не діє"
 
-#: gui/session/menu.js:627
-msgid "Current Scores"
-msgstr "Поточні результати"
-
-#: gui/session/menu.js:710
+#: gui/session/menu.js:711
 msgid "Resume"
 msgstr "Продовжити"
 
-#: gui/session/menu.js:710 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "Зупинка гри"
 
-#: gui/session/menu.js:714
+#: gui/session/menu.js:715
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr ""
 
-#: gui/session/menu.js:715 gui/session/selection_details.js:319
+#: gui/session/menu.js:716
 msgid ", "
 msgstr ","
 
-#: gui/session/menu.js:728 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Посібник"
 
-#: gui/session/menu.js:744
+#: gui/session/menu.js:745
 msgid "The Developer Overlay was closed."
 msgstr "Накладення розробника закрито."
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:746
 msgid "The Developer Overlay was opened."
 msgstr "Накладення розробника відкрито."
 
-#: gui/session/menu.js:767
+#: gui/session/menu.js:768
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -473,13 +469,13 @@ msgstr "Ви були атаковані %(attacker)s"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:378
-#: gui/session/selection_details.js:410 gui/session/session.js:825
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
+#: gui/session/selection_details.js:385 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:379
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
 msgid "Hitpoints:"
 msgstr "Очок здоров’я:"
 
@@ -567,16 +563,12 @@ msgstr "Кількість будівельників"
 msgid "Current/max gatherers"
 msgstr "Поточна / максимальна кількість збирачів"
 
-#: gui/session/selection_details.js:276
+#: gui/session/selection_details.js:274
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:316
-msgid "Classes:"
-msgstr "Класи:"
-
-#: gui/session/selection_details.js:411
+#: gui/session/selection_details.js:386
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Очки захвату:"
@@ -603,59 +595,59 @@ msgstr "Придбати %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Продати %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1026
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Потрібно %(technology)s"
 
-#: gui/session/selection_panels.js:443
+#: gui/session/selection_panels.js:442
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Вивантажити %(name)s"
 
-#: gui/session/selection_panels.js:445
+#: gui/session/selection_panels.js:444
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Один клік щоб вивантажити 1 одиницю. Shift-клік щоб вивантажити всі товари цього типу."
 
-#: gui/session/selection_panels.js:448
+#: gui/session/selection_panels.js:447
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "Зачинити ворота"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "Відчинити ворота"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:612
 msgid "Pack"
 msgstr "Зібрати"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:614
 msgid "Unpack"
 msgstr "Розібрати"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:616
 msgid "Cancel Packing"
 msgstr "Скасувати збирання"
 
-#: gui/session/selection_panels.js:620
+#: gui/session/selection_panels.js:618
 msgid "Cancel Unpacking"
 msgstr "Скасувати розбирання"
 
-#: gui/session/selection_panels.js:680
+#: gui/session/selection_panels.js:678
 msgid "Insufficient population capacity:"
 msgstr "Недостатня місткість населення"
 
-#: gui/session/selection_panels.js:681
+#: gui/session/selection_panels.js:679
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:799
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -663,101 +655,96 @@ msgstr[0] "Залишилось побудувати: %(number)s будівлю"
 msgstr[1] "Залишилось побудувати: %(number)s будівель"
 msgstr[2] "Залишилось побудувати: %(number)s будівель"
 
-#: gui/session/selection_panels.js:1010 gui/session/session.js:826
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
-msgid "Health:"
-msgstr "Здоров'я:"
-
-#: gui/session/selection_panels_helpers.js:38
+#: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
 msgid "Violent"
 msgstr "Лютий"
 
-#: gui/session/selection_panels_helpers.js:40
+#: gui/session/selection_panels_helpers.js:28
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Зухвалий"
 
-#: gui/session/selection_panels_helpers.js:42
+#: gui/session/selection_panels_helpers.js:30
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Оборонний"
 
-#: gui/session/selection_panels_helpers.js:44
+#: gui/session/selection_panels_helpers.js:32
 msgctxt "stance"
 msgid "Passive"
 msgstr "Пасивний"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:34
 msgctxt "stance"
 msgid "Standground"
 msgstr "На місці"
 
-#: gui/session/selection_panels_helpers.js:58
+#: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Атакувати найближчих противників, зосередитися на нападниках і гнатися за ними, поки їх видно"
 
-#: gui/session/selection_panels_helpers.js:60
+#: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Атакувати найближчих противників"
 
-#: gui/session/selection_panels_helpers.js:62
+#: gui/session/selection_panels_helpers.js:50
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Атакуй ближнього апонента, переслідуючи на короткій дистанції та повертайся до початкової локації"
 
-#: gui/session/selection_panels_helpers.js:64
+#: gui/session/selection_panels_helpers.js:52
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Втікати у разі нападу"
 
-#: gui/session/selection_panels_helpers.js:66
+#: gui/session/selection_panels_helpers.js:54
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Атакувати противників у радіусі дії, але не рухатися"
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:68
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Поточна кількість: %(count)s, Межа: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:90
+#: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s розширює межу за допомогою %(change)s."
 
-#: gui/session/selection_panels_helpers.js:92
+#: gui/session/selection_panels_helpers.js:83
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s скорочує межу за допомогою %(change)s."
 
-#: gui/session/selection_panels_helpers.js:121
+#: gui/session/selection_panels_helpers.js:116
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:131
-msgid "Shift-click"
-msgstr "Shift-клік"
-
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:132
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s тренувати %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:147
+#: gui/session/selection_panels_helpers.js:134
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s тренувати %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:154
+#: gui/session/selection_panels_helpers.js:137
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s тренувати %(number)s."
+
+#: gui/session/selection_panels_helpers.js:140
+msgid "Shift-click"
+msgstr "Shift-клік"
 
 #: gui/session/session.js:251
 msgid "Gaia"
@@ -783,72 +770,77 @@ msgstr ""
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Дерево Структури"
 
-#: gui/session/session.js:680
+#: gui/session/session.js:683
 msgid "You have won!"
 msgstr ""
 
-#: gui/session/session.js:681
+#: gui/session/session.js:684
 msgid "You have been defeated!"
 msgstr ""
 
-#: gui/session/session.js:683
+#: gui/session/session.js:686
 msgid "Do you want to quit?"
 msgstr "Бажаєте вийти?"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:689
 msgid "Leaving will disconnect all other players."
 msgstr ""
 
-#: gui/session/session.js:692
+#: gui/session/session.js:695
 msgid "VICTORIOUS!"
 msgstr "ПЕРЕМОГА!"
 
-#: gui/session/session.js:693
+#: gui/session/session.js:696
 msgid "DEFEATED!"
 msgstr "ПОРАЗКА!"
 
-#: gui/session/session.js:745
+#: gui/session/session.js:748
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Перегляд закінчився. Ви хочете вийти?"
 
-#: gui/session/session.js:746
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Підтвердження"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:750
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ні"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:750
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Так"
 
-#: gui/session/session.js:949
+#: gui/session/session.js:830
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+msgid "Health:"
+msgstr "Здоров'я:"
+
+#: gui/session/session.js:947
 msgid "Population (current / limit)"
 msgstr "Населення (поточне / межа)"
 
-#: gui/session/session.js:950
+#: gui/session/session.js:948
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Максимальна чисельність населення: %(popCap)s"
 
-#: gui/session/session.js:1101
+#: gui/session/session.js:1099
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версія: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1109
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Примітка: режим викривлення часу це опція для розробників, і не призначена для використання в тривалих періодах. Використання може стати причиною переповнення пам'яті або краху."
 
-#: gui/session/session.js:1112
+#: gui/session/session.js:1110
 msgid "Time warp mode"
 msgstr "Режим викривлення часу"
 

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-24 09:00+0200\n"
-"PO-Revision-Date: 2016-06-24 09:30+0000\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-01 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "* %(username)s đã sẵn sàng!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s chưa sẵn sàng."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1366
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
 msgid "Default"
 msgstr "Mặc định"
 
@@ -122,76 +122,76 @@ msgctxt "team"
 msgid "None"
 msgstr "Không"
 
-#: gui/gamesetup/gamesetup.js:1272
+#: gui/gamesetup/gamesetup.js:1273
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1435
+#: gui/gamesetup/gamesetup.js:1437
 msgid "Loading..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1485
+#: gui/gamesetup/gamesetup.js:1487
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
 msgstr[0] ""
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1497
 msgid "Randomly selects a map from the list"
 msgstr "Chọn ngẫu nhiên bản đồ từ danh sách"
 
-#: gui/gamesetup/gamesetup.js:1498
+#: gui/gamesetup/gamesetup.js:1500
 msgid "Sorry, no description available."
 msgstr "Xin lỗi, không có mô tả nào."
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1506
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1509
+#: gui/gamesetup/gamesetup.js:1511
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 
-#: gui/gamesetup/gamesetup.js:1526 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1528 gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Victory Condition:"
 msgstr "Điều kiện chiến thắng:"
 
-#: gui/gamesetup/gamesetup.js:1614
+#: gui/gamesetup/gamesetup.js:1616
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1619
+#: gui/gamesetup/gamesetup.js:1621
 msgid "Unassigned"
 msgstr "Còn trống"
 
-#: gui/gamesetup/gamesetup.js:1779
+#: gui/gamesetup/gamesetup.js:1781
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1786
+#: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1858
 msgid "I'm not ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1859
 msgid "I'm ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1852
+#: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are not ready to play."
 msgstr "Báo rằng bạn chưa sẵn sàng để chơi."
 
-#: gui/gamesetup/gamesetup.js:1853
+#: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are ready to play!"
 msgstr "Nói rằng bạn đã sẵn sàng chơi!"
 
@@ -268,7 +268,7 @@ msgid "Cancel"
 msgstr "Hủy bỏ"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):428
+#: gui/gamesetup/gamesetup.xml:(caption):447
 msgid "OK"
 msgstr "OK"
 
@@ -284,236 +284,240 @@ msgstr "Đang load"
 msgid "Loading map data. Please wait..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):45
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
 msgstr "Tên Cao Thủ"
 
-#: gui/gamesetup/gamesetup.xml:(caption):48
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
 msgstr "Vị trí người chơi"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
 msgstr "Nền văn minh"
 
-#: gui/gamesetup/gamesetup.xml:(caption):79
+#: gui/gamesetup/gamesetup.xml:(caption):86
 msgid "Team"
 msgstr "Đội"
 
-#: gui/gamesetup/gamesetup.xml:(caption):120
+#: gui/gamesetup/gamesetup.xml:(caption):139
 msgid "Map Type:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):123
+#: gui/gamesetup/gamesetup.xml:(caption):142
 msgid "Map Filter:"
 msgstr "Lọc bản đồ:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):126
+#: gui/gamesetup/gamesetup.xml:(caption):145
 msgid "Select Map:"
 msgstr "Chọn bản đồ:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):129
+#: gui/gamesetup/gamesetup.xml:(caption):148
 msgid "Number of Players:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):132
+#: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Size:"
 msgstr "Kích thước bản đồ:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):211
+#: gui/gamesetup/gamesetup.xml:(caption):230
 msgid "Send"
 msgstr "Gửi"
 
-#: gui/gamesetup/gamesetup.xml:(caption):229
+#: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Cheats enabled."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):242
+#: gui/gamesetup/gamesetup.xml:(caption):261
 msgid "Start game!"
 msgstr "Bắt đầu!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):279
 msgid "Back"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):274
-#: gui/gamesetup/gamesetup.xml:(caption):286
+#: gui/gamesetup/gamesetup.xml:(caption):293
+#: gui/gamesetup/gamesetup.xml:(caption):305
 msgid "More Options"
 msgstr "Thêm Tùy Chọn"
 
-#: gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.xml:(caption):310
 msgid "Game Speed:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):311
+#: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Wonder Victory:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):321
+#: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Population Cap:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):331
+#: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Starting Resources:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):341
+#: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Ceasefire:"
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):351
+#: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Revealed Map:"
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):361
+#: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Explored Map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Disable Treasures:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):381
+#: gui/gamesetup/gamesetup.xml:(caption):400
 msgid "Teams Locked:"
 msgstr "Khóa đội:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):391
+#: gui/gamesetup/gamesetup.xml:(caption):410
 msgid "Last Man Standing:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):401
+#: gui/gamesetup/gamesetup.xml:(caption):420
 msgid "Cheats:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):411
+#: gui/gamesetup/gamesetup.xml:(caption):430
 msgid "Rated Game:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):63
+#: gui/gamesetup/gamesetup.xml:(tooltip):68
 msgid "View civilization info"
 msgstr "Xem thông tin nền văn minh"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):75
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):96
+msgid "Reset all teams to the default."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):91
+#: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
 msgstr "Chọn người chơi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):101
+#: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
 msgstr "Thay đổi thiết lập của AI."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):104
+#: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's civilization."
 msgstr "Chọn nền văn minh của người chơi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
 msgstr "Chọn đội của người chơi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):149
+#: gui/gamesetup/gamesetup.xml:(tooltip):168
 msgid "Select a map type."
 msgstr "Chọn loại bản đồ."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):157
+#: gui/gamesetup/gamesetup.xml:(tooltip):176
 msgid "Select a map filter."
 msgstr "Chọn bộ lọc cho bản đồ."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):166
+#: gui/gamesetup/gamesetup.xml:(tooltip):185
 msgid "Select a map to play on."
 msgstr "Chọn bản đồ để chơi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):176
+#: gui/gamesetup/gamesetup.xml:(tooltip):195
 msgid "Select number of players."
 msgstr "Số lượng người chơi."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):180
+#: gui/gamesetup/gamesetup.xml:(tooltip):199
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):243
+#: gui/gamesetup/gamesetup.xml:(tooltip):262
 msgid "Start a new game with the current settings."
 msgstr "Bắt đầu màn chơi mới với tinh chỉnh hiện tại."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):275
+#: gui/gamesetup/gamesetup.xml:(tooltip):294
 msgid "See more game options"
 msgstr "Thêm nhiều tinh chỉnh game"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):295
+#: gui/gamesetup/gamesetup.xml:(tooltip):314
 msgid "Select game speed."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):305
+#: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Select victory condition."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):315
+#: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):325
+#: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Select population cap."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):335
+#: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Select the game's starting resources."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):345
+#: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Set time where no attacks are possible."
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):355
+#: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle revealed map (see everything)."
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):365
+#: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle explored map (see initial map)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):375
+#: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Disable all treasures on the map."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):385
+#: gui/gamesetup/gamesetup.xml:(tooltip):404
 msgid "Toggle locked teams."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):395
+#: gui/gamesetup/gamesetup.xml:(tooltip):414
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):405
+#: gui/gamesetup/gamesetup.xml:(tooltip):424
 msgid "Toggle the usability of cheats."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):415
+#: gui/gamesetup/gamesetup.xml:(tooltip):434
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):429
+#: gui/gamesetup/gamesetup.xml:(tooltip):448
 msgid "Close more game options window"
 msgstr "Đóng cửa sổ tùy chọn game"
 

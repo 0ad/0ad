@@ -9,7 +9,7 @@
 # Alex <yanebotan@ngs.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -40,8 +40,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-22 01:02+0000\n"
-"Last-Translator: Simple88\n"
+"PO-Revision-Date: 2016-07-03 11:32+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -211,7 +211,7 @@ msgstr "Металлические доспехи для лошадей."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Станет доступным на этапе большого города."
+msgstr "Доступно на этапе большого города."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -248,7 +248,7 @@ msgstr "Лорика ферреа"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Стёганая или кожаная броня пехотинца."
+msgstr "Стёганая или кожаная броня для пехоты."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
@@ -288,7 +288,7 @@ msgstr "Сполас"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "Панцирь из льняной ткани для пехотинца."
+msgstr "Панцирь из льняной ткани для пехоты."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
@@ -337,7 +337,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Нательная защита, полностью изготовленная из бронзы. Только лучшие воины могли экипироваться такими доспехами из-за их высокой цены и трудоёмкости изготовления."
+msgstr "Нательная защита, полностью изготовленная из бронзы. Только лучшие воины экипировались такими доспехами из-за их высокой цены и трудоёмкости изготовления."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."

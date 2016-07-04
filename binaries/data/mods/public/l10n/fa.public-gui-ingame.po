@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-27 09:00+0200\n"
-"PO-Revision-Date: 2016-06-27 09:36+0000\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-01 09:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -46,12 +46,12 @@ msgid "Confirmation"
 msgstr "تصدیق"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "خیر"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "بله"
 
@@ -208,40 +208,36 @@ msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 
-#: gui/session/menu.js:627
-msgid "Current Scores"
-msgstr ""
-
-#: gui/session/menu.js:710
+#: gui/session/menu.js:711
 msgid "Resume"
 msgstr "ادامه"
 
-#: gui/session/menu.js:710 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
 msgid "Pause"
 msgstr "توقف بازی"
 
-#: gui/session/menu.js:714
+#: gui/session/menu.js:715
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr ""
 
-#: gui/session/menu.js:715 gui/session/selection_details.js:319
+#: gui/session/menu.js:716
 msgid ", "
 msgstr ""
 
-#: gui/session/menu.js:728 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "راهنما"
 
-#: gui/session/menu.js:744
+#: gui/session/menu.js:745
 msgid "The Developer Overlay was closed."
 msgstr "بخش توصعه دهنده بسته شد."
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:746
 msgid "The Developer Overlay was opened."
 msgstr "بخش توسعه دهنده باز شد."
 
-#: gui/session/menu.js:767
+#: gui/session/menu.js:768
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -445,13 +441,13 @@ msgstr "شما توسط %(attacker)s مورد حمله قرار گرفته ای�
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:378
-#: gui/session/selection_details.js:410 gui/session/session.js:825
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
+#: gui/session/selection_details.js:385 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:379
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
 msgid "Hitpoints:"
 msgstr "سلامتی:"
 
@@ -535,16 +531,12 @@ msgstr ""
 msgid "Current/max gatherers"
 msgstr "منبع جمع کن های حداکثر/کنونی"
 
-#: gui/session/selection_details.js:276
+#: gui/session/selection_details.js:274
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:316
-msgid "Classes:"
-msgstr ""
-
-#: gui/session/selection_details.js:411
+#: gui/session/selection_details.js:386
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr ""
@@ -571,159 +563,154 @@ msgstr "خرید %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "فروش %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1026
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "نیاز به دانش %(technology)s دارد."
 
-#: gui/session/selection_panels.js:443
+#: gui/session/selection_panels.js:442
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)s را پیاده کنید"
 
-#: gui/session/selection_panels.js:445
+#: gui/session/selection_panels.js:444
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "یک بر کلیک کنید تا 1 نفر خارج شود. هنگام کلیک شیفت را نگه دارید تا همه خارج شوند."
 
-#: gui/session/selection_panels.js:448
+#: gui/session/selection_panels.js:447
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:507
 msgid "Lock Gate"
 msgstr "قفل دروازه"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:513
 msgid "Unlock Gate"
 msgstr "گشودن دربازه"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:612
 msgid "Pack"
 msgstr "باز کردن"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:614
 msgid "Unpack"
 msgstr "سرهم بندی"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:616
 msgid "Cancel Packing"
 msgstr "لغو بسته‌بندی"
 
-#: gui/session/selection_panels.js:620
+#: gui/session/selection_panels.js:618
 msgid "Cancel Unpacking"
 msgstr "لغو بازکردن بسته‌بندی"
 
-#: gui/session/selection_panels.js:680
+#: gui/session/selection_panels.js:678
 msgid "Insufficient population capacity:"
 msgstr "جای کافی موجود نیست:"
 
-#: gui/session/selection_panels.js:681
+#: gui/session/selection_panels.js:679
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:799
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 
-#: gui/session/selection_panels.js:1010 gui/session/session.js:826
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
-msgid "Health:"
-msgstr "سلامتی:"
-
-#: gui/session/selection_panels_helpers.js:38
+#: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
 msgid "Violent"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:40
+#: gui/session/selection_panels_helpers.js:28
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "هجومی"
 
-#: gui/session/selection_panels_helpers.js:42
+#: gui/session/selection_panels_helpers.js:30
 msgctxt "stance"
 msgid "Defensive"
 msgstr "دفاعی"
 
-#: gui/session/selection_panels_helpers.js:44
+#: gui/session/selection_panels_helpers.js:32
 msgctxt "stance"
 msgid "Passive"
 msgstr "خنثی"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:34
 msgctxt "stance"
 msgid "Standground"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:58
+#: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:60
+#: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:62
+#: gui/session/selection_panels_helpers.js:50
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:64
+#: gui/session/selection_panels_helpers.js:52
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:66
+#: gui/session/selection_panels_helpers.js:54
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:68
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "تعداد کنونی: %(count)s, حد: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:90
+#: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:92
+#: gui/session/selection_panels_helpers.js:83
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:121
+#: gui/session/selection_panels_helpers.js:116
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:131
-msgid "Shift-click"
-msgstr "شیفت و کلیک"
-
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:132
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s برای آموزش %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:147
+#: gui/session/selection_panels_helpers.js:134
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s برای آموزش %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:154
+#: gui/session/selection_panels_helpers.js:137
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s برای آموزش %(number)s."
+
+#: gui/session/selection_panels_helpers.js:140
+msgid "Shift-click"
+msgstr "شیفت و کلیک"
 
 #: gui/session/session.js:251
 msgid "Gaia"
@@ -749,72 +736,77 @@ msgstr ""
 msgid "%(civ)s - Structure Tree"
 msgstr ""
 
-#: gui/session/session.js:680
+#: gui/session/session.js:683
 msgid "You have won!"
 msgstr ""
 
-#: gui/session/session.js:681
+#: gui/session/session.js:684
 msgid "You have been defeated!"
 msgstr ""
 
-#: gui/session/session.js:683
+#: gui/session/session.js:686
 msgid "Do you want to quit?"
 msgstr "آیا می‌خواهید خارج شوید؟"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:689
 msgid "Leaving will disconnect all other players."
 msgstr ""
 
-#: gui/session/session.js:692
+#: gui/session/session.js:695
 msgid "VICTORIOUS!"
 msgstr "پیروزی!"
 
-#: gui/session/session.js:693
+#: gui/session/session.js:696
 msgid "DEFEATED!"
 msgstr "شکست!"
 
-#: gui/session/session.js:745
+#: gui/session/session.js:748
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr ""
 
-#: gui/session/session.js:746
+#: gui/session/session.js:749
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "تائیدیه"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:750
 msgctxt "replayFinished"
 msgid "No"
 msgstr "نه"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:750
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "آری"
 
-#: gui/session/session.js:949
+#: gui/session/session.js:830
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+msgid "Health:"
+msgstr "سلامتی:"
+
+#: gui/session/session.js:947
 msgid "Population (current / limit)"
 msgstr "جمعیت (حد نساب / کنونی)"
 
-#: gui/session/session.js:950
+#: gui/session/session.js:948
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr ""
 
-#: gui/session/session.js:1101
+#: gui/session/session.js:1099
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "نسخه ساخت: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1109
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "نکته: حالت برگشت پذیری زمان یک ابزار توسعه دهندگان است و برای استفاده ی طولانی مدت ساخته نشده. استفاده ی نادرست از آن باعث افزایش شدید استفاده از حافظه و متوقف شدن برنامه شود."
 
-#: gui/session/session.js:1112
+#: gui/session/session.js:1110
 msgid "Time warp mode"
 msgstr "مد بازگشت زمان"
 

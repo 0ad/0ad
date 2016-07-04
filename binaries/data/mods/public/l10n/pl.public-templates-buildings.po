@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 12:07+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2016-07-01 09:01+0200\n"
+"PO-Revision-Date: 2016-07-01 09:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,9 +45,8 @@ msgid "Civic Center"
 msgstr "Centrum osady"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
-msgid ""
-"Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Zbuduj aby pozyskać duże połacie ziemi. Trenuj obywateli. Garnizon: 20."
+msgid "Build to acquire large tracts of territory. Train citizens."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -100,9 +99,9 @@ msgstr "Dom"
 
 #: simulation/templates/template_structure_civic_temple.xml:32
 msgid ""
-"Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
-"per second). Research healing and religious improvements."
-msgstr "Trenuj uzdrowicieli. Umieść wewnątrz do 20 jednostek aby szybko je wyleczyć (3 PZ na sekundę). Badaj ulepszenia związane z uzdrawianiem i religią."
+"Train healers. Garrison units to heal them at a quick rate (3 HP per "
+"second). Research healing and religious improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -257,8 +256,8 @@ msgid "Military"
 msgstr "Wojskowość"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
-msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Trenuj żołnierzy miejskich. Odkrywaj ulepszone metody ich trenowania. Garnizon: 10."
+msgid "Train citizen-soldiers. Research training improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -295,8 +294,8 @@ msgstr "Ambasada"
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements. Garrison: 20."
-msgstr "Trenuj bohaterów, elitarne jednostki mistrzów oraz produkuj maszyny oblężnicze. Opracuj usprawnienia do maszyn oblężniczych. Garnizon: 20."
+"improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -443,10 +442,8 @@ msgid "Epiteíkhisma"
 msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Buduj machiny oblężnicze. Umieść wewnątrz do 20 żołnierzy dla mocnej obrony."
+msgid "Build siege engines. Garrison soldiers inside for stout defense."
+msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -554,8 +551,8 @@ msgstr "Naós Parthenṓn"
 #: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr "Przynieś chwałę swojej cywilizacji oraz powiększ swoje imprerium o nowe połacia ziemi. Umieść do 30 jednostek, aby wyleczyć je szybko."
+"empire. Garrison units to heal them at an extremely quick rate."
+msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -796,8 +793,8 @@ msgstr "Maqdaš"
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
-"up to 20 units to heal them at a quick rate."
-msgstr "Pozwala tworzyć kapłanki do leczenia twoich wojsk oraz szkolić Świętych Pikinierów. Może przechować 20 jednostek w celu szybkiego ich wyleczenia."
+"units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -943,9 +940,8 @@ msgstr "Teíchisma"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
-"Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
-"defense."
-msgstr "Pozwala tworzyć bohaterów i elitarne jednostki. Może przechować do 20 żołnierzy dla wzmocnienia obrony."
+"Train Champions and Heroes. Garrison soldiers inside for stout defense."
+msgstr ""
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1247,8 +1243,8 @@ msgstr "ḥwt-n-mš'"
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements. Garrison: 10."
-msgstr "Trenuj egipskich i środkowo-wschodnich żołnierzy miejskich. Odkrywaj ulepszone metody ich trenowania. Garnizon: 10."
+"improvements."
+msgstr ""
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1478,8 +1474,8 @@ msgid "Aedes Martis"
 msgstr "Świątynia Marsa"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Trenuj uzdrowicieli. Umieść wewnątrz do 30 jednostek, aby wyleczyć je szybko."
+msgid "Train healers. Garrison units to heal them at a quick rate."
+msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
@@ -1551,9 +1547,9 @@ msgstr "Phrourion"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Build siege engines and train Champions. Garrison up to 20 soldiers inside "
-"for stout defense."
-msgstr "Pozwala tworzyć machiny oblężnicze i szkolić elitarne jednostki. Umieść wewnątrz do 20 żołnierzy dla wzmocnienia obrony."
+"Build siege engines and train Champions. Garrison soldiers inside for stout "
+"defense."
+msgstr ""
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1586,6 +1582,11 @@ msgstr "Świątynia Pytyjskiego Apolla"
 msgid "Teíkhisma"
 msgstr "Mur"
 
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
+msgstr "Buduj machiny oblężnicze. Umieść wewnątrz do 20 żołnierzy dla mocnej obrony."
+
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
 msgstr "Senat spartański"
@@ -1613,5 +1614,5 @@ msgstr "Pozwala tworzyć Spartańskich herosów oraz czempionów."
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Przynieś chwałę swojej cywilizacji oraz powiększ swoje imprerium o nowe połacia ziemi. Skoszaruj maksymalnie 30 jednostek aby leczyć je w szybszym tempie."
+"empire. Garrison units to heal them at a quick rate."
+msgstr ""
