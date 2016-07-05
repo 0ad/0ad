@@ -211,15 +211,15 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.LeaveFoundation": function(msg) {
 		// If foundation is not ally of entity, or if entity is unpacked siege,
 		// ignore the order
-		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack() || this.IsTurret())
+		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) && !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
+			this.IsPacking() || this.CanPack() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
 		}
 		// Move a tile outside the building
-		var range = 4;
-		var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
-		if (ok)
+		let range = 4;
+		if (this.MoveToTargetRangeExplicit(msg.data.target, range, range))
 		{
 			// We've started walking to the given point
 			this.SetNextState("INDIVIDUAL.WALKING");
@@ -1278,15 +1278,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.LeaveFoundation": function(msg) {
 			// If foundation is not ally of entity, or if entity is unpacked siege,
 			// ignore the order
-			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack() || this.IsTurret())
+			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) && !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
+				this.IsPacking() || this.CanPack() || this.IsTurret())
 			{
 				this.FinishOrder();
 				return;
 			}
 			// Move a tile outside the building
-			var range = 4;
-			var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
-			if (ok)
+			let range = 4;
+			if (this.MoveToTargetRangeExplicit(msg.data.target, range, range))
 			{
 				// We've started walking to the given point
 				this.SetNextState("WALKINGTOPOINT");
