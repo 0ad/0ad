@@ -63,6 +63,7 @@ Health.prototype.Init = function()
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
 	this.idleRegenRate = ApplyValueModificationsToEntity("Health/IdleRegenRate", +this.template.IdleRegenRate, this.entity);
+	this.undeletable = this.template.Undeletable == "true";
 	this.CheckRegenTimer();
 	this.UpdateActor();
 };
@@ -123,7 +124,12 @@ Health.prototype.IsUnhealable = function()
 
 Health.prototype.IsUndeletable = function()
 {
-	return this.template.Undeletable == "true";
+	return this.undeletable;
+};
+
+Health.prototype.SetUndeletable = function(undeletable)
+{
+	this.undeletable = undeletable;
 };
 
 Health.prototype.GetIdleRegenRate = function()

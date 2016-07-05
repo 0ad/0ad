@@ -204,8 +204,9 @@ g_SelectionPanels.Command = {
 		data.countDisplay.caption = data.item.count || "";
 
 		data.button.enabled =
-			controlsPlayer(data.unitEntState.player) ||
-			(g_IsObserver && data.item.name == "focus-rally");
+			g_IsObserver && data.item.name == "focus-rally" ||
+			controlsPlayer(data.unitEntState.player) &&
+				(data.item.name != "delete" || !isUndeletable(data.unitEntState));
 
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 

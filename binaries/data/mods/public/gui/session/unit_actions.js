@@ -986,47 +986,32 @@ var g_EntityCommands =
 	"delete": {
 		"getInfo": function(entState)
 		{
-			if (!entState.canDelete)
-				return false;
-
-			if (entState.mirage)
-				return {
-					"tooltip": translate("You cannot destroy this entity because it is in the fog-of-war"),
+			let deleteReason = isUndeletable(entState);
+			return deleteReason ?
+				{
+					"tooltip": deleteReason,
 					"icon": "kill_small_disabled.png"
+				} :
+				{
+					"tooltip":
+						colorizeHotkey("%(hotkey)s", "session.kill") + " " +
+						translate("Destroy the selected units or buildings.") + "\n" +
+						colorizeHotkey(
+							translate("Use %(hotkey)s to avoid the confirmation dialog."),
+							"session.noconfirmation"
+						),
+					"icon": "kill_small.png"
 				};
-
-			if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
-				return {
-					"tooltip": translate("You cannot destroy this entity as you own less than half the capture points"),
-					"icon": "kill_small_disabled.png"
-				};
-
-			return {
-				"tooltip":
-					colorizeHotkey("%(hotkey)s" + " ", "session.kill") +
-					translate("Destroy the selected units or buildings.") +
-					colorizeHotkey(
-						"\n" + translate("Use %(hotkey)s to avoid the confirmation dialog."),
-						"session.noconfirmation"
-					),
-				"icon": "kill_small.png"
-			};
 		},
 		"execute": function(entState)
 		{
-			if (entState.mirage ||
-			    entState.capturePoints &&
-			    entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
-				return;
-
-			if (entState.resourceSupply &&
-			    entState.resourceSupply.killBeforeGather &&
-			    !g_DevSettings.controlAll)
+			if (isUndeletable(entState))
 				return;
 
 			let selection = g_Selection.toList();
 			if (!selection.length)
 				return;
+
 			if (Engine.HotkeyIsPressed("session.noconfirmation"))
 				Engine.PostNetworkCommand({
 					"type": "delete-entities",
@@ -1342,4 +1327,24 @@ function someGuarding(entities)
 		let entState = GetEntityState(ent);
 		return entState && entState.unitAI && entState.unitAI.isGuarding;
 	});
+}
+
+/**
+ * Keep in sync with Commands.js.
+ */
+function isUndeletable(entState)
+{
+	if (g_DevSettings.controlAll)
+		return false;
+
+	if (entState.resourceSupply && entState.resourceSupply.killBeforeGather)
+		return translate("The entity has to be killed before it can be gathered from");
+
+	if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
+		return translate("You cannot destroy this entity as you own less than half the capture points");
+
+	if (!entState.canDelete)
+		return translate("This entity is undeletable");
+
+	return false;
 }

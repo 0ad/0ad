@@ -170,7 +170,7 @@ var g_Commands = {
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
-		// See UnitAI.CanAttack for target checks
+
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Attack(cmd.target, cmd.queued, allowCapture);
 		});
@@ -181,7 +181,6 @@ var g_Commands = {
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
 			warn("Invalid command: heal target is not owned by player "+player+" or their ally: "+uneval(cmd));
 
-		// See UnitAI.CanHeal for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
@@ -193,7 +192,6 @@ var g_Commands = {
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
 			warn("Invalid command: repair target is not owned by ally of player "+player+": "+uneval(cmd));
 
-		// See UnitAI.CanRepair for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
@@ -204,7 +202,6 @@ var g_Commands = {
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
 			warn("Invalid command: resource is not owned by gaia or player "+player+": "+uneval(cmd));
 
-		// See UnitAI.CanGather for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
@@ -222,7 +219,6 @@ var g_Commands = {
 		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
 
-		// See UnitAI.CanReturnResource for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
@@ -362,25 +358,35 @@ var g_Commands = {
 	{
 		for (let ent of data.entities)
 		{
-			// don't allow to delete entities who are half-captured
-			var cmpCapturable = Engine.QueryInterface(ent, IID_Capturable);
-			if (cmpCapturable)
+			let cmpHealth = QueryMiragedInterface(ent, IID_Health);
+			if (!data.controlAllUnits)
 			{
-				var capturePoints = cmpCapturable.GetCapturePoints();
-				var maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
-				if (capturePoints[player] < maxCapturePoints / 2)
-					return;
-			}
-			// either kill or delete the entity
-			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
-			if (cmpHealth)
-			{
-				if (cmpHealth.IsUndeletable())
+				if (cmpHealth && cmpHealth.IsUndeletable())
 					continue;
-				var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
-				if (!cmpResourceSupply || !cmpResourceSupply.GetKillBeforeGather() || data.controlAllUnits)
-					cmpHealth.Kill();
+
+				let cmpCapturable = QueryMiragedInterface(ent, IID_Capturable);
+				if (cmpCapturable &&
+				    cmpCapturable.GetCapturePoints()[player] < cmpCapturable.GetMaxCapturePoints() / 2)
+					continue;
+
+				let cmpResourceSupply = QueryMiragedInterface(ent, IID_ResourceSupply);
+				if (cmpResourceSupply && cmpResourceSupply.GetKillBeforeGather())
+					continue;
 			}
+
+			let cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
+			if (cmpMirage)
+			{
+				let cmpMiragedHealth = Engine.QueryInterface(cmpMirage.parent, IID_Health);
+				if (cmpMiragedHealth)
+					cmpMiragedHealth.Kill();
+				else
+					Engine.DestroyEntity(cmpMirage.parent);
+
+				Engine.DestroyEntity(ent);
+			}
+			else if (cmpHealth)
+				cmpHealth.Kill();
 			else
 				Engine.DestroyEntity(ent);
 		}
