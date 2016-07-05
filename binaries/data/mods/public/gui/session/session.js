@@ -418,13 +418,13 @@ function isPlayerObserver(playerID)
  */
 function controlsPlayer(playerID)
 {
-	if (Engine.GetPlayerID() != playerID)
-		return false;
+	let playerStates = GetSimState().players;
 
-	let playerState = GetSimState().players[playerID];
-
-	return playerState && (
-		playerState.state != "defeated" || playerState.controlsAll);
+	return playerStates[Engine.GetPlayerID()] &&
+		playerStates[Engine.GetPlayerID()].controlsAll ||
+		Engine.GetPlayerID() == playerID &&
+		playerStates[playerID] &&
+		playerStates[playerID].state != "defeated";
 }
 
 /**
