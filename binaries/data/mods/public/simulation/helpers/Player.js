@@ -123,7 +123,7 @@ function LoadPlayerSettings(settings, newPlayers)
 
 		// If diplomacy explicitly defined, use that; otherwise use teams
 		if (getSetting(playerData, playerDefaults, i, "Diplomacy") !== undefined)
-			cmpPlayer.SetDiplomacy(getSetting(playerData, playerDefaults, i, "Diplomacy"), true);
+			cmpPlayer.SetDiplomacy(getSetting(playerData, playerDefaults, i, "Diplomacy"));
 		else
 		{
 			// Init diplomacy
@@ -137,7 +137,7 @@ function LoadPlayerSettings(settings, newPlayers)
 				else
 					cmpPlayer.SetEnemy(j);
 			}
-			cmpPlayer.SetTeam(myTeam === undefined ? -1 : myTeam, true);
+			cmpPlayer.SetTeam(myTeam === undefined ? -1 : myTeam);
 		}
 
 		// If formations explicitly defined, use that; otherwise use civ defaults
@@ -168,7 +168,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		}
 
 	// Disable the AIIinterface when no AI players are present
-	if (playerData && !playerData.some(v => v && v.AI))
+	if (playerData && !playerData.some(v => v && !!v.AI))
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 }
 

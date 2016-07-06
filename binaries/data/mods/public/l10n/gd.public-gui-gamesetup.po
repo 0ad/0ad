@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:00+0200\n"
-"PO-Revision-Date: 2016-06-12 17:16+0000\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-03 10:02+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "* Tha %(username)s deiseil!"
 msgid "* %(username)s is not ready."
 msgstr "* Chan eil %(username)s deiseil."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1361
+#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
 msgid "Default"
 msgstr "Tùsail"
 
@@ -94,7 +94,7 @@ msgid "All Maps"
 msgstr "A h‑uile mapa"
 
 #: gui/gamesetup/gamesetup.js:142
-msgctxt "map type"
+msgctxt "map selection"
 msgid "Random"
 msgstr "Tuaireamach"
 
@@ -103,42 +103,37 @@ msgctxt "civilization"
 msgid "Random"
 msgstr "Tuaireamach"
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the lobby."
 msgstr "Till dhan lobaidh."
 
-#: gui/gamesetup/gamesetup.js:268
+#: gui/gamesetup/gamesetup.js:270
 msgid "Return to the main menu."
 msgstr "Till dhan phrìomh chlàr-taice."
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:567
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/gamesetup/gamesetup.js:604
+#: gui/gamesetup/gamesetup.js:606
 msgctxt "team"
 msgid "None"
 msgstr "—"
 
-#: gui/gamesetup/gamesetup.js:1267
+#: gui/gamesetup/gamesetup.js:1273
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1430
+#: gui/gamesetup/gamesetup.js:1437
 msgid "Loading..."
 msgstr "’Ga luchdadh…"
 
-#: gui/gamesetup/gamesetup.js:1478
-msgctxt "map selection"
-msgid "Random"
-msgstr "Tuaireamach"
-
-#: gui/gamesetup/gamesetup.js:1482
+#: gui/gamesetup/gamesetup.js:1487
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
@@ -147,20 +142,20 @@ msgstr[1] "%(number)s chluicheadair. "
 msgstr[2] "%(number)s cluicheadairean. "
 msgstr[3] "%(number)s cluicheadair. "
 
-#: gui/gamesetup/gamesetup.js:1492
+#: gui/gamesetup/gamesetup.js:1497
 msgid "Randomly selects a map from the list"
 msgstr "Taghaidh seo mapa air thuaiream on liosta"
 
-#: gui/gamesetup/gamesetup.js:1495
+#: gui/gamesetup/gamesetup.js:1500
 msgid "Sorry, no description available."
 msgstr "Duilich ach chan eil tuairisgeul ri làimh."
 
-#: gui/gamesetup/gamesetup.js:1501
+#: gui/gamesetup/gamesetup.js:1506
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Gun chumha"
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1511
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -170,85 +165,85 @@ msgstr[1] "Mìorbhail (%(min)s mhionaid)"
 msgstr[2] "Mìorbhail (%(min)s mionaidean)"
 msgstr[3] "Mìorbhail (%(min)s mionaid)"
 
-#: gui/gamesetup/gamesetup.js:1523 gui/gamesetup/gamesetup.xml:(caption):301
+#: gui/gamesetup/gamesetup.js:1528 gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Victory Condition:"
 msgstr "Cumha na buaidhe:"
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1616
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IF: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1621
 msgid "Unassigned"
 msgstr "Gun chluicheadair"
 
-#: gui/gamesetup/gamesetup.js:1776
+#: gui/gamesetup/gamesetup.js:1781
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1783
+#: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
 msgstr "Cluicheadair neo-aithnichte"
 
-#: gui/gamesetup/gamesetup.js:1845
+#: gui/gamesetup/gamesetup.js:1858
 msgid "I'm not ready!"
 msgstr "Chan eil mi deiseil!"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1859
 msgid "I'm ready"
 msgstr "Tha mi deiseil"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are not ready to play."
 msgstr "Innis nach eil thu deiseil airson cluiche."
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are ready to play!"
 msgstr "Innis gu bheil thu deiseil airson cluiche!"
 
-#: gui/gamesetup/gamesetup_mp.js:35
+#: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "An geam aig %(name)s"
 
-#: gui/gamesetup/gamesetup_mp.js:80
+#: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
 msgstr "A’ ceangal ris an fhrithealaiche…"
 
-#: gui/gamesetup/gamesetup_mp.js:99
+#: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Teachdaireachd-lìonraidh: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:168
+#: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
 msgstr "A’ clàradh leis an fhrithealaiche…"
 
-#: gui/gamesetup/gamesetup_mp.js:174
+#: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
 msgstr "Tha an geama air a thòiseachadh mar-thà, a’ gabhail pàirt ann a-rithist…"
 
-#: gui/gamesetup/gamesetup_mp.js:226
+#: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
 msgstr "Tha ainm a’ gheama seo ’ga chleachdadh mu thràth."
 
-#: gui/gamesetup/gamesetup_mp.js:243
+#: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Cha ghabh geama òstadh: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:244 gui/gamesetup/gamesetup_mp.js:273
+#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
 msgstr "Mearachd"
 
-#: gui/gamesetup/gamesetup_mp.js:272
+#: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Chan urrainn dhut pàirt a ghabhail sa gheama: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:295
+#: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "An geama aig %(playername)s"
@@ -276,12 +271,12 @@ msgid "AI Difficulty:"
 msgstr "Duilgheadas na h-IF:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):90
+#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Sguir dheth"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):428
+#: gui/gamesetup/gamesetup.xml:(caption):447
 msgid "OK"
 msgstr "Ceart ma-thà"
 
@@ -297,236 +292,240 @@ msgstr "’Ga luchdadh"
 msgid "Loading map data. Please wait..."
 msgstr "A’ luchdadh dàta a’ mhapa. Fuirich greis…"
 
-#: gui/gamesetup/gamesetup.xml:(caption):45
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
 msgstr "Ainm a’ chluicheadair"
 
-#: gui/gamesetup/gamesetup.xml:(caption):48
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
 msgstr "Dath"
 
-#: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
 msgstr "Ionad a’ chluicheadair"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
 msgstr "Sìobhaltas"
 
-#: gui/gamesetup/gamesetup.xml:(caption):79
+#: gui/gamesetup/gamesetup.xml:(caption):86
 msgid "Team"
 msgstr "Sgioba"
 
-#: gui/gamesetup/gamesetup.xml:(caption):120
+#: gui/gamesetup/gamesetup.xml:(caption):139
 msgid "Map Type:"
 msgstr "Seòrsa a’ mhapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):123
+#: gui/gamesetup/gamesetup.xml:(caption):142
 msgid "Map Filter:"
 msgstr "Criathrag:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):126
+#: gui/gamesetup/gamesetup.xml:(caption):145
 msgid "Select Map:"
 msgstr "Tagh mapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):129
+#: gui/gamesetup/gamesetup.xml:(caption):148
 msgid "Number of Players:"
 msgstr "Cluicheadairean:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):132
+#: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Size:"
 msgstr "Meud a’ mhapa:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):211
+#: gui/gamesetup/gamesetup.xml:(caption):230
 msgid "Send"
 msgstr "Cuir"
 
-#: gui/gamesetup/gamesetup.xml:(caption):229
+#: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Cheats enabled."
 msgstr "Tha a’ chealgaireachd an comas."
 
-#: gui/gamesetup/gamesetup.xml:(caption):242
+#: gui/gamesetup/gamesetup.xml:(caption):261
 msgid "Start game!"
 msgstr "Tòisich air geama!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):260
+#: gui/gamesetup/gamesetup.xml:(caption):279
 msgid "Back"
 msgstr "Air ais"
 
-#: gui/gamesetup/gamesetup.xml:(caption):274
-#: gui/gamesetup/gamesetup.xml:(caption):286
+#: gui/gamesetup/gamesetup.xml:(caption):293
+#: gui/gamesetup/gamesetup.xml:(caption):305
 msgid "More Options"
 msgstr "Barrachd roghainnean"
 
-#: gui/gamesetup/gamesetup.xml:(caption):291
+#: gui/gamesetup/gamesetup.xml:(caption):310
 msgid "Game Speed:"
 msgstr "Luaths a’ gheama:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):311
+#: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Wonder Victory:"
 msgstr "Buaidh mìorbhaile:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):321
+#: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Population Cap:"
 msgstr "Tomhas-sluaigh:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):331
+#: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Starting Resources:"
 msgstr "Tagh na stòrasan tòiseachaidh:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):341
+#: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Ceasefire:"
 msgstr "Fois-losgaidh:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):351
+#: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Revealed Map:"
 msgstr "Mapa air fhoillseachadh:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):361
+#: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Explored Map:"
 msgstr "Mapa air rùrachadh:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Disable Treasures:"
 msgstr "Cuir ulaidhean à comas:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):381
+#: gui/gamesetup/gamesetup.xml:(caption):400
 msgid "Teams Locked:"
 msgstr "Sgiobaidhean glaiste:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):391
+#: gui/gamesetup/gamesetup.xml:(caption):410
 msgid "Last Man Standing:"
 msgstr "Cò sheasas:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):401
+#: gui/gamesetup/gamesetup.xml:(caption):420
 msgid "Cheats:"
 msgstr "Cealgaireachd:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):411
+#: gui/gamesetup/gamesetup.xml:(caption):430
 msgid "Rated Game:"
 msgstr "Geama rangaichte:"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):63
+#: gui/gamesetup/gamesetup.xml:(tooltip):68
 msgid "View civilization info"
 msgstr "Seall fiosrachadh an t‑sìobhaltais"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):75
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Ath-shuidhich gach sìobhaltas a chaidh a thaghadh air a' bhun-roghainn (tuaireamach)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):88
+#: gui/gamesetup/gamesetup.xml:(tooltip):96
+msgid "Reset all teams to the default."
+msgstr "Ath-shuidhichidh a h-uile sgioba air na bun-roghainnean."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
 msgstr "Tagh dath."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):91
+#: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
 msgstr "Tagh cluicheadair."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):101
+#: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
 msgstr "Rèitich roghainnean na IF."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):104
+#: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's civilization."
 msgstr "Tagh sìobhaltas a’ chluicheadair."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
 msgstr "Tagh sgioba a’ chluicheadair."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):149
+#: gui/gamesetup/gamesetup.xml:(tooltip):168
 msgid "Select a map type."
 msgstr "Tagh seòrsa a’ mhapa."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):157
+#: gui/gamesetup/gamesetup.xml:(tooltip):176
 msgid "Select a map filter."
 msgstr "Tagh criathrag nam mapa."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):166
+#: gui/gamesetup/gamesetup.xml:(tooltip):185
 msgid "Select a map to play on."
 msgstr "Tagh mapa airson cluich air."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):176
+#: gui/gamesetup/gamesetup.xml:(tooltip):195
 msgid "Select number of players."
 msgstr "Tagh an àireamh de chluicheadairean."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):180
+#: gui/gamesetup/gamesetup.xml:(tooltip):199
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Tagh meud a’ mhapa. (Dh’fhaoidte gum bi an geama nas slaodaiche le mapa mòr.)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):243
+#: gui/gamesetup/gamesetup.xml:(tooltip):262
 msgid "Start a new game with the current settings."
 msgstr "Tòisich air geama ùr leis na roghainnean làithreach."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):275
+#: gui/gamesetup/gamesetup.xml:(tooltip):294
 msgid "See more game options"
 msgstr "Seall barrachd roghainnean a’ gheama"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):295
+#: gui/gamesetup/gamesetup.xml:(tooltip):314
 msgid "Select game speed."
 msgstr "Tagh luaths a’ gheama."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):305
+#: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Select victory condition."
 msgstr "Tagh cumha na buaidhe."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):315
+#: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
 msgstr "An àireamh de mhionaidean a dh'fheumas an cluicheadair a' mhìorbhail a chumail mus buannaich e."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):325
+#: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Select population cap."
 msgstr "Tagh an tomhas-sluaigh as motha a tha ceadaichte."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):335
+#: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Select the game's starting resources."
 msgstr "Tagh stòrasan tòiseachaidh a’ gheama."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):345
+#: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Set time where no attacks are possible."
 msgstr "Suidhich an ùine nach gabh ionnsaigh a thoirt."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):355
+#: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle revealed map (see everything)."
 msgstr "Toglaich am mapa air fhoillseachadh (faic a h-uile rud)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):365
+#: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle explored map (see initial map)."
 msgstr "Toglaich mapa air rùrachadh (seall am mapa tùsail)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):375
+#: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Disable all treasures on the map."
 msgstr "Cuir gach ulaidh air a’ mhapa à comas."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):385
+#: gui/gamesetup/gamesetup.xml:(tooltip):404
 msgid "Toggle locked teams."
 msgstr "Toglaich a bheil na sgiobaidhean glaiste."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):395
+#: gui/gamesetup/gamesetup.xml:(tooltip):414
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Toglaich am buannaich an cluicheadair no an caidreachas mu dheireadh a sheasas thar càich."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):405
+#: gui/gamesetup/gamesetup.xml:(tooltip):424
 msgid "Toggle the usability of cheats."
 msgstr "Toglaich an gabh cealgaireachd a chleachdadh."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):415
+#: gui/gamesetup/gamesetup.xml:(tooltip):434
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Toglaich an tèid an geama a chur ri clàr nan sgòr."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):429
+#: gui/gamesetup/gamesetup.xml:(tooltip):448
 msgid "Close more game options window"
 msgstr "Dùin an uinneag aig barrachd roghainnean a’ gheama"
 
@@ -539,7 +538,7 @@ msgid "Joining an existing game."
 msgstr "Gabh pàirt ann an geama a tha ann."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):58
+#: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
 msgstr "Ainm a’ chluicheadair:"
 
@@ -547,17 +546,27 @@ msgstr "Ainm a’ chluicheadair:"
 msgid "Server Hostname or IP:"
 msgstr "Ainm òstair no IP an fhrithealaiche:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):53
+#: gui/gamesetup/gamesetup_mp.xml:(caption):50
+#: gui/gamesetup/gamesetup_mp.xml:(caption):97
+msgid "Server Port:"
+msgstr "Port an fhrithealaiche:"
+
+#: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
 msgstr "Rèitich am frithealaiche agad airson òstadh."
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):71
+#: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
 msgstr "Ainm an fhrithealaiche:"
 
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
+#: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
 msgstr "Lean air adhart"
+
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
+#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
+msgid "Leave blank to use the default port."
+msgstr "Fàg bàn e gus am port tùsail a chleachdadh"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

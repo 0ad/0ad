@@ -784,8 +784,8 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 
 void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path)
 {
-	PROFILE3("ComputePathJPS");
-
+	PROFILE("ComputePathJPS");
+	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
 	PathfinderState state = { 0 };
 
 	state.jpc = m_JumpPointCache[passClass].get();

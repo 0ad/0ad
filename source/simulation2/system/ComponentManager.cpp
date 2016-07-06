@@ -898,6 +898,7 @@ void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
 
 void CComponentManager::FlushDestroyedComponents()
 {
+	PROFILE2("Flush Destroyed Components");
 	while (!m_DestructionQueue.empty())
 	{
 		// Make a copy of the destruction queue, so that the iterators won't be invalidated if the
@@ -998,6 +999,8 @@ const CComponentManager::InterfaceListUnordered& CComponentManager::GetEntitiesW
 
 void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg)
 {
+	PROFILE2_IFSPIKE("Post Message", 0.0005);
+	PROFILE2_ATTR("%s", msg.GetScriptHandlerName());
 	// Send the message to components of ent, that subscribed locally to this message
 	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it;
 	it = m_LocalMessageSubscriptions.find(msg.GetType());
@@ -1048,6 +1051,8 @@ void CComponentManager::BroadcastMessage(const CMessage& msg)
 
 void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg)
 {
+	PROFILE2_IFSPIKE("SendGlobalMessage", 0.001);
+	PROFILE2_ATTR("%s", msg.GetScriptHandlerName());
 	// (Common functionality for PostMessage and BroadcastMessage)
 
 	// Send the message to components of all entities that subscribed globally to this message

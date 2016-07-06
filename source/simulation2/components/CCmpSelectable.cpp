@@ -27,6 +27,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector2D.h"
+#include "ps/Profile.h"
 #include "renderer/Scene.h"
 #include "renderer/Renderer.h"
 #include "simulation2/MessageTypes.h"
@@ -288,7 +289,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 	case MT_Interpolate:
 	{
-		PROFILE3("Selectable::Interpolate");
+		PROFILE("Selectable::Interpolate");
 
 		const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 
@@ -362,7 +363,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		break;
 	case MT_RenderSubmit:
 	{
-		PROFILE3("Selectable::RenderSubmit");
+		PROFILE("Selectable::RenderSubmit");
 
 		const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
 		RenderSubmit(msgData.collector);

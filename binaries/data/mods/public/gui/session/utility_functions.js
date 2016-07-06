@@ -78,7 +78,6 @@ function getTradingTooltip(gain)
 	if (!gain)
 		return "";
 
-	var playerID = g_ViewedPlayer;
 	var simState = GetSimState();
 
 	var gainString = gain.traderGain;

@@ -13,6 +13,11 @@ const g_PopulationAlertColor = "orange";
 const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 
 /**
+ * Map, player and match settings set in gamesetup.
+ */
+var g_GameAttributes;
+
+/**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
  */
 var g_IsController;
@@ -38,6 +43,11 @@ var g_IsObserver = false;
 var g_HasRejoined = false;
 
 /**
+ * Shows a message box asking the user to leave if "won" or "defeated".
+ */
+var g_ConfirmExit = false;
+
+/**
  * True if the current player has paused the game explicitly.
  */
 var g_Paused = false;
@@ -57,11 +67,6 @@ var g_ViewedPlayer = Engine.GetPlayerID();
  * and select the affected units.
  */
 var g_FollowPlayer = false;
-
-/**
- * Unique ID for lobby reports.
- */
-var g_MatchID;
 
 /**
  * Cache the basic player data (name, civ, color).
@@ -117,17 +122,6 @@ var g_EntityStates = {};
 var g_TemplateData = {};
 var g_TemplateDataWithoutLocalization = {};
 var g_TechnologyData = {};
-
-/**
- * Cache concatenated list of player states ("active", "defeated" or "won").
- */
-var g_CachedLastStates = "";
-
-/**
- * Whether the current player has lost/won and reached the end of their game.
- * Used for reporting the gamestate and showing the game-end message only once.
- */
-var g_GameEnded = false;
 
 /**
  * Top coordinate of the research list.
@@ -236,11 +230,9 @@ function init(initData, hotloadData)
 		g_IsNetworked = initData.isNetworked;
 		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
-		g_MatchID = initData.attribs.matchID;
+		g_GameAttributes = initData.attribs;
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;
-
-		g_Players = getPlayerData();
 
 		if (initData.savedGUIData)
 			restoreSavedGameData(initData.savedGUIData);
@@ -251,15 +243,14 @@ function init(initData, hotloadData)
 	{
 		if (g_IsReplay)
 			g_PlayerAssignments.local.player = -1;
-
-		g_Players = getPlayerData();
 	}
+
+	g_Players = getPlayerData();
 
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
 	initializeMusic(); // before changing the perspective
-	selectViewPlayer(g_ViewedPlayer);
 
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.list = g_GameSpeeds.Title;
@@ -281,10 +272,12 @@ function init(initData, hotloadData)
 		playerNames.push(colorizePlayernameHelper("■", player) + " " + g_Players[player].name);
 	}
 
+	// Select "observer" item when rejoining as a defeated player
+	let viewedPlayer = g_Players[Engine.GetPlayerID()];
 	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayerDropdown.list = playerNames;
 	viewPlayerDropdown.list_data = playerIDs;
-	viewPlayerDropdown.selected = Engine.GetPlayerID() + 1;
+	viewPlayerDropdown.selected = viewedPlayer && viewedPlayer.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
 
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
@@ -425,13 +418,38 @@ function isPlayerObserver(playerID)
  */
 function controlsPlayer(playerID)
 {
-	if (Engine.GetPlayerID() != playerID)
-		return false;
+	let playerStates = GetSimState().players;
 
-	let playerState = GetSimState().players[playerID];
+	return playerStates[Engine.GetPlayerID()] &&
+		playerStates[Engine.GetPlayerID()].controlsAll ||
+		Engine.GetPlayerID() == playerID &&
+		playerStates[playerID] &&
+		playerStates[playerID].state != "defeated";
+}
 
-	return playerState && (
-		playerState.state != "defeated" || playerState.controlsAll);
+/**
+ * Called when a player has won or was defeated.
+ */
+function playerFinished(player, won)
+{
+	reportGame();
+	updateDiplomacy();
+	updateChatAddressees();
+
+	if (player != Engine.GetPlayerID() || Engine.IsAtlasRunning())
+		return;
+
+	global.music.setState(
+		won ?
+			global.music.states.VICTORY :
+			global.music.states.DEFEAT
+	);
+
+	// Select "observer" item
+	if (!won)
+		Engine.GetGUIObjectByName("viewPlayer").selected = 0;
+
+	g_ConfirmExit = won ? "won" : "defeated";
 }
 
 /**
@@ -467,7 +485,7 @@ function updateTopPanel()
 
 function reportPerformance(time)
 {
-	let settings = Engine.GetMapSettings();
+	let settings = g_GameAttributes.settings;
 	Engine.SubmitUserReport("profile", 3, JSON.stringify({
 		"time": time,
 		"map": settings.Name,
@@ -492,8 +510,6 @@ function resignGame(leaveGameAfterResign)
 		"resign": true
 	});
 
-	updateTopPanel();
-
 	global.music.setState(global.music.states.DEFEAT);
 
 	if (!leaveGameAfterResign)
@@ -507,58 +523,38 @@ function resignGame(leaveGameAfterResign)
 function leaveGame(willRejoin)
 {
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-	let mapSettings = Engine.GetMapSettings();
-	let gameResult;
-
-	if (Engine.GetPlayerID() == -1)
-	{
-		gameResult = translate("You have left the game.");
-		global.music.setState(global.music.states.VICTORY);
-	}
-	else
-	{
-		let playerState = extendedSimState.players[Engine.GetPlayerID()];
-		if (g_Disconnected)
-			gameResult = translate("You have been disconnected.");
-		else if (playerState.state == "won")
-			gameResult = translate("You have won the battle!");
-		else if (playerState.state == "defeated")
-			gameResult = translate("You have been defeated...");
-		else // "active"
-		{
-			global.music.setState(global.music.states.DEFEAT);
-			if (willRejoin)
-				gameResult = translate("You have left the game.");
-			else
-			{
-				gameResult = translate("You have abandoned the game.");
-				resignGame(true);
-			}
-		}
-	}
-
-	let summary = {
+	let simData = {
 		"timeElapsed" : extendedSimState.timeElapsed,
 		"playerStates": extendedSimState.players,
-		"players": g_Players,
-		"mapSettings": Engine.GetMapSettings(),
+		"mapSettings": g_GameAttributes.settings
 	};
 
 	if (!g_IsReplay)
-		Engine.SaveReplayMetadata(JSON.stringify(summary));
+		Engine.SaveReplayMetadata(JSON.stringify(simData));
 
-	if (!g_HasRejoined)
-		summary.replayDirectory = Engine.GetCurrentReplayDirectory();
-	summary.replaySelectionData = g_ReplaySelectionData;
+	if (!willRejoin &&
+	    simData.playerStates[Engine.GetPlayerID()] &&
+	    simData.playerStates[Engine.GetPlayerID()].state == "active")
+		resignGame(true);
+
+	// Before ending the game
+	let replayDirectory = Engine.GetCurrentReplayDirectory();
 
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
 
-	summary.gameResult = gameResult;
-	summary.isReplay = g_IsReplay;
-	Engine.SwitchGuiPage("page_summary.xml", summary);
+	Engine.SwitchGuiPage("page_summary.xml", {
+		"sim": simData,
+		"gui": {
+			"assignedPlayer": Engine.GetPlayerID(),
+			"disconnected": g_Disconnected,
+			"isReplay": g_IsReplay,
+			"replayDirectory": !g_HasRejoined && replayDirectory,
+			"replaySelectionData": g_ReplaySelectionData
+		}
+	});
 }
 
 // Return some data that we'll use when hotloading this file after changes
@@ -605,8 +601,6 @@ function onTick()
 	let tickLength = new Date() - lastTickTime;
 	lastTickTime = now;
 
-	checkPlayerState();
-
 	handleNetMessages();
 
 	updateCursorAndTooltip();
@@ -630,71 +624,6 @@ function onTick()
 	Engine.GetGUIObjectByName("resourcePop").textcolor = g_IsTrainingBlocked && Date.now() % 1000 < 500 ? g_PopulationAlertColor : g_DefaultPopulationColor;
 
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
-}
-
-function checkPlayerState()
-{
-	if (g_GameEnded || Engine.GetPlayerID() < 1)
-		return;
-
-	// Send a game report for each player in this game.
-	let m_simState = GetSimState();
-	let playerState = m_simState.players[Engine.GetPlayerID()];
-	let tempStates = "";
-	for (let player of m_simState.players)
-		tempStates += player.state + ",";
-
-	if (g_CachedLastStates != tempStates)
-	{
-		g_CachedLastStates = tempStates;
-		reportGame();
-	}
-
-	if (playerState.state == "active")
-		return;
-
-	// Make sure nothing is open to avoid stacking.
-	closeOpenDialogs();
-
-	// Make sure this doesn't run again.
-	g_GameEnded = true;
-
-	// Select observermode
-	Engine.GetGUIObjectByName("viewPlayer").selected = playerState.state == "won" ? g_ViewedPlayer + 1 : 0;
-
-	let btCaptions;
-	let btCode;
-	let message;
-	let title;
-	if (Engine.IsAtlasRunning())
-	{
-		// If we're in Atlas, we can't leave the game
-		btCaptions = [translate("OK")];
-		btCode = [null];
-		message = translate("Press OK to continue");
-	}
-	else
-	{
-		btCaptions = [translate("No"), translate("Yes")];
-		btCode = [null, leaveGame];
-		message = translate("Do you want to quit?");
-	}
-
-	if (playerState.state == "defeated")
-	{
-		title = translate("DEFEATED!");
-		global.music.setState(global.music.states.DEFEAT);
-	}
-	else if (playerState.state == "won")
-	{
-		title = translate("VICTORIOUS!");
-		global.music.setState(global.music.states.VICTORY);
-		// TODO: Reveal map directly instead of this silly proxy.
-		if (!Engine.GetGUIObjectByName("devCommandsRevealMap").checked)
-			Engine.GetGUIObjectByName("devCommandsRevealMap").checked = true;
-	}
-
-	messageBox(400, 200, message, title, btCaptions, btCode);
 }
 
 function changeGameSpeed(speed)
@@ -737,8 +666,39 @@ function onSimulationUpdate()
 		return;
 
 	handleNotifications();
-
 	updateGUIObjects();
+
+	if (g_ConfirmExit)
+		confirmExit();
+}
+
+/**
+ * Don't show the message box before all playerstate changes are processed.
+ */
+function confirmExit()
+{
+	closeOpenDialogs();
+
+	let subject = g_ConfirmExit == "won" ?
+		translate("You have won!") :
+		translate("You have been defeated!");
+
+	subject += "\n" + translate("Do you want to quit?");
+
+	if (g_IsNetworked && g_IsController)
+		subject += "\n" + translate("Leaving will disconnect all other players.");
+
+	messageBox(
+		400, 200,
+		subject,
+		g_ConfirmExit == "won" ?
+			translate("VICTORIOUS!") :
+			translate("DEFEATED!"),
+		[translate("No"), translate("Yes")],
+		[resumeGame, leaveGame]
+	);
+
+	g_ConfirmExit = false;
 }
 
 function updateGUIObjects()
@@ -770,7 +730,7 @@ function updateGUIObjects()
 		Engine.GetGUIObjectByName("devControlAll").checked = g_DevSettings.controlAll;
 	}
 
-	if (g_ViewedPlayer != -1 && !g_GameEnded)
+	if (!g_IsObserver)
 	{
 		// Update music state on basis of battle state.
 		let battleState = Engine.GuiInterfaceCall("GetBattleState", g_ViewedPlayer);
@@ -828,7 +788,6 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 	statusBar.size = healthSize;
 }
 
-
 function updateHeroes()
 {
 	let playerState = GetSimState().players[g_ViewedPlayer];
@@ -865,22 +824,17 @@ function updateHeroes()
 
 function createHeroTooltip(heroState, template)
 {
-	let tooltip = "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]" + "\n" +
-		sprintf(translate("%(label)s %(current)s / %(max)s"), {
-			"label": "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]",
-			"current": Math.ceil(heroState.hitpoints),
-			"max": Math.ceil(heroState.maxHitpoints)
-		});
-
-	if (heroState.attack)
-		tooltip += "\n" + getAttackTooltip(heroState);
-
-	tooltip += "\n" + getArmorTooltip(heroState.armour);
-
-	if (template.tooltip)
-		tooltip += "\n" + template.tooltip;
-
-	return tooltip;
+	return [
+		"[font=\"sans-bold-16\"]" + template.name.specific + "[/font]" + "\n" +
+			sprintf(translate("%(label)s %(current)s / %(max)s"), {
+				"label": "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]",
+				"current": Math.ceil(heroState.hitpoints),
+				"max": Math.ceil(heroState.maxHitpoints)
+			}),
+		getAttackTooltip(heroState),
+		getArmorTooltip(heroState),
+		getEntityTooltip(heroState)
+	].filter(tip => tip).join("\n");
 }
 
 function displayHeroes()
@@ -1142,7 +1096,10 @@ function playAmbient()
 
 function getBuildString()
 {
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { "buildDate": Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
+		"buildDate": Engine.GetBuildTimestamp(0),
+		"revision": Engine.GetBuildTimestamp(2)
+	});
 }
 
 function showTimeWarpMessageBox()
@@ -1160,7 +1117,8 @@ function showTimeWarpMessageBox()
 function reportGame()
 {
 	// Only 1v1 games are rated (and Gaia is part of g_Players)
-	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() || g_Players.length != 3)
+	if (!Engine.HasXmppClient() || !Engine.IsRankedGame() ||
+	    g_Players.length != 3 || Engine.GetPlayerID() == -1)
 		return;
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
@@ -1262,7 +1220,7 @@ function reportGame()
 	playerStatistics.feminisation = "";
 	playerStatistics.percentMapExplored = "";
 
-	let mapName = Engine.GetMapSettings().Name;
+	let mapName = g_GameAttributes.settings.Name;
 	let playerStates = "";
 	let playerCivs = "";
 	let teams = "";
@@ -1312,7 +1270,7 @@ function reportGame()
 	reportObject.timeElapsed = extendedSimState.timeElapsed;
 	reportObject.playerStates = playerStates;
 	reportObject.playerID = Engine.GetPlayerID();
-	reportObject.matchID = g_MatchID;
+	reportObject.matchID = g_GameAttributes.matchID;
 	reportObject.civs = playerCivs;
 	reportObject.teams = teams;
 	reportObject.teamsLocked = String(teamsLocked);

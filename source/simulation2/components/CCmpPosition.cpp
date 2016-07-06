@@ -34,6 +34,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 /**
  * Basic ICmpPosition implementation.
@@ -758,7 +759,7 @@ public:
 		{
 		case MT_Interpolate:
 		{
-			PROFILE3("Position::Interpolate");
+			PROFILE("Position::Interpolate");
 
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 

@@ -25,6 +25,7 @@
 #include "graphics/TextureManager.h"
 #include "graphics/TerritoryBoundary.h"
 #include "maths/MathUtil.h"
+#include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"

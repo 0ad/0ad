@@ -1,6 +1,6 @@
 function Heal() {}
 
-Heal.prototype.Schema = 
+Heal.prototype.Schema =
 	"<a:help>Controls the healing abilities of the unit.</a:help>" +
 	"<a:example>" +
 		"<Range>20</Range>" +
@@ -39,22 +39,28 @@ Heal.prototype.Serialize = null; // we have no dynamic state to save
 
 Heal.prototype.GetTimers = function()
 {
-	var prepare = 1000;
-	var repeat = +this.template.Rate;
+	return {
+		"prepare": 1000,
+		"repeat": GetRate()
+	};
+};
 
-	repeat = ApplyValueModificationsToEntity("Heal/Rate", repeat, this.entity);
-	
-	return { "prepare": prepare, "repeat": repeat };
+Heal.prototype.GetHP = function()
+{
+	return ApplyValueModificationsToEntity("Heal/HP", +this.template.HP, this.entity);
+};
+
+Heal.prototype.GetRate = function()
+{
+	return ApplyValueModificationsToEntity("Heal/Rate", +this.template.Rate, this.entity);
 };
 
 Heal.prototype.GetRange = function()
 {
-	var min = 0;
-	var max = +this.template.Range;
-	
-	max = ApplyValueModificationsToEntity("Heal/Range", max, this.entity);
-
-	return { "max": max, "min": min };
+	return {
+		"min": 0,
+		"max": ApplyValueModificationsToEntity("Heal/Range", +this.template.Range, this.entity)
+	};
 };
 
 Heal.prototype.GetUnhealableClasses = function()
@@ -68,25 +74,25 @@ Heal.prototype.GetHealableClasses = function()
 };
 
 /**
- * Heal the target entity. This should only be called after a successful range 
- * check, and should only be called after GetTimers().repeat msec has passed 
+ * Heal the target entity. This should only be called after a successful range
+ * check, and should only be called after GetTimers().repeat msec has passed
  * since the last call to PerformHeal.
  */
 Heal.prototype.PerformHeal = function(target)
 {
-	var cmpHealth = Engine.QueryInterface(target, IID_Health);
+	let cmpHealth = Engine.QueryInterface(target, IID_Health);
 	if (!cmpHealth)
 		return;
 
-	var targetState = cmpHealth.Increase(ApplyValueModificationsToEntity("Heal/HP", +this.template.HP, this.entity));
+	let targetState = cmpHealth.Increase(GetHP());
 
 	// Add XP
-	var cmpLoot = Engine.QueryInterface(target, IID_Loot);
-	var cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
+	let cmpLoot = Engine.QueryInterface(target, IID_Loot);
+	let cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
 	if (targetState !== undefined && cmpLoot && cmpPromotion)
 	{
 		// HP healed * XP per HP
-		cmpPromotion.IncreaseXp((targetState.new-targetState.old)*(cmpLoot.GetXp()/cmpHealth.GetMaxHitpoints()));
+		cmpPromotion.IncreaseXp((targetState.new - targetState.old) / cmpHealth.GetMaxHitpoints() * cmpLoot.GetXp());
 	}
 	//TODO we need a sound file
 //	PlaySound("heal_impact", this.entity);
@@ -94,14 +100,11 @@ Heal.prototype.PerformHeal = function(target)
 
 Heal.prototype.OnValueModification = function(msg)
 {
-	if (msg.component != "Heal")
+	if (msg.component != "Heal" || msg.valueNames.indexOf("Heal/Range") === -1)
 		return;
 
-	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (!cmpUnitAI)
-		return;
-
-	if (msg.valueNames.indexOf("Heal/Range") === -1)
 		return;
 
 	cmpUnitAI.UpdateRangeQueries();

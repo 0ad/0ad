@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-10 22:32+0000\n"
-"Last-Translator: Sander Deryckere\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-02 13:25+0000\n"
+"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Speciaal Gebouw"
 msgstr[1] "Speciale Gebouwen"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
 msgid "Heroes"
 msgstr "Helden"
 
@@ -97,21 +97,86 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Resterende tijd tot de wapenstilstand over is: %(time)s."
 
-#: gui/common/functions_utility.js:77
+#: gui/common/functions_utility.js:72
+msgctxt "map selection"
+msgid "Random"
+msgstr "Willekeurig"
+
+#: gui/common/functions_utility.js:82
 msgid "A randomly selected map."
 msgstr "Een willekeurig geselecteerde kaart."
 
-#: gui/common/functions_utility.js:84
+#: gui/common/functions_utility.js:89
 msgid "Sorry, no description available."
 msgstr "Sorry, geen beschrijving verkrijgbaar."
 
-#: gui/common/functions_utility.js:109
+#: gui/common/functions_utility.js:114
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:116
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:243
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:246
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:252
+#, javascript-format
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:255
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
+
+#: gui/common/functions_utility.js:270
+msgid "Unknown Civilization"
+msgstr "Onbekende beschaving"
+
+#: gui/common/functions_utility.js:277
+msgctxt "playerstate"
+msgid "defeated"
+msgstr "verslagen"
+
+#: gui/common/functions_utility.js:278
+msgctxt "playerstate"
+msgid "won"
+msgstr "gewonnen"
+
+#: gui/common/functions_utility.js:295
+msgid "No Team"
+msgstr "Geen team"
+
+#: gui/common/functions_utility.js:296
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "Team %(team)s"
+
+#. Translation: Describe players of one team in a selected game, f.e. in the
+#. replay- or savegame menu or lobby
+#: gui/common/functions_utility.js:299
+#, javascript-format
+msgid ""
+"%(team)s:\n"
+"%(playerDescriptions)s"
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -126,12 +191,12 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 msgid "\\[%(date)s]"
 msgstr "\\[%(date)s]"
 
-#: gui/common/functions_utility_loadsave.js:18
+#: gui/common/functions_utility_loadsave.js:21
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
-#: gui/common/functions_utility_loadsave.js:20
+#: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
@@ -330,12 +395,12 @@ msgstr "%(previousAmounts)s en %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
-#: gui/common/tooltips.js:117 gui/common/tooltips.js:145
-#: gui/common/tooltips.js:447 gui/common/tooltips.js:474
-#: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:76
-#: gui/savedgames/load.js:77
+#: gui/common/l10n.js:92 gui/common/network.js:140 gui/common/tooltips.js:123
+#: gui/common/tooltips.js:137 gui/common/tooltips.js:242
+#: gui/common/tooltips.js:457 gui/common/tooltips.js:483
+#: gui/common/tooltips.js:536 gui/replaymenu/replay_actions.js:89
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:61
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:120
 msgid ", "
 msgstr ", "
 
@@ -359,83 +424,83 @@ msgstr "Slechte verbinding met de server (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Slechte verbinding met %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:54
+#: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Ongekende reden"
 
-#: gui/common/network.js:55
+#: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
 msgstr "Dit wordt vaak veroorzaakt door een antivirus of firewall programma die de UDP poort 20595 van de host blokkeert."
 
-#: gui/common/network.js:56
+#: gui/common/network.js:64
 msgid "The host has ended the game"
 msgstr "De host heeft het spel beëindigd."
 
-#: gui/common/network.js:57
+#: gui/common/network.js:65
 msgid "Incorrect network protocol version"
 msgstr "Onjuiste versie van het netwerkprotocol"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:66
 msgid "Game is loading, please try later"
 msgstr "Spel laad, probeert u later nog eens"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
 msgstr "Het spel is al begonnen, geen waarnemers toegestaan"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:68
 msgid "You have been kicked"
 msgstr "Je werd uitgesloten"
 
-#: gui/common/network.js:61
+#: gui/common/network.js:69
 msgid "You have been banned"
 msgstr "Je werd verbannen"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Deze naam wordt al gebruikt. Indien je een vroegere verbinding met het spel probeert te herstellen, probeer opnieuw binnen enkele seconden."
 
-#: gui/common/network.js:63
+#: gui/common/network.js:71
 msgid "Server full"
 msgstr "Server is vol"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:74
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Ongeldige waarde %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:78
+#: gui/common/network.js:86
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Reden: %(reason)s."
 
-#: gui/common/network.js:83
+#: gui/common/network.js:91
 msgid "Lost connection to the server."
 msgstr "Verbinding met de server verloren."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:92
 msgid "Failed to connect to the server."
 msgstr "Verbinden met de server mislukt."
 
-#: gui/common/network.js:86
+#: gui/common/network.js:94
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "%(name)s verbannen is niet gelukt."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "%(name)s uitsluiten niet gelukt."
 
-#: gui/common/network.js:131
+#: gui/common/network.js:139
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Gebruikers: %(users)s"
@@ -548,126 +613,142 @@ msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/tooltips.js:27 gui/common/tooltips.js:90
-#: gui/common/tooltips.js:124
-msgid "(None)"
-msgstr "(Geen)"
+#: gui/common/tooltips.js:18
+msgid "Charge Attack:"
+msgstr "Stormaanval:"
 
-#: gui/common/tooltips.js:32 gui/common/tooltips.js:38
-#: gui/common/tooltips.js:44 gui/common/tooltips.js:128
-#: gui/common/tooltips.js:134 gui/common/tooltips.js:140
-#, javascript-format
-msgid "%(damage)s %(damageType)s"
-msgstr "%(damage)s %(damageType)s"
+#: gui/common/tooltips.js:19
+msgid "Melee Attack:"
+msgstr "Mêlee Aanval:"
 
-#: gui/common/tooltips.js:34 gui/common/tooltips.js:97
-#: gui/common/tooltips.js:130
+#: gui/common/tooltips.js:20
+msgid "Ranged Attack:"
+msgstr "Afstandsaanval:"
+
+#: gui/common/tooltips.js:21
+msgid "Capture Attack:"
+msgstr "Verover Aanval"
+
+#: gui/common/tooltips.js:25
 msgid "Hack"
 msgstr "Slag"
 
-#: gui/common/tooltips.js:40 gui/common/tooltips.js:104
-#: gui/common/tooltips.js:136
+#: gui/common/tooltips.js:26
 msgid "Pierce"
 msgstr "Steek"
 
-#: gui/common/tooltips.js:46 gui/common/tooltips.js:111
-#: gui/common/tooltips.js:142
+#: gui/common/tooltips.js:27
 msgid "Crush"
 msgstr "Verbrijzelen"
 
-#: gui/common/tooltips.js:56
+#: gui/common/tooltips.js:63 gui/common/tooltips.js:110
+#: gui/common/tooltips.js:154 gui/common/tooltips.js:312
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/common/tooltips.js:64
+msgid "Health:"
+msgstr "Gezondheid:"
+
+#: gui/common/tooltips.js:73
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:58 gui/common/tooltips.js:241
-#: gui/common/tooltips.js:252 gui/common/tooltips.js:471
+#: gui/common/tooltips.js:75 gui/common/tooltips.js:254
+#: gui/common/tooltips.js:268 gui/common/tooltips.js:481
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "seconde"
 msgstr[1] "seconden"
 
-#: gui/common/tooltips.js:66
+#: gui/common/tooltips.js:84
 #, javascript-format
-msgid "%(arrowcount)s %(arrow)s"
-msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] "%(arrowcount)s %(arrow)s"
-msgstr[1] "%(arrowcount)s %(arrow)s"
+msgid "%(arrowcount)s %(arrows)s"
+msgid_plural "%(arrowcount)s %(arrows)s"
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
-#: gui/common/tooltips.js:68
+#: gui/common/tooltips.js:86
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "pijl"
 msgstr[1] "pijlen"
 
-#: gui/common/tooltips.js:71
+#: gui/common/tooltips.js:89
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/common/tooltips.js:86
+#: gui/common/tooltips.js:100
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/common/tooltips.js:111
 msgid "Armor:"
 msgstr "Bewapening:"
 
-#: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:366
-#: gui/structree/draw.js:392
-#, javascript-format
-msgid "%(label)s %(details)s"
-msgstr "%(label)s %(details)s"
-
-#: gui/common/tooltips.js:95 gui/common/tooltips.js:102
-#: gui/common/tooltips.js:109
+#: gui/common/tooltips.js:114
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/common/tooltips.js:98 gui/common/tooltips.js:105
-#: gui/common/tooltips.js:112
+#: gui/common/tooltips.js:119
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/common/tooltips.js:150
-msgid "Charge Attack:"
-msgstr "Stormaanval:"
+#: gui/common/tooltips.js:130
+msgid "(None)"
+msgstr "(Geen)"
 
-#: gui/common/tooltips.js:151
-msgid "Melee Attack:"
-msgstr "Mêlee Aanval:"
+#: gui/common/tooltips.js:134
+#, javascript-format
+msgid "%(damage)s %(damageType)s"
+msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:152
-msgid "Ranged Attack:"
-msgstr "Afstandsaanval:"
-
-#: gui/common/tooltips.js:153
-msgid "Capture Attack:"
-msgstr "Verover Aanval"
-
-#: gui/common/tooltips.js:156
-msgid "Attack:"
-msgstr "Aanval:"
-
-#: gui/common/tooltips.js:165
+#: gui/common/tooltips.js:158
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:165 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:159 gui/common/tooltips.js:479
 msgid "Rate:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:182 gui/common/tooltips.js:191
+#: gui/common/tooltips.js:166
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:201 gui/common/tooltips.js:464
+#: gui/common/tooltips.js:182
+#, javascript-format
+msgid ""
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
+"(%(relative)s), %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
+
+#: gui/common/tooltips.js:183
+#, javascript-format
+msgid ""
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+
+#: gui/common/tooltips.js:188 gui/common/tooltips.js:474
 msgid "Range:"
 msgstr "Bereik:"
 
-#: gui/common/tooltips.js:203 gui/common/tooltips.js:466
+#: gui/common/tooltips.js:190
+#, javascript-format
+msgid "%(range)s %(meters)s"
+msgid_plural "%(range)s %(meters)s"
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
+
+#: gui/common/tooltips.js:192 gui/common/tooltips.js:476
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "meter"
@@ -675,147 +756,166 @@ msgstr[1] "meter"
 
 #: gui/common/tooltips.js:206
 #, javascript-format
-msgid ""
-"%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
-"%(rate)s"
-msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
+msgid "%(label)s: %(garrisonLimit)s"
+msgstr "%(label)s: %(garrisonLimit)s"
 
-#: gui/common/tooltips.js:211 gui/common/tooltips.js:224
+#: gui/common/tooltips.js:207
+msgid "Garrison Limit"
+msgstr "Bemanningslimiet"
+
+#: gui/common/tooltips.js:228 gui/common/tooltips.js:233
+#: gui/common/tooltips.js:238
 #, javascript-format
-msgid "%(range)s %(meters)s"
-msgid_plural "%(range)s %(meters)s"
-msgstr[0] "%(range)s %(meters)s"
-msgstr[1] "%(range)s %(meters)s"
+msgid "%(label)s: %(value)s"
+msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:219
-#, javascript-format
-msgid ""
-"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+#: gui/common/tooltips.js:229
+msgid "Projectile Limit"
+msgstr "Projectiellimiet"
 
-#: gui/common/tooltips.js:237
+#: gui/common/tooltips.js:234
+msgctxt "projectiles"
+msgid "Default"
+msgstr "Standaard"
+
+#: gui/common/tooltips.js:239
+msgctxt "projectiles"
+msgid "Per Unit"
+msgstr "Per Eenheid"
+
+#: gui/common/tooltips.js:250
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
-#: gui/common/tooltips.js:238
+#: gui/common/tooltips.js:251
 msgid "Repair Rate:"
 msgstr "Herstelsnelheid:"
 
-#: gui/common/tooltips.js:240 gui/common/tooltips.js:251
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:267
 msgid "health"
 msgstr "gezondheid"
 
-#: gui/common/tooltips.js:242 gui/common/tooltips.js:253
+#: gui/common/tooltips.js:255 gui/common/tooltips.js:269
 msgid "worker"
 msgstr "arbeider"
 
-#: gui/common/tooltips.js:248
+#: gui/common/tooltips.js:264
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
-#: gui/common/tooltips.js:249
+#: gui/common/tooltips.js:265
 msgid "Build Rate:"
 msgstr "Bouwsnelheid:"
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:417
+#: gui/common/tooltips.js:300 gui/common/tooltips.js:428
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
+#: gui/common/tooltips.js:313
+msgid "Gather Rates:"
+msgstr "Verzamelsnelheden:"
+
+#: gui/common/tooltips.js:316
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr "%(resourceIcon)s %(rate)s"
+
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:355
+#: gui/common/tooltips.js:365
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s tot %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:386
+#: gui/common/tooltips.js:394
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Muren: %(costs)s"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:395
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torens: %(costs)s"
 
-#: gui/common/tooltips.js:403
+#: gui/common/tooltips.js:411
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:404
+#: gui/common/tooltips.js:412
 msgid "Population Bonus:"
 msgstr "Bevolkingsbonus"
 
-#: gui/common/tooltips.js:422
+#: gui/common/tooltips.js:433
 msgid "Insufficient resources:"
 msgstr "Onvoldoende grondstoffen:"
 
-#: gui/common/tooltips.js:430
-msgid "Speed:"
-msgstr "Snelheid:"
-
-#: gui/common/tooltips.js:434 gui/common/tooltips.js:440
+#: gui/common/tooltips.js:444 gui/common/tooltips.js:450
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:436
+#: gui/common/tooltips.js:446
 msgid "Walk"
 msgstr "Wandelen"
 
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:452
 msgid "Run"
 msgstr "Lopen"
 
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:455
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:457 gui/common/tooltips.js:463
-#: gui/common/tooltips.js:468
+#: gui/common/tooltips.js:456
+msgid "Speed:"
+msgstr "Snelheid:"
+
+#: gui/common/tooltips.js:467 gui/common/tooltips.js:473
+#: gui/common/tooltips.js:478
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:458
+#: gui/common/tooltips.js:468
 msgid "Heal:"
 msgstr "Genezing:"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:461
+#: gui/common/tooltips.js:471
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
 msgstr[1] "HP"
 
-#: gui/common/tooltips.js:484
+#: gui/common/tooltips.js:492
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:485
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:498
+#: gui/common/tooltips.js:509
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:508
-msgid "???"
-msgstr "???"
+#: gui/common/tooltips.js:520
+#, javascript-format
+msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:538
+#: gui/common/tooltips.js:535
 msgid "Classes:"
 msgstr "Klassen:"
 
@@ -845,21 +945,23 @@ msgid ""
 msgstr "Opties resetten zal de opgeslagen instellingen verwijderen. Ben je zeker dat je verder wilt?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:85
+#: gui/savedgames/load.js:129
 msgid "Warning"
 msgstr "Waarschuwing"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "No"
 msgstr "Nee"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "Yes"
 msgstr "Ja"
 
@@ -932,7 +1034,7 @@ msgstr "Versie: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ben je zeker dat je 0 A.D. wil stoppen?"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
 msgid "Confirmation"
 msgstr "Bevestiging"
 
@@ -963,12 +1065,12 @@ msgstr "Handleiding"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Je hebt niet dezelfde mods actief als deze herhaling."
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:76
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:116
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Vereist %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Actief: %(mods)s"
@@ -995,15 +1097,11 @@ msgstr "Niet-compatibele herhaling"
 msgid "No summary data available."
 msgstr "Geen samenvatting beschikbaar."
 
-#: gui/replaymenu/replay_actions.js:122
-msgid "Scores at the end of the game."
-msgstr "Score aan het einde van de game"
-
-#: gui/replaymenu/replay_actions.js:155
+#: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Weet je zeker dat je deze replay permanent wil verwijderen?"
 
-#: gui/replaymenu/replay_actions.js:156
+#: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
 msgstr "Verwijder herhaling"
 
@@ -1086,128 +1184,83 @@ msgstr "Competitiespellen"
 msgid "Unrated games"
 msgstr "Oefenspellen"
 
-#: gui/replaymenu/replay_menu.js:276
+#: gui/replaymenu/replay_menu.js:283
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd-MM-tutu HH:mm"
 
-#: gui/replaymenu/replay_menu.js:306
+#: gui/replaymenu/replay_menu.js:313
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
 
-#: gui/replaymenu/replay_menu.js:357
-msgid "Unknown Civilization"
-msgstr "Onbekende beschaving"
-
-#: gui/replaymenu/replay_menu.js:370
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
-
-#: gui/replaymenu/replay_menu.js:372
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, verslagen)"
-
-#: gui/replaymenu/replay_menu.js:374
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-
-#: gui/replaymenu/replay_menu.js:376
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, verslagen)"
-
-#: gui/replaymenu/replay_menu.js:392
-msgid "No Team"
-msgstr "Geen team"
-
-#: gui/replaymenu/replay_menu.js:392
-#, javascript-format
-msgid "Team %(team)s"
-msgstr "Team %(team)s"
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:25
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
 msgstr "Geen opgeslagen spellen gevonden"
 
-#: gui/savedgames/load.js:51
+#: gui/savedgames/load.js:61
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Mods: %(mods)s"
+
+#: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
 msgstr "Het opgeslagen spel is mogelijks niet compatibel:"
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:96
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Dit vereist 0 A.D. versie %(requiredVersion)s, terwijl je werkt op versie %(currentVersion)s."
 
-#: gui/savedgames/load.js:61
+#: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
 msgstr "Hiervoor is een oudere versie van 0 A.D. nodig."
 
-#: gui/savedgames/load.js:65
+#: gui/savedgames/load.js:105
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Hiervoor is versie %(requiredVersion)s van 0 A.D. vereist, jij hebt versie %(currentVersion)s."
 
-#: gui/savedgames/load.js:75
+#: gui/savedgames/load.js:115
 msgid "The savegame needs a different set of mods:"
 msgstr "Dit opgeslagen spel vereist een andere selectie mods:"
 
-#: gui/savedgames/load.js:80
+#: gui/savedgames/load.js:124
 msgid "Do you still want to proceed?"
 msgstr "Wil je verder gaan?"
 
-#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:88
+#: gui/savedgames/load.js:175 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Dit spel zal permanent verwijderd worden, ben je zeker?"
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:178 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "VERWIJDER"
 
-#: gui/savedgames/save.js:57
+#: gui/savedgames/save.js:59
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Opgeslagen spel zal permanent overschreven worden, ben je zeker?"
 
-#: gui/savedgames/save.js:58
+#: gui/savedgames/save.js:60
 msgid "OVERWRITE SAVE"
 msgstr "OVERSCHRIJF OPGESLAGEN SPEL"
 
-#: gui/structree/draw.js:367
-msgid "Health:"
-msgstr "Gezondheid:"
-
-#: gui/structree/draw.js:387
-#, javascript-format
-msgid "%(resourceIcon)s %(rate)s"
-msgstr "%(resourceIcon)s %(rate)s"
-
-#: gui/structree/draw.js:393
-msgid "Gather Rates:"
-msgstr "Verzamelsnelheden:"
-
-#: gui/structree/load.js:179
+#: gui/structree/load.js:180
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s tot %(val2)s"
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
+#: gui/summary/layout.js:94 gui/summary/layout.js:137
+#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Speler naam"
 
@@ -1227,7 +1280,7 @@ msgstr "Ontdekkings-score"
 msgid "Total score"
 msgstr "Totale score"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
+#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:99
 msgid "Total"
 msgstr "Totaal"
 
@@ -1259,138 +1312,218 @@ msgstr "Beschavings-centra"
 msgid "Wonders"
 msgstr "Wonderen"
 
-#: gui/summary/layout.js:32
-msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Gebouwstatistieken (Gebouwd / Verloren / Vernietigd)"
+#: gui/summary/layout.js:33
+#, javascript-format
+msgid ""
+"Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
+"%(lost)s)"
+msgstr "Gebouwstatistieken (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:50
+#: gui/summary/layout.js:35
+msgid "Constructed"
+msgstr "Gebouwd"
+
+#: gui/summary/layout.js:36
+msgid "Destroyed"
+msgstr "Vernietigd"
+
+#: gui/summary/layout.js:37
+msgid "Captured"
+msgstr "Veroverd"
+
+#: gui/summary/layout.js:38 gui/summary/layout.js:73
+msgid "Lost"
+msgstr "Verloren"
+
+#: gui/summary/layout.js:60
 msgid "Infantry"
 msgstr "Infanterie"
 
-#: gui/summary/layout.js:51
+#: gui/summary/layout.js:61
 msgid "Worker"
 msgstr "Arbeider"
 
-#: gui/summary/layout.js:52
+#: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Cavalerie"
 
-#: gui/summary/layout.js:53
+#: gui/summary/layout.js:63
 msgid "Champion"
 msgstr "Kampioen"
 
-#: gui/summary/layout.js:55
+#: gui/summary/layout.js:65
 msgid "Navy"
 msgstr "Marine"
 
-#: gui/summary/layout.js:56
+#: gui/summary/layout.js:66
 msgid "Traders"
 msgstr "Handelaren"
 
-#: gui/summary/layout.js:59
-msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Eenhedenstatistieken (rekruteringen / verloren / vermoord)"
+#: gui/summary/layout.js:70
+#, javascript-format
+msgid "Units Statistics (%(trained)s / %(lost)s / %(killed)s)"
+msgstr "Eenhedenstatistieken (%(trained)s / %(lost)s / %(killed)s)"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:72
+msgid "Trained"
+msgstr "Opgeleid"
+
+#: gui/summary/layout.js:74
+msgid "Killed"
+msgstr "Gedood"
+
+#: gui/summary/layout.js:95
 msgid "Food"
 msgstr "Voedsel"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:96
 msgid "Wood"
 msgstr "Hout"
 
-#: gui/summary/layout.js:78
+#: gui/summary/layout.js:97
 msgid "Stone"
 msgstr "Steen"
 
-#: gui/summary/layout.js:79
+#: gui/summary/layout.js:98
 msgid "Metal"
 msgstr "Metaal"
 
-#: gui/summary/layout.js:81
-msgid "Tributes (Sent / Received)"
-msgstr "Donaties (Verzonden / Gekregen)"
+#: gui/summary/layout.js:101
+#, javascript-format
+msgid ""
+"Tributes \n"
+"(%(sent)s / %(received)s)"
+msgstr "Donaties \n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:82
+#: gui/summary/layout.js:103
+msgid "Sent"
+msgstr "Verzonden"
+
+#: gui/summary/layout.js:104
+msgid "Received"
+msgstr "Ontvangen"
+
+#: gui/summary/layout.js:109
 msgid "Treasures collected"
 msgstr "Schatten verzameld"
 
-#: gui/summary/layout.js:83
+#: gui/summary/layout.js:110
 msgid "Loot"
 msgstr "Buit"
 
-#: gui/summary/layout.js:86
-msgid "Resource Statistics (Gathered / Used)"
-msgstr "Grondstofstatistieken (verzameld/gebruikt)"
+#: gui/summary/layout.js:114
+#, javascript-format
+msgid "Resource Statistics (%(gathered)s / %(used)s)"
+msgstr "Grondstofstatistieken (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:116
+msgid "Gathered"
+msgstr "Verzameld"
+
+#: gui/summary/layout.js:117
+msgid "Used"
+msgstr "Gebruikt"
+
+#: gui/summary/layout.js:138
 msgid "Food exchanged"
 msgstr "Voedsel gewisseld"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:139
 msgid "Wood exchanged"
 msgstr "Hout gewisseld"
 
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:140
 msgid "Stone exchanged"
 msgstr "Steen gewisseld"
 
-#: gui/summary/layout.js:106
+#: gui/summary/layout.js:141
 msgid "Metal exchanged"
 msgstr "Metaal gewisseld"
 
-#: gui/summary/layout.js:107
+#: gui/summary/layout.js:142
 msgid "Barter efficiency"
 msgstr "Handel-efficiëntie"
 
-#: gui/summary/layout.js:108
+#: gui/summary/layout.js:143
 msgid "Trade income"
 msgstr "Handel inkomsten"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:159
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Vegetarische\nratio"
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:160
 msgid "Feminization"
 msgstr "Feminisatie"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:161
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Vermoord /Gestorven \nratio"
 
-#: gui/summary/layout.js:127
+#: gui/summary/layout.js:162
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Kaart\nverkenning"
 
-#: gui/summary/layout.js:128
+#: gui/summary/layout.js:163
 msgid "At peak"
 msgstr "Op hoogtepunt"
 
-#: gui/summary/layout.js:129
+#: gui/summary/layout.js:164
 msgid "At finish"
 msgstr "Aan het einde"
 
-#: gui/summary/layout.js:132
+#: gui/summary/layout.js:167
 msgid "Map control"
 msgstr "Kaart controle"
 
-#: gui/summary/layout.js:277
+#: gui/summary/layout.js:312
 msgid "Team total"
 msgstr "Team totaal"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:145
+msgid "Are you sure you want to quit the lobby?"
+msgstr "Ben je zeker dat je de lobby wil verlaten?"
+
+#: gui/summary/summary.js:196
+msgid "Current Scores"
+msgstr "Huidige Scores"
+
+#: gui/summary/summary.js:198
+msgid "Scores at the end of the game."
+msgstr "Score aan het einde van de game"
+
+#: gui/summary/summary.js:200
+msgid "You have been disconnected."
+msgstr "Je verbinding is verbroken."
+
+#: gui/summary/summary.js:202
+msgid "You have left the game."
+msgstr "Je hebt het spel verlaten"
+
+#: gui/summary/summary.js:204
+msgid "You have won the battle!"
+msgstr "Je hebt de slag gewonnen!"
+
+#: gui/summary/summary.js:206
+msgid "You have been defeated..."
+msgstr "Je bent verslagen..."
+
+#: gui/summary/summary.js:207
+msgid "You have abandoned the game."
+msgstr "Je hebt het spel verlaten."
+
+#: gui/summary/summary.js:212
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Verstreken speltijd: %(time)s"
 
-#: gui/summary/summary.js:176
+#: gui/summary/summary.js:220
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1434,7 +1567,7 @@ msgstr "Taalvariant:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):28 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1591,7 +1724,7 @@ msgstr "Matches"
 msgid "Campaigns"
 msgstr "Veldtochten"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):19
 msgid "Load Game"
 msgstr "Laad spel"
 
@@ -1776,81 +1909,89 @@ msgstr "Klik om de credits voor 0 A.D. te zien."
 msgid "Replay Games"
 msgstr "Herhaal spellen"
 
-#: gui/replaymenu/replay_menu.xml:(caption):110
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "Filter compatibele herhalingen"
 
-#: gui/replaymenu/replay_menu.xml:(caption):151
+#: gui/replaymenu/replay_menu.xml:(caption):153
+#: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
 msgstr "Kaarttype:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):166
+#: gui/replaymenu/replay_menu.xml:(caption):168
+#: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
 msgstr "Kaartgrootte:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):181
+#: gui/replaymenu/replay_menu.xml:(caption):183
+#: gui/savedgames/load.xml:(caption):65
 msgid "Victory:"
 msgstr "Overwinning:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):202
+#: gui/replaymenu/replay_menu.xml:(caption):204
+#: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
 msgstr "Spelers:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):219
+#: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Verwijder"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):26
+#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "Samenvatting"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
 msgstr "Start Herhaling"
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Datum / Tijd"
 
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
 msgstr "Spelers"
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Kaartnaam"
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
 msgstr "Grootte"
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
 msgstr "Bevolking"
 
-#: gui/replaymenu/replay_menu.xml:(heading):93
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
 msgstr "Duur"
 
-#: gui/savedgames/load.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):38
 msgid "Load"
 msgstr "Laad"
+
+#: gui/savedgames/load.xml:(caption):53
+msgid "Played time:"
+msgstr "Gespeelde tijd:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
@@ -1880,35 +2021,35 @@ msgstr "Beschaving"
 msgid "Trainer Units"
 msgstr "Rekruteereenheden"
 
-#: gui/summary/summary.xml:(caption):66
+#: gui/summary/summary.xml:(caption):62
 msgid "Score"
 msgstr "Score"
 
-#: gui/summary/summary.xml:(caption):73
+#: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
 msgstr "Gebouwen"
 
-#: gui/summary/summary.xml:(caption):80
+#: gui/summary/summary.xml:(caption):76
 msgid "Units"
 msgstr "Eenheden"
 
-#: gui/summary/summary.xml:(caption):87
+#: gui/summary/summary.xml:(caption):83
 msgid "Resources"
 msgstr "Grondstoffen"
 
-#: gui/summary/summary.xml:(caption):94
+#: gui/summary/summary.xml:(caption):90
 msgid "Market"
 msgstr "Markt"
 
-#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+#: gui/summary/summary.xml:(caption):97 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Diversen"
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):160
 msgid "Replay"
 msgstr "Replay"
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):165
 msgid "Continue"
 msgstr "Verder"
 
@@ -2217,6 +2358,14 @@ msgstr "Blokkeer toetreden van waarnemers als de limiet bereikt is"
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr "Waarnemerlimiet"
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid "Number of units trained per batch"
+msgstr "Aantal opgeleide eenheden per groep"
+
+#: gui/options/options.jsongeneralSetting[14].label
+msgid "Batch Training Size"
+msgstr "Groepsomvang Rekrutering"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"

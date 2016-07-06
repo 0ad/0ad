@@ -21,6 +21,7 @@
 
 #include "ps/ConfigDB.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
 bool JSI_ConfigDB::GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs)

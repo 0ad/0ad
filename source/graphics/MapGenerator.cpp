@@ -21,6 +21,7 @@
 
 #include "lib/timer.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 
 // TODO: what's a good default? perhaps based on map size

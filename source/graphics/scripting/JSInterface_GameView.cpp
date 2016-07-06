@@ -18,9 +18,11 @@
 #include "precompiled.h"
 
 #include "JSInterface_GameView.h"
+
 #include "graphics/GameView.h"
 #include "ps/Game.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #define IMPLEMENT_BOOLEAN_SCRIPT_SETTING(NAME) \

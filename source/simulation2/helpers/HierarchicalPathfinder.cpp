@@ -573,6 +573,7 @@ HierarchicalPathfinder::RegionID HierarchicalPathfinder::Get(u16 i, u16 j, pass_
 
 void HierarchicalPathfinder::MakeGoalReachable(u16 i0, u16 j0, PathGoal& goal, pass_class_t passClass)
 {
+	PROFILE2("MakeGoalReachable");
 	RegionID source = Get(i0, j0, passClass);
 
 	// Find everywhere that's reachable

@@ -199,6 +199,7 @@ void CNetClient::CheckServerConnection()
 	m_LastConnectionCheck = now;
 
 	JSContext* cx = GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 
 	// Report if we are losing the connection to the server
 	u32 lastReceived = m_Session->GetLastReceivedTime();
@@ -689,6 +690,7 @@ bool CNetClient::OnRejoined(void* context, CFsmEvent* event)
 
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 
 	CRejoinedMessage* message = (CRejoinedMessage*)event->GetParamRef();
 	JS::RootedValue msg(cx);
@@ -705,6 +707,7 @@ bool CNetClient::OnKicked(void *context, CFsmEvent* event)
 
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 
 	CKickedMessage* message = (CKickedMessage*)event->GetParamRef();
 	JS::RootedValue msg(cx);
@@ -726,6 +729,7 @@ bool CNetClient::OnClientTimeout(void *context, CFsmEvent* event)
 
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 
 	if (client->GetCurrState() == NCS_LOADING)
 		return true;
@@ -749,6 +753,7 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 
 	if (client->GetCurrState() == NCS_LOADING)
 		return true;
@@ -777,6 +782,8 @@ bool CNetClient::OnClientPaused(void *context, CFsmEvent *event)
 
 	CNetClient* client = (CNetClient*)context;
 	JSContext* cx = client->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+
 	CClientPausedMessage* message = (CClientPausedMessage*)event->GetParamRef();
 
 	JS::RootedValue msg(cx);

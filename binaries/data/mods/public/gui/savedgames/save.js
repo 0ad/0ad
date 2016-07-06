@@ -3,23 +3,26 @@ var g_SavedGameData;
 
 function selectDescription()
 {
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	if (gameSelection.selected == -1)
 		return;
 
-	var gameID = gameSelection.list_data[gameSelection.selected];
+	let gameID = gameSelection.list_data[gameSelection.selected];
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
 	Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
 }
 
 function init(data)
 {
-	g_SavedGameData = data && data.savedGameData || undefined;
+	g_SavedGameData = data && data.savedGameData || {};
+	let simulationState = Engine.GuiInterfaceCall("GetSimulationState");
+	g_SavedGameData.timeElapsed = simulationState.timeElapsed;
+	g_SavedGameData.states = simulationState.players.map(pState => pState.state);
 
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 
-	var savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
 	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];
@@ -38,11 +41,11 @@ function init(data)
 
 function saveGame()
 {
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	var gameLabel = gameSelection.list[gameSelection.selected];
-	var gameID = gameSelection.list_data[gameSelection.selected];
-	var desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
-	var name = gameID || "savegame";
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameLabel = gameSelection.list[gameSelection.selected];
+	let gameID = gameSelection.list_data[gameSelection.selected];
+	let desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
+	let name = gameID || "savegame";
 
 	if (gameSelection.selected == -1)
 	{
@@ -50,7 +53,6 @@ function saveGame()
 		return;
 	}
 
-	// Ask for confirmation
 	messageBox(
 		500, 200,
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
@@ -78,11 +80,10 @@ function closeSave()
 
 function deleteGame()
 {
-	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	var gameLabel = gameSelection.list[gameSelection.selected];
-	var gameID = gameSelection.list_data[gameSelection.selected];
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	let gameLabel = gameSelection.list[gameSelection.selected];
+	let gameID = gameSelection.list_data[gameSelection.selected];
 
-	// Ask for confirmation
 	messageBox(
 		500, 200,
 		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
@@ -91,15 +92,6 @@ function deleteGame()
 		[translate("No"), translate("Yes")],
 		[null, function(){ reallyDeleteGame(gameID); }]
 	);
-}
-
-function reallyDeleteGame(gameID)
-{
-	if (!Engine.DeleteSavedGame(gameID))
-		error("Could not delete saved game: " + gameID);
-
-	// Run init again to refresh saved game list
-	init();
 }
 
 // HACK: Engine.SaveGame* expects this function to be defined on the current page.

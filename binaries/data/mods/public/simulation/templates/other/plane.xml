@@ -4,12 +4,12 @@
     <Ranged>
       <Hack>0.0</Hack>
       <Pierce>100.0</Pierce>
-      <Crush>25.0</Crush>
-      <MaxRange>48</MaxRange>
-      <MinRange>24</MinRange>
+      <Crush>227.0</Crush>
+      <MaxRange>120</MaxRange>
+      <MinRange>80</MinRange>
       <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>0</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
+      <RepeatTime>10000</RepeatTime>
       <Spread>1.5</Spread>
     </Ranged>
   </Attack>
@@ -60,7 +60,7 @@
     <AccelRate>25.0</AccelRate>
     <SlowingRate>5.0</SlowingRate>
     <BrakingRate>10.0</BrakingRate>
-    <TurnRate>1.0</TurnRate>
+    <TurnRate>2.0</TurnRate>
     <OvershootTime>2.0</OvershootTime>
     <FlyingHeight>50.0</FlyingHeight>
     <ClimbRate>15.0</ClimbRate>

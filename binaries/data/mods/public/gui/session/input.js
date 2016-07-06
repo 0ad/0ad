@@ -1262,7 +1262,6 @@ var batchTrainingEntities;
 var batchTrainingType;
 var batchTrainingCount;
 var batchTrainingEntityAllowedCount;
-const batchIncrementSize = 5;
 
 function flushTrainingBatch()
 {
@@ -1372,6 +1371,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	if (!decrement)
 		var template = GetTemplateData(trainEntType);
 
+	let batchIncrementSize = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");
+
 	if (Engine.HotkeyIsPressed("session.batchtrain") && batchTrainingPossible)
 	{
 		if (inputState == INPUT_BATCHTRAINING)
@@ -1455,39 +1456,42 @@ function addResearchToQueue(entity, researchType)
 // the training button with shift down
 function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 {
+	let batchIncrementSize = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");
 	var appropriateBuildings = [entity];
 	if (selection && selection.indexOf(entity) != -1)
 		appropriateBuildings = getBuildingsWhichCanTrainEntity(selection, trainEntType);
 	var nextBatchTrainingCount = 0;
 	var currentBatchTrainingCount = 0;
 
+	var limits;
 	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 &&
-		batchTrainingType == trainEntType)
+	    batchTrainingType == trainEntType)
 	{
 		nextBatchTrainingCount = batchTrainingCount;
 		currentBatchTrainingCount = batchTrainingCount;
-		var limits = {
+		limits = {
 			"canBeAddedCount": batchTrainingEntityAllowedCount
 		};
 	}
 	else
-	{
-		var limits = getEntityLimitAndCount(playerState, trainEntType);
-	}
+		limits = getEntityLimitAndCount(playerState, trainEntType);
+
 	// We need to calculate count after the next increment if it's possible
 	if (limits.canBeAddedCount == undefined ||
 		limits.canBeAddedCount > nextBatchTrainingCount * appropriateBuildings.length)
 		nextBatchTrainingCount += batchIncrementSize;
+
 	// If training limits don't allow us to train batchTrainingCount in each appropriate building
 	// train as many full batches as we can and remainer in one more building.
 	var buildingsCountToTrainFullBatch = appropriateBuildings.length;
 	var remainderToTrain = 0;
 	if (limits.canBeAddedCount !== undefined &&
-		limits.canBeAddedCount < nextBatchTrainingCount * appropriateBuildings.length)
+	    limits.canBeAddedCount < nextBatchTrainingCount * appropriateBuildings.length)
 	{
 		buildingsCountToTrainFullBatch = Math.floor(limits.canBeAddedCount / nextBatchTrainingCount);
 		remainderToTrain = limits.canBeAddedCount % nextBatchTrainingCount;
 	}
+
 	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain, currentBatchTrainingCount];
 }
 
@@ -1503,7 +1507,6 @@ function changePrimarySelectionGroup(templateName, deselectGroup)
 	g_Selection.makePrimarySelection(templateName, Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup);
 }
 
-// Performs the specified command (delete, town bell, repair, etc.)
 function performCommand(entity, commandName)
 {
 	if (!entity)
@@ -1518,7 +1521,6 @@ function performCommand(entity, commandName)
 		g_EntityCommands[commandName].execute(entState);
 }
 
-// Performs the specified command for ally unit
 function performAllyCommand(entity, commandName)
 {
 	if (!entity)
@@ -1533,7 +1535,6 @@ function performAllyCommand(entity, commandName)
 		g_AllyEntityCommands[commandName].execute(entState);
 }
 
-// Performs the specified formation
 function performFormation(entity, formationTemplate)
 {
 	if (entity)
@@ -1544,7 +1545,6 @@ function performFormation(entity, formationTemplate)
 		});
 }
 
-// Performs the specified group
 function performGroup(action, groupId)
 {
 	switch (action)
@@ -1581,7 +1581,7 @@ function performGroup(action, groupId)
 		break;
 	}
 }
-// Performs the specified stance
+
 function performStance(entity, stanceName)
 {
 	if (entity)
@@ -1595,7 +1595,6 @@ function performStance(entity, stanceName)
 	}
 }
 
-// Lock / Unlock the gate
 function lockGate(lock)
 {
 	var selection = g_Selection.toList();
@@ -1606,7 +1605,6 @@ function lockGate(lock)
 	});
 }
 
-// Pack / unpack unit(s)
 function packUnit(pack)
 {
 	var selection = g_Selection.toList();
@@ -1618,7 +1616,6 @@ function packUnit(pack)
 	});
 }
 
-// Cancel un/packing unit(s)
 function cancelPackUnit(pack)
 {
 	var selection = g_Selection.toList();
@@ -1630,27 +1627,23 @@ function cancelPackUnit(pack)
 	});
 }
 
-// Transform a wall to a gate
-function transformWallToGate(template)
+function upgradeEntity(Template)
 {
-	var selection = g_Selection.toList();
 	Engine.PostNetworkCommand({
-		"type": "wall-to-gate",
-		"entities": selection.filter(e => getWallGateTemplate(e) == template),
-		"template": template,
+		"type": "upgrade",
+		"entities": g_Selection.toList(),
+		"template": Template,
+		"queued": false
 	});
 }
 
-// Gets the gate form (if any) of a given long wall piece
-function getWallGateTemplate(entity)
+function cancelUpgradeEntity()
 {
-	// TODO: find the gate template name in a better way
-	var entState = GetEntityState(entity);
-	var index;
-
-	if (entState && !entState.foundation && hasClass(entState, "LongWall") && (index = entState.template.indexOf("long")) >= 0)
-		return entState.template.substr(0, index) + "gate";
-	return undefined;
+	Engine.PostNetworkCommand({
+		"type": "cancel-upgrade",
+		"entities": g_Selection.toList(),
+		"queued": false
+	});
 }
 
 // Set the camera to follow the given unit

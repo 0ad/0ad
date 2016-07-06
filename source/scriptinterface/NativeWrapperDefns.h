@@ -15,6 +15,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "ps/GameSetup/Config.h"
+#include "ps/Profile.h"
 
 // Use the macro below to define types that will be passed by value to C++ functions.
 // NOTE: References are used just to avoid superfluous copy constructor calls

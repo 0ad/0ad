@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Igor Aleixo <igor.pavao@gmail.com>, 2016
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-06 09:15+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-06-28 23:03+0000\n"
+"Last-Translator: Igor Aleixo <igor.pavao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,7 +174,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Em seguida, os mapas podem ser adicionalmente filtrados. Os mapas padrões são geralmente jogáveis. Mapas navais são aqueles onde nem todos os oponentes podem ser alcançados por terra e mapas demo são usados para testes (geralmente não são bons para jogar). O filtro \"todos os mapas\" mostra todos os mapas juntos em uma lista."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -182,7 +183,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Finalmente altere as configurações. Para mapas aleatórios isso inclui o número de jogadores, o tamanho de um mapa, etc. Para cenários você só pode selecionar quem controla qual jogador (decide aonde você começa no mapa, etc). As opções são um jogador, uma inteligência artificial ou jogador nenhum (o oponente irá ficar párado)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -194,7 +195,7 @@ msgstr "[font=\"sans-bold-16\"]Atalhos:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Global"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -298,13 +299,13 @@ msgstr "Pausa: Pausar/continuar o jogo"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Delete: Exclua as unidades/construções selecionadas "
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift + Delete: Exclua as unidades/construções selecionadas sem confirmação"
 
 #: gui/manual/intro.txt:68
 msgid ",: Select idle fighters"
@@ -356,17 +357,17 @@ msgstr "Z, X, C, V, B, N, M com as construções de treinamento selecionadas: Ad
 msgid ""
 "PageUp with units selected: highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "PageUp com unidades selecionadas: destaca as unidades/construções protegidas pelos selecionados."
 
 #: gui/manual/intro.txt:78
 msgid ""
 "PageDown with units/buildings selected: highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "PageDown com unidades/construções selecionadas: destaca as unidades protegendo os selecionados."
 
 #: gui/manual/intro.txt:79
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: Veja todas as barras de status (que também irá mostrar o progresso das construções)"
 
 #: gui/manual/intro.txt:81
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -592,7 +593,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• Um ID de usuário aleatório (salvo em %APPDATA%\\0ad\\config\\user.cfg on Windows, ~/.config/0ad/config/user.cfg on Unix), para nos permitir detectar repetidas denúncias de um mesmo usuário."
 
 #: gui/manual/userreport.txt:6
 msgid ""

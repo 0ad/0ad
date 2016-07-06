@@ -67,6 +67,11 @@ function escapeText(text)
 	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
 }
 
+function translateMapTitle(mapTitle)
+{
+	return mapTitle == "random" ? translateWithContext("map selection", "Random") : translate(mapTitle);
+}
+
 /**
  * Returns map description and preview image or placeholder.
  */
@@ -204,4 +209,96 @@ function clearChatMessages()
 		g_ChatTimers.length = 0;
 	} catch (e) {
 	}
+}
+
+/**
+ * Returns a formatted string describing the player assignments.
+ * Needs g_CivData to translate!
+ *
+ * @param {object} playerDataArray - As known from gamesetup and simstate.
+ * @param {(string[]|false)} playerStates - One of "won", "defeated", "active" for each player.
+ * @returns {string}
+ */
+function formatPlayerInfo(playerDataArray, playerStates)
+{
+	let playerDescriptions = {};
+	let playerIdx = 0;
+
+	for (let playerData of playerDataArray)
+	{
+		if (playerData == null || playerData.Civ == "gaia")
+			continue;
+
+		++playerIdx;
+		let teamIdx = playerData.Team;
+		let isAI = playerData.AI && playerData.AI != "";
+		let playerState = playerStates && playerStates[playerIdx];
+		let isActive = !playerState || playerState == "active";
+
+		let playerDescription;
+		if (isAI)
+		{
+			if (isActive)
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+			else
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)");
+		}
+		else
+		{
+			if (isActive)
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s)");
+			else
+				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+				playerDescription = translate("%(playerName)s (%(civ)s, %(state)s)");
+		}
+
+		// Sort player descriptions by team
+		if (!playerDescriptions[teamIdx])
+			playerDescriptions[teamIdx] = [];
+
+		playerDescriptions[teamIdx].push(sprintf(playerDescription, {
+			"playerName":
+				'[color="' +
+				rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color) +
+				'"]' + escapeText(playerData.Name) + "[/color]",
+
+			"civ":
+				!playerData.Civ ?
+					translate("Unknown Civilization") :
+						g_CivData && g_CivData[playerData.Civ] && g_CivData[playerData.Civ].Name ?
+						translate(g_CivData[playerData.Civ].Name) :
+						playerData.Civ,
+
+			"state":
+				playerState == "defeated" ?
+					translateWithContext("playerstate", "defeated") :
+					translateWithContext("playerstate", "won"),
+
+			"AIname": isAI ? translateAIName(playerData.AI) : "",
+			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : ""
+		}));
+	}
+
+	let teams = Object.keys(playerDescriptions);
+
+	// If there are no teams, merge all playersDescriptions
+	if (teams.length == 1)
+		return playerDescriptions[teams[0]].join("\n") + "\n";
+
+	// If there are teams, merge "Team N:" + playerDescriptions
+	return teams.map(team => {
+
+		let teamCaption = team == -1 ?
+			translate("No Team") :
+			sprintf(translate("Team %(team)s"), { "team": +team + 1 });
+
+		// Translation: Describe players of one team in a selected game, f.e. in the replay- or savegame menu or lobby
+		return sprintf(translate("%(team)s:\n%(playerDescriptions)s"), {
+			"team": '[font="sans-bold-14"]' + teamCaption + "[/font]",
+			"playerDescriptions": playerDescriptions[team].join("\n")
+		});
+	}).join("\n\n");
 }

@@ -5,8 +5,9 @@ function sortDecreasingDate(a, b)
 
 function generateLabel(metadata, engineInfo)
 {
-	var dateTimeString = Engine.FormatMillisecondsIntoDateString(metadata.time*1000, translate("yyyy-MM-dd HH:mm:ss"));
-	var dateString = sprintf(translate("\\[%(date)s]"), { date: dateTimeString });
+	let dateTimeString = Engine.FormatMillisecondsIntoDateString(metadata.time*1000, translate("yyyy-MM-dd HH:mm:ss"));
+	let dateString = sprintf(translate("\\[%(date)s]"), { "date": dateTimeString });
+
 	if (engineInfo)
 	{
 		if (!hasSameSavegameVersion(metadata, engineInfo) || !hasSameEngineVersion(metadata, engineInfo))
@@ -14,10 +15,17 @@ function generateLabel(metadata, engineInfo)
 		else if (!hasSameMods(metadata, engineInfo))
 			dateString = "[color=\"orange\"]" + dateString + "[/color]";
 	}
-	if (metadata.description)
-		return sprintf(translate("%(dateString)s %(map)s - %(description)s"), { dateString: dateString, map: metadata.initAttributes.map, description: metadata.description });
-	else
-		return sprintf(translate("%(dateString)s %(map)s"), { dateString: dateString, map: metadata.initAttributes.map });
+
+	return sprintf(
+		metadata.description ?
+			translate("%(dateString)s %(map)s - %(description)s") :
+			translate("%(dateString)s %(map)s"),
+		{
+			"dateString": dateString,
+			"map": metadata.initAttributes.map,
+			"description": metadata.description || ""
+		}
+	);
 }
 
 /**
@@ -49,12 +57,21 @@ function hasSameMods(metadata, engineInfo)
 		return false;
 
 	// Ignore the "user" mod which is loaded for releases but not working-copies
-	var modsA = metadata.mods.filter(mod => mod != "user");
-	var modsB = engineInfo.mods.filter(mod => mod != "user");
+	let modsA = metadata.mods.filter(mod => mod != "user");
+	let modsB = engineInfo.mods.filter(mod => mod != "user");
 
 	if (modsA.length != modsB.length)
 		return false;
 
 	// Mods must be loaded in the same order
 	return modsA.every((mod, index) => mod == modsB[index]);
+}
+
+function reallyDeleteGame(gameID)
+{
+	if (!Engine.DeleteSavedGame(gameID))
+		error("Could not delete saved game: " + gameID);
+
+	// Run init again to refresh saved game list
+	init();
 }

@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="EuropeanBeech-Trunk-a">
       <mesh>gaia/tree_oak_a.dae</mesh>
@@ -11,13 +9,11 @@
       <mesh>gaia/tree_oak_b.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="Trunk-Texture">
       <textures><texture file="gaia/trunk_beech_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
-
   <group>
     <variant name="prop-canopy">
       <props>
@@ -25,5 +21,5 @@
       </props>
     </variant>
   </group>
-
+  <material>basic_trans_wind.xml</material>
 </actor>

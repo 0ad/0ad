@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 08:41+0000\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-01 09:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +182,7 @@ msgstr "Kavallerisvärdsmanskämpe"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
-#: simulation/templates/units/maur_elephant_archer_b.xml:9
+#: simulation/templates/units/maur_elephant_archer_b.xml:13
 msgid "Elephant"
 msgstr "Elefant"
 
@@ -254,7 +254,7 @@ msgstr "Mekanisk"
 #: simulation/templates/template_unit_mechanical_siege.xml:17
 #: simulation/templates/template_unit_mechanical_siege.xml:18
 msgid "Siege"
-msgstr "Belägringsvapen*"
+msgstr "Belägringsvapen"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
@@ -369,16 +369,17 @@ msgid "Light Warship"
 msgstr "Litet krigsskepp"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
-msgid ""
-"Garrison up to 20 units for transport. Garrison increases the firepower up "
-"to 10 arrows."
-msgstr "Garnisonera upp till 20 enheter för transport. Garnison ökar eldkraften upp till 10 pilar."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
+msgid "Garrison units for transport and to increase firepower."
+msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:39
 msgid "Fire Ship"
 msgstr "Brandskepp"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:36
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -410,13 +411,9 @@ msgstr "Handla mellan hamnar. Garnisonera en handelsman ombord för att utöka v
 msgid "Trader"
 msgstr "Handlare"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
 msgid "Heavy Warship"
 msgstr "Stort krigsskepp"
-
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
-msgid "Garrison up to 10 catapults to increase fire power."
-msgstr "Garnisonera upp till 10 katapulter för att öka eldkraften."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
@@ -429,12 +426,6 @@ msgstr "Krigsskepp"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Mellan"
-
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
-msgid ""
-"Garrison up to 30 units for transport. Garrison increases the firepower up "
-"to 13 arrows."
-msgstr "Garnisonera upp till 30 enheter för transport. Garnison ökar eldkraften upp till 13 pilar."
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
 msgid "Bolt Shooter"
@@ -455,11 +446,6 @@ msgstr "Murbräcka"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Siege Tower"
 msgstr "Belägringstorn"
-
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
-msgid ""
-"Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr "Garnisonera upp till 20 infanterienheter inuti för att höja antalet pilar från 0 till 10."
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -686,7 +672,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:15
+#: simulation/templates/units/spart_champion_infantry_sword.xml:21
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -761,7 +747,7 @@ msgstr "Peltastḗs Thrâx"
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
-msgstr "Kretisk Legosoldats Bågskytte"
+msgstr "Kretisk Legosoldat Bågskytte"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
@@ -1022,7 +1008,7 @@ msgstr "Iberisk Tung Kavalleri"
 #: simulation/templates/units/cart_champion_cavalry.xml:5
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr "Heliga Skaran Kavalleri"
+msgstr "Kavalleri av den Heliga Skaran"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:6
@@ -1039,7 +1025,7 @@ msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr "Heliga Skaran Infanteri"
+msgstr "Infanteri av den Heliga Skaran"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
@@ -1047,7 +1033,7 @@ msgstr "Ba'als Heliga Skara"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr "Heliga Skaran Pikenerare"
+msgstr "Pikenerare av den Heliga Skaran"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
@@ -1476,11 +1462,11 @@ msgstr "Makedonsk Kvinna"
 msgid "Hiereús"
 msgstr "Hiereús"
 
-#: simulation/templates/units/mace_thorakites.xml:12
+#: simulation/templates/units/mace_thorakites.xml:21
 msgid "Armored Swordsman"
 msgstr "Rustad Svärdsman"
 
-#: simulation/templates/units/mace_thorakites.xml:13
+#: simulation/templates/units/mace_thorakites.xml:22
 msgid "Thōrakitēs"
 msgstr "Thōrakitēs"
 
@@ -1558,15 +1544,15 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Jungfru väktare bågskytte"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:11
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Elephant Archer"
 msgstr "Elefantbågskytt"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_elephant_archer_b.xml:16
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:14
+#: simulation/templates/units/maur_elephant_archer_b.xml:18
 msgid "Can run amok."
 msgstr "Kan löpa amok."
 
@@ -1582,7 +1568,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr ""
+msgstr "Hjälte Special: \"Ashokas Edikt\" - Edikt Pelare av Ashoka kan byggas under Ashokas livstid."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chanakya"
@@ -1596,7 +1582,7 @@ msgstr "Acharya Chāṇakya"
 msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Hjälte Special: \"Helare\" - Hela enheter fortare.\nHjälte Special: \"Filosof\" - Forska fram 4 speciella teknologier bara tillgängliga till Chanakya."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1951,11 +1937,11 @@ msgstr "Krigselefant med Torn"
 msgid "Polémou Eléphantos"
 msgstr "Polémou Eléphantos"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:19
+#: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"
 msgstr "Juggernaut"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:20
+#: simulation/templates/units/ptol_champion_juggernaut.xml:21
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
@@ -2056,7 +2042,7 @@ msgstr "Egyptisk Kvinna"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 msgid "Egyptian Priest"
-msgstr "Egyptisk Präst."
+msgstr "Egyptisk Präst"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
@@ -2420,11 +2406,11 @@ msgstr "Spartansk Hoplit"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:13
+#: simulation/templates/units/spart_champion_infantry_sword.xml:19
 msgid "Skiritai Commando"
 msgstr "Skiritaisk Kommando"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:14
+#: simulation/templates/units/spart_champion_infantry_sword.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 

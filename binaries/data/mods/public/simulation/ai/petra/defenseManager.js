@@ -20,6 +20,14 @@ m.DefenseManager.prototype.update = function(gameState, events)
 
 	this.checkEvents(gameState, events);
 
+	// Check if our potential targets are still valid
+	for (let i = 0; i < this.targetList.length; ++i)
+	{
+		let target = gameState.getEntityById(this.targetList[i]);
+		if (!target || !target.position() || !gameState.isPlayerEnemy(target.owner()))
+			this.targetList.splice(i--, 1);
+	}
+
 	// Count the number of enemies attacking our allies in the previous turn
 	// We'll be more cooperative if several enemies are attacking him simultaneously
 	this.attackedAllies = {};
@@ -93,20 +101,25 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		if (this.targetList.indexOf(targetId) !== -1)
 			return true;
 		let target = gameState.getEntityById(targetId);
-		if (target && territoryOwner === PlayerID)
+		if (target)
 		{
-			this.targetList.push(targetId);
-			return true;
-		}
-		else if (target && target.hasClass("CivCentre"))
-		{
-			let myBuildings = gameState.getOwnStructures();
-			for (let building of myBuildings.values())
+			let isTargetEnemy = gameState.isPlayerEnemy(target.owner());
+			if (isTargetEnemy && territoryOwner === PlayerID)
 			{
-				if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
-					continue;
-				this.targetList.push(targetId);
+				if (target.hasClass("Structure"))
+					this.targetList.push(targetId);
 				return true;
+			}
+			else if (isTargetEnemy && target.hasClass("CivCentre"))
+			{
+				let myBuildings = gameState.getOwnStructures();
+				for (let building of myBuildings.values())
+				{
+					if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
+						continue;
+					this.targetList.push(targetId);
+					return true;
+				}
 			}
 		}
 	}
@@ -118,12 +131,12 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	if (entity.attackTypes().indexOf("Ranged") !== -1)
 		dist2Min = (entity.attackRange("Ranged").max + 30) * (entity.attackRange("Ranged").max + 30);
     
-	for (let i = 0; i < this.targetList.length; ++i)
+	for (let targetId of this.targetList)
 	{
-		let target = gameState.getEntityById(this.targetList[i]);
+		let target = gameState.getEntityById(targetId);
 		if (!target || !target.position())   // the enemy base is either destroyed or built
-			this.targetList.splice(i--, 1);
-		else if (API3.SquareVectorDistance(target.position(), entity.position()) < dist2Min)
+			continue;
+		if (API3.SquareVectorDistance(target.position(), entity.position()) < dist2Min)
 			return true;
 	}
 

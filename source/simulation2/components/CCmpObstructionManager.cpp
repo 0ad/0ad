@@ -839,7 +839,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 void CCmpObstructionManager::Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate)
 {
-	PROFILE3("Rasterize");
+	PROFILE3("Rasterize Obstructions");
 
 	// Cells are only marked as blocked if the whole cell is strictly inside the shape.
 	// (That ensures the shape's geometric border is always reachable.)
@@ -992,7 +992,7 @@ void CCmpObstructionManager::GetStaticObstructionsInRange(const IObstructionTest
 
 void CCmpObstructionManager::GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict)
 {
-	PROFILE3("GetUnitsOnObstruction");
+	PROFILE("GetUnitsOnObstruction");
 
 	// In order to avoid getting units on impassable cells, we want to find all
 	// units s.t. the RasterizeRectWithClearance of the building's shape with the

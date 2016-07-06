@@ -23,6 +23,10 @@
 #include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
 
+/**
+ * TODO: Since there is no call to DrawText, the checkbox won't render any text.
+ * Thus the font, caption, textcolor and other settings have no effect.
+ */
 CCheckBox::CCheckBox()
 {
 	AddSetting(GUIST_float,					"buffer_zone");

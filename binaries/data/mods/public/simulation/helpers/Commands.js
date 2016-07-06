@@ -170,7 +170,7 @@ var g_Commands = {
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
-		// See UnitAI.CanAttack for target checks
+
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Attack(cmd.target, cmd.queued, allowCapture);
 		});
@@ -181,7 +181,6 @@ var g_Commands = {
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
 			warn("Invalid command: heal target is not owned by player "+player+" or their ally: "+uneval(cmd));
 
-		// See UnitAI.CanHeal for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
@@ -193,7 +192,6 @@ var g_Commands = {
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
 			warn("Invalid command: repair target is not owned by ally of player "+player+": "+uneval(cmd));
 
-		// See UnitAI.CanRepair for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
@@ -204,7 +202,6 @@ var g_Commands = {
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
 			warn("Invalid command: resource is not owned by gaia or player "+player+": "+uneval(cmd));
 
-		// See UnitAI.CanGather for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
@@ -222,7 +219,6 @@ var g_Commands = {
 		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
 
-		// See UnitAI.CanReturnResource for target checks
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
@@ -362,25 +358,35 @@ var g_Commands = {
 	{
 		for (let ent of data.entities)
 		{
-			// don't allow to delete entities who are half-captured
-			var cmpCapturable = Engine.QueryInterface(ent, IID_Capturable);
-			if (cmpCapturable)
+			let cmpHealth = QueryMiragedInterface(ent, IID_Health);
+			if (!data.controlAllUnits)
 			{
-				var capturePoints = cmpCapturable.GetCapturePoints();
-				var maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
-				if (capturePoints[player] < maxCapturePoints / 2)
-					return;
-			}
-			// either kill or delete the entity
-			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
-			if (cmpHealth)
-			{
-				if (cmpHealth.IsUndeletable())
+				if (cmpHealth && cmpHealth.IsUndeletable())
 					continue;
-				var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
-				if (!cmpResourceSupply || !cmpResourceSupply.GetKillBeforeGather() || data.controlAllUnits)
-					cmpHealth.Kill();
+
+				let cmpCapturable = QueryMiragedInterface(ent, IID_Capturable);
+				if (cmpCapturable &&
+				    cmpCapturable.GetCapturePoints()[player] < cmpCapturable.GetMaxCapturePoints() / 2)
+					continue;
+
+				let cmpResourceSupply = QueryMiragedInterface(ent, IID_ResourceSupply);
+				if (cmpResourceSupply && cmpResourceSupply.GetKillBeforeGather())
+					continue;
 			}
+
+			let cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
+			if (cmpMirage)
+			{
+				let cmpMiragedHealth = Engine.QueryInterface(cmpMirage.parent, IID_Health);
+				if (cmpMiragedHealth)
+					cmpMiragedHealth.Kill();
+				else
+					Engine.DestroyEntity(cmpMirage.parent);
+
+				Engine.DestroyEntity(ent);
+			}
+			else if (cmpHealth)
+				cmpHealth.Kill();
 			else
 				Engine.DestroyEntity(ent);
 		}
@@ -414,8 +420,9 @@ var g_Commands = {
 
 	"defeat-player": function(player, cmd, data)
 	{
-		// Send "OnPlayerDefeated" message to player
-		Engine.PostMessage(data.playerEnt, MT_PlayerDefeated, { "playerId": player, "resign": !!cmd.resign });
+		let cmpPlayer = QueryPlayerIDInterface(player);
+		if (cmpPlayer)
+			cmpPlayer.SetState("defeated", !!cmd.resign);
 	},
 
 	"garrison": function(player, cmd, data)
@@ -580,12 +587,6 @@ var g_Commands = {
 		}
 	},
 
-	"wall-to-gate": function(player, cmd, data)
-	{
-		for (let ent of data.entities)
-			TryTransformWallToGate(ent, data.cmpPlayer, cmd);
-	},
-
 	"lock-gate": function(player, cmd, data)
 	{
 		for (let ent of data.entities)
@@ -657,6 +658,69 @@ var g_Commands = {
 				cmpUnitAI.CancelPack(cmd.queued);
 			else
 				cmpUnitAI.CancelUnpack(cmd.queued);
+		}
+	},
+
+	"upgrade": function(player, cmd, data)
+	{
+		for (let ent of data.entities)
+		{
+			var cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
+
+			if (!cmpUpgrade || !cmpUpgrade.CanUpgradeTo(cmd.template))
+				continue;
+
+			if (cmpUpgrade.WillCheckPlacementRestrictions(cmd.template) && ObstructionsBlockingTemplateChange(ent, cmd.template))
+			{
+				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGUIInterface.PushNotification({
+					"players": [data.cmpPlayer.GetPlayerID()],
+					"message": markForTranslation("Cannot upgrade as distance requirements are not verified or terrain is obstructed.")
+				});
+				continue;
+			}
+
+			if (!CanGarrisonedChangeTemplate(ent, cmd.template))
+			{
+				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGUIInterface.PushNotification({
+					"players": [data.cmpPlayer.GetPlayerID()],
+					"message": markForTranslation("Cannot upgrade a garrisoned entity.")
+				});
+				continue;
+			}
+
+			// Check entity limits
+			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			var template = cmpTemplateManager.GetTemplate(cmd.template);
+			var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
+			if (template.TrainingRestrictions && !cmpEntityLimits.AllowedToTrain(template.TrainingRestrictions.Category, 1) ||
+				template.BuildRestrictions && !cmpEntityLimits.AllowedToBuild(template.BuildRestrictions.Category))
+			{
+				if (g_DebugCommands)
+					warn("Invalid command: build limits check failed for player " + player + ": " + uneval(cmd));
+				continue;
+			}
+
+			var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
+			if (cmpUpgrade.GetRequiredTechnology(cmd.template) && !cmpTechnologyManager.IsTechnologyResearched(cmpUpgrade.GetRequiredTechnology(cmd.template)))
+			{
+				if (g_DebugCommands)
+					warn("Invalid command: upgrading requires unresearched technology: " + uneval(cmd));
+				continue;
+			}
+
+			cmpUpgrade.Upgrade(cmd.template, data.cmpPlayer);
+		}
+	},
+
+	"cancel-upgrade": function(player, cmd, data)
+	{
+		for (let ent of data.entities)
+		{
+			let cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
+			if (cmpUpgrade)
+				cmpUpgrade.CancelUpgrade(data.cmpPlayer.playerID);
 		}
 	},
 
@@ -1555,78 +1619,6 @@ function FilterEntityList(entities, player, controlAll)
 function FilterEntityListWithAllies(entities, player, controlAll)
 {
 	return entities.filter(ent => CanControlUnitOrIsAlly(ent, player, controlAll));
-}
-
-/**
- * Try to transform a wall to a gate
- */
-function TryTransformWallToGate(ent, cmpPlayer, cmd)
-{
-	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-	if (!cmpIdentity)
-		return;
-
-	if (!cmpIdentity.HasClass("LongWall"))
-	{
-		if (g_DebugCommands)
-			warn("Invalid command: invalid wall conversion to gate for player: " + uneval(cmd));
-		return;
-	}
-
-	var gate = Engine.AddEntity(cmd.template);
-
-	var cmpCost = Engine.QueryInterface(gate, IID_Cost);
-	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
-	{
-		if (g_DebugCommands)
-			warn("Invalid command: convert gate cost check failed: " + uneval(cmd));
-
-		Engine.DestroyEntity(gate);
-		return;
-	}
-
-	ReplaceBuildingWith(ent, gate);
-}
-
-/**
- * Unconditionally replace a building with another one
- */
-function ReplaceBuildingWith(ent, building)
-{
-	// Move the building to the right place
-	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-	var cmpBuildingPosition = Engine.QueryInterface(building, IID_Position);
-	var pos = cmpPosition.GetPosition2D();
-	cmpBuildingPosition.JumpTo(pos.x, pos.y);
-	var rot = cmpPosition.GetRotation();
-	cmpBuildingPosition.SetYRotation(rot.y);
-	cmpBuildingPosition.SetXZRotation(rot.x, rot.z);
-
-	// Copy ownership
-	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-	var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
-	cmpBuildingOwnership.SetOwner(cmpOwnership.GetOwner());
-
-	// Copy control groups
-	var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-	var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
-	cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
-	cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
-
-	// Copy health level from the old entity to the new
-	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
-	var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
-	var healthFraction = Math.max(0, Math.min(1, cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints()));
-	var buildingHitpoints = Math.round(cmpBuildingHealth.GetMaxHitpoints() * healthFraction);
-	cmpBuildingHealth.SetHitpoints(buildingHitpoints);
-
-	PlaySound("constructed", building);
-
-	Engine.PostMessage(ent, MT_ConstructionFinished,
-		{ "entity": ent, "newentity": building });
-	Engine.BroadcastMessage(MT_EntityRenamed, { entity: ent, newentity: building });
-
-	Engine.DestroyEntity(ent);
 }
 
 Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);

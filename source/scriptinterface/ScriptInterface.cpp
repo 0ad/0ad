@@ -262,9 +262,35 @@ bool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* vp)
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 		g_Profiler.Stop();
 
-	g_Profiler2.RecordRegionLeave("(ProfileStop)");
+	g_Profiler2.RecordRegionLeave();
 
 	rec.rval().setUndefined();
+	return true;
+}
+
+bool ProfileAttribute(JSContext* cx, uint argc, jsval* vp)
+{
+	const char* name = "(ProfileAttribute)";
+
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() >= 1)
+	{
+		std::string str;
+		if (!ScriptInterface::FromJSVal(cx, args[0], str))
+			return false;
+
+		typedef boost::flyweight<
+			std::string,
+			boost::flyweights::no_tracking,
+			boost::flyweights::no_locking
+		> StringFlyweight;
+
+		name = StringFlyweight(str).get().c_str();
+	}
+
+	g_Profiler2.RecordAttribute("%s", name);
+
+	args.rval().setUndefined();
 	return true;
 }
 
@@ -364,6 +390,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	Register("ProfileStart", ::ProfileStart, 1);
 	Register("ProfileStop", ::ProfileStop, 0);
+	Register("ProfileAttribute", ::ProfileAttribute, 1);
 
 	runtime->RegisterContext(m_cx);
 }

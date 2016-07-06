@@ -437,30 +437,29 @@ function displayProfile(caller)
  */
 function updateProfile()
 {
-	let attributes = Engine.GetProfile();
+	let attributes = Engine.GetProfile()[0];
+
+	let user = sprintf(translate("%(nick)s (%(rating)s)"), {
+		"nick": attributes.player,
+		"rating": attributes.rating
+	});
 
 	if (!Engine.GetGUIObjectByName("profileFetch").hidden)
 	{
-		let profileFound = attributes[0].rating != "-2";
+		let profileFound = attributes.rating != "-2";
 		Engine.GetGUIObjectByName("profileWindowArea").hidden = !profileFound;
 		Engine.GetGUIObjectByName("profileErrorText").hidden = profileFound;
 
 		if (!profileFound)
 			return;
 
-		if (attributes[0].rating != "")
-			user = sprintf(translate("%(nick)s (%(rating)s)"), {
-				"nick": attributes[0].player,
-				"rating": attributes[0].rating
-			});
-
-		Engine.GetGUIObjectByName("profileUsernameText").caption = attributes[0].player;
-		Engine.GetGUIObjectByName("profileRankText").caption = attributes[0].rank;
-		Engine.GetGUIObjectByName("profileHighestRatingText").caption = attributes[0].highestRating;
-		Engine.GetGUIObjectByName("profileTotalGamesText").caption = attributes[0].totalGamesPlayed;
-		Engine.GetGUIObjectByName("profileWinsText").caption = attributes[0].wins;
-		Engine.GetGUIObjectByName("profileLossesText").caption = attributes[0].losses;
-		Engine.GetGUIObjectByName("profileRatioText").caption = formatWinRate(attributes[0]);
+		Engine.GetGUIObjectByName("profileUsernameText").caption = user;
+		Engine.GetGUIObjectByName("profileRankText").caption = attributes.rank;
+		Engine.GetGUIObjectByName("profileHighestRatingText").caption = attributes.highestRating;
+		Engine.GetGUIObjectByName("profileTotalGamesText").caption = attributes.totalGamesPlayed;
+		Engine.GetGUIObjectByName("profileWinsText").caption = attributes.wins;
+		Engine.GetGUIObjectByName("profileLossesText").caption = attributes.losses;
+		Engine.GetGUIObjectByName("profileRatioText").caption = formatWinRate(attributes);
 		return;
 	}
 
@@ -470,28 +469,20 @@ function updateProfile()
 	else
 		playerList = Engine.GetGUIObjectByName("playersBox");
 
-	if (attributes[0].rating == "-2")
+	if (attributes.rating == "-2")
 		return;
 
 	// Make sure the stats we have received coincide with the selected player.
-	if (attributes[0].player != playerList.list[playerList.selected])
+	if (attributes.player != playerList.list[playerList.selected])
 		return;
 
-	let user = playerList.list_name[playerList.selected];
-
-	if (attributes[0].rating)
-		user = sprintf(translate("%(nick)s (%(rating)s)"), {
-			"nick": user,
-			"rating": attributes[0].rating
-		});
-
 	Engine.GetGUIObjectByName("usernameText").caption = user;
-	Engine.GetGUIObjectByName("rankText").caption = attributes[0].rank;
-	Engine.GetGUIObjectByName("highestRatingText").caption = attributes[0].highestRating;
-	Engine.GetGUIObjectByName("totalGamesText").caption = attributes[0].totalGamesPlayed;
-	Engine.GetGUIObjectByName("winsText").caption = attributes[0].wins;
-	Engine.GetGUIObjectByName("lossesText").caption = attributes[0].losses;
-	Engine.GetGUIObjectByName("ratioText").caption = formatWinRate(attributes[0]);
+	Engine.GetGUIObjectByName("rankText").caption = attributes.rank;
+	Engine.GetGUIObjectByName("highestRatingText").caption = attributes.highestRating;
+	Engine.GetGUIObjectByName("totalGamesText").caption = attributes.totalGamesPlayed;
+	Engine.GetGUIObjectByName("winsText").caption = attributes.wins;
+	Engine.GetGUIObjectByName("lossesText").caption = attributes.losses;
+	Engine.GetGUIObjectByName("ratioText").caption = formatWinRate(attributes);
 }
 
 /**
@@ -588,7 +579,7 @@ function updateGameList()
 			selectedGameIndex = +i;
 
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
-		list_mapName.push(translate(game.niceMapName));
+		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
 		list_nPlayers.push(game.nbp + "/" + game.tnbp);
@@ -623,7 +614,7 @@ function updateGameSelection()
 	if (!game)
 		return;
 
-	Engine.GetGUIObjectByName("sgMapName").caption = translate(game.niceMapName);
+	Engine.GetGUIObjectByName("sgMapName").caption = translateMapTitle(game.niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(
 		translate("Players: %(current)s/%(total)s"), {
 			"current": game.nbp,

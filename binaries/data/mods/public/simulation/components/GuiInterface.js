@@ -237,6 +237,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"market": null,
 		"mirage": null,
 		"pack": null,
+		"upgrade" : null,
 		"player": -1,
 		"position": null,
 		"production": null,
@@ -303,6 +304,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"progress": cmpPack.GetProgress(),
 		};
 
+	var cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
+	if (cmpUpgrade)
+		ret.upgrade = {
+			"upgrades" : cmpUpgrade.GetUpgrades(),
+			"progress": cmpUpgrade.GetProgress(),
+			"template": cmpUpgrade.GetUpgradingTo()
+		};
+
 	let cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		ret.production = {
@@ -320,12 +329,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpFogging = Engine.QueryInterface(ent, IID_Fogging);
 	if (cmpFogging)
-	{
-		if (cmpFogging.IsMiraged(player))
-			ret.fogging = { "mirage": cmpFogging.GetMirage(player) };
-		else
-			ret.fogging = { "mirage": null };
-	}
+		ret.fogging = {
+			"mirage": cmpFogging.IsMiraged(player) ? cmpFogging.GetMirage(player) : null
+		};
 
 	let cmpFoundation = QueryMiragedInterface(ent, IID_Foundation);
 	if (cmpFoundation)
@@ -421,6 +427,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
+		"speed": null,
 	};
 
 	let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
@@ -434,12 +441,16 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		for (let type of types)
 		{
 			ret.attack[type] = cmpAttack.GetAttackStrengths(type);
+			ret.attack[type].splash = cmpAttack.GetSplashDamage(type);
+
 			let range = cmpAttack.GetRange(type);
 			ret.attack[type].minRange = range.min;
 			ret.attack[type].maxRange = range.max;
+
 			let timers = cmpAttack.GetTimers(type);
 			ret.attack[type].prepareTime = timers.prepare;
 			ret.attack[type].repeatTime = timers.repeat;
+
 			if (type != "Ranged")
 			{
 				// not a ranged attack, set some defaults
@@ -449,12 +460,14 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			}
 
 			ret.attack[type].elevationBonus = range.elevationBonus;
+
 			let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
 			if (cmpUnitAI && cmpPosition && cmpPosition.IsInWorld())
 			{
-				// For units, take the rage in front of it, no spread. So angle = 0
+				// For units, take the range in front of it, no spread. So angle = 0
 				ret.attack[type].elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
 			}
 			else if(cmpPosition && cmpPosition.IsInWorld())
@@ -545,9 +558,19 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 
 	let cmpHeal = Engine.QueryInterface(ent, IID_Heal);
 	if (cmpHeal)
-		ret.healer = {
+		ret.heal = {
+			"hp": cmpHeal.GetHP(),
+			"range": cmpHeal.GetRange().max,
+			"rate": cmpHeal.GetRate(),
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses(),
+		};
+
+	let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
+	if (cmpUnitMotion)
+		ret.speed = {
+			"walk": cmpUnitMotion.GetWalkSpeed(),
+			"run": cmpUnitMotion.GetRunSpeed()
 		};
 
 	return ret;

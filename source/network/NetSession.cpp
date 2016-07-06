@@ -23,6 +23,7 @@
 #include "NetStats.h"
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
 const u32 NETWORK_WARNING_TIMEOUT = 4000;

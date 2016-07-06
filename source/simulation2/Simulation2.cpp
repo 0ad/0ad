@@ -480,8 +480,11 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	CComponentManager& componentManager = simContext.GetComponentManager();
 
-	CMessageTurnStart msgTurnStart;
-	componentManager.BroadcastMessage(msgTurnStart);
+	{
+		PROFILE2("Sim - Update Start");
+		CMessageTurnStart msgTurnStart;
+		componentManager.BroadcastMessage(msgTurnStart);
+	}
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
 	if (cmpPathfinder)
@@ -505,6 +508,7 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	// Send all the update phases
 	{
+		PROFILE2("Sim - Update");
 		CMessageUpdate msgUpdate(turnLengthFixed);
 		componentManager.BroadcastMessage(msgUpdate);
 	}
@@ -518,10 +522,12 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 		cmpPathfinder->ProcessSameTurnMoves();
 
 	{
+		PROFILE2("Sim - Motion Unit");
 		CMessageUpdate_MotionUnit msgUpdate(turnLengthFixed);
 		componentManager.BroadcastMessage(msgUpdate);
 	}
 	{
+		PROFILE2("Sim - Update Final");
 		CMessageUpdate_Final msgUpdate(turnLengthFixed);
 		componentManager.BroadcastMessage(msgUpdate);
 	}

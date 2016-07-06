@@ -395,7 +395,7 @@ public:
 		}
 		case MT_RenderSubmit:
 		{
-			PROFILE3("UnitMotion::RenderSubmit");
+			PROFILE("UnitMotion::RenderSubmit");
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
 			RenderSubmit(msgData.collector);
 			break;

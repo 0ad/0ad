@@ -252,7 +252,7 @@ function filterReplay(replay)
 	let selectedRatedGamesFilter = ratedGamesFilter.list_data[ratedGamesFilter.selected] || "";
 	if (selectedRatedGamesFilter == "rated" && !replay.isRated ||
 	    selectedRatedGamesFilter == "not rated" && replay.isRated)
-		return false
+		return false;
 
 	// Filter date/time (select a month)
 	let dateTimeFilter = Engine.GetGUIObjectByName("dateTimeFilter");

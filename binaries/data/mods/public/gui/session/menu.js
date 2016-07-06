@@ -617,14 +617,15 @@ function openGameSummary()
 	pauseGame();
 
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-
 	Engine.PushGuiPage("page_summary.xml", {
-		"timeElapsed" : extendedSimState.timeElapsed,
-		"playerStates": extendedSimState.players,
-		"players": g_Players,
-		"mapSettings": Engine.GetMapSettings(),
-		"isInGame": true,
-		"gameResult": translate("Current Scores"),
+		"sim": {
+			"mapSettings": g_GameAttributes.settings,
+			"playerStates": extendedSimState.players,
+			"timeElapsed" : extendedSimState.timeElapsed
+		},
+		"gui": {
+			"isInGame": true
+		},
 		"callback": "resumeGame"
 	});
 }
@@ -755,6 +756,7 @@ function toggleDeveloperOverlay()
 
 function closeOpenDialogs()
 {
+	 // TODO: also close message boxes
 	closeMenu();
 	closeChat();
 	closeDiplomacy();

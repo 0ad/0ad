@@ -10,14 +10,38 @@
   </group>
 
   <group>
-    <variant frequency="1" name="oak-aut-top-texture-a">
+    <variant frequency="2" name="b-oak-top-texture-a">
+      <textures><texture file="gaia/tree_oak_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="b-oak-aut-top-texture-a">
       <textures><texture file="gaia/tree_oak_a_aut.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="2" name="oak-aut-top-texture-b">
+    <variant frequency="2" name="b-oak-aut-top-texture-b">
       <textures><texture file="gaia/tree_oak_b_aut.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="4" name="oak-aut-top-texture-c">
+    <variant frequency="4" name="b-oak-aut-top-texture-c">
       <textures><texture file="gaia/tree_oak_c_aut.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="4" name="b-oak-aut-top-texture-d">
+      <textures><texture file="gaia/tree_oak_d_aut.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="4" name="b-oak-aut-top-texture-e">
+      <textures><texture file="gaia/tree_oak_e_aut.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="3" name="b-beech-aut-top-texture-c">
+      <textures><texture file="gaia/tree_euro_beech_c_aut.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="Falling Leaves">
+      <props>
+        <prop actor="particle/falling_leaf_dry_a.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="No Falling Leaves">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
 

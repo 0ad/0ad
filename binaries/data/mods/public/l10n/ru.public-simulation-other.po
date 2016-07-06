@@ -14,6 +14,7 @@
 # John Smith <mae_mbllo@mail.ru>, 2016
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
+# Simple88, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015-2016
 # Yegor <revolver45@inbox.ru>, 2014
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-15 23:32+0000\n"
-"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
+"PO-Revision-Date: 2016-06-22 00:50+0000\n"
+"Last-Translator: Simple88\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -599,7 +600,7 @@ msgstr "собственной"
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "неподключённый свой"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -613,7 +614,7 @@ msgstr "Союзнический"
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "неподключённый союзный"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".

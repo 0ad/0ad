@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -144,11 +144,9 @@ namespace Pathfinding
 	 */
 	inline void NearestNavcell(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 	{
-		// x, z should be divided by NAVCELL_SIZE but that value happens to be 1 for now
-		// Since this is an i64 division and rather slow (10% of ComputeShortPath), cut it out
-		cassert(NAVCELL_SIZE_INT == 1);
-		i = (u16)clamp(x.ToInt_RoundToNegInfinity(), 0, w - 1);
-		j = (u16)clamp(z.ToInt_RoundToNegInfinity(), 0, h - 1);
+		// Use NAVCELL_SIZE_INT to save the cost of dividing by a fixed
+		i = (u16)clamp((x / NAVCELL_SIZE_INT).ToInt_RoundToNegInfinity(), 0, w - 1);
+		j = (u16)clamp((z / NAVCELL_SIZE_INT).ToInt_RoundToNegInfinity(), 0, h - 1);
 	}
 
 	/**

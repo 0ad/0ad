@@ -139,7 +139,7 @@ const g_VictoryColor = "orange";
 /**
  * Placeholder item for the map-dropdownlist.
  */
-const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map type", "Random") + "[/color]";
+const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map selection", "Random") + "[/color]";
 
 /**
  * Placeholder item for the civ-dropdownlists.
@@ -765,8 +765,15 @@ function onClientLeave(guid)
 		resetReadyData();
 }
 
+/**
+ * Doesn't translate, so that lobby clients can do that locally
+ * (even if they don't have that map).
+ */
 function getMapDisplayName(map)
 {
+	if (map == "random")
+		return map;
+
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{
@@ -852,7 +859,6 @@ function initMapNameList()
 	let mapListNames = mapList.map(map => map.name);
 	let mapListFiles = mapList.map(map => map.file);
 
-	// Scenario/skirmish maps have a fixed playercount
 	if (g_GameAttributes.mapType == "random")
 	{
 		mapListNames.unshift(g_RandomMap);
@@ -1034,6 +1040,34 @@ function onTick()
 }
 
 /**
+ * Called when the map or the number of players changes.
+ */
+function resizePlayerData(targetPlayerData, maxPlayers)
+{
+	if (g_IsNetworked)
+		// Unassign excess players
+		for (let guid in g_PlayerAssignments)
+		{
+			let playerID = g_PlayerAssignments[guid].player;
+			if (playerID > maxPlayers)
+				Engine.AssignNetworkPlayer(playerID, "");
+		}
+	else if (!g_PlayerAssignments.local ||
+	         g_PlayerAssignments.local.player > maxPlayers)
+		g_PlayerAssignments = {
+			"local": {
+				"name": singleplayerName(),
+				"player": 1
+			}
+		};
+
+	let pData = g_GameAttributes.settings.PlayerData;
+	return maxPlayers > pData.length ?
+		pData.concat(targetPlayerData.slice(pData.length, maxPlayers)) :
+		pData.slice(0, maxPlayers);
+}
+
+/**
  * Called when the host choses the number of players on a random map.
  * @param {Number} num
  */
@@ -1042,22 +1076,7 @@ function selectNumPlayers(num)
 	if (g_IsInGuiUpdate || !g_IsController || g_GameAttributes.mapType != "random")
 		return;
 
-	// Unassign players from nonexistent slots
-	if (g_IsNetworked)
-	{
-		for (let i = g_MaxPlayers; i > num; --i)
-			Engine.AssignNetworkPlayer(i, "");
-	}
-	else if (g_PlayerAssignments.local.player > num)
-		g_PlayerAssignments.local.player = 1;
-
-	// Update player data
-	let pData = g_GameAttributes.settings.PlayerData;
-	if (num < pData.length)
-		g_GameAttributes.settings.PlayerData = pData.slice(0, num);
-	else
-		for (let i = pData.length; i < num; ++i)
-			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
+	g_GameAttributes.settings.PlayerData = resizePlayerData(g_DefaultPlayerData, num);
 
 	updateGameAttributes();
 }
@@ -1168,6 +1187,10 @@ function selectMap(name)
 	if (mapSettings.PlayerData)
 		sanitizePlayerData(mapSettings.PlayerData);
 
+	// Persist player data
+	if (g_GameAttributes.mapType == "skirmish")
+		mapSettings.PlayerData = resizePlayerData(mapSettings.PlayerData, mapSettings.PlayerData.length);
+
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
@@ -1183,22 +1206,6 @@ function selectMap(name)
 		if (!('AIDiff' in g_GameAttributes.settings.PlayerData[i]))
 			g_GameAttributes.settings.PlayerData[i].AIDiff = g_DefaultPlayerData[i].AIDiff;
 	}
-
-	if (g_IsNetworked)
-		// Unassign excess players
-		for (let guid in g_PlayerAssignments)
-		{
-			let player = g_PlayerAssignments[guid].player;
-			if (player > g_GameAttributes.settings.PlayerData.length)
-				Engine.AssignNetworkPlayer(player, "");
-		}
-	else
-		g_PlayerAssignments = {
-			"local": {
-				"name": singleplayerName(),
-				"player": 1
-			}
-		};
 
 	updateGameAttributes();
 }
@@ -1399,6 +1406,7 @@ function updateGUIObjects()
 		hideControl(ctrl, ctrl + "Text", notScenario);
 
 	Engine.GetGUIObjectByName("civResetButton").hidden = !notScenario;
+	Engine.GetGUIObjectByName("teamResetButton").hidden = !notScenario;
 
 	for (let i = 0; i < g_MaxPlayers; ++i)
 	{
@@ -1473,9 +1481,7 @@ function updateMapDescription()
 	setMapPreviewImage("mapPreview", getMapPreview(g_GameAttributes.map));
 
 	Engine.GetGUIObjectByName("mapInfoName").caption =
-		g_GameAttributes.map == "random" ?
-			translateWithContext("map selection", "Random") :
-			translate(getMapDisplayName(g_GameAttributes.map));
+		translateMapTitle(getMapDisplayName(g_GameAttributes.map));
 
 	let numPlayers = sprintf(
 		translatePlural(
@@ -1819,6 +1825,14 @@ function resetCivilizations()
 {
 	for (let i in g_GameAttributes.settings.PlayerData)
 		g_GameAttributes.settings.PlayerData[i].Civ = "random";
+
+	updateGameAttributes();
+}
+
+function resetTeams()
+{
+	for (let i in g_GameAttributes.settings.PlayerData)
+		g_GameAttributes.settings.PlayerData[i].Team = -1;
 
 	updateGameAttributes();
 }

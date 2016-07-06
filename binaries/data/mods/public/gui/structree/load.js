@@ -80,13 +80,6 @@ function loadUnit(templateName)
 		}
 	}
 
-	if (template.Heal)
-		unit.healer = {
-			"Range": +template.Heal.Range || 0,
-			"HP": +template.Heal.HP || 0,
-			"Rate": +template.Heal.Rate || 0
-		};
-
 	if (template.Builder && template.Builder.Entities._string)
 		for (let build of template.Builder.Entities._string.split(" "))
 		{

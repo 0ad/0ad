@@ -17,6 +17,8 @@
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # Nick Zhivotenko <niko.zvt@gmail.com>, 2015
 # sad2shade <sad.2.shade@gmail.com>, 2015
+# Simple88, 2016
+# Simple88, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # webslavic <webslavic@yahoo.com>, 2014-2015
@@ -27,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:00+0200\n"
-"PO-Revision-Date: 2016-06-09 16:40+0000\n"
-"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-01 09:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +72,7 @@ msgstr[1] "Особые строения"
 msgstr[2] "Особые строения"
 msgstr[3] "Особые строения"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:54
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
 msgid "Heroes"
 msgstr "Герои"
 
@@ -108,21 +110,86 @@ msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
 msgstr "Времени до возобновления военных действий: %(time)s."
 
-#: gui/common/functions_utility.js:77
+#: gui/common/functions_utility.js:72
+msgctxt "map selection"
+msgid "Random"
+msgstr "Случайно"
+
+#: gui/common/functions_utility.js:82
 msgid "A randomly selected map."
 msgstr "Случайно выбранная карта."
 
-#: gui/common/functions_utility.js:84
+#: gui/common/functions_utility.js:89
 msgid "Sorry, no description available."
 msgstr "К сожалению, описание недоступно."
 
-#: gui/common/functions_utility.js:109
+#: gui/common/functions_utility.js:114
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:116
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:243
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:246
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:252
+#, javascript-format
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/functions_utility.js:255
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
+
+#: gui/common/functions_utility.js:270
+msgid "Unknown Civilization"
+msgstr "Неизвестная Цивилизация"
+
+#: gui/common/functions_utility.js:277
+msgctxt "playerstate"
+msgid "defeated"
+msgstr "потерпел поражение"
+
+#: gui/common/functions_utility.js:278
+msgctxt "playerstate"
+msgid "won"
+msgstr "выиграл"
+
+#: gui/common/functions_utility.js:295
+msgid "No Team"
+msgstr "Нет Команды"
+
+#: gui/common/functions_utility.js:296
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "Команда %(team)s"
+
+#. Translation: Describe players of one team in a selected game, f.e. in the
+#. replay- or savegame menu or lobby
+#: gui/common/functions_utility.js:299
+#, javascript-format
+msgid ""
+"%(team)s:\n"
+"%(playerDescriptions)s"
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -137,12 +204,12 @@ msgstr "dd.MM.yyyy HH:mm:ss"
 msgid "\\[%(date)s]"
 msgstr "\\[%(date)s]"
 
-#: gui/common/functions_utility_loadsave.js:18
+#: gui/common/functions_utility_loadsave.js:21
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
-#: gui/common/functions_utility_loadsave.js:20
+#: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
@@ -341,12 +408,12 @@ msgstr "%(previousAmounts)s и %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:132 gui/common/tooltips.js:49
-#: gui/common/tooltips.js:117 gui/common/tooltips.js:145
-#: gui/common/tooltips.js:447 gui/common/tooltips.js:474
-#: gui/common/tooltips.js:542 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:76
-#: gui/savedgames/load.js:77
+#: gui/common/l10n.js:92 gui/common/network.js:140 gui/common/tooltips.js:123
+#: gui/common/tooltips.js:137 gui/common/tooltips.js:242
+#: gui/common/tooltips.js:457 gui/common/tooltips.js:483
+#: gui/common/tooltips.js:536 gui/replaymenu/replay_actions.js:89
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:61
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:120
 msgid ", "
 msgstr ", "
 
@@ -370,83 +437,83 @@ msgstr "Плохое подключение к серверу (%(milliseconds)sm
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Плохое соединение с %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:54
+#: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Неизвестная причина"
 
-#: gui/common/network.js:55
+#: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
 msgstr "Это часто случается если UDP-порт 20595 не может быть открыт на принимающей стороне из-за брандмауэра или антивирусного программного обеспечения"
 
-#: gui/common/network.js:56
+#: gui/common/network.js:64
 msgid "The host has ended the game"
 msgstr "Хост завершил игру."
 
-#: gui/common/network.js:57
+#: gui/common/network.js:65
 msgid "Incorrect network protocol version"
 msgstr "Неверная версия протокола"
 
-#: gui/common/network.js:58
+#: gui/common/network.js:66
 msgid "Game is loading, please try later"
 msgstr "Игра загружается, пожалуйста, попробуйте позже"
 
-#: gui/common/network.js:59
+#: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
 msgstr "Игра уже началась, наблюдатели не разрешены"
 
-#: gui/common/network.js:60
+#: gui/common/network.js:68
 msgid "You have been kicked"
 msgstr "Вас отключили"
 
-#: gui/common/network.js:61
+#: gui/common/network.js:69
 msgid "You have been banned"
 msgstr "Вас заблокировали"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Название игрока уже используется. Если вы только что потеряли соединение, переподключитесь через несколько секунд."
 
-#: gui/common/network.js:63
+#: gui/common/network.js:71
 msgid "Server full"
 msgstr "Сервер заполнен"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:74
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Неверное значение %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:78
+#: gui/common/network.js:86
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Причина: %(reason)s."
 
-#: gui/common/network.js:83
+#: gui/common/network.js:91
 msgid "Lost connection to the server."
 msgstr "Соединение с сервером потеряно."
 
-#: gui/common/network.js:84
+#: gui/common/network.js:92
 msgid "Failed to connect to the server."
 msgstr "Не удалось подключиться к серверу."
 
-#: gui/common/network.js:86
+#: gui/common/network.js:94
 msgid "Disconnected"
 msgstr "Соединение прервано"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not ban %(name)s."
 msgstr "Невозможно заблокировать %(name)s."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:105
 #, javascript-format
 msgid "Could not kick %(name)s."
 msgstr "Невозможно отключить %(name)s."
 
-#: gui/common/network.js:131
+#: gui/common/network.js:139
 #, javascript-format
 msgid "Users: %(users)s"
 msgstr "Пользователи: %(users)s"
@@ -563,34 +630,45 @@ msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/common/tooltips.js:27 gui/common/tooltips.js:90
-#: gui/common/tooltips.js:124
-msgid "(None)"
-msgstr "(Не имеет)"
+#: gui/common/tooltips.js:18
+msgid "Charge Attack:"
+msgstr "Подготовка атаки:"
 
-#: gui/common/tooltips.js:32 gui/common/tooltips.js:38
-#: gui/common/tooltips.js:44 gui/common/tooltips.js:128
-#: gui/common/tooltips.js:134 gui/common/tooltips.js:140
-#, javascript-format
-msgid "%(damage)s %(damageType)s"
-msgstr "%(damage)s %(damageType)s"
+#: gui/common/tooltips.js:19
+msgid "Melee Attack:"
+msgstr "Ближний бой:"
 
-#: gui/common/tooltips.js:34 gui/common/tooltips.js:97
-#: gui/common/tooltips.js:130
+#: gui/common/tooltips.js:20
+msgid "Ranged Attack:"
+msgstr "Дальний бой:"
+
+#: gui/common/tooltips.js:21
+msgid "Capture Attack:"
+msgstr "Атака захвата:"
+
+#: gui/common/tooltips.js:25
 msgid "Hack"
 msgstr "Рубящий"
 
-#: gui/common/tooltips.js:40 gui/common/tooltips.js:104
-#: gui/common/tooltips.js:136
+#: gui/common/tooltips.js:26
 msgid "Pierce"
 msgstr "Колющий"
 
-#: gui/common/tooltips.js:46 gui/common/tooltips.js:111
-#: gui/common/tooltips.js:142
+#: gui/common/tooltips.js:27
 msgid "Crush"
 msgstr "Крушащий"
 
-#: gui/common/tooltips.js:56
+#: gui/common/tooltips.js:63 gui/common/tooltips.js:110
+#: gui/common/tooltips.js:154 gui/common/tooltips.js:312
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/common/tooltips.js:64
+msgid "Health:"
+msgstr "Здоровье:"
+
+#: gui/common/tooltips.js:73
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
@@ -599,8 +677,8 @@ msgstr[1] "%(time)s %(second)s"
 msgstr[2] "%(time)s %(second)s"
 msgstr[3] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:58 gui/common/tooltips.js:241
-#: gui/common/tooltips.js:252 gui/common/tooltips.js:471
+#: gui/common/tooltips.js:75 gui/common/tooltips.js:254
+#: gui/common/tooltips.js:268 gui/common/tooltips.js:481
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
@@ -608,16 +686,16 @@ msgstr[1] "секунд"
 msgstr[2] "секунд"
 msgstr[3] "секунды"
 
-#: gui/common/tooltips.js:66
+#: gui/common/tooltips.js:84
 #, javascript-format
-msgid "%(arrowcount)s %(arrow)s"
-msgid_plural "%(arrowcount)s %(arrow)s"
-msgstr[0] "%(arrowcount)s %(arrow)s"
-msgstr[1] "%(arrowcount)s %(arrow)s"
-msgstr[2] "%(arrowcount)s %(arrow)s"
-msgstr[3] "%(arrowcount)s %(arrow)s"
+msgid "%(arrowcount)s %(arrows)s"
+msgid_plural "%(arrowcount)s %(arrows)s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: gui/common/tooltips.js:68
+#: gui/common/tooltips.js:86
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "стрела"
@@ -625,72 +703,79 @@ msgstr[1] "стрел"
 msgstr[2] "стрелы"
 msgstr[3] "стрелы"
 
-#: gui/common/tooltips.js:71
+#: gui/common/tooltips.js:89
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/common/tooltips.js:86
+#: gui/common/tooltips.js:100
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr ""
+
+#: gui/common/tooltips.js:111
 msgid "Armor:"
 msgstr "Защита:"
 
-#: gui/common/tooltips.js:88 gui/common/tooltips.js:115
-#: gui/common/tooltips.js:174 gui/structree/draw.js:366
-#: gui/structree/draw.js:392
-#, javascript-format
-msgid "%(label)s %(details)s"
-msgstr "%(label)s %(details)s"
-
-#: gui/common/tooltips.js:95 gui/common/tooltips.js:102
-#: gui/common/tooltips.js:109
+#: gui/common/tooltips.js:114
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/common/tooltips.js:98 gui/common/tooltips.js:105
-#: gui/common/tooltips.js:112
+#: gui/common/tooltips.js:119
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/common/tooltips.js:150
-msgid "Charge Attack:"
-msgstr "Подготовка атаки:"
+#: gui/common/tooltips.js:130
+msgid "(None)"
+msgstr "(Не имеет)"
 
-#: gui/common/tooltips.js:151
-msgid "Melee Attack:"
-msgstr "Ближний бой:"
+#: gui/common/tooltips.js:134
+#, javascript-format
+msgid "%(damage)s %(damageType)s"
+msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:152
-msgid "Ranged Attack:"
-msgstr "Дальний бой:"
-
-#: gui/common/tooltips.js:153
-msgid "Capture Attack:"
-msgstr "Атака захвата:"
-
-#: gui/common/tooltips.js:156
-msgid "Attack:"
-msgstr "Атака:"
-
-#: gui/common/tooltips.js:165
+#: gui/common/tooltips.js:158
 msgid "Interval:"
 msgstr "Интервал: "
 
-#: gui/common/tooltips.js:165 gui/common/tooltips.js:469
+#: gui/common/tooltips.js:159 gui/common/tooltips.js:479
 msgid "Rate:"
 msgstr "Темп:"
 
-#: gui/common/tooltips.js:182 gui/common/tooltips.js:191
+#: gui/common/tooltips.js:166
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:201 gui/common/tooltips.js:464
+#: gui/common/tooltips.js:182
+#, javascript-format
+msgid ""
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
+"(%(relative)s), %(rate)s"
+msgstr ""
+
+#: gui/common/tooltips.js:183
+#, javascript-format
+msgid ""
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+
+#: gui/common/tooltips.js:188 gui/common/tooltips.js:474
 msgid "Range:"
 msgstr "Дальность:"
 
-#: gui/common/tooltips.js:203 gui/common/tooltips.js:466
+#: gui/common/tooltips.js:190
+#, javascript-format
+msgid "%(range)s %(meters)s"
+msgid_plural "%(range)s %(meters)s"
+msgstr[0] "%(range)s %(meters)s"
+msgstr[1] "%(range)s %(meters)s"
+msgstr[2] "%(range)s %(meters)s"
+msgstr[3] "%(range)s %(meters)s"
+
+#: gui/common/tooltips.js:192 gui/common/tooltips.js:476
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "метр"
@@ -700,111 +785,127 @@ msgstr[3] "метра"
 
 #: gui/common/tooltips.js:206
 #, javascript-format
-msgid ""
-"%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), "
-"%(rate)s"
-msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
+msgid "%(label)s: %(garrisonLimit)s"
+msgstr ""
 
-#: gui/common/tooltips.js:211 gui/common/tooltips.js:224
+#: gui/common/tooltips.js:207
+msgid "Garrison Limit"
+msgstr ""
+
+#: gui/common/tooltips.js:228 gui/common/tooltips.js:233
+#: gui/common/tooltips.js:238
 #, javascript-format
-msgid "%(range)s %(meters)s"
-msgid_plural "%(range)s %(meters)s"
-msgstr[0] "%(range)s %(meters)s"
-msgstr[1] "%(range)s %(meters)s"
-msgstr[2] "%(range)s %(meters)s"
-msgstr[3] "%(range)s %(meters)s"
+msgid "%(label)s: %(value)s"
+msgstr ""
 
-#: gui/common/tooltips.js:219
-#, javascript-format
-msgid ""
-"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
+#: gui/common/tooltips.js:229
+msgid "Projectile Limit"
+msgstr ""
 
-#: gui/common/tooltips.js:237
+#: gui/common/tooltips.js:234
+msgctxt "projectiles"
+msgid "Default"
+msgstr ""
+
+#: gui/common/tooltips.js:239
+msgctxt "projectiles"
+msgid "Per Unit"
+msgstr ""
+
+#: gui/common/tooltips.js:250
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
-#: gui/common/tooltips.js:238
+#: gui/common/tooltips.js:251
 msgid "Repair Rate:"
 msgstr "Скорость Ремонта:"
 
-#: gui/common/tooltips.js:240 gui/common/tooltips.js:251
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:267
 msgid "health"
 msgstr "здоровье"
 
-#: gui/common/tooltips.js:242 gui/common/tooltips.js:253
+#: gui/common/tooltips.js:255 gui/common/tooltips.js:269
 msgid "worker"
 msgstr "рабочий"
 
-#: gui/common/tooltips.js:248
+#: gui/common/tooltips.js:264
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
-#: gui/common/tooltips.js:249
+#: gui/common/tooltips.js:265
 msgid "Build Rate:"
 msgstr "Скорость постройки:"
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:417
+#: gui/common/tooltips.js:300 gui/common/tooltips.js:428
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
+#: gui/common/tooltips.js:313
+msgid "Gather Rates:"
+msgstr "Сбор ресурсов:"
+
+#: gui/common/tooltips.js:316
+#, javascript-format
+msgid "%(resourceIcon)s %(rate)s"
+msgstr "%(resourceIcon)s %(rate)s"
+
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:355
+#: gui/common/tooltips.js:365
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s из %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:386
+#: gui/common/tooltips.js:394
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Стены:  %(costs)s"
 
-#: gui/common/tooltips.js:387
+#: gui/common/tooltips.js:395
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Башни:  %(costs)s"
 
-#: gui/common/tooltips.js:403
+#: gui/common/tooltips.js:411
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:404
+#: gui/common/tooltips.js:412
 msgid "Population Bonus:"
 msgstr "Прирост населения:"
 
-#: gui/common/tooltips.js:422
+#: gui/common/tooltips.js:433
 msgid "Insufficient resources:"
 msgstr "Недостаточно ресурсов:"
 
-#: gui/common/tooltips.js:430
-msgid "Speed:"
-msgstr "Скорость:"
-
-#: gui/common/tooltips.js:434 gui/common/tooltips.js:440
+#: gui/common/tooltips.js:444 gui/common/tooltips.js:450
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:436
+#: gui/common/tooltips.js:446
 msgid "Walk"
 msgstr "Ходьба"
 
-#: gui/common/tooltips.js:442
+#: gui/common/tooltips.js:452
 msgid "Run"
 msgstr "Бег"
 
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:455
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:457 gui/common/tooltips.js:463
-#: gui/common/tooltips.js:468
+#: gui/common/tooltips.js:456
+msgid "Speed:"
+msgstr "Скорость:"
+
+#: gui/common/tooltips.js:467 gui/common/tooltips.js:473
+#: gui/common/tooltips.js:478
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -813,13 +914,13 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:458
+#: gui/common/tooltips.js:468
 msgid "Heal:"
 msgstr "Лечение:"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:461
+#: gui/common/tooltips.js:471
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "ОЗ"
@@ -827,26 +928,27 @@ msgstr[1] "ОЗ"
 msgstr[2] "ОЗ"
 msgstr[3] "ОЗ"
 
-#: gui/common/tooltips.js:484
+#: gui/common/tooltips.js:492
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:485
+#: gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:498
+#: gui/common/tooltips.js:509
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:508
-msgid "???"
-msgstr "???"
+#: gui/common/tooltips.js:520
+#, javascript-format
+msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
+msgstr ""
 
-#: gui/common/tooltips.js:538
+#: gui/common/tooltips.js:535
 msgid "Classes:"
 msgstr "Классы:"
 
@@ -876,21 +978,23 @@ msgid ""
 msgstr "Восстановление удалит сохраненные настройки. Вы уверены, что хотите продолжить?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:85
+#: gui/savedgames/load.js:129
 msgid "Warning"
 msgstr "Предупреждение"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "No"
 msgstr "Нет"
 
 #: gui/options/options.js:275 gui/options/options.js:342
-#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:157
-#: gui/savedgames/load.js:86 gui/savedgames/load.js:123
-#: gui/savedgames/save.js:59 gui/savedgames/save.js:91
+#: gui/pregame/mainmenu.js:290 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:130 gui/savedgames/load.js:179
+#: gui/savedgames/save.js:61 gui/savedgames/save.js:92
+#: gui/summary/summary.js:147
 msgid "Yes"
 msgstr "Да"
 
@@ -963,7 +1067,7 @@ msgstr "Сборка: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Вы действительно хотите покинуть 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:289
+#: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
 msgid "Confirmation"
 msgstr "Подтверждение"
 
@@ -994,12 +1098,12 @@ msgstr "Руководство"
 msgid "You don't have the same mods active as the replay does."
 msgstr "У вас нет активных модов, которые есть в повторе"
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:76
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:116
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Требуются: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:77
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Активны: %(mods)s"
@@ -1026,15 +1130,11 @@ msgstr "Несовместимый повтор"
 msgid "No summary data available."
 msgstr "Нет итоговых данных."
 
-#: gui/replaymenu/replay_actions.js:122
-msgid "Scores at the end of the game."
-msgstr "Счет в конце игры."
-
-#: gui/replaymenu/replay_actions.js:155
+#: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Вы уверены, что хотите навсегда удалить этот повтор?"
 
-#: gui/replaymenu/replay_actions.js:156
+#: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
 msgstr "Удалить повтор"
 
@@ -1121,128 +1221,83 @@ msgstr "Игры с рейтингом"
 msgid "Unrated games"
 msgstr "Игры без рейтинга"
 
-#: gui/replaymenu/replay_menu.js:276
+#: gui/replaymenu/replay_menu.js:283
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd.MM.yyyy HH:mm"
 
-#: gui/replaymenu/replay_menu.js:306
+#: gui/replaymenu/replay_menu.js:313
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/replaymenu/replay_menu.js:357
-msgid "Unknown Civilization"
-msgstr "Неизвестная Цивилизация"
-
-#: gui/replaymenu/replay_menu.js:370
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
-
-#: gui/replaymenu/replay_menu.js:372
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, повержен)"
-
-#: gui/replaymenu/replay_menu.js:374
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-
-#: gui/replaymenu/replay_menu.js:376
-#, javascript-format
-msgctxt "replay"
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, defeated)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, повержен)"
-
-#: gui/replaymenu/replay_menu.js:392
-msgid "No Team"
-msgstr "Нет Команды"
-
-#: gui/replaymenu/replay_menu.js:392
-#, javascript-format
-msgid "Team %(team)s"
-msgstr "Команда %(team)s"
-
-#: gui/savedgames/load.js:10 gui/savedgames/save.js:25
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
 msgstr "Не найдено сохранённых игр "
 
-#: gui/savedgames/load.js:51
+#: gui/savedgames/load.js:61
+#, javascript-format
+msgid "Mods: %(mods)s"
+msgstr "Моды: %(mods)s"
+
+#: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
 msgstr "Сохранённая игра может быть несовместима:"
 
-#: gui/savedgames/load.js:56
+#: gui/savedgames/load.js:96
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Нужна 0 A.D. версии %(requiredVersion)s, а запущенна версия  %(currentVersion)s."
 
-#: gui/savedgames/load.js:61
+#: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
 msgstr "Требуется более ранняя версия 0 A.D."
 
-#: gui/savedgames/load.js:65
+#: gui/savedgames/load.js:105
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Необходимы сохранения 0 A.D. версии %(requiredVersion)s, но у Вас имеются сохранения версии %(currentVersion)s."
 
-#: gui/savedgames/load.js:75
+#: gui/savedgames/load.js:115
 msgid "The savegame needs a different set of mods:"
 msgstr "Сохранённая игра требует другой набор модов:"
 
-#: gui/savedgames/load.js:80
+#: gui/savedgames/load.js:124
 msgid "Do you still want to proceed?"
 msgstr "Вы хотите продолжить?"
 
-#: gui/savedgames/load.js:120 gui/savedgames/save.js:56
-#: gui/savedgames/save.js:88
+#: gui/savedgames/load.js:175 gui/savedgames/save.js:58
+#: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:121 gui/savedgames/save.js:89
+#: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Сохраненная игра будет безвозвратно удалена. Уверены?"
 
-#: gui/savedgames/load.js:122 gui/savedgames/save.js:90
+#: gui/savedgames/load.js:178 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "УДАЛИТЬ"
 
-#: gui/savedgames/save.js:57
+#: gui/savedgames/save.js:59
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Сохраненная игра будет перезаписана. Уверены?"
 
-#: gui/savedgames/save.js:58
+#: gui/savedgames/save.js:60
 msgid "OVERWRITE SAVE"
 msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
 
-#: gui/structree/draw.js:367
-msgid "Health:"
-msgstr "Здоровье:"
-
-#: gui/structree/draw.js:387
-#, javascript-format
-msgid "%(resourceIcon)s %(rate)s"
-msgstr "%(resourceIcon)s %(rate)s"
-
-#: gui/structree/draw.js:393
-msgid "Gather Rates:"
-msgstr "Сбор ресурсов:"
-
-#: gui/structree/load.js:179
+#: gui/structree/load.js:180
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s к %(val2)s"
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
-#: gui/summary/layout.js:75 gui/summary/layout.js:102
-#: gui/summary/layout.js:123 gui/summary/summary.xml:(caption):108
+#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
+#: gui/summary/layout.js:94 gui/summary/layout.js:137
+#: gui/summary/layout.js:158 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Имя игрока"
 
@@ -1262,7 +1317,7 @@ msgstr "Разведка"
 msgid "Total score"
 msgstr "Общий счёт"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:80
+#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:99
 msgid "Total"
 msgstr "Всего"
 
@@ -1294,138 +1349,218 @@ msgstr "Центры цивил-ций"
 msgid "Wonders"
 msgstr "Чудеса"
 
-#: gui/summary/layout.js:32
-msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Статистика Зданий (Построено / Потеряно / Разрушено)"
+#: gui/summary/layout.js:33
+#, javascript-format
+msgid ""
+"Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
+"%(lost)s)"
+msgstr "Статистика по зданиям (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:50
+#: gui/summary/layout.js:35
+msgid "Constructed"
+msgstr "Построено"
+
+#: gui/summary/layout.js:36
+msgid "Destroyed"
+msgstr "Разрушено"
+
+#: gui/summary/layout.js:37
+msgid "Captured"
+msgstr "Захвачено"
+
+#: gui/summary/layout.js:38 gui/summary/layout.js:73
+msgid "Lost"
+msgstr "Потеряно"
+
+#: gui/summary/layout.js:60
 msgid "Infantry"
 msgstr "Пехота"
 
-#: gui/summary/layout.js:51
+#: gui/summary/layout.js:61
 msgid "Worker"
 msgstr "Рабочие"
 
-#: gui/summary/layout.js:52
+#: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Конница"
 
-#: gui/summary/layout.js:53
+#: gui/summary/layout.js:63
 msgid "Champion"
 msgstr "Чемпионы"
 
-#: gui/summary/layout.js:55
+#: gui/summary/layout.js:65
 msgid "Navy"
 msgstr "Флот"
 
-#: gui/summary/layout.js:56
+#: gui/summary/layout.js:66
 msgid "Traders"
 msgstr "Торговцы"
 
-#: gui/summary/layout.js:59
-msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Статистика Юнитов (Обучено / Потеряно / Убито)"
+#: gui/summary/layout.js:70
+#, javascript-format
+msgid "Units Statistics (%(trained)s / %(lost)s / %(killed)s)"
+msgstr "Статистика по юнитам (%(trained)s / %(lost)s / %(killed)s)"
 
-#: gui/summary/layout.js:76
+#: gui/summary/layout.js:72
+msgid "Trained"
+msgstr "Обучено"
+
+#: gui/summary/layout.js:74
+msgid "Killed"
+msgstr "Убито"
+
+#: gui/summary/layout.js:95
 msgid "Food"
 msgstr "Еда"
 
-#: gui/summary/layout.js:77
+#: gui/summary/layout.js:96
 msgid "Wood"
 msgstr "Древесина"
 
-#: gui/summary/layout.js:78
+#: gui/summary/layout.js:97
 msgid "Stone"
 msgstr "Камень"
 
-#: gui/summary/layout.js:79
+#: gui/summary/layout.js:98
 msgid "Metal"
 msgstr "Металл"
 
-#: gui/summary/layout.js:81
-msgid "Tributes (Sent / Received)"
-msgstr "Дань (Отдано/Получено)"
+#: gui/summary/layout.js:101
+#, javascript-format
+msgid ""
+"Tributes \n"
+"(%(sent)s / %(received)s)"
+msgstr "Дань\n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:82
+#: gui/summary/layout.js:103
+msgid "Sent"
+msgstr "Отправлено"
+
+#: gui/summary/layout.js:104
+msgid "Received"
+msgstr "Получено"
+
+#: gui/summary/layout.js:109
 msgid "Treasures collected"
 msgstr "Собрано сокровищ"
 
-#: gui/summary/layout.js:83
+#: gui/summary/layout.js:110
 msgid "Loot"
 msgstr "Добыча"
 
-#: gui/summary/layout.js:86
-msgid "Resource Statistics (Gathered / Used)"
-msgstr "Статистика ресурсов (Добыто / Потрачено)"
+#: gui/summary/layout.js:114
+#, javascript-format
+msgid "Resource Statistics (%(gathered)s / %(used)s)"
+msgstr "Статистика по ресурсам (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:103
+#: gui/summary/layout.js:116
+msgid "Gathered"
+msgstr "Собрано"
+
+#: gui/summary/layout.js:117
+msgid "Used"
+msgstr "Использовано"
+
+#: gui/summary/layout.js:138
 msgid "Food exchanged"
 msgstr "Обменено еды"
 
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:139
 msgid "Wood exchanged"
 msgstr "Обменено древесины"
 
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:140
 msgid "Stone exchanged"
 msgstr "Обменено камня"
 
-#: gui/summary/layout.js:106
+#: gui/summary/layout.js:141
 msgid "Metal exchanged"
 msgstr "Обменено металла"
 
-#: gui/summary/layout.js:107
+#: gui/summary/layout.js:142
 msgid "Barter efficiency"
 msgstr "Эффектив. обмена"
 
-#: gui/summary/layout.js:108
+#: gui/summary/layout.js:143
 msgid "Trade income"
 msgstr "Доход от торговли"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:159
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Процент\nвегетар-ев"
 
-#: gui/summary/layout.js:125
+#: gui/summary/layout.js:160
 msgid "Feminization"
 msgstr "Феминизация"
 
-#: gui/summary/layout.js:126
+#: gui/summary/layout.js:161
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Процент\nубито / смертей"
 
-#: gui/summary/layout.js:127
+#: gui/summary/layout.js:162
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Разведано\nкарты"
 
-#: gui/summary/layout.js:128
+#: gui/summary/layout.js:163
 msgid "At peak"
 msgstr "На пике"
 
-#: gui/summary/layout.js:129
+#: gui/summary/layout.js:164
 msgid "At finish"
 msgstr "В конце"
 
-#: gui/summary/layout.js:132
+#: gui/summary/layout.js:167
 msgid "Map control"
 msgstr "Управление картой"
 
-#: gui/summary/layout.js:277
+#: gui/summary/layout.js:312
 msgid "Team total"
 msgstr "Итог по команде"
 
-#: gui/summary/summary.js:169
+#: gui/summary/summary.js:145
+msgid "Are you sure you want to quit the lobby?"
+msgstr ""
+
+#: gui/summary/summary.js:196
+msgid "Current Scores"
+msgstr ""
+
+#: gui/summary/summary.js:198
+msgid "Scores at the end of the game."
+msgstr "Счет в конце игры."
+
+#: gui/summary/summary.js:200
+msgid "You have been disconnected."
+msgstr ""
+
+#: gui/summary/summary.js:202
+msgid "You have left the game."
+msgstr ""
+
+#: gui/summary/summary.js:204
+msgid "You have won the battle!"
+msgstr "Вы выиграли битву!"
+
+#: gui/summary/summary.js:206
+msgid "You have been defeated..."
+msgstr "Вам нанесли поражение..."
+
+#: gui/summary/summary.js:207
+msgid "You have abandoned the game."
+msgstr ""
+
+#: gui/summary/summary.js:212
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Прошло времени в игре: %(time)s"
 
-#: gui/summary/summary.js:176
+#: gui/summary/summary.js:220
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1469,7 +1604,7 @@ msgstr "Место:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):25 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):28 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1626,7 +1761,7 @@ msgstr "Матчи"
 msgid "Campaigns"
 msgstr "Кампании"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):19
 msgid "Load Game"
 msgstr "Загрузить игру"
 
@@ -1811,81 +1946,89 @@ msgstr "Нажмите, чтобы увидеть список тех, кто в
 msgid "Replay Games"
 msgstr "Просмотр повтора"
 
-#: gui/replaymenu/replay_menu.xml:(caption):110
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "Скрыть несовместимые повторы"
 
-#: gui/replaymenu/replay_menu.xml:(caption):151
+#: gui/replaymenu/replay_menu.xml:(caption):153
+#: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
 msgstr "Тип карты:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):166
+#: gui/replaymenu/replay_menu.xml:(caption):168
+#: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
 msgstr "Размер карты:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):181
+#: gui/replaymenu/replay_menu.xml:(caption):183
+#: gui/savedgames/load.xml:(caption):65
 msgid "Victory:"
 msgstr "Победа:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):202
+#: gui/replaymenu/replay_menu.xml:(caption):204
+#: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
 msgstr "Игроки:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):219
+#: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
 msgstr "Спойлер"
 
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
-#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Удалить"
 
-#: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):26
+#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "Итог"
 
-#: gui/replaymenu/replay_menu.xml:(caption):249
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
 msgstr "Начать Повтор"
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Дата / Время"
 
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
 msgstr "Игроки"
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Название карты"
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
 msgstr "Размер"
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
 msgstr "Население"
 
-#: gui/replaymenu/replay_menu.xml:(heading):93
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
 msgstr "Продолжительность"
 
-#: gui/savedgames/load.xml:(caption):42
+#: gui/savedgames/load.xml:(caption):38
 msgid "Load"
 msgstr "Загрузить"
+
+#: gui/savedgames/load.xml:(caption):53
+msgid "Played time:"
+msgstr "Время игры:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
@@ -1915,35 +2058,35 @@ msgstr "Цивилизация:"
 msgid "Trainer Units"
 msgstr "Тренера"
 
-#: gui/summary/summary.xml:(caption):66
+#: gui/summary/summary.xml:(caption):62
 msgid "Score"
 msgstr "Очки"
 
-#: gui/summary/summary.xml:(caption):73
+#: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
 msgstr "Постройки"
 
-#: gui/summary/summary.xml:(caption):80
+#: gui/summary/summary.xml:(caption):76
 msgid "Units"
 msgstr "Юниты"
 
-#: gui/summary/summary.xml:(caption):87
+#: gui/summary/summary.xml:(caption):83
 msgid "Resources"
 msgstr "Ресурсы"
 
-#: gui/summary/summary.xml:(caption):94
+#: gui/summary/summary.xml:(caption):90
 msgid "Market"
 msgstr "Рынок"
 
-#: gui/summary/summary.xml:(caption):101 gui/credits/texts/misc.jsonTitle
+#: gui/summary/summary.xml:(caption):97 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):160
 msgid "Replay"
 msgstr "Просмотр повтора"
 
-#: gui/summary/summary.xml:(caption):182
+#: gui/summary/summary.xml:(caption):165
 msgid "Continue"
 msgstr "Продолжить"
 
@@ -1981,7 +2124,7 @@ msgstr "3D художники"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
+msgstr "Дополнительная музыка, ударные, джембе, выборка"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -1997,7 +2140,7 @@ msgstr "Джембе"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
+msgstr "Рамочный барабан, дарбука, рик, том-том"
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -2013,7 +2156,7 @@ msgstr "Кельтская арфа"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Вистлы"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
@@ -2252,6 +2395,14 @@ msgstr "Максимальное количество зрителей, кото
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Observer Limit"
 msgstr "Лимит зрителей"
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid "Number of units trained per batch"
+msgstr "Количество юнитов, обученных за игру"
+
+#: gui/options/options.jsongeneralSetting[14].label
+msgid "Batch Training Size"
+msgstr "Охват обучения за игру"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"

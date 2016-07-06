@@ -7,7 +7,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alex <yanebotan@ngs.ru>, 2015
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
 # dr&mx <dronmax@gmail.com>, 2014-2015
 # dr&mx <dronmax@gmail.com>, 2014
 # Gleb Molchanov <alphacoder137@gmail.com>, 2014
@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-06-09 20:05+0000\n"
-"Last-Translator: Дмитрий <polsha_d@mail.ru>\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-03 11:49+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,7 +204,7 @@ msgstr "Конный мечник-чемпион"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
-#: simulation/templates/units/maur_elephant_archer_b.xml:9
+#: simulation/templates/units/maur_elephant_archer_b.xml:13
 msgid "Elephant"
 msgstr "Слон"
 
@@ -391,16 +391,17 @@ msgid "Light Warship"
 msgstr "Лёгкий военный корабль"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
-msgid ""
-"Garrison up to 20 units for transport. Garrison increases the firepower up "
-"to 10 arrows."
-msgstr "Разместите до 20 юнитов для транспортировки, что повысит огневую мощь до 10 стрел."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
+msgid "Garrison units for transport and to increase firepower."
+msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:39
 msgid "Fire Ship"
 msgstr "Брандер"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:36
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -432,13 +433,9 @@ msgstr "Торгует с причалами. Разместите торгов�
 msgid "Trader"
 msgstr "Торговец"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
 msgid "Heavy Warship"
 msgstr "Тяжёлый боевой корабль"
-
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
-msgid "Garrison up to 10 catapults to increase fire power."
-msgstr "Разместите до 10 катапульт для повышения огневой мощи."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
@@ -452,15 +449,9 @@ msgstr "Боевой корабль"
 msgid "Medium"
 msgstr "Нормально"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
-msgid ""
-"Garrison up to 30 units for transport. Garrison increases the firepower up "
-"to 13 arrows."
-msgstr "Разместите до 30 юнитов для транспортировки, что повысит огневую мощь до 13 стрел."
-
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
 msgid "Bolt Shooter"
-msgstr "Аркбалиста"
+msgstr "Стреломёт"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:47
 msgid "Siege Catapult"
@@ -468,7 +459,7 @@ msgstr "Осадная катапульта"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:48
 msgid "Causes splash damage."
-msgstr "Причина урона от разрыва снаряда."
+msgstr "Наносит урон от разрыва снаряда."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
@@ -477,11 +468,6 @@ msgstr "Стенобитное орудие"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Siege Tower"
 msgstr "Осадная башня"
-
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
-msgid ""
-"Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr "Вмещает до 20 пехотинцев для дополнительного увеличения выстрелов от 0 до 10. "
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -708,7 +694,7 @@ msgstr "Продромос"
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:15
+#: simulation/templates/units/spart_champion_infantry_sword.xml:21
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -734,7 +720,7 @@ msgstr "Эпилектос"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Athenian Marine"
-msgstr "Афинский моряк"
+msgstr "Афинский матрос"
 
 #: simulation/templates/units/athen_champion_marine.xml:7
 msgid "Epibátēs Athēnaîos"
@@ -1498,11 +1484,11 @@ msgstr "Македонянка"
 msgid "Hiereús"
 msgstr "Хиереус"
 
-#: simulation/templates/units/mace_thorakites.xml:12
+#: simulation/templates/units/mace_thorakites.xml:21
 msgid "Armored Swordsman"
 msgstr "Бронированный мечник"
 
-#: simulation/templates/units/mace_thorakites.xml:13
+#: simulation/templates/units/mace_thorakites.xml:22
 msgid "Thōrakitēs"
 msgstr "Торакитес"
 
@@ -1580,15 +1566,15 @@ msgstr "Виша Канья"
 msgid "Maiden Guard Archer"
 msgstr "Лучница девичьей гвардии"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:11
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Elephant Archer"
 msgstr "Лучник на слоне"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_elephant_archer_b.xml:16
 msgid "Vachii Gaja"
 msgstr "Вачии Гайа"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:14
+#: simulation/templates/units/maur_elephant_archer_b.xml:18
 msgid "Can run amok."
 msgstr "Может стать неуправляемым."
 
@@ -1973,11 +1959,11 @@ msgstr "Башенный боевой слон"
 msgid "Polémou Eléphantos"
 msgstr "Полему элефантос"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:19
+#: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"
 msgstr "Джаггернаут"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:20
+#: simulation/templates/units/ptol_champion_juggernaut.xml:21
 msgid "Tessarakonterēs"
 msgstr "Тессараконтерес"
 
@@ -2442,11 +2428,11 @@ msgstr "Спартанский гоплит"
 msgid "Spartiátēs"
 msgstr "Спартиатес"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:13
+#: simulation/templates/units/spart_champion_infantry_sword.xml:19
 msgid "Skiritai Commando"
 msgstr "Скиритидский солдат"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:14
+#: simulation/templates/units/spart_champion_infantry_sword.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Экдромос скиритес"
 

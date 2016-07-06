@@ -1,5 +1,21 @@
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Alert": 0, "Barter": 0, "Construction": 0, "Command": 0, "AllyCommand": 0, "Stance": 0, "Gate": 0, "Pack": 0};
+var g_unitPanelButtons = {
+	"Selection": 0,
+	"Queue": 0,
+	"Formation": 0,
+	"Garrison": 0,
+	"Training": 0,
+	"Research": 0,
+	"Alert": 0, 
+	"Barter": 0,
+	"Construction": 0,
+	"Command": 0,
+	"AllyCommand": 0,
+	"Stance": 0,
+	"Gate":0,
+	"Pack": 0,
+	"Upgrade": 0
+};
 
 /**
  * Set the position of a panel object according to the index,
@@ -38,30 +54,21 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		error("unknown guiName used '" + guiName + "'");
 		return;
 	}
-	let selection = g_Selection.toList();
 
+	let selection = g_Selection.toList();
 	let items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
 
 	if (!items || !items.length)
 		return;
 
-	let numberOfItems = items.length;
-
-	// Determine how many buttons there should be
-	let maxNumberOfItems = g_SelectionPanels[guiName].getMaxNumberOfItems();
-	if (maxNumberOfItems < numberOfItems)
-		numberOfItems = maxNumberOfItems;
-
+	let numberOfItems = Math.min(items.length, g_SelectionPanels[guiName].getMaxNumberOfItems());
 	let rowLength = g_SelectionPanels[guiName].rowLength || 8;
 
 	if (g_SelectionPanels[guiName].resizePanel)
 		g_SelectionPanels[guiName].resizePanel(numberOfItems, rowLength);
 
-	// Make buttons
 	for (let i = 0; i < numberOfItems; ++i)
 	{
-		// STANDARD DATA
-		// add standard data
 		let data = {
 			"i": i,
 			"item": items[i],
@@ -70,17 +77,13 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 			"unitEntState": unitEntState,
 			"rowLength": rowLength,
 			"numberOfItems": numberOfItems,
+			// depending on the XML, some of the GUI objects may be undefined
+			"button": Engine.GetGUIObjectByName("unit" + guiName + "Button[" + i + "]"),
+			"icon": Engine.GetGUIObjectByName("unit" + guiName + "Icon[" + i + "]"),
+			"guiSelection": Engine.GetGUIObjectByName("unit" + guiName + "Selection[" + i + "]"),
+			"countDisplay": Engine.GetGUIObjectByName("unit" + guiName + "Count[" + i + "]")
 		};
 
-		// add standard gui objects to the data
-		// depending on the actual XML, some of this may be undefined
-		data.button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		data.icon = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+i+"]");
-		data.guiSelection = Engine.GetGUIObjectByName("unit"+guiName+"Selection["+i+"]");
-		data.countDisplay = Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]");
-
-
-		// DEFAULTS
 		if (data.button)
 		{
 			data.button.hidden = false;
@@ -89,15 +92,13 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 			data.button.caption = "";
 		}
 
-		// SET CONTENT
-		if (g_SelectionPanels[guiName].setupButton)
-			if (!g_SelectionPanels[guiName].setupButton(data))
-				continue;
+		if (g_SelectionPanels[guiName].setupButton &&
+		    !g_SelectionPanels[guiName].setupButton(data))
+			continue;
 
 		// TODO: we should require all entities to have icons, so this case never occurs
 		if (data.icon && !data.icon.sprite)
 			data.icon.sprite = "bkFillBlack";
-
 	}
 
 	// Hide any buttons we're no longer using
@@ -107,7 +108,6 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		else
 			Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
 
-	// remember the number of items
 	g_unitPanelButtons[guiName] = numberOfItems;
 	g_SelectionPanels[guiName].used = true;
 }
@@ -141,10 +141,8 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	{
 		for (var guiName of g_PanelsOrder)
 		{
-			if (
-				g_SelectionPanels[guiName].conflictsWith &&
-				g_SelectionPanels[guiName].conflictsWith.some(p => g_SelectionPanels[p].used)
-			)
+			if (g_SelectionPanels[guiName].conflictsWith &&
+			    g_SelectionPanels[guiName].conflictsWith.some(p => g_SelectionPanels[p].used))
 				continue;
 
 			setupUnitPanel(guiName, entState, playerStates[entState.player]);
@@ -225,7 +223,7 @@ function getNumberOfRightPanelButtons()
 {
 	var sum = 0;
 
-	for (let prop of ["Construction", "Training", "Pack", "Gate"])
+	for (let prop of ["Construction", "Training", "Pack", "Gate", "Upgrade"])
 		if (g_SelectionPanels[prop].used)
 			sum += g_unitPanelButtons[prop];
 

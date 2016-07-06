@@ -35,6 +35,7 @@
 #include "graphics/Unit.h"
 #include "maths/BoundingSphere.h"
 #include "maths/Matrix3D.h"
+#include "ps/Profile.h"
 #include "renderer/Scene.h"
 
 #include "tools/atlas/GameInterface/GameLoop.h"

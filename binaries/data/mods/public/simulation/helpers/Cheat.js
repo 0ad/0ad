@@ -48,10 +48,9 @@ function Cheat(input)
 		}
 		return;
 	case "defeatplayer":
-		var playerEnt = cmpPlayerManager.GetPlayerByID(input.parameter);
-		if (playerEnt == INVALID_ENTITY)
-			return;
-		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": input.parameter });
+		cmpPlayer = QueryPlayerIDInterface(input.parameter);
+		if (cmpPlayer)
+			cmpPlayer.SetState("defeated");
 		return;
 	case "createunits":
 		var cmpProductionQueue = input.selected.length && Engine.QueryInterface(input.selected[0], IID_ProductionQueue);

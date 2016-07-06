@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 10:10+0000\n"
+"POT-Creation-Date: 2016-07-01 09:01+0200\n"
+"PO-Revision-Date: 2016-07-01 10:01+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -39,9 +39,8 @@ msgid "Civic Center"
 msgstr "Селищен център"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
-msgid ""
-"Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Постройте, за да присвоите голяма територия и обучавате граждани. Гарнизон: 20."
+msgid "Build to acquire large tracts of territory. Train citizens."
+msgstr "Постройте, за да присвоите голяма територия и обучавате граждани."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -94,9 +93,9 @@ msgstr "Къща"
 
 #: simulation/templates/template_structure_civic_temple.xml:32
 msgid ""
-"Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
-"per second). Research healing and religious improvements."
-msgstr "Обучава лечители. Поддържа до 20 единици, които лекува бързо (3 ЖТ в секунда). Проучва лечителски и религиозни подобрения."
+"Train healers. Garrison units to heal them at a quick rate (3 HP per "
+"second). Research healing and religious improvements."
+msgstr "Обучавайте лечители. Поставете единици на гарнизон тук, за да ги лекувате бързо (3 ЖТ в секунда). Проучвайте лечителски и религиозни подобрения."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -251,8 +250,8 @@ msgid "Military"
 msgstr "Военна"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
-msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Обучава граждани-во̀ини. Проучва тренировъчни подобрения. Гарнизон: 10."
+msgid "Train citizen-soldiers. Research training improvements."
+msgstr "Обучавайте граждани-во̀ини. Проучвайте тренировъчни подобрения."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -289,8 +288,8 @@ msgstr "Посолство"
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements. Garrison: 20."
-msgstr "Обучавайте герои, гвардейци и обсадни оръжия. Проучвайте подобрения за обсадните оръжия. Гарнизон: 20."
+"improvements."
+msgstr "Обучавайте герои, гвардейци и обсадни оръжия. Проучвайте подобрения за обсадните оръжия."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -437,10 +436,8 @@ msgid "Epiteíkhisma"
 msgstr "Епитеѝкхисма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Строи обсадни оръжия. Поддържа до 20 войници за по-сериозна защита."
+msgid "Build siege engines. Garrison soldiers inside for stout defense."
+msgstr "Стройте обсадни оръжия. Поставете войници на гарнизон тук за по-сериозна защита."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -548,8 +545,8 @@ msgstr "Нао̀с партено̀н"
 #: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at an extremely quick rate."
-msgstr "Прославя цивилизацията Ви и добави приобщава големи територии към империята Ви. Поставете до 30 единици на гарнизон, за да ги излекувате изключително бързо."
+"empire. Garrison units to heal them at an extremely quick rate."
+msgstr "Прославете цивилизацията си и приобщете големи територии към империята си. Поставете единици на гарнизон тук, за да ги излекувате изключително бързо."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -790,8 +787,8 @@ msgstr "Макдас"
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
-"up to 20 units to heal them at a quick rate."
-msgstr "Тренира жрици, които да лекуват во̀ините. Тренира пиконосци на свещената лента. Поставете до 20 единици на гарнизон, за да ги излекувате бързо."
+"units to heal them at a quick rate."
+msgstr "Обучавайте жрици, които да лекуват во̀ините. Обучавайте пиконосци на свещената лента. Поставете единици на гарнизон тук, за да ги излекувате бързо."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -937,9 +934,8 @@ msgstr "Теѝчисма"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
-"Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
-"defense."
-msgstr "Обучавайте гвардейци и герои. Поддържа до 20 во̀ини за по-сериозна защита."
+"Train Champions and Heroes. Garrison soldiers inside for stout defense."
+msgstr "Обучавайте гвардейци и герои. Поставете войници на гарнизон тук за по-сериозна защита."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1241,8 +1237,8 @@ msgstr "хлт-н-мш'"
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements. Garrison: 10."
-msgstr "Обучава египетски и средноизточни граждани-войници. Проучва тренировъчни подобрения. Гарнизон: 10."
+"improvements."
+msgstr "Обучавайте египетски и средноизточни граждани-воѝни. Проучвайте тренировъчни подобрения."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1472,8 +1468,8 @@ msgid "Aedes Martis"
 msgstr "Аедес Мартис"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Обучава лечители. Поставете до 30 единици на гарнизон, за да ги излекувате бързо."
+msgid "Train healers. Garrison units to heal them at a quick rate."
+msgstr "Обучавайте лечители. Поставете единици на гарнизон тук, за да ги излекувате бързо."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
@@ -1545,9 +1541,9 @@ msgstr "Фроурион"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Build siege engines and train Champions. Garrison up to 20 soldiers inside "
-"for stout defense."
-msgstr "Стройте обсадни оръжия и обучавайте гвардейци. Поддържа до 20 во̀ини за по-сериозна защита."
+"Build siege engines and train Champions. Garrison soldiers inside for stout "
+"defense."
+msgstr "Стройте обсадни оръжия и обучавайте гвардейци. Поставете войници на гарнизон тук за по-сериозна защита."
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1580,6 +1576,11 @@ msgstr "Храм на питийския Аполон"
 msgid "Teíkhisma"
 msgstr "Теѝкхисма"
 
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
+msgstr "Строи обсадни оръжия. Поддържа до 20 войници за по-сериозна защита."
+
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
 msgstr "Спартански сенат"
@@ -1607,5 +1608,5 @@ msgstr "Обучавайте спартански герои и спартиат
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Прославя цивилизацията Ви и добави приобщава големи територии към империята Ви. Поставете до 30 единици на гарнизон, за да ги излекувате бързо."
+"empire. Garrison units to heal them at a quick rate."
+msgstr "Прославете цивилизацията си и приобщете големи територии към империята си. Поставете единици на гарнизон тук, за да ги излекувате бързо."

@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-28 16:31+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-01 09:17+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -182,7 +182,7 @@ msgstr "Genet amb espasa campió"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
-#: simulation/templates/units/maur_elephant_archer_b.xml:9
+#: simulation/templates/units/maur_elephant_archer_b.xml:13
 msgid "Elephant"
 msgstr "Elefant"
 
@@ -369,16 +369,17 @@ msgid "Light Warship"
 msgstr "Vaixell de guerra lleuger"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
-msgid ""
-"Garrison up to 20 units for transport. Garrison increases the firepower up "
-"to 10 arrows."
-msgstr "S'hi poden transportar fins a 20 unitats. Les unitats augmenten la potència de foc fins a 10 fletxes."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
+msgid "Garrison units for transport and to increase firepower."
+msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:39
 msgid "Fire Ship"
 msgstr "Vaixell incendiari"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:36
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -410,13 +411,9 @@ msgstr "Comercia entre ports. Embarqueu-hi un mercader per aconseguir un 20% de 
 msgid "Trader"
 msgstr "Mercader"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
 msgid "Heavy Warship"
 msgstr "Vaixell de guerra pesat"
-
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
-msgid "Garrison up to 10 catapults to increase fire power."
-msgstr "Hi poden embarcar fins a 10 catapultes per augmentar la potència de foc."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
@@ -429,12 +426,6 @@ msgstr "Vaixell de guerra"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Mediador"
-
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
-msgid ""
-"Garrison up to 30 units for transport. Garrison increases the firepower up "
-"to 13 arrows."
-msgstr "S'hi poden transportar fins a 30 unitats. Les unitats augmenten la potència de foc fins a 13 fletxes."
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
 msgid "Bolt Shooter"
@@ -455,11 +446,6 @@ msgstr "Ariet"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Siege Tower"
 msgstr "Torre de setge"
-
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
-msgid ""
-"Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr "S'hi poden refugiar fins a 20 unitats d'infanteria per llançar de 0 a 10 fletxes."
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -686,7 +672,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:15
+#: simulation/templates/units/spart_champion_infantry_sword.xml:21
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -1476,11 +1462,11 @@ msgstr "Dona macedònia"
 msgid "Hiereús"
 msgstr "Hiereús"
 
-#: simulation/templates/units/mace_thorakites.xml:12
+#: simulation/templates/units/mace_thorakites.xml:21
 msgid "Armored Swordsman"
 msgstr "Espadatxí amb armadura"
 
-#: simulation/templates/units/mace_thorakites.xml:13
+#: simulation/templates/units/mace_thorakites.xml:22
 msgid "Thōrakitēs"
 msgstr "Thōrakitēs"
 
@@ -1558,15 +1544,15 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Donzella guardiana arquera"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:11
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Elephant Archer"
 msgstr "Arquer amb elefant"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_elephant_archer_b.xml:16
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:14
+#: simulation/templates/units/maur_elephant_archer_b.xml:18
 msgid "Can run amok."
 msgstr "Pot desbocar-se."
 
@@ -1951,11 +1937,11 @@ msgstr "Elefant de guerra amb torre"
 msgid "Polémou Eléphantos"
 msgstr "Polémou Eléphantos"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:19
+#: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"
 msgstr "Juggernaut"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:20
+#: simulation/templates/units/ptol_champion_juggernaut.xml:21
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
@@ -2420,11 +2406,11 @@ msgstr "Hoplita espartà"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:13
+#: simulation/templates/units/spart_champion_infantry_sword.xml:19
 msgid "Skiritai Commando"
 msgstr "Comando dels Skiritai"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:14
+#: simulation/templates/units/spart_champion_infantry_sword.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 

@@ -114,7 +114,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		API3.warn(" upcoming attacks =================");
 		for (let attackType in this.upcomingAttacks)
 			for (let attack of this.upcomingAttacks[attackType])
-				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state  + " units " + attack.unitCollection.length);
+				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state + " units " + attack.unitCollection.length);
 		API3.warn(" started attacks ==================");
 		for (let attackType in this.startedAttacks)
 			for (let attack of this.startedAttacks[attackType])
@@ -236,8 +236,11 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		for (let targetId of gameState.ai.HQ.defenseManager.targetList)
 		{
 			target = gameState.getEntityById(targetId);
-			if (target)
+			if (!target)
+				continue;
+			if (gameState.isPlayerEnemy(target.owner()))
 				break;
+			target = undefined;
 		}
 		if (target)
 		{
@@ -383,6 +386,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	{
 		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined &&
 			!this.defeated[this.currentEnemyPlayer] &&
+			gameState.isPlayerEnemy(this.currentEnemyPlayer) &&
 			gameState.getEnemyEntities(this.currentEnemyPlayer).hasEntities())
 			return this.currentEnemyPlayer;
 
@@ -493,7 +497,7 @@ m.AttackManager.prototype.Deserialize = function(gameState, data)
 		this.upcomingAttacks[key] = [];
 		for (let dataAttack of data.upcomingAttacks[key])
 		{
-			let attack =  new m.AttackPlan(gameState, this.Config, dataAttack.properties.name);
+			let attack = new m.AttackPlan(gameState, this.Config, dataAttack.properties.name);
 			attack.Deserialize(gameState, dataAttack);
 			attack.init(gameState);
 			this.upcomingAttacks[key].push(attack);
@@ -506,7 +510,7 @@ m.AttackManager.prototype.Deserialize = function(gameState, data)
 		this.startedAttacks[key] = [];
 		for (let dataAttack of data.startedAttacks[key])
 		{
-			let attack =  new m.AttackPlan(gameState, this.Config, dataAttack.properties.name);
+			let attack = new m.AttackPlan(gameState, this.Config, dataAttack.properties.name);
 			attack.Deserialize(gameState, dataAttack);
 			attack.init(gameState);
 			this.startedAttacks[key].push(attack);

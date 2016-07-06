@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 09:06+0000\n"
+"POT-Creation-Date: 2016-07-01 09:01+0200\n"
+"PO-Revision-Date: 2016-07-01 09:09+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -32,9 +32,8 @@ msgid "Civic Center"
 msgstr "Zentro Zibila"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
-msgid ""
-"Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Eraiki lurralde eremu handiak eskuratzeko. Entrenatu hiritarrak. Goarnizioa: 20"
+msgid "Build to acquire large tracts of territory. Train citizens."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -87,8 +86,8 @@ msgstr "Etxea"
 
 #: simulation/templates/template_structure_civic_temple.xml:32
 msgid ""
-"Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
-"per second). Research healing and religious improvements."
+"Train healers. Garrison units to heal them at a quick rate (3 HP per "
+"second). Research healing and religious improvements."
 msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -244,7 +243,7 @@ msgid "Military"
 msgstr "Militarrak"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
-msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
+msgid "Train citizen-soldiers. Research training improvements."
 msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -282,8 +281,8 @@ msgstr "Enbaxada"
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements. Garrison: 20."
-msgstr "Entrenatu heroiak, aldezkariak, eta setiorako armak. Ikertu setiorako armen hobekuntzak. Goarnizioa: 20."
+"improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -430,9 +429,7 @@ msgid "Epiteíkhisma"
 msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
+msgid "Build siege engines. Garrison soldiers inside for stout defense."
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
@@ -541,7 +538,7 @@ msgstr ""
 #: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+"empire. Garrison units to heal them at an extremely quick rate."
 msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
@@ -783,7 +780,7 @@ msgstr ""
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
-"up to 20 units to heal them at a quick rate."
+"units to heal them at a quick rate."
 msgstr ""
 
 #: simulation/templates/structures/cart_wall.xml:18
@@ -930,9 +927,8 @@ msgstr ""
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
-"Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
-"defense."
-msgstr "Entrenatu aldezkari eta heroiak. Gorde barruan 20 soldadu arte defentsa sendotzeko"
+"Train Champions and Heroes. Garrison soldiers inside for stout defense."
+msgstr ""
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1234,7 +1230,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements. Garrison: 10."
+"improvements."
 msgstr ""
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
@@ -1465,7 +1461,7 @@ msgid "Aedes Martis"
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
+msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
@@ -1538,9 +1534,9 @@ msgstr ""
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Build siege engines and train Champions. Garrison up to 20 soldiers inside "
-"for stout defense."
-msgstr "Eraiki setiorako gailuak eta entrenatu aldezkariak. Gorde barruan 20 soldadu arte defentsa sendotzeko."
+"Build siege engines and train Champions. Garrison soldiers inside for stout "
+"defense."
+msgstr ""
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1573,6 +1569,11 @@ msgstr ""
 msgid "Teíkhisma"
 msgstr ""
 
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
+msgstr ""
+
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
 msgstr "Espartako Senatua"
@@ -1600,5 +1601,5 @@ msgstr "Entrenatu Espartako heroiak eta Espartako hoplita aldezkariak."
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
+"empire. Garrison units to heal them at a quick rate."
 msgstr ""

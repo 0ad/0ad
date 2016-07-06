@@ -21,6 +21,7 @@
 #include "JSInterface_Console.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 bool JSI_Console::CheckGlobalInitialized()
 {	

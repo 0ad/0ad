@@ -211,15 +211,15 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.LeaveFoundation": function(msg) {
 		// If foundation is not ally of entity, or if entity is unpacked siege,
 		// ignore the order
-		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack() || this.IsTurret())
+		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) && !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
+			this.IsPacking() || this.CanPack() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
 		}
 		// Move a tile outside the building
-		var range = 4;
-		var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
-		if (ok)
+		let range = 4;
+		if (this.MoveToTargetRangeExplicit(msg.data.target, range, range))
 		{
 			// We've started walking to the given point
 			this.SetNextState("INDIVIDUAL.WALKING");
@@ -1278,15 +1278,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.LeaveFoundation": function(msg) {
 			// If foundation is not ally of entity, or if entity is unpacked siege,
 			// ignore the order
-			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack() || this.IsTurret())
+			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) && !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
+				this.IsPacking() || this.CanPack() || this.IsTurret())
 			{
 				this.FinishOrder();
 				return;
 			}
 			// Move a tile outside the building
-			var range = 4;
-			var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
-			if (ok)
+			let range = 4;
+			if (this.MoveToTargetRangeExplicit(msg.data.target, range, range))
 			{
 				// We've started walking to the given point
 				this.SetNextState("WALKINGTOPOINT");
@@ -4655,12 +4655,9 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
 	{
 		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
 		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
-		if (cmpUnitAI && cmpAttack)
-		{
-			for each (var targetType in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, targetType))
-					return false;
-		}
+		if (cmpUnitAI && cmpAttack &&
+		    cmpAttack.GetAttackTypes().some(type => cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type)))
+				return false;
 	}
 
 	// Stop if we're in hold-ground mode and it's too far from the holding point
@@ -4705,12 +4702,9 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 	{
 		var cmpUnitAI =  Engine.QueryInterface(target, IID_UnitAI);
 		var cmpAttack = Engine.QueryInterface(target, IID_Attack);
-		if (cmpUnitAI && cmpAttack)
-		{
-			for each (var type in cmpAttack.GetAttackTypes())
-				if (cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type))
-					return true;
-		}
+		if (cmpUnitAI && cmpAttack &&
+		    cmpAttack.GetAttackTypes().some(type => cmpUnitAI.CheckTargetAttackRange(this.isGuardOf, type)))
+			return true;
 	}
 
 	if (force)

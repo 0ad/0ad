@@ -21,13 +21,14 @@
 #include "ICmpOverlayRenderer.h"
 
 #include "ICmpPosition.h"
+
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/TextureManager.h"
 #include "renderer/Renderer.h"
-
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 class CCmpOverlayRenderer : public ICmpOverlayRenderer
 {
@@ -79,14 +80,14 @@ public:
 		{
 		case MT_Interpolate:
 		{
-			PROFILE3("OverlayRenderer::Interpolate");
+			PROFILE("OverlayRenderer::Interpolate");
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 			Interpolate(msgData.deltaSimTime, msgData.offset);
 			break;
 		}
 		case MT_RenderSubmit:
 		{
-			PROFILE3("OverlayRenderer::RenderSubmit");
+			PROFILE("OverlayRenderer::RenderSubmit");
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
 			RenderSubmit(msgData.collector);
 			break;

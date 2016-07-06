@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-27 09:00+0200\n"
-"PO-Revision-Date: 2016-05-27 08:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-01 09:00+0200\n"
+"PO-Revision-Date: 2016-07-02 16:56+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,7 +185,7 @@ msgstr "Şampiyon Kılıçlı Süvari"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
-#: simulation/templates/units/maur_elephant_archer_b.xml:9
+#: simulation/templates/units/maur_elephant_archer_b.xml:13
 msgid "Elephant"
 msgstr "Fil"
 
@@ -372,16 +372,17 @@ msgid "Light Warship"
 msgstr "Hafif Savaş Gemisi"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
-msgid ""
-"Garrison up to 20 units for transport. Garrison increases the firepower up "
-"to 10 arrows."
-msgstr "Garnizon ulaşım için 20 takıma kadar çıkabilir. Garnizon ateşgücünü 10 oka kadar arttırır."
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
+msgid "Garrison units for transport and to increase firepower."
+msgstr "Garnizon birlikleri için nakliye ve güç arttırımı."
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:39
 msgid "Fire Ship"
 msgstr "Savaş Gemisi"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:36
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -413,13 +414,9 @@ msgstr "Rıhtım arasında ticaret. Garnizona ek kazanç için gemide bir Tücca
 msgid "Trader"
 msgstr "Tüccar"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
 msgid "Heavy Warship"
 msgstr "Ağır Savaş Gemisi"
-
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
-msgid "Garrison up to 10 catapults to increase fire power."
-msgstr "Saldırı gücünü arttırmak için en fazla 10 olmak üzere mancınık konuşlandır."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid "Medium Warship"
@@ -432,12 +429,6 @@ msgstr "Savaş Gemisi"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium"
 msgstr "Orta"
-
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
-msgid ""
-"Garrison up to 30 units for transport. Garrison increases the firepower up "
-"to 13 arrows."
-msgstr "Nakliye için en fazla 30 olmak üzere birim konuşlandır. Konuşlandırma saldırı gücünü 13 oka kadar yükseltebilir."
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
 msgid "Bolt Shooter"
@@ -458,11 +449,6 @@ msgstr "Koç Başlı Kütük"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Siege Tower"
 msgstr "Kuşatma Kulesi"
-
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
-msgid ""
-"Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr "İçine yerleştirilen 20 'ye kadar piyade ok sayısını 0 ila 10 arası arttırır."
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -689,7 +675,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:15
+#: simulation/templates/units/spart_champion_infantry_sword.xml:21
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -1479,11 +1465,11 @@ msgstr "Makedonyalı Kadın"
 msgid "Hiereús"
 msgstr "Hiereús"
 
-#: simulation/templates/units/mace_thorakites.xml:12
+#: simulation/templates/units/mace_thorakites.xml:21
 msgid "Armored Swordsman"
 msgstr "Zırhlı Kılıçlı"
 
-#: simulation/templates/units/mace_thorakites.xml:13
+#: simulation/templates/units/mace_thorakites.xml:22
 msgid "Thōrakitēs"
 msgstr "Thōrakitēs"
 
@@ -1561,15 +1547,15 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Bakire Muhafız Okcusu"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:11
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Elephant Archer"
 msgstr "Fil Okcusu"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_elephant_archer_b.xml:16
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:14
+#: simulation/templates/units/maur_elephant_archer_b.xml:18
 msgid "Can run amok."
 msgstr "Çılgınca saldırabilir."
 
@@ -1599,7 +1585,7 @@ msgstr "Acharya Chāṇakya"
 msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr ""
+msgstr "Özel Kahraman: \"İyileştirici\" - Birimleri hızlıca iyileştirir.\nÖzel Kahraman: \"Filozofçu\" - 4 özel teknoloji yanlız Chanakya tarafından araştırılabilir."
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
@@ -1954,11 +1940,11 @@ msgstr "Kuleli Savaş Fili"
 msgid "Polémou Eléphantos"
 msgstr "Polémou Eléphantos"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:19
+#: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"
 msgstr "Önüne gelen her şeyi yıkan güç"
 
-#: simulation/templates/units/ptol_champion_juggernaut.xml:20
+#: simulation/templates/units/ptol_champion_juggernaut.xml:21
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
@@ -2423,11 +2409,11 @@ msgstr "Spartalı Mızrakcı"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:13
+#: simulation/templates/units/spart_champion_infantry_sword.xml:19
 msgid "Skiritai Commando"
 msgstr "Skiritai Komando"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:14
+#: simulation/templates/units/spart_champion_infantry_sword.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 

@@ -163,7 +163,7 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 	{
 		warn("garrison unit " + ent.genericName() + " in " + holder.genericName() + " with type " + type);
 		warn(" we try to garrison a unit with plan " + ent.getMetadata(PlayerID, "plan") + " and role " + ent.getMetadata(PlayerID, "role") +
-		     " and subrole " +  ent.getMetadata(PlayerID, "subrole") + " and transport " +  ent.getMetadata(PlayerID, "transport"));
+		     " and subrole " + ent.getMetadata(PlayerID, "subrole") + " and transport " + ent.getMetadata(PlayerID, "transport"));
 	}
 
 	if (ent.getMetadata(PlayerID, "plan") !== undefined)

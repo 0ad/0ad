@@ -82,16 +82,27 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 {
 	// default values for first turn when we have not yet set our queues.
 	if (gameState.ai.playedTurn === 0)
-		return { "food": 10, "wood": 10, "stone": 0, "metal": 0 };
+	{
+		let ret = {};
+		for (let res of gameState.sharedScript.resourceList)
+			ret[res] = (res === "food" || res === "wood" ) ? 10 : 0;
+		return ret;
+	}
 
 	// get out current resources, not removing accounts.
 	let current = gameState.getResources();
 	// short queue is the first item of a queue, assumed to be ready in 30s
 	// medium queue is the second item of a queue, assumed to be ready in 60s
 	// long queue contains the isGo=false items, assumed to be ready in 300s
-	let totalShort = { "food": 200, "wood": 200, "stone": 100, "metal": 100 };
-	let totalMedium = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
-	let totalLong = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let totalShort = {};
+	let totalMedium = {};
+	let totalLong = {};
+	for (let res of gameState.sharedScript.resourceList)
+	{
+		totalShort[res] = (res === "food" || res === "wood" ) ? 200 : 100;
+		totalMedium[res] = 0;
+		totalLong[res] = 0;
+	}
 	let total;
 	//queueArrays because it's faster.
 	for (let q of this.queueArrays)
@@ -120,25 +131,25 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 		}
 	}
 	// global rates
-	let rates = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
+	let rates = {};
 	let diff;
-	for (let type in rates)
+	for (let res of gameState.sharedScript.resourceList)
 	{
-		if (current[type] > 0)
+		if (current[res] > 0)
 		{
-			diff = Math.min(current[type], totalShort[type]);
-			totalShort[type] -= diff;
-			current[type] -= diff;
-			if (current[type] > 0)
+			diff = Math.min(current[res], totalShort[res]);
+			totalShort[res] -= diff;
+			current[res] -= diff;
+			if (current[res] > 0)
 			{
-				diff = Math.min(current[type], totalMedium[type]);
-				totalMedium[type] -= diff;
-				current[type] -= diff;
-				if (current[type] > 0)
-					totalLong[type] -= Math.min(current[type], totalLong[type]);
+				diff = Math.min(current[res], totalMedium[res]);
+				totalMedium[res] -= diff;
+				current[res] -= diff;
+				if (current[res] > 0)
+					totalLong[res] -= Math.min(current[res], totalLong[res]);
 			}
 		}
-		rates[type] = totalShort[type]/30 + totalMedium[type]/60 + totalLong[type]/300;
+		rates[res] = totalShort[res]/30 + totalMedium[res]/60 + totalLong[res]/300;
 	}
 
 	return rates;

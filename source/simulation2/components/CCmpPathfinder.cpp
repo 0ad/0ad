@@ -684,6 +684,7 @@ u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, enti
 
 void CCmpPathfinder::FinishAsyncRequests()
 {
+	PROFILE2("Finish Async Requests");
 	// Save the request queue in case it gets modified while iterating
 	std::vector<AsyncLongPathRequest> longRequests;
 	m_AsyncLongPathRequests.swap(longRequests);
@@ -702,6 +703,7 @@ void CCmpPathfinder::FinishAsyncRequests()
 
 void CCmpPathfinder::ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests)
 {
+	PROFILE2("Process Long Requests");
 	for (size_t i = 0; i < longRequests.size(); ++i)
 	{
 		const AsyncLongPathRequest& req = longRequests[i];
@@ -714,6 +716,7 @@ void CCmpPathfinder::ProcessLongRequests(const std::vector<AsyncLongPathRequest>
 
 void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests)
 {
+	PROFILE2("Process Short Requests");
 	for (size_t i = 0; i < shortRequests.size(); ++i)
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
@@ -788,6 +791,8 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
 	pass_class_t passClass)
 {
+	PROFILE2_IFSPIKE("Check Movement", 0.001);
+
 	// Test against obstructions first. filter may discard pathfinding-blocking obstructions.
 	// Use more permissive version of TestLine to allow unit-unit collisions to overlap slightly.
 	// This makes movement smoother and more natural for units, overall.

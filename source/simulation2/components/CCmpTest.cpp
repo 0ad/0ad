@@ -23,6 +23,8 @@
 #include "simulation2/scripting/ScriptComponent.h"
 #include "simulation2/MessageTypes.h"
 
+#include "ps/Profile.h"
+
 class CCmpTest1A : public ICmpTest1
 {
 public:

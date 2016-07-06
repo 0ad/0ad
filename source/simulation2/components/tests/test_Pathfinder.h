@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,6 +54,15 @@ public:
 		g_VFS.reset();
 
 		CXeromyces::Terminate();
+	}
+
+	void test_namespace()
+	{
+		// Check that Pathfinding::NAVCELL_SIZE is actually an integer and that the definitions
+		// of Pathfinding::NAVCELL_SIZE_INT and Pathfinding::NAVCELL_SIZE_LOG2 match
+		TS_ASSERT_EQUALS(Pathfinding::NAVCELL_SIZE.ToInt_RoundToNegInfinity(), Pathfinding::NAVCELL_SIZE.ToInt_RoundToInfinity());
+		TS_ASSERT_EQUALS(Pathfinding::NAVCELL_SIZE.ToInt_RoundToNearest(), Pathfinding::NAVCELL_SIZE_INT);
+		TS_ASSERT_EQUALS((Pathfinding::NAVCELL_SIZE >> 1).ToInt_RoundToZero(), Pathfinding::NAVCELL_SIZE_LOG2);
 	}
 
 	void test_performance_DISABLED()

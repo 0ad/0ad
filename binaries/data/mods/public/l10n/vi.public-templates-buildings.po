@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 09:06+0000\n"
+"POT-Creation-Date: 2016-07-01 09:01+0200\n"
+"PO-Revision-Date: 2016-07-01 09:09+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -31,9 +31,8 @@ msgid "Civic Center"
 msgstr "Trung tâm đô thị"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
-msgid ""
-"Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Xây dựng để kiểm soát nhiều vùng lãnh thổ. Huấn luyện các công dân. Quân đồn trú: 20."
+msgid "Build to acquire large tracts of territory. Train citizens."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -86,9 +85,9 @@ msgstr "Nhà"
 
 #: simulation/templates/template_structure_civic_temple.xml:32
 msgid ""
-"Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
-"per second). Research healing and religious improvements."
-msgstr "Huấn luyện các thầy thuốc. Quân đồn trú lên tới 20 đơn vị để chữa trị cho họ với tốc độ nhanh (3 HP mỗi giây). Nghiên cứu cải tiến việc chữa bệnh và tôn giáo."
+"Train healers. Garrison units to heal them at a quick rate (3 HP per "
+"second). Research healing and religious improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -243,8 +242,8 @@ msgid "Military"
 msgstr "Quân sự"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
-msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Huấn luyện các dân binh. Nghiên cứu cải thiển việc huấn luyện. Quân đồn trú: 10."
+msgid "Train citizen-soldiers. Research training improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -281,8 +280,8 @@ msgstr "Sứ quán"
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
-"improvements. Garrison: 20."
-msgstr "Huấn luyện những anh hùng, nhà vô địch và khí tài chiến tranh. Nghiên cứu cải tiến khí tài chiến tranh. Quân đồn trú: 20."
+"improvements."
+msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -429,10 +428,8 @@ msgid "Epiteíkhisma"
 msgstr ""
 
 #: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid ""
-"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Chế tạo những khí tài chiến tranh. Quân đồn trú lên tớ 20 chiến binh bên trong để phòng thủ chắc chắn."
+msgid "Build siege engines. Garrison soldiers inside for stout defense."
+msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -540,7 +537,7 @@ msgstr ""
 #: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at an extremely quick rate."
+"empire. Garrison units to heal them at an extremely quick rate."
 msgstr ""
 
 #: simulation/templates/structures/brit_barracks.xml:15
@@ -782,7 +779,7 @@ msgstr ""
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
-"up to 20 units to heal them at a quick rate."
+"units to heal them at a quick rate."
 msgstr ""
 
 #: simulation/templates/structures/cart_wall.xml:18
@@ -929,8 +926,7 @@ msgstr ""
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
-"Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
-"defense."
+"Train Champions and Heroes. Garrison soldiers inside for stout defense."
 msgstr ""
 
 #: simulation/templates/structures/mace_library.xml:5
@@ -1233,8 +1229,8 @@ msgstr ""
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
-"improvements. Garrison: 10."
-msgstr "Huấn luyện dân binh xứ Egypt và Middle-Eastern. Nghiên cứu cải tiến việc huấn luyện. Quân đồn trú: 10."
+"improvements."
+msgstr ""
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1464,7 +1460,7 @@ msgid "Aedes Martis"
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
+msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
@@ -1537,9 +1533,9 @@ msgstr ""
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
-"Build siege engines and train Champions. Garrison up to 20 soldiers inside "
-"for stout defense."
-msgstr "Ché tạo các khí tài chiến tranh và huấn luyện các Champion. Quân đồn trú bên trong lên tới 20 chiến binh để phòng thủ chắc chắn."
+"Build siege engines and train Champions. Garrison soldiers inside for stout "
+"defense."
+msgstr ""
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1572,6 +1568,11 @@ msgstr ""
 msgid "Teíkhisma"
 msgstr ""
 
+#: simulation/templates/structures/spart_fortress.xml:10
+msgid ""
+"Build siege engines. Garrison up to 20 soldiers inside for stout defense."
+msgstr "Chế tạo những khí tài chiến tranh. Quân đồn trú lên tớ 20 chiến binh bên trong để phòng thủ chắc chắn."
+
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
 msgstr ""
@@ -1599,5 +1600,5 @@ msgstr "Huấn luyện các anh hùng và chiến binh hạng nặng người Sp
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
-"empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Mang vinh quang về cho nền văn minh của ngài và thêm nhiều vùng lãnh thổ vào đế quốc của ngài. Quân đồn trú lên tới 30 đơn vị để chữa trị cho họ với tốc độ nhanh."
+"empire. Garrison units to heal them at a quick rate."
+msgstr ""

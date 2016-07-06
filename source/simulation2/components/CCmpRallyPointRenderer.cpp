@@ -34,9 +34,10 @@
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/system/Component.h"
 
-#include "ps/CLogger.h"
 #include "graphics/Overlay.h"
 #include "graphics/TextureManager.h"
+#include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "renderer/Renderer.h"
 
 struct SVisibilitySegment
@@ -217,7 +218,7 @@ public:
 		{
 		case MT_RenderSubmit:
 			{
-				PROFILE3("RallyPoint::RenderSubmit");
+				PROFILE("RallyPoint::RenderSubmit");
 				if (m_Displayed && IsSet())
 				{
 					const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);

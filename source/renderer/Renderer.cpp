@@ -1119,8 +1119,8 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	camera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight));
 
 	SViewPort vp;
-	vp.m_Height = wm.m_ReflectionTextureSize;
-	vp.m_Width = wm.m_ReflectionTextureSize;
+	vp.m_Height = wm.m_RefTextureSize;
+	vp.m_Width = wm.m_RefTextureSize;
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	camera.SetViewPort(vp);
@@ -1155,8 +1155,8 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	camera.ClipFrustum(CVector4D(0, -1, 0, wm.m_WaterHeight + 0.5f));	// add some to avoid artifacts near steep shores.
 
 	SViewPort vp;
-	vp.m_Height = wm.m_RefractionTextureSize;
-	vp.m_Width = wm.m_RefractionTextureSize;
+	vp.m_Height = wm.m_RefTextureSize;
+	vp.m_Width = wm.m_RefTextureSize;
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	camera.SetViewPort(vp);
@@ -1188,8 +1188,8 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_ReflectionMatrix = m_ViewCamera.GetViewProjection();
 
-	float vpHeight = wm.m_ReflectionTextureSize;
-	float vpWidth = wm.m_ReflectionTextureSize;
+	float vpHeight = wm.m_RefTextureSize;
+	float vpWidth = wm.m_RefTextureSize;
 
 	SScreenRect screenScissor;
 	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vpWidth);
@@ -1271,8 +1271,8 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = m_ViewCamera.GetViewProjection();
 
-	float vpHeight = wm.m_RefractionTextureSize;
-	float vpWidth = wm.m_RefractionTextureSize;
+	float vpHeight = wm.m_RefTextureSize;
+	float vpWidth = wm.m_RefTextureSize;
 
 	SScreenRect screenScissor;
 	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vpWidth);

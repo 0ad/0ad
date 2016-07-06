@@ -513,8 +513,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance,
 	entity_pos_t range, const PathGoal& goal, pass_class_t passClass, WaypointPath& path)
 {
-	PROFILE3("ComputeShortPath");
-
+	PROFILE("ComputeShortPath");
 	m_DebugOverlayShortPathLines.clear();
 
 	if (m_DebugOverlay)

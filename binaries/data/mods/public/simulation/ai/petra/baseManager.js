@@ -55,10 +55,10 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.dropsites = {};
 	this.dropsiteSupplies = {};
 	this.gatherers = {};
-	for (let type of this.Config.resources)
+	for (let res of gameState.sharedScript.resourceList)
 	{
-		this.dropsiteSupplies[type] = { "nearby": [], "medium": [], "faraway": [] };
-		this.gatherers[type] = { "nextCheck": 0, "used": 0, "lost": 0 };
+		this.dropsiteSupplies[res] = { "nearby": [], "medium": [], "faraway": [] };
+		this.gatherers[res] = { "nextCheck": 0, "used": 0, "lost": 0 };
 	}
 };
 
@@ -434,9 +434,9 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 /** check our resource levels and react accordingly */
 m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 {
-	for (let type of this.Config.resources)
+	for (let type of gameState.sharedScript.resourceList)
 	{
-		if (type == "food")
+		if (type === "food")
 		{
 			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{

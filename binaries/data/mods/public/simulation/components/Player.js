@@ -359,9 +359,62 @@ Player.prototype.GetState = function()
 	return this.state;
 };
 
-Player.prototype.SetState = function(newState)
+Player.prototype.SetState = function(newState, resign)
 {
+	if (this.state != "active")
+		return;
+
+	if (newState != "won" && newState != "defeated")
+	{
+		warn("Can't change playerstate to " + this.state);
+		return;
+	}
+
 	this.state = newState;
+
+	let won = newState == "won";
+
+	// Reveal map to all or only that player
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.SetLosRevealAll(won ? -1 : this.playerID, true);
+
+	if (!won)
+	{
+		// Reassign all player's entities to Gaia
+		let entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
+
+		// The ownership change is done in two steps so that entities don't hit idle
+		// (and thus possibly look for "enemies" to attack) before nearby allies get
+		// converted to Gaia as well.
+		for (let entity of entities)
+		{
+			let cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+			cmpOwnership.SetOwnerQuiet(0);
+		}
+
+		// With the real ownership change complete, send OwnershipChanged messages.
+		for (let entity of entities)
+			Engine.PostMessage(entity, MT_OwnershipChanged, {
+				"entity": entity,
+				"from": this.playerID,
+				"to": 0
+			});
+	}
+
+	Engine.BroadcastMessage(won ? MT_PlayerWon : MT_PlayerDefeated, { "playerId": this.playerID });
+
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	if (won)
+		cmpGUIInterface.PushNotification({
+			"type": "won",
+			"players": [this.playerID]
+		});
+	else
+		cmpGUIInterface.PushNotification({
+			"type": "defeat",
+			"players": [this.playerID],
+			"resign": resign
+		});
 };
 
 Player.prototype.GetTeam = function()
@@ -369,7 +422,7 @@ Player.prototype.GetTeam = function()
 	return this.team;
 };
 
-Player.prototype.SetTeam = function(team, skipAlliedVictoryCheck = false)
+Player.prototype.SetTeam = function(team)
 {
 	if (this.teamsLocked)
 		return;
@@ -385,14 +438,13 @@ Player.prototype.SetTeam = function(team, skipAlliedVictoryCheck = false)
 			if (this.team != cmpPlayer.GetTeam())
 				continue;
 
-			this.SetAlly(i, skipAlliedVictoryCheck);
-			cmpPlayer.SetAlly(this.playerID, skipAlliedVictoryCheck);
+			this.SetAlly(i);
+			cmpPlayer.SetAlly(this.playerID);
 		}
 
 	Engine.BroadcastMessage(MT_DiplomacyChanged, {
 		"player": this.playerID,
-		"otherPlayer": null,
-		"skipAlliedVictoryCheck": skipAlliedVictoryCheck
+		"otherPlayer": null
 	});
 };
 
@@ -411,18 +463,17 @@ Player.prototype.GetDiplomacy = function()
 	return this.diplomacy;
 };
 
-Player.prototype.SetDiplomacy = function(dipl, skipAlliedVictoryCheck = false)
+Player.prototype.SetDiplomacy = function(dipl)
 {
 	this.diplomacy = dipl;
 
 	Engine.BroadcastMessage(MT_DiplomacyChanged, {
 		"player": this.playerID,
-		"otherPlayer": null,
-		"skipAlliedVictoryCheck": skipAlliedVictoryCheck
+		"otherPlayer": null
 	});
 };
 
-Player.prototype.SetDiplomacyIndex = function(idx, value, skipAlliedVictoryCheck = false)
+Player.prototype.SetDiplomacyIndex = function(idx, value)
 {
 	let cmpPlayer = QueryPlayerIDInterface(idx);
 	if (!cmpPlayer)
@@ -435,13 +486,12 @@ Player.prototype.SetDiplomacyIndex = function(idx, value, skipAlliedVictoryCheck
 
 	Engine.BroadcastMessage(MT_DiplomacyChanged, {
 		"player": this.playerID,
-		"otherPlayer": cmpPlayer.GetPlayerID(),
-		"skipAlliedVictoryCheck": skipAlliedVictoryCheck
+		"otherPlayer": cmpPlayer.GetPlayerID()
 	});
 
 	// Mutual worsening of relations
 	if (cmpPlayer.diplomacy[this.playerID] > value)
-		cmpPlayer.SetDiplomacyIndex(this.playerID, value, skipAlliedVictoryCheck);
+		cmpPlayer.SetDiplomacyIndex(this.playerID, value);
 };
 
 Player.prototype.UpdateSharedLos = function()
@@ -520,9 +570,9 @@ Player.prototype.IsAI = function()
 	return this.isAI;
 };
 
-Player.prototype.SetAlly = function(id, skipAlliedVictoryCheck = false)
+Player.prototype.SetAlly = function(id)
 {
-	this.SetDiplomacyIndex(id, 1, skipAlliedVictoryCheck);
+	this.SetDiplomacyIndex(id, 1);
 };
 
 /**
@@ -558,9 +608,9 @@ Player.prototype.IsExclusiveMutualAlly = function(id)
 	return this.playerID != id && this.IsMutualAlly(id);
 };
 
-Player.prototype.SetEnemy = function(id, skipAlliedVictoryCheck = false)
+Player.prototype.SetEnemy = function(id)
 {
-	this.SetDiplomacyIndex(id, -1, skipAlliedVictoryCheck);
+	this.SetDiplomacyIndex(id, -1);
 };
 
 /**
@@ -583,9 +633,9 @@ Player.prototype.IsEnemy = function(id)
 	return this.diplomacy[id] < 0;
 };
 
-Player.prototype.SetNeutral = function(id, skipAlliedVictoryCheck = false)
+Player.prototype.SetNeutral = function(id)
 {
-	this.SetDiplomacyIndex(id, 0, skipAlliedVictoryCheck);
+	this.SetDiplomacyIndex(id, 0);
 };
 
 /**
@@ -647,43 +697,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
 			this.heroes.push(msg.entity);
 	}
-};
-
-Player.prototype.OnPlayerDefeated = function(msg)
-{
-	this.state = "defeated";
-
-	// Reassign all player's entities to Gaia
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
-
-	// The ownership change is done in two steps so that entities don't hit idle
-	// (and thus possibly look for "enemies" to attack) before nearby allies get
-	// converted to Gaia as well.
-	for (var entity of entities)
-	{
-		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-		cmpOwnership.SetOwnerQuiet(0);
-	}
-
-	// With the real ownership change complete, send OwnershipChanged messages.
-	for (var entity of entities)
-		Engine.PostMessage(entity, MT_OwnershipChanged, {
-			"entity": entity,
-			"from": this.playerID,
-			"to": 0
-		});
-
-	// Reveal the map for this player.
-	cmpRangeManager.SetLosRevealAll(this.playerID, true);
-
-	// Send a chat message notifying of the player's defeat.
-	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGUIInterface.PushNotification({
-		"type": "defeat",
-		"players": [this.playerID],
-		"resign": !!msg.resign
-	});
 };
 
 Player.prototype.OnResearchFinished = function(msg)

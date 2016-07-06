@@ -114,7 +114,8 @@ TriggerHelper.GetResourceType = function(entity)
 }; 
 
 /**
- * Wins the game for a player
+ * The given player will win the game.
+ * If it's not a last man standing game, then allies will win too.
  */
 TriggerHelper.SetPlayerWon = function(playerID)
 {
@@ -127,10 +128,9 @@ TriggerHelper.SetPlayerWon = function(playerID)
  */
 TriggerHelper.DefeatPlayer = function(playerID)
 {
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let playerEnt = cmpPlayerManager.GetPlayerByID(playerID);
-
-	Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": playerID } );
+	let cmpPlayer = QueryPlayerIDInterface(playerID);
+	if (cmpPlayer)
+		cmpPlayer.SetState("defeated");
 };
 
 /**

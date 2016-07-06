@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -91,7 +91,8 @@ class CProfiler2GPU;
 class CProfiler2
 {
 	friend class CProfiler2GPU_base;
-
+	friend class CProfile2SpikeRegion;
+	friend class CProfile2AggregatedRegion;
 public:
 	// Items stored in the buffers:
 
@@ -123,7 +124,8 @@ public:
 private:
 	// TODO: what's a good size?
 	// TODO: different threads might want different sizes
-	static const size_t BUFFER_SIZE = 1024*1024;
+	static const size_t BUFFER_SIZE = 4*1024*1024;
+	static const size_t HOLD_BUFFER_SIZE = 128 * 1024;
 
 	/**
 	 * Class instantiated in every registered thread.
@@ -135,6 +137,8 @@ private:
 		ThreadStorage(CProfiler2& profiler, const std::string& name);
 		~ThreadStorage();
 	
+		enum { BUFFER_NORMAL, BUFFER_SPIKE, BUFFER_AGGREGATE };
+
 		void RecordSyncMarker(double t)
 		{
 			// Store the magic string followed by the absolute time
@@ -153,13 +157,18 @@ private:
 			// (to save memory) without suffering from precision problems
 			SItem_dt_id item = { (float)(t - m_LastTime), id };
 			Write(type, &item, sizeof(item));
-			m_LastTime = t;
 		}
 
 		void RecordFrameStart(double t)
 		{
 			RecordSyncMarker(t);
 			Record(ITEM_EVENT, t, "__framestart"); // magic string recognised by the visualiser
+		}
+
+		void RecordLeave(double t)
+		{
+			float time = (float)(t - m_LastTime);
+			Write(ITEM_LEAVE, &time, sizeof(float));
 		}
 
 		void RecordAttribute(const char* fmt, va_list argp) VPRINTF_ARGS(2);
@@ -171,6 +180,12 @@ private:
 			RecordAttribute(fmt, argp);
 			va_end(argp);
 		}
+
+		size_t HoldLevel();
+		u8 HoldType();
+		void PutOnHold(u8 type);
+		void HoldToBuffer(bool condensed);
+		void ThrowawayHoldBuffer();
 
 		CProfiler2& GetProfiler()
 		{
@@ -193,36 +208,9 @@ private:
 		/**
 		 * Store an item into the buffer.
 		 */
-		void Write(EItem type, const void* item, u32 itemSize)
-		{
-			// See m_BufferPos0 etc for comments on synchronisation
+		void Write(EItem type, const void* item, u32 itemSize);
 
-			u32 size = 1 + itemSize;
-			u32 start = m_BufferPos0;
-			if (start + size > BUFFER_SIZE)
-			{
-				// The remainder of the buffer is too small - fill the rest
-				// with NOPs then start from offset 0, so we don't have to
-				// bother splitting the real item across the end of the buffer
-
-				m_BufferPos0 = size;
-				COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
-
-				memset(m_Buffer + start, 0, BUFFER_SIZE - start);
-				start = 0;
-			}
-			else
-			{
-				m_BufferPos0 = start + size;
-				COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
-			}
-
-			m_Buffer[start] = (u8)type;
-			memcpy(&m_Buffer[start + 1], item, itemSize);
-			
-			COMPILER_FENCE; // must write m_BufferPos1 after m_Buffer
-			m_BufferPos1 = start + size;
-		}
+		void WriteHold(EItem type, const void* item, u32 itemSize);
 
 		CProfiler2& m_Profiler;
 		std::string m_Name;
@@ -230,6 +218,36 @@ private:
 		double m_LastTime; // used for computing relative times
 
 		u8* m_Buffer;
+
+		struct HoldBuffer
+		{
+			friend class ThreadStorage;
+		public:
+			HoldBuffer()
+			{
+				buffer = new u8[HOLD_BUFFER_SIZE];
+				memset(buffer, ITEM_NOP, HOLD_BUFFER_SIZE);
+				pos = 0;
+			}
+			~HoldBuffer()
+			{
+				delete[] buffer;
+			}
+			void clear()
+			{
+				pos = 0;
+			}
+			void setType(u8 newType)
+			{
+				type = newType;
+			}
+			u8* buffer;
+			u32 pos;
+			u8 type;
+		};
+
+		HoldBuffer m_HoldBuffers[8];
+		size_t m_HeldDepth;
 
 		// To allow hopefully-safe reading of the buffer from a separate thread,
 		// without any expensive synchronisation in the recording thread,
@@ -327,9 +345,14 @@ public:
 		GetThreadStorage().Record(ITEM_ENTER, GetTime(), id);
 	}
 
-	void RecordRegionLeave(const char* id)
+	void RecordRegionEnter(const char* id, double time)
 	{
-		GetThreadStorage().Record(ITEM_LEAVE, GetTime(), id);
+		GetThreadStorage().Record(ITEM_ENTER, time, id);
+	}
+
+	void RecordRegionLeave()
+	{
+		GetThreadStorage().RecordLeave(GetTime());
 	}
 
 	void RecordAttribute(const char* fmt, ...) PRINTF_ARGS(2)
@@ -344,6 +367,32 @@ public:
 	void RecordGPUFrameEnd();
 	void RecordGPURegionEnter(const char* id);
 	void RecordGPURegionLeave(const char* id);
+
+	/**
+	* Hold onto messages until a call to release or write the held messages.
+	*/
+	size_t HoldLevel()
+	{
+		return GetThreadStorage().HoldLevel();
+	}
+
+	u8 HoldType()
+	{
+		return GetThreadStorage().HoldType();
+	}
+
+	void HoldMessages(u8 type)
+	{
+		GetThreadStorage().PutOnHold(type);
+	}
+
+	void StopHoldingMessages(bool writeToBuffer, bool condensed = false)
+	{
+		if (writeToBuffer)
+			GetThreadStorage().HoldToBuffer(condensed);
+		else
+			GetThreadStorage().ThrowawayHoldBuffer();
+	}
 
 	/**
 	 * Call in any thread to produce a JSON representation of the general
@@ -422,10 +471,40 @@ public:
 	}
 	~CProfile2Region()
 	{
-		g_Profiler2.RecordRegionLeave(m_Name);
+		g_Profiler2.RecordRegionLeave();
 	}
+protected:
+	const char* m_Name;
+};
+
+/**
+* Scope-based enter/leave helper.
+*/
+class CProfile2SpikeRegion
+{
+public:
+	CProfile2SpikeRegion(const char* name, double spikeLimit);
+	~CProfile2SpikeRegion();
 private:
 	const char* m_Name;
+	double m_Limit;
+	double m_StartTime;
+	bool m_PushedHold;
+};
+
+/**
+* Scope-based enter/leave helper.
+*/
+class CProfile2AggregatedRegion
+{
+public:
+	CProfile2AggregatedRegion(const char* name, double spikeLimit);
+	~CProfile2AggregatedRegion();
+private:
+	const char* m_Name;
+	double m_Limit;
+	double m_StartTime;
+	bool m_PushedHold;
 };
 
 /**
@@ -454,6 +533,10 @@ private:
  * it hurts the visualisation.
  */
 #define PROFILE2(region) CProfile2Region profile2__(region)
+
+#define PROFILE2_IFSPIKE(region, limit) CProfile2SpikeRegion profile2__(region, limit)
+
+#define PROFILE2_AGGREGATED(region, limit) CProfile2AggregatedRegion profile2__(region, limit)
 
 #define PROFILE2_GPU(region) CProfile2GPURegion profile2gpu__(region)
 

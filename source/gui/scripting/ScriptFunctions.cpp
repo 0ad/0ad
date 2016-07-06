@@ -49,6 +49,7 @@
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/Hotkey.h"
 #include "ps/ProfileViewer.h"
+#include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
 #include "ps/SavedGame.h"
@@ -507,21 +508,6 @@ JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath&
 	JS::RootedValue settings(cx);
 	reader.GetMapSettings(*(pCxPrivate->pScriptInterface), &settings);
 	return settings;
-}
-
-JS::Value GetMapSettings(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	if (!g_Game)
-		return JS::UndefinedValue();
-
-	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue mapSettings(cx);
-	g_Game->GetSimulation2()->GetMapSettings(&mapSettings);
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
-		g_Game->GetSimulation2()->GetScriptInterface(),
-		mapSettings);
 }
 
 /**
@@ -1069,7 +1055,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<JS::Value, VfsPath, &LoadMapSettings>("LoadMapSettings");
-	scriptInterface.RegisterFunction<JS::Value, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<float, &CameraGetX>("CameraGetX");
 	scriptInterface.RegisterFunction<float, &CameraGetZ>("CameraGetZ");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
