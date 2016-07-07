@@ -528,7 +528,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 		prices: { "buy": {"food":150}, "sell": {"food":25} },
 	},
 	buildingAI: null,
-	healer: null,
+	heal: null,
 	obstruction: null,
 	turretParent: null,
 	promotion: null,
