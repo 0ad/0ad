@@ -41,7 +41,7 @@ Heal.prototype.GetTimers = function()
 {
 	return {
 		"prepare": 1000,
-		"repeat": GetRate()
+		"repeat": this.GetRate()
 	};
 };
 
@@ -84,7 +84,7 @@ Heal.prototype.PerformHeal = function(target)
 	if (!cmpHealth)
 		return;
 
-	let targetState = cmpHealth.Increase(GetHP());
+	let targetState = cmpHealth.Increase(this.GetHP());
 
 	// Add XP
 	let cmpLoot = Engine.QueryInterface(target, IID_Loot);

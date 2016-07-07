@@ -34,8 +34,10 @@ const g_NetMessageTypes = {
 	"players": msg => handlePlayerAssignmentMessage(msg),
 	"ready": msg => handleReadyMessage(msg),
 	"start": msg => handleGamestartMessage(msg),
-	"kicked": msg => addChatMessage({ "type": "kicked", "username": msg.username }),
-	"banned": msg => addChatMessage({ "type": "banned", "username": msg.username }),
+	"kicked": msg => addChatMessage({
+		"type": msg.banned ? "banned" : "kicked",
+		"username": msg.username
+	}),
 	"chat": msg => addChatMessage({ "type": "chat", "guid": msg.guid, "text": msg.text })
 };
 
