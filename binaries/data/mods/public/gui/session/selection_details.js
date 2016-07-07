@@ -395,7 +395,7 @@ function displayMultiple(selection)
 	let numberOfUnits = Engine.GetGUIObjectByName("numberOfUnits");
 	numberOfUnits.caption = selection.length;
 	numberOfUnits.tooltip = Object.keys(totalResourcesCarried).map(res =>
-		g_CostDisplayIcons[res] + totalResourcesCarried[res]
+		costIcon(res) + totalResourcesCarried[res]
 	).join(" ");
 
 	// Unhide Details Area

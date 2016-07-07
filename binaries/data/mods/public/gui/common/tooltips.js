@@ -1,12 +1,3 @@
-const g_CostDisplayIcons = {
-	"food": '[icon="iconFood"]',
-	"wood": '[icon="iconWood"]',
-	"stone": '[icon="iconStone"]',
-	"metal": '[icon="iconMetal"]',
-	"population": '[icon="iconPopulation"]',
-	"time": '[icon="iconTime"]'
-};
-
 const g_TooltipTextFormats = {
 	"unit": ['[font="sans-10"][color="orange"]', '[/color][/font]'],
 	"header": ['[font="sans-bold-13"]', '[/font]'],
@@ -26,6 +17,11 @@ const g_DamageTypes = {
 	"pierce": translate("Pierce"),
 	"crush": translate("Crush"),
 };
+
+function costIcon(resource)
+{
+	return '[icon="icon_' + resource + '"]';
+}
 
 function bodyFont(text)
 {
@@ -322,11 +318,11 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", { "entity": entity, "batchSize": trainNum }) : 1));
 
 	let costs = [];
-
-	for (let type in g_CostDisplayIcons)
-		if (totalCosts[type])
+	for (let type in template.cost)
+		// Population bonus is shown in the tooltip
+		if (type != "populationBonus" && totalCosts[type])
 			costs.push(sprintf(translate("%(component)s %(cost)s"), {
-				"component": g_CostDisplayIcons[type],
+				"component": costIcon(type),
 				"cost": totalCosts[type]
 			}));
 
@@ -342,7 +338,7 @@ function getGatherTooltip(template)
 		"details":
 			Object.keys(template.gather).map(
 				type => sprintf(translate("%(resourceIcon)s %(rate)s"), {
-					"resourceIcon": g_CostDisplayIcons[type],
+					"resourceIcon": costIcon(type),
 					"rate": template.gather[type]
 				})
 			).join("  ")
@@ -391,7 +387,7 @@ function getWallPieceTooltip(wallTypes)
 			// Translation: This string is part of the resources cost string on
 			// the tooltip for wall structures.
 			out.push(sprintf(translate("%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"), {
-				"resourceIcon": g_CostDisplayIcons[resource],
+				"resourceIcon": costIcon(resource),
 				"minimum": Math.min.apply(Math, resourceCount[resource]),
 				"maximum": Math.max.apply(Math, resourceCount[resource])
 			}));
@@ -454,7 +450,7 @@ function getNeededResourcesTooltip(resources)
 	let formatted = [];
 	for (let resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
-			"component": '[font="sans-12"]' + g_CostDisplayIcons[resource] + '[/font]',
+			"component": '[font="sans-12"]' + costIcon(resource) + '[/font]',
 			"cost": resources[resource]
 		}));
 
