@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-01 09:09+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -67,8 +67,8 @@ msgid "Hellenic Royal Stoa"
 msgstr "希腊皇家柱廊"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "人口上限 +10。招募特殊单位。"
+msgid "Recruit special units."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -169,9 +169,10 @@ msgstr "任何单位都不能穿过城墙。"
 msgid "Long wall segments can be converted to gates."
 msgstr "一定长度的城墙可以转变为城门。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "把城墙转变为城门"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -829,8 +830,8 @@ msgid "Taberna"
 msgstr "塔贝尔纳"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "将 +10 到人口限制中。招募狂信者。"
+msgid "Recruit Naked Fanatics."
+msgstr ""
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1438,10 +1439,6 @@ msgstr "Murus Circummunitionis"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "可在敌对及中立领土上建造的木造柵欄。。"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "将城墙转换为城门"
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "墙塔"
@@ -1487,8 +1484,8 @@ msgid "Tabernāculum"
 msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "士兵的临时帐篷。人口 +5。"
+msgid "A temporary shelter for soldiers."
+msgstr ""
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-02 12:40+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-07 19:54+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -61,8 +61,8 @@ msgid "Hellenic Royal Stoa"
 msgstr "Helénská královská kolonáda"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Přidá +10 k populačnímu limitu. Provést nábor zvláštních jednotek."
+msgid "Recruit special units."
+msgstr "Provést nábor zvláštních jednotek."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -163,9 +163,10 @@ msgstr "Umožňuje jednotkám průchod městskou hradbou. Může být zamknuta p
 msgid "Long wall segments can be converted to gates."
 msgstr "Dlouhé hradební úseky lze měnit na brány."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Proměnit kamennou hradbu na městskou bránu"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr "Toto vám umožní přikázat jednotkám obcházet skrz vaše opevnění."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -823,8 +824,8 @@ msgid "Taberna"
 msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Přidá +10 k populačnímu limitu. Provést nábor nahých fanatiků."
+msgid "Recruit Naked Fanatics."
+msgstr "Provést nábor nahých fanatiků."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1432,10 +1433,6 @@ msgstr "Murus Circummunitionis"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "Dřevěná hradba z kůlů a drnů, která se dá postavit na nepřátelském a neutrálním území."
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Proměnit obléhací hradbu na bránu v obléhací hradbě"
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Věž v obléhací zdi"
@@ -1481,8 +1478,8 @@ msgid "Tabernāculum"
 msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Dočasný úkryt pro vojáky. Přídavek k populaci +5."
+msgid "A temporary shelter for soldiers."
+msgstr "Dočasný úkryt pro vojáky."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

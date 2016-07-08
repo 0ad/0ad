@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 09:36+0000\n"
+"POT-Creation-Date: 2016-07-04 09:00+0200\n"
+"PO-Revision-Date: 2016-07-04 09:15+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -465,13 +465,13 @@ msgstr "Δέχθηκες επίθεση από %(attacker)s!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
-#: gui/session/selection_details.js:385 gui/session/session.js:829
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
+#: gui/session/selection_details.js:388 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
 msgid "Hitpoints:"
 msgstr "Πόντοι πληγμάτων:"
 
@@ -562,7 +562,7 @@ msgstr "Τρέχων/Μέγιστος συλλεκτών"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:386
+#: gui/session/selection_details.js:389
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Πόντοι κατάκτησης:"
@@ -589,7 +589,8 @@ msgstr "Αγόρασε %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Πούλησε %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Απαιτείται η τεχνολογία %(technology)s"
@@ -608,134 +609,152 @@ msgstr "Μονό-κλικ για να να ξεφορτώθει 1. Shift-κλι�
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:483
 msgid "Lock Gate"
 msgstr "Κλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:489
 msgid "Unlock Gate"
 msgstr "Ξεκλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:612
+#: gui/session/selection_panels.js:563
 msgid "Pack"
 msgstr "Πακετάρισμα"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:571
 msgid "Unpack"
 msgstr "Άνοιγμα πακέτου"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:579
 msgid "Cancel Packing"
 msgstr "Ακύρωση πακεταρίσματος "
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:587
 msgid "Cancel Unpacking"
 msgstr "Ακύρωση ξεπακεταρίσματος "
 
-#: gui/session/selection_panels.js:678
+#: gui/session/selection_panels.js:650
 msgid "Insufficient population capacity:"
 msgstr "Aνεπαρκής χωρητικότητα πληθυσμού:"
 
-#: gui/session/selection_panels.js:679
+#: gui/session/selection_panels.js:651
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:798
+#: gui/session/selection_panels.js:770
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Απομένει: %(number)s να χτιστεί."
 msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 
-#: gui/session/selection_panels_helpers.js:26
+#: gui/session/selection_panels.js:1071
+#, javascript-format
+msgid "Upgrade into a %(name)s. %(tooltip)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:1076
+#, javascript-format
+msgid "Upgrade into a %(name)s."
+msgstr ""
+
+#: gui/session/selection_panels.js:1095
+msgid "Cancel Upgrading"
+msgstr ""
+
+#: gui/session/selection_panels.js:1100
+msgid "Cannot upgrade when the entity is already upgrading."
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
 msgid "Violent"
 msgstr "Βίαιη στάση"
 
-#: gui/session/selection_panels_helpers.js:28
+#: gui/session/selection_panels_helpers.js:35
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Επιθετική στάση"
 
-#: gui/session/selection_panels_helpers.js:30
+#: gui/session/selection_panels_helpers.js:37
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Αμυντικός"
 
-#: gui/session/selection_panels_helpers.js:32
+#: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Passive"
 msgstr "Παθητική στάση"
 
-#: gui/session/selection_panels_helpers.js:34
+#: gui/session/selection_panels_helpers.js:41
 msgctxt "stance"
 msgid "Standground"
 msgstr "Προάσπιση"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Επίθεση σε γειτονικούς αντιπάλους, εστίσε σε επιτηθέμενους και κυνήγησε τους όσο είναι ορατοί"
 
-#: gui/session/selection_panels_helpers.js:48
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Επίθεση σε γειτονικούς αντιπάλους"
 
-#: gui/session/selection_panels_helpers.js:50
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Επίθεση σε γειτονικούς αντιπάλους, κυνήγησε τους για μερικά μέτρα και επέστρεψε στην αρχική τοποθεσία "
 
-#: gui/session/selection_panels_helpers.js:52
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Υποχώρησε σε περίπτωση επίθεσης"
 
-#: gui/session/selection_panels_helpers.js:54
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Επίθεση σε αντιπάλους από απόσταση, αλλά ακίνητος "
 
-#: gui/session/selection_panels_helpers.js:68
+#: gui/session/selection_panels_helpers.js:75
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Τρέχον αριθμός: %(count)s, Όριο: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:89
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s μεγεθύνει το όριο σε %(change)s."
 
-#: gui/session/selection_panels_helpers.js:83
+#: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s μειώνει το όριο σε %(change)s."
 
-#: gui/session/selection_panels_helpers.js:116
+#: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:132
+#: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s για εκπαίδευση %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:134
+#: gui/session/selection_panels_helpers.js:141
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s  για εκπαίδευση %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:137
+#: gui/session/selection_panels_helpers.js:144
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s για εκπαίδευση %(number)s."
 
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:147
 msgid "Shift-click"
 msgstr "Shift-click"
 

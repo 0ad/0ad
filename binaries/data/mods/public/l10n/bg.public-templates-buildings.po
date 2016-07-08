@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-01 10:01+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 09:37+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -68,8 +68,8 @@ msgid "Hellenic Royal Stoa"
 msgstr "Елинска царска стоа"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Добавя +10 към максималното население. Тук можете да наемате специални единици."
+msgid "Recruit special units."
+msgstr "Наемайте специални единици."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -170,9 +170,10 @@ msgstr "Позволете на единиците да преминават п�
 msgid "Long wall segments can be converted to gates."
 msgstr "Големите части стени могат да бъдат превърнати в порта."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Превръщане на Каменна стена в Градска порта"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr "Това ще Ви позволи да оставите единиците си сами да обикалят укрепленията Ви."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -830,8 +831,8 @@ msgid "Taberna"
 msgstr "Таберна"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Добавя +10 към максималното население. Предлага голи фанатици за наемане."
+msgid "Recruit Naked Fanatics."
+msgstr "Наемайте голи фанатици."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1439,10 +1440,6 @@ msgstr "Мурус циркуммунитионис"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "Ограда от дърво и торф, която може да се строи както на вражеска, така и на неутрална територия."
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Превръщане на обсадна стена в порта на обсадна стена"
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Кула на обсадна стена"
@@ -1488,8 +1485,8 @@ msgid "Tabernāculum"
 msgstr "Табернакулум"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Временно убежище за войници. +5 допълнително население."
+msgid "A temporary shelter for soldiers."
+msgstr "Временен подслон за войници."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

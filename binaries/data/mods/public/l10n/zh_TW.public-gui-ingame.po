@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-04 09:00+0200\n"
+"PO-Revision-Date: 2016-07-05 10:01+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -443,13 +443,13 @@ msgstr "您正被 %(attacker)s 攻擊！"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
-#: gui/session/selection_details.js:385 gui/session/session.js:829
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
+#: gui/session/selection_details.js:388 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
 msgid "Hitpoints:"
 msgstr "生命值:"
 
@@ -538,7 +538,7 @@ msgstr "目前/最大採集人數"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:386
+#: gui/session/selection_details.js:389
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "捕獲點： "
@@ -565,7 +565,8 @@ msgstr "購買 %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "賣出 %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
@@ -584,133 +585,151 @@ msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 msgid "Player: %(playername)s"
 msgstr "玩家：%(playername)s"
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:483
 msgid "Lock Gate"
 msgstr "鎖住大門"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:489
 msgid "Unlock Gate"
 msgstr "開放大門"
 
-#: gui/session/selection_panels.js:612
+#: gui/session/selection_panels.js:563
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:571
 msgid "Unpack"
 msgstr "解壓縮"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:579
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:587
 msgid "Cancel Unpacking"
 msgstr "取消解壓縮"
 
-#: gui/session/selection_panels.js:678
+#: gui/session/selection_panels.js:650
 msgid "Insufficient population capacity:"
 msgstr "人口上限不足："
 
-#: gui/session/selection_panels.js:679
+#: gui/session/selection_panels.js:651
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:798
+#: gui/session/selection_panels.js:770
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels_helpers.js:26
+#: gui/session/selection_panels.js:1071
+#, javascript-format
+msgid "Upgrade into a %(name)s. %(tooltip)s"
+msgstr "升級至 %(name)s。 %(tooltip)s"
+
+#: gui/session/selection_panels.js:1076
+#, javascript-format
+msgid "Upgrade into a %(name)s."
+msgstr "升級至 %(name)s。"
+
+#: gui/session/selection_panels.js:1095
+msgid "Cancel Upgrading"
+msgstr "取消升級"
+
+#: gui/session/selection_panels.js:1100
+msgid "Cannot upgrade when the entity is already upgrading."
+msgstr "當該實體正在升級時無法升級。"
+
+#: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
 msgid "Violent"
 msgstr "狂暴"
 
-#: gui/session/selection_panels_helpers.js:28
+#: gui/session/selection_panels_helpers.js:35
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "積極的"
 
-#: gui/session/selection_panels_helpers.js:30
+#: gui/session/selection_panels_helpers.js:37
 msgctxt "stance"
 msgid "Defensive"
 msgstr "防禦"
 
-#: gui/session/selection_panels_helpers.js:32
+#: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Passive"
 msgstr "被動"
 
-#: gui/session/selection_panels_helpers.js:34
+#: gui/session/selection_panels_helpers.js:41
 msgctxt "stance"
 msgid "Standground"
 msgstr "固守原地"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "攻擊鄰近的對手，集中於攻擊者並在可見時追蹤"
 
-#: gui/session/selection_panels_helpers.js:48
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "攻擊鄰近的對手"
 
-#: gui/session/selection_panels_helpers.js:50
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "攻擊鄰近的對手，追蹤一小段距離然後回到原位"
 
-#: gui/session/selection_panels_helpers.js:52
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "被攻擊時逃跑"
 
-#: gui/session/selection_panels_helpers.js:54
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "攻擊範圍內的對手，但不會移動"
 
-#: gui/session/selection_panels_helpers.js:68
+#: gui/session/selection_panels_helpers.js:75
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "現有數量： %(count)s ，限制： %(limit)s 。"
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:89
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s 將限制增大 %(change)s 。"
 
-#: gui/session/selection_panels_helpers.js:83
+#: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s 將限制減少 %(change)s 。"
 
-#: gui/session/selection_panels_helpers.js:116
+#: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:132
+#: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:134
+#: gui/session/selection_panels_helpers.js:141
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:137
+#: gui/session/selection_panels_helpers.js:144
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s 訓練 %(number)s."
 
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:147
 msgid "Shift-click"
 msgstr "Shift-左鍵點擊"
 

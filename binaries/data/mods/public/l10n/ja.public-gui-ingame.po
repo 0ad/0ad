@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 09:36+0000\n"
+"POT-Creation-Date: 2016-07-04 09:00+0200\n"
+"PO-Revision-Date: 2016-07-04 09:15+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -448,13 +448,13 @@ msgstr "%(attacker)sが攻撃してきました！"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
-#: gui/session/selection_details.js:385 gui/session/session.js:829
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
+#: gui/session/selection_details.js:388 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
 msgid "Hitpoints:"
 msgstr "耐久力："
 
@@ -543,7 +543,7 @@ msgstr "現在の/最大の収集者数"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:386
+#: gui/session/selection_details.js:389
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "占領ポイント:"
@@ -570,7 +570,8 @@ msgstr "%(resource)sを購入"
 msgid "Sell %(resource)s"
 msgstr "%(resource)sを売却"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)sが必要"
@@ -589,133 +590,151 @@ msgstr "シングルクリックで1体を外に出します。Shift+クリッ�
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:483
 msgid "Lock Gate"
 msgstr "門を閉ざす"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:489
 msgid "Unlock Gate"
 msgstr "門を開く"
 
-#: gui/session/selection_panels.js:612
+#: gui/session/selection_panels.js:563
 msgid "Pack"
 msgstr "梱包"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:571
 msgid "Unpack"
 msgstr "展開"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:579
 msgid "Cancel Packing"
 msgstr "梱包をキャンセル"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:587
 msgid "Cancel Unpacking"
 msgstr "展開をキャンセル"
 
-#: gui/session/selection_panels.js:678
+#: gui/session/selection_panels.js:650
 msgid "Insufficient population capacity:"
 msgstr "人口上限の不足:"
 
-#: gui/session/selection_panels.js:679
+#: gui/session/selection_panels.js:651
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:798
+#: gui/session/selection_panels.js:770
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "不足：%(number)s棟"
 
-#: gui/session/selection_panels_helpers.js:26
+#: gui/session/selection_panels.js:1071
+#, javascript-format
+msgid "Upgrade into a %(name)s. %(tooltip)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:1076
+#, javascript-format
+msgid "Upgrade into a %(name)s."
+msgstr ""
+
+#: gui/session/selection_panels.js:1095
+msgid "Cancel Upgrading"
+msgstr ""
+
+#: gui/session/selection_panels.js:1100
+msgid "Cannot upgrade when the entity is already upgrading."
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
 msgid "Violent"
 msgstr "絶対攻勢"
 
-#: gui/session/selection_panels_helpers.js:28
+#: gui/session/selection_panels_helpers.js:35
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "攻撃優先"
 
-#: gui/session/selection_panels_helpers.js:30
+#: gui/session/selection_panels_helpers.js:37
 msgctxt "stance"
 msgid "Defensive"
 msgstr "防衛優先"
 
-#: gui/session/selection_panels_helpers.js:32
+#: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Passive"
 msgstr "戦闘回避"
 
-#: gui/session/selection_panels_helpers.js:34
+#: gui/session/selection_panels_helpers.js:41
 msgctxt "stance"
 msgid "Standground"
 msgstr "専守防衛"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "付近の敵を攻撃し、攻撃された相手には視界の限り追跡する"
 
-#: gui/session/selection_panels_helpers.js:48
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "付近の敵を攻撃する"
 
-#: gui/session/selection_panels_helpers.js:50
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "付近の敵を攻撃し、少しの距離追跡して元の場所に戻る"
 
-#: gui/session/selection_panels_helpers.js:52
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "攻撃を受けたら逃げる"
 
-#: gui/session/selection_panels_helpers.js:54
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "射程内の敵は攻撃するが、移動しない"
 
-#: gui/session/selection_panels_helpers.js:68
+#: gui/session/selection_panels_helpers.js:75
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "現在の数：%(count)s、最大数：%(limit)s。"
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:89
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)sが上限を %(change)s拡大しました。"
 
-#: gui/session/selection_panels_helpers.js:83
+#: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)sが上限を %(change)s縮小しました。"
 
-#: gui/session/selection_panels_helpers.js:116
+#: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:132
+#: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)sで %(number)s (%(fullBatch)s + %(remainderBatch)s) 体養成します。"
 
-#: gui/session/selection_panels_helpers.js:134
+#: gui/session/selection_panels_helpers.js:141
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)sで %(number)s (%(fullBatch)s) 体養成します。"
 
-#: gui/session/selection_panels_helpers.js:137
+#: gui/session/selection_panels_helpers.js:144
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)sで%(number)s体養成します。"
 
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:147
 msgid "Shift-click"
 msgstr "Shift+クリック"
 

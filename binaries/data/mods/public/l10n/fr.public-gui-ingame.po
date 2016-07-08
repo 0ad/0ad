@@ -51,9 +51,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-04 09:00+0200\n"
+"PO-Revision-Date: 2016-07-04 21:23+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -492,13 +492,13 @@ msgstr "Vous avez été attaqué(e) par %(attacker)s !"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
-#: gui/session/selection_details.js:385 gui/session/session.js:829
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
+#: gui/session/selection_details.js:388 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
 msgid "Hitpoints:"
 msgstr "Points de vie :"
 
@@ -589,7 +589,7 @@ msgstr "Ramasseurs actuels/max"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:386
+#: gui/session/selection_details.js:389
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Points de capture :"
@@ -616,7 +616,8 @@ msgstr "Acheter %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Vendre %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Nécessite %(technology)s"
@@ -635,134 +636,152 @@ msgstr "Simple clic pour en décharger 1. Maj+clic pour décharger tous ceux de 
 msgid "Player: %(playername)s"
 msgstr "Joueur : %(playername)s"
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:483
 msgid "Lock Gate"
 msgstr "Verrouiller la porte"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:489
 msgid "Unlock Gate"
 msgstr "Déverrouiller la porte"
 
-#: gui/session/selection_panels.js:612
+#: gui/session/selection_panels.js:563
 msgid "Pack"
 msgstr "Démonter"
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:571
 msgid "Unpack"
 msgstr "Monter"
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:579
 msgid "Cancel Packing"
 msgstr "Annuler le démontage"
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:587
 msgid "Cancel Unpacking"
 msgstr "Annuler le montage"
 
-#: gui/session/selection_panels.js:678
+#: gui/session/selection_panels.js:650
 msgid "Insufficient population capacity:"
 msgstr "Limite de population insuffisante :"
 
-#: gui/session/selection_panels.js:679
+#: gui/session/selection_panels.js:651
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:798
+#: gui/session/selection_panels.js:770
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Reste : %(number)s à construire."
 msgstr[1] "Restent : %(number)s à construire."
 
-#: gui/session/selection_panels_helpers.js:26
+#: gui/session/selection_panels.js:1071
+#, javascript-format
+msgid "Upgrade into a %(name)s. %(tooltip)s"
+msgstr "Améliorer en %(name)s. %(tooltip)s"
+
+#: gui/session/selection_panels.js:1076
+#, javascript-format
+msgid "Upgrade into a %(name)s."
+msgstr "Améliorer en %(name)s."
+
+#: gui/session/selection_panels.js:1095
+msgid "Cancel Upgrading"
+msgstr "Annuler l'amélioration"
+
+#: gui/session/selection_panels.js:1100
+msgid "Cannot upgrade when the entity is already upgrading."
+msgstr "Amélioration impossible tant qu'une autre amélioration est en cours."
+
+#: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
 msgid "Violent"
 msgstr "Violent"
 
-#: gui/session/selection_panels_helpers.js:28
+#: gui/session/selection_panels_helpers.js:35
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Agressif"
 
-#: gui/session/selection_panels_helpers.js:30
+#: gui/session/selection_panels_helpers.js:37
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Défensif"
 
-#: gui/session/selection_panels_helpers.js:32
+#: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Passive"
 msgstr "Passif"
 
-#: gui/session/selection_panels_helpers.js:34
+#: gui/session/selection_panels_helpers.js:41
 msgctxt "stance"
 msgid "Standground"
 msgstr "Maintenir la position"
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Attaquer les adversaires à proximité, se concentrer sur les attaquants et poursuivre les unités encore en vue"
 
-#: gui/session/selection_panels_helpers.js:48
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Attaquer les adversaires à proximité"
 
-#: gui/session/selection_panels_helpers.js:50
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Attaquer les adversaires à proximité, les poursuivre sur une courte distance et revenir à la position d'origine"
 
-#: gui/session/selection_panels_helpers.js:52
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Fuir en cas d'attaque"
 
-#: gui/session/selection_panels_helpers.js:54
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Attaquer les adversaires à portée, mais sans bouger"
 
-#: gui/session/selection_panels_helpers.js:68
+#: gui/session/selection_panels_helpers.js:75
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Nombre actuel : %(count)s, Limite : %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:89
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s agrandit la capacité de %(change)s."
 
-#: gui/session/selection_panels_helpers.js:83
+#: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s diminue la capacité de %(change)s."
 
-#: gui/session/selection_panels_helpers.js:116
+#: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:132
+#: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s pour en former %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:134
+#: gui/session/selection_panels_helpers.js:141
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s pour en former %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:137
+#: gui/session/selection_panels_helpers.js:144
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s pour en former %(number)s."
 
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:147
 msgid "Shift-click"
 msgstr "Maj+clic"
 
