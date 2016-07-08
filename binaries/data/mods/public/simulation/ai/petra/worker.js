@@ -178,7 +178,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	else if (subrole === "hunter")
 	{
 		let lastHuntSearch = ent.getMetadata(PlayerID, "lastHuntSearch");
-		if (ent.isIdle() && (!lastHuntSearch || (gameState.ai.elapsedTime - lastHuntSearch) > 20))
+		if (ent.isIdle() && (!lastHuntSearch || gameState.ai.elapsedTime - lastHuntSearch > 20))
 		{
 			if (!this.startHunting(gameState))
 			{
@@ -248,7 +248,6 @@ m.Worker.prototype.update = function(gameState, ent)
 
 m.Worker.prototype.startGathering = function(gameState)
 {
-	let self = this;
 	let access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 
 	// First look for possible treasure if any
@@ -260,7 +259,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	// If we are gathering food, try to hunt first
 	if (resource === "food" && this.startHunting(gameState))
 		return true;
-	
+
 	let findSupply = function(ent, supplies) {
 		let ret = false;
 		for (let i = 0; i < supplies.length; ++i)
@@ -383,14 +382,14 @@ m.Worker.prototype.startGathering = function(gameState)
 			return false;
 		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
 		{
-			if (foundation.getMetadata(PlayerID, "base") !== self.baseID)
-				self.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
-			self.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
-			self.ent.repair(foundation);
+			if (foundation.getMetadata(PlayerID, "base") !== this.baseID)
+				this.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
+			this.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
+			this.ent.repair(foundation);
 			return true;
 		}
 		return false;
-	});
+	}, this);
 	if (shouldBuild)
 		return true;
 
@@ -462,16 +461,16 @@ m.Worker.prototype.startGathering = function(gameState)
 				foundationAccess = gameState.ai.accessibility.getAccessValue(foundation.position());
 				foundation.setMetadata(PlayerID, "access", foundationAccess);
 			}
-			if (navalManager.requireTransport(gameState, self.ent, access, foundationAccess, foundation.position()))
+			if (navalManager.requireTransport(gameState, this.ent, access, foundationAccess, foundation.position()))
 			{
-				if (foundation.getMetadata(PlayerID, "base") !== self.baseID)
-					self.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
-				self.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
+				if (foundation.getMetadata(PlayerID, "base") !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
+				this.ent.setMetadata(PlayerID, "target-foundation", foundation.id());
 				return true;
 			}
 		}
 		return false;
-	});
+	}, this);
 	if (shouldBuild)
 		return true;
 
@@ -555,7 +554,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		});
 		return distMin;
 	};
-	
+
 	resources.forEach(function(supply)
 	{
 		if (!supply.position())
@@ -576,13 +575,16 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		// Only cavalry and range units should hunt fleeing animals 
 		if (canFlee && !isCavalry && !isRanged)
 			return;
-		  
+
 		let supplyAccess = gameState.ai.accessibility.getAccessValue(supply.position());
 		if (supplyAccess !== access)
 			return;
 
 		// measure the distance to the resource
 		let dist = API3.SquareVectorDistance(entPosition, supply.position());
+		if (dist > nearestSupplyDist)
+			return;
+
 		// Only cavalry should hunt faraway
 		if (!isCavalry && dist > 25000)
 			return;
@@ -599,13 +601,10 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (!isCavalry && (dropsiteDist > 12000 || ((dropsiteDist > 7000 || territoryOwner === 0 ) && canFlee)))
 			return;
 
-		if (dist < nearestSupplyDist)
-		{
-			nearestSupplyDist = dist;
-			nearestSupply = supply;
-		}
+		nearestSupplyDist = dist;
+		nearestSupply = supply;
 	});
-	
+
 	if (nearestSupply)
 	{
 		if (position)
@@ -623,8 +622,6 @@ m.Worker.prototype.startFishing = function(gameState)
 {
 	if (!this.ent.position())
 		return false;
-
-	// So here we're doing it basic. We check what we can hunt, we hunt it. No fancies.
 
 	let resources = gameState.getFishableSupplies();
 	if (!resources.hasEntities())
@@ -653,7 +650,7 @@ m.Worker.prototype.startFishing = function(gameState)
 		});
 		return distMin;
 	};
-	
+
 	let exhausted = true;
 	resources.forEach(function(supply)
 	{
@@ -677,7 +674,7 @@ m.Worker.prototype.startFishing = function(gameState)
 
 		// measure the distance to the resource
 		let dist = API3.SquareVectorDistance(entPosition, supply.position());
-		if (dist > 40000)
+		if (dist > nearestSupplyDist)
 			return;
 
 		// Avoid ennemy territory
@@ -689,11 +686,8 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (dropsiteDist > 35000)
 			return;
 
-		if (dist < nearestSupplyDist)
-		{
-			nearestSupplyDist = dist;
-			nearestSupply = supply;
-		}
+		nearestSupplyDist = dist;
+		nearestSupply = supply;
 	});
 
 	if (exhausted)
