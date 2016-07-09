@@ -5,19 +5,12 @@
     <Pierce>25.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
-  <Cost>
-    <BuildTime>15</BuildTime>
-    <Resources>
-      <wood>30</wood>
-      <stone>0</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="16" depth="3.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>600</Max>
+    <Max op="mul">0.25</Max>
     <SpawnEntityOnDeath>rubble/rubble_1x3pal</SpawnEntityOnDeath>
   </Health>
   <Identity>

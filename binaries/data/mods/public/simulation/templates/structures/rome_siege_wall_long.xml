@@ -43,7 +43,7 @@
     </VisibleGarrisonPoints>
   </GarrisonHolder>
   <Health>
-    <Max>2000</Max>
+    <Max op="mul">0.75</Max>
   </Health>
   <Identity>
     <Civ>rome</Civ>

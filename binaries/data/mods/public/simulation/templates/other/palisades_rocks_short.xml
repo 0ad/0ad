@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall">
+<Entity parent="template_structure_defense_wall_short">
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>25.0</Pierce>
@@ -17,7 +17,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>400</Max>
+    <Max op="mul">0.25</Max>
     <SpawnEntityOnDeath>rubble/rubble_1x1pal</SpawnEntityOnDeath>
   </Health>
   <Identity>
