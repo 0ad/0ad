@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-26 17:10+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:18+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,128 +32,128 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:7
+#: simulation/ai/common-api/shared.js:203
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Żywność"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Drewno"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Kamień"
 
-#: simulation/ai/petra/chatHelper.js:21
+#: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Zaczynam masywną kampanię wojskową przeciw %(_player_)s, chodź się przyłącz."
 
-#: simulation/ai/petra/chatHelper.js:23
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Rozpoczynam ofensywę przeciwko %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:25
+#: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Rozpocząłem ofensywę przeciwko %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:43
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Gdy przegrupuje moją armię będę walczył z tobą przeciwko %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:45
+#: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Przeprowadzam ostatnie przygotowania i zaatakuję gracza %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:50
+#: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Na razie nie mogę ci pomóc przeciwko %(_player_)s jako, że mam zaplanowany atak na %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:52
+#: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Przepraszam, w tej chwili nie posiadam wystarczającej ilości wojska, ale celem mojego następnego ataku będzie %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Oto podarunek dla Ciebie  %(_player_)s, wykorzystaj go dobrze."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Widzę, że jesteś w złej sytuacji %(_player_)s, mam nadzieję, że to pomoże."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "Mogę pomóc ci tym razem, %(_player_)s, ale na przyszłość spróbuj zebrać więcej surowców."
 
-#: simulation/ai/petra/chatHelper.js:95
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Potrzebuję %(resource)s, możesz mi pomóc? Odwdzięczę się."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Uczestniczyłbym skuteczniej w naszych wspólnych działaniach wojennych jeśli mógłbyś dostarczyć mi trochę %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Jeśli masz jakieś %(resource)s w nadmiarze, pomogłoby mi to wzmocnić moją armię."
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Wyznaczyłem nową trasę do %(_player_)s.. Handel będzie teraz jeszcze korzystniejszy dla nas wszystkich."
 
-#: simulation/ai/petra/chatHelper.js:117
+#: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Nowa droga handlowa została otwarta z %(_player_)s. Zgarnij swój udział w zyskach."
 
-#: simulation/ai/petra/chatHelper.js:132
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Zmierzam do %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:134
+#: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Dotarłem do %(phase)s."
@@ -698,7 +698,7 @@ msgstr "Możesz atakować w %(time)s"
 msgid "You can attack now!"
 msgstr "Możesz atakować teraz!"
 
-#: simulation/components/EndGameManager.js:125
+#: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
 msgstr "Ostatni pozostały gracz wygrywa."
 
@@ -768,32 +768,42 @@ msgstr "Kolejka produkcji jest pełna."
 msgid "Can't find free space to spawn trained units"
 msgstr "Nie można znaleźć wolnego miejsca na  zbiórkę wyszkolonych jednostek "
 
-#: simulation/helpers/Cheat.js:63
+#: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
 msgstr "Potrzebujesz wybrać budynki, które szkolą jednostki."
 
-#: simulation/helpers/Commands.js:126
+#: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
 msgstr "(Pozwolono - kontrolować wszystkie jednostki)"
 
-#: simulation/helpers/Commands.js:559
+#: simulation/helpers/Commands.js:562
 msgid "(Cheat - promoted units)"
 msgstr "(Pozwolono - awansować jednostki)"
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:672
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr ""
+
+#: simulation/helpers/Commands.js:682
+msgid "Cannot upgrade a garrisoned entity."
+msgstr ""
+
+#: simulation/helpers/Commands.js:728
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Zażądano ataku przeciwko %(_player_)s"
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:765
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nie można wyładotać jednostki-(ek)"
 
-#: simulation/helpers/Commands.js:729
+#: simulation/helpers/Commands.js:779
 msgid "Some unit(s) can't go back to work"
 msgstr "Niektóre jednostki nie potrafią wracać do pracy "
 
-#: simulation/helpers/Commands.js:985
+#: simulation/helpers/Commands.js:1035
 msgid "The building's technology requirements are not met."
 msgstr "Wymagania technologiczne budynku nie zostały spełnione."
 

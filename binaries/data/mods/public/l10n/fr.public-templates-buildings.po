@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-02 19:36+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 19:18+0000\n"
 "Last-Translator: nicolas t <phidias2052@yahoo.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -76,8 +76,8 @@ msgid "Hellenic Royal Stoa"
 msgstr "Stoa royale hellénique"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Ajouter +10 à la limite de population. Recruter des unités spéciales."
+msgid "Recruit special units."
+msgstr "Recruter des unités spéciales."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -178,9 +178,10 @@ msgstr "Permet aux unités de franchir les murs de la ville. Peut être verrouil
 msgid "Long wall segments can be converted to gates."
 msgstr "Les longues portions de mur peuvent être converties en portes."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Convertir le Mur de pierre en Porte de la cité"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr "Permet aux unités de franchir les murs de la ville."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -838,8 +839,8 @@ msgid "Taberna"
 msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Ajouter +10 à la limite de population. Recruter des fanatiques."
+msgid "Recruit Naked Fanatics."
+msgstr "Recruter des fanatiques."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1447,10 +1448,6 @@ msgstr "Murus Circummunitionis"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "Une palissade en bois et tourbe constructible en territoire ennemi et neutre."
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Convertir le Mur de siège en Porte de mur de siège"
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Tour de siège"
@@ -1496,8 +1493,8 @@ msgid "Tabernāculum"
 msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Un abri temporaire pour les soldats. Bonus +5 de population."
+msgid "A temporary shelter for soldiers."
+msgstr "Un abri temporaire pour les soldats."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

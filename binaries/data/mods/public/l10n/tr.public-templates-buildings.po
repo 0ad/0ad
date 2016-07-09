@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-01 09:09+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -70,8 +70,8 @@ msgid "Hellenic Royal Stoa"
 msgstr "Helen Kraliyet Saçak altı"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Nüfus Kapasitesini +10 Arttır. Özel birimler işe alarak."
+msgid "Recruit special units."
+msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -172,9 +172,10 @@ msgstr "İzinli birimler bir kent duvarından geçiş yapabilir. Geçiş engelle
 msgid "Long wall segments can be converted to gates."
 msgstr " Uzun duvar parçaları kapılara dönüştürülebilir."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Taş Duvarı Şehir Kapısına Dönüştür"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -832,8 +833,8 @@ msgid "Taberna"
 msgstr "Taverna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Nüfus Kapasitesine +10 ekleyin. Çıplak Fanatikleri silah altına alın."
+msgid "Recruit Naked Fanatics."
+msgstr ""
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1441,10 +1442,6 @@ msgstr "Murus Circummunitionis"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "Düşman ve tarafsız bölgede inşa edilebilir çim ve bir ağaçtan çit."
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Kuşatma Duvarını Kuşatma Duvarı Kapısına dönüştürün."
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Kuşatma Duvar Kulesi"
@@ -1490,8 +1487,8 @@ msgid "Tabernāculum"
 msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Askerler için geçici barınak. nüfusa +5 katkı sağlar."
+msgid "A temporary shelter for soldiers."
+msgstr ""
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

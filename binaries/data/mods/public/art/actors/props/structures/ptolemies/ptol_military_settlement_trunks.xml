@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="trunks">
+      <mesh>props/ptol_military_settlement_trunks.dae</mesh>
+      <textures>
+        <texture file="gaia/trunk_deciduous_b.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

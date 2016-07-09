@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Settlement">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/ptol_military_settlement_struct_ptolemaic.dae</mesh>
+      <props>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_seleucid.xml" attachpoint="root"/> 
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_helenistic.xml" attachpoint="root"/> 
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_leaves.xml" attachpoint="root" />
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_trunks.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_obelisk.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_flowers.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_trunks.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/ptol_military_settlement_door.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/ptol_struct.png" name="baseTex"/>
+        <texture file="structural/ptol_struct_norm.png" name="normTex"/>
+        <texture file="structural/ptol_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/ptol_military_colony_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned2"/>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned3"/>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned4"/>
+		
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop attachpoint="garrisoned2"/>
+        <prop attachpoint="garrisoned3"/>
+        <prop attachpoint="garrisoned4"/>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

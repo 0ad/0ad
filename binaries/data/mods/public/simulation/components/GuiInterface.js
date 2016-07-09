@@ -418,7 +418,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"attack": null,
 		"barterMarket": null,
 		"buildingAI": null,
-		"healer": null,
+		"heal": null,
 		"obstruction": null,
 		"turretParent":null,
 		"promotion": null,

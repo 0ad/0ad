@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-12 17:21+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:54+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -23,128 +23,128 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:7
+#: simulation/ai/common-api/shared.js:203
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Élelem"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Fa"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Fém"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Kő"
 
-#: simulation/ai/petra/chatHelper.js:21
+#: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Egy nagy hadjáratot indítok %(_player_)s ellen, gyere, csatlakozz."
 
-#: simulation/ai/petra/chatHelper.js:23
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Támadást indítok %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:25
+#: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Épp most küldtem egy sereget %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:43
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Hadd csoportosítsam át a seregem, és megyek veled %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:45
+#: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "A végső előkészületeket végzem, és támadást fogok indítani %(_player_)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:50
+#: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Egyelőre nem tudok segíteni %(_player_)s ellen, mivel előre láthatóan egy másik támadást indítok %(_player_2)s ellen."
 
-#: simulation/ai/petra/chatHelper.js:52
+#: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Sajnálom, jelenleg nincs elég katonám, de a következő támadásom célpontja %(_player_)s lesz."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Itt egy ajándék %(_player_)s számára, vedd hasznát."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Úgy látom %(_player_)s, vacak helyzetben vagy. Remélem ez segít."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "%(_player_)s, ezúttal tudok segíteni, de próbálj meg több nyersanyagot összegyűjteni a jövőben."
 
-#: simulation/ai/petra/chatHelper.js:95
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Szükségem van erre a nyersanyagra: %(resource)s. Tudsz segíteni? Kártalanítani foglak."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Eredményesebben tudnék részt venni a közös háborúnkban, ha tudnál adni ebből a nyersanyagból: %(resource)s"
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Segítene nekem a hadsereg megerősítésében, ha van egy kis többleted ebből a nyersanyagból: %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Létrehoztam egy új útvonalat hozzá: %(_player_)s. A kereskedelem mindannyiunk javát szolgálni fogja."
 
-#: simulation/ai/petra/chatHelper.js:117
+#: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Új kereskedelmi út jött létre vele: %(_player_)s. Vedd ki a részed a profitból."
 
-#: simulation/ai/petra/chatHelper.js:132
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Előrelépek a %(phase)sba."
 
-#: simulation/ai/petra/chatHelper.js:134
+#: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Elértem a %(phase)st."
@@ -687,7 +687,7 @@ msgstr "%(time)s múlva támadhatsz"
 msgid "You can attack now!"
 msgstr "Most már támadhatsz!"
 
-#: simulation/components/EndGameManager.js:125
+#: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
 msgstr "Az utolsó megmaradt játékos nyer."
 
@@ -757,32 +757,42 @@ msgstr "A termelési sor tele van."
 msgid "Can't find free space to spawn trained units"
 msgstr "Nem található szabad hely a kiképzett egységek elhelyezéséhez"
 
-#: simulation/helpers/Cheat.js:63
+#: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
 msgstr "Ki kell választanod egy épületet, amely egységeket képez ki."
 
-#: simulation/helpers/Commands.js:126
+#: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
 msgstr "(Csalás - összes egység irányítása)"
 
-#: simulation/helpers/Commands.js:559
+#: simulation/helpers/Commands.js:562
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:672
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr "Nem fejleszthető, mivel a távolsági követelmények nincsenek ellenőrizve, vagy a terep akadályozza."
+
+#: simulation/helpers/Commands.js:682
+msgid "Cannot upgrade a garrisoned entity."
+msgstr "A beszállásolt egység nem fejleszthető."
+
+#: simulation/helpers/Commands.js:728
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:765
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nem lehet kiengedni az egységeket"
 
-#: simulation/helpers/Commands.js:729
+#: simulation/helpers/Commands.js:779
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:985
+#: simulation/helpers/Commands.js:1035
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 

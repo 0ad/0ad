@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-01 09:09+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgid "Hellenic Royal Stoa"
 msgstr ""
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
+msgid "Recruit special units."
 msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
@@ -163,9 +163,10 @@ msgstr "Дозвољава пролаз јединицама кроз градс
 msgid "Long wall segments can be converted to gates."
 msgstr "Дуги сегменти зидина се могу претворити у капије."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Претвори Камене Зидине у Градску Капију"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -823,8 +824,8 @@ msgid "Taberna"
 msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Додаје +10 популационом лимиту. Регрутује Голе Фанатике."
+msgid "Recruit Naked Fanatics."
+msgstr ""
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1432,10 +1433,6 @@ msgstr "Murus Circummunitionis"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Претвори Опсадне Зидине у Капују Опсадних Зидина"
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Ступ Опсадних Зидина"
@@ -1481,8 +1478,8 @@ msgid "Tabernāculum"
 msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Привремено склониште за војнике. +5 популациони бонус"
+msgid "A temporary shelter for soldiers."
+msgstr ""
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

@@ -11,6 +11,7 @@
 # Mortimer <doug.mortimer@netcourrier.com>, 2016
 # Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
+# nicolas t <phidias2052@yahoo.fr>, 2016
 # silure <silure@openmailbox.org>, 2014
 # Polakrity <sxk-fr@live.fr>, 2014
 # Toto AD <ad@imw.fr>, 2014
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-05-23 09:01+0200\n"
-"PO-Revision-Date: 2016-05-23 15:34+0000\n"
-"Last-Translator: Mortimer <doug.mortimer@netcourrier.com>\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 21:15+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -417,13 +418,13 @@ msgstr "Un plateau central sec et riche en minerai, entouré de collines rocheus
 msgid "Persian Highlands"
 msgstr "Plateaux perses"
 
-#: maps/random/pheonician_levant.jsonsettings.Description
+#: maps/random/phoenician_levant.jsonsettings.Description
 msgid ""
 "Players start in the eastern part of the map while a great sea is located to"
 " the west."
 msgstr "Les joueurs commencent dans la partie orientale de la carte tandis qu'une grande mer est situé à l'ouest."
 
-#: maps/random/pheonician_levant.jsonsettings.Name
+#: maps/random/phoenician_levant.jsonsettings.Name
 msgid "Phoenician Levant"
 msgstr "Levant phénicien"
 
@@ -588,11 +589,11 @@ msgstr "Une démonstration de méthodes/code de placement de mur dans des cartes
 msgid "Wall Demo"
 msgstr "Démo - Mur"
 
-#: maps/random/survivalofthefittest_triggers.js:128
+#: maps/random/survivalofthefittest_triggers.js:127
 msgid "An enemy wave is attacking!"
 msgstr "Une vague ennemie attaque !"
 
-#: maps/random/survivalofthefittest_triggers.js:199
+#: maps/random/survivalofthefittest_triggers.js:197
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "La première vague débutera dans %(time)s !"
@@ -1877,6 +1878,17 @@ msgstr "Deux joueurs s'affrontent sur le plateau densément boisé du Deccan dan
 #: maps/skirmishes/Deccan Plateau (2).xml:Name:41
 msgid "Deccan Plateau (2)"
 msgstr "Plateau du Deccan (2)"
+
+#: maps/skirmishes/Dueling Cliffs (3v3).xml:Description:40
+msgid ""
+"A foggy alpine landscape becomes a battleground as each team has an ally "
+"squashed precariously between two enemies. Two forest cliffs overlook the "
+"center lake, accessible from the sides of the map."
+msgstr "Un paysage alpin brumeux devient un champ de bataille où chaque équipe possède un allié pris en tenaille entre deux ennemis. Des forêts sur deux falaises dominent le lac central, accessible depuis les côtés de la carte."
+
+#: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
+msgid "Dueling Cliffs (3v3)"
+msgstr "Falaises rivales (3v3)"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""

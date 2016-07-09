@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-12 20:34+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-07 20:10+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -21,128 +21,128 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:7
+#: simulation/ai/common-api/shared.js:203
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Jídlo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Dřevo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Kov"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Kámen"
 
-#: simulation/ai/petra/chatHelper.js:21
+#: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Začínám obrovské vojenské tažení proti %(_player_)s, přijď a přidej se ke mně."
 
-#: simulation/ai/petra/chatHelper.js:23
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Zahajuji útok proti %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:25
+#: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Právě jsem poslal vojsko proti %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:43
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Nech mě přeskupit moje vojsko a jdu s tebou proti %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:45
+#: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Udělám konečné přípravy a zaútočím na %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:50
+#: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Nemůžu ti zatím pomoci proti %(_player_)s, protože jsem předvídal další útok proti %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:52
+#: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Omlouvám se, ale teď nemám dost vojáků, ale cílem mého příštího útoku bude %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Tady je dar pro %(_player_)s, dobře si jej užij."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Vidím, že jsi na tom špatně %(_player_)s, toto by mělo pomoci."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "Tentokrát ti mohu pomoci %(_player_)s, ale zkus v budoucnu nahromadit více zdrojů."
 
-#: simulation/ai/petra/chatHelper.js:95
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Potřebuji %(resource)s, můžeš pomoci? Oplatím ti to."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Účastnil bych se účinněji na tvém běžném válečném úsilí, pokud bys mi poskytl %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Pokud máte přebytek %(resource)s, pomohlo by to posílit moji armádu."
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Mám zřízenu novou cestu s %(_player_)s. Obchod nám všem bude přinášet zisk."
 
-#: simulation/ai/petra/chatHelper.js:117
+#: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Nová obchodní cesta je zřízena s %(_player_)s. Zajistěte si svůj podíl na zisku"
 
-#: simulation/ai/petra/chatHelper.js:132
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Postupuji do %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:134
+#: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Dosáhl jsem %(phase)s."
@@ -687,7 +687,7 @@ msgstr "Můžete zaútočit za %(time)s"
 msgid "You can attack now!"
 msgstr "Můžete zaútočit nyní!"
 
-#: simulation/components/EndGameManager.js:125
+#: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
 msgstr "Poslední zbývající hráč vyhrává."
 
@@ -757,32 +757,42 @@ msgstr "Výrobní řada je plná."
 msgid "Can't find free space to spawn trained units"
 msgstr "Nelze najít místo na vytváření cvičených jednotek"
 
-#: simulation/helpers/Cheat.js:63
+#: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
 msgstr "Je potřeba, abyste vybral budovu, v níž se provádí výcvik jednotek."
 
-#: simulation/helpers/Commands.js:126
+#: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
 msgstr "(Podfuk - Ovládat všechny jednotky)"
 
-#: simulation/helpers/Commands.js:559
+#: simulation/helpers/Commands.js:562
 msgid "(Cheat - promoted units)"
 msgstr "(Podfuk - povýšení jednotek)"
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:672
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr "Vylepšení nelze uvnitř tohoto odstupu provést, aniž by byla přezkoušena vzdálenost, nebo jsou v území položeny překážky."
+
+#: simulation/helpers/Commands.js:682
+msgid "Cannot upgrade a garrisoned entity."
+msgstr "Nelze provést vylepšení jednotky obsazené posádkou."
+
+#: simulation/helpers/Commands.js:728
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Požadován útok proti %(_player_)s."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:765
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nelze vyložit jednotky"
 
-#: simulation/helpers/Commands.js:729
+#: simulation/helpers/Commands.js:779
 msgid "Some unit(s) can't go back to work"
 msgstr "Některé jednotky nemohou jít zpět do práce"
 
-#: simulation/helpers/Commands.js:985
+#: simulation/helpers/Commands.js:1035
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požadavky na postavení budovy nejsou splněny."
 

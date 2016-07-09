@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-01 09:09+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid "Hellenic Royal Stoa"
 msgstr ""
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
+msgid "Recruit special units."
 msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:34
@@ -170,9 +170,10 @@ msgstr "Permite acceso a unidades a través de una puerta de ciudad. Puede ser b
 msgid "Long wall segments can be converted to gates."
 msgstr "Segmentos grandes de muralla pueden ser convertidos en puertas."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Convertir Muralla en Puerta de Ciudad"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -830,8 +831,8 @@ msgid "Taberna"
 msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Agrega +10 limite de población. Recluta Fanáticos Desnudos."
+msgid "Recruit Naked Fanatics."
+msgstr ""
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -1439,10 +1440,6 @@ msgstr ""
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr ""
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr ""
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr ""
@@ -1488,8 +1485,8 @@ msgid "Tabernāculum"
 msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Un refugio temporal para los soldados. +5 bonus de población."
+msgid "A temporary shelter for soldiers."
+msgstr ""
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29

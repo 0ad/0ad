@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 09:36+0000\n"
+"POT-Creation-Date: 2016-07-04 09:00+0200\n"
+"PO-Revision-Date: 2016-07-04 09:15+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -447,13 +447,13 @@ msgstr ""
 msgid "<%(user)s>"
 msgstr ""
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:353
-#: gui/session/selection_details.js:385 gui/session/session.js:829
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
+#: gui/session/selection_details.js:388 gui/session/session.js:829
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr ""
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:354
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
 msgid "Hitpoints:"
 msgstr ""
 
@@ -544,7 +544,7 @@ msgstr ""
 msgid "(%(genericName)s)"
 msgstr ""
 
-#: gui/session/selection_details.js:386
+#: gui/session/selection_details.js:389
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr ""
@@ -571,7 +571,8 @@ msgstr ""
 msgid "Sell %(resource)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:1021
+#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr ""
@@ -590,134 +591,152 @@ msgstr ""
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:483
 msgid "Lock Gate"
 msgstr ""
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:489
 msgid "Unlock Gate"
 msgstr ""
 
-#: gui/session/selection_panels.js:612
+#: gui/session/selection_panels.js:563
 msgid "Pack"
 msgstr ""
 
-#: gui/session/selection_panels.js:614
+#: gui/session/selection_panels.js:571
 msgid "Unpack"
 msgstr ""
 
-#: gui/session/selection_panels.js:616
+#: gui/session/selection_panels.js:579
 msgid "Cancel Packing"
 msgstr ""
 
-#: gui/session/selection_panels.js:618
+#: gui/session/selection_panels.js:587
 msgid "Cancel Unpacking"
 msgstr ""
 
-#: gui/session/selection_panels.js:678
+#: gui/session/selection_panels.js:650
 msgid "Insufficient population capacity:"
 msgstr ""
 
-#: gui/session/selection_panels.js:679
+#: gui/session/selection_panels.js:651
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:798
+#: gui/session/selection_panels.js:770
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/selection_panels_helpers.js:26
+#: gui/session/selection_panels.js:1071
+#, javascript-format
+msgid "Upgrade into a %(name)s. %(tooltip)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:1076
+#, javascript-format
+msgid "Upgrade into a %(name)s."
+msgstr ""
+
+#: gui/session/selection_panels.js:1095
+msgid "Cancel Upgrading"
+msgstr ""
+
+#: gui/session/selection_panels.js:1100
+msgid "Cannot upgrade when the entity is already upgrading."
+msgstr ""
+
+#: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
 msgid "Violent"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:28
+#: gui/session/selection_panels_helpers.js:35
 msgctxt "stance"
 msgid "Aggressive"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:30
+#: gui/session/selection_panels_helpers.js:37
 msgctxt "stance"
 msgid "Defensive"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:32
+#: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Passive"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:34
+#: gui/session/selection_panels_helpers.js:41
 msgctxt "stance"
 msgid "Standground"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:46
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:48
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:50
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:52
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:54
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:68
+#: gui/session/selection_panels_helpers.js:75
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:82
+#: gui/session/selection_panels_helpers.js:89
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:83
+#: gui/session/selection_panels_helpers.js:90
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:116
+#: gui/session/selection_panels_helpers.js:123
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:132
+#: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:134
+#: gui/session/selection_panels_helpers.js:141
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:137
+#: gui/session/selection_panels_helpers.js:144
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr ""
 
-#: gui/session/selection_panels_helpers.js:140
+#: gui/session/selection_panels_helpers.js:147
 msgid "Shift-click"
 msgstr ""
 

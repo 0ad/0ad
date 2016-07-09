@@ -185,8 +185,7 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 	if (sea !== undefined)
 		this.wantedFishShips[sea] = 0;
 	else
-		for (let i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
-			this.wantedFishShips[i] = 0;
+		this.wantedFishShips.fill(0);
 };
 
 m.NavalManager.prototype.setShipIndex = function(gameState, ship)

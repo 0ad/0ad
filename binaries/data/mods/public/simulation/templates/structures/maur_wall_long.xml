@@ -38,6 +38,14 @@
   <Obstruction>
     <Static width="35.0" depth="7.5"/>
   </Obstruction>
+  <Upgrade>
+    <Gate>
+      <Cost>
+        <wood>60</wood>
+        <stone>0</stone>
+      </Cost>
+    </Gate>
+  </Upgrade>
   <VisualActor>
     <Actor>structures/mauryans/wall_long.xml</Actor>
   </VisualActor>

@@ -21,6 +21,7 @@
 # sad2shade <sad.2.shade@gmail.com>, 2016
 # Simple88, 2016
 # vadim s. sabinich <vadim@sabini.ch>, 2015
+# _Arkan0ID_ <vinnikf24@gmail.com>, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # webslavic <webslavic@yahoo.com>, 2016
 # webslavic <webslavic@yahoo.com>, 2016
@@ -32,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:01+0200\n"
-"PO-Revision-Date: 2016-07-01 09:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-07 13:18+0000\n"
+"Last-Translator: _Arkan0ID_ <vinnikf24@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Городской центр"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Стройте, чтобы получить больше участков территории. Позволяет обучать горожан. Гарнизон: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -84,8 +85,8 @@ msgid "Hellenic Royal Stoa"
 msgstr "Эллинская царская стоа"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Добавляет +10 к населению. Обучает особенных юнитов."
+msgid "Recruit special units."
+msgstr "Тренируйте специальных юнитов."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -111,7 +112,7 @@ msgstr "Дом"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Позволяет обучать целителей и исследовать технологии лечения и религии. Можно разместить до 20 юнитов для быстрого лечения (3 пункта здоровья в секунду)."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -186,9 +187,10 @@ msgstr "Позволяют юнитам проходить через город
 msgid "Long wall segments can be converted to gates."
 msgstr "Длинные участки стен могут быть переделаны в ворота."
 
-#: simulation/templates/template_structure_defense_wall_long.xml:41
-msgid "Convert Stone Wall into City Gate"
-msgstr "Преобразовать каменную стену в городские ворота"
+#: simulation/templates/template_structure_defense_wall_long.xml:45
+msgid ""
+"This will allow you to let units circulate through your fortifications."
+msgstr "Это позволит вашим юнитам циркулировать через ваши укрепления."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -267,7 +269,7 @@ msgstr "Военное"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Позволяет обучать горожан-солдат и исследовать технологии военной подготовки. Гарнизон: 10."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -305,7 +307,7 @@ msgstr "Посольство"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Позволяет обучать героев, чемпионов, строить осадные орудия. А также исследовать технологии осадного оружия. Гарнизон: 20."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -453,7 +455,7 @@ msgstr "Эпитейхизма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Позволяет строить осадные орудия. А также размещать гарнизон до 20 солдат для усиления защиты."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -804,7 +806,7 @@ msgstr "Макдаш"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Позволяет обучать жриц для лечения войск, а также обучать священные отряды пикинёров. Можно разместить до 20 юнитов для быстрого восстановления здоровья."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -846,7 +848,7 @@ msgid "Taberna"
 msgstr "Таберна"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
-msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
+msgid "Recruit Naked Fanatics."
 msgstr "Добавляет +10 к пределу населения и позволяет нанимать голых фанатиков."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
@@ -951,7 +953,7 @@ msgstr "Тейхисма"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Позволяет обучать чемпионов и героев. Можно разместить гарнизон до 20 солдат для укрепления защиты."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1254,7 +1256,7 @@ msgstr "хвт-н-мщ"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Позволяет обучать египетских и ближневосточных горожан-солдат. А также исследовать технологии тренировок. Гарнизон: 10."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1455,10 +1457,6 @@ msgstr "Мурус Циркуммуниционис"
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "Деревянный и торфяной палисад может быть построен на вражеской и нейтральной территории."
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:58
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Переделать осадную стену в ворота"
-
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Стеновая осадная башня"
@@ -1504,7 +1502,7 @@ msgid "Tabernāculum"
 msgstr "Табернакулум"
 
 #: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers. +5 population bonus."
+msgid "A temporary shelter for soldiers."
 msgstr "Временный приют для солдат. Бонус +5 к пределу населения."
 
 #: simulation/templates/structures/rome_wall.xml:9
@@ -1559,7 +1557,7 @@ msgstr "Фрурион"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Позволяет строить осадные орудия и обучать чемпионов. А также размещать гарнизон до 20 солдат для усиления защиты."
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1625,4 +1623,4 @@ msgstr "Позволяет обучать спартанских героев и
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Чудо приносит славу вашей цивилизации и значительно расширяет территорию вашей империи. Позволяет разместить гарнизон до 30 юнитов для ускоренного восстановления здоровья."

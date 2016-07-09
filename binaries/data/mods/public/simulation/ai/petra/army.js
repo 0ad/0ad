@@ -379,21 +379,16 @@ m.Army.prototype.onUpdate = function (gameState)
 {
 	if (this.isCapturing(gameState))
 	{
-		let done = true;
+		// Check if we have still some capturePoints to recover
+		// and if not, remove this foe from the list (capture army have only one foe)
 		let capture = gameState.getEntityById(this.foeEntities[0]).capturePoints();
 		if (capture !== undefined)
 		{
 			for (let j = 0; j < capture.length; ++j)
-			{
 				if (gameState.isPlayerEnemy(j) && capture[j] > 0)
-				{
-					done = false;
-					break;
-				}
-			}
+					return [];
 		}
-		if (done)
-			this.removeFoe(gameState, this.foeEntities[0]);
+		this.removeFoe(gameState, this.foeEntities[0]);
 		return [];
 	}
 

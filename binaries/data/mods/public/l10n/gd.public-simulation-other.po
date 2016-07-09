@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-12 17:16+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:18+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,128 +21,128 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:7
+#: simulation/ai/common-api/shared.js:203
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "bìdh"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "fiodha"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "meatailt"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "cloiche"
 
-#: simulation/ai/petra/chatHelper.js:21
+#: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Tha airson ionnsaigh mhòr a thoirt an aghaidh %(_player_)s, an dig thu còmhla rium?"
 
-#: simulation/ai/petra/chatHelper.js:23
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Tha mi a’ toirt ionnsaigh air %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:25
+#: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Tha mi air feachd a chur a aghaidh %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:43
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Ath-bhuidhnicheam am feachd agam ’s thig mi do chuideachadh an aghaidh %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:45
+#: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Tha mi gu bhith ullamh is bheir mi ionnsaigh air %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:50
+#: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "Tha mi duilich ach chan urrainn dhomh do chuideachadh an aghaidh %(_player_)s an-dràsta on a tha ionnsaigh an aghaidh %(_player_2)s fainear dhomh."
 
-#: simulation/ai/petra/chatHelper.js:52
+#: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Tha mi duilich ach chan eil saighdearan gu leòr agam an-dràsta. Bheir mi an ath-ionnsaigh air %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Seo tìodhlac dha %(_player_)s, cleachd gu glic e."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "%(_player_)s, mhothaich mi gu bheil thu ann an droch-staing ’s tha mi ’n dòchas gun cuidich seo."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "’S urrainn dhomh ’gad cuideachadh an turas seo, %(_player_)s, ach feuch gun cruinnich thu barrachd stòrasan o seo a-mach."
 
-#: simulation/ai/petra/chatHelper.js:95
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Tha %(resource)s a dhìth orm, an urrainn dhut cuideachadh? Bhithinn-sa fada ’nad chomain."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "B’ urrainn dhomh barrachd taic a chur ris a ’chogaidh againn nan doireadh tu %(resource)s dhomh."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Nan robh beagan %(resource)s a bharrachd agad dhomh, neartaicheadh seo an t-arm agam."
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Tha mi air slighe-mhalairt ùr a stèidheachadh le %(_player_)s. Bidh am malart ’na bhuannachd dhuinn uile."
 
-#: simulation/ai/petra/chatHelper.js:117
+#: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Chaidh slighe-mhalairt ùr a stèidheachadh le %(_player_)s. Gabh do chuid dhen phròthaid"
 
-#: simulation/ai/petra/chatHelper.js:132
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Tha mi ag àrdachadh gu %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:134
+#: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Ràinig mi %(phase)s."
@@ -689,7 +689,7 @@ msgstr "’S urrainn dhut ionnsaigh a thoirt an ceann %(time)s"
 msgid "You can attack now!"
 msgstr "’S urrainn dhut ionnsaigh a thoirt a-nis!"
 
-#: simulation/components/EndGameManager.js:125
+#: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
 msgstr "Buannaichidh an cluicheadair a sheasas thar càich."
 
@@ -759,32 +759,42 @@ msgstr "Tha an ciutha làn."
 msgid "Can't find free space to spawn trained units"
 msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an trèanadh a shìoladh"
 
-#: simulation/helpers/Cheat.js:63
+#: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
 msgstr "Feumaidh tu togalach a thaghadh a thrèanaicheas aonadan."
 
-#: simulation/helpers/Commands.js:126
+#: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
 msgstr "(Cealgaireachd – stiùirich a h‑uile aonad)"
 
-#: simulation/helpers/Commands.js:559
+#: simulation/helpers/Commands.js:562
 msgid "(Cheat - promoted units)"
 msgstr "(Cealgaireachd – aonad air an àrdachadh)"
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:672
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr ""
+
+#: simulation/helpers/Commands.js:682
+msgid "Cannot upgrade a garrisoned entity."
+msgstr ""
+
+#: simulation/helpers/Commands.js:728
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Chaidh ionnsaigh an aghaidh %(_player_)s iarraidh."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:765
 msgid "Unable to ungarrison unit(s)"
 msgstr "Chan urrainn dhan aonad/dha na h-aonadan an gearastan falbh"
 
-#: simulation/helpers/Commands.js:729
+#: simulation/helpers/Commands.js:779
 msgid "Some unit(s) can't go back to work"
 msgstr "Chan urrainn dhan a h-uile aonad tilleadh dhan obair"
 
-#: simulation/helpers/Commands.js:985
+#: simulation/helpers/Commands.js:1035
 msgid "The building's technology requirements are not met."
 msgstr "Cha deach na riatanasan teicneòlais airson an togalaich a choileanadh."
 

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-10 08:31+0000\n"
+"POT-Creation-Date: 2016-07-04 09:01+0200\n"
+"PO-Revision-Date: 2016-07-04 08:18+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -21,128 +21,128 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:7
+#: simulation/ai/common-api/shared.js:203
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Харчі"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Деревина"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Метал"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Камінь"
 
-#: simulation/ai/petra/chatHelper.js:21
+#: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Я починаю масовану військову кампанію проти %(_player_)s, приходьте та приєднуйтеся до мене."
 
-#: simulation/ai/petra/chatHelper.js:23
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Я починаю атаку на %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:25
+#: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Я щойно відправив військо проти %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:43
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Дозволь мені перегрупувати свої війська і я піду з вами проти %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:45
+#: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Я зайнятий останніми приготуваннями до атаки на %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:50
+#: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
 msgstr "До пори до часу я не зможу вам допомогти напасти на %(_player_)s, бо моєю метою є %(_player_2)s."
 
-#: simulation/ai/petra/chatHelper.js:52
+#: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Вибач, зараз у мене недостатньо воїнів, але моєю наступною метою стане %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Ось подарунок для %(_player_)s, використай його з мудрістю."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Бачу справи в тебе кепські %(_player_)s, можливо це допоможе."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "Я можу допомогти вам цього разу %(_player_)s, але спробуйте зібрати більше ресурсів у майбутньому."
 
-#: simulation/ai/petra/chatHelper.js:95
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Мені потрібні %(resource)s, чи допоможеш? Я би допоміг."
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Я приймав би участь ефективніше у наших спільних військових діях, якби ви могли  надати мені деякі %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Якщо у вас є трохи надлишок %(resource)s, то це могло б допомогти мені посилити мою армію."
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Я створив новий маршрут з %(_player_)s. Торгівля буде вигідною для всіх нас."
 
-#: simulation/ai/petra/chatHelper.js:117
+#: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
 msgstr "Новий торговий маршрут створений з %(_player_)s. Візьміть свою частку прибутку"
 
-#: simulation/ai/petra/chatHelper.js:132
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Я розширююся до %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:134
+#: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Я вже досягнув %(phase)s."
@@ -687,7 +687,7 @@ msgstr "Ви можете атакувати о %(time)s"
 msgid "You can attack now!"
 msgstr "Уже можете атакувати!"
 
-#: simulation/components/EndGameManager.js:125
+#: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
 msgstr ""
 
@@ -757,32 +757,42 @@ msgstr "Черга виробництва заповнена."
 msgid "Can't find free space to spawn trained units"
 msgstr "Немає вільного місця, щоб готувати натреновані підрозділи"
 
-#: simulation/helpers/Cheat.js:63
+#: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
 msgstr ""
 
-#: simulation/helpers/Commands.js:126
+#: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:559
+#: simulation/helpers/Commands.js:562
 msgid "(Cheat - promoted units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:672
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr ""
+
+#: simulation/helpers/Commands.js:682
+msgid "Cannot upgrade a garrisoned entity."
+msgstr ""
+
+#: simulation/helpers/Commands.js:728
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запропонували атаку проти %(_player_)s."
 
-#: simulation/helpers/Commands.js:715
+#: simulation/helpers/Commands.js:765
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:729
+#: simulation/helpers/Commands.js:779
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:985
+#: simulation/helpers/Commands.js:1035
 msgid "The building's technology requirements are not met."
 msgstr "Технологічні вимоги до будівлі не дотримані."
 

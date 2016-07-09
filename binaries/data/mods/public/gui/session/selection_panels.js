@@ -650,7 +650,7 @@ g_SelectionPanels.Queue = {
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
 			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
-				"population": g_CostDisplayIcons.population,
+				"population": costIcon("population"),
 				"neededSlots": data.item.neededSlots
 			});
 		}
@@ -877,7 +877,7 @@ g_SelectionPanels.Selection = {
 		let tooltip = getEntityNames(template);
 		if (data.carried)
 			tooltip += "\n" + Object.keys(data.carried).map(res =>
-				g_CostDisplayIcons[res] + data.carried[res]
+				costIcon(res) + data.carried[res]
 			).join(" ");
 		data.button.tooltip = tooltip;
 
