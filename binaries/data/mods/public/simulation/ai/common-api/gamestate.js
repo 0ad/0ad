@@ -595,8 +595,15 @@ m.GameState.prototype.getOwnFoundations = function()
 m.GameState.prototype.getOwnDropsites = function(resource)
 {
 	if (resource !== undefined)
-		return this.updatingCollection("dropsite-" + resource, m.Filters.isDropsite(resource), this.getOwnEntities());
-	return this.updatingCollection("dropsite-all", m.Filters.isDropsite(), this.getOwnEntities());
+		return this.updatingCollection("ownDropsite-" + resource, m.Filters.isDropsite(resource), this.getOwnEntities());
+	return this.updatingCollection("ownDropsite-all", m.Filters.isDropsite(), this.getOwnEntities());
+};
+
+m.GameState.prototype.getAnyDropsites = function(resource)
+{
+	if (resource !== undefined)
+		return this.updatingGlobalCollection("anyDropsite-" + resource, m.Filters.isDropsite(resource), this.getEntities());
+	return this.updatingGlobalCollection("anyDropsite-all", m.Filters.isDropsite(), this.getEntities());
 };
 
 m.GameState.prototype.getResourceSupplies = function(resource)

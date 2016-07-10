@@ -541,17 +541,29 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	let foodDropsites = gameState.getOwnDropsites("food");
 	let entPosition = position ? position : this.ent.position();
 	let access = gameState.ai.accessibility.getAccessValue(entPosition);
+	let foodDropsites = (gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food")).toEntityArray();
 
 	let nearestDropsiteDist = function(supply) {
 		let distMin = 1000000;
 		let pos = supply.position();
-		foodDropsites.forEach(function (dropsite) {
-			if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
-				return;
-			let dist = API3.SquareVectorDistance(pos, dropsite.position());
-			if (dist < distMin)
-				distMin = dist;
-		});
+		for (let dropsite of foodDropsites)
+		{
+			if (!dropsite.position())
+				continue;
+			let owner = dropsite.owner();
+			// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
+			if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
+				continue;
+			let dropsiteAccess = dropsite.getMetadata(PlayerID, "access");
+			if (!dropsiteAccess)
+			{
+				dropsiteAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
+				dropsite.setMetadata(PlayerID, "access", dropsiteAccess);
+			}
+			if (dropsiteAccess !== access)
+				continue;
+			distMin = Math.min(distMin, API3.SquareVectorDistance(pos, dropsite.position()));
+		}
 		return distMin;
 	};
 
@@ -636,18 +648,29 @@ m.Worker.prototype.startFishing = function(gameState)
 
 	let entPosition = this.ent.position();
 	let fisherSea = this.ent.getMetadata(PlayerID, "sea");
-	let docks = gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt());
+	let fishDropsites = (gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food")).filter(API3.Filters.byClass("Dock")).toEntityArray();
 
 	let nearestDropsiteDist = function(supply) {
 		let distMin = 1000000;
 		let pos = supply.position();
-		docks.forEach(function (dock) {
-			if (!dock.position() || dock.getMetadata(PlayerID, "sea") !== fisherSea)
-				return;
-			let dist = API3.SquareVectorDistance(pos, dock.position());
-			if (dist < distMin)
-				distMin = dist;
-		});
+		for (let dropsite of fishDropsites)
+		{
+			if (!dropsite.position())
+				continue;
+			let owner = dropsite.owner();
+			// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
+			if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
+				continue;
+			let dropsiteSea = dropsite.getMetadata(PlayerID, "sea");
+			if (!dropsiteSea)
+			{
+				dropsiteSea = gameState.ai.accessibility.getAccessValue(dropsite.position(), true);
+				dropsite.setMetadata(PlayerID, "sea", dropsiteSea);
+			}
+			if (dropsiteSea !== fisherSea)
+				continue;
+			distMin = Math.min(distMin, API3.SquareVectorDistance(pos, dropsite.position()));
+		}
 		return distMin;
 	};
 

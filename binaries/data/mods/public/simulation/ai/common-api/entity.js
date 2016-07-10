@@ -623,6 +623,8 @@ m.Entity = m.Class({
 	decaying: function() { return this._entity.decaying !== undefined ? this._entity.decaying : undefined; },
 	capturePoints: function() {return this._entity.capturePoints !== undefined ? this._entity.capturePoints : undefined; },
 
+	"isSharedDropsite": function() { return this._entity.sharedDropsite === true; },
+
 	/**
 	 * Returns the current training queue state, of the form
 	 * [ { "id": 0, "template": "...", "count": 1, "progress": 0.5, "metadata": ... }, ... ]

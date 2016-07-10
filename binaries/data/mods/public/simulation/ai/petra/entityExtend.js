@@ -99,15 +99,29 @@ m.returnResources = function(gameState, ent)
 	let closestDropsite;
 	let distmin = Math.min();
 	let access = gameState.ai.accessibility.getAccessValue(ent.position());
-	gameState.getOwnDropsites(resource).forEach(function(dropsite) {
-		if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
-			return;
+	let dropsiteCollection = gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites(resource) : gameState.getOwnDropsites(resource);
+	for (let dropsite of dropsiteCollection.values())
+	{
+		if (!dropsite.position())
+			continue;
+		let owner = dropsite.owner();
+		// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
+		if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
+			continue;
+		let dropsiteAccess = dropsite.getMetadata(PlayerID, "access");
+		if (!dropsiteAccess)
+		{
+			dropsiteAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
+			dropsite.setMetadata(PlayerID, "access", dropsiteAccess);
+		}
+		if (dropsiteAccess !== access)
+			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), dropsite.position());
 		if (dist > distmin)
-			return;
+			continue;
 		distmin = dist;
 		closestDropsite = dropsite;
-	});
+	}
 
 	if (!closestDropsite)
 		return false;
