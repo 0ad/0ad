@@ -1,4 +1,4 @@
-const g_Amounts = {
+var g_Amounts = {
 	"scarce": 0.2,
 	"few": 0.5,
 	"normal": 1,
@@ -6,7 +6,7 @@ const g_Amounts = {
 	"tons": 3
 };
 
-const g_Mixes = {
+var g_Mixes = {
 	"same": 0,
 	"similar": 0.1,
 	"normal": 0.25,
@@ -14,7 +14,7 @@ const g_Mixes = {
 	"unique": 0.75
 };
 
-const g_Sizes = {
+var g_Sizes = {
 	"tiny": 0.5,
 	"small": 0.75,
 	"normal": 1,
@@ -22,11 +22,11 @@ const g_Sizes = {
 	"huge": 1.5,
 };
 
-const g_AllAmounts = Object.keys(g_Amounts);
-const g_AllMixes = Object.keys(g_Mixes);
-const g_AllSizes = Object.keys(g_Sizes);
+var g_AllAmounts = Object.keys(g_Amounts);
+var g_AllMixes = Object.keys(g_Mixes);
+var g_AllSizes = Object.keys(g_Sizes);
 
-const g_DefaultTileClasses = [
+var g_DefaultTileClasses = [
 	"animals",
 	"baseResource",
 	"berries",
@@ -86,7 +86,7 @@ function pickAmount(amounts)
 	if (amount in g_Amounts)
 		return g_Amounts[amount];
 
-	return g_Mixes.normal;
+	return g_Amounts.normal;
 }
 
 /**
