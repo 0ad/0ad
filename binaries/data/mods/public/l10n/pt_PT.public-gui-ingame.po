@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:00+0200\n"
-"PO-Revision-Date: 2016-07-04 09:15+0000\n"
+"POT-Creation-Date: 2016-07-08 09:00+0200\n"
+"PO-Revision-Date: 2016-07-08 09:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -586,81 +586,81 @@ msgstr "Comprar %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Vender %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
-#: gui/session/selection_panels.js:1085
+#: gui/session/selection_panels.js:325 gui/session/selection_panels.js:996
+#: gui/session/selection_panels.js:1086
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Requer %(technology)s"
 
-#: gui/session/selection_panels.js:442
+#: gui/session/selection_panels.js:443
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Descarregar %(name)s"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:445
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Clique esquerdo para descarregar 1 unidade. Shift + clique para descarregar todas as unidades deste tipo."
 
-#: gui/session/selection_panels.js:447
+#: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:483
+#: gui/session/selection_panels.js:484
 msgid "Lock Gate"
 msgstr "Fechar o portão"
 
-#: gui/session/selection_panels.js:489
+#: gui/session/selection_panels.js:490
 msgid "Unlock Gate"
 msgstr "Abrir o portão"
 
-#: gui/session/selection_panels.js:563
+#: gui/session/selection_panels.js:564
 msgid "Pack"
 msgstr "Montar"
 
-#: gui/session/selection_panels.js:571
+#: gui/session/selection_panels.js:572
 msgid "Unpack"
 msgstr "Desmontar"
 
-#: gui/session/selection_panels.js:579
+#: gui/session/selection_panels.js:580
 msgid "Cancel Packing"
 msgstr "Cancelar a montage"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:588
 msgid "Cancel Unpacking"
 msgstr "Cancelar a desmontagem"
 
-#: gui/session/selection_panels.js:650
+#: gui/session/selection_panels.js:651
 msgid "Insufficient population capacity:"
 msgstr "Capacidade populacional insuficiente:"
 
-#: gui/session/selection_panels.js:651
+#: gui/session/selection_panels.js:652
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:770
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Resta: %(number)s para construir."
 msgstr[1] "Restam: %(number)s para construir."
 
-#: gui/session/selection_panels.js:1071
+#: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1076
+#: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1095
+#: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
 msgstr ""
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr ""
 
@@ -887,79 +887,83 @@ msgstr "Clique com o botão direito do rato para estabelecer uma rota pré-defin
 msgid "Expected gain: %(gain)s"
 msgstr "Ganho esperado: %(gain)s"
 
-#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1270
+#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1255
 msgid "Unload All"
 msgstr "Desocupar"
 
-#: gui/session/unit_actions.js:994
-msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr "Não pode destruir esta entidade porque está na névoa da guerra"
-
-#: gui/session/unit_actions.js:1000
-msgid ""
-"You cannot destroy this entity as you own less than half the capture points"
-msgstr "Não pode destruir esta entidade porque controla menos que uma metade dos pontos de captura"
-
-#: gui/session/unit_actions.js:1007
+#: gui/session/unit_actions.js:998
 msgid "Destroy the selected units or buildings."
 msgstr ""
 
-#: gui/session/unit_actions.js:1009
+#: gui/session/unit_actions.js:1000
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr ""
 
-#: gui/session/unit_actions.js:1047
+#: gui/session/unit_actions.js:1032
 msgid "Abort the current order."
 msgstr ""
 
-#: gui/session/unit_actions.js:1067
+#: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1089
+#: gui/session/unit_actions.js:1074
 msgid "Unload"
 msgstr "Descarregar"
 
-#: gui/session/unit_actions.js:1106
+#: gui/session/unit_actions.js:1091
 msgid "Repair"
 msgstr "Reparar"
 
-#: gui/session/unit_actions.js:1124
+#: gui/session/unit_actions.js:1109
 msgid "Focus on Rally Point"
 msgstr "Ver o Ponto de Encontro"
 
-#: gui/session/unit_actions.js:1148
+#: gui/session/unit_actions.js:1133
 msgid "Back to Work"
 msgstr "Voltar a trabalhar"
 
-#: gui/session/unit_actions.js:1167
+#: gui/session/unit_actions.js:1152
 msgid "Order the selected units to guard a building or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1185
+#: gui/session/unit_actions.js:1170
 msgid "Remove guard"
 msgstr "Cancelar a guarda"
 
-#: gui/session/unit_actions.js:1202
+#: gui/session/unit_actions.js:1187
 msgid "Select trading goods"
 msgstr "Seleccionar recurso comercia"
 
-#: gui/session/unit_actions.js:1224
+#: gui/session/unit_actions.js:1209
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Prima para prevenir que os aliados utilizem este armazém"
 
-#: gui/session/unit_actions.js:1229
+#: gui/session/unit_actions.js:1214
 msgid "Press to allow allies to use this dropsite"
 msgstr "Prima para permitir que os aliados utilizem este armazém"
 
-#: gui/session/unit_actions.js:1291
+#: gui/session/unit_actions.js:1276
 msgid "You are allowed to use this dropsite"
 msgstr "É permitido usar este armazém"
 
-#: gui/session/unit_actions.js:1296
+#: gui/session/unit_actions.js:1281
 msgid "The use of this dropsite is prohibited"
 msgstr "Usar este armazém é proibido"
+
+#: gui/session/unit_actions.js:1341
+msgid "The entity has to be killed before it can be gathered from"
+msgstr ""
+
+#: gui/session/unit_actions.js:1344
+msgid ""
+"You cannot destroy this entity as you own less than half the capture points"
+msgstr "Não pode destruir esta entidade porque controla menos que uma metade dos pontos de captura"
+
+#: gui/session/unit_actions.js:1347
+msgid "This entity is undeletable"
+msgstr ""
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"

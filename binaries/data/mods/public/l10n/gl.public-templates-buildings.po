@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:39+0000\n"
+"POT-Creation-Date: 2016-07-08 09:01+0200\n"
+"PO-Revision-Date: 2016-07-08 08:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +45,7 @@ msgid "Colony"
 msgstr "Colonia"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:5
 msgid "Military Colony"
 msgstr "Colonia militar"
 
@@ -1302,6 +1303,10 @@ msgid ""
 msgstr "Estruturas de baixo custo similares aos cuarteis que poden construírse en territorio neutral, pero non exerce efecto no territorio.\n• Adestra mercenarios.\n• Non pode estar a menos de 100 metros doutros asentamentos militares."
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
+msgid "Klēroukhia"
+msgstr ""
+
+#: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

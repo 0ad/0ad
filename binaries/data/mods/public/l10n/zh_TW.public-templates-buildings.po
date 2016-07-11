@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-05 09:52+0000\n"
+"POT-Creation-Date: 2016-07-08 09:01+0200\n"
+"PO-Revision-Date: 2016-07-08 13:36+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,7 @@ msgid "Colony"
 msgstr "殖民地"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:5
 msgid "Military Colony"
 msgstr "軍事殖民地"
 
@@ -1303,6 +1304,10 @@ msgid ""
 msgstr "便宜的類軍營式的建築物，可以在中立的領土上建造，但對領土範圍則無任何影響。\n- 訓練傭兵。 \n- 與其他軍事殖民地的最小距離：100公尺。"
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
+msgid "Klēroukhia"
+msgstr "Klēroukhia"
+
+#: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

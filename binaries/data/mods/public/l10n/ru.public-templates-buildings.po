@@ -6,7 +6,7 @@
 # Alex <yanebotan@ngs.ru>, 2015
 # delpfine <delpfine2012@gmail.com>, 2015
 # delpfine <delpfine2012@gmail.com>, 2015
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
 # Igor Kustov, 2014
@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-07 13:18+0000\n"
-"Last-Translator: _Arkan0ID_ <vinnikf24@gmail.com>\n"
+"POT-Creation-Date: 2016-07-08 09:01+0200\n"
+"PO-Revision-Date: 2016-07-11 06:21+0000\n"
+"Last-Translator: Woratiklis\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +69,7 @@ msgid "Colony"
 msgstr "Колония"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:5
 msgid "Military Colony"
 msgstr "Военная колония"
 
@@ -752,7 +753,7 @@ msgstr "Итальянское посольство"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Позволяет нанимать италийских наёмников и исследовать улучшения для них."
+msgstr "Позволяет нанимать итальянских наёмников и исследовать улучшения для них."
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -1326,6 +1327,10 @@ msgid ""
 msgstr "Недорогие, не расширяющие зону влияния строения, типа бараков, которые строят на нейтральных территориях.\n- Тренирует наёмников.\n- Минимальное расстояние от военных построек: 100 метров."
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
+msgid "Klēroukhia"
+msgstr "Клерухия"
+
+#: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1483,7 +1488,7 @@ msgstr "Эдес Мартис"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Позволяет обучать целителей. Разместите юнитов внутри для быстрого восстановления здоровья."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"

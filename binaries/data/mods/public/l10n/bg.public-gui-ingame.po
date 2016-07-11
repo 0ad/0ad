@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:00+0200\n"
-"PO-Revision-Date: 2016-07-04 09:46+0000\n"
+"POT-Creation-Date: 2016-07-08 09:00+0200\n"
+"PO-Revision-Date: 2016-07-08 10:07+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -580,81 +580,81 @@ msgstr "Купуване на %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Продаване на %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
-#: gui/session/selection_panels.js:1085
+#: gui/session/selection_panels.js:325 gui/session/selection_panels.js:996
+#: gui/session/selection_panels.js:1086
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Изисква %(technology)s"
 
-#: gui/session/selection_panels.js:442
+#: gui/session/selection_panels.js:443
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Премахване на %(name)s"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:445
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Натиснете веднъж за премахване на 1. Шифт + щракване за премахване на всички от този вид."
 
-#: gui/session/selection_panels.js:447
+#: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Играч: %(playername)s"
 
-#: gui/session/selection_panels.js:483
+#: gui/session/selection_panels.js:484
 msgid "Lock Gate"
 msgstr "Заключване на портата"
 
-#: gui/session/selection_panels.js:489
+#: gui/session/selection_panels.js:490
 msgid "Unlock Gate"
 msgstr "Отключване на портата"
 
-#: gui/session/selection_panels.js:563
+#: gui/session/selection_panels.js:564
 msgid "Pack"
 msgstr "Опаковане"
 
-#: gui/session/selection_panels.js:571
+#: gui/session/selection_panels.js:572
 msgid "Unpack"
 msgstr "Разопаковане"
 
-#: gui/session/selection_panels.js:579
+#: gui/session/selection_panels.js:580
 msgid "Cancel Packing"
 msgstr "Спиране на опаковането"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:588
 msgid "Cancel Unpacking"
 msgstr "Спиране на разопаковането"
 
-#: gui/session/selection_panels.js:650
+#: gui/session/selection_panels.js:651
 msgid "Insufficient population capacity:"
 msgstr "Недостатъчен капацитет за население:"
 
-#: gui/session/selection_panels.js:651
+#: gui/session/selection_panels.js:652
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:770
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Остава: %(number)s за построяване."
 msgstr[1] "Остават: %(number)s за построяване."
 
-#: gui/session/selection_panels.js:1071
+#: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Надграждане до %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1076
+#: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Надграждане до %(name)s."
 
-#: gui/session/selection_panels.js:1095
+#: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
 msgstr "Спиране на надграждането"
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Не можете да надградите нещо, което вече се надгражда."
 
@@ -881,79 +881,83 @@ msgstr "Натиснете с десен бутон, за да установи�
 msgid "Expected gain: %(gain)s"
 msgstr "Очаквана печалба: %(gain)s"
 
-#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1270
+#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1255
 msgid "Unload All"
 msgstr "Премахване на всички"
 
-#: gui/session/unit_actions.js:994
-msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr "Този обект не може да бъде унищожен, защото е в мъглата на войната"
-
-#: gui/session/unit_actions.js:1000
-msgid ""
-"You cannot destroy this entity as you own less than half the capture points"
-msgstr "Този обект не може да бъде унищожен, защото притежавате по-малко от половината пленителни точки"
-
-#: gui/session/unit_actions.js:1007
+#: gui/session/unit_actions.js:998
 msgid "Destroy the selected units or buildings."
 msgstr "Унищожаване на избраните единици или сгради"
 
-#: gui/session/unit_actions.js:1009
+#: gui/session/unit_actions.js:1000
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Използвайте %(hotkey)s, за да не се показва прозорецът за потвърждение."
 
-#: gui/session/unit_actions.js:1047
+#: gui/session/unit_actions.js:1032
 msgid "Abort the current order."
 msgstr "Отмяна на текущата заповед."
 
-#: gui/session/unit_actions.js:1067
+#: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
 msgstr "Поставяне на избраните единици на гарнизон в сграда или единица."
 
-#: gui/session/unit_actions.js:1089
+#: gui/session/unit_actions.js:1074
 msgid "Unload"
 msgstr "Премахване"
 
-#: gui/session/unit_actions.js:1106
+#: gui/session/unit_actions.js:1091
 msgid "Repair"
 msgstr "Поправяне"
 
-#: gui/session/unit_actions.js:1124
+#: gui/session/unit_actions.js:1109
 msgid "Focus on Rally Point"
 msgstr "Центриране върху сборната точка"
 
-#: gui/session/unit_actions.js:1148
+#: gui/session/unit_actions.js:1133
 msgid "Back to Work"
 msgstr "Обратно на работа"
 
-#: gui/session/unit_actions.js:1167
+#: gui/session/unit_actions.js:1152
 msgid "Order the selected units to guard a building or unit."
 msgstr "Нареждане на избраните единици да пазят сграда или единица."
 
-#: gui/session/unit_actions.js:1185
+#: gui/session/unit_actions.js:1170
 msgid "Remove guard"
 msgstr "Спиране на пазенето"
 
-#: gui/session/unit_actions.js:1202
+#: gui/session/unit_actions.js:1187
 msgid "Select trading goods"
 msgstr "Изберете стока за търгуване"
 
-#: gui/session/unit_actions.js:1224
+#: gui/session/unit_actions.js:1209
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Щракнете, за да забраните на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1229
+#: gui/session/unit_actions.js:1214
 msgid "Press to allow allies to use this dropsite"
 msgstr "Щракнете, за да позволите на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1291
+#: gui/session/unit_actions.js:1276
 msgid "You are allowed to use this dropsite"
 msgstr "Вие можете да използвате това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1296
+#: gui/session/unit_actions.js:1281
 msgid "The use of this dropsite is prohibited"
 msgstr "Използването на това място за събиране на ресурси е забранено."
+
+#: gui/session/unit_actions.js:1341
+msgid "The entity has to be killed before it can be gathered from"
+msgstr "Този обект рябва да бъде убит, преди да може да добивате ресурси от него"
+
+#: gui/session/unit_actions.js:1344
+msgid ""
+"You cannot destroy this entity as you own less than half the capture points"
+msgstr "Този обект не може да бъде унищожен, защото притежавате по-малко от половината пленителни точки"
+
+#: gui/session/unit_actions.js:1347
+msgid "This entity is undeletable"
+msgstr "Този обект не може да бъде изтрит"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
