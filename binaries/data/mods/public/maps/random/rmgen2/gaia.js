@@ -1,4 +1,4 @@
-const g_Props = {
+var g_Props = {
 	"barrels": "actor|props/special/eyecandy/barrels_buried.xml",
 	"crate": "actor|props/special/eyecandy/crate_a.xml",
 	"cart": "actor|props/special/eyecandy/handcart_1_broken.xml",
@@ -6,7 +6,7 @@ const g_Props = {
 	"skeleton": "actor|props/special/eyecandy/skeleton.xml",
 };
 
-const g_DefaultDeviation = 0.1;
+var g_DefaultDeviation = 0.1;
 
 /**
  * Create bluffs, i.e. a slope hill reachable from ground level.
