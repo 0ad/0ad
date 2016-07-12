@@ -433,7 +433,9 @@ function controlsPlayer(playerID)
  */
 function playerFinished(player, won)
 {
-	reportGame();
+	if (player == Engine.GetPlayerID())
+		reportGame();
+
 	updateDiplomacy();
 	updateChatAddressees();
 
