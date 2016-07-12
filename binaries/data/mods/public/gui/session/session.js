@@ -225,12 +225,13 @@ function init(initData, hotloadData)
 		return;
 	}
 
+	g_GameAttributes = Engine.GetInitAttributes();
+
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked;
 		g_IsController = initData.isController;
 		g_PlayerAssignments = initData.playerAssignments;
-		g_GameAttributes = initData.attribs;
 		g_ReplaySelectionData = initData.replaySelectionData;
 		g_HasRejoined = initData.isRejoining;
 

@@ -256,9 +256,6 @@ Attack.prototype.CanAttack = function(target)
 		if (type == "Capture" && !QueryMiragedInterface(target, IID_Capturable))
 			continue;
 
-		if (type == "Slaughter" && targetClasses.indexOf("Domestic") == -1)
-			continue;
-
 		if (heightDiff > this.GetRange(type).max)
 			continue;
 
@@ -266,7 +263,8 @@ Attack.prototype.CanAttack = function(target)
 		if (!restrictedClasses.length)
 			return true;
 
-		return targetClasses.every(c => restrictedClasses.indexOf(c) == -1);
+		if (targetClasses.every(c => restrictedClasses.indexOf(c) == -1))
+			return true;
 	}
 
 	return false;
@@ -307,9 +305,6 @@ Attack.prototype.GetFullAttackRange = function()
 	let ret = { "min": Infinity, "max": 0 };
 	for (let type of this.GetAttackTypes())
 	{
-		// Ignore the special attack "slaughter" dedicated to domestic animals
-		if (type == "Slaughter")
-			continue;
 		let range = this.GetRange(type);
 		ret.min = Math.min(ret.min, range.min);
 		ret.max = Math.max(ret.max, range.max);
@@ -339,7 +334,7 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		return "Slaughter";
 
 	let attack = this;
-	let types = this.GetAttackTypes().filter(type => attack.GetRestrictedClasses(type).every(isTargetClass));
+	let types = this.GetAttackTypes().filter(type => !attack.GetRestrictedClasses(type).some(isTargetClass));
 
 	// check if the target is capturable
 	let captureIndex = types.indexOf("Capture");
@@ -357,7 +352,7 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	let isPreferred = className => attack.GetPreferredClasses(className).some(isTargetClass);
 
 	return types.sort((a, b) =>
-		(types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) -
+		(types.indexOf(a) + (isPreferred(a) ? types.length : 0)) -
 		(types.indexOf(b) + (isPreferred(b) ? types.length : 0))).pop();
 };
 

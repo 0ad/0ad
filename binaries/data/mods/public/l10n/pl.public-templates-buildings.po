@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-07 16:45+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2016-07-08 09:01+0200\n"
+"PO-Revision-Date: 2016-07-08 08:52+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,6 +58,7 @@ msgid "Colony"
 msgstr "Kolonia"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:5
 msgid "Military Colony"
 msgstr "Kolonia wojskowa"
 
@@ -1315,6 +1316,10 @@ msgid ""
 msgstr "Tanie baraki, budowane na Neutralnym terytorium, nie zajmujące nowego terenu.\n- Pozwala szkolić najemników.\n- Minimalna odległość od innych Wojskowych budynków: 100 metrów."
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
+msgid "Klēroukhia"
+msgstr ""
+
+#: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

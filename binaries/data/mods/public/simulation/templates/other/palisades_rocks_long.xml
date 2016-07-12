@@ -18,7 +18,7 @@
   </Footprint>
   <GarrisonHolder disable=""/>
   <Health>
-    <Max>600</Max>
+    <Max op="mul">0.25</Max>
     <SpawnEntityOnDeath>rubble/rubble_1x3pal</SpawnEntityOnDeath>
   </Health>
   <Identity>

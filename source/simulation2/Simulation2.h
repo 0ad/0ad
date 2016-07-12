@@ -103,6 +103,7 @@ public:
 	 * Get the data passed to SetInitAttributes.
 	 */
 	JS::Value GetInitAttributes();
+	void GetInitAttributes(JS::MutableHandleValue ret);
 
 	/**
 	 * Set the initial map settings (as a UTF-8-encoded JSON string),

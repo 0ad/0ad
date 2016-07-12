@@ -193,6 +193,13 @@ AIProxy.prototype.OnFoundationBuildersChanged = function(msg)
 	this.changes.foundationBuilders = msg.to;
 };
 
+AIProxy.prototype.OnDropsiteSharingChanged = function(msg)
+{
+	if (!this.NotifyChange())
+		return;
+	this.changes.sharedDropsite = msg.shared;
+};
+
 AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
 {
 	if (!this.NotifyChange())
@@ -284,6 +291,13 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnResourceCarryingChanged
 		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
+	}
+
+	let cmpResourceDropsite = Engine.QueryInterface(this.entity, IID_ResourceDropsite);
+	if (cmpResourceDropsite)
+	{
+		// Updated by OnDropsiteSharingChanged
+		ret.sharedDropsite = cmpResourceDropsite.IsShared();
 	}
 
 	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);

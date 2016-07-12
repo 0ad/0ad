@@ -13,18 +13,12 @@
   <BuildRestrictions>
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
-  <Cost>
-    <Resources>
-      <wood>80</wood>
-      <stone>0</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="40.0" depth="8.0"/>
     <Height>7.0</Height>
   </Footprint>
   <Health>
-    <Max>2000</Max>
+    <Max op="mul">0.75</Max>
   </Health>
   <Identity>
     <Civ>rome</Civ>

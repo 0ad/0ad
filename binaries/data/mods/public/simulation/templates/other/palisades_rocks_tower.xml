@@ -17,7 +17,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>400</Max>
+    <Max op="mul">0.25</Max>
     <SpawnEntityOnDeath>rubble/rubble_1x1pal</SpawnEntityOnDeath>
   </Health>
   <Identity>

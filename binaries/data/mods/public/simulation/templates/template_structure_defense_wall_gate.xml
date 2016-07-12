@@ -1,33 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense">
-  <BuildRestrictions>
-    <Category>Wall</Category>
-  </BuildRestrictions>
-  <Capturable disable=""/>
-  <Repairable>
-    <RepairTimeRatio>4.5</RepairTimeRatio>
-  </Repairable>
-  <Cost>
-    <BuildTime>0</BuildTime>
-    <Resources>
-      <stone>50</stone>
-    </Resources>
-  </Cost>
-  <Footprint>
-    <Square width="6.0" depth="6.0"/>
-    <Height>8.0</Height>
-  </Footprint>
+<Entity parent="template_structure_defense_wall_long">
+  <Auras disable=""/>
+  <GarrisonHolder disable=""/>
   <Gate>
     <PassRange>20</PassRange>
   </Gate>
-  <Health>
-    <Max>3000</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <GenericName>City Gate</GenericName>
     <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
-    <Classes datatype="tokens">-ConquestCritical StoneWall Gates</Classes>
+    <Classes datatype="tokens">Gates</Classes>
     <Icon>structures/gate.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
@@ -39,14 +20,13 @@
     <metal>0</metal>
   </Loot>
   <Obstruction>
+    <Static disable=""/>
     <Obstructions>
       <Right width="5" depth="5" x="10" z="0"/>
       <Left width="5" depth="5" x="-10" z="0"/>
       <Door width="20.0" depth="6.5" x="0" z="0"/>
     </Obstructions>
   </Obstruction>
-  <ProductionQueue disable=""/>
-  <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gate.xml</select>
@@ -58,12 +38,5 @@
       <gate_unlocked>interface/select/building/sel_gate.xml</gate_unlocked>
     </SoundGroups>
   </Sound>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>20</Radius>
-    <Weight>65535</Weight>
-  </TerritoryInfluence>
-  <VisualActor>
-    <FoundationActor>structures/fndn_wall.xml</FoundationActor>
-  </VisualActor>
+  <Upgrade disable=""/>
 </Entity>

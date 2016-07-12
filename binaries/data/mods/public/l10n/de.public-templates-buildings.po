@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-07 06:26+0000\n"
-"Last-Translator: James Jakubczyk <beshir75@gmail.com>\n"
+"POT-Creation-Date: 2016-07-08 09:01+0200\n"
+"PO-Revision-Date: 2016-07-08 12:50+0000\n"
+"Last-Translator: Maximilian Wagenbach <foaly.f@web.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,6 +64,7 @@ msgid "Colony"
 msgstr "Kolonie"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/structures/ptol_military_colony.xml:5
 msgid "Military Colony"
 msgstr "Militärkolonie"
 
@@ -185,7 +186,7 @@ msgstr "Lange Mauersegmente können in Tore umgewandelt werden."
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "Diese option laesst deine Units innerhalb der Befestigungs begrenzung zirkulieren."
+msgstr "Lässt deine Einheiten innerhalb deiner Befestigung im Kreis patroulieren."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -1321,6 +1322,10 @@ msgid ""
 msgstr "Günstiges, einer Kaserne ähnliches Gebäude, das im neutralen Bereich errichtet werden kann, aber keinen territorialen Einfluss hat.\n- Heure Söldner an.\n- Min. Abstand zu anderen militärischen Siedlungen: 100 Meter."
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
+msgid "Klēroukhia"
+msgstr "Klēroukhia"
+
+#: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

@@ -748,6 +748,11 @@ JS::Value CSimulation2::GetInitAttributes()
 	return m->m_InitAttributes.get();
 }
 
+void CSimulation2::GetInitAttributes(JS::MutableHandleValue ret)
+{
+	ret.set(m->m_InitAttributes);
+}
+
 void CSimulation2::SetMapSettings(const std::string& settings)
 {
 	m->m_ComponentManager.GetScriptInterface().ParseJSON(settings, &m->m_MapSettings);

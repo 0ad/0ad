@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
-  <Cost>
-    <BuildTime>60</BuildTime>
-    <Resources>
-      <stone>100</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="31.0" depth="11.0"/>
     <Height>9.0</Height>
   </Footprint>
-  <Health>
-    <Max>9000</Max>
-  </Health>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Jdar</SpecificName>

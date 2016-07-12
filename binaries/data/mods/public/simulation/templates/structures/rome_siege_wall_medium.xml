@@ -24,7 +24,7 @@
     <Height>7.0</Height>
   </Footprint>
   <Health>
-    <Max>1500</Max>
+    <Max op="mul">0.75</Max>
   </Health>
   <GarrisonHolder>
     <VisibleGarrisonPoints>

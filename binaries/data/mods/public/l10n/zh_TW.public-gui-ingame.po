@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:00+0200\n"
-"PO-Revision-Date: 2016-07-05 10:01+0000\n"
+"POT-Creation-Date: 2016-07-08 09:00+0200\n"
+"PO-Revision-Date: 2016-07-08 13:41+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -565,80 +565,80 @@ msgstr "購買 %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "賣出 %(resource)s"
 
-#: gui/session/selection_panels.js:324 gui/session/selection_panels.js:995
-#: gui/session/selection_panels.js:1085
+#: gui/session/selection_panels.js:325 gui/session/selection_panels.js:996
+#: gui/session/selection_panels.js:1086
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/session/selection_panels.js:442
+#: gui/session/selection_panels.js:443
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下 %(name)s"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:445
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 
-#: gui/session/selection_panels.js:447
+#: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "玩家：%(playername)s"
 
-#: gui/session/selection_panels.js:483
+#: gui/session/selection_panels.js:484
 msgid "Lock Gate"
 msgstr "鎖住大門"
 
-#: gui/session/selection_panels.js:489
+#: gui/session/selection_panels.js:490
 msgid "Unlock Gate"
 msgstr "開放大門"
 
-#: gui/session/selection_panels.js:563
+#: gui/session/selection_panels.js:564
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:571
+#: gui/session/selection_panels.js:572
 msgid "Unpack"
 msgstr "解壓縮"
 
-#: gui/session/selection_panels.js:579
+#: gui/session/selection_panels.js:580
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:588
 msgid "Cancel Unpacking"
 msgstr "取消解壓縮"
 
-#: gui/session/selection_panels.js:650
+#: gui/session/selection_panels.js:651
 msgid "Insufficient population capacity:"
 msgstr "人口上限不足："
 
-#: gui/session/selection_panels.js:651
+#: gui/session/selection_panels.js:652
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:770
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels.js:1071
+#: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "升級至 %(name)s。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1076
+#: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "升級至 %(name)s。"
 
-#: gui/session/selection_panels.js:1095
+#: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
 msgstr "取消升級"
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "當該實體正在升級時無法升級。"
 
@@ -865,79 +865,83 @@ msgstr "右鍵單擊以幫商人設定預設貿易路線。"
 msgid "Expected gain: %(gain)s"
 msgstr "預期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1270
+#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1255
 msgid "Unload All"
 msgstr "卸下所有"
 
-#: gui/session/unit_actions.js:994
-msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr "因為這個物體在戰爭迷霧中，所以您無法摧毀這個物體。"
-
-#: gui/session/unit_actions.js:1000
-msgid ""
-"You cannot destroy this entity as you own less than half the capture points"
-msgstr "您無法破壞此實體，因為您的捕獲點不到一半"
-
-#: gui/session/unit_actions.js:1007
+#: gui/session/unit_actions.js:998
 msgid "Destroy the selected units or buildings."
 msgstr "破壞選定的單位或建築物。"
 
-#: gui/session/unit_actions.js:1009
+#: gui/session/unit_actions.js:1000
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "使用 %(hotkey)s 以避免確認對話框。"
 
-#: gui/session/unit_actions.js:1047
+#: gui/session/unit_actions.js:1032
 msgid "Abort the current order."
 msgstr "放棄目前的命令。"
 
-#: gui/session/unit_actions.js:1067
+#: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
 msgstr "命令選定的單位駐守至建築物或單位內。"
 
-#: gui/session/unit_actions.js:1089
+#: gui/session/unit_actions.js:1074
 msgid "Unload"
 msgstr "卸下"
 
-#: gui/session/unit_actions.js:1106
+#: gui/session/unit_actions.js:1091
 msgid "Repair"
 msgstr "修復"
 
-#: gui/session/unit_actions.js:1124
+#: gui/session/unit_actions.js:1109
 msgid "Focus on Rally Point"
 msgstr "在集合點集中"
 
-#: gui/session/unit_actions.js:1148
+#: gui/session/unit_actions.js:1133
 msgid "Back to Work"
 msgstr "回去工作"
 
-#: gui/session/unit_actions.js:1167
+#: gui/session/unit_actions.js:1152
 msgid "Order the selected units to guard a building or unit."
 msgstr "命令選定的單位保護建築物或單位。"
 
-#: gui/session/unit_actions.js:1185
+#: gui/session/unit_actions.js:1170
 msgid "Remove guard"
 msgstr "移除護衛"
 
-#: gui/session/unit_actions.js:1202
+#: gui/session/unit_actions.js:1187
 msgid "Select trading goods"
 msgstr "選取貿易貨品"
 
-#: gui/session/unit_actions.js:1224
+#: gui/session/unit_actions.js:1209
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以避免盟友使用此放置點"
 
-#: gui/session/unit_actions.js:1229
+#: gui/session/unit_actions.js:1214
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允許盟友使用這個資源放置點"
 
-#: gui/session/unit_actions.js:1291
+#: gui/session/unit_actions.js:1276
 msgid "You are allowed to use this dropsite"
 msgstr "您被允許使用此資源放置點"
 
-#: gui/session/unit_actions.js:1296
+#: gui/session/unit_actions.js:1281
 msgid "The use of this dropsite is prohibited"
 msgstr "禁止使用此資源放置點"
+
+#: gui/session/unit_actions.js:1341
+msgid "The entity has to be killed before it can be gathered from"
+msgstr "在您可以從其採集前，實體就已被殺害"
+
+#: gui/session/unit_actions.js:1344
+msgid ""
+"You cannot destroy this entity as you own less than half the capture points"
+msgstr "您無法破壞此實體，因為您的捕獲點不到一半"
+
+#: gui/session/unit_actions.js:1347
+msgid "This entity is undeletable"
+msgstr "此實體無法刪除"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
