@@ -28,8 +28,13 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	// Add -1 to notify observers too
 	let players = [-1];
 	for (let i = 1; i < numPlayers; ++i)
+	{
+		let cmpPlayer = QueryPlayerIDInterface(i);
+		if (cmpPlayer.GetState() == "won")
+			return;
 		if (i != data.to)
 			players.push(i);
+	}
 
 	let cmpPlayer = QueryOwnerInterface(ent, IID_Player);
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
@@ -58,7 +63,21 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	this.wonderVictoryMessages[ent] = messages;
 };
 
+Trigger.prototype.DeleteMessages = function(ent)
+{
+	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+	for (let ent in this.wonderVictoryMessages)
+	{
+		cmpGuiInterface.DeleteTimeNotification(this.wonderVictoryMessages[ent].ownMessage);
+		cmpGuiInterface.DeleteTimeNotification(this.wonderVictoryMessages[ent].otherMessage);
+		cmpTimer.CancelTimer(this.wonderVictoryTimers[ent]);
+	}
+};
+
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", { "enabled": true });
+cmpTrigger.RegisterTrigger("OnPlayerWon", "DeleteMessages", { "enabled": true });
 cmpTrigger.wonderVictoryTimers = {};
 cmpTrigger.wonderVictoryMessages = {};

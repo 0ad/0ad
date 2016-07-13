@@ -14,6 +14,8 @@ Trigger.prototype.eventNames =
 	"Interval",
 	"OwnershipChanged",
 	"PlayerCommand",
+	"PlayerDefeated",
+	"PlayerWon",
 	"Range",
 	"ResearchFinished",
 	"ResearchQueued",
@@ -251,6 +253,16 @@ Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	this.CallEvent("OwnershipChanged", msg);
 	// data is {"entity": ent, "from": playerId, "to": playerId}
+};
+
+Trigger.prototype.OnGlobalPlayerDefeated = function(msg)
+{
+	this.CallEvent("PlayerDefeated", msg);
+};
+
+Trigger.prototype.OnGlobalPlayerWon = function(msg)
+{
+	this.CallEvent("PlayerWon", msg);
 };
 
 /**
