@@ -538,7 +538,6 @@ m.Worker.prototype.startHunting = function(gameState, position)
 
 	let isCavalry = this.ent.hasClass("Cavalry");
 	let isRanged = this.ent.hasClass("Ranged");
-	let foodDropsites = gameState.getOwnDropsites("food");
 	let entPosition = position ? position : this.ent.position();
 	let access = gameState.ai.accessibility.getAccessValue(entPosition);
 	let foodDropsites = (gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food")).toEntityArray();

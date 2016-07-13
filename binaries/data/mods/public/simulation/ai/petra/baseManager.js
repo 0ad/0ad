@@ -50,7 +50,7 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.units.registerUpdates();
 	this.workers.registerUpdates();
 	this.buildings.registerUpdates();
-	
+
 	// array of entity IDs, with each being
 	this.dropsites = {};
 	this.dropsiteSupplies = {};

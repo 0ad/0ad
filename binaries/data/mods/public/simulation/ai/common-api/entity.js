@@ -108,14 +108,8 @@ m.Template = m.Class({
 			return undefined;
 
 		let ret = {};
-		let typeCost;
 		for (let type in this.get("Cost/Resources"))
-		{
-			typeCost = +this.get("Cost/Resources/" + type);
-			if (productionQueue)
-				typeCost *= productionQueue.techCostMultiplier(type);
-			ret[type] = typeCost;
-		}
+			ret[type] = +this.get("Cost/Resources/" + type);
 		return ret;
 	},
 
