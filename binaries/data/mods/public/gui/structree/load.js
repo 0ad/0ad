@@ -162,17 +162,15 @@ function loadStructure(templateName)
 				continue;
 			}
 
-			if (health.min > wPart.health)
-				health.min = wPart.health;
-			else if (health.max < wPart.health)
-				health.max = wPart.health;
+			health.min = Math.min(health.min, wPart.health);
+			health.max = Math.max(health.max, wPart.health);
 		}
 		if (health.min == health.max)
 			structure.health = health.min;
 		else
 			structure.health = sprintf(translate("%(val1)s to %(val2)s"), {
-				val1: health.min,
-				val2: health.max
+				"val1": health.min,
+				"val2": health.max
 			});
 	}
 
