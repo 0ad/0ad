@@ -778,10 +778,7 @@ function getMapDisplayName(map)
 
 	let mapData = loadMapData(map);
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
-	{
-		warn("Map without name: " + map);
 		return map;
-	}
 
 	return mapData.settings.Name;
 }
