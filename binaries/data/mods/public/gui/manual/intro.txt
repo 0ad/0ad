@@ -65,9 +65,9 @@ T: Send team chat
 Pause: Pause/resume the game
 Delete: Delete currently selected units/buildings
 Shift + Delete: Delete currently selected units/buildings without confirmation
-,: Select idle fighters
-Shift + ,: add idle fighter to selection
-.: Select idle workers (including citizen soldiers)
+/ (ForwardSlash): Select idle fighter
+Shift + /: add idle fighter to selection
+. (Period): Select idle worker (including citizen soldiers)
 Shift + .: add idle worker to selection (including citizen soldiers)
 H: Stop (halt) the currently selected units.
 Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the selected units/buildings
@@ -120,7 +120,7 @@ R: Reset camera zoom/orientation
 +: Zoom in (keep pressed for continuous zoom)
 -: Zoom out (keep pressed for continuous zoom)
 Alt + W: Toggle through wireframe modes
-Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to pan
+Middle Mouse Button: Keep pressed and move the mouse to pan
 
 [font="sans-bold-14"]During Building Placement
 [font="sans-14"]\[: Rotate building 15 degrees counter-clockwise
