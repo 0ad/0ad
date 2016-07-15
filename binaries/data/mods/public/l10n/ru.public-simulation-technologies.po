@@ -40,7 +40,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-07-08 23:15+0000\n"
+"PO-Revision-Date: 2016-07-13 20:57+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -971,7 +971,7 @@ msgstr "Прочные топоры"
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid "Increases stone gathering rates."
-msgstr "Увеличивает добычу камня."
+msgstr "Увеличивает скорость добычи камня."
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
@@ -1010,7 +1010,7 @@ msgstr "Дулой"
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid "Increases metal gathering rates."
-msgstr "Увеличивает добычу металла."
+msgstr "Увеличивает скорость добычи металла."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
@@ -1927,21 +1927,21 @@ msgstr "У кельтских наёмников снижена стоимост
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Наймите кельтского капитана для уменьшения стоимости кельтских наёмников на -20 металла."
+msgstr "Наймите кельтского военачальника для уменьшения стоимости кельтских наёмников на -20 металла."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
-msgstr "Кельтский капитан наёмников"
+msgstr "Кельтский командир наёмников"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Наймите галльского капитана для уменьшения стоимости галльских наёмников на -20 металла."
+msgstr "Наймите галльского военачальника для уменьшения стоимости галльских наёмников на -20 металла."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
-msgstr "Галльский капитан наёмников"
+msgstr "Галльский командир наёмников"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
@@ -1956,17 +1956,17 @@ msgstr "Найми лузитанского капитана для уменьш
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
-msgstr "Лузитанский капитан наёмников"
+msgstr "Лузитанский военачальник наёмников"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Наймите кельтиберийского капитана для уменьшения стоимости кельтиберийских наёмников на -20 металла."
+msgstr "Наймите кельтиберийского командира для уменьшения стоимости кельтиберийских наёмников на -20 металла."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
-msgstr "Кельтиберский капитан наёмников"
+msgstr "Кельтиберский командир наёмников"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
@@ -1977,11 +1977,11 @@ msgstr "У наёмников италийцев снижена стоимост
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Найми италиотского капитана для уменьшения стоимости италиотских наёмников на -20 металла."
+msgstr "Найми италиотского военачальника для уменьшения стоимости италиотских наёмников на -20 металла."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
-msgstr " Италиотский капитан наёмников"
+msgstr " Италиотский командир наёмников"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsontooltip
 msgid ""
@@ -1991,7 +1991,7 @@ msgstr "Найми италиотского генерала для уменьш
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
-msgstr "Италиотский генерал наёмников"
+msgstr "Италиотский командир наёмников"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
@@ -2021,7 +2021,7 @@ msgstr "Стоимость итальянского наймита и время
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Карфагеняне создали много торговых центров, колоний и в конечном счёте господствовали над 300 городами и населенными пунктами в одной только северной Африке."
+msgstr "Карфагеняне основали множество торговых центров, колоний, и в конечном счёте господствовали над 300 городами и населенными пунктами в одной только северной Африке."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
@@ -2038,7 +2038,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Никто лучше чем карфагеняне не знал куда в древнем мире они идут или могут пойти; у их торговцев были миссии повсюду."
+msgstr "Никто лучше карфагенян не знал куда в древнем мире они идут или могут пойти; у их торговцев были миссии повсюду."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
@@ -2069,16 +2069,16 @@ msgstr "У кельтских наёмников уменьшилось врем
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Алия с кельтскими городами даёт сокращение времени найма на -20% для кельтских наймитов."
+msgstr "Заключите союз с кельтскими поселениями, чтобы сократить время вербовки кельтских наёмников на -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr "Альянс с кельтами"
+msgstr "Союз с кельтами"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Покори племена галлов чтобы сократить время вербовки кельтских наёмников на -20%."
+msgstr "Покорите племена галлов, чтобы сократить время вербовки кельтских наёмников на -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
@@ -2092,16 +2092,16 @@ msgstr "У иберийских наёмников уменьшилось вре
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
 "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Алия с иберийскими городами даёт сокращение времени найма на -20% для иберийских наймитов."
+msgstr "Заключите союз с иберийскими поселениями, чтобы сократить время вербовки иберийский наёмников на -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr "Альянс с иберами"
+msgstr "Союз с иберами"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Подчини Римскую Испанию для сокращение времени найма на -20% для иберийских наймитов."
+msgstr "Подчините Испанию, чтобы сократить время вербовки иберийских наёмников на -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -2116,7 +2116,7 @@ msgstr "У итальянских наёмников уменьшилось вр
 msgid ""
 "Ally with Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr "Алия с италиотскими городами даёт сокращение времени найма на -20% для италиотских наймитов."
+msgstr "Заключите союз с италиотскими городами, чтобы сократить время вербовки италиотских наёмников на -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
@@ -2126,7 +2126,7 @@ msgstr "Италиотский альянс"
 msgid ""
 "Subjugate Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr "Покори италиотов чтобы сократить время вербовки итальянских наёмников на -20%."
+msgstr "Покориту италиотов, чтобы сократить время вербовки итальянских наёмников на -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
@@ -2134,14 +2134,14 @@ msgstr "Италиотская гегемония"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Повысь всех кельтских наёмников в ранге до улучшенного."
+msgstr "Повысьте всех кельтских наёмников в ранге до улучшенного."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Повысь всех кельтских наёмников в ранге до улучшенного. Это повысит их воинскую доблесть, но уменьшит сбор мяса на -25%. Открывает технологию \"элитный кельтский наёмник\"."
+msgstr "Повысьте всех кельтских наёмников в ранге до улучшенного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов на -25%. Открывает технологию \"Элитный кельтский наёмник\"."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2149,14 +2149,14 @@ msgstr "Улучшенные кельтские наёмники"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Повысь всех иберийских наёмников в ранге до улучшенного."
+msgstr "Повысьте всех иберийских наёмников в ранге до улучшенного."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Повысь всех иберийских наёмников в ранге до улучшенного. Это повысит их воинскую доблесть, но уменьшит сбор мяса на -25%. Открывает технологию \"элитный иберийский наёмник\"."
+msgstr "Повысьте всех иберийских наёмников в ранге до улучшенного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов на -25%. Открывает технологию \"Элитный иберийский наёмник\"."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2164,14 +2164,14 @@ msgstr "Улучшенные иберийские наёмники"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Повысь всех италиотских наёмников в ранге до улучшенного."
+msgstr "Повысьте всех италиотских наёмников в ранге до улучшенного."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Повысь всех италиотских наёмников в ранге до улучшенного. Это повысит их воинскую доблесть, но уменьшит сбор мяса на -25%. Открывает технологию \"элитный италиотский наёмник\"."
+msgstr "Повысьте всех италиотских наёмников в ранге до улучшенного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов на -25%. Открывает технологию \"Элитный италиотский наёмник\"."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2179,13 +2179,13 @@ msgstr "Улучшенные италиотские наёмники"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr "Повысь всех кельтских наёмников в ранге до элитного."
+msgstr "Повысьте всех кельтских наёмников в ранге до элитного."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Повысь всех кельтских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но уменьшит сбор мяса ещё на -25%."
+msgstr "Повысьте всех кельтских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2199,7 +2199,7 @@ msgstr "Повысь всех иберийских наёмников в ран�
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Повысь всех иберийских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но уменьшит сбор мяса ещё на -25%."
+msgstr "Повысь всех иберийских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2214,7 +2214,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Повысь всех италиотских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но уменьшит сбор мяса ещё на -25%."
+msgstr "Повысь всех италиотских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2225,7 +2225,7 @@ msgid ""
 "Celtic structures were mostly made of wood with rubble foundations. "
 "Consequently, their structures have less health than other cultures do, but "
 "they also construct faster."
-msgstr "Кельтские сооружения были в основном из дерева с каменными фундаментами. Поэтому их постройки имеют меньше жизнеспособности, чем у других культур, но возводятся быстрее."
+msgstr "Кельтские сооружения были в основном из дерева с каменными фундаментами. Поэтому их постройки менее прочные, чем у других культур, но возводятся быстрее."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2267,13 +2267,13 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "У спартанцев была не самая большая армия в мире, но она была самой лучшей в те времена. Недостаток количества они компенсировали качеством. Говорили, что Спарте не нужны крепкие городские стены, так как их стены - это спартанские мужчины. "
+msgstr "У спартанцев была не самая большая армия в мире, но она была самой лучшей в те времена. Недостаток количества они восполняли качеством. Говорили, что Спарте не нужны крепкие городские стены, поскольку её мужчины служили ей стенами. "
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Спартанцы обучались с детства чтобы быть превосходными воинами и уметь терпеть любые трудности военной жизни."
+msgstr "Спартанцы обучались с детства, чтобы быть превосходными воинами и уметь превозмогать любые тяготы военной жизни."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
