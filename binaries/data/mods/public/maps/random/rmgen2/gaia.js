@@ -872,6 +872,19 @@ function addMetal(constraint, size, deviation, fill)
 	}
 }
 
+function addSmallMetal(constraint, size, mixes, amounts)
+{
+	let deviation = getRandomDeviation(size || 1, mixes || g_DefaultDeviation);
+	let count = 1 + scaleByMapSize(20, 20) * (amounts || 1);
+	let mines = [[new SimpleObject(g_Gaia.metalSmall, 2 * deviation, 5 * deviation, 1 * deviation, 3 * deviation)]];
+
+	for (let i = 0; i < mines.length; ++i)
+	{
+		let group = new SimpleGroup(mines[i], true, g_TileClasses.metal);
+		createObjectGroups(group, 0, constraint, count, 100);
+	}
+}
+
 /**
  * Create stone mines.
  */
@@ -1252,4 +1265,53 @@ function getRandomDeviation(base, deviation)
 	deviation = Math.min(base, deviation);
 	deviation = base + randInt(20 * deviation) / 10 - deviation;
 	return deviation.toFixed(2);
+}
+
+/**
+ * Import a given digital elevation model.
+ * Scale it to the mapsize and paint the textures specified by coordinate on it.
+ *
+ * @param heightmap - An array with a square number of heights
+ * @param tilemap - The IDs of the palletmap to be painted for each heightmap tile
+ * @param pallet - The tile texture names used by the tilemap.
+ * @returns the ratio of heightmap tiles per map size tiles
+ */
+function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
+{
+	let lastI = -1;
+	let mapSize = getMapSize();
+	let hmSize = Math.sqrt(heightmap.length);
+	let scale = hmSize / mapSize;
+
+	for (let y = 0; y < mapSize; ++y)
+		for (let x = 0; x < mapSize; ++x)
+		{
+			let i = Math.floor(x * scale) * hmSize + Math.floor(y * scale);
+
+			let height = heightmap[i];
+			let tile = pallet[tilemap[i]];
+
+			if (i == lastI)
+			{
+				let nearby = [i];
+
+				if (i + hmSize < heightmap.length)
+					nearby.push(i + hmSize);
+
+				tile = pallet[tilemap[nearby[randInt(0, nearby.length - 1)]]];
+
+				// Average
+				height = nearby.reduce((sum, value) => sum + value) / nearby.length;
+			}
+
+			setHeight(x, y, height);
+			placeTerrain(x, y, tile);
+
+			if (func)
+				func(tile, x, y);
+
+			lastI = i;
+		}
+
+	return Math.sqrt(heightmap.length) / g_MapInfo.mapSize;
 }
