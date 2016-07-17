@@ -195,7 +195,7 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.ccInfluenceRadius = { "1": 60, "2": 120 };
 	this.resourceMaps = {};   // Contains maps showing the density of resources
 	this.ccResourceMaps = {}; // Contains maps showing the density of resources, optimized for CC placement.
-	this.createResourceMaps(this);
+	this.createResourceMaps();
 
 	/** Keep in sync with gui/common/l10n.js */
 	this.resourceNames = {
@@ -251,7 +251,7 @@ m.SharedScript.prototype.onUpdate = function(state)
 		this.gameState[i].update(this);
 
 	// TODO: merge this with "ApplyEntitiesDelta" since after all they do the same.
-	this.updateResourceMaps(this, this.events);
+	this.updateResourceMaps(this.events);
 	
 	Engine.ProfileStop();
 };
