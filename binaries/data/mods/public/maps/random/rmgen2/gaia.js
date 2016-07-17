@@ -1296,12 +1296,12 @@ function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
 				let nearby = [i];
 
 				if (i + hmSize < heightmap.length)
+				{
 					nearby.push(i + hmSize);
+					height = (heightmap[nearby[0]] + heightmap[nearby[1]]) / 2;
+				}
 
 				tile = pallet[tilemap[nearby[randInt(0, nearby.length - 1)]]];
-
-				// Average
-				height = nearby.reduce((sum, value) => sum + value) / nearby.length;
 			}
 
 			setHeight(x, y, height);
