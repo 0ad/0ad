@@ -863,10 +863,15 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 {
 	if (!this.ent.unitAIOrderData()[0] || !this.ent.unitAIOrderData()[0].target)
 		return false;
+	let targetId = this.ent.unitAIOrderData()[0].target;
+	let target = gameState.getEntityById(targetId);
+	if (!target)
+		return true;
+
 	let approachingTarget = this.ent.getMetadata(PlayerID, "approachingTarget");
-	if (!approachingTarget || approachingTarget !== this.ent.unitAIOrderData()[0].target)
+	if (!approachingTarget || approachingTarget !== targetId)
 	{
-		this.ent.setMetadata(PlayerID, "approachingTarget", this.ent.unitAIOrderData()[0].target);
+		this.ent.setMetadata(PlayerID, "approachingTarget", targetId);
 		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
 		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
 		this.ent.setMetadata(PlayerID, "carriedAmount", undefined);
@@ -882,8 +887,12 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 		return false;
 	}
 
+	let inaccessibleTime = target.getMetadata(PlayerID, "inaccessibleTime");
+	if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
+		return true;
+
 	let approachingTime = this.ent.getMetadata(PlayerID, "approachingTime");
-	if (!approachingTime || gameState.ai.elapsedTime - approachingTime > 5)
+	if (!approachingTime || gameState.ai.elapsedTime - approachingTime > 3)
 	{
 		let presentPos = this.ent.position();
 		let approachingPos = this.ent.getMetadata(PlayerID, "approachingPos");
@@ -892,12 +901,10 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 			this.ent.setMetadata(PlayerID, "approachingTime", gameState.ai.elapsedTime);
 			this.ent.setMetadata(PlayerID, "approachingPos", presentPos);
 		}
-		else if (gameState.ai.elapsedTime - approachingTime > 15)
+		else if (gameState.ai.elapsedTime - approachingTime > 10)
 		{
-			let targetId = this.ent.unitAIOrderData()[0].target;
-			let target = gameState.getEntityById(targetId);
-			if (target)
-				target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);
+
+			target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);
 			return true;
 		}
 	}
