@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_civic_house">
-  <Cost>
-    <PopulationBonus>10</PopulationBonus>
-    <BuildTime>53</BuildTime>
-    <Resources>
-      <wood>150</wood>
-    </Resources>
-  </Cost>
-  <GarrisonHolder>
-    <Max>6</Max>
-  </GarrisonHolder>
-  <Health>
-    <Max>1091</Max>
-  </Health>
+<Entity parent="template_structure_civic_house_big">
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Oîkos</SpecificName>

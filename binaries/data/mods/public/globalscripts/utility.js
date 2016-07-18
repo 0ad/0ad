@@ -5,13 +5,14 @@
  */
 function clone(o)
 {
+	let r;
 	if (o instanceof Array)
-		var r = [];
+		r = [];
 	else if (o instanceof Object)
-		var r = {};
+		r = {};
 	else // native data type
 		return o;
-	for (var key in o)
+	for (let key in o)
 		r[key] = clone(o[key]);
 	return r;
 }

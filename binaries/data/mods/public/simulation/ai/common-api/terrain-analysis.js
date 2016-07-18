@@ -381,7 +381,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 };
 
 /** creates a map of resource density */
-m.SharedScript.prototype.createResourceMaps = function(sharedScript)
+m.SharedScript.prototype.createResourceMaps = function()
 {
 	for (let resource of this.resourceList)
 	{
@@ -392,10 +392,10 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript)
 			continue;
 		// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
 		// But at that point the precision is not really important anyway. And it saves memory.
-		this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
-		this.ccResourceMaps[resource] = new m.Map(sharedScript, "resource");
+		this.resourceMaps[resource] = new m.Map(this, "resource");
+		this.ccResourceMaps[resource] = new m.Map(this, "resource");
 	}
-	for (let ent of sharedScript._entities.values())
+	for (let ent of this._entities.values())
 	{
 		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
 			continue;
@@ -418,7 +418,7 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript)
  * this also takes dropsites into account.
  * resources that are "part" of a dropsite are not counted.
  */
-m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
+m.SharedScript.prototype.updateResourceMaps = function(events)
 {
 	for (let resource of this.resourceList)
 	{
@@ -429,8 +429,8 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 			continue;
 		// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
 		// But at that point the precision is not really important anyway. And it saves memory.
-		this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
-		this.ccResourceMaps[resource] = new m.Map(sharedScript, "resource");
+		this.resourceMaps[resource] = new m.Map(this, "resource");
+		this.ccResourceMaps[resource] = new m.Map(this, "resource");
 	}
 
 	// Look for destroy (or create) events and subtract (or add) the entities original influence from the resourceMap
@@ -455,9 +455,9 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 	}
 	for (let e of events.Create)
 	{
-		if (!e.entity || !sharedScript._entities.has(e.entity))
+		if (!e.entity || !this._entities.has(e.entity))
 			continue;
-		let ent = sharedScript._entities.get(e.entity);
+		let ent = this._entities.get(e.entity);
 		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
 			continue;
 		let resource = ent.resourceSupplyType().generic;

@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-07-11 06:21+0000\n"
-"Last-Translator: Woratiklis\n"
+"PO-Revision-Date: 2016-07-13 21:13+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,7 +217,7 @@ msgstr "Хозяйственная постройка"
 #: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr "Хозяйство"
+msgstr "Хозяйственное"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
@@ -290,7 +290,7 @@ msgstr "Кузница"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Разместите на береговой линии для постройки военных судов и доступа к морской торговле. Позволяет исследовать военно-морские технологии."
+msgstr "Разместите на береговой линии для постройки военных судов и морской торговли. Позволяет исследовать военно-морские технологии."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -308,7 +308,7 @@ msgstr "Посольство"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr "Позволяет обучать героев, чемпионов, строить осадные орудия. А также исследовать технологии осадного оружия. Гарнизон: 20."
+msgstr "Позволяет обучать героев, чемпионов, строить осадные орудия, а также исследовать осадные технологии."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -456,7 +456,7 @@ msgstr "Эпитейхизма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Позволяет строить осадные орудия. А также размещать гарнизон до 20 солдат для усиления защиты."
+msgstr "Позволяет строить осадные орудия, а также размещать гарнизон до 20 солдат для усиления защиты."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -1291,7 +1291,7 @@ msgstr "хвт"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr "Увеличивает предел населения. Поскольку египетские дома сделаны из грязевых кирпичей, они ничего не стоят, но очень плохи."
+msgstr "Увеличивает предел населения. Поскольку египетские дома сделаны из грязевых кирпичей, они ничего не стоят, но очень хлипкие."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"

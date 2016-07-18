@@ -525,6 +525,63 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 }
 
 /**
+ * Places players either randomly or in a stronghold-pattern at a set of given heightmap coordinates.
+ *
+ * @param singleBases - pair of coordinates of the heightmap to place isolated bases.
+ * @param singleBases - pair of coordinates of the heightmap to place team bases.
+ * @param groupedDistance - distance between neighboring players.
+ * @param singleBaseFunction - A function called for every singlebase placed.
+ */
+function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, groupedDistance, singleBaseFunction)
+{
+	let strongholdBasesRandom = shuffleArray(strongholdBases);
+	let singleBasesRandom = shuffleArray(singleBases);
+
+	if (randInt(2) == 1 &&
+	    g_MapInfo.mapSize >= 256 &&
+	    g_MapInfo.teams.length >= 2 &&
+	    g_MapInfo.teams.length < g_MapInfo.numPlayers &&
+	    g_MapInfo.teams.length <= strongholdBasesRandom.length)
+	{
+		for (let t = 0; t < g_MapInfo.teams.length; ++t)
+		{
+			let team = g_MapInfo.teams[t].map(playerID => ({ "id": playerID }));
+			let x = Math.floor(strongholdBasesRandom[t][0] / heightmapScale) / g_MapInfo.mapSize;
+			let z = Math.floor(strongholdBasesRandom[t][1] / heightmapScale) / g_MapInfo.mapSize;
+			let players = [];
+
+			for (let p = 0; p < team.length; ++p)
+			{
+				let angle = g_MapInfo.startAngle + (p + 1) * TWO_PI / team.length;
+
+				players[p] = {
+					"id": team[p].id,
+					"angle": angle,
+					"x": x + groupedDistance * cos(angle),
+					"z": z + groupedDistance * sin(angle)
+				};
+
+				createBase(players[p], false);
+			}
+		}
+	}
+	else
+	{
+		let players = randomizePlayers();
+		for (let p = 0; p < players.length; ++p)
+		{
+			if (singleBaseFunction)
+				singleBaseFunction(singleBasesRandom[p]);
+
+			createBase({
+				"id": players[p],
+				"x": Math.floor(singleBasesRandom[p][0] / heightmapScale) / g_MapInfo.mapSize,
+				"z": Math.floor(singleBasesRandom[p][1] / heightmapScale) / g_MapInfo.mapSize
+			});
+		}
+	}
+}
+/**
  * Creates tileClass for the default classes and every class given.
  *
  * @param {Array} newClasses
