@@ -31,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-04 09:00+0200\n"
-"PO-Revision-Date: 2016-07-11 12:53+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2016-07-17 22:54+0000\n"
+"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -692,10 +692,10 @@ msgstr[3] "секунды"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
+msgstr[2] "%(arrowcount)s %(arrows)s"
+msgstr[3] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:86
 msgid "arrow"
@@ -713,7 +713,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:100
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:111
 msgid "Armor:"
@@ -756,7 +756,7 @@ msgstr "%(attackLabel)s %(details)s, %(rate)s"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:183
 #, javascript-format
@@ -788,7 +788,7 @@ msgstr[3] "метра"
 #: gui/common/tooltips.js:214
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:215
 msgid "Splash Damage:"
@@ -797,7 +797,7 @@ msgstr "Наносит урон от разрыва снаряда."
 #: gui/common/tooltips.js:218
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Огонь по своим: %(enabled)s"
 
 #: gui/common/tooltips.js:219 gui/options/options.js:275
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:290
@@ -818,7 +818,7 @@ msgstr "Нет"
 #: gui/common/tooltips.js:233
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:234
 msgid "Garrison Limit"
@@ -828,7 +828,7 @@ msgstr ""
 #: gui/common/tooltips.js:265
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:256
 msgid "Projectile Limit"
@@ -978,7 +978,7 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:552
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:567
 msgid "Classes:"

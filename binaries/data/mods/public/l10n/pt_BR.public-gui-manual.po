@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Igor Aleixo <igor.pavao@gmail.com>, 2016
+# Mateus Seenem Tavares <maseta.mateus@gmail.com>, 2016
 # Mihailov Vasilievic Filho <mihailov.vf@gmail.com>, 2015
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-11 09:00+0200\n"
-"PO-Revision-Date: 2016-07-11 09:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-15 09:00+0200\n"
+"PO-Revision-Date: 2016-07-17 19:33+0000\n"
+"Last-Translator: Mateus Seenem Tavares <maseta.mateus@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -308,20 +309,20 @@ msgid ""
 msgstr "Shift + Delete: Exclua as unidades/construções selecionadas sem confirmação"
 
 #: gui/manual/intro.txt:68
-msgid ",: Select idle fighters"
-msgstr ",: Seleciona lutadores ociosos"
+msgid "/ (ForwardSlash): Select idle fighter"
+msgstr "/ (Barra): Seleciona lutadores ociosos"
 
 #: gui/manual/intro.txt:69
-msgid "Shift + ,: add idle fighter to selection"
-msgstr ""
+msgid "Shift + /: add idle fighter to selection"
+msgstr "Shift + /: adiciona o lutador ocioso para a seleção"
 
 #: gui/manual/intro.txt:70
-msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Seleciona trabalhadores ociosos (incluindo soldados cidadãos)"
+msgid ". (Period): Select idle worker (including citizen soldiers)"
+msgstr ". (Ponto): Seleciona trabalhador ocioso (incluindo cidadãos-soldados)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: adiciona trabalhadores ociosos para a seleção (incluindo cidadãos-soldados)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -547,10 +548,8 @@ msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Alternar modo de wireframe"
 
 #: gui/manual/intro.txt:123
-msgid ""
-"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
-" pan"
-msgstr "Botão Central do Mouse ou / (Barra): Mantenha pressionado e mova o mouse para deslocar."
+msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
+msgstr "Botão Central do Mouse: Mantenha pressionado e mova o mouse para deslocar."
 
 #: gui/manual/intro.txt:125
 msgid "[font=\"sans-bold-14\"]During Building Placement"
