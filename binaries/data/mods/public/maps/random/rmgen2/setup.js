@@ -198,6 +198,8 @@ function createBase(player, walls)
 	var painter = new LayeredPainter([g_Terrains.roadWild, g_Terrains.road], [1]);
 	createArea(placer, painter, null);
 
+	// TODO: retry loops are needed as resources might conflict with neighboring ones
+
 	// Create initial berry bushes at random angle
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 10;
@@ -494,18 +496,17 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 		var teamAngle = g_MapInfo.startAngle + (i + 1) * TWO_PI / g_MapInfo.teams.length;
 		var fractionX = 0.5 + distance * cos(teamAngle);
 		var fractionZ = 0.5 + distance * sin(teamAngle);
+		var teamGroupDistance = groupedDistance;
 
 		// If we have a team of above average size, make sure they're spread out
 		if (g_MapInfo.teams[i].length > 4)
-			groupedDistance = randFloat(0.08, 0.12);
-
-		// If we have a team of below average size, make sure they're together
-		if (g_MapInfo.teams[i].length < 3)
-			groupedDistance = randFloat(0.04, 0.06);
+			teamGroupDistance = Math.max(0.08, groupedDistance);
 
 		// If we have a solo player, place them on the center of the team's location
 		if (g_MapInfo.teams[i].length == 1)
-			groupedDistance = 0;
+			teamGroupDistance = 0;
+
+		// TODO: Ensure players are not placed outside of the map area, similar to placeLine
 
 		// Create player base
 		for (var p = 0; p < g_MapInfo.teams[i].length; ++p)
@@ -514,8 +515,8 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 			players[g_MapInfo.teams[i][p]] = {
 				"id": g_MapInfo.teams[i][p],
 				"angle": angle,
-				"x": fractionX + groupedDistance * cos(angle),
-				"z": fractionZ + groupedDistance * sin(angle)
+				"x": fractionX + teamGroupDistance * cos(angle),
+				"z": fractionZ + teamGroupDistance * sin(angle)
 			};
 			createBase(players[g_MapInfo.teams[i][p]], false);
 		}
