@@ -131,10 +131,13 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
 		this.updateTerritories(gameState);
 
-	if (events.DiplomacyChanged.length)
+	for (let evt of events.DiplomacyChanged)
 	{
+		if (evt.player !== PlayerID && evt.otherPlayer !== PlayerID)
+			continue;
 		gameState.resetAllyStructures();
 		gameState.resetEnemyStructures();
+		break;
 	}
 
 	for (let evt of events.Create)

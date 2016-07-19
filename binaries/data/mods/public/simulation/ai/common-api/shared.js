@@ -172,13 +172,13 @@ m.SharedScript.prototype.init = function(state, deserialization)
 			this._entities.set(+id, new m.Entity(this, state.entities[id]));
 	// entity collection updated on create/destroy event.
 	this.entities = new m.EntityCollection(this, this._entities);
-	
+
 	// create the terrain analyzer
 	this.terrainAnalyzer = new m.TerrainAnalysis();
 	this.terrainAnalyzer.init(this, state);
 	this.accessibility = new m.Accessibility();
 	this.accessibility.init(state, this.terrainAnalyzer);
-	
+
 	// Setup resources
 	this.resourceTypes = { "food": 0, "wood": 1, "stone": 2, "metal": 2 };
 	this.resourceList = [];
