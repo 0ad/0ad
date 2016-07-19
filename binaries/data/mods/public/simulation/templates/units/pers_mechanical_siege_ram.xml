@@ -12,6 +12,9 @@
     <Square width="7.0" depth="15.0"/>
     <Height>3.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max op="add">2</Max>
+  </GarrisonHolder>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Assyrian Siege Ram</GenericName>
