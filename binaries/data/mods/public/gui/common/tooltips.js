@@ -226,10 +226,24 @@ function getGarrisonTooltip(template)
 	if (!template.garrisonHolder)
 		return "";
 
-	return sprintf(translate("%(label)s: %(garrisonLimit)s"), {
-		"label": headerFont(translate("Garrison Limit")),
-		"garrisonLimit": template.garrisonHolder.capacity || template.garrisonHolder.max
-	});
+	let tooltips = [
+		sprintf(translate("%(label)s: %(garrisonLimit)s"), {
+			"label": headerFont(translate("Garrison Limit")),
+			"garrisonLimit": template.garrisonHolder.capacity || template.garrisonHolder.max
+		})
+	];
+
+	if (template.garrisonHolder.buffHeal)
+		tooltips.push(
+			sprintf(translate("%(healRateLabel)s %(value)s %(health)s / %(second)s"), {
+				"healRateLabel": headerFont(translate("Heal:")),
+				"value": Math.round(template.garrisonHolder.buffHeal),
+				"health": unitFont(translate("health")),
+				"second": unitFont(translate("second")),
+			})
+		);
+
+	return tooltips.join(commaFont(translate(", ")));
 }
 
 function getProjectilesTooltip(template)
