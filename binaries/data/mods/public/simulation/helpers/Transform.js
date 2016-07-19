@@ -17,10 +17,10 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	{
 		if (cmpPosition.IsInWorld())
 		{
-			var pos = cmpPosition.GetPosition2D();
+			let pos = cmpPosition.GetPosition2D();
 			cmpNewPosition.JumpTo(pos.x, pos.y);
 		}
-		var rot = cmpPosition.GetRotation();
+		let rot = cmpPosition.GetRotation();
 		cmpNewPosition.SetYRotation(rot.y);
 		cmpNewPosition.SetXZRotation(rot.x, rot.z);
 		cmpNewPosition.SetHeightOffset(cmpPosition.GetHeightOffset());
@@ -63,7 +63,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	var cmpNewUnitAI = Engine.QueryInterface(newEnt, IID_UnitAI);
 	if (cmpUnitAI && cmpNewUnitAI)
 	{
-		var pos = cmpUnitAI.GetHeldPosition();
+		let pos = cmpUnitAI.GetHeldPosition();
 		if (pos)
 			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
 		if (cmpUnitAI.GetStanceName())
@@ -85,7 +85,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	Engine.DestroyEntity(oldEnt);
 
 	return newEnt;
-};
+}
 
 function CanGarrisonedChangeTemplate(ent, template)
 {
@@ -116,7 +116,7 @@ function ObstructionsBlockingTemplateChange(ent, templateArg)
 	// Return false if no ownership as BuildRestrictions.CheckPlacement needs an owner and I have no idea if false or true is better
 	// Plus there are no real entities without owners currently.
 	if (!cmpBuildRestrictions || !cmpPosition || !cmpOwnership)
-		return DeleteEntityAndReturn(previewEntity, cmpPosition, pos, angle, cmpNewPosition, false);
+		return DeleteEntityAndReturn(previewEntity, cmpPosition, null, null, cmpNewPosition, false);
 
 	var pos = cmpPosition.GetPosition2D();
 	var angle = cmpPosition.GetRotation();
@@ -170,36 +170,39 @@ function ObstructionsBlockingTemplateChange(ent, templateArg)
 	}
 
 	return DeleteEntityAndReturn(previewEntity, cmpPosition, pos, angle, cmpNewPosition, false);
-};
+}
 
 function DeleteEntityAndReturn(ent, cmpPosition, position, angle, cmpNewPosition, ret)
 {
 	// prevent preview from interfering in the world
 	cmpNewPosition.MoveOutOfWorld();
-	cmpPosition.JumpTo(position.x, position.y);
-	cmpPosition.SetYRotation(angle.y);
+	if (position !== null)
+	{
+		cmpPosition.JumpTo(position.x, position.y);
+		cmpPosition.SetYRotation(angle.y);
+	}
 
 	Engine.DestroyEntity(ent);
 	return ret;
-};
+}
 
 function TransferGarrisonedUnits(oldEnt, newEnt)
 {
 	// Transfer garrisoned units if possible, or unload them
-	var cmpGarrison = Engine.QueryInterface(oldEnt, IID_GarrisonHolder);
+	var cmpOldGarrison = Engine.QueryInterface(oldEnt, IID_GarrisonHolder);
 	var cmpNewGarrison = Engine.QueryInterface(newEnt, IID_GarrisonHolder);
 	if (!cmpNewGarrison || !cmpGarrison || !cmpGarrison.GetEntities().length)
 		return;	// nothing to do as the code will by default unload all.
 
 	var garrisonedEntities = cmpGarrison.GetEntities().slice();
-	for (let j in garrisonedEntities)
+	for (let ent of garrisonedEntities)
 	{
-		var cmpUnitAI = Engine.QueryInterface(garrisonedEntities[j], IID_UnitAI);
-		cmpGarrison.Eject(garrisonedEntities[j]);
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		cmpOldGarrison.Eject(ent);
 		cmpUnitAI.Autogarrison(newEnt);
-		cmpNewGarrison.Garrison(garrisonedEntities[j]);
+		cmpNewGarrison.Garrison(ent);
 	}
-};
+}
 
 Engine.RegisterGlobal("ChangeEntityTemplate", ChangeEntityTemplate);
 Engine.RegisterGlobal("CanGarrisonedChangeTemplate", CanGarrisonedChangeTemplate);
