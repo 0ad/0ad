@@ -483,7 +483,6 @@ function updateTopPanel()
 	// Disable stuff observers shouldn't use
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
-	Engine.GetGUIObjectByName("summaryButton").enabled = g_IsObserver;
 }
 
 function reportPerformance(time)
@@ -936,19 +935,38 @@ function updateDebug()
 	debug.caption = text.replace(/\[/g, "\\[");
 }
 
+function getAllyStatTooltip(resource)
+{
+	let playersState = GetSimState().players;
+	let ret = "";
+	for (let player in playersState)
+		if (player != 0 && player != g_ViewedPlayer &&
+		    (g_IsObserver || playersState[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]))
+			ret += "\n" + sprintf(translate("%(playername)s: %(statValue)s"),{
+				"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
+				"statValue": resource == "pop" ?
+					sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playersState[player]) :
+					playersState[player].resourceCounts[resource]
+			});
+	return ret;
+}
+
 function updatePlayerDisplay()
 {
 	let playerState = GetSimState().players[g_ViewedPlayer];
 	if (!playerState)
 		return;
 
-	Engine.GetGUIObjectByName("resourceFood").caption = Math.floor(playerState.resourceCounts.food);
-	Engine.GetGUIObjectByName("resourceWood").caption = Math.floor(playerState.resourceCounts.wood);
-	Engine.GetGUIObjectByName("resourceStone").caption = Math.floor(playerState.resourceCounts.stone);
-	Engine.GetGUIObjectByName("resourceMetal").caption = Math.floor(playerState.resourceCounts.metal);
-	Engine.GetGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
+	for (let res of RESOURCES)
+	{
+		Engine.GetGUIObjectByName("resource_" + res).caption = Math.floor(playerState.resourceCounts[res]);
+		Engine.GetGUIObjectByName(res).tooltip = getLocalizedResourceName(res, "firstWord") + getAllyStatTooltip(res);
+	}
+
+	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), playerState);
 	Engine.GetGUIObjectByName("population").tooltip = translate("Population (current / limit)") + "\n" +
-					sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax });
+		sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax }) +
+		getAllyStatTooltip("pop");
 
 	g_IsTrainingBlocked = playerState.trainingBlocked;
 }

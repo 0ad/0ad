@@ -91,6 +91,7 @@ AddMock(100, IID_Player, {
 	IsEnemy: function() { return true; },
 	GetDisabledTemplates: function() { return {}; },
 	HasSharedDropsites: function() { return false; },
+	HasSharedLos: function() { return false; },
 });
 
 AddMock(100, IID_EntityLimits, {
@@ -174,6 +175,7 @@ AddMock(101, IID_Player, {
 	IsEnemy: function() { return false; },
 	GetDisabledTemplates: function() { return {}; },
 	HasSharedDropsites: function() { return false; },
+	HasSharedLos: function() { return false; },
 });
 
 AddMock(101, IID_EntityLimits, {
@@ -257,6 +259,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			cheatsEnabled: false,
 			disabledTemplates: {},
 			hasSharedDropsites: false,
+			hasSharedLos: false,
 			phase: "village",
 			isAlly: [false, false],
 			isMutualAlly: [false, false],
@@ -298,6 +301,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			cheatsEnabled: false,
 			disabledTemplates: {},
 			hasSharedDropsites: false,
+			hasSharedLos: false,
 			phase: "village",
 			isAlly: [true, true],
 			isMutualAlly: [false, false],
@@ -348,6 +352,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			cheatsEnabled: false,
 			disabledTemplates: {},
 			hasSharedDropsites: false,
+			hasSharedLos: false,
 			phase: "village",
 			isAlly: [false, false],
 			isMutualAlly: [false, false],
@@ -402,6 +407,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			cheatsEnabled: false,
 			disabledTemplates: {},
 			hasSharedDropsites: false,
+			hasSharedLos: false,
 			phase: "village",
 			isAlly: [true, true],
 			isMutualAlly: [false, false],

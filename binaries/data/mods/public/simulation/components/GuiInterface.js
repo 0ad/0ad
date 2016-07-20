@@ -107,6 +107,7 @@ GuiInterface.prototype.GetSimulationState = function()
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
 			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
 			"hasSharedDropsites": cmpPlayer.HasSharedDropsites(),
+			"hasSharedLos": cmpPlayer.HasSharedLos(),
 			"phase": phase,
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
