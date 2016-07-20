@@ -285,14 +285,14 @@ function filterGame(game)
 		return true;
 
 	if (playersNumberFilter.selected != 0 &&
-	    game.tnbp != playersNumberFilter.list_data[playersNumberFilter.selected])
+	    game.maxnbp != playersNumberFilter.list_data[playersNumberFilter.selected])
 		return true;
 
 	if (mapTypeFilter.selected != 0 &&
 	    game.mapType != mapTypeFilter.list_data[mapTypeFilter.selected])
 		return true;
 
-	if (!showFullFilter.checked && game.tnbp <= game.nbp)
+	if (!showFullFilter.checked && game.maxnbp <= game.nbp)
 		return true;
 
 	return false;
@@ -546,8 +546,8 @@ function updateGameList()
 			break;
 		case 'nPlayers':
 			// Compare playercount ratio
-			sortA = a.nbp * b.tnbp;
-			sortB = b.nbp * a.tnbp;
+			sortA = a.nbp * b.maxnbp;
+			sortB = b.nbp * a.maxnbp;
 			break;
 		case 'status':
 		default:
@@ -582,7 +582,7 @@ function updateGameList()
 		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
-		list_nPlayers.push(game.nbp + "/" + game.tnbp);
+		list_nPlayers.push(game.nbp + "/" + game.maxnbp);
 		list.push(gameName);
 		list_data.push(i);
 	}
@@ -618,10 +618,10 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(
 		translate("Players: %(current)s/%(total)s"), {
 			"current": game.nbp,
-			"total": game.tnbp
+			"total": game.maxnbp
 		});
 
-	Engine.GetGUIObjectByName("sgPlayersNames").caption = game.players;
+	Engine.GetGUIObjectByName("sgPlayersNames").caption = formatPlayerInfo(stringifiedTeamListToPlayerData(game.players));
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(game.mapSize);
 
 	let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);
@@ -653,7 +653,7 @@ function joinButton()
 
 	let username = g_UserRating ? g_Username + " (" + g_UserRating + ")" : g_Username;
 
-	if (game.state == "init" || game.players.split(", ").indexOf(username) > -1)
+	if (game.state == "init" || stringifiedTeamListToPlayerData(game.players).some(player => player.Name == username))
 		joinSelectedGame();
 	else
 		messageBox(

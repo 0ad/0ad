@@ -59,12 +59,56 @@ function sortNameIgnoreCase(x, y)
  * Escape tag start and escape characters, so users cannot use special formatting.
  * Also limit string length to 256 characters (not counting escape characters).
  */
-function escapeText(text)
+function escapeText(text, limitLength = true)
 {
 	if (!text)
 		return text;
 
-	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
+	if (limitLength)
+		text = text.substr(0, 255);
+
+	return text.replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
+}
+
+function unescapeText(text)
+{
+	if (!text)
+		return text;
+	return text.replace(/\\\\/g, "\\").replace(/\\\[/g, "\[");
+}
+
+/**
+ * Merge players by team to remove duplicate Team entries, thus reducing the packet size of the lobby report.
+ */
+function playerDataToStringifiedTeamList(playerData)
+{
+	let teamList = {};
+
+	for (let pData of playerData)
+	{
+		let team = pData.Team === undefined ? -1 : pData.Team;
+		if (!teamList[team])
+			teamList[team] = [];
+		teamList[team].push(pData);
+		delete teamList[team].Team;
+	}
+
+	return escapeText(JSON.stringify(teamList), false);
+}
+
+function stringifiedTeamListToPlayerData(stringifiedTeamList)
+{
+	let teamList = JSON.parse(unescapeText(stringifiedTeamList));
+	let playerData = [];
+
+	for (let team in teamList)
+		for (let pData of teamList[team])
+		{
+			pData.Team = team;
+			playerData.push(pData);
+		}
+
+	return playerData;
 }
 
 function translateMapTitle(mapTitle)
@@ -226,33 +270,66 @@ function formatPlayerInfo(playerDataArray, playerStates)
 
 	for (let playerData of playerDataArray)
 	{
-		if (playerData == null || playerData.Civ == "gaia")
+		if (playerData == null || playerData.Civ && playerData.Civ == "gaia")
 			continue;
 
 		++playerIdx;
 		let teamIdx = playerData.Team;
 		let isAI = playerData.AI && playerData.AI != "";
-		let playerState = playerStates && playerStates[playerIdx];
+		let playerState = playerStates && playerStates[playerIdx] || playerData.State;
 		let isActive = !playerState || playerState == "active";
 
 		let playerDescription;
 		if (isAI)
 		{
-			if (isActive)
-				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-				playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+			if (playerData.Civ)
+			{
+				if (isActive)
+					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+					playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+				else
+					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+					playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)");
+			}
 			else
-				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-				playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)");
+			{
+				if (isActive)
+					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+					playerDescription = translate("%(playerName)s (%(AIdifficulty)s %(AIname)s)");
+				else
+					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+					playerDescription = translate("%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)");
+			}
 		}
 		else
 		{
-			if (isActive)
-				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-				playerDescription = translate("%(playerName)s (%(civ)s)");
+			if (playerData.Offline)
+			{
+				// Can only occur in the lobby for now, so no strings with civ needed
+				if (isActive)
+					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+					playerDescription = translate("%(playerName)s (OFFLINE)");
+				else
+					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+					playerDescription = translate("%(playerName)s (OFFLINE, %(state)s)");
+			}
 			else
-				// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-				playerDescription = translate("%(playerName)s (%(civ)s, %(state)s)");
+			{
+				if (playerData.Civ)
+					if (isActive)
+						// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+						playerDescription = translate("%(playerName)s (%(civ)s)");
+					else
+						// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+						playerDescription = translate("%(playerName)s (%(civ)s, %(state)s)");
+				else
+					if (isActive)
+						// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+						playerDescription = translate("%(playerName)s");
+					else
+						// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
+						playerDescription = translate("%(playerName)s (%(state)s)");
+			}
 		}
 
 		// Sort player descriptions by team
@@ -262,7 +339,9 @@ function formatPlayerInfo(playerDataArray, playerStates)
 		playerDescriptions[teamIdx].push(sprintf(playerDescription, {
 			"playerName":
 				'[color="' +
-				rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color) +
+				(typeof getPlayerColor == 'function' ?
+					(isAI ? "white" : getPlayerColor(playerData.Name)) :
+					rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color)) +
 				'"]' + escapeText(playerData.Name) + "[/color]",
 
 			"civ":
@@ -283,22 +362,35 @@ function formatPlayerInfo(playerDataArray, playerStates)
 	}
 
 	let teams = Object.keys(playerDescriptions);
+	if (teams.indexOf("observer") > -1)
+		teams.splice(teams.indexOf("observer"), 1);
+
+	let teamDescription = [];
 
 	// If there are no teams, merge all playersDescriptions
 	if (teams.length == 1)
-		return playerDescriptions[teams[0]].join("\n") + "\n";
+		teamDescription.push(playerDescriptions[teams[0]].join("\n"));
 
 	// If there are teams, merge "Team N:" + playerDescriptions
-	return teams.map(team => {
+	else
+		teamDescription = teams.map(team => {
 
-		let teamCaption = team == -1 ?
-			translate("No Team") :
-			sprintf(translate("Team %(team)s"), { "team": +team + 1 });
+			let teamCaption = team == -1 ?
+				translate("No Team") :
+				sprintf(translate("Team %(team)s"), { "team": +team + 1 });
 
-		// Translation: Describe players of one team in a selected game, f.e. in the replay- or savegame menu or lobby
-		return sprintf(translate("%(team)s:\n%(playerDescriptions)s"), {
-			"team": '[font="sans-bold-14"]' + teamCaption + "[/font]",
-			"playerDescriptions": playerDescriptions[team].join("\n")
+			// Translation: Describe players of one team in a selected game, f.e. in the replay- or savegame menu or lobby
+			return sprintf(translate("%(team)s:\n%(playerDescriptions)s"), {
+				"team": '[font="sans-bold-14"]' + teamCaption + "[/font]",
+				"playerDescriptions": playerDescriptions[team].join("\n")
+			});
 		});
-	}).join("\n\n");
+
+	if (playerDescriptions.observer)
+		teamDescription.push(sprintf(translate("%(team)s:\n%(playerDescriptions)s"), {
+			"team": '[font="sans-bold-14"]' + translatePlural("Observer", "Observers", playerDescriptions.observer.length) + "[/font]",
+			"playerDescriptions": playerDescriptions.observer.join("\n")
+		}));
+
+	return teamDescription.join("\n\n");
 }

@@ -250,6 +250,7 @@ var g_NotificationsTypes =
 			"resign": !!notification.resign
 		});
 		playerFinished(player, false);
+		sendLobbyPlayerlistUpdate();
 	},
 	"won": function(notification, player)
 	{
@@ -259,6 +260,7 @@ var g_NotificationsTypes =
 			"player": player
 		});
 		playerFinished(player, true);
+		sendLobbyPlayerlistUpdate();
 	},
 	"diplomacy": function(notification, player)
 	{
@@ -541,13 +543,7 @@ function handlePlayerAssignmentsMessage(message)
 	});
 
 	updateChatAddressees();
-
-	// Update lobby gamestatus
-	if (g_IsController && Engine.HasXmppClient())
-	{
-		let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
-		Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
-	}
+	sendLobbyPlayerlistUpdate();
 }
 
 function onClientJoin(guid)

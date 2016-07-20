@@ -301,12 +301,12 @@ class GameList():
     if JID in self.gameList:
       if self.gameList[JID]['nbp-init'] > data['nbp']:
         logging.debug("change game (%s) state from %s to %s", JID, self.gameList[JID]['state'], 'waiting')
-        self.gameList[JID]['nbp'] = data['nbp']
         self.gameList[JID]['state'] = 'waiting'
       else:
         logging.debug("change game (%s) state from %s to %s", JID, self.gameList[JID]['state'], 'running')
-        self.gameList[JID]['nbp'] = data['nbp']
         self.gameList[JID]['state'] = 'running'
+      self.gameList[JID]['nbp'] = data['nbp']
+      self.gameList[JID]['players'] = data['players']
 
 ## Class which manages different game reports from clients ##
 ##   and calls leaderboard functions as appropriate.       ##

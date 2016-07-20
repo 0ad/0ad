@@ -15,7 +15,7 @@ const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 /**
  * Map, player and match settings set in gamesetup.
  */
-var g_GameAttributes;
+const g_GameAttributes = Object.freeze(Engine.GetInitAttributes());
 
 /**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
@@ -225,8 +225,6 @@ function init(initData, hotloadData)
 		return;
 	}
 
-	g_GameAttributes = Engine.GetInitAttributes();
-
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked;
@@ -289,8 +287,8 @@ function init(initData, hotloadData)
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
+	sendLobbyPlayerlistUpdate();
 	onSimulationUpdate();
-
 	setTimeout(displayGamestateNotifications, 1000);
 
 	// Report the performance after 5 seconds (when we're still near
