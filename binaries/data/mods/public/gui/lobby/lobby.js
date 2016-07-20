@@ -400,7 +400,7 @@ function updatePlayerList()
  */
 function displayProfile(caller)
 {
-	let playerList, rating;
+	let playerList;
 
 	if (caller == "leaderboard")
 		playerList = Engine.GetGUIObjectByName("leaderboardBox");

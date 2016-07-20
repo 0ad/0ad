@@ -886,12 +886,13 @@ function displayHeroes()
 
 function updateGroups()
 {
-	let guiName = "Group";
 	g_Groups.update();
-	for (let i = 0; i < 10; ++i)
+
+	for (let i in Engine.GetGUIObjectByName("unitGroupPanel").children)
 	{
-		let button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		let label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
+		Engine.GetGUIObjectByName("unitGroupLabel[" + i + "]").caption = i;
+
+		let button = Engine.GetGUIObjectByName("unitGroupButton["+i+"]");
 		button.hidden = g_Groups.groups[i].getTotalCount() == 0;
 		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); }; })(i);
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); }; })(i);
