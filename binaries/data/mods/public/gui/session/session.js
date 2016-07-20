@@ -945,7 +945,7 @@ function getAllyStatTooltip(resource)
 				"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
 				"statValue": resource == "pop" ?
 					sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playersState[player]) :
-					playersState[player].resourceCounts[resource]
+					Math.round(playersState[player].resourceCounts[resource])
 			});
 	return ret;
 }
