@@ -446,9 +446,8 @@ function playerFinished(player, won)
 			global.music.states.DEFEAT
 	);
 
-	// Select "observer" item
-	if (!won)
-		Engine.GetGUIObjectByName("viewPlayer").selected = 0;
+	// Select "observer" item on loss. On win enable observermode without changing perspective
+	Engine.GetGUIObjectByName("viewPlayer").selected = won ? g_ViewedPlayer : 0;
 
 	g_ConfirmExit = won ? "won" : "defeated";
 }
@@ -509,8 +508,6 @@ function resignGame(leaveGameAfterResign)
 		"playerId": Engine.GetPlayerID(),
 		"resign": true
 	});
-
-	global.music.setState(global.music.states.DEFEAT);
 
 	if (!leaveGameAfterResign)
 		resumeGame(true);
