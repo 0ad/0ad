@@ -55,6 +55,7 @@ g_Decoratives.rockLarge = "actor|geology/stone_desert_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
+g_Decoratives.dust = "actor|particle/dust_storm_reddish.xml";
 initBiome();
 
 log("Resetting terrain...");
@@ -251,6 +252,25 @@ createObjectGroups(
 		borderClasses(g_TileClasses.water, scaleByMapSize(2,8), scaleByMapSize(2,5))
 	],
 	scaleByMapSize(100, 1000),
+	500
+);
+RMS.SetProgress(85);
+
+log("Adding dust...");
+createObjectGroups(
+	new SimpleGroup(
+		[new SimpleObject(g_Decoratives.dust, 1, 1, 1, 4)],
+		false
+	),
+	0,
+	[
+		stayClasses(g_TileClasses.dirt, 1),
+		avoidClasses(
+			g_TileClasses.player, 10,
+			g_TileClasses.water, 3
+		)
+	],
+	Math.pow(scaleByMapSize(5, 20), 2),
 	500
 );
 RMS.SetProgress(90);
