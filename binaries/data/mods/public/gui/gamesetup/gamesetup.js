@@ -706,6 +706,7 @@ function handleGamesetupMessage(message)
 	{
 		g_GameAttributes.settings.CheatsEnabled = false;
 		g_GameAttributes.settings.LockTeams = true;
+		g_GameAttributes.settings.LastManStanding = false;
 	}
 
 	Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
