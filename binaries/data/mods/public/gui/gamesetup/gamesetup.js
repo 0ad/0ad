@@ -1806,6 +1806,14 @@ function colorizePlayernameByGUID(guid, username = "")
 
 function addChatMessage(msg)
 {
+	if (msg.text)
+	{
+		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
+
+		if (userName != g_PlayerAssignments[msg.guid].name)
+			notifyUser(userName, msg.text);
+	}
+
 	if (!g_FormatChatMessage[msg.type])
 		return;
 

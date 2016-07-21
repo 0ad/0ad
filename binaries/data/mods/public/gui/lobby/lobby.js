@@ -821,7 +821,10 @@ function addChatMessage(msg)
 
 		// Highlight local user's nick
 		if (g_Username != msg.from)
+		{
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
+			notifyUser(g_Username, msg.text);
+		}
 
 		// Run spam test if it's not a historical message
 		if (!msg.datetime)

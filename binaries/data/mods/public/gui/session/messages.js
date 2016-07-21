@@ -822,6 +822,7 @@ function formatChatCommand(msg)
 	// Translate or escape text
 	if (!msg.text)
 		return "";
+
 	if (msg.translate)
 	{
 		msg.text = translate(msg.text);
@@ -833,7 +834,14 @@ function formatChatCommand(msg)
 		}
 	}
 	else
+	{
 		msg.text = escapeText(msg.text);
+
+		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
+
+		if (userName != g_PlayerAssignments[msg.guid].name)
+			notifyUser(userName, msg.text);
+	}
 
 	// GUID for players, playerID for AIs
 	let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);

@@ -1,3 +1,8 @@
+/**
+ * Used by notifyUser() to limit the number of pings
+ */
+var g_LastNickNotification = -1;
+
 function getRandom(randomMin, randomMax)
 {
 	// Returns a random whole number in a min..max range.
@@ -253,6 +258,23 @@ function clearChatMessages()
 		g_ChatTimers.length = 0;
 	} catch (e) {
 	}
+}
+
+/**
+ * Plays a sound if user's nick is mentioned in chat
+ */
+function notifyUser(userName, msgText)
+{
+	if (Engine.ConfigDB_GetValue("user", "sound.notify.nick") != "true" ||
+	    msgText.toLowerCase().indexOf(userName.toLowerCase()) == -1)
+		return;
+
+	let timeNow = new Date().getTime();
+
+	if (!g_LastNickNotification || timeNow > g_LastNickNotification + 3000)
+		Engine.PlayUISound("audio/interface/ui/chat_alert.ogg", false);
+
+	g_LastNickNotification = timeNow;
 }
 
 /**
