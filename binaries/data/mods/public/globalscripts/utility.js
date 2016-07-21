@@ -16,3 +16,21 @@ function clone(o)
 		r[key] = clone(o[key]);
 	return r;
 }
+
+/**
+ * "Inside-out" implementation of Fisher-Yates shuffle
+ */
+function shuffleArray(source)
+{
+	if (!source.length)
+		return [];
+
+	let result = [source[0]];
+	for (let i = 1; i < source.length; ++i)
+	{
+		let j = Math.floor(Math.random() * i);
+		result[i] = result[j];
+		result[j] = source[i];
+	}
+	return result;
+}
