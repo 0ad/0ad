@@ -191,10 +191,10 @@ function TransferGarrisonedUnits(oldEnt, newEnt)
 	// Transfer garrisoned units if possible, or unload them
 	var cmpOldGarrison = Engine.QueryInterface(oldEnt, IID_GarrisonHolder);
 	var cmpNewGarrison = Engine.QueryInterface(newEnt, IID_GarrisonHolder);
-	if (!cmpNewGarrison || !cmpGarrison || !cmpGarrison.GetEntities().length)
+	if (!cmpNewGarrison || !cmpOldGarrison || !cmpOldGarrison.GetEntities().length)
 		return;	// nothing to do as the code will by default unload all.
 
-	var garrisonedEntities = cmpGarrison.GetEntities().slice();
+	var garrisonedEntities = cmpOldGarrison.GetEntities().slice();
 	for (let ent of garrisonedEntities)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
