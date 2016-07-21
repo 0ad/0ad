@@ -476,23 +476,24 @@ function getSpeedTooltip(template)
 	if (!template.speed)
 		return "";
 
-	let speeds = [];
+	let walk = template.speed.walk.toFixed(1);
+	let run = template.speed.run.toFixed(1);
 
-	if (template.speed.walk)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
-			"speed": template.speed.walk.toFixed(1),
-			"movementType": unitFont(translate("Walk"))
-		}));
-
-	if (template.speed.run)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
-			"speed": template.speed.run.toFixed(1),
-			"movementType": unitFont(translate("Run"))
-		}));
+	if (walk == 0 && run == 0)
+		return "";
 
 	return sprintf(translate("%(label)s %(speeds)s"), {
 		"label": headerFont(translate("Speed:")),
-		"speeds": speeds.join(translate(", "))
+		"speeds":
+	   		sprintf(translate("%(speed)s %(movementType)s"), {
+				"speed": walk,
+				"movementType": unitFont(translate("Walk"))
+			}) +
+			commaFont(translate(", ")) +
+			sprintf(translate("%(speed)s %(movementType)s"), {
+				"speed": run,
+				"movementType": unitFont(translate("Run"))
+			})
 	});
 }
 
