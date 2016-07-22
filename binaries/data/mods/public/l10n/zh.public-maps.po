@@ -5,6 +5,7 @@
 # Translators:
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
+# Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # Mysterelee <8161525@qq.com>, 2014
 # Revolve Yao <revolveyao@outlook.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2014
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-18 09:01+0200\n"
+"PO-Revision-Date: 2016-07-21 09:46+0000\n"
+"Last-Translator: Kelvin Cooper <Zhu-Zhe-Yong@live.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,11 +49,24 @@ msgstr "与深遂的山谷接壤的阿尔卑斯山。"
 msgid "Alpine Valley"
 msgstr "阿尔卑斯大峡谷"
 
+#: maps/random/amazon.jsonsettings.Description
+msgid ""
+"The Amazon River in South America is the largest river by discharge of water"
+" in the world, and the longest in length. The Amazon basin is the largest "
+"drainage basin in the world, with an area of approximately 7,050,000 square "
+"kilometers, and accounts for roughly one-fifth of the world's total river "
+"flow."
+msgstr "位于南美洲的亚马逊河是世界上水流量最大的河流，也是最长的河流。面积约有7,050,000平方千米的亚马逊盆地是世界上最大的流域，约占世界总河流流量的五分之一。"
+
+#: maps/random/amazon.jsonsettings.Name
+msgid "Amazon"
+msgstr "亚马逊"
+
 #: maps/random/ambush.jsonsettings.Description
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr ""
+msgstr "从高崖上俯瞰下面的地形，会发现有丰富的资源等待在悬崖上，但要小心敌人的伏击计划。"
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -180,11 +194,11 @@ msgstr "丛林深处"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr ""
+msgstr "一个邻近的省份已承诺忠于你的统治，而这取决于你能执掌他们的胜利。"
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
-msgstr ""
+msgstr "帝国"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
@@ -200,11 +214,11 @@ msgstr "英吉利海峡"
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
 "battle in chest deep waters."
-msgstr ""
+msgstr "一场巨大的洪水已经越过山谷，这使船只和部队在洪水及胸的深水域战斗。"
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
-msgstr ""
+msgstr "洪水"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -216,11 +230,11 @@ msgstr "城堡"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
-msgstr ""
+msgstr "一片野性的、未知的风景正等待着敌对的探险家。"
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
-msgstr ""
+msgstr "边境"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -258,11 +272,11 @@ msgid ""
 " bountiful resources far from the front lines, teams may choose to support "
 "their exposed teammates financially, or retreat to more fertile, but less "
 "defensible ground."
-msgstr ""
+msgstr "陡峭山脉之间的一条狭窄的通道促进了紧张的防御战斗。丰富的资源远离前线，而军队可能会选择在经济上支持他们暴露的队友，或撤退到更肥沃的土壤，但这不合乎情理。"
 
 #: maps/random/hells_pass.jsonsettings.Name
 msgid "Hell's Pass"
-msgstr ""
+msgstr "地狱通行证"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -278,11 +292,11 @@ msgstr "赫卡尼亚海岸"
 msgid ""
 "Teams start off with nearly adjacent civic centers on a small island, "
 "offering a fortified base from which to expand."
-msgstr ""
+msgstr "军队在一片小岛上从邻近的市政中心出发，从中扩大，提供一个强化的基地。"
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
-msgstr ""
+msgstr "岛上据点"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -325,7 +339,7 @@ msgstr "拉丁姆"
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
-msgstr ""
+msgstr "高耸的悬崖是保护每个玩家的主要基地。冒险进入未知的风险很大，不过却是必要的。"
 
 #: maps/random/lions_den.jsonsettings.Name
 msgid "Lion's Den"
@@ -348,6 +362,19 @@ msgstr "没有水域的典型地图"
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
 msgstr "大陆"
+
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
+" the Mediterranean Basin and almost completely enclosed by land: on the "
+"north by Southern Europe and Anatolia, on the south by North Africa, and on "
+"the east by the Levant. The name Mediterranean is derived from the Latin "
+"mediterraneus, meaning 'inland' or 'in the middle of land'."
+msgstr "地中海是一片连接被大西洋环抱的地中海盆地和其几乎完全封闭的土地的海：位于欧洲南部和小亚细亚的北部，在北非洲南部，以及地中海东部沿岸诸国和岛屿的东部。地中海的名字来源于拉丁语的地中海人，意为“内陆”或“在土地中\"。"
+
+#: maps/random/mediterranean.jsonsettings.Name
+msgid "Mediterranean"
+msgstr "地中海"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
@@ -431,6 +458,16 @@ msgstr "高耸的山脉将敌人分隔两地。\n\n庇里牛斯山脉是位于�
 msgid "Pyrenean Sierra"
 msgstr "比利牛斯山脉"
 
+#: maps/random/red_sea.jsonsettings.Description
+msgid ""
+"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
+"and Asia and the world's northernmost tropical sea."
+msgstr "红海是印度洋海水入口，位于非洲和亚洲，在世界上最北部的热带海洋之间。"
+
+#: maps/random/red_sea.jsonsettings.Name
+msgid "Red Sea"
+msgstr "红海"
+
 #: maps/random/rhine_marshlands.jsonsettings.Description
 msgid ""
 "Shallow, passable wetlands with little room for building. Represents the "
@@ -501,7 +538,7 @@ msgid ""
 "Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr ""
+msgstr "军队在一片小岛上从邻近的市政中心出发，提供简易的军事和建筑合作。随着个人领地的碎片化，队友们必须互相信任来捍卫自己的后方。"
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
@@ -588,7 +625,7 @@ msgstr "有一波敌人来袭！"
 #: maps/random/survivalofthefittest_triggers.js:197
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
-msgstr ""
+msgstr "第一波攻击将会在%(time)s后到来！"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -616,7 +653,7 @@ msgstr "赶在您的敌人前收集宝藏！可以让您更轻鬆的获胜！"
 
 #: maps/scenarios/treasure_islands.js:29
 msgid "No winner yet, prepare for battle!"
-msgstr ""
+msgstr "革命尚未成功，同志仍须努力！"
 
 #: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
@@ -1876,17 +1913,17 @@ msgid ""
 "A foggy alpine landscape becomes a battleground as each team has an ally "
 "squashed precariously between two enemies. Two forest cliffs overlook the "
 "center lake, accessible from the sides of the map."
-msgstr ""
+msgstr "雾蒙蒙的高山景观成为了一个战场，每个队伍有一个盟友在两队之间摇摆不定。从两片森林悬崖俯瞰中心湖，可以从地图的侧边进入。"
 
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
-msgstr ""
+msgstr "峭壁决斗 ( 3 v 3 )"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
-msgstr ""
+msgstr "一个森林作战地图，所有的玩家争夺队对中场的霸权和控制。"
 
 #: maps/skirmishes/Forest Battle (4).xml:Name:40
 msgid "Forest Battle (4)"
@@ -1920,11 +1957,11 @@ msgstr "冈比亚河 (3)"
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of land or via boat."
-msgstr ""
+msgstr "一环土地接壤的一个资源丰富的地中海岛屿。玩家可以通过一个狭长地带或通过船进入中心。"
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
-msgstr ""
+msgstr "金岛 ( 2 )"
 
 #: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""
