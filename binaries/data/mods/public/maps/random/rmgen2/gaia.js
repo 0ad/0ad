@@ -1304,7 +1304,7 @@ function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
 				tile = pallet[tilemap[nearby[randInt(0, nearby.length - 1)]]];
 			}
 
-			setHeight(x, y, height);
+			setHeight(x, y, height / scale);
 			placeTerrain(x, y, tile);
 
 			if (func)
