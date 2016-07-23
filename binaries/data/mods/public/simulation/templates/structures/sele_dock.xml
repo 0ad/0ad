@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_dock">
   <Footprint>
     <Square width="26.0" depth="30.0"/>
@@ -21,7 +21,7 @@
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <Actor>structures/macedonians/dock.xml</Actor>
+    <Actor>structures/seleucids/dock.xml</Actor>
     <FoundationActor>structures/fndn_6x4_dock.xml</FoundationActor>
   </VisualActor>
 </Entity>
