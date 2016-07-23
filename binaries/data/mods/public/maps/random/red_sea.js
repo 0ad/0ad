@@ -130,10 +130,10 @@ addElements(shuffleArray([
 	{
 		"func": addForests,
 		"avoid": [
-			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 18,
+			g_TileClasses.berries, 3,
+			g_TileClasses.forest, 20,
 			g_TileClasses.metal, 3,
-			g_TileClasses.mountain, 5,
+			g_TileClasses.mountain, 3,
 			g_TileClasses.player, 20,
 			g_TileClasses.rock, 3,
 			g_TileClasses.water, 2
@@ -144,6 +144,24 @@ addElements(shuffleArray([
 	}
 ]));
 RMS.SetProgress(60);
+
+log("Ensure initial forests...");
+addElements([{
+	"func": addForests,
+	"avoid": [
+		g_TileClasses.berries, 2,
+		g_TileClasses.forest, 25,
+		g_TileClasses.metal, 3,
+		g_TileClasses.mountain, 5,
+		g_TileClasses.player, 15,
+		g_TileClasses.rock, 3,
+		g_TileClasses.water, 2
+	],
+	"sizes": ["small"],
+	"mixes": ["similar"],
+	"amounts": ["tons"]
+}]);
+RMS.SetProgress(65);
 
 log("Adding berries and animals...");
 addElements(shuffleArray([
@@ -192,14 +210,14 @@ addElements(shuffleArray([
 		"func": addStragglerTrees,
 		"avoid": [
 			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 7,
+			g_TileClasses.forest, 15,
 			g_TileClasses.metal, 2,
 			g_TileClasses.mountain, 1,
-			g_TileClasses.player, 12,
+			g_TileClasses.player, 20,
 			g_TileClasses.rock, 2,
 			g_TileClasses.water, 5
 		],
-		"sizes": ["big"],
+		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": ["many"]
 	}
