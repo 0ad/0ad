@@ -344,7 +344,6 @@ for (let biome in biomes)
 	setLocalBiome(biomes[biome]);
 
 	let localAvoid = g_TileClasses[biome == "temp" ? "plateau" : "autumn"];
-	let treeCount = biome == "desert" ? "normal" : "tons";
 
 	addElements([
 		{
@@ -355,7 +354,7 @@ for (let biome in biomes)
 				g_TileClasses.mountain, 2,
 				g_TileClasses.player, 30,
 				g_TileClasses.rock, 10,
-				g_TileClasses.metal, 20,
+				g_TileClasses.metal, 25,
 				g_TileClasses.water, 4,
 				localAvoid, 2
 			],
@@ -371,8 +370,8 @@ for (let biome in biomes)
 				g_TileClasses.forest, 3,
 				g_TileClasses.mountain, 2,
 				g_TileClasses.player, 30,
-				g_TileClasses.rock, 20,
-				g_TileClasses.metal, 10,
+				g_TileClasses.rock, 10,
+				g_TileClasses.metal, 25,
 				g_TileClasses.water, 4,
 				localAvoid, 2
 			],
@@ -384,19 +383,19 @@ for (let biome in biomes)
 		{
 			"func": addForests,
 			"avoid": [
-				g_TileClasses.berries, 5,
-				g_TileClasses.forest, 5,
+				g_TileClasses.berries, 3,
+				g_TileClasses.forest, 15,
 				g_TileClasses.metal, 3,
-				g_TileClasses.mountain, 3,
-				g_TileClasses.player, 20,
-				g_TileClasses.rock, 3,
-				g_TileClasses.water, 3,
+				g_TileClasses.mountain, 2,
+				g_TileClasses.player, 12,
+				g_TileClasses.rock, 2,
+				g_TileClasses.water, 2,
 				localAvoid, 2
 			],
 			"stay": [g_TileClasses[biome], 0],
 			"sizes": ["normal"],
 			"mixes": ["normal"],
-			"amounts": [treeCount]
+			"amounts": ["normal"]
 		},
 		{
 			"func": addSmallMetal,
@@ -481,7 +480,7 @@ for (let biome in biomes)
 			"stay": [g_TileClasses[biome], 0],
 			"sizes": ["normal"],
 			"mixes": ["normal"],
-			"amounts": [treeCount]
+			"amounts": ["some"]
 		},
 		{
 			"func": addDecoration,
