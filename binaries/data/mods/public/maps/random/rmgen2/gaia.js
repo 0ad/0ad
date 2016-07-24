@@ -1313,5 +1313,5 @@ function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
 			lastI = i;
 		}
 
-	return Math.sqrt(heightmap.length) / g_MapInfo.mapSize;
+	return scale;
 }

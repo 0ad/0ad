@@ -59,21 +59,18 @@ var g_Forests;
 /**
  * Adds an array of elements to the map.
  */
-function addElements(els)
+function addElements(elements)
 {
-	for (var i = 0; i < els.length; ++i)
-	{
-		var stay = null;
-		if (els[i].stay !== undefined)
-			stay = els[i].stay;
-
-		els[i].func(
-			[avoidClasses.apply(null, els[i].avoid), stayClasses.apply(null, stay)],
-			pickSize(els[i].sizes),
-			pickMix(els[i].mixes),
-			pickAmount(els[i].amounts)
+	for (let element of elements)
+		element.func(
+			[
+				avoidClasses.apply(null, element.avoid),
+				stayClasses.apply(null, element.stay || null)
+			],
+			pickSize(element.sizes),
+			pickMix(element.mixes),
+			pickAmount(element.amounts)
 		);
-	}
 }
 
 /**
@@ -170,16 +167,18 @@ function addBases(type, distance, groupedDistance)
 /**
  * Create the base for a single player.
  *
- * @param {Object} - contains id, angle, x, z
- * @param {boolean} - Whether or not iberian gets starting walls
+ * @param {Object} player - contains id, angle, x, z
+ * @param {boolean} walls - Whether or not iberian gets starting walls
  */
-function createBase(player, walls)
+function createBase(player, walls = true)
 {
 	// Get the x and z in tiles
 	var fx = fractionToTiles(player.x);
 	var fz = fractionToTiles(player.z);
 	var ix = round(fx);
 	var iz = round(fz);
+
+	// Mark player position and a tile in each direction to avoid placing things inside the CC
 	addToClass(ix, iz, g_TileClasses.player);
 	addToClass(ix + 5, iz, g_TileClasses.player);
 	addToClass(ix, iz + 5, g_TileClasses.player);
@@ -187,7 +186,7 @@ function createBase(player, walls)
 	addToClass(ix, iz - 5, g_TileClasses.player);
 
 	// Create starting units
-	if ((walls || walls === undefined) && g_MapInfo.mapSize > 192)
+	if (walls && g_MapInfo.mapSize > 192)
 		placeCivDefaultEntities(fx, fz, player.id);
 	else
 		placeCivDefaultEntities(fx, fz, player.id, { 'iberWall': false });
