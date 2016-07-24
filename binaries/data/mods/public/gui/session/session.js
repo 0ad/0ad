@@ -366,16 +366,13 @@ function selectViewPlayer(playerID)
 
 	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
 
-	let changeView = g_IsObserver || g_DevSettings.changePerspective;
-	if (changeView)
-	{
+	if (g_IsObserver || g_DevSettings.changePerspective)
 		g_ViewedPlayer = playerID;
 
-		if (g_DevSettings.changePerspective)
-		{
-			Engine.SetPlayerID(g_ViewedPlayer);
-			g_IsObserver = isPlayerObserver(g_ViewedPlayer);
-		}
+	if (g_DevSettings.changePerspective)
+	{
+		Engine.SetPlayerID(g_ViewedPlayer);
+		g_IsObserver = isPlayerObserver(g_ViewedPlayer);
 	}
 
 	Engine.SetViewedPlayer(g_ViewedPlayer);
@@ -386,15 +383,6 @@ function selectViewPlayer(playerID)
 
 	// Update GUI and clear player-dependent cache
 	onSimulationUpdate();
-
-	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
-	viewPlayer.hidden = !changeView;
-
-	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
-	alphaLabel.hidden = g_ViewedPlayer > 0 && !viewPlayer.hidden;
-	alphaLabel.size = g_ViewedPlayer > 0 ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
-
-	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || g_ViewedPlayer < 1;
 
 	if (g_IsDiplomacyOpen)
 		openDiplomacy();
@@ -459,25 +447,35 @@ function playerFinished(player, won)
 function updateTopPanel()
 {
 	let isPlayer = g_ViewedPlayer > 0;
+
+	let civIcon = Engine.GetGUIObjectByName("civIcon");
+	civIcon.hidden = !isPlayer;
 	if (isPlayer)
 	{
-		let civName = g_CivData[g_Players[g_ViewedPlayer].civ].Name;
-		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), { "civ": civName });
+		civIcon.sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {
+			"civ": g_CivData[g_Players[g_ViewedPlayer].civ].Name
+		});
 	}
 
-	// Hide stuff gaia/observers don't use.
+	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || !isPlayer;
+
+	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
+	viewPlayer.hidden = !g_IsObserver && !g_DevSettings.changePerspective;
+
 	Engine.GetGUIObjectByName("food").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("wood").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("stone").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("metal").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("civIcon").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("tradeButton1").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
-	// Disable stuff observers shouldn't use
+	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
+	alphaLabel.hidden = isPlayer && !viewPlayer.hidden;
+	alphaLabel.size = isPlayer ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
+
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
 }
