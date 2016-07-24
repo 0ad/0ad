@@ -45,8 +45,8 @@ var biomes = {
 		"mainTerrain": "temp_grass_d_aut",
 		"forestFloor1": "temp_grass_long_b_aut",
 		"forestFloor2": "temp_grass_long_b_aut",
-		"roadWild": "temp_overgrown_road_autumn",
-		"road": "temp_road_autumn",
+		"roadWild": "road_rome_a",
+		"road": "road_muddy",
 		// gaia
 		"tree1": "gaia/flora_tree_oak_aut_new",
 		"tree2": "gaia/flora_tree_oak_dead",
@@ -265,18 +265,14 @@ var strongholdBases = [
 	[260,55]
 ];
 
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06, (singleBase) => {
-	for (let biome in biomes)
-	{
-		let classTiles = checkIfInClass(
-			Math.floor(singleBase[0] / scale),
-			Math.floor(singleBase[1] / scale),
-			g_TileClasses[biome]
-		);
+randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06, (tileX, tileY) => {
 
-		if (classTiles > 0)
+	for (let biome in biomes)
+		if (checkIfInClass(tileX, tileY, g_TileClasses[biome]))
+		{
 			setLocalBiome(biomes[biome]);
-	}
+			break;
+		}
 });
 RMS.SetProgress(50);
 

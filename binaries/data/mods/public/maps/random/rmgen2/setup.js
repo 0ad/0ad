@@ -531,9 +531,9 @@ function placeStronghold(playerIDs, distance, groupedDistance)
  * @param singleBases - pair of coordinates of the heightmap to place isolated bases.
  * @param singleBases - pair of coordinates of the heightmap to place team bases.
  * @param groupedDistance - distance between neighboring players.
- * @param singleBaseFunction - A function called for every singlebase placed.
+ * @param func - A function called for every player base or stronghold placed.
  */
-function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, groupedDistance, singleBaseFunction)
+function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, groupedDistance, func)
 {
 	let strongholdBasesRandom = shuffleArray(strongholdBases);
 	let singleBasesRandom = shuffleArray(singleBases);
@@ -546,10 +546,17 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 	{
 		for (let t = 0; t < g_MapInfo.teams.length; ++t)
 		{
+			let tileX = Math.floor(strongholdBasesRandom[t][0] / heightmapScale);
+			let tileY = Math.floor(strongholdBasesRandom[t][1] / heightmapScale);
+
+			let x = tileX / g_MapInfo.mapSize;
+			let z = tileY / g_MapInfo.mapSize;
+
 			let team = g_MapInfo.teams[t].map(playerID => ({ "id": playerID }));
-			let x = Math.floor(strongholdBasesRandom[t][0] / heightmapScale) / g_MapInfo.mapSize;
-			let z = Math.floor(strongholdBasesRandom[t][1] / heightmapScale) / g_MapInfo.mapSize;
 			let players = [];
+
+			if (func)
+				func(tileX, tileY);
 
 			for (let p = 0; p < team.length; ++p)
 			{
@@ -571,13 +578,16 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 		let players = randomizePlayers();
 		for (let p = 0; p < players.length; ++p)
 		{
-			if (singleBaseFunction)
-				singleBaseFunction(singleBasesRandom[p]);
+			let tileX = Math.floor(singleBasesRandom[p][0] / heightmapScale);
+			let tileY = Math.floor(singleBasesRandom[p][1] / heightmapScale);
+
+			if (func)
+				func(tileX, tileY);
 
 			createBase({
 				"id": players[p],
-				"x": Math.floor(singleBasesRandom[p][0] / heightmapScale) / g_MapInfo.mapSize,
-				"z": Math.floor(singleBasesRandom[p][1] / heightmapScale) / g_MapInfo.mapSize
+				"x": tileX / g_MapInfo.mapSize,
+				"z": tileY / g_MapInfo.mapSize
 			});
 		}
 	}
