@@ -331,10 +331,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 		cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
 		
 		// ----------------------------------------------------------------------
-		
+
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-		cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
-		
+		if (cmpPlayerStatisticsTracker)
+			cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
+
 		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
 		cmpBuildingHealth.SetHitpoints(cmpHealth.GetHitpoints());

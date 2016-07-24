@@ -49,7 +49,8 @@ Trigger.prototype.ConquestAddStructure = function(msg)
 	let player = cmpOwnership.GetOwner();
 	if (!this.conquestEntitiesByPlayer[player])
 	{
-		warn("ConquestAddStructure: Unknown player " + player);
+		if (player != 0)
+			warn("ConquestAddStructure: Unknown player " + player);
 		return;	
 	}
 
