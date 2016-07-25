@@ -310,7 +310,15 @@ void VisualReplay::SaveReplayMetadata(const CStrW& data)
 
 bool VisualReplay::HasReplayMetadata(const CStrW& directoryName)
 {
-	return FileExists(GetDirectoryName() / directoryName / L"metadata.json");
+	const OsPath filePath(GetDirectoryName() / directoryName / L"metadata.json");
+
+	if (!FileExists(filePath))
+		return false;
+
+	CFileInfo fileInfo;
+	GetFileInfo(filePath, &fileInfo);
+
+	return fileInfo.Size() > 0;
 }
 
 JS::Value VisualReplay::GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
