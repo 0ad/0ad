@@ -19,10 +19,10 @@
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}_support_female_citizen
-      units/maur_champion_maiden_archer
-      units/maur_hero_chanakya
-      units/maur_hero_maurya
-      units/maur_hero_ashoka
+      units/{civ}_champion_maiden_archer
+      units/{civ}_hero_chanakya
+      units/{civ}_hero_maurya
+      units/{civ}_hero_ashoka
     </Entities>
   </ProductionQueue>
   <TerritoryInfluence>

@@ -34,12 +34,12 @@
   </Position>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/brit_infantry_spearman_b
-      units/brit_infantry_slinger_b
-      units/brit_cavalry_javelinist_b
+      units/{civ}_infantry_spearman_b
+      units/{civ}_infantry_slinger_b
+      units/{civ}_cavalry_javelinist_b
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant
-      units/brit_ship_trireme
+      units/{civ}_ship_trireme
     </Entities>
   </ProductionQueue>
   <RallyPointRenderer>
