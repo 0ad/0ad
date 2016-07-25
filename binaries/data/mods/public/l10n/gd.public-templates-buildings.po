@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-07-08 08:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-22 09:39+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "Ionad sìobhalta"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Tog fear gus cnap mòr de ranntair a ghabhail. Trèanaich saoranaich."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -63,7 +63,7 @@ msgstr "Stoa rìoghail Greugach"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
-msgstr ""
+msgstr "Trus aonadan sònraichte."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -89,7 +89,7 @@ msgstr "Taigh"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Trèanaich lighichean. Cuir aonadan ’nan gearastan ann gus an slànachadh gu luath (3 PB gach diog). Rannsaich leigheas ’s leasachaidhean a’ chreideimh."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -246,7 +246,7 @@ msgstr "An t-arm"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Trèanaich saighdearan-dùthcha. Rannsaich leasachaidhean trèanaidh."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -284,7 +284,7 @@ msgstr "Ambasaid"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Trèanaich curaidhean, laoich is airm sèiste. Rannsaich leasachaidhean air innealan sèiste."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -364,7 +364,7 @@ msgstr "Théātron"
 #: simulation/templates/template_structure_special_theatron.xml:26
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
-msgstr "Hellēnízein (Greugachadh): Bheir gach tèatron a th' agad +20% de bhuaidh ranntair dhut."
+msgstr "Hellēnízein (Greugachadh): Bheir gach tèatron a th’ agad +20% de bhuaidh ranntair dhut."
 
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
@@ -432,7 +432,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Tog innealan-sèiste. Cuir saidhgeadan ’nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -541,7 +541,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Thoir cliù air an t‑sìobhaltas agad is cuir cnap mòr de thìr ris an impireachd agad. Cuir aonadan ’nan gearastan ann gus an slànachadh gu cianail fhèin luath."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -783,7 +783,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Trèanaich bana-sagartan gus na saighdearan agad a shlànachadh. Trèanaich pìcearan còmhlain naoimh. Cuir aonadan ’nan gearastan ann gus an slànachadh gu luath."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -826,7 +826,7 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Trus fanataich loma."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -930,7 +930,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Trèanaich curaidhean ’s laoich. Cuir saighdearan ’nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1090,7 +1090,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "Cìos satraip: Faigh beagan teachd a-steach cunbhalach de bhiadh, fiodh, clach is meatailt. Trèanaich curaidhean Pearsach is an lèintean-crios \"neo-bhàsmhor\"."
+msgstr "Cìos satraip: Faigh beagan teachd a-steach cunbhalach de bhiadh, fiodh, clach is meatailt. Trèanaich curaidhean Pearsach is an lèintean-crios “neo-bhàsmhor.”"
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1233,7 +1233,7 @@ msgstr "ḥwt-n-mš’"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Trèanaich saighdearan-dùthcha Èipheiteach is Ear Mheadhanach. Rannsaich leasachaidhean trèanaidh."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1304,7 +1304,7 @@ msgstr "Structar coltach ri taighean-feachd ach saor a ghabhas togail air rannta
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
@@ -1464,7 +1464,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Trèanaich lighichean. Cuir sonadan ’nan gearastan ann gus an slànachadh gu luath."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
@@ -1484,7 +1484,7 @@ msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Fasgadh sealach airson shaighdearan."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1538,7 +1538,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Tog innealan-sèiste agus trèanaich laoich. Cuir saighdearan ’nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1604,4 +1604,4 @@ msgstr "Trèanaich curaidhean Spartach is laoch hoiplidean Homoioi."
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Thoir cliù air an t‑sìobhaltas agad is cuir cnap mòr de thìr ris an impireachd agad. Cuir aonadan ’nan gearastan ann gus an slànachadh gu luath."

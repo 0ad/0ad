@@ -9,14 +9,15 @@
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # Marinus Savoritias <savoritias@gmail.com>, 2015
+# Savvas Adamtziloglou <savvas-gr@greeklug.gr>, 2016
 # TitanJack <titanjack.com@gmail.com>, 2016
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-23 15:54+0000\n"
+"Last-Translator: Savvas Adamtziloglou <savvas-gr@greeklug.gr>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -374,7 +375,7 @@ msgstr "Ελαφρύ Πολεμικό Πλοίο"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Garrison units for transport and to increase firepower."
-msgstr ""
+msgstr "Τοποθετεί άτομα για μετακίνηση και για αύξηση της δύναμης πυρός τους."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:39
 msgid "Fire Ship"
@@ -384,7 +385,7 @@ msgstr "Πυρπολικό Πλοίο"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Μειώνει δραστικά την υγεία των εχθρικών πλοίων. Χάνεις σταδιακά υγεία λόγω του ότι καίγεσαι, οπότε χρησιμοποίησε το πυρπολικό πλοίο γρήγορα."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -404,7 +405,7 @@ msgstr "Έμπορος"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Εμπόριο μεταξύ αποβαθρών. Φύλαξε έναν έμπορο μέσα για πρόσθετο κέρδος (+20% για κάθε έμπορο). Μάζεψε μεγάλης αξίας θαλάσσιους θησαυρούς.  "
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -473,11 +474,11 @@ msgstr "Εργάτης"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Συλλέκτης με συγκεκριμένη ζωή. Έχει υπεροχή στην εξόρυξη και στην ξύλευση."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Αντάλλαξε πόρους μεταξύ των αγορών σου και αυτών των συμμάχων σου. "
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -699,7 +700,7 @@ msgstr "Αθηναίος πεζοναύτης"
 
 #: simulation/templates/units/athen_champion_marine.xml:7
 msgid "Epibátēs Athēnaîos"
-msgstr ""
+msgstr "Επιβάτης Αθηναίος"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
@@ -765,7 +766,7 @@ msgstr "Αθηναίος Οπλίτης"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:25
 msgid "Hoplítēs Athēnaîos"
-msgstr ""
+msgstr "Οπλίτης Αθηναίος"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -774,7 +775,7 @@ msgstr "Πεντηκόντορος"
 #: simulation/templates/units/athen_ship_bireme.xml:6
 #: simulation/templates/units/spart_ship_bireme.xml:5
 msgid "Pentēkóntoros"
-msgstr ""
+msgstr "Πεντηκόντορος"
 
 #: simulation/templates/units/athen_ship_fishing.xml:8
 #: simulation/templates/units/mace_ship_fishing.xml:5
@@ -802,7 +803,7 @@ msgstr "Αθηναϊκή Τριήρης"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaía"
-msgstr ""
+msgstr "Γυναίκα Αθηναία"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
@@ -852,7 +853,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_champion_infantry.xml:5
 msgid "Brythonic Longswordsman"
-msgstr ""
+msgstr "Βρετόνος με μακρύ ξίφος"
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Delamokludda"
@@ -922,7 +923,7 @@ msgstr ""
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr ""
+msgstr "Μεταφέρει πολλούς στρατιώτες μέσω θαλάσσης."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
@@ -950,7 +951,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr ""
+msgstr "Νουμιδιανό Ιππικό."
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
@@ -987,7 +988,7 @@ msgstr ""
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
 #: simulation/templates/units/thrace_black_cloak.xml:16
 msgid "Mercenary"
-msgstr ""
+msgstr "Μισθοφόρος"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
@@ -1005,12 +1006,12 @@ msgstr "Ιβηρικό Βαρύ Ιππικό"
 #: simulation/templates/units/cart_champion_cavalry.xml:5
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr ""
+msgstr "Ιερά Ίλη"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:6
 msgid "Sacred Band of Astarte"
-msgstr ""
+msgstr "Ιερός Λόχος της Αστάρτης"
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
@@ -1022,11 +1023,11 @@ msgstr ""
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr ""
+msgstr "Ιερός Λόχος "
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
-msgstr ""
+msgstr "Ιερός Λόχος του Βαάλ"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
@@ -1076,7 +1077,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr ""
+msgstr "Ιβηριανός Μισθοφόρος Ακροβολιστής."
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:23
 msgid "Sǝḫīr Kidōn"
@@ -1084,7 +1085,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_slinger_iber_b.xml:22
 msgid "Balearic Slinger"
-msgstr ""
+msgstr "Βαλεαριανός Σφενδονιστής."
 
 #: simulation/templates/units/cart_infantry_slinger_iber_b.xml:23
 msgid "Qallāʿ Ibušimi"
@@ -1110,7 +1111,7 @@ msgstr ""
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
-msgstr ""
+msgstr "Σαμνίτης Ξιφομάχος"
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:22
 msgid "Seḫīr Romaḥ"
@@ -1169,7 +1170,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
-msgstr ""
+msgstr "Καρχηδόνια"
 
 #: simulation/templates/units/cart_support_healer_b.xml:7
 msgid "Kehinit"

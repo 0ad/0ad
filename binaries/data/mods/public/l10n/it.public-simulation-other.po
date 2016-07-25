@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:18+0000\n"
+"POT-Creation-Date: 2016-07-22 09:01+0200\n"
+"PO-Revision-Date: 2016-07-22 09:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -769,34 +769,34 @@ msgstr "Devi selezionare un edificio che può formare unità."
 msgid "(Cheat - control all units)"
 msgstr "(Trucco - controlla tutte le unità)"
 
-#: simulation/helpers/Commands.js:562
+#: simulation/helpers/Commands.js:568
 msgid "(Cheat - promoted units)"
 msgstr "(Trucco - unità promosse)"
 
-#: simulation/helpers/Commands.js:672
+#: simulation/helpers/Commands.js:678
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:688
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:728
+#: simulation/helpers/Commands.js:734
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Richiesto attacco contro %(_player_)s."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:771
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossibile scogliere le/la unità dalla guarnigione."
 
-#: simulation/helpers/Commands.js:779
+#: simulation/helpers/Commands.js:785
 msgid "Some unit(s) can't go back to work"
 msgstr "Alcune unità non possono tornare a lavoro"
 
-#: simulation/helpers/Commands.js:1035
+#: simulation/helpers/Commands.js:1041
 msgid "The building's technology requirements are not met."
 msgstr "Le tecnologie richieste per l'edificio non sono state sviluppate. "
 
@@ -903,6 +903,14 @@ msgstr "Uccidi tutte le unità nemiche"
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
 msgstr "Conquista le Unità"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"

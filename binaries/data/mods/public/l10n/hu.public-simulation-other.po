@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:54+0000\n"
+"POT-Creation-Date: 2016-07-22 09:01+0200\n"
+"PO-Revision-Date: 2016-07-22 10:21+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -765,34 +765,34 @@ msgstr "Ki kell választanod egy épületet, amely egységeket képez ki."
 msgid "(Cheat - control all units)"
 msgstr "(Csalás - összes egység irányítása)"
 
-#: simulation/helpers/Commands.js:562
+#: simulation/helpers/Commands.js:568
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:672
+#: simulation/helpers/Commands.js:678
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nem fejleszthető, mivel a távolsági követelmények nincsenek ellenőrizve, vagy a terep akadályozza."
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:688
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "A beszállásolt egység nem fejleszthető."
 
-#: simulation/helpers/Commands.js:728
+#: simulation/helpers/Commands.js:734
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:771
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nem lehet kiengedni az egységeket"
 
-#: simulation/helpers/Commands.js:779
+#: simulation/helpers/Commands.js:785
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1035
+#: simulation/helpers/Commands.js:1041
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -899,6 +899,14 @@ msgstr "Az összes ellenséges egység megölése"
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
 msgstr "Egységek meghódítása"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero"
+msgstr "Győzd le az ellenfeleket a hősük megölésével"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "Királygyilkosság"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"

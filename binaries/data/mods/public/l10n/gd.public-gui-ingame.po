@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:00+0200\n"
-"PO-Revision-Date: 2016-07-10 10:21+0000\n"
+"POT-Creation-Date: 2016-07-22 09:00+0200\n"
+"PO-Revision-Date: 2016-07-22 09:38+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +51,12 @@ msgid "Confirmation"
 msgstr "Dearbhadh"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Chan eil"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Tha"
 
@@ -240,36 +240,36 @@ msgstr[1] "%(numberOfShipTraders)s long-mhalairt ’nan tàmh"
 msgstr[2] "%(numberOfShipTraders)s longan-malairt ’nan tàmh"
 msgstr[3] "%(numberOfShipTraders)s long-mhalairt ’na thàmh"
 
-#: gui/session/menu.js:711
+#: gui/session/menu.js:716
 msgid "Resume"
 msgstr "Lean air adhart"
 
-#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:716 gui/session/menu.xml:(caption):75
 msgid "Pause"
 msgstr "Cuir ’na stad"
 
-#: gui/session/menu.js:715
+#: gui/session/menu.js:720
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr "Air a chur 'na stad le %(players)s"
+msgstr "Air a chur ’na stad le %(players)s"
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:721
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Leabhar-mìneachaidh"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:750
 msgid "The Developer Overlay was closed."
 msgstr "Chaidh tar-chòmhdachadh nan leasaichear a dhùnadh."
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:751
 msgid "The Developer Overlay was opened."
 msgstr "Chaidh tar-chòmhdachadh nan leasaichear fhosgladh."
 
-#: gui/session/menu.js:768
+#: gui/session/menu.js:773
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -351,7 +351,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Sgioba"
 
-#: gui/session/messages.js:144 gui/session/session.js:267
+#: gui/session/messages.js:144 gui/session/session.js:266
 msgid "Observer"
 msgstr "Amharc"
 
@@ -404,77 +404,77 @@ msgstr "Tha %(player)s a’ cogadh ri %(player2)s a-nis."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "Tha %(player)s neo-phàirteach ri %(player2)s a-nis."
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:589
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "A h-uile duine"
 
-#: gui/session/messages.js:601
+#: gui/session/messages.js:597
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Caidreabhaich"
 
-#: gui/session/messages.js:605
+#: gui/session/messages.js:601
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Nàimhdean"
 
-#: gui/session/messages.js:611
+#: gui/session/messages.js:607
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Amhairc"
 
-#: gui/session/messages.js:640 gui/session/selection_details.js:80
+#: gui/session/messages.js:636 gui/session/selection_details.js:80
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[FAR LOIDHNE] %(player)s"
 
-#: gui/session/messages.js:744
+#: gui/session/messages.js:740
 msgid "Unknown Player"
 msgstr "Cluicheadair neo-aithnichte"
 
-#: gui/session/messages.js:751
+#: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "Ghèill %(player)s."
 
-#: gui/session/messages.js:752
+#: gui/session/messages.js:748
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "Chuireadh buaidh air %(player)s."
 
-#: gui/session/messages.js:759
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "Bhuannaich %(player)s."
 
-#: gui/session/messages.js:788
+#: gui/session/messages.js:784
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "Chuir %(player)s %(amounts)s gu %(player2)s."
 
-#: gui/session/messages.js:790
+#: gui/session/messages.js:786
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Chuir %(player)s %(amounts)s thugad."
 
-#: gui/session/messages.js:805
+#: gui/session/messages.js:801
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Thug %(attacker)s ionnsaigh air an sprèidh agad!"
 
-#: gui/session/messages.js:806
+#: gui/session/messages.js:802
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Thug %(attacker)s ionnsaigh ort!"
 
-#: gui/session/messages.js:849
+#: gui/session/messages.js:853
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:829
+#: gui/session/selection_details.js:388 gui/session/session.js:826
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -679,7 +679,7 @@ msgstr "Sgur dhen àrdachadh"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr "Cha ghabh nì àrdachadh a tha 'ga àrdachadh mar-thà."
+msgstr "Cha ghabh nì àrdachadh a tha ’ga àrdachadh mar-thà."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -772,21 +772,21 @@ msgstr "%(action)s gus %(number)s a thrèanadh."
 msgid "Shift-click"
 msgstr "Shift-bhriog"
 
-#: gui/session/session.js:251
+#: gui/session/session.js:250
 msgid "Gaia"
 msgstr "Gaìa"
 
-#: gui/session/session.js:310
+#: gui/session/session.js:309
 msgid "Find idle worker"
 msgstr "Lorg obraiche na thàmh"
 
-#: gui/session/session.js:313
+#: gui/session/session.js:312
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
-msgstr "Tagh bathar mar thùs an atharrachaidh, an uairsin cleachd na saighdean aig a' bhathar-uidhe gus na h-atharraichean a dhèanamh."
+msgstr "Tagh bathar mar thùs an atharrachaidh, an uairsin cleachd na saighdean aig a’ bhathar-uidhe gus na h-atharraichean a dhèanamh."
 
-#: gui/session/session.js:315
+#: gui/session/session.js:314
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Brùth air  %(hotkey)s gus an stòras a thagh thu a chur air 100%%."
@@ -796,77 +796,92 @@ msgstr "Brùth air  %(hotkey)s gus an stòras a thagh thu a chur air 100%%."
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Craobh nan sìobhaltas"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:680
 msgid "You have won!"
 msgstr "Bhuannaich thu!"
 
-#: gui/session/session.js:684
+#: gui/session/session.js:681
 msgid "You have been defeated!"
 msgstr "Chaidh ruaig a chur ort!"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:683
 msgid "Do you want to quit?"
 msgstr "A bheil thu airson fàgail?"
 
-#: gui/session/session.js:689
+#: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
 msgstr "Thèid ceanglaichean càich a bhriseadh ma dh’fhàgas tu."
 
-#: gui/session/session.js:695
+#: gui/session/session.js:692
 msgid "VICTORIOUS!"
 msgstr "BUAIDH!"
 
-#: gui/session/session.js:696
+#: gui/session/session.js:693
 msgid "DEFEATED!"
 msgstr "RUAIG!"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Chrìochnaich an ath-chluiche. A bheil thu airson fàgail?"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:746
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:827
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Slàinte:"
 
-#: gui/session/session.js:947
+#: gui/session/session.js:941
+#, javascript-format
+msgid "%(playername)s: %(statValue)s"
+msgstr "%(playername)s: %(statValue)s"
+
+#: gui/session/session.js:944
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
+
+#: gui/session/session.js:962
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s"
+msgstr "%(popCount)s/%(popLimit)s"
+
+#: gui/session/session.js:963
 msgid "Population (current / limit)"
 msgstr "Sluagh (an-dràsta / as motha)"
 
-#: gui/session/session.js:948
+#: gui/session/session.js:964
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "An sluagh as motha: %(popCap)s"
 
-#: gui/session/session.js:1099
+#: gui/session/session.js:1116
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Togail: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1109
+#: gui/session/session.js:1126
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "An aire: ’s e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh’fhaoidte gum falbh an cuimhne air a’ gheama no gun tuislich e."
 
-#: gui/session/session.js:1110
+#: gui/session/session.js:1127
 msgid "Time warp mode"
 msgstr "Modh dlùthadh an ama"
 
@@ -923,7 +938,7 @@ msgstr "Sguir dhen òrdugh làithreach."
 
 #: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
-msgstr "Cuir na h-aonadan a thagh thu 'nan gearastan ann an togalach no ann an aonad eile."
+msgstr "Cuir na h-aonadan a thagh thu ’nan gearastan ann an togalach no ann an aonad eile."
 
 #: gui/session/unit_actions.js:1074
 msgid "Unload"
@@ -1123,19 +1138,19 @@ msgstr "Cabadaich"
 msgid "Save"
 msgstr "Sàbhail"
 
-#: gui/session/menu.xml:(caption):53
+#: gui/session/menu.xml:(caption):52
 msgid "Summary"
 msgstr "Gearr-chunntas"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Options"
 msgstr "Roghainnean"
 
-#: gui/session/menu.xml:(caption):88
+#: gui/session/menu.xml:(caption):87
 msgid "Resign"
 msgstr "Gèill"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):156
+#: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):156
 msgid "Exit"
 msgstr "Fàg an-seo"
 
@@ -1227,19 +1242,3 @@ msgstr "Clàr-taice"
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
 msgstr "ALPHA XX : Timosthenes"
-
-#: gui/session/top_panel/resource_food.xml:(tooltip):3
-msgid "Food"
-msgstr "Biadh"
-
-#: gui/session/top_panel/resource_metal.xml:(tooltip):3
-msgid "Metal"
-msgstr "Meatailt"
-
-#: gui/session/top_panel/resource_stone.xml:(tooltip):3
-msgid "Stone"
-msgstr "Clach"
-
-#: gui/session/top_panel/resource_wood.xml:(tooltip):3
-msgid "Wood"
-msgstr "Fiodh"

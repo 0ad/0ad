@@ -8,6 +8,7 @@
 # Devinate <m.brezek@gmail.com>, 2014
 # fri, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
+# Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Martin Kříž <liberte.czech@gmail.com>, 2015
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
 # fri, 2014-2016
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:00+0200\n"
-"PO-Revision-Date: 2016-07-12 07:16+0000\n"
-"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
+"POT-Creation-Date: 2016-07-22 09:00+0200\n"
+"PO-Revision-Date: 2016-07-22 14:11+0000\n"
+"Last-Translator: Jaroslav Lichtblau <dragonlord@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,12 +60,12 @@ msgid "Confirmation"
 msgstr "Potvrzení"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ne"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ano"
 
@@ -239,36 +240,36 @@ msgstr[0] "%(numberOfShipTraders)s obchodní loď nečinná"
 msgstr[1] "%(numberOfShipTraders)s obchodní lodě nečinné"
 msgstr[2] "%(numberOfShipTraders)s obchodních lodí nečinných"
 
-#: gui/session/menu.js:711
+#: gui/session/menu.js:716
 msgid "Resume"
 msgstr "Pokračovat"
 
-#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:716 gui/session/menu.xml:(caption):75
 msgid "Pause"
 msgstr "Pozastavit"
 
-#: gui/session/menu.js:715
+#: gui/session/menu.js:720
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Pozastaveno %(players)s"
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:721
 msgid ", "
 msgstr ","
 
-#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Příručka"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:750
 msgid "The Developer Overlay was closed."
 msgstr "Byla zavřena vývojářská vrstva."
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:751
 msgid "The Developer Overlay was opened."
 msgstr "Byla otevřena vývojářská vrstva."
 
-#: gui/session/menu.js:768
+#: gui/session/menu.js:773
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -350,7 +351,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Tým"
 
-#: gui/session/messages.js:144 gui/session/session.js:267
+#: gui/session/messages.js:144 gui/session/session.js:266
 msgid "Observer"
 msgstr "Pozorovatel"
 
@@ -403,77 +404,77 @@ msgstr "%(player)s je nyní ve válce s %(player2)s."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s je nyní neutrální vůči %(player2)s."
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:589
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Kdokoli"
 
-#: gui/session/messages.js:601
+#: gui/session/messages.js:597
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Spojenci"
 
-#: gui/session/messages.js:605
+#: gui/session/messages.js:601
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Nepřátelé"
 
-#: gui/session/messages.js:611
+#: gui/session/messages.js:607
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Pozorovatelé"
 
-#: gui/session/messages.js:640 gui/session/selection_details.js:80
+#: gui/session/messages.js:636 gui/session/selection_details.js:80
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[NEPŘIPOJENÝ] %(player)s"
 
-#: gui/session/messages.js:744
+#: gui/session/messages.js:740
 msgid "Unknown Player"
 msgstr "Neznámý hráč"
 
-#: gui/session/messages.js:751
+#: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s odstoupil."
 
-#: gui/session/messages.js:752
+#: gui/session/messages.js:748
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s byl poražen."
 
-#: gui/session/messages.js:759
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "%(player)s vyhrál."
 
-#: gui/session/messages.js:788
+#: gui/session/messages.js:784
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s poslal %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:790
+#: gui/session/messages.js:786
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s vám poslal %(amounts)s."
 
-#: gui/session/messages.js:805
+#: gui/session/messages.js:801
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Tvůj dobytek byl napaden %(attacker)s!"
 
-#: gui/session/messages.js:806
+#: gui/session/messages.js:802
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Byl jste napaden %(attacker)s!"
 
-#: gui/session/messages.js:849
+#: gui/session/messages.js:853
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:829
+#: gui/session/selection_details.js:388 gui/session/session.js:826
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -768,21 +769,21 @@ msgstr "%(action)s pro vycvičení %(number)s."
 msgid "Shift-click"
 msgstr "Shift-klepnutí"
 
-#: gui/session/session.js:251
+#: gui/session/session.js:250
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:310
+#: gui/session/session.js:309
 msgid "Find idle worker"
 msgstr "Najít nečinného dělníka"
 
-#: gui/session/session.js:313
+#: gui/session/session.js:312
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
 msgstr "Vyberte jedno zboží jako předmět výměny, potom použijte šipky cílového zboží k provedení směny."
 
-#: gui/session/session.js:315
+#: gui/session/session.js:314
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Použití %(hotkey)s dá vybraný zdroj na 100%%."
@@ -792,77 +793,92 @@ msgstr "Použití %(hotkey)s dá vybraný zdroj na 100%%."
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strom staveb"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:680
 msgid "You have won!"
 msgstr "Vyhrál jste!"
 
-#: gui/session/session.js:684
+#: gui/session/session.js:681
 msgid "You have been defeated!"
 msgstr "Byl jste poražen."
 
-#: gui/session/session.js:686
+#: gui/session/session.js:683
 msgid "Do you want to quit?"
 msgstr "Chcete skončit?"
 
-#: gui/session/session.js:689
+#: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
 msgstr "Při opuštění hry jsou odpojeni všichni ostatní hráči."
 
-#: gui/session/session.js:695
+#: gui/session/session.js:692
 msgid "VICTORIOUS!"
 msgstr "VÍTĚZSTVÍ!"
 
-#: gui/session/session.js:696
+#: gui/session/session.js:693
 msgid "DEFEATED!"
 msgstr "PORÁŽKA!"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Přehrávání skončilo. Chcete ukončit?"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:746
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ne"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:827
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Zdraví:"
 
-#: gui/session/session.js:947
+#: gui/session/session.js:941
+#, javascript-format
+msgid "%(playername)s: %(statValue)s"
+msgstr "%(playername)s: %(statValue)s"
+
+#: gui/session/session.js:944
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
+
+#: gui/session/session.js:962
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s"
+msgstr "%(popCount)s/%(popLimit)s"
+
+#: gui/session/session.js:963
 msgid "Population (current / limit)"
 msgstr "Obyvatelstvo (nyní / limit)"
 
-#: gui/session/session.js:948
+#: gui/session/session.js:964
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Nejvyšší počet obyvatel: %(popCap)s"
 
-#: gui/session/session.js:1099
+#: gui/session/session.js:1116
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1109
+#: gui/session/session.js:1126
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Poznámka: Režim cestování časem je možnost pro vývojáře a není záměrem, aby se používala po dlouhou dobu. Její špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
 
-#: gui/session/session.js:1110
+#: gui/session/session.js:1127
 msgid "Time warp mode"
 msgstr "Režim zrychlení času"
 
@@ -1119,19 +1135,19 @@ msgstr "Rozhovor"
 msgid "Save"
 msgstr "Uložit"
 
-#: gui/session/menu.xml:(caption):53
+#: gui/session/menu.xml:(caption):52
 msgid "Summary"
 msgstr "Shrnutí"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Options"
 msgstr "Volby"
 
-#: gui/session/menu.xml:(caption):88
+#: gui/session/menu.xml:(caption):87
 msgid "Resign"
 msgstr "Vzdát se"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):156
+#: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):156
 msgid "Exit"
 msgstr "Ukončit"
 
@@ -1223,19 +1239,3 @@ msgstr "Nabídka"
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
 msgstr "ALPHA XX : Timosthenes"
-
-#: gui/session/top_panel/resource_food.xml:(tooltip):3
-msgid "Food"
-msgstr "Jídlo"
-
-#: gui/session/top_panel/resource_metal.xml:(tooltip):3
-msgid "Metal"
-msgstr "Kov"
-
-#: gui/session/top_panel/resource_stone.xml:(tooltip):3
-msgid "Stone"
-msgstr "Kámen"
-
-#: gui/session/top_panel/resource_wood.xml:(tooltip):3
-msgid "Wood"
-msgstr "Dřevo"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 09:27+0000\n"
+"POT-Creation-Date: 2016-07-22 09:01+0200\n"
+"PO-Revision-Date: 2016-07-22 10:05+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -764,34 +764,34 @@ msgstr "Трябва да изберете сграда, която обучав
 msgid "(Cheat - control all units)"
 msgstr "(Измама — управляване на всички единици)"
 
-#: simulation/helpers/Commands.js:562
+#: simulation/helpers/Commands.js:568
 msgid "(Cheat - promoted units)"
 msgstr "(Измама — повишени единици)"
 
-#: simulation/helpers/Commands.js:672
+#: simulation/helpers/Commands.js:678
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Надграждането е невъзможно, тъй като изискванията за разстояние не са потвърдени или теренът пречи."
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:688
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Подобряването на единица на гарнизон не е възможно."
 
-#: simulation/helpers/Commands.js:728
+#: simulation/helpers/Commands.js:734
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Предложено е нападение срещу %(_player_)s."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:771
 msgid "Unable to ungarrison unit(s)"
 msgstr "Неуспешно пускане от гарнизон"
 
-#: simulation/helpers/Commands.js:779
+#: simulation/helpers/Commands.js:785
 msgid "Some unit(s) can't go back to work"
 msgstr "Има единица (или единици), която не може да се върне обратно към работата си."
 
-#: simulation/helpers/Commands.js:1035
+#: simulation/helpers/Commands.js:1041
 msgid "The building's technology requirements are not met."
 msgstr "Не са изпълнени технологичните изисквания на сградата."
 
@@ -898,6 +898,14 @@ msgstr "Убиване на всички вражески единици"
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
 msgstr "Завладяване на единици"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero"
+msgstr "Победа чрез убиване на противниковия герой"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "Цареубийство"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"

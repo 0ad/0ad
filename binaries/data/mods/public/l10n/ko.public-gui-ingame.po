@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:00+0200\n"
-"PO-Revision-Date: 2016-07-08 09:44+0000\n"
+"POT-Creation-Date: 2016-07-22 09:00+0200\n"
+"PO-Revision-Date: 2016-07-22 09:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +51,12 @@ msgid "Confirmation"
 msgstr "확인"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "아니오"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "예"
 
@@ -213,36 +213,36 @@ msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s 채의 무역선이 쉬고 있음."
 
-#: gui/session/menu.js:711
+#: gui/session/menu.js:716
 msgid "Resume"
 msgstr "다시 하기"
 
-#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:716 gui/session/menu.xml:(caption):75
 msgid "Pause"
 msgstr "멈춤"
 
-#: gui/session/menu.js:715
+#: gui/session/menu.js:720
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "플레이어에 의해 일시중지 됨."
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:721
 msgid ", "
 msgstr ","
 
-#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "안내서"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:750
 msgid "The Developer Overlay was closed."
 msgstr "개발자용 덧판이 닫혔습니다."
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:751
 msgid "The Developer Overlay was opened."
 msgstr "개발자용 덧판이 열렸습니다."
 
-#: gui/session/menu.js:768
+#: gui/session/menu.js:773
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -324,7 +324,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "팀"
 
-#: gui/session/messages.js:144 gui/session/session.js:267
+#: gui/session/messages.js:144 gui/session/session.js:266
 msgid "Observer"
 msgstr "관찰자"
 
@@ -377,77 +377,77 @@ msgstr "%(player)s 는 이제 %(player2)s 와 전쟁입니다."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s 는 이제 %(player2)s 와 중립 상태입니다."
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:589
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "누구나"
 
-#: gui/session/messages.js:601
+#: gui/session/messages.js:597
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "연합군"
 
-#: gui/session/messages.js:605
+#: gui/session/messages.js:601
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "적"
 
-#: gui/session/messages.js:611
+#: gui/session/messages.js:607
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "관찰자들"
 
-#: gui/session/messages.js:640 gui/session/selection_details.js:80
+#: gui/session/messages.js:636 gui/session/selection_details.js:80
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[비접속] %(player)s"
 
-#: gui/session/messages.js:744
+#: gui/session/messages.js:740
 msgid "Unknown Player"
 msgstr "모르는 플레이어"
 
-#: gui/session/messages.js:751
+#: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "플레이어가 졌습니다."
 
-#: gui/session/messages.js:752
+#: gui/session/messages.js:748
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s 가 졌습니다."
 
-#: gui/session/messages.js:759
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
 msgstr ""
 
-#: gui/session/messages.js:788
+#: gui/session/messages.js:784
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s 가 %(player2)s 에게 %(amounts)s 를 보냈습니다."
 
-#: gui/session/messages.js:790
+#: gui/session/messages.js:786
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s 가 %(amounts)s 를 보냈습니다."
 
-#: gui/session/messages.js:805
+#: gui/session/messages.js:801
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "여러분의 가축이 %(attacker)s 에게 공격받고 있습니다!"
 
-#: gui/session/messages.js:806
+#: gui/session/messages.js:802
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)s 에게 공격받고 있습니다!"
 
-#: gui/session/messages.js:849
+#: gui/session/messages.js:853
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:829
+#: gui/session/selection_details.js:388 gui/session/session.js:826
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -736,21 +736,21 @@ msgstr "%(number)s를 훈련하기 위해 %(action)s가 필요함"
 msgid "Shift-click"
 msgstr "쉬프트 클릭"
 
-#: gui/session/session.js:251
+#: gui/session/session.js:250
 msgid "Gaia"
 msgstr "가이아"
 
-#: gui/session/session.js:310
+#: gui/session/session.js:309
 msgid "Find idle worker"
 msgstr "노는 사람 찾기"
 
-#: gui/session/session.js:313
+#: gui/session/session.js:312
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
 msgstr ""
 
-#: gui/session/session.js:315
+#: gui/session/session.js:314
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr ""
@@ -760,77 +760,92 @@ msgstr ""
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 트리형 구조"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:680
 msgid "You have won!"
 msgstr ""
 
-#: gui/session/session.js:684
+#: gui/session/session.js:681
 msgid "You have been defeated!"
 msgstr ""
 
-#: gui/session/session.js:686
+#: gui/session/session.js:683
 msgid "Do you want to quit?"
 msgstr "그만하시겠습니까?"
 
-#: gui/session/session.js:689
+#: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
 msgstr ""
 
-#: gui/session/session.js:695
+#: gui/session/session.js:692
 msgid "VICTORIOUS!"
 msgstr "이겼습니다!!"
 
-#: gui/session/session.js:696
+#: gui/session/session.js:693
 msgid "DEFEATED!"
 msgstr "졌습니다!"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "리플레이가 끝났습니다. 종료하시겠습니까?"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:746
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "No"
 msgstr "아니요"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "예"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:827
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "건강:"
 
-#: gui/session/session.js:947
+#: gui/session/session.js:941
+#, javascript-format
+msgid "%(playername)s: %(statValue)s"
+msgstr ""
+
+#: gui/session/session.js:944
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
+msgstr ""
+
+#: gui/session/session.js:962
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s"
+msgstr ""
+
+#: gui/session/session.js:963
 msgid "Population (current / limit)"
 msgstr "인구 (현재 / 제한)"
 
-#: gui/session/session.js:948
+#: gui/session/session.js:964
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "꽉찬 인구수 : %(popCap)s"
 
-#: gui/session/session.js:1099
+#: gui/session/session.js:1116
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "건물짓기: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1109
+#: gui/session/session.js:1126
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "참고: 시간여행 모드는 개발자용으로, 긴 시대에 걸쳐 사용하도록 만들어지지 않았습니다. 잘못 사용하는 경우 메모리가 부족하거나 게임이 다운될 수 있습니다."
 
-#: gui/session/session.js:1110
+#: gui/session/session.js:1127
 msgid "Time warp mode"
 msgstr "시간여행 모드"
 
@@ -1087,19 +1102,19 @@ msgstr "대화"
 msgid "Save"
 msgstr "저장"
 
-#: gui/session/menu.xml:(caption):53
+#: gui/session/menu.xml:(caption):52
 msgid "Summary"
 msgstr "요약"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Options"
 msgstr "옵션들"
 
-#: gui/session/menu.xml:(caption):88
+#: gui/session/menu.xml:(caption):87
 msgid "Resign"
 msgstr "그만두기"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):156
+#: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):156
 msgid "Exit"
 msgstr "끝내기"
 
@@ -1191,19 +1206,3 @@ msgstr "메뉴"
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
 msgstr "알파 XX : Timosthenes"
-
-#: gui/session/top_panel/resource_food.xml:(tooltip):3
-msgid "Food"
-msgstr "식량"
-
-#: gui/session/top_panel/resource_metal.xml:(tooltip):3
-msgid "Metal"
-msgstr "금속"
-
-#: gui/session/top_panel/resource_stone.xml:(tooltip):3
-msgid "Stone"
-msgstr "돌"
-
-#: gui/session/top_panel/resource_wood.xml:(tooltip):3
-msgid "Wood"
-msgstr "목재"
