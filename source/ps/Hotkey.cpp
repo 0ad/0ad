@@ -63,6 +63,9 @@ static void LoadConfigBindings()
 		std::string hotkeyName = configPair.first.substr(7); // strip the "hotkey." prefix
 		for (const CStr& hotkey : configPair.second)
 		{
+			if (hotkey.LowerCase() == "unused")
+				continue;
+
 			std::vector<SKey> keyCombination;
 
 			// Iterate through multiple-key bindings (e.g. Ctrl+I)
