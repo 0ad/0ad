@@ -77,11 +77,11 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 
 	// Recursively add all props
 	const std::vector<CModel::Prop>& props = model->GetProps();
-	for (std::vector<CModel::Prop>::const_iterator it = props.begin(); it != props.end(); ++it)
+	for (const CModel::Prop& prop : props)
 	{
-		CModel* propModel = it->m_Model->ToCModel();
+		CModel* propModel = prop.m_Model->ToCModel();
 		if (propModel)
-			AddModel(propModel, it->m_ObjectEntry);
+			AddModel(propModel, prop.m_ObjectEntry);
 	}
 }
 
@@ -237,9 +237,14 @@ void CUnitAnimation::Update(float time)
 				// we're handling the root model
 				// choose animations from the complete state
 				anim = it->object->GetRandomAnimation(m_State);
-				m_AnimationName = anim->m_Name;
 				// if we use a new animation name,
 				// update the animations of all non-root models
+				// sync with the root model, unless the root model could
+				// only resort to the "idle" state.
+				if (anim->m_Name != "idle")
+					m_AnimationName = anim->m_Name;
+				else
+					m_AnimationName = m_State;
 				if (it->anim->m_Name != m_AnimationName)
 					for (SModelAnimState animState : m_AnimStates)
 						if (animState.model != m_Model)
