@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-26 13:43+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +91,7 @@ msgstr "Time remaining until ceasefire is over: %(time)s."
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Random"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
@@ -114,70 +114,70 @@ msgstr "HH:mm:ss"
 #: gui/common/functions_utility.js:311
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:314
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:320
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:323
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:333
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:336
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:343
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:346
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:350
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:353
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/functions_utility.js:371
 msgid "Unknown Civilization"
@@ -186,12 +186,12 @@ msgstr "Unknown Civilisation"
 #: gui/common/functions_utility.js:378
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "defeated"
 
 #: gui/common/functions_utility.js:379
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "won"
 
 #: gui/common/functions_utility.js:401
 msgid "No Team"
@@ -209,13 +209,13 @@ msgstr "Team %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/functions_utility.js:413
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Observer"
+msgstr[1] "Observers"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -710,8 +710,8 @@ msgstr[1] "seconds"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:82
 msgid "arrow"
@@ -727,7 +727,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:96
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:107
 msgid "Armor:"
@@ -770,7 +770,7 @@ msgstr "%(attackLabel)s %(details)s, %(rate)s"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:179
 #, javascript-format
@@ -798,16 +798,16 @@ msgstr[1] "metres"
 #: gui/common/tooltips.js:210
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:211
 msgid "Splash Damage:"
-msgstr ""
+msgstr "Splash Damage:"
 
 #: gui/common/tooltips.js:214
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Friendly Fire: %(enabled)s"
 
 #: gui/common/tooltips.js:215 gui/options/options.js:275
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:290
@@ -828,16 +828,16 @@ msgstr "No"
 #: gui/common/tooltips.js:230
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:231
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Garrison Limit"
 
 #: gui/common/tooltips.js:238
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:239 gui/common/tooltips.js:511
 msgid "Heal:"
@@ -852,21 +852,21 @@ msgstr "Health"
 #: gui/common/tooltips.js:275
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:266
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Projectile Limit"
 
 #: gui/common/tooltips.js:271
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 #: gui/common/tooltips.js:276
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Per Unit"
 
 #: gui/common/tooltips.js:287
 #, javascript-format
@@ -990,7 +990,7 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:563
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:578
 msgid "Classes:"
@@ -1260,7 +1260,7 @@ msgstr "No saved games found"
 #: gui/savedgames/load.js:61
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Mods: %(mods)s"
 
 #: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
@@ -1549,11 +1549,11 @@ msgstr "Team total"
 
 #: gui/summary/summary.js:145
 msgid "Are you sure you want to quit the lobby?"
-msgstr ""
+msgstr "Are you sure you want to quit the lobby?"
 
 #: gui/summary/summary.js:196
 msgid "Current Scores"
-msgstr ""
+msgstr "Current Scores"
 
 #: gui/summary/summary.js:198
 msgid "Scores at the end of the game."
@@ -1561,23 +1561,23 @@ msgstr "Scores at the end of the game."
 
 #: gui/summary/summary.js:200
 msgid "You have been disconnected."
-msgstr ""
+msgstr "You have been disconnected."
 
 #: gui/summary/summary.js:202
 msgid "You have left the game."
-msgstr ""
+msgstr "You have left the game."
 
 #: gui/summary/summary.js:204
 msgid "You have won the battle!"
-msgstr ""
+msgstr "You have won the battle!"
 
 #: gui/summary/summary.js:206
 msgid "You have been defeated..."
-msgstr ""
+msgstr "You have been defeated..."
 
 #: gui/summary/summary.js:207
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "You have abandoned the game."
 
 #: gui/summary/summary.js:212
 #, javascript-format
@@ -2052,7 +2052,7 @@ msgstr "Load"
 
 #: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
-msgstr ""
+msgstr "Played time:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
@@ -2422,11 +2422,11 @@ msgstr "Observer Limit"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Number of units trained per batch"
-msgstr ""
+msgstr "Number of units trained per batch"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Batch Training Size"
-msgstr ""
+msgstr "Batch Training Size"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2470,11 +2470,11 @@ msgstr "UI Gain"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr ""
+msgstr "Receive audio notification when someone types your nick"
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
-msgstr ""
+msgstr "Nick Notification"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

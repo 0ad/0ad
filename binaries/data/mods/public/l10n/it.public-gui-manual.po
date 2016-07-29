@@ -4,7 +4,8 @@
 # 
 # Translators:
 # SecondCloud500 <eddieven2000@gmail.com>, 2014-2015
-# Fabio Pedretti <fabio.ped@libero.it>, 2014,2016
+# Fabio Pedretti <pedretti.fabio@gmail.com>, 2014,2016
+# Fabrizio Morotti <famorot@tin.it>, 2016
 # Me Lazzi, 2014-2016
 # Nicola Jelmorini, 2014-2015
 # Samuele Marazzita <samuelemarazzita@gmail.com>, 2016
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-15 09:00+0200\n"
-"PO-Revision-Date: 2016-07-15 08:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-25 13:37+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +47,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Grazie per aver installato 0 A.D.! Questa pagina offre una breve panoramica sulle caratteristiche disponibili in questa versione incompleta, in sviluppo del gioco."
+msgstr "Grazie per aver installato 0 A.D.! Questa pagina offre una breve panoramica sulle caratteristiche disponibili in questa versione incompleta, in sviluppo ed alfa del gioco."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -100,7 +101,7 @@ msgstr "• Usa Ctrl + tasti freccia, o tasto shift + rotella del mouse per ruot
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Scorri la rotella del mouse, o i tasti \"+\" e \"-\", per variare la distanza della visuale."
+msgstr "• Scorri la rotella del mouse, o i tasti \"+\" e \"-\", per aumentare o diminuire il campo visivo"
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -297,29 +298,29 @@ msgstr "Pausa: metti in pausa/riprendi il gioco"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr "Delete: Cancella le unità/gli edifici selezionati"
+msgstr "Canc: Cancella le unità/gli edifici selezionati"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr "Maiusc + Delete: Cancella le unità/gli edifici selezionati senza richiedere conferma"
+msgstr "Maiusc + Canc: Cancella le unità/gli edifici selezionati senza richiedere conferma"
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (Barra in avanti): Seleziona combattenti inattivi"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Maiusc + /: aggiungi combattente inattivo alla selezione"
 
 #: gui/manual/intro.txt:70
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (punto): Seleziona i lavoratori inattivi (inclusi i cittadini-soldati)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Maiusc + . : aggiungi lavoratori inattivi alla selezione (inclusi i cittadini-soldati)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -546,7 +547,7 @@ msgstr "Alt + W: passa alla modalità wireframe"
 
 #: gui/manual/intro.txt:123
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "Tasto centrale del mouse: Mantenere premuto e muovere il mouse per spostare la panoramica"
 
 #: gui/manual/intro.txt:125
 msgid "[font=\"sans-bold-14\"]During Building Placement"

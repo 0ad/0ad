@@ -14,7 +14,8 @@
 # Davide, 2014
 # SecondCloud500 <eddieven2000@gmail.com>, 2014-2015
 # Emanuele Ricci <stermi@gmail.com>, 2013
-# Fabio Pedretti <fabio.ped@libero.it>, 2013,2015-2016
+# Fabio Pedretti <pedretti.fabio@gmail.com>, 2013,2015-2016
+# Fabrizio Morotti <famorot@tin.it>, 2016
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Marco <inactive+Vamos@transifex.com>, 2013
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-25 15:58+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +113,7 @@ msgstr "Elimina"
 #: gui/session/menu.js:276
 msgctxt "team"
 msgid "None"
-msgstr "No"
+msgstr "NN"
 
 #: gui/session/menu.js:280 gui/session/messages.js:142
 #: gui/session/diplomacy_window.xml:(tooltip):28
@@ -448,7 +449,7 @@ msgstr "%(player)s è stato sconfitto."
 #: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s ha vinto."
 
 #: gui/session/messages.js:784
 #, javascript-format
@@ -662,20 +663,20 @@ msgstr[1] "Rimanenti: %(number)s da costruire."
 #: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Incrementa ad %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Incrementa ad %(name)s."
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Cancella l'incremento"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Non si può incrementare ciò che è stato già incrementato."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -794,11 +795,11 @@ msgstr "%(civ)s - Diagramma Strutture"
 
 #: gui/session/session.js:680
 msgid "You have won!"
-msgstr ""
+msgstr "Hai vinto !"
 
 #: gui/session/session.js:681
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Sei stato sconfitto !"
 
 #: gui/session/session.js:683
 msgid "Do you want to quit?"
@@ -806,7 +807,7 @@ msgstr "Vuoi uscire?"
 
 #: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Sei sicuro di voler uscire? Abbandonando provocherai la disconnessione di tutti gli altri giocatori."
 
 #: gui/session/session.js:692
 msgid "VICTORIOUS!"
@@ -844,17 +845,17 @@ msgstr "Salute:"
 #: gui/session/session.js:941
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:944
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:962
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:963
 msgid "Population (current / limit)"
@@ -934,7 +935,7 @@ msgstr "Annulla l'ordine corrente."
 
 #: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
-msgstr "Ordina alle unità selezionate di presidiare un edificio o unità."
+msgstr "Ordina alle unità selezionate di presidiare un edificio od unità."
 
 #: gui/session/unit_actions.js:1074
 msgid "Unload"
@@ -982,7 +983,7 @@ msgstr "L'uso di questo punto di scarico è vietato"
 
 #: gui/session/unit_actions.js:1341
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "L'unità è stata uccisa prima di poter essere acquartierata."
 
 #: gui/session/unit_actions.js:1344
 msgid ""
@@ -991,7 +992,7 @@ msgstr "Non puoi distruggere questa entità poichè hai meno della metà dei pun
 
 #: gui/session/unit_actions.js:1347
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Questa unità è incancellabile."
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
