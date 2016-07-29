@@ -16,6 +16,9 @@ Foundation.prototype.Init = function()
 	this.buildMultiplier = 1; // Multiplier for the amount of work builders do.
 	
 	this.previewEntity = INVALID_ENTITY;
+
+	// Penalty for multiple builders
+	this.buildTimePenalty = 0.7;
 };
 
 Foundation.prototype.InitialiseConstruction = function(owner, template)
@@ -29,6 +32,9 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	// Remember the cost here, so if it changes after construction begins (from auras or technologies)
 	// we will use the correct values to refund partial construction costs
 	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
+	if (!cmpCost)
+		error("A foundation must have a cost component to know the build time");
+
 	this.costs = cmpCost.GetResourceCosts(owner);
 
 	this.maxProgress = 0;
@@ -62,7 +68,7 @@ Foundation.prototype.GetBuildProgress = function()
 	var hitpoints = cmpHealth.GetHitpoints();
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
 
-	return (hitpoints / maxHitpoints);
+	return hitpoints / maxHitpoints;
 };
 
 Foundation.prototype.GetBuildPercentage = function()
@@ -116,24 +122,31 @@ Foundation.prototype.OnDestroy = function()
  */
 Foundation.prototype.AddBuilder = function(builderEnt)
 {
-	if (this.builders.indexOf(builderEnt) === -1)
-	{
-		this.builders.push(builderEnt);
-		Engine.QueryInterface(this.entity, IID_Visual).SetVariable("numbuilders", this.builders.length);
-		this.SetBuildMultiplier();
-		Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
-	}
+	if (this.builders.indexOf(builderEnt) != -1)
+		return;
+
+	this.builders.push(builderEnt);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SetVariable("numbuilders", this.builders.length);
+
+	this.SetBuildMultiplier();
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
 };
 
 Foundation.prototype.RemoveBuilder = function(builderEnt)
 {
-	if (this.builders.indexOf(builderEnt) !== -1)
- 	{
-		this.builders.splice(this.builders.indexOf(builderEnt),1);
-		Engine.QueryInterface(this.entity, IID_Visual).SetVariable("numbuilders", this.builders.length);
- 		this.SetBuildMultiplier();
-		Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
- 	}
+	let index = this.builders.indexOf(builderEnt);
+	if (index == -1)
+		return;
+
+	this.builders.splice(index, 1);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SetVariable("numbuilders", this.builders.length);
+
+	this.SetBuildMultiplier();
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
  };
 
 /**
@@ -146,7 +159,7 @@ Foundation.prototype.SetBuildMultiplier = function()
 	if (numBuilders < 2)
 		this.buildMultiplier = 1;
 	else
-		this.buildMultiplier = Math.pow(numBuilders, 0.7) / numBuilders;
+		this.buildMultiplier = Math.pow(numBuilders, this.buildTimePenalty) / numBuilders;
 };
 
 /**
@@ -199,18 +212,19 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// Handle the initial 'committing' of the foundation
 	if (!this.committed)
 	{
+		// The obstruction always blocks new foundations/construction,
+		// but we've temporarily allowed units to walk all over it
+		// (via CCmpTemplateManager). Now we need to remove that temporary
+		// blocker-disabling, so that we'll perform standard unit blocking instead.
 		if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
-		{
-			// The obstruction always blocks new foundations/construction,
-			// but we've temporarily allowed units to walk all over it
-			// (via CCmpTemplateManager). Now we need to remove that temporary
-			// blocker-disabling, so that we'll perform standard unit blocking instead.
 			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
 
-			// Call the related trigger event 
-			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-			cmpTrigger.CallEvent("ConstructionStarted", {"foundation": this.entity, "template": this.finalTemplateName});
-		}
+		// Call the related trigger event 
+		var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+		cmpTrigger.CallEvent("ConstructionStarted", {
+			"foundation": this.entity,
+			"template": this.finalTemplateName
+		});
 
 		// Switch foundation to scaffold variant
 		var cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
@@ -249,6 +263,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 	// Add an appropriate proportion of hitpoints
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	if (!cmpHealth)
+	{
+		error("Foundation " + this.entity + " does not have a health component.");
+		return;
+	}
 	var maxHealth = cmpHealth.GetMaxHitpoints();
 	var deltaHP = Math.max(work, Math.min(maxHealth, Math.floor(work * this.GetBuildRate() * this.buildMultiplier)));
 	if (deltaHP > 0)
@@ -274,9 +293,21 @@ Foundation.prototype.Build = function(builderEnt, work)
 			cmpBuildingVisual.SetActorSeed(cmpVisual.GetActorSeed());
 
 		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (!cmpPosition || !cmpPosition.IsInWorld())
+		{
+			error("Foundation " + this.entity + " does not have a position in-world.");
+			Engine.DestroyEntity(building);
+			return;
+		}
 		var cmpBuildingPosition = Engine.QueryInterface(building, IID_Position);
-		var pos = cmpPosition.GetPosition();
-		cmpBuildingPosition.JumpTo(pos.x, pos.z);
+		if (!cmpBuildingPosition)
+		{
+			error("New building " + building + " has no position component.");
+			Engine.DestroyEntity(building);
+			return;
+		}
+		var pos = cmpPosition.GetPosition2D();
+		cmpBuildingPosition.JumpTo(pos.x, pos.y);
 		var rot = cmpPosition.GetRotation();
 		cmpBuildingPosition.SetYRotation(rot.y);
 		cmpBuildingPosition.SetXZRotation(rot.x, rot.z);
@@ -307,38 +338,57 @@ Foundation.prototype.Build = function(builderEnt, work)
 		else
 		{
 			let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+			if (!cmpOwnership)
+			{
+				error("Foundation " + this.entity + " has no ownership.");
+				Engine.DestroyEntity(building);
+				return;
+			}
 			owner = cmpOwnership.GetOwner();
 		}
 		var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
+		if (!cmpBuildingOwnership)
+		{
+			error("New Building " + building + " has no ownership.");
+			Engine.DestroyEntity(building);
+			return;
+		}
 		cmpBuildingOwnership.SetOwner(owner);
 		
-		// ----------------------------------------------------------------------
+		/*
+		Copy over the obstruction control group IDs from the foundation
+		entities. This is needed to ensure that when a foundation is completed
+		and replaced by a new entity, it remains in the same control group(s)
+		as any other foundation entities that may surround it. This is the
+		mechanism that is used to e.g. enable wall pieces to be built closely
+		together, ignoring their mutual obstruction shapes (since they would
+		otherwise be prevented from being built so closely together). If the
+		control groups are not copied over, the new entity will default to a
+		new control group containing only itself, and will hence block
+		construction of any surrounding foundations that it was previously in
+		the same control group with.
 		
-		// Copy over the obstruction control group IDs from the foundation entities. This is needed to ensure that when a foundation
-		// is completed and replaced by a new entity, it remains in the same control group(s) as any other foundation entities that 
-		// may surround it. This is the mechanism that is used to e.g. enable wall pieces to be built closely together, ignoring their
-		// mutual obstruction shapes (since they would otherwise be prevented from being built so closely together). If the control 
-		// groups are not copied over, the new entity will default to a new control group containing only itself, and will hence block
-		// construction of any surrounding foundations that it was previously in the same control group with.
+		Note that this will result in the completed building entities having
+		control group IDs that equal entity IDs of old (and soon to be deleted)
+		foundation entities. This should not have any consequences, however,
+		since the control group IDs are only meant to be unique identifiers,
+		which is still true when reusing the old ones.
+		*/
 		
-		// Note that this will result in the completed building entities having control group IDs that equal entity IDs of old (and soon
-		// to be deleted) foundation entities. This should not have any consequences, however, since the control group IDs are only meant
-		// to be unique identifiers, which is still true when reusing the old ones.
-		
-		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 		var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
-		cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
-		cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
+		if (cmpObstruction && cmpBuildingObstruction)
+		{
+			cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
+			cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
+		}
 		
-		// ----------------------------------------------------------------------
-
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
 
-		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
-		cmpBuildingHealth.SetHitpoints(cmpHealth.GetHitpoints());
+		if (cmpBuildingHealth)
+			cmpBuildingHealth.SetHitpoints(cmpHealth.GetHitpoints());
 
 		PlaySound("constructed", building);
 

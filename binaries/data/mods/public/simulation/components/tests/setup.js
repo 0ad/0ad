@@ -44,7 +44,7 @@ Engine.DestroyEntity = function(ent)
 	for (var cid in g_Components[ent])
 	{
 		var cmp = g_Components[ent][cid];
-		if (cmp.Deinit)
+		if (cmp && cmp.Deinit)
 			cmp.Deinit();
 	}
 
@@ -74,6 +74,13 @@ global.AddMock = function(ent, iid, mock)
 	if (!g_Components[ent])
 		g_Components[ent] = {};
 	g_Components[ent][iid] = mock;
+};
+
+global.DeleteMock = function(ent, iid)
+{
+	if (!g_Components[ent])
+		g_Components[ent] = {};
+	delete g_Components[ent][iid];
 };
 
 global.ConstructComponent = function(ent, name, template)
