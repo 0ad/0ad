@@ -219,7 +219,7 @@ function getActionInfo(action, target)
 	// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
 	// Check if any entities in the selection can gather the requested resource,
 	// can return to the dropsite, can build the foundation, or can attack the enemy
-	for each (var entityID in selection)
+	for (let entityID of selection)
 	{
 		var entState = GetExtendedEntityState(entityID);
 		if (!entState)

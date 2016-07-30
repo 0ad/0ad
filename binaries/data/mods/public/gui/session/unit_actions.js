@@ -320,7 +320,8 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.builder || !targetState.needsRepair ||
+			if (!entState.builder ||
+			    !targetState.needsRepair && !targetState.foundation ||
 			    !playerCheck(entState, targetState, ["Player", "Ally"]))
 				return false;
 
