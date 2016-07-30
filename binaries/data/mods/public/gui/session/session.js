@@ -15,7 +15,7 @@ const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
 /**
  * Map, player and match settings set in gamesetup.
  */
-var g_GameAttributes;
+const g_GameAttributes = Object.freeze(Engine.GetInitAttributes());
 
 /**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
@@ -144,7 +144,7 @@ var g_Heroes = [];
 /**
  * Unit classes to be checked for the idle-worker-hotkey.
  */
-var g_WorkerTypes = ["Female", "Trader", "FishingBoat", "CitizenSoldier", "Healer"];
+var g_WorkerTypes = ["Female", "Trader", "FishingBoat", "CitizenSoldier"];
 
 /**
  * Cache the idle worker status.
@@ -225,8 +225,6 @@ function init(initData, hotloadData)
 		return;
 	}
 
-	g_GameAttributes = Engine.GetInitAttributes();
-
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked;
@@ -289,8 +287,8 @@ function init(initData, hotloadData)
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
+	sendLobbyPlayerlistUpdate();
 	onSimulationUpdate();
-
 	setTimeout(displayGamestateNotifications, 1000);
 
 	// Report the performance after 5 seconds (when we're still near
@@ -368,16 +366,13 @@ function selectViewPlayer(playerID)
 
 	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
 
-	let changeView = g_IsObserver || g_DevSettings.changePerspective;
-	if (changeView)
-	{
+	if (g_IsObserver || g_DevSettings.changePerspective)
 		g_ViewedPlayer = playerID;
 
-		if (g_DevSettings.changePerspective)
-		{
-			Engine.SetPlayerID(g_ViewedPlayer);
-			g_IsObserver = isPlayerObserver(g_ViewedPlayer);
-		}
+	if (g_DevSettings.changePerspective)
+	{
+		Engine.SetPlayerID(g_ViewedPlayer);
+		g_IsObserver = isPlayerObserver(g_ViewedPlayer);
 	}
 
 	Engine.SetViewedPlayer(g_ViewedPlayer);
@@ -388,15 +383,6 @@ function selectViewPlayer(playerID)
 
 	// Update GUI and clear player-dependent cache
 	onSimulationUpdate();
-
-	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
-	viewPlayer.hidden = !changeView;
-
-	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
-	alphaLabel.hidden = g_ViewedPlayer > 0 && !viewPlayer.hidden;
-	alphaLabel.size = g_ViewedPlayer > 0 ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
-
-	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || g_ViewedPlayer < 1;
 
 	if (g_IsDiplomacyOpen)
 		openDiplomacy();
@@ -448,9 +434,8 @@ function playerFinished(player, won)
 			global.music.states.DEFEAT
 	);
 
-	// Select "observer" item
-	if (!won)
-		Engine.GetGUIObjectByName("viewPlayer").selected = 0;
+	// Select "observer" item on loss. On win enable observermode without changing perspective
+	Engine.GetGUIObjectByName("viewPlayer").selected = won ? g_ViewedPlayer + 1 : 0;
 
 	g_ConfirmExit = won ? "won" : "defeated";
 }
@@ -462,28 +447,37 @@ function playerFinished(player, won)
 function updateTopPanel()
 {
 	let isPlayer = g_ViewedPlayer > 0;
+
+	let civIcon = Engine.GetGUIObjectByName("civIcon");
+	civIcon.hidden = !isPlayer;
 	if (isPlayer)
 	{
-		let civName = g_CivData[g_Players[g_ViewedPlayer].civ].Name;
-		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
-		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), { "civ": civName });
+		civIcon.sprite = "stretched:" + g_CivData[g_Players[g_ViewedPlayer].civ].Emblem;
+		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {
+			"civ": g_CivData[g_Players[g_ViewedPlayer].civ].Name
+		});
 	}
 
-	// Hide stuff gaia/observers don't use.
+	Engine.GetGUIObjectByName("optionFollowPlayer").hidden = !g_IsObserver || !isPlayer;
+
+	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
+	viewPlayer.hidden = !g_IsObserver && !g_DevSettings.changePerspective;
+
 	Engine.GetGUIObjectByName("food").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("wood").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("stone").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("metal").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("civIcon").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("tradeButton1").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("observerText").hidden = isPlayer;
 
-	// Disable stuff observers shouldn't use
+	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
+	alphaLabel.hidden = isPlayer && !viewPlayer.hidden;
+	alphaLabel.size = isPlayer ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
+
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
-	Engine.GetGUIObjectByName("summaryButton").enabled = g_IsObserver;
 }
 
 function reportPerformance(time)
@@ -512,8 +506,6 @@ function resignGame(leaveGameAfterResign)
 		"playerId": Engine.GetPlayerID(),
 		"resign": true
 	});
-
-	global.music.setState(global.music.states.DEFEAT);
 
 	if (!leaveGameAfterResign)
 		resumeGame(true);
@@ -889,12 +881,13 @@ function displayHeroes()
 
 function updateGroups()
 {
-	let guiName = "Group";
 	g_Groups.update();
-	for (let i = 0; i < 10; ++i)
+
+	for (let i in Engine.GetGUIObjectByName("unitGroupPanel").children)
 	{
-		let button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		let label = Engine.GetGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
+		Engine.GetGUIObjectByName("unitGroupLabel[" + i + "]").caption = i;
+
+		let button = Engine.GetGUIObjectByName("unitGroupButton["+i+"]");
 		button.hidden = g_Groups.groups[i].getTotalCount() == 0;
 		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); }; })(i);
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); }; })(i);
@@ -936,19 +929,38 @@ function updateDebug()
 	debug.caption = text.replace(/\[/g, "\\[");
 }
 
+function getAllyStatTooltip(resource)
+{
+	let playersState = GetSimState().players;
+	let ret = "";
+	for (let player in playersState)
+		if (player != 0 && player != g_ViewedPlayer &&
+		    (g_IsObserver || playersState[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]))
+			ret += "\n" + sprintf(translate("%(playername)s: %(statValue)s"),{
+				"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
+				"statValue": resource == "pop" ?
+					sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playersState[player]) :
+					Math.round(playersState[player].resourceCounts[resource])
+			});
+	return ret;
+}
+
 function updatePlayerDisplay()
 {
 	let playerState = GetSimState().players[g_ViewedPlayer];
 	if (!playerState)
 		return;
 
-	Engine.GetGUIObjectByName("resourceFood").caption = Math.floor(playerState.resourceCounts.food);
-	Engine.GetGUIObjectByName("resourceWood").caption = Math.floor(playerState.resourceCounts.wood);
-	Engine.GetGUIObjectByName("resourceStone").caption = Math.floor(playerState.resourceCounts.stone);
-	Engine.GetGUIObjectByName("resourceMetal").caption = Math.floor(playerState.resourceCounts.metal);
-	Engine.GetGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
+	for (let res of RESOURCES)
+	{
+		Engine.GetGUIObjectByName("resource_" + res).caption = Math.floor(playerState.resourceCounts[res]);
+		Engine.GetGUIObjectByName(res).tooltip = getLocalizedResourceName(res, "firstWord") + getAllyStatTooltip(res);
+	}
+
+	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), playerState);
 	Engine.GetGUIObjectByName("population").tooltip = translate("Population (current / limit)") + "\n" +
-					sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax });
+		sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax }) +
+		getAllyStatTooltip("pop");
 
 	g_IsTrainingBlocked = playerState.trainingBlocked;
 }

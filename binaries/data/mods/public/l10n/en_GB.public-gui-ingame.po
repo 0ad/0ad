@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:00+0200\n"
-"PO-Revision-Date: 2016-07-08 09:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-22 09:00+0200\n"
+"PO-Revision-Date: 2016-07-26 13:42+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,12 +53,12 @@ msgid "Confirmation"
 msgstr "Confirmation"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "No"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Yes"
 
@@ -224,36 +224,36 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s merchant ship inactive"
 msgstr[1] "%(numberOfShipTraders)s merchant ships inactive"
 
-#: gui/session/menu.js:711
+#: gui/session/menu.js:716
 msgid "Resume"
 msgstr "Resume"
 
-#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:716 gui/session/menu.xml:(caption):75
 msgid "Pause"
 msgstr "Pause"
 
-#: gui/session/menu.js:715
+#: gui/session/menu.js:720
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Paused by %(players)s"
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:721
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:750
 msgid "The Developer Overlay was closed."
 msgstr "The Developer Overlay was closed."
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:751
 msgid "The Developer Overlay was opened."
 msgstr "The Developer Overlay was opened."
 
-#: gui/session/menu.js:768
+#: gui/session/menu.js:773
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -335,7 +335,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Team"
 
-#: gui/session/messages.js:144 gui/session/session.js:267
+#: gui/session/messages.js:144 gui/session/session.js:266
 msgid "Observer"
 msgstr "Observer"
 
@@ -388,77 +388,77 @@ msgstr "%(player)s is now at war with %(player2)s."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s is now neutral with %(player2)s."
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:589
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Everyone"
 
-#: gui/session/messages.js:601
+#: gui/session/messages.js:597
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Allies"
 
-#: gui/session/messages.js:605
+#: gui/session/messages.js:601
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Enemies"
 
-#: gui/session/messages.js:611
+#: gui/session/messages.js:607
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Observers"
 
-#: gui/session/messages.js:640 gui/session/selection_details.js:80
+#: gui/session/messages.js:636 gui/session/selection_details.js:80
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[OFFLINE] %(player)s"
 
-#: gui/session/messages.js:744
+#: gui/session/messages.js:740
 msgid "Unknown Player"
 msgstr "Unknown Player"
 
-#: gui/session/messages.js:751
+#: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s has resigned."
 
-#: gui/session/messages.js:752
+#: gui/session/messages.js:748
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s has been defeated."
 
-#: gui/session/messages.js:759
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s has won."
 
-#: gui/session/messages.js:788
+#: gui/session/messages.js:784
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s has sent %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:790
+#: gui/session/messages.js:786
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s has sent you %(amounts)s."
 
-#: gui/session/messages.js:805
+#: gui/session/messages.js:801
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Your livestock has been attacked by %(attacker)s!"
 
-#: gui/session/messages.js:806
+#: gui/session/messages.js:802
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "You have been attacked by %(attacker)s!"
 
-#: gui/session/messages.js:849
+#: gui/session/messages.js:853
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:829
+#: gui/session/selection_details.js:388 gui/session/session.js:826
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -644,20 +644,20 @@ msgstr[1] "Remaining: %(number)s to build."
 #: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Upgrade into a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Upgrade into a %(name)s."
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Cancel Upgrading"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Cannot upgrade when the entity is already upgrading."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -750,21 +750,21 @@ msgstr "%(action)s to train %(number)s."
 msgid "Shift-click"
 msgstr "Shift-click"
 
-#: gui/session/session.js:251
+#: gui/session/session.js:250
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:310
+#: gui/session/session.js:309
 msgid "Find idle worker"
 msgstr "Find idle worker"
 
-#: gui/session/session.js:313
+#: gui/session/session.js:312
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
 msgstr "Select one goods as origin of the changes, then use the arrows of the target goods to make the changes."
 
-#: gui/session/session.js:315
+#: gui/session/session.js:314
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Using %(hotkey)s will put the selected resource to 100%%."
@@ -774,77 +774,92 @@ msgstr "Using %(hotkey)s will put the selected resource to 100%%."
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Structure Tree"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:680
 msgid "You have won!"
-msgstr ""
+msgstr "You have won!"
 
-#: gui/session/session.js:684
+#: gui/session/session.js:681
 msgid "You have been defeated!"
-msgstr ""
+msgstr "You have been defeated!"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:683
 msgid "Do you want to quit?"
 msgstr "Do you want to quit?"
 
-#: gui/session/session.js:689
+#: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Leaving will disconnect all other players."
 
-#: gui/session/session.js:695
+#: gui/session/session.js:692
 msgid "VICTORIOUS!"
 msgstr "VICTORIOUS!"
 
-#: gui/session/session.js:696
+#: gui/session/session.js:693
 msgid "DEFEATED!"
 msgstr "DEFEATED!"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "The replay has finished. Do you want to quit?"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:746
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "No"
 msgstr "No"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Yes"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:827
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Health:"
 
-#: gui/session/session.js:947
+#: gui/session/session.js:941
+#, javascript-format
+msgid "%(playername)s: %(statValue)s"
+msgstr "%(playername)s: %(statValue)s"
+
+#: gui/session/session.js:944
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
+
+#: gui/session/session.js:962
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s"
+msgstr "%(popCount)s/%(popLimit)s"
+
+#: gui/session/session.js:963
 msgid "Population (current / limit)"
 msgstr "Population (current / limit)"
 
-#: gui/session/session.js:948
+#: gui/session/session.js:964
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximum population: %(popCap)s"
 
-#: gui/session/session.js:1099
+#: gui/session/session.js:1116
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1109
+#: gui/session/session.js:1126
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."
 
-#: gui/session/session.js:1110
+#: gui/session/session.js:1127
 msgid "Time warp mode"
 msgstr "Time warp mode"
 
@@ -949,7 +964,7 @@ msgstr "The use of this dropsite is prohibited"
 
 #: gui/session/unit_actions.js:1341
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "The entity has to be killed before it can be gathered from"
 
 #: gui/session/unit_actions.js:1344
 msgid ""
@@ -958,7 +973,7 @@ msgstr "You cannot destroy this entity as you own less than half the capture poi
 
 #: gui/session/unit_actions.js:1347
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "This entity is undeletable"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1101,19 +1116,19 @@ msgstr "Chat"
 msgid "Save"
 msgstr "Save"
 
-#: gui/session/menu.xml:(caption):53
+#: gui/session/menu.xml:(caption):52
 msgid "Summary"
 msgstr "Summary"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Options"
 msgstr "Options"
 
-#: gui/session/menu.xml:(caption):88
+#: gui/session/menu.xml:(caption):87
 msgid "Resign"
 msgstr "Resign"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):156
+#: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):156
 msgid "Exit"
 msgstr "Exit"
 
@@ -1205,19 +1220,3 @@ msgstr "Menu"
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
 msgstr "ALPHA XX : Timosthenes"
-
-#: gui/session/top_panel/resource_food.xml:(tooltip):3
-msgid "Food"
-msgstr "Food"
-
-#: gui/session/top_panel/resource_metal.xml:(tooltip):3
-msgid "Metal"
-msgstr "Metal"
-
-#: gui/session/top_panel/resource_stone.xml:(tooltip):3
-msgid "Stone"
-msgstr "Stone"
-
-#: gui/session/top_panel/resource_wood.xml:(tooltip):3
-msgid "Wood"
-msgstr "Wood"

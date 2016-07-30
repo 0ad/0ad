@@ -107,6 +107,7 @@ GuiInterface.prototype.GetSimulationState = function()
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
 			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
 			"hasSharedDropsites": cmpPlayer.HasSharedDropsites(),
+			"hasSharedLos": cmpPlayer.HasSharedLos(),
 			"phase": phase,
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
@@ -356,6 +357,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpGarrisonHolder)
 		ret.garrisonHolder = {
 			"entities": cmpGarrisonHolder.GetEntities(),
+			"buffHeal": cmpGarrisonHolder.GetHealRate(),
 			"allowedClasses": cmpGarrisonHolder.GetAllowedClasses(),
 			"capacity": cmpGarrisonHolder.GetCapacity(),
 			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()

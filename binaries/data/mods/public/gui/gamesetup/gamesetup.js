@@ -676,10 +676,11 @@ function handleReadyMessage(message)
  */
 function handleGamestartMessage(message)
 {
+	// Immediately inform the lobby server instead of waiting for the load to finish
 	if (g_IsController && Engine.HasXmppClient())
 	{
-		let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
-		Engine.SendChangeStateGame(playerNames.length, playerNames.join(", "));
+		let clients = formatClientsForStanza();
+		Engine.SendChangeStateGame(clients.connectedPlayers, clients.list);
 	}
 
 	Engine.SwitchGuiPage("page_loading.xml", {
@@ -705,6 +706,7 @@ function handleGamesetupMessage(message)
 	{
 		g_GameAttributes.settings.CheatsEnabled = false;
 		g_GameAttributes.settings.LockTeams = true;
+		g_GameAttributes.settings.LastManStanding = false;
 	}
 
 	Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
@@ -1498,7 +1500,7 @@ function updateMapDescription()
 			translate(g_GameAttributes.settings.Description) :
 			translate("Sorry, no description available.");
 
-	let victoryIdx = g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType);
+	let victoryIdx = g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || g_VictoryConditions.Default);
 	let victoryTitle;
 
 	if (victoryIdx == -1)
@@ -1804,6 +1806,14 @@ function colorizePlayernameByGUID(guid, username = "")
 
 function addChatMessage(msg)
 {
+	if (msg.text)
+	{
+		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
+
+		if (userName != g_PlayerAssignments[msg.guid].name)
+			notifyUser(userName, msg.text);
+	}
+
 	if (!g_FormatChatMessage[msg.type])
 		return;
 
@@ -1936,6 +1946,34 @@ function resetReadyData()
 }
 
 /**
+ * Send a list of playernames and distinct between players and observers.
+ * Don't send teams, AIs or anything else until the game was started.
+ * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data.
+ */
+function formatClientsForStanza()
+{
+	let connectedPlayers = 0;
+	let playerData = [];
+
+	for (let guid in g_PlayerAssignments)
+	{
+		let pData = { "Name": g_PlayerAssignments[guid].name };
+
+		if (g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1])
+			++connectedPlayers;
+		else
+			pData.Team = "observer";
+
+		playerData.push(pData);
+	}
+
+	return {
+		"list": playerDataToStringifiedTeamList(playerData),
+		"connectedPlayers": connectedPlayers
+	};
+}
+
+/**
  * Send the relevant gamesettings to the lobbybot.
  */
 function sendRegisterGameStanza()
@@ -1948,7 +1986,7 @@ function sendRegisterGameStanza()
 
 	let mapSize = g_GameAttributes.mapType == "random" ? Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize] : "Default";
 	let victoryCondition = Engine.GetGUIObjectByName("victoryCondition").list[selectedVictoryCondition];
-	let playerNames = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name).sort();
+	let clients = formatClientsForStanza();
 
 	let stanza = {
 		"name": g_ServerName,
@@ -1958,9 +1996,9 @@ function sendRegisterGameStanza()
 		"mapSize": mapSize,
 		"mapType": g_GameAttributes.mapType,
 		"victoryCondition": victoryCondition,
-		"nbp": Object.keys(g_PlayerAssignments).length || 1,
-		"tnbp": g_GameAttributes.settings.PlayerData.length,
-		"players": playerNames.join(", ")
+		"nbp": clients.connectedPlayers,
+		"maxnbp": g_GameAttributes.settings.PlayerData.length,
+		"players": clients.list,
 	};
 
 	// Only send the stanza if the relevant settings actually changed

@@ -47,9 +47,9 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/thrace_black_cloak
-      units/mace_thureophoros
-      units/mace_thorakites
+      units/{civ}_black_cloak
+      units/{civ}_thureophoros
+      units/{civ}_thorakites
     </Entities>
   </ProductionQueue>
   <Vision>

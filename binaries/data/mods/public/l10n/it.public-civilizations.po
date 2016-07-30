@@ -14,7 +14,8 @@
 # Davide, 2014
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Emanuele Ricci <stermi@gmail.com>, 2013
-# Fabio Pedretti <fabio.ped@libero.it>, 2013
+# Fabio Pedretti <pedretti.fabio@gmail.com>, 2013
+# Fabrizio Morotti <famorot@tin.it>, 2016
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Marco <inactive+Vamos@transifex.com>, 2013
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-01-13 01:09+0000\n"
-"Last-Translator: Me Lazzi\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-07-25 21:47+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +47,7 @@ msgstr "Ateniesi"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "La velocità di estrazione del metallo aumenta del +10% dopo ogni avanzamento di età."
+msgstr "La velocità di estrazione del metallo aumenta del +10% dopo ogni avanzamento di epoca."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -64,7 +65,7 @@ msgstr "Le miniere di Laurium in Attica rifornivano Atene con una grande quantit
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "Costruire un Theatron aumenta l'effetto territorio di tutti gli edifici di +20%."
+msgstr "Costruire un Theatron aumenta l'espansione del territorio di tutti gli edifici di +20%."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -161,7 +162,7 @@ msgstr "Demostene"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "I Triremi ateniesi possono addestrare unità di fanteria marina (Epibates Athenaikos)."
+msgstr "Le Triremi ateniesi possono addestrare unità di fanteria marina (Epibates Athenaikos)."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -189,7 +190,7 @@ msgstr "Le Lunghe Mura di Atene furono costruite sotto gli auspici dello scaltro
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "Il giocatore guadagna la possibilità di ordinare le truppe armate di lancia nella formazione Falange, aumentandone attacco e armatura."
+msgstr "Il giocatore guadagna la possibilità di inquadrare le truppe armate di lancia nella formazione a Falange, aumentandone attacco e armatura."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
@@ -354,7 +355,7 @@ msgstr "Karatakos"
 #: simulation/data/civs/brit.jsonAINames[1]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr "Kunobelinos"
+msgstr "Cunobelino"
 
 #: simulation/data/civs/brit.jsonAINames[2]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
@@ -475,7 +476,7 @@ msgid ""
 "their British allies, and Kunobelinos was held up by the post-Roman Britons "
 "as one of their great heroes; a conqueror and uniter of petty kingdoms, "
 "something the post-Roman Britons or Romano-British sorely needed."
-msgstr "Kunobelinos (forse meglio noto nella forma latinizzata di Cunobelin) era il potente sovrano della Catuvellaunia. I Romani vi ci si riferivano come Re dei Bretoni. Il suo dominio si estendeva intorno alla città di Kamulodunon (conosciuta come Camulodunum), oggi Colchester. La sconfitta romana nella battaglia della Foresta di Teutoburgo (Germania) consentì a Kunobelinos du conquistare una tribù vicina, i Trinovanti, che erano alleati di Roma e non poterono ricevere l'aiuto dei Romani. Kunobelinos  sembrava essere indifferente ai Romani. Commerciava liberamente con loro, ma ebbe qualche scrupolo nel soggiogare i noti alleati Romani, e neanche inviò suo figlio minore Adminius ad essere educato nella Gallia Romana."
+msgstr "Kunobelinos (forse meglio noto nella forma latinizzata di Cunobelino) era il potente sovrano della Catuvellaunia. I Romani vi ci si riferivano come Re dei Bretoni. Il suo dominio si estendeva intorno alla città di Kamulodunon (conosciuta come Camulodunum), oggi Colchester. La sconfitta romana nella battaglia della Foresta di Teutoburgo (Germania) consentì a Kunobelinos du conquistare una tribù vicina, i Trinovanti, che erano alleati di Roma e non poterono ricevere l'aiuto dei Romani. Kunobelinos  sembrava essere indifferente ai Romani. Commerciava liberamente con loro, ma ebbe qualche scrupolo nel soggiogare i noti alleati Romani, e neanche inviò suo figlio minore Adminius ad essere educato nella Gallia Romana."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -731,7 +732,7 @@ msgstr "La struttura si basa sull'isola centrale del porto interno costruito per
 
 #: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr "Ambasciatore celtico"
+msgstr "Ambasciata celtica"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
@@ -787,7 +788,7 @@ msgstr "Galli"
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Britomartos"
-msgstr "Britomartos"
+msgstr "Viridomaro dei Gesati"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
@@ -796,16 +797,16 @@ msgstr "Brenno"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
-msgstr "Cativolcus"
+msgstr "Catuvolco"
 
 #: simulation/data/civs/gaul.jsonAINames[3]
 msgid "Cingetorix"
-msgstr "Cingetorix"
+msgstr "Cingetorige"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
-msgstr "Vercingetorix"
+msgstr "Vercingetorige"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -813,19 +814,19 @@ msgstr "Divico"
 
 #: simulation/data/civs/gaul.jsonAINames[6]
 msgid "Ambiorix"
-msgstr "Ambiorix"
+msgstr "Ambiorige"
 
 #: simulation/data/civs/gaul.jsonAINames[7]
 msgid "Liscus"
-msgstr "Liscus"
+msgstr "Lisco"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
-msgstr "Valetiacos"
+msgstr "Valetiaco"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
-msgstr "Viridovix"
+msgstr "Viridovice"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -909,7 +910,7 @@ msgid ""
 "was. Because we only know of him from Roman sources we don't know much about"
 " Vercingetorix as a child or young man, except that perhaps he was probably "
 "very high spirited and probably gained some renown in deeds."
-msgstr "Vercingetorix (dal gallico: Ver-Rix Cingetos) è stato il capo della tribù degli Arverni in Gallia (l'attuale Francia). A partire dal 52 a.C. guidò una rivolta contro i Romani invasori sotto Giulio Cesare, le sue azioni durante la rivolta vennero tramandate fino ai giorni nostri. Vercingetorix nacque probabilmente nei pressi della capitale della sua tribù (Gergovia). Da quel poco di informazioni che abbiamo nacque nel 72 a.C., suo padre era un Celto e non si sa chi fosse la madre. Poiché sappiamo solo di lui da fonti romane non sappiamo molto di Vercingetorix durante la sua infanzia e giovinezza, se non che forse era molto vivace e guadagnò una discreta fama con le sue gesta."
+msgstr "Vercingetorige (dal gallico: Ver-Rix Cingetos) è stato il capo della tribù degli Arverni in Gallia (l'attuale Francia). A partire dal 52 a.C. guidò una rivolta contro i Romani invasori sotto Giulio Cesare, le sue azioni durante la rivolta vennero tramandate fino ai giorni nostri. Vercingetorix nacque probabilmente nei pressi della capitale della sua tribù (Gergovia). Da quel poco di informazioni che abbiamo nacque nel 72 a.C., suo padre era un Celto e non si sa chi fosse la madre. Poiché sappiamo solo di lui da fonti romane non sappiamo molto di Vercingetorix durante la sua infanzia e giovinezza, se non che forse era molto vivace e guadagnò una discreta fama con le sue gesta."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
@@ -1063,7 +1064,7 @@ msgid ""
 "losses in some requiring retreat). He succumbed instead to another treachery"
 " arranged by a later Roman commander, Q. Servilius Caepio, to have him "
 "assassinated by three comrades that were close to him."
-msgstr "Viriato, come Vercingetorix tra i Galli, era il più famoso dei leader della guerra tribale Iberica, condusse almeno 7 campagne contro i romani nella metà meridionale della penisola durante le \"Guerre Lusitane\" 147-139 a.C. Sopravvisse al proditorio massacro di 9.000 uomini e la vendita in schiavitù di 21.000 anziani, donne e bambini Lusitani. Avevano firmato un trattato di pace con i Romani, stipulato da Servio Sulpicio Galba, governatore della Hispania Ulteriore, indicato come la 'soluzione finale' al problema dei Lusitani. Di umili origini, nel 151 a.C. divenne capo di guerra dei Lusitani. Era intelligente e tattico, non venne mai sconfitto nei vari scontri (anche se subì diverse perdite in alcune ritirate strategiche). Morì in seguito ad un altro tradimento organizzato da un comandante romano, Q. Servilio Caepio, che lo fece assassinare da tre compagni d'arme del suo stesso esercito."
+msgstr "Viriato, come Vercingetorige tra i Galli, era il più famoso dei leader della guerra tribale Iberica, condusse almeno 7 campagne contro i romani nella metà meridionale della penisola durante le \"Guerre Lusitane\" 147-139 a.C. Sopravvisse al proditorio massacro di 9.000 uomini e la vendita in schiavitù di 21.000 anziani, donne e bambini Lusitani. Avevano firmato un trattato di pace con i Romani, stipulato da Servio Sulpicio Galba, governatore della Hispania Ulteriore, indicato come la 'soluzione finale' al problema dei Lusitani. Di umili origini, nel 151 a.C. divenne capo di guerra dei Lusitani. Era intelligente e tattico, non venne mai sconfitto nei vari scontri (anche se subì diverse perdite in alcune ritirate strategiche). Morì in seguito ad un altro tradimento organizzato da un comandante romano, Q. Servilio Caepio, che lo fece assassinare da tre compagni d'arme del suo stesso esercito."
 
 #: simulation/data/civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1099,7 +1100,7 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr "Indibil era il re degli Ilegeti, una grande federazione fondata principalmente lungo il fiume Ebro, nel nord-ovest della penisola iberica. Durante l'espansione dei Barcidi, dal 212 a.C. venne stipulata un'alleanza con i Cartaginesi che avevano preso il controllo di gran parte del territorio a sud e ad ovest, ma dopo una grande battaglia persa e la sua cattura venne convinto, alcuni dicono con l'inganno, a passare dalla parte di Roma grazie a Scipione l'Africano. Ma questa alleanza non durò a lungo, le promesse romane rimasero tali e i Romani agirono più come conquistatori che alleati. Così, mentre i Romani e i loro alleati cercavano di porre fine alla presenza cartaginese in 'Hispania' nel 206 a.C., Indibil e un altro principe tribale di nome Mandonio, probabilmente suo fratello, sollevarono una rivolta contro i Romani. Essi furono sconfitti in battaglia, ma crearono i presupposti per una seconda ribellione ancora più grande, che vedeva unificati tutti gli Ilergeti nel 205 a.C. In Inferiorità numerica e male armati furono nuovamente sconfitti, Indibil perse la vita nella battaglia finale e Mandonio catturato e condannato a morte. Da allora gli Ilergeti rimasero una tribù pacifica sotto il dominio romano."
+msgstr "Indibile era il re degli Ilegeti, una grande federazione fondata principalmente lungo il fiume Ebro, nel nord-ovest della penisola iberica. Durante l'espansione dei Barcidi, dal 212 a.C. venne stipulata un'alleanza con i Cartaginesi che avevano preso il controllo di gran parte del territorio a sud e ad ovest, ma dopo una grande battaglia persa e la sua cattura venne convinto, alcuni dicono con l'inganno, a passare dalla parte di Roma grazie a Scipione l'Africano. Ma questa alleanza non durò a lungo, le promesse romane rimasero tali e i Romani agirono più come conquistatori che alleati. Così, mentre i Romani e i loro alleati cercavano di porre fine alla presenza cartaginese in 'Hispania' nel 206 a.C., Indibil e un altro principe tribale di nome Mandonio, probabilmente suo fratello, sollevarono una rivolta contro i Romani. Essi furono sconfitti in battaglia, ma crearono i presupposti per una seconda ribellione ancora più grande, che vedeva unificati tutti gli Ilergeti nel 205 a.C. In Inferiorità numerica e male armati furono nuovamente sconfitti, Indibil perse la vita nella battaglia finale e Mandonio catturato e condannato a morte. Da allora gli Ilergeti rimasero una tribù pacifica sotto il dominio romano."
 
 #: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"

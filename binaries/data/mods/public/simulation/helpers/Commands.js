@@ -1016,7 +1016,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 
 	// Check entity limits
 	var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
-	if (!cmpEntityLimits || !cmpEntityLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+	if (cmpEntityLimits && !cmpEntityLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
 	{
 		if (g_DebugCommands)
 			warn("Invalid command: build limits check failed for player "+player+": "+uneval(cmd));
@@ -1028,8 +1028,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	}
 
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
-
-	if (!cmpTechnologyManager.CanProduce(cmd.template))
+	if (cmpTechnologyManager && !cmpTechnologyManager.CanProduce(cmd.template))
 	{
 		if (g_DebugCommands)
 			warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));

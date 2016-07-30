@@ -545,6 +545,11 @@ Player.prototype.HasStartingCamera = function()
 	return this.startCam !== undefined;
 };
 
+Player.prototype.HasSharedLos = function()
+{
+	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
+	return cmpTechnologyManager && cmpTechnologyManager.IsTechnologyResearched(this.template.SharedLosTech);
+};
 Player.prototype.HasSharedDropsites = function()
 {
 	return this.sharedDropsites;

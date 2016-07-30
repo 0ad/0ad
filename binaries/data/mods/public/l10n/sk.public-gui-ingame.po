@@ -5,7 +5,8 @@
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
 # Martin Plávala <martinplavala@gmail.com>, 2014
-# Levi Taule <levi.taule@gmail.com>, 2014-2016
+# LeviTaule <levi.taule@gmail.com>, 2016
+# LeviTaule <levi.taule@gmail.com>, 2014-2016
 # Marián Mižik <marian@mizik.sk>, 2015
 # Mário Bulejko, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014-2015
@@ -18,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:00+0200\n"
-"PO-Revision-Date: 2016-07-08 09:44+0000\n"
+"POT-Creation-Date: 2016-07-22 09:00+0200\n"
+"PO-Revision-Date: 2016-07-22 09:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -57,12 +58,12 @@ msgid "Confirmation"
 msgstr "Potvrdenie"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nie"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:697 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Áno"
 
@@ -237,36 +238,36 @@ msgstr[0] "%(numberOfShipTraders)s obchodná loď je nektívna"
 msgstr[1] "%(numberOfShipTraders)s obchodné lode sú neaktívne"
 msgstr[2] "%(numberOfShipTraders)s obchodných lodí je neaktívnych"
 
-#: gui/session/menu.js:711
+#: gui/session/menu.js:716
 msgid "Resume"
 msgstr "Pokračovať"
 
-#: gui/session/menu.js:711 gui/session/menu.xml:(caption):76
+#: gui/session/menu.js:716 gui/session/menu.xml:(caption):75
 msgid "Pause"
 msgstr "Pauza"
 
-#: gui/session/menu.js:715
+#: gui/session/menu.js:720
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Pozastavené hráčmi %(players)s"
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:721
 msgid ", "
-msgstr ""
+msgstr ","
 
-#: gui/session/menu.js:729 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manuál"
 
-#: gui/session/menu.js:745
+#: gui/session/menu.js:750
 msgid "The Developer Overlay was closed."
 msgstr "Vývojárska vrstva bola zatvorená."
 
-#: gui/session/menu.js:746
+#: gui/session/menu.js:751
 msgid "The Developer Overlay was opened."
 msgstr "Vyvojárska vrstva bola otvorená."
 
-#: gui/session/menu.js:768
+#: gui/session/menu.js:773
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -348,7 +349,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Tím"
 
-#: gui/session/messages.js:144 gui/session/session.js:267
+#: gui/session/messages.js:144 gui/session/session.js:266
 msgid "Observer"
 msgstr "Pozorovateľ"
 
@@ -401,77 +402,77 @@ msgstr "%(player)s je odteraz vo vojne s %(player2)s."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s odteraz voči %(player2)s neutrálny."
 
-#: gui/session/messages.js:593
+#: gui/session/messages.js:589
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Každý"
 
-#: gui/session/messages.js:601
+#: gui/session/messages.js:597
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Spojenci"
 
-#: gui/session/messages.js:605
+#: gui/session/messages.js:601
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Nepriatelia"
 
-#: gui/session/messages.js:611
+#: gui/session/messages.js:607
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Pozorovatelia"
 
-#: gui/session/messages.js:640 gui/session/selection_details.js:80
+#: gui/session/messages.js:636 gui/session/selection_details.js:80
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[OFFLINE] %(player)s"
 
-#: gui/session/messages.js:744
+#: gui/session/messages.js:740
 msgid "Unknown Player"
 msgstr "Neznámy hráč"
 
-#: gui/session/messages.js:751
+#: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s sa vzdal."
 
-#: gui/session/messages.js:752
+#: gui/session/messages.js:748
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s bol porazený."
 
-#: gui/session/messages.js:759
+#: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s vyhral."
 
-#: gui/session/messages.js:788
+#: gui/session/messages.js:784
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s zaslal %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:790
+#: gui/session/messages.js:786
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Hráč %(player)s vám poslal %(amounts)s."
 
-#: gui/session/messages.js:805
+#: gui/session/messages.js:801
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Na tvoje hospodárske zvieratá zaútočil %(attacker)s!"
 
-#: gui/session/messages.js:806
+#: gui/session/messages.js:802
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Útočí na vás %(attacker)s!"
 
-#: gui/session/messages.js:849
+#: gui/session/messages.js:853
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:829
+#: gui/session/selection_details.js:388 gui/session/session.js:826
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -614,7 +615,7 @@ msgstr "Kliknutím ľavým tlačidlom myši vyložíte 1. Podržaním klávesu S
 #: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Hráč: %(playername)s"
 
 #: gui/session/selection_panels.js:484
 msgid "Lock Gate"
@@ -660,20 +661,20 @@ msgstr[2] "Zostáva postaviť: %(number)s."
 #: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Vylepši na %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Vylepši na %(name)s."
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Zruš vylepšovanie"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Nie je možné zrušiť vylepšovanie, ak sa entita už vylepšuje."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -766,101 +767,116 @@ msgstr "%(action)s vytrénujete %(number)s."
 msgid "Shift-click"
 msgstr "Podržaním klávesu Shift a kliknutím"
 
-#: gui/session/session.js:251
+#: gui/session/session.js:250
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:310
+#: gui/session/session.js:309
 msgid "Find idle worker"
 msgstr "Nájsť nečinného robotníka"
 
-#: gui/session/session.js:313
+#: gui/session/session.js:312
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
-msgstr ""
+msgstr "Vyberte jeden tovar ako referenčný, potom použite šípky cieľového tovaru na vykonanie želanej zmeny."
 
-#: gui/session/session.js:315
+#: gui/session/session.js:314
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "Používajúc %(hotkey)s nastavíte vybranú surovinu na 100%%."
 
 #: gui/session/session.js:466
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strom stavieb"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:680
 msgid "You have won!"
-msgstr ""
+msgstr "Vyhrali ste!"
 
-#: gui/session/session.js:684
+#: gui/session/session.js:681
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Prehrali ste!"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:683
 msgid "Do you want to quit?"
 msgstr "Chcete odísť?"
 
-#: gui/session/session.js:689
+#: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Opustením odpojíte všetkých ostatných hráčov."
 
-#: gui/session/session.js:695
+#: gui/session/session.js:692
 msgid "VICTORIOUS!"
 msgstr "VÍŤAZSTVO!"
 
-#: gui/session/session.js:696
+#: gui/session/session.js:693
 msgid "DEFEATED!"
 msgstr "PORÁŽKA!"
 
-#: gui/session/session.js:748
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Prehrávanie sa skončilo. Chcete opustiť hru?"
 
-#: gui/session/session.js:749
+#: gui/session/session.js:746
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Potvrdenie"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nie"
 
-#: gui/session/session.js:750
+#: gui/session/session.js:747
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:827
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Život:"
 
-#: gui/session/session.js:947
+#: gui/session/session.js:941
+#, javascript-format
+msgid "%(playername)s: %(statValue)s"
+msgstr ""
+
+#: gui/session/session.js:944
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
+msgstr ""
+
+#: gui/session/session.js:962
+#, javascript-format
+msgid "%(popCount)s/%(popLimit)s"
+msgstr ""
+
+#: gui/session/session.js:963
 msgid "Population (current / limit)"
 msgstr "Populácia (aktuálna / limit)"
 
-#: gui/session/session.js:948
+#: gui/session/session.js:964
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximálny stav populácie: %(popCap)s"
 
-#: gui/session/session.js:1099
+#: gui/session/session.js:1116
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Verzia: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1109
+#: gui/session/session.js:1126
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Poznámka: mód time warp je vývojárska možnosť, nie je určený na používanie počas dlhých časových úsekov. Jeho nesprávne použitie môže spôsobiť, že hra vyčerpá svoju pamäť, alebo spadne."
 
-#: gui/session/session.js:1110
+#: gui/session/session.js:1127
 msgid "Time warp mode"
 msgstr "Mód time warp"
 
@@ -904,16 +920,16 @@ msgstr "Vyložiť všetkých"
 
 #: gui/session/unit_actions.js:998
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Znič vybrané jednotky alebo budovy."
 
 #: gui/session/unit_actions.js:1000
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Používaním %(hotkey)s sa vyhnete potvrdzovaciemu dialogóvemu oknu."
 
 #: gui/session/unit_actions.js:1032
 msgid "Abort the current order."
-msgstr ""
+msgstr "Zrušte aktuálny príkaz."
 
 #: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
@@ -949,19 +965,19 @@ msgstr "Vyber zbožie na obchodovanie"
 
 #: gui/session/unit_actions.js:1209
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Označ pre zákaz používania úložného miesta pre spojencov."
+msgstr "Označ pre zákaz používania úložného miesta pre spojencov"
 
 #: gui/session/unit_actions.js:1214
 msgid "Press to allow allies to use this dropsite"
-msgstr "Označ pre povolenie používania úložného miesta pre spojencov."
+msgstr "Označ pre povolenie používania úložného miesta pre spojencov"
 
 #: gui/session/unit_actions.js:1276
 msgid "You are allowed to use this dropsite"
-msgstr "Máš povolenie používať úložné miesto."
+msgstr "Máš povolenie používať toto úložné miesto"
 
 #: gui/session/unit_actions.js:1281
 msgid "The use of this dropsite is prohibited"
-msgstr "Použitie úložného miesta je zakázané."
+msgstr "Použitie tohto úložného miesta je zakázané"
 
 #: gui/session/unit_actions.js:1341
 msgid "The entity has to be killed before it can be gathered from"
@@ -974,7 +990,7 @@ msgstr "Nemôžeš zničiť túto entitu pretože máš menej ako polovicu obsad
 
 #: gui/session/unit_actions.js:1347
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Túto entitu nie je možné zmazať"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1012,7 +1028,7 @@ msgstr "Poslať"
 #: gui/session/chat_window.xml:(tooltip):10
 msgctxt "chat input"
 msgid "Select chatmessage addressee"
-msgstr "Vyber adresu pre správu"
+msgstr "Vyber adresáta správy"
 
 #: gui/session/chat_window.xml:(tooltip):18
 msgctxt "chat input"
@@ -1117,19 +1133,19 @@ msgstr "Chat"
 msgid "Save"
 msgstr "Uložiť"
 
-#: gui/session/menu.xml:(caption):53
+#: gui/session/menu.xml:(caption):52
 msgid "Summary"
 msgstr "Zhrnutie"
 
-#: gui/session/menu.xml:(caption):64
+#: gui/session/menu.xml:(caption):63
 msgid "Options"
 msgstr "Nastavenia"
 
-#: gui/session/menu.xml:(caption):88
+#: gui/session/menu.xml:(caption):87
 msgid "Resign"
 msgstr "Vzdať sa"
 
-#: gui/session/menu.xml:(caption):99 gui/session/session.xml:(caption):156
+#: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):156
 msgid "Exit"
 msgstr "Ukončiť"
 
@@ -1144,11 +1160,11 @@ msgstr "Kliknutím obnovíte hru"
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr "Nasleduj hráča."
+msgstr "Sleduj hráča"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr "Pozorovateľský mód."
+msgstr "Pozorovateľský mód"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1221,19 +1237,3 @@ msgstr "Menu"
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
 msgstr "ALPHA XX: Timosthenes"
-
-#: gui/session/top_panel/resource_food.xml:(tooltip):3
-msgid "Food"
-msgstr "Jedlo"
-
-#: gui/session/top_panel/resource_metal.xml:(tooltip):3
-msgid "Metal"
-msgstr "Kov"
-
-#: gui/session/top_panel/resource_stone.xml:(tooltip):3
-msgid "Stone"
-msgstr "Kameň"
-
-#: gui/session/top_panel/resource_wood.xml:(tooltip):3
-msgid "Wood"
-msgstr "Drevo"

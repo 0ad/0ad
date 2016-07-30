@@ -1,0 +1,15 @@
+{
+	"TranslatedKeys": ["Title", "Description"],
+	"Data":
+	{
+		"Title": "Regicide",
+		"Description": "Defeat opponents by killing their hero",
+		"Scripts":
+		[
+			"scripts/TriggerHelper.js",
+			"scripts/ConquestCommon.js",
+			"scripts/Conquest.js",
+			"scripts/Regicide.js"
+		]
+	}
+}

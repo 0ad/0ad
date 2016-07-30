@@ -48,7 +48,6 @@
 			style="StoneButtonFancy"
 			size="0 96 100% 124"
 			tooltip_style="sessionToolTip"
-			enabled="false"
 		>
 			<translatableAttribute id="caption">Summary</translatableAttribute>
 			<action on="Press">openGameSummary();</action>

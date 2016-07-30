@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-11 09:00+0200\n"
-"PO-Revision-Date: 2016-07-11 09:45+0000\n"
+"POT-Creation-Date: 2016-07-15 09:00+0200\n"
+"PO-Revision-Date: 2016-07-15 09:01+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -296,25 +296,25 @@ msgstr "Pause: спиране на пауза/продължаване на иг
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr "Delete: изтриване на текущо избраните единици/сгради"
+msgstr "Delete: изтриване на текущо избраните единици/сгради;"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr "Shift + Delete: изтриване на текущо избраните единици/сгради без потвърждение"
+msgstr "Shift + Delete: изтриване на текущо избраните единици/сгради без потвърждение;"
 
 #: gui/manual/intro.txt:68
-msgid ",: Select idle fighters"
-msgstr ",: избиране на бездействащите бойци;"
+msgid "/ (ForwardSlash): Select idle fighter"
+msgstr "/ (наклонена черта надясно): избиране на бездействащ воѝн;"
 
 #: gui/manual/intro.txt:69
-msgid "Shift + ,: add idle fighter to selection"
-msgstr "Shift + ,: добавяне на бездействащ воѝн към избраните единици;"
+msgid "Shift + /: add idle fighter to selection"
+msgstr "Shift + /: добавяне на бездействащ воѝн към избраните единици;"
 
 #: gui/manual/intro.txt:70
-msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: избиране на бездействащите работници (включително гражданите-во̀ини);"
+msgid ". (Period): Select idle worker (including citizen soldiers)"
+msgstr ". (точка): избиране на бездействащ работник (може да бъде и гражданин-воѝн);"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
@@ -544,10 +544,8 @@ msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: превключване на решетъчните режими;"
 
 #: gui/manual/intro.txt:123
-msgid ""
-"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
-" pan"
-msgstr "Среден бутон на мишката или / (наклонена черта): при задържане, движението на мишката придвижва екрана."
+msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
+msgstr "Среден бутон на мишката: при задържане, движението на мишката придвижва екрана."
 
 #: gui/manual/intro.txt:125
 msgid "[font=\"sans-bold-14\"]During Building Placement"

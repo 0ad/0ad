@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -148,6 +148,7 @@ void MapSettingsControl::CreateWidgets()
 	gameTypes.Add(_T("conquest_units"));
 	gameTypes.Add(_T("wonder"));
 	gameTypes.Add(_T("endless"));
+	gameTypes.Add(_T("regicide"));
 
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 	gridSizer->AddGrowableCol(1);

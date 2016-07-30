@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+	<texture>art/textures/particles/blowing_sand.png</texture>
+	<blend mode="over"/>
+
+	<start_full/>
+
+	<constant name="emissionrate" value="2.0"/>
+	<uniform name="lifetime" min="15.0" max="30.0"/>
+
+	<uniform name="position.x" min="-50.0" max="50.0"/>
+	<uniform name="position.z" min="-50.0" max="50.0"/>
+	<constant name="position.y" value="3.0"/>
+
+	<uniform name="velocity.x" min="1.0" max="2.0"/>
+	<uniform name="velocity.angle" min="-0.1" max="0.15"/>
+	<uniform name="size" min="20.0" max="40.0"/>
+	
+	<uniform name="color.r" min="1.0" max="0.9"/>
+	<uniform name="color.g" min="0.6" max="0.6"/>
+	<uniform name="color.b" min="0.4" max="0.4"/>
+
+</particles>
+

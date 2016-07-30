@@ -55,6 +55,7 @@ g_Decoratives.rockLarge = "actor|geology/stone_desert_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
+g_Decoratives.dust = "actor|particle/dust_storm_reddish.xml";
 initBiome();
 
 log("Resetting terrain...");
@@ -129,10 +130,10 @@ addElements(shuffleArray([
 	{
 		"func": addForests,
 		"avoid": [
-			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 18,
+			g_TileClasses.berries, 3,
+			g_TileClasses.forest, 20,
 			g_TileClasses.metal, 3,
-			g_TileClasses.mountain, 5,
+			g_TileClasses.mountain, 3,
 			g_TileClasses.player, 20,
 			g_TileClasses.rock, 3,
 			g_TileClasses.water, 2
@@ -143,6 +144,24 @@ addElements(shuffleArray([
 	}
 ]));
 RMS.SetProgress(60);
+
+log("Ensure initial forests...");
+addElements([{
+	"func": addForests,
+	"avoid": [
+		g_TileClasses.berries, 2,
+		g_TileClasses.forest, 25,
+		g_TileClasses.metal, 3,
+		g_TileClasses.mountain, 5,
+		g_TileClasses.player, 15,
+		g_TileClasses.rock, 3,
+		g_TileClasses.water, 2
+	],
+	"sizes": ["small"],
+	"mixes": ["similar"],
+	"amounts": ["tons"]
+}]);
+RMS.SetProgress(65);
 
 log("Adding berries and animals...");
 addElements(shuffleArray([
@@ -191,14 +210,14 @@ addElements(shuffleArray([
 		"func": addStragglerTrees,
 		"avoid": [
 			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 7,
+			g_TileClasses.forest, 15,
 			g_TileClasses.metal, 2,
 			g_TileClasses.mountain, 1,
-			g_TileClasses.player, 12,
+			g_TileClasses.player, 20,
 			g_TileClasses.rock, 2,
 			g_TileClasses.water, 5
 		],
-		"sizes": ["big"],
+		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": ["many"]
 	}
@@ -251,6 +270,25 @@ createObjectGroups(
 		borderClasses(g_TileClasses.water, scaleByMapSize(2,8), scaleByMapSize(2,5))
 	],
 	scaleByMapSize(100, 1000),
+	500
+);
+RMS.SetProgress(85);
+
+log("Adding dust...");
+createObjectGroups(
+	new SimpleGroup(
+		[new SimpleObject(g_Decoratives.dust, 1, 1, 1, 4)],
+		false
+	),
+	0,
+	[
+		stayClasses(g_TileClasses.dirt, 1),
+		avoidClasses(
+			g_TileClasses.player, 10,
+			g_TileClasses.water, 3
+		)
+	],
+	Math.pow(scaleByMapSize(5, 20), 2),
 	500
 );
 RMS.SetProgress(90);

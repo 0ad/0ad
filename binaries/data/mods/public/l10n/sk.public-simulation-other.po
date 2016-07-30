@@ -4,7 +4,7 @@
 # 
 # Translators:
 # kecer <adam@kecer.net>, 2016
-# Levi Taule <levi.taule@gmail.com>, 2015
+# LeviTaule <levi.taule@gmail.com>, 2015-2016
 # Mário Bulejko, 2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:18+0000\n"
+"POT-Creation-Date: 2016-07-22 09:01+0200\n"
+"PO-Revision-Date: 2016-07-22 09:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -760,7 +760,7 @@ msgstr "Produkčný front je plný."
 
 #: simulation/components/ProductionQueue.js:768
 msgid "Can't find free space to spawn trained units"
-msgstr "Nie je možné nájsť voľné miesto na uloženie vytrénovaných jednotiek."
+msgstr "Nie je možné nájsť voľné miesto na uloženie vytrénovaných jednotiek"
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -770,34 +770,34 @@ msgstr "Musíš označiť budovu, ktorá bude trénovať jednotky."
 msgid "(Cheat - control all units)"
 msgstr "(Cheat - kontrola všetkých jednotiek)"
 
-#: simulation/helpers/Commands.js:562
+#: simulation/helpers/Commands.js:568
 msgid "(Cheat - promoted units)"
 msgstr "(Cheat - kontrola povýšených jednotiek)"
 
-#: simulation/helpers/Commands.js:672
+#: simulation/helpers/Commands.js:678
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:682
+#: simulation/helpers/Commands.js:688
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:728
+#: simulation/helpers/Commands.js:734
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Žiada sa útok na %(_player_)s."
 
-#: simulation/helpers/Commands.js:765
+#: simulation/helpers/Commands.js:771
 msgid "Unable to ungarrison unit(s)"
-msgstr "Nieje možné odpojiť jednotku."
+msgstr "Nieje možné odpojiť jednotku"
 
-#: simulation/helpers/Commands.js:779
+#: simulation/helpers/Commands.js:785
 msgid "Some unit(s) can't go back to work"
 msgstr "Niektoré jednotky sa nemôžu vrátiť do práce."
 
-#: simulation/helpers/Commands.js:1035
+#: simulation/helpers/Commands.js:1041
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požiadavky pre budovu nie sú splnené."
 
@@ -904,6 +904,14 @@ msgstr "Zneškodnite všetky nepriateľské jednotky"
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
 msgstr "Dobývacie jednotky"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"

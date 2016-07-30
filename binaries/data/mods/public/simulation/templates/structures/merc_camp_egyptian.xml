@@ -39,10 +39,10 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/ptol_infantry_spearman_merc_b
-	  units/ptol_infantry_swordsman_merc_b
-      units/ptol_cavalry_spearman_merc_b
-      units/ptol_cavalry_javelinist_merc_b
+      units/{civ}_infantry_spearman_merc_b
+      units/{civ}_infantry_swordsman_merc_b
+      units/{civ}_cavalry_spearman_merc_b
+      units/{civ}_cavalry_javelinist_merc_b
     </Entities>
     <Technologies datatype="tokens">
 	  upgrade_rank_advanced_infantry

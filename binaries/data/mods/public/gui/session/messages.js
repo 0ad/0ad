@@ -250,6 +250,7 @@ var g_NotificationsTypes =
 			"resign": !!notification.resign
 		});
 		playerFinished(player, false);
+		sendLobbyPlayerlistUpdate();
 	},
 	"won": function(notification, player)
 	{
@@ -259,6 +260,7 @@ var g_NotificationsTypes =
 			"player": player
 		});
 		playerFinished(player, true);
+		sendLobbyPlayerlistUpdate();
 	},
 	"diplomacy": function(notification, player)
 	{
@@ -541,13 +543,7 @@ function handlePlayerAssignmentsMessage(message)
 	});
 
 	updateChatAddressees();
-
-	// Update lobby gamestatus
-	if (g_IsController && Engine.HasXmppClient())
-	{
-		let players = Object.keys(g_PlayerAssignments).map(guid => g_PlayerAssignments[guid].name);
-		Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));
-	}
+	sendLobbyPlayerlistUpdate();
 }
 
 function onClientJoin(guid)
@@ -826,6 +822,7 @@ function formatChatCommand(msg)
 	// Translate or escape text
 	if (!msg.text)
 		return "";
+
 	if (msg.translate)
 	{
 		msg.text = translate(msg.text);
@@ -837,7 +834,14 @@ function formatChatCommand(msg)
 		}
 	}
 	else
+	{
 		msg.text = escapeText(msg.text);
+
+		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
+
+		if (userName != g_PlayerAssignments[msg.guid].name)
+			notifyUser(userName, msg.text);
+	}
 
 	// GUID for players, playerID for AIs
 	let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);

@@ -11,7 +11,7 @@ const FALLBACK_CIV = "athen";
 /**
  * Constants needed for heightmap_manipulation.js
  */
-const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE // Engine limit, Roughly 700 meters
+const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE; // Engine limit, Roughly 700 meters
 const MIN_HEIGHT = - SEA_LEVEL;
 const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
 // Default angle for buildings
@@ -89,24 +89,6 @@ function max(a, b)
 function min(a, b)
 {
 	return a < b ? a : b;
-}
-
-/**
- * "Inside-out" implementation of Fisher-Yates shuffle
- */
-function shuffleArray(source)
-{
-	if (!source.length)
-		return [];
-
-	let result = [source[0]];
-	for (let i = 1; i < source.length; ++i)
-	{
-		let j = randInt(0, i);
-		result[i] = result[j];
-		result[j] = source[i];
-	}
-	return result;
 }
 
 /**

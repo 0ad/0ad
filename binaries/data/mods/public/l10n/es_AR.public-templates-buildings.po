@@ -12,13 +12,14 @@
 # Federico Martín <federicomartin80@gmail.com>, 2015
 # Gabriel <gabriel.guzman@live.com.ar>, 2015
 # Juan Delhon <juandelhon@gmail.com>, 2015
+# Pedro Hidalgo <pedro.n.h.lagopuelo@gmail.com>, 2016
 # PoinoComer <ignacio.torea@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-07-08 08:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-23 04:40+0000\n"
+"Last-Translator: Pedro Hidalgo <pedro.n.h.lagopuelo@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,7 @@ msgstr "CentroCivil"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
 msgid "Colony"
-msgstr ""
+msgstr "Colonia"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
 #: simulation/templates/structures/ptol_military_colony.xml:5
@@ -70,7 +71,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
-msgstr ""
+msgstr "Recluta unidades especiales."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -96,7 +97,7 @@ msgstr "Casa"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Entrena curadores. Almacena unidades para curarlas a alta velocidad (3 HP por segundo). Investiga mejoras curativas y religiosas."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -174,7 +175,7 @@ msgstr "Segmentos grandes de muralla pueden ser convertidos en puertas."
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Te permitirá dejar que las unidades pasen a través de tu fortificación."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -346,7 +347,7 @@ msgstr "Librería"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Research special technologies."
-msgstr ""
+msgstr "Investiga tecnologías especiales."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:20
 msgid "Rotary Mill"
@@ -548,7 +549,7 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Trae gloria a tu civilización y añade grandes lotes de tierra a tu imperio. Guarnece unidades para curarlas extremadamente rápido."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -1082,7 +1083,7 @@ msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "Captura esta estructura para entrenar mercenarios del Egipto Helenistico."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1097,7 +1098,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Tributo del Sátrapa\": Proporciona un goteo de comida, madera, piedra y metal. Entrena héroes Persas y sus guardaespaldas \"inmortales\"."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1178,7 +1179,7 @@ msgstr ""
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Incrementa la regeneración de la lealtad de las estructuras cercanas, haciéndolas más difíciles de capturar."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1230,7 +1231,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
-msgstr ""
+msgstr "Jardines colgantes de Babilonia"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1240,7 +1241,7 @@ msgstr ""
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Entrena ciudadanos-soldados Egipcios y de Medio Oriente. Investiga mejoras de entrenamiento."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1367,7 +1368,7 @@ msgstr ""
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Constrúyelo en cualquier parte del mapa, incluso en territorio enemigo. Construye armas de asedio y entrena ciudadanos-soldados. Cura lentamente a las unidades guarnecidas."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1471,7 +1472,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Entrena curadores. Guarnece unidades para curarlas a alta velocidad."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
@@ -1483,7 +1484,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
-msgstr ""
+msgstr "Tienda"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
@@ -1491,7 +1492,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Un refugio temporal para los soldados."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1611,4 +1612,4 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Trae gloria a tu civilización y añade grandes lotes de tierra a tu imperio. Guarnece unidades para curarlas rápidamente."

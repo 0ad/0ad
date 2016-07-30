@@ -12,12 +12,13 @@
 # Savvas Adamtziloglou <savvas-gr@greeklug.gr>, 2016
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
 # subdee <subdee.studio@gmail.com>, 2015
+# Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-18 09:01+0200\n"
+"PO-Revision-Date: 2016-07-27 14:24+0000\n"
+"Last-Translator: Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,6 +52,19 @@ msgstr "Ψηλά Αλπικά βουνά που συνορεύουν με βαθ
 msgid "Alpine Valley"
 msgstr "Οροπέδιο"
 
+#: maps/random/amazon.jsonsettings.Description
+msgid ""
+"The Amazon River in South America is the largest river by discharge of water"
+" in the world, and the longest in length. The Amazon basin is the largest "
+"drainage basin in the world, with an area of approximately 7,050,000 square "
+"kilometers, and accounts for roughly one-fifth of the world's total river "
+"flow."
+msgstr ""
+
+#: maps/random/amazon.jsonsettings.Name
+msgid "Amazon"
+msgstr "Αμαζόνιος"
+
 #: maps/random/ambush.jsonsettings.Description
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
@@ -75,7 +89,7 @@ msgstr "Οροπέδιο Ανατολίας"
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
-msgstr "Ενας λαβύρινθος απο νησιά,διαφορετικών μεγέθων και σχημάτων.Οι παίκτες ξεκενούν με περισσότερο ξυλο απο το κανονικό."
+msgstr "Ενας λαβύρινθος απο νησιά,διαφορετικών μεγέθων και σχημάτων.Οι παίκτες ξεκινούν με περισσότερο ξυλο απο το κανονικό."
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
@@ -352,6 +366,19 @@ msgstr "Ένας τυπικός χάρτης χωρίς καθόλου νερό.
 msgid "Mainland"
 msgstr "Ηπειρωτική Χώρα"
 
+#: maps/random/mediterranean.jsonsettings.Description
+msgid ""
+"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
+" the Mediterranean Basin and almost completely enclosed by land: on the "
+"north by Southern Europe and Anatolia, on the south by North Africa, and on "
+"the east by the Levant. The name Mediterranean is derived from the Latin "
+"mediterraneus, meaning 'inland' or 'in the middle of land'."
+msgstr ""
+
+#: maps/random/mediterranean.jsonsettings.Name
+msgid "Mediterranean"
+msgstr "Μεσόγειος "
+
 #: maps/random/migration.jsonsettings.Description
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
@@ -433,6 +460,16 @@ msgstr ""
 #: maps/random/pyrenean_sierra.jsonsettings.Name
 msgid "Pyrenean Sierra"
 msgstr "Οροσειρά Πυρρηναίων"
+
+#: maps/random/red_sea.jsonsettings.Description
+msgid ""
+"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
+"and Asia and the world's northernmost tropical sea."
+msgstr ""
+
+#: maps/random/red_sea.jsonsettings.Name
+msgid "Red Sea"
+msgstr ""
 
 #: maps/random/rhine_marshlands.jsonsettings.Description
 msgid ""
@@ -591,7 +628,7 @@ msgstr "Ενα κύμα εχθρών επιτίθετε!"
 #: maps/random/survivalofthefittest_triggers.js:197
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
-msgstr ""
+msgstr "Το πρώτο κύμμα θα αρχίσει σε %(time)s!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"

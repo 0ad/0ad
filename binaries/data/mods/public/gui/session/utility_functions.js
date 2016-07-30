@@ -131,3 +131,61 @@ function resourcesToAlphaMask(neededResources)
 	alpha = alpha > 125 ? 125 : alpha;
 	return "color:255 0 0 " + alpha;
 }
+
+/**
+ * Send the current list of players, teams, AIs, observers and defeated/won and offline states to the lobby.
+ * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data.
+ */
+function sendLobbyPlayerlistUpdate()
+{
+	if (!g_IsController || !Engine.HasXmppClient())
+		return;
+
+	// Extract the relevant player data and minimize packet load
+	let minPlayerData = [];
+	for (let playerID in g_GameAttributes.settings.PlayerData)
+	{
+		if (+playerID == 0)
+			continue;
+
+		let pData = g_GameAttributes.settings.PlayerData[playerID];
+
+		let minPData = { "Name": pData.Name };
+
+		if (g_GameAttributes.settings.LockTeams)
+			minPData.Team = pData.Team;
+
+		if (pData.AI)
+		{
+			minPData.AI = pData.AI;
+			minPData.AIDiff = pData.AIDiff;
+		}
+
+		if (g_Players[playerID].offline)
+			minPData.Offline = true;
+
+		// Whether the player has won or was defeated
+		let state = g_Players[playerID].state;
+		if (state != "active")
+			minPData.State = state;
+
+		minPlayerData.push(minPData);
+	}
+
+	// Add observers
+	let connectedPlayers = 0;
+	for (let guid in g_PlayerAssignments)
+	{
+		let pData = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player];
+
+		if (pData)
+			++connectedPlayers;
+		else
+			minPlayerData.push({
+				"Name": g_PlayerAssignments[guid].name,
+				"Team": "observer"
+			});
+	}
+
+	Engine.SendChangeStateGame(connectedPlayers, playerDataToStringifiedTeamList(minPlayerData));
+}

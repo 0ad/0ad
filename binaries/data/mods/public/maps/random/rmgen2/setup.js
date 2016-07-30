@@ -59,21 +59,18 @@ var g_Forests;
 /**
  * Adds an array of elements to the map.
  */
-function addElements(els)
+function addElements(elements)
 {
-	for (var i = 0; i < els.length; ++i)
-	{
-		var stay = null;
-		if (els[i].stay !== undefined)
-			stay = els[i].stay;
-
-		els[i].func(
-			[avoidClasses.apply(null, els[i].avoid), stayClasses.apply(null, stay)],
-			pickSize(els[i].sizes),
-			pickMix(els[i].mixes),
-			pickAmount(els[i].amounts)
+	for (let element of elements)
+		element.func(
+			[
+				avoidClasses.apply(null, element.avoid),
+				stayClasses.apply(null, element.stay || null)
+			],
+			pickSize(element.sizes),
+			pickMix(element.mixes),
+			pickAmount(element.amounts)
 		);
-	}
 }
 
 /**
@@ -170,16 +167,18 @@ function addBases(type, distance, groupedDistance)
 /**
  * Create the base for a single player.
  *
- * @param {Object} - contains id, angle, x, z
- * @param {boolean} - Whether or not iberian gets starting walls
+ * @param {Object} player - contains id, angle, x, z
+ * @param {boolean} walls - Whether or not iberian gets starting walls
  */
-function createBase(player, walls)
+function createBase(player, walls = true)
 {
 	// Get the x and z in tiles
 	var fx = fractionToTiles(player.x);
 	var fz = fractionToTiles(player.z);
 	var ix = round(fx);
 	var iz = round(fz);
+
+	// Mark player position and a tile in each direction to avoid placing things inside the CC
 	addToClass(ix, iz, g_TileClasses.player);
 	addToClass(ix + 5, iz, g_TileClasses.player);
 	addToClass(ix, iz + 5, g_TileClasses.player);
@@ -187,7 +186,7 @@ function createBase(player, walls)
 	addToClass(ix, iz - 5, g_TileClasses.player);
 
 	// Create starting units
-	if ((walls || walls === undefined) && g_MapInfo.mapSize > 192)
+	if (walls && g_MapInfo.mapSize > 192)
 		placeCivDefaultEntities(fx, fz, player.id);
 	else
 		placeCivDefaultEntities(fx, fz, player.id, { 'iberWall': false });
@@ -197,6 +196,8 @@ function createBase(player, walls)
 	var placer = new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([g_Terrains.roadWild, g_Terrains.road], [1]);
 	createArea(placer, painter, null);
+
+	// TODO: retry loops are needed as resources might conflict with neighboring ones
 
 	// Create initial berry bushes at random angle
 	var bbAngle = randFloat(0, TWO_PI);
@@ -494,18 +495,17 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 		var teamAngle = g_MapInfo.startAngle + (i + 1) * TWO_PI / g_MapInfo.teams.length;
 		var fractionX = 0.5 + distance * cos(teamAngle);
 		var fractionZ = 0.5 + distance * sin(teamAngle);
+		var teamGroupDistance = groupedDistance;
 
 		// If we have a team of above average size, make sure they're spread out
 		if (g_MapInfo.teams[i].length > 4)
-			groupedDistance = randFloat(0.08, 0.12);
-
-		// If we have a team of below average size, make sure they're together
-		if (g_MapInfo.teams[i].length < 3)
-			groupedDistance = randFloat(0.04, 0.06);
+			teamGroupDistance = Math.max(0.08, groupedDistance);
 
 		// If we have a solo player, place them on the center of the team's location
 		if (g_MapInfo.teams[i].length == 1)
-			groupedDistance = 0;
+			teamGroupDistance = 0;
+
+		// TODO: Ensure players are not placed outside of the map area, similar to placeLine
 
 		// Create player base
 		for (var p = 0; p < g_MapInfo.teams[i].length; ++p)
@@ -514,8 +514,8 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 			players[g_MapInfo.teams[i][p]] = {
 				"id": g_MapInfo.teams[i][p],
 				"angle": angle,
-				"x": fractionX + groupedDistance * cos(angle),
-				"z": fractionZ + groupedDistance * sin(angle)
+				"x": fractionX + teamGroupDistance * cos(angle),
+				"z": fractionZ + teamGroupDistance * sin(angle)
 			};
 			createBase(players[g_MapInfo.teams[i][p]], false);
 		}
@@ -530,9 +530,9 @@ function placeStronghold(playerIDs, distance, groupedDistance)
  * @param singleBases - pair of coordinates of the heightmap to place isolated bases.
  * @param singleBases - pair of coordinates of the heightmap to place team bases.
  * @param groupedDistance - distance between neighboring players.
- * @param singleBaseFunction - A function called for every singlebase placed.
+ * @param func - A function called for every player base or stronghold placed.
  */
-function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, groupedDistance, singleBaseFunction)
+function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, groupedDistance, func)
 {
 	let strongholdBasesRandom = shuffleArray(strongholdBases);
 	let singleBasesRandom = shuffleArray(singleBases);
@@ -545,10 +545,17 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 	{
 		for (let t = 0; t < g_MapInfo.teams.length; ++t)
 		{
+			let tileX = Math.floor(strongholdBasesRandom[t][0] / heightmapScale);
+			let tileY = Math.floor(strongholdBasesRandom[t][1] / heightmapScale);
+
+			let x = tileX / g_MapInfo.mapSize;
+			let z = tileY / g_MapInfo.mapSize;
+
 			let team = g_MapInfo.teams[t].map(playerID => ({ "id": playerID }));
-			let x = Math.floor(strongholdBasesRandom[t][0] / heightmapScale) / g_MapInfo.mapSize;
-			let z = Math.floor(strongholdBasesRandom[t][1] / heightmapScale) / g_MapInfo.mapSize;
 			let players = [];
+
+			if (func)
+				func(tileX, tileY);
 
 			for (let p = 0; p < team.length; ++p)
 			{
@@ -570,13 +577,16 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 		let players = randomizePlayers();
 		for (let p = 0; p < players.length; ++p)
 		{
-			if (singleBaseFunction)
-				singleBaseFunction(singleBasesRandom[p]);
+			let tileX = Math.floor(singleBasesRandom[p][0] / heightmapScale);
+			let tileY = Math.floor(singleBasesRandom[p][1] / heightmapScale);
+
+			if (func)
+				func(tileX, tileY);
 
 			createBase({
 				"id": players[p],
-				"x": Math.floor(singleBasesRandom[p][0] / heightmapScale) / g_MapInfo.mapSize,
-				"z": Math.floor(singleBasesRandom[p][1] / heightmapScale) / g_MapInfo.mapSize
+				"x": tileX / g_MapInfo.mapSize,
+				"z": tileY / g_MapInfo.mapSize
 			});
 		}
 	}

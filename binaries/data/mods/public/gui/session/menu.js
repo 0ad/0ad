@@ -610,7 +610,10 @@ function toggleGameSpeed()
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
-
+/**
+ * Allows players to see their own summary.
+ * If they have shared ally vision researched, they are able to see the summary of there allies too.
+ */
 function openGameSummary()
 {
 	closeOpenDialogs();
@@ -620,7 +623,9 @@ function openGameSummary()
 	Engine.PushGuiPage("page_summary.xml", {
 		"sim": {
 			"mapSettings": g_GameAttributes.settings,
-			"playerStates": extendedSimState.players,
+			"playerStates":extendedSimState.players.filter((state,player) =>
+				g_IsObserver || player == 0 || player == g_ViewedPlayer ||
+				extendedSimState.players[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]),
 			"timeElapsed" : extendedSimState.timeElapsed
 		},
 		"gui": {

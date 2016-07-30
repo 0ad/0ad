@@ -6,14 +6,15 @@
 # not_xx <aric1987@gmail.com>, 2014
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
+# Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2014
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-11 09:00+0200\n"
-"PO-Revision-Date: 2016-07-11 09:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-07-15 09:00+0200\n"
+"PO-Revision-Date: 2016-07-21 10:49+0000\n"
+"Last-Translator: Kelvin Cooper <Zhu-Zhe-Yong@live.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -193,7 +194,7 @@ msgstr "[font=\"sans-bold-16\"]热键:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]全局"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -297,29 +298,29 @@ msgstr "暂停：暂停/恢复"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Delete: 删除当前选中的单位/建筑"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift + Delete: 删除当前选中的单位/建筑而无需确认"
 
 #: gui/manual/intro.txt:68
-msgid ",: Select idle fighters"
-msgstr ",: 选择空闲的战士"
+msgid "/ (ForwardSlash): Select idle fighter"
+msgstr "/ (正斜杠): 选择空闲的战士"
 
 #: gui/manual/intro.txt:69
-msgid "Shift + ,: add idle fighter to selection"
-msgstr ""
+msgid "Shift + /: add idle fighter to selection"
+msgstr "Shift + /: 添加空闲的战士以供选择"
 
 #: gui/manual/intro.txt:70
-msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: 选择空闲的工人 (包括民兵)"
+msgid ". (Period): Select idle worker (including citizen soldiers)"
+msgstr ". (Period): 选择空闲的工人 (包括民兵)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: 添加空闲的工人 (包括民兵) 以供选择"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -363,17 +364,17 @@ msgstr "Z, X, C, V, B, N, M:按这些键，所有被选中的可生产单位的�
 msgid ""
 "PageUp with units selected: highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "向上翻页已选择的单位：谨慎选择突出的单位/建筑。"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "PageDown with units/buildings selected: highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "向下翻页已选择的单位/建筑 : 校验检查突出的单位。"
 
 #: gui/manual/intro.txt:81
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab : 查看所有状态栏 ( 这也将显示建设进度 ) "
 
 #: gui/manual/intro.txt:83
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -545,10 +546,8 @@ msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: 切换的线条模式"
 
 #: gui/manual/intro.txt:123
-msgid ""
-"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
-" pan"
-msgstr "滑鼠中键或是/ (斜线)：持续按着并移动滑鼠以平移"
+msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
+msgstr "滑鼠中键 ：持续按着并移动滑鼠以平移"
 
 #: gui/manual/intro.txt:125
 msgid "[font=\"sans-bold-14\"]During Building Placement"
@@ -599,7 +598,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• 随机用户ID (Windows系统中，存储在 %APPDATA%\\0ad\\config\\user.cfg ; Unix系统中， ~/.config/0ad/config/user.cfg), 允许我们检测来自同一用户的报告。"
 
 #: gui/manual/userreport.txt:6
 msgid ""

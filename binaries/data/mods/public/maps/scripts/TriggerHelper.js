@@ -22,8 +22,8 @@ TriggerHelper.GetOwner = function(ent)
 };
 
 /**
- * Can be used to "force" a building to spawn a group of entities.
- * Only works for buildings that can already train units.
+ * Can be used to "force" a building/unit to spawn a group of entities.
+ *
  * @param source Entity id of the point where they will be spawned from
  * @param template Name of the template
  * @param count Number of units to spawn

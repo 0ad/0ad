@@ -226,10 +226,24 @@ function getGarrisonTooltip(template)
 	if (!template.garrisonHolder)
 		return "";
 
-	return sprintf(translate("%(label)s: %(garrisonLimit)s"), {
-		"label": headerFont(translate("Garrison Limit")),
-		"garrisonLimit": template.garrisonHolder.capacity || template.garrisonHolder.max
-	});
+	let tooltips = [
+		sprintf(translate("%(label)s: %(garrisonLimit)s"), {
+			"label": headerFont(translate("Garrison Limit")),
+			"garrisonLimit": template.garrisonHolder.capacity || template.garrisonHolder.max
+		})
+	];
+
+	if (template.garrisonHolder.buffHeal)
+		tooltips.push(
+			sprintf(translate("%(healRateLabel)s %(value)s %(health)s / %(second)s"), {
+				"healRateLabel": headerFont(translate("Heal:")),
+				"value": Math.round(template.garrisonHolder.buffHeal),
+				"health": unitFont(translate("health")),
+				"second": unitFont(translate("second")),
+			})
+		);
+
+	return tooltips.join(commaFont(translate(", ")));
 }
 
 function getProjectilesTooltip(template)
@@ -462,23 +476,24 @@ function getSpeedTooltip(template)
 	if (!template.speed)
 		return "";
 
-	let speeds = [];
+	let walk = template.speed.walk.toFixed(1);
+	let run = template.speed.run.toFixed(1);
 
-	if (template.speed.walk)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
-			"speed": template.speed.walk.toFixed(1),
-			"movementType": unitFont(translate("Walk"))
-		}));
-
-	if (template.speed.run)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), {
-			"speed": template.speed.run.toFixed(1),
-			"movementType": unitFont(translate("Run"))
-		}));
+	if (walk == 0 && run == 0)
+		return "";
 
 	return sprintf(translate("%(label)s %(speeds)s"), {
 		"label": headerFont(translate("Speed:")),
-		"speeds": speeds.join(translate(", "))
+		"speeds":
+	   		sprintf(translate("%(speed)s %(movementType)s"), {
+				"speed": walk,
+				"movementType": unitFont(translate("Walk"))
+			}) +
+			commaFont(translate(", ")) +
+			sprintf(translate("%(speed)s %(movementType)s"), {
+				"speed": run,
+				"movementType": unitFont(translate("Run"))
+			})
 	});
 }
 
