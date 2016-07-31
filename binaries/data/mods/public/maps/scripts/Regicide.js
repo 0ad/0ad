@@ -36,11 +36,15 @@ Trigger.prototype.InitRegicideGame = function(msg)
 	}
 
 	// Sort available spawn points by preference
-	let spawnPreference = ["Ship", "Structure", "CivilCentre"];
+	let spawnPreferences = ["CivilCentre", "Structure", "Ship"];
 	let getSpawnPreference = entity => {
 		let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 		let classes = cmpIdentity.GetClassesList();
-		return spawnPreference.findIndex(className => classes.indexOf(className) != -1);
+
+		for (let i in spawnPreferences)
+			if (classes.indexOf(spawnPreferences[i]) != -1)
+				return spawnPreferences.length - i;
+		return 0;
 	};
 
 	// Attempt to spawn one hero per player
