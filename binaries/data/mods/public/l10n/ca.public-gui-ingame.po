@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-07-31 15:42+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,7 +428,7 @@ msgstr "%(player)s ha estat vençut."
 #: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s ha guanyat."
 
 #: gui/session/messages.js:784
 #, javascript-format
@@ -597,7 +597,7 @@ msgstr "Feu clic per expulsar-ne 1. Maj + clic per expulsar tots els d'aquest ti
 #: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Jugador: %(playername)s"
 
 #: gui/session/selection_panels.js:484
 msgid "Lock Gate"
@@ -642,20 +642,20 @@ msgstr[1] "En falten %(number)s per construir."
 #: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Millora a %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Millora a %(name)s."
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Cancel·la la millora"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "No es pot millorar una entitat que ja s'està millorant."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -774,11 +774,11 @@ msgstr "%(civ)s - Arbre d'estructures"
 
 #: gui/session/session.js:680
 msgid "You have won!"
-msgstr ""
+msgstr "Heu guanyat!"
 
 #: gui/session/session.js:681
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Heu estat vençut!"
 
 #: gui/session/session.js:683
 msgid "Do you want to quit?"
@@ -786,7 +786,7 @@ msgstr "Voleu sortir?"
 
 #: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Si marxeu, es desconnectaran tots els altres jugadors."
 
 #: gui/session/session.js:692
 msgid "VICTORIOUS!"
@@ -824,17 +824,17 @@ msgstr "Salut:"
 #: gui/session/session.js:941
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:944
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:962
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:963
 msgid "Population (current / limit)"
@@ -914,7 +914,7 @@ msgstr "Cancel·la l'ordre actual."
 
 #: gui/session/unit_actions.js:1052
 msgid "Order the selected units to garrison a building or unit."
-msgstr ""
+msgstr "Ordena a les unitats seleccionades refugiar-se en un edifici o unitat."
 
 #: gui/session/unit_actions.js:1074
 msgid "Unload"
@@ -934,7 +934,7 @@ msgstr "Torna a la feina"
 
 #: gui/session/unit_actions.js:1152
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Ordena a les unitats seleccionades que defensin un edifici o unitat."
 
 #: gui/session/unit_actions.js:1170
 msgid "Remove guard"
@@ -962,7 +962,7 @@ msgstr "No podeu utilitzar aquest punt de descàrrega"
 
 #: gui/session/unit_actions.js:1341
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "S'ha de matar aquesta entitat abans de poder obtenir-ne recursos"
 
 #: gui/session/unit_actions.js:1344
 msgid ""
@@ -971,7 +971,7 @@ msgstr "No podeu destruir aquesta entitat perquè teniu menys de la meitat dels 
 
 #: gui/session/unit_actions.js:1347
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Aquesta entitat no es pot esborrar"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
