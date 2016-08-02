@@ -37,6 +37,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
+#include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"

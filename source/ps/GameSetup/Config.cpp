@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,8 +66,6 @@ bool g_VSync = false;
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
 
-bool g_ScriptProfilingEnabled = false;
-
 // flag to switch on drawing terrain overlays
 bool g_ShowPathfindingOverlay = false;
 
@@ -111,8 +109,6 @@ static void LoadGlobals()
 	CFG_GET_VAL("postproc", g_PostProc);
 	CFG_GET_VAL("smoothlos", g_SmoothLOS);
 	CFG_GET_VAL("gui.scale", g_GuiScale);
-
-	CFG_GET_VAL("profiler2.script.enable", g_ScriptProfilingEnabled);
 }
 
 

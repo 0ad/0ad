@@ -122,29 +122,13 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS, parentJSRuntime);
 	ENSURE(m_rt); // TODO: error handling
 
-	if (g_ScriptProfilingEnabled)
-	{
-		// Execute and call hooks are disabled if the runtime debug mode is disabled
-		JS_SetRuntimeDebugMode(m_rt, true);
-
-		// Profiler isn't thread-safe, so only enable this on the main thread
-		if (ThreadUtil::IsMainThread())
-		{
-			if (CProfileManager::IsInitialised())
-			{
-				JS_SetExecuteHook(m_rt, jshook_script, this);
-				JS_SetCallHook(m_rt, jshook_function, this);
-			}
-		}
-	}
-	
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
 	JS_SetGCCallback(m_rt, ScriptRuntime::GCCallback, this);
-	
+
 	JS_SetGCParameter(m_rt, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
 	JS_SetGCParameter(m_rt, JSGC_MAX_BYTES, m_RuntimeSize);
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
-	
+
 	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
 	JS_SetGCParameter(m_rt, JSGC_DYNAMIC_HEAP_GROWTH, false);
@@ -277,58 +261,6 @@ void ScriptRuntime::ShrinkingGC()
 	JS::PrepareForFullGC(m_rt);
 	JS::ShrinkingGC(m_rt, JS::gcreason::REFRESH_FRAME);
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
-}
-
-void* ScriptRuntime::jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), bool UNUSED(isConstructing), bool before, bool* UNUSED(ok), void* closure)
-{
-	if (before)
-		g_Profiler.StartScript("script invocation");
-	else
-		g_Profiler.Stop();
-
-	return closure;
-}
-
-void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool UNUSED(isConstructing), bool before, bool* UNUSED(ok), void* closure)
-{
-	JSAutoRequest rq(cx);
-
-	if (!before)
-	{
-		g_Profiler.Stop();
-		return closure;
-	}
-
-	JS::RootedFunction fn(cx, fp.maybeFun());
-	if (!fn)
-	{
-		g_Profiler.StartScript("(function)");
-		return closure;
-	}
-
-	// Try to get the name of non-anonymous functions
-	JS::RootedString name(cx, JS_GetFunctionId(fn));
-	if (name)
-	{
-		char* chars = JS_EncodeString(cx, name);
-		if (chars)
-		{
-			g_Profiler.StartScript(StringFlyweight(chars).get().c_str());
-			JS_free(cx, chars);
-			return closure;
-		}
-	}
-
-	// No name - use fileName and line instead
-	JS::AutoFilename fileName;
-	unsigned lineno;
-	JS::DescribeScriptedCaller(cx, &fileName, &lineno);
-
-	std::stringstream ss;
-	ss << "(" << fileName.get() << ":" << lineno << ")";
-	g_Profiler.StartScript(StringFlyweight(ss.str()).get().c_str());
-
-	return closure;
 }
 
 void ScriptRuntime::PrepareContextsForIncrementalGC()

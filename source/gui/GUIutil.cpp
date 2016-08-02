@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #include "maths/Matrix3D.h"
 #include "ps/CLogger.h"
+#include "ps/GameSetup/Config.h"
 
 extern int g_xres, g_yres;
 

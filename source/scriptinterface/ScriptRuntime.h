@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,15 +87,6 @@ private:
 	double m_LastGCCheck;
 
 	static void GCCallback(JSRuntime *rt, JSGCStatus status, void *data);
-
-	static void* jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), 
-		bool UNUSED(isConstructing), bool before,
-		bool* UNUSED(ok), void* closure);
-	
-	static void* jshook_function(JSContext* cx, JSAbstractFramePtr fp, 
-		bool UNUSED(isConstructing), bool before,
-		bool* UNUSED(ok), void* closure);
-
 };
 
 #endif // INCLUDED_SCRIPTRUNTIME
