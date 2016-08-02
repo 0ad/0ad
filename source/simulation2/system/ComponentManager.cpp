@@ -269,7 +269,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		return; // error
 
 	proto = protoVal.toObjectOrNull();
-	
+
 	if (!componentManager->m_ScriptInterface.EnumeratePropertyNamesWithPrefix(protoVal, "On", methods))
 		return; // error
 

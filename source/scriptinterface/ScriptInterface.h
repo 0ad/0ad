@@ -421,8 +421,8 @@ private:
 		}
 
 		DefPersistentRooted<JSObject*>	m_Prototype;
-		JSClass*	m_Class;
-		JSNative 	m_Constructor;
+		JSClass* m_Class;
+		JSNative m_Constructor;
 	};
 	void Register(const char* name, JSNative fptr, size_t nargs);
 	

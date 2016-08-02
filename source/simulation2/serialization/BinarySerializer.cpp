@@ -23,7 +23,7 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptExtraHeaders.h" // for JSDOUBLE_IS_INT32, typed arrays
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "SerializedScriptTypes.h"
 
 static u8 GetArrayType(JSArrayBufferViewType arrayType)
@@ -296,10 +296,6 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		}
 
 		// Find all properties (ordered by insertion time)
-
-		// (Note that we don't do any rooting, because we assume nothing is going to trigger GC.
-		// I'm not absolute certain that's necessarily a valid assumption.)
-
 		JS::AutoIdArray ida (cx, JS_Enumerate(cx, obj));
 		if (!ida)
 			throw PSERROR_Serialize_ScriptError("JS_Enumerate failed");

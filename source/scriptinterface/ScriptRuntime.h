@@ -53,10 +53,10 @@ public:
 	 */
 	void MaybeIncrementalGC(double delay);
 	void ShrinkingGC();
-	
+
 	void RegisterContext(JSContext* cx);
 	void UnRegisterContext(JSContext* cx);
-	
+
 	/**
 	 * Registers an object to be freed/finalized by the ScriptRuntime. Freeing is
 	 * guaranteed to happen after the next minor GC has completed, but might also
@@ -70,7 +70,7 @@ public:
 	JSRuntime* m_rt;
 
 private:
-	
+
 	void PrepareContextsForIncrementalGC();
 	void GCCallbackMember();
 	
@@ -80,7 +80,7 @@ private:
 	std::list<JSContext*> m_Contexts;
 	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
 	static bool m_Initialized;
-	
+
 	int m_RuntimeSize;
 	int m_HeapGrowthBytesGCTrigger;
 	int m_LastGCBytes;
