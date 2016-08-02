@@ -70,6 +70,7 @@ Shift + /: add idle fighter to selection
 . (Period): Select idle worker (including citizen soldiers)
 Shift + .: add idle worker to selection (including citizen soldiers)
 H: Stop (halt) the currently selected units.
+U: Unload the garrisoned units of the selected buildings
 Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the selected units/buildings
 1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)
 Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings
@@ -82,6 +83,7 @@ Tab: See all status bars (which would also show the building progress)
 
 [font="sans-bold-14"]Modify mouse action
 [font="sans-14"]Ctrl + Right Click on building: Garrison
+J + Right Click on building: Repair
 Shift + Right Click: Queue the move/build/gather/etc order
 Shift + Left click when training unit/s: Add units in batches of five
 Shift + Left Click or Left Drag over unit on map: Add unit to selection

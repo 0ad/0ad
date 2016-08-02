@@ -46,6 +46,10 @@
 		<action on="Press">performCommand(g_Selection.getFirstSelected(), "delete");</action>
 	</object>
 
+	<object hotkey="session.unload">
+		<action on="Press">unloadAll();</action>
+	</object>
+
 	<object hotkey="session.stop">
 		<action on="Press">stopUnits(g_Selection.toList());</action>
 	</object>

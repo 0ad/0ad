@@ -345,6 +345,18 @@ var unitActions =
 				"target": null
 			};
 		},
+		"hotkeyActionCheck": function(target)
+		{
+			if (!Engine.HotkeyIsPressed("session.repair") ||
+			    !getActionInfo("repair", target).possible)
+				return false;
+
+			return {
+				"type": "build",
+				"cursor": "action-repair",
+				"target": target
+			};
+		},
 		"actionCheck": function(target)
 		{
 			if (!getActionInfo("repair", target).possible)
@@ -784,7 +796,15 @@ var unitActions =
 				cursor = "action-attack-move";
 			}
 
-			if (targetState.garrisonHolder &&
+			if (Engine.HotkeyIsPressed("session.repair") &&
+			    (targetState.needsRepair || targetState.foundation) &&
+			    playerCheck(entState, targetState, ["Player", "Ally"]))
+			{
+				data.command = "repair";
+				data.target = targetState.id;
+				cursor = "action-repair";
+			}
+			else if (targetState.garrisonHolder &&
 			    playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 			{
 				data.command = "garrison";
@@ -974,7 +994,8 @@ var g_EntityCommands =
 			}
 
 			return {
-				"tooltip": translate("Unload All"),
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.unload") +
+				           translate("Unload All."),
 				"icon": "garrison-out.png",
 				"count": count,
 			};
@@ -1089,7 +1110,8 @@ var g_EntityCommands =
 				return false;
 
 			return {
-				"tooltip": translate("Repair"),
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.repair") +
+				           translate("Order the selected units to repair a building or mechanical unit."),
 				"icon": "repair.png"
 			};
 		},
@@ -1107,7 +1129,8 @@ var g_EntityCommands =
 				return false;
 
 			return {
-				"tooltip": translate("Focus on Rally Point"),
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "camera.rallypointfocus") +
+				           translate("Focus on Rally Point."),
 				"icon": "focus-rally.png"
 			};
 		},
@@ -1253,7 +1276,8 @@ var g_AllyEntityCommands =
 			}
 
 			return {
-				"tooltip": translate("Unload All"),
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.unload") +
+				           translate("Unload All."),
 				"icon": "garrison-out.png",
 				"count": count,
 			};
