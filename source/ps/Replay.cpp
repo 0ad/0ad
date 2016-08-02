@@ -25,6 +25,7 @@
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "ps/Game.h"
+#include "ps/CLogger.h"
 #include "ps/Loader.h"
 #include "ps/Mod.h"
 #include "ps/Profile.h"
@@ -167,6 +168,17 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 			std::getline(*m_Stream, line);
 			JS::RootedValue attribs(cx);
 			ENSURE(g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
+
+			std::vector<CStr> replayModList;
+			g_Game->GetSimulation2()->GetScriptInterface().GetProperty(attribs, "mods", replayModList);
+
+			for (const CStr& mod : replayModList)
+				if (mod != "user" && std::find(g_modsLoaded.begin(), g_modsLoaded.end(), mod) == g_modsLoaded.end())
+					LOGWARNING("The mod '%s' is required by the replay file, but wasn't passed as an argument!", mod);
+
+			for (const CStr& mod : g_modsLoaded)
+				if (mod != "user" && std::find(replayModList.begin(), replayModList.end(), mod) == replayModList.end())
+					LOGWARNING("The mod '%s' wasn't used when creating this replay file, but was passed as an argument!", mod);
 
 			g_Game->StartGame(&attribs, "");
 
