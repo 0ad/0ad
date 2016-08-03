@@ -1,9 +1,13 @@
 Engine.RegisterInterface("GarrisonHolder");
 
-// Message of the form { "added":[], "removed":[] } (and use GetEntities if you want the current details),
-// sent to the current entity whenever the garrisoned units change.
+/**
+ * Message of the form { "added": number[], "removed": number[] }
+ * sent from the GarrisonHolder component to the current entity whenever the garrisoned units change.
+ */
 Engine.RegisterMessageType("GarrisonedUnitsChanged");
 
-// Message of the form { "holder": this.entity, "unit" : unit } sent to the AlertRaiser
-// which ordered the unit "unit" to garrison.
+/**
+ * Message of the form { "holder": number, "unit" : number }
+ * sent to the AlertRaiser which ordered the specified unit to garrison.
+ */
 Engine.RegisterMessageType("UnitGarrisonedAfterAlert");

@@ -1,21 +1,33 @@
 Engine.RegisterInterface("UnitAI");
 
-// Message of the form { "idle": true },
-// sent whenever the unit's idle status changes.
+/**
+ * Message of the form { "idle": boolean }
+ * sent from UnitAI whenever the unit's idle status changes.
+ */
 Engine.RegisterMessageType("UnitIdleChanged");
 
-// Message of the form { "to": "STATE.NAME" }.
-// sent whenever the unit changes state
+/**
+ * Message of the form { "to": string }
+ * where "to" value is a UnitAI state,
+ * sent from UnitAI whenever the unit changes state.
+ */
 Engine.RegisterMessageType("UnitAIStateChanged");
 
-// Message of the form { "to": orderData }.
-// sent whenever the unit changes state
+/**
+ * Message of the form { "to": number[] }
+ * where "to" value is an array of data orders given by GetOrderData,
+ * sent from UnitAI whenever the unit order data changes.
+ */
 Engine.RegisterMessageType("UnitAIOrderDataChanged");
 
-// Message of the form { "entity": entity },
-// sent whenever a pickup is requested
+/**
+ * Message of the form { "entity": number }
+ * sent from UnitAI whenever a pickup is requested.
+ */
 Engine.RegisterMessageType("PickupRequested");
 
-// Message of the form { "entity": entity },
-// sent whenever a pickup is no more needed
+/**
+ * Message of the form { "entity": number }
+ * sent from UnitAI whenever a pickup is aborted.
+ */
 Engine.RegisterMessageType("PickupCanceled");
