@@ -5,6 +5,10 @@
 		<action on="Press">setCameraFollow(g_Selection.getFirstSelected());</action>
 	</object>
 
+	<object hotkey="camera.rallypointfocus">
+		<action on="Press">performCommand(g_Selection.getFirstSelected(), "focus-rally");</action>
+	</object>
+
 	<!-- Camera jumping - press a hotkey to mark a position and another hotkey to jump back there -->
 	<object hotkey="camera.jump.1">
 		<action on="Press">jumpCamera(1);</action>

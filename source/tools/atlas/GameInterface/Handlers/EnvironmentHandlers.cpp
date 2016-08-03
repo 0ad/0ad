@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
+#include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/PostprocManager.h"

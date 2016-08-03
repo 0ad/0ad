@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,8 +90,6 @@ extern bool g_VSync;
 
 extern bool g_Quickstart;
 extern bool g_DisableAudio;
-
-extern bool g_ScriptProfilingEnabled;
 
 extern CStrW g_CursorName;
 

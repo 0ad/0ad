@@ -64,7 +64,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		// SET(obj, "state", (int)val.ev.key.state); // (not in wsdl.h)
 
 		JS::RootedObject keysym(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
-		if (! keysym)
+		if (!keysym)
 		{
 			ret.setUndefined();
 			return;

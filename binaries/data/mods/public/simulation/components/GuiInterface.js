@@ -275,7 +275,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.hitpoints = cmpHealth.GetHitpoints();
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
-		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
+		ret.needsRepair = cmpHealth.IsRepairable() && cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints();
 		ret.needsHeal = !cmpHealth.IsUnhealable();
 		ret.canDelete = !cmpHealth.IsUndeletable();
 	}

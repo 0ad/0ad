@@ -453,6 +453,12 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (isReplay)
 	{
+		if (!args.Has("mod"))
+		{
+			LOGERROR("At least one mod should be specified! Did you mean to add the argument '-mod=public'?");
+			CXeromyces::Terminate();
+			return;
+		}
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);

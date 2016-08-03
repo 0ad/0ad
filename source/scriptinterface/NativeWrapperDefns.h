@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 
 // Use the macro below to define types that will be passed by value to C++ functions.
@@ -118,29 +117,12 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 	#undef OVERLOADS
 };
 
-// Fast natives don't trigger the hook we use for profiling, so explicitly
-// notify the profiler when these functions are being called.
-// ScriptInterface_impl::Register stores the name in a reserved slot.
-#define SCRIPT_PROFILE \
-	if (g_ScriptProfilingEnabled) \
-	{ \
-		std::string name = "(unknown)"; \
-		JS::RootedString str(cx, JS_GetFunctionId(JS_ValueToFunction(cx, args.calleev()))); \
-		if (str) \
-		{ \
-			JS::RootedValue strVal(cx, JS::StringValue(str)); \
-			ScriptInterface::FromJSVal(cx, strVal, name); \
-		} \
-		CProfileSampleScript profile(StringFlyweight(name).get().c_str()); \
-	}
-
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
 	bool ScriptInterface::call(JSContext* cx, uint argc, jsval* vp) { \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
-		SCRIPT_PROFILE \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
 		ScriptInterface_NativeWrapper<R>::template call<T0_HEAD(z,i) R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))>(cx, &rval, fptr  A0_TAIL(z,i)); \
@@ -156,7 +138,6 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 	bool ScriptInterface::callMethod(JSContext* cx, uint argc, jsval* vp) { \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
-		SCRIPT_PROFILE \
 		JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp)); \
 		if (ScriptInterface::GetClass(thisObj) != CLS) return false; \
 		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(thisObj)); \
@@ -227,7 +208,6 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef ASSIGN_OR_TO_JS_VAL
 
 // Clean up our mess
-#undef SCRIPT_PROFILE
 #undef NUMBERED_LIST_HEAD
 #undef NUMBERED_LIST_TAIL
 #undef NUMBERED_LIST_TAIL_MAYBE_REF

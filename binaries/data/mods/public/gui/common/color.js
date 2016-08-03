@@ -134,7 +134,7 @@ function colorizeHotkey(text, hotkey)
 {
 	let key = Engine.ConfigDB_GetValue("user", "hotkey." + hotkey);
 
-	if (!key)
+	if (!key || key.toLowerCase() == "unused")
 		return "";
 
 	return sprintf(text, {

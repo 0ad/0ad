@@ -35,10 +35,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir() / "mods" / "mod", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir() / "mods" / "public", VFS_MOUNT_MUST_EXIST, 1));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir() / "cache"));
-
+		g_VFS->Mount(L"", DataDir()/"mods"/"mod", VFS_MOUNT_MUST_EXIST);
+		g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST, 1); // ignore directory-not-found errors
 		CXeromyces::Startup();
 
 		// Need some stuff for terrain movement costs:

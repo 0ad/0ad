@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 
 #include "precompiled.h"
 
@@ -35,6 +34,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
+#include "ps/GameSetup/Config.h"
 #include "ps/Hotkey.h"
 #include "simulation2/components/ICmpOverlayRenderer.h"
 #include "simulation2/components/ICmpRangeManager.h"

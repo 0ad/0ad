@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,11 @@
 
 #include "precompiled.h"
 
+#include "ps/scripting/JSInterface_VisualReplay.h"
+
+#include "ps/CStr.h"
 #include "ps/Profile.h"
 #include "ps/VisualReplay.h"
-#include "ps/scripting/JSInterface_VisualReplay.h"
 
 void JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directory)
 {

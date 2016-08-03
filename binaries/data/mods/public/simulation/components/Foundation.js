@@ -251,11 +251,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 			}
 
 			var cmpFoundationPosition = Engine.QueryInterface(this.entity, IID_Position);
-			var pos = cmpFoundationPosition.GetPosition();
+			var pos = cmpFoundationPosition.GetPosition2D();
 			var rot = cmpFoundationPosition.GetRotation();
 			cmpPreviewPosition.SetYRotation(rot.y);
 			cmpPreviewPosition.SetXZRotation(rot.x, rot.z);
-			cmpPreviewPosition.JumpTo(pos.x, pos.z);
+			cmpPreviewPosition.JumpTo(pos.x, pos.y);
 		}
 
 		this.committed = true;
@@ -333,7 +333,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (cmpTerritoryDecay && cmpTerritoryDecay.HasTerritoryOwnership())
 		{
 			let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-			owner = cmpTerritoryManager.GetOwner(pos.x, pos.z);
+			owner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
 		}
 		else
 		{

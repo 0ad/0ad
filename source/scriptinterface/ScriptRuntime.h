@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,10 +53,10 @@ public:
 	 */
 	void MaybeIncrementalGC(double delay);
 	void ShrinkingGC();
-	
+
 	void RegisterContext(JSContext* cx);
 	void UnRegisterContext(JSContext* cx);
-	
+
 	/**
 	 * Registers an object to be freed/finalized by the ScriptRuntime. Freeing is
 	 * guaranteed to happen after the next minor GC has completed, but might also
@@ -70,7 +70,7 @@ public:
 	JSRuntime* m_rt;
 
 private:
-	
+
 	void PrepareContextsForIncrementalGC();
 	void GCCallbackMember();
 	
@@ -80,22 +80,13 @@ private:
 	std::list<JSContext*> m_Contexts;
 	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
 	static bool m_Initialized;
-	
+
 	int m_RuntimeSize;
 	int m_HeapGrowthBytesGCTrigger;
 	int m_LastGCBytes;
 	double m_LastGCCheck;
 
 	static void GCCallback(JSRuntime *rt, JSGCStatus status, void *data);
-
-	static void* jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), 
-		bool UNUSED(isConstructing), bool before,
-		bool* UNUSED(ok), void* closure);
-	
-	static void* jshook_function(JSContext* cx, JSAbstractFramePtr fp, 
-		bool UNUSED(isConstructing), bool before,
-		bool* UNUSED(ok), void* closure);
-
 };
 
 #endif // INCLUDED_SCRIPTRUNTIME
