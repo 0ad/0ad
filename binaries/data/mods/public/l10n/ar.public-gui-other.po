@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-04 12:51+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgstr "تاريخ %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr "يفتح %(url)s\n في متصفّح الوِب الافتراضي. فضلًا انتظر..."
+msgstr "يفتح %(url)s\n في متصفّح الوبّ الافتراضيّ. فضلًا انتظر..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -82,25 +82,25 @@ msgstr "يفتح الصّفحة"
 #: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "إطار/ثا: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/common/functions_global_object.js:89
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)s×)"
 
 #: gui/common/functions_global_object.js:106
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "الوقت المتبقّي حتّى انتهاء الهدنة: %(time)s."
 
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "عشوائيّة"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
@@ -116,7 +116,7 @@ msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:165
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -190,7 +190,7 @@ msgstr ""
 
 #: gui/common/functions_utility.js:371
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "حضارة مجهولة"
 
 #: gui/common/functions_utility.js:378
 msgctxt "playerstate"
@@ -204,12 +204,12 @@ msgstr ""
 
 #: gui/common/functions_utility.js:401
 msgid "No Team"
-msgstr ""
+msgstr "لا فريق"
 
 #: gui/common/functions_utility.js:402
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "الفريق %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -218,7 +218,7 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/functions_utility.js:413
 msgid "Observer"
@@ -258,182 +258,182 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/l10n.js:4
 msgctxt "firstWord"
 msgid "Food"
-msgstr "الطّعام"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:6
 msgctxt "firstWord"
 msgid "Meat"
-msgstr "لحم"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:8
 msgctxt "firstWord"
 msgid "Metal"
-msgstr "المعدن"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr "خام"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:12
 msgctxt "firstWord"
 msgid "Rock"
-msgstr "صخر"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:14
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr "آثار"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:16
 msgctxt "firstWord"
 msgid "Stone"
-msgstr "حجر"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:18
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr "كنز"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:20
 msgctxt "firstWord"
 msgid "Tree"
-msgstr "شجر"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:22
 msgctxt "firstWord"
 msgid "Wood"
-msgstr "خشب"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:24
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr "ثمار"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr "حبوب"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/common/l10n.js:28
 msgctxt "firstWord"
 msgid "Fish"
-msgstr "سمك"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "الطّعام"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "لحم"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "المعدن"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:38
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr "خام"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr "صخر"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr "آثار"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr "حجر"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr "كنز"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "شجر"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "خشب"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "ثمار"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr "حبوب"
+msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr "سمك"
+msgstr ""
 
 #: gui/common/l10n.js:82
 #, javascript-format
@@ -460,37 +460,37 @@ msgstr "، و "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "يفقد الاتّصال مع الخادوم (%(seconds)sث)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "يفقد %(player)s الاتّصال (%(seconds)sث)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "اتّصال سيّء مع الخادوم (%(milliseconds)sم‌ث)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "اتّصال سيّء مع %(player)s (%(milliseconds)sم‌ث)"
 
 #: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "سبب مجهول"
 
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
-msgstr ""
+msgstr "هذا يحدث غالبًا لأنّ منفذ UDP رقم 20595 لم يُمرّر إلى جانب المضيف، أو بسبب جدار ناريّ أو برمجيّة مضادّ الفيروسات."
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
-msgstr ""
+msgstr "أنهى المضيف اللعبة"
 
 #: gui/common/network.js:65
 msgid "Incorrect network protocol version"
@@ -506,24 +506,24 @@ msgstr ""
 
 #: gui/common/network.js:68
 msgid "You have been kicked"
-msgstr ""
+msgstr "لقد طُردت"
 
 #: gui/common/network.js:69
 msgid "You have been banned"
-msgstr ""
+msgstr "لقد حُظرت"
 
 #: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "اسم اللاعب هذا يُستخدم. إن كان اتّصالك قد قُطع، فأعد المحاولة بعد بضعة ثواني"
 
 #: gui/common/network.js:71
 msgid "Server full"
-msgstr ""
+msgstr "الخادم ممتلئ"
 
 #: gui/common/network.js:74
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[القيمة %(id)s غير صالحة]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:86
@@ -537,11 +537,11 @@ msgstr "فُقد الاتّصال بالخادوم."
 
 #: gui/common/network.js:92
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "فشل الاتّصال مع الخادوم."
 
 #: gui/common/network.js:94
 msgid "Disconnected"
-msgstr "قُطِع الاتّصال"
+msgstr "قُطع الاتّصال"
 
 #: gui/common/network.js:105
 #, javascript-format
@@ -576,7 +576,7 @@ msgstr ""
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "متوسط"
+msgstr ""
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
@@ -610,12 +610,12 @@ msgstr ""
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا دقائق"
+msgstr[1] "دقيقة واحدة"
+msgstr[2] "دقيقتان"
+msgstr[3] "%(minutes)s دقائق"
+msgstr[4] "%(minutes)s دقيقة"
+msgstr[5] "%(minutes)s دقيقة"
 
 #: gui/common/settings.js:188
 msgctxt "map"
@@ -625,7 +625,7 @@ msgstr ""
 #: gui/common/settings.js:193
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "عشوائيّة"
 
 #: gui/common/settings.js:197
 msgctxt "map"
@@ -634,7 +634,7 @@ msgstr ""
 
 #: gui/common/settings.js:228
 msgid "None"
-msgstr ""
+msgstr "بلا"
 
 #: gui/common/settings.js:229
 msgid "Endless Game"
@@ -739,12 +739,12 @@ msgstr[5] "ثانية"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(arrows)s"
+msgstr[1] "%(arrows)s"
+msgstr[2] "%(arrows)s"
+msgstr[3] "%(arrowcount)s %(arrows)s"
+msgstr[4] "%(arrowcount)s %(arrows)s"
+msgstr[5] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:82
 msgid "arrow"
@@ -764,7 +764,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:96
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:107
 msgid "Armor:"
@@ -800,20 +800,20 @@ msgstr "المعدّل:"
 #: gui/common/tooltips.js:162
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr "%(attackLabel)s %(details)s, %(rate)s"
+msgstr "%(attackLabel)s %(details)s، %(rate)s"
 
 #: gui/common/tooltips.js:178
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s، %(rangeLabel)s %(rangeString)s (%(relative)s)، %(rate)s"
 
 #: gui/common/tooltips.js:179
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s، %(rangeLabel)s %(rangeString)s، %(rate)s"
 
 #: gui/common/tooltips.js:184 gui/common/tooltips.js:517
 msgid "Range:"
@@ -823,27 +823,27 @@ msgstr "المدى:"
 #, javascript-format
 msgid "%(range)s %(meters)s"
 msgid_plural "%(range)s %(meters)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(meters)s"
+msgstr[1] "%(meters)s"
+msgstr[2] "%(meters)s"
+msgstr[3] "%(range)s %(meters)s"
+msgstr[4] "%(range)s %(meters)s"
+msgstr[5] "%(range)s %(meters)s"
 
 #: gui/common/tooltips.js:188 gui/common/tooltips.js:519
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا أمتار"
+msgstr[1] "متر"
+msgstr[2] "متران"
+msgstr[3] "أمتار"
+msgstr[4] "مترًا"
+msgstr[5] "متر"
 
 #: gui/common/tooltips.js:210
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:211
 msgid "Splash Damage:"
@@ -873,7 +873,7 @@ msgstr "لا"
 #: gui/common/tooltips.js:230
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:231
 msgid "Garrison Limit"
@@ -882,7 +882,7 @@ msgstr ""
 #: gui/common/tooltips.js:238
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:239 gui/common/tooltips.js:511
 msgid "Heal:"
@@ -897,7 +897,7 @@ msgstr ""
 #: gui/common/tooltips.js:275
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:266
 msgid "Projectile Limit"
@@ -916,7 +916,7 @@ msgstr ""
 #: gui/common/tooltips.js:287
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:288
 msgid "Repair Rate:"
@@ -929,7 +929,7 @@ msgstr ""
 #: gui/common/tooltips.js:301
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:302
 msgid "Build Rate:"
@@ -947,14 +947,14 @@ msgstr ""
 #: gui/common/tooltips.js:354
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/common/tooltips.js:403
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s إلى %(resourceIcon)s %(maximum)s"
+msgstr ""
 
 #: gui/common/tooltips.js:432
 #, javascript-format
@@ -1028,12 +1028,12 @@ msgstr[5] ""
 #: gui/common/tooltips.js:535
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:536
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:552
 #, javascript-format
@@ -1043,16 +1043,16 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:563
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:578
 msgid "Classes:"
-msgstr "التصنيفات"
+msgstr ""
 
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1072,7 +1072,7 @@ msgstr "حسنًا"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "سيمسح تصفير الإعدادات تلك المحفوظة. أتريد المتابعة؟"
 
 #: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:129
@@ -1085,7 +1085,7 @@ msgstr "ثمّة تعديلات غير محفوظة، أتريد إغلاق هذ
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
-msgstr "مُعطَّل"
+msgstr "معطّلة"
 
 #: gui/pregame/mainmenu.js:88
 msgid "connecting to server"
@@ -1112,7 +1112,7 @@ msgstr "فشل الرّفع (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:112
 msgid "unknown"
-msgstr "مجهول"
+msgstr "مجهولة"
 
 #: gui/pregame/mainmenu.js:155
 #, javascript-format
@@ -1129,7 +1129,7 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "فضلًا انقر \"اقرأ المزيد\" لمعلومات أكثر أو \"حسنًا\" للمتابعة."
+msgstr "فضلًا انقر \"اطّلع على المزيد\" لمعلومات أكثر أو \"حسنًا\" للمتابعة."
 
 #: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
@@ -1137,7 +1137,7 @@ msgstr "تحذير!"
 
 #: gui/pregame/mainmenu.js:163
 msgid "Read More"
-msgstr "اقرأ المزيد"
+msgstr "اطّلع على المزيد"
 
 #: gui/pregame/mainmenu.js:256
 #, javascript-format
@@ -1156,7 +1156,7 @@ msgstr "أكّد"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "محرّر السيناريو غير متوفّر أو فشل تحميله. طالع سجلّات اللعبة لمعلومات إضافيّة."
+msgstr "محرّر السيناريو غير متوفّر أو فشل تحميله. طالع سجلّات اللعبة لمعلومات أخرى."
 
 #: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
 msgid "Error"
@@ -1164,7 +1164,7 @@ msgstr "خطأ"
 
 #: gui/pregame/mainmenu.js:311
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "أطلِق ردهة متعدّدة اللاعبين. \\[عُطِّلت عند البناء]"
+msgstr "أطلق ردهة متعدّدة اللاعبين. \\[عُطّلت عند البناء]"
 
 #: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
@@ -1173,7 +1173,7 @@ msgstr "التّفاصيل التّقنيّة"
 
 #: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
-msgstr "الكُتيِّب"
+msgstr "الكتيّب"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
@@ -1191,21 +1191,21 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "هذه الإعادة ليست متوافقة مع إصدارة اللعبة لديك!"
 
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "إصدارتك: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "الإصدارة المطلوبة: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
-msgstr ""
+msgstr "الإعادة غير متوافقة"
 
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
@@ -1213,11 +1213,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "أمتأكّد من حذف هذه الإعادة للأبد؟"
 
 #: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
-msgstr ""
+msgstr "حذف الإعادة"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1279,7 +1279,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "لاعب واحد ومتعدّدة اللاعبين"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
@@ -1308,11 +1308,11 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.js:283
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "dd/MM/yyyy HH:mm"
 
 #: gui/replaymenu/replay_menu.js:313
 msgid "yyyy-MM"
-msgstr ""
+msgstr "MM/yyyy"
 
 #: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
@@ -1332,7 +1332,7 @@ msgstr "قد لا تكون هذه اللعبة المحفوظة متوافقة:"
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr "تتطلّب الإصدار %(requiredVersion)s من 0 ب.م، إلّا أنّك تشغّل الإصدار %(currentVersion)s."
+msgstr "تتطلّب الإصدارة %(requiredVersion)s من 0 ب.م، إلّا أنّك تشغّل الإصدارة %(currentVersion)s."
 
 #: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
@@ -1361,7 +1361,7 @@ msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "ستُحذف اللعبة المحفوظة إلى الأبد، أمتأكّد من ذلك؟"
+msgstr "ستُحذف اللعبة المحفوظة للأبد، أمتأكّد؟"
 
 #: gui/savedgames/load.js:178 gui/savedgames/save.js:91
 msgid "DELETE"
@@ -1369,7 +1369,7 @@ msgstr "احذف"
 
 #: gui/savedgames/save.js:59
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "سيُكتب فوق اللعبة المحفوظة إلى الأبد، أمتأكّد من ذلك؟"
+msgstr "سيُكتب فوق اللعبة المحفوظة للأبد، أمتأكّد؟"
 
 #: gui/savedgames/save.js:60
 msgid "OVERWRITE SAVE"
@@ -1416,7 +1416,7 @@ msgstr "الاقتصاديّة"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr "البؤر الاستيطانية"
+msgstr "البؤر الاستيطانيّة"
 
 #: gui/summary/layout.js:26
 msgid "Military"
@@ -1428,26 +1428,26 @@ msgstr "الحصون"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr "مراكز البلدية"
+msgstr ""
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr "عجائب"
+msgstr ""
 
 #: gui/summary/layout.js:33
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "إحصائيّات الأبنية (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "المشيّدة"
 
 #: gui/summary/layout.js:36
 msgid "Destroyed"
-msgstr ""
+msgstr "المدمّرة"
 
 #: gui/summary/layout.js:37
 msgid "Captured"
@@ -1455,7 +1455,7 @@ msgstr ""
 
 #: gui/summary/layout.js:38 gui/summary/layout.js:73
 msgid "Lost"
-msgstr ""
+msgstr "المفقودة"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
@@ -1463,36 +1463,36 @@ msgstr "المشاة"
 
 #: gui/summary/layout.js:61
 msgid "Worker"
-msgstr "العاملين"
+msgstr "العمّال"
 
 #: gui/summary/layout.js:62
 msgid "Cavalry"
-msgstr "خيالة"
+msgstr "الخيّالة"
 
 #: gui/summary/layout.js:63
 msgid "Champion"
-msgstr "مقاتل"
+msgstr "الأبطال"
 
 #: gui/summary/layout.js:65
 msgid "Navy"
-msgstr "أسطول"
+msgstr ""
 
 #: gui/summary/layout.js:66
 msgid "Traders"
-msgstr ""
+msgstr "التّجار"
 
 #: gui/summary/layout.js:70
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(lost)s / %(killed)s)"
-msgstr ""
+msgstr "إحصائيّات الوحدات (%(trained)s / %(lost)s / %(killed)s)"
 
 #: gui/summary/layout.js:72
 msgid "Trained"
-msgstr ""
+msgstr "المدرّبة"
 
 #: gui/summary/layout.js:74
 msgid "Killed"
-msgstr ""
+msgstr "المقتولة"
 
 #: gui/summary/layout.js:95
 msgid "Food"
@@ -1527,7 +1527,7 @@ msgstr ""
 
 #: gui/summary/layout.js:109
 msgid "Treasures collected"
-msgstr "الكنوز المُلتقطَة"
+msgstr ""
 
 #: gui/summary/layout.js:110
 msgid "Loot"
@@ -1536,15 +1536,15 @@ msgstr ""
 #: gui/summary/layout.js:114
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "إحصائيّات الموارد (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:116
 msgid "Gathered"
-msgstr ""
+msgstr "المجموعة"
 
 #: gui/summary/layout.js:117
 msgid "Used"
-msgstr ""
+msgstr "المستخدمة"
 
 #: gui/summary/layout.js:138
 msgid "Food exchanged"
@@ -1564,17 +1564,17 @@ msgstr "المعدن المتبادل"
 
 #: gui/summary/layout.js:142
 msgid "Barter efficiency"
-msgstr "كفاءة المقايضة"
+msgstr "كفاءة التّقايض"
 
 #: gui/summary/layout.js:143
 msgid "Trade income"
-msgstr "دخل التجارة"
+msgstr "دخل التّجارة"
 
 #: gui/summary/layout.js:159
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr "النسبة\nالنباتية"
+msgstr ""
 
 #: gui/summary/layout.js:160
 msgid "Feminization"
@@ -1606,11 +1606,11 @@ msgstr ""
 
 #: gui/summary/layout.js:312
 msgid "Team total"
-msgstr "مجموع الفريق"
+msgstr ""
 
 #: gui/summary/summary.js:145
 msgid "Are you sure you want to quit the lobby?"
-msgstr ""
+msgstr "أمتأكّد من الخروج من الرّدهة؟"
 
 #: gui/summary/summary.js:196
 msgid "Current Scores"
@@ -1622,19 +1622,19 @@ msgstr ""
 
 #: gui/summary/summary.js:200
 msgid "You have been disconnected."
-msgstr ""
+msgstr "لقد قُطع اتّصالك."
 
 #: gui/summary/summary.js:202
 msgid "You have left the game."
-msgstr ""
+msgstr "لقد تركت اللعبة."
 
 #: gui/summary/summary.js:204
 msgid "You have won the battle!"
-msgstr ""
+msgstr "لقد ربحت المعركة!"
 
 #: gui/summary/summary.js:206
 msgid "You have been defeated..."
-msgstr ""
+msgstr "لقد هُزمت..."
 
 #: gui/summary/summary.js:207
 msgid "You have abandoned the game."
@@ -1666,7 +1666,7 @@ msgstr "أغلق"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "إشادات 0 ب.م"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1704,27 +1704,27 @@ msgstr "اقبل"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr "الدولة:"
+msgstr "الدّولة:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr "السّكرِبت:"
+msgstr ""
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
-msgstr "التّنويعة (غير مُستخدَم):"
+msgstr "التّنويعة (غير مستخدمة):"
 
 #: gui/locale/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
-msgstr "الكلمات المفتاحية (غير مُستخدَم):"
+msgstr "الكلمات المفتاحية (غير مستخدمة):"
 
 #: gui/locale/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
-msgstr "المحليّة الناتجة:"
+msgstr "المحليّة النّاتجة:"
 
 #: gui/locale/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
-msgstr "ملفّات القاموس المُستخدَمة:"
+msgstr "ملفّات القاموس المستخدمة:"
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
@@ -1763,11 +1763,11 @@ msgstr "إعدادات الرّدهة"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "صفّر"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
-msgstr ""
+msgstr "صفّر"
 
 #: gui/options/options.xml:(caption):83 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1775,7 +1775,7 @@ msgstr "احفظ"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "يصفّر إعدادات المستخدم إلى افتراضيّاتها"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
@@ -1783,11 +1783,11 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "يحفظ التّعديلات"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "تؤثّر التّعديلات غير المحفوظة على الجلسة الحاليّة فقط"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
@@ -1797,7 +1797,7 @@ msgstr "ساهم في تحسين 0 ب.م!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "يمكنك إرسال تغذية استرجاعيّة مجهولة الهويّة آليًّا يمكنها مساعدتنا في إصلاح العلل، وتطوير الأداء والتّوافقيّة."
+msgstr "يمكنك إرسال تغذية استرجاعيّة مجهولة الهويّة آليًّا تساعدنا في إصلاح العلل، وتطوير الأداء والتّوافقيّة."
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1805,7 +1805,7 @@ msgstr "شكرًا لمساعدتنا في تطوير 0 ب.م!"
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
-msgstr "التّغذية الاسترجاعيّة المجهولة الهويّة مُمكَّنة حاليًّا."
+msgstr "التّغذية الاسترجاعيّة المجهولة الهويّة مفعّلة حاليًّا."
 
 #: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
@@ -1819,11 +1819,11 @@ msgstr ""
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "تحذير: هذا إصدار تطويريّ مبكّر من اللعبة. العديد من الميزات لم تُضف بعد."
+msgstr "تحذير: هذه نسخة تطويريّة مبكّرة من اللعبة. العديد من الميزات لم تُضف بعد."
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr "مكّن التّغذية الاسترجاعيّة"
+msgstr "فعّل التّغذية الاسترجاعيّة"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
@@ -1832,7 +1832,7 @@ msgstr "عطّل التّغذية الاسترجاعيّة"
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
-msgstr "هيكل شجرة"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
@@ -1869,7 +1869,7 @@ msgstr "خيارات"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "الإعادات"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1897,7 +1897,7 @@ msgstr "اخرج"
 
 #: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
-msgstr "موقع الوِب"
+msgstr "موقع الوبّ"
 
 #: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
@@ -1905,7 +1905,7 @@ msgstr "محادثة"
 
 #: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
-msgstr "أبلِغ عن علّة"
+msgstr "أبلغ عن علّة"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
@@ -1921,15 +1921,15 @@ msgstr "ألعاب الهشيم"
 
 #: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
-msgstr "افتح كُتيِّب لعبة 0 ب.م."
+msgstr "افتح كتيّب لعبة 0 ب.م."
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr "رؤية شجرة الشعوب المميزة في 0.A.D"
+msgstr "اعرض شجرة البنية للحضارات الموجودة في 0 ب.م."
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "تعلّم عن الحضارات العديدة المتوفّرة في 0 ب.م."
+msgstr "تعلّم عن الحضارات العديدة الموجودة في 0 ب.م."
 
 #: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
@@ -1955,7 +1955,7 @@ msgstr "استضف لعبة متعدّدة اللاعبين.\\n\\nفتح منف�
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr "أطلِق ردهة اللاعبين."
+msgstr "أطلق ردهة اللاعبين."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -1967,13 +1967,13 @@ msgstr "اختر لغة اللعبة."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "شغّل الألعاب السّابقة."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "افتح محرّر السّيناريو \"أطلس\" في نافذة جديدة. يمكنك تشغيله بأريحية أكثر ببدء اللعبة بِمُعطى سطر الأوامر \"‎-editor\"."
+msgstr "افتح محرّر السّيناريو \"أطلس\" في نافذة جديدة. يمكنك تشغيله بأريحية أكثر ببدء اللعبة بمعطى سطر الأوامر \"‎-editor\"."
 
 #: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -1981,13 +1981,13 @@ msgstr "أظهر شاشة التّرحيب. مفيدٌ إن أخفيتها با�
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr "اختر تعديل لتستعمل"
+msgstr "حدّد التّعديلات التي ستُستخدم."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr "تعلم كيف تلعب، اكتشف الاشجار التكنولوجية، وتواريخ الشعوب"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -2007,7 +2007,7 @@ msgstr "اخرج من اللعبة."
 
 #: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
-msgstr "انقر هنا لفتح play0ad.com في متصفّح الوِب."
+msgstr "انقر هنا لفتح play0ad.com في متصفّح الوبّ."
 
 #: gui/pregame/mainmenu.xml:(tooltip):560
 msgid ""
@@ -2017,7 +2017,7 @@ msgstr "انقر لفتح محادثة 0 ب.م على IRC في المتصفّح.
 
 #: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "انقر لزيارة مُتتبِّع 0 ب.م للإبلاغ عن العلل، الانهيارات أو الأخطاء."
+msgstr "انقر لزيارة متعقّب 0 ب.م للإبلاغ عن العلل، أو الانهيارات أو الأخطاء."
 
 #: gui/pregame/mainmenu.xml:(tooltip):584
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -2025,25 +2025,25 @@ msgstr "انقر هنا لفتح صفحة ترجمة 0 ب.م في المتصفّ
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr "انقر لرؤية من وراء 0ب.م."
+msgstr "انقر لرؤية من وراء 0 ب.م."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "أعد تشغيل الألعاب"
 
 #: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "رشّح الإعادات المتوافقة"
 
 #: gui/replaymenu/replay_menu.xml:(caption):153
 #: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
-msgstr ""
+msgstr "نوع الخريطة:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
 #: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
-msgstr ""
+msgstr "قياس الخريطة:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
 #: gui/savedgames/load.xml:(caption):65
@@ -2053,7 +2053,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):204
 #: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
-msgstr ""
+msgstr "اللاعبون:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
@@ -2061,7 +2061,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
-msgstr ""
+msgstr "القائمة الرّئيسيّة"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 #: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
@@ -2075,37 +2075,37 @@ msgstr "الملخّص"
 
 #: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
-msgstr ""
+msgstr "ابدأ الإعادة"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "التّاريخ / الوقت"
 
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "اللاعبون"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "اسم الخريطة"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "المقاس"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "السّكّانيّة"
 
 #: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "المدّة"
 
 #: gui/savedgames/load.xml:(caption):38
 msgid "Load"
@@ -2113,7 +2113,7 @@ msgstr "حمّل"
 
 #: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
-msgstr ""
+msgstr "وقت اللعب:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
@@ -2125,7 +2125,7 @@ msgstr "الوصف:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr "اهلاً وسهلاً!"
+msgstr "يا مرحبًا!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -2133,11 +2133,11 @@ msgstr "أظهر هذه الرّسالة مستقبلًا"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr "المشاكل المعروفة (ويب)"
+msgstr "المشاكل المعروفة (على الوبّ)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "الحضارة:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
@@ -2145,7 +2145,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):62
 msgid "Score"
-msgstr "النقاط"
+msgstr "النّقاط"
 
 #: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
@@ -2181,7 +2181,7 @@ msgstr "قادة الرّسوم"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr "مدير الصّو"
+msgstr "مدير الصّوت"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
@@ -2351,19 +2351,19 @@ msgstr ""
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "عدد من رسائل تسجيل العودة تحمل عند تسجيل الدخول للردهة"
+msgstr "عدد الرّسائل القديمة لتُحمّل عند الانضمام إلى الرّدهة"
 
 #: gui/options/options.jsonlobbySetting[0].label
 msgid "Chat Backlog"
-msgstr "سجلّ المحادثة"
+msgstr "سجلّ الدّردشة"
 
 #: gui/options/options.jsonlobbySetting[1].tooltip
 msgid "Show time that messages are posted in the lobby chat"
-msgstr "عرض وقت ارسال الرسائل في دردشة الردهة"
+msgstr "أظهر وقت نشر الرّسائل في دردشة الرّدهة"
 
 #: gui/options/options.jsonlobbySetting[1].label
 msgid "Chat Timestamp"
-msgstr "ختم المحادثة الزمنيّ"
+msgstr "ختم الدّردشة الزمنيّ"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2391,17 +2391,17 @@ msgstr "وضع النّافذة"
 
 #: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"
-msgstr "ألبِث ألعاب اللاعب الواحد عندما تفقد النّافذة تركيزها"
+msgstr "ألبث ألعاب اللاعب الواحد عندما تفقد النّافذة تركيزها"
 
 #: gui/options/options.jsongeneralSetting[3].label
 msgid "Background Pause"
-msgstr "ألبِث الخلفيّة"
+msgstr "ألبث الخلفيّة"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr "إن عطّلت هذه الشّاشة تمامًا، قد تفقد إعلانات هامّة.\nما زال يمكنك إطلاقها باستخدام القائمة الرئيسيّة."
+msgstr "إن عطّلت هذه الشّاشة تمامًا، قد تفقد إعلانات هامّة.\nما زال يمكنك إطلاقها باستخدام القائمة الرّئيسيّة."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
@@ -2410,23 +2410,23 @@ msgstr "عطّل شاشة التّرحيب"
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "تظهر تلميحات مفصلة عن وحدات للتدريب في المباني المنتجة للوحدة."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "Detailed Tooltips"
-msgstr "تلميحات مُفصَّلة"
+msgstr "تلميحات مفصّلة"
 
 #: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "أظهر أيّ اللاعبين لديه اتّصال سيّء في ألعاب متعدّدة اللاعبين."
 
 #: gui/options/options.jsongeneralSetting[6].label
 msgid "Network Warnings"
-msgstr ""
+msgstr "تحذيرات الشّبكة"
 
 #: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "أظهر الإطارات في الثانية في الركن العلوي الأيمن"
+msgstr "أظهر \"الإطارات في الثّانية\" في الزّاوية اليمنى العليا."
 
 #: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
@@ -2434,15 +2434,15 @@ msgstr "أظهر إطار/ثا"
 
 #: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."
-msgstr "أظهر وقت النظام في الركن العلوي الأيمن"
+msgstr "أظهر وقت النّظام في الزّاوية اليمنى العليا."
 
 #: gui/options/options.jsongeneralSetting[8].label
 msgid "Realtime Overlay"
-msgstr "أظهر الوقت الفعلي"
+msgstr "أظهر الوقت الفعليّ"
 
 #: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr "أظهر وقت المحاكاة في الركن العلوي الأيمن"
+msgstr "أظهر وقت المحاكاة في الزّاوية اليمنى العليا."
 
 #: gui/options/options.jsongeneralSetting[9].label
 msgid "Gametime Overlay"
@@ -2491,15 +2491,15 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
-msgstr "الأصوات الاساسية"
+msgstr "مستوى الصّوت الأساسيّ"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Gain"
-msgstr "الصوت الاساسي"
+msgstr "الصوت الأساسيّ"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
-msgstr "أصوات الموسيقى باللعبة"
+msgstr "مستوى الصّوت داخل اللعبة"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Gain"
@@ -2507,39 +2507,39 @@ msgstr "صوت الموسيقى"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
-msgstr "الأصوات المحيطة باللعبة"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Gain"
-msgstr "الأصوات المحيطة"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
-msgstr "اصوات نشاطات الوحدات في اللعبة"
+msgstr "مستوى صوت إجراءات الوحدات داخل اللعبة"
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Gain"
-msgstr "اصوات الاحداث"
+msgstr "صوت الإجراءات"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
-msgstr "اصوات الواجهة"
+msgstr "مستوى صوت الواجهة الرّسوميّة"
 
 #: gui/options/options.jsonsoundSetting[4].label
 msgid "UI Gain"
-msgstr "صوت الواجهة"
+msgstr "صوت الواجهة الرّسوميّة"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr ""
+msgstr "استقبل إخطارًا صوتيًّا عندما يكتب أحدًا اسمك المستعار"
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
-msgstr ""
+msgstr "إخطار للاسم المستعار"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr "استخدم تظليل أوبن‌جي‌إل 2.0 (مُستحسَن)"
+msgstr "استخدم مظلّلات أوبن‌جي‌إل 2.0 (مستحسن)"
 
 #: gui/options/options.jsongraphicsSetting[0].label
 msgid "Prefer GLSL"
@@ -2547,11 +2547,11 @@ msgstr "فضّل GLSL"
 
 #: gui/options/options.jsongraphicsSetting[1].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "استخدم مسح-الشاشة بعد تعديل التصفيات (HDR، سطوع، تركيز، الخ) \"تراجع\""
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[1].label
 msgid "Post Processing"
-msgstr "بعد التعديل"
+msgstr "ما بعد المعالجة"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
@@ -2567,15 +2567,15 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "جودة الرّسوم. تطلب إعادة تشغيل اللعبة"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Graphics quality"
-msgstr ""
+msgstr "جودة الرّسوم"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
-msgstr "مكّن الظّلال"
+msgstr "فعّل الظّلال"
 
 #: gui/options/options.jsongraphicsSetting[3].label
 msgid "Shadows"
@@ -2583,23 +2583,23 @@ msgstr "الظّلال"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid "Smooth shadows"
-msgstr "تنعيم الظلال"
+msgstr "ظلال منعّم"
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Filtering"
-msgstr "تصفية الضلال"
+msgstr "ترشيح الظّلال"
 
 #: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Show outlines of units behind buildings"
-msgstr "أظهر حدود الوحدات خلف الأبنية"
+msgstr "أظهرحدود الوحدات خلف الأبنية"
 
 #: gui/options/options.jsongraphicsSetting[5].label
 msgid "Unit Silhouettes"
-msgstr "ظل الوحدات"
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[6].tooltip
 msgid "Enable particles"
-msgstr "مكّن الجسيمات"
+msgstr "فعّل الجسيمات"
 
 #: gui/options/options.jsongraphicsSetting[6].label
 msgid "Particles"
@@ -2619,39 +2619,39 @@ msgstr ""
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "استعمل تأثيرات عالية الجودة للماء، مما يجعل الامواج لها زبد ومسارات سفن."
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "HQ Water Effects"
-msgstr "تأثيرات الماء"
+msgstr "تأثيرات مياه عالية الجودة"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid "Use actual water depth in rendering calculations"
-msgstr "استخدم عمق الماء الحقيقيّ في حسابات التصيير"
+msgstr "استخدم عمق المياه الحقيقيّ في حسابات التّصيير"
 
 #: gui/options/options.jsongraphicsSetting[9].label
 msgid "Real Water Depth"
-msgstr "عمق الماء حقيقيّ"
+msgstr "عمق المياه حقيقيّ"
 
 #: gui/options/options.jsongraphicsSetting[10].tooltip
 msgid "Allow water to reflect a mirror image"
-msgstr "مكّن الماء من عكس الصّورة"
+msgstr "اجعل المياه تعكس الصّورة"
 
 #: gui/options/options.jsongraphicsSetting[10].label
 msgid "Water Reflections"
-msgstr "انعكاسات الماء"
+msgstr "انعكاسات المياه"
 
 #: gui/options/options.jsongraphicsSetting[11].tooltip
 msgid "Use a real water refraction map and not transparency"
-msgstr "استخدم خريطة انكسار ضوء حقيقيّ للماء بلا شفافيّة"
+msgstr "استخدم خريطة انكسار ضوء حقيقيّ للمياه بلا شفافيّة"
 
 #: gui/options/options.jsongraphicsSetting[11].label
 msgid "Water Refraction"
-msgstr "انكسار ضوء للماء"
+msgstr "انكسار المياه"
 
 #: gui/options/options.jsongraphicsSetting[12].tooltip
 msgid "Cast shadows on water"
-msgstr "يلقي الظلال على المياه"
+msgstr "يلقي ظلالًا على المياه"
 
 #: gui/options/options.jsongraphicsSetting[12].label
 msgid "Shadows on Water"
@@ -2659,11 +2659,11 @@ msgstr "ظلال على المياه"
 
 #: gui/options/options.jsongraphicsSetting[13].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr "رفع الظلام والضباب بسلاسة"
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[13].label
 msgid "Smooth LOS"
-msgstr "تنعيم خط الافق"
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Render Sky"
@@ -2683,16 +2683,16 @@ msgstr "المزامنة العموديّة"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "حدّد الإطارات/ثانية لتكون 50 في كلّ القوائم، وذلك لحفظ الطّاقة."
 
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "حدّد إطار/ثا في القوائم"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"] شكراً لتثبيت 0.A.D: الإمبراطوريات المسيطرة!"
+msgstr "[font=\"sans-bold-20\"] نشكرك على تثبيت 0 ب.م الإمبراطوريّات المسيطرة!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -2702,25 +2702,25 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]ما زالت اللعبة تحت التّطوير. الميزات ناقصة وتحوي عللًا."
+msgstr "[imgleft=\"constructionIcon\"]ما زالت اللعبة تحت التّطوير. الميزات ناقصة وتشوبها العلل."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]يمكن أن تجد مشاكل أداء في اللعبة، خصوصًا في الخرائط الكبيرة وأعداد الوحدات الكبيرة."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
 "performance, but it can be subject to new bugs."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]في هذه الإصدارة \"باحث مسارات\" جديد بأداء أفضل بكثير، ولكنّ العلل قد تظهر فيه."
 
 #: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]التّشكيلات عمل جارٍ، لكن ما زال يمكنك التّبديل بين تفعيلها وتعطيلها كما تحبّ."
+msgstr "[imgleft=\"iconFormation\"]ما زلنا نعمل على التّشكيلات، لكنّك تستطيع تفعيلها وتعطيلها كما تحبّ."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

@@ -8,6 +8,7 @@
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
+# Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # mahmut özcan <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
 # Hüseyin Cem Aras (hcemaras) <hcemaras@gmail.com>, 2015
@@ -32,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-03 14:19+0000\n"
+"Last-Translator: Eren Ramiz <kumbasar2004@hotmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -668,7 +669,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Geliştirmeyi Durdur"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
@@ -803,7 +804,7 @@ msgstr "Çıkmak istiyor musun?"
 
 #: gui/session/session.js:686
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ayrıldığında diğer tüm oyuncuların bağlantıları kesilecek."
 
 #: gui/session/session.js:692
 msgid "VICTORIOUS!"
@@ -841,17 +842,17 @@ msgstr "Sağlık:"
 #: gui/session/session.js:941
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:944
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:962
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:963
 msgid "Population (current / limit)"
@@ -918,7 +919,7 @@ msgstr "Hepsini boşalt"
 
 #: gui/session/unit_actions.js:998
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Seçili olan bina/birimleri sil"
 
 #: gui/session/unit_actions.js:1000
 #, javascript-format
@@ -988,7 +989,7 @@ msgstr "Bu nesneyi yok edemezsiniz çünkü yarısından azı görürür bir şe
 
 #: gui/session/unit_actions.js:1347
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Bu unite silinemez"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
