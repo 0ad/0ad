@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,15 +36,13 @@
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/Profiler2.h"
+#include "scriptinterface/ScriptEngine.h"
 #include "scriptinterface/ScriptInterface.h"
 
 class LeakReporter : public CxxTest::GlobalFixture
 {
 	virtual bool tearDownWorld()
 	{
-		// Shut down JS to prevent leak reports from it
-		ScriptInterface::ShutDown();
-
 		// Enable leak reporting on exit.
 		// (This is done in tearDownWorld so that it doesn't report 'leaks'
 		// if the program is aborted before finishing cleanly.)
@@ -81,6 +79,7 @@ class MiscSetup : public CxxTest::GlobalFixture
 		ThreadUtil::SetMainThread();
 
 		g_Profiler2.Initialise();
+		m_ScriptEngine = new ScriptEngine;
 		g_ScriptRuntime = ScriptInterface::CreateRuntime();
 
 		return true;
@@ -89,10 +88,17 @@ class MiscSetup : public CxxTest::GlobalFixture
 	virtual bool tearDownWorld()
 	{
 		g_ScriptRuntime.reset();
+		SAFE_DELETE(m_ScriptEngine);
 		g_Profiler2.Shutdown();
 
 		return true;
 	}
+
+private:
+
+	// We're doing the initialization and shutdown of the ScriptEngine explicitly here
+	// to make sure it's only initialized when setUpWorld is called.
+	ScriptEngine* m_ScriptEngine;
 };
 
 static LeakReporter leakReporter;

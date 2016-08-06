@@ -79,7 +79,6 @@ private:
 	
 	std::list<JSContext*> m_Contexts;
 	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
-	static bool m_Initialized;
 
 	int m_RuntimeSize;
 	int m_HeapGrowthBytesGCTrigger;
