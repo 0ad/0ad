@@ -34,7 +34,7 @@
  * (One means to share data between threads and runtimes is to create
  * a ScriptInterface::StructuredClone.)
  */
- 
+
 class ScriptRuntime
 {
 public:
@@ -42,13 +42,13 @@ public:
 	~ScriptRuntime();
 
 	/**
-	 * MaybeIncrementalRuntimeGC tries to determine whether a runtime-wide garbage collection would free up enough memory to 
+	 * MaybeIncrementalRuntimeGC tries to determine whether a runtime-wide garbage collection would free up enough memory to
 	 * be worth the amount of time it would take. It does this with our own logic and NOT some predefined JSAPI logic because
 	 * such functionality currently isn't available out of the box.
 	 * It does incremental GC which means it will collect one slice each time it's called until the garbage collection is done.
 	 * This can and should be called quite regularly. The delay parameter allows you to specify a minimum time since the last GC
-	 * in seconds (the delay should be a fraction of a second in most cases though). 
-	 * It will only start a new incremental GC or another GC slice if this time is exceeded. The user of this function is 
+	 * in seconds (the delay should be a fraction of a second in most cases though).
+	 * It will only start a new incremental GC or another GC slice if this time is exceeded. The user of this function is
 	 * responsible for ensuring that GC can run with a small enough delay to get done with the work.
 	 */
 	void MaybeIncrementalGC(double delay);
@@ -73,10 +73,10 @@ private:
 
 	void PrepareContextsForIncrementalGC();
 	void GCCallbackMember();
-	
+
 	// Workaround for: https://bugzilla.mozilla.org/show_bug.cgi?id=890243
 	JSContext* m_dummyContext;
-	
+
 	std::list<JSContext*> m_Contexts;
 	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
 
