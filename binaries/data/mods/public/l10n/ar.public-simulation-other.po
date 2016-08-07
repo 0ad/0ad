@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Rayan <nitro361@gmail.com>, 2015
-# صفا الفليج <safaalfulaij@hotmail.com>, 2015
+# صفا الفليج <safaalfulaij@hotmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-03 17:31+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "أنا أبدأ حملة عسكريّة ضخمة ضدّ %(_player_)s، تعال انضمّ معي."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
@@ -78,31 +78,31 @@ msgstr "أنا أجري التّحضيرات النّهائيّة بعدها أ�
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "لن أستطيع مساعدتك ضدّ %(_player_)s حاليًّا، إذ أنّي أتوقّع هجومًا وشيكًا ضدّ %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "آسف، لا أملك عددًا كافيًا من الجنود الآن، ولكنّ هجومي الآتي سيستهدف %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "هذه هديّة لِـ %(_player_)s، أحسن استخدامها."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "أراك في موقف سيّئ يا %(_player_)s، أتمنّى أنّ هذه ستساعدك."
 
 #: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "يمكنني مساعدتك الآن يا %(_player_)s، ولكن حاول تجميع المزيد من الموارد مستقبلًا."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
@@ -127,14 +127,14 @@ msgstr ""
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "أعددت طريقًا جديدًا مع %(_player_)s، ستكون التّجارة مربحة لنا جميعًا."
 
 #: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits"
-msgstr ""
+msgstr "أُعدّ طريق تجاريّ مع %(_player_)s. احصل على حصّتك من الأرباح"
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
@@ -635,12 +635,12 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد لا أمتار على الأقلّ"
+msgstr[1] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد متر واحد على الأقلّ"
+msgstr[2] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد مترين على الأقلّ"
+msgstr[3] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد %(distance)s أمتار على الأقلّ"
+msgstr[4] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد %(distance)s مترًا على الأقلّ"
+msgstr[5] "%(name)s قريب جدًّا من %(category)s، يجب أن يكون على بعد %(distance)s متر على الأقلّ"
 
 #: simulation/components/BuildRestrictions.js:299
 #, javascript-format
@@ -686,11 +686,11 @@ msgstr " العدوّ"
 #: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "يمكنك الهجوم خلال %(time)s"
 
 #: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
-msgstr ""
+msgstr "يمكنك الهجوم الآن!"
 
 #: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
@@ -699,52 +699,52 @@ msgstr ""
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(category)s بناء الحد الأقصى من %(limit)s بلغ"
+msgstr ""
 
 #: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)s الحد الأقصى تدريب %(limit)s بلغ"
+msgstr ""
 
 #: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr "%(category)s حد الاقصى من %(limit)s بلغ"
+msgstr ""
 
 #: simulation/components/Player.js:48
 msgid "Food"
-msgstr "الطعام"
+msgstr ""
 
 #: simulation/components/Player.js:49
 msgid "Wood"
-msgstr "الخشب"
+msgstr ""
 
 #: simulation/components/Player.js:50
 msgid "Metal"
-msgstr "المعادن"
+msgstr ""
 
 #: simulation/components/Player.js:51
 msgid "Stone"
-msgstr "الحجر"
+msgstr ""
 
 #: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr "الموارد ليست كافية - %(resourceAmount1)s %(resourceType1)s"
+msgstr ""
 
 #: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "الموارد ليست كافية - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr ""
 
 #: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "الموارد ليست كافية - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr ""
 
 #: simulation/components/Player.js:277
 #, javascript-format
@@ -752,7 +752,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "الموارد ليست كافية - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr ""
 
 #: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."

@@ -73,6 +73,7 @@ that of Atlas depending on commandline parameters.
 #include "graphics/TextureManager.h"
 #include "gui/GUIManager.h"
 #include "renderer/Renderer.h"
+#include "scriptinterface/ScriptEngine.h"
 #include "simulation2/Simulation2.h"
 
 #if OS_UNIX
@@ -422,10 +423,10 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
-	// We need to initialise libxml2 in the main thread before
-	// any thread uses it. So initialise it here before we
-	// might run Atlas.
+	// We need to initialize libxml2 and SpiderMonkey in the main thread before
+	// any thread uses them. So initialize them here before we might run Atlas.
 	CXeromyces::Startup();
+	ScriptEngine scriptEngine;
 
 	// Atlas handles the whole init/shutdown/etc sequence by itself;
 	if (ATLAS_RunIfOnCmdLine(args, false))

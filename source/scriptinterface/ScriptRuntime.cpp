@@ -21,6 +21,7 @@
 
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptEngine.h"
 
 
 void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
@@ -104,19 +105,13 @@ void ScriptRuntime::AddDeferredFinalizationObject(const std::shared_ptr<void>& o
 	m_FinalizationListObjectIdCache.push_back(obj);
 }
 
-bool ScriptRuntime::m_Initialized = false;
-
 ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger):
 	m_LastGCBytes(0),
 	m_LastGCCheck(0.0f),
 	m_HeapGrowthBytesGCTrigger(heapGrowthBytesGCTrigger),
 	m_RuntimeSize(runtimeSize)
 {
-	if (!m_Initialized)
-	{
-		ENSURE(JS_Init());
-		m_Initialized = true;
-	}
+	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptRuntimes!");
 
 	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
 	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS, parentJSRuntime);
@@ -135,6 +130,8 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	
 	m_dummyContext = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_dummyContext);
+
+	ScriptEngine::GetSingleton().RegisterRuntime(m_rt);
 }
 
 ScriptRuntime::~ScriptRuntime()
@@ -143,6 +140,9 @@ ScriptRuntime::~ScriptRuntime()
 	JS_SetGCCallback(m_rt, nullptr, nullptr);
 	JS_DestroyRuntime(m_rt);
 	ENSURE(m_FinalizationListObjectIdCache.empty() && "Leak: Removing callback while some objects still aren't finalized!");
+
+	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be active (initialized and not yet shut down) when destroying a ScriptRuntime!");
+	ScriptEngine::GetSingleton().UnRegisterRuntime(m_rt);
 }
 
 void ScriptRuntime::RegisterContext(JSContext* cx)

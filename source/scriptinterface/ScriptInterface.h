@@ -97,12 +97,6 @@ public:
 
 	~ScriptInterface();
 
-	/**
-	 * Shut down the JS system to clean up memory. Must only be called when there
-	 * are no ScriptInterfaces alive.
-	 */
-	static void ShutDown();
-
 	struct CxPrivate
 	{
 		ScriptInterface* pScriptInterface; // the ScriptInterface object the current context belongs to

@@ -433,11 +433,6 @@ ScriptInterface::~ScriptInterface()
 	}
 }
 
-void ScriptInterface::ShutDown()
-{
-	JS_ShutDown();
-}
-
 void ScriptInterface::SetCallbackData(void* pCBData)
 {
 	m_CxPrivate.pCBData = pCBData;
