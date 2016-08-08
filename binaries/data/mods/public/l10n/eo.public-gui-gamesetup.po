@@ -5,12 +5,13 @@
 # Translators:
 # Joop Kiefte (LaPingvino) <ikojba@gmail.com>, 2014
 # Michael Moroni <michael.moroni@openmailbox.org>, 2014
+# Pritchenko, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-07 00:29+0000\n"
+"Last-Translator: Pritchenko\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,17 +35,17 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:45
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s eniris"
 
 #: gui/gamesetup/gamesetup.js:46
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s eliris"
 
 #: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s estis forpelita"
 
 #: gui/gamesetup/gamesetup.js:48
 #, javascript-format
@@ -64,12 +65,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:53
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "%(username)s estas preta!"
 
 #: gui/gamesetup/gamesetup.js:56
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "%(username)s Ankoraŭ ne pretas"
 
 #: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
 msgid "Default"
@@ -89,12 +90,12 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
-msgstr ""
+msgstr "Ĉiuj mapoj"
 
 #: gui/gamesetup/gamesetup.js:142
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Hazarda"
 
 #: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
@@ -129,18 +130,18 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1437
 msgid "Loading..."
-msgstr ""
+msgstr "Ŝarĝanta..."
 
 #: gui/gamesetup/gamesetup.js:1487
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s ludanto"
+msgstr[1] "%(number)s ludantoj"
 
 #: gui/gamesetup/gamesetup.js:1497
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Hazarde elektu mapon el la listo"
 
 #: gui/gamesetup/gamesetup.js:1500
 msgid "Sorry, no description available."
@@ -149,7 +150,7 @@ msgstr "bedaŭrinde ne priskribo estas disponebla"
 #: gui/gamesetup/gamesetup.js:1506
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/gamesetup/gamesetup.js:1511
 #, javascript-format
@@ -179,49 +180,49 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
-msgstr ""
+msgstr "Nekonata ludanto"
 
 #: gui/gamesetup/gamesetup.js:1858
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Mi ankoraŭ ne pretas!"
 
 #: gui/gamesetup/gamesetup.js:1859
 msgid "I'm ready"
-msgstr ""
+msgstr "Mi pretas"
 
 #: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Deklaru ke vi ankoraŭ ne pretas por ludi"
 
 #: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Deklaru ke vi pretas por ludi!"
 
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s's ludo"
 
 #: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Konektanta al la servilo..."
 
 #: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Interreta mesaĝo: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
-msgstr ""
+msgstr "Registranta per la servilo..."
 
 #: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Ludo jam komencis, realiĝanta..."
 
 #: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
-msgstr ""
+msgstr "Luda nomo jam estas uzita"
 
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
@@ -230,22 +231,22 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
-msgstr ""
+msgstr "Eraro"
 
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Aliĝi al la ludo noe eblas: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Ludo de %(playername)s"
 
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Ŝarĝanta “%(map)s”"
 
 #: gui/loading/loading.js:53
 #, javascript-format
@@ -272,7 +273,7 @@ msgstr "Nuligi"
 #: gui/aiconfig/aiconfig.xml:(caption):46
 #: gui/gamesetup/gamesetup.xml:(caption):447
 msgid "OK"
-msgstr "Bone"
+msgstr "Enorde"
 
 #: gui/gamesetup/gamesetup.xml:(caption):20
 msgid "Match Setup"
@@ -280,19 +281,19 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading"
-msgstr ""
+msgstr "Ŝarĝanta"
 
 #: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Ŝarĝanta mapdatumojn, bonvole atendu..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
-msgstr ""
+msgstr "Nomo de ludanto"
 
 #: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
-msgstr ""
+msgstr "Koloro"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
@@ -300,35 +301,35 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
-msgstr ""
+msgstr "Civito"
 
 #: gui/gamesetup/gamesetup.xml:(caption):86
 msgid "Team"
-msgstr ""
+msgstr "Teamo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):139
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo de mapo:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):142
 msgid "Map Filter:"
-msgstr ""
+msgstr "Filtro de mapo:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):145
 msgid "Select Map:"
-msgstr ""
+msgstr "Elektu mapon:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):148
 msgid "Number of Players:"
-msgstr ""
+msgstr "Nombro da ludantoj:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Size:"
-msgstr ""
+msgstr "Grandeco de la mapo:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):230
 msgid "Send"
-msgstr ""
+msgstr "Sendu"
 
 #: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Cheats enabled."
@@ -336,20 +337,20 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):261
 msgid "Start game!"
-msgstr ""
+msgstr "Komencu ludon!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):279
 msgid "Back"
-msgstr ""
+msgstr "Retroiri"
 
 #: gui/gamesetup/gamesetup.xml:(caption):293
 #: gui/gamesetup/gamesetup.xml:(caption):305
 msgid "More Options"
-msgstr ""
+msgstr "Pli da opcioj"
 
 #: gui/gamesetup/gamesetup.xml:(caption):310
 msgid "Game Speed:"
-msgstr ""
+msgstr "Ludrapideco"
 
 #: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Wonder Victory:"
@@ -393,7 +394,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):420
 msgid "Cheats:"
-msgstr ""
+msgstr "Trukoj:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):430
 msgid "Rated Game:"
@@ -414,11 +415,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
-msgstr ""
+msgstr "Elektu koloron"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
-msgstr ""
+msgstr "Elektu ludanton"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
@@ -430,27 +431,27 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
-msgstr ""
+msgstr "Elektu teamon por ludanto"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):168
 msgid "Select a map type."
-msgstr ""
+msgstr "Elektu maptipon"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):176
 msgid "Select a map filter."
-msgstr ""
+msgstr "Elektu mapfiltron"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):185
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Elektu mapon por ludi"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):195
 msgid "Select number of players."
-msgstr ""
+msgstr "Elektu nombro da ludantoj"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):199
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Elektu mapgrandecon (Grandaj mapoj povas damaĝi rendimenton)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):262
 msgid "Start a new game with the current settings."

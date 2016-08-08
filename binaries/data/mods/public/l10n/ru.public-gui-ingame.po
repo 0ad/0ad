@@ -50,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:46+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2016-08-05 09:00+0200\n"
+"PO-Revision-Date: 2016-08-05 09:25+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,12 +91,12 @@ msgid "Confirmation"
 msgstr "Подтверждение"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:692 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Нет"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:692 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Да"
 
@@ -514,7 +514,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:826
+#: gui/session/selection_details.js:388 gui/session/session.js:824
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -581,9 +581,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:226 gui/session/unit_actions.js:510
-#: gui/session/unit_actions.js:519 gui/session/unit_actions.js:533
-#: gui/session/unit_actions.js:843
+#: gui/session/selection_details.js:226 gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:532 gui/session/unit_actions.js:546
+#: gui/session/unit_actions.js:864
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Прирост: %(gain)s"
@@ -831,209 +831,209 @@ msgstr "Выбери один продукт для внесения измен�
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Использование %(hotkey)s установит выбранный ресурс на 100%%."
 
-#: gui/session/session.js:466
+#: gui/session/session.js:456
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Дерево Технологий"
 
-#: gui/session/session.js:680
+#: gui/session/session.js:678
 msgid "You have won!"
 msgstr "Вы выиграли!"
 
-#: gui/session/session.js:681
+#: gui/session/session.js:679
 msgid "You have been defeated!"
 msgstr "Вам нанесли поражение!"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:681
 msgid "Do you want to quit?"
 msgstr "Вы хотите выйти?"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:684
 msgid "Leaving will disconnect all other players."
 msgstr "Выход из игры приведёт к отключению всех игроков."
 
-#: gui/session/session.js:692
+#: gui/session/session.js:690
 msgid "VICTORIOUS!"
 msgstr "ПОБЕДА!"
 
-#: gui/session/session.js:693
+#: gui/session/session.js:691
 msgid "DEFEATED!"
 msgstr "ПОРАЖЕНИЕ!"
 
-#: gui/session/session.js:745
+#: gui/session/session.js:743
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Повтор завершён. Вы хотите выйти?"
 
-#: gui/session/session.js:746
+#: gui/session/session.js:744
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Подтверждение"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Нет"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Да"
 
-#: gui/session/session.js:827
+#: gui/session/session.js:825
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Здоровье:"
 
-#: gui/session/session.js:941
+#: gui/session/session.js:939
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr ""
 
-#: gui/session/session.js:944
+#: gui/session/session.js:942
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr ""
 
-#: gui/session/session.js:962
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr ""
 
-#: gui/session/session.js:963
+#: gui/session/session.js:961
 msgid "Population (current / limit)"
 msgstr "Население (текущее / предел)"
 
-#: gui/session/session.js:964
+#: gui/session/session.js:962
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Предел населения: %(popCap)s"
 
-#: gui/session/session.js:1116
+#: gui/session/session.js:1114
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Сборка: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1126
+#: gui/session/session.js:1124
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Заметка: режим искривления времени - это опция для разработчиков, не предназначенная для длительного использования. Неправильное использование данной опции может стать причиной переполнения памяти или краха."
 
-#: gui/session/session.js:1127
+#: gui/session/session.js:1125
 msgid "Time warp mode"
 msgstr "Искажение времени"
 
-#: gui/session/unit_actions.js:508
+#: gui/session/unit_actions.js:521
 msgid "Origin trade market."
 msgstr "Исходный пункт торгового рынка."
 
-#: gui/session/unit_actions.js:514
+#: gui/session/unit_actions.js:527
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Нажмите ПКМ на другом рынке, чтобы выбрать целевой рынок."
 
-#: gui/session/unit_actions.js:518
+#: gui/session/unit_actions.js:531
 msgid "Destination trade market."
 msgstr "Место назначения торгового рынка."
 
-#: gui/session/unit_actions.js:525
+#: gui/session/unit_actions.js:538
 msgid "Right-click to set as origin trade market"
 msgstr "Нажмите ПКМ для выбора исходного торгового рынка"
 
-#: gui/session/unit_actions.js:532
+#: gui/session/unit_actions.js:545
 msgid "Right-click to set as destination trade market."
 msgstr "Нажмите ПКМ для выбора конечного торгового рынка. "
 
-#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:793
+#: gui/session/unit_actions.js:599 gui/session/unit_actions.js:814
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Текущий гарнизон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:840
+#: gui/session/unit_actions.js:861
 msgid "Right-click to establish a default route for new traders."
 msgstr "Щелкните правой кнопкой мыши, чтобы установить маршрут по умолчанию для новых торговцев."
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Ожидаемый прирост: %(gain)s"
 
-#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1255
-msgid "Unload All"
-msgstr "Вывести всех"
+#: gui/session/unit_actions.js:998 gui/session/unit_actions.js:1280
+msgid "Unload All."
+msgstr ""
 
-#: gui/session/unit_actions.js:998
+#: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
 msgstr "Уничтожить выделенные юниты или постройки."
 
-#: gui/session/unit_actions.js:1000
+#: gui/session/unit_actions.js:1022
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Используйте %(hotkey)s что бы избежать диалога подтверждения."
 
-#: gui/session/unit_actions.js:1032
+#: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
 msgstr "Отменить текущий приказ."
 
-#: gui/session/unit_actions.js:1052
+#: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
 msgstr "Приказать выбранным юнитам отправиться в гарнизон строения или юнита."
 
-#: gui/session/unit_actions.js:1074
+#: gui/session/unit_actions.js:1096
 msgid "Unload"
 msgstr "Вывести"
 
-#: gui/session/unit_actions.js:1091
-msgid "Repair"
-msgstr "Ремонтировать"
-
-#: gui/session/unit_actions.js:1109
-msgid "Focus on Rally Point"
-msgstr "Установить точку сбора"
+#: gui/session/unit_actions.js:1114
+msgid "Order the selected units to repair a building or mechanical unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1133
+msgid "Focus on Rally Point."
+msgstr ""
+
+#: gui/session/unit_actions.js:1157
 msgid "Back to Work"
 msgstr "Вернуть к работе"
 
-#: gui/session/unit_actions.js:1152
+#: gui/session/unit_actions.js:1176
 msgid "Order the selected units to guard a building or unit."
 msgstr "Приказать выбранным юнитам охранять строение или юнита."
 
-#: gui/session/unit_actions.js:1170
+#: gui/session/unit_actions.js:1194
 msgid "Remove guard"
 msgstr "Перестать охранять"
 
-#: gui/session/unit_actions.js:1187
+#: gui/session/unit_actions.js:1211
 msgid "Select trading goods"
 msgstr "Выбрать товары"
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1233
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Нажмите, чтобы не допустить использование этой точки сбора ресурсов союзниками"
 
-#: gui/session/unit_actions.js:1214
+#: gui/session/unit_actions.js:1238
 msgid "Press to allow allies to use this dropsite"
 msgstr "Нажмите, чтобы разрешить использование этой точки сбора ресурсов союзниками"
 
-#: gui/session/unit_actions.js:1276
+#: gui/session/unit_actions.js:1301
 msgid "You are allowed to use this dropsite"
 msgstr "Вам разрешено использовать эту точку сбора ресурсов"
 
-#: gui/session/unit_actions.js:1281
+#: gui/session/unit_actions.js:1306
 msgid "The use of this dropsite is prohibited"
 msgstr "Использование этой точки сбора ресурсов запрещено"
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1366
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Этот объект должен быть убит перед тем, как с него можно будет собирать ресурс"
 
-#: gui/session/unit_actions.js:1344
+#: gui/session/unit_actions.js:1369
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Вы не можете уничтожить этого врага, поскольку владеете меньше, чем половиной точек захвата."
 
-#: gui/session/unit_actions.js:1347
+#: gui/session/unit_actions.js:1372
 msgid "This entity is undeletable"
 msgstr "Этот объект невозможно удалить"
 

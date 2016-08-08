@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-08-04 12:51+0000\n"
+"PO-Revision-Date: 2016-08-05 20:33+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -486,7 +486,7 @@ msgstr "سبب مجهول"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
-msgstr "هذا يحدث غالبًا لأنّ منفذ UDP رقم 20595 لم يُمرّر إلى جانب المضيف، أو بسبب جدار ناريّ أو برمجيّة مضادّ الفيروسات."
+msgstr "هذا يحدث غالبًا لأنّ منفذ UDP رقم 20595 لم يمرّر إلى جانب المضيف، أو بسبب جدار ناريّ أو برمجيّة مضادّ الفيروسات."
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -729,7 +729,7 @@ msgstr[5] "%(time)s %(second)s"
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "لا ثوان"
-msgstr[1] "ثانية"
+msgstr[1] "ثانية واحدة"
 msgstr[2] "ثانيتان"
 msgstr[3] "ثوان"
 msgstr[4] "ثانية"
@@ -750,7 +750,7 @@ msgstr[5] "%(arrowcount)s %(arrows)s"
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "لا أسهم"
-msgstr[1] "سهم"
+msgstr[1] "سهم واحد"
 msgstr[2] "سهمان"
 msgstr[3] "أسهم"
 msgstr[4] "سهما"
@@ -834,7 +834,7 @@ msgstr[5] "%(range)s %(meters)s"
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "لا أمتار"
-msgstr[1] "متر"
+msgstr[1] "متر واحد"
 msgstr[2] "متران"
 msgstr[3] "أمتار"
 msgstr[4] "مترًا"
@@ -1072,7 +1072,7 @@ msgstr "حسنًا"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "سيمسح تصفير الإعدادات تلك المحفوظة. أتريد المتابعة؟"
+msgstr "سيؤدّي تصفير الإعدادات إلى مسح تلك المحفوظة. أتريد المتابعة؟"
 
 #: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:129
@@ -1146,7 +1146,7 @@ msgstr "البناء: %(buildDate)s ‏(%(revision)s)"
 
 #: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "أمتأكّد من إنهاء 0 ب.م؟"
+msgstr "أمتأكّد من إنهاء «0م»؟"
 
 #: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
 msgid "Confirmation"
@@ -1316,7 +1316,7 @@ msgstr "MM/yyyy"
 
 #: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
-msgstr "لم تُعثر على ألعاب محفوظة"
+msgstr "لا ألعاب محفوظة"
 
 #: gui/savedgames/load.js:61
 #, javascript-format
@@ -1332,11 +1332,11 @@ msgstr "قد لا تكون هذه اللعبة المحفوظة متوافقة:"
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr "تتطلّب الإصدارة %(requiredVersion)s من 0 ب.م، إلّا أنّك تشغّل الإصدارة %(currentVersion)s."
+msgstr "تتطلّب الإصدارة %(requiredVersion)s من «0م»، إلّا أنّك تشغّل الإصدارة %(currentVersion)s."
 
 #: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
-msgstr "تتطلّب إصدارة قديمة من 0ب.م."
+msgstr "تتطلّب إصدارة قديمة من «0م»."
 
 #: gui/savedgames/load.js:105
 #, javascript-format
@@ -1666,7 +1666,7 @@ msgstr "أغلق"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr "إشادات 0 ب.م"
+msgstr "إشادات «0م»"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1791,7 +1791,7 @@ msgstr "تؤثّر التّعديلات غير المحفوظة على الجل�
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
-msgstr "ساهم في تحسين 0 ب.م!"
+msgstr "ساهم في تحسين «0م»!"
 
 #: gui/pregame/mainmenu.xml:64
 msgid ""
@@ -1801,7 +1801,7 @@ msgstr "يمكنك إرسال تغذية استرجاعيّة مجهولة ال�
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "شكرًا لمساعدتنا في تطوير 0 ب.م!"
+msgstr "شكرًا لمساعدتنا في تطوير «0م»!"
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
@@ -1921,15 +1921,15 @@ msgstr "ألعاب الهشيم"
 
 #: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
-msgstr "افتح كتيّب لعبة 0 ب.م."
+msgstr "افتح كتيّب لعبة «0م»."
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr "اعرض شجرة البنية للحضارات الموجودة في 0 ب.م."
+msgstr "اعرض شجرة البنية للحضارات الموجودة في «0م»."
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "تعلّم عن الحضارات العديدة الموجودة في 0 ب.م."
+msgstr "تعلّم عن الحضارات العديدة الموجودة في «0م»."
 
 #: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
@@ -2013,19 +2013,19 @@ msgstr "انقر هنا لفتح play0ad.com في متصفّح الوبّ."
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "انقر لفتح محادثة 0 ب.م على IRC في المتصفّح. (‎#0ad على webchat.quakenet.org)"
+msgstr "انقر لفتح محادثة «0م» على IRC في المتصفّح. (‎#0ad على webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "انقر لزيارة متعقّب 0 ب.م للإبلاغ عن العلل، أو الانهيارات أو الأخطاء."
+msgstr "انقر لزيارة متعقّب «0م» للإبلاغ عن العلل، أو الانهيارات أو الأخطاء."
 
 #: gui/pregame/mainmenu.xml:(tooltip):584
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "انقر هنا لفتح صفحة ترجمة 0 ب.م في المتصفّح."
+msgstr "انقر هنا لفتح صفحة ترجمة «0م» في المتصفّح."
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr "انقر لرؤية من وراء 0 ب.م."
+msgstr "انقر لرؤية من وراء «0م»."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
@@ -2383,7 +2383,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
-msgstr "ابدأ 0 ب.م في نافذة"
+msgstr "ابدأ «0م» في نافذة"
 
 #: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
@@ -2583,7 +2583,7 @@ msgstr "الظّلال"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid "Smooth shadows"
-msgstr "ظلال منعّم"
+msgstr "ظلال منعّمة"
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Filtering"
@@ -2692,7 +2692,7 @@ msgstr "حدّد إطار/ثا في القوائم"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"] نشكرك على تثبيت 0 ب.م الإمبراطوريّات المسيطرة!"
+msgstr "[font=\"sans-bold-20\"] نشكرك على تثبيت «0م الإمبراطوريّات المسيطرة»!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"

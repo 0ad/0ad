@@ -5,13 +5,14 @@
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014-2015
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
+# Chema Fernández <chemafdzgar@gmail.com>, 2016
 # mandruis <manuiglesias96@yahoo.es>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-06-17 09:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-07 17:10+0000\n"
+"Last-Translator: Chema Fernández <chemafdzgar@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +96,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Xogadores: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:670
 msgid "The game has already started."
@@ -161,11 +162,11 @@ msgstr "— %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:947
 msgid "Private"
-msgstr ""
+msgstr "Privado"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).

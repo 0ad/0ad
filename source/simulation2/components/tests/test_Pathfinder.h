@@ -48,10 +48,8 @@ public:
 	void tearDown()
 	{
 		delete &g_TexMan;
-
-		g_VFS.reset();
-
 		CXeromyces::Terminate();
+		g_VFS.reset();
 	}
 
 	void test_namespace()

@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:42+0000\n"
-"Last-Translator: Kelvin Cooper <Zhu-Zhe-Yong@live.com>\n"
+"POT-Creation-Date: 2016-08-05 09:00+0200\n"
+"PO-Revision-Date: 2016-08-05 09:25+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,12 +65,12 @@ msgid "Confirmation"
 msgstr "确认"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:692 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "否"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:692 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "是"
 
@@ -461,7 +461,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:826
+#: gui/session/selection_details.js:388 gui/session/session.js:824
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -525,9 +525,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:226 gui/session/unit_actions.js:510
-#: gui/session/unit_actions.js:519 gui/session/unit_actions.js:533
-#: gui/session/unit_actions.js:843
+#: gui/session/selection_details.js:226 gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:532 gui/session/unit_actions.js:546
+#: gui/session/unit_actions.js:864
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "获得：%(gain)s"
@@ -769,209 +769,209 @@ msgstr "请选择卖出的货物，随后使用目标货物的箭头来进行更
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "使用%(hotkey)s把选定的资源调至100%%。"
 
-#: gui/session/session.js:466
+#: gui/session/session.js:456
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 建筑树"
 
-#: gui/session/session.js:680
+#: gui/session/session.js:678
 msgid "You have won!"
 msgstr "您已胜出!"
 
-#: gui/session/session.js:681
+#: gui/session/session.js:679
 msgid "You have been defeated!"
 msgstr "您已战败！"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:681
 msgid "Do you want to quit?"
 msgstr "要退出吗?"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:684
 msgid "Leaving will disconnect all other players."
 msgstr "离开将会和其他所有玩家断开连接。"
 
-#: gui/session/session.js:692
+#: gui/session/session.js:690
 msgid "VICTORIOUS!"
 msgstr "胜利!"
 
-#: gui/session/session.js:693
+#: gui/session/session.js:691
 msgid "DEFEATED!"
 msgstr "战败!"
 
-#: gui/session/session.js:745
+#: gui/session/session.js:743
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "重播已结束。您想要退出吗?"
 
-#: gui/session/session.js:746
+#: gui/session/session.js:744
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "确认"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "No"
 msgstr "否"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "是"
 
-#: gui/session/session.js:827
+#: gui/session/session.js:825
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "生命值："
 
-#: gui/session/session.js:941
+#: gui/session/session.js:939
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s：%(statValue)s"
 
-#: gui/session/session.js:944
+#: gui/session/session.js:942
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:962
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:963
+#: gui/session/session.js:961
 msgid "Population (current / limit)"
 msgstr "人口(当前/上限)"
 
-#: gui/session/session.js:964
+#: gui/session/session.js:962
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "最大人口数量： %(popCap)s"
 
-#: gui/session/session.js:1116
+#: gui/session/session.js:1114
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1126
+#: gui/session/session.js:1124
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注意： 时空隧道模式是开发者选项，不适用于长时间开启。不恰当的使用可能导致内存不足或程序崩溃。"
 
-#: gui/session/session.js:1127
+#: gui/session/session.js:1125
 msgid "Time warp mode"
 msgstr "时空隧道模式"
 
-#: gui/session/unit_actions.js:508
+#: gui/session/unit_actions.js:521
 msgid "Origin trade market."
 msgstr "出发贸易市场。"
 
-#: gui/session/unit_actions.js:514
+#: gui/session/unit_actions.js:527
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "右键单击另外一个市场，把其设为目的贸易市场。"
 
-#: gui/session/unit_actions.js:518
+#: gui/session/unit_actions.js:531
 msgid "Destination trade market."
 msgstr "目的贸易市场。"
 
-#: gui/session/unit_actions.js:525
+#: gui/session/unit_actions.js:538
 msgid "Right-click to set as origin trade market"
 msgstr "右键单击设置为出发贸易市场"
 
-#: gui/session/unit_actions.js:532
+#: gui/session/unit_actions.js:545
 msgid "Right-click to set as destination trade market."
 msgstr "右键单击设置为目的贸易市场"
 
-#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:793
+#: gui/session/unit_actions.js:599 gui/session/unit_actions.js:814
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "当前驻守: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:840
+#: gui/session/unit_actions.js:861
 msgid "Right-click to establish a default route for new traders."
 msgstr "右键单击为贸易者确定一条默认的路线"
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "预期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1255
-msgid "Unload All"
-msgstr "卸载所有"
+#: gui/session/unit_actions.js:998 gui/session/unit_actions.js:1280
+msgid "Unload All."
+msgstr ""
 
-#: gui/session/unit_actions.js:998
+#: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
 msgstr "摧毁选定的单位或建筑。"
 
-#: gui/session/unit_actions.js:1000
+#: gui/session/unit_actions.js:1022
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "使用 %(hotkey)s 以忽略确认对话。"
 
-#: gui/session/unit_actions.js:1032
+#: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
 msgstr "中止当前的命令。"
 
-#: gui/session/unit_actions.js:1052
+#: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
 msgstr "命令选定的单位驻守建筑物或单位。"
 
-#: gui/session/unit_actions.js:1074
+#: gui/session/unit_actions.js:1096
 msgid "Unload"
 msgstr "卸载"
 
-#: gui/session/unit_actions.js:1091
-msgid "Repair"
-msgstr "修理"
-
-#: gui/session/unit_actions.js:1109
-msgid "Focus on Rally Point"
-msgstr "集中于集合点"
+#: gui/session/unit_actions.js:1114
+msgid "Order the selected units to repair a building or mechanical unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1133
+msgid "Focus on Rally Point."
+msgstr ""
+
+#: gui/session/unit_actions.js:1157
 msgid "Back to Work"
 msgstr "返回工作"
 
-#: gui/session/unit_actions.js:1152
+#: gui/session/unit_actions.js:1176
 msgid "Order the selected units to guard a building or unit."
 msgstr "命令选定的单位守卫建筑物或单位。"
 
-#: gui/session/unit_actions.js:1170
+#: gui/session/unit_actions.js:1194
 msgid "Remove guard"
 msgstr "移除守卫"
 
-#: gui/session/unit_actions.js:1187
+#: gui/session/unit_actions.js:1211
 msgid "Select trading goods"
 msgstr "选择交易的商品"
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1233
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以防止盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1214
+#: gui/session/unit_actions.js:1238
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允许盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1276
+#: gui/session/unit_actions.js:1301
 msgid "You are allowed to use this dropsite"
 msgstr "已允许您使用此资源回收点"
 
-#: gui/session/unit_actions.js:1281
+#: gui/session/unit_actions.js:1306
 msgid "The use of this dropsite is prohibited"
 msgstr "已禁止使用此资源回收点"
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1366
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 
-#: gui/session/unit_actions.js:1344
+#: gui/session/unit_actions.js:1369
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "您无法破坏此实体，因为您的捕获点不到一半"
 
-#: gui/session/unit_actions.js:1347
+#: gui/session/unit_actions.js:1372
 msgid "This entity is undeletable"
 msgstr "该独立存在的实体是不可删除的"
 

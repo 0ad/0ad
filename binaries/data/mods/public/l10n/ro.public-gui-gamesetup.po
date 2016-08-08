@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alex Hex <alexhex14@gmail.com>, 2016
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Gabriel-Ciprian Stanciu <stanciu.gabriel.ciprian@gmail.com>, 2014
 # Lucian Lupescu <l.lupescu@yahoo.com>, 2014
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-07 20:58+0000\n"
+"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,51 +32,51 @@ msgstr "Nimic"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "IA va fi oprită pentru acest jucător."
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Setările jocului au fost schimbate"
 
 #: gui/gamesetup/gamesetup.js:45
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s s-a alăturat."
 
 #: gui/gamesetup/gamesetup.js:46
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s a plecat"
 
 #: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s a fost înlăturat"
 
 #: gui/gamesetup/gamesetup.js:48
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s a avut accesul restricționat"
 
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:53
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s este pregătit!"
 
 #: gui/gamesetup/gamesetup.js:56
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s nu este pregătit."
 
 #: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
 msgid "Default"
@@ -91,7 +92,7 @@ msgstr "Mape Demo"
 
 #: gui/gamesetup/gamesetup.js:83
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Comutați hărți"
 
 #: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
@@ -100,7 +101,7 @@ msgstr "Toate mapele"
 #: gui/gamesetup/gamesetup.js:142
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Aleator"
 
 #: gui/gamesetup/gamesetup.js:147
 msgctxt "civilization"
@@ -109,11 +110,11 @@ msgstr "Aleatoriu"
 
 #: gui/gamesetup/gamesetup.js:270
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Întoarceți-vă la foaier."
 
 #: gui/gamesetup/gamesetup.js:270
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Întoarceți-vă lameniul principal."
 
 #: gui/gamesetup/gamesetup.js:567
 msgid "Yes"
@@ -156,7 +157,7 @@ msgstr "Nicio descriere disponibilă."
 #: gui/gamesetup/gamesetup.js:1506
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Necunoscut"
 
 #: gui/gamesetup/gamesetup.js:1511
 #, javascript-format
@@ -178,37 +179,37 @@ msgstr "Al: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1621
 msgid "Unassigned"
-msgstr ""
+msgstr "Neatribuit"
 
 #: gui/gamesetup/gamesetup.js:1781
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
-msgstr ""
+msgstr "Jucător necunoscut"
 
 #: gui/gamesetup/gamesetup.js:1858
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Nu sunt pregătit!"
 
 #: gui/gamesetup/gamesetup.js:1859
 msgid "I'm ready"
-msgstr ""
+msgstr "Sunt pregătit"
 
 #: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Declarați ca nu sunteți pregătit să jucați."
 
 #: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Declarați ca sunteți pregătit să jucați!"
 
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "Jocul lui %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
@@ -221,7 +222,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
-msgstr ""
+msgstr "Înregistrare cu serverul..."
 
 #: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
@@ -229,48 +230,48 @@ msgstr "Jocul a început deja, se reconecteaza..."
 
 #: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
-msgstr ""
+msgstr "Numele jocului este deja folosit."
 
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Nu se poate găzduii jocul: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
-msgstr ""
+msgstr "Eroare"
 
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Nu se poate alătura jocului: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Jocul lui %(playername)s"
 
 #: gui/loading/loading.js:49
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Se încarcă “%(map)s”"
 
 #: gui/loading/loading.js:53
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Se generează “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
-msgstr ""
+msgstr "Configurație IA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):21
 msgid "AI Player:"
-msgstr ""
+msgstr "Jucător IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):30
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Dificultate IA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup_mp.xml:(caption):120
@@ -288,11 +289,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading"
-msgstr ""
+msgstr "Se încarcă"
 
 #: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Se încarcă datele hărții. Vă rugăm să așteptați..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
@@ -300,11 +301,11 @@ msgstr "Numele jucătorului"
 
 #: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
-msgstr ""
+msgstr "Culoare"
 
 #: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
-msgstr ""
+msgstr "Plasament jucator"
 
 #: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
@@ -320,15 +321,15 @@ msgstr "Tipul hărții:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):142
 msgid "Map Filter:"
-msgstr ""
+msgstr "Filtru hartă:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):145
 msgid "Select Map:"
-msgstr ""
+msgstr "Selectează hartă:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):148
 msgid "Number of Players:"
-msgstr ""
+msgstr "Numărul de jucători:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Size:"
@@ -340,11 +341,11 @@ msgstr "Trimite"
 
 #: gui/gamesetup/gamesetup.xml:(caption):248
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Coduri activate."
 
 #: gui/gamesetup/gamesetup.xml:(caption):261
 msgid "Start game!"
-msgstr ""
+msgstr "Îcepe jocul!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):279
 msgid "Back"
@@ -353,11 +354,11 @@ msgstr "Înapoi"
 #: gui/gamesetup/gamesetup.xml:(caption):293
 #: gui/gamesetup/gamesetup.xml:(caption):305
 msgid "More Options"
-msgstr ""
+msgstr "Mai multe opţiuni"
 
 #: gui/gamesetup/gamesetup.xml:(caption):310
 msgid "Game Speed:"
-msgstr ""
+msgstr "Viteza jocului:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Wonder Victory:"
@@ -365,11 +366,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Population Cap:"
-msgstr ""
+msgstr "Limită populație:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):350
 msgid "Starting Resources:"
-msgstr ""
+msgstr "Resurse de început:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):360
 msgid "Ceasefire:"
@@ -379,157 +380,157 @@ msgstr ""
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Hartă dezvăluită:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Explored Map:"
-msgstr ""
+msgstr "Hartă explorată:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Dezactivați comorile:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):400
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Echipe încuiate:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):410
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "Ultimul om în picioare:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):420
 msgid "Cheats:"
-msgstr ""
+msgstr "Coduri:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):430
 msgid "Rated Game:"
-msgstr ""
+msgstr "Joc evaluat:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):68
 msgid "View civilization info"
-msgstr ""
+msgstr "Vizionați informații despre civilizație"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Resetați oricare dintre civilizațiile care au fost selectate la modul implicit (aleator)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Resetați toate echipele la modul implicit."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
-msgstr ""
+msgstr "Alegeți o culoare."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
-msgstr ""
+msgstr "Selectați jucător."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Configurați setări IA."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Selectați civilizația jucătorului."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
-msgstr ""
+msgstr "Selectați echipa jucătorului."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):168
 msgid "Select a map type."
-msgstr ""
+msgstr "Selectați tipul hărții."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):176
 msgid "Select a map filter."
-msgstr ""
+msgstr "Selectați un filtru pentru hartă."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):185
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Selectați o hartă pe care să jucați."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):195
 msgid "Select number of players."
-msgstr ""
+msgstr "Selectați numărul de jucători."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):199
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Selectați mărimea hărții. (Mărimile mari pot reduce performanța.)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):262
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Începe un joc nou cu setările curente."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):294
 msgid "See more game options"
-msgstr ""
+msgstr "Vizualizați mai multe opțiuni de joc"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):314
 msgid "Select game speed."
-msgstr ""
+msgstr "Selectați viteza jocului."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):324
 msgid "Select victory condition."
-msgstr ""
+msgstr "Selectați condiția victoriei."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Numărul de minute in care un jucător trebuie să dețină minunea pentru a câștiga."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Select population cap."
-msgstr ""
+msgstr "Selectați limita de populație."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):354
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Selectați resurse de început a jocului."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):364
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Stabiliți timpul când nu se poate ataca."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Comutați dezvăluirea hărții (vedeți tot)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Comutați explorarea hărții (vedeți harta inițială)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Dezactivează toate comorile de pe hartă:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):404
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Comuta încuiarea echipelor."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):414
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Comuta daca ultimul jucător rămas sau ultimul set de aliați rămași câștigă."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):424
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Comutați foloirea de coduri."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):434
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Comutați dacă acest joc va fi evaluat în clasament."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):448
 msgid "Close more game options window"
-msgstr ""
+msgstr "Închideți fereastra cu mai multe opțiuni de joc"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
@@ -537,21 +538,21 @@ msgstr "Mai mulţi jucători"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Alăturați-vă unui joc existent."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
 #: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
-msgstr ""
+msgstr "Nume jucător:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Numele gazdă sau Ip-ul serverului:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):50
 #: gui/gamesetup/gamesetup_mp.xml:(caption):97
 msgid "Server Port:"
-msgstr ""
+msgstr "Port Server:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
@@ -559,16 +560,16 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
-msgstr ""
+msgstr "Nume server:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
-msgstr ""
+msgstr "Continuați"
 
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Lăsați liber pentru a folosi portul standard."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

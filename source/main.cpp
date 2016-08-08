@@ -423,15 +423,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
-	// We need to initialize libxml2 and SpiderMonkey in the main thread before
-	// any thread uses them. So initialize them here before we might run Atlas.
-	CXeromyces::Startup();
-	ScriptEngine scriptEngine;
-
-	// Atlas handles the whole init/shutdown/etc sequence by itself;
-	if (ATLAS_RunIfOnCmdLine(args, false))
-		return;
-
 	const bool isReplay = args.Has("replay");
 	const bool isVisualReplay = args.Has("replay-visual");
 	const std::string replayFile = isReplay ? args.Get("replay") : (isVisualReplay ? args.Get("replay-visual") : "");
@@ -451,6 +442,17 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		}
 	}
 
+	// We need to initialize SpiderMonkey and libxml2 in the main thread before
+	// any thread uses them. So initialize them here before we might run Atlas.
+	ScriptEngine scriptEngine;
+	CXeromyces::Startup();
+
+	if (ATLAS_RunIfOnCmdLine(args, false))
+	{
+		CXeromyces::Terminate();
+		return;
+	}
+
 	// run non-visual simulation replay if requested
 	if (isReplay)
 	{
@@ -460,6 +462,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			CXeromyces::Terminate();
 			return;
 		}
+
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
@@ -528,12 +531,8 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	} while (restart);
 
 	if (restart_in_atlas)
-	{
 		ATLAS_RunIfOnCmdLine(args, true);
-		return;
-	}
 
-	// Shut down libxml2 (done here to match the Startup call)
 	CXeromyces::Terminate();
 }
 

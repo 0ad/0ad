@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-25 15:58+0000\n"
-"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
+"POT-Creation-Date: 2016-08-05 09:00+0200\n"
+"PO-Revision-Date: 2016-08-05 09:25+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,12 +72,12 @@ msgid "Confirmation"
 msgstr "Conferma"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:692 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "No"
 
 #: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:181
-#: gui/session/session.js:694 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:692 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Sì"
 
@@ -477,7 +477,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:826
+#: gui/session/selection_details.js:388 gui/session/session.js:824
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -542,9 +542,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:226 gui/session/unit_actions.js:510
-#: gui/session/unit_actions.js:519 gui/session/unit_actions.js:533
-#: gui/session/unit_actions.js:843
+#: gui/session/selection_details.js:226 gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:532 gui/session/unit_actions.js:546
+#: gui/session/unit_actions.js:864
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Guadagno: %(gain)s"
@@ -788,209 +788,209 @@ msgstr "Selezionare una merce come base degli scambi, poi utilizzare le frecce d
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Utilizzando %(hotkey)s si metterà la risorsa selezionata al 100%%."
 
-#: gui/session/session.js:466
+#: gui/session/session.js:456
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Diagramma Strutture"
 
-#: gui/session/session.js:680
+#: gui/session/session.js:678
 msgid "You have won!"
 msgstr "Hai vinto !"
 
-#: gui/session/session.js:681
+#: gui/session/session.js:679
 msgid "You have been defeated!"
 msgstr "Sei stato sconfitto !"
 
-#: gui/session/session.js:683
+#: gui/session/session.js:681
 msgid "Do you want to quit?"
 msgstr "Vuoi uscire?"
 
-#: gui/session/session.js:686
+#: gui/session/session.js:684
 msgid "Leaving will disconnect all other players."
 msgstr "Sei sicuro di voler uscire? Abbandonando provocherai la disconnessione di tutti gli altri giocatori."
 
-#: gui/session/session.js:692
+#: gui/session/session.js:690
 msgid "VICTORIOUS!"
 msgstr "VINCITORE!"
 
-#: gui/session/session.js:693
+#: gui/session/session.js:691
 msgid "DEFEATED!"
 msgstr "SCONFITTO!"
 
-#: gui/session/session.js:745
+#: gui/session/session.js:743
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "La riproduzione è terminata. Sei sicuro di voler uscire?"
 
-#: gui/session/session.js:746
+#: gui/session/session.js:744
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Conferma"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "No"
 msgstr "No"
 
-#: gui/session/session.js:747
+#: gui/session/session.js:745
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Sì"
 
-#: gui/session/session.js:827
+#: gui/session/session.js:825
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salute:"
 
-#: gui/session/session.js:941
+#: gui/session/session.js:939
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:944
+#: gui/session/session.js:942
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:962
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:963
+#: gui/session/session.js:961
 msgid "Population (current / limit)"
 msgstr "Popolazione (attuale / limite)"
 
-#: gui/session/session.js:964
+#: gui/session/session.js:962
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Popolazione massima: %(popCap)s"
 
-#: gui/session/session.js:1116
+#: gui/session/session.js:1114
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1126
+#: gui/session/session.js:1124
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: la modalità distorsione temporale è un'opzione sviluppatore, e non destinata ad essere utilizzata per lunghi periodi di tempo. Usandola in modo errato può causare il crash del gioco."
 
-#: gui/session/session.js:1127
+#: gui/session/session.js:1125
 msgid "Time warp mode"
 msgstr "Distorsione Temporale"
 
-#: gui/session/unit_actions.js:508
+#: gui/session/unit_actions.js:521
 msgid "Origin trade market."
 msgstr "Mercato d'origine."
 
-#: gui/session/unit_actions.js:514
+#: gui/session/unit_actions.js:527
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Clic destro su un altro mercato per impostarlo come un mercato commerciale di destinazione."
 
-#: gui/session/unit_actions.js:518
+#: gui/session/unit_actions.js:531
 msgid "Destination trade market."
 msgstr "Mercato di destinazione."
 
-#: gui/session/unit_actions.js:525
+#: gui/session/unit_actions.js:538
 msgid "Right-click to set as origin trade market"
 msgstr "Clic destro per impostare come mercato d'origine"
 
-#: gui/session/unit_actions.js:532
+#: gui/session/unit_actions.js:545
 msgid "Right-click to set as destination trade market."
 msgstr "Clic destro per impostare come mercato di destinazione."
 
-#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:793
+#: gui/session/unit_actions.js:599 gui/session/unit_actions.js:814
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Acquartierati: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:840
+#: gui/session/unit_actions.js:861
 msgid "Right-click to establish a default route for new traders."
 msgstr "Clic destro per stabilire una rotta iniziale per i nuovi commercianti."
 
-#: gui/session/unit_actions.js:844
+#: gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Guadagno atteso: %(gain)s"
 
-#: gui/session/unit_actions.js:976 gui/session/unit_actions.js:1255
-msgid "Unload All"
-msgstr "Sbarca tutti"
+#: gui/session/unit_actions.js:998 gui/session/unit_actions.js:1280
+msgid "Unload All."
+msgstr ""
 
-#: gui/session/unit_actions.js:998
+#: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
 msgstr "Distruggi le unità o edifici selezionati."
 
-#: gui/session/unit_actions.js:1000
+#: gui/session/unit_actions.js:1022
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Usa %(hotkey)s per saltare la richiesta di conferma."
 
-#: gui/session/unit_actions.js:1032
+#: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
 msgstr "Annulla l'ordine corrente."
 
-#: gui/session/unit_actions.js:1052
+#: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
 msgstr "Ordina alle unità selezionate di presidiare un edificio od unità."
 
-#: gui/session/unit_actions.js:1074
+#: gui/session/unit_actions.js:1096
 msgid "Unload"
 msgstr "Sbarca"
 
-#: gui/session/unit_actions.js:1091
-msgid "Repair"
-msgstr "Ripara"
-
-#: gui/session/unit_actions.js:1109
-msgid "Focus on Rally Point"
-msgstr "Focus sui punti di raccolta"
+#: gui/session/unit_actions.js:1114
+msgid "Order the selected units to repair a building or mechanical unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1133
+msgid "Focus on Rally Point."
+msgstr ""
+
+#: gui/session/unit_actions.js:1157
 msgid "Back to Work"
 msgstr "Torna al Lavoro"
 
-#: gui/session/unit_actions.js:1152
+#: gui/session/unit_actions.js:1176
 msgid "Order the selected units to guard a building or unit."
 msgstr "Ordina alle unità selezionate di difendere un edificio o unità."
 
-#: gui/session/unit_actions.js:1170
+#: gui/session/unit_actions.js:1194
 msgid "Remove guard"
 msgstr "Rimuovi Guardia"
 
-#: gui/session/unit_actions.js:1187
+#: gui/session/unit_actions.js:1211
 msgid "Select trading goods"
 msgstr "Seleziona beni commerciali"
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1233
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Premi per evitare che gli alleati utilizzino questo dropsite"
 
-#: gui/session/unit_actions.js:1214
+#: gui/session/unit_actions.js:1238
 msgid "Press to allow allies to use this dropsite"
 msgstr "Premi per consentire agli alleati di usare questo punto di scarico."
 
-#: gui/session/unit_actions.js:1276
+#: gui/session/unit_actions.js:1301
 msgid "You are allowed to use this dropsite"
 msgstr "Hai il permesso di usare questo punto di scarico"
 
-#: gui/session/unit_actions.js:1281
+#: gui/session/unit_actions.js:1306
 msgid "The use of this dropsite is prohibited"
 msgstr "L'uso di questo punto di scarico è vietato"
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1366
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "L'unità è stata uccisa prima di poter essere acquartierata."
 
-#: gui/session/unit_actions.js:1344
+#: gui/session/unit_actions.js:1369
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Non puoi distruggere questa entità poichè hai meno della metà dei punti di cattura"
 
-#: gui/session/unit_actions.js:1347
+#: gui/session/unit_actions.js:1372
 msgid "This entity is undeletable"
 msgstr "Questa unità è incancellabile."
 
