@@ -7,14 +7,14 @@
 # Kamparano <kamparano.viro@gmail.com>, 2015
 # Michael Moroni <michael.moroni@openmailbox.org>, 2015
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
-# Pritchenko, 2015
+# Pritchenko, 2015-2016
 # Tempo D. Valse <tempodivalse.wiki@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-07-22 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-07 00:31+0000\n"
+"Last-Translator: Pritchenko\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +72,7 @@ msgstr "Malfermas de paĝon"
 #: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "BPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -90,7 +90,7 @@ msgstr ""
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Hazarda"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
@@ -185,16 +185,16 @@ msgstr "Nekonata Civilizacio"
 #: gui/common/functions_utility.js:378
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "Venkita"
 
 #: gui/common/functions_utility.js:379
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "Venkis"
 
 #: gui/common/functions_utility.js:401
 msgid "No Team"
-msgstr ""
+msgstr "Sen teamo"
 
 #: gui/common/functions_utility.js:402
 #, javascript-format
@@ -213,8 +213,8 @@ msgstr ""
 #: gui/common/functions_utility.js:413
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Observanto"
+msgstr[1] "Observantoj"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -466,7 +466,7 @@ msgstr ""
 #: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Nekonata kialo"
 
 #: gui/common/network.js:63
 msgid ""
@@ -488,11 +488,11 @@ msgstr "Ludo estas ŝarĝanta, bonvolu provi poste"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Ludo jam komencis, neniom observantoj estas permesitaj"
 
 #: gui/common/network.js:68
 msgid "You have been kicked"
-msgstr ""
+msgstr "Vi estis forpelita"
 
 #: gui/common/network.js:69
 msgid "You have been banned"
@@ -537,12 +537,12 @@ msgstr ""
 #: gui/common/network.js:105
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "%(name)s ne estas forpelebla."
 
 #: gui/common/network.js:139
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Uzantoj: %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -579,8 +579,8 @@ msgstr "Tre Malfacila"
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuto"
+msgstr[1] "%(min)s minutoj"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -625,17 +625,17 @@ msgstr "Senlima"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -645,12 +645,12 @@ msgstr "defaŭlta"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Nekonata"
 
 #: gui/common/tooltips.js:9
 msgid "Charge Attack:"
@@ -688,7 +688,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/common/tooltips.js:60
 msgid "Health:"
-msgstr ""
+msgstr "Sano"
 
 #: gui/common/tooltips.js:69
 #, javascript-format
@@ -709,8 +709,8 @@ msgstr[1] "sekundoj"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:82
 msgid "arrow"
@@ -840,12 +840,12 @@ msgstr ""
 
 #: gui/common/tooltips.js:239 gui/common/tooltips.js:511
 msgid "Heal:"
-msgstr ""
+msgstr "Sanigu"
 
 #: gui/common/tooltips.js:241 gui/common/tooltips.js:290
 #: gui/common/tooltips.js:304
 msgid "health"
-msgstr ""
+msgstr "Sano"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:270
 #: gui/common/tooltips.js:275
@@ -860,12 +860,12 @@ msgstr ""
 #: gui/common/tooltips.js:271
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "defaŭlta"
 
 #: gui/common/tooltips.js:276
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Po unito"
 
 #: gui/common/tooltips.js:287
 #, javascript-format
@@ -1713,7 +1713,7 @@ msgstr "Konservi"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Reeku uzantajn agordojn al la luddefaŭlta maniero"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
@@ -1735,7 +1735,7 @@ msgstr "Helpu plibonigi 0 A.D.!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Vi povas aŭtomate sendi al ni sennomajn retrokuplojn, kiuj helpos nin ripari cimojn kaj plibonigi rapidecon kaj kongruecon kun via sistemo."
+msgstr "Vi povas aŭtomate sendi al ni sennomajn retrokuplojn, kiuj helpos nin ripari cimojn kaj plibonigi rendimenton kaj kongruecon kun via sistemo."
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1976,12 +1976,12 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):153
 #: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo de mapo:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
 #: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
-msgstr ""
+msgstr "Grandeco de la mapo:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
 #: gui/savedgames/load.xml:(caption):65
@@ -2091,7 +2091,7 @@ msgstr "Konstruaĵoj"
 
 #: gui/summary/summary.xml:(caption):76
 msgid "Units"
-msgstr ""
+msgstr "Unitoj"
 
 #: gui/summary/summary.xml:(caption):83
 msgid "Resources"
@@ -2646,7 +2646,7 @@ msgstr ""
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "[imgleft=\"iconLag\"]La ludo povas havi rendimentajn problemojn, precipa kun grandajn mapojn kaj granda kvanto da unitoj"
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
