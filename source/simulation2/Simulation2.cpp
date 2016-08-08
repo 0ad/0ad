@@ -46,15 +46,6 @@
 
 #include <iomanip>
 
-static std::string Hexify(const std::string& s) // TODO: shouldn't duplicate this function in so many places
-{
-	std::stringstream str;
-	str << std::hex;
-	for (size_t i = 0; i < s.size(); ++i)
-		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)s[i];
-	return str.str();
-}
-
 class CSimulation2Impl
 {
 public:
