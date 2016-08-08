@@ -3,6 +3,12 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Gate A">
+      <animations>
+        <animation file="mechanical/ptol_gate_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/ptol_gate_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/ptol_gate_open.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/ptol_gate_closing.dae" name="gate_closing" speed="65"/>
+      </animations>
       <mesh>structural/ptol_wall_gate.dae</mesh>
       <props>
         <prop actor="props/structures/ptolemies/gate_door.xml" attachpoint="root"/>
