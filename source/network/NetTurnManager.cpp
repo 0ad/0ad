@@ -31,12 +31,11 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
 #include "ps/SavedGame.h"
+#include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
-#include <sstream>
 #include <fstream>
-#include <iomanip>
 
 const u32 DEFAULT_TURN_LENGTH_MP = 500;
 const u32 DEFAULT_TURN_LENGTH_SP = 200;
@@ -48,15 +47,6 @@ static const int COMMAND_DELAY = 2;
 #else
 #define NETTURN_LOG(args)
 #endif
-
-static std::string Hexify(const std::string& s)
-{
-	std::stringstream str;
-	str << std::hex;
-	for (size_t i = 0; i < s.size(); ++i)
-		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)s[i];
-	return str.str();
-}
 
 CNetTurnManager::CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay) :
 	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength), m_DeltaSimTime(0),

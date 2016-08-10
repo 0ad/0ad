@@ -422,3 +422,12 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 
 	free(tile_data);
 }
+
+std::string Hexify(const std::string& s)
+{
+	std::stringstream str;
+	str << std::hex;
+	for (const char& c : s)
+		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)c;
+	return str.str();
+}

@@ -39,18 +39,7 @@
 #include "simulation2/helpers/SimulationCommand.h"
 
 #include <ctime>
-#include <sstream>
 #include <fstream>
-#include <iomanip>
-
-static std::string Hexify(const std::string& s)
-{
-	std::stringstream str;
-	str << std::hex;
-	for (size_t i = 0; i < s.size(); ++i)
-		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)s[i];
-	return str.str();
-}
 
 CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface), m_Stream(NULL)

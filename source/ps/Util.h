@@ -22,15 +22,17 @@
 
 struct Tex;
 
-extern void WriteSystemInfo();
+void WriteSystemInfo();
 
-extern const wchar_t* ErrorString(int err);
+const wchar_t* ErrorString(int err);
 
-extern OsPath createDateIndexSubdirectory(const OsPath& parentDir);
+OsPath createDateIndexSubdirectory(const OsPath& parentDir);
 
-extern void WriteScreenshot(const VfsPath& extension);
-extern void WriteBigScreenshot(const VfsPath& extension, int tiles);
+void WriteScreenshot(const VfsPath& extension);
+void WriteBigScreenshot(const VfsPath& extension, int tiles);
 
-extern Status tex_write(Tex* t, const VfsPath& filename);
+Status tex_write(Tex* t, const VfsPath& filename);
+
+std::string Hexify(const std::string& s);
 
 #endif // PS_UTIL_H
