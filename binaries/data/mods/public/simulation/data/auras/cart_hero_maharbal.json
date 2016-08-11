@@ -1,10 +1,11 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Cavalry"],
+	"affects": ["Melee+Cavalry"],
 	"modifications": [
-		{ "value": "Attack/Charge/Hack", "add": 5 }
+		{ "value": "Attack/Melee/Hack", "add": 5 }
 	],
 	"auraName": "Commander Aura",
-	"auraDescription": "+5 Cavalry charge attack within vision range of him (currently useless)."
+	"auraDescription": "+5 Cavalry melee attack within vision range of him.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }
