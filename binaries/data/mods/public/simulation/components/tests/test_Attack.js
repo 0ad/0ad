@@ -34,7 +34,7 @@ function attackComponentTest(defenderClass, test_function)
 	});
 
 	AddMock(attacker, IID_Ownership, {
-		"GetOwner": owner => 1
+		"GetOwner": () => 1
 	});
 
 	let cmpAttack = ConstructComponent(attacker, "Attack", {
