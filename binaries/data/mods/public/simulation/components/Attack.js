@@ -88,13 +88,6 @@ Attack.prototype.Schema =
 				"<Crush>0.0</Crush>" +
 			"</Splash>" +
 		"</Ranged>" +
-		"<Charge>" +
-			"<Hack>10.0</Hack>" +
-			"<Pierce>0.0</Pierce>" +
-			"<Crush>50.0</Crush>" +
-			"<MaxRange>24.0</MaxRange>" +
-			"<MinRange>20.0</MinRange>" +
-		"</Charge>" +
 		"<Slaughter>" +
 			"<Hack>1000.0</Hack>" +
 			"<Pierce>0.0</Pierce>" +
@@ -166,20 +159,6 @@ Attack.prototype.Schema =
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
 					"<data type='positiveInteger'/>" +
 				"</element>" +
-				Attack.prototype.bonusesSchema +
-				Attack.prototype.preferredClassesSchema +
-				Attack.prototype.restrictedClassesSchema +
-			"</interleave>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='Charge'>" +
-			"<interleave>" +
-				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
-				"<element name='MinRange'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
@@ -375,7 +354,7 @@ Attack.prototype.GetTimers = function(type)
 	let repeat = +(this.template[type].RepeatTime || 1000);
 	repeat = ApplyValueModificationsToEntity("Attack/" + type + "/RepeatTime", repeat, this.entity);
 
-	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
+	return { "prepare": prepare, "repeat": repeat };
 };
 
 Attack.prototype.GetAttackStrengths = function(type)
@@ -596,7 +575,6 @@ Attack.prototype.PerformAttack = function(type, target)
 			"type":type
 		});
 	}
-	// TODO: charge attacks (need to design how they work)
 };
 
 Attack.prototype.InterpolatedLocation = function(ent, lateness)

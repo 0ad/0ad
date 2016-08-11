@@ -112,14 +112,12 @@ attackComponentTest(undefined, (attacker, cmpAttack, defender) => {
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetTimers("Ranged"), {
 		"prepare": 300,
-		"repeat": 500,
-		"recharge": 200
+		"repeat": 500
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetTimers("Capture"), {
 		"prepare": 0,
-		"repeat": 1000,
-		"recharge": 1000
+		"repeat": 1000
 	});
 });
 
