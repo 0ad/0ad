@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>, 2016
 # Alexandru Diaconu <alex.dcnu@gmail.com>, 2016
 # Alex Hex <alexhex14@gmail.com>, 2016
 # Baadur Jobava <jobaval10n@gmail.com>, 2015
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-08-08 03:43+0000\n"
-"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
+"PO-Revision-Date: 2016-08-09 15:21+0000\n"
+"Last-Translator: Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +68,7 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr "Stoa Roiala Elenistică"
+msgstr "Stoa Roială Elenistică"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
@@ -97,7 +98,7 @@ msgstr "Casă"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Antrenează vindecători. Pune unități în garnizoană pentru a le vindeca într-un ritm accelerat (3 viață pe secundă). Cercetează îmbunătățiri pentru vindecare și religie."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -131,7 +132,7 @@ msgstr "Turn de apărare"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Trage săgeți. Pune unități în garnizoană pentru sporirea defensivei. Necesită tehnologia de găuri de crimă pentru a-și proteja baza."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -143,7 +144,7 @@ msgstr "Turn de apărare"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Construiește în teritoriu neutru și controlat pentru a recunoaște zone de pe hartă. Se convertește încet la Gala în timp ce se află în teritoriu neutru."
+msgstr "Construiește în teritoriul neutru și controlat pentru a descoperi zone de pe hartă. Se convertește încet la Gala în timp ce se află pe teritoriu neutru."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -170,16 +171,16 @@ msgstr "Permiteți unităților acces prin zidul orașului. Poate fi blocat pent
 
 #: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
-msgstr "Segmentele lungi de zid pot fi convertite în porți"
+msgstr "Segmentele lungi de zid pot fi convertite în porți."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "Aceasta îți ca permite să lași unități să circule prin fortificațiile tale."
+msgstr "Aceasta îți va permite să lași unitățile să circule prin fortificațiile tale."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
-msgstr "Zid turelă"
+msgstr "Turelă de zid"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
@@ -196,7 +197,7 @@ msgstr "Turn de lemn"
 
 #: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
-msgstr "Structură legată de economie"
+msgstr "Structură economică"
 
 #: simulation/templates/template_structure_economic.xml:12
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -216,7 +217,7 @@ msgstr "Fermă"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Crează negustori pentru negoțul cu alte piețe. Schimbă resurse. Cercetează îmbunătățiri pentru negoț si troc."
+msgstr "Crează negustori pentru negoțul cu alte piețe. Fă schimb de resurse. Cercetează îmbunătățiri pentru negoț și troc."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -250,11 +251,11 @@ msgstr "Structură militară"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr "Militari"
+msgstr "Militar"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Antrenează soldați-civili. Cercetează îmbunatățiri pentru antrenamente."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -263,7 +264,7 @@ msgstr "Barăci"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "Cercetează îmbunatăți pentru arme si armuri."
+msgstr "Cercetează îmbunătățiri pentru arme și armuri."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -274,7 +275,7 @@ msgstr "Fierar"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Construiește pe un țărm pentru a construi nave și pentru a a deschide negoțul pe mare. Cercetează îmbunătățiri navale."
+msgstr "Construiește pe un țărm pentru a construi nave și pentru a începe comerțul pe mare. Cercetează îmbunătățiri navale."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -292,7 +293,7 @@ msgstr "Ambasadă"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Antrenează eroi, campioni și arme de asediu. Cercetează îmbunătățiri pentru armele de asediu."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -306,7 +307,7 @@ msgstr "Fortăreaţă"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr "Structură resurse"
+msgstr "Structură de resurse"
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
@@ -372,7 +373,7 @@ msgstr "Théātron"
 #: simulation/templates/template_structure_special_theatron.xml:26
 msgid ""
 "Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
-msgstr ""
+msgstr "Hellēnízein (Elenizare): +20% influență teritorială per Teatron deținut."
 
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
@@ -440,7 +441,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Construiește mașini de asediu. Încartiruiți soldați aici pentru o defensiva solidă."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -549,7 +550,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Aduce glorie civilizației tale si adaugă suprafețe mari de teren imperiului tău. Încartiruiți unitați pentru a le vindeca într-un ritm accelerat."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -791,7 +792,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Antrenează preotese să vindece trupele. Antrenează lăncieri din banda sacră. Încartiruiți unitați pentru a le vindeca într-un ritm accelerat."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -897,7 +898,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr ""
+msgstr "Toate unitățile din câmpul vizual al acest monument vor lupta mai bine. Clădirile din preajma monumentului nu se deteriorează."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -938,7 +939,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Antrenează campioni și eroi. Încartiruiți soldați aici pentru o defensiva solidă."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1098,7 +1099,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Tribut satrapic\": Primiți o cantitate mica de mâncare, lemn, piatră și metal. Antrenează heroi persani și gărzile lor personale \"Nemuritorii\"."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1155,13 +1156,13 @@ msgstr "Palat persan"
 
 #: simulation/templates/structures/pers_hall.xml:26
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Clădire specială.\nInstruiește elefanți de război și mercenari cardaci."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1191,7 +1192,7 @@ msgstr "Didebani"
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
-msgstr ""
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1308,18 +1309,18 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr ""
+msgstr "Structură ieftina asemănătoare cu barăcile care poate fi construită in teritoriu neutru, dar nu castează influență.\n- Antrenează mercenari.\n- Distanța minima față de alte așezări militare: 100 metrii."
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Aceasta este clădirea de expansiune ptolomeică, similară cu centrul civic pentru alte facțiuni. Este mai slabă si are o influență territorială mai mică, dar este mai ieftină și se construiește mai rapid.\n- Antrenează soldați-coloniști de diferite naționalitați.\n- Distanța minimă față de alte colonii militare: 120 metrii."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1368,7 +1369,7 @@ msgstr "Castru fortificat"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Construiește oriunde pe hartă și antrenează campioni. Vindeca unitați încartiruite încet."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1546,7 +1547,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Construiește mașini de asediu și campioni. Încartiruiți soldați aici pentru o defensiva solidă."
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1561,7 +1562,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Aceasta este clădirea de expansiune selucida, similară cu centrul civic pentru alte facțiuni. Este mai slabă si are o influență territorială mai mică, dar este mai ieftină și se construiește mai rapid.\n- Antrenează soldați-coloniști de diferite naționalitați.\n- Distanța minimă față de alte colonii militare: 120 metrii."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1573,7 +1574,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "Templul lui Pythian Apollo"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1612,4 +1613,4 @@ msgstr "Instruiește eroi spartani și campioni hopliți spartiați."
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Aduce glorie civilizației tale si adaugă suprafețe mari de teren imperiului tău. Încartiruiți unitați pentru a le vindeca într-un ritm accelerat."

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Alexandru Diaconu <alex.dcnu@gmail.com>, 2016
+# Alex Hex <alexhex14@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-11 03:49+0000\n"
+"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,13 +156,13 @@ msgstr "Avertisment: acest tutorial este avansat și se derulează rapid. Dacă 
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Să începem, mai întâi antrenează un lot (shift click) de 5 cetățence de la CC (Centrul Civic)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Acum, alocați cetățencele sa culeagă bace, cavaleristul sa vâneze găinile si cetățenii soldați sa adune lemn."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
@@ -361,7 +362,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "Punctele cheie care trbuie reținute sunt:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -550,12 +551,12 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "Inamicul a fost înfrânt. Toate cerințele sunt acum îndeplinite..."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "%(name)s nu poate fi construit(ă) datorită unei erori necunoscute."
 
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
@@ -577,35 +578,35 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "Deținut"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "deținut neconectat"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "aliat"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "aliat neconectat"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutru"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -653,7 +654,7 @@ msgstr[2] ""
 #: simulation/components/BuildRestrictions.js:339
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "Deținut"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -667,7 +668,7 @@ msgstr "aliat"
 #: simulation/components/BuildRestrictions.js:343
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "neutru"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -679,15 +680,15 @@ msgstr "inamic"
 #: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Puteți ataca în %(time)s"
 
 #: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
-msgstr ""
+msgstr "Puteți ataca acum!"
 
 #: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "Ultimul jucător rămas câstigă."
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -723,21 +724,21 @@ msgstr "piatră"
 #: simulation/components/Player.js:271
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Resurse insuficiente - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:273
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Resurse insuficiente - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:275
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Resurse insuficiente - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:277
 #, javascript-format
@@ -745,7 +746,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Resurse insuficiente - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:391
 msgid "The production queue is full."
@@ -757,7 +758,7 @@ msgstr ""
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Trebuie să selectați o clădire care antrenează unități."
 
 #: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
@@ -792,75 +793,75 @@ msgstr ""
 
 #: simulation/helpers/Commands.js:1041
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Cerințele tehnologice ale clădirii nu sunt îndeplinite."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Jucător 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Jucător 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Jucător 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Jucător 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Jucător 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Jucător 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Jucător 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Jucător 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Țestoasă (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Încet (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Lejer (0.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Relaxat (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
-msgstr ""
+msgstr "Normal (1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Rapid (1.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Foarte rapid (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Nebun (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
@@ -876,15 +877,15 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Învinge toți oponenții"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Cucerire"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all structures of enemies"
-msgstr ""
+msgstr "Distruge toate structurile inamicilor"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -892,7 +893,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units"
-msgstr ""
+msgstr "Ucideți toate unitațile inamice"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -904,25 +905,25 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "Regicid"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"
-msgstr ""
+msgstr "Construiește si protejează o minune pentru a câștiga"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Minune"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Foarte puține"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Puține"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -932,12 +933,12 @@ msgstr "Mediu"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Multe"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Foarte Multe"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
@@ -947,15 +948,15 @@ msgstr ""
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 #: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "Măruntă"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Mică"
 
 #: simulation/data/settings/map_sizes.jsonData[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "Mică (2 jucători)"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -963,7 +964,7 @@ msgstr "Medii"
 
 #: simulation/data/settings/map_sizes.jsonData[2].LongName
 msgid "Medium (3 players)"
-msgstr ""
+msgstr "Media (3 jucători)"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -975,24 +976,24 @@ msgstr "Normal (4 jucători)"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Mare"
 
 #: simulation/data/settings/map_sizes.jsonData[4].LongName
 msgid "Large (6 players)"
-msgstr ""
+msgstr "Mare (6 jucători)"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Foarte mare"
 
 #: simulation/data/settings/map_sizes.jsonData[5].LongName
 msgid "Very Large (8 players)"
-msgstr ""
+msgstr "Foarte mare (8 jucători)"
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 #: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
-msgstr ""
+msgstr "Gigant"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

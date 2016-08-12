@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alex Hex <alexhex14@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-08-07 18:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-11 03:34+0000\n"
+"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
-msgstr ""
+msgstr "Tehnologii speciale"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Building"
@@ -48,12 +49,12 @@ msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
 msgid "Heroes"
-msgstr ""
+msgstr "Eroi"
 
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Istoria %(civilization)s"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -64,19 +65,19 @@ msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
-msgstr ""
+msgstr "Se deschide pagina"
 
 #: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/common/functions_global_object.js:89
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/common/functions_global_object.js:106
 #, javascript-format
@@ -91,7 +92,7 @@ msgstr "Aleator"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
-msgstr ""
+msgstr "O hartă selectată aleator."
 
 #: gui/common/functions_utility.js:138
 msgid "Sorry, no description available."
@@ -99,90 +100,90 @@ msgstr ""
 
 #: gui/common/functions_utility.js:163
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:165
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:311
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:314
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:320
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:323
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:333
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (DECONECTAT)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:336
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (DECONECTAT, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:343
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:346
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:350
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:353
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/functions_utility.js:371
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Civilizație necunoscută"
 
 #: gui/common/functions_utility.js:378
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "învins"
 
 #: gui/common/functions_utility.js:379
 msgctxt "playerstate"
@@ -196,7 +197,7 @@ msgstr ""
 #: gui/common/functions_utility.js:402
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Echipa %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -225,17 +226,17 @@ msgstr ""
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:21
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -263,7 +264,7 @@ msgstr "Metal"
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Minereu"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -319,7 +320,7 @@ msgstr "Fruct"
 #: gui/common/l10n.js:26
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Grâne"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -354,7 +355,7 @@ msgstr "Metal"
 #: gui/common/l10n.js:38
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Minereu"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -410,7 +411,7 @@ msgstr "Fruct"
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Grâne"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -422,12 +423,12 @@ msgstr "Pește"
 #: gui/common/l10n.js:82
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s și %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -464,7 +465,7 @@ msgstr ""
 #: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Motiv necunoscut"
 
 #: gui/common/network.js:63
 msgid ""
@@ -474,7 +475,7 @@ msgstr ""
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Gazda a încheiat jocul"
 
 #: gui/common/network.js:65
 msgid "Incorrect network protocol version"
@@ -507,7 +508,7 @@ msgstr ""
 #: gui/common/network.js:74
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Valoare invalidă %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:86
@@ -525,7 +526,7 @@ msgstr ""
 
 #: gui/common/network.js:94
 msgid "Disconnected"
-msgstr ""
+msgstr "Deconectat"
 
 #: gui/common/network.js:105
 #, javascript-format
@@ -540,7 +541,7 @@ msgstr ""
 #: gui/common/network.js:139
 #, javascript-format
 msgid "Users: %(users)s"
-msgstr ""
+msgstr "Utilizatori: %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -550,12 +551,12 @@ msgstr ""
 #: gui/common/settings.js:112
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Foarte Ușor"
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Ușor"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
@@ -565,12 +566,12 @@ msgstr "Mediu"
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Dificil"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Foarte dificil"
 
 #: gui/common/settings.js:151
 #, javascript-format
@@ -608,7 +609,7 @@ msgstr "Aleator"
 #: gui/common/settings.js:197
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Scenariu"
 
 #: gui/common/settings.js:228
 msgid "None"
@@ -620,7 +621,7 @@ msgstr ""
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
-msgstr ""
+msgstr "Nelimitat"
 
 #: gui/common/settings.js:318
 msgctxt "AI name"
@@ -730,7 +731,7 @@ msgstr ""
 #: gui/common/tooltips.js:96
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:107
 msgid "Armor:"
@@ -884,7 +885,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:292 gui/common/tooltips.js:306
 msgid "worker"
-msgstr ""
+msgstr "muncitor"
 
 #: gui/common/tooltips.js:301
 #, javascript-format
@@ -919,7 +920,7 @@ msgstr ""
 #: gui/common/tooltips.js:432
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Ziduri: %(costs)s"
 
 #: gui/common/tooltips.js:433
 #, javascript-format
@@ -929,7 +930,7 @@ msgstr ""
 #: gui/common/tooltips.js:449
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:450
 msgid "Population Bonus:"
@@ -942,7 +943,7 @@ msgstr "Resurse insuficiente:"
 #: gui/common/tooltips.js:485
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:486
 msgid "Speed:"
@@ -951,7 +952,7 @@ msgstr "Viteză:"
 #: gui/common/tooltips.js:488 gui/common/tooltips.js:493
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:490
 msgid "Walk"
@@ -982,22 +983,22 @@ msgstr[2] ""
 #: gui/common/tooltips.js:535
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:536
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:552
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #: gui/common/tooltips.js:563
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:578
 msgid "Classes:"
@@ -1006,7 +1007,7 @@ msgstr "Clase:"
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1031,7 +1032,7 @@ msgstr ""
 #: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:129
 msgid "Warning"
-msgstr ""
+msgstr "Avertizare"
 
 #: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1123,7 +1124,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalii tehnice"
 
 #: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
@@ -1150,12 +1151,12 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Versiunea dumneavoastră: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Versiunea necesară: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
@@ -1176,27 +1177,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1284,7 +1285,7 @@ msgstr ""
 
 #: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Necesită o versiune mai veche de 0 A.D."
 
 #: gui/savedgames/load.js:105
 #, javascript-format
@@ -1305,7 +1306,7 @@ msgstr ""
 #: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -1352,7 +1353,7 @@ msgstr "Scor total"
 
 #: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:99
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: gui/summary/layout.js:23
 msgid "Houses"
@@ -1368,11 +1369,11 @@ msgstr ""
 
 #: gui/summary/layout.js:26
 msgid "Military"
-msgstr ""
+msgstr "Militar"
 
 #: gui/summary/layout.js:27
 msgid "Fortresses"
-msgstr ""
+msgstr "Fortăreţe"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
@@ -1380,7 +1381,7 @@ msgstr ""
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr ""
+msgstr "Minuni"
 
 #: gui/summary/layout.js:33
 #, javascript-format
@@ -1391,19 +1392,19 @@ msgstr ""
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "Construit"
 
 #: gui/summary/layout.js:36
 msgid "Destroyed"
-msgstr ""
+msgstr "Distrus"
 
 #: gui/summary/layout.js:37
 msgid "Captured"
-msgstr ""
+msgstr "Capturat"
 
 #: gui/summary/layout.js:38 gui/summary/layout.js:73
 msgid "Lost"
-msgstr ""
+msgstr "Pierdut"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
@@ -1423,11 +1424,11 @@ msgstr "Campion"
 
 #: gui/summary/layout.js:65
 msgid "Navy"
-msgstr ""
+msgstr "Flotă"
 
 #: gui/summary/layout.js:66
 msgid "Traders"
-msgstr ""
+msgstr "Negustori"
 
 #: gui/summary/layout.js:70
 #, javascript-format
@@ -1436,11 +1437,11 @@ msgstr ""
 
 #: gui/summary/layout.js:72
 msgid "Trained"
-msgstr ""
+msgstr "Antrenat"
 
 #: gui/summary/layout.js:74
 msgid "Killed"
-msgstr ""
+msgstr "Ucis"
 
 #: gui/summary/layout.js:95
 msgid "Food"
@@ -1467,15 +1468,15 @@ msgstr ""
 
 #: gui/summary/layout.js:103
 msgid "Sent"
-msgstr ""
+msgstr "Trimis"
 
 #: gui/summary/layout.js:104
 msgid "Received"
-msgstr ""
+msgstr "Primit"
 
 #: gui/summary/layout.js:109
 msgid "Treasures collected"
-msgstr ""
+msgstr "Comori culese"
 
 #: gui/summary/layout.js:110
 msgid "Loot"
@@ -1488,11 +1489,11 @@ msgstr ""
 
 #: gui/summary/layout.js:116
 msgid "Gathered"
-msgstr ""
+msgstr "Adunat"
 
 #: gui/summary/layout.js:117
 msgid "Used"
-msgstr ""
+msgstr "Folosit"
 
 #: gui/summary/layout.js:138
 msgid "Food exchanged"
@@ -1562,7 +1563,7 @@ msgstr ""
 
 #: gui/summary/summary.js:196
 msgid "Current Scores"
-msgstr ""
+msgstr "Scoruri curente"
 
 #: gui/summary/summary.js:198
 msgid "Scores at the end of the game."
@@ -1574,11 +1575,11 @@ msgstr ""
 
 #: gui/summary/summary.js:202
 msgid "You have left the game."
-msgstr ""
+msgstr "Ați părăsit jocul."
 
 #: gui/summary/summary.js:204
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Ați câștigat bătălia!"
 
 #: gui/summary/summary.js:206
 msgid "You have been defeated..."
@@ -1586,7 +1587,7 @@ msgstr ""
 
 #: gui/summary/summary.js:207
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Ați abandonat jocul."
 
 #: gui/summary/summary.js:212
 #, javascript-format
@@ -1604,7 +1605,7 @@ msgstr "Civilizaţii"
 
 #: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr ""
+msgstr "Selectarea civilizației"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
@@ -1695,7 +1696,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):22
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: gui/options/options.xml:(caption):35
 msgid "Graphics Settings"
@@ -1951,7 +1952,7 @@ msgstr "Opţiuni de joc şi unelte de proiectare a scenariilor"
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
-msgstr ""
+msgstr "Iese din joc."
 
 #: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
@@ -2038,22 +2039,22 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Numele hărții"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Mărime"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Populație"
 
 #: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Durată"
 
 #: gui/savedgames/load.xml:(caption):38
 msgid "Load"
@@ -2149,11 +2150,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "Artă 2D"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "Artă 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2165,7 +2166,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "Flaut"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
@@ -2197,11 +2198,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
-msgstr ""
+msgstr "Muzică"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 msgid "Sound"
-msgstr ""
+msgstr "Sunet"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
@@ -2213,11 +2214,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "Voci"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "Artă"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -2259,7 +2260,7 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "Programare"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -2267,7 +2268,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Fondatori 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -2295,7 +2296,7 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "Translatori"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2503,7 +2504,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Puține"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
@@ -2511,15 +2512,15 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Multe"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Calitatea graficii. Necesită restartarea jocului"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Graphics quality"
-msgstr ""
+msgstr "Calitatea graficii"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2527,7 +2528,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[3].label
 msgid "Shadows"
-msgstr ""
+msgstr "Umbre"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid "Smooth shadows"
@@ -2759,7 +2760,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr ""
+msgstr "CATAPULTE"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
@@ -2807,7 +2808,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "CENTRE CIVICE"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
@@ -2845,7 +2846,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "PESCUIT"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
@@ -2871,7 +2872,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "FORTĂREAȚĂ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
@@ -2990,7 +2991,7 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "ARHITECTURĂ PERSANĂ"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
@@ -3185,7 +3186,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "TEMPLE"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."

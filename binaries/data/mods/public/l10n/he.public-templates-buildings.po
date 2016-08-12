@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Yam Huss <yam52@walla.co.il>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-07-08 08:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-11 22:00+0000\n"
+"Last-Translator: Yam Huss <yam52@walla.co.il>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +115,7 @@ msgstr "הגנתי "
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
-msgstr "הגנת מגדל"
+msgstr "מגדל הגנתי"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid ""
@@ -168,7 +169,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
-msgstr "חומה צריח"
+msgstr "צריח חומה"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:54
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
@@ -181,7 +182,7 @@ msgstr "חומות העיר"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:46
 #: simulation/templates/template_structure_defense_wooden_tower.xml:45
 msgid "Wooden Tower"
-msgstr ""
+msgstr "מגדל עץ"
 
 #: simulation/templates/template_structure_economic.xml:11
 msgid "Economic Structure"
@@ -252,7 +253,7 @@ msgstr "מגורי החיילים"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "נשק מחקר ושיפורי שריון."
+msgstr "מאפשר לחקור שיפורי נשק ושריון."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -285,7 +286,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
-msgstr ""
+msgstr "עיר"
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 #: simulation/templates/template_structure_military_fortress.xml:30
@@ -299,7 +300,7 @@ msgstr "מבנה משאב"
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "משאב"
 
 #: simulation/templates/template_structure_resource_corral.xml:19
 msgid ""
@@ -675,24 +676,24 @@ msgstr "? "
 
 #: simulation/templates/structures/cart_civil_centre.xml:5
 msgid "Merkāz"
-msgstr ""
+msgstr "מרכז"
 
 #: simulation/templates/structures/cart_corral.xml:12
 msgid "Rēfet"
-msgstr ""
+msgstr "רפת"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
-msgstr ""
+msgstr "מגדל"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr ""
+msgstr "נמל מסחר"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
-msgstr ""
+msgstr "נמל"
 
 #: simulation/templates/structures/cart_dock.xml:20
 msgid ""
@@ -730,11 +731,11 @@ msgstr ""
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
-msgstr ""
+msgstr "אחוזה"
 
 #: simulation/templates/structures/cart_field.xml:5
 msgid "Šadd"
-msgstr ""
+msgstr "שדה"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
@@ -746,11 +747,11 @@ msgstr ""
 
 #: simulation/templates/structures/cart_house.xml:22
 msgid "Bet"
-msgstr ""
+msgstr "בית"
 
 #: simulation/templates/structures/cart_market.xml:12
 msgid "Šūq"
-msgstr ""
+msgstr "שוק"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
@@ -774,7 +775,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
-msgstr ""
+msgstr "מקדש"
 
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
@@ -799,7 +800,7 @@ msgstr "חומה "
 
 #: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
-msgstr "המקדש של הבעל אמון"
+msgstr "המקדש של בעל האמון"
 
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
@@ -811,7 +812,7 @@ msgstr ""
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr "מאחז הגאלים"
+msgstr "מאחז גאלי"
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -831,7 +832,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr ""
+msgstr "קסרקטין"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
@@ -860,7 +861,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
-msgstr ""
+msgstr "שדה"
 
 #: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
@@ -872,7 +873,7 @@ msgstr "בית "
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr ""
+msgstr "שוק"
 
 #: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
@@ -898,7 +899,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_temple.xml:12
 msgid "Loki"
-msgstr ""
+msgstr "מקדש"
 
 #: simulation/templates/structures/iber_wall.xml:9
 #: simulation/templates/structures/iber_wall_long.xml:29

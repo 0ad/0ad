@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Alexander Olkhovskiy, 2015
-# Alexander Olkhovskiy, 2015
+# Alexander Olkhovskiy, 2015-2016
 # Boris Karalnik <eyesucker@gmail.com>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015
 # dr&mx <dronmax@gmail.com>, 2014-2015
@@ -14,6 +14,7 @@
 # John Smith <mae_mbllo@mail.ru>, 2016
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
+# Prince Moth <princemoth@rambler.ru>, 2016
 # Simple88, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015-2016
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-10 19:24+0000\n"
+"Last-Translator: Alexander Olkhovskiy\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -697,11 +698,11 @@ msgstr "вражеские"
 #: simulation/components/CeasefireManager.js:100
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "Можешь атаковать через %(time)s"
+msgstr "Вы сможете атаковать через %(time)s"
 
 #: simulation/components/CeasefireManager.js:113
 msgid "You can attack now!"
-msgstr "Можешь атаковать прямо сейчас!"
+msgstr "Вы можете атаковать прямо сейчас!"
 
 #: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
@@ -789,11 +790,11 @@ msgstr "(Обман - помогать юнитам)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "Не удаётся улучшить, так как требования к расстоянию неверны или имеются препятствия на местности. "
 
 #: simulation/helpers/Commands.js:688
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "Невозможно добавить гарнизон"
 
 #: simulation/helpers/Commands.js:734
 #, javascript-format
@@ -814,7 +815,7 @@ msgstr "Технологии, необходимые для здания, отс
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "Гайя"
+msgstr "Гея"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
@@ -918,11 +919,11 @@ msgstr "Завоевание: юниты"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero"
-msgstr ""
+msgstr "Поражение противников, теряющих своего героя"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "Цареубийство"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"

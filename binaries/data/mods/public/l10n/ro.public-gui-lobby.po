@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Alex Flocioiu <flocioiualex@gmail.com>, 2016
+# Alex Hex <alexhex14@gmail.com>, 2016
 # bogdomania <mintoi.bogdan@gmail.com>, 2015
 # Vultur David <david1989mail@yahoo.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-17 09:00+0200\n"
-"PO-Revision-Date: 2016-08-07 17:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-09 20:14+0000\n"
+"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +26,7 @@ msgstr "Online"
 
 #: gui/lobby/lobby.js:55
 msgid "Away"
-msgstr ""
+msgstr "Plecat"
 
 #: gui/lobby/lobby.js:56
 msgid "Busy"
@@ -41,7 +43,7 @@ msgstr "Necunoscut"
 
 #: gui/lobby/lobby.js:132
 msgid "Disconnected."
-msgstr ""
+msgstr "Deconectat"
 
 #: gui/lobby/lobby.js:150
 #, javascript-format
@@ -61,25 +63,25 @@ msgstr "%(oldnick)s și-a schimbat numele în %(newnick)s."
 #: gui/lobby/lobby.js:238
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/lobby/lobby.js:243
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/lobby/lobby.js:247
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 #: gui/lobby/lobby.js:426
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: gui/lobby/lobby.js:426
 msgid "Player"
-msgstr ""
+msgstr "Jucător"
 
 #: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
 #: gui/lobby/lobby.js:430 gui/lobby/lobby.js:431 gui/lobby/lobby.js:432
@@ -89,20 +91,20 @@ msgstr ""
 #: gui/lobby/lobby.js:452 gui/lobby/lobby.js:483
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Jucători: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:670
 msgid "The game has already started."
-msgstr ""
+msgstr "Jocul deja a început."
 
 #: gui/lobby/lobby.js:671
 msgid "Do you want to join as observer?"
-msgstr ""
+msgstr "Doriți să vă alăturați ca observator?"
 
 #: gui/lobby/lobby.js:672
 msgid "Confirmation"
@@ -110,11 +112,11 @@ msgstr "Confirmare"
 
 #: gui/lobby/lobby.js:673
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #: gui/lobby/lobby.js:673
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: gui/lobby/lobby.js:692
 #, javascript-format
@@ -130,25 +132,25 @@ msgstr "Comanda '%(cmd)s' nu există."
 #: gui/lobby/lobby.js:890
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:895
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:904 gui/lobby/lobby.js:925 gui/lobby/lobby.js:951
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:909 gui/lobby/lobby.js:930 gui/lobby/lobby.js:956
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:919
@@ -160,11 +162,11 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:947
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).
@@ -180,13 +182,13 @@ msgstr ""
 #: gui/lobby/lobby.js:986
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:991
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1052
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -195,12 +197,12 @@ msgstr "Te rugăm să nu faci spam. Ai fost blocat pentru 30 de secunde."
 #: gui/lobby/lobby.js:1119
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:1121
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -232,11 +234,11 @@ msgstr "Parolele nu corespund"
 
 #: gui/lobby/prelobby.js:129
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Vă rugăm să ciți termenii serviciului"
 
 #: gui/lobby/prelobby.js:135
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Vă rugăm să ciți termenii de utilizare"
 
 #: gui/lobby/prelobby.js:141
 msgid "Please agree to the Terms of Service and Terms of Use"
@@ -244,7 +246,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:171
 msgid "Registered"
-msgstr ""
+msgstr "Înregistrat"
 
 #: gui/lobby/prelobby.js:233
 msgid "Register"
@@ -280,15 +282,15 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):311
 msgid "Wins:"
-msgstr ""
+msgstr "Câștiguri:"
 
 #: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):315
 msgid "Losses:"
-msgstr ""
+msgstr "Pierderi:"
 
 #: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):319
 msgid "Win Rate:"
-msgstr ""
+msgstr "Rată de câștig:"
 
 #: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):247
 msgid "Leaderboard"
@@ -321,7 +323,7 @@ msgstr "Meniul Principal"
 
 #: gui/lobby/lobby.xml:(caption):221
 msgid "Show full games"
-msgstr ""
+msgstr "Arătați jocul complet"
 
 #: gui/lobby/lobby.xml:(caption):267 gui/lobby/lobby.xml:(caption):329
 msgid "Back"
@@ -333,7 +335,7 @@ msgstr "Actualizează"
 
 #: gui/lobby/lobby.xml:(caption):285
 msgid "Enter username:"
-msgstr ""
+msgstr "Introduceți numele de utilizator:"
 
 #: gui/lobby/lobby.xml:(caption):291
 msgid "View Profile"
@@ -345,7 +347,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(heading):28
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):178
 #: gui/lobby/lobby.xml:(heading):257
@@ -358,12 +360,12 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(heading):182
 msgid "Map Name"
-msgstr ""
+msgstr "Numele hărții"
 
 #: gui/lobby/lobby.xml:(heading):185
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Mărime"
 
 #: gui/lobby/lobby.xml:(heading):188
 msgctxt "map"
@@ -380,7 +382,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr ""
+msgstr "Creați un cont nou"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
@@ -448,7 +450,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Prin folosirea serviciului sunteți de acord cu:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
@@ -462,15 +464,15 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Ne rezervăm și dreptul de a:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Modera serviciul"
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Desemna pe alții să modereze serviciul."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
@@ -480,7 +482,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Schimbăm serviciul la orice moment dat cu sau fără avertizment."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""

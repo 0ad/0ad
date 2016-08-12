@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Daniel Bogorad <danielbog.7@gmail.com>, 2014
+# Yam Huss <yam52@walla.co.il>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-11 22:10+0000\n"
+"Last-Translator: Yam Huss <yam52@walla.co.il>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "מינרלים"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
-msgstr "מתכת"
+msgstr "מכרה מתכת"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
@@ -83,7 +84,7 @@ msgstr "חורבות גנריות"
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr "שרידים "
+msgstr "חורבות"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
@@ -164,7 +165,7 @@ msgstr "פוליס יוונית קטנה"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "זוהי עיר יוונית קטנה."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -172,7 +173,7 @@ msgstr "פוליס יוונית"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "זוהי עיר יוונית גדולה."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -318,7 +319,7 @@ msgstr "דגי טונה"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr "אסוף אוכל ממקור ימי עשיר זה"
+msgstr "אסוף אוכל ממקור ימי עשיר זה."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -374,7 +375,7 @@ msgstr "ארנב"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "קרנף"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -422,7 +423,7 @@ msgstr "זברה"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr "שיח vארדי"
+msgstr "שיח הארדי"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
@@ -579,11 +580,11 @@ msgstr "אוצר מזון "
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
-msgstr "חביות קבורות מחצית"
+msgstr "חביות קבורות למחצה"
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
-msgstr "חנויות מזון פרסית"
+msgstr "מאגרי מזון פרסיים"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
@@ -605,11 +606,11 @@ msgstr "תיבה סודית "
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr "משטיחים פרסיים"
+msgstr "סחורה פרסית"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
-msgstr "שטיח פרסי"
+msgstr "שטיחים פרסיים"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
@@ -849,7 +850,7 @@ msgstr "P-51 מוסטנג"
 
 #: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
-msgstr "מסוס קרב אמרקאי מתקופת מלחה\"ע ה-2"
+msgstr "מטוס קרב אמריקאי מתקופת מלחה\"ע ה-2."
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -877,7 +878,7 @@ msgstr ""
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr ""
+msgstr "ספינה טרופה"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
@@ -885,7 +886,7 @@ msgstr ""
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr "ספינה טרופה מטענים"
+msgstr "מטען של ספינה טרופה"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
@@ -903,16 +904,16 @@ msgstr ""
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr "ההזדקרות גדולים\n "
+msgstr "דוכן גדול"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr "ההזדקרות בינוני\n "
+msgstr "דוכן בינוני"
 
 #: simulation/templates/other/stall_small_a.xml:12
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall"
-msgstr "ההזדקרות קטן\n "
+msgstr "דוכן קטן"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -921,7 +922,7 @@ msgstr "שולחן "
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr "שולחן מלבן "
+msgstr "שולחן מלבני"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
@@ -929,11 +930,11 @@ msgstr "שולחן מרובע "
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr "יווני גמור מקדש"
+msgstr "מקדש יווני לא גמור"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr "מקדש זה הוא לא גמור ולהרוס."
+msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
