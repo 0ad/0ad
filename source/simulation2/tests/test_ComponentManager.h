@@ -96,6 +96,32 @@ public:
 		TS_ASSERT_EQUALS(man.AllocateNewLocalEntity(), (u32)FIRST_LOCAL_ENTITY);
 	}
 
+	void test_rng()
+	{
+		// Ensure we get the same random number with the same seed
+		double first;
+		{
+			CSimContext context;
+			CComponentManager man(context, g_ScriptRuntime);
+			man.SetRNGSeed(123);
+
+			if (!man.m_ScriptInterface.MathRandom(first))
+				TS_FAIL("Couldn't get random number!");
+		}
+
+		double second;
+		{
+			CSimContext context;
+			CComponentManager man(context, g_ScriptRuntime);
+			man.SetRNGSeed(123);
+
+			if (!man.m_ScriptInterface.MathRandom(second))
+				TS_FAIL("Couldn't get random number!");
+		}
+
+		TS_ASSERT_EQUALS(first, second);
+	}
+
 	void test_AddComponent_errors()
 	{
 		CSimContext context;

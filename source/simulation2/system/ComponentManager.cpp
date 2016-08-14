@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,8 +61,6 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 	context.SetComponentManager(this);
 
 	m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
-
-	// TODO: ought to seed the RNG (in a network-synchronised way) before we use it
 	m_ScriptInterface.ReplaceNondeterministicRNG(m_RNG);
 	m_ScriptInterface.LoadGlobalScripts();
 
@@ -538,6 +536,11 @@ void CComponentManager::ResetState()
 	// Reset IDs
 	m_NextEntityId = SYSTEM_ENTITY + 1;
 	m_NextLocalEntityId = FIRST_LOCAL_ENTITY;
+}
+
+void CComponentManager::SetRNGSeed(u32 seed)
+{
+	m_RNG.seed(seed);
 }
 
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
