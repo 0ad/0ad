@@ -502,7 +502,7 @@ void XmppClient::GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHan
 	JSAutoRequest rq(cx);
 
 	scriptInterface.Eval("([])", ret);
-	const char* stats[] = { "name", "ip", "port", "state", "nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition" };
+	const char* stats[] = { "name", "ip", "port", "state", "nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition", "startTime" };
 	for(const glooxwrapper::Tag* const& t : m_GameList)
 	{
 		JS::RootedValue game(cx);
