@@ -39,6 +39,7 @@
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Pavel <mpolr21@gmail.com>, 2014
+# Prince Moth <princemoth@rambler.ru>, 2016
 # sad2shade <sad.2.shade@gmail.com>, 2014
 # Simple88, 2014
 # Simple88, 2014
@@ -68,8 +69,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-17 22:47+0000\n"
-"Last-Translator: Николай Авдеев <nickkolok@mail.ru>\n"
+"PO-Revision-Date: 2016-08-10 13:29+0000\n"
+"Last-Translator: Prince Moth <princemoth@rambler.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +85,7 @@ msgstr "Нет"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr "Искусственный интеллект (ИИ) будет отключён для этого игрока."
+msgstr "Искусственный Интеллект (ИИ) будет отключён для этого игрока."
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Game settings have been changed"
@@ -434,13 +435,13 @@ msgstr "Прекращение военных действий"
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):370
 msgid "Revealed Map:"
-msgstr "Карта открыта:"
+msgstr "Открытая Карта:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):380
 msgid "Explored Map:"
-msgstr "Карта разведана:"
+msgstr "Исследованная Карта:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):390
 msgid "Disable Treasures:"
@@ -552,13 +553,13 @@ msgstr "Установите время, в течение которого ат
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):374
 msgid "Toggle revealed map (see everything)."
-msgstr "Переключить видимость карты (видеть всё)."
+msgstr "Использовать открытую карту (видима вся карта)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):384
 msgid "Toggle explored map (see initial map)."
-msgstr "Переключить исследованную карту (смотреть первоначальную карту)."
+msgstr "Использовать исследованную карту (вся карта исследована)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):394
 msgid "Disable all treasures on the map."
@@ -637,7 +638,7 @@ msgstr "«Преуспевающие негодяи невыносимы.» — 
 msgid ""
 "\"From him \\[Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr "«Пред ней одной \\[Смертью] бессильно Убеждение.» — Эсхил"
+msgstr "«Пред ней одной (Смертью) бессильно Убеждение.» — Эсхил"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
@@ -669,7 +670,7 @@ msgstr "«Мудрость приходит через страдание ... М
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr "«А Трое гибель понесла \\[Елена] в приданое.» — Эсхил. «Агамемнон»"
+msgstr "«А Трое гибель понесла (Елена) в приданое.» — Эсхил. «Агамемнон»"
 
 #: gui/text/quotes.txt:9
 msgid ""
@@ -1342,7 +1343,7 @@ msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
-msgstr "\"Мы не говорим, что человек, который не заинтересован в политике-это человек, который занимаются своими делами; мы говорим, что он не имеет никакого бизнеса здесь\". - Перикл"
+msgstr "\"Мы не говорим, что человек, который не заинтересован в политике - это человек, который занимаются своими делами; мы говорим, что он не имеет никакого дела здесь\". - Перикл"
 
 #: gui/text/quotes.txt:137
 msgid ""

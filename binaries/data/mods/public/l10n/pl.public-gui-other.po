@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:00+0200\n"
-"PO-Revision-Date: 2016-08-07 22:54+0000\n"
-"Last-Translator: Andrzej Preibisz <andrzejjpreibisz@gmail.com>\n"
+"PO-Revision-Date: 2016-08-08 15:34+0000\n"
+"Last-Translator: Lukasz B <boberstarosta@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -828,12 +828,12 @@ msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:211
 msgid "Splash Damage:"
-msgstr ""
+msgstr "Obrażenia Obszarowe:"
 
 #: gui/common/tooltips.js:214
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Bratobójczy Ogień: %(enabled)s"
 
 #: gui/common/tooltips.js:215 gui/options/options.js:275
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:290
@@ -882,7 +882,7 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:266
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Limit Pocisków"
 
 #: gui/common/tooltips.js:271
 msgctxt "projectiles"
@@ -892,7 +892,7 @@ msgstr "Domyślny"
 #: gui/common/tooltips.js:276
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Na Jednostkę"
 
 #: gui/common/tooltips.js:287
 #, javascript-format
@@ -1583,7 +1583,7 @@ msgstr "Czy na pewno chcesz wyjść do lobby?"
 
 #: gui/summary/summary.js:196
 msgid "Current Scores"
-msgstr ""
+msgstr "Bieżąca Punktacja"
 
 #: gui/summary/summary.js:198
 msgid "Scores at the end of the game."
@@ -2452,7 +2452,7 @@ msgstr "Limit Obserwatorów"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Number of units trained per batch"
-msgstr ""
+msgstr "Liczba jednostek trenowanych na partię"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Batch Training Size"
@@ -2500,11 +2500,11 @@ msgstr "Głośność UI"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr ""
+msgstr "Otrzymuj powiadomienie dźwiękowe gdy ktoś napisze twój Nick"
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
-msgstr ""
+msgstr "Powiadomienie o Nicku"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

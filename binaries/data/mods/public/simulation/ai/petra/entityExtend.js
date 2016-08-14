@@ -11,7 +11,7 @@ m.getMaxStrength = function(ent, againstClass)
 
 	for (let type of attackTypes)
 	{
-		if (type == "Slaughter" || type == "Charge")
+		if (type == "Slaughter")
 			continue;
 
 		let attackStrength = ent.attackStrengths(type);

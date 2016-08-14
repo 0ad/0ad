@@ -6,7 +6,6 @@ const g_TooltipTextFormats = {
 };
 
 const g_AttackTypes = {
-	"Charge": translate("Charge Attack:"),
 	"Melee": translate("Melee Attack:"),
 	"Ranged": translate("Ranged Attack:"),
 	"Capture": translate("Capture Attack:")
@@ -144,8 +143,6 @@ function getAttackTooltip(template)
 	{
 		if (type == "Slaughter")
 			continue; // Slaughter is used to kill animals, so do not show it.
-		if (type == "Charge")
-			continue; // Charging isn't implemented yet and shouldn't be displayed.
 
 		let rate = sprintf(translate("%(label)s %(details)s"), {
 			"label":

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 09:01+0200\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 09:01+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +66,6 @@ msgstr ""
 #: simulation/data/technologies/trade_gain_01.json:requirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.json:requirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.json:requirementsTooltip
-#: simulation/data/technologies/unlock_females_house.json:requirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.json:requirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:requirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.json:requirementsTooltip
@@ -160,7 +159,6 @@ msgstr ""
 #: simulation/data/technologies/hellenes/spartans_agoge.json:requirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.json:requirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.json:requirementsTooltip
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:requirementsTooltip
 #: simulation/data/technologies/persians/immortals.json:requirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.json:requirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.json:requirementsTooltip
@@ -952,15 +950,11 @@ msgid "Heílōtes"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.json:tooltip
-msgid "+15% stone gathering rate."
+msgid "Hire servants to help mine stone. +15% stone gathering rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.json:genericName
 msgid "Servants"
-msgstr ""
-
-#: simulation/data/technologies/gather_mining_servants.json:requirementsTooltip
-msgid "Hire servants to help mine stone. No requirements."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.json:specificName.mace
@@ -1015,15 +1009,11 @@ msgid "Andrápoda"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.json:tooltip
-msgid "+15% metal gathering rate."
+msgid "Equip your workers with helpful tools. +15% metal gathering rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.json:genericName
 msgid "Wedge and Mallet"
-msgstr ""
-
-#: simulation/data/technologies/gather_mining_wedgemallet.json:requirementsTooltip
-msgid "Equip your workers with helpful tools. No requirements."
 msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.json:description
@@ -2266,29 +2256,6 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.json:genericName
 msgid "Athenian Long Walls"
-msgstr ""
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:description
-msgid ""
-"The Hellenic culture was very influential. Greek became the spoken language "
-"of commerce and politics for much of the Mediterranean basin and Middle East "
-"for centuries."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:tooltip
-msgid ""
-"The Hellenic culture is very influential. +20% territory effect for all "
-"buildings."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:genericName
-msgid "Hellenization"
-msgstr ""
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:specificName.mace
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:specificName.athen
-#: simulation/data/technologies/hellenes/temp_special_hellenization.json:specificName.spart
-msgid "Hellēnízein"
 msgstr ""
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.json:description

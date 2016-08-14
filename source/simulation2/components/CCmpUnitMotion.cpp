@@ -274,10 +274,6 @@ public:
 			"</element>";
 	}
 
-	/*
-	 * TODO: the running/charging thing needs to be designed and implemented
-	 */
-
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_FormationController = paramNode.GetChild("FormationController").ToBool();
@@ -859,7 +855,6 @@ void CCmpUnitMotion::Move(fixed dt)
 		CFixedVector2D pos = initialPos;
 
 		// If in formation, run to keep up; otherwise just walk
-		// (TODO: support stamina, charging, etc)
 		fixed basicSpeed;
 		if (IsFormationMember())
 			basicSpeed = GetRunSpeed();

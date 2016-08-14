@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alexander Olkhovskiy, 2013
+# Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alexandr Kuzmenko <kuzmenko_s@ukr.net>, 2013
 # Alex <yanebotan@ngs.ru>, 2015
@@ -30,6 +31,7 @@
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Pavel <mpolr21@gmail.com>, 2014
+# Prince Moth <princemoth@rambler.ru>, 2016
 # sad2shade <sad.2.shade@gmail.com>, 2014
 # sorrymak <dearalcher@gmail.com>, 2013
 # under.quol <under.quol@gmail.com>, 2013
@@ -51,8 +53,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-05 09:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-10 19:24+0000\n"
+"Last-Translator: Alexander Olkhovskiy\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +125,7 @@ msgstr "Я сдаюсь"
 
 #: gui/session/menu.js:179
 msgid "Destroy everything currently selected?"
-msgstr "Уничтожить выбранное?"
+msgstr "Уничтожить выделенное?"
 
 #: gui/session/menu.js:180
 msgid "Delete"
@@ -154,7 +156,7 @@ msgstr "х"
 
 #: gui/session/menu.js:359
 msgid "Request your allies to attack this enemy"
-msgstr "Запросить союзников напасть на этого врага"
+msgstr "Попросить союзников напасть на этого врага"
 
 #: gui/session/menu.js:479
 #, javascript-format
@@ -629,7 +631,7 @@ msgstr "Поднять тревогу!"
 
 #: gui/session/selection_panels.js:65
 msgid "End of alert."
-msgstr "Отменить тревогу"
+msgstr "Отменить тревогу."
 
 #: gui/session/selection_panels.js:123
 #, javascript-format
@@ -654,7 +656,7 @@ msgstr "Выгрузить %(name)s"
 
 #: gui/session/selection_panels.js:445
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Нажмите ЛКМ для выгрузки 1 штуки. Shift+ЛКМ для выгрузки всей продукции этого типа."
+msgstr "Нажмите ЛКМ для выгрузки 1-ой единицы. Shift+ЛКМ для выгрузки всей продукции этого типа. "
 
 #: gui/session/selection_panels.js:448
 #, javascript-format
@@ -814,7 +816,7 @@ msgstr "Shift-клик"
 
 #: gui/session/session.js:250
 msgid "Gaia"
-msgstr "Гайя"
+msgstr "Гея"
 
 #: gui/session/session.js:309
 msgid "Find idle worker"
@@ -888,17 +890,17 @@ msgstr "Здоровье:"
 #: gui/session/session.js:939
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:942
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:961
 msgid "Population (current / limit)"
@@ -961,7 +963,7 @@ msgstr "Ожидаемый прирост: %(gain)s"
 
 #: gui/session/unit_actions.js:998 gui/session/unit_actions.js:1280
 msgid "Unload All."
-msgstr ""
+msgstr "Вывести всех. "
 
 #: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
@@ -986,11 +988,11 @@ msgstr "Вывести"
 
 #: gui/session/unit_actions.js:1114
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "Приказать выбранным юнитам ремонтировать строение или механическое устройство. "
 
 #: gui/session/unit_actions.js:1133
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Установить точку сбора."
 
 #: gui/session/unit_actions.js:1157
 msgid "Back to Work"

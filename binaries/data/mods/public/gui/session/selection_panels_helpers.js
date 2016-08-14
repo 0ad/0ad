@@ -72,7 +72,7 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 	if (trainEntLimit == undefined)
 		return "";
 
-	var text = "\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), {
+	var text = sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), {
 		"count": trainEntCount,
 		"limit": trainEntLimit
 	});

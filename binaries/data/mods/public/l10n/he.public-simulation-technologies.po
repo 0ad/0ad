@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Yam Huss <yam52@walla.co.il>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 10:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-11 22:19+0000\n"
+"Last-Translator: Yam Huss <yam52@walla.co.il>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -178,7 +179,7 @@ msgstr ""
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "בעיר השלב נעול"
+msgstr "נפתח בשלב העיר"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
@@ -289,11 +290,11 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr "גוף שריון מחוזק עם קשקשי ברונזה."
+msgstr "שריון גוף מחוזק עם קשקשי ברונזה."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "קנה מידה של גוף שריון"
+msgstr "שריון קשקשים"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -459,7 +460,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "עוד חנית שנעשתה במיוחד עבור חיל פרשים."
+msgstr "חנית ארוכה שמיוצרת במיוחד עבור חיל פרשים."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -824,7 +825,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
-msgstr ""
+msgstr "סלים"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
@@ -868,7 +869,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
-msgstr ""
+msgstr "דשן"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid "A horse drawn instrument to turn the sod."
@@ -911,7 +912,7 @@ msgstr ""
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
 msgid "Increases wood gathering rates for trees."
-msgstr "מגביר איסוף עץ  ."
+msgstr "מגביר את קצב איסוף העץ ."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
@@ -1076,7 +1077,7 @@ msgstr "הפנתיאון האולימפי "
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "ריפוי טווח 2"
+msgstr "טווח ריפוי 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
@@ -1096,7 +1097,7 @@ msgstr "מרפאים +25% שיעור ריפוי. "
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "שיעור ריפוי "
+msgstr "קצב ריפוי "
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
@@ -1106,7 +1107,7 @@ msgstr ""
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "שיעור ריפוי 2"
+msgstr "קצב ריפוי 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
@@ -1149,7 +1150,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "הנול"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -1229,7 +1230,7 @@ msgstr ""
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr "לרפא את טווח ושיעור # 2"
+msgstr "טווח וקצב ריפוי #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
@@ -1295,7 +1296,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 msgid "City Phase"
-msgstr "עיר שלב"
+msgstr "שלב העיר"
 
 #: simulation/data/technologies/phase_city.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
@@ -1338,7 +1339,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 msgid "Town Phase"
-msgstr "שלב עיירה "
+msgstr "שלב העיירה "
 
 #: simulation/data/technologies/phase_town.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
@@ -1369,7 +1370,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "כפר שלב"
+msgstr "שלב הכפר"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1515,7 +1516,7 @@ msgstr "ציפוי שריון "
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
-msgstr "טכנולוגיות מתקדמות לשפר את יעילות מצור"
+msgstr "טכנולוגיות מתקדמות משפרות את יעילות המצור"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
@@ -1617,7 +1618,7 @@ msgstr ""
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
 msgid "Trade Convoys"
-msgstr "סחר שיירות\n\\"
+msgstr "שיירות סחר"
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
