@@ -1385,10 +1385,10 @@ function updateGUIObjects()
 	Engine.GetGUIObjectByName("optionWonderDuration").hidden =
 		g_GameAttributes.settings.GameType &&
 		g_GameAttributes.settings.GameType != "wonder";
-	Engine.GetGUIObjectByName("optionLastManStanding").hidden = mapSettings.LockTeams;
 
 	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !mapSettings.CheatsEnabled;
 
+	Engine.GetGUIObjectByName("lastManStanding").enabled = !mapSettings.LockTeams;
 	Engine.GetGUIObjectByName("enableCheats").enabled = !mapSettings.RatingEnabled;
 	Engine.GetGUIObjectByName("lockTeams").enabled = !mapSettings.RatingEnabled;
 
