@@ -615,13 +615,30 @@ function updateGameSelection()
 		return;
 
 	Engine.GetGUIObjectByName("sgMapName").caption = translateMapTitle(game.niceMapName);
-	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(
+
+	let sgGameStartTime = Engine.GetGUIObjectByName("sgGameStartTime");
+	let sgNbPlayers = Engine.GetGUIObjectByName("sgNbPlayers");
+	let sgPlayersNames = Engine.GetGUIObjectByName("sgPlayersNames");
+	
+	let playersNamesSize = sgPlayersNames.size;
+	playersNamesSize.top = game.startTime ? sgGameStartTime.size.bottom : sgNbPlayers.size.bottom;
+	playersNamesSize.rtop = game.startTime ? sgGameStartTime.size.rbottom : sgNbPlayers.size.rbottom;
+	sgPlayersNames.size = playersNamesSize;
+
+	sgGameStartTime.hidden = !game.startTime;
+	if (game.startTime)
+		sgGameStartTime.caption = sprintf(
+			translate("Game started at %(time)s"), {
+				"time": Engine.FormatMillisecondsIntoDateString(+game.startTime*1000, translate("HH:mm"))
+			});
+
+	sgNbPlayers.caption = sprintf(
 		translate("Players: %(current)s/%(total)s"), {
 			"current": game.nbp,
 			"total": game.maxnbp
 		});
 
-	Engine.GetGUIObjectByName("sgPlayersNames").caption = formatPlayerInfo(stringifiedTeamListToPlayerData(game.players));
+	sgPlayersNames.caption = formatPlayerInfo(stringifiedTeamListToPlayerData(game.players));
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(game.mapSize);
 
 	let mapTypeIdx = g_MapTypes.Name.indexOf(game.mapType);

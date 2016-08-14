@@ -307,6 +307,8 @@ class GameList():
         self.gameList[JID]['state'] = 'running'
       self.gameList[JID]['nbp'] = data['nbp']
       self.gameList[JID]['players'] = data['players']
+      if 'startTime' not in self.gameList[JID]: 
+       self.gameList[JID]['startTime'] = str(round(time.time())) 
 
 ## Class which manages different game reports from clients ##
 ##   and calls leaderboard functions as appropriate.       ##

@@ -137,16 +137,18 @@
 				<object size="5 284 100%-5 285" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Description -->
-				<object type="image" sprite="ModernDarkBoxWhite" size="3% 290 97% 75%">
+				<object type="image" sprite="ModernDarkBoxWhite" size="3% 290 97% 65%">
 					<object name="sgMapDescription" size="0 0 100% 100%" type="text" style="ModernText" font="sans-12"/>
 				</object>
 
-				<object type="image" sprite="ModernDarkBoxWhite" size="3% 75%+5 97% 99%">
+				<object type="image" sprite="ModernDarkBoxWhite" size="3% 65%+5 97% 99%">
 					<!-- Number of Players -->
-					<object name="sgNbPlayers" size="3% 3% 97% 12%" type="text" style="ModernLeftLabelText" text_align="center"/>
+					<object name="sgNbPlayers" size="3% 3% 97% 3%+15" type="text" style="ModernLeftLabelText" text_align="center"/>
+					<!-- Game Start Time -->
+					<object name="sgGameStartTime" size="3%+24 6% 97% 3%+35" type="text" style="ModernLeftLabelText" text_align="center"/>
 
 					<!-- Player Names -->
-					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
+					<object name="sgPlayersNames" size="0 0 100% 100%" type="text" style="MapPlayerList"/>
 				</object>
 			</object>
 			<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60" hidden="true">

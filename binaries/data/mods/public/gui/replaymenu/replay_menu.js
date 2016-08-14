@@ -44,6 +44,11 @@ var g_VictoryConditions = [];
 var g_SelectedReplayDirectory = "";
 
 /**
+ * Skip duplicate expensive GUI updates before init is complete.
+ */
+var g_ReplaysLoaded = false;
+
+/**
  * Initializes globals, loads replays and displays the list.
  */
 function init(data)
@@ -140,6 +145,8 @@ function loadReplays(replaySelectionData)
 		if (replaySelectionData.columnOrder)
 			replaySelection.selected_column_order = replaySelectionData.columnOrder;
 	}
+
+	g_ReplaysLoaded = true;
 }
 
 /**
@@ -183,6 +190,9 @@ function sanitizeGameAttributes(attribs)
  */
 function displayReplayList()
 {
+	if (!g_ReplaysLoaded)
+		return;
+
 	// Remember previously selected replay
 	var replaySelection = Engine.GetGUIObjectByName("replaySelection");
 	if (replaySelection.selected != -1)
