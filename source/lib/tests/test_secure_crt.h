@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,21 +39,18 @@ public:
 	SuppressErrors()
 	{
 		// Redirect the assertion output to somewhere where it shouldn't be noticed
-		old_mode = _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
-		old_file = _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+		old_mode = _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
 		// Replace the invalid parameter handler with one that ignores everything
 		old_handler = _set_invalid_parameter_handler(&invalid_parameter_handler);
 	}
 	~SuppressErrors()
 	{
 		_CrtSetReportMode(_CRT_ASSERT, old_mode);
-		_CrtSetReportFile(_CRT_ASSERT, old_file);
 		_set_invalid_parameter_handler(old_handler);
 	}
 
 private:
 	int old_mode;
-	_HFILE old_file;
 	_invalid_parameter_handler old_handler;
 
 	static void invalid_parameter_handler(const wchar_t* UNUSED(expression), const wchar_t* UNUSED(function),
