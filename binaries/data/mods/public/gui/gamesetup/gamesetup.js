@@ -1282,11 +1282,9 @@ function launchGame()
 			g_GameAttributes.settings.PlayerData[player.player - 1].Name = player.name;
 	}
 
-	// This seed is only used for map-generation
-	if (g_GameAttributes.mapType == "random")
-		g_GameAttributes.settings.Seed = Math.floor(Math.random() * 65536);
-
-	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
+	// Seed used for both map generation and simulation
+	g_GameAttributes.settings.Seed = Math.floor(Math.random() * Math.pow(2, 32));
+	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * Math.pow(2, 32));
 
 	// Used for identifying rated game reports for the lobby
 	g_GameAttributes.matchID = Engine.GetMatchID();

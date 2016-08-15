@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -294,6 +294,11 @@ public:
 	 * doesn't unload/reload component scripts).
 	 */
 	void ResetState();
+
+	/**
+	 * Initializes the random number generator with a seed determined by the host.
+	 */
+	void SetRNGSeed(u32 seed);
 
 	// Various state serialization functions:
 	bool ComputeStateHash(std::string& outHash, bool quick);

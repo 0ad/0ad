@@ -108,12 +108,14 @@ public:
 	/**
 	 * Set the initial map settings (as a UTF-8-encoded JSON string),
 	 * which will be used to set up the simulation state.
+	 * Called from atlas.
 	 */
 	void SetMapSettings(const std::string& settings);
 
 	/**
 	 * Set the initial map settings, which will be used
 	 * to set up the simulation state.
+	 * Called from MapReader (for all map-types).
 	 */
 	void SetMapSettings(JS::HandleValue settings);
 

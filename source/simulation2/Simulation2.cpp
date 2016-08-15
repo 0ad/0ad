@@ -752,6 +752,12 @@ void CSimulation2::SetMapSettings(const std::string& settings)
 void CSimulation2::SetMapSettings(JS::HandleValue settings)
 {
 	m->m_MapSettings = settings;
+
+	u32 seed = 0;
+	if (!m->m_ComponentManager.GetScriptInterface().GetProperty(m->m_MapSettings, "Seed", seed))
+		LOGWARNING("CSimulation2::SetInitAttributes: No seed value specified - using %d", seed);
+
+	m->m_ComponentManager.SetRNGSeed(seed);
 }
 
 std::string CSimulation2::GetMapSettingsString()
