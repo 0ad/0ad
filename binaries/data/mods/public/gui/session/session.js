@@ -517,23 +517,12 @@ function resignGame(leaveGameAfterResign)
  */
 function leaveGame(willRejoin)
 {
-	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-	let simData = {
-		"timeElapsed" : extendedSimState.timeElapsed,
-		"playerStates": extendedSimState.players,
-		"mapSettings": g_GameAttributes.settings
-	};
-
-	if (!g_IsReplay)
-		Engine.SaveReplayMetadata(JSON.stringify(simData));
-
-	if (!willRejoin &&
-	    simData.playerStates[Engine.GetPlayerID()] &&
-	    simData.playerStates[Engine.GetPlayerID()].state == "active")
+	if (!willRejoin && !g_IsObserver)
 		resignGame(true);
 
 	// Before ending the game
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
+	let simData = getReplayMetadata();
 
 	Engine.EndGame();
 

@@ -134,7 +134,7 @@ inline int goBackToLineBeginning(std::istream* replayStream, const CStr& fileNam
  *
  * @return seconds or -1 on error
  */
-inline int getReplayDuration(std::istream *replayStream, const CStr& fileName, const u64& fileSize)
+inline int getReplayDuration(std::istream* replayStream, const CStr& fileName, const u64& fileSize)
 {
 	CStr type;
 
@@ -292,20 +292,28 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPriva
 	return attribs;
 }
 
-// TODO: enhancement: how to save the data if the process is killed? (case SDL_QUIT in main.cpp)
-void VisualReplay::SaveReplayMetadata(const CStrW& data)
+void VisualReplay::SaveReplayMetadata(ScriptInterface* scriptInterface)
 {
-	// TODO: enhancement: use JS::HandleValue similar to SaveGame
-	if (!g_Game)
+	JSContext* cx = scriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue metadata(cx);
+	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
+
+	if (!scriptInterface->CallFunction(global, "getReplayMetadata", &metadata))
+	{
+		LOGERROR("Could not save replay metadata!");
 		return;
+	}
 
 	// Get the directory of the currently active replay
 	const OsPath fileName = g_Game->GetReplayLogger().GetDirectory() / L"metadata.json";
 	CreateDirectories(fileName.Parent(), 0700);
 
 	std::ofstream stream (fileName.string8().c_str(), std::ofstream::out | std::ofstream::trunc);
-	stream << utf8_from_wstring(data);
+	stream << scriptInterface->StringifyJSON(&metadata, false);
 	stream.close();
+	debug_printf("Saved replay metadata to %s\n", fileName.string8().c_str());
 }
 
 bool VisualReplay::HasReplayMetadata(const CStrW& directoryName)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@ namespace JSI_VisualReplay
 	JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 	bool HasReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 	JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
-	void SaveReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& data);
 	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 }
 
