@@ -14,6 +14,7 @@
 # George Charoupas <labaxp@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
+# Natalia V <inactive+irida@transifex.com>, 2016
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-05 09:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-15 17:24+0000\n"
+"Last-Translator: Natalia V <inactive+irida@transifex.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -248,7 +249,7 @@ msgstr "Σταμάτησε από τον παίκτη %(players)s"
 
 #: gui/session/menu.js:721
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -429,7 +430,7 @@ msgstr "Άγνωστος παίκτης"
 #: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s παραιτήθηκε."
 
 #: gui/session/messages.js:748
 #, javascript-format
@@ -908,11 +909,11 @@ msgstr "Αναμενόμενο κέρδος: %(gain)s"
 
 #: gui/session/unit_actions.js:998 gui/session/unit_actions.js:1280
 msgid "Unload All."
-msgstr ""
+msgstr "Ξεφόρτωμα όλων"
 
 #: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Καταστροφή των επιλεγμένων μονάδων ή κτιρίων."
 
 #: gui/session/unit_actions.js:1022
 #, javascript-format
@@ -921,7 +922,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
-msgstr ""
+msgstr "Ακύρωσε την τρέχουσα παραγγελία."
 
 #: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
@@ -945,7 +946,7 @@ msgstr "Πίσω στη δουλειά"
 
 #: gui/session/unit_actions.js:1176
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Διέταξε τις επιλεγμένες μονάδες να φρουρήσουν ένα κτίριο ή μονάδα."
 
 #: gui/session/unit_actions.js:1194
 msgid "Remove guard"
@@ -1002,12 +1003,12 @@ msgstr "'"
 #: gui/session/chat_window.xml:(caption):7
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Προς:"
 
 #: gui/session/chat_window.xml:(caption):15
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Κείμενο:"
 
 #: gui/session/chat_window.xml:(caption):30
 msgid "Cancel"
@@ -1025,7 +1026,7 @@ msgstr ""
 #: gui/session/chat_window.xml:(tooltip):18
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Πληκτρολογήστε το μήνυμα για την αποστολή."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1152,11 +1153,11 @@ msgstr "Κλικ για Επαναφορά Παιχνιδιού"
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Ακολούθα τον παίχτη!"
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "Λειτουργία Παρατηρητή"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"

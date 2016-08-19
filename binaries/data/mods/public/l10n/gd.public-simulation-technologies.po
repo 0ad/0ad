@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:43+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 10:06+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,6 @@ msgstr "Seampron"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_females_house.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
@@ -167,7 +166,6 @@ msgstr "Armachd meatailt airson bodhaig eich."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
@@ -959,16 +957,12 @@ msgid "Heílōtes"
 msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "+15% stone gathering rate."
-msgstr "Thèid clach a chruinneachadh +15% nas luaithe."
+msgid "Hire servants to help mine stone. +15% stone gathering rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
 msgstr "Sgalagan"
-
-#: simulation/data/technologies/gather_mining_servants.jsonrequirementsTooltip
-msgid "Hire servants to help mine stone. No requirements."
-msgstr "Fastaidh sgalagan a chuidicheas le tochladh cloiche. Chan eil riatanasan na chois."
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
@@ -1022,16 +1016,12 @@ msgid "Andrápoda"
 msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "+15% metal gathering rate."
-msgstr "Thèid meatailt a chruinneachadh +15% nas luaithe."
+msgid "Equip your workers with helpful tools. +15% metal gathering rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Gèinneach is slacan"
-
-#: simulation/data/technologies/gather_mining_wedgemallet.jsonrequirementsTooltip
-msgid "Equip your workers with helpful tools. No requirements."
-msgstr "Thoir innealan feumaidh don luchd-obrach agad. Chan eil riatanasan am broinn seo."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
@@ -2282,29 +2272,6 @@ msgstr "Tog ballachan-cloiche air ranntair neo-phàirteach."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Ballachan fada na h-Àithne"
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
-msgid ""
-"The Hellenic culture was very influential. Greek became the spoken language "
-"of commerce and politics for much of the Mediterranean basin and Middle East"
-" for centuries."
-msgstr "Bha buaidh mhòr aig cultar nan Greugach air càch. Bhruidhnte sa Ghreugais mar chànan malairt ’s poileataigs air cnap mòr nan dùthchannan meadhan-thìreach is san Ear-mheadhan fad linntean."
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsontooltip
-msgid ""
-"The Hellenic culture is very influential. +20% territory effect for all "
-"buildings."
-msgstr "Tha cultar nan Greugach glè bhuadhmhor. Buaidh ranntair de +20% air airson gach togalaich."
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsongenericName
-msgid "Hellenization"
-msgstr "Greugachadh"
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
-msgid "Hellēnízein"
-msgstr "Hellēnízein"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""

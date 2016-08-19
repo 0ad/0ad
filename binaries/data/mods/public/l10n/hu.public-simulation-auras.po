@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-12 17:21+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 09:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -111,9 +111,8 @@ msgid "Commander Aura"
 msgstr "Parancsnoki aura"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
-msgid ""
-"+5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr "+5 lovassági roham támadás a látóhatárán belül (pillanatnyilag haszontalan)."
+msgid "+5 Cavalry melee attack within vision range of him."
+msgstr "+5 lovassági közelharci támadás a látóhatárán belül."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -353,6 +352,10 @@ msgstr "+20% támadás és +1 elfoglalás a közeli hoplitáknak és spártaiakn
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Másodpercenként 1 ÉP-vel gyógyítja a közeli egységeket."
+
+#: simulation/data/auras/theatron.jsonauraName
+msgid "Hellenization."
+msgstr "Hellenizáció."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per Theatron owned."

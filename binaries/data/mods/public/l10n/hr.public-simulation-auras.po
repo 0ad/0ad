@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-10 09:22+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -108,8 +108,7 @@ msgid "Commander Aura"
 msgstr "Zapovjednička Aura"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
-msgid ""
-"+5 Cavalry charge attack within vision range of him (currently useless)."
+msgid "+5 Cavalry melee attack within vision range of him."
 msgstr ""
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
@@ -350,6 +349,10 @@ msgstr "+20% Napada i +1 Zauzimanja za obližnje Hoplite i Spartijate"
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Iscjeljuje obližnje jedinice 1 HP po sekundi"
+
+#: simulation/data/auras/theatron.jsonauraName
+msgid "Hellenization."
+msgstr ""
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per Theatron owned."

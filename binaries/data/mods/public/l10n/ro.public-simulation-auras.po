@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-08-09 13:56+0000\n"
-"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 08:39+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,9 +109,8 @@ msgid "Commander Aura"
 msgstr "Aură de comandă"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
-msgid ""
-"+5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr "+5 la Șarja cavaleriei in interiorul câmpului său vizual (momentan nefolositoare)."
+msgid "+5 Cavalry melee attack within vision range of him."
+msgstr ""
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -351,6 +350,10 @@ msgstr "+20% Atac si +1 Captură pentru Hopliții si Spartanii din apropiere."
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Vindecă unitățile din apropiere cu 1 HP pe secundă"
+
+#: simulation/data/auras/theatron.jsonauraName
+msgid "Hellenization."
+msgstr ""
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per Theatron owned."

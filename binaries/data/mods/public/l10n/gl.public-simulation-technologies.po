@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-06-06 10:03+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 10:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,6 @@ msgstr "Helmo de cabalo"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_females_house.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
@@ -167,7 +166,6 @@ msgstr "Armadura de metal para o corpo dun cabalo."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
@@ -959,16 +957,12 @@ msgid "Heílōtes"
 msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "+15% stone gathering rate."
-msgstr "Aumenta a velocidade de extracción de pedra un +15%."
+msgid "Hire servants to help mine stone. +15% stone gathering rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
 msgstr "Servos"
-
-#: simulation/data/technologies/gather_mining_servants.jsonrequirementsTooltip
-msgid "Hire servants to help mine stone. No requirements."
-msgstr "Contrata servos para axudar a picar pedra. Non se require nada."
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
@@ -1022,16 +1016,12 @@ msgid "Andrápoda"
 msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "+15% metal gathering rate."
-msgstr "Aumenta a extracción de metal un +15%."
+msgid "Equip your workers with helpful tools. +15% metal gathering rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Cuñas e mazas"
-
-#: simulation/data/technologies/gather_mining_wedgemallet.jsonrequirementsTooltip
-msgid "Equip your workers with helpful tools. No requirements."
-msgstr "Equipa os traballadores con ferramentas útiles. Non ten requisitos."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
@@ -2282,29 +2272,6 @@ msgstr "Constrúe murallas de pedra en territorio neutral."
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Muros Longos de Atenas"
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
-msgid ""
-"The Hellenic culture was very influential. Greek became the spoken language "
-"of commerce and politics for much of the Mediterranean basin and Middle East"
-" for centuries."
-msgstr "A cultura helena tiña unha gran influencia. O grego converteuse no idioma do comercio e maila política nunha parte moi importante da costa mediterránea e Oriente Medio durante séculos."
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsontooltip
-msgid ""
-"The Hellenic culture is very influential. +20% territory effect for all "
-"buildings."
-msgstr "A cultura helena ten gran influenza. Aumenta en +20% o efecto no territorio de todas as estruturas."
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsongenericName
-msgid "Hellenization"
-msgstr "Helenización"
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
-msgid "Hellēnízein"
-msgstr "Hellēnízein"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
