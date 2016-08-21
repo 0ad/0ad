@@ -48,6 +48,9 @@
 #include "maths/MathUtil.h"
 #include "graphics/GameView.h"
 
+#include <iomanip>
+#include <sstream>
+
 extern CStrW g_CursorName;
 
 static std::string SplitExts(const char *exts)
