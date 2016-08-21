@@ -4,14 +4,14 @@
     <Square width="40.0" depth="40.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_rome_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Forum</SpecificName>
     <History>A Roman forum was the center of a city's commercial and public life. The most famous of which was in Rome herself, the Forum Romanum.</History>
   </Identity>
-  <Health>
-	<SpawnEntityOnDeath>rubble/rubble_rome_cc</SpawnEntityOnDeath>
-  </Health>
   <Obstruction>
     <Static width="37.0" depth="37.0"/>
   </Obstruction>

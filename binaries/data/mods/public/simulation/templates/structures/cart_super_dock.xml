@@ -6,16 +6,6 @@
     <PlacementType>shore</PlacementType>
     <Category>Dock</Category>
   </BuildRestrictions>
-  <Identity>
-    <Civ>cart</Civ>
-    <GenericName>Naval Shipyard</GenericName>
-    <SpecificName>Cothon</SpecificName>
-    <VisibleClasses datatype="tokens">-City Shipyard Town</VisibleClasses>
-    <History>The structure is based upon the center island of the inner harbor constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
-    <Tooltip>Construct and repair mighty warships.</Tooltip>
-    <Icon>structures/uber_dock.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
-  </Identity>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>500</BuildTime>
@@ -40,12 +30,34 @@
   <Health>
     <Max>5000</Max>
   </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <GenericName>Naval Shipyard</GenericName>
+    <SpecificName>Cothon</SpecificName>
+    <VisibleClasses datatype="tokens">-City Shipyard Town</VisibleClasses>
+    <History>The structure is based upon the center island of the inner harbor constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
+    <Tooltip>Construct and repair mighty warships.</Tooltip>
+    <Icon>structures/uber_dock.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
   <Obstruction>
     <Static width="42.0" depth="58.0"/>
   </Obstruction>
   <Position>
     <Floating>true</Floating>
   </Position>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_ship_bireme
+      units/{civ}_ship_trireme
+      units/{civ}_ship_quinquereme
+    </Entities>
+    <Technologies datatype="tokens">
+      carthaginians/training_phoenician_naval_architects
+      carthaginians/special_exploration
+    </Technologies>
+  </ProductionQueue>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
   </RallyPointRenderer>
@@ -62,18 +74,6 @@
     <Radius>200</Radius>
     <Weight>25000</Weight>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_ship_bireme
-      units/{civ}_ship_trireme
-      units/{civ}_ship_quinquereme
-    </Entities>
-    <Technologies datatype="tokens">
-	  carthaginians/training_phoenician_naval_architects
-	  carthaginians/special_exploration
-    </Technologies>
-  </ProductionQueue>
   <Vision>
     <Range>100</Range>
   </Vision>

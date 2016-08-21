@@ -30,11 +30,6 @@
   <Obstruction>
     <Static width="48.0" depth="48.0"/>
   </Obstruction>
-  <TerritoryInfluence>
-    <Root>true</Root>
-    <Radius>300</Radius>
-    <Weight>35000</Weight>
-  </TerritoryInfluence>
   <ProductionQueue>
     <Entities datatype="tokens">
       -units/{civ}_support_female_citizen
@@ -43,6 +38,11 @@
       units/{civ}_support_trader
     </Entities>
   </ProductionQueue>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>300</Radius>
+    <Weight>35000</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>campaigns/structures/hellenes/settlement_curtainwall.xml</Actor>
   </VisualActor>

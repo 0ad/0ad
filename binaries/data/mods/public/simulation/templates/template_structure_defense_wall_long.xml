@@ -7,9 +7,6 @@
       <stone>28</stone>
     </Resources>
   </Cost>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
-  </Health>
   <GarrisonHolder>
     <Max>5</Max>
     <List datatype="tokens">Ranged+Infantry</List>
@@ -35,6 +32,9 @@
       </Archer5>
     </VisibleGarrisonPoints>
   </GarrisonHolder>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_wall_long</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Classes datatype="tokens">LongWall</Classes>
     <Tooltip>Long wall segments can be converted to gates.</Tooltip>

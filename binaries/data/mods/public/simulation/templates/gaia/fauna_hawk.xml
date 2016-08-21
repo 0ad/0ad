@@ -6,13 +6,10 @@
     <Floating>false</Floating>
     <TurnRate>1.0</TurnRate>
   </Position>
-  <VisualActor>
-    <Actor>fauna/hawk.xml</Actor>
-  </VisualActor>
   <UnitAI>
     <RoamDistance>1000.0</RoamDistance>
   </UnitAI>
-  <UnitMotion disable="" />
+  <UnitMotion disable=""/>
   <UnitMotionFlying>
     <MaxSpeed>15.0</MaxSpeed>
     <TakeoffSpeed>1.0</TakeoffSpeed>
@@ -26,4 +23,7 @@
     <ClimbRate>4.0</ClimbRate>
     <DiesInWater>false</DiesInWater>
   </UnitMotionFlying>
+  <VisualActor>
+    <Actor>fauna/hawk.xml</Actor>
+  </VisualActor>
 </Entity>

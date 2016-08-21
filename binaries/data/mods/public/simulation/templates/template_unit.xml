@@ -27,6 +27,7 @@
     <Circle radius="1.5"/>
     <Height>2.5</Height>
   </Footprint>
+  <Guard/>
   <Health>
     <DeathType>corpse</DeathType>
     <Max>100</Max>
@@ -102,7 +103,6 @@
     <FormationController>false</FormationController>
     <CanGuard>true</CanGuard>
   </UnitAI>
-  <Guard/>
   <UnitMotion>
     <FormationController>false</FormationController>
     <WalkSpeed>9</WalkSpeed>

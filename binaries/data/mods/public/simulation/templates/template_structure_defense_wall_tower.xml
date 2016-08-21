@@ -24,9 +24,6 @@
     <Category>Wall</Category>
   </BuildRestrictions>
   <Capturable disable=""/>
-  <Repairable>
-    <RepairTimeRatio>4.5</RepairTimeRatio>
-  </Repairable>
   <Cost>
     <BuildTime>80</BuildTime>
     <Resources>
@@ -73,6 +70,9 @@
       pair_walls_01
     </Technologies>
   </ProductionQueue>
+  <Repairable>
+    <RepairTimeRatio>4.5</RepairTimeRatio>
+  </Repairable>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>

@@ -11,7 +11,7 @@
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
+      <Bonuses>
         <BonusCavMelee>
           <Classes>Cavalry</Classes>
           <Multiplier>3.0</Multiplier>
@@ -22,7 +22,7 @@
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Hero Spearman</GenericName>
-	<Tooltip>Counters: 3x vs. Cavalry.</Tooltip>
+    <Tooltip>Counters: 3x vs. Cavalry.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo

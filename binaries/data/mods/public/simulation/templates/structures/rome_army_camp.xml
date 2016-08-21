@@ -2,7 +2,7 @@
 <Entity parent="template_structure_special">
   <Armour>
     <Hack op="add">-5.0</Hack>
-    <Pierce op ="add">-5.0</Pierce>
+    <Pierce op="add">-5.0</Pierce>
     <Crush op="add">-2.0</Crush>
     <Foundation>
       <Hack>1.0</Hack>
@@ -66,17 +66,6 @@
   <Obstruction>
     <Static width="36.0" depth="36.0"/>
   </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_broch.xml</select>
-      <constructed>interface/complete/building/complete_broch.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryDecay>
-    <DecayRate>37.5</DecayRate>
-  </TerritoryDecay>
-  <TerritoryInfluence disable=""/>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -92,6 +81,17 @@
       units/{civ}_mechanical_siege_tower
     </Entities>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay>
+    <DecayRate>37.5</DecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
   <Vision>
     <Range>60</Range>
   </Vision>

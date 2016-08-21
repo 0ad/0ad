@@ -58,12 +58,12 @@
     <VisibleClasses datatype="tokens">Ranged Warship</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <ResourceGatherer disable=""/>
   <Sound>
     <SoundGroups>
       <attack>attack/siege/ballist_attack.xml</attack>
     </SoundGroups>
   </Sound>
-  <ResourceGatherer disable=""/>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.5</BarHeight>

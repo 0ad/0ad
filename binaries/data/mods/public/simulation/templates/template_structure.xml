@@ -15,7 +15,6 @@
     <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Ranged Infantry</GarrisonArrowClasses>
   </BuildingAI>
-  <Guard/>
   <BuildRestrictions>
     <PlacementType>land</PlacementType>
     <Territory>own</Territory>
@@ -44,6 +43,7 @@
     <SinkAccel>9.8</SinkAccel>
   </Decay>
   <Fogging/>
+  <Guard/>
   <Health>
     <DeathType>corpse</DeathType>
     <RegenRate>0</RegenRate>
@@ -51,9 +51,6 @@
     <Undeletable>false</Undeletable>
     <Unhealable>true</Unhealable>
   </Health>
-  <Repairable>
-    <RepairTimeRatio>2.0</RepairTimeRatio>
-  </Repairable>
   <Identity>
     <GenericName>Structure</GenericName>
     <Classes datatype="tokens">Structure ConquestCritical</Classes>
@@ -72,7 +69,7 @@
   </Obstruction>
   <OverlayRenderer/>
   <ProductionQueue>
-	<TechCostMultiplier>
+    <TechCostMultiplier>
       <food>1.0</food>
       <wood>1.0</wood>
       <stone>1.0</stone>
@@ -92,6 +89,9 @@
     <LineEndCap>round</LineEndCap>
     <LinePassabilityClass>default</LinePassabilityClass>
   </RallyPointRenderer>
+  <Repairable>
+    <RepairTimeRatio>2.0</RepairTimeRatio>
+  </Repairable>
   <Selectable>
     <Overlay>
       <Outline>

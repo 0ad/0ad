@@ -7,7 +7,6 @@
     <Circle radius="3.5"/>
     <Height>8.0</Height>
   </Footprint>
-  <ResourceGatherer disable=""/>
   <Identity>
     <Civ>maur</Civ>
     <Classes datatype="tokens">Elephant</Classes>
@@ -21,6 +20,7 @@
   <Promotion>
     <Entity>units/maur_elephant_archer_a</Entity>
   </Promotion>
+  <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>
       <Texture>

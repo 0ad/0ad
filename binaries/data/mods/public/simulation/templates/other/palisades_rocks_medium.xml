@@ -28,7 +28,7 @@
     <GenericName>Wooden Wall</GenericName>
     <Classes datatype="tokens">-StoneWall Palisade</Classes>
     <Icon>gaia/special_palisade.png</Icon>
-	<RequiredTechnology>phase_village</RequiredTechnology>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="10" depth="2.0"/>
@@ -36,11 +36,11 @@
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>
   </StatusBars>
+  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>props/special/palisade_rocks_medium.xml</Actor>
     <FoundationActor>structures/fndn_1x3pal.xml</FoundationActor>
   </VisualActor>
-  <TerritoryInfluence disable=""/>
   <WallPiece>
     <Length>8.0</Length>
   </WallPiece>

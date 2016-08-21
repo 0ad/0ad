@@ -12,20 +12,20 @@
       <Crush>25.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
+      <Bonuses>
+        <BonusStructures>
+          <Classes>Structure</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusStructures>
+        <BonusCav>
+          <Classes>Cavalry</Classes>
+          <Multiplier>2</Multiplier>
+        </BonusCav>
+        <BonusGates>
+          <Classes>Gates</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusGates>
+      </Bonuses>
     </Melee>
   </Attack>
   <Cost>

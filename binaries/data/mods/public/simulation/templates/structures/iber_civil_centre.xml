@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_iber_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Oppidum</SpecificName>
     <History>The Oppidum, plural Oppida (oh-PEE-dah), has a long history in the Iberian Peninsula. They were walled towns, dating back to even before the time period of the game and expanding greatly during it. They were usually built upon heights for better defensive purposes but sometimes right out on the plains, especially in the east where there may not have been heights at desirable locations near meandering rivers. This concept drawing is derived from an actual archeological site that has been excavated in the northeast of Spain having belonged to the Ilergete (ee-layer-HAY-tay) tribe as shown in the figure below and from the virtual reconstruction of the site at the museum located adjacent to it.</History>
   </Identity>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_iber_cc</SpawnEntityOnDeath>
-  </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_infantry_swordsman_b

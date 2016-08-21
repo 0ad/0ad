@@ -44,18 +44,6 @@
   <Obstruction>
     <Static width="17.5" depth="30.0"/>
   </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_temple.xml</select>
-      <constructed>interface/complete/building/complete_temple.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>40</Radius>
-    <Weight>30000</Weight>
-  </TerritoryInfluence>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -70,6 +58,18 @@
       health_regen_units
     </Technologies>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple.xml</select>
+      <constructed>interface/complete/building/complete_temple.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>40</Radius>
+    <Weight>30000</Weight>
+  </TerritoryInfluence>
   <Vision>
     <Range>40</Range>
   </Vision>

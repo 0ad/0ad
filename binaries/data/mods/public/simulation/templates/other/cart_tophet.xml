@@ -21,7 +21,7 @@
     <Civ>cart</Civ>
     <GenericName>Sacrificial Temple</GenericName>
     <SpecificName>Tophet</SpecificName>
-	<Tooltip>Train physicians and Sacred Band Cavalrymen.</Tooltip>
+    <Tooltip>Train physicians and Sacred Band Cavalrymen.</Tooltip>
   </Identity>
   <Loot>
     <xp>50</xp>
@@ -33,12 +33,12 @@
   <Obstruction>
     <Static width="22.0" depth="24.0"/>
   </Obstruction>
-  <TerritoryDecay disable=""/>
   <ProductionQueue>
     <Entities datatype="tokens">
-	  units/{civ}_champion_cavalry
+      units/{civ}_champion_cavalry
     </Entities>
   </ProductionQueue>
+  <TerritoryDecay disable=""/>
   <Vision>
     <Range>40</Range>
   </Vision>

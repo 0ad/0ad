@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="special/actor">
-  <VisualActor>
-    <Actor>props/special/common/waypoint_flag.xml</Actor>
-  </VisualActor>
   <Visibility>
     <AlwaysVisible>true</AlwaysVisible>
   </Visibility>
+  <VisualActor>
+    <Actor>props/special/common/waypoint_flag.xml</Actor>
+  </VisualActor>
 </Entity>

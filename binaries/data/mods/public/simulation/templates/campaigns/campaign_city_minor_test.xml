@@ -30,11 +30,6 @@
   <Obstruction>
     <Static width="48.0" depth="48.0"/>
   </Obstruction>
-  <TerritoryInfluence>
-    <Root>true</Root>
-    <Radius>150</Radius>
-    <Weight>35000</Weight>
-  </TerritoryInfluence>
   <ProductionQueue>
     <Entities datatype="tokens">
       -units/{civ}_support_female_citizen
@@ -42,6 +37,11 @@
       campaigns/army_mace_standard
     </Entities>
   </ProductionQueue>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>150</Radius>
+    <Weight>35000</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>campaigns/structures/hellenes/settlement_curtainwall.xml</Actor>
   </VisualActor>

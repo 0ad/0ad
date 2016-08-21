@@ -34,13 +34,13 @@
     <Tooltip>Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly.</Tooltip>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Repairable disable=""/>
+  <ResourceGatherer disable=""/>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.5</BarHeight>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
-  <Repairable disable=""/>
-  <ResourceGatherer disable=""/>
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
     <WalkSpeed>17.5</WalkSpeed>

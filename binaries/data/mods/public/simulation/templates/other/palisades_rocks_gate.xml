@@ -18,8 +18,8 @@
     <SpecificName>Palisade Gate</SpecificName>
     <GenericName>Wooden Gate</GenericName>
     <Classes datatype="tokens">-StoneWall Palisade</Classes>
-	<Icon>structures/wooden_gate.png</Icon>
-	<RequiredTechnology>phase_village</RequiredTechnology>
+    <Icon>structures/wooden_gate.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Obstructions>
@@ -31,11 +31,11 @@
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>
   </StatusBars>
+  <TerritoryInfluence disable=""/>
   <VisualActor>
     <FoundationActor>structures/fndn_1x3pal.xml</FoundationActor>
     <Actor>props/special/palisade_rocks_gate.xml</Actor>
   </VisualActor>
-  <TerritoryInfluence disable=""/>
   <WallPiece>
     <Length>11.0</Length>
   </WallPiece>

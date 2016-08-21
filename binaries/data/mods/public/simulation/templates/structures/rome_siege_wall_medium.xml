@@ -23,9 +23,6 @@
     <Square width="28.0" depth="8.0"/>
     <Height>7.0</Height>
   </Footprint>
-  <Health>
-    <Max op="mul">0.75</Max>
-  </Health>
   <GarrisonHolder>
     <VisibleGarrisonPoints>
       <Archer1>
@@ -39,6 +36,9 @@
       </Archer3>
     </VisibleGarrisonPoints>
   </GarrisonHolder>
+  <Health>
+    <Max op="mul">0.75</Max>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SelectionGroupName>structures/rome_wallset_siege</SelectionGroupName>

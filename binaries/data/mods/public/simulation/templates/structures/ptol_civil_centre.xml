@@ -7,13 +7,13 @@
   <Health>
     <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
-  <Obstruction>
-    <Static width="40.0" depth="37"/>
-  </Obstruction>
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>pr-'a</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="40.0" depth="37"/>
+  </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_infantry_pikeman_b

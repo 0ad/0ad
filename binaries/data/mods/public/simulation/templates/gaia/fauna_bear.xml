@@ -21,6 +21,10 @@
   <Position>
     <Anchor>pitch</Anchor>
   </Position>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>food.meat</Type>
+  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/lion_select.xml</select>
@@ -28,10 +32,6 @@
       <death>actor/fauna/animal/lion_select.xml</death>
     </SoundGroups>
   </Sound>
-  <ResourceSupply>
-    <Amount>300</Amount>
-    <Type>food.meat</Type>
-  </ResourceSupply>
   <VisualActor>
     <Actor>fauna/bear.xml</Actor>
   </VisualActor>

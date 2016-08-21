@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_pers_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Provincial Governor</GenericName>
     <SpecificName>Xšaçapāvan</SpecificName>
     <History>Possibly of Median origin, the word 'satrapy' means province. Soon after coming to the throne, Darius the Great carried out a vast administrative reform, dividing the huge empire into 20 satrapies governed by satraps.</History>
   </Identity>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_pers_cc</SpawnEntityOnDeath>
-  </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_infantry_spearman_b

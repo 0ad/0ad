@@ -21,7 +21,7 @@
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>300</Amount>
     <Type>treasure.metal</Type>
-	<MaxGatherers>1</MaxGatherers>
+    <MaxGatherers>1</MaxGatherers>
   </ResourceSupply>
   <Selectable>
     <EditorOnly disable=""/>
@@ -38,7 +38,7 @@
       <select>interface/select/building/sel_universal.xml</select>
     </SoundGroups>
   </Sound>
-   <StatusBars>
+  <StatusBars>
     <HeightOffset>3.75</HeightOffset>
   </StatusBars>
 </Entity>

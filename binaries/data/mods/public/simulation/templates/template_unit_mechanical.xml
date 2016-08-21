@@ -8,9 +8,6 @@
   <Health>
     <Unhealable>true</Unhealable>
   </Health>
-  <Repairable>
-    <RepairTimeRatio>4.0</RepairTimeRatio>
-  </Repairable>
   <Identity>
     <GenericName>Mechanical</GenericName>
     <VisibleClasses datatype="tokens">Mechanical</VisibleClasses>
@@ -22,4 +19,7 @@
     <stone>0</stone>
     <metal>25</metal>
   </Loot>
+  <Repairable>
+    <RepairTimeRatio>4.0</RepairTimeRatio>
+  </Repairable>
 </Entity>

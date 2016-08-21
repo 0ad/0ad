@@ -32,15 +32,6 @@
       </Texture>
     </Overlay>
   </Selectable>
-  <Visibility>
-    <RetainInFog>false</RetainInFog>
-  </Visibility>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
-  <VisualActor>
-    <Actor>fauna/shark.xml</Actor>
-  </VisualActor>
   <UnitAI>
     <NaturalBehaviour>passive</NaturalBehaviour>
     <RoamDistance>100.0</RoamDistance>
@@ -57,4 +48,13 @@
       <Speed>35.0</Speed>
     </Run>
   </UnitMotion>
+  <Visibility>
+    <RetainInFog>false</RetainInFog>
+  </Visibility>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>fauna/shark.xml</Actor>
+  </VisualActor>
 </Entity>

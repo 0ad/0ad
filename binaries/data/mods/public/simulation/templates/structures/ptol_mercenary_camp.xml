@@ -27,7 +27,7 @@
   <Identity>
     <Civ>ptol</Civ>
     <GenericName>Mercenary Camp</GenericName>
-	<SpecificName>Stratopedeía Misthophórōn</SpecificName>
+    <SpecificName>Stratopedeía Misthophórōn</SpecificName>
     <Classes datatype="tokens">MercenaryCamp</Classes>
     <History>The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and foreign mercenaries for the bulk of its military force, mainly because the loyalty of native Egyptian units was often suspect. Indeed, during one native uprising, Upper Egypt was lost to the Ptolemies for decades. Mercenaries were often battle-hardened and their loyalty can be bought, sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt under the Ptolemies was so prosperous as to be the richest of Alexander's successor states.</History>
     <Tooltip>Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.
@@ -47,10 +47,10 @@
       units/{civ}_cavalry_javelinist_merc_b
     </Entities>
     <Technologies datatype="tokens">
-	  upgrade_rank_advanced_infantry
-	  upgrade_rank_elite_infantry
-	  upgrade_rank_advanced_cavalry
-	  upgrade_rank_elite_cavalry
+      upgrade_rank_advanced_infantry
+      upgrade_rank_elite_infantry
+      upgrade_rank_advanced_cavalry
+      upgrade_rank_elite_cavalry
     </Technologies>
   </ProductionQueue>
   <Sound>

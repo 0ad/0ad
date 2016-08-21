@@ -39,11 +39,6 @@
   <Obstruction>
     <Static width="28.0" depth="20.0"/>
   </Obstruction>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>40</Radius>
-    <Weight>65535</Weight>
-  </TerritoryInfluence>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -52,6 +47,11 @@
       units/{civ}_thorakites
     </Entities>
   </ProductionQueue>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>40</Radius>
+    <Weight>65535</Weight>
+  </TerritoryInfluence>
   <Vision>
     <Range>40</Range>
   </Vision>

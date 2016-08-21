@@ -33,10 +33,6 @@
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
-  <TerritoryInfluence>
-    <Root>true</Root>
-    <Radius>48</Radius>
-  </TerritoryInfluence>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -58,6 +54,10 @@
     </Rates>
     <Interval>1000</Interval>
   </ResourceTrickle>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>48</Radius>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/persians/apadana.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
