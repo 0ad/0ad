@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -573,7 +573,7 @@ private:
 	 * @param dictionary Dictionary where the entries from the PO file should be
 	 *        stored.
 	 */
-	void ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary);
+	void ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary) const;
 
 	/**
 	 * Creates an ICU date formatted with the specified settings.
