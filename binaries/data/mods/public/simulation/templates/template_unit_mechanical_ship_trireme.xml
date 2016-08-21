@@ -17,7 +17,7 @@
     <DefaultArrowCount>3</DefaultArrowCount>
     <MaxArrowCount>13</MaxArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-	<GarrisonArrowClasses>Infantry Ranged</GarrisonArrowClasses>
+    <GarrisonArrowClasses>Infantry Ranged</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
     <Population>3</Population>
@@ -45,7 +45,7 @@
   </Health>
   <Identity>
     <GenericName>Medium Warship</GenericName>
-    <VisibleClasses datatype="tokens">Warship Medium Ranged</VisibleClasses>
+    <VisibleClasses datatype="tokens">Ranged Warship</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
   </Identity>

@@ -55,8 +55,8 @@
   <Identity>
     <GenericName>Heavy Warship</GenericName>
     <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
-    <Classes datatype="tokens">Warship Heavy Ranged</Classes>
-	<RequiredTechnology>phase_city</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Ranged Warship</VisibleClasses>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Sound>
     <SoundGroups>

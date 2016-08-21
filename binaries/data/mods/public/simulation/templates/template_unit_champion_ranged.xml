@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion">
   <Identity>
     <GenericName>Champion Ranged</GenericName>
-    <Classes datatype="tokens">Ranged</Classes>
+    <VisibleClasses datatype="tokens">Ranged</VisibleClasses>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>

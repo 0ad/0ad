@@ -10,7 +10,8 @@
   <ResourceGatherer disable=""/>
   <Identity>
     <Civ>maur</Civ>
-    <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
+    <Classes datatype="tokens">Elephant</Classes>
+    <VisibleClasses datatype="tokens">-Cavalry</VisibleClasses>
     <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
     <GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
