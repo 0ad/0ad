@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:50+0000\n"
+"POT-Creation-Date: 2016-08-19 09:00+0200\n"
+"PO-Revision-Date: 2016-08-19 10:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid "Soldier"
 msgstr "Soldat"
 
 #: simulation/templates/template_unit_cavalry.xml:39
-#: simulation/templates/template_unit_dog.xml:53
+#: simulation/templates/template_unit_dog.xml:45
 #: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
@@ -59,54 +59,54 @@ msgctxt "Rank"
 msgid "Basic"
 msgstr "Grunnleggende"
 
-#: simulation/templates/template_unit_cavalry_melee.xml:26
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:32
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:35
-#: simulation/templates/template_unit_champion_elephant_melee.xml:20
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:45
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
+#: simulation/templates/template_unit_cavalry_melee.xml:18
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
+#: simulation/templates/template_unit_champion_elephant_melee.xml:13
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
-#: simulation/templates/template_unit_infantry_melee.xml:26
+#: simulation/templates/template_unit_infantry_melee.xml:18
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "Nærkamp"
 
-#: simulation/templates/template_unit_cavalry_melee.xml:27
+#: simulation/templates/template_unit_cavalry_melee.xml:19
 msgid "Melee Cavalry"
 msgstr "Nærkampkavaleri"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:20
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:32
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:45
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:35
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spear"
 msgstr "Spyd"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:17
 msgid "Cavalry Spearman"
 msgstr "Spydbærende kavalerist"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:29
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:35
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:25
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
 msgid "Sword"
 msgstr "Sverd"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:30
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 msgid "Cavalry Swordsman"
 msgstr "Kavalerisverdmann"
 
@@ -174,11 +174,11 @@ msgstr "Ridende mesterbueskytter"
 msgid "Champion Cavalry Skirmisher"
 msgstr "Ridende mesterfrontsoldat"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
 msgstr "Ridende mesterspydmann"
 
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:36
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 msgid "Champion Cavalry Swordsman"
 msgstr "Ridende mestersverdmann"
 
@@ -211,30 +211,30 @@ msgstr "Mesterbueskytter"
 msgid "Champion Skirmisher"
 msgstr "Mesterfrontsoldat"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "Lanse"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
 msgid "Champion Pikeman"
 msgstr "Mesterpikenér"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:48
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:46
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:35
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:38
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
 msgstr "Kontrer: 3x vs. kavaleri."
 
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:44
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:31
 msgid "Champion Spearman"
 msgstr "Mesterspydmann"
 
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
 msgid "Champion Swordsman"
 msgstr "Mestersverdmann"
 
@@ -258,15 +258,15 @@ msgstr "Mekanisk"
 msgid "Siege"
 msgstr "Beleiring"
 
-#: simulation/templates/template_unit_dog.xml:51
+#: simulation/templates/template_unit_dog.xml:43
 msgid "Dog"
 msgstr "Hund"
 
-#: simulation/templates/template_unit_dog.xml:52
+#: simulation/templates/template_unit_dog.xml:44
 msgid "War Dog"
 msgstr "Krigshund"
 
-#: simulation/templates/template_unit_dog.xml:54
+#: simulation/templates/template_unit_dog.xml:46
 msgid "Cannot attack structures."
 msgstr "Kan ikke angripe bygninger."
 
@@ -333,19 +333,19 @@ msgstr "Heltespydmann"
 msgid "Hero Swordsman"
 msgstr "Heltesverdmann"
 
-#: simulation/templates/template_unit_infantry_melee.xml:25
+#: simulation/templates/template_unit_infantry_melee.xml:17
 msgid "Melee Infantry"
 msgstr "Håndvåpeninfanteri"
 
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
 msgid "Pikeman"
 msgstr "Pikenér"
 
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:36
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:26
 msgid "Spearman"
 msgstr "Spydmann"
 
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:26
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Swordsman"
 msgstr "Sverdmann"
 
@@ -377,11 +377,11 @@ msgstr "Lett krigsskip"
 msgid "Garrison units for transport and to increase firepower."
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:39
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:32
 msgid "Fire Ship"
 msgstr "Brannskip"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -437,7 +437,7 @@ msgstr "Ballista"
 msgid "Siege Catapult"
 msgstr "Beleiringskatapult"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:46
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:38
 msgid "Battering Ram"
 msgstr "Rambukk"
 
@@ -760,11 +760,11 @@ msgstr "Athensk slyngemilits"
 msgid "Psilòs Athēnaîos"
 msgstr "Psilòs Athēnaîos"
 
-#: simulation/templates/units/athen_infantry_spearman_b.xml:24
+#: simulation/templates/units/athen_infantry_spearman_b.xml:21
 msgid "Athenian Hoplite"
 msgstr "Athensk hoplitt"
 
-#: simulation/templates/units/athen_infantry_spearman_b.xml:25
+#: simulation/templates/units/athen_infantry_spearman_b.xml:22
 msgid "Hoplítēs Athēnaîos"
 msgstr "Hoplítēs Athēnaîos"
 
@@ -974,7 +974,10 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/merc_black_cloak.xml:16
+#: simulation/templates/units/merc_thorakites.xml:26
 #: simulation/templates/units/merc_thrace_swordsman.xml:10
+#: simulation/templates/units/merc_thureophoros.xml:17
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
 #: simulation/templates/units/ptol_infantry_archer_b.xml:23
@@ -986,7 +989,6 @@ msgstr "Ḥayyāl Romaḥ Raḫūv"
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
-#: simulation/templates/units/thrace_black_cloak.xml:16
 msgid "Mercenary"
 msgstr "Leiesoldat"
 
@@ -1004,12 +1006,10 @@ msgid "Iberian Heavy Cavalry"
 msgstr "Iberisk tungt kavaleri"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:5
-#: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
 msgstr "Hellig Bånd-kavaleri"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
-#: simulation/templates/units/cart_sacred_band_cavalry.xml:6
 msgid "Sacred Band of Astarte"
 msgstr "Astartes Hellige Bånd"
 
@@ -1116,10 +1116,6 @@ msgstr "Samnittisk sverdmann"
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:22
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
-
-#: simulation/templates/units/cart_sacred_band_cavalry.xml:7
-msgid "Bonused vs. Ranged Units."
-msgstr "Bonusenheter vs. rekkeviddeenheter"
 
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
@@ -1460,22 +1456,6 @@ msgstr "Makedonisk kvinne"
 msgid "Hiereús"
 msgstr "Hiereús"
 
-#: simulation/templates/units/mace_thorakites.xml:21
-msgid "Armored Swordsman"
-msgstr "Pansret svermann"
-
-#: simulation/templates/units/mace_thorakites.xml:22
-msgid "Thōrakitēs"
-msgstr "Thōrakitēs"
-
-#: simulation/templates/units/mace_thureophoros.xml:12
-msgid "Heavy Skirmisher"
-msgstr "Tung fortropp"
-
-#: simulation/templates/units/mace_thureophoros.xml:13
-msgid "Thyreophóros"
-msgstr "Thyreophóros"
-
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
 msgstr "Indisk lett kavaleri"
@@ -1521,11 +1501,11 @@ msgstr "Indisk krigselefant"
 msgid "Gajendra"
 msgstr "Gajendra"
 
-#: simulation/templates/units/maur_champion_infantry.xml:19
+#: simulation/templates/units/maur_champion_infantry.xml:15
 msgid "Warrior"
 msgstr "Kriger"
 
-#: simulation/templates/units/maur_champion_infantry.xml:20
+#: simulation/templates/units/maur_champion_infantry.xml:16
 msgid "Yōddha"
 msgstr "Yōddha"
 
@@ -1658,6 +1638,22 @@ msgstr "Brāhmaṇa Pujari"
 msgid "Vaishya"
 msgstr "Vaishya"
 
+#: simulation/templates/units/merc_black_cloak.xml:13
+msgid "Thracian Black Cloak"
+msgstr "Thrakisk Svart Frakk"
+
+#: simulation/templates/units/merc_black_cloak.xml:14
+msgid "Rhomphaiaphoros"
+msgstr "Rhomphaiaphoros"
+
+#: simulation/templates/units/merc_thorakites.xml:21
+msgid "Armored Swordsman"
+msgstr "Pansret svermann"
+
+#: simulation/templates/units/merc_thorakites.xml:22
+msgid "Thōrakitēs"
+msgstr "Thōrakitēs"
+
 #: simulation/templates/units/merc_thrace_swordsman.xml:5
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:14
 msgid "Thracian Mercenary Swordsman"
@@ -1667,6 +1663,14 @@ msgstr "Trakisk leiesverdmann"
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
+
+#: simulation/templates/units/merc_thureophoros.xml:12
+msgid "Heavy Skirmisher"
+msgstr "Tung fortropp"
+
+#: simulation/templates/units/merc_thureophoros.xml:13
+msgid "Thyreophóros"
+msgstr "Thyreophóros"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -2056,11 +2060,11 @@ msgstr "Romersk kavaleri"
 msgid "Eques Romanus"
 msgstr "Eques Romanus"
 
-#: simulation/templates/units/rome_centurio_imperial.xml:17
+#: simulation/templates/units/rome_centurio_imperial.xml:14
 msgid "Roman Centurion"
 msgstr "Romersk centurion"
 
-#: simulation/templates/units/rome_centurio_imperial.xml:18
+#: simulation/templates/units/rome_centurio_imperial.xml:15
 msgid "Centurio Legionarius"
 msgstr "Centurio Legionarius"
 
@@ -2122,11 +2126,11 @@ msgstr "Romersk Sverdsoldat"
 msgid "Hastatus"
 msgstr "Hastatus"
 
-#: simulation/templates/units/rome_legionnaire_imperial.xml:14
+#: simulation/templates/units/rome_legionnaire_imperial.xml:11
 msgid "Roman Legionnaire"
 msgstr "Romersk legionær"
 
-#: simulation/templates/units/rome_legionnaire_imperial.xml:15
+#: simulation/templates/units/rome_legionnaire_imperial.xml:12
 msgid "Legionarius Romanus"
 msgstr "Legionarius Romanus"
 
@@ -2138,7 +2142,7 @@ msgstr "Mariansk legionær"
 msgid "Marian Legionarius"
 msgstr "Marian Legionarius"
 
-#: simulation/templates/units/rome_mechanical_siege_ram.xml:17
+#: simulation/templates/units/rome_mechanical_siege_ram.xml:14
 msgid "Aries"
 msgstr "Aries"
 
@@ -2455,25 +2459,6 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
-#: simulation/templates/units/theb_champion_spearman.xml:6
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
-msgid "Theban Sacred Band Hoplite"
-msgstr "Thebens hellige bånd-hoplitt"
-
-#: simulation/templates/units/theb_champion_spearman.xml:7
-msgid "Hieròs Lókhos tôn Thebôn"
-msgstr "Hieròs Lókhos tôn Thebôn"
-
-#: simulation/templates/units/theb_champion_swordsman.xml:6
-#: simulation/templates/units/thespian_melanochitones.xml:6
-msgid "Thespian Black Cloak"
-msgstr "Thespisk Svart Frakk"
-
-#: simulation/templates/units/theb_champion_swordsman.xml:7
-#: simulation/templates/units/thespian_melanochitones.xml:7
-msgid "Melanochitones"
-msgstr "Melanochitones"
-
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
 msgstr "Ildspåsetter"
@@ -2482,21 +2467,25 @@ msgstr "Ildspåsetter"
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid "Hieros Lochos Hoplites"
-msgstr "Hieros Lochos Hoplites"
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
+msgid "Theban Sacred Band Hoplite"
+msgstr "Thebens hellige bånd-hoplitt"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:8
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
+msgid "Hieroû Thebaíou Lókhou Hoplítai"
+msgstr ""
+
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:9
 msgid "Champion Spearman."
 msgstr "Mesterspydmann"
 
-#: simulation/templates/units/thrace_black_cloak.xml:13
-msgid "Thracian Black Cloak"
-msgstr "Thrakisk Svart Frakk"
+#: simulation/templates/units/thespian_melanochitones.xml:6
+msgid "Thespian Black Cloak"
+msgstr "Thespisk Svart Frakk"
 
-#: simulation/templates/units/thrace_black_cloak.xml:14
-msgid "Rhomphaiaphoros"
-msgstr "Rhomphaiaphoros"
+#: simulation/templates/units/thespian_melanochitones.xml:7
+msgid "Melanochitones"
+msgstr "Melanochitones"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
