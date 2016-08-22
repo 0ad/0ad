@@ -14,13 +14,10 @@
     <Population>3</Population>
   </Cost>
   <Identity>
-	<VisibleClasses datatype="tokens">Siege</VisibleClasses>
+    <VisibleClasses datatype="tokens">Siege</VisibleClasses>
     <GenericName>Siege</GenericName>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
-  <UnitAI>
-    <CanGuard>false</CanGuard>
-  </UnitAI>
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>
@@ -29,9 +26,12 @@
       <select>attack/siege/siege_select.xml</select>
       <order_walk>attack/siege/ram_move.xml</order_walk>
       <order_attack>attack/siege/ram_attack.xml</order_attack>
-	  <trained>attack/siege/ram_move.xml</trained>
+      <trained>attack/siege/ram_move.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <CanGuard>false</CanGuard>
+  </UnitAI>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
   </UnitMotion>

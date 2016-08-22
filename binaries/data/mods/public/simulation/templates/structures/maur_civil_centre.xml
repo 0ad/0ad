@@ -4,13 +4,13 @@
     <Square width="40.0" depth="34.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_maur_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Rajadhanika</SpecificName>
   </Identity>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_maur_cc</SpawnEntityOnDeath>
-  </Health>
   <Obstruction>
     <Static width="36.0" depth="30.0"/>
   </Obstruction>

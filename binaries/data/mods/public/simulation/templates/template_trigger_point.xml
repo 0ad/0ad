@@ -14,16 +14,15 @@
       </Outline>
     </Overlay>
   </Selectable>
-  <VisualActor>
-    <SilhouetteDisplay>false</SilhouetteDisplay>
-    <SilhouetteOccluder>true</SilhouetteOccluder>
-    <VisibleInAtlasOnly>true</VisibleInAtlasOnly>
-  </VisualActor>
   <Visibility>
     <RetainInFog>false</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
     <Corpse>false</Corpse>
     <Preview>false</Preview>
   </Visibility>
+  <VisualActor>
+    <SilhouetteDisplay>false</SilhouetteDisplay>
+    <SilhouetteOccluder>true</SilhouetteOccluder>
+    <VisibleInAtlasOnly>true</VisibleInAtlasOnly>
+  </VisualActor>
 </Entity>
-

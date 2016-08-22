@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-08-09 15:21+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 18:17+0000\n"
 "Last-Translator: Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "Casă"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr "Antrenează vindecători. Pune unități în garnizoană pentru a le vindeca într-un ritm accelerat (3 viață pe secundă). Cercetează îmbunătățiri pentru vindecare și religie."
+msgstr "Instruiește vindecători. Pune unități în garnizoană pentru a le vindeca într-un ritm accelerat (3 viață pe secundă). Cercetează îmbunătățiri pentru vindecare și religie."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -158,16 +158,16 @@ msgstr "Zid de piatră"
 #: simulation/templates/template_structure_defense_wall.xml:28
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Înconjurați-vă orașul cu un zid pentru o apărare puternică."
+msgstr "Înconjoară orașul cu un zid pentru o apărare puternică."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:9
 msgid "City Gate"
 msgstr "Poarta orașului"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:10
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Permiteți unităților acces prin zidul orașului. Poate fi blocat pentru a preveni accesul."
+msgstr "Permite unităților acces prin zidul orașului. Poate fi blocat pentru a preveni accesul."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
@@ -243,7 +243,7 @@ msgstr "Așezare"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr "Construiți un Centru civic la această locație pentru a vă extinde teritoriul."
+msgstr "Construiește un Centru Civic la această locație pentru a-ți extinde teritoriul."
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -331,7 +331,7 @@ msgstr "Câmp"
 
 #: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Recoltează legume pentru alimente. Număr maxim de culegători: 5."
+msgstr "Recoltează legume pentru hrană. Număr maxim de culegători: 5."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -340,7 +340,7 @@ msgstr "Clădire specială"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Aceasta este o clădire specială, disponibilă unei singure civilizații."
+msgstr "Aceasta este o clădire specială, specifică unei singure civilizații."
 
 #: simulation/templates/template_structure_special_library.xml:15
 msgid "Library"
@@ -358,10 +358,6 @@ msgstr "Moară rotativă"
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:23
-msgid "Increase nearby farming output +25%."
-msgstr "Crește producția fermelor din apropiere cu +25%."
-
 #: simulation/templates/template_structure_special_theatron.xml:23
 msgid "Greek Theater"
 msgstr "Teatru grecesc"
@@ -369,11 +365,6 @@ msgstr "Teatru grecesc"
 #: simulation/templates/template_structure_special_theatron.xml:24
 msgid "Théātron"
 msgstr "Théātron"
-
-#: simulation/templates/template_structure_special_theatron.xml:26
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
-msgstr "Hellēnízein (Elenizare): +20% influență teritorială per Teatron deținut."
 
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
@@ -383,7 +374,7 @@ msgstr "Minune"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Acordă glorie civilizației tale și adaugă mari suprafețe de teren la imperiul tău."
+msgstr "Adu glorie civilizației tale și anexează suprafețe mari de teren imperiului tău."
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -441,11 +432,11 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Construiește mașini de asediu. Încartiruiți soldați aici pentru o defensiva solidă."
+msgstr "Construiește mașini de asediu. Pune soldați în garnizoană pentru o defensivă solidă."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
-msgstr "Gymnasium"
+msgstr "Gimnaziu"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
 msgid "Gymnásion"
@@ -453,12 +444,12 @@ msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen_gymnasion.xml:22
 msgid "Train champion units."
-msgstr "Antreneaza unitati campioane"
+msgstr "Antrenează unități de tip campion."
 
-#: simulation/templates/structures/athen_house.xml:18
-#: simulation/templates/structures/mace_house.xml:18
-#: simulation/templates/structures/sele_house.xml:18
-#: simulation/templates/structures/spart_house.xml:18
+#: simulation/templates/structures/athen_house.xml:5
+#: simulation/templates/structures/mace_house.xml:5
+#: simulation/templates/structures/sele_house.xml:5
+#: simulation/templates/structures/spart_house.xml:5
 msgid "Oîkos"
 msgstr "Oîkos"
 
@@ -472,7 +463,7 @@ msgstr "Empórios"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Avanpost Grecesc"
+msgstr "Avanpost grecesc"
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
@@ -523,8 +514,8 @@ msgstr "Pýlai"
 #: simulation/templates/structures/sele_wall_short.xml:10
 #: simulation/templates/structures/sele_wallset_stone.xml:5
 #: simulation/templates/structures/spart_wall_long.xml:10
-#: simulation/templates/structures/spart_wall_medium.xml:13
-#: simulation/templates/structures/spart_wall_short.xml:13
+#: simulation/templates/structures/spart_wall_medium.xml:10
+#: simulation/templates/structures/spart_wall_short.xml:10
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teîkhos"
 msgstr "Teîkhos"
@@ -550,7 +541,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Aduce glorie civilizației tale si adaugă suprafețe mari de teren imperiului tău. Încartiruiți unitați pentru a le vindeca într-un ritm accelerat."
+msgstr "Adu glorie civilizației tale și anexează suprafețe mari de teren imperiului tău. Pune unități în garnizoană pentru a le vindeca într-un ritm accelerat."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -574,7 +565,7 @@ msgstr "Cavalidos"
 
 #: simulation/templates/structures/brit_crannog.xml:21
 msgid "Island Settlement"
-msgstr "Asezare Insulara"
+msgstr "Așezare insulară"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways."
@@ -609,7 +600,7 @@ msgstr "Brythonic Broch"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Antreneaza eroi Brythonici si campioni . Construieste berbeci"
+msgstr "Instruiește eroi și campioni Brythonici. Construiește berbeci de asediu."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
@@ -622,7 +613,7 @@ msgstr "Kennel"
 
 #: simulation/templates/structures/brit_kennel.xml:35
 msgid "Train Celtic war dogs."
-msgstr "Antreneaza caini celtici de lupta."
+msgstr "Instruiește câini celtici de luptă."
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
@@ -643,17 +634,17 @@ msgstr "Ystordy"
 msgid "Addoldy"
 msgstr "Addoldy"
 
-#: simulation/templates/structures/brit_wall_gate.xml:16
+#: simulation/templates/structures/brit_wall_gate.xml:9
 msgid "Dor"
 msgstr "Dor"
 
 #: simulation/templates/structures/brit_wall_long.xml:29
-#: simulation/templates/structures/brit_wall_medium.xml:26
-#: simulation/templates/structures/brit_wall_short.xml:13
+#: simulation/templates/structures/brit_wall_medium.xml:23
+#: simulation/templates/structures/brit_wall_short.xml:10
 #: simulation/templates/structures/brit_wallset_stone.xml:5
 #: simulation/templates/structures/gaul_wall_long.xml:29
-#: simulation/templates/structures/gaul_wall_medium.xml:26
-#: simulation/templates/structures/gaul_wall_short.xml:13
+#: simulation/templates/structures/gaul_wall_medium.xml:23
+#: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Gwarchglawdd"
 msgstr "Gwarchglawdd"
@@ -661,7 +652,7 @@ msgstr "Gwarchglawdd"
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr "Nu trage sau pune în garnizoană."
+msgstr "Nu trage sau nu se pune în garnizoană."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
@@ -676,7 +667,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Antrenează cetățeni-soldați nord-africani. Cercetează îmbunătățiri pentru unități nord-africane."
+msgstr "Instruiește soldați-civili nord-africani. Cercetează îmbunătățiri pentru unitățile nord-africane."
 
 #: simulation/templates/structures/cart_blacksmith.xml:5
 #: simulation/templates/structures/ptol_blacksmith.xml:5
@@ -750,13 +741,13 @@ msgstr "Šadd"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr "Fort."
+msgstr "Clădire fortificată."
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
 msgstr "Ḥamet"
 
-#: simulation/templates/structures/cart_house.xml:22
+#: simulation/templates/structures/cart_house.xml:9
 msgid "Bet"
 msgstr "Bet"
 
@@ -792,9 +783,9 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr "Antrenează preotese să vindece trupele. Antrenează lăncieri din banda sacră. Încartiruiți unitați pentru a le vindeca într-un ritm accelerat."
+msgstr "Instruiește preotese să-ți vindece trupele. Antrenează lăncieri din banda sacră. Pune unități în garnizoană pentru a le vindeca într-un ritm accelerat."
 
-#: simulation/templates/structures/cart_wall.xml:18
+#: simulation/templates/structures/cart_wall.xml:9
 #: simulation/templates/structures/cart_wallset_stone.xml:5
 msgid "Jdar"
 msgstr "Jdar"
@@ -815,7 +806,7 @@ msgstr "Templul lui Ba'al Hammon"
 
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr "Fortăreață galica"
+msgstr "Fortăreață galică"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
@@ -837,7 +828,7 @@ msgstr "Taberna"
 msgid "Recruit Naked Fanatics."
 msgstr "Recrutează fanatici despuiați."
 
-#: simulation/templates/structures/gaul_wall_gate.xml:16
+#: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
 msgstr "Duro"
 
@@ -898,7 +889,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr "Toate unitățile din câmpul vizual al acest monument vor lupta mai bine. Clădirile din preajma monumentului nu se deteriorează."
+msgstr "Toate unitățile din câmpul vizual al acestui monument vor lupta mai aprig. Clădirile din preajma monumentului nu se deteriorează."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -914,8 +905,8 @@ msgstr "Loki"
 
 #: simulation/templates/structures/iber_wall.xml:9
 #: simulation/templates/structures/iber_wall_long.xml:29
-#: simulation/templates/structures/iber_wall_medium.xml:26
-#: simulation/templates/structures/iber_wall_short.xml:13
+#: simulation/templates/structures/iber_wall_medium.xml:23
+#: simulation/templates/structures/iber_wall_short.xml:10
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
 msgstr "Zabal Horma"
@@ -939,7 +930,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "Antrenează campioni și eroi. Încartiruiți soldați aici pentru o defensiva solidă."
+msgstr "Instruiește campioni și eroi. Pune soldați în garnizoană pentru o defensivă solidă."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -956,7 +947,7 @@ msgstr "Atelier de asediu"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr "Construiește mașini de asediu. Cercetează tehnologii de asediu."
+msgstr "Construiește mașinării de asediu. Cercetează tehnologii de asediu."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
@@ -997,7 +988,7 @@ msgstr "Vāraṇaśālā"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
-msgstr "Antrenează unități elefanți."
+msgstr "Instruiește unități de elefanți."
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
@@ -1013,7 +1004,7 @@ msgstr "Durg"
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
-msgstr "Antrenează eroi și unități campioane."
+msgstr "Instruiește eroi și unități de campioni."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
@@ -1084,7 +1075,7 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Capturează această structură pentru a antrena mercenari din Egiptul elenistic."
+msgstr "Capturează această structură pentru a instrui mercenari din Egiptul elenistic."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1099,7 +1090,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "\"Tribut satrapic\": Primiți o cantitate mica de mâncare, lemn, piatră și metal. Antrenează heroi persani și gărzile lor personale \"Nemuritorii\"."
+msgstr "„Tribut satrapic”: Primești o cantitate mică de mâncare, lemn, piatră și metal. Instruiește eroi persani și gărzile lor personale „Nemuritorii”."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1107,7 +1098,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr "Recrutează unități de cetățeni infanteriști."
+msgstr "Recrutează unități de civili-infanteriști."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1148,7 +1139,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Instruiește cavalerie campion și construiește berbeci de asediu."
+msgstr "Instruiește campioni de cavalerie și construiește berbeci de asediu."
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Persian Hall"
@@ -1164,7 +1155,7 @@ msgid ""
 "Train War Elephants and Kardakes mercenaries."
 msgstr "Clădire specială.\nInstruiește elefanți de război și mercenari cardaci."
 
-#: simulation/templates/structures/pers_house.xml:22
+#: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
 msgstr "Huvādā"
 
@@ -1334,9 +1325,9 @@ msgstr "h-n-ḫt.w"
 msgid "sba-n-njwt"
 msgstr "sba-n-njwt"
 
-#: simulation/templates/structures/ptol_wall_long.xml:29
-#: simulation/templates/structures/ptol_wall_medium.xml:23
-#: simulation/templates/structures/ptol_wall_short.xml:10
+#: simulation/templates/structures/ptol_wall_long.xml:30
+#: simulation/templates/structures/ptol_wall_medium.xml:24
+#: simulation/templates/structures/ptol_wall_short.xml:11
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
 msgstr "h-n-njwt"
@@ -1407,7 +1398,7 @@ msgstr "Ager"
 msgid "Castellum"
 msgstr "Castel"
 
-#: simulation/templates/structures/rome_house.xml:18
+#: simulation/templates/structures/rome_house.xml:5
 msgid "Domus"
 msgstr "Domus"
 
@@ -1419,11 +1410,11 @@ msgstr "Mercatus"
 msgid "Vigilarium"
 msgstr "Vigilarium"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:31
+#: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "Poartă pentru zid de asediu"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:32
+#: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
 msgstr "Porta Circummunitionis"
 
@@ -1479,7 +1470,7 @@ msgstr "Antrenează vindecători. Plasează unități în garizoană pentru ai v
 msgid "Temple of Vesta"
 msgstr "Templul lui Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:17
+#: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1497,8 +1488,8 @@ msgstr "Un adăpost temporar pentru soldați."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
-#: simulation/templates/structures/rome_wall_medium.xml:26
-#: simulation/templates/structures/rome_wall_short.xml:13
+#: simulation/templates/structures/rome_wall_medium.xml:23
+#: simulation/templates/structures/rome_wall_short.xml:10
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
 msgstr "Moenia"

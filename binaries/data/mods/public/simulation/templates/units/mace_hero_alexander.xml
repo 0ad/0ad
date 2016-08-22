@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras datatype="tokens">mace_hero_alexander</Auras>
   <Attack>
     <Melee>
-	  <Bonuses>
-		<Herocide>
-		  <Classes>Hero</Classes>
-		  <Multiplier>1.2</Multiplier>
-		</Herocide>
-	  </Bonuses>
+      <Bonuses>
+        <Herocide>
+          <Classes>Hero</Classes>
+          <Multiplier>1.2</Multiplier>
+        </Herocide>
+      </Bonuses>
     </Melee>
   </Attack>
+  <Auras datatype="tokens">mace_hero_alexander</Auras>
   <Cost>
     <Resources>
       <metal>300</metal>

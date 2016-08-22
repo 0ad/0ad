@@ -44,21 +44,6 @@
   <Position>
     <Floating>true</Floating>
   </Position>
-  <RallyPointRenderer>
-    <LinePassabilityClass>ship</LinePassabilityClass>
-  </RallyPointRenderer>
-  <ResourceDropsite>
-    <Types>food wood stone metal</Types>
-    <Sharable>true</Sharable>
-  </ResourceDropsite>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_dock.xml</select>
-      <constructed>interface/complete/building/complete_dock.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryDecay disable=""/>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -76,6 +61,21 @@
       armor_ship_hullsheathing
     </Technologies>
   </ProductionQueue>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
+  <ResourceDropsite>
+    <Types>food wood stone metal</Types>
+    <Sharable>true</Sharable>
+  </ResourceDropsite>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_dock.xml</select>
+      <constructed>interface/complete/building/complete_dock.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay disable=""/>
   <Vision>
     <Range>40</Range>
   </Vision>

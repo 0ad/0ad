@@ -21,6 +21,10 @@
   <Position>
     <Anchor>pitch</Anchor>
   </Position>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>food.meat</Type>
+  </ResourceSupply>
   <Selectable>
     <Overlay>
       <Texture>
@@ -36,10 +40,6 @@
       <death>actor/fauna/animal/lion_select.xml</death>
     </SoundGroups>
   </Sound>
-  <ResourceSupply>
-    <Amount>300</Amount>
-    <Type>food.meat</Type>
-  </ResourceSupply>
   <VisualActor>
     <Actor>fauna/rhino.xml</Actor>
   </VisualActor>

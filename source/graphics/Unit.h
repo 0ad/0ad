@@ -18,6 +18,7 @@
 #ifndef INCLUDED_UNIT
 #define INCLUDED_UNIT
 
+#include <map>
 #include <set>
 
 #include "ps/CStr.h"

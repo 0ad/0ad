@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-06 09:01+0200\n"
-"PO-Revision-Date: 2016-07-28 11:02+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-13 05:16+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,6 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_females_house.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
@@ -184,7 +183,6 @@ msgstr "Metalowa zbroja dla konia."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
@@ -976,16 +974,12 @@ msgid "Heílōtes"
 msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
-msgid "+15% stone gathering rate."
-msgstr "+15% do szybkości wydobywania kamienia."
+msgid "Hire servants to help mine stone. +15% stone gathering rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
 msgstr "Służba"
-
-#: simulation/data/technologies/gather_mining_servants.jsonrequirementsTooltip
-msgid "Hire servants to help mine stone. No requirements."
-msgstr "Zatrudnij sługów do pomocy w kopalniach kamienia. Brak wymagań."
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
@@ -1039,16 +1033,12 @@ msgid "Andrápoda"
 msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "+15% metal gathering rate."
-msgstr "+15% do szybkości wydobycia metalu."
+msgid "Equip your workers with helpful tools. +15% metal gathering rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
 msgstr "Klin i młotek"
-
-#: simulation/data/technologies/gather_mining_wedgemallet.jsonrequirementsTooltip
-msgid "Equip your workers with helpful tools. No requirements."
-msgstr "Wyposaż swoich robotników przydatne narzędzia. Brak wymagań."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
@@ -1695,7 +1685,7 @@ msgstr "Opłaty poborowe Kawalerii w czasie wojny pomagają podbudować poziom k
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Kawaleria otrzymuje -20% do czasu szkolenia, ale też -10 zdrowa. Odblokowuje Pobór."
+msgstr "Kawaleria otrzymuje -20% do czasu szkolenia, ale też -10 zdrowia. Odblokowuje Pobór."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1712,7 +1702,7 @@ msgstr "Opłaty poborowe Piechoty w czasie wojny pomagają podbudować poziom kr
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Piechota otrzymuje -10% do czasu szkolenia, ale też -5 zdrowa. Odblokowuje Pobór."
+msgstr "Piechota otrzymuje -10% do czasu szkolenia, ale też -5 zdrowia. Odblokowuje Pobór."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -2300,29 +2290,6 @@ msgstr "Buduj kamienne mury na neutralnym terytorium."
 msgid "Athenian Long Walls"
 msgstr "Ateńskie długie mury"
 
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
-msgid ""
-"The Hellenic culture was very influential. Greek became the spoken language "
-"of commerce and politics for much of the Mediterranean basin and Middle East"
-" for centuries."
-msgstr "Helleńska kultura była bardzo wpływowa. Grecki stał się językiem kupców i polityków dla większego obszaru Basenu śródziemnomorskiego i Europy Środkowowschodniej na całe wieki."
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsontooltip
-msgid ""
-"The Hellenic culture is very influential. +20% territory effect for all "
-"buildings."
-msgstr "Helleńska kultura była bardzo wpływowa. Ich budynki otrzymują +20% do zasięgu zajmowanych terytoriów."
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsongenericName
-msgid "Hellenization"
-msgstr "Hellenizacja"
-
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.athen
-#: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
-msgid "Hellēnízein"
-msgstr "Hellēnízein"
-
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
@@ -2463,13 +2430,13 @@ msgstr "Pobór do piechoty"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr "Kawaleria otrzymuje -20% do czasu szkolenia, ale też -10 zdrowa. Odblokowuje Pobór kawalerii."
+msgstr "Kawaleria otrzymuje -20% do czasu szkolenia, ale też -10 zdrowia. Odblokowuje Pobór kawalerii."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Infantry "
 "Conscription."
-msgstr "Piechota otrzymuje -10% do czasu szkolenia, ale też -5 zdrowa. Odblokowuje Pobór piechoty."
+msgstr "Piechota otrzymuje -10% do czasu szkolenia, ale też -5 zdrowia. Odblokowuje Pobór piechoty."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

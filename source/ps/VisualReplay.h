@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,7 +81,7 @@ JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW&
 /**
  * Saves the metadata from the session to metadata.json
  */
-void SaveReplayMetadata(const CStrW& data);
+void SaveReplayMetadata(ScriptInterface* scriptInterface);
 
 }
 

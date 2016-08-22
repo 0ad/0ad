@@ -25,13 +25,6 @@
   <Obstruction>
     <Static width="29.0" depth="29.0"/>
   </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_broch.xml</select>
-      <constructed>interface/complete/building/complete_broch.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_hero_boudicca
@@ -47,6 +40,13 @@
       siege_cost_wood
     </Technologies>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <Vision>
     <Range>100</Range>
   </Vision>

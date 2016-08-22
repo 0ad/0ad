@@ -4,14 +4,14 @@
     <Square width="28.0" depth="28.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_celt_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Caer</SpecificName>
     <History>This was be the center of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
   </Identity>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_celt_cc</SpawnEntityOnDeath>
-  </Health>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>

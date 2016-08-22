@@ -38,7 +38,11 @@ Trigger.prototype.InitRegicideGame = function(msg)
 	// Sort available spawn points by preference
 	let spawnPreferences = ["CivilCentre", "Structure", "Ship"];
 	let getSpawnPreference = entity => {
+
 		let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+		if (!cmpIdentity)
+			return -1;
+
 		let classes = cmpIdentity.GetClassesList();
 
 		for (let i in spawnPreferences)

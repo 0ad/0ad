@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-07-08 08:52+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 10:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -157,11 +157,11 @@ msgstr "Muralha de Pedra"
 msgid "Wall off your town for a stout defense."
 msgstr "Cerque a sua povoação com muralhas para uma defesa mais robusta."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:9
 msgid "City Gate"
 msgstr "Porta da Cidade"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:10
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Por onde todas as unidades podem atravessar a  muralha. Pode ser encerrada para evitar o acesso."
@@ -355,10 +355,6 @@ msgstr "Moinho Giratório"
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:23
-msgid "Increase nearby farming output +25%."
-msgstr "Incrementa a produção do cultivo das proximidades em 25%."
-
 #: simulation/templates/template_structure_special_theatron.xml:23
 msgid "Greek Theater"
 msgstr "Teatro Grego"
@@ -366,11 +362,6 @@ msgstr "Teatro Grego"
 #: simulation/templates/template_structure_special_theatron.xml:24
 msgid "Théātron"
 msgstr "Théātron"
-
-#: simulation/templates/template_structure_special_theatron.xml:26
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
-msgstr ""
 
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
@@ -452,10 +443,10 @@ msgstr "Gymnásion"
 msgid "Train champion units."
 msgstr "Recruta unidades de elite."
 
-#: simulation/templates/structures/athen_house.xml:18
-#: simulation/templates/structures/mace_house.xml:18
-#: simulation/templates/structures/sele_house.xml:18
-#: simulation/templates/structures/spart_house.xml:18
+#: simulation/templates/structures/athen_house.xml:5
+#: simulation/templates/structures/mace_house.xml:5
+#: simulation/templates/structures/sele_house.xml:5
+#: simulation/templates/structures/spart_house.xml:5
 msgid "Oîkos"
 msgstr "Oîkos"
 
@@ -520,8 +511,8 @@ msgstr "Pýlai"
 #: simulation/templates/structures/sele_wall_short.xml:10
 #: simulation/templates/structures/sele_wallset_stone.xml:5
 #: simulation/templates/structures/spart_wall_long.xml:10
-#: simulation/templates/structures/spart_wall_medium.xml:13
-#: simulation/templates/structures/spart_wall_short.xml:13
+#: simulation/templates/structures/spart_wall_medium.xml:10
+#: simulation/templates/structures/spart_wall_short.xml:10
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teîkhos"
 msgstr "Teîkhos"
@@ -640,17 +631,17 @@ msgstr "Ystordy"
 msgid "Addoldy"
 msgstr "Addoldy"
 
-#: simulation/templates/structures/brit_wall_gate.xml:16
+#: simulation/templates/structures/brit_wall_gate.xml:9
 msgid "Dor"
 msgstr "Dor"
 
 #: simulation/templates/structures/brit_wall_long.xml:29
-#: simulation/templates/structures/brit_wall_medium.xml:26
-#: simulation/templates/structures/brit_wall_short.xml:13
+#: simulation/templates/structures/brit_wall_medium.xml:23
+#: simulation/templates/structures/brit_wall_short.xml:10
 #: simulation/templates/structures/brit_wallset_stone.xml:5
 #: simulation/templates/structures/gaul_wall_long.xml:29
-#: simulation/templates/structures/gaul_wall_medium.xml:26
-#: simulation/templates/structures/gaul_wall_short.xml:13
+#: simulation/templates/structures/gaul_wall_medium.xml:23
+#: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Gwarchglawdd"
 msgstr "Gwarchglawdd"
@@ -753,7 +744,7 @@ msgstr "Fortim"
 msgid "Ḥamet"
 msgstr "Ḥamet"
 
-#: simulation/templates/structures/cart_house.xml:22
+#: simulation/templates/structures/cart_house.xml:9
 msgid "Bet"
 msgstr "Bet"
 
@@ -791,7 +782,7 @@ msgid ""
 "units to heal them at a quick rate."
 msgstr ""
 
-#: simulation/templates/structures/cart_wall.xml:18
+#: simulation/templates/structures/cart_wall.xml:9
 #: simulation/templates/structures/cart_wallset_stone.xml:5
 msgid "Jdar"
 msgstr "Jdar"
@@ -834,7 +825,7 @@ msgstr "Taberna"
 msgid "Recruit Naked Fanatics."
 msgstr ""
 
-#: simulation/templates/structures/gaul_wall_gate.xml:16
+#: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
 msgstr "Duro"
 
@@ -911,8 +902,8 @@ msgstr "Loki"
 
 #: simulation/templates/structures/iber_wall.xml:9
 #: simulation/templates/structures/iber_wall_long.xml:29
-#: simulation/templates/structures/iber_wall_medium.xml:26
-#: simulation/templates/structures/iber_wall_short.xml:13
+#: simulation/templates/structures/iber_wall_medium.xml:23
+#: simulation/templates/structures/iber_wall_short.xml:10
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
 msgstr "Zabal Horma"
@@ -1161,7 +1152,7 @@ msgid ""
 "Train War Elephants and Kardakes mercenaries."
 msgstr ""
 
-#: simulation/templates/structures/pers_house.xml:22
+#: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
 msgstr "Huvādā"
 
@@ -1331,9 +1322,9 @@ msgstr "h-n-ḫt.w"
 msgid "sba-n-njwt"
 msgstr "sba-n-njwt"
 
-#: simulation/templates/structures/ptol_wall_long.xml:29
-#: simulation/templates/structures/ptol_wall_medium.xml:23
-#: simulation/templates/structures/ptol_wall_short.xml:10
+#: simulation/templates/structures/ptol_wall_long.xml:30
+#: simulation/templates/structures/ptol_wall_medium.xml:24
+#: simulation/templates/structures/ptol_wall_short.xml:11
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
 msgstr "h-n-njwt"
@@ -1404,7 +1395,7 @@ msgstr "Ager"
 msgid "Castellum"
 msgstr "Castellum"
 
-#: simulation/templates/structures/rome_house.xml:18
+#: simulation/templates/structures/rome_house.xml:5
 msgid "Domus"
 msgstr "Domus"
 
@@ -1416,11 +1407,11 @@ msgstr "Mercatus"
 msgid "Vigilarium"
 msgstr "Vigilarium"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:31
+#: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "Portão"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:32
+#: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
 msgstr "Porta Circummunitionis"
 
@@ -1476,7 +1467,7 @@ msgstr ""
 msgid "Temple of Vesta"
 msgstr "Templo de Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:17
+#: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1494,8 +1485,8 @@ msgstr ""
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
-#: simulation/templates/structures/rome_wall_medium.xml:26
-#: simulation/templates/structures/rome_wall_short.xml:13
+#: simulation/templates/structures/rome_wall_medium.xml:23
+#: simulation/templates/structures/rome_wall_short.xml:10
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
 msgstr "Moenia"

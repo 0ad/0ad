@@ -78,6 +78,7 @@
 #include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
+#include "ps/VisualReplay.h"
 #include "ps/World.h"
 
 #include "renderer/Renderer.h"
@@ -701,6 +702,10 @@ static void ShutdownSDL()
 
 void EndGame()
 {
+	if (g_Game && g_Game->IsGameStarted() && !g_Game->IsVisualReplay() &&
+	    g_AtlasGameLoop && !g_AtlasGameLoop->running)
+		VisualReplay::SaveReplayMetadata(g_GUI->GetActiveGUI()->GetScriptInterface().get());
+
 	SAFE_DELETE(g_NetClient);
 	SAFE_DELETE(g_NetServer);
 	SAFE_DELETE(g_Game);

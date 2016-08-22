@@ -750,7 +750,6 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 	if (m_Path[index].size() < 2)
 		return;
 
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 	LineCapType dashesLineCapType = SOverlayTexturedLine::LINECAP_ROUND; // line caps to use for the dashed segments (and any other segment's edges that border it)
 
 	for (std::deque<SVisibilitySegment>::const_iterator it = m_VisibilitySegments[index].begin(); it != m_VisibilitySegments[index].end(); ++it)

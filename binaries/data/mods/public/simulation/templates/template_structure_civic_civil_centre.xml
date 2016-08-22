@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
+  <AlertRaiser>
+    <MaximumLevel>2</MaximumLevel>
+    <Range>140</Range>
+  </AlertRaiser>
   <Armour>
     <Hack op="add">5</Hack>
     <Pierce op="add">5</Pierce>
@@ -111,10 +115,6 @@
     <Radius>140</Radius>
     <Weight>10000</Weight>
   </TerritoryInfluence>
-  <AlertRaiser>
-    <MaximumLevel>2</MaximumLevel>
-    <Range>140</Range>
-  </AlertRaiser>
   <Vision>
     <Range>90</Range>
   </Vision>

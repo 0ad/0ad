@@ -37,6 +37,8 @@ public:
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"", DataDir()/"mods"/"mod", VFS_MOUNT_MUST_EXIST);
 		g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST, 1); // ignore directory-not-found errors
+		g_VFS->Mount(L"cache/", DataDir() / "cache");
+
 		CXeromyces::Startup();
 
 		// Need some stuff for terrain movement costs:

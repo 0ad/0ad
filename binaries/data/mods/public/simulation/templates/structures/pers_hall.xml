@@ -31,6 +31,14 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_kardakes_hoplite
+      units/{civ}_kardakes_skirmisher
+      units/{civ}_champion_elephant
+    </Entities>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
@@ -43,14 +51,6 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
     <Root>false</Root>
     <Radius>38</Radius>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_kardakes_hoplite
-      units/{civ}_kardakes_skirmisher
-      units/{civ}_champion_elephant
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/hall.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

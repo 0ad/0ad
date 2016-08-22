@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-06-10 09:01+0200\n"
-"PO-Revision-Date: 2016-06-10 10:33+0000\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-12 09:03+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -109,9 +109,8 @@ msgid "Commander Aura"
 msgstr "Командирска аура"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
-msgid ""
-"+5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr "+5 щурмуваща атака за конниците в полезрението му (за момента безполезно)."
+msgid "+5 Cavalry melee attack within vision range of him."
+msgstr "+5 близкобойна атака за конниците в полезрението му."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -351,6 +350,10 @@ msgstr "+20% атака и +1 пленяване за всички хоплит�
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Лекува околните единици с 1 ЖТ в секунда"
+
+#: simulation/data/auras/theatron.jsonauraName
+msgid "Hellenization."
+msgstr "Елинизация."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per Theatron owned."

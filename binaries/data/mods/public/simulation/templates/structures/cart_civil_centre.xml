@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_kart_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Merkāz</SpecificName>
   </Identity>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_kart_cc</SpawnEntityOnDeath>
-  </Health>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_infantry_spearman_b

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
-	<Cost>
-		<PopulationBonus>2</PopulationBonus>
-	</Cost>
-	<Footprint>
-		<Square width="20" depth="20"/>
-		<Height>8.0</Height>
-	</Footprint>
-	<Identity>
-		<Civ>gaul</Civ>
-		<SpecificName>Ffermdy</SpecificName>
-		<History>Farming typically revolved around small hamlets and farmsteads with enclosed rectilinear fields - each having areas of pasture, farmland and wood. Ploughing became more efficient with the arrival of the iron share (plough point ? courtesy of our Celts) and a two field rotation was introduced; crops one year followed by a fallow that was grazed by livestock. This lead to surprisingly high yields and fuelled population growth. The image of a farmstead would most likely be a house with some out-buildings. Storage of crops was either in pits or in raised stores and harvest was over several months - weeds, grain and then straw.</History>
-	</Identity>
-	<Obstruction>
-		<Static width="21" depth="20"/>
-	</Obstruction>
-	<VisualActor>
-		<FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-		<Actor>structures/gauls/farmstead.xml</Actor>
-	</VisualActor>
+  <Cost>
+    <PopulationBonus>2</PopulationBonus>
+  </Cost>
+  <Footprint>
+    <Square width="20" depth="20"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaul</Civ>
+    <SpecificName>Ffermdy</SpecificName>
+    <History>Farming typically revolved around small hamlets and farmsteads with enclosed rectilinear fields - each having areas of pasture, farmland and wood. Ploughing became more efficient with the arrival of the iron share (plough point ? courtesy of our Celts) and a two field rotation was introduced; crops one year followed by a fallow that was grazed by livestock. This lead to surprisingly high yields and fuelled population growth. The image of a farmstead would most likely be a house with some out-buildings. Storage of crops was either in pits or in raised stores and harvest was over several months - weeds, grain and then straw.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="21" depth="20"/>
+  </Obstruction>
+  <VisualActor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+    <Actor>structures/gauls/farmstead.xml</Actor>
+  </VisualActor>
 </Entity>

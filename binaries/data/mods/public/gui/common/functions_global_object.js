@@ -165,3 +165,16 @@ function displayGamestateNotifications()
 
 	setTimeout(displayGamestateNotifications, 1000);
 }
+
+/**
+ * Also called from the C++ side when ending the game.
+ */
+function getReplayMetadata()
+{
+	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
+	return {
+		"timeElapsed" : extendedSimState.timeElapsed,
+		"playerStates": extendedSimState.players,
+		"mapSettings": Engine.GetInitAttributes().settings
+	};
+}

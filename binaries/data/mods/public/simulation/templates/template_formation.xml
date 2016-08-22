@@ -7,7 +7,7 @@
   -->
   <Formation>
     <RequiredMemberCount>1</RequiredMemberCount>
-    <DisabledTooltip></DisabledTooltip>
+    <DisabledTooltip/>
     <SpeedMultiplier>1</SpeedMultiplier>
     <FormationShape>square</FormationShape>
     <SortingClasses>Hero Champion Cavalry Melee Ranged</SortingClasses>
@@ -28,6 +28,9 @@
     <Floating>false</Floating>
     <TurnRate>3.0</TurnRate>
   </Position>
+  <Trader>
+    <GainMultiplier>0.75</GainMultiplier>
+  </Trader>
   <UnitAI>
     <AlertReactiveLevel>2</AlertReactiveLevel>
     <DefaultStance>aggressive</DefaultStance>
@@ -40,7 +43,4 @@
     <WalkSpeed>1.0</WalkSpeed>
     <PassabilityClass>large</PassabilityClass>
   </UnitMotion>
-  <Trader>
-    <GainMultiplier>0.75</GainMultiplier>
-  </Trader>
 </Entity>

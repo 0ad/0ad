@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -43,7 +43,7 @@ static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 }
 
 L10n::L10n()
-	: currentLocaleIsOriginalGameLocale(false), useLongStrings(false), dictionary(new tinygettext::Dictionary())
+	: dictionary(new tinygettext::Dictionary()), currentLocaleIsOriginalGameLocale(false), useLongStrings(false)
 {
 	// Determine whether or not to print tinygettext messages to the standard
 	// error output, which it tinygettext’s default behavior, but not ours.
@@ -530,7 +530,7 @@ void L10n::LoadListOfAvailableLocales()
 	}
 }
 
-void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary)
+void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary) const
 {
 	try
 	{

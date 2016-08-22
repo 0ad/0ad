@@ -59,8 +59,8 @@
   </Health>
   <Identity>
     <GenericName>Infantry</GenericName>
-    <Classes datatype="tokens">CitizenSoldier Worker Human Organic</Classes>
-    <VisibleClasses datatype="tokens">Infantry Citizen Soldier</VisibleClasses>
+    <Classes datatype="tokens">CitizenSoldier Human Organic</Classes>
+    <VisibleClasses datatype="tokens">Citizen Infantry Soldier Worker</VisibleClasses>
     <Rank>Basic</Rank>
   </Identity>
   <Loot>
@@ -81,10 +81,10 @@
       <food.fruit>0.5</food.fruit>
       <food.grain>0.25</food.grain>
       <food.meat>1</food.meat>
-	  <wood.tree>0.75</wood.tree>
-	  <wood.ruins>5</wood.ruins>
+      <wood.tree>0.75</wood.tree>
+      <wood.ruins>5</wood.ruins>
       <stone.rock>0.5</stone.rock>
-	  <stone.ruins>2</stone.ruins>
+      <stone.ruins>2</stone.ruins>
       <metal.ore>0.5</metal.ore>
     </Rates>
   </ResourceGatherer>

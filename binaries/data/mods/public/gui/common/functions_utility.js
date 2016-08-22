@@ -149,7 +149,10 @@ function getMapDescriptionAndPreview(mapType, mapName)
  */
 function setMapPreviewImage(guiObject, filename)
 {
-	Engine.GetGUIObjectByName(guiObject).sprite = "cropped:" + 400/512+ "," + 300/512 + ":session/icons/mappreview/" + filename;
+	let path = "session/icons/mappreview/";
+	Engine.GetGUIObjectByName(guiObject).sprite =
+		"cropped:" + 400/512 + "," + 300/512 + ":" +
+		path + (Engine.FileExists("art/textures/ui/" + path + filename) ? filename : "nopreview.png");
 }
 
 /**

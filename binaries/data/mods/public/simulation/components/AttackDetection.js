@@ -50,23 +50,25 @@ AttackDetection.prototype.OnGlobalAttacked = function(msg)
 
 	Engine.PostMessage(msg.target, MT_MinimapPing);
 
-	this.AttackAlert(msg.target, msg.attacker);
+	this.AttackAlert(msg.target, msg.attacker, msg.attackerOwner);
 };
 
 //// External interface ////
 
-AttackDetection.prototype.AttackAlert = function(target, attacker)
+AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner)
 {
-	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	var cmpTargetOwnership = Engine.QueryInterface(target, IID_Ownership);
+	let playerID = Engine.QueryInterface(this.entity, IID_Player).GetPlayerID();
+	
 	// Don't register attacks dealt against other players
-	if (cmpTargetOwnership.GetOwner() != cmpPlayer.GetPlayerID())
+	if (Engine.QueryInterface(target, IID_Ownership).GetOwner() != playerID)
 		return;
-	var cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
+
+	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
+	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != -1 ? cmpAttackerOwnership.GetOwner() : attackerOwner;
 	// Don't register attacks dealt by myself
-	if (cmpAttackerOwnership.GetOwner() == cmpPlayer.GetPlayerID())
+	if (atkOwner == playerID)
 		return;
-		
+
 	// Since livestock can be attacked/gathered by other players
 	// and generally are not so valuable as other units/buildings,
 	// we have a lower priority notification for it, which can be
@@ -117,12 +119,12 @@ AttackDetection.prototype.AttackAlert = function(target, attacker)
 	if (!isPriorityIncreased)
 		this.AddSuppression(event);
 
-	Engine.PostMessage(this.entity, MT_AttackDetected, { "player": cmpPlayer.GetPlayerID(), "event": event });
+	Engine.PostMessage(this.entity, MT_AttackDetected, { "player": playerID, "event": event });
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
 		"type": "attack",
 		"target": target,
-		"players": [cmpPlayer.GetPlayerID()],
-		"attacker": cmpAttackerOwnership.GetOwner(),
+		"players": [playerID],
+		"attacker": atkOwner,
 		"targetIsDomesticAnimal": targetIsDomesticAnimal
 	});
 	PlaySound("attacked", target);

@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-08 09:01+0200\n"
-"PO-Revision-Date: 2016-07-08 08:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-08-12 09:01+0200\n"
+"PO-Revision-Date: 2016-08-15 15:12+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "Pusat Peradaban"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Bangun untuk memperoleh daerah teritorial yang luas. Melatih rakyat."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -66,7 +66,7 @@ msgstr "Hellenic Royal Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
-msgstr ""
+msgstr "Melatih unit spesial."
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -154,11 +154,11 @@ msgstr "Tembok Batu"
 msgid "Wall off your town for a stout defense."
 msgstr "Mendindingi kota anda untuk pertahanan yang kukuh."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:28
+#: simulation/templates/template_structure_defense_wall_gate.xml:9
 msgid "City Gate"
 msgstr "Gerbang Kota"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:29
+#: simulation/templates/template_structure_defense_wall_gate.xml:10
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Memperbolehkan unit melewati dinding kota. Dapat dikunci untuk mencegah akses."
@@ -170,7 +170,7 @@ msgstr "Bagian tembok yang panjang dapat diubah menjadi gerbang"
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Bangunan ini memperbolehkan unit Anda untuk melewati fortifikasi Anda."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -249,7 +249,7 @@ msgstr "Militer"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Melatih prajurit-rakyat. Meneliti peningkatan pelatihan."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -342,7 +342,7 @@ msgstr "Perpustakaan"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Research special technologies."
-msgstr ""
+msgstr "Riset teknologi spesial."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:20
 msgid "Rotary Mill"
@@ -352,10 +352,6 @@ msgstr "Penggilingan"
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:23
-msgid "Increase nearby farming output +25%."
-msgstr "Meningkatkan hasil pertanian sekitar +25%"
-
 #: simulation/templates/template_structure_special_theatron.xml:23
 msgid "Greek Theater"
 msgstr "Teater Yunani"
@@ -363,11 +359,6 @@ msgstr "Teater Yunani"
 #: simulation/templates/template_structure_special_theatron.xml:24
 msgid "Théātron"
 msgstr "Théātron"
-
-#: simulation/templates/template_structure_special_theatron.xml:26
-msgid ""
-"Hellēnízein (Hellenization): +20% territory influence per Theatron owned."
-msgstr ""
 
 #: simulation/templates/template_structure_wonder.xml:47
 msgid "Wonder"
@@ -449,10 +440,10 @@ msgstr "Gymnásion"
 msgid "Train champion units."
 msgstr "Melatih unit jawara."
 
-#: simulation/templates/structures/athen_house.xml:18
-#: simulation/templates/structures/mace_house.xml:18
-#: simulation/templates/structures/sele_house.xml:18
-#: simulation/templates/structures/spart_house.xml:18
+#: simulation/templates/structures/athen_house.xml:5
+#: simulation/templates/structures/mace_house.xml:5
+#: simulation/templates/structures/sele_house.xml:5
+#: simulation/templates/structures/spart_house.xml:5
 msgid "Oîkos"
 msgstr "Oîkos"
 
@@ -517,8 +508,8 @@ msgstr "Pýlai"
 #: simulation/templates/structures/sele_wall_short.xml:10
 #: simulation/templates/structures/sele_wallset_stone.xml:5
 #: simulation/templates/structures/spart_wall_long.xml:10
-#: simulation/templates/structures/spart_wall_medium.xml:13
-#: simulation/templates/structures/spart_wall_short.xml:13
+#: simulation/templates/structures/spart_wall_medium.xml:10
+#: simulation/templates/structures/spart_wall_short.xml:10
 #: simulation/templates/structures/spart_wallset_stone.xml:5
 msgid "Teîkhos"
 msgstr "Teîkhos"
@@ -637,17 +628,17 @@ msgstr "Ystordy"
 msgid "Addoldy"
 msgstr "Addoldy"
 
-#: simulation/templates/structures/brit_wall_gate.xml:16
+#: simulation/templates/structures/brit_wall_gate.xml:9
 msgid "Dor"
 msgstr "Dor"
 
 #: simulation/templates/structures/brit_wall_long.xml:29
-#: simulation/templates/structures/brit_wall_medium.xml:26
-#: simulation/templates/structures/brit_wall_short.xml:13
+#: simulation/templates/structures/brit_wall_medium.xml:23
+#: simulation/templates/structures/brit_wall_short.xml:10
 #: simulation/templates/structures/brit_wallset_stone.xml:5
 #: simulation/templates/structures/gaul_wall_long.xml:29
-#: simulation/templates/structures/gaul_wall_medium.xml:26
-#: simulation/templates/structures/gaul_wall_short.xml:13
+#: simulation/templates/structures/gaul_wall_medium.xml:23
+#: simulation/templates/structures/gaul_wall_short.xml:10
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Gwarchglawdd"
 msgstr "Gwarchglawdd"
@@ -750,7 +741,7 @@ msgstr "Benteng Blockhouse"
 msgid "Ḥamet"
 msgstr "Ḥamet"
 
-#: simulation/templates/structures/cart_house.xml:22
+#: simulation/templates/structures/cart_house.xml:9
 msgid "Bet"
 msgstr "Bet"
 
@@ -788,7 +779,7 @@ msgid ""
 "units to heal them at a quick rate."
 msgstr ""
 
-#: simulation/templates/structures/cart_wall.xml:18
+#: simulation/templates/structures/cart_wall.xml:9
 #: simulation/templates/structures/cart_wallset_stone.xml:5
 msgid "Jdar"
 msgstr "Jdar"
@@ -829,9 +820,9 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Melatih Fanatik Bugil."
 
-#: simulation/templates/structures/gaul_wall_gate.xml:16
+#: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
 msgstr "Duro"
 
@@ -908,8 +899,8 @@ msgstr "Loki"
 
 #: simulation/templates/structures/iber_wall.xml:9
 #: simulation/templates/structures/iber_wall_long.xml:29
-#: simulation/templates/structures/iber_wall_medium.xml:26
-#: simulation/templates/structures/iber_wall_short.xml:13
+#: simulation/templates/structures/iber_wall_medium.xml:23
+#: simulation/templates/structures/iber_wall_short.xml:10
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
 msgstr "Zabal Horma"
@@ -1158,7 +1149,7 @@ msgid ""
 "Train War Elephants and Kardakes mercenaries."
 msgstr ""
 
-#: simulation/templates/structures/pers_house.xml:22
+#: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
 msgstr "Huvādā"
 
@@ -1307,7 +1298,7 @@ msgstr "Bangunan semacam barak yang murah dan dapat dibangun di teritorial netra
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
@@ -1328,9 +1319,9 @@ msgstr "h-n-ḫt.w"
 msgid "sba-n-njwt"
 msgstr "sba-n-njwt"
 
-#: simulation/templates/structures/ptol_wall_long.xml:29
-#: simulation/templates/structures/ptol_wall_medium.xml:23
-#: simulation/templates/structures/ptol_wall_short.xml:10
+#: simulation/templates/structures/ptol_wall_long.xml:30
+#: simulation/templates/structures/ptol_wall_medium.xml:24
+#: simulation/templates/structures/ptol_wall_short.xml:11
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
 msgstr "h-n-njwt"
@@ -1401,7 +1392,7 @@ msgstr "Ager"
 msgid "Castellum"
 msgstr "Castellum"
 
-#: simulation/templates/structures/rome_house.xml:18
+#: simulation/templates/structures/rome_house.xml:5
 msgid "Domus"
 msgstr "Domus"
 
@@ -1413,11 +1404,11 @@ msgstr "Mercatus"
 msgid "Vigilarium"
 msgstr "Vigilarium"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:31
+#: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "Gerbang Tembok Kepung"
 
-#: simulation/templates/structures/rome_siege_wall_gate.xml:32
+#: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
 msgstr "Porta Circummunitionis"
 
@@ -1473,7 +1464,7 @@ msgstr ""
 msgid "Temple of Vesta"
 msgstr "Kuil Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:17
+#: simulation/templates/structures/rome_temple_vesta.xml:18
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1487,12 +1478,12 @@ msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Perlindungan sementara untuk prajurit."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
-#: simulation/templates/structures/rome_wall_medium.xml:26
-#: simulation/templates/structures/rome_wall_short.xml:13
+#: simulation/templates/structures/rome_wall_medium.xml:23
+#: simulation/templates/structures/rome_wall_short.xml:10
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
 msgstr "Moenia"

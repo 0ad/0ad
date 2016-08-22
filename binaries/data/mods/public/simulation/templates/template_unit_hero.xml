@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
   <Attack> 
     <Capture>
       <Value>15</Value> 
@@ -7,11 +12,6 @@
       <RepeatTime>1000</RepeatTime> 
     </Capture> 
   </Attack>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>20.0</Pierce>
-    <Crush>15.0</Crush>
-  </Armour>
   <Auras datatype="tokens">hero_garrison</Auras>
   <Cost>
     <Population>2</Population>

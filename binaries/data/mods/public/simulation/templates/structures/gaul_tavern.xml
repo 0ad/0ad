@@ -30,17 +30,13 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <RallyPoint/>
-  <TerritoryInfluence>
-    <Radius>32</Radius>
-    <Weight>65535</Weight>
-  </TerritoryInfluence>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}_champion_fanatic
     </Entities>
   </ProductionQueue>
+  <RallyPoint/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
@@ -48,6 +44,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Radius>32</Radius>
+    <Weight>65535</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/celts/tavern.xml</Actor>
     <FoundationActor>structures/fndn_4x4.xml</FoundationActor>

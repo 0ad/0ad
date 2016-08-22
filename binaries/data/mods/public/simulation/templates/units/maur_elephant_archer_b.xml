@@ -7,10 +7,10 @@
     <Circle radius="3.5"/>
     <Height>8.0</Height>
   </Footprint>
-  <ResourceGatherer disable=""/>
   <Identity>
     <Civ>maur</Civ>
-    <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
+    <Classes datatype="tokens">Elephant</Classes>
+    <VisibleClasses datatype="tokens">-Cavalry</VisibleClasses>
     <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
     <GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
@@ -20,6 +20,7 @@
   <Promotion>
     <Entity>units/maur_elephant_archer_a</Entity>
   </Promotion>
+  <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>
       <Texture>

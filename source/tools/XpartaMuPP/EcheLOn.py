@@ -55,7 +55,7 @@ class LeaderboardList():
     if queried_player.rating != -1:
       stats['rating'] = str(queried_player.rating)
       rank = db.query(Player).filter(Player.rating >= queried_player.rating).count()
-      stats['rank'] = str(rank+1)
+      stats['rank'] = str(rank)
 
     if queried_player.highest_rating != -1:
       stats['highestRating'] = str(queried_player.highest_rating)

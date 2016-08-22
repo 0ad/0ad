@@ -2,7 +2,7 @@
 <Entity parent="template_unit_infantry_melee_spearman">
   <Builder>
     <Entities datatype="tokens">
-	  structures/spart_syssiton
+      structures/spart_syssiton
       structures/spart_theatron
       structures/spart_royal_stoa
       -structures/{civ}_wallset_stone
@@ -11,9 +11,9 @@
   <Identity>
     <Civ>spart</Civ>
     <Lang>greek</Lang>
-	<SelectionGroupName>units/spart_infantry_spearman_b</SelectionGroupName>
+    <SelectionGroupName>units/spart_infantry_spearman_b</SelectionGroupName>
     <GenericName>Perioikoi Hoplite</GenericName>
-	<SpecificName>Hoplítēs Períoikos</SpecificName>
+    <SpecificName>Hoplítēs Períoikos</SpecificName>
     <History>The basic unit of the Spartan army made up of middle-class men ("Perioikoi"). The Hoplite formed the core of any Greek army with the unique Phalanx formation ready to hold all potential attacks.</History>
     <Icon>units/spart_infantry_spearman.png</Icon>
   </Identity>

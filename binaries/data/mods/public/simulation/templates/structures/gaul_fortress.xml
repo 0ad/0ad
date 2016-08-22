@@ -9,13 +9,6 @@
     <Tooltip>Train Gallic heroes and champions. Construct siege rams.</Tooltip>
     <History>Dun comes from the Brythonic Din and Gaelic Dun, meaning fort, and is now used as a general term for small stone built strongholds. Duns appear to have arrived with the Celts in about the 7th century BC, associated with their Iron age culture of warrior tribes and petty chieftains. Early Duns had near vertical ramparts constructed of stone laced with timber, and where this was set on fire (accidentally or on purpose) it forms the vitrified forts where stones have been partly melted, an effect that is still clearly visible. Use of Duns continued in some cases into the medieval period.</History>
   </Identity>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_fortress.xml</select>
-      <constructed>interface/complete/building/complete_fortress.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_hero_brennus
@@ -31,6 +24,13 @@
       siege_cost_wood
     </Technologies>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_fortress.xml</select>
+      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <Actor>structures/gauls/fortress_gallic.xml</Actor>
   </VisualActor>

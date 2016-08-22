@@ -39,18 +39,6 @@
   <Obstruction>
     <Static width="30.0" depth="26.0"/>
   </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_market.xml</select>
-      <constructed>interface/complete/building/complete_market.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>40</Radius>
-    <Weight>30000</Weight>
-  </TerritoryInfluence>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Technologies datatype="tokens">
@@ -66,6 +54,18 @@
       units/{civ}_support_trader
     </Entities>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_market.xml</select>
+      <constructed>interface/complete/building/complete_market.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>40</Radius>
+    <Weight>30000</Weight>
+  </TerritoryInfluence>
   <Vision>
     <Range>32</Range>
   </Vision>

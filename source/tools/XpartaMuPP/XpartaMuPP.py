@@ -63,7 +63,7 @@ class GameList():
       self.gameList[JID]['nbp'] = data['nbp']
       self.gameList[JID]['players'] = data['players']
       if 'startTime' not in self.gameList[JID]: 
-       self.gameList[JID]['startTime'] = str(round(time.time())) 
+        self.gameList[JID]['startTime'] = str(round(time.time())) 
 
 ## Class for custom player stanza extension ##
 class PlayerXmppPlugin(ElementBase):
@@ -298,7 +298,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         try:
           self.relayProfileRequest(iq['from'], command)
         except:
-          pass
+          pass # TODO needed?
       else:
         logging.error("Unknown 'get' type stanza request from %s" % iq['from'].bare)
     elif iq['type'] == 'result':
@@ -313,7 +313,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         player =  iq['profile']['command']
         self.relayProfile(iq['profile'], player, recipient)
       else:
-        pass
+        pass # TODO error/warn?
     elif iq['type'] == 'set':
       if 'gamelist' in iq.plugins:
         """

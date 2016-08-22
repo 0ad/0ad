@@ -13,15 +13,15 @@
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Gwersyllty</SpecificName>
-	<History>All able-bodied male Celts were expected to heed their liege lord's call to battle when need arose.</History>
+    <History>All able-bodied male Celts were expected to heed their liege lord's call to battle when need arose.</History>
   </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-	  units/{civ}_champion_infantry_barracks
-	  units/{civ}_champion_cavalry_barracks
+      units/{civ}_champion_infantry_barracks
+      units/{civ}_champion_cavalry_barracks
     </Entities>
     <Technologies datatype="tokens">
       unlock_champion_units

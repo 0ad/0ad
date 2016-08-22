@@ -41,9 +41,10 @@
   </Health>
   <Identity>
     <GenericName>Female Citizen</GenericName>
-	<Gender>female</Gender>
+    <Gender>female</Gender>
     <History>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilization. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</History>
-    <Classes datatype="tokens">Worker Female Citizen</Classes>
+    <Classes datatype="tokens">Female</Classes>
+    <VisibleClasses datatype="tokens">Citizen Worker</VisibleClasses>
     <Formations disable=""/>
   </Identity>
   <ResourceGatherer>

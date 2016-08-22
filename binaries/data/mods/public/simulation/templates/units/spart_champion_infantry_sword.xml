@@ -2,7 +2,7 @@
 <Entity parent="template_unit_infantry_melee_swordsman">
   <Builder>
     <Entities datatype="tokens">
-	  structures/spart_syssiton
+      structures/spart_syssiton
       structures/spart_theatron
       -structures/{civ}_wallset_stone
     </Entities>
@@ -16,7 +16,7 @@
   <Identity>
     <Civ>spart</Civ>
     <Lang>greek</Lang>
-	<GenericName>Skiritai Commando</GenericName>
+    <GenericName>Skiritai Commando</GenericName>
     <SpecificName>Ékdromos Skirítēs</SpecificName>
     <Rank>Elite</Rank>
     <History>Skiritae were some of the most reliable allied soldiers serving in the Spartan military.  They always had the honor of remaining on the left flank of a Spartan phalanx and (Thucydides 5.67) were deployed to face the any problem which could come to bear the army.  (Xenophon 4.2.1-4)</History>

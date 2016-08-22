@@ -30,13 +30,6 @@
   <Obstruction>
     <Static width="24.0" depth="30.0"/>
   </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_tholos.xml</select>
-      <constructed>interface/complete/building/complete_tholos.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -49,6 +42,13 @@
       hellenes/special_iphicratean_reforms
     </Technologies>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_tholos.xml</select>
+      <constructed>interface/complete/building/complete_tholos.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <Actor>structures/athenians/prytaneion.xml</Actor>
   </VisualActor>

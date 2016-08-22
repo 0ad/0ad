@@ -18,20 +18,24 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
   </BuildingAI>
-  <GarrisonHolder>
-    <Max>1</Max>
-    <EjectHealth>0</EjectHealth>
-    <List datatype="tokens">Support Infantry</List>
-    <BuffHeal>1</BuffHeal>
-    <LoadingRange>5</LoadingRange>
-    <EjectClassesOnDestroy datatype="tokens" /> 
-  </GarrisonHolder>
   <Decay>
     <SinkingAnim>true</SinkingAnim>
     <DelayTime>0.0</DelayTime>
     <SinkRate>3.0</SinkRate>
     <SinkAccel>7.0</SinkAccel>
   </Decay>
+  <GarrisonHolder>
+    <Max>1</Max>
+    <EjectHealth>0</EjectHealth>
+    <List datatype="tokens">Support Infantry</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>5</LoadingRange>
+    <EjectClassesOnDestroy datatype="tokens"/>
+  </GarrisonHolder>
+  <Health>
+    <Max>100</Max>
+    <Unhealable>true</Unhealable>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>P-51 Mustang</SpecificName>
@@ -40,18 +44,14 @@
     <Icon>units/global_mustang.png</Icon>
     <Formations datatype="tokens" replace=""/>
   </Identity>
-  <Health>
-    <Max>100</Max>
-    <Unhealable>true</Unhealable>
-  </Health>
-  <Repairable>
-    <RepairTimeRatio>3.0</RepairTimeRatio>
-  </Repairable>
   <Obstruction disable=""/>
   <Position>
     <TurnRate>1.0</TurnRate>
     <Floating>true</Floating>
   </Position>
+  <Repairable>
+    <RepairTimeRatio>3.0</RepairTimeRatio>
+  </Repairable>
   <UnitMotion disable=""/>
   <UnitMotionFlying>
     <MaxSpeed>60.0</MaxSpeed>

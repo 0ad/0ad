@@ -20,9 +20,7 @@
     <Civ>spart</Civ>
     <GenericName>Military Mess Hall</GenericName>
     <SpecificName>Syssítion</SpecificName>
-    <Classes datatype="tokens">
-	  Syssiton
-	</Classes>
+    <Classes datatype="tokens">Syssiton</Classes>
     <Tooltip>Train Spartan heroes and Spartiate champion hoplites.</Tooltip>
     <History>The Syssítia were where full-blooded Spartans, even Spartan kings, were barracked and dined together.</History>
     <Icon>structures/gymnasion.png</Icon>
@@ -30,13 +28,6 @@
   <Obstruction>
     <Static width="16.0" depth="26.0"/>
   </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_gymnasium.xml</select>
-      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
@@ -49,6 +40,13 @@
       hellenes/spartans_agoge
     </Technologies>
   </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <Actor>structures/spartans/syssiton.xml</Actor>
     <FoundationActor>structures/fndn_4x6.xml</FoundationActor>

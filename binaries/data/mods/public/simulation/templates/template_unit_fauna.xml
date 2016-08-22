@@ -7,6 +7,7 @@
     <Square width="1.75" depth="3.5"/>
     <Height>2.25</Height>
   </Footprint>
+  <Guard disable=""/>
   <Identity>
     <GenericName>Fauna</GenericName>
     <Classes datatype="tokens">Animal Organic -ConquestCritical</Classes>
@@ -29,7 +30,6 @@
     <FeedTimeMin>15000</FeedTimeMin>
     <FeedTimeMax>60000</FeedTimeMax>
   </UnitAI>
-  <Guard disable=""/>
   <UnitMotion>
     <WalkSpeed>6.5</WalkSpeed>
     <Run>
