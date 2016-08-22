@@ -1,10 +1,10 @@
-Engine.LoadHelperScript("Damage.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/AttackDetection.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
+Engine.LoadComponentScript("interfaces/Damage.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Loot.js");
@@ -14,8 +14,10 @@ Engine.LoadComponentScript("interfaces/Sound.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("Attack.js");
+Engine.LoadComponentScript("Damage.js");
 Engine.LoadComponentScript("Timer.js");
 
+let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
 cmpTimer.OnUpdate({ turnLength: 1 });
 let attacker = 11;
@@ -27,11 +29,23 @@ let target = 21;
 let targetOwner = 7;
 let targetPos = new Vector3D(3, 0, 3);
 
-let type = "Ranged";
+let type = "Melee";
 let damageTaken = false;
 
 cmpAttack.GetAttackStrengths = (type) => ({ "hack": 0, "pierce": 0, "crush": damage });
 cmpAttack.GetAttackBonus = (type, target) => 1.0; 
+
+let data = {
+	"attacker": attacker,
+	"target": target,
+	"type": "Melee",
+	"strengths": { "hack": 0, "pierce": 0, "crush": damage },
+	"multiplier": 1.0,
+	"attackerOwner": attackerOwner,
+	"position": targetPos,
+	"isSplash": false,
+	"projectileId": 9
+};
 
 AddMock(atkPlayerEntity, IID_Player, {
 	GetEnemies: () => [targetOwner],
@@ -67,7 +81,7 @@ AddMock(target, IID_DamageReceiver, {
 
 Engine.PostMessage = function(ent, iid, message)
 {
-	TS_ASSERT_UNEVAL_EQUALS({ "attacker": attacker, "target": target, "type": type, "damage": damage }, message);
+	TS_ASSERT_UNEVAL_EQUALS({ "attacker": attacker, "target": target, "type": type, "damage": damage, "attackerOwner": attackerOwner }, message);
 };
 
 AddMock(target, IID_Footprint, {
@@ -91,7 +105,18 @@ function TestDamage()
 	damageTaken = false;
 }
 
-cmpAttack.PerformAttack("Ranged", target);
+cmpDamage.CauseDamage(data);
+TestDamage();
+
+type = data.type = "Ranged";
+cmpDamage.CauseDamage(data);
+TestDamage();
+
+data.friendlyFire = false;
+data.range = 10;
+data.shape = "Circular";
+data.isSplash = true;
+cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", 1000, data);
 TestDamage();
 
 // Check for damage still being dealt if the attacker dies

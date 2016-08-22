@@ -460,6 +460,9 @@ Attack.prototype.GetNormalDistribution = function(){
  */
 Attack.prototype.PerformAttack = function(type, target)
 {
+	let attackerOwner = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
+ 	let cmpDamage = Engine.QueryInterface(SYSTEM_ENTITY, IID_Damage);
+ 	
 	// If this is a ranged attack, then launch a projectile
 	if (type == "Ranged")
 	{
@@ -527,165 +530,64 @@ Attack.prototype.PerformAttack = function(type, target)
 		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 		let id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
 
-		let playerId = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
 		cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.SetTimeout(this.entity, IID_Attack, "MissileHit", timeToTarget * 1000, {
+		let data = {
 			"type": type,
+			"attacker": this.entity,
 			"target": target,
+			"strengths": this.GetAttackStrengths(type),
 			"position": realTargetPosition,
 			"direction": missileDirection,
 			"projectileId": id,
-			"playerId":playerId
-		});
+			"multiplier": this.GetAttackBonus(type, target),
+			"isSplash": false,
+			"attackerOwner": attackerOwner
+		};
+		if (this.template.Ranged.Splash)
+		{
+			data.friendlyFire = this.template.Ranged.Splash.FriendlyFire;
+			data.radius = +this.template.Ranged.Splash.Range;
+			data.shape = this.template.Ranged.Splash.Shape;
+			data.isSplash = true;
+		}
+		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000, data);
 	}
 	else if (type == "Capture")
 	{
+		if (attackerOwner == -1)
+			return;
+		
 		let multiplier = this.GetAttackBonus(type, target);
 		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)
 			return;
 		multiplier *= cmpHealth.GetMaxHitpoints() / (0.1 * cmpHealth.GetMaxHitpoints() + 0.9 * cmpHealth.GetHitpoints());
 
-		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-		if (!cmpOwnership || cmpOwnership.GetOwner() == -1)
-			return;
-
-		let owner = cmpOwnership.GetOwner();
 		let cmpCapturable = Engine.QueryInterface(target, IID_Capturable);
-		if (!cmpCapturable || !cmpCapturable.CanCapture(owner))
+		if (!cmpCapturable || !cmpCapturable.CanCapture(attackerOwner))
 			return;
 
 		let strength = this.GetAttackStrengths("Capture").value * multiplier;
-		if (cmpCapturable.Reduce(strength, owner))
+		if (cmpCapturable.Reduce(strength, attackerOwner))
 			Engine.PostMessage(target, MT_Attacked, {
 				"attacker": this.entity,
 				"target": target,
 				"type": type,
-				"damage": strength
+				"damage": strength,
+				"attackerOwner": attackerOwner
 			});
 	}
 	else
 	{
 		// Melee attack - hurt the target immediately
-		Damage.CauseDamage({
+		cmpDamage.CauseDamage({
 			"strengths": this.GetAttackStrengths(type),
 			"target": target,
 			"attacker": this.entity,
 			"multiplier": this.GetAttackBonus(type, target),
-			"type":type
+			"type": type,
+			"attackerOwner": attackerOwner
 		});
-	}
-};
-
-Attack.prototype.InterpolatedLocation = function(ent, lateness)
-{
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	let turnLength = cmpTimer.GetLatestTurnLength()/1000;
-	let cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
-	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
-		return undefined;
-	let curPos = cmpTargetPosition.GetPosition();
-	let prevPos = cmpTargetPosition.GetPreviousPosition();
-	lateness /= 1000;
-	return new Vector3D((curPos.x * (turnLength - lateness) + prevPos.x * lateness) / turnLength,
-			0,
-	        (curPos.z * (turnLength - lateness) + prevPos.z * lateness) / turnLength);
-};
-
-// Tests whether it point is inside of ent's footprint
-Attack.prototype.testCollision = function(ent, point, lateness)
-{
-	let targetPosition = this.InterpolatedLocation(ent, lateness);
-	if (!targetPosition)
-		return false;
-	let cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
-	if (!cmpFootprint)
-		return false;
-	let targetShape = cmpFootprint.GetShape();
-
-	if (!targetShape || !targetPosition)
-		return false;
-
-	if (targetShape.type === 'circle')
-	{
-		// Use VectorDistanceSquared and square targetShape.radius to avoid square roots.
-		return (targetPosition.horizDistanceTo(point) < (targetShape.radius * targetShape.radius));
-	}
-	else
-	{
-		let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
-
-		let d = Vector3D.sub(point, targetPosition);
-		d = Vector2D.from3D(d).rotate(-angle);
-
-		return d.x < Math.abs(targetShape.width/2) && d.y < Math.abs(targetShape.depth/2);
-	}
-};
-
-Attack.prototype.MissileHit = function(data, lateness)
-{
-	let targetPosition = this.InterpolatedLocation(data.target, lateness);
-	if (!targetPosition)
-		return;
-
-	// Do this first in case the direct hit kills the target
-	if (this.template.Ranged.Splash)
-	{
-		let playersToDamage;
-
-		if (this.template.Ranged.Splash.FriendlyFire == "false")
-		{
-			let cmpPlayer = QueryPlayerIDInterface(data.playerId);
-			playersToDamage = cmpPlayer.GetEnemies();
-		}
-
-		Damage.CauseSplashDamage({
-			"attacker": this.entity,
-			"origin": Vector2D.from3D(data.position),
-			"radius": this.template.Ranged.Splash.Range,
-			"shape": this.template.Ranged.Splash.Shape,
-			"strengths": this.GetAttackStrengths(data.type),
-			"direction": data.direction,
-			"playersToDamage": playersToDamage,
-			"type": data.type
-		});
-	}
-
-	if (this.testCollision(data.target, data.position, lateness))
-	{
-		data.attacker = this.entity;
-		data.multiplier = this.GetAttackBonus(data.type, data.target);
-		data.strengths = this.GetAttackStrengths(data.type);
-		// Hit the primary target
-		Damage.CauseDamage(data);
-
-		// Remove the projectile
-		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-		cmpProjectileManager.RemoveProjectile(data.projectileId);
-	}
-	else
-	{
-		// If we didn't hit the main target look for nearby units
-		let cmpPlayer = QueryPlayerIDInterface(data.playerId);
-		let ents = Damage.EntitiesNearPoint(Vector2D.from3D(data.position), targetPosition.horizDistanceTo(data.position) * 2, cmpPlayer.GetEnemies());
-
-		for (let i = 0; i < ents.length; ++i)
-		{
-			if (!this.testCollision(ents[i], data.position, lateness))
-				continue;
-
-			Damage.CauseDamage({
-				"strengths": this.GetAttackStrengths(data.type),
-				"target": ents[i],
-				"attacker": this.entity,
-				"multiplier": this.GetAttackBonus(data.type, ents[i]),
-				"type": data.type
-			});
-
-			// Remove the projectile
-			let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-			cmpProjectileManager.RemoveProjectile(data.projectileId);
-		}
 	}
 };
 
