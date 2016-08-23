@@ -575,47 +575,12 @@
 		<image backcolor="255 255 255 32" size="2 3 3 100%-3"/>
 	</sprite>
 
-<!--	<sprite name="glassSquareIcon">
-		<image backcolor="255 255 255 128" size="0 0 100% 1"/>
-		<image backcolor="255 255 255 44" size="100%-1 1 100% 100%"/>
-		<image backcolor="255 255 255 44" size="0 100%-1 100% 100%"/>
-		<image backcolor="255 255 255 128" size="0 1 1 100%-1"/>
-
-		<image backcolor="255 255 255 96" size="1 1 100%-1 2"/>
-		<image backcolor="255 255 255 32" size="100%-2 2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 32" size="1 100%-2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 96" size="1 2 2 100%-2"/>
-
-		<image backcolor="255 255 255 64" size="2 2 100%-2 3"/>
-		<image backcolor="255 255 255 16" size="100%-3 3 100%-2 100%-2"/>
-		<image backcolor="255 255 255 16" size="2 100%-3 100%-2 100%-2"/>
-		<image backcolor="255 255 255 64" size="2 3 3 100%-3"/>
-	</sprite>-->
-	
-	
 	<sprite name="iconBorder">
 		<image backcolor="gold" size="0 0 100% 1"/>
 		<image backcolor="gold" size="100%-1 1 100% 100%"/>
 		<image backcolor="gold" size="0 100%-1 100% 100%"/>
 		<image backcolor="gold" size="0 1 1 100%-1"/>
 	</sprite>
-
-<!--	<sprite name="statsBarShader">
-		<image backcolor="0 0 0 192" size="0 0 100% 1"/>
-		<image backcolor="0 0 0 192" size="100%-1 1 100% 100%-1"/>
-		<image backcolor="0 0 0 192" size="0 100%-1 100% 100%"/>
-		<image backcolor="0 0 0 192" size="0 1 1 100%-1"/>
-
-		<image backcolor="0 0 0 128" size="0 1 100% 2"/>
-		<image backcolor="0 0 0 128" size="100%-2 2 100%-1 100%-2"/>
-		<image backcolor="0 0 0 128" size="0 100%-2 100% 100%-1"/>
-		<image backcolor="0 0 0 128" size="1 2 2 100%-2"/>
-
-		<image backcolor="0 0 0 64" size="0 2 100% 3"/>
-		<image backcolor="0 0 0 64" size="100%-3 3 100%-2 100%-3"/>
-		<image backcolor="0 0 0 64" size="0 100%-3 100% 100%-2"/>
-		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>
-	</sprite>-->
 
 	<sprite name="statsBarShaderHorizontal">
 	    	<image	texture="session/bar_lighting_horizontal.png"
@@ -631,25 +596,6 @@
 		/>
 	</sprite>
 	
-<!--	<sprite name="detailsShader">
-		<image backcolor="0 0 0 100" size="4 4 100%-4 100%-4"/>
-	    
-		<image backcolor="0 0 0 192" size="0 0 100% 1"/>
-		<image backcolor="0 0 0 192" size="100%-1 1 100% 100%-1"/>
-		<image backcolor="0 0 0 192" size="0 100%-1 100% 100%"/>
-		<image backcolor="0 0 0 192" size="0 1 1 100%-1"/>
-
-		<image backcolor="0 0 0 128" size="0 1 100% 2"/>
-		<image backcolor="0 0 0 128" size="100%-2 2 100%-1 100%-2"/>
-		<image backcolor="0 0 0 128" size="0 100%-2 100% 100%-1"/>
-		<image backcolor="0 0 0 128" size="1 2 2 100%-2"/>
-
-		<image backcolor="0 0 0 64" size="0 2 100% 3"/>
-		<image backcolor="0 0 0 64" size="100%-3 3 100%-2 100%-3"/>
-		<image backcolor="0 0 0 64" size="0 100%-3 100% 100%-2"/>
-		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>
-	</sprite>-->
-
 	<!-- ================================  ================================ -->
 	<!-- Colored Stats Bars -->
 	<!-- ================================  ================================ -->
