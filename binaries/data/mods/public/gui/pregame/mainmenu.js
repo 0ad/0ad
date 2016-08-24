@@ -6,15 +6,18 @@ var g_BackgroundCode; // Background type.
 var g_ShowSplashScreens;
 var g_BackgroundLayerData = [];
 
+var g_T0 = +(new Date());
+var g_LastTickTime = new Date();
+
 function init(initData, hotloadData)
 {
 	initMusic();
-	// Play main menu music
+
 	global.music.setState(global.music.states.MENU);
 
 	userReportEnabledText = Engine.GetGUIObjectByName("userReportEnabledText").caption;
 
-	// initialize currentSubmenuType with placeholder to avoid null when switching
+	// Initialize currentSubmenuType with placeholder to avoid null when switching
 	currentSubmenuType = "submenuSinglePlayer";
 
 	EnableUserReport(Engine.IsUserReportEnabled());
@@ -27,10 +30,9 @@ function init(initData, hotloadData)
 	var layerset = g_BackgroundLayerData[g_BackgroundCode];
 	for (var i = 0; i < layerset.length; ++i)
 	{
-		var layer = layerset[i];
 		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
 		guiObj.hidden = false;
-		guiObj.sprite = layer.sprite;
+		guiObj.sprite = layerset[i].sprite;
 		guiObj.z = i;
 	}
 }
@@ -40,7 +42,6 @@ function getHotloadData()
 	return { "showSplashScreens": g_ShowSplashScreens };
 }
 
-var t0 = +(new Date());
 function scrollBackgrounds()
 {
 	var layerset = g_BackgroundLayerData[g_BackgroundCode];
@@ -54,7 +55,7 @@ function scrollBackgrounds()
 		var w = h * 16/9;
 		var iw = h * 2;
 
-		var time = (new Date() - t0) / 1000;
+		var time = (new Date() - g_T0) / 1000;
 		var offset = layer.offset(time, w);
 		if (layer.tiling)
 		{
@@ -88,10 +89,7 @@ function formatUserReportStatus(status)
 		return translate("connecting to server");
 
 	if (d[0] == "sending")
-	{
-		var done = d[1];
-		return sprintf(translate("uploading (%f%%)"), Math.floor(100*done));
-	}
+		return sprintf(translate("uploading (%f%%)"), Math.floor(100 * d[1]));
 
 	if (d[0] == "completed")
 	{
@@ -99,35 +97,28 @@ function formatUserReportStatus(status)
 		if (httpCode == 200)
 			return translate("upload succeeded");
 		else
-			return sprintf(translate("upload failed (%(errorCode)s)"), { errorCode: httpCode });
+			return sprintf(translate("upload failed (%(errorCode)s)"), { "errorCode": httpCode });
 	}
 
 	if (d[0] == "failed")
-	{
-		var errCode = d[1];
-		var errMessage = d[2];
-		return sprintf(translate("upload failed (%(errorMessage)s)"), { errorMessage: errMessage });
-	}
+		return sprintf(translate("upload failed (%(errorMessage)s)"), { "errorMessage": d[2] });
 
 	return translate("unknown");
 }
 
-var lastTickTime = new Date();
 function onTick()
 {
 	var now = new Date();
-	var tickLength = new Date() - lastTickTime;
-	lastTickTime = now;
+	var tickLength = new Date() - g_LastTickTime;
+	g_LastTickTime = now;
 
-	// Animate backgrounds
 	scrollBackgrounds();
 
-	// Animate submenu
 	updateMenuPosition(tickLength);
 
 	if (Engine.IsUserReportEnabled())
 	{
-		Engine.GetGUIObjectByName("userReportEnabledText").caption = 
+		Engine.GetGUIObjectByName("userReportEnabledText").caption =
 			userReportEnabledText.replace(/\$status/,
 				formatUserReportStatus(Engine.GetUserReportStatus()));
 	}
@@ -137,9 +128,9 @@ function onTick()
 	{
 		g_ShowSplashScreens = false;
 
-		if (Engine.ConfigDB_GetValue("user", "splashscreendisable") !== "true" 
-			&& Engine.ConfigDB_GetValue("user", "splashscreenversion") < Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"))
-            Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
+		if (Engine.ConfigDB_GetValue("user", "splashscreendisable") !== "true" &&
+		    Engine.ConfigDB_GetValue("user", "splashscreenversion") < Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"))
+			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
 		else
 			ShowRenderPathMessage();
 	}
@@ -152,7 +143,10 @@ function ShowRenderPathMessage()
 		messageBox(
 			600, 300,
 			"[font=\"sans-bold-16\"]" +
-			sprintf(translate("%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model."), { startWarning: "[color=\"200 20 20\"]", endWarning: "[/color]"}) +
+			sprintf(translate("%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader (fixed function) graphics. This option will be removed in a future 0 A.D. release, to allow for more advanced graphics features. We advise upgrading your graphics card to a more recent, shader-compatible model."), {
+				"startWarning": "[color=\"200 20 20\"]",
+				"endWarning": "[/color]"
+			}) +
 			"\n\n" +
 			// Translation: This is the second paragraph of a warning. The
 			// warning explains that the user is using “non-shader“ graphics,
@@ -173,16 +167,13 @@ function SplashScreenClosedCallback()
 function EnableUserReport(Enabled)
 {
 	Engine.GetGUIObjectByName("userReportDisabled").hidden = Enabled;
- 	Engine.GetGUIObjectByName("userReportEnabled").hidden = !Enabled;
- 	Engine.SetUserReportEnabled(Enabled);
+	Engine.GetGUIObjectByName("userReportEnabled").hidden = !Enabled;
+	Engine.SetUserReportEnabled(Enabled);
 }
 
-
-/*
- * MENU FUNCTIONS
+/**
+ * Slide menu.
  */
-
-// Slide menu
 function updateMenuPosition(dt)
 {
 	var submenu = Engine.GetGUIObjectByName("submenu");
@@ -204,14 +195,14 @@ function updateMenuPosition(dt)
 	}
 }
 
-// Opens the menu by revealing the screen which contains the menu
+/**
+ * Opens the menu by revealing the screen which contains the menu.
+ */
 function openMenu(newSubmenu, position, buttonHeight, numButtons)
 {
-	// switch to new submenu type
 	currentSubmenuType = newSubmenu;
 	Engine.GetGUIObjectByName(currentSubmenuType).hidden = false;
 
-	// set position of new submenu
 	var submenu = Engine.GetGUIObjectByName("submenu");
 	var top = position - MARGIN;
 	var bottom = position + ((buttonHeight + MARGIN) * numButtons);
@@ -220,28 +211,23 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 	// Blend in right border of main menu into the left border of the submenu
 	blendSubmenuIntoMain(top, bottom);
 
-	// Reveal submenu
 	Engine.GetGUIObjectByName("submenu").hidden = false;
 }
 
-// Closes the menu and resets position
 function closeMenu()
 {
-//	playButtonSound();
-
-	// remove old submenu type
 	Engine.GetGUIObjectByName(currentSubmenuType).hidden = true;
 
-	// hide submenu and reset position
 	var submenu = Engine.GetGUIObjectByName("submenu");
 	submenu.hidden = true;
 	submenu.size = Engine.GetGUIObjectByName("mainMenu").size;
 
-	// reset main menu panel right border
 	Engine.GetGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
 }
 
-// Sizes right border on main menu panel to match the submenu
+/**
+ * Sizes right border on main menu panel to match the submenu.
+ */
 function blendSubmenuIntoMain(topPosition, bottomPosition)
 {
 	var topSprite = Engine.GetGUIObjectByName("MainMenuPanelRightBorderTop");
@@ -253,31 +239,11 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 
 function getBuildString()
 {
-	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), { buildDate: Engine.GetBuildTimestamp(0), revision: Engine.GetBuildTimestamp(2) });
+	return sprintf(translate("Build: %(buildDate)s (%(revision)s)"), {
+		"buildDate": Engine.GetBuildTimestamp(0),
+		"revision": Engine.GetBuildTimestamp(2)
+	});
 }
-
-/*
- * FUNCTIONS BELOW DO NOT WORK YET
- */
-
-//// Move the credits up the screen.
-//function updateCredits()
-//{
-//	// If there are still credit lines to remove, remove them.
-//	if (getNumItems("pgCredits") > 0)
-//		removeItem ("pgCredits", 0);
-//	else
-//	{
-//		// When we've run out of credit,
-//
-//		// Stop the increment timer if it's still active.
-//		cancelInterval();
-//
-//		// Close the credits screen and return.
-//		closeMainMenuSubWindow ("pgCredits");
-//		guiUnHide ("pg");
-//	}
-//}
 
 function exitGamePressed()
 {
@@ -295,7 +261,7 @@ function exitGamePressed()
 function pressedScenarioEditorButton()
 {
 	closeMenu();
-	// Start Atlas
+
 	if (Engine.AtlasIsAvailable())
 		Engine.RestartInAtlas();
 	else
@@ -320,4 +286,3 @@ function getManual()
 {
 	return translate("Manual");
 }
-
