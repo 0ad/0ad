@@ -491,6 +491,27 @@
 	</sprite>
 
 	<!-- ================================  ================================ -->
+	<!-- Tooltips -->
+	<!-- ================================  ================================ -->
+	<sprite name="BackgroundSessionTooltip">
+		<image
+			backcolor="darkbrown"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="gold"
+		/>
+	</sprite>
+
+	<sprite name="BackgroundInformationTooltip">
+		<image
+			backcolor="0 0 0 192"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="white"
+		/>
+	</sprite>
+
+	<!-- ================================  ================================ -->
 	<!-- Misc -->
 	<!-- ================================  ================================ -->
 	<sprite name="bandbox">

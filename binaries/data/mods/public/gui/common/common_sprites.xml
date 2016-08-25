@@ -33,33 +33,18 @@
 		/>
 	</sprite>
 
-	<sprite name="BackgroundSessionTooltip">
-		<image
-			backcolor="darkbrown"
-			size="0 0 100% 100%"
-			border="true"
-			bordercolor="gold"
-		/>
+	<sprite name="BackgroundBlack">
+		<image backcolor="black"/>
 	</sprite>
 
-	<sprite name="BackgroundInformationTooltip">
+	<sprite name="BackgroundWhiteBorderBlack">
 		<image
-			backcolor="0 0 0 191"
+			backcolor="white"
 			size="0 0 100% 100%"
 			border="true"
-			bordercolor="white"
+			bordercolor="black"
 		/>
 	</sprite>
-
-	<sprite name="BackgroundErrorTooltip">
-		<image
-			backcolor="0 0 0 191"
-			size="0 0 100% 100%"
-			border="true"
-			bordercolor="red"
-		/>
-	</sprite>
-
 
 	<!--
 	==========================================
@@ -151,6 +136,66 @@
 		<image	texture="global/border/line_corner_top_left.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	GENERIC ICONS
+	==========================================
+	-->
+
+	<sprite name="iconInfoGold">
+		<effect add_color="237 227 167"/>
+		<image
+			texture="global/icon/info.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconInfoWhite">
+		<effect add_color="255 255 255"/>
+		<image
+			texture="global/icon/info.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconResetGold">
+		<effect add_color="237 227 167"/>
+		<image
+			texture="global/icon/reset.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconResetWhite">
+		<effect add_color="255 255 255"/>
+		<image
+			texture="global/icon/reset.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	SCREENSHOT WATERMARK
+	==========================================
+	-->
+
+	<sprite	name="watermarkProduct">
+		<image
+			texture="global/watermark/product.dds"
+			real_texture_placement="0 0 200 98"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite	name="watermarkCompany">
+		<image
+			texture="global/watermark/company.dds"
+			real_texture_placement="0 0 207 28"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 

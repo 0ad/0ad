@@ -98,7 +98,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 
 		// TODO: we should require all entities to have icons, so this case never occurs
 		if (data.icon && !data.icon.sprite)
-			data.icon.sprite = "bkFillBlack";
+			data.icon.sprite = "BackgroundBlack";
 	}
 
 	// Hide any buttons we're no longer using

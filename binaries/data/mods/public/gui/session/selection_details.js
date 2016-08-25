@@ -280,7 +280,7 @@ function displaySingle(entState)
 	Engine.GetGUIObjectByName("player").tooltip = isGaia ? "" : civName;
 
 	// TODO: we should require all entities to have icons
-	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "bkFillBlack";
+	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "BackgroundBlack";
 
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = [
 		getAttackTooltip,
