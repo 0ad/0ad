@@ -94,7 +94,7 @@ function fadeColorTick(name)
 	// change the color
 	data.fun_colorTransform(data);
 
-	overlay.sprite = "color:" + rgbToGuiColor(data.rgb);
+	overlay.sprite = "color:" + rgbToGuiColor(data.rgb, data.rgb.o);
 
 	// recusive call, if duration is positive
 	if (!data.stopFade && (data.justStopAtExternCall || data.duration - (data.tickInterval * data.tickCounter) > 0))
