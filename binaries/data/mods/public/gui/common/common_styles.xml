@@ -123,20 +123,6 @@
 		text_valign="top"
 	/>
 
-	<style 	name="MainMenuPanel"
-		sprite="MainMenuPanel"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
-	/>
-
-        <style 	name="SubmenuPanel"
-		sprite="SubmenuPanel"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
-	/>
-
 	<style 	name="StonePanelThinBorder"
 		sprite="StonePanelThinBorder"
 		buffer_zone="10"
@@ -183,15 +169,5 @@
 		textcolor="white"
 		text_align="left"
 		text_valign="top"
-	/>
-		<!--
-	==========================================
-	CIV ICON
-	==========================================
-	-->
-	<style 	name="CivIconOverlay"
-		sprite=""
-		sprite_over="CivIconOver"
-		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
 </styles>

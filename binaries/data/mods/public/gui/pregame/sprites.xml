@@ -2,13 +2,70 @@
 
 <sprites>
 
-		<sprite name="pgUserReportBox">
-			<image
-				backcolor="0 0 0 220"
-				size="0 0 100% 100%"
-				border="true"
-				bordercolor="200 200 200"
-			/>
-		</sprite>
+	<sprite name="MainMenuPanel">
+		<image texture="global/tile/stone_background.png"
+			real_texture_placement="28 0 292 264"
+			texture_size="0 0 240 240"
+		/>
+
+		<image texture="pregame/shading/menu_panel_background_shading.png"
+			texture_size="0 0 100% 100%"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- top -->
+		<image backcolor="230 190 80"
+			size="2 0 100%-2 2"
+		/>
+
+		<!-- bottom -->
+		<image backcolor="230 190 80"
+			size="2 100%-2 100%-2 100%"
+		/>
+
+		<!-- left -->
+		<image backcolor="230 190 80"
+			size="0 0 2 100%"
+		/>
+	</sprite>
+
+	<sprite name="MainMenuPanelRightBorder">
+		<!-- right -->
+		<image backcolor="230 190 80"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="SubmenuPanel">
+		<image texture="global/tile/stone_background.png"
+			real_texture_placement="32 0 292 264"
+			texture_size="0 0 240 240"
+		/>
+
+		<image texture="pregame/shading/menu_panel_background_shading.png"
+			texture_size="0 0 100% 100%"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- sides -->
+		<image backcolor="230 190 80"
+			size="0 0 100%-2 2"
+		/>
+		<image backcolor="230 190 80"
+			size="100%-2 0 100% 100%"
+		/>
+		<image backcolor="230 190 80"
+			size="0 100%-2 100%-2 100%"
+		/>
+		<!-- no left border here -->
+	</sprite>
+
+	<sprite name="pgUserReportBox">
+		<image backcolor="0 0 0 220"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="200 200 200"
+		/>
+	</sprite>
 
 </sprites>

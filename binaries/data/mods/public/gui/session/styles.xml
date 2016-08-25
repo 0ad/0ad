@@ -188,6 +188,12 @@
     <!-- ================================  ================================ -->
     <!-- Icon Styles -->
     <!-- ================================  ================================ -->
+	<style name="CivIconOverlay"
+		sprite=""
+		sprite_over="CivIconOver"
+		sound_pressed="audio/interface/ui/ui_button_click.ogg"
+	/>
+
     <style name="commandIcon"
 	   sprite="command"
 	   ghost="true"
