@@ -31,12 +31,6 @@
 	==========================================
 	-->
 
-		<!--
-		==========================================
-		- SETUP - ICONS - GENERIC
-		==========================================
-		-->
-
 		<icon	name="iconProduct"
 			sprite="iconProduct"
 			size="16 16"
@@ -108,11 +102,6 @@
 				textcolor="0 0 0"
 		/>
 
-
-
-
-		<!-- these are used -->
-
 		<tooltip 	name="sessionToolTip"
 				anchor="top"
 				buffer_zone="4"
@@ -182,61 +171,4 @@
 
 		<color name="transparent">0 0 0 0</color>
 
-        <!--
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
-	-->
-
-	<scrollbar	name="sb"
-			width="18"
-			minimum_bar_size="5"
-			sprite_button_top="sprite2"
-			sprite_button_top_over="null"
-			sprite_button_bottom="sprite2"
-			sprite_button_bottom_over="null"
-			sprite_back_vertical="bkFillGray"
-			sprite_bar_vertical="sprite2"
-			sprite_bar_vertical_over="null"
-			sprite_bar_vertical_pressed="null"
-			sprite_button_bottom_pressed="sprite2_pressed"
-			sprite_button_top_pressed="sprite2_pressed"
-	/>
-
-	<scrollbar	name="sb2"
-			width="37"
-			minimum_bar_size="5"
-			sprite_button_top="scroll"
-			sprite_button_top_over="null"
-			sprite_button_bottom="scroll"
-			sprite_button_bottom_over="null"
-			sprite_back_vertical="null"
-			sprite_bar_vertical="scroll_bar"
-			sprite_bar_vertical_over="null"
-			sprite_bar_vertical_pressed="null"
-			sprite_button_bottom_pressed="scroll"
-			sprite_button_top_pressed="scroll"
-	/>
-
-	<scrollbar	name="manual_scrollbar"
-			width="12"
-			minimum_bar_size="4"
-			alwaysshown="false"
-			sprite_button_top="sprite2"
-			sprite_button_top_over="scroll"
-			sprite_button_bottom="sprite2"
-			sprite_button_bottom_over="scroll"
-			sprite_back_vertical="bkFillGray"
-			sprite_bar_vertical="sprite2"
-			sprite_bar_vertical_over="scroll"
-			sprite_bar_vertical_pressed="sprite2_pressed"
-			sprite_button_bottom_pressed="sprite2_pressed"
-			sprite_button_top_pressed="sprite2_pressed"
-	/>
-
-
-
-        <!--
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
-	-->
 </setup>
