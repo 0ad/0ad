@@ -259,7 +259,7 @@
         </sprite>
 
 	<sprite name="StoneButtonDisabled">
-		<effect grayscale="" />
+		<effect add_color="42 42 42 0"/>
 		<image 	texture="global/button/button_stone_unselected.png"
 			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%"
