@@ -3,48 +3,12 @@
 <!DOCTYPE setup SYSTEM "..\gui.dtd">
 
 <setup>
-	<!--
-	==========================================
-	- SETUP - SCROLLBARS
-	==========================================
-	-->
-
-	<scrollbar	name="wheatScrollBar"
-			width="12"
-			minimum_bar_size="4"
-			show_edge_buttons="true"
-			sprite_button_top="wheatArrowUp"
-			sprite_button_top_over="wheatArrowUpOver"
-			sprite_button_top_pressed="wheatArrowUpOver"
-			sprite_button_bottom="wheatArrowDn"
-			sprite_button_bottom_over="wheatArrowDnOver"
-			sprite_button_bottom_pressed="wheatArrowDnOver"
-			sprite_back_vertical="wheatScrollSpriteBar"
-			sprite_bar_vertical="wheatCheckBoxOpen"
-			sprite_bar_vertical_over="bkWhiteBorderBlack"
-			sprite_bar_vertical_pressed="bkWhiteBorderBlack"
-	/>
 
 	<!--
 	==========================================
 	- SETUP - ICONS
 	==========================================
 	-->
-
-		<icon	name="iconProduct"
-			sprite="iconProduct"
-			size="16 16"
-		/>
-
-		<icon 	name="iconBullet"
-			sprite="iconBullet"
-			size="8 8"
-		/>
-
-		<icon 	name="iconInfinity"
-			sprite="iconInfinity"
-			size="16 16"
-		/>
 
 		<icon	name="iconInfo"
 			sprite="iconInfoWhite"
@@ -61,23 +25,6 @@
 				use_object="pgToolTip"
 				delay="0"
 				hide_object="true"
-		/>
-
-		<tooltip	name="pgSessionSetupToolTip"
-				use_object="pgSessionSetupToolTip"
-				delay="0"
-				hide_object="true"
-		/>
-
-		<tooltip 	name="pgFloatingToolTip"
-				anchor="top"
-				buffer_zone="4"
-				delay="500"
-				font="sans-14"
-				maxwidth="300"
-				offset="16 32"
-				sprite="bkWhiteBorderBlack"
-				textcolor="0 0 0"
 		/>
 
 		<tooltip 	name="snToolTip"

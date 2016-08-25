@@ -33,34 +33,6 @@
 		/>
 	</sprite>
 
-        <sprite name="BackgroundBlack">
-                <image 	backcolor="black"
-			size="0 0 100% 100%"
-		/>
-        </sprite>
-
-        <sprite name="BackgroundRed">
-                <image 	backcolor="darkred"
-			size="0 0 100% 100%"
-		/>
-        </sprite>
-
-        <sprite name="BackgroundSelectArea">
-                <image 	backcolor="darkred"
-			bordercolor="gold"
-			size="0 0 100% 100%"
-			border="true"
-		/>
-        </sprite>
-
-	<sprite name="BackgroundListBox">
-		<image	backcolor="darkbrown"
-			size="0 0 100% 100%"
-			border="true"
-			bordercolor="60 60 40"
-		/>
-	</sprite>
-
 	<sprite name="BackgroundSessionTooltip">
 		<image
 			backcolor="darkbrown"
@@ -85,30 +57,6 @@
 			size="0 0 100% 100%"
 			border="true"
 			bordercolor="red"
-		/>
-	</sprite>
-
-	<sprite name="BackgroundIndentFillDark">
-		<!-- Starting with top left corner continuing in a clockwise manner -->
-		<!-- Top border -->
-		<image	backcolor="60 60 40"
-			size="0 0 100%-1 1"
-		/>
-		<!-- Right border -->
-		<image 	backcolor="120 120 80"
-			size="100%-1 0 100% 100%"
-		/>
-		<!-- Bottom border -->
-		<image 	backcolor="120 120 80"
-			size="0 100%-1 100% 100%"
-		/>
-		<!-- Left border -->
-		<image 	backcolor="60 60 40"
-			size="0 0 1 100%-1"
-		/>
-		<!-- middle -->
-		<image 	backcolor="0 0 0 85"
-			size="1 1 100%-1 100%-1"
 		/>
 	</sprite>
 
@@ -220,52 +168,6 @@
 		/>
 	</sprite>
 
-	<sprite name="LargeStonePanelThinBorder">
-		<image	texture="global/tile/stone_background.png"
-			real_texture_placement="0 0 312 312"
-			texture_size="0 0 256 256"
-			size="4 4 100%-4 100%-4"
-		/>
-
-		<!-- sides -->
-		<image	texture="global/border/line_horiz.png"
-			texture_size="0 0 64 4"
-			size="4 0 100%-4 4"
-		/>
-		<image	texture="global/border/line_vert.png"
-			texture_size="0 0 4 64"
-			size="100%-4 4 100% 100%-4"
-		/>
-		<image	texture="global/border/line_horiz.png"
-			texture_size="0 0 64 4"
-			size="4 100%-4 100%-4 100%"
-		/>
-		<image	texture="global/border/line_vert.png"
-			texture_size="0 0 4 64"
-			size="0 4 4 100%-4"
-		/>
-
-		<!-- corners -->
-		<image
-			texture="global/border/line_corner_top_right.png"
-			texture_size="0 0 4 4"
-			size="100%-4 0 100% 4"
-		/>
-		<image	texture="global/border/line_corner_bottom_right.png"
-			texture_size="0 0 4 4"
-			size="100%-4 100%-4 100% 100%"
-		/>
-		<image	texture="global/border/line_corner_bottom_left.png"
-			texture_size="0 0 4 4"
-			size="0 100%-4 4 100%"
-		/>
-		<image	texture="global/border/line_corner_top_left.png"
-			texture_size="0 0 4 4"
-			size="0 0 4 4"
-		/>
-	</sprite>
-
-
 	<sprite name="StonePanelThinBorder">
 		<image	texture="global/tile/stone_background.png"
 			texture_size="0 0 512 512"
@@ -307,208 +209,6 @@
 		<image	texture="global/border/line_corner_top_left.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
-		/>
-	</sprite>
-
-	<sprite name="StoneWindow">
-		<!-- background -->
-		<image	texture="global/tile/stone_background_light.png"
-			texture_size="0 0 512 512"
-			size="4 4 100%-4 100%-4"
-		/>
-
-                <!-- shading -->
-		<image
-			texture="global/shading/gradient_wide.png"
-			size="0 0 100% 100%"
-		/>
-
-                <!-- thin sides -->
-		<image	texture="global/border/line_horiz.png"
-			texture_size="0 0 64 4"
-			size="20 16 100%-20 20"
-		/>
-		<image	texture="global/border/line_vert.png"
-			texture_size="0 0 4 64"
-			size="100%-20 20 100%-16 100%-20"
-		/>
-		<image	texture="global/border/line_horiz.png"
-			texture_size="0 0 64 4"
-			size="20 100%-20 100%-20 100%-16"
-		/>
-		<image	texture="global/border/line_vert.png"
-			texture_size="0 0 4 64"
-			size="16 20 20 100%-20"
-		/>
-
-		<!-- thin corners -->
-		<image
-			texture="global/border/line_corner_top_right.png"
-			texture_size="0 0 4 4"
-			size="100%-20 16 100%-16 20"
-		/>
-		<image	texture="global/border/line_corner_bottom_right.png"
-			texture_size="0 0 4 4"
-			size="100%-20 100%-20 100%-16 100%-16"
-		/>
-		<image	texture="global/border/line_corner_bottom_left.png"
-			texture_size="0 0 4 4"
-			size="16 100%-20 20 100%-16"
-		/>
-		<image	texture="global/border/line_corner_top_left.png"
-			texture_size="0 0 4 4"
-			size="16 16 20 20"
-		/>
-
-		<!-- sides -->
-		<image	texture="global/border/border-top.png"
-			texture_size="0 0 128 16"
-			size="16 0 100%-16 16"
-		/>
-		<image	texture="global/border/border-right.png"
-			texture_size="0 0 16 128"
-			size="100%-16 16 100% 100%-16"
-		/>
-		<image	texture="global/border/border-bottom.png"
-			texture_size="0 0 128 16"
-			size="16 100%-16 100%-16 100%"
-		/>
-		<image	texture="global/border/border-left.png"
-			texture_size="0 0 16 128"
-			size="0 16 16 100%-16"
-		/>
-
-		<!-- corners -->
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="100%-16 0 100% 16"
-		/>
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="100%-16 100%-16 100% 100%"
-		/>
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="0 100%-16 16 100%"
-		/>
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="0 0 16 16"
-		/>
-
-		<!-- title frame -->
-		<image	texture="global/titlebar/titlebar_left.png"
-			real_texture_placement="0 0 64 32"
-			size="50%-128 36 50%-64 4"
-		/>
-                <image 	texture="global/titlebar/titlebar_middle.png"
-			real_texture_placement="0 0 64 32"
-			size="50%-64 36 50%+64 4"
-		/>
-                <image 	texture="global/titlebar/titlebar_right.png"
-			real_texture_placement="0 0 64 32"
-			size="50%+64 36 50%+128 4"
-		/>
-	</sprite>
-
-	<sprite name="StoneDialog">
-		<!-- background -->
-		<image	texture="global/tile/stone_background_light.png"
-			texture_size="0 0 512 512"
-			size="4 4 100%-4 100%-4"
-		/>
-
-                <!-- shading -->
-		<image
-			texture="global/shading/gradient_wide.png"
-			size="0 0 100% 100%"
-		/>
-
-                <!-- thin sides -->
-		<image	texture="global/border/line_horiz.png"
-			texture_size="0 0 64 4"
-			size="20 16 100%-20 20"
-		/>
-		<image	texture="global/border/line_vert.png"
-			texture_size="0 0 4 64"
-			size="100%-20 20 100%-16 100%-20"
-		/>
-		<image	texture="global/border/line_horiz.png"
-			texture_size="0 0 64 4"
-			size="20 100%-20 100%-20 100%-16"
-		/>
-		<image	texture="global/border/line_vert.png"
-			texture_size="0 0 4 64"
-			size="16 20 20 100%-20"
-		/>
-
-		<!-- thin corners -->
-		<image
-			texture="global/border/line_corner_top_right.png"
-			texture_size="0 0 4 4"
-			size="100%-20 16 100%-16 20"
-		/>
-		<image	texture="global/border/line_corner_bottom_right.png"
-			texture_size="0 0 4 4"
-			size="100%-20 100%-20 100%-16 100%-16"
-		/>
-		<image	texture="global/border/line_corner_bottom_left.png"
-			texture_size="0 0 4 4"
-			size="16 100%-20 20 100%-16"
-		/>
-		<image	texture="global/border/line_corner_top_left.png"
-			texture_size="0 0 4 4"
-			size="16 16 20 20"
-		/>
-
-		<!-- sides -->
-		<image	texture="global/border/border-top.png"
-			texture_size="0 0 128 16"
-			size="16 0 100%-16 16"
-		/>
-		<image	texture="global/border/border-right.png"
-			texture_size="0 0 16 128"
-			size="100%-16 16 100% 100%-16"
-		/>
-		<image	texture="global/border/border-bottom.png"
-			texture_size="0 0 128 16"
-			size="16 100%-16 100%-16 100%"
-		/>
-		<image	texture="global/border/border-left.png"
-			texture_size="0 0 16 128"
-			size="0 16 16 100%-16"
-		/>
-
-		<!-- corners -->
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="100%-16 0 100% 16"
-		/>
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="100%-16 100%-16 100% 100%"
-		/>
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="0 100%-16 16 100%"
-		/>
-		<image	texture="global/border/border-corner.png"
-			texture_size="0 0 16 16"
-			size="0 0 16 16"
-		/>
-
-		<!-- title frame -->
-		<image	texture="global/titlebar/titlebar_left.png"
-			real_texture_placement="0 0 64 32"
-			size="50%-128 0%-16 50%-64 16"
-		/>
-                <image 	texture="global/titlebar/titlebar_middle.png"
-			real_texture_placement="0 0 64 32"
-			size="50%-64 0%-16 50%+64 16"
-		/>
-                <image 	texture="global/titlebar/titlebar_right.png"
-			real_texture_placement="0 0 64 32"
-			size="50%+64 0%-16 50%+128 16"
 		/>
 	</sprite>
 
@@ -579,30 +279,6 @@
 		/>
         </sprite>
 
-	<sprite name="StoneCheckBoxOpen">
-		<image	texture="global/button/checkbox_open_gray.dds"
-			size="0 0 16 16"
-		/>
-        </sprite>
-
-	<sprite name="StoneCheckBoxTick">
-		<image	texture="global/button/checkbox_tick_gray.dds"
-			size="0 0 16 16"
-		/>
-        </sprite>
-
-	<sprite name="StoneCheckBoxCross">
-		<image	texture="global/button/checkbox_cross_gray.dds"
-			size="0 0 16 16"
-		/>
-        </sprite>
-
-	<sprite name="StoneCheckBoxCrossOver">
-		<image	texture="global/button/checkbox_cross_over_gray.dds"
-			size="0 0 16 16"
-		/>
-        </sprite>
-
 	<sprite name="StoneArrowUp">
 		<image	texture="global/button/arrowbox_up.dds"
 			size="0 0 100% 100%"
@@ -626,13 +302,6 @@
 			size="0 0 100% 100%"
 		/>
         </sprite>
-
-	<sprite name="StoneScrollSpriteBar">
-		<image	texture="global/border/scrollbar.dds"
-			real_texture_placement="0 0 16 128"
-			size="0 0 100% 100%"
-		/>
-	</sprite>
 
 	<!--
 	==========================================

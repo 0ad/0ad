@@ -99,13 +99,6 @@
 		text_valign="center"
 	/>
 
-	<style name="ChatText"
-		font="sans-9"
-		textcolor="white"
-		text_align="left"
-		text_valign="top"
-	/>
-
 	<!--
 	==========================================
 	MENU WINDOW STYLES
@@ -144,36 +137,8 @@
 		text_valign="top"
 	/>
 
-	<style 	name="LargeStonePanelThinBorder"
-		sprite="LargeStonePanelThinBorder"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
-	/>
-
 	<style 	name="StonePanelThinBorder"
 		sprite="StonePanelThinBorder"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
-	/>
-
-	<style 	name="StonePanel"
-		sprite="StonePanel"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
-	/>
-
-	<style 	name="StoneWindow"
-		sprite="StoneWindow"
-		buffer_zone="10"
-		text_align="left"
-		text_valign="top"
-	/>
-
-	<style 	name="StoneDialog"
-		sprite="StoneDialog"
 		buffer_zone="10"
 		text_align="left"
 		text_valign="top"
@@ -207,83 +172,6 @@
 		text_align="center"
 		text_valign="center"
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"
-	/>
-
-	<style 	name="StoneCrossBox"
-		font="sans-14"
-		sprite="StoneCheckBoxOpen"
-		sprite2="StoneCheckBoxCross"
-		square_side="16"
-		textcolor="black"
-		sound_pressed="audio/interface/ui/ui_button_click.ogg"
-	/>
-
-	<style  name="StoneInput"
-		sprite="BackgroundIndentFillDark"
-		sprite_selectarea="BackgroundRed"
-		textcolor="white"
-		textcolor_selected="gold"
-	/>
-
-	<style  name="StonePasswordInput"
-		sprite="BackgroundIndentFillDark"
-		sprite_selectarea="BackgroundRed"
-		textcolor="white"
-		textcolor_selected="gold"
-		mask="true"
-		mask_char="*"
-	/>
-
-	<style 	name="StoneDropDown"
-		dropdown_buffer="1"
-		font="sans-bold-stroke-14"
-		textcolor="white"
-		text_align="left"
-		text_valign="center"
-
-		sprite="StoneButton"
-		sprite_over="StoneButtonOver"
-		sprite_pressed="StoneButtonGlow"
-
-		button_width="15"
-		sprite2="StoneArrowDn"
-		sprite2_pressed="StoneArrowDnOver"
-
-		buffer_zone="10"
-		dropdown_size="310"
-		sprite_list="BackgroundListBox"
-		sprite_selectarea="BackgroundSelectArea"
-		textcolor_selected="white"
-
-		scrollbar="true"
-		scrollbar_style="wheatScrollBar"
-
-		sound_opened="audio/interface/ui/ui_button_click.ogg"
-		sound_closed="audio/interface/ui/ui_button_click.ogg"
-		sound_selected="audio/interface/ui/ui_button_click.ogg"
-	/>
-
-	<style 	name="StoneList"
-		buffer_zone="5"
-		font="sans-bold-stroke-14"
-		scrollbar="true"
-		scrollbar_style="wheatScrollBar"
-		sprite="BackgroundIndentFillDark"
-		sprite_selectarea="BackgroundSelectArea"
-		sprite_over="BackgroundIndentFillDark"
-		textcolor="white"
-		textcolor_selected="white"
-		text_align="left"
-		text_valign="center"
-		sound_selected="audio/interface/ui/ui_button_click.ogg"
-	/>
-
-	<style 	name="StoneExit"
-		size="100%+9 0%-25 100%+25 0%-9"
-		sprite="StoneCheckBoxCross"
-		sprite_over="StoneCheckBoxCrossOver"
-		tooltip="Close this window and return to the previous screen."
-		tooltip_style="pgToolTip"
 	/>
 
 	<style name="MapPlayerList"
