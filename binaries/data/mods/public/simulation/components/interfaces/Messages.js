@@ -12,18 +12,6 @@
 Engine.RegisterMessageType("EntityRenamed");
 
 /**
- * Message of the form { "player": number, "otherPlayer": number }
- * sent from Player component when diplomacy changed for one player or between two players.
- */
-Engine.RegisterMessageType("DiplomacyChanged");
-
-/**
- * Message of the form { "to": number, "from": number, "amounts": object }
- * sent from Player component whenever a tribute is sent.
- */
-Engine.RegisterMessageType("TributeExchanged");
-
-/**
  * Message of the form {}
  * sent from InitGame for component map-dependent initialization.
  */
