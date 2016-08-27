@@ -497,22 +497,17 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 Player.prototype.UpdateSharedLos = function()
 {
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
-	if (!cmpRangeManager || !cmpPlayerManager || !cmpTechnologyManager)
+	if (!cmpRangeManager || !cmpTechnologyManager)
 		return;
 
-	let sharedLos = [];
 	if (!cmpTechnologyManager.IsTechnologyResearched(this.template.SharedLosTech))
 	{
 		cmpRangeManager.SetSharedLos(this.playerID, [this.playerID]);
 		return;
 	}
-	for (var i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
-		if (this.IsMutualAlly(i))
-			sharedLos.push(i);
 
-	cmpRangeManager.SetSharedLos(this.playerID, sharedLos);
+	cmpRangeManager.SetSharedLos(this.playerID, this.GetMutualAllies());
 };
 
 Player.prototype.GetFormations = function()
@@ -575,6 +570,15 @@ Player.prototype.IsAI = function()
 	return this.isAI;
 };
 
+Player.prototype.GetPlayersByDiplomacy = function(func)
+{
+	var players = [];
+	for (var i = 0; i < this.diplomacy.length; ++i)
+		if (this[func](i))
+			players.push(i);
+	return players;
+};
+
 Player.prototype.SetAlly = function(id)
 {
 	this.SetDiplomacyIndex(id, 1);
@@ -586,6 +590,11 @@ Player.prototype.SetAlly = function(id)
 Player.prototype.IsAlly = function(id)
 {
 	return this.diplomacy[id] > 0;
+};
+
+Player.prototype.GetAllies = function()
+{
+	return this.GetPlayersByDiplomacy("IsAlly");
 };
 
 /**
@@ -605,6 +614,11 @@ Player.prototype.IsMutualAlly = function(id)
 	return this.IsAlly(id) && cmpPlayer && cmpPlayer.IsAlly(this.playerID);
 };
 
+Player.prototype.GetMutualAllies = function()
+{
+	return this.GetPlayersByDiplomacy("IsMutualAlly");
+};
+
 /**
  * Check if given player is our ally, and we are its ally, excluding ourself
  */
@@ -619,23 +633,16 @@ Player.prototype.SetEnemy = function(id)
 };
 
 /**
- * Get all enemies of a given player.
- */
-Player.prototype.GetEnemies = function()
-{
-	var enemies = [];
-	for (var i = 0; i < this.diplomacy.length; ++i)
-		if (this.diplomacy[i] < 0)
-			enemies.push(i);
-	return enemies;
-};
-
-/**
  * Check if given player is our enemy
  */
 Player.prototype.IsEnemy = function(id)
 {
 	return this.diplomacy[id] < 0;
+};
+
+Player.prototype.GetEnemies = function()
+{
+	return this.GetPlayersByDiplomacy("IsEnemy");
 };
 
 Player.prototype.SetNeutral = function(id)

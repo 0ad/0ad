@@ -121,11 +121,9 @@ BuildingAI.prototype.SetupRangeQuery = function()
 	if (!cmpPlayer)
 		return;
 
-	var enemies = [];
-	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (let i = 1; i < numPlayers; ++i)
-		if (cmpPlayer.IsEnemy(i))
-			enemies.push(i);
+	var enemies = cmpPlayer.GetEnemies();
+	if (enemies.length && enemies[0] == 0)
+		enemies.shift(); // remove gaia
 
 	if (!enemies.length)
 		return;

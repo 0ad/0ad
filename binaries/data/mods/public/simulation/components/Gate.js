@@ -65,16 +65,12 @@ Gate.prototype.OnDestroy = function()
 Gate.prototype.SetupRangeQuery = function(owner)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var cmpPlayer = QueryPlayerIDInterface(owner);
 
 	if (this.unitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
 
 	// Only allied units can make the gate open.
-	var players = [];
-	for (var i = 0; i < cmpPlayer.GetDiplomacy().length; ++i)
-		if (cmpPlayer.IsAlly(i))
-			players.push(i);
+	var players = QueryPlayerIDInterface(owner).GetAllies();
 
 	var range = this.GetPassRange();
 	if (range > 0)
