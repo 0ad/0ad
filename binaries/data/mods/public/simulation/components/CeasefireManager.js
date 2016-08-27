@@ -71,8 +71,7 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 		// Save diplomacy
 		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 		for (let i = 1; i < numPlayers; ++i)
-			// Copy array with slice(), otherwise it will change
-			this.diplomacyBeforeCeasefire.push(QueryPlayerIDInterface(i).GetDiplomacy().slice());
+			this.diplomacyBeforeCeasefire.push(QueryPlayerIDInterface(i).GetDiplomacy());
 
 		// Set every enemy (except gaia) to neutral
 		for (let i = 1; i < numPlayers; ++i)

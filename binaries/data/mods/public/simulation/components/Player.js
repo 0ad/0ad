@@ -460,12 +460,12 @@ Player.prototype.GetLockTeams = function()
 
 Player.prototype.GetDiplomacy = function()
 {
-	return this.diplomacy;
+	return this.diplomacy.slice();
 };
 
 Player.prototype.SetDiplomacy = function(dipl)
 {
-	this.diplomacy = dipl;
+	this.diplomacy = dipl.slice();
 
 	Engine.BroadcastMessage(MT_DiplomacyChanged, {
 		"player": this.playerID,
