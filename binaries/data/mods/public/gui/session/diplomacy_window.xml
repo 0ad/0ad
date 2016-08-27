@@ -72,9 +72,9 @@
 			</object>
 		</repeat>
 	</object>
-	
+
 	<object name="diplomacyCeasefireCounter" size="32 100%-90 100%-32 100%-62" type="text" style="chatPanel" ghost="true"></object>
-	
+
 	<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
 		<translatableAttribute id="caption">Close</translatableAttribute>
 		<action on="Press">closeDiplomacy();</action>

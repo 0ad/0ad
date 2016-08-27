@@ -49,9 +49,9 @@
 			>
 			<action on="Tick">
 				updateCounters();
-			</action>            
+			</action>
 		</object>
-		
+
 		<object name="fpsCounter"
 			type="text"
 			ghost="true"
@@ -62,7 +62,7 @@
 				Engine.ConfigDB_CreateValue("user", "overlay.fps", ""+(Engine.ConfigDB_GetValue("user", "overlay.fps")!== "true"));
 			</action>
 		</object>
-		
+
 		<!--
 		==========================================
 		- TIME COUNTER

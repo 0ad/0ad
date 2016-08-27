@@ -482,7 +482,7 @@ function getSpeedTooltip(template)
 	return sprintf(translate("%(label)s %(speeds)s"), {
 		"label": headerFont(translate("Speed:")),
 		"speeds":
-	   		sprintf(translate("%(speed)s %(movementType)s"), {
+			sprintf(translate("%(speed)s %(movementType)s"), {
 				"speed": walk,
 				"movementType": unitFont(translate("Walk"))
 			}) +

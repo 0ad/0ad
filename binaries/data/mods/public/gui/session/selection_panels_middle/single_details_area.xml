@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Unit details for Single Unit -->
 <object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
-	
+
 	<!-- Stats Bars -->
 	<object size= "2 0 100%-2 98" type="image" tooltip_style="sessionToolTip">
-	
+
 	<object size="0 8 100% 60" type="image" sprite="edgedPanelShader">
 		<!-- Health bar -->
 		<object size="88 0 100% 24" name="healthSection">
@@ -47,7 +47,7 @@
 		</object>
 		</object>
 	</object>
-	
+
 	<object size="0 60 100% 96" type="image" sprite="edgedPanelShader">
 		<!-- Attack and Armor -->
 		<object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTip">
@@ -59,11 +59,11 @@
 		<object size="100%-98 -2 100%-28 34" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
 		<object size="100%-36 -2 100% 34" type="image" name="resourceCarryingIcon" tooltip_style="sessionToolTip"/>
 	</object>
-	
+
 	<!-- Big unit icon -->
 	<object size="-8 -8 88 88" type="image" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
 		<object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
-	
+
 		<!-- Experience bar -->
 		<object size="2 2 6 100%-2" type="image" name="experience" tooltip_style="sessionToolTip">
 			<translatableAttribute id="tooltip">Experience</translatableAttribute>
@@ -72,20 +72,20 @@
 			<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
 			<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 		</object>
-	
+
 		<object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip_style="sessionToolTip">
 			<translatableAttribute id="tooltip">Rank</translatableAttribute>
 		</object>
 	</object>
 	</object>
-	
+
 	<!-- Names (this must come before the attack and armor icon to avoid clipping issues) -->
 	<object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">
-	
+
 	<!-- These images are used to clip off the top and bottom of the civ icon -->
 	<object z="30" size="0 -5 100% 40" ghost="true" type="image" sprite="remove"/>
 	<object z="30" size="0 100%-5 100% 100%+40" ghost="true" type="image" sprite="remove"/>
-	
+
 	<object z="30" size="0 2 100% 45" ghost="true">
 		<!-- Specific Name -->
 		<object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
@@ -93,13 +93,13 @@
 		<!-- Generic Name -->
 		<object size="0 15 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
 	</object>
-	
+
 	<!-- Player Name and Civ -->
 	<object size="0 40 100% 100%">
 		<object size="50%-64 50%-64 50%+64 50%+64" name="playerCivIcon" type="image" ghost="true"/>
 		<object size="0 0 100% 100%" name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
 		<object size="0 0 100% 100%" type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
-		
+
 		<!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
 		<object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
 	</object>

@@ -158,43 +158,43 @@
 	<sprite name="supplementalDetailsPanel">
 
 		<!-- sides -->
-		<image  texture="global/border/line_horiz.png"
+		<image texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 0 100%-4 4"
 		/>
-		<image  texture="global/border/line_vert.png"
+		<image texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="100%-4 4 100% 100%-4"
 		/>
-		<image  texture="global/border/line_horiz.png"
+		<image texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 100%-4 100%-4 100%"
 		/>
-		<image  texture="global/border/line_vert.png"
+		<image texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="0 4 4 100%-4"
 		/>
 
 		<!-- corners -->
-		<image  texture="global/border/line_corner_middle_left.png"
+		<image texture="global/border/line_corner_middle_left.png"
 			texture_size="0 0 4 4"
 			size="100%-4 0 100% 4"
 		/>
-		<image  texture="global/border/line_corner_bottom_middle.png"
+		<image texture="global/border/line_corner_bottom_middle.png"
 			texture_size="0 0 4 4"
 			size="100%-4 100%-4 100% 100%"
 		/>
-		<image  texture="global/border/line_corner_bottom_middle.png"
+		<image texture="global/border/line_corner_bottom_middle.png"
 			texture_size="0 0 4 4"
 			size="0 100%-4 4 100%"
 		/>
-		<image  texture="global/border/line_corner_middle_right.png"
+		<image texture="global/border/line_corner_middle_right.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
 		/>
 
-                <!-- background -->
-                <image  texture="session/panel_left.png"
+		<!-- background -->
+		<image texture="session/panel_left.png"
 			real_texture_placement="0 0 189 170"
 			texture_size="0 0 100% 100%"
 			size="4 4 100%-4 100%-4"
@@ -204,45 +204,45 @@
 	<!-- Bottom Middle Panel -->
 	<sprite name="selectionDetailsPanel">
 
-                <!-- background -->
-		<image  texture="session/panel_middle.png"
+		<!-- background -->
+		<image texture="session/panel_middle.png"
 			real_texture_placement="0 0 228 205"
 			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
 
 		<!-- sides -->
-		<image  texture="global/border/line_horiz.png"
-                        texture_size="0 0 64 4"
+		<image texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
 			size="4 0 100%-4 4"
 		/>
-		<image  texture="global/border/line_vert.png"
+		<image texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="100%-4 4 100% 100%-4"
 		/>
-		<image  texture="global/border/line_horiz.png"
+		<image texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 100%-4 100%-4 100%"
 		/>
-		<image  texture="global/border/line_vert.png"
+		<image texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="0 4 4 100%-4"
 		/>
 
 		<!-- corners -->
-		<image  texture="global/border/line_corner_top_right.png"
+		<image texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 0 100% 4"
 		/>
-		<image  texture="global/border/line_corner_bottom_right.png"
+		<image texture="global/border/line_corner_bottom_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 100%-4 100% 100%"
 		/>
-		<image  texture="global/border/line_corner_bottom_left.png"
+		<image texture="global/border/line_corner_bottom_left.png"
 			texture_size="0 0 4 4"
 			size="0 100%-4 4 100%"
 		/>
-		<image  texture="global/border/line_corner_top_left.png"
+		<image texture="global/border/line_corner_top_left.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
 		/>
@@ -252,43 +252,43 @@
 	<sprite name="unitCommandsPanel">
 
 		<!-- sides -->
-		<image  texture="global/border/line_horiz.png"
+		<image texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 0 100%-4 4"
 		/>
-		<image  texture="global/border/line_vert.png"
+		<image texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="100%-4 4 100% 100%-4"
 		/>
-		<image  texture="global/border/line_horiz.png"
+		<image texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 100%-4 100%-4 100%"
 		/>
-		<image  texture="global/border/line_vert.png"
+		<image texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="0 4 4 100%-4"
 		/>
 
 		<!-- corners -->
-		<image  texture="global/border/line_corner_top_right.png"
+		<image texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 0 100% 4"
 		/>
-		<image  texture="global/border/line_corner_bottom_right.png"
+		<image texture="global/border/line_corner_bottom_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 100%-4 100% 100%"
 		/>
-		<image  texture="global/border/line_corner_bottom_middle.png"
+		<image texture="global/border/line_corner_bottom_middle.png"
 			texture_size="0 0 4 4"
 			size="0 100%-4 4 100%"
 		/>
-		<image  texture="global/border/line_corner_middle_right.png"
+		<image texture="global/border/line_corner_middle_right.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
 		/>
 
-                <!-- background -->
-                <image  texture="session/panel_right.png"
+		<!-- background -->
+		<image texture="session/panel_right.png"
 			real_texture_placement="0 0 398 170"
 			texture_size="0 0 100% 100%"
 			size="4 4 100%-4 100%-4"
@@ -298,49 +298,48 @@
 	<!-- ================================  ================================ -->
 	<!-- Shading -->
 	<!-- ================================  ================================ -->
-		
+
 	<sprite name="remove">
-		<image  backcolor="0 0 0 0" size="0 0 100% 100%"/>
+		<image backcolor="0 0 0 0" size="0 0 100% 100%"/>
 	</sprite>
-		
+
 	<sprite name="panelShader">
-		<image	texture="session/panel_shader.png"
+		<image texture="session/panel_shader.png"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="edgedPanelShader">
-	    	<image  texture="session/panel_shader_top_edge.png"
+		<image texture="session/panel_shader_top_edge.png"
 			real_texture_placement="0 0 256 1"
 			size="0 0 100% 1"
 		/>
-		
-		<image	texture="session/panel_shader.png"
+
+		<image texture="session/panel_shader.png"
 			size="0 0 100% 100%-5"
 		/>
-		
-    		<image	texture="session/panel_shader_bottom_edge.png"
+		<image texture="session/panel_shader_bottom_edge.png"
 			real_texture_placement="0 0 256 5"
 			size="0 100%-5 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="bottomEdgedPanelShader">
-	    	<image  texture="session/panel_shader_top_edge.png"
+		<image texture="session/panel_shader_top_edge.png"
 			real_texture_placement="0 0 256 1"
 			size="0 0 100% 1"
 		/>
-		
-		<image	texture="session/panel_shader.png"
+
+		<image texture="session/panel_shader.png"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="queuePanelShader">
-	    	<image	texture="session/panel_shader.png"
+		<image texture="session/panel_shader.png"
 			size="4 4 100%-4 100%-4"
 		/>
-		
+
 		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
@@ -385,7 +384,7 @@
 			size="0 0 4 4"
 		/>
 	</sprite>
-		
+
 	<sprite name="glassSquareMap">
 		<image backcolor="255 255 255 56" size="0 0 100% 1"/>
 		<image backcolor="255 255 255 56" size="100%-1 1 100% 100%"/>
@@ -411,31 +410,31 @@
 	</sprite>
 
 	<sprite name="statsBarShaderHorizontal">
-	    	<image	texture="session/bar_lighting_horizontal.png"
+		<image texture="session/bar_lighting_horizontal.png"
 			real_texture_placement="0 0 150 7"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="statsBarShaderVertical">
-	    	<image	texture="session/bar_lighting_vertical.png"
+		<image texture="session/bar_lighting_vertical.png"
 			real_texture_placement="0 0 7 150"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<!-- ================================  ================================ -->
 	<!-- Colored Stats Bars -->
 	<!-- ================================  ================================ -->
-	
+
 	<sprite name="playerColorBackground">
 		<image backcolor="255 255 255 128"/>
 	</sprite>
-	
+
 	<sprite name="barBorder">
 		<image backcolor="0 0 0 128"/>
 	</sprite>
-	
+
 	<sprite name="queueProgressSlider">
 		<image backcolor="0 255 0 128"/>
 	</sprite>

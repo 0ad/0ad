@@ -4,7 +4,7 @@ function init(initData)
 	var countryList = Engine.GetGUIObjectByName("countryList");
 	var resultingLocaleText = Engine.GetGUIObjectByName("resultingLocale");
 	var scriptInput = Engine.GetGUIObjectByName("scriptInput");
-	
+
 	// get languageList data. Only list languages for which we have a dictionary.
 	var languageListData = [];
 	var languageListTmp = Engine.GetSupportedLocaleBaseNames();
@@ -16,7 +16,7 @@ function init(initData)
 			languageListData.push(lang);
 	}
 
-	
+
 	// get countryList data (we get all countries and not only the ones we have dictionaries for)
 	var countryListData = [];
 	countryListData.push(translateWithContext("localeCountry", "None"));
@@ -28,13 +28,13 @@ function init(initData)
 		if (country != "" && countryListData.indexOf(country) == -1)
 			countryListData.push(country);
 	}
-	
+
 	// fill the languageList
 	languageList.list = languageListData;
 	languageList.list_data = languageListData;
 	if (languageList.list_data.indexOf(currentLocaleLanguage) != -1)
 		languageList.selected = languageList.list_data.indexOf(currentLocaleLanguage);
-	
+
 	// fill the country list
 	countryList.list = countryListData;
 	countryList.list_data = countryListData;
@@ -42,7 +42,7 @@ function init(initData)
 		countryList.selected = countryList.list_data.indexOf(currentLocaleCountry);
 	else
 		countryList.selected = 0;
-	
+
 	// fill the script
 	scriptInput.caption = Engine.GetLocaleScript(initData.locale);
 }
@@ -69,10 +69,10 @@ function updateResultingLocale()
 	var resultingLocaleTmp = "";
 
 	var resultingLocaleTmp = languageList.list_data[languageList.selected];
-	
+
 	if (scriptInput.caption != "")
 		resultingLocaleTmp = resultingLocaleTmp + "_" + scriptInput.caption;
-	
+
 	if (countryList.selected != -1 && countryList.list_data[countryList.selected] != translateWithContext("localeCountry", "None"))
 		resultingLocaleTmp = resultingLocaleTmp + "_" + countryList.list_data[countryList.selected];
 
@@ -102,11 +102,11 @@ function autoDetectLocale()
 	var scriptInput = Engine.GetGUIObjectByName("scriptInput");
 	var variantInput = Engine.GetGUIObjectByName("variantInput");
 	var dictionaryFile = Engine.GetGUIObjectByName("dictionaryFile");
-	
+
 	variantInput.caption = "";
 	dictionaryFile.caption = "";
 	var locale = Engine.GetDictionaryLocale("");
-	
+
 	languageList.selected = languageList.list_data.indexOf(Engine.GetLocaleLanguage(locale));
 	countryList.selected = countryList.selected = countryList.list_data.indexOf(Engine.GetLocaleCountry(locale));
 	scriptInput.caption = Engine.GetLocaleScript(locale);

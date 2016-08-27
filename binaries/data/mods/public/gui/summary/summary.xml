@@ -145,7 +145,7 @@
 						<object type="image" sprite="ForegroundBox" size="10 9 34 33">
 							<object name="playerColorBox[n]" type="image" size="2 2 22 22"/>
 						</object>
-						<object name="playerName[n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText"/>
+						<object name="playerName[n]" type="text" size="40 2 208 100%" style="ModernLeftLabelText"/>
 						<object name="civIcon[n]" type="image" size="208 5 240 37"/>
 						<repeat var="x" count="8">
 							<object name="valueData[n][x]" type="text" style="ModernTabLabelText">

@@ -3,24 +3,23 @@
 <sprites>
 
 	<sprite name="bgInfoHeading">
-                <image 	backcolor="0 0 0 150"
+		<image backcolor="0 0 0 150"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
-        <sprite name="bgInfoBox">
-                <image 	backcolor="50 35 0 100"
+
+	<sprite name="bgInfoBox">
+		<image backcolor="50 35 0 100"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="bgTooltipBox">
-                <image 	backcolor="0 0 0 200"
+		<image backcolor="0 0 0 200"
 			size="0 0 100% 100%"
 			border="true"
 			bordercolor="white"
 		/>
 	</sprite>
-	
 
 </sprites>

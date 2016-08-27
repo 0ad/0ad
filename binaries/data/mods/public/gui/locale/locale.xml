@@ -31,12 +31,12 @@
 					>Locale:</translatableAttribute>
 			</object>
 			<object name="localeText" type="text" size="40%+10 80 100% 105" textcolor="white" />
-		
+
 			<object type="button" size="0 100%-60 33% 100%-32" style="ModernButtonRed" hotkey="cancel">
 				<translatableAttribute id="caption">Cancel</translatableAttribute>
 				<action on="Press">cancelSetup();</action>
 			</object>
-			
+
 			<object type="button" size="33%+5 100%-60 66% 100%-32" style="ModernButtonRed">
 				<translatableAttribute id="caption">Advanced</translatableAttribute>
 				<action on="Press">openAdvancedMenu();</action>

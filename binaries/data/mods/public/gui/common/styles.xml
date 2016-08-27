@@ -9,7 +9,7 @@
 	==========================================
 	-->
 
-	<style 	name="default"
+	<style name="default"
 		absolute="false"
 		enabled="true"
 		ghost="false"
@@ -125,7 +125,7 @@
 	==========================================
 	-->
 
-        <style 	name="TranslucentPanel"
+	<style name="TranslucentPanel"
 		sprite="BackgroundTranslucent"
 		buffer_zone="10"
 		font="sans-bold-stroke-14"
@@ -134,7 +134,7 @@
 		text_valign="top"
 	/>
 
-        <style 	name="TranslucentPanelThinBorder"
+	<style name="TranslucentPanelThinBorder"
 		sprite="TranslucentPanelThinBorder"
 		buffer_zone="10"
 		font="sans-bold-stroke-14"
@@ -143,7 +143,7 @@
 		text_valign="top"
 	/>
 
-	<style 	name="StonePanelThinBorder"
+	<style name="StonePanelThinBorder"
 		sprite="StonePanelThinBorder"
 		buffer_zone="10"
 		text_align="left"
@@ -156,7 +156,7 @@
 	==========================================
 	-->
 
-	<style 	name="StoneButtonFancy"
+	<style name="StoneButtonFancy"
 		sprite="StoneButton"
 		sprite_disabled="StoneButtonDisabled"
 		sprite_over="StoneButtonFancyOver"
@@ -168,7 +168,7 @@
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
 
-	<style 	name="StoneButton"
+	<style name="StoneButton"
 		sprite="StoneButton"
 		sprite_disabled="StoneButtonDisabled"
 		sprite_over="StoneButtonOver"

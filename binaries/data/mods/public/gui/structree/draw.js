@@ -138,7 +138,7 @@ function draw()
 		hideRemaining("phase["+i+"]_struct[", s, "]");
 		++i;
 	}
-	
+
 	let t = 0;
 	for (let trainer of g_CivData[g_SelectedCiv].trainList)
 	{
@@ -154,7 +154,7 @@ function draw()
 		Engine.GetGUIObjectByName("trainer["+t+"]_icon").tooltip = assembleTooltip(trainer);
 		Engine.GetGUIObjectByName("trainer["+t+"]_name").caption = translate(trainer.name.specific);
 		thisEle.hidden = false;
-		
+
 		let p = 0;
 		for (let prodType in trainer.production)
 		{
@@ -250,7 +250,7 @@ function hideRemaining(prefix, idx, suffix)
 /**
  * Positions certain elements that only need to be positioned once
  * (as <repeat> does not reposition automatically).
- * 
+ *
  * Also detects limits on what the GUI can display by iterating through the set
  * elements of the GUI. These limits are then used by draw().
  */
@@ -336,14 +336,14 @@ function predraw()
 	}
 	hideRemaining("phase[", i, "]");
 	hideRemaining("phase[", i, "]_bar");
-	
+
 	let t = 0;
 	let ele = Engine.GetGUIObjectByName("trainer["+t+"]");
 	g_DrawLimits.trainer = {
 		"trainerQuant": 0,
 		"prodQuant": 0
 	};
-	
+
 	let x = 4;
 	do
 	{
@@ -361,18 +361,18 @@ function predraw()
 		} while (prodEle !== undefined);
 		Engine.GetGUIObjectByName("trainer["+t+"]_row").size = "4 100%-24"+" 100%-4 100%";
 		g_DrawLimits.trainer.prodQuant = p;
-		
+
 		let size = ele.size;
 		size.top += x;
 		size.bottom += x + 24;
 		x += size.bottom - size.top + 8;
 		ele.size = size;
-		
+
 		t++;
 		ele = Engine.GetGUIObjectByName("trainer["+t+"]");
-		
+
 	} while (ele !== undefined);
-	
+
 	g_DrawLimits.trainer.trainerQuant = t;
 }
 

@@ -1,6 +1,6 @@
 /*
 	DESCRIPTION	: Error-handling utility functions.
-	NOTES	: 
+	NOTES	:
 */
 
 // ====================================================================
@@ -8,10 +8,10 @@ function cancelOnError(msg)
 {
 	// Delete game objects
 	Engine.EndGame();
-	
+
 	// Return to pregame
 	Engine.SwitchGuiPage("page_pregame.xml");
-	
+
 	// Display error dialog if message given
 	if (msg)
 	{
@@ -23,7 +23,7 @@ function cancelOnError(msg)
 			mode: 2
 		});
 	}
-	
+
 	// Reset cursor
 	Engine.SetCursor("arrow-default");
 }

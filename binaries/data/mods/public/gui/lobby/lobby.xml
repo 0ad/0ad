@@ -108,7 +108,7 @@
 				<object name="sgMapName" size="0 5 100% 20" type="text" style="ModernLabelText"/>
 
 				<!-- Map Preview -->
-				<object name="sgMapPreview" size="5 25 100%-5 190"  type="image" sprite=""/>
+				<object name="sgMapPreview" size="5 25 100%-5 190" type="image" sprite=""/>
 
 				<object size="5 194 100%-5 195" type="image" sprite="ModernWhiteLine" z="25"/>
 
@@ -327,7 +327,7 @@
 				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-13" hidden="true">
 					<translatableAttribute id="caption">Player not found.</translatableAttribute>
 				</object>
-			</object>			
+			</object>
 			</object>
 			<object type="button" style="ModernButtonRed" size="50%-64 100%-50 50%+64 100%-25" hotkey="cancel">
 				<translatableAttribute id="caption">Back</translatableAttribute>
