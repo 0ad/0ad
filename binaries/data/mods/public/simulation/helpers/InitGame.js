@@ -11,11 +11,10 @@ function PreInitGame()
 	Engine.BroadcastMessage(MT_SkirmishReplace, {});
 	Engine.FlushDestroyedEntities(); 
 
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let playerIds = cmpPlayerManager.GetAllPlayerEntities().slice(1); // ignore gaia
-	for (let playerId of playerIds)
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i) // ignore gaia
 	{
-		let cmpTechnologyManager = Engine.QueryInterface(playerId, IID_TechnologyManager);
+		let cmpTechnologyManager = QueryPlayerIDInterface(i, IID_TechnologyManager);
 		if (cmpTechnologyManager)
 			cmpTechnologyManager.UpdateAutoResearch();
 	}
