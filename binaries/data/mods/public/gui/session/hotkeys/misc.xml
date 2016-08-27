@@ -56,7 +56,7 @@
 
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
-		<action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship", "Dog"]);</action>
+		<action on="Press">findIdleUnit(g_MilitaryTypes);</action>
 	</object>
 
 	<object hotkey="selection.cancel">

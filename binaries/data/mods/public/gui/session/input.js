@@ -449,13 +449,10 @@ var unitFilters = {
 		var entState = GetEntityState(entity);
 		return entState && hasClass(entState, "Defensive");
 	},
-	"isNotSupport": entity => {
+	"isMilitary": entity => {
 		var entState = GetEntityState(entity);
-
 		return entState &&
-			hasClass(entState, "Unit") &&
-			!hasClass(entState, "Support") &&
-			!hasClass(entState, "Domestic");
+			g_MilitaryTypes.some(c => hasClass(entState, c));
 	},
 	"isIdle": entity => {
 		var entState = GetEntityState(entity);
@@ -480,7 +477,7 @@ function getPreferredEntities(ents)
 
 	// Handle hotkeys
 	if (Engine.HotkeyIsPressed("selection.milonly"))
-		filters = [unitFilters.isNotSupport];
+		filters = [unitFilters.isMilitary];
 	if (Engine.HotkeyIsPressed("selection.idleonly"))
 		filters = [unitFilters.isIdle];
 
