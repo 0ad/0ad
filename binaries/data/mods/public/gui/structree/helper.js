@@ -27,7 +27,7 @@ function loadTechData(templateName)
 		var filename = "simulation/data/technologies/" + templateName + ".json";
 		var data = Engine.ReadJSONFile(filename);
 		translateObjectKeys(data, ["genericName", "tooltip"]);
-		
+
 		g_TechnologyData[templateName] = data;
 	}
 

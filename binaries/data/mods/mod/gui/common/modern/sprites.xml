@@ -769,9 +769,16 @@
 			size="0 0 22 22"
 		/>
 	</sprite>
-	<sprite name="ModernTickDisabled">
+	<sprite name="ModernTickDisabledOn">
 		<effect grayscale=""/>
 		<image texture="global/modern/tick-on.png"
+			real_texture_placement="0 0 27 27"
+			size="0 0 22 22"
+		/>
+	</sprite>
+	<sprite name="ModernTickDisabledOff">
+		<effect	add_color="35 35 35 0"/>
+		<image texture="global/modern/tick-off.png"
 			real_texture_placement="0 0 27 27"
 			size="0 0 22 22"
 		/>

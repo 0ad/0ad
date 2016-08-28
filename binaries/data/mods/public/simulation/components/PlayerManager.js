@@ -104,8 +104,4 @@ PlayerManager.prototype.RemoveLastPlayer = function()
 	Engine.DestroyEntity(lastId);
 };
 
-PlayerManager.prototype.GetAllPlayerEntities = function()
-{
-	return this.playerEntities;
-};
 Engine.RegisterSystemComponentType(IID_PlayerManager, "PlayerManager", PlayerManager);

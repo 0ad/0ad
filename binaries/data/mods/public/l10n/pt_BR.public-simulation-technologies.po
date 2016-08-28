@@ -13,7 +13,7 @@
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
-# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015
+# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Raphael Mendonça, 2014
 # magalidade <tazer.extreme@gmail.com>, 2014
@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-23 17:53+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -743,7 +743,7 @@ msgstr "Fundações resistentes"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Brechas Defensivas permitem acertar inimigos na base da torre."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
@@ -751,7 +751,7 @@ msgstr "Remove o alcance mínimo da torre de defesa."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "Brechas Defensivas"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -970,7 +970,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Contrate servos para ajudar na mineração de pedra.  +15% de velocidade de coleta em pedras."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -1029,7 +1029,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "Equipe seus trabalhadores com ferramentas eficientes. +15% de velodidade de coleta de metal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1295,7 +1295,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avance para Fase de Cidades, que permite mais estruturas e unidades. O raio territorial para Centros Cívicos aumenta em +50%. Saúde máxima de Cidadãos-Soldado +20%. Todas as estruturas +9 de regeneração para abrigados."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1326,7 +1326,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avance para a Fase de Cidades, que permite mais estruturas e unidades. Raio territorial para Centros Cívicos +50%. O bônus cívico 'Corujas de Prata' garante +10% velocidade de mineração para todos os trabalhadores. Saúde máxima dos Cidadãos-Soldado +20%. Todas as estruturas ganham +9 regeneração para abrigados."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1338,7 +1338,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio territorial de Centros Cívicos +30%. Saúde máxima de Cidadãos-Soldado +20%. Todas as estruturas ganham +7 regeneração para abrigados."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1370,7 +1370,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avance para Fase de Vila, que permite mais estruturas e unidades. Raio territorial de Centros Cívicos +30%. O bônus cívico 'Corujas de Prata' garante +10% velocidade de mineração para todos os trabalhadores. Saúde máxima de Cidadãos-Soldado +20%. Todas as estruturas ganham +7 regeneração para abrigados."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1473,7 +1473,7 @@ msgstr "A maravilha atrai muito mais pessoas para a sua civilização."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Permitir Expansão Gloriosa. Aumenta o limite de população em 40 por maravilha possuída."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1572,7 +1572,7 @@ msgstr "Armas de cerco imóveis são montadas e desmontadas mais rapidamente."
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% tempo de montagem, desmontagem para armas de cerco fixas."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1767,7 +1767,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "A extensão comercial leva ao estabelecimento permanente de comerciantes em nações estrangeiras, permitindo que eles explorem as riquezas destas nações."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -2326,7 +2326,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "Os Máurias construíram suas muralhas em madeira, um recurso natural abundante na Índia. Consequentemente, suas muralhas possuem -20% saúde máxima e -20% tempo de construção."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2552,7 +2552,7 @@ msgstr "Os escudos de prata, ou Argyraspidai, era o braço de elite da infantari
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr ""
+msgstr "Evoluir Infantaria Escudeira Campeã para Escudos Prateados, com maior saúde e armadura."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

@@ -58,8 +58,9 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(playerEntity, IID_Player, {
-		IsAlly: function() { return []; },
-		IsEnemy: function() { return []; },
+		IsAlly: function() { return false; },
+		IsEnemy: function() { return true; },
+		GetEnemies: function() { return []; },
 	});
 
 
@@ -204,8 +205,9 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	AddMock(playerEntity, IID_Player, {
-		IsAlly: function() { return []; },
-		IsEnemy: function() { return []; },
+		IsAlly: function() { return false; },
+		IsEnemy: function() { return true; },
+		GetEnemies: function() { return []; },
 	});
 
 	// create units

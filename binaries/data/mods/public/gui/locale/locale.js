@@ -15,7 +15,7 @@ function init()
 
 	if (index != -1)
 		languageList.selected = index;
-	
+
 	var localeText = Engine.GetGUIObjectByName("localeText");
 	if (useLongStrings)
 		localeText.caption = "long";
@@ -61,14 +61,14 @@ function openAdvancedMenu()
 function applyFromAdvancedMenu(locale)
 {
 	var languageList = Engine.GetGUIObjectByName("languageList");
-	
+
 	var currentLocaleDictName = Engine.GetFallbackToAvailableDictLocale(locale);
 	var index = -1;
 	index = languageList.list_data.indexOf(currentLocaleDictName);
-	
+
 	if (index != -1)
 		languageList.selected = index;
-	
+
 	var localeText = Engine.GetGUIObjectByName("localeText");
 	localeText.caption = locale;
 }

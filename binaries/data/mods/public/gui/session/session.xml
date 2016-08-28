@@ -52,25 +52,25 @@
 
 	<!-- Pause Overlay -->
 	<object type="button" name="pauseOverlay" size="0 0 100% 100%" tooltip_style="sessionToolTip" hidden="true" z="0">
-	    <object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
-	    <object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true" z="0">
+		<object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
+		<object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true" z="0">
 			<translatableAttribute id="caption">Game Paused</translatableAttribute>
 		</object>
 		<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true" z="0">
 			<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
 		</object>
-	    <object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="PausedByText" ghost="true" hidden="true" z="0"/>
-	    <action on="Press">togglePause();</action>
+		<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="PausedByText" ghost="true" hidden="true" z="0"/>
+		<action on="Press">togglePause();</action>
 	</object>
 
 	<!-- Notification Area -->
 	<object name="notificationPanel" type="image" size="50%-300 60 50%+300 120" ghost="true">
-	    <object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
+		<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 	</object>
 
 	<!-- Chat messages -->
 	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">
-	    <object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
+		<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
 	</object>
 
 	<!-- Entity selection state text -->
@@ -118,24 +118,24 @@
 			<include directory="gui/session/selection_panels_left/"/>
 		</object>
 
-	    <!-- Selection Details Panel (Middle) -->
-	    <object name="selectionDetails"
-		    type="image"
-		    sprite="selectionDetailsPanel"
-		    size="50%-114 100%-205 50%+114 100%"
-		    hidden="false"
-	    >
+		<!-- Selection Details Panel (Middle) -->
+		<object name="selectionDetails"
+			type="image"
+			sprite="selectionDetailsPanel"
+			size="50%-114 100%-205 50%+114 100%"
+			hidden="false"
+		>
 			<include directory="gui/session/selection_panels_middle/"/>
-	    </object>
+		</object>
 
-	    <!-- Commands Panel (Right of Selection Details) -->
-	    <object name="unitCommands"
-		    type="image"
-		    sprite="unitCommandsPanel"
-		    size="50%+110 100%-170 50%+512 100%"
-		    hidden="false"
-		    z="20"
-	    >
+		<!-- Commands Panel (Right of Selection Details) -->
+		<object name="unitCommands"
+			type="image"
+			sprite="unitCommandsPanel"
+			size="50%+110 100%-170 50%+512 100%"
+			hidden="false"
+			z="20"
+		>
 			<include directory="gui/session/selection_panels_right/"/>
 		</object>
 	</object><!-- END OF BOTTOM PANEL -->

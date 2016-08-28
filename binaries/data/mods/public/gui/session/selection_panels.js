@@ -128,7 +128,7 @@ g_SelectionPanels.Barter = {
 			updateSelectionDetails();
 		};
 
-		button.Buy.onPress = function() { 
+		button.Buy.onPress = function() {
 			Engine.PostNetworkCommand({
 				"type": "barter",
 				"sell": g_BarterSell,
@@ -1037,7 +1037,7 @@ g_SelectionPanels.Upgrade = {
 		// TODO: if the units are all the same, this should probably still be possible.
 		if (selection.length > 1)
 			return false;
- 
+
 		return unitEntState.upgrade && unitEntState.upgrade.upgrades;
 	},
 	"setupButton" : function(data)
@@ -1118,15 +1118,15 @@ g_SelectionPanels.Upgrade = {
 			}
 		}
 
-		data.icon.sprite = modifier + "stretched:session/" + 
+		data.icon.sprite = modifier + "stretched:session/" +
 			(data.item.icon || "portraits/" + template.icon);
 
 		let progressOverlay = Engine.GetGUIObjectByName("unitUpgradeProgressSlider[" + data.i + "]");
 		if (isUpgrading)
 		{
-			let size = progressOverlay.size; 
- 			size.top = size.left + Math.round(progress * (size.right - size.left)); 
- 			progressOverlay.size = size;
+			let size = progressOverlay.size;
+			size.top = size.left + Math.round(progress * (size.right - size.left));
+			progressOverlay.size = size;
 		}
 		progressOverlay.hidden = !isUpgrading;
 

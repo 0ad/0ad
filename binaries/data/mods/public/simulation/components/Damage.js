@@ -232,21 +232,14 @@ Damage.prototype.CauseDamage = function(data)
  * Gets entities near a give point for given players.
  * @param {Vector2D} origin - the point to check around.
  * @param {number}   radius - the radius around the point to check.
- * @param {number[]} [players] - the players of which we need to check entities. If players is not included, entities from all players are used.
+ * @param {number[]} players - the players of which we need to check entities.
  * @return {number[]} - the id's of the entities in range of the given point.
  */
 Damage.prototype.EntitiesNearPoint = function(origin, radius, players)
 {
 	// If there is insufficient data return an empty array.
-	if (!origin || !radius)
+	if (!origin || !radius || !players)
 		return [];
-
-	// If the players parameter is not specified use all players.
-	if (!players)
-	{
-		let playerEntities = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayerEntities();
-		players = playerEntities.map((ent) => Engine.QueryInterface(ent, IID_Player).GetPlayerID());
-	}
 
 	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQueryAroundPos(origin, 0, radius, players, IID_DamageReceiver);
 };

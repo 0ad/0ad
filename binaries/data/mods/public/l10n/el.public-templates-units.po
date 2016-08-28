@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-08-15 19:06+0000\n"
-"Last-Translator: Natalia V <inactive+irida@transifex.com>\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-08-23 09:49+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,6 +35,7 @@ msgstr "Ιππικό"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_support_female_citizen.xml:47
 msgid "Citizen"
 msgstr "Πολίτης"
 
@@ -46,7 +47,7 @@ msgid "Soldier"
 msgstr "Στρατιώτης"
 
 #: simulation/templates/template_unit_cavalry.xml:39
-#: simulation/templates/template_unit_dog.xml:53
+#: simulation/templates/template_unit_dog.xml:45
 #: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
@@ -60,54 +61,56 @@ msgctxt "Rank"
 msgid "Basic"
 msgstr "Βασικό"
 
-#: simulation/templates/template_unit_cavalry_melee.xml:26
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:32
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:35
-#: simulation/templates/template_unit_champion_elephant_melee.xml:20
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:45
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
+#: simulation/templates/template_unit_cavalry_melee.xml:18
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
+#: simulation/templates/template_unit_champion_elephant_melee.xml:13
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:47
+#: simulation/templates/template_unit_hero_elephant_melee.xml:48
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
-#: simulation/templates/template_unit_infantry_melee.xml:26
+#: simulation/templates/template_unit_infantry_melee.xml:18
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:39
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "Σώμα με σώμα"
 
-#: simulation/templates/template_unit_cavalry_melee.xml:27
+#: simulation/templates/template_unit_cavalry_melee.xml:19
 msgid "Melee Cavalry"
 msgstr "Σώμα με σώμα Ιππικό"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:20
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:32
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:45
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:35
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spear"
 msgstr "Λόγχη"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:17
 msgid "Cavalry Spearman"
 msgstr "Ιππέας λογχοφόρος"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:29
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:35
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:25
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
 msgid "Sword"
 msgstr "Ξίφος"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:30
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 msgid "Cavalry Swordsman"
 msgstr "Έφιππος ξιφομάχος"
 
@@ -120,12 +123,19 @@ msgstr "Έφιππος με επίθεση εξ' αποστάσεως"
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
+#: simulation/templates/template_unit_champion_ranged.xml:5
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:32
 #: simulation/templates/template_unit_hero_infantry_archer.xml:24
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:41
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Ranged"
 msgstr "Επίθεση εξ' αποστάσεως"
 
@@ -146,6 +156,7 @@ msgstr "Έφιππος Τοξότης"
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:32
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
@@ -175,19 +186,13 @@ msgstr "Πρωταθλητής Τοξότης Ιππέας"
 msgid "Champion Cavalry Skirmisher"
 msgstr "Πρωταθλητής Ιππέας Ακροβολιστής"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:33
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
 msgstr "Πρωταθλητής Έφιππος Λογχοφόρος"
 
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:36
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 msgid "Champion Cavalry Swordsman"
 msgstr "Πρωταθλητής Έφιππος ξιφομάχος"
-
-#: simulation/templates/template_unit_champion_elephant.xml:26
-#: simulation/templates/template_unit_hero_elephant_melee.xml:47
-#: simulation/templates/units/maur_elephant_archer_b.xml:13
-msgid "Elephant"
-msgstr "Ελέφαντας"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
@@ -212,30 +217,30 @@ msgstr "Πρωταθλητής Τοξότης"
 msgid "Champion Skirmisher"
 msgstr "Πρωταθλητής Ακροβολιστής"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "Μακρύ Δόρυ"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
 msgid "Champion Pikeman"
 msgstr "Πρωταθλητής οπλισμένος με μακρύ δόρυ"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:48
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:46
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:35
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:38
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
 msgstr "Μετρητές: 3x vs. Ιππικό."
 
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:44
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:31
 msgid "Champion Spearman"
 msgstr "Πρωταθλητής λογχοφόρος"
 
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:34
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
 msgid "Champion Swordsman"
 msgstr "Πρωταθλητής Ξιφομάχος"
 
@@ -248,8 +253,8 @@ msgid "Super Siege"
 msgstr "Υπέρ Πολιορκία"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical.xml:16
-#: simulation/templates/template_unit_mechanical.xml:15
+#: simulation/templates/template_unit_mechanical.xml:13
+#: simulation/templates/template_unit_mechanical.xml:12
 msgid "Mechanical"
 msgstr "Μηχανικό"
 
@@ -259,19 +264,19 @@ msgstr "Μηχανικό"
 msgid "Siege"
 msgstr "Πολιορκία"
 
-#: simulation/templates/template_unit_dog.xml:51
+#: simulation/templates/template_unit_dog.xml:43
 msgid "Dog"
 msgstr "Σκύλος"
 
-#: simulation/templates/template_unit_dog.xml:52
+#: simulation/templates/template_unit_dog.xml:44
 msgid "War Dog"
 msgstr "Πολεμικός σκύλος"
 
-#: simulation/templates/template_unit_dog.xml:54
+#: simulation/templates/template_unit_dog.xml:46
 msgid "Cannot attack structures."
 msgstr "Δεν μπορεί να επιτεθεί σε κατασκευές"
 
-#: simulation/templates/template_unit_fauna.xml:11
+#: simulation/templates/template_unit_fauna.xml:12
 msgid "Fauna"
 msgstr "Πανίδα"
 
@@ -334,19 +339,25 @@ msgstr "Ήρωας λογχοφόρος"
 msgid "Hero Swordsman"
 msgstr "Ήρωας Ξιφομάχος"
 
-#: simulation/templates/template_unit_infantry_melee.xml:25
+#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_support_female_citizen.xml:47
+#: simulation/templates/template_unit_support_slave.xml:39
+msgid "Worker"
+msgstr "Εργάτης"
+
+#: simulation/templates/template_unit_infantry_melee.xml:17
 msgid "Melee Infantry"
 msgstr "Σώμα με σώμα πεζικό"
 
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
 msgid "Pikeman"
 msgstr "Λογχοφόρος με μακρύ δόρυ"
 
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:36
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:26
 msgid "Spearman"
 msgstr "Λογχοφόρος"
 
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:26
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Swordsman"
 msgstr "Ξιφομάχος"
 
@@ -371,6 +382,13 @@ msgstr "Πλοίο"
 msgid "Light Warship"
 msgstr "Ελαφρύ Πολεμικό Πλοίο"
 
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
+msgid "Warship"
+msgstr "Πολεμικό πλοίο "
+
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
@@ -378,11 +396,15 @@ msgstr "Ελαφρύ Πολεμικό Πλοίο"
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Τοποθετεί άτομα για μετακίνηση και για αύξηση της δύναμης πυρός τους."
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:39
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:32
 msgid "Fire Ship"
 msgstr "Πυρπολικό Πλοίο"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
+msgid "Fireship"
+msgstr ""
+
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -422,32 +444,41 @@ msgstr "Βαρύ πολεμικό πλοίο"
 msgid "Medium Warship"
 msgstr "Μεσαίο Πολεμικό Πλοίο"
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
-msgid "Warship"
-msgstr "Πολεμικό πλοίο "
-
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
-msgid "Medium"
-msgstr "Μεσαίο"
-
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
 msgid "Bolt Shooter"
 msgstr "Εκσφενδονιστής Στουπιών"
+
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:41
+msgid "BoltShooter"
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:47
 msgid "Siege Catapult"
 msgstr "Καταπέλτης"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:46
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
+msgid "Catapult"
+msgstr ""
+
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:38
 msgid "Battering Ram"
 msgstr "Πολιορκητικός κριός"
+
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:39
+msgid "Ram"
+msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:56
 msgid "Siege Tower"
 msgstr "Πολιορκητικός Πύργος"
 
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
+msgid "SiegeTower"
+msgstr ""
+
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
+#: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Support"
 msgstr "Υποστήριξη"
 
@@ -455,6 +486,7 @@ msgstr "Υποστήριξη"
 msgid "Female Citizen"
 msgstr "Γυναίκα πολίτης"
 
+#: simulation/templates/template_unit_support_healer.xml:19
 #: simulation/templates/template_unit_support_healer.xml:20
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Healer"
@@ -468,10 +500,6 @@ msgstr "Γιατρεύει μονάδες."
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
 msgstr "Δούλος"
-
-#: simulation/templates/template_unit_support_slave.xml:39
-msgid "Worker"
-msgstr "Εργάτης"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
@@ -743,6 +771,34 @@ msgstr "Θράκας πελταστής"
 msgid "Peltastḗs Thrâx"
 msgstr "Θράκας πελταστής"
 
+#: simulation/templates/units/athen_infantry_marine_archer_b.xml:22
+#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:16
+#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
+#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:15
+#: simulation/templates/units/cart_infantry_archer_b.xml:17
+#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:25
+#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
+#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
+#: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/merc_black_cloak.xml:16
+#: simulation/templates/units/merc_thorakites.xml:26
+#: simulation/templates/units/merc_thrace_swordsman.xml:10
+#: simulation/templates/units/merc_thureophoros.xml:17
+#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
+#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
+#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
+#: simulation/templates/units/samnite_skirmisher.xml:9
+#: simulation/templates/units/samnite_spearman.xml:10
+#: simulation/templates/units/samnite_swordsman.xml:8
+#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
+#: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
+#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
+msgid "Mercenary"
+msgstr "Μισθοφόρος"
+
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
@@ -761,11 +817,11 @@ msgstr "Αθηναίος Εκσφενδονιστής πολιτοφυλακής
 msgid "Psilòs Athēnaîos"
 msgstr "Ψίλος Αθηναίος  "
 
-#: simulation/templates/units/athen_infantry_spearman_b.xml:24
+#: simulation/templates/units/athen_infantry_spearman_b.xml:21
 msgid "Athenian Hoplite"
 msgstr "Αθηναίος Οπλίτης"
 
-#: simulation/templates/units/athen_infantry_spearman_b.xml:25
+#: simulation/templates/units/athen_infantry_spearman_b.xml:22
 msgid "Hoplítēs Athēnaîos"
 msgstr "Οπλίτης Αθηναίος"
 
@@ -843,6 +899,17 @@ msgstr "Έπος"
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
 msgstr "Κέλτικο Ιππικό"
+
+#: simulation/templates/units/brit_champion_cavalry.xml:9
+#: simulation/templates/units/brit_hero_boudicca.xml:11
+#: simulation/templates/units/maur_champion_chariot.xml:9
+#: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/pers_cavalry_archer_b.xml:9
+#: simulation/templates/units/pers_hero_darius.xml:10
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:10
+#: simulation/templates/units/sele_champion_chariot.xml:10
+msgid "Chariot"
+msgstr "Άρμα"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:10
 msgid "Celtic Chariot"
@@ -966,31 +1033,6 @@ msgstr "Ιταλικό Ιππικό"
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr ""
 
-#: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:16
-#: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
-#: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:15
-#: simulation/templates/units/cart_infantry_archer_b.xml:17
-#: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:25
-#: simulation/templates/units/cart_infantry_slinger_iber_b.xml:25
-#: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
-#: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
-#: simulation/templates/units/mace_infantry_archer_b.xml:22
-#: simulation/templates/units/merc_thrace_swordsman.xml:10
-#: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
-#: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
-#: simulation/templates/units/ptol_infantry_archer_b.xml:23
-#: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:23
-#: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
-#: simulation/templates/units/samnite_skirmisher.xml:9
-#: simulation/templates/units/samnite_spearman.xml:10
-#: simulation/templates/units/samnite_swordsman.xml:8
-#: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:9
-#: simulation/templates/units/sele_infantry_archer_merc_b.xml:16
-#: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:17
-#: simulation/templates/units/thrace_black_cloak.xml:16
-msgid "Mercenary"
-msgstr "Μισθοφόρος"
-
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
 msgstr "Γαλάτης μισθοφόρος ιππέας"
@@ -1005,12 +1047,10 @@ msgid "Iberian Heavy Cavalry"
 msgstr "Ιβηρικό Βαρύ Ιππικό"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:5
-#: simulation/templates/units/cart_sacred_band_cavalry.xml:5
 msgid "Sacred Band Cavalry"
 msgstr "Ιερά Ίλη"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
-#: simulation/templates/units/cart_sacred_band_cavalry.xml:6
 msgid "Sacred Band of Astarte"
 msgstr "Ιερός Λόχος της Αστάρτης"
 
@@ -1118,10 +1158,6 @@ msgstr "Σαμνίτης Ξιφομάχος"
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
 
-#: simulation/templates/units/cart_sacred_band_cavalry.xml:7
-msgid "Bonused vs. Ranged Units."
-msgstr ""
-
 #: simulation/templates/units/cart_ship_bireme.xml:9
 #: simulation/templates/units/ptol_ship_bireme.xml:5
 #: simulation/templates/units/sele_ship_bireme.xml:5
@@ -1177,7 +1213,7 @@ msgstr "Καρχηδόνια"
 msgid "Kehinit"
 msgstr ""
 
-#: simulation/templates/units/cart_support_trader.xml:10
+#: simulation/templates/units/cart_support_trader.xml:9
 msgid "Mekir"
 msgstr ""
 
@@ -1461,22 +1497,6 @@ msgstr "Μακεδονίτισσα Γυναίκα"
 msgid "Hiereús"
 msgstr "Ιερεύς"
 
-#: simulation/templates/units/mace_thorakites.xml:21
-msgid "Armored Swordsman"
-msgstr "Θωρακισμένος Ξιφομάχος"
-
-#: simulation/templates/units/mace_thorakites.xml:22
-msgid "Thōrakitēs"
-msgstr "Θωρακιτές"
-
-#: simulation/templates/units/mace_thureophoros.xml:12
-msgid "Heavy Skirmisher"
-msgstr ""
-
-#: simulation/templates/units/mace_thureophoros.xml:13
-msgid "Thyreophóros"
-msgstr "Θυρεοφόρος"
-
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
 msgstr "Ινδικό Ελαφρύ Ιππικό"
@@ -1492,14 +1512,6 @@ msgstr "Ινδικό Ιππικό Επιδρομών"
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
 msgstr ""
-
-#: simulation/templates/units/maur_champion_chariot.xml:9
-#: simulation/templates/units/maur_hero_ashoka.xml:13
-#: simulation/templates/units/pers_cavalry_archer_b.xml:9
-#: simulation/templates/units/pers_hero_darius.xml:10
-#: simulation/templates/units/sele_champion_chariot.xml:10
-msgid "Chariot"
-msgstr "Άρμα"
 
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
@@ -1522,11 +1534,11 @@ msgstr "Ινδικός Πολεμικός Ελέφαντας"
 msgid "Gajendra"
 msgstr ""
 
-#: simulation/templates/units/maur_champion_infantry.xml:19
+#: simulation/templates/units/maur_champion_infantry.xml:15
 msgid "Warrior"
 msgstr "Πολεμιστής"
 
-#: simulation/templates/units/maur_champion_infantry.xml:20
+#: simulation/templates/units/maur_champion_infantry.xml:16
 msgid "Yōddha"
 msgstr ""
 
@@ -1659,6 +1671,22 @@ msgstr ""
 msgid "Vaishya"
 msgstr ""
 
+#: simulation/templates/units/merc_black_cloak.xml:13
+msgid "Thracian Black Cloak"
+msgstr "Θρακιώτης με μαύρο μανδύα"
+
+#: simulation/templates/units/merc_black_cloak.xml:14
+msgid "Rhomphaiaphoros"
+msgstr "Ρομφαιοφόρος"
+
+#: simulation/templates/units/merc_thorakites.xml:21
+msgid "Armored Swordsman"
+msgstr "Θωρακισμένος Ξιφομάχος"
+
+#: simulation/templates/units/merc_thorakites.xml:22
+msgid "Thōrakitēs"
+msgstr "Θωρακιτές"
+
 #: simulation/templates/units/merc_thrace_swordsman.xml:5
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:14
 msgid "Thracian Mercenary Swordsman"
@@ -1668,6 +1696,14 @@ msgstr "Θρακιότης Μισθοφόρος Ξιφομάχος"
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Θρακικός Ρομφαιοφόρος"
+
+#: simulation/templates/units/merc_thureophoros.xml:12
+msgid "Heavy Skirmisher"
+msgstr ""
+
+#: simulation/templates/units/merc_thureophoros.xml:13
+msgid "Thyreophóros"
+msgstr "Θυρεοφόρος"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1871,22 +1907,21 @@ msgstr "Μήδιος Μάγος"
 msgid "Maguš Mada"
 msgstr ""
 
-#: simulation/templates/units/pers_support_trader.xml:10
+#: simulation/templates/units/pers_support_trader.xml:9
 msgid "Aramaean Merchant"
 msgstr "Αραμαίος Έμπορος"
 
-#: simulation/templates/units/pers_support_trader.xml:11
+#: simulation/templates/units/pers_support_trader.xml:10
 msgid "Tamkarum Arami"
 msgstr ""
 
-#: simulation/templates/units/pers_support_trader.xml:14
+#: simulation/templates/units/pers_support_trader.xml:13
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
 msgstr "Αντάλλαξε πόρους μεταξύ των αγορών σου και αυτών των συμμάχων σου. Οι Πέρσες έχουν επιπλέον +25% επί των συναλλαγών γης."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
-#: simulation/templates/units/sele_cavalry_archer_b.xml:6
 msgid "Camel"
 msgstr "Καμήλα"
 
@@ -2057,11 +2092,11 @@ msgstr "Ρωμαϊκό ιππικό"
 msgid "Eques Romanus"
 msgstr ""
 
-#: simulation/templates/units/rome_centurio_imperial.xml:17
+#: simulation/templates/units/rome_centurio_imperial.xml:14
 msgid "Roman Centurion"
 msgstr "Ρωμαίος Εκατόνταρχος"
 
-#: simulation/templates/units/rome_centurio_imperial.xml:18
+#: simulation/templates/units/rome_centurio_imperial.xml:15
 msgid "Centurio Legionarius"
 msgstr "Εκατόνταρχος Λεγεωνάριος"
 
@@ -2123,11 +2158,11 @@ msgstr "Ρωμαίος Ξιφομάχος"
 msgid "Hastatus"
 msgstr ""
 
-#: simulation/templates/units/rome_legionnaire_imperial.xml:14
+#: simulation/templates/units/rome_legionnaire_imperial.xml:11
 msgid "Roman Legionnaire"
 msgstr "Ρωμαίος Λεγεωνάριος"
 
-#: simulation/templates/units/rome_legionnaire_imperial.xml:15
+#: simulation/templates/units/rome_legionnaire_imperial.xml:12
 msgid "Legionarius Romanus"
 msgstr "Ρωμαίος Λεγεωνάριος"
 
@@ -2139,7 +2174,7 @@ msgstr ""
 msgid "Marian Legionarius"
 msgstr "Μάριου Λεγεωνάριος"
 
-#: simulation/templates/units/rome_mechanical_siege_ram.xml:17
+#: simulation/templates/units/rome_mechanical_siege_ram.xml:14
 msgid "Aries"
 msgstr ""
 
@@ -2227,11 +2262,11 @@ msgstr "Μισθοφόρος  Λογχοφόρος\nΠλεονέκτημα έν�
 msgid "(Samnite Swordsman)"
 msgstr ""
 
-#: simulation/templates/units/sele_cavalry_archer_b.xml:8
+#: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
 msgstr "Δάος Τοξότης Αλόγου"
 
-#: simulation/templates/units/sele_cavalry_archer_b.xml:9
+#: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
 msgstr "Ιπποτοξότης Δάος"
 
@@ -2456,25 +2491,6 @@ msgstr "Σπαρτιάτης"
 msgid "Émporos Períoikos"
 msgstr "Έμπορος Περίηκος"
 
-#: simulation/templates/units/theb_champion_spearman.xml:6
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
-msgid "Theban Sacred Band Hoplite"
-msgstr "Θηβαίος Οπλίτης Ιερού Λόχου"
-
-#: simulation/templates/units/theb_champion_spearman.xml:7
-msgid "Hieròs Lókhos tôn Thebôn"
-msgstr "Ιερός Λόχος Θηβών"
-
-#: simulation/templates/units/theb_champion_swordsman.xml:6
-#: simulation/templates/units/thespian_melanochitones.xml:6
-msgid "Thespian Black Cloak"
-msgstr "Θεσπιέας μελανοχίτων οπλίτης"
-
-#: simulation/templates/units/theb_champion_swordsman.xml:7
-#: simulation/templates/units/thespian_melanochitones.xml:7
-msgid "Melanochitones"
-msgstr "Μελανοχιτώνες"
-
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
 msgstr "Πυρπολητής"
@@ -2483,21 +2499,25 @@ msgstr "Πυρπολητής"
 msgid "Pyrobolos"
 msgstr "Πυρπολητής"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid "Hieros Lochos Hoplites"
-msgstr "Οπλίτες Ιερού Λόχου"
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
+msgid "Theban Sacred Band Hoplite"
+msgstr "Θηβαίος Οπλίτης Ιερού Λόχου"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:8
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
+msgid "Hieroû Thebaíou Lókhou Hoplítai"
+msgstr ""
+
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:9
 msgid "Champion Spearman."
 msgstr "Πρωταθλητής λογχοφόρος"
 
-#: simulation/templates/units/thrace_black_cloak.xml:13
-msgid "Thracian Black Cloak"
-msgstr "Θρακιώτης με μαύρο μανδύα"
+#: simulation/templates/units/thespian_melanochitones.xml:6
+msgid "Thespian Black Cloak"
+msgstr "Θεσπιέας μελανοχίτων οπλίτης"
 
-#: simulation/templates/units/thrace_black_cloak.xml:14
-msgid "Rhomphaiaphoros"
-msgstr "Ρομφαιοφόρος"
+#: simulation/templates/units/thespian_melanochitones.xml:7
+msgid "Melanochitones"
+msgstr "Μελανοχιτώνες"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

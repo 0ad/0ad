@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<sprites>
+
+	<!--
+	==========================================
+	LOGOS
+	==========================================
+	-->
+
+	<sprite name="productLogo">
+		<image texture="pregame/shell/logo/0ad_logo.png"
+			real_texture_placement="0 0 256 128"
+			size="0 -5% 100% 105%"
+		/>
+	</sprite>
+
+	<sprite name="companyLogo">
+		<image texture="pregame/shell/logo/wfg_logo_white.png"
+			real_texture_placement="0 0 32 32"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	BACKCOLOR SPRITES
+	==========================================
+	-->
+
+	<sprite name="BackgroundTranslucent">
+		<image backcolor="0 0 0 85"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="BackgroundBlack">
+		<image backcolor="black"/>
+	</sprite>
+
+	<sprite name="BackgroundWhiteBorderBlack">
+		<image
+			backcolor="white"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="black"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	PANEL SPRITES
+	==========================================
+	-->
+
+	<sprite name="TranslucentPanelThinBorder">
+		<image backcolor="0 0 0 85"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- sides -->
+		<image texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<sprite name="StonePanelThinBorder">
+		<image texture="global/tile/stone_background.png"
+			texture_size="0 0 512 512"
+			size="4 4 100%-4 100%-4"
+		/>
+
+		<!-- sides -->
+		<image texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	GENERIC ICONS
+	==========================================
+	-->
+
+	<sprite name="iconInfoGold">
+		<effect add_color="237 227 167"/>
+		<image
+			texture="global/icon/info.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconInfoWhite">
+		<effect add_color="255 255 255"/>
+		<image
+			texture="global/icon/info.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconResetGold">
+		<effect add_color="237 227 167"/>
+		<image
+			texture="global/icon/reset.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<sprite name="iconResetWhite">
+		<effect add_color="255 255 255"/>
+		<image
+			texture="global/icon/reset.png"
+			size="0 3 100% 100%+3"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	SCREENSHOT WATERMARK
+	==========================================
+	-->
+
+	<sprite name="watermarkProduct">
+		<image
+			texture="global/watermark/product.dds"
+			real_texture_placement="0 0 200 98"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="watermarkCompany">
+		<image
+			texture="global/watermark/company.dds"
+			real_texture_placement="0 0 207 28"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	MENU CONTROL ELEMENT SPRITES
+	==========================================
+	-->
+
+	<sprite name="StoneButton">
+		<image texture="global/button/button_stone_unselected.png"
+			real_texture_placement="0 0 256 28"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneButtonOver">
+		<image texture="global/button/button_stone_selected.png"
+			real_texture_placement="0 0 256 28"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneButtonGlow">
+		<effect	add_color="60 42 42 0" />
+		<image texture="global/button/button_stone_selected.png"
+			real_texture_placement="0 0 256 28"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneButtonFancyOver">
+		<image texture="global/button/button_stone_selected.png"
+			real_texture_placement="0 0 256 28"
+			size="0 0 100% 100%"
+		/>
+		<image texture="global/button/button_stone_selected_left_trim.png"
+			real_texture_placement="0 0 32 28"
+			size="0 0 32 28"
+		/>
+		<image texture="global/button/button_stone_selected_right_trim.png"
+			real_texture_placement="0 0 32 28"
+			size="100%-32 0 100% 28"
+		/>
+	</sprite>
+
+	<sprite name="StoneButtonFancyGlow">
+		<effect	add_color="60 42 42 0" />
+		<image texture="global/button/button_stone_selected.png"
+			real_texture_placement="0 0 256 28"
+			size="0 0 100% 100%"
+		/>
+		<image texture="global/button/button_stone_selected_left_trim.png"
+			real_texture_placement="0 0 32 28"
+			size="0 0 32 28"
+		/>
+		<image texture="global/button/button_stone_selected_right_trim.png"
+			real_texture_placement="0 0 32 28"
+			size="100%-32 0 100% 28"
+		/>
+	</sprite>
+
+	<sprite name="StoneButtonDisabled">
+		<effect add_color="42 42 42 0"/>
+		<image texture="global/button/button_stone_unselected.png"
+			real_texture_placement="0 0 256 28"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneArrowUp">
+		<image texture="global/button/arrowbox_up.dds"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneArrowUpOver">
+		<image texture="global/button/arrowbox_up_over.dds"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneArrowDn">
+		<image texture="global/button/arrowbox_dn.dds"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="StoneArrowDnOver">
+		<image texture="global/button/arrowbox_dn_over.dds"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+</sprites>

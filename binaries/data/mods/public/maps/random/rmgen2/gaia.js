@@ -255,7 +255,7 @@ function addBluffs(constraint, size, deviation, fill)
 				g_TileClasses.player, 12,
 				g_TileClasses.rock, 5,
 				g_TileClasses.water, 5
-			 ],
+			],
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": savanna ? ["big"] : g_AllSizes,
 			"mixes": savanna ? ["varied"] : g_AllMixes,
@@ -271,7 +271,7 @@ function addBluffs(constraint, size, deviation, fill)
 				g_TileClasses.rock, 5,
 				g_TileClasses.metal, 5,
 				g_TileClasses.water, 3
-			 ],
+			],
 			"stay": [g_TileClasses.bluff, 6],
 			"sizes": g_AllSizes,
 			"mixes": g_AllMixes,

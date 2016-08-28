@@ -10,7 +10,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 		return;
 
 	if (msg.to > 0 && this.conquestEntitiesByPlayer[msg.to])
-		this.conquestEntitiesByPlayer[msg.to].entities.push(msg.entity);
+		this.conquestEntitiesByPlayer[msg.to].push(msg.entity);
 
 	if (!this.conquestEntitiesByPlayer[msg.from])
 	{
@@ -19,7 +19,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 		return;	
 	}
 
-	let entities = this.conquestEntitiesByPlayer[msg.from].entities;
+	let entities = this.conquestEntitiesByPlayer[msg.from];
 	let index = entities.indexOf(msg.entity);
 
 	if (index >= 0)
@@ -54,10 +54,10 @@ Trigger.prototype.ConquestAddStructure = function(msg)
 		return;	
 	}
 
-	if (this.conquestEntitiesByPlayer[player].entities.indexOf(msg.building) >= 0)
+	if (this.conquestEntitiesByPlayer[player].indexOf(msg.building) >= 0)
 		return;
 
-	this.conquestEntitiesByPlayer[player].entities.push(msg.building);
+	this.conquestEntitiesByPlayer[player].push(msg.building);
 }
 
 Trigger.prototype.ConquestTrainingFinished = function(msg)
@@ -71,7 +71,7 @@ Trigger.prototype.ConquestTrainingFinished = function(msg)
 		warn("ConquestTrainingFinished: Unknown player " + player);
 		return;	
 	}
-	this.conquestEntitiesByPlayer[player].entities.push(...msg.entities);
+	this.conquestEntitiesByPlayer[player].push(...msg.entities);
 };
 
 Trigger.prototype.ConquestStartGameCount = function()
@@ -83,16 +83,14 @@ Trigger.prototype.ConquestStartGameCount = function()
 	}
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
-	cmpPlayerManager.GetAllPlayerEntities().forEach((elem, i) => {
-		if (i == 0)
-			return;
-
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i)
+	{
 		let filterEntity = ent => TriggerHelper.EntityHasClass(ent, this.conquestClassFilter) 
 			&& !Engine.QueryInterface(ent, IID_Foundation);
-		this.conquestEntitiesByPlayer[i] = {"player" : elem, "entities" : [...cmpRangeManager.GetEntitiesByPlayer(i).filter(filterEntity)]};
-	});
+		this.conquestEntitiesByPlayer[i] = [...cmpRangeManager.GetEntitiesByPlayer(i).filter(filterEntity)];
+	}
 
 	this.conquestDataInit = true;
 };

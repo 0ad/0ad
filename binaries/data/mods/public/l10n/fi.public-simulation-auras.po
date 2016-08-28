@@ -3,12 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Saku Tiihonen <zackyistic@gmail.com>, 2016
+# Saku Tiihonen <zackyistic@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-20 21:44+0000\n"
+"Last-Translator: Saku Tiihonen <zackyistic@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +64,7 @@ msgstr "Laivastoarkkitehtuuriaura"
 
 #: simulation/data/auras/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time for ships during his lifespan."
-msgstr ""
+msgstr "-20% laivojen rakennusaikaa hänen eläessään."
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -113,7 +115,7 @@ msgstr ""
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
-msgstr ""
+msgstr "Laivojenkorjausaura"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 3 HP per second."
@@ -126,7 +128,7 @@ msgstr "Parannuskehä"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraDescription
 msgid "Heals nearby units at 3 HP per second."
-msgstr ""
+msgstr "Parantaa lähiyksiköitä 3 HP sekunnissa."
 
 #: simulation/data/auras/female_inspiration.jsonauraName
 msgid "Inspiration Aura"
@@ -134,7 +136,7 @@ msgstr "Inspiraatioaura"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby males work 10% faster."
-msgstr ""
+msgstr "Läheiset miehet työskentelevät 10% nopeampaa."
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -160,7 +162,7 @@ msgstr ""
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
-msgstr ""
+msgstr "Puolustusaura"
 
 #: simulation/data/auras/iber_monument.jsonauraDescription
 msgid ""
@@ -170,7 +172,7 @@ msgstr ""
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
-msgstr ""
+msgstr "Kirjastoaura"
 
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
@@ -179,7 +181,7 @@ msgstr ""
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
-msgstr ""
+msgstr "Uskollisuusaura"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
@@ -212,7 +214,7 @@ msgstr ""
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
-msgstr ""
+msgstr "Opettajan aura"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
 msgid ""
@@ -225,7 +227,7 @@ msgstr "Kaikki kauppiaat saavat kantaman sisällä +20% kävelemisnopeutta."
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
-msgstr ""
+msgstr "Etulinjasta johtamisen aura"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+2 Attack and +1 Capture for nearby cavalry units."
@@ -237,7 +239,7 @@ msgstr "Johtajuusaura"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% Movement Speed for all units."
-msgstr ""
+msgstr "+15% liikkumisnopeutta kaikille yksiköille."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -245,7 +247,7 @@ msgstr "Hallinnoija-aura"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% keräys- ja rakennusnopeutta lähellä oleville yksiköille."
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
 msgid "Patriot Aura"
@@ -253,7 +255,7 @@ msgstr "Patrioottiaura"
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
 msgid "Egyptian units fight 25% faster in her vision range."
-msgstr ""
+msgstr "Egyptiläiset yksiköt taistelevat 25% nopeammin hänen näkökenttänsä alueella."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -281,7 +283,7 @@ msgstr "Palkkasoturit maksavat -50% hänen eläessään."
 
 #: simulation/data/auras/rome_hero_marcellus.jsonauraName
 msgid "Sword of Rome Aura"
-msgstr ""
+msgstr "Rooman miekka -aura"
 
 #: simulation/data/auras/rome_hero_marcellus.jsonauraDescription
 msgid "+5 Attack and +2 Capture for Roman units within his vision range."
@@ -289,7 +291,7 @@ msgstr ""
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
-msgstr ""
+msgstr "Rooman kilpi -aura"
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraDescription
 msgid "+1 armour for all units and structures."
@@ -368,7 +370,7 @@ msgstr ""
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
-msgstr ""
+msgstr "Ihmeaura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per Wonder owned."

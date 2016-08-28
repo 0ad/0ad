@@ -11,7 +11,7 @@
 	<script file="gui/structree/load.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="bkTranslucent"/>
+	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
 	<object type="image" style="ModernDialog" size="16 24 100%-16 100%-24">
 		<object style="TitleText" type="text" size="50%-128 -18 50%+128 14">
@@ -92,7 +92,7 @@
 			>
 				<translatableAttribute id="caption">Trainer Units</translatableAttribute>
 			</object>
-			
+
 			<object type="image" style="TreeDisplay" size="0 24 100% 100%">
 				<repeat count="3" var="t">
 					<object type="image" style="StructBox" name="trainer[t]">

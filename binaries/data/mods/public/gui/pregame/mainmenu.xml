@@ -13,27 +13,27 @@
 	- MAIN MENU
 	==========================================
 	-->
-	<object	name="mainMenuPage">
+	<object name="mainMenuPage">
 
 		<action on="Tick">
 			onTick();
 		</action>
 
 		<repeat count="5">
-			<object	name="background[n]"
+			<object name="background[n]"
 				type="image"
 				hidden="true"
 				ghost="true"
 			/>
 		</repeat>
-		
+
 		<!--
 		==========================================
 		- MAIN MENU - STATIC TOOLTIP WINDOW
 		==========================================
 		-->
 
-		<object	name="pgToolTip"
+		<object name="pgToolTip"
 			style="TranslucentPanel"
 			type="text"
 			hidden="true"
@@ -117,9 +117,9 @@
 				closeMenu();
 			</action>
 		</object>
-		
+
 		<!-- hide submenu when user clicks on the background -->
-		<object	name="subMenuScreen" type="button">
+		<object name="subMenuScreen" type="button">
 			<action on="Press">
 				closeMenu();
 			</action>
@@ -191,7 +191,7 @@
 				</object>
 
 			</object>
-			
+
 			<!-- submenuSinglePlayer -->
 			<object name="submenuSinglePlayer"
 				type="image"
@@ -416,20 +416,20 @@
 			z="50"
 		>
 			<!-- These are used to make the right side blend in with the submenu -->
-			<object	name="MainMenuPanelRightBorderTop"
+			<object name="MainMenuPanelRightBorderTop"
 				type="image"
 				sprite="MainMenuPanelRightBorder"
 				ghost="true"
 				size="100%-2 0 100% 100%"
 			/>
-			<object	name="MainMenuPanelRightBorderBottom"
+			<object name="MainMenuPanelRightBorderBottom"
 				type="image"
 				sprite="MainMenuPanelRightBorder"
 				ghost="true"
 				size="100%-2 0 100% 100%"
 			/>
 
-			<object	name="productLogo"
+			<object name="productLogo"
 				type="image"
 				sprite="productLogo"
 				ghost="true"
@@ -473,7 +473,7 @@
 				</object>
 
 				<!-- MULTIPLAYER BUTTON -->
-				<object	name="menuMultiplayerButton"
+				<object name="menuMultiplayerButton"
 					style="StoneButtonFancy"
 					type="button"
 					size="4 68 100%-4 96"
@@ -527,7 +527,7 @@
 					type="text"
 					textcolor="white"
 					size="8 8 100%-8 100%-36"
-                                        ghost="true"
+					ghost="true"
 				>
 					<!-- IMPORTANT: remember to update session/top_panel/label.xml in sync with this: -->
 					<attribute id="caption">

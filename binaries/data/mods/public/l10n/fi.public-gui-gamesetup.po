@@ -10,13 +10,14 @@
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2015-2016
 # Riku Viitanen <riisseli4@gmail.com>, 2015-2016
+# Saku Tiihonen <zackyistic@gmail.com>, 2016
 # Vorezard <garrappp@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-20 22:02+0000\n"
+"Last-Translator: Saku Tiihonen <zackyistic@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,7 +156,7 @@ msgstr "Pahoittelut, kuvausta ei saatavilla."
 #: gui/gamesetup/gamesetup.js:1506
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/gamesetup/gamesetup.js:1511
 #, javascript-format
@@ -189,11 +190,11 @@ msgstr "Tuntematon pelaaja"
 
 #: gui/gamesetup/gamesetup.js:1858
 msgid "I'm not ready!"
-msgstr ""
+msgstr "En ole valmis"
 
 #: gui/gamesetup/gamesetup.js:1859
 msgid "I'm ready"
-msgstr ""
+msgstr "Olen valmis"
 
 #: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are not ready to play."
@@ -232,16 +233,16 @@ msgstr "Pelinimi on jo käytössä."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Ei voida isännöidä peliä: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Ei voida liittyä peliin: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
@@ -549,7 +550,7 @@ msgstr "Palvelimen nimi tai IP-osoite:"
 #: gui/gamesetup/gamesetup_mp.xml:(caption):50
 #: gui/gamesetup/gamesetup_mp.xml:(caption):97
 msgid "Server Port:"
-msgstr ""
+msgstr "Palvelimen portti:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."

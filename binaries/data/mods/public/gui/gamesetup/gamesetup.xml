@@ -154,9 +154,9 @@
 
 
 			<object size="100%-275 355 100%-25 470" name="mapFilterTooltip">
-				<object name="mapTypeText" type="text" style="ModernLeftLabelText" size="0 0 100% 30"  hidden="true"/>
-				<object name="mapFilterText" type="text" style="ModernLeftLabelText" size="0 32 100% 62"  hidden="true"/>
-				<object name="mapSelectionText" type="text" style="ModernLeftLabelText" size="0 64 100% 94"  hidden="true"/>
+				<object name="mapTypeText" type="text" style="ModernLeftLabelText" size="0 0 100% 30" hidden="true"/>
+				<object name="mapFilterText" type="text" style="ModernLeftLabelText" size="0 32 100% 62" hidden="true"/>
+				<object name="mapSelectionText" type="text" style="ModernLeftLabelText" size="0 64 100% 94" hidden="true"/>
 				<object name="mapSizeText" type="text" style="ModernLeftLabelText" size="0 128 100% 158" hidden="true"/>
 			</object>
 
@@ -200,13 +200,13 @@
 			</object>
 
 			<!-- Map Preview -->
-			<object  type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 49 100%-24 345">
+			<object type="image" sprite="ModernDarkBoxGold" name="gamePreviewBox" size="100%-426 49 100%-24 345">
 				<object type="image" sprite="snMapPreview" size="1 1 401 294" name="mapPreview"/>
 			</object>
 
 			<!-- Map Description -->
 			<object size="100%-425 529 100%-25 100%-60">
-				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/> 
+				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
 				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
 					<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
 				</object>

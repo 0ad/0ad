@@ -6,7 +6,7 @@ var g_unitPanelButtons = {
 	"Garrison": 0,
 	"Training": 0,
 	"Research": 0,
-	"Alert": 0, 
+	"Alert": 0,
 	"Barter": 0,
 	"Construction": 0,
 	"Command": 0,
@@ -98,7 +98,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 
 		// TODO: we should require all entities to have icons, so this case never occurs
 		if (data.icon && !data.icon.sprite)
-			data.icon.sprite = "bkFillBlack";
+			data.icon.sprite = "BackgroundBlack";
 	}
 
 	// Hide any buttons we're no longer using

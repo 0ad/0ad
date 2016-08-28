@@ -158,7 +158,7 @@ function displaySingle(entState)
 		let experienceSize = experienceBar.size;
 		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
- 
+
 		if (entState.promotion.curr < entState.promotion.req)
 			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s / %(required)s"), {
 				"experience": "[font=\"sans-bold-13\"]" + translate("Experience:") + "[/font]",
@@ -280,7 +280,7 @@ function displaySingle(entState)
 	Engine.GetGUIObjectByName("player").tooltip = isGaia ? "" : civName;
 
 	// TODO: we should require all entities to have icons
-	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "bkFillBlack";
+	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "BackgroundBlack";
 
 	Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = [
 		getAttackTooltip,

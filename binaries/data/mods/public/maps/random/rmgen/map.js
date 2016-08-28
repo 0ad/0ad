@@ -130,7 +130,7 @@ Map.prototype.setTexture = function(x, z, texture)
 	if (!this.validT(x, z))
 		throw "setTexture: invalid tile position (" + x + ", " + z + ")";
 	
-	 this.texture[x][z] = this.getTextureID(texture);
+	this.texture[x][z] = this.getTextureID(texture);
 };
 
 Map.prototype.getHeight = function(x, z)

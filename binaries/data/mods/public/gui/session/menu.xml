@@ -6,7 +6,7 @@
 	z="40"
 >
 	<object size="4 36 100%-4 50%+20">
-	
+
 		<!-- Manual button -->
 		<object type="button"
 			name="manualButton"
@@ -17,7 +17,7 @@
 			<translatableAttribute id="caption">Manual</translatableAttribute>
 			<action on="Press">openManual();</action>
 		</object>
-		
+
 		<!-- Chat button -->
 		<object type="button"
 			name="chatButton"
@@ -41,7 +41,7 @@
 			openSave();
 			</action>
 		</object>
-		
+
 		<!-- Summary button -->
 		<object type="button"
 			name="summaryButton"
@@ -76,7 +76,7 @@
 			</object>
 			<action on="Press">togglePause();</action>
 		</object>
-		
+
 		<!-- Resign button -->
 		<object type="button"
 			name="menuResignButton"
@@ -87,7 +87,7 @@
 			<translatableAttribute id="caption">Resign</translatableAttribute>
 			<action on="Press">resignMenuButton();</action>
 		</object>
-		
+
 		<!-- Exit button -->
 		<object type="button"
 			name="menuExitButton"

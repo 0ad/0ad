@@ -1016,7 +1016,7 @@ var g_EntityCommands =
 				} :
 				{
 					"tooltip":
-						colorizeHotkey("%(hotkey)s", "session.kill") + " " +
+						colorizeHotkey("%(hotkey)s" + " ", "session.kill") +
 						translate("Destroy the selected units or buildings.") + "\n" +
 						colorizeHotkey(
 							translate("Use %(hotkey)s to avoid the confirmation dialog."),

@@ -53,7 +53,6 @@ AddMock(atkPlayerEntity, IID_Player, {
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	GetPlayerByID: (id) => atkPlayerEntity,
-	GetAllPlayerEntities: () => [attackerOwner, targetOwner],
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, { 

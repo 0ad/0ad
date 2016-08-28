@@ -19,12 +19,12 @@ PlacementSupport.prototype.Reset = function()
 	this.wallSnapEntities = null;    // list of candidate entities to snap the starting and (!) ending positions to when building walls
 	this.wallEndPosition = null;
 	this.wallSnapEntitiesIncludeOffscreen = false; // should the next update of the snap candidate list include offscreen towers?
-	
+
 	this.SetDefaultAngle();
 	this.RandomizeActorSeed();
 
 	this.attack = null;
-	
+
 	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
 	Engine.GuiInterfaceCall("SetWallPlacementPreview", {"wallSet": null});
 };

@@ -394,7 +394,7 @@ function updatePlayerList()
 /**
  * Display the profile of the selected player.
  * Displays N/A for all stats until updateProfile is called when the stats
- * 	are actually received from the bot.
+ * are actually received from the bot.
  *
  * @param {string} caller - From which screen is the user requesting data from?
  */
@@ -619,7 +619,7 @@ function updateGameSelection()
 	let sgGameStartTime = Engine.GetGUIObjectByName("sgGameStartTime");
 	let sgNbPlayers = Engine.GetGUIObjectByName("sgNbPlayers");
 	let sgPlayersNames = Engine.GetGUIObjectByName("sgPlayersNames");
-	
+
 	let playersNamesSize = sgPlayersNames.size;
 	playersNamesSize.top = game.startTime ? sgGameStartTime.size.bottom : sgNbPlayers.size.bottom;
 	playersNamesSize.rtop = game.startTime ? sgGameStartTime.size.rbottom : sgNbPlayers.size.rbottom;

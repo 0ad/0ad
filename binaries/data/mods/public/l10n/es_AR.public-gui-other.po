@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Franco Falleti <ezefran256@gmail.com>, 2016
 # PoinoComer <ignacio.torea@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 08:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-22 04:34+0000\n"
+"Last-Translator: Franco Falleti <ezefran256@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +86,7 @@ msgstr "Tiempo hasta que el alto al fuego termine: %(time)s."
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
@@ -136,7 +137,7 @@ msgstr ""
 #: gui/common/functions_utility.js:333
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (DESCONECTADO)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -175,7 +176,7 @@ msgstr ""
 
 #: gui/common/functions_utility.js:371
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Civilización desconocida"
 
 #: gui/common/functions_utility.js:378
 msgctxt "playerstate"
@@ -620,17 +621,17 @@ msgstr "Ilimitado"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -640,12 +641,12 @@ msgstr "Por defecto"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
@@ -679,7 +680,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/common/tooltips.js:59
 msgid "Health:"
-msgstr ""
+msgstr "Salud:"
 
 #: gui/common/tooltips.js:68
 #, javascript-format
@@ -836,7 +837,7 @@ msgstr "Curar:"
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "health"
-msgstr ""
+msgstr "Salud"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -869,7 +870,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
 msgid "worker"
-msgstr ""
+msgstr "Trabajador"
 
 #: gui/common/tooltips.js:298
 #, javascript-format
@@ -1079,7 +1080,7 @@ msgstr "Leer más"
 #: gui/pregame/mainmenu.js:256
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "Construir: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1555,24 +1556,24 @@ msgstr ""
 
 #: gui/summary/summary.js:202
 msgid "You have left the game."
-msgstr ""
+msgstr "Abandonaste la partida."
 
 #: gui/summary/summary.js:204
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Ganaste la batalla!"
 
 #: gui/summary/summary.js:206
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Fuiste derrotado..."
 
 #: gui/summary/summary.js:207
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Abandonaste la partida."
 
 #: gui/summary/summary.js:212
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Tiempo de juego transcurrido: %(time)s"
 
 #: gui/summary/summary.js:220
 #, javascript-format
@@ -1581,7 +1582,7 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
-msgstr ""
+msgstr "Civilizaciones"
 
 #: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
@@ -1629,11 +1630,11 @@ msgstr "Avanzado"
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "Aceptar"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "País:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
@@ -1700,7 +1701,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):83 gui/savedgames/save.xml:(caption):47
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
@@ -1794,7 +1795,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
-msgstr ""
+msgstr "Opciones"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
@@ -1822,7 +1823,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
-msgstr ""
+msgstr "Salir"
 
 #: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
@@ -1830,7 +1831,7 @@ msgstr "Sitio web"
 
 #: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 #: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
@@ -1967,22 +1968,22 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):153
 #: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipo de mapa:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
 #: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
-msgstr ""
+msgstr "Tamaño de mapa:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
 #: gui/savedgames/load.xml:(caption):65
 msgid "Victory:"
-msgstr ""
+msgstr "Victoria:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 #: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
-msgstr ""
+msgstr "Jugadores:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
@@ -1990,7 +1991,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 #: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
@@ -2000,11 +2001,11 @@ msgstr "Borrar"
 #: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/summary/summary.xml:(caption):22
 msgid "Summary"
-msgstr ""
+msgstr "Resumen"
 
 #: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
-msgstr ""
+msgstr "Iniciar repetición"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
@@ -2014,47 +2015,47 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Jugadores"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Nombre de mapa"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Tamaño"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Población"
 
 #: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Duración"
 
 #: gui/savedgames/load.xml:(caption):38
 msgid "Load"
-msgstr ""
+msgstr "Cargar"
 
 #: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
-msgstr ""
+msgstr "Tiempo jugado:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr ""
+msgstr "Guardar partida"
 
 #: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
-msgstr ""
+msgstr "Descripción:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "¡Bienvenido!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -2062,11 +2063,11 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Problemas conocidos (web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilización:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
@@ -2074,19 +2075,19 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):62
 msgid "Score"
-msgstr ""
+msgstr "Puntuación"
 
 #: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
-msgstr ""
+msgstr "Edificios"
 
 #: gui/summary/summary.xml:(caption):76
 msgid "Units"
-msgstr ""
+msgstr "Unidades"
 
 #: gui/summary/summary.xml:(caption):83
 msgid "Resources"
-msgstr ""
+msgstr "Recursos"
 
 #: gui/summary/summary.xml:(caption):90
 msgid "Market"

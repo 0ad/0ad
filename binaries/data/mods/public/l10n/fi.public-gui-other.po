@@ -10,12 +10,13 @@
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
 # Riku Viitanen <riisseli4@gmail.com>, 2015
+# Saku Tiihonen <zackyistic@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 08:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-20 22:00+0000\n"
+"Last-Translator: Saku Tiihonen <zackyistic@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +92,7 @@ msgstr "Aikaa jäljellä kunnes aselepo loppuu: %(time)s."
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Satunnainen"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
@@ -214,8 +215,8 @@ msgstr ""
 #: gui/common/functions_utility.js:413
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tarkkailija"
+msgstr[1] "Tarkkailijat"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -524,7 +525,7 @@ msgstr "Yhteys palvelimeen menetetty."
 
 #: gui/common/network.js:92
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Palvelimeen yhdistäminen epäonnistui."
 
 #: gui/common/network.js:94
 msgid "Disconnected"
@@ -857,7 +858,7 @@ msgstr ""
 #: gui/common/tooltips.js:268
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Oletus"
 
 #: gui/common/tooltips.js:273
 msgctxt "projectiles"
@@ -1156,7 +1157,7 @@ msgstr "Yhteenvetotietoja ei ole saatavilla."
 
 #: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa tämän uusinnan lopullisesti?"
 
 #: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
@@ -1256,7 +1257,7 @@ msgstr "Tallennettuja pelejä ei löytynyt"
 #: gui/savedgames/load.js:61
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Modit: %(mods)s"
 
 #: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
@@ -1282,7 +1283,7 @@ msgstr "Tarvitsee 0 A.D. tallennusversion %(requiredVersion)s, sinulla on tallen
 
 #: gui/savedgames/load.js:115
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Tallennus tarvitsee erilaiset modit:"
 
 #: gui/savedgames/load.js:124
 msgid "Do you still want to proceed?"
@@ -1378,19 +1379,19 @@ msgstr ""
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "Rakennettu"
 
 #: gui/summary/layout.js:36
 msgid "Destroyed"
-msgstr ""
+msgstr "Tuhottu"
 
 #: gui/summary/layout.js:37
 msgid "Captured"
-msgstr ""
+msgstr "Vallattu"
 
 #: gui/summary/layout.js:38 gui/summary/layout.js:73
 msgid "Lost"
-msgstr ""
+msgstr "Menetetty"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
@@ -1427,7 +1428,7 @@ msgstr ""
 
 #: gui/summary/layout.js:74
 msgid "Killed"
-msgstr ""
+msgstr "Tapettu"
 
 #: gui/summary/layout.js:95
 msgid "Food"
@@ -1450,15 +1451,15 @@ msgstr "Metallia"
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "Verot\n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:103
 msgid "Sent"
-msgstr ""
+msgstr "Lähetetty"
 
 #: gui/summary/layout.js:104
 msgid "Received"
-msgstr ""
+msgstr "Vastaanotettu"
 
 #: gui/summary/layout.js:109
 msgid "Treasures collected"
@@ -1475,11 +1476,11 @@ msgstr ""
 
 #: gui/summary/layout.js:116
 msgid "Gathered"
-msgstr ""
+msgstr "Kerätty"
 
 #: gui/summary/layout.js:117
 msgid "Used"
-msgstr ""
+msgstr "Käytetty"
 
 #: gui/summary/layout.js:138
 msgid "Food exchanged"
@@ -1557,23 +1558,23 @@ msgstr "Pisteet pelisi lopussa."
 
 #: gui/summary/summary.js:200
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Yhteys katkesi."
 
 #: gui/summary/summary.js:202
 msgid "You have left the game."
-msgstr ""
+msgstr "Olet poistunut pelistä."
 
 #: gui/summary/summary.js:204
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Olet voittanut taistelun!"
 
 #: gui/summary/summary.js:206
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Olet hävinnyt taistelun..."
 
 #: gui/summary/summary.js:207
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Olet jättänyt pelin."
 
 #: gui/summary/summary.js:212
 #, javascript-format
@@ -2048,7 +2049,7 @@ msgstr "Lataa"
 
 #: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
-msgstr ""
+msgstr "Pelattu aika:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
@@ -2548,7 +2549,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Aktivoi vesiefektit"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""

@@ -3473,17 +3473,9 @@ UnitAI.prototype.SetupRangeQuery = function(enable = true)
 	if (!cmpPlayer)
 		return;
 
-	var players = [];
-
-	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (var i = 0; i < numPlayers; ++i)
-	{
-		// Exclude allies, and self
-		// TODO: How to handle neutral players - Special query to attack military only?
-		if (cmpPlayer.IsEnemy(i))
-			players.push(i);
-	}
-
+	// Exclude allies, and self
+	// TODO: How to handle neutral players - Special query to attack military only?
+	var players = cmpPlayer.GetEnemies();
 	var range = this.GetQueryRange(IID_Attack);
 
 	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
@@ -3510,16 +3502,7 @@ UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 	if (!cmpPlayer)
 		return;
 
-	var players = [];
-
-	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (var i = 0; i < numPlayers; ++i)
-	{
-		// Exclude gaia and enemies
-		if (cmpPlayer.IsAlly(i))
-			players.push(i);
-	}
-
+	var players = cmpPlayer.GetAllies();
 	var range = this.GetQueryRange(IID_Heal);
 
 	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, cmpRangeManager.GetEntityFlagMask("injured"));
@@ -4080,12 +4063,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	var players = [owner];
 	var cmpPlayer = QueryOwnerInterface(this.entity);
 	if (cmpPlayer && cmpPlayer.HasSharedDropsites())
-	{
-		let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
-			if (i != owner && cmpPlayer.IsMutualAlly(i))
-				players.push(i);
-	}
+		players = cmpPlayer.GetMutualAllies();
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);

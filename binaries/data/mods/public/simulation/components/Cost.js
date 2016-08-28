@@ -24,10 +24,10 @@ Cost.prototype.Schema =
 	"</element>" +
 	"<element name='Resources' a:help='Resource costs to construct/train this unit'>" +
 		"<interleave>" +
-			"<element name='food'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='wood'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='stone'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='metal'><ref name='nonNegativeDecimal'/></element>" +
+			"<element name='food'><data type='nonNegativeInteger'/></element>" +
+			"<element name='wood'><data type='nonNegativeInteger'/></element>" +
+			"<element name='stone'><data type='nonNegativeInteger'/></element>" +
+			"<element name='metal'><data type='nonNegativeInteger'/></element>" +
 		"</interleave>" +
 	"</element>";
 
@@ -60,7 +60,7 @@ Cost.prototype.GetResourceCosts = function(owner)
 	{
 		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		if (!cmpOwnership)
-			error("GetResourceCost called without valid ownership");
+			error("GetResourceCosts called without valid ownership");
 		else
 			owner = cmpOwnership.GetOwner();
 	}

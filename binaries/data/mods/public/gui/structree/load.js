@@ -190,7 +190,7 @@ function loadTechnology(techName)
 	{
 		for (let op in template.requirements)
 		{
-			let val = template.requirements[op];	
+			let val = template.requirements[op];
 			let req = calcReqs(op, val);
 
 			switch (op)
