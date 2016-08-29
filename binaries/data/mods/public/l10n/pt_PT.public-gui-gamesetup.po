@@ -13,8 +13,9 @@
 # Luís Guedes <luisgguedes@gmail.com>, 2013
 # Luis Neves <luisjneves@gmail.com>, 2015
 # mogafi, 2014-2015
-# Andrew Melim <nokostya.translation@gmail.com>, 2015
+# Drew Melim <nokostya.translation@gmail.com>, 2015
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
+# Pedro M <pedrofernando94@gmail.com>, 2016
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
 # Sander Deryckere, 2014
 # Sérgio Marques <smarquespt@gmail.com>, 2013
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-27 23:18+0000\n"
+"Last-Translator: Pedro M <pedrofernando94@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -197,11 +198,11 @@ msgstr "Jogador desconhecido"
 
 #: gui/gamesetup/gamesetup.js:1858
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Não estou pronto"
 
 #: gui/gamesetup/gamesetup.js:1859
 msgid "I'm ready"
-msgstr ""
+msgstr "Estou pronto!"
 
 #: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are not ready to play."
@@ -240,11 +241,11 @@ msgstr "O nome do jogo já está em uso."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Não é possível alojar o jogo: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
@@ -403,7 +404,7 @@ msgstr "Equipas Bloqueadas:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):410
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "Último Homem Vivo:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):420
 msgid "Cheats:"
@@ -420,11 +421,11 @@ msgstr "Ver informações sobre as civilizações"
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Repor todas as civilizações que foram selecionadas para a sua predefinição (aleatório)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Repões todas as equipas para o estado pre-definido"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
