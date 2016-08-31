@@ -218,7 +218,7 @@ function displayReplayList()
 
 	// Push to GUI
 	replaySelection.selected = -1;
-	replaySelection.list_name = list.months || [];
+	replaySelection.list_months = list.months || [];
 	replaySelection.list_players = list.playerNames || [];
 	replaySelection.list_mapName = list.mapNames || [];
 	replaySelection.list_mapSize = list.mapSizes || [];

@@ -200,12 +200,6 @@
         </attribute>
       </optional>
       <optional>
-        <attribute name="default_column"/>
-      </optional>
-      <optional>
-        <attribute name="default_column_order"/>
-      </optional>
-      <optional>
         <attribute name="dropdown_size">
           <data type="decimal"/>
         </attribute>
@@ -227,6 +221,9 @@
         <attribute name="fov_wedge_color">
           <ref name="ccolor"/>
         </attribute>
+      </optional>
+      <optional>
+        <attribute name="heading_height"/>
       </optional>
       <optional>
         <attribute name="hotkey"/>
@@ -291,6 +288,12 @@
         <attribute name="scroll_bottom">
           <ref name="bool"/>
         </attribute>
+      </optional>
+      <optional>
+        <attribute name="selected_column"/>
+      </optional>
+      <optional>
+        <attribute name="selected_column_order"/>
       </optional>
       <optional>
         <attribute name="sortable"/>
@@ -446,7 +449,7 @@
             <ref name="object"/>
             <ref name="action"/>
             <ref name="attribute"/>
-            <ref name="def"/>
+            <ref name="column"/>
             <ref name="include"/>
             <ref name="item"/>
             <ref name="repeat"/>
@@ -480,8 +483,8 @@
       <attribute name="id"/>
     </element>
   </define>
-  <define name="def">
-    <element name="def">
+  <define name="column">
+    <element name="column">
       <optional>
         <ref name="translatableAttribute"/>
       </optional>

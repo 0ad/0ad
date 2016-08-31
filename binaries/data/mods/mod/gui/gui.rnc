@@ -52,13 +52,12 @@ ex_settings =
   attribute button_width { xsd:decimal }?&
   attribute checked { bool }?&
   attribute clip { bool }?&
-  attribute default_column { text }?&
-  attribute default_column_order { text }?&
   attribute dropdown_size { xsd:decimal }?&
   attribute dropdown_buffer { xsd:decimal }?&
   attribute enabled { bool }?&
   attribute font { text }?&
   attribute fov_wedge_color { ccolor }?&
+  attribute heading_height { text }?&
   attribute hotkey { text }?&
   attribute cell_id { xsd:integer }?&
   attribute independent { bool }?&
@@ -72,6 +71,8 @@ ex_settings =
   attribute scrollbar { bool }?&
   attribute scrollbar_style { text }?&
   attribute scroll_bottom { bool }?&
+  attribute selected_column { text }?&
+  attribute selected_column_order { text }?&
   attribute sortable { bool }?&
   attribute sound_closed { text }?&
   attribute sound_disabled { text }?&
@@ -122,7 +123,7 @@ object =
     ((object
       | action
       | \attribute
-      | def
+      | column
       | \include
       | item
       | repeat
@@ -143,8 +144,8 @@ action =
     (keep | translate)*,
     attribute id { text }
   }
-def =
-  element def {
+column =
+  element column {
     translatableAttribute?,
     (
     attribute id { text }&

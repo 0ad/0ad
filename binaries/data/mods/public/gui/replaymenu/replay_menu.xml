@@ -63,37 +63,47 @@
 			</object>
 
 			<!-- Replay List in that left panel -->
-			<object name="replaySelection" size="0 35 100% 100%" style="ModernList" type="olist" sortable="true" default_column="name" default_column_order="-1" sprite_asc="ModernArrowDown" sprite_desc="ModernArrowUp" sprite_not_sorted="ModernNotSorted" font="sans-stroke-13">
+			<object name="replaySelection"
+				size="0 35 100% 100%"
+				style="ModernList"
+				type="olist"
+				sortable="true"
+				selected_column="months"
+				selected_column_order="-1"
+				sprite_asc="ModernArrowDown"
+				sprite_desc="ModernArrowUp"
+				sprite_not_sorted="ModernNotSorted"
+				font="sans-stroke-13"
+			>
 
 				<action on="SelectionChange">displayReplayDetails();</action>
 				<action on="SelectionColumnChange">displayReplayList();</action>
 				<action on="mouseleftdoubleclickitem">startReplay();</action>
 
 				<!-- Columns -->
-				<!-- We have to call one "name" as the GUI expects one. -->
-				<def id="name" color="172 172 212" width="12%">
+				<column id="months" color="172 172 212" width="12%">
 					<translatableAttribute id="heading" context="replay">Date / Time</translatableAttribute>
-				</def>
+				</column>
 
-				<def id="players" color="192 192 192" width="44%">
+				<column id="players" color="192 192 192" width="44%">
 					<translatableAttribute id="heading" context="replay">Players</translatableAttribute>
-				</def>
+				</column>
 
-				<def id="mapName" color="192 192 192" width="14%">
+				<column id="mapName" color="192 192 192" width="14%">
 					<translatableAttribute id="heading" context="replay">Map Name</translatableAttribute>
-				</def>
+				</column>
 
-				<def id="mapSize" color="192 192 192" width="10%">
+				<column id="mapSize" color="192 192 192" width="10%">
 					<translatableAttribute id="heading" context="replay">Size</translatableAttribute>
-				</def>
+				</column>
 
-				<def id="popCapacity" color="192 192 192" width="10%">
+				<column id="popCapacity" color="192 192 192" width="10%">
 					<translatableAttribute id="heading" context="replay">Population</translatableAttribute>
-				</def>
+				</column>
 
-				<def id="duration" color="192 192 192" width="10%">
+				<column id="duration" color="192 192 192" width="10%">
 					<translatableAttribute id="heading" context="replay">Duration</translatableAttribute>
-				</def>
+				</column>
 
 			</object>
 
