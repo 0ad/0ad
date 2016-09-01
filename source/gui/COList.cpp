@@ -23,23 +23,16 @@
 #include "ps/CLogger.h"
 #include "soundmanager/ISoundManager.h"
 
-COList::COList()
-	: CList(), m_HeadingHeight(30.f), m_SelectedDef(-1), m_SelectedColumnOrder(0)
+COList::COList() : CList()
 {
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_heading");
+	AddSetting(GUIST_float,					"heading_height");
 	AddSetting(GUIST_bool,					"sortable"); // The actual sorting is done in JS for more versatility
 	AddSetting(GUIST_CStr,					"selected_column");
 	AddSetting(GUIST_int,					"selected_column_order");
-	AddSetting(GUIST_CStr,					"default_column");
-	AddSetting(GUIST_int,					"default_column_order");
-	AddSetting(GUIST_int,					"selected_def");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_asc");  // Show the order of sorting
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_desc");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_not_sorted");
-
-	GUI<CStr>::SetSetting(this, "selected_column", "");
-	GUI<int>::SetSetting(this, "selected_column_order", 0);
-	GUI<int>::SetSetting(this, "selected_def", -1);
 }
 
 void COList::SetupText()
@@ -48,7 +41,7 @@ void COList::SetupText()
 		return;
 
 	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list_name", pList);
+	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
 	m_ItemsYPositions.resize(pList->m_Items.size() + 1);
 
@@ -73,34 +66,18 @@ void COList::SetupText()
 	if (scrollbar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	m_TotalAvalibleColumnWidth = width;
+	m_TotalAvailableColumnWidth = width;
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 
-	CStr defaultColumn;
-	GUI<CStr>::GetSetting(this, "default_column", defaultColumn);
-	defaultColumn = "list_" + defaultColumn;
-
-	for (size_t c = 0; c < m_ObjectsDefs.size(); ++c)
+	for (COListColumn column : m_Columns)
 	{
 		SGUIText* text = new SGUIText();
 		CGUIString gui_string;
-		gui_string.SetValue(m_ObjectsDefs[c].m_Heading);
+		gui_string.SetValue(column.m_Heading);
 		*text = GetGUI()->GenerateText(gui_string, font, width, buffer_zone, this);
 		AddText(text);
-
-		if (m_SelectedDef == (size_t)-1 && defaultColumn == m_ObjectsDefs[c].m_Id)
-			m_SelectedDef = c;
-	}
-
-	if (m_SelectedDef != (size_t)-1)
-		GUI<CStr>::SetSetting(this, "selected_column", m_ObjectsDefs[m_SelectedDef].m_Id.substr(5));
-
-	if (m_SelectedColumnOrder == 0)
-	{
-		GUI<int>::GetSetting(this, "default_column_order", m_SelectedColumnOrder);
-		GUI<int>::SetSetting(this, "selected_column_order", m_SelectedColumnOrder);
 	}
 
 	// Generate texts
@@ -109,10 +86,10 @@ void COList::SetupText()
 	for (size_t i = 0; i < pList->m_Items.size(); ++i)
 	{
 		m_ItemsYPositions[i] = buffered_y;
-		for (size_t c = 0; c < m_ObjectsDefs.size(); ++c)
+		for (size_t c = 0; c < m_Columns.size(); ++c)
 		{
 			CGUIList* pList_c;
-			GUI<CGUIList>::GetSettingPointer(this, m_ObjectsDefs[c].m_Id, pList_c);
+			GUI<CGUIList>::GetSettingPointer(this, "list_" + m_Columns[c].m_Id, pList_c);
 			SGUIText* text = new SGUIText();
 			*text = GetGUI()->GenerateText(pList_c->m_Items[i], font, width, buffer_zone, this);
 			if (c == 0)
@@ -125,10 +102,10 @@ void COList::SetupText()
 
 	if (scrollbar)
 	{
-		GetScrollBar(0).SetScrollRange(m_ItemsYPositions.back());
-		GetScrollBar(0).SetScrollSpace(GetListRect().GetHeight());
-
 		CRect rect = GetListRect();
+		GetScrollBar(0).SetScrollRange(m_ItemsYPositions.back());
+		GetScrollBar(0).SetScrollSpace(rect.GetHeight());
+
 		GetScrollBar(0).SetX(rect.right);
 		GetScrollBar(0).SetY(rect.top);
 		GetScrollBar(0).SetZ(GetBufferedZ());
@@ -138,7 +115,9 @@ void COList::SetupText()
 
 CRect COList::GetListRect() const
 {
-	return m_CachedActualSize + CRect(0, m_HeadingHeight, 0, 0);
+	float headingHeight;
+	GUI<float>::GetSetting(this, "heading_height", headingHeight);
+	return m_CachedActualSize + CRect(0, headingHeight, 0, 0);
 }
 
 void COList::HandleMessage(SGUIMessage& Message)
@@ -159,28 +138,34 @@ void COList::HandleMessage(SGUIMessage& Message)
 		if (!m_CachedActualSize.PointInside(mouse))
 			return;
 
+		CStr selectedColumn;
+		GUI<CStr>::GetSetting(this, "selected_column", selectedColumn);
+		int selectedColumnOrder;
+		GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
+		float headingHeight;
+		GUI<float>::GetSetting(this, "heading_height", headingHeight);
+
 		float xpos = 0;
-		for (size_t def = 0; def < m_ObjectsDefs.size(); ++def)
+		for (COListColumn column : m_Columns)
 		{
-			float width = m_ObjectsDefs[def].m_Width;
+			float width = column.m_Width;
 			// Check if it's a decimal value, and if so, assume relative positioning.
-			if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
-				width *= m_TotalAvalibleColumnWidth;
+			if (column.m_Width < 1 && column.m_Width > 0)
+				width *= m_TotalAvailableColumnWidth;
 			CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
 			if (mouse.x >= leftTopCorner.x &&
 				mouse.x < leftTopCorner.x + width &&
-				mouse.y < leftTopCorner.y + m_HeadingHeight)
+				mouse.y < leftTopCorner.y + headingHeight)
 			{
-				if (def != m_SelectedDef)
+				if (column.m_Id != selectedColumn)
 				{
-					m_SelectedColumnOrder = 1;
-					m_SelectedDef = def;
+					selectedColumnOrder = 1;
+					selectedColumn = column.m_Id;
 				}
 				else
-					m_SelectedColumnOrder = -m_SelectedColumnOrder;
-				GUI<CStr>::SetSetting(this, "selected_column", m_ObjectsDefs[def].m_Id.substr(5));
-				GUI<int>::SetSetting(this, "selected_column_order", m_SelectedColumnOrder);
-				GUI<int>::SetSetting(this, "selected_def", def);
+					selectedColumnOrder = -selectedColumnOrder;
+				GUI<CStr>::SetSetting(this, "selected_column", column.m_Id);
+				GUI<int>::SetSetting(this, "selected_column_order", selectedColumnOrder);
 				ScriptEvent("selectioncolumnchange");
 
 				CStrW soundPath;
@@ -203,7 +188,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(item);
-	ELMT(def);
+	ELMT(column);
 	ELMT(translatableAttribute);
 	ATTR(id);
 	ATTR(context);
@@ -213,9 +198,9 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 		AddItem(child.GetText().FromUTF8(), child.GetText().FromUTF8());
 		return true;
 	}
-	else if (child.GetNodeName() == elmt_def)
+	else if (child.GetNodeName() == elmt_column)
 	{
-		ObjectDef oDef;
+		COListColumn column;
 
 		for (XMBAttribute attr : child.GetAttributes())
 		{
@@ -227,11 +212,12 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 				CColor color;
 				if (!GUI<CColor>::ParseString(attr_value.FromUTF8(), color))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
-				else oDef.m_TextColor = color;
+				else
+					column.m_TextColor = color;
 			}
 			else if (attr_name == "id")
 			{
-				oDef.m_Id = "list_"+attr_value;
+				column.m_Id = attr_value;
 			}
 			else if (attr_name == "width")
 			{
@@ -243,12 +229,12 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 					// Check if it's a relative value, and save as decimal if so.
 					if (attr_value.find("%") != std::string::npos)
 						width = width / 100.f;
-					oDef.m_Width = width;
+					column.m_Width = width;
 				}
 			}
 			else if (attr_name == "heading")
 			{
-				oDef.m_Heading = attr_value.FromUTF8();
+				column.m_Heading = attr_value.FromUTF8();
 			}
 		}
 
@@ -258,10 +244,10 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 				continue;
 
 			CStr attributeName(grandchild.GetAttributes().GetNamedItem(attr_id));
-			// only the heading is translatable for list defs
+			// only the heading is translatable for list column
 			if (attributeName.empty() || attributeName != "heading")
 			{
-				LOGERROR("GUI: translatable attribute in olist def that isn't a heading. (object: %s)", this->GetPresentableName().c_str());
+				LOGERROR("GUI: translatable attribute in olist column that isn't a heading. (object: %s)", this->GetPresentableName().c_str());
 				continue;
 			}
 
@@ -273,18 +259,18 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			if (!context.empty())
 			{
 				CStr translatedValue(g_L10n.TranslateWithContext(context, value));
-				oDef.m_Heading = translatedValue.FromUTF8();
+				column.m_Heading = translatedValue.FromUTF8();
 			}
 			else
 			{
 				CStr translatedValue(g_L10n.Translate(value));
-				oDef.m_Heading = translatedValue.FromUTF8();
+				column.m_Heading = translatedValue.FromUTF8();
 			}
 		}
 
-		m_ObjectsDefs.push_back(oDef);
+		m_Columns.push_back(column);
 
-		AddSetting(GUIST_CGUIList, oDef.m_Id);
+		AddSetting(GUIST_CGUIList, "list_" + column.m_Id);
 		SetupText();
 
 		return true;
@@ -318,7 +304,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 	CGUIList* pList;
-	GUI<CGUIList>::GetSettingPointer(this, "list_name", pList);
+	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
 	GetGUI()->DrawSprite(*sprite, cell_id, bz, rect);
 
@@ -360,38 +346,48 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		}
 	}
 
-	CColor color;
-	GUI<CColor>::GetSetting(this, _textcolor, color);
+	float headingHeight;
+	GUI<float>::GetSetting(this, "heading_height", headingHeight);
 
 	// Draw line above column header
 	CGUISpriteInstance* sprite_heading = NULL;
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_heading", sprite_heading);
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
-									m_CachedActualSize.top + m_HeadingHeight);
+									m_CachedActualSize.top + headingHeight);
 	GetGUI()->DrawSprite(*sprite_heading, cell_id, bz, rect_head);
+
+	int selectedColumnOrder;
+	GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
 
 	CGUISpriteInstance* sprite_order;
 	CGUISpriteInstance* sprite_not_sorted;
-	if (m_SelectedColumnOrder != -1)
+	if (selectedColumnOrder == 0)
+		LOGERROR("selected_column_order must not be 0");
+	else if (selectedColumnOrder != -1)
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_asc", sprite_order);
 	else
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite_order);
 	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite_not_sorted);
 
+	CStr selectedColumn;
+	GUI<CStr>::GetSetting(this, "selected_column", selectedColumn);
+
 	// Draw column headers
+	CColor color;
+	GUI<CColor>::GetSetting(this, _textcolor, color);
 	float xpos = 0;
-	for (size_t def = 0; def < m_ObjectsDefs.size(); ++def)
+	for (size_t col = 0; col < m_Columns.size(); ++col)
 	{
 		// Check if it's a decimal value, and if so, assume relative positioning.
-		float width = m_ObjectsDefs[def].m_Width;
-		if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
-			width *= m_TotalAvalibleColumnWidth;
+		float width = m_Columns[col].m_Width;
+		if (m_Columns[col].m_Width < 1 && m_Columns[col].m_Width > 0)
+			width *= m_TotalAvailableColumnWidth;
 
 		CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
 
 		CGUISpriteInstance* sprite;
 		// If the list sorted by current column
-		if (m_SelectedDef == def)
+		if (selectedColumn == m_Columns[col].m_Id)
 			sprite = sprite_order;
 		else
 			sprite = sprite_not_sorted;
@@ -400,12 +396,12 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 		GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
 
 		// Draw column header text
-		DrawText(def, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
+		DrawText(col, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
 		xpos += width;
 	}
 
 	// Draw list items for each column
-	const size_t objectsCount = m_ObjectsDefs.size();
+	const size_t objectsCount = m_Columns.size();
 	for (size_t i = 0; i < pList->m_Items.size(); ++i)
 	{
 		if (m_ItemsYPositions[i+1] - scroll < 0 ||
@@ -430,15 +426,15 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 
 		// Draw all items for that column
 		xpos = 0;
-		for (size_t def = 0; def < objectsCount; ++def)
+		for (size_t col = 0; col < objectsCount; ++col)
 		{
 			// Determine text position and width
 			const CPos textPos = rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]);
 
-			float width = m_ObjectsDefs[def].m_Width;;
+			float width = m_Columns[col].m_Width;
 			// Check if it's a decimal value, and if so, assume relative positioning.
-			if (m_ObjectsDefs[def].m_Width < 1 && m_ObjectsDefs[def].m_Width > 0)
-				width *= m_TotalAvalibleColumnWidth;
+			if (m_Columns[col].m_Width < 1 && m_Columns[col].m_Width > 0)
+				width *= m_TotalAvailableColumnWidth;
 
 			// Clip text to the column (to prevent drawing text into the neighboring column)
 			CRect cliparea2 = cliparea;
@@ -446,7 +442,7 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 			cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
 
 			// Draw list item
-			DrawText(objectsCount * (i+/*Heading*/1) + def, m_ObjectsDefs[def].m_TextColor, textPos, bz+0.1f, cliparea2);
+			DrawText(objectsCount * (i +/*Heading*/1) + col, m_Columns[col].m_TextColor, textPos, bz + 0.1f, cliparea2);
 			xpos += width;
 		}
 	}

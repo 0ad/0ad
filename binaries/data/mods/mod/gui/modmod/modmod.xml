@@ -86,30 +86,35 @@
 				<translatableAttribute id="caption">Available Mods</translatableAttribute>
 			</object>
 
-			<object name="modsAvailableList" style="ModernList" type="olist" size="0 25 100%-2 100%" font="sans-stroke-13">
+			<object name="modsAvailableList"
+				style="ModernList"
+				type="olist"
+				size="0 25 100%-2 100%"
+				font="sans-stroke-13"
+			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
 				<!-- List headers -->
-				<def id="name" color="100 100 200" width="10%">
+				<column id="name" color="100 100 200" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
-				</def>
-				<def id="modVersion" color="128 128 128" width="7%">
+				</column>
+				<column id="modVersion" color="128 128 128" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
-				</def>
-				<def id="modFolderName" color="100 100 200" width="13%">
+				</column>
+				<column id="modFolderName" color="100 100 200" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
-				</def>
-				<def id="modLabel" color="0 60 0" width="18%">
+				</column>
+				<column id="modLabel" color="0 60 0" width="18%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
-				</def>
-				<def id="modType" color="0 128 128" width="12%">
+				</column>
+				<column id="modType" color="0 128 128" width="12%">
 					<translatableAttribute id="heading">Mod Type</translatableAttribute>
-				</def>
-				<def id="modDependencies" color="128 128 128" width="20%">
+				</column>
+				<column id="modDependencies" color="128 128 128" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
-				</def>
-				<def id="modURL" color="128 128 128" width="24%">
+				</column>
+				<column id="modURL" color="128 128 128" width="24%">
 					<translatableAttribute id="heading">Website</translatableAttribute>
-				</def>
+				</column>
 			</object>
 			<object name="globalModDescription" type="text" style="ModmodScrollbar" size="0 100%-28 100%-16 100%">
 				<attribute id="caption"><keep>[color="100 100 100"]</keep><translate>Description</translate><keep>[/color]</keep></attribute>
@@ -127,30 +132,36 @@
 				<translatableAttribute id="caption">Enabled Mods</translatableAttribute>
 			</object>
 
-			<object name="modsEnabledList" style="ModernList" type="olist" size="0 25 96%-5 100%" font="sans-stroke-13" tooltip_style="pgToolTip">
+			<object name="modsEnabledList"
+				style="ModernList"
+				type="olist"
+				size="0 25 96%-5 100%"
+				font="sans-stroke-13"
+				tooltip_style="pgToolTip"
+			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
 				<!-- List headers -->
-				<def id="name" color="100 100 200" width="10%">
+				<column id="name" color="100 100 200" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
-				</def>
-				<def id="modVersion" color="128 128 128" width="7%">
+				</column>
+				<column id="modVersion" color="128 128 128" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
-				</def>
-				<def id="modFolderName" color="100 100 200" width="13%">
+				</column>
+				<column id="modFolderName" color="100 100 200" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
-				</def>
-				<def id="modLabel" color="0 60 0" width="18%">
+				</column>
+				<column id="modLabel" color="0 60 0" width="18%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
-				</def>
-				<def id="modType" color="0 128 128" width="12%">
+				</column>
+				<column id="modType" color="0 128 128" width="12%">
 					<translatableAttribute id="heading">Mod Type</translatableAttribute>
-				</def>
-				<def id="modDependencies" color="128 128 128" width="20%">
+				</column>
+				<column id="modDependencies" color="128 128 128" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
-				</def>
-				<def id="modURL" color="128 128 128" width="20%">
+				</column>
+				<column id="modURL" color="128 128 128" width="20%">
 					<translatableAttribute id="heading">Website</translatableAttribute>
-				</def>
+				</column>
 			</object>
 
 			<object type="button" style="ModernButtonRed" size="96% 23 100% 40%+12">

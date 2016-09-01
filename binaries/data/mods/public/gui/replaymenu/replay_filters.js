@@ -188,7 +188,7 @@ function filterReplays()
 		let cmpA, cmpB;
 		switch (sortKey)
 		{
-		case 'name':
+		case 'months':
 			cmpA = +a.timestamp;
 			cmpB = +b.timestamp;
 			break;

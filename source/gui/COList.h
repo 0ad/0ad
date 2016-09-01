@@ -23,7 +23,7 @@
 /**
  * Represents a column.
  */
-struct ObjectDef
+struct COListColumn
 {
   CColor m_TextColor;
   CStr m_Id;
@@ -63,22 +63,11 @@ protected:
 	/**
 	 * Available columns.
 	 */
-	std::vector<ObjectDef> m_ObjectsDefs;
-
-	/**
-	 * Index of the selected column.
-	 */
-	size_t m_SelectedDef;
-
-	/**
-	 * +1 for ascending, -1 for descending sort order.
-	 */
-	int m_SelectedColumnOrder;
+	std::vector<COListColumn> m_Columns;
 
 private:
-	float m_HeadingHeight;
-	// Width of space avalible for columns
-	float m_TotalAvalibleColumnWidth;
+	// Width of space available for columns
+	float m_TotalAvailableColumnWidth;
 };
 
 #endif // INCLUDED_COLIST
