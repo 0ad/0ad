@@ -6,13 +6,14 @@
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
+# Victor Ptah, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-15 09:00+0200\n"
-"PO-Revision-Date: 2016-08-15 09:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "%(nick)s приєднався."
 #: gui/lobby/lobby.js:159
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s пішов."
+msgstr "%(nick)s вийшов."
 
 #: gui/lobby/lobby.js:169
 #, javascript-format
@@ -96,11 +97,11 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:631
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Гра розпочнеться через %(time)s"
 
 #: gui/lobby/lobby.js:632 gui/lobby/lobby.js:994
 msgid "HH:mm"
-msgstr "HH:mm"
+msgstr "ГГ:хх"
 
 #: gui/lobby/lobby.js:636
 #, javascript-format
@@ -171,11 +172,11 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "Створити приватну розмову"
 
 #: gui/lobby/lobby.js:958
 msgid "Private"
-msgstr ""
+msgstr "Приват"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
@@ -192,7 +193,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1063
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "Будь ласка не спамьте. Ви були заблоковані на тридцять секунд."
+msgstr "Будь ласка не спамте. Ви були заблоковані на тридцять секунд."
 
 #: gui/lobby/lobby.js:1130
 msgctxt "Used for an undefined winning rate"
@@ -206,7 +207,7 @@ msgstr "%(percentage)s%%"
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr "З’єднання..."
+msgstr "З'єднання..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
@@ -214,11 +215,11 @@ msgstr "Реєстрація..."
 
 #: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
-msgstr "Будь ласка введіть ім’я користувача"
+msgstr "Будь ласка введіть ім'я користувача"
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr "Імена користувачів не можуть містити в собі \\[, ], юнікод, пробіл або коми"
+msgstr "Імена користувачів не можуть містити в собі \\[, ], юнікод, пробіли або коми"
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
@@ -250,7 +251,7 @@ msgstr "Зареєстрований"
 
 #: gui/lobby/prelobby.js:233
 msgid "Register"
-msgstr "Зареєстрований"
+msgstr "Реєстрація"
 
 #: gui/lobby/prelobby.js:239 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"

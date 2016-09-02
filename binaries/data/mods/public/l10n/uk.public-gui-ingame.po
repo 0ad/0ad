@@ -7,8 +7,10 @@
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Dimaver <dimaver@ukr.net>, 2014
+# Dimaver <dimaver@ukr.net>, 2014
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
+# Victor Ptah, 2015
 # Victor Ptah, 2015
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
@@ -18,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-05 09:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,7 +249,7 @@ msgstr "Зупинка гри"
 #: gui/session/menu.js:720
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Зупинено гравцем %(players)s"
 
 #: gui/session/menu.js:721
 msgid ", "
@@ -349,7 +351,7 @@ msgstr "Команда"
 
 #: gui/session/messages.js:144 gui/session/session.js:266
 msgid "Observer"
-msgstr ""
+msgstr "Спостерігач"
 
 #: gui/session/messages.js:145
 msgid "Private"
@@ -403,22 +405,22 @@ msgstr "%(player)s тепер байдужий до %(player2)s."
 #: gui/session/messages.js:589
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "Усім"
 
 #: gui/session/messages.js:597
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Союзникам"
 
 #: gui/session/messages.js:601
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Ворогам"
 
 #: gui/session/messages.js:607
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Спостерігачам"
 
 #: gui/session/messages.js:636 gui/session/selection_details.js:80
 #, javascript-format
@@ -432,17 +434,17 @@ msgstr "Невідомий гравець"
 #: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s здався"
 
 #: gui/session/messages.js:748
 #, javascript-format
 msgid "%(player)s has been defeated."
-msgstr "%(player)s потерпів поразку."
+msgstr "%(player)s зазнав поразки."
 
 #: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s переміг"
 
 #: gui/session/messages.js:784
 #, javascript-format
@@ -613,7 +615,7 @@ msgstr "Один клік щоб вивантажити 1 одиницю. Shift-
 #: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Гравець: %(playername)s"
 
 #: gui/session/selection_panels.js:484
 msgid "Lock Gate"
@@ -668,11 +670,11 @@ msgstr ""
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Скасувати вдосконалення"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Неможливо вдосконалити, коли вдосконалення відбулись."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -791,11 +793,11 @@ msgstr "%(civ)s - Дерево Структури"
 
 #: gui/session/session.js:678
 msgid "You have won!"
-msgstr ""
+msgstr "Ви перемогли!"
 
 #: gui/session/session.js:679
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Ви програли!"
 
 #: gui/session/session.js:681
 msgid "Do you want to quit?"
@@ -803,7 +805,7 @@ msgstr "Бажаєте вийти?"
 
 #: gui/session/session.js:684
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Вийти, коли відключаться усі інші граці."
 
 #: gui/session/session.js:690
 msgid "VICTORIOUS!"
@@ -841,17 +843,17 @@ msgstr "Здоров'я:"
 #: gui/session/session.js:939
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:942
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:961
 msgid "Population (current / limit)"
@@ -914,11 +916,11 @@ msgstr "Очікуваний приріст: %(gain)s"
 
 #: gui/session/unit_actions.js:998 gui/session/unit_actions.js:1280
 msgid "Unload All."
-msgstr ""
+msgstr "Вивантажити все."
 
 #: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Знищити вибраних юнітів чм будівлі."
 
 #: gui/session/unit_actions.js:1022
 #, javascript-format
@@ -927,7 +929,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
-msgstr ""
+msgstr "Перервати поточний порядок."
 
 #: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
@@ -1162,7 +1164,7 @@ msgstr ""
 
 #: gui/session/top_panel.xml:(caption):38
 msgid "Observer Mode"
-msgstr ""
+msgstr "Режим спостереження"
 
 #: gui/session/top_panel.xml:(tooltip):30
 msgid "Choose player to view"
@@ -1234,4 +1236,4 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"

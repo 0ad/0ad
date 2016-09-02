@@ -11,14 +11,15 @@
 # SkiDo <skidoster@gmail.com>, 2015
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
+# Victor Ptah, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 # Сергій Дубик <dubyk@ukr.net>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "Штучний Інтелект буде відключено для ц�
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Game settings have been changed"
-msgstr "Ігрові налаштунки були змінені"
+msgstr "Ігрові налаштування були змінені"
 
 #: gui/gamesetup/gamesetup.js:45
 #, javascript-format
@@ -52,12 +53,12 @@ msgstr "%(username)s вийшов"
 #: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s був зкинутий"
+msgstr "%(username)s був викинутий"
 
 #: gui/gamesetup/gamesetup.js:48
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s заборонений"
+msgstr "%(username)s забанений"
 
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
@@ -81,7 +82,7 @@ msgstr "* %(username)s не готовий."
 
 #: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
 msgid "Default"
-msgstr "Заумовчуванням"
+msgstr "За замовчуванням"
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Naval Maps"
@@ -236,7 +237,7 @@ msgstr "Назва гри вже використовується."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Неможливо створити гру: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
@@ -245,7 +246,7 @@ msgstr "Помилка"
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Неможливо приєднатись ло гри: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
@@ -363,7 +364,7 @@ msgstr "Швидкість гри:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):330
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Перемога з Чудом світу:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):340
 msgid "Population Cap:"
@@ -399,7 +400,7 @@ msgstr "Зв'язані Команди:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):410
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "До останнього живого персонажа:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):420
 msgid "Cheats:"

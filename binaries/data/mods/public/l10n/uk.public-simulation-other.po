@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-29 17:44+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: simulation/ai/common-api/shared.js:203
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Харчі"
+msgstr "Їжа"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -79,14 +79,14 @@ msgstr "Я зайнятий останніми приготуваннями до
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr "До пори до часу я не зможу вам допомогти напасти на %(_player_)s, бо моєю метою є %(_player_2)s."
+msgstr "До пори до часу я не зможу вам допомогти напасти на %(_player_)s, бо моєю ціллю є %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr "Вибач, зараз у мене недостатньо воїнів, але моєю наступною метою стане %(_player_)s."
+msgstr "Вибач, зараз у мене недостатньо воїнів, але моєю наступною ціллю стане %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
@@ -115,13 +115,13 @@ msgstr "Мені потрібні %(resource)s, чи допоможеш? Я би
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "Я приймав би участь ефективніше у наших спільних військових діях, якби ви могли  надати мені деякі %(resource)s."
+msgstr "Я приймав би участь ефективніше у наших спільних військових діях, якби ви могли надати мені деякі %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr "Якщо у вас є трохи надлишок %(resource)s, то це могло б допомогти мені посилити мою армію."
+msgstr "Якщо у вас є трохи надлишкового (-их) %(resource)s, то це могло б допомогти мені посилити мою армію."
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
@@ -151,7 +151,7 @@ msgstr "Я вже досягнув %(phase)s."
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr "Попередження: це розширене керівництво і проходиться досить швидко. Якщо ви не задоволені, просто перезапустіть і спробуйте знову. Практика зробить досвідченим!"
+msgstr "Попередження: це розширене керівництво і проходиться досить швидко. Якщо ви не задоволені, просто перезапустіть і спробуйте знову. Практика робить досвідченим!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
@@ -179,7 +179,7 @@ msgstr "Додайте в чергу тренуватися декілька п�
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr "Коли ваші громадянки завершать тренуватись, накажіть 4 звести будинок поблизу."
+msgstr "Коли ваші громадянки завершать тренуватись, використайте 4-м звести будинок поблизу."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
@@ -199,13 +199,13 @@ msgstr "Використовуйте shift-клік щоб додати в че�
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr "Встановіть точку збору на ягоди  після того як міські солдати завершать тренування."
+msgstr "Встановіть точку збору на ягоди після того як міські солдати завершать тренування."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr "Відправте одного солдата збирати каміння, відправте 2 інших зводити склад поблизу північних дерев."
+msgstr "Відправте одного солдата збирати каміння, відправте 2 інших зводити склад поблизу півнденних дерев."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
@@ -689,7 +689,7 @@ msgstr "Уже можете атакувати!"
 
 #: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "Останній гравець, що залишився переможе."
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -759,11 +759,11 @@ msgstr "Немає вільного місця, щоб готувати натр
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Ви повинні вибрати будівлю для тренування юнітів."
 
 #: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Шахрайство - контролювати всі юніти)"
 
 #: simulation/helpers/Commands.js:568
 msgid "(Cheat - promoted units)"
@@ -777,7 +777,7 @@ msgstr ""
 
 #: simulation/helpers/Commands.js:688
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "Неможливо вдосконалити об'єкт гарнізону."
 
 #: simulation/helpers/Commands.js:734
 #, javascript-format
@@ -902,11 +902,11 @@ msgstr "Завоювати підрозділи"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero"
-msgstr ""
+msgstr "Завдати поразки суперникам вбивши їхніх героїв"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "Царевбивство"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid "Build and protect a wonder to win"

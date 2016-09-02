@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# marinik_00 <tsiurik@gmail.com>, 2014
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # SkiDo <skidoster@gmail.com>, 2015
 # marinik_00 <tsiurik@gmail.com>, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-05 09:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-30 16:34+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +102,7 @@ msgstr "• Ctrl + стрілки, або Shift + колесико мишки, �
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Колесико мишки, або \"+\" і \"-\", щоб масштабувати."
+msgstr "• Коліщатко миші, або \"+\" і \"-\", щоб масштабувати."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -118,7 +119,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Одиночний режим[font=\"sans-14\"] — гра в пісочниці абло проти одного або декількох штучних інтелектів. Штучний інтелект знаходиться на стадії розробки, тому не завжди відповідає останнім оновленням, однак ви маєте змогу пограти проти доступного опонента якщо неможливо пограти з людиною."
+msgstr "• [font=\"sans-bold-14\"]Одиночний режим[font=\"sans-14\"] — гра в пісочниці або проти одного, або декількох штучних інтелектів. Штучний інтелект знаходиться на стадії розробки, тому не завжди відповідає останнім оновленням, однак ви маєте змогу пограти проти доступного опонента якщо неможливо пограти з людиною."
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -152,19 +153,19 @@ msgstr "По-перше, оберіть тип карти, на якій Ви б
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — Карта створена автоматично за допомогою скрипта"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — Карта створена розробниками карт із фіксованими цивілізаціями"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — Карта створена розробниками карт, але цивілізації можна змінити"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -298,29 +299,29 @@ msgstr "Pause: Зупинити/відновити гру"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Delete: Видалити поточні вибрані юніти/будівлі"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift + Delete: Видалити поточні вибрані юніти/будівлі без підтвердження"
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (ForwardSlash): Вибрати вільного бійця"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: додати вільного бійця до виділених"
 
 #: gui/manual/intro.txt:70
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (Утримувати): Вибрати вільного працівника (включаючи городян-солдатів)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: додати вільного працівника до виділених (включаючи городян-солдатів)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -328,7 +329,7 @@ msgstr "H: Зупинити виділених юнітів."
 
 #: gui/manual/intro.txt:73
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: Вивести юнітів гарнізону з вибраних будівель"
 
 #: gui/manual/intro.txt:74
 msgid ""
@@ -390,7 +391,7 @@ msgstr "[font=\"serif-14\"]Ctrl + Праве клацання на будівл�
 
 #: gui/manual/intro.txt:86
 msgid "J + Right Click on building: Repair"
-msgstr ""
+msgstr "J + Права кнопка миші на будівлі: Поремнотувати"
 
 #: gui/manual/intro.txt:87
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -535,7 +536,7 @@ msgstr "Shift + колесо мишки вниз: поворот камери п
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr "F: Слідити за вибраним юнітом (щоб зупинити нажміть на стрілки)"
+msgstr "F: Слідкувати за вибраним юнітом (щоб зупинити натисніть на стрілки)"
 
 #: gui/manual/intro.txt:121
 msgid "R: Reset camera zoom/orientation"
@@ -555,7 +556,7 @@ msgstr "Alt + W Перемикання режимів відображення �
 
 #: gui/manual/intro.txt:125
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "Середня кнопка миші: Утримуйте кнопку натиснутою і перемістіть мишу для панорамування"
 
 #: gui/manual/intro.txt:127
 msgid "[font=\"sans-bold-14\"]During Building Placement"

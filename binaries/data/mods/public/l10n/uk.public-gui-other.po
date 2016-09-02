@@ -5,13 +5,14 @@
 # Translators:
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
+# Victor Ptah, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 08:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +91,7 @@ msgstr "Часу до відновлення бойових дій: %(time)s."
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Випадково"
 
 #: gui/common/functions_utility.js:131
 msgid "A randomly selected map."
@@ -113,93 +114,93 @@ msgstr "HH:mm:ss"
 #: gui/common/functions_utility.js:311
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:314
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:320
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:323
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:333
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (Поза мережею)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:336
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (Поза мережею, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:343
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:346
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:350
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/functions_utility.js:353
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/functions_utility.js:371
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Невідома цивілізація"
 
 #: gui/common/functions_utility.js:378
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "переможений"
 
 #: gui/common/functions_utility.js:379
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "переможець"
 
 #: gui/common/functions_utility.js:401
 msgid "No Team"
-msgstr ""
+msgstr "Немає команди"
 
 #: gui/common/functions_utility.js:402
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Команда %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -213,9 +214,9 @@ msgstr ""
 #: gui/common/functions_utility.js:413
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Спостерігач"
+msgstr[1] "Спостерігачі"
+msgstr[2] "Спостерігачів"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -447,27 +448,27 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Втрачено зв'язок із сервором (%(seconds)sс"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s втратив зв'язок (%(seconds)sс"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Погане з'єднання з сервером (%(milliseconds)sмс"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Погане з'єднання з %(player)s (%(milliseconds)sмс"
 
 #: gui/common/network.js:62
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Невідома причина"
 
 #: gui/common/network.js:63
 msgid ""
@@ -477,7 +478,7 @@ msgstr ""
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Хост закінчив гру"
 
 #: gui/common/network.js:65
 msgid "Incorrect network protocol version"
@@ -505,7 +506,7 @@ msgstr ""
 
 #: gui/common/network.js:71
 msgid "Server full"
-msgstr ""
+msgstr "Сервер переповнений"
 
 #: gui/common/network.js:74
 #, javascript-format
@@ -524,7 +525,7 @@ msgstr "Втрачено підключення до серверу."
 
 #: gui/common/network.js:92
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Помилка підключення до серверу."
 
 #: gui/common/network.js:94
 msgid "Disconnected"
@@ -580,9 +581,9 @@ msgstr "Дуже Важко"
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "хвилина"
+msgstr[1] "хвилини"
+msgstr[2] "хвилин"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -606,7 +607,7 @@ msgstr "Сутичка"
 #: gui/common/settings.js:193
 msgctxt "map"
 msgid "Random"
-msgstr "Навгад"
+msgstr "Випадково"
 
 #: gui/common/settings.js:197
 msgctxt "map"
@@ -615,7 +616,7 @@ msgstr "Сценарій"
 
 #: gui/common/settings.js:228
 msgid "None"
-msgstr "Пусто"
+msgstr "Порожньо"
 
 #: gui/common/settings.js:229
 msgid "Endless Game"
@@ -643,7 +644,7 @@ msgstr "Невідомий"
 #: gui/common/settings.js:353
 msgctxt "map size"
 msgid "Default"
-msgstr "Усталено"
+msgstr "За замовчуванням"
 
 #: gui/common/settings.js:365
 msgctxt "population capacity"
@@ -657,11 +658,11 @@ msgstr "Невідомий"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
-msgstr "Урон малого радіусу:"
+msgstr "атака ближнього бою:"
 
 #: gui/common/tooltips.js:10
 msgid "Ranged Attack:"
-msgstr "Урон дальнього радіусу:"
+msgstr "атака дальнього бою:"
 
 #: gui/common/tooltips.js:11
 msgid "Capture Attack:"
@@ -710,9 +711,9 @@ msgstr[2] "секунд"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
+msgstr[2] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:81
 msgid "arrow"
@@ -729,7 +730,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:95
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:106
 msgid "Armor:"
@@ -772,7 +773,7 @@ msgstr "%(attackLabel)s %(details)s, %(rate)s"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:176
 #, javascript-format
@@ -802,7 +803,7 @@ msgstr[2] "метрів"
 #: gui/common/tooltips.js:207
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:208
 msgid "Splash Damage:"
@@ -811,7 +812,7 @@ msgstr ""
 #: gui/common/tooltips.js:211
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Дружній вогонь: %(enabled)s"
 
 #: gui/common/tooltips.js:212 gui/options/options.js:275
 #: gui/options/options.js:342 gui/pregame/mainmenu.js:290
@@ -832,20 +833,20 @@ msgstr "Ні"
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:228
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Ліміт гарнізону"
 
 #: gui/common/tooltips.js:235
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:508
 msgid "Heal:"
-msgstr ""
+msgstr "Лікування:"
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
@@ -856,21 +857,21 @@ msgstr "здоров'я"
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:263
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Ліміт боєприпасів"
 
 #: gui/common/tooltips.js:268
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "За замовчуванням"
 
 #: gui/common/tooltips.js:273
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "На одиницю"
 
 #: gui/common/tooltips.js:284
 #, javascript-format
@@ -901,12 +902,12 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:348
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Коефіцієнт збору:"
 
 #: gui/common/tooltips.js:351
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -974,9 +975,9 @@ msgstr[2] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:511
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "HP"
+msgstr[1] "HP"
+msgstr[2] "HP"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
@@ -996,7 +997,7 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:560
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:575
 msgid "Classes:"
@@ -1005,7 +1006,7 @@ msgstr "Класи:"
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
-msgstr ""
+msgstr "%(nick)s - %(name)s"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -1025,16 +1026,16 @@ msgstr "ОК"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Скидання параметрів призведе до видалення збережених налаштувань. Ви хочете продовжити?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:129
 msgid "Warning"
-msgstr ""
+msgstr "Увага"
 
 #: gui/options/options.js:340
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "У вас є незбережені зміни, ви дійсно хочете закрити це вікно?"
 
 #: gui/pregame/mainmenu.js:85
 msgid "disabled"
@@ -1056,12 +1057,12 @@ msgstr "завантаження завершене"
 #: gui/pregame/mainmenu.js:102
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "Збій при завантаженні (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "Збій при завантаженні (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:112
 msgid "unknown"
@@ -1090,7 +1091,7 @@ msgstr "УВАГА!"
 
 #: gui/pregame/mainmenu.js:163
 msgid "Read More"
-msgstr "Більше"
+msgstr "Детальніше"
 
 #: gui/pregame/mainmenu.js:256
 #, javascript-format
@@ -1099,7 +1100,7 @@ msgstr "Версія: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:288
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Ви дійсно бажаєте вийти зі 0 A.D.?"
+msgstr "Ви дійсно бажаєте вийти з 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
 msgid "Confirmation"
@@ -1109,7 +1110,7 @@ msgstr "Підтвердження"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Редактор сценаріїв недоступний або не вдалося завантажити. Дивіться журнали гри для отримання додаткової інформації."
 
 #: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
 msgid "Error"
@@ -1117,12 +1118,12 @@ msgstr "Помилка"
 
 #: gui/pregame/mainmenu.js:311
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Запустити режим мультиплеєра. \\[Відключено при компіляції]"
 
 #: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
-msgstr ""
+msgstr "Технічні деталі"
 
 #: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
@@ -1144,17 +1145,17 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Цей повтор несумісний з вашою версією гри!"
 
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Ваша версія: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Необхідна версія: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
