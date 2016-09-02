@@ -348,7 +348,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	JS_SetContextPrivate(m_cx, NULL);
 
-	JS_SetErrorReporter(m_cx, ErrorReporter);
+	JS_SetErrorReporter(m_runtime->m_rt, ErrorReporter);
 
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
@@ -1045,12 +1045,12 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
+		JSErrorReporter er = JS_SetErrorReporter(m->m_runtime->m_rt, NULL);
 
 		bool ok = JS_Stringify(m->m_cx, obj, JS::NullPtr(), indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-		JS_SetErrorReporter(m->m_cx, er);
+		JS_SetErrorReporter(m->m_runtime->m_rt, er);
 
 		if (ok)
 			return str.stream.str();
