@@ -38,7 +38,7 @@ CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istrea
 
 	// Add a dummy tag because the serializer uses the tag 0 to indicate that a value
 	// needs to be serialized and then tagged
-	m_dummyObject.set(JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	m_dummyObject = JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr());
 	m_ScriptBackrefs.push_back(JS::Heap<JSObject*>(m_dummyObject));
 }
 

@@ -128,7 +128,7 @@ CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
 	m_Turn(orig.m_Turn),
 	CNetMessage(orig)
 {
-	m_Data.set(orig.m_Data);
+	m_Data = orig.m_Data;
 }
 
 u8* CSimulationMessage::Serialize(u8* pBuffer) const

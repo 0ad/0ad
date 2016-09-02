@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ public:
 	{
 		JSContext* cx = m_ScriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		m_AIs.set(JS_NewArrayObject(cx, 0));
+		m_AIs = JS_NewArrayObject(cx, 0);
 	}
 
 	void Run()
