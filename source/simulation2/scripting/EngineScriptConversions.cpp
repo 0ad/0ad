@@ -182,7 +182,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	// apply the Vector3D prototype to the return value;
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
 	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR3DPROTO).toObject());
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, proto, JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObjectWithGivenProto(cx, nullptr, proto));
 
 	if (!obj)
 	{
@@ -229,7 +229,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 	// apply the Vector2D prototype to the return value
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
 	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR2DPROTO).toObject());
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, proto, JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObjectWithGivenProto(cx, nullptr, proto));
 	if (!obj)
 	{
 		ret.setUndefined();

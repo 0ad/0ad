@@ -571,7 +571,7 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const
 		throw PSERROR_Scripting_TypeDoesNotExist();
 
 	JS::RootedObject prototype(m->m_cx, it->second.m_Prototype.get());
-	return JS_NewObject(m->m_cx, (*it).second.m_Class, prototype, JS::NullPtr());
+	return JS_NewObjectWithGivenProto(m->m_cx, it->second.m_Class, prototype);
 }
 
 bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name)
