@@ -29,6 +29,7 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 JSClass JSI_IGUIObject::JSI_class = {
 	"GUIObject", JSCLASS_HAS_PRIVATE,
@@ -612,7 +613,7 @@ bool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
 	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIObject"));
 
 	// Store the IGUIObject in the JS object's 'private' area
-	IGUIObject* guiObject = (IGUIObject*)JSVAL_TO_PRIVATE(args[0]);
+	IGUIObject* guiObject = (IGUIObject*)args[0].get().toPrivate();
 	JS_SetPrivate(obj, guiObject);
 
 	args.rval().setObject(*obj);

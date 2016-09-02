@@ -387,7 +387,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	case JSTYPE_BOOLEAN:
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BOOLEAN);
-		bool b = JSVAL_TO_BOOLEAN(val);
+		bool b = val.toBoolean();
 		m_Serializer.NumberU8_Unbounded("value", b ? 1 : 0);
 		break;
 	}
