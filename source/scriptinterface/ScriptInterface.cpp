@@ -360,6 +360,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	JS::CompartmentOptions opt;
 	opt.setVersion(JSVERSION_LATEST);
+	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
+	opt.setPreserveJitCode(true);
 
 	JSAutoRequest rq(m_cx);
 	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, NULL, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt));
@@ -367,14 +369,6 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	ok = JS_InitStandardClasses(m_cx, globalRootedVal);
 	ENSURE(ok);
 	m_glob = globalRootedVal.get();
-
-	// Use the testing functions to globally enable gcPreserveCode. This brings quite a 
-	// big performance improvement. In future SpiderMonkey versions, we should probably 
-	// use the functions implemented here: https://bugzilla.mozilla.org/show_bug.cgi?id=1068697
-	JS::RootedObject testingFunctionsObj(m_cx, js::GetTestingFunctions(m_cx));
-	ENSURE(testingFunctionsObj);
-	JS::RootedValue ret(m_cx);
-	JS_CallFunctionName(m_cx, testingFunctionsObj, "gcPreserveCode", JS::HandleValueArray::empty(), &ret);
 
 	JS_DefineProperty(m_cx, m_glob, "global", globalRootedVal, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
