@@ -189,7 +189,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			if (!proto || !parent)
 				throw PSERROR_Deserialize_ScriptError();
 
-			obj.set(JS_NewObject(cx, nullptr, proto, parent));
+			// TODO: Remove support for parent since this is dropped upstream SpiderMonkey
+			obj.set(JS_NewObjectWithGivenProto(cx, nullptr, proto, parent));
 			if (!obj)
 				throw PSERROR_Deserialize_ScriptError("JS_NewObject failed");
 
