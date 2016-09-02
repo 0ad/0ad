@@ -171,11 +171,27 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, JS::Hand
 	JS::RootedString str(cx, JS::ToString(cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");
-	size_t length;
-	const char16_t* ch = JS_GetStringCharsAndLength(cx, str, &length);
-	if (!ch)
-		FAIL("JS_GetStringsCharsAndLength failed"); // out of memory
-	out.assign(ch, ch + length);
+
+	if (JS_StringHasLatin1Chars(str))
+	{
+		size_t length;
+		JS::AutoCheckCannotGC nogc;
+		const JS::Latin1Char* ch = JS_GetLatin1StringCharsAndLength(cx, nogc, str, &length);
+		if (!ch)
+			FAIL("JS_GetLatin1StringCharsAndLength failed");
+
+		out.assign(ch, ch + length);
+	}
+	else
+	{
+		size_t length;
+		JS::AutoCheckCannotGC nogc;
+		const char16_t* ch = JS_GetTwoByteStringCharsAndLength(cx, nogc, str, &length);
+		if (!ch)
+			FAIL("JS_GetTwoByteStringsCharsAndLength failed"); // out of memory
+
+		out.assign(ch, ch + length);
+	}
 	return true;
 }
 

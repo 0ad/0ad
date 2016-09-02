@@ -348,10 +348,22 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			JS::RootedString string(cx, JS_GetFunctionId(func));
 			if (string)
 			{
-				size_t length;
-				const char16_t* ch = JS_GetStringCharsAndLength(cx, string, &length);
-				if (ch && length > 0)
-					funcname.assign(ch, ch + length);
+				if (JS_StringHasLatin1Chars(string))
+				{
+					size_t length;
+					JS::AutoCheckCannotGC nogc;
+					const JS::Latin1Char* ch = JS_GetLatin1StringCharsAndLength(cx, nogc, string, &length);
+					if (ch && length > 0)
+						funcname.assign(ch, ch + length);
+				}
+				else
+				{
+					size_t length;
+					JS::AutoCheckCannotGC nogc;
+					const char16_t* ch = JS_GetTwoByteStringCharsAndLength(cx, nogc, string, &length);
+					if (ch && length > 0)
+						funcname.assign(ch, ch + length);
+				}
 			}
 		}
 
@@ -409,19 +421,32 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	size_t length;
-	const char16_t* chars = JS_GetStringCharsAndLength(cx, string, &length);
-
-	if (!chars)
-		throw PSERROR_Serialize_ScriptError("JS_GetStringCharsAndLength failed");
-
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian
 #endif
 
-	// Serialize strings directly as UTF-16, to avoid expensive encoding conversions
-	m_Serializer.NumberU32_Unbounded("string length", (u32)length);
-	m_Serializer.RawBytes(name, (const u8*)chars, length*2);
+	size_t length;
+	JS::AutoCheckCannotGC nogc;
+	// Serialize strings directly as UTF-16 or Latin1, to avoid expensive encoding conversions
+	bool isLatin1 = JS_StringHasLatin1Chars(string);
+	m_Serializer.Bool("isLatin1", isLatin1);
+	if (isLatin1)
+	{
+		const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(cx, nogc, string, &length);
+		if (!chars)
+			throw PSERROR_Serialize_ScriptError("JS_GetLatin1StringCharsAndLength failed");
+		m_Serializer.NumberU32_Unbounded("string length", (u32)length);
+		m_Serializer.RawBytes(name, (const u8*)chars, length);
+	}
+	else
+	{
+		const char16_t* chars = JS_GetTwoByteStringCharsAndLength(cx, nogc, string, &length);
+
+		if (!chars)
+			throw PSERROR_Serialize_ScriptError("JS_GetTwoByteStringCharsAndLength failed");
+		m_Serializer.NumberU32_Unbounded("string length", (u32)length);
+		m_Serializer.RawBytes(name, (const u8*)chars, length*2);
+	}
 }
 
 u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)

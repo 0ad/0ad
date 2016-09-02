@@ -336,31 +336,31 @@ public:
 		/* expected: */
 			"({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})",
 		/* expected stream: */
-			119,
+			116,
 			"\x03" // SCRIPT_TYPE_OBJECT
 			"\x02\0\0\0" // num props
-			"\x01\0\0\0" "x\0" // "x"
+			"\x01\x01\0\0\0" "x" // "x"
 			"\x05" // SCRIPT_TYPE_INT
 			"\x7b\0\0\0" // 123
-			"\x01\0\0\0" "y\0" // "y"
+			"\x01\x01\0\0\0" "y" // "y"
 			"\x02" // SCRIPT_TYPE_ARRAY
 			"\x08\0\0\0" // array length
 			"\x08\0\0\0" // num props
-			"\x01\0\0\0" "0\0" // "0"
+			"\x01\x01\0\0\0" "0" // "0"
 			"\x05" "\x01\0\0\0" // SCRIPT_TYPE_INT 1
-			"\x01\0\0\0" "1\0" // "1"
+			"\x01\x01\0\0\0" "1" // "1"
 			"\x06" "\0\0\0\0\0\0\xf8\x3f" // SCRIPT_TYPE_DOUBLE 1.5
-			"\x01\0\0\0" "2\0" // "2"
-			"\x04" "\x01\0\0\0" "2\0" // SCRIPT_TYPE_STRING "2"
-			"\x01\0\0\0" "3\0" // "3"
-			"\x04" "\x04\0\0\0" "t\0e\0s\0t\0" // SCRIPT_TYPE_STRING "test"
-			"\x01\0\0\0" "4\0" // "4"
+			"\x01\x01\0\0\0" "2" // "2"
+			"\x04" "\x01\x01\0\0\0" "2" // SCRIPT_TYPE_STRING "2"
+			"\x01\x01\0\0\0" "3" // "3"
+			"\x04" "\x01\x04\0\0\0" "test" // SCRIPT_TYPE_STRING "test"
+			"\x01\x01\0\0\0" "4" // "4"
 			"\x00" // SCRIPT_TYPE_VOID
-			"\x01\0\0\0" "5\0" // "5"
+			"\x01\x01\0\0\0" "5" // "5"
 			"\x01" // SCRIPT_TYPE_NULL
-			"\x01\0\0\0" "6\0" // "6"
+			"\x01\x01\0\0\0" "6" // "6"
 			"\x07" "\x01" // SCRIPT_TYPE_BOOLEAN true
-			"\x01\0\0\0" "7\0" // "7"
+			"\x01\x01\0\0\0" "7" // "7"
 			"\x07" "\x00", // SCRIPT_TYPE_BOOLEAN false
 		/* expected debug: */
 			"script: {\n"
@@ -563,7 +563,7 @@ public:
 		/* expected: */
 			"({})",
 		/* expected stream: */
-			37,
+			33,
 			"\x0f" // SCRIPT_TYPE_MAP
 			"\x02\0\0\0" // size
 
@@ -573,9 +573,11 @@ public:
 			"\x10\0\0\0" // 16
 
 			"\x04" // SCRIPT_TYPE_STRING
-			"\x03\0\0\0" "b\0a\0r\0" // "bar"
+			"\x01" // Latin1
+			"\x03\0\0\0" "bar" // "bar"
 			"\x04" // SCRIPT_TYPE_STRING
-			"\x03\0\0\0" "b\0a\0z\0" // "baz"
+			"\x01" // Latin1
+			"\x03\0\0\0" "baz" // "baz"
 			// NOTE: We drop properties on Maps when serializing
 		);
 	}
@@ -597,7 +599,7 @@ public:
 		/* expected: */
 			"({})",
 		/* expected stream: */
-			21,
+			19,
 			"\x10" // SCRIPT_TYPE_SET
 			"\x02\0\0\0" // size
 
@@ -605,7 +607,8 @@ public:
 			"\x0C\0\0\0" // 12
 
 			"\x04" // SCRIPT_TYPE_STRING
-			"\x03\0\0\0" "b\0a\0r\0" // "bar"
+			"\x01" // isLatin1
+			"\x03\0\0\0" "bar" // "bar"
 			// NOTE: We drop properties on Sets when serializing
 		);
 	}
@@ -622,45 +625,49 @@ public:
 		/* expected: */
 			"({})",
 		/* expected stream: */
-			215,
+			169,
 			"\x0f" // SCRIPT_TYPE_MAP
 			"\x01\0\0\0" // size
 
 			"\x04" // SCRIPT_TYPE_STRING
-			"\x0d\0\0\0" "B\0u\0i\0l\0d\0e\0r\0/\0R\0a\0n\0g\0e\0" // "Builder/Range"
+			"\x01" // Latin1
+			"\x0d\0\0\0" "Builder/Range" // "Builder/Range"
 			"\x0f" // SCRIPT_TYPE_MAP
 			"\x03\0\0\0" // size
 
 				"\x04" // SCRIPT_TYPE_STRING
-				"\x03\0\0\0" "1\0005\0005\000" // "155"
+				"\x01" // Latin1
+				"\x03\0\0\0" "155" // "155"
 				"\x03" // SCRIPT_TYPE_OBJECT
 				"\x02\0\0\0" // num props
-					"\x03\0\0\0" "a\0d\0d\0" // "add"
+					"\x01\x03\0\0\0" "add" // "add"
 					"\x05" // SCRIPT_TYPE_INT
 					"\0\0\0\0" // 0
-					"\x08\0\0\0" "m\0u\0l\0t\0i\0p\0l\0y\0" // "multiply"
+					"\x01\x08\0\0\0" "multiply" // "multiply"
 					"\x05" // SCRIPT_TYPE_INT
 					"\x01\0\0\0" // 1
 
 				"\x04" // SCRIPT_TYPE_STRING
-				"\x04\0\0\0" "2\0003\0000\0000\000" // "2300"
+				"\x01" // Latin1
+				"\x04\0\0\0" "2300" // "2300"
 				"\x03" // SCRIPT_TYPE_OBJECT
 				"\x02\0\0\0" // num props
-					"\x03\0\0\0" "a\0d\0d\0" // "add"
+					"\x01\x03\0\0\0" "add" // "add"
 					"\x05" // SCRIPT_TYPE_INT
 					"\0\0\0\0" // 0
-					"\x08\0\0\0" "m\0u\0l\0t\0i\0p\0l\0y\0" // "multiply"
+					"\x01\x08\0\0\0" "multiply" // "multiply"
 					"\x06" // SCRIPT_TYPE_DOUBLE
 					"\x9a\x99\x99\x99\x99\x99\xf1\x3f" // 1.1
 
 				"\x04" // SCRIPT_TYPE_STRING
-				"\x03\0\0\0" "1\0005\0009\000" // "159"
+				"\x01" // Latin1
+				"\x03\0\0\0" "159" // "159"
 				"\x03" // SCRIPT_TYPE_OBJECT
 				"\x02\0\0\0" // num props
-					"\x03\0\0\0" "a\0d\0d\0" // "add"
+					"\x01\x03\0\0\0" "add" // "add"
 					"\x05" // SCRIPT_TYPE_INT
 					"\0\0\0\0" // 0
-					"\x08\0\0\0" "m\0u\0l\0t\0i\0p\0l\0y\0" // "multiply"
+					"\x01\x08\0\0\0" "multiply" // "multiply"
 					"\x05" // SCRIPT_TYPE_INT
 					"\x01\0\0\0" // 1
 		);
@@ -693,7 +700,7 @@ public:
 		/* expected: */
 			"({})",
 		/* expected stream: */
-			30,
+			28,
 			"\x10" // SCRIPT_TYPE_SET
 			"\x02\0\0\0" // size
 
@@ -702,7 +709,7 @@ public:
 
 			"\x03" // SCRIPT_TYPE_OBJECT
 			"\x01\0\0\0" // num props
-				"\x03\0\0\0" "b\0a\0r\0" // "bar"
+				"\x01\x03\0\0\0" "bar" // "bar"
 				"\x08" // SCRIPT_TYPE_BACKREF
 				"\x02\0\0\0" // ref to object #2, i.e. "b", with #1 being "a"
 		);
@@ -731,13 +738,13 @@ public:
 		const char stream[] = "\x02" // SCRIPT_TYPE_ARRAY
 					"\x04\0\0\0" // num props
 					"\x04\0\0\0" // array length
-					"\x01\0\0\0" "0\0" // "0"
+					"\x01\x01\0\0\0" "0" // "0"
 					"\x05" "\0\0\0\x80" // SCRIPT_TYPE_INT -2147483648 (JS_INT_MIN)
-					"\x01\0\0\0" "1\0" // "1"
+					"\x01\x01\0\0\0" "1" // "1"
 					"\x06" "\0\0\x20\0\0\0\xE0\xC1" // SCRIPT_TYPE_DOUBLE -2147483649 (JS_INT_MIN-1)
-					"\x01\0\0\0" "2\0" // "2"
+					"\x01\x01\0\0\0" "2" // "2"
 					"\x05" "\xFF\xFF\xFF\x7F" // SCRIPT_TYPE_INT 2147483647 (JS_INT_MAX)
-					"\x01\0\0\0" "3\0" // "3"
+					"\x01\x01\0\0\0" "3" // "3"
 					"\x06" "\0\0\0\0\0\0\xE0\x41" // SCRIPT_TYPE_DOUBLE 2147483648 (JS_INT_MAX+1)
 		;
 

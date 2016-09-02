@@ -49,6 +49,7 @@ protected:
 
 private:
 	jsval ReadScriptVal(const char* name, JS::HandleObject appendParent);
+	void ReadStringLatin1(const char* name, std::vector<JS::Latin1Char>& str);
 	void ReadStringUTF16(const char* name, utf16string& str);
 
 	virtual void AddScriptBackref(JS::HandleObject obj);

@@ -783,9 +783,22 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		buf[len-1]= '\0';
 		if (0 == strcmp(&buf[0], prefix))
 		{
-			size_t len;
-			const char16_t* chars = JS_GetStringCharsAndLength(m->m_cx, name, &len);
-			out.push_back(std::string(chars, chars+len));
+			if (JS_StringHasLatin1Chars(name))
+			{
+				size_t length;
+				JS::AutoCheckCannotGC nogc;
+				const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(m->m_cx, nogc, name, &length);
+				if (chars)
+					out.push_back(std::string(chars, chars+length));
+			}
+			else
+			{
+				size_t length;
+				JS::AutoCheckCannotGC nogc;
+				const char16_t* chars = JS_GetTwoByteStringCharsAndLength(m->m_cx, nogc, name, &length);
+				if (chars)
+					out.push_back(std::string(chars, chars+length));
+			}
 		}
 	}
 

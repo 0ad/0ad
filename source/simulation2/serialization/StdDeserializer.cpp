@@ -228,15 +228,29 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 		uint32_t numProps;
 		NumberU32_Unbounded("num props", numProps);
-
+		bool isLatin1;
 		for (uint32_t i = 0; i < numProps; ++i)
 		{
-			utf16string propname;
-			ReadStringUTF16("prop name", propname);
-			JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
+			Bool("isLatin1", isLatin1);
+			if (isLatin1)
+			{
+				std::vector<JS::Latin1Char> propname;
+				ReadStringLatin1("prop name", propname);
+				JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
 
-			if (!JS_SetUCProperty(cx, obj, (const char16_t*)propname.data(), propname.length(), propval))
-				throw PSERROR_Deserialize_ScriptError();
+				utf16string prp(propname.begin(), propname.end());;
+				if (!JS_SetUCProperty(cx, obj, (const char16_t*)prp.data(), prp.length(), propval))
+					throw PSERROR_Deserialize_ScriptError();
+			}
+			else
+			{
+				utf16string propname;
+				ReadStringUTF16("prop name", propname);
+				JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
+
+				if (!JS_SetUCProperty(cx, obj, (const char16_t*)propname.data(), propname.length(), propval))
+					throw PSERROR_Deserialize_ScriptError();
+			}
 		}
 
 		return JS::ObjectValue(*obj);
@@ -449,6 +463,15 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 	}
 }
 
+void CStdDeserializer::ReadStringLatin1(const char* name, std::vector<JS::Latin1Char>& str)
+{
+	uint32_t len;
+	NumberU32_Unbounded("string length", len);
+	RequireBytesInStream(len);
+	str.resize(len);
+	Get(name, (u8*)str.data(), len);
+}
+
 void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
 {
 	uint32_t len;
@@ -460,16 +483,30 @@ void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
 
 void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString out)
 {
-	utf16string str;
-	ReadStringUTF16(name, str);
-
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
-	out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
-	if (!out)
-		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
+	bool isLatin1;
+	Bool("isLatin1", isLatin1);
+	if (isLatin1)
+	{
+		std::vector<JS::Latin1Char> str;
+		ReadStringLatin1(name, str);
+
+		out.set(JS_NewStringCopyN(m_ScriptInterface.GetContext(), (const char*)str.data(), str.size()));
+		if (!out)
+			throw PSERROR_Deserialize_ScriptError("JS_NewStringCopyN failed");
+	}
+	else
+	{
+		utf16string str;
+		ReadStringUTF16(name, str);
+
+		out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
+		if (!out)
+			throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
+	}
 }
 
 void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)
