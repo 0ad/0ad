@@ -33,11 +33,10 @@
 
 JSClass JSI_IGUIObject::JSI_class = {
 	"GUIObject", JSCLASS_HAS_PRIVATE,
-	JS_PropertyStub, JS_DeletePropertyStub,
+	nullptr, nullptr,
 	JSI_IGUIObject::getProperty, JSI_IGUIObject::setProperty,
-	JS_EnumerateStub, JS_ResolveStub,
-	JS_ConvertStub, NULL,
-	NULL, NULL, JSI_IGUIObject::construct, NULL
+	nullptr, nullptr, nullptr, nullptr,
+	nullptr, nullptr, JSI_IGUIObject::construct, nullptr
 };
 
 JSPropertySpec JSI_IGUIObject::JSI_props[] =
