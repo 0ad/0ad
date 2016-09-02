@@ -145,7 +145,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			const JSClass* jsclass = JS_GetClass(obj);
 			if (!jsclass)
 				throw PSERROR_Serialize_ScriptError("JS_GetClass failed");
+// TODO: Remove this workaround for upstream API breakage when updating SpiderMonkey
+// See https://bugzilla.mozilla.org/show_bug.cgi?id=1236373
+#define JSCLASS_CACHED_PROTO_WIDTH js::JSCLASS_CACHED_PROTO_WIDTH
 			JSProtoKey protokey = JSCLASS_CACHED_PROTO_KEY(jsclass);
+#undef JSCLASS_CACHED_PROTO_WIDTH
 
 			if (protokey == JSProto_Object)
 			{
