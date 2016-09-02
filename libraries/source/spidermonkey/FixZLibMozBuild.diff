@@ -1,0 +1,11 @@
+--- a/config/external/zlib/moz.build
++++ b/config/external/zlib/moz.build
+@@ -15,7 +15,7 @@
+         # USE_LIBS += [
+         #     'mozglue'
+         # ]
+         pass
+     DIRS += [
+-        '../../../modules/zlib',
++        '../../../modules/zlib/src',
+     ]

@@ -1,0 +1,178 @@
+Created from the patched (FixVersionDetection.diff) configure.in, ignoring
+unrelated hunks (thus invalidating some hard-coded line numbers). This way
+we do not add a dependency on autoconf-2.13.
+
+diff --git a/js/src/configure b/js/src/configure
+--- a/js/src/configure
++++ b/js/src/configure
+@@ -1662,70 +1662,6 @@ esac
+ 
+ fi
+ 
+-MOZILLA_VERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir`
+-MOZILLA_UAVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --uaversion`
+-MOZILLA_SYMBOLVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --symbolversion`
+-
+-cat >> confdefs.pytmp <<EOF
+-    (''' MOZILLA_VERSION ''', r''' "$MOZILLA_VERSION" ''')
+-EOF
+-cat >> confdefs.h <<EOF
+-#define MOZILLA_VERSION "$MOZILLA_VERSION"
+-EOF
+-
+-cat >> confdefs.pytmp <<EOF
+-    (''' MOZILLA_VERSION_U ''', r''' $MOZILLA_VERSION ''')
+-EOF
+-cat >> confdefs.h <<EOF
+-#define MOZILLA_VERSION_U $MOZILLA_VERSION
+-EOF
+-
+-cat >> confdefs.pytmp <<EOF
+-    (''' MOZILLA_UAVERSION ''', r''' "$MOZILLA_UAVERSION" ''')
+-EOF
+-cat >> confdefs.h <<EOF
+-#define MOZILLA_UAVERSION "$MOZILLA_UAVERSION"
+-EOF
+-
+-
+-
+-# Separate version into components for use in shared object naming etc
+-
+-MOZJS_MAJOR_VERSION=`echo $MOZILLA_VERSION | sed "s|\(^[0-9]*\)\.[0-9]*.*|\1|"`
+-MOZJS_MINOR_VERSION=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.\([0-9]*\).*|\1|"`
+-MOZJS_PATCH_VERSION=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.[0-9]*[^0-9]*||"`
+-IS_ALPHA=`echo $MOZILLA_VERSION | grep '[ab]'`
+-
+-JS_SHELL_NAME=js
+-JS_CONFIG_NAME=js-config
+-
+-
+-if test -n "$IS_ALPHA"; then
+-  
+-  MOZJS_ALPHA=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.[0-9\.]*\([^0-9]\).*|\1|"`
+-  
+-fi
+-cat >> confdefs.pytmp <<EOF
+-    (''' MOZJS_MAJOR_VERSION ''', r''' $MOZJS_MAJOR_VERSION ''')
+-EOF
+-cat >> confdefs.h <<EOF
+-#define MOZJS_MAJOR_VERSION $MOZJS_MAJOR_VERSION
+-EOF
+-
+-cat >> confdefs.pytmp <<EOF
+-    (''' MOZJS_MINOR_VERSION ''', r''' $MOZJS_MINOR_VERSION ''')
+-EOF
+-cat >> confdefs.h <<EOF
+-#define MOZJS_MINOR_VERSION $MOZJS_MINOR_VERSION
+-EOF
+-
+-
+-
+-
+-
+-
+-
+-
+ 
+ AR_FLAGS='crs $@'
+ 
+@@ -5731,6 +5565,71 @@ XCFLAGS="$X_CFLAGS"
+ 
+ fi # COMPILE_ENVIRONMENT
+ 
++MOZILLA_VERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir`
++MOZILLA_UAVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --uaversion`
++MOZILLA_SYMBOLVERSION=`$PYTHON $srcdir/python/mozbuild/mozbuild/milestone.py --topsrcdir $srcdir --symbolversion`
++
++cat >> confdefs.pytmp <<EOF
++    (''' MOZILLA_VERSION ''', r''' "$MOZILLA_VERSION" ''')
++EOF
++cat >> confdefs.h <<EOF
++#define MOZILLA_VERSION "$MOZILLA_VERSION"
++EOF
++
++cat >> confdefs.pytmp <<EOF
++    (''' MOZILLA_VERSION_U ''', r''' $MOZILLA_VERSION ''')
++EOF
++cat >> confdefs.h <<EOF
++#define MOZILLA_VERSION_U $MOZILLA_VERSION
++EOF
++
++cat >> confdefs.pytmp <<EOF
++    (''' MOZILLA_UAVERSION ''', r''' "$MOZILLA_UAVERSION" ''')
++EOF
++cat >> confdefs.h <<EOF
++#define MOZILLA_UAVERSION "$MOZILLA_UAVERSION"
++EOF
++
++
++
++# Separate version into components for use in shared object naming etc
++
++MOZJS_MAJOR_VERSION=`echo $MOZILLA_VERSION | sed "s|\(^[0-9]*\)\.[0-9]*.*|\1|"`
++MOZJS_MINOR_VERSION=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.\([0-9]*\).*|\1|"`
++MOZJS_PATCH_VERSION=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.[0-9]*[^0-9]*||"`
++IS_ALPHA=`echo $MOZILLA_VERSION | grep '[ab]'`
++
++JS_SHELL_NAME=js
++JS_CONFIG_NAME=js-config
++
++
++if test -n "$IS_ALPHA"; then
++  
++  MOZJS_ALPHA=`echo $MOZILLA_VERSION | sed "s|^[0-9]*\.[0-9\.]*\([^0-9]\).*|\1|"`
++  
++fi
++cat >> confdefs.pytmp <<EOF
++    (''' MOZJS_MAJOR_VERSION ''', r''' $MOZJS_MAJOR_VERSION ''')
++EOF
++cat >> confdefs.h <<EOF
++#define MOZJS_MAJOR_VERSION $MOZJS_MAJOR_VERSION
++EOF
++
++cat >> confdefs.pytmp <<EOF
++    (''' MOZJS_MINOR_VERSION ''', r''' $MOZJS_MINOR_VERSION ''')
++EOF
++cat >> confdefs.h <<EOF
++#define MOZJS_MINOR_VERSION $MOZJS_MINOR_VERSION
++EOF
++
++
++
++
++
++
++
++
++
+ AS_BIN=$AS
+ AR_LIST='$(AR) t'
+ AR_EXTRACT='$(AR) x'
+@@ -16003,13 +15908,6 @@ sed 's/$/,/' >> $CONFIG_STATUS <<EOF
+     (''' ANDROID_NDK ''', r''' $ANDROID_NDK ''')
+     (''' ANDROID_TOOLCHAIN ''', r''' $ANDROID_TOOLCHAIN ''')
+     (''' ANDROID_PLATFORM ''', r''' $ANDROID_PLATFORM ''')
+-    (''' MOZILLA_SYMBOLVERSION ''', r''' $MOZILLA_SYMBOLVERSION ''')
+-    (''' JS_SHELL_NAME ''', r''' $JS_SHELL_NAME ''')
+-    (''' JS_CONFIG_NAME ''', r''' $JS_CONFIG_NAME ''')
+-    (''' MOZJS_MAJOR_VERSION ''', r''' $MOZJS_MAJOR_VERSION ''')
+-    (''' MOZJS_MINOR_VERSION ''', r''' $MOZJS_MINOR_VERSION ''')
+-    (''' MOZJS_PATCH_VERSION ''', r''' $MOZJS_PATCH_VERSION ''')
+-    (''' MOZJS_ALPHA ''', r''' $MOZJS_ALPHA ''')
+     (''' HOST_CC ''', r''' $HOST_CC ''')
+     (''' HOST_CXX ''', r''' $HOST_CXX ''')
+     (''' HOST_RANLIB ''', r''' $HOST_RANLIB ''')
+@@ -16061,6 +15959,13 @@ sed 's/$/,/' >> $CONFIG_STATUS <<EOF
+     (''' X_PRE_LIBS ''', r''' $X_PRE_LIBS ''')
+     (''' X_LIBS ''', r''' $X_LIBS ''')
+     (''' X_EXTRA_LIBS ''', r''' $X_EXTRA_LIBS ''')
++    (''' MOZILLA_SYMBOLVERSION ''', r''' $MOZILLA_SYMBOLVERSION ''')
++    (''' JS_SHELL_NAME ''', r''' $JS_SHELL_NAME ''')
++    (''' JS_CONFIG_NAME ''', r''' $JS_CONFIG_NAME ''')
++    (''' MOZJS_MAJOR_VERSION ''', r''' $MOZJS_MAJOR_VERSION ''')
++    (''' MOZJS_MINOR_VERSION ''', r''' $MOZJS_MINOR_VERSION ''')
++    (''' MOZJS_PATCH_VERSION ''', r''' $MOZJS_PATCH_VERSION ''')
++    (''' MOZJS_ALPHA ''', r''' $MOZJS_ALPHA ''')
+     (''' SOLARIS_SUNPRO_CC ''', r''' $SOLARIS_SUNPRO_CC ''')
+     (''' SOLARIS_SUNPRO_CXX ''', r''' $SOLARIS_SUNPRO_CXX ''')
+     (''' MOZ_THUMB2 ''', r''' $MOZ_THUMB2 ''')
