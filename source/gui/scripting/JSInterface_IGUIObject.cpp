@@ -690,7 +690,7 @@ bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), jsval* vp
 	e->UpdateCachedSize();
 	CRect size = e->m_CachedActualSize;
 
-	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr())));
+	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
 	try
 	{
 		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;

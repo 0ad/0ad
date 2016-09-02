@@ -38,7 +38,7 @@ CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istrea
 
 	// Add a dummy tag because the serializer uses the tag 0 to indicate that a value
 	// needs to be serialized and then tagged
-	m_dummyObject = JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr());
+	m_dummyObject = JS_NewPlainObject(cx);
 	m_ScriptBackrefs.push_back(JS::Heap<JSObject*>(m_dummyObject));
 }
 
@@ -172,7 +172,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		}
 		else if (type == SCRIPT_TYPE_OBJECT)
 		{
-			obj.set(JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+			obj.set(JS_NewPlainObject(cx));
 		}
 		else // SCRIPT_TYPE_OBJECT_PROTOTYPE
 		{
