@@ -232,28 +232,28 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			}
 			else if (protokey == JSProto_Map)
 			{
-				// TODO: There's no C++ API (yet) to work with maps. This code relies on the internal 
-				// structure of the Iterator object returned by Map.entries(). This is not ideal
-				// because the structure could change in the future (and actually does change with v31).
-				// Change this code if SpiderMonkey gets such an API.
-				u32 mapSize;
-				m_ScriptInterface.GetProperty(val, "size", mapSize);
-				
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
-				m_Serializer.NumberU32_Unbounded("map size", mapSize);
+				m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(cx, obj));
 				
 				JS::RootedValue keyValueIterator(cx);
-				m_ScriptInterface.CallFunction(val, "entries", &keyValueIterator);
-				for (u32 i=0; i<mapSize; ++i)
-				{
-					JS::RootedValue currentIterator(cx);
-					JS::RootedValue keyValuePair(cx);
-					ENSURE(m_ScriptInterface.CallFunction(keyValueIterator, "next", &currentIterator));
+				if (!JS::MapEntries(cx, obj, &keyValueIterator))
+					throw PSERROR_Serialize_ScriptError("JS::MapEntries failed");
 
-					// the Iterator has a property called "value" that contains the key-value pair of the map
-					m_ScriptInterface.GetProperty(currentIterator, "value", &keyValuePair);
+				JS::ForOfIterator it(cx);
+				if (!it.init(keyValueIterator))
+					throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::init failed");
+
+				JS::RootedValue keyValuePair(cx);
+				bool done;
+				while (true)
+				{
+					if (!it.next(&keyValuePair, &done))
+						throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::next failed");
+
+					if (done)
+						break;
+
 					JS::RootedObject keyValuePairObj(cx, &keyValuePair.toObject());
-					
 					JS::RootedValue key(cx);
 					JS::RootedValue value(cx);
 					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, &key));
@@ -262,15 +262,12 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					HandleScriptVal(key);
 					HandleScriptVal(value);
 				}
-				
 				break;
 			}
 			else if (protokey == JSProto_Set)
 			{
-				// TODO: There's no C++ API (yet) to work with sets. This code relies on the internal 
-				// structure of the Iterator object returned by Set.values(). This is not ideal
-				// because the structure could change in the future.
-				// Change this code if SpiderMonkey gets such an API.
+				// TODO: When updating SpiderMonkey to a release after 38 use the C++ API for Sets.
+				// https://bugzilla.mozilla.org/show_bug.cgi?id=1159469
 				u32 setSize;
 				m_ScriptInterface.GetProperty(val, "size", setSize);
 

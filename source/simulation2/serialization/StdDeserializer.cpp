@@ -421,10 +421,9 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 	}
 	case SCRIPT_TYPE_OBJECT_MAP:
 	{
+		JS::RootedObject obj(cx, JS::NewMapObject(cx));
 		u32 mapSize;
 		NumberU32_Unbounded("map size", mapSize);
-		JS::RootedValue mapVal(cx);
-		m_ScriptInterface.Eval("(new Map())", &mapVal);
 
 		// To match the serializer order, we reserve the map's backref tag here
 		u32 mapTag = ReserveScriptBackref();
@@ -433,11 +432,10 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		{
 			JS::RootedValue key(cx, ReadScriptVal("map key", JS::NullPtr()));
 			JS::RootedValue value(cx, ReadScriptVal("map value", JS::NullPtr()));
-			m_ScriptInterface.CallFunctionVoid(mapVal, "set", key, value);
+			JS::MapSet(cx, obj, key, value);
 		}
-		JS::RootedObject mapObj(cx, &mapVal.toObject());
-		SetReservedScriptBackref(mapTag, mapObj);
-		return mapVal;
+		SetReservedScriptBackref(mapTag, obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_OBJECT_SET:
 	{
