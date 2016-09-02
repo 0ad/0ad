@@ -845,11 +845,10 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
 	options.setCompileAndGo(true);
 
-	JS::RootedFunction func(m->m_cx,
-	JS_CompileUCFunction(m->m_cx, global, NULL, 0, NULL,
-			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
-	);
-	if (!func)
+	JS::RootedFunction func(m->m_cx);
+	JS::AutoObjectVector emptyScopeChain(m->m_cx);
+	if (!JS::CompileFunction(m->m_cx, emptyScopeChain, options, NULL, 0, NULL,
+	                         reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &func))
 		return false;
 
 	JS::RootedValue rval(m->m_cx);
