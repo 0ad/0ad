@@ -56,10 +56,10 @@ void CStdDeserializer::Trace(JSTracer *trc, void *data)
 void CStdDeserializer::TraceMember(JSTracer *trc)
 {
 	for (size_t i=0; i<m_ScriptBackrefs.size(); ++i)
-		JS_CallHeapObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
+		JS_CallObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
 
 	for (std::pair<const std::wstring, JS::Heap<JSObject*>>& proto : m_SerializablePrototypes)
-		JS_CallHeapObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
+		JS_CallObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
 }
 
 void CStdDeserializer::Get(const char* name, u8* data, size_t len)

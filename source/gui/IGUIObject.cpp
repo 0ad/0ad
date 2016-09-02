@@ -541,7 +541,7 @@ bool IGUIObject::IsRootObject() const
 void IGUIObject::TraceMember(JSTracer* trc)
 {
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
-		JS_CallHeapObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
+		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8& Setting) const
