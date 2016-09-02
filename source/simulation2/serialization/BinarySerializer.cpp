@@ -135,7 +135,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			u32 length = JS_GetArrayBufferByteLength(obj);
 			m_Serializer.NumberU32_Unbounded("buffer length", length);
-			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj), length);
+			JS::AutoCheckCannotGC nogc;
+			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, nogc), length);
 			break;
 		}
 		else
