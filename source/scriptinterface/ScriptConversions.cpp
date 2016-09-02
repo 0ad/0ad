@@ -28,7 +28,28 @@
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
-#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s (got type %s)", #c, JS_GetTypeName(cx, JS_TypeOfValue(cx, v))); })
+#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s (got type %s)", #c, InformalValueTypeName(v)); })
+
+// TODO: SpiderMonkey: Follow upstream progresses about JS_InformalValueTypeName in the API
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1285917
+static const char* InformalValueTypeName(const JS::Value& v)
+{
+	if (v.isObject())
+		return "object";
+	if (v.isString())
+		return "string";
+	if (v.isSymbol())
+		return "symbol";
+	if (v.isNumber())
+		return "number";
+	if (v.isBoolean())
+		return "boolean";
+	if (v.isNull())
+		return "null";
+	if (v.isUndefined())
+		return "undefined";
+	return "value";
+}
 
 template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, JS::HandleValue v, bool& out)
 {
