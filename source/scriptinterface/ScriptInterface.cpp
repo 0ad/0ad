@@ -353,7 +353,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::ContextOptionsRef(m_cx).setExtraWarnings(1)
+	JS::RuntimeOptionsRef(m_cx).setExtraWarnings(1)
 		.setWerror(0)
 		.setVarObjFix(1)
 		.setStrictMode(1);
