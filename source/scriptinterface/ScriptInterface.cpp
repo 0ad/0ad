@@ -663,7 +663,7 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS:
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
 	utf16string name16(name, name + wcslen(name));
-	if (!JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const char16_t*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
+	if (!JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const char16_t*>(name16.c_str()), name16.length(), value, attrs))
 		return false;
 	return true;
 }
@@ -681,7 +681,8 @@ bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleV
 		return false;
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
-	if (!JS_DefinePropertyById(m->m_cx, object, INT_TO_JSID(name), value, NULL, NULL, attrs))
+	JS::RootedId id(m->m_cx, INT_TO_JSID(name));
+	if (!JS_DefinePropertyById(m->m_cx, object, id, value, attrs))
 		return false;
 	return true;
 }
