@@ -74,9 +74,6 @@ private:
 	void PrepareContextsForIncrementalGC();
 	void GCCallbackMember();
 
-	// Workaround for: https://bugzilla.mozilla.org/show_bug.cgi?id=890243
-	JSContext* m_dummyContext;
-
 	std::list<JSContext*> m_Contexts;
 	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
 
