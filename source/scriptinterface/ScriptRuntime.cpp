@@ -114,7 +114,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptRuntimes!");
 
 	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
-	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS, parentJSRuntime);
+	m_rt = JS_NewRuntime(runtimeSize, JS::DefaultNurseryBytes, parentJSRuntime);
 	ENSURE(m_rt); // TODO: error handling
 
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
