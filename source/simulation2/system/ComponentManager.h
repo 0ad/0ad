@@ -21,6 +21,7 @@
 #include "Entity.h"
 #include "Components.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/Player.h"
 #include "ps/Filesystem.h"
 

@@ -68,11 +68,7 @@ struct ScriptInterface_impl
 	boost::rand48* m_rng;
 	JS::PersistentRootedObject m_nativeScope; // native function scope object
 
-	// TODO: we need DefPersistentRooted to work around a problem with JS::PersistentRooted<T>
-	// that is already solved in newer versions of SpiderMonkey (related to std::pair and
-	// and the copy constructor of PersistentRooted<T> taking a non-const reference).
-	// Switch this to PersistentRooted<T> when upgrading to a newer SpiderMonkey version than v31.
-	typedef std::map<ScriptInterface::CACHED_VAL, DefPersistentRooted<JS::Value> > ScriptValCache;
+	typedef std::map<ScriptInterface::CACHED_VAL, JS::PersistentRootedValue> ScriptValCache;
 	ScriptValCache m_ScriptValCache;
 };
 
@@ -440,7 +436,7 @@ ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSConte
 
 JS::Value ScriptInterface::GetCachedValue(CACHED_VAL valueIdentifier)
 {
-	std::map<ScriptInterface::CACHED_VAL, DefPersistentRooted<JS::Value>>::iterator it = m->m_ScriptValCache.find(valueIdentifier);
+	std::map<ScriptInterface::CACHED_VAL, JS::PersistentRootedValue>::iterator it = m->m_ScriptValCache.find(valueIdentifier);
 	ENSURE(it != m->m_ScriptValCache.end());
 	return it->second.get();
 }
@@ -466,9 +462,9 @@ bool ScriptInterface::LoadGlobalScripts()
 	JS::RootedValue proto(m->m_cx);
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	if (JS_GetProperty(m->m_cx, global, "Vector2Dprototype", &proto))
-		m->m_ScriptValCache[CACHE_VECTOR2DPROTO] = DefPersistentRooted<JS::Value>(GetJSRuntime(), proto);
+		m->m_ScriptValCache[CACHE_VECTOR2DPROTO].init(GetJSRuntime(), proto);
 	if (JS_GetProperty(m->m_cx, global, "Vector3Dprototype", &proto))
-		m->m_ScriptValCache[CACHE_VECTOR3DPROTO] = DefPersistentRooted<JS::Value>(GetJSRuntime(), proto);
+		m->m_ScriptValCache[CACHE_VECTOR3DPROTO].init(GetJSRuntime(), proto);
 	return true;
 }
 
@@ -548,13 +544,11 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 	if (obj == NULL)
 		throw PSERROR_Scripting_DefineType_CreationFailed();
 
-	CustomType type;
+	CustomType& type = m_CustomObjectTypes[typeName];
 
-	type.m_Prototype = DefPersistentRooted<JSObject*>(m->m_cx, obj);
+	type.m_Prototype.init(m->m_cx, obj);
 	type.m_Class = clasp;
 	type.m_Constructor = constructor;
-
-	m_CustomObjectTypes[typeName] = std::move(type);
 }
 
 JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const

@@ -24,7 +24,6 @@
 
 #include "maths/Fixed.h"
 #include "ScriptTypes.h"
-#include "ScriptVal.h"
 #include "ps/Errors.h"
 
 ERROR_GROUP(Scripting);
@@ -414,7 +413,7 @@ private:
 			m_Constructor = std::move(other.m_Constructor);
 		}
 
-		DefPersistentRooted<JSObject*>	m_Prototype;
+		JS::PersistentRootedObject m_Prototype;
 		JSClass* m_Class;
 		JSNative m_Constructor;
 	};

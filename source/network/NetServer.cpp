@@ -372,7 +372,7 @@ void CNetServerWorker::Run()
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime(g_ScriptRuntime));
-	m_GameAttributes.set(m_ScriptInterface->GetJSRuntime(), JS::UndefinedValue());
+	m_GameAttributes.init(m_ScriptInterface->GetJSRuntime(), JS::UndefinedValue());
 
 	while (true)
 	{
@@ -388,7 +388,6 @@ void CNetServerWorker::Run()
 	}
 
 	// Clear roots before deleting their context
-	m_GameAttributes.clear();
 	m_SavedCommands.clear();
 
 	SAFE_DELETE(m_ScriptInterface);
@@ -682,7 +681,7 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 		m_HostGUID = session->GetGUID();
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
-	gameSetupMessage.m_Data = m_GameAttributes.get();
+	gameSetupMessage.m_Data = m_GameAttributes;
 	session->SendMessage(&gameSetupMessage);
 
 	CPlayerAssignmentMessage assignMessage;
@@ -1036,7 +1035,7 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 		JS::RootedValue settings(cx);
-		scriptInterface.GetProperty(server.m_GameAttributes.get(), "settings", &settings);
+		scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
 		if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
 			scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);
 
@@ -1341,7 +1340,7 @@ void CNetServerWorker::StartGame()
 	m_State = SERVER_STATE_LOADING;
 
 	// Send the final setup state to all clients
-	UpdateGameAttributes(&m_GameAttributes.get());
+	UpdateGameAttributes(&m_GameAttributes);
 
 	// Remove players and observers that are not present when the game starts
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end();)
@@ -1358,13 +1357,13 @@ void CNetServerWorker::StartGame()
 
 void CNetServerWorker::UpdateGameAttributes(JS::MutableHandleValue attrs)
 {
-	m_GameAttributes.set(m_ScriptInterface->GetJSRuntime(), attrs);
+	m_GameAttributes = attrs;
 
 	if (!m_Host)
 		return;
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
-	gameSetupMessage.m_Data = m_GameAttributes.get();
+	gameSetupMessage.m_Data = m_GameAttributes;
 	Broadcast(&gameSetupMessage);
 }
 

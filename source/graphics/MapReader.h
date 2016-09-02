@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,8 +123,8 @@ private:
 
 	// random map data
 	CStrW m_ScriptFile;
-	DefPersistentRooted<JS::Value> m_ScriptSettings;
-	DefPersistentRooted<JS::Value> m_MapData;
+	JS::PersistentRootedValue m_ScriptSettings;
+	JS::PersistentRootedValue m_MapData;
 
 	CMapGenerator* m_MapGen;
 

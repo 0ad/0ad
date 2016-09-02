@@ -504,9 +504,9 @@ JSObject* IGUIObject::GetJSObject()
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation. TODO: Would be nice to
 	// not have these objects hang around forever using up memory, though.
-	if (m_JSObject.uninitialized())
+	if (!m_JSObject.initialized())
 	{
-		m_JSObject.set(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+		m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
 		JS_SetPrivate(m_JSObject.get(), this);
 	}
 	return m_JSObject.get();

@@ -23,7 +23,7 @@
 
 #include "lib/config2.h"
 #include "ps/ThreadUtil.h"
-#include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptTypes.h"
 
 #include <vector>
 
@@ -280,7 +280,7 @@ private:
 	/**
 	 * Stores the most current game attributes.
 	 */
-	DefPersistentRooted<JS::Value> m_GameAttributes;
+	JS::PersistentRootedValue m_GameAttributes;
 
 	int m_AutostartPlayers;
 
