@@ -230,6 +230,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				m_Serializer.Bool("value", b);
 				break;
 			}
+			// TODO: Follow upstream progresses about a JS::IsMapObject
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1285909
 			else if (protokey == JSProto_Map)
 			{
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
@@ -264,6 +266,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				}
 				break;
 			}
+			// TODO: Follow upstream progresses about a JS::IsSetObject
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1285909
 			else if (protokey == JSProto_Set)
 			{
 				// TODO: When updating SpiderMonkey to a release after 38 use the C++ API for Sets.

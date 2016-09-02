@@ -239,6 +239,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 				JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
 
 				utf16string prp(propname.begin(), propname.end());;
+// TODO: Should ask upstream about getting a variant of JS_SetProperty with a length param.
 				if (!JS_SetUCProperty(cx, obj, (const char16_t*)prp.data(), prp.length(), propval))
 					throw PSERROR_Deserialize_ScriptError();
 			}
