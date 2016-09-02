@@ -341,7 +341,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_cx);
 
-	JS_SetParallelIonCompilationEnabled(m_runtime->m_rt, true);
+	JS_SetOffthreadIonCompilationEnabled(m_runtime->m_rt, true);
 
 	// For GC debugging:
 	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
