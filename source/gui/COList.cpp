@@ -356,25 +356,19 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 									m_CachedActualSize.top + headingHeight);
 	GetGUI()->DrawSprite(*sprite_heading, cell_id, bz, rect_head);
 
-	int selectedColumnOrder;
-	GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
-
-	CGUISpriteInstance* sprite_order;
-	CGUISpriteInstance* sprite_not_sorted;
-	if (selectedColumnOrder == 0)
-		LOGERROR("selected_column_order must not be 0");
-	else if (selectedColumnOrder != -1)
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_asc", sprite_order);
-	else
-		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite_order);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite_not_sorted);
+	// Draw column headers
+	bool sortable;
+	GUI<bool>::GetSetting(this, "sortable", sortable);
 
 	CStr selectedColumn;
 	GUI<CStr>::GetSetting(this, "selected_column", selectedColumn);
 
-	// Draw column headers
+	int selectedColumnOrder;
+	GUI<int>::GetSetting(this, "selected_column_order", selectedColumnOrder);
+
 	CColor color;
 	GUI<CColor>::GetSetting(this, _textcolor, color);
+
 	float xpos = 0;
 	for (size_t col = 0; col < m_Columns.size(); ++col)
 	{
@@ -385,15 +379,25 @@ void COList::DrawList(const int& selected, const CStr& _sprite, const CStr& _spr
 
 		CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
 
-		CGUISpriteInstance* sprite;
-		// If the list sorted by current column
-		if (selectedColumn == m_Columns[col].m_Id)
-			sprite = sprite_order;
-		else
-			sprite = sprite_not_sorted;
-
 		// Draw sort arrows in colum header
-		GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
+		if (sortable)
+		{
+			CGUISpriteInstance* sprite;
+			if (selectedColumn == m_Columns[col].m_Id)
+			{
+				if (selectedColumnOrder == 0)
+					LOGERROR("selected_column_order must not be 0");
+
+				if (selectedColumnOrder != -1)
+					GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_asc", sprite);
+				else
+					GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_desc", sprite);
+			}
+			else
+				GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_not_sorted", sprite);
+
+			GetGUI()->DrawSprite(*sprite, cell_id, bz + 0.1f, CRect(leftTopCorner + CPos(width - 16, 0), leftTopCorner + CPos(width, 16)));
+		}
 
 		// Draw column header text
 		DrawText(col, color, leftTopCorner + CPos(0, 4), bz + 0.1f, rect_head);
