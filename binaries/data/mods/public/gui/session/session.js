@@ -1,5 +1,13 @@
 const g_IsReplay = Engine.IsVisualReplay();
+
+const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
 const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay));
+const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
+const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
+const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
+const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
+const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
+const g_WonderDurations = prepareForDropdown(g_Settings && g_Settings.WonderDurations);
 
 /**
  * Colors to flash when pop limit reached.
@@ -666,11 +674,8 @@ function confirmExit()
 {
 	closeOpenDialogs();
 
-	let subject = g_ConfirmExit == "won" ?
-		translate("You have won!") :
-		translate("You have been defeated!");
-
-	subject += "\n" + translate("Do you want to quit?");
+	let subject = g_PlayerStateMessages[g_ConfirmExit] + "\n" +
+		translate("Do you want to quit?");
 
 	if (g_IsNetworked && g_IsController)
 		subject += "\n" + translate("Leaving will disconnect all other players.");

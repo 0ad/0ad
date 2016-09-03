@@ -7,6 +7,7 @@
 <script file="gui/common/functions_civinfo.js"/>
 <script file="gui/common/functions_global_object.js"/>
 <script file="gui/common/functions_utility.js"/>
+<script file="gui/common/gamedescription.js"/>
 <script file="gui/common/l10n.js"/>
 <script file="gui/common/music.js"/>
 <script file="gui/common/network.js"/>
@@ -86,6 +87,7 @@
 	<include file="gui/session/chat_window.xml"/>
 	<include file="gui/session/developer_overlay.xml"/>
 	<include file="gui/session/diplomacy_window.xml"/>
+	<include file="gui/session/objectives_window.xml"/>
 	<include file="gui/session/trade_window.xml"/>
 	<include file="gui/session/top_panel.xml"/>
 	<include file="gui/session/menu.xml"/>

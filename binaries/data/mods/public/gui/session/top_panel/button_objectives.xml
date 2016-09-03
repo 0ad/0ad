@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object
+	type="button"
+	name="objectivesButton"
+	size="100%-194 4 100%-166 32"
+	style="iconButton"
+	tooltip_style="sessionToolTip"
+>
+	<object
+		size="3 3 100%-3 100%-3"
+		type="image"
+		sprite="stretched:session/icons/objectives.png"
+		ghost="true"
+	/>
+	<translatableAttribute id="tooltip">Objectives</translatableAttribute>
+	<action on="Press">
+		toggleObjectives();
+	</action>
+</object>

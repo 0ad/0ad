@@ -35,6 +35,7 @@ var g_IsMenuOpen = false;
 
 var g_IsDiplomacyOpen = false;
 var g_IsTradeOpen = false;
+var g_IsObjectivesOpen = false;
 
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var g_FlushTributing = function() {};
@@ -610,6 +611,45 @@ function toggleGameSpeed()
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.hidden = !gameSpeed.hidden;
 }
+
+function toggleObjectives()
+{
+	let open = g_IsObjectivesOpen;
+	closeOpenDialogs();
+
+	if (!open)
+		openObjectives();
+}
+
+function openObjectives()
+{
+	g_IsObjectivesOpen = true;
+
+	let player = g_Players[Engine.GetPlayerID()];
+	let playerState = player && player.state;
+	let isActive = !playerState || playerState == "active";
+
+	Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription(true);
+
+	let objectivesPlayerstate = Engine.GetGUIObjectByName("objectivesPlayerstate");
+	objectivesPlayerstate.hidden = isActive;
+	objectivesPlayerstate.caption = g_PlayerStateMessages[playerState] || "";
+
+	let gameDescription = Engine.GetGUIObjectByName("gameDescription");
+	let gameDescriptionSize = gameDescription.size;
+	gameDescriptionSize.top = Engine.GetGUIObjectByName(
+		isActive ? "objectivesTitle" : "objectivesPlayerstate").size.bottom;
+	gameDescription.size = gameDescriptionSize;
+
+	Engine.GetGUIObjectByName("objectivesPanel").hidden = false;
+}
+
+function closeObjectives()
+{
+	g_IsObjectivesOpen = false;
+	Engine.GetGUIObjectByName("objectivesPanel").hidden = true;
+}
+
 /**
  * Allows players to see their own summary.
  * If they have shared ally vision researched, they are able to see the summary of there allies too.
@@ -766,6 +806,7 @@ function closeOpenDialogs()
 	closeChat();
 	closeDiplomacy();
 	closeTrade();
+	closeObjectives();
 }
 
 function formatTributeTooltip(playerID, resource, amount)

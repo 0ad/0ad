@@ -134,11 +134,6 @@ const g_UnassignedPlayerColor = "170 170 250";
 const g_ReadyColor = "green";
 
 /**
- * Highlights the victory condition in the game-description.
- */
-const g_VictoryColor = "orange";
-
-/**
  * Placeholder item for the map-dropdownlist.
  */
 const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map selection", "Random") + "[/color]";
@@ -1454,7 +1449,7 @@ function updateGUIObjects()
 			pColorPicker.selected = g_PlayerColors.findIndex(col => sameColor(col, color));
 	}
 
-	updateMapDescription();
+	updateGameDescription();
 	resizeMoreOptionsWindow();
 
 	g_IsInGuiUpdate = false;
@@ -1472,60 +1467,14 @@ function updateGUIObjects()
 	}
 }
 
-/**
- * Sets an additional map label, map preview image and mapsettings description.
- */
-function updateMapDescription()
+function updateGameDescription()
 {
 	setMapPreviewImage("mapPreview", getMapPreview(g_GameAttributes.map));
 
 	Engine.GetGUIObjectByName("mapInfoName").caption =
 		translateMapTitle(getMapDisplayName(g_GameAttributes.map));
 
-	let numPlayers = sprintf(
-		translatePlural(
-			"%(number)s player. ",
-			"%(number)s players. ",
-			g_GameAttributes.settings.PlayerData.length
-		),
-		{ "number": g_GameAttributes.settings.PlayerData.length }
-	);
-
-	let mapDescription =
-		g_GameAttributes.map == "random" ?
-			translate("Randomly selects a map from the list") :
-		g_GameAttributes.settings.Description ?
-			translate(g_GameAttributes.settings.Description) :
-			translate("Sorry, no description available.");
-
-	let victoryIdx = g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType || g_VictoryConditions.Default);
-	let victoryTitle;
-
-	if (victoryIdx == -1)
-		victoryTitle = translateWithContext("victory condition", "Unknown");
-	else
-	{
-		if (g_VictoryConditions.Name[victoryIdx] == "wonder")
-			victoryTitle = sprintf(
-				translatePluralWithContext(
-					"victory condition",
-					"Wonder (%(min)s minute)",
-					"Wonder (%(min)s minutes)",
-					g_GameAttributes.settings.WonderDuration
-				),
-				{ "min": g_GameAttributes.settings.WonderDuration }
-			);
-		else
-			victoryTitle = g_VictoryConditions.Title[victoryIdx];
-
-		if (victoryIdx != g_VictoryConditions.Default)
-			victoryTitle = "[color=\"" + g_VictoryColor + "\"]" + victoryTitle + "[/color]";
-	}
-
-	Engine.GetGUIObjectByName("mapInfoDescription").caption =
-		numPlayers +
-		translate("Victory Condition:") + " " + victoryTitle + ".\n\n" +
-		mapDescription;
+	Engine.GetGUIObjectByName("mapInfoDescription").caption = getGameDescription();
 }
 
 /**

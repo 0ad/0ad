@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object
+	name="objectivesPanel"
+	size="50%-300 50%-225 50%+300 50%+175"
+	type="image"
+	hidden="true"
+	sprite="ModernDialog"
+>
+	<object
+		name="objectivesTitle"
+		type="text"
+		style="TitleText"
+		size="50%-128 -16 50%+128 16"
+	>
+		<translatableAttribute id="caption">Objectives</translatableAttribute>
+	</object>
+
+	<object
+		name="objectivesPlayerstate"
+		size="20 40 100%-20 80"
+		font="sans-bold-18"
+		type="text"
+		style="ModernText"
+		text_align="left"
+		ghost="true"
+	/>
+
+	<object
+		name="gameDescription"
+		type="image"
+		sprite="ModernDarkBoxGold"
+		size="20 0 100%-20 100%-60"
+	>
+		<object
+			name="gameDescriptionText"
+			type="text"
+			style="MapPlayerList"
+			textcolor="white"
+			size="0 0 100% 100%"
+		/>
+	</object>
+
+	<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
+		<translatableAttribute id="caption">Close</translatableAttribute>
+		<action on="Press">closeObjectives();</action>
+	</object>
+
+</object>
+

@@ -172,6 +172,11 @@ var g_IsChatAddressee = {
 		addresseeGUID == Engine.GetPlayerGUID()
 };
 
+var g_PlayerStateMessages = {
+	"won": translate("You have won!"),
+	"defeated": translate("You have been defeated!")
+};
+
 /**
  * Chatmessage shown on diplomacy change.
  */
