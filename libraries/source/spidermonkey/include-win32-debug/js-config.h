@@ -19,7 +19,7 @@
 /* #undef JS_NO_JSVAL_JSID_STRUCT_TYPES */
 
 /* Define to 1 if SpiderMonkey should support multi-threaded clients.  */
-#define JS_THREADSAFE 1
+/* #undef JS_THREADSAFE */
 
 /* Define to 1 if SpiderMonkey should include ctypes support.  */
 /* #undef JS_HAS_CTYPES */
@@ -27,6 +27,12 @@
 /* Define to 1 if SpiderMonkey should support the ability to perform
    entirely too much GC.  */
 #define JS_GC_ZEAL 1
+
+/* Define to 1 if SpiderMonkey should use small chunks. */
+/* #undef JS_GC_SMALL_CHUNK_SIZE */
+
+/* Define to 1 to perform extra assertions and heap poisoning. */
+#define JS_CRASH_DIAGNOSTICS 1
 
 /* Define to 1 if the <endian.h> header is present and
    useable.  See jscpucfg.h.  */
@@ -40,8 +46,14 @@
    useable.  See jscpucfg.h.  */
 /* #undef JS_HAVE_SYS_ISA_DEFS_H */
 
+/* Define to 1 if SpiderMonkey is in NUNBOX32 mode. */
+#define JS_NUNBOX32 1
+
+/* Define to 1 if SpiderMonkey is in PUNBOX64 mode. */
+/* #undef JS_PUNBOX64 */
+
 /* MOZILLA JSAPI version number components */
-#define MOZJS_MAJOR_VERSION 31
-#define MOZJS_MINOR_VERSION 2
+#define MOZJS_MAJOR_VERSION 38
+#define MOZJS_MINOR_VERSION 3
 
 #endif /* js_config_h */

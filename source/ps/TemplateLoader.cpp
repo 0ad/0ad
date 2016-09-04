@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@ static const wchar_t TEMPLATE_ROOT[] = L"simulation/templates/";
 static const wchar_t ACTOR_ROOT[] = L"art/actors/";
 
 static CParamNode NULL_NODE(false);
-
 
 bool CTemplateLoader::LoadTemplateFile(const std::string& templateName, int depth)
 {
@@ -215,13 +214,18 @@ bool CTemplateLoader::TemplateExists(const std::string& templateName) const
 
 std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface)
 {
+	if (templatesType != SIMULATION_TEMPLATES && templatesType != ACTOR_TEMPLATES && templatesType != ALL_TEMPLATES)
+	{
+		LOGERROR("Undefined template type (valid: all, simulation, actor)");
+		return std::vector<std::string>();
+	}
+
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	std::vector<std::string> templates;
 	Status ok;
 	VfsPath templatePath;
-
 
 	if (templatesType == SIMULATION_TEMPLATES || templatesType == ALL_TEMPLATES)
 	{
@@ -259,11 +263,11 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 				std::wstring fileFilter;
 				scriptInterface.GetProperty(val, "directory", directoryPath);
 				scriptInterface.GetProperty(val, "file", fileFilter);
-				
+
 				VfsPaths filenames;
 				if (vfs::GetPathnames(g_VFS, templatePath / (directoryPath + "/"), fileFilter.c_str(), filenames) != INFO::OK)
 					continue;
-				
+
 				for (const VfsPath& filename : filenames)
 				{
 					// Strip the .xml extension
@@ -273,9 +277,8 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 
 					templates.emplace_back(name.begin(), name.end());
 				}
-				
+
 			}
-			
 		}
 	}
 
@@ -289,9 +292,6 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 		WARN_IF_ERR(ok);
 	}
 
-	if (templatesType != SIMULATION_TEMPLATES && templatesType != ACTOR_TEMPLATES && templatesType != ALL_TEMPLATES)
-		LOGERROR("Undefined template type (valid: all, simulation, actor)");
-
 	return templates;
 }
 
@@ -299,30 +299,19 @@ std::vector<std::string> CTemplateLoader::FindTemplates(const std::string& path,
 {
 	std::vector<std::string> templates;
 
-	Status ok;
-	VfsPath templatePath;
+	if (templatesType != SIMULATION_TEMPLATES && templatesType != ACTOR_TEMPLATES && templatesType != ALL_TEMPLATES)
+	{
+		LOGERROR("Undefined template type (valid: all, simulation, actor)");
+		return templates;
+	}
+
+	size_t flags = includeSubdirectories ? vfs::DIR_RECURSIVE : 0;
 
 	if (templatesType == SIMULATION_TEMPLATES || templatesType == ALL_TEMPLATES)
-	{
-		templatePath = VfsPath(TEMPLATE_ROOT) / path;
-		if (includeSubdirectories)
-			ok = vfs::ForEachFile(g_VFS, templatePath, AddToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
-		else
-			ok = vfs::ForEachFile(g_VFS, templatePath, AddToTemplates, (uintptr_t)&templates, L"*.xml");
-		WARN_IF_ERR(ok);
-	}
-	if (templatesType == ACTOR_TEMPLATES || templatesType == ALL_TEMPLATES)
-	{
-		templatePath = VfsPath(ACTOR_ROOT) / path;
-		if (includeSubdirectories)
-			ok = vfs::ForEachFile(g_VFS, templatePath, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
-		else
-			ok = vfs::ForEachFile(g_VFS, templatePath, AddActorToTemplates, (uintptr_t)&templates, L"*.xml");
-		WARN_IF_ERR(ok);
-	}
+		WARN_IF_ERR(vfs::ForEachFile(g_VFS, VfsPath(TEMPLATE_ROOT) / path, AddToTemplates, (uintptr_t)&templates, L"*.xml", flags));
 
-	if (templatesType != SIMULATION_TEMPLATES && templatesType != ACTOR_TEMPLATES && templatesType != ALL_TEMPLATES)
-		LOGERROR("Undefined template type (valid: all, simulation, actor)");
+	if (templatesType == ACTOR_TEMPLATES || templatesType == ALL_TEMPLATES)
+		WARN_IF_ERR(vfs::ForEachFile(g_VFS, VfsPath(ACTOR_ROOT) / path, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", flags));
 
 	return templates;
 }

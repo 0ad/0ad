@@ -226,7 +226,7 @@ function loadVictoryConditions()
 	victoryConditions.push({
 		"Name": "endless",
 		"Title": translate("None"),
-		"Description": translate("Endless Game"),
+		"Description": translate("Endless game."),
 		"Scripts": []
 	});
 

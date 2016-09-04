@@ -24,7 +24,6 @@
 
 #include "maths/Fixed.h"
 #include "ScriptTypes.h"
-#include "ScriptVal.h"
 #include "ps/Errors.h"
 
 ERROR_GROUP(Scripting);
@@ -414,7 +413,7 @@ private:
 			m_Constructor = std::move(other.m_Constructor);
 		}
 
-		DefPersistentRooted<JSObject*>	m_Prototype;
+		JS::PersistentRootedObject m_Prototype;
 		JSClass* m_Class;
 		JSNative m_Constructor;
 	};
@@ -501,7 +500,7 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(1);
-	AssignOrToJSVal(cx, argv.handleAt(0), a0);
+	AssignOrToJSVal(cx, argv[0], a0);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 
@@ -513,8 +512,8 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(2);
-	AssignOrToJSVal(cx, argv.handleAt(0), a0);
-	AssignOrToJSVal(cx, argv.handleAt(1), a1);
+	AssignOrToJSVal(cx, argv[0], a0);
+	AssignOrToJSVal(cx, argv[1], a1);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 
@@ -526,9 +525,9 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	JS::RootedValue jsRet(cx);
 	JS::AutoValueVector argv(cx);
 	argv.resize(3);
-	AssignOrToJSVal(cx, argv.handleAt(0), a0);
-	AssignOrToJSVal(cx, argv.handleAt(1), a1);
-	AssignOrToJSVal(cx, argv.handleAt(2), a2);
+	AssignOrToJSVal(cx, argv[0], a0);
+	AssignOrToJSVal(cx, argv[1], a1);
+	AssignOrToJSVal(cx, argv[2], a2);
 	return CallFunction_(val, name, argv, &jsRet);
 }
 

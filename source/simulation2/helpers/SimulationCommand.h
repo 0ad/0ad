@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ struct SimulationCommand
 	SimulationCommand& operator=(SimulationCommand&& other)
 	{
 		this->player = other.player;
-		this->data.set(other.data);
+		this->data = other.data;
 		return *this;
 	}
 

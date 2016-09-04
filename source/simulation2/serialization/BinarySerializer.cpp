@@ -26,27 +26,27 @@
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "SerializedScriptTypes.h"
 
-static u8 GetArrayType(JSArrayBufferViewType arrayType)
+static u8 GetArrayType(js::Scalar::Type arrayType)
 {
 	switch(arrayType)
 	{
-	case js::ArrayBufferView::TYPE_INT8:
+	case js::Scalar::Int8:
 		return SCRIPT_TYPED_ARRAY_INT8;
-	case js::ArrayBufferView::TYPE_UINT8:
+	case js::Scalar::Uint8:
 		return SCRIPT_TYPED_ARRAY_UINT8;
-	case js::ArrayBufferView::TYPE_INT16:
+	case js::Scalar::Int16:
 		return SCRIPT_TYPED_ARRAY_INT16;
-	case js::ArrayBufferView::TYPE_UINT16:
+	case js::Scalar::Uint16:
 		return SCRIPT_TYPED_ARRAY_UINT16;
-	case js::ArrayBufferView::TYPE_INT32:
+	case js::Scalar::Int32:
 		return SCRIPT_TYPED_ARRAY_INT32;
-	case js::ArrayBufferView::TYPE_UINT32:
+	case js::Scalar::Uint32:
 		return SCRIPT_TYPED_ARRAY_UINT32;
-	case js::ArrayBufferView::TYPE_FLOAT32:
+	case js::Scalar::Float32:
 		return SCRIPT_TYPED_ARRAY_FLOAT32;
-	case js::ArrayBufferView::TYPE_FLOAT64:
+	case js::Scalar::Float64:
 		return SCRIPT_TYPED_ARRAY_FLOAT64;
-	case js::ArrayBufferView::TYPE_UINT8_CLAMPED:
+	case js::Scalar::Uint8Clamped:
 		return SCRIPT_TYPED_ARRAY_UINT8_CLAMPED;
 	default:
 		LOGERROR("Cannot serialize unrecognized typed array view: %d", arrayType);
@@ -135,7 +135,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			u32 length = JS_GetArrayBufferByteLength(obj);
 			m_Serializer.NumberU32_Unbounded("buffer length", length);
-			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj), length);
+			JS::AutoCheckCannotGC nogc;
+			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, nogc), length);
 			break;
 		}
 		else
@@ -144,7 +145,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			const JSClass* jsclass = JS_GetClass(obj);
 			if (!jsclass)
 				throw PSERROR_Serialize_ScriptError("JS_GetClass failed");
+// TODO: Remove this workaround for upstream API breakage when updating SpiderMonkey
+// See https://bugzilla.mozilla.org/show_bug.cgi?id=1236373
+#define JSCLASS_CACHED_PROTO_WIDTH js::JSCLASS_CACHED_PROTO_WIDTH
 			JSProtoKey protokey = JSCLASS_CACHED_PROTO_KEY(jsclass);
+#undef JSCLASS_CACHED_PROTO_WIDTH
 
 			if (protokey == JSProto_Object)
 			{
@@ -225,30 +230,32 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				m_Serializer.Bool("value", b);
 				break;
 			}
+			// TODO: Follow upstream progresses about a JS::IsMapObject
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1285909
 			else if (protokey == JSProto_Map)
 			{
-				// TODO: There's no C++ API (yet) to work with maps. This code relies on the internal 
-				// structure of the Iterator object returned by Map.entries(). This is not ideal
-				// because the structure could change in the future (and actually does change with v31).
-				// Change this code if SpiderMonkey gets such an API.
-				u32 mapSize;
-				m_ScriptInterface.GetProperty(val, "size", mapSize);
-				
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
-				m_Serializer.NumberU32_Unbounded("map size", mapSize);
+				m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(cx, obj));
 				
 				JS::RootedValue keyValueIterator(cx);
-				m_ScriptInterface.CallFunction(val, "entries", &keyValueIterator);
-				for (u32 i=0; i<mapSize; ++i)
-				{
-					JS::RootedValue currentIterator(cx);
-					JS::RootedValue keyValuePair(cx);
-					ENSURE(m_ScriptInterface.CallFunction(keyValueIterator, "next", &currentIterator));
+				if (!JS::MapEntries(cx, obj, &keyValueIterator))
+					throw PSERROR_Serialize_ScriptError("JS::MapEntries failed");
 
-					// the Iterator has a property called "value" that contains the key-value pair of the map
-					m_ScriptInterface.GetProperty(currentIterator, "value", &keyValuePair);
+				JS::ForOfIterator it(cx);
+				if (!it.init(keyValueIterator))
+					throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::init failed");
+
+				JS::RootedValue keyValuePair(cx);
+				bool done;
+				while (true)
+				{
+					if (!it.next(&keyValuePair, &done))
+						throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::next failed");
+
+					if (done)
+						break;
+
 					JS::RootedObject keyValuePairObj(cx, &keyValuePair.toObject());
-					
 					JS::RootedValue key(cx);
 					JS::RootedValue value(cx);
 					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, &key));
@@ -257,15 +264,14 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					HandleScriptVal(key);
 					HandleScriptVal(value);
 				}
-				
 				break;
 			}
+			// TODO: Follow upstream progresses about a JS::IsSetObject
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1285909
 			else if (protokey == JSProto_Set)
 			{
-				// TODO: There's no C++ API (yet) to work with sets. This code relies on the internal 
-				// structure of the Iterator object returned by Set.values(). This is not ideal
-				// because the structure could change in the future.
-				// Change this code if SpiderMonkey gets such an API.
+				// TODO: When updating SpiderMonkey to a release after 38 use the C++ API for Sets.
+				// https://bugzilla.mozilla.org/show_bug.cgi?id=1159469
 				u32 setSize;
 				m_ScriptInterface.GetProperty(val, "size", setSize);
 
@@ -343,10 +349,22 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			JS::RootedString string(cx, JS_GetFunctionId(func));
 			if (string)
 			{
-				size_t length;
-				const char16_t* ch = JS_GetStringCharsAndLength(cx, string, &length);
-				if (ch && length > 0)
-					funcname.assign(ch, ch + length);
+				if (JS_StringHasLatin1Chars(string))
+				{
+					size_t length;
+					JS::AutoCheckCannotGC nogc;
+					const JS::Latin1Char* ch = JS_GetLatin1StringCharsAndLength(cx, nogc, string, &length);
+					if (ch && length > 0)
+						funcname.assign(ch, ch + length);
+				}
+				else
+				{
+					size_t length;
+					JS::AutoCheckCannotGC nogc;
+					const char16_t* ch = JS_GetTwoByteStringCharsAndLength(cx, nogc, string, &length);
+					if (ch && length > 0)
+						funcname.assign(ch, ch + length);
+				}
 			}
 		}
 
@@ -387,7 +405,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	case JSTYPE_BOOLEAN:
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BOOLEAN);
-		bool b = JSVAL_TO_BOOLEAN(val);
+		bool b = val.toBoolean();
 		m_Serializer.NumberU8_Unbounded("value", b ? 1 : 0);
 		break;
 	}
@@ -404,19 +422,32 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
-	size_t length;
-	const char16_t* chars = JS_GetStringCharsAndLength(cx, string, &length);
-
-	if (!chars)
-		throw PSERROR_Serialize_ScriptError("JS_GetStringCharsAndLength failed");
-
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian
 #endif
 
-	// Serialize strings directly as UTF-16, to avoid expensive encoding conversions
-	m_Serializer.NumberU32_Unbounded("string length", (u32)length);
-	m_Serializer.RawBytes(name, (const u8*)chars, length*2);
+	size_t length;
+	JS::AutoCheckCannotGC nogc;
+	// Serialize strings directly as UTF-16 or Latin1, to avoid expensive encoding conversions
+	bool isLatin1 = JS_StringHasLatin1Chars(string);
+	m_Serializer.Bool("isLatin1", isLatin1);
+	if (isLatin1)
+	{
+		const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(cx, nogc, string, &length);
+		if (!chars)
+			throw PSERROR_Serialize_ScriptError("JS_GetLatin1StringCharsAndLength failed");
+		m_Serializer.NumberU32_Unbounded("string length", (u32)length);
+		m_Serializer.RawBytes(name, (const u8*)chars, length);
+	}
+	else
+	{
+		const char16_t* chars = JS_GetTwoByteStringCharsAndLength(cx, nogc, string, &length);
+
+		if (!chars)
+			throw PSERROR_Serialize_ScriptError("JS_GetTwoByteStringCharsAndLength failed");
+		m_Serializer.NumberU32_Unbounded("string length", (u32)length);
+		m_Serializer.RawBytes(name, (const u8*)chars, length*2);
+	}
 }
 
 u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)

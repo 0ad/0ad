@@ -68,11 +68,7 @@ struct ScriptInterface_impl
 	boost::rand48* m_rng;
 	JS::PersistentRootedObject m_nativeScope; // native function scope object
 
-	// TODO: we need DefPersistentRooted to work around a problem with JS::PersistentRooted<T>
-	// that is already solved in newer versions of SpiderMonkey (related to std::pair and
-	// and the copy constructor of PersistentRooted<T> taking a non-const reference).
-	// Switch this to PersistentRooted<T> when upgrading to a newer SpiderMonkey version than v31.
-	typedef std::map<ScriptInterface::CACHED_VAL, DefPersistentRooted<JS::Value> > ScriptValCache;
+	typedef std::map<ScriptInterface::CACHED_VAL, JS::PersistentRootedValue> ScriptValCache;
 	ScriptValCache m_ScriptValCache;
 };
 
@@ -81,9 +77,9 @@ namespace
 
 JSClass global_class = {
 	"global", JSCLASS_GLOBAL_FLAGS,
-	JS_PropertyStub, JS_DeletePropertyStub, 
-	JS_PropertyStub, JS_StrictPropertyStub,
-	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub,
+	nullptr, nullptr,
+	nullptr, nullptr,
+	nullptr, nullptr, nullptr,
 	nullptr, nullptr, nullptr, nullptr,
 	JS_GlobalObjectTraceHook
 };
@@ -341,25 +337,27 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_cx);
 
-	JS_SetParallelIonCompilationEnabled(m_runtime->m_rt, true);
+	JS_SetOffthreadIonCompilationEnabled(m_runtime->m_rt, true);
 
 	// For GC debugging:
 	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
 
 	JS_SetContextPrivate(m_cx, NULL);
 
-	JS_SetErrorReporter(m_cx, ErrorReporter);
+	JS_SetErrorReporter(m_runtime->m_rt, ErrorReporter);
 
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_runtime->m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::ContextOptionsRef(m_cx).setExtraWarnings(1)
+	JS::RuntimeOptionsRef(m_cx).setExtraWarnings(1)
 		.setWerror(0)
 		.setVarObjFix(1)
 		.setStrictMode(1);
 
 	JS::CompartmentOptions opt;
 	opt.setVersion(JSVERSION_LATEST);
+	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
+	opt.setPreserveJitCode(true);
 
 	JSAutoRequest rq(m_cx);
 	JS::RootedObject globalRootedVal(m_cx, JS_NewGlobalObject(m_cx, &global_class, NULL, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt));
@@ -368,17 +366,9 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	ENSURE(ok);
 	m_glob = globalRootedVal.get();
 
-	// Use the testing functions to globally enable gcPreserveCode. This brings quite a 
-	// big performance improvement. In future SpiderMonkey versions, we should probably 
-	// use the functions implemented here: https://bugzilla.mozilla.org/show_bug.cgi?id=1068697
-	JS::RootedObject testingFunctionsObj(m_cx, js::GetTestingFunctions(m_cx));
-	ENSURE(testingFunctionsObj);
-	JS::RootedValue ret(m_cx);
-	JS_CallFunctionName(m_cx, testingFunctionsObj, "gcPreserveCode", JS::HandleValueArray::empty(), &ret);
-
 	JS_DefineProperty(m_cx, m_glob, "global", globalRootedVal, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
-	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, nullptr, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
 	JS_DefineFunction(m_cx, globalRootedVal, "print", ::print,        0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, globalRootedVal, "log",   ::logmsg,       1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
@@ -446,7 +436,7 @@ ScriptInterface::CxPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSConte
 
 JS::Value ScriptInterface::GetCachedValue(CACHED_VAL valueIdentifier)
 {
-	std::map<ScriptInterface::CACHED_VAL, DefPersistentRooted<JS::Value>>::iterator it = m->m_ScriptValCache.find(valueIdentifier);
+	std::map<ScriptInterface::CACHED_VAL, JS::PersistentRootedValue>::iterator it = m->m_ScriptValCache.find(valueIdentifier);
 	ENSURE(it != m->m_ScriptValCache.end());
 	return it->second.get();
 }
@@ -472,9 +462,9 @@ bool ScriptInterface::LoadGlobalScripts()
 	JS::RootedValue proto(m->m_cx);
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	if (JS_GetProperty(m->m_cx, global, "Vector2Dprototype", &proto))
-		m->m_ScriptValCache[CACHE_VECTOR2DPROTO] = DefPersistentRooted<JS::Value>(GetJSRuntime(), proto);
+		m->m_ScriptValCache[CACHE_VECTOR2DPROTO].init(GetJSRuntime(), proto);
 	if (JS_GetProperty(m->m_cx, global, "Vector3Dprototype", &proto))
-		m->m_ScriptValCache[CACHE_VECTOR3DPROTO] = DefPersistentRooted<JS::Value>(GetJSRuntime(), proto);
+		m->m_ScriptValCache[CACHE_VECTOR3DPROTO].init(GetJSRuntime(), proto);
 	return true;
 }
 
@@ -554,13 +544,11 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 	if (obj == NULL)
 		throw PSERROR_Scripting_DefineType_CreationFailed();
 
-	CustomType type;
+	CustomType& type = m_CustomObjectTypes[typeName];
 
-	type.m_Prototype = DefPersistentRooted<JSObject*>(m->m_cx, obj);
+	type.m_Prototype.init(m->m_cx, obj);
 	type.m_Class = clasp;
 	type.m_Constructor = constructor;
-
-	m_CustomObjectTypes[typeName] = std::move(type);
 }
 
 JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const
@@ -571,7 +559,7 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const
 		throw PSERROR_Scripting_TypeDoesNotExist();
 
 	JS::RootedObject prototype(m->m_cx, it->second.m_Prototype.get());
-	return JS_NewObject(m->m_cx, (*it).second.m_Class, prototype, JS::NullPtr());
+	return JS_NewObjectWithGivenProto(m->m_cx, it->second.m_Class, prototype);
 }
 
 bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name)
@@ -663,7 +651,7 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS:
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
 	utf16string name16(name, name + wcslen(name));
-	if (!JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const char16_t*>(name16.c_str()), name16.length(), value, NULL, NULL, attrs))
+	if (!JS_DefineUCProperty(m->m_cx, object, reinterpret_cast<const char16_t*>(name16.c_str()), name16.length(), value, attrs))
 		return false;
 	return true;
 }
@@ -681,7 +669,8 @@ bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleV
 		return false;
 	JS::RootedObject object(m->m_cx, &obj.toObject());
 
-	if (!JS_DefinePropertyById(m->m_cx, object, INT_TO_JSID(name), value, NULL, NULL, attrs))
+	JS::RootedId id(m->m_cx, INT_TO_JSID(name));
+	if (!JS_DefinePropertyById(m->m_cx, object, id, value, attrs))
 		return false;
 	return true;
 }
@@ -788,9 +777,22 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, c
 		buf[len-1]= '\0';
 		if (0 == strcmp(&buf[0], prefix))
 		{
-			size_t len;
-			const char16_t* chars = JS_GetStringCharsAndLength(m->m_cx, name, &len);
-			out.push_back(std::string(chars, chars+len));
+			if (JS_StringHasLatin1Chars(name))
+			{
+				size_t length;
+				JS::AutoCheckCannotGC nogc;
+				const JS::Latin1Char* chars = JS_GetLatin1StringCharsAndLength(m->m_cx, nogc, name, &length);
+				if (chars)
+					out.push_back(std::string(chars, chars+length));
+			}
+			else
+			{
+				size_t length;
+				JS::AutoCheckCannotGC nogc;
+				const char16_t* chars = JS_GetTwoByteStringCharsAndLength(m->m_cx, nogc, name, &length);
+				if (chars)
+					out.push_back(std::string(chars, chars+length));
+			}
 		}
 	}
 
@@ -845,11 +847,10 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	options.setFileAndLine(filenameStr.c_str(), lineNo);
 	options.setCompileAndGo(true);
 
-	JS::RootedFunction func(m->m_cx,
-	JS_CompileUCFunction(m->m_cx, global, NULL, 0, NULL,
-			reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), options)
-	);
-	if (!func)
+	JS::RootedFunction func(m->m_cx);
+	JS::AutoObjectVector emptyScopeChain(m->m_cx);
+	if (!JS::CompileFunction(m->m_cx, emptyScopeChain, options, NULL, 0, NULL,
+	                         reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &func))
 		return false;
 
 	JS::RootedValue rval(m->m_cx);
@@ -1046,12 +1047,12 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
+		JSErrorReporter er = JS_SetErrorReporter(m->m_runtime->m_rt, NULL);
 
 		bool ok = JS_Stringify(m->m_cx, obj, JS::NullPtr(), indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
-		JS_SetErrorReporter(m->m_cx, er);
+		JS_SetErrorReporter(m->m_runtime->m_rt, er);
 
 		if (ok)
 			return str.stream.str();

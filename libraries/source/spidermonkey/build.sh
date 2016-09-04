@@ -17,31 +17,32 @@ fi
 echo "Building SpiderMonkey..."
 echo
 
-# Workaround for Windows as suggested in bugzilla bug 948534
+# Use Mozilla make on Windows
 if [ "${OS}" = "Windows_NT" ]
 then
-  MAKE="../../../build/pymake/make.py"
+  MAKE="mozmake"
 else
   MAKE=${MAKE:="make"}
 fi
 
 MAKE_OPTS="${JOBS}"
 
-CONF_OPTS="--enable-shared-js --enable-gcgenerational --disable-tests --without-intl-api" # --enable-trace-logging"
+CONF_OPTS="--enable-shared-js --disable-tests --without-intl-api"
 
-# Modify TRACE_LOG_DIR to define where the tracelogger should store its output (if enabled with --enable-trace-logging)
-TLCXXFLAGS='-DTRACE_LOG_DIR="\"/tmp/traces/\""'
+# Change the default location where the tracelogger should store its output.
+# The default location is . on Windows and /tmp/ on *nix.
+TLCXXFLAGS='-DTRACE_LOG_DIR="\"../../source/tools/tracelogger/\""'
 
 # We bundle prebuilt binaries for Windows and the .libs for nspr aren't included.
 # If you want to build on Windows, check README.txt and edit the absolute paths 
-# to match your enviroment.
+# to match your environment.
 if [ "${OS}" = "Windows_NT" ]
 then
-  NSPR_INCLUDES="-IC:/Projects/nspr/nspr-4.10.7/nspr/dist/include/nspr"
+  NSPR_INCLUDES="-IC:/Projects/nspr/nspr-4.12/nspr/dist/include/nspr"
   NSPR_LIBS=" \
-  C:/Projects/nspr/nspr-4.10.7/nspr/dist/lib/nspr4.lib \
-  C:/Projects/nspr/nspr-4.10.7/nspr/dist/lib/plds4.lib \
-  C:/Projects/nspr/nspr-4.10.7/nspr/dist/lib/plc4.lib"
+  C:/Projects/nspr/nspr-4.12/nspr/dist/lib/nspr4 \
+  C:/Projects/nspr/nspr-4.12/nspr/dist/lib/plds4 \
+  C:/Projects/nspr/nspr-4.12/nspr/dist/lib/plc4"
 else
   NSPR_INCLUDES="`pkg-config nspr --cflags`"
   NSPR_LIBS="`pkg-config nspr --libs`"
@@ -63,15 +64,16 @@ CONF_OPTS="${CONF_OPTS} \
 echo "SpiderMonkey build options: ${CONF_OPTS}"
 echo ${CONF_OPTS}
 
+FOLDER=mozjs-38.0.0
+
 # Delete the existing directory to avoid conflicts and extract the tarball
-rm -rf mozjs31
-tar xjf mozjs-31.2.0.rc0.tar.bz2
-mv mozjs-31.2.0 mozjs31
+rm -rf $FOLDER
+tar xjf mozjs-38.2.1.rc0.tar.bz2
 
 # Clean up header files that may be left over by earlier versions of SpiderMonkey
 rm -rf include-unix-*
 
-cd mozjs31
+cd $FOLDER
 
 # Apply patches
 . ../patch.sh
@@ -86,14 +88,14 @@ rm -rf build-release
 # the LIBRARY_NAME for each build.
 # (We use perl instead of sed so that it works with MozillaBuild on Windows,
 # which has an ancient sed.)
-perl -i.bak -pe 's/(LIBRARY_NAME\s+=).*/$1 '\''mozjs31-ps-debug'\''/' moz.build
+perl -i.bak -pe 's/(SHARED_LIBRARY_NAME\s+=).*/$1 '\''mozjs38-ps-debug'\''/' moz.build
 mkdir -p build-debug
 cd build-debug
-CXXFLAGS="${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-debug --disable-optimize --enable-js-diagnostics --enable-gczeal # --enable-root-analysis
+CXXFLAGS="${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-debug --disable-optimize --enable-js-diagnostics --enable-gczeal
 ${MAKE} ${MAKE_OPTS}
 cd ..
 
-perl -i.bak -pe 's/(LIBRARY_NAME\s+=).*/$1 '\''mozjs31-ps-release'\''/' moz.build
+perl -i.bak -pe 's/(SHARED_LIBRARY_NAME\s+=).*/$1 '\''mozjs38-ps-release'\''/' moz.build
 mkdir -p build-release
 cd build-release
 CXXFLAGS="${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-optimize  # --enable-gczeal --enable-debug-symbols
@@ -128,19 +130,39 @@ else
   fi
 fi
 
+if [ "${OS}" = "Windows_NT" ]
+then
+  # Bug #776126
+  # SpiderMonkey uses a tweaked zlib when building, and it wrongly copies its own files to include dirs
+  # afterwards, so we have to remove them to not have them conflicting with the regular zlib
+  cd ${FOLDER}/js/src/build-release/dist/include
+  rm mozzconf.h zconf.h zlib.h
+  cd ../../../../../..
+  cd ${FOLDER}/js/src/build-debug/dist/include
+  rm mozzconf.h zconf.h zlib.h
+  cd ../../../../../..
+fi
+
 # Copy files into the necessary locations for building and running the game
 
 # js-config.h is different for debug and release builds, so we need different include directories for both
 mkdir -p ${INCLUDE_DIR_DEBUG}
 mkdir -p ${INCLUDE_DIR_RELEASE}
-cp -R -L mozjs31/js/src/build-release/dist/include/* ${INCLUDE_DIR_RELEASE}/
-cp -R -L mozjs31/js/src/build-debug/dist/include/* ${INCLUDE_DIR_DEBUG}/
+cp -R -L ${FOLDER}/js/src/build-release/dist/include/* ${INCLUDE_DIR_RELEASE}/
+cp -R -L ${FOLDER}/js/src/build-debug/dist/include/* ${INCLUDE_DIR_DEBUG}/
 
 mkdir -p lib/
-cp -L mozjs31/js/src/build-debug/dist/lib/${LIB_PREFIX}mozjs31-ps-debug${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs31-ps-debug${LIB_DST_SUFFIX}
-cp -L mozjs31/js/src/build-release/dist/lib/${LIB_PREFIX}mozjs31-ps-release${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs31-ps-release${LIB_DST_SUFFIX}
-cp -L mozjs31/js/src/build-debug/dist/bin/${LIB_PREFIX}mozjs31-ps-debug${DLL_SRC_SUFFIX} ../../../binaries/system/${LIB_PREFIX}mozjs31-ps-debug${DLL_DST_SUFFIX}
-cp -L mozjs31/js/src/build-release/dist/bin/${LIB_PREFIX}mozjs31-ps-release${DLL_SRC_SUFFIX} ../../../binaries/system/${LIB_PREFIX}mozjs31-ps-release${DLL_DST_SUFFIX}
+cp -L ${FOLDER}/js/src/build-debug/dist/lib/${LIB_PREFIX}mozjs38-ps-debug${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs38-ps-debug${LIB_DST_SUFFIX}
+cp -L ${FOLDER}/js/src/build-release/dist/lib/${LIB_PREFIX}mozjs38-ps-release${LIB_SRC_SUFFIX} lib/${LIB_PREFIX}mozjs38-ps-release${LIB_DST_SUFFIX}
+cp -L ${FOLDER}/js/src/build-debug/dist/bin/${LIB_PREFIX}mozjs38-ps-debug${DLL_SRC_SUFFIX} ../../../binaries/system/${LIB_PREFIX}mozjs38-ps-debug${DLL_DST_SUFFIX}
+cp -L ${FOLDER}/js/src/build-release/dist/bin/${LIB_PREFIX}mozjs38-ps-release${DLL_SRC_SUFFIX} ../../../binaries/system/${LIB_PREFIX}mozjs38-ps-release${DLL_DST_SUFFIX}
+
+# On Windows, also copy debugging symbols files
+if [ "${OS}" = "Windows_NT" ]
+then
+  cp -L ${FOLDER}/js/src/build-debug/js/src/${LIB_PREFIX}mozjs38-ps-debug.pdb ../../../binaries/system/${LIB_PREFIX}mozjs38-ps-debug.pdb
+  cp -L ${FOLDER}/js/src/build-release/js/src/${LIB_PREFIX}mozjs38-ps-release.pdb ../../../binaries/system/${LIB_PREFIX}mozjs38-ps-release.pdb
+fi
 
 # Flag that it's already been built successfully so we can skip it next time
 touch .already-built

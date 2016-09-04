@@ -414,11 +414,13 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	options.setFileAndLine(CodeName.c_str(), 0);
 	options.setCompileAndGo(true);
 
-	JS::RootedFunction func(cx, JS_CompileFunction(cx, globalObj,
-		buf, paramCount, paramNames, Code.c_str(), Code.length(), options));
-
-	if (!func)
-		return; // JS will report an error message
+	JS::RootedFunction func(cx);
+	JS::AutoObjectVector emptyScopeChain(cx);
+	if (!JS::CompileFunction(cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
+	{
+		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", Action.c_str());
+		return;
+	}
 
 	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
 	SetScriptHandler(Action, funcObj);
@@ -502,9 +504,9 @@ JSObject* IGUIObject::GetJSObject()
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation. TODO: Would be nice to
 	// not have these objects hang around forever using up memory, though.
-	if (m_JSObject.uninitialized())
+	if (!m_JSObject.initialized())
 	{
-		m_JSObject.set(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+		m_JSObject.init(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
 		JS_SetPrivate(m_JSObject.get(), this);
 	}
 	return m_JSObject.get();
@@ -541,7 +543,7 @@ bool IGUIObject::IsRootObject() const
 void IGUIObject::TraceMember(JSTracer* trc)
 {
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
-		JS_CallHeapObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
+		JS_CallObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8& Setting) const

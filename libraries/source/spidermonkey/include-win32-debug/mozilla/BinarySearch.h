@@ -14,51 +14,124 @@
 namespace mozilla {
 
 /*
- * The algorithm searches the given container 'c' over the sorted index range
- * [begin, end) for an index 'i' where 'c[i] == target'. If such an index 'i' is
- * found, BinarySearch returns 'true' and the index is returned via the outparam
- * 'matchOrInsertionPoint'. If no index is found, BinarySearch returns 'false'
- * and the outparam returns the first index in [begin, end] where 'target' can
- * be inserted to maintain sorted order.
+ * The BinarySearch() algorithm searches the given container |aContainer| over
+ * the sorted index range [aBegin, aEnd) for an index |i| where
+ * |aContainer[i] == aTarget|.
+ * If such an index |i| is found, BinarySearch returns |true| and the index is
+ * returned via the outparam |aMatchOrInsertionPoint|. If no index is found,
+ * BinarySearch returns |false| and the outparam returns the first index in
+ * [aBegin, aEnd] where |aTarget| can be inserted to maintain sorted order.
  *
  * Example:
  *
  *   Vector<int> sortedInts = ...
  *
  *   size_t match;
- *   if (BinarySearch(sortedInts, 0, sortedInts.length(), 13, &match))
+ *   if (BinarySearch(sortedInts, 0, sortedInts.length(), 13, &match)) {
  *     printf("found 13 at %lu\n", match);
+ *   }
+ *
+ * The BinarySearchIf() version behaves similar, but takes |aComparator|, a
+ * functor to compare the values with, instead of a value to find.
+ * That functor should take one argument - the value to compare - and return an
+ * |int| with the comparison result:
+ *
+ *   * 0, if the argument is equal to,
+ *   * less than 0, if the argument is greater than,
+ *   * greater than 0, if the argument is less than
+ *
+ * the value.
+ *
+ * Example:
+ *
+ *   struct Comparator {
+ *     int operator()(int val) const {
+ *       if (mTarget < val) return -1;
+ *       if (mValue > val) return 1;
+ *       return 0;
+ *     }
+ *     Comparator(int target) : mTarget(target) {}
+       const int mTarget;
+ *   };
+ *
+ *   Vector<int> sortedInts = ...
+ *
+ *   size_t match;
+ *   if (BinarySearchIf(sortedInts, 0, sortedInts.length(), Comparator(13), &match)) {
+ *     printf("found 13 at %lu\n", match);
+ *   }
+ *
  */
 
-template <typename Container, typename T>
+template<typename Container, typename Comparator>
 bool
-BinarySearch(const Container &c, size_t begin, size_t end, T target, size_t *matchOrInsertionPoint)
+BinarySearchIf(const Container& aContainer, size_t aBegin, size_t aEnd,
+               const Comparator& aCompare, size_t* aMatchOrInsertionPoint)
 {
-  MOZ_ASSERT(begin <= end);
+  MOZ_ASSERT(aBegin <= aEnd);
 
-  size_t low = begin;
-  size_t high = end;
-  while (low != high) {
+  size_t low = aBegin;
+  size_t high = aEnd;
+  while (high != low) {
     size_t middle = low + (high - low) / 2;
-    const T &middleValue = c[middle];
 
-    MOZ_ASSERT(c[low] <= c[middle]);
-    MOZ_ASSERT(c[middle] <= c[high - 1]);
-    MOZ_ASSERT(c[low] <= c[high - 1]);
+    // Allow any intermediate type so long as it provides a suitable ordering
+    // relation.
+    const int result = aCompare(aContainer[middle]);
 
-    if (target == middleValue) {
-      *matchOrInsertionPoint = middle;
+    if (result == 0) {
+      *aMatchOrInsertionPoint = middle;
       return true;
     }
 
-    if (target < middleValue)
+    if (result < 0) {
       high = middle;
-    else
+    } else {
       low = middle + 1;
+    }
   }
 
-  *matchOrInsertionPoint = low;
+  *aMatchOrInsertionPoint = low;
   return false;
+}
+
+namespace detail {
+
+template<class T>
+class BinarySearchDefaultComparator
+{
+public:
+  explicit BinarySearchDefaultComparator(const T& aTarget)
+    : mTarget(aTarget)
+  {}
+
+  template <class U>
+  int operator()(const U& val) const {
+    if (mTarget == val) {
+      return 0;
+    }
+
+    if (mTarget < val) {
+      return -1;
+    }
+
+    return 1;
+  }
+
+private:
+  const T& mTarget;
+};
+
+} // namespace detail
+
+template <typename Container, typename T>
+bool
+BinarySearch(const Container& aContainer, size_t aBegin, size_t aEnd,
+             T aTarget, size_t* aMatchOrInsertionPoint)
+{
+  return BinarySearchIf(aContainer, aBegin, aEnd,
+                        detail::BinarySearchDefaultComparator<T>(aTarget),
+                        aMatchOrInsertionPoint);
 }
 
 } // namespace mozilla

@@ -46,6 +46,7 @@
 #endif
 
 #include "jsfriendapi.h"
+#include "js/Conversions.h"
 #include "js/GCAPI.h"
 #include "js/StructuredClone.h"
 

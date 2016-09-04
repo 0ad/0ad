@@ -376,7 +376,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 	// Got child nodes - convert this node into a hash-table-style object:
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	if (!obj)
 	{
 		ret.setUndefined();

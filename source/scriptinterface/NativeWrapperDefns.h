@@ -151,7 +151,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
-#define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(cx, argv.handleAt(i), a##i);
+#define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(cx, argv[i], a##i);
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \

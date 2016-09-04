@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ JS::Value ICmpFootprint::GetShape_wrapper()
 	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	if (!obj)
 		return JS::UndefinedValue();
 

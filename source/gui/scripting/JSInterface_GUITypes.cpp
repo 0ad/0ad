@@ -23,11 +23,10 @@
 /**** GUISize ****/
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
-		JS_PropertyStub, JS_DeletePropertyStub,
-		JS_PropertyStub, JS_StrictPropertyStub,
-		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, NULL,
-		NULL, NULL, JSI_GUISize::construct, NULL
+	nullptr, nullptr,
+	nullptr, nullptr,
+	nullptr, nullptr, nullptr, nullptr,
+	nullptr, nullptr, JSI_GUISize::construct, nullptr
 };
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] =
@@ -132,11 +131,10 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, jsval* vp)
 
 JSClass JSI_GUIColor::JSI_class = {
 	"GUIColor", 0,
-		JS_PropertyStub, JS_DeletePropertyStub,
-		JS_PropertyStub, JS_StrictPropertyStub,
-		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, NULL,
-		NULL, NULL, JSI_GUIColor::construct, NULL
+	nullptr, nullptr,
+	nullptr, nullptr,
+	nullptr, nullptr, nullptr, nullptr,
+	nullptr, nullptr, JSI_GUIColor::construct, nullptr
 };
 
 JSFunctionSpec JSI_GUIColor::JSI_methods[] =
@@ -202,11 +200,10 @@ bool JSI_GUIColor::toString(JSContext* cx, uint argc, jsval* vp)
 
 JSClass JSI_GUIMouse::JSI_class = {
 	"GUIMouse", 0,
-		JS_PropertyStub, JS_DeletePropertyStub,
-		JS_PropertyStub, JS_StrictPropertyStub,
-		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, NULL,
-		NULL, NULL, JSI_GUIMouse::construct, NULL
+	nullptr, nullptr,
+	nullptr, nullptr,
+	nullptr, nullptr, nullptr, nullptr,
+	nullptr, nullptr, JSI_GUIMouse::construct, nullptr
 };
 
 JSFunctionSpec JSI_GUIMouse::JSI_methods[] =

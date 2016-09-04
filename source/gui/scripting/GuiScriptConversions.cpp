@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 	default: typeName = "(unknown)"; break;
 	}
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -63,7 +63,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		// SET(obj, "which", (int)val.ev.key.which); // (not in wsdl.h)
 		// SET(obj, "state", (int)val.ev.key.state); // (not in wsdl.h)
 
-		JS::RootedObject keysym(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+		JS::RootedObject keysym(cx, JS_NewPlainObject(cx));
 		if (!keysym)
 		{
 			ret.setUndefined();

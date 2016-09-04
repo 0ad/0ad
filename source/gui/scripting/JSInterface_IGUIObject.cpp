@@ -29,14 +29,14 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 JSClass JSI_IGUIObject::JSI_class = {
 	"GUIObject", JSCLASS_HAS_PRIVATE,
-	JS_PropertyStub, JS_DeletePropertyStub,
+	nullptr, nullptr,
 	JSI_IGUIObject::getProperty, JSI_IGUIObject::setProperty,
-	JS_EnumerateStub, JS_ResolveStub,
-	JS_ConvertStub, NULL,
-	NULL, NULL, JSI_IGUIObject::construct, NULL
+	nullptr, nullptr, nullptr, nullptr,
+	nullptr, nullptr, JSI_IGUIObject::construct, nullptr
 };
 
 JSPropertySpec JSI_IGUIObject::JSI_props[] =
@@ -612,7 +612,7 @@ bool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
 	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIObject"));
 
 	// Store the IGUIObject in the JS object's 'private' area
-	IGUIObject* guiObject = (IGUIObject*)JSVAL_TO_PRIVATE(args[0]);
+	IGUIObject* guiObject = (IGUIObject*)args[0].get().toPrivate();
 	JS_SetPrivate(obj, guiObject);
 
 	args.rval().setObject(*obj);
@@ -690,7 +690,7 @@ bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), jsval* vp
 	e->UpdateCachedSize();
 	CRect size = e->m_CachedActualSize;
 
-	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr())));
+	JS::RootedValue objVal(cx, JS::ObjectValue(*JS_NewPlainObject(cx)));
 	try
 	{
 		ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;

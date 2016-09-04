@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -542,10 +542,10 @@ private:
 	CGUI									*m_pGUI;
 
 	// Internal storage for registered script handlers.
-	std::map<CStr, JS::Heap<JSObject*> > m_ScriptHandlers;
+	std::map<CStr, JS::Heap<JSObject*> >	m_ScriptHandlers;
 
 	// Cached JSObject representing this GUI object
-	DefPersistentRooted<JSObject*>			 m_JSObject;
+	JS::PersistentRootedObject				m_JSObject;
 };
 
 

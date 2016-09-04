@@ -30,7 +30,7 @@ public:
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
 
-		JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+		JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 		ObjectIdCache<u32> map(g_ScriptRuntime);
 		map.init();
 

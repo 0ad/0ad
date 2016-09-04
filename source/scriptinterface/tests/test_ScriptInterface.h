@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "1+"));
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 1\nSyntaxError: syntax error");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 1\nSyntaxError: expected expression, got end of script");
 	}
 
 	void test_loadscript_strict_warning()

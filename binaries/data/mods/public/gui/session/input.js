@@ -924,8 +924,11 @@ function handleInputAfterGui(ev)
 				var action = determineAction(ev.x, ev.y);
 				if (!action)
 					break;
-				preSelectedAction = ACTION_NONE;
-				inputState = INPUT_NORMAL;
+				if (!Engine.HotkeyIsPressed("session.queue"))
+				{
+					preSelectedAction = ACTION_NONE;
+					inputState = INPUT_NORMAL;
+				}
 				return doAction(action, ev);
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT && preSelectedAction != ACTION_NONE)

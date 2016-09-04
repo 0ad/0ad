@@ -591,9 +591,9 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if _OPTIONS["with-system-mozjs31"] then
+			if _OPTIONS["with-system-mozjs38"] then
 				if not _OPTIONS["android"] then
-					pkgconfig_cflags("mozjs-31")
+					pkgconfig_cflags("mozjs-38")
 				end
 			else
 				if os.is("windows") then
@@ -611,12 +611,12 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if _OPTIONS["with-system-mozjs31"] then
+			if _OPTIONS["with-system-mozjs38"] then
 				if _OPTIONS["android"] then
-					links { "mozjs-31" }
+					links { "mozjs-38" }
 				else
 					pkgconfig_libs("nspr")
-					pkgconfig_libs("mozjs-31")
+					pkgconfig_libs("mozjs-38")
 				end
 			else
 				if os.is("macosx") then
@@ -624,9 +624,9 @@ extern_lib_defs = {
 					links { "nspr4", "plc4", "plds4" }
 				end
 				configuration "Debug"
-					links { "mozjs31-ps-debug" }
+					links { "mozjs38-ps-debug" }
 				configuration "Release"
-					links { "mozjs31-ps-release" }
+					links { "mozjs38-ps-release" }
 				configuration { }
 				add_source_lib_paths("spidermonkey")
 			end

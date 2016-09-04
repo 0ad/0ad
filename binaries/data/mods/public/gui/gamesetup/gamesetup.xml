@@ -6,6 +6,7 @@
 	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility.js"/>
+	<script file="gui/common/gamedescription.js"/>
 	<script file="gui/common/network.js"/>
 	<script file="gui/common/settings.js"/>
 	<script file="gui/common/timer.js"/>
@@ -208,7 +209,7 @@
 			<object size="100%-425 529 100%-25 100%-60">
 				<object name="mapInfoName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
 				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
-					<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
+					<object name="mapInfoDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
 				</object>
 			</object>
 

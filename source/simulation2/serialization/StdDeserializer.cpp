@@ -38,7 +38,7 @@ CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istrea
 
 	// Add a dummy tag because the serializer uses the tag 0 to indicate that a value
 	// needs to be serialized and then tagged
-	m_dummyObject.set(JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	m_dummyObject = JS_NewPlainObject(cx);
 	m_ScriptBackrefs.push_back(JS::Heap<JSObject*>(m_dummyObject));
 }
 
@@ -56,10 +56,10 @@ void CStdDeserializer::Trace(JSTracer *trc, void *data)
 void CStdDeserializer::TraceMember(JSTracer *trc)
 {
 	for (size_t i=0; i<m_ScriptBackrefs.size(); ++i)
-		JS_CallHeapObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
+		JS_CallObjectTracer(trc, &m_ScriptBackrefs[i], "StdDeserializer::m_ScriptBackrefs");
 
 	for (std::pair<const std::wstring, JS::Heap<JSObject*>>& proto : m_SerializablePrototypes)
-		JS_CallHeapObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
+		JS_CallObjectTracer(trc, &proto.second, "StdDeserializer::m_SerializablePrototypes");
 }
 
 void CStdDeserializer::Get(const char* name, u8* data, size_t len)
@@ -172,7 +172,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		}
 		else if (type == SCRIPT_TYPE_OBJECT)
 		{
-			obj.set(JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+			obj.set(JS_NewPlainObject(cx));
 		}
 		else // SCRIPT_TYPE_OBJECT_PROTOTYPE
 		{
@@ -189,7 +189,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			if (!proto || !parent)
 				throw PSERROR_Deserialize_ScriptError();
 
-			obj.set(JS_NewObject(cx, nullptr, proto, parent));
+			// TODO: Remove support for parent since this is dropped upstream SpiderMonkey
+			obj.set(JS_NewObjectWithGivenProto(cx, nullptr, proto, parent));
 			if (!obj)
 				throw PSERROR_Deserialize_ScriptError("JS_NewObject failed");
 
@@ -227,15 +228,30 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 		uint32_t numProps;
 		NumberU32_Unbounded("num props", numProps);
-
+		bool isLatin1;
 		for (uint32_t i = 0; i < numProps; ++i)
 		{
-			utf16string propname;
-			ReadStringUTF16("prop name", propname);
-			JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
+			Bool("isLatin1", isLatin1);
+			if (isLatin1)
+			{
+				std::vector<JS::Latin1Char> propname;
+				ReadStringLatin1("prop name", propname);
+				JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
 
-			if (!JS_SetUCProperty(cx, obj, (const char16_t*)propname.data(), propname.length(), propval))
-				throw PSERROR_Deserialize_ScriptError();
+				utf16string prp(propname.begin(), propname.end());;
+// TODO: Should ask upstream about getting a variant of JS_SetProperty with a length param.
+				if (!JS_SetUCProperty(cx, obj, (const char16_t*)prp.data(), prp.length(), propval))
+					throw PSERROR_Deserialize_ScriptError();
+			}
+			else
+			{
+				utf16string propname;
+				ReadStringUTF16("prop name", propname);
+				JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
+
+				if (!JS_SetUCProperty(cx, obj, (const char16_t*)propname.data(), propname.length(), propval))
+					throw PSERROR_Deserialize_ScriptError();
+			}
 		}
 
 		return JS::ObjectValue(*obj);
@@ -406,10 +422,9 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 	}
 	case SCRIPT_TYPE_OBJECT_MAP:
 	{
+		JS::RootedObject obj(cx, JS::NewMapObject(cx));
 		u32 mapSize;
 		NumberU32_Unbounded("map size", mapSize);
-		JS::RootedValue mapVal(cx);
-		m_ScriptInterface.Eval("(new Map())", &mapVal);
 
 		// To match the serializer order, we reserve the map's backref tag here
 		u32 mapTag = ReserveScriptBackref();
@@ -418,11 +433,10 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		{
 			JS::RootedValue key(cx, ReadScriptVal("map key", JS::NullPtr()));
 			JS::RootedValue value(cx, ReadScriptVal("map value", JS::NullPtr()));
-			m_ScriptInterface.CallFunctionVoid(mapVal, "set", key, value);
+			JS::MapSet(cx, obj, key, value);
 		}
-		JS::RootedObject mapObj(cx, &mapVal.toObject());
-		SetReservedScriptBackref(mapTag, mapObj);
-		return mapVal;
+		SetReservedScriptBackref(mapTag, obj);
+		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_OBJECT_SET:
 	{
@@ -448,6 +462,15 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 	}
 }
 
+void CStdDeserializer::ReadStringLatin1(const char* name, std::vector<JS::Latin1Char>& str)
+{
+	uint32_t len;
+	NumberU32_Unbounded("string length", len);
+	RequireBytesInStream(len);
+	str.resize(len);
+	Get(name, (u8*)str.data(), len);
+}
+
 void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
 {
 	uint32_t len;
@@ -459,16 +482,30 @@ void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
 
 void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString out)
 {
-	utf16string str;
-	ReadStringUTF16(name, str);
-
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
-	out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
-	if (!out)
-		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
+	bool isLatin1;
+	Bool("isLatin1", isLatin1);
+	if (isLatin1)
+	{
+		std::vector<JS::Latin1Char> str;
+		ReadStringLatin1(name, str);
+
+		out.set(JS_NewStringCopyN(m_ScriptInterface.GetContext(), (const char*)str.data(), str.size()));
+		if (!out)
+			throw PSERROR_Deserialize_ScriptError("JS_NewStringCopyN failed");
+	}
+	else
+	{
+		utf16string str;
+		ReadStringUTF16(name, str);
+
+		out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
+		if (!out)
+			throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
+	}
 }
 
 void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)

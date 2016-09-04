@@ -1,7 +1,4 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sw=4 et tw=80:
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
+/* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
@@ -11,8 +8,8 @@
  * with correct garbage collection handling (JSObjects can move in memory).
  *
  * The code in this class was copied from here and modified to work in our environment.
- *  * https://mxr.mozilla.org/mozilla-esr31/source/js/ipc/JavaScriptShared.h
- *  * https://mxr.mozilla.org/mozilla-esr31/source/js/ipc/JavaScriptShared.cpp
+ *  * https://mxr.mozilla.org/mozilla-esr38/source/js/ipc/JavaScriptShared.h
+ *  * https://mxr.mozilla.org/mozilla-esr38/source/js/ipc/JavaScriptShared.cpp
  *
  * When updating SpiderMonkey, you most likely have to reintegrate an updated version
  * of the class(es) in this file. The best way is probably to get a diff between the
@@ -31,8 +28,8 @@
 template <typename T>
 class ObjectIdCache
 {
-	typedef js::PointerHasher<JSObject *, 3> Hasher;
-	typedef js::HashMap<JSObject *, T, Hasher, js::SystemAllocPolicy> ObjectIdTable;
+	typedef js::PointerHasher<JSObject*, 3> Hasher;
+	typedef js::HashMap<JSObject*, T, Hasher, js::SystemAllocPolicy> Table;
 
 	NONCOPYABLE(ObjectIdCache);
 
@@ -45,8 +42,9 @@ public:
 
 	~ObjectIdCache()
 	{
-		if (table_) {
-			m_rt->AddDeferredFinalizationObject(std::shared_ptr<void>((void*)table_, DeleteObjectIDTable));
+		if (table_)
+		{
+			m_rt->AddDeferredFinalizationObject(std::shared_ptr<void>((void*)table_, DeleteTable));
 			table_ = nullptr;
 		}
 
@@ -55,21 +53,36 @@ public:
 
 	bool init()
 	{
-		MOZ_ASSERT(!table_);
-		table_ = new ObjectIdTable(js::SystemAllocPolicy());
+		if (table_)
+			return true;
+
+		table_ = new Table(js::SystemAllocPolicy());
 		return table_ && table_->init(32);
 	}
 
-	void trace(JSTracer *trc)
+	void trace(JSTracer* trc)
 	{
-		for (typename ObjectIdTable::Range r(table_->all()); !r.empty(); r.popFront()) {
-			JSObject *obj = r.front().key();
-			JS_CallObjectTracer(trc, &obj, "ipc-id");
-			MOZ_ASSERT(obj == r.front().key());
+		for (typename Table::Enum e(*table_); !e.empty(); e.popFront())
+		{
+			JSObject* obj = e.front().key();
+			JS_CallUnbarrieredObjectTracer(trc, &obj, "ipc-object");
+			if (obj != e.front().key())
+				e.rekeyFront(obj);
 		}
 	}
 
-	bool add(JSContext *cx, JSObject *obj, T id)
+// TODO sweep?
+
+	bool find(JSObject* obj, T& ret)
+	{
+		typename Table::Ptr p = table_->lookup(obj);
+		if (!p)
+			return false;
+		ret = p->value();
+		return true;
+	}
+
+	bool add(JSContext* cx, JSObject* obj, T id)
 	{
 		if (!table_->put(obj, id))
 			return false;
@@ -77,19 +90,12 @@ public:
 		return true;
 	}
 
-	bool find(JSObject *obj, T& ret)
-	{
-		typename ObjectIdTable::Ptr p = table_->lookup(obj);
-		if (!p)
-			return false;
-		ret = p->value();
-		return true;
-	}
-
-	void remove(JSObject *obj)
+	void remove(JSObject* obj)
 	{
 		table_->remove(obj);
 	}
+
+// TODO clear?
 
 	bool empty()
 	{
@@ -102,26 +108,26 @@ public:
 	}
 
 private:
-	static void keyMarkCallback(JSTracer *trc, JSObject *key, void *data)
+	static void keyMarkCallback(JSTracer* trc, JSObject* key, void* data)
 	{
-		ObjectIdTable* table = static_cast<ObjectIdTable*>(data);
-		JSObject *prior = key;
-		JS_CallObjectTracer(trc, &key, "ObjectIdCache::table_ key");
+		Table* table = static_cast<Table*>(data);
+		JSObject* prior = key;
+		JS_CallUnbarrieredObjectTracer(trc, &key, "ObjectIdCache::table_ key");
 		table->rekeyIfMoved(prior, key);
 	}
 
-	static void Trace(JSTracer *trc, void *data)
+	static void Trace(JSTracer* trc, void* data)
 	{
 		reinterpret_cast<ObjectIdCache*>(data)->trace(trc);
 	}
 
-	static void DeleteObjectIDTable(void* table)
+	static void DeleteTable(void* table)
 	{
-		delete (ObjectIdTable*)table;
+		delete (Table*)table;
 	}
 
 	shared_ptr<ScriptRuntime> m_rt;
-	ObjectIdTable *table_;
+	Table* table_;
 };
 
 #endif // INCLUDED_OBJECTTOIDMAP

@@ -12,6 +12,8 @@
 #ifndef mozilla_AllocPolicy_h
 #define mozilla_AllocPolicy_h
 
+#include "mozilla/TemplateLib.h"
+
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -24,14 +26,13 @@ namespace mozilla {
  * mechanism when OOM occurs.  The concept modeled here is as follows:
  *
  *  - public copy constructor, assignment, destructor
- *  - void* malloc_(size_t)
+ *  - template <typename T> T* pod_malloc(size_t)
  *      Responsible for OOM reporting when null is returned.
- *  - void* calloc_(size_t)
+ *  - template <typename T> T* pod_calloc(size_t)
  *      Responsible for OOM reporting when null is returned.
- *  - void* realloc_(void*, size_t, size_t)
- *      Responsible for OOM reporting when null is returned.  The *used* bytes
- *      of the previous buffer is passed in (rather than the old allocation
- *      size), in addition to the *new* allocation size requested.
+ *  - template <typename T> T* pod_realloc(T*, size_t, size_t)
+ *      Responsible for OOM reporting when null is returned.  The old allocation
+ *      size is passed in, in addition to the new allocation size requested.
  *  - void free_(void*)
  *  - void reportAllocOverflow() const
  *      Called on allocation overflow (that is, an allocation implicitly tried
@@ -49,14 +50,40 @@ namespace mozilla {
  */
 class MallocAllocPolicy
 {
-  public:
-    void* malloc_(size_t bytes) { return malloc(bytes); }
-    void* calloc_(size_t bytes) { return calloc(bytes, 1); }
-    void* realloc_(void* p, size_t oldBytes, size_t bytes) { return realloc(p, bytes); }
-    void free_(void* p) { free(p); }
-    void reportAllocOverflow() const {}
-};
+public:
+  template <typename T>
+  T* pod_malloc(size_t aNumElems)
+  {
+    if (aNumElems & mozilla::tl::MulOverflowMask<sizeof(T)>::value) {
+      return nullptr;
+    }
+    return static_cast<T*>(malloc(aNumElems * sizeof(T)));
+  }
 
+  template <typename T>
+  T* pod_calloc(size_t aNumElems)
+  {
+    return static_cast<T*>(calloc(aNumElems, sizeof(T)));
+  }
+
+  template <typename T>
+  T* pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize)
+  {
+    if (aNewSize & mozilla::tl::MulOverflowMask<sizeof(T)>::value) {
+      return nullptr;
+    }
+    return static_cast<T*>(realloc(aPtr, aNewSize * sizeof(T)));
+  }
+
+  void free_(void* aPtr)
+  {
+    free(aPtr);
+  }
+
+  void reportAllocOverflow() const
+  {
+  }
+};
 
 } // namespace mozilla
 

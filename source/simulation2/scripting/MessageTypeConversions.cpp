@@ -24,7 +24,7 @@
 #define TOJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
 	JSAutoRequest rq(cx); \
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr())); \
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx)); \
 	if (!obj) \
 		return JS::UndefinedValue();
 

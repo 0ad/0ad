@@ -114,7 +114,7 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptRuntimes!");
 
 	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
-	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS, parentJSRuntime);
+	m_rt = JS_NewRuntime(runtimeSize, JS::DefaultNurseryBytes, parentJSRuntime);
 	ENSURE(m_rt); // TODO: error handling
 
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
@@ -127,16 +127,12 @@ ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtim
 	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
 	JS_SetGCParameter(m_rt, JSGC_DYNAMIC_HEAP_GROWTH, false);
-	
-	m_dummyContext = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
-	ENSURE(m_dummyContext);
 
 	ScriptEngine::GetSingleton().RegisterRuntime(m_rt);
 }
 
 ScriptRuntime::~ScriptRuntime()
 {
-	JS_DestroyContext(m_dummyContext);
 	JS_SetGCCallback(m_rt, nullptr, nullptr);
 	JS_DestroyRuntime(m_rt);
 	ENSURE(m_FinalizationListObjectIdCache.empty() && "Leak: Removing callback while some objects still aren't finalized!");
@@ -248,7 +244,10 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 					printf("Running incremental GC slice \n");
 #endif
 				PrepareContextsForIncrementalGC();
-				JS::IncrementalGC(m_rt, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+				if (!JS::IsIncrementalGCInProgress(m_rt))
+					JS::StartIncrementalGC(m_rt, GC_NORMAL, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+				else
+					JS::IncrementalGCSlice(m_rt, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
 			}
 			m_LastGCBytes = gcBytes;
 		}
@@ -259,7 +258,7 @@ void ScriptRuntime::ShrinkingGC()
 {
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_COMPARTMENT);
 	JS::PrepareForFullGC(m_rt);
-	JS::ShrinkingGC(m_rt, JS::gcreason::REFRESH_FRAME);
+	JS::GCForReason(m_rt, GC_SHRINK, JS::gcreason::REFRESH_FRAME);
 	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 

@@ -113,7 +113,7 @@ template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValu
 template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandleValue ret, CColor const& val)
 {
 	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -182,7 +182,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	// apply the Vector3D prototype to the return value;
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
 	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR3DPROTO).toObject());
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, proto, JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObjectWithGivenProto(cx, nullptr, proto));
 
 	if (!obj)
 	{
@@ -229,7 +229,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 	// apply the Vector2D prototype to the return value
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
 	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR2DPROTO).toObject());
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, proto, JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewObjectWithGivenProto(cx, nullptr, proto));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -253,7 +253,11 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u8));
 	JS::RootedObject objArr(cx, JS_NewUint8Array(cx, length));
-	memcpy((void*)JS_GetUint8ArrayData(objArr), val.m_Data, nbytes);
+	// Copy the array data and then remove the no-GC check to allow further changes to the JS data
+	{
+		JS::AutoCheckCannotGC nogc;
+		memcpy((void*)JS_GetUint8ArrayData(objArr, nogc), val.m_Data, nbytes);
+	}
 
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
 	JS::RootedValue w(cx);
@@ -261,7 +265,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 	ScriptInterface::ToJSVal(cx, &w, val.m_W);
 	ScriptInterface::ToJSVal(cx, &h, val.m_H);
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	JS_SetProperty(cx, obj, "width", w);
 	JS_SetProperty(cx, obj, "height", h);
 	JS_SetProperty(cx, obj, "data", data);
@@ -275,7 +279,11 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u16));
 	JS::RootedObject objArr(cx, JS_NewUint16Array(cx, length));
-	memcpy((void*)JS_GetUint16ArrayData(objArr), val.m_Data, nbytes);
+	// Copy the array data and then remove the no-GC check to allow further changes to the JS data
+	{
+		JS::AutoCheckCannotGC nogc;
+		memcpy((void*)JS_GetUint16ArrayData(objArr, nogc), val.m_Data, nbytes);
+	}
  
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
 	JS::RootedValue w(cx);
@@ -283,7 +291,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	ScriptInterface::ToJSVal(cx, &w, val.m_W);
 	ScriptInterface::ToJSVal(cx, &h, val.m_H);
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
 	JS_SetProperty(cx, obj, "width", w);
 	JS_SetProperty(cx, obj, "height", h);
 	JS_SetProperty(cx, obj, "data", data);

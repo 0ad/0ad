@@ -52,7 +52,7 @@
 // http://src.chromium.org/viewvc/blink/trunk/Source/wtf/FastMalloc.h
 // Since we don't allocate Decimal objects, no need.
 #define WTF_MAKE_FAST_ALLOCATED \
-  void ignore_this_dummy_method() MOZ_DELETE
+  void ignore_this_dummy_method() = delete
 
 namespace WebCore {
 
@@ -112,7 +112,7 @@ public:
         Sign m_sign;
     };
 
-    MFBT_API Decimal(int32_t = 0);
+    MFBT_API explicit Decimal(int32_t = 0);
     MFBT_API Decimal(Sign, int exponent, uint64_t coefficient);
     MFBT_API Decimal(const Decimal&);
 
@@ -185,7 +185,7 @@ private:
         int exponent;
     };
 
-    MFBT_API Decimal(double);
+    MFBT_API explicit Decimal(double);
     MFBT_API Decimal compareTo(const Decimal&) const;
 
     static MFBT_API AlignedOperands alignOperands(const Decimal& lhs, const Decimal& rhs);
