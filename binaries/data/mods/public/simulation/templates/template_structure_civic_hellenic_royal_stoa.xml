@@ -28,6 +28,7 @@
     <Tooltip>Recruit special units.</Tooltip>
     <Icon>gaia/special_stoa.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Town</VisibleClasses>
   </Identity>
   <Loot>
     <xp>10</xp>
