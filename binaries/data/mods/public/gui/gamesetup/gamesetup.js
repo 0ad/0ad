@@ -1071,13 +1071,11 @@ function onTick()
 function resizePlayerData(targetPlayerData, maxPlayers)
 {
 	if (g_IsNetworked)
-		// Unassign excess players
-		for (let guid in g_PlayerAssignments)
-		{
-			let playerID = g_PlayerAssignments[guid].player;
-			if (playerID > maxPlayers)
-				Engine.AssignNetworkPlayer(playerID, "");
-		}
+	{
+		// Remove invalid playerIDs from the servers playerassignments copy
+		for (let playerID = +maxPlayers + 1; playerID <= g_MaxPlayers; ++playerID)
+			Engine.AssignNetworkPlayer(playerID, "");
+	}
 	else if (!g_PlayerAssignments.local ||
 	         g_PlayerAssignments.local.player > maxPlayers)
 		g_PlayerAssignments = {
