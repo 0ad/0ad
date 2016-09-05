@@ -216,7 +216,7 @@ function project_set_build_flags()
 
 	else	-- *nix
 
-		-- TODO, FIXME: This check is incorrect because it means that some additional flags will be added inside the "else" branch if the 
+		-- TODO, FIXME: This check is incorrect because it means that some additional flags will be added inside the "else" branch if the
 		-- compiler is ICC and minimal-flags is specified (ticket: #2994)
 		if cc == "icc" and not _OPTIONS["minimal-flags"] then
 			buildoptions {
@@ -296,7 +296,7 @@ function project_set_build_flags()
 					}
 				end
 			end
-			
+
 			buildoptions {
 				-- Enable C++11 standard.
 				"-std=c++0x"
@@ -379,7 +379,7 @@ function project_set_build_flags()
 
 				-- Adding the executable path and taking care of correct escaping
 				if _ACTION == "gmake" then
-					linkoptions { "-Wl,-rpath,'$$ORIGIN'" } 
+					linkoptions { "-Wl,-rpath,'$$ORIGIN'" }
 				elseif _ACTION == "codeblocks" then
 					linkoptions { "-Wl,-R\\\\$$$ORIGIN" }
 				end
@@ -607,10 +607,10 @@ function setup_all_libs ()
 		"boost",
 	}
 	setup_third_party_static_lib_project("tinygettext", source_dirs, extern_libs, { } )
-	
+
 	-- it's an external library and we don't want to modify its source to fix warnings, so we just disable them to avoid noise in the compile output
 	if _ACTION == "vs2013" then
-		buildoptions { 
+		buildoptions {
 			"/wd4127",
 			"/wd4309",
 			"/wd4800",
@@ -730,12 +730,12 @@ function setup_all_libs ()
 		"icu",
 		"iconv",
 	}
-	
+
 	if not _OPTIONS["without-audio"] then
 		table.insert(extern_libs, "openal")
 		table.insert(extern_libs, "vorbis")
 	end
-	
+
 	setup_static_lib_project("engine", source_dirs, extern_libs, {})
 
 
@@ -843,7 +843,7 @@ function setup_all_libs ()
 	for i,v in pairs(sysdep_dirs[os.get()]) do
 		table.insert(source_dirs, v);
 	end
-	
+
 	if os.is("linux") then
 		if _OPTIONS["android"] then
 			table.insert(source_dirs, "lib/sysdep/os/android")
@@ -1088,7 +1088,7 @@ function setup_atlas_projects()
 	{	-- src
 		".",
 		"../../../third_party/jsonspirit"
-		
+
 	},{	-- include
 		"../../../third_party/jsonspirit"
 	},{	-- extern_libs
@@ -1185,7 +1185,7 @@ function setup_atlas_frontend_project (project_name)
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		flags { "WinMain" }
-		
+
 		-- see manifest.cpp
 		project_add_manifest()
 
