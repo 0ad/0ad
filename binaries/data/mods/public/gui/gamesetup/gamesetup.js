@@ -519,6 +519,31 @@ function initRadioButtons()
 	};
 }
 
+function hideStartGameButton(hidden)
+{
+	const offset = 10;
+
+	let startGame = Engine.GetGUIObjectByName("startGame");
+	startGame.hidden = hidden;
+	let right = hidden ? startGame.size.right : startGame.size.left - offset;
+
+	let cancelGame = Engine.GetGUIObjectByName("cancelGame");
+	let cancelGameSize = cancelGame.size;
+	let xButtonSize = cancelGameSize.right - cancelGameSize.left;
+	cancelGameSize.right = right;
+	right -= xButtonSize;
+
+	for (let element of ["cheatWarningText", "onscreenToolTip"])
+	{
+		let elementSize = Engine.GetGUIObjectByName(element).size;
+		elementSize.right = right - (cancelGameSize.left - elementSize.right);
+		Engine.GetGUIObjectByName(element).size = elementSize;
+	}
+
+	cancelGameSize.left = right;
+	cancelGame.size = cancelGameSize;
+}
+
 /**
  * If we're a network client, hide the controls and show the text instead.
  */
@@ -535,6 +560,9 @@ function hideControls()
 		Engine.GetGUIObjectByName("playerTeam["+i+"]").hidden = true;
 	}
 
+	// The start game button should be hidden until the player assignments are received
+	// and it is known whether the local player is an observer.
+	hideStartGameButton(true);
 	Engine.GetGUIObjectByName("startGame").enabled = true;
 }
 
@@ -724,6 +752,8 @@ function handlePlayerAssignmentMessage(message)
 			onClientLeave(guid);
 
 	g_PlayerAssignments = message.newAssignments;
+
+	hideStartGameButton(!g_IsController && g_PlayerAssignments[Engine.GetPlayerGUID()].player == -1);
 
 	updatePlayerList();
 	updateReadyUI();
@@ -1041,13 +1071,11 @@ function onTick()
 function resizePlayerData(targetPlayerData, maxPlayers)
 {
 	if (g_IsNetworked)
-		// Unassign excess players
-		for (let guid in g_PlayerAssignments)
-		{
-			let playerID = g_PlayerAssignments[guid].player;
-			if (playerID > maxPlayers)
-				Engine.AssignNetworkPlayer(playerID, "");
-		}
+	{
+		// Remove invalid playerIDs from the servers playerassignments copy
+		for (let playerID = +maxPlayers + 1; playerID <= g_MaxPlayers; ++playerID)
+			Engine.AssignNetworkPlayer(playerID, "");
+	}
 	else if (!g_PlayerAssignments.local ||
 	         g_PlayerAssignments.local.player > maxPlayers)
 		g_PlayerAssignments = {

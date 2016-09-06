@@ -26,6 +26,7 @@
     <Tooltip>Recruit Naked Fanatics.</Tooltip>
     <Icon>structures/celtic_embassy.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
   </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>

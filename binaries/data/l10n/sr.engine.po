@@ -4,14 +4,16 @@
 # 
 # Translators:
 # Aca G. <martel.gilgames@gmail.com>, 2016
+# Janko Bosnjakovic <jankoeve@gmail.com>, 2016
+# Nemanja Mihailovic <nmihailovic96@gmail.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2014-2015
 # Tom Azurian <tomtanz@outlook.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-03-19 21:19+0000\n"
-"Last-Translator: Tom Azurian <tomtanz@outlook.com>\n"
+"PO-Revision-Date: 2016-09-04 14:31+0000\n"
+"Last-Translator: Nemanja Mihailovic <nmihailovic96@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +78,7 @@ msgstr "Није ауторизовано"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Прималац привремено недоступан."
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
@@ -93,15 +95,15 @@ msgstr "Непозната грешка"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
-msgstr ""
+msgstr "Стреам грешка"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "Престојећа стрим верзија је неподржана."
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "Стреам је угашен од стране сервера"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
@@ -113,7 +115,7 @@ msgstr "Сервер је одбио конекцију"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Решавање имена домаћина сервера неуспело."
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
@@ -123,7 +125,7 @@ msgstr "Систем нема довољно меморије"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Серверски сертификати нису верификовани или ТЛС руковање није комплентно заврешено."
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
@@ -131,7 +133,7 @@ msgstr "Сервер није понудио одговарајућу TLS енк
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Аутентификација неуспела.Нетачна шифра или акаунт не постоји."
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"

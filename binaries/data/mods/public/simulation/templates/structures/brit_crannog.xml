@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
-  <BuildingAI>
-    <DefaultArrowCount>3</DefaultArrowCount>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-  </BuildingAI>
   <BuildRestrictions>
     <Territory>own ally neutral</Territory>
     <PlacementType>shore</PlacementType>
@@ -13,10 +9,6 @@
     <Circle radius="15.5"/>
     <Height>8.0</Height>
   </Footprint>
-  <Health>
-    <Max>3000</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <GenericName>Island Settlement</GenericName>
     <Civ>brit</Civ>
@@ -45,10 +37,6 @@
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
   </RallyPointRenderer>
-  <ResourceDropsite>
-    <Types>food wood stone metal</Types>
-    <Sharable>true</Sharable>
-  </ResourceDropsite>
   <VisualActor>
     <Actor>structures/britons/crannog.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

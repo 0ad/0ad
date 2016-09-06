@@ -32,6 +32,7 @@
     <GenericName>Special Building</GenericName>
     <SpecificName>Kennel</SpecificName>
     <Classes datatype="tokens">Kennel</Classes>
+    <VisibleClasses datatype="tokens">-City Town</VisibleClasses>
     <Tooltip>Train Celtic war dogs.</Tooltip>
     <Icon>structures/kennel.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

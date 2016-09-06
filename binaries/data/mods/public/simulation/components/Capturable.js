@@ -98,9 +98,9 @@ Capturable.prototype.Reduce = function(amount, playerID)
 				this.cp[i] = 0;
 			}
 		}
-		distributedAmount = numberOfEnemies ? (amount - removedAmount) / numberOfEnemies : 0;	    
+		distributedAmount = numberOfEnemies ? (amount - removedAmount) / numberOfEnemies : 0;
 	}
-	
+
 	// give all cp taken to the player
 	var takenCp = this.maxCp - this.cp.reduce((a, b) => a + b);
 	this.cp[playerID] += takenCp;
@@ -218,7 +218,7 @@ Capturable.prototype.TimerTick = function()
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	cmpTimer.CancelTimer(this.timer);
 	this.timer = 0;
-	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, {"regenerating": false, "regenRate": 0, "territoryDecay": 0});
+	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, { "regenerating": false, "regenRate": 0, "territoryDecay": 0 });
 };
 
 /**
@@ -239,7 +239,7 @@ Capturable.prototype.CheckTimer = function()
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.timer = cmpTimer.SetInterval(this.entity, IID_Capturable, "TimerTick", 1000, 1000, null);
-	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, {"ticking": true, "regenRate": regenRate, "territoryDecay": decay});
+	Engine.PostMessage(this.entity, MT_CaptureRegenStateChanged, { "regenerating": true, "regenRate": regenRate, "territoryDecay": decay });
 };
 
 //// Message Listeners ////

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
 # Victor Ptah, 2015
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"PO-Revision-Date: 2016-09-02 18:30+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -209,7 +210,7 @@ msgstr "Команда %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/functions_utility.js:413
 msgid "Observer"
@@ -474,7 +475,7 @@ msgstr "Невідома причина"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall or anti-virus software"
-msgstr ""
+msgstr "Це часто викликано тим, що UDP порт 20595 не відкритий на стороні хоста, через брандмауер або антивірусне програмне забезпечення"
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -502,7 +503,7 @@ msgstr "Вас заблокували"
 
 #: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Ім'я гравця уже використовується. Якщо ви були роз'єднані, спробуйте через декілька секунд"
 
 #: gui/common/network.js:71
 msgid "Server full"
@@ -583,7 +584,7 @@ msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "хвилина"
 msgstr[1] "хвилини"
-msgstr[2] "хвилин"
+msgstr[2] "%(min)s хвилин"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -807,7 +808,7 @@ msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:208
 msgid "Splash Damage:"
-msgstr ""
+msgstr "Сплеск ушкоджень:"
 
 #: gui/common/tooltips.js:211
 #, javascript-format
@@ -1075,7 +1076,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)Увага:%(endWarning)s Ви судячи з усього використовуєте НЕ-шейдерну (вбудовану) графіку. Ця опція буде видалена в майбутньому випуску 0 A.D., щоб забезпечити більш досконалі графічні рішення. Ми рекомендуємо замінити вашу графічну карту на більш нову, шейдерно-сумісну модель."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1136,12 +1137,12 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:116
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Потребує: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Активний: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
@@ -1159,44 +1160,44 @@ msgstr "Необхідна версія: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Несумісний повтор"
 
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
-msgstr ""
+msgstr "Недоступні зведені дані."
 
 #: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Ви впевнені, що хочете видалити цей повтор назавжди?"
 
 #: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
-msgstr ""
+msgstr "Видалити повтор"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1227,7 +1228,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "Одно- та багатокористувацький режим"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
@@ -1240,27 +1241,27 @@ msgstr "Багато гравців"
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
 msgid "Any gametype"
-msgstr ""
+msgstr "Будь-який тип гри"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "Оцінені та неоцінені ігри"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "Оцінені ігри"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "Ігри без оцінки"
 
 #: gui/replaymenu/replay_menu.js:283
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "рррр-ММ-дд ГГ:хх"
 
 #: gui/replaymenu/replay_menu.js:313
 msgid "yyyy-MM"
-msgstr ""
+msgstr "рррр-ММ"
 
 #: gui/savedgames/load.js:15 gui/savedgames/save.js:28
 msgid "No saved games found"
@@ -1269,22 +1270,22 @@ msgstr "Не знайдено збережених ігор"
 #: gui/savedgames/load.js:61
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Моди: %(mods)s"
 
 #: gui/savedgames/load.js:91
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Збережена гра може бути несумісною:"
 
 #: gui/savedgames/load.js:96
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "Необхідна версія 0 A.D. %(requiredVersion)s, в той час, як Ви використовуєте версію %(currentVersion)s."
 
 #: gui/savedgames/load.js:101
 msgid "It needs an older version of 0 A.D."
-msgstr ""
+msgstr "Необхідна більш рання версія 0 A.D."
 
 #: gui/savedgames/load.js:105
 #, javascript-format
@@ -1295,21 +1296,21 @@ msgstr ""
 
 #: gui/savedgames/load.js:115
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Збережена гра потребує різний набір модів:"
 
 #: gui/savedgames/load.js:124
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Ви все ще хочете продовжити?"
 
 #: gui/savedgames/load.js:175 gui/savedgames/save.js:58
 #: gui/savedgames/save.js:89
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:177 gui/savedgames/save.js:90
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "Збережена гра буде видалена назавжди, Ви впевнені?"
 
 #: gui/savedgames/load.js:178 gui/savedgames/save.js:91
 msgid "DELETE"
@@ -1317,16 +1318,16 @@ msgstr "Видалити"
 
 #: gui/savedgames/save.js:59
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "Збережена гра буде перезаписана, Ви впевнені?"
 
 #: gui/savedgames/save.js:60
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "ПЕРЕЗАПИСАТИ ЗБЕРЕЖЕНЕ"
 
 #: gui/structree/load.js:171
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s до %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
 #: gui/summary/layout.js:94 gui/summary/layout.js:137
@@ -1352,11 +1353,11 @@ msgstr "Загальний рахунок"
 
 #: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:99
 msgid "Total"
-msgstr ""
+msgstr "Загальний"
 
 #: gui/summary/layout.js:23
 msgid "Houses"
-msgstr ""
+msgstr "Будинки"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
@@ -1364,7 +1365,7 @@ msgstr "Економіка"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr ""
+msgstr "Застави"
 
 #: gui/summary/layout.js:26
 msgid "Military"
@@ -1376,34 +1377,34 @@ msgstr "Фортеця"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr ""
+msgstr "Громадські центри"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr ""
+msgstr "Чудеса світу"
 
 #: gui/summary/layout.js:33
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Статистика будівель (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "Побудовано"
 
 #: gui/summary/layout.js:36
 msgid "Destroyed"
-msgstr ""
+msgstr "Зруйновано"
 
 #: gui/summary/layout.js:37
 msgid "Captured"
-msgstr ""
+msgstr "Захоплено"
 
 #: gui/summary/layout.js:38 gui/summary/layout.js:73
 msgid "Lost"
-msgstr ""
+msgstr "Втрачено"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
@@ -1423,24 +1424,24 @@ msgstr "Чемпіон"
 
 #: gui/summary/layout.js:65
 msgid "Navy"
-msgstr ""
+msgstr "Військово-морський флот"
 
 #: gui/summary/layout.js:66
 msgid "Traders"
-msgstr ""
+msgstr "Купці"
 
 #: gui/summary/layout.js:70
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(lost)s / %(killed)s)"
-msgstr ""
+msgstr "Статистика юнітів (%(trained)s / %(lost)s / %(killed)s)"
 
 #: gui/summary/layout.js:72
 msgid "Trained"
-msgstr ""
+msgstr "Треновано"
 
 #: gui/summary/layout.js:74
 msgid "Killed"
-msgstr ""
+msgstr "Вбито"
 
 #: gui/summary/layout.js:95
 msgid "Food"
@@ -1463,36 +1464,36 @@ msgstr "Метал"
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "Данина\n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:103
 msgid "Sent"
-msgstr ""
+msgstr "Надіслано"
 
 #: gui/summary/layout.js:104
 msgid "Received"
-msgstr ""
+msgstr "Отримано"
 
 #: gui/summary/layout.js:109
 msgid "Treasures collected"
-msgstr ""
+msgstr "Зібрано скарбів"
 
 #: gui/summary/layout.js:110
 msgid "Loot"
-msgstr ""
+msgstr "Награбовано"
 
 #: gui/summary/layout.js:114
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "Статистика ресурсів (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:116
 msgid "Gathered"
-msgstr ""
+msgstr "Зібрано"
 
 #: gui/summary/layout.js:117
 msgid "Used"
-msgstr ""
+msgstr "Використано"
 
 #: gui/summary/layout.js:138
 msgid "Food exchanged"
@@ -1512,7 +1513,7 @@ msgstr "Металу обмінено"
 
 #: gui/summary/layout.js:142
 msgid "Barter efficiency"
-msgstr ""
+msgstr "Ефективність обміну"
 
 #: gui/summary/layout.js:143
 msgid "Trade income"
@@ -1522,76 +1523,76 @@ msgstr "Торговельний дохід"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr ""
+msgstr "Вегетаріанство\nспіввідношення"
 
 #: gui/summary/layout.js:160
 msgid "Feminization"
-msgstr ""
+msgstr "Фемінізація"
 
 #: gui/summary/layout.js:161
 msgid ""
 "Kill / Death\n"
 "ratio"
-msgstr ""
+msgstr "Вбито / Померло\nспіввідношення"
 
 #: gui/summary/layout.js:162
 msgid ""
 "Map\n"
 "exploration"
-msgstr ""
+msgstr "Карта\nрозвідано"
 
 #: gui/summary/layout.js:163
 msgid "At peak"
-msgstr ""
+msgstr "Пікове"
 
 #: gui/summary/layout.js:164
 msgid "At finish"
-msgstr ""
+msgstr "На фініші"
 
 #: gui/summary/layout.js:167
 msgid "Map control"
-msgstr ""
+msgstr "Контроль карти"
 
 #: gui/summary/layout.js:312
 msgid "Team total"
-msgstr ""
+msgstr "Загальний командний"
 
 #: gui/summary/summary.js:145
 msgid "Are you sure you want to quit the lobby?"
-msgstr ""
+msgstr "Ви впевнені, що хочете вийти з кімнати?"
 
 #: gui/summary/summary.js:196
 msgid "Current Scores"
-msgstr ""
+msgstr "Поточні Результати"
 
 #: gui/summary/summary.js:198
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Результати в кінці гри."
 
 #: gui/summary/summary.js:200
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Ви були роз'єднані."
 
 #: gui/summary/summary.js:202
 msgid "You have left the game."
-msgstr ""
+msgstr "Ви покинули гру."
 
 #: gui/summary/summary.js:204
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Ви перемогли у битві!"
 
 #: gui/summary/summary.js:206
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Ви були переможені..."
 
 #: gui/summary/summary.js:207
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Ви відмовилися від гри."
 
 #: gui/summary/summary.js:212
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
-msgstr ""
+msgstr "Тривалість гри: %(time)s"
 
 #: gui/summary/summary.js:220
 #, javascript-format
@@ -1614,18 +1615,18 @@ msgstr "Закрити"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. Подяка"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
 #: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
-msgstr "Мови"
+msgstr "Мова"
 
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr "Мови:"
+msgstr "Мова:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -1633,7 +1634,7 @@ msgstr "Мови:"
 #. settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Країна:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
@@ -1652,42 +1653,42 @@ msgstr "Приймати"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "Країна:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr ""
+msgstr "Сценарій:"
 
 #: gui/locale/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
-msgstr ""
+msgstr "Варіант (невикористаний):"
 
 #: gui/locale/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Ключові слова (невикористано):"
 
 #: gui/locale/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
-msgstr ""
+msgstr "Локальний результат:"
 
 #: gui/locale/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "Використано файлів словника:"
 
 #: gui/locale/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr ""
+msgstr "Автовизначення"
 
 #: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "Додатковий чотирибуквений скриптовий код, частина після мовного коду (як зазначено в ISO 15924)"
 
 #: gui/locale/locale_advanced.xml:(tooltip):44
 #: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ще не реалізовано."
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
@@ -1695,27 +1696,27 @@ msgstr "Ігрові налаштування"
 
 #: gui/options/options.xml:(caption):22
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: gui/options/options.xml:(caption):35
 msgid "Graphics Settings"
-msgstr ""
+msgstr "Графічні налаштування"
 
 #: gui/options/options.xml:(caption):48
 msgid "Sound Settings"
-msgstr ""
+msgstr "Налаштування Звуку"
 
 #: gui/options/options.xml:(caption):61
 msgid "Lobby Settings"
-msgstr ""
+msgstr "Налаштування Розмов"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Скинути"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
-msgstr ""
+msgstr "Повернути попереднє"
 
 #: gui/options/options.xml:(caption):83 gui/savedgames/save.xml:(caption):47
 msgid "Save"
@@ -1723,19 +1724,19 @@ msgstr "Зберегти"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Скинути ігрові налаштування користувача до початкових"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Повернутись до попередньо збережених налаштувань"
 
 #: gui/options/options.xml:(tooltip):84
 msgid "Saves changes"
-msgstr ""
+msgstr "Зберегти зміни"
 
 #: gui/options/options.xml:(tooltip):89
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "Незбережені зміни дійсні лише під час поточної сесії"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
@@ -1761,26 +1762,26 @@ msgstr "Статус: $status"
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XX: Timosthenes"
-msgstr ""
+msgstr "ALPHA XX : Timosthenes"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "УВАГА: Гра ще не завершена. Більшість функції ще не додано."
+msgstr "УВАГА: Гра ще не завершена. Більшість функцій ще не додано."
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Включити відгуки"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Відключити відгуки"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):17
 msgid "Structure Tree"
-msgstr ""
+msgstr "Дерево Структури"
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
@@ -1809,7 +1810,7 @@ msgstr "Сервер"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
-msgstr ""
+msgstr "Ігровий чат"
 
 #: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
@@ -1817,7 +1818,7 @@ msgstr "Опції"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Повтори"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1825,11 +1826,11 @@ msgstr "Редактор Сценаріїв"
 
 #: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Екран Привітання"
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
-msgstr ""
+msgstr "Вибір режиму гри"
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
@@ -1857,11 +1858,11 @@ msgstr "Повідомити про помилку"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
-msgstr ""
+msgstr "Перекласти гру"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr ""
+msgstr "Подяки"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1869,11 +1870,11 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/mainmenu.xml:(tooltip):150
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Відкрити ігровий посібник 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Перегляд структурного дерева цивілізацій, представлених в 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1881,13 +1882,13 @@ msgstr "Дізнатися більше про цивілізації у 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
-msgstr "Нажміть тут для початку нової гри"
+msgstr "Натисніть тут для початку нової гри"
 
 #: gui/pregame/mainmenu.xml:(tooltip):223
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "Пройдіть історичні військові компанії. [ЩЕ НЕ РЕАЛІЗОВАНО]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
@@ -1903,11 +1904,11 @@ msgstr "Сервер мультиплеєра.\\n\\nПотребує відкр�
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr ""
+msgstr "Запустити багатокористувацьку гру."
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
-msgstr ""
+msgstr "Налаштування параметрів гри."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
@@ -1915,7 +1916,7 @@ msgstr "Вибрати мову гри"
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Відтворення попередніх ігор."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1925,17 +1926,17 @@ msgstr "Відкрити Редактор Сценаріїв у новому в�
 
 #: gui/pregame/mainmenu.xml:(tooltip):383
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Показати екран вітання. Скористайтесь, якщо Ви сховали його помилково."
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr ""
+msgstr "Виберіть моди для використання."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Дізнайтеся, як грати, відкривати технологічні дерева, та історію колишніх цивілізацій"
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -1951,7 +1952,7 @@ msgstr "Ігрові опції та редактор сценаріїв"
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
-msgstr ""
+msgstr "Вихід з гри."
 
 #: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
@@ -1965,51 +1966,51 @@ msgstr "Тицьніть, щоб відкрити IRC чат у вашому б�
 
 #: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Натисніть, щоб відвідати 0 A.D. Простежити баг, падіння сервісу чи помилку."
 
 #: gui/pregame/mainmenu.xml:(tooltip):584
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Клацніть щоб відкрити сайт 0 A.D. для перекладу сторінки у вашому браузері."
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Клацніть щоб переглянути подяки 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):27
 msgid "Replay Games"
-msgstr ""
+msgstr "Повтори Ігор"
 
 #: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Вибрати сумісні повтори"
 
 #: gui/replaymenu/replay_menu.xml:(caption):153
 #: gui/savedgames/load.xml:(caption):57
 msgid "Map Type:"
-msgstr ""
+msgstr "Тип карти:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):168
 #: gui/savedgames/load.xml:(caption):61
 msgid "Map Size:"
-msgstr ""
+msgstr "Розмір карти:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):183
 #: gui/savedgames/load.xml:(caption):65
 msgid "Victory:"
-msgstr ""
+msgstr "Перемога:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):204
 #: gui/savedgames/load.xml:(caption):49
 msgid "Players:"
-msgstr ""
+msgstr "Гравці:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):221
 msgid "Spoiler"
-msgstr ""
+msgstr "Спойлер"
 
 #: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Main Menu"
-msgstr ""
+msgstr "Головне меню"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 #: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
@@ -2023,37 +2024,37 @@ msgstr "Підсумок"
 
 #: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
-msgstr ""
+msgstr "Запустити повтор"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Дата / Час"
 
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Гравці"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Назва карти"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Населення"
 
 #: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Тривалість"
 
 #: gui/savedgames/load.xml:(caption):38
 msgid "Load"
@@ -2061,7 +2062,7 @@ msgstr "Завантажити"
 
 #: gui/savedgames/load.xml:(caption):53
 msgid "Played time:"
-msgstr ""
+msgstr "Ігровий час:"
 
 #: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
@@ -2073,23 +2074,23 @@ msgstr "Опис:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Вітаємо!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Показувати це повідомлення у майбутньому"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Відомі проблеми (Web)"
 
 #: gui/structree/structree.xml:(caption):29
 msgid "Civilization:"
-msgstr ""
+msgstr "Цивілізація:"
 
 #: gui/structree/structree.xml:(caption):92
 msgid "Trainer Units"
-msgstr ""
+msgstr "Тренер юнітів"
 
 #: gui/summary/summary.xml:(caption):62
 msgid "Score"
@@ -2097,15 +2098,15 @@ msgstr "Рахунок"
 
 #: gui/summary/summary.xml:(caption):69
 msgid "Buildings"
-msgstr ""
+msgstr "Будівлі"
 
 #: gui/summary/summary.xml:(caption):76
 msgid "Units"
-msgstr ""
+msgstr "Юніти"
 
 #: gui/summary/summary.xml:(caption):83
 msgid "Resources"
-msgstr ""
+msgstr "Ресурси"
 
 #: gui/summary/summary.xml:(caption):90
 msgid "Market"
@@ -2113,11 +2114,11 @@ msgstr "Базар"
 
 #: gui/summary/summary.xml:(caption):97 gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Різне"
 
 #: gui/summary/summary.xml:(caption):160
 msgid "Replay"
-msgstr ""
+msgstr "Повтор"
 
 #: gui/summary/summary.xml:(caption):165
 msgid "Continue"
@@ -2129,19 +2130,19 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Звукооператор"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Композитор"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Художні керівники"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Редактор карт"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
