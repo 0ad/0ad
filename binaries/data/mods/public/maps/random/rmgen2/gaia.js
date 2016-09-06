@@ -1274,43 +1274,51 @@ function getRandomDeviation(base, deviation)
  * @param heightmap - An array with a square number of heights
  * @param tilemap - The IDs of the palletmap to be painted for each heightmap tile
  * @param pallet - The tile texture names used by the tilemap.
- * @returns the ratio of heightmap tiles per map size tiles
+ * @return the ratio of heightmap tiles per map size tiles
  */
 function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
 {
-	let lastI = -1;
-	let mapSize = getMapSize();
+	let mapSize = getMapSize(); // Width of the map in terrain tiles
 	let hmSize = Math.sqrt(heightmap.length);
-	let scale = hmSize / mapSize;
+	let scale = hmSize / (mapSize + 1); // There are mapSize + 1 vertices (each 1 tile is surrounded by 2x2 vertices)
 
-	for (let y = 0; y < mapSize; ++y)
-		for (let x = 0; x < mapSize; ++x)
+	for (let x = 0; x <= mapSize; ++x)
+		for (let y = 0; y <= mapSize; ++y)
 		{
-			let i = Math.floor(x * scale) * hmSize + Math.floor(y * scale);
+			let hmPoint = { "x": x * scale, "y": y * scale };
+			let hmTile = { "x": Math.floor(hmPoint.x), "y": Math.floor(hmPoint.y) };
+			let shift = { "x": 0, "y": 0 };
 
-			let height = heightmap[i];
-			let tile = pallet[tilemap[i]];
+			if (hmTile.x == 0)
+				shift.x = 1;
+			else if (hmTile.x == hmSize - 1)
+				shift.x = - 2;
+			else if (hmTile.x == hmSize - 2)
+				shift.x = - 1;
 
-			if (i == lastI)
+			if (hmTile.y == 0)
+				shift.y = 1;
+			else if (hmTile.y == hmSize - 1)
+				shift.y = - 2;
+			else if (hmTile.y == hmSize - 2)
+				shift.y = - 1;
+
+			let neighbors = [];
+			for (let localYi = 0; localYi < 4; ++localYi)
+				for (let localXi = 0; localXi < 4; ++localXi)
+					neighbors.push(heightmap[(hmTile.x + localXi + shift.x - 1) * hmSize + (hmTile.y + localYi + shift.y - 1)]);
+
+			setHeight(x, y, bicubicInterpolation(hmPoint.x - hmTile.x - shift.x, hmPoint.y - hmTile.y - shift.y, ...neighbors) / scale);
+
+			if (x < mapSize && y < mapSize)
 			{
-				let nearby = [i];
+				let i = hmTile.x * hmSize + hmTile.y;
+				let tile = pallet[tilemap[i]];
+				placeTerrain(x, y, tile);
 
-				if (i + hmSize < heightmap.length)
-				{
-					nearby.push(i + hmSize);
-					height = (heightmap[nearby[0]] + heightmap[nearby[1]]) / 2;
-				}
-
-				tile = pallet[tilemap[nearby[randInt(0, nearby.length - 1)]]];
+				if (func)
+					func(tile, x, y);
 			}
-
-			setHeight(x, y, height / scale);
-			placeTerrain(x, y, tile);
-
-			if (func)
-				func(tile, x, y);
-
-			lastI = i;
 		}
 
 	return scale;
