@@ -9,7 +9,7 @@ Engine.RegisterMessageType("CapturePointsChanged");
 
 /**
  * Message in the form of { "regenerating": boolean, "regenRate": number, "territoryDecay": number }
- * where "rate" value is always zero when not decaying,
+ * where "regenRate" value is always zero when not decaying,
  * sent from Capturable component.
  */
 Engine.RegisterMessageType("CaptureRegenStateChanged");
