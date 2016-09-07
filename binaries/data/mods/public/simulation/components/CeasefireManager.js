@@ -86,7 +86,7 @@ CeasefireManager.prototype.StartCeasefire = function(ceasefireTime)
 
 	Engine.PostMessage(SYSTEM_ENTITY, MT_CeasefireStarted);
 
-	// Add timers for countdown message and reseting diplomacy
+	// Add timers for countdown message and resetting diplomacy
 	this.stopCeasefireTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_CeasefireManager, "StopCeasefire", this.ceasefireTime);
 	this.ceasefireCountdownMessageTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_CeasefireManager, "ShowCeasefireCountdownMessage",
 		this.ceasefireTime - this.countdownMessageDuration);
