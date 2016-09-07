@@ -37,7 +37,7 @@ in particular, let us know and we can try to clarify it.
     BSD
 
   /build/premake/*.lua
-    MIT
+    MIT - see license_mit.txt
 
   /docs
     Various (unspecified)
@@ -49,7 +49,7 @@ in particular, let us know and we can try to clarify it.
     GPL version 2 (or later) - see license_gpl-2.0.txt
 
   /source/lib
-    MIT
+    MIT - see license_mit.txt
 
   /source/scriptinterface/third_party
     MPL 2.0
@@ -60,16 +60,16 @@ in particular, let us know and we can try to clarify it.
   /source/third_party/encryption
     GPL version 2 (or later)
     ISC (pkcs5_pbkdf2.cpp)
-    MIT (pkcs5_pbkdf2.h)
+    MIT (pkcs5_pbkdf2.h) - see license_mit.txt
 
   /source/third-party/jsonspirit
-    MIT
+    MIT - see license_mit.txt
 
   /source/third_party/mikktspace
     zlib
 
   /source/third_party/mongoose
-    MIT
+    MIT - see license_mit.txt
 
   /source/third_party/tinygettext
     zlib
@@ -79,3 +79,6 @@ in particular, let us know and we can try to clarify it.
 
   /source/tools/atlas
     GPL version 2 (or later) - see license_gpl-2.0.txt
+
+  /binaries/data/mods/public/globalscripts/BicubicInterpolation.js
+    MIT 2013 Hugh Kennedy - see license_mit.txt
