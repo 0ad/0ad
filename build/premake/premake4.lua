@@ -24,6 +24,7 @@ newoption { trigger = "sysroot", description = "Set compiler system root path, u
 -- Windows specific options
 newoption { trigger = "build-shared-glooxwrapper", description = "Rebuild glooxwrapper DLL for Windows. Requires the same compiler version that gloox was built with" }
 newoption { trigger = "use-shared-glooxwrapper", description = "Use prebuilt glooxwrapper DLL for Windows" }
+newoption { trigger = "large-address-aware", description = "Make the executable large address aware. Do not use for development, in order to spot memory issues easily" }
 
 -- Install options
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
@@ -973,6 +974,12 @@ function setup_main_exe ()
 			-- allow manual unload of delay-loaded DLLs
 			"/DELAY:UNLOAD",
 		}
+
+		-- allow the executable to use more than 2GB of RAM.
+		-- this should not be enabled during development, so that memory issues are easily spotted.
+		if _OPTIONS["large-address-aware"] then
+			linkoptions { "/LARGEADDRESSAWARE" }
+		end
 
 		-- see manifest.cpp
 		project_add_manifest()

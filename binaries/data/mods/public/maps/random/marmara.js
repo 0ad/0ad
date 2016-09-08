@@ -83,7 +83,7 @@ log("Paint tile classes...");
 paintTileClassBasedOnHeight(-100, -1, 3, g_TileClasses.water);
 RMS.SetProgress(40);
 
-log("Playing players...");
+log("Placing players...");
 // Coordinate system of the heightmap
 var singleBases = [
 	[40, 175],
