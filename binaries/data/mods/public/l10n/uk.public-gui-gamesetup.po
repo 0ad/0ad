@@ -7,6 +7,7 @@
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # SkiDo <skidoster@gmail.com>, 2015
 # Victor Butko <victor.butko@gmail.com>, 2014
@@ -18,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"PO-Revision-Date: 2016-09-05 20:08+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +95,7 @@ msgstr "Демо мапи"
 
 #: gui/gamesetup/gamesetup.js:83
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Тригер Карт"
 
 #: gui/gamesetup/gamesetup.js:88
 msgid "All Maps"
@@ -166,9 +167,9 @@ msgstr "Невідомий"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Чудо (%(min)s хвилини)"
+msgstr[1] "Чудо (%(min)s хвилина)"
+msgstr[2] "Чудо (%(min)s хвилин)"
 
 #: gui/gamesetup/gamesetup.js:1528 gui/gamesetup/gamesetup.xml:(caption):320
 msgid "Victory Condition:"
@@ -417,11 +418,11 @@ msgstr "Інформація про цивілізацію"
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Скидання будь-яких цивілізацій, які були обрані за замовчуванням (випадково)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Скидання всіх команд за замовчуванням."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
@@ -482,7 +483,7 @@ msgstr "Виберіть умову перемоги."
 #: gui/gamesetup/gamesetup.xml:(tooltip):334
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Кількість хвилин, за які гравець повинен втримати Чудо, щоб перемогти."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):344
 msgid "Select population cap."
@@ -520,7 +521,7 @@ msgstr "Перемкнути замкнуті команди."
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Переключення до останнього гравця, що залишився або останнього із союзників для перемоги."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):424
 msgid "Toggle the usability of cheats."
@@ -554,7 +555,7 @@ msgstr "Ім’я серверу або IP-адреса:"
 #: gui/gamesetup/gamesetup_mp.xml:(caption):50
 #: gui/gamesetup/gamesetup_mp.xml:(caption):97
 msgid "Server Port:"
-msgstr ""
+msgstr "Порт сервера:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
@@ -571,7 +572,7 @@ msgstr "Продовжити"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Залиште порожнім, щоб використовувати порт за замовчуванням."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
