@@ -83,7 +83,7 @@
 			"type": "number",
 			"label": "Observer Limit",
 			"tooltip": "Prevent further observer from joining if the limit is reached",
-			"parameters": { "config": "network.observerlimit", "min": 0, "max": 16 }
+			"parameters": { "config": "network.observerlimit", "min": 0, "max": 32 }
 		},
 		{
 			"type": "number",
