@@ -5,6 +5,7 @@
 # Translators:
 # Dimaver <dimaver@ukr.net>, 2014
 # Dimaver <dimaver@ukr.net>, 2014
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
 # Victor Ptah, 2015
@@ -15,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-29 18:51+0000\n"
+"PO-Revision-Date: 2016-09-05 19:56+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +39,7 @@ msgstr "Громадський Центр"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:69
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Будуйте для захоплення великих ділянок території. Тренує громадян."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:33
@@ -60,11 +61,11 @@ msgstr "Клерухія"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Колонада"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:26
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Грецька царська колонада"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
@@ -94,7 +95,7 @@ msgstr "Будинок"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Тренує лікарів. Юніти гарнізону зцілюються з великою швидкістю (3 HP за секунду). Досліджуйте технології зцілення та релігії."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -172,7 +173,7 @@ msgstr "Довгі ділянки мура можуть бути перетво�
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Це дозволить вам надати одиниці можливість обходити ваші укріплення."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Wall Turret"
@@ -251,7 +252,7 @@ msgstr "Військове"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Тренує солдатів. Досліджує вдосконалення військової підготовки."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -289,7 +290,7 @@ msgstr "Посольство"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Тренує героїв, чемпіонів, будує облогові знаряддя. Досліджує технології облогового знаряддя."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
 msgid "City"
@@ -428,7 +429,7 @@ msgstr "Епітеїхізма"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Будує облогові знаряддя. Розміщує солдатів для щільної оборони."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -537,7 +538,7 @@ msgstr "Святилище Парфенон"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Приносить славу вашій цивілізації та додає великі території до вашої імперії. Розміщує юнітів для прискореного відновлення здоров'я."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -822,7 +823,7 @@ msgstr "Таверна"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Набирає голих фанатиків."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
@@ -885,7 +886,7 @@ msgstr "Гур Оройгарі"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr ""
+msgstr "Всі юніти в полі зору цього монумента будуть битися хоробріше. Будівлі на території монументу не псуються."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -926,7 +927,7 @@ msgstr "Тейчисма"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Тренує чемпіонів і героїв. Розміщує гарнізон для щільної оборони."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1026,7 +1027,7 @@ msgstr "Шасана Стамба Ашока"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Знаменита колона Ашоки. Збільшує швидкість переміщення купців. Будівлі на території монументу не псуються."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1086,7 +1087,7 @@ msgstr "Ападана"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Данина сатрапії\": Збільшений потік їжі, деревини, каменю та металу. Тренує перських героїв та їх \"безсмертних\" особистих охоронців."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1143,13 +1144,13 @@ msgstr "Перський зал"
 
 #: simulation/templates/structures/pers_hall.xml:26
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "Дувартхі Вісадаг'ю"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Спеціальна будівля.\nТренує Бойових Слонів і Кардакеських найманців."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1167,7 +1168,7 @@ msgstr "Вавилонська Брама Іштар"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Збільшує відновлення лояльності оточуючих структур, що робить їх важчими для захоплення."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1179,7 +1180,7 @@ msgstr "Дідебані"
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Taçara"
-msgstr ""
+msgstr "Такара"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1229,7 +1230,7 @@ msgstr "хвт-н-мш"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Тренує єгипетських і близькосхідних солдатів-громадян. Досліджує технології тренувань."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1263,7 +1264,7 @@ msgstr "хвт"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Збільшення ліміту населення. Так як вони зроблені з необпаленої цегли, єгипетські будинки безкоштовні, але дуже слабкі."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1300,7 +1301,7 @@ msgstr "Дешеві будівлі казарменого типу які бу�
 
 #: simulation/templates/structures/ptol_military_colony.xml:6
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Клєроухія"
 
 #: simulation/templates/structures/ptol_military_colony.xml:8
 msgid ""
@@ -1460,7 +1461,7 @@ msgstr "Аєдес Мартіс"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Тренує цілителів. Розмістіть до юнітів у гарнізон для швидкого зцілення."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:16
 msgid "Temple of Vesta"
@@ -1534,7 +1535,7 @@ msgstr "Фроурйон"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Будує облогові знаряддя і тренує чемпіонів. Розміщує у гарнізон солдатів для щільної оборони."
 
 #: simulation/templates/structures/sele_library.xml:5
 msgid "Bibliothikon"
@@ -1561,7 +1562,7 @@ msgstr "Наос"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "Храм Аполлона Піфійського"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1600,4 +1601,4 @@ msgstr "Тренує Спартанських героїв і Спартансь
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Приносить славу вашій цивілізації та додає великі території до вашої імперії. Розміщує до гарнізону юнітів для прискореного відновлення здоров'я."

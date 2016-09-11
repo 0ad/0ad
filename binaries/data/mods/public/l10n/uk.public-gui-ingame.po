@@ -8,6 +8,7 @@
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Dimaver <dimaver@ukr.net>, 2014
 # Dimaver <dimaver@ukr.net>, 2014
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
@@ -20,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-30 20:02+0000\n"
+"PO-Revision-Date: 2016-09-06 17:34+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -661,12 +662,12 @@ msgstr[2] "Залишилось побудувати: %(number)s будівел�
 #: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Вдосконалення в %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Вдосконалення в %(name)s."
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
@@ -779,12 +780,12 @@ msgstr "Знайти вільних робітників"
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes."
-msgstr ""
+msgstr "Вибери один продукт для внесення змін, використовуй стрілки цільових продуктів для змін."
 
 #: gui/session/session.js:314
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "Використання %(hotkey)s поставить вибраний ресурс на 100%%."
 
 #: gui/session/session.js:456
 #, javascript-format
@@ -925,7 +926,7 @@ msgstr "Знищити вибраних юнітів чм будівлі."
 #: gui/session/unit_actions.js:1022
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Використовуйте %(hotkey)s щоб уникнути підтвердження діалогу."
 
 #: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
@@ -933,7 +934,7 @@ msgstr "Перервати поточний порядок."
 
 #: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
-msgstr ""
+msgstr "Відіслати вибрані одиниці в гарнізон будівлі чи юніта."
 
 #: gui/session/unit_actions.js:1096
 msgid "Unload"
@@ -941,11 +942,11 @@ msgstr "Вивантажити"
 
 #: gui/session/unit_actions.js:1114
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "Відіслати вибраних юнітів, для ремонту будівлі чи механічного юніта."
 
 #: gui/session/unit_actions.js:1133
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Встановити точку збору"
 
 #: gui/session/unit_actions.js:1157
 msgid "Back to Work"
@@ -953,7 +954,7 @@ msgstr "Назад до роботи"
 
 #: gui/session/unit_actions.js:1176
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Відісдати вибраних юнітів для охорони будівлі чи юніта."
 
 #: gui/session/unit_actions.js:1194
 msgid "Remove guard"
