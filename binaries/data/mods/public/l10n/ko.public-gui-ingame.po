@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-05 09:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-11 09:26+0000\n"
+"Last-Translator: YongNam Kim <darkgem11@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -409,7 +409,7 @@ msgstr "모르는 플레이어"
 #: gui/session/messages.js:747
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr "플레이어가 졌습니다."
+msgstr "%(player)s가 그만두었습니다."
 
 #: gui/session/messages.js:748
 #, javascript-format
@@ -419,7 +419,7 @@ msgstr "%(player)s 가 졌습니다."
 #: gui/session/messages.js:755
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s가 이겼습니다."
 
 #: gui/session/messages.js:784
 #, javascript-format
@@ -586,7 +586,7 @@ msgstr "1개 내리려면 1번 누르세요. Shift를 누르고 클릭하면 같
 #: gui/session/selection_panels.js:448
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "플레이어: %(playername)s"
 
 #: gui/session/selection_panels.js:484
 msgid "Lock Gate"
@@ -630,20 +630,20 @@ msgstr[0] "%(number)s 개 더 지어야 합니다."
 #: gui/session/selection_panels.js:1072
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "%(name)s으로 업그레이드 합니다. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1077
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "%(name)s으로 업그레이드 합니다."
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "업그레이드 취소"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "이미 업그레이드 하고 있으므로, 또 업그레이드 할 수 없습니다."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"

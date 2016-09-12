@@ -5,6 +5,7 @@
 # Translators:
 # Aca G. <martel.gilgames@gmail.com>, 2016
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014
+# Damjan Obradović <damjanobradovic@hotmail.com>, 2016
 # Lazar Milovanovic <lazar.milovanovic@outlook.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2014
 # Tpe3op <tre-zor@live.com>, 2014
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-06 00:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-11 18:53+0000\n"
+"Last-Translator: Damjan Obradović <damjanobradovic@hotmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +44,7 @@ msgstr "Не можеш градити зид овде!"
 
 #: gui/session/menu.js:114
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Јеси ли сигуран да се желиш предати?"
 
 #: gui/session/menu.js:115 gui/session/menu.js:147 gui/session/menu.js:158
 msgid "Confirmation"
@@ -62,7 +63,7 @@ msgstr "Да"
 #: gui/session/menu.js:128
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Јеси сигуран да желиш изаћи? Излазак ће дисконектовати све остале играче."
 
 #: gui/session/menu.js:132 gui/session/menu.js:136
 msgid "Are you sure you want to quit?"
@@ -70,7 +71,7 @@ msgstr "Да ли сте сигурни да желите да напустит�
 
 #: gui/session/menu.js:157
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Да ли желиш да се предаш или се враћаш ускоро?"
 
 #: gui/session/menu.js:159
 msgid "I will return"
@@ -78,7 +79,7 @@ msgstr "Вратићу се."
 
 #: gui/session/menu.js:159
 msgid "I resign"
-msgstr ""
+msgstr "Предајем се"
 
 #: gui/session/menu.js:179
 msgid "Destroy everything currently selected?"
@@ -109,11 +110,11 @@ msgstr "Непријатељ"
 
 #: gui/session/menu.js:293
 msgid "x"
-msgstr ""
+msgstr "х"
 
 #: gui/session/menu.js:359
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Затражи од својих савезника да нападну овог противника"
 
 #: gui/session/menu.js:479
 #, javascript-format
@@ -245,7 +246,7 @@ msgstr ""
 
 #: gui/session/menu.js:721
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:734 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -311,7 +312,7 @@ msgstr "Разлог: %(reason)s."
 
 #: gui/session/messages.js:121
 msgid "Waiting for other players to connect..."
-msgstr ""
+msgstr "Сачекај да се остали играчи повежу..."
 
 #: gui/session/messages.js:122
 msgid "Synchronising gameplay with other players..."
@@ -471,7 +472,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 
 #: gui/session/selection_details.js:53 gui/session/selection_details.js:357
 msgid "Hitpoints:"
-msgstr ""
+msgstr "Предлог:"
 
 #: gui/session/selection_details.js:69
 #, javascript-format
@@ -619,19 +620,19 @@ msgstr "Откључај Двери"
 
 #: gui/session/selection_panels.js:564
 msgid "Pack"
-msgstr ""
+msgstr "Запакуј"
 
 #: gui/session/selection_panels.js:572
 msgid "Unpack"
-msgstr ""
+msgstr "Отпакуј"
 
 #: gui/session/selection_panels.js:580
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Прекини паковање"
 
 #: gui/session/selection_panels.js:588
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Прекини отпаковање"
 
 #: gui/session/selection_panels.js:651
 msgid "Insufficient population capacity:"
@@ -662,7 +663,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:1096
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Прекини надоградњу"
 
 #: gui/session/selection_panels.js:1101
 msgid "Cannot upgrade when the entity is already upgrading."
@@ -785,11 +786,11 @@ msgstr ""
 
 #: gui/session/session.js:678
 msgid "You have won!"
-msgstr ""
+msgstr "Победио си!"
 
 #: gui/session/session.js:679
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Поражен си!"
 
 #: gui/session/session.js:681
 msgid "Do you want to quit?"
@@ -797,7 +798,7 @@ msgstr "Желиш ли да одустанеш?"
 
 #: gui/session/session.js:684
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Излазак ће дисконектовати све остале играче."
 
 #: gui/session/session.js:690
 msgid "VICTORIOUS!"
@@ -810,7 +811,7 @@ msgstr "ПОРАЗ!"
 #: gui/session/session.js:743
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Поновни снимак је завршен. Желиш ли изаћи?"
 
 #: gui/session/session.js:744
 msgctxt "replayFinished"
@@ -912,7 +913,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1020
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Уништи обиљежене јединице или грађевине."
 
 #: gui/session/unit_actions.js:1022
 #, javascript-format
@@ -921,7 +922,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1054
 msgid "Abort the current order."
-msgstr ""
+msgstr "Прекини тренутну наредбу."
 
 #: gui/session/unit_actions.js:1074
 msgid "Order the selected units to garrison a building or unit."
@@ -945,7 +946,7 @@ msgstr "Назад на Посао"
 
 #: gui/session/unit_actions.js:1176
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Нареди обиљеженој јединици да чува грађевину или јединицу."
 
 #: gui/session/unit_actions.js:1194
 msgid "Remove guard"
@@ -1065,7 +1066,7 @@ msgstr "Ограничи камеру"
 
 #: gui/session/developer_overlay.xml:(caption):107
 msgid "Reveal map"
-msgstr ""
+msgstr "Откриј мапу"
 
 #: gui/session/developer_overlay.xml:(caption):123
 msgid "Enable time warp"
@@ -1131,11 +1132,11 @@ msgstr ""
 
 #: gui/session/menu.xml:(caption):63
 msgid "Options"
-msgstr ""
+msgstr "Опције"
 
 #: gui/session/menu.xml:(caption):87
 msgid "Resign"
-msgstr ""
+msgstr "Предај се"
 
 #: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):156
 msgid "Exit"
@@ -1181,7 +1182,7 @@ msgstr "Да или Не?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr ""
+msgstr "Размени ресурсе:"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):13
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
@@ -1224,7 +1225,7 @@ msgstr "Изабери брзину игре"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "Мени"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XX : Timosthenes"

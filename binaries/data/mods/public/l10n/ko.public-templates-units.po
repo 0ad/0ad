@@ -7,12 +7,13 @@
 # Valtiel <shinhs6291@naver.com>, 2014
 # TJ Kim <manowar72@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
+# YongNam Kim <darkgem11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-08-23 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-11 10:02+0000\n"
+"Last-Translator: YongNam Kim <darkgem11@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +111,7 @@ msgstr "검기병"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "원거리 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -131,7 +132,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:48
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:57
 msgid "Ranged"
-msgstr ""
+msgstr "원거리"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -178,15 +179,15 @@ msgstr "챔피언 궁기병"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "챔피언 산기병"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "챔피언 창기병"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 msgid "Champion Cavalry Swordsman"
-msgstr ""
+msgstr "챔피언 검기병"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
@@ -228,7 +229,7 @@ msgstr "챔피언 미늘창병"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
-msgstr ""
+msgstr "천적: 장갑보병 3명이 기병을 상대합니다."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:31
 msgid "Champion Spearman"
@@ -240,11 +241,11 @@ msgstr "챔피언 검병"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
-msgstr ""
+msgstr "원거리 챔피언"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "거대 공성병기"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:13
@@ -280,11 +281,11 @@ msgstr "생선"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:11
 msgid "Cetacean"
-msgstr ""
+msgstr "고래류의 동물"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:12
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "죽이다, 그리고 풍부한 대양의 자원을 모은다"
 
 #: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_hero.xml:28
@@ -299,11 +300,11 @@ msgstr "영웅 기병대"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:26
 msgid "Hero Cavalry Archer"
-msgstr ""
+msgstr "영웅 궁기병"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
 msgid "Hero Cavalry Skirmisher"
-msgstr ""
+msgstr "영웅 산기병"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
