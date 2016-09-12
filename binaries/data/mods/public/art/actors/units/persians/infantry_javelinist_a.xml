@@ -28,14 +28,9 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant>
-      <textures><texture file="skeletal/pers_ijv_b_1.dds" name="baseTex"/></textures>
-    </variant>
-    <variant>
-      <textures><texture file="skeletal/pers_ijv_b_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/pers_ijv_b_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

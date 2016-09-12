@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations/>
       <mesh>gaia/wrld_grass_1.dae</mesh>
       <props/>
-      <textures><texture file="gaia/wrld_med_plant.dds" name="baseTex"/></textures>
+      <textures><texture file="gaia/wrld_med_plant.png" name="baseTex"/></textures>
     </variant>
   </group>
-
   <material>basic_trans_wind.xml</material>
-
 </actor>

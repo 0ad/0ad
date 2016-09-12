@@ -44,9 +44,9 @@
  * Number of peers to allocate for the enet host.
  * Limited by ENET_PROTOCOL_MAXIMUM_PEER_ID (4096).
  *
- * At most 8 players, 16 observers and 1 temporary connection to send the "server full" disconnect-reason.
+ * At most 8 players, 32 observers and 1 temporary connection to send the "server full" disconnect-reason.
  */
-#define MAX_CLIENTS 25
+#define MAX_CLIENTS 41
 
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
