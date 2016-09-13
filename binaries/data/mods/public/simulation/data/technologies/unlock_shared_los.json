@@ -5,7 +5,7 @@
 	"requirements": {"tech": "phase_village"},
 	"icon": "shared_los.png",
 	"researchTime": 40,
-	"tooltip": "Player sees what his allies see.",
+	"tooltip": "See what your allies see, browse their summary and check their resources and population count in the top panel.",
 	"modifications": [{"value": "Player/sharedLos", "replace": true}],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
