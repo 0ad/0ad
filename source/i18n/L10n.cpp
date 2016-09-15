@@ -387,7 +387,7 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, co
 	if (U_FAILURE(status))
 		LOGERROR("Error creating SimpleDateFormat: %s", u_errorName(status));
 
-	const TimeZone* timeZone = TimeZone::getGMT();
+	const TimeZone* timeZone = TimeZone::createDefault();
 
 	status = U_ZERO_ERROR;
 	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);

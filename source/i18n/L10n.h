@@ -427,7 +427,7 @@ public:
 	std::string LocalizeDateTime(const UDate& dateTime, const DateTimeType& type, const DateFormat::EStyle& style) const;
 
 	/**
-	 * Returns the specified date using the specified date format.
+	 * Returns the specified date converted to the local timezone using the specified date format.
 	 *
 	 * @param milliseconds Date specified as a UNIX timestamp in milliseconds
 	 *        (not seconds).

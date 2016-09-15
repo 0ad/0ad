@@ -22,12 +22,13 @@
 # Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
 export ARCH=${ARCH:="x86_64"}
 
+OSX_VERSION=`sw_vers -productVersion | grep -Eo "^\d+.\d+"`
 # Set SDK and mimimum required OS X version
-export SYSROOT=${SYSROOT:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk"}
+export SYSROOT=${SYSROOT:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX$OSX_VERSION.sdk"}
 export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.7"}
 
-# 0 A.D. release version, e.g. Alpha 18 is 0.0.18
-BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.18"}
+# 0 A.D. release version, e.g. Alpha 21 is 0.0.21
+BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.X"}
 
 # Define compiler as "clang", this is all Mavericks supports.
 # gcc symlinks may still exist, but they are simply clang with
@@ -50,7 +51,7 @@ die()
 if [ "`uname -s`" != "Darwin" ]; then
   die "This script is intended for OS X only"
 fi
-  
+
 # Check SDK exists
 if [ ! -d "$SYSROOT" ]; then
   die "$SYSROOT does not exist! You probably need to install Xcode"
@@ -103,7 +104,7 @@ BUNDLE_SHAREDSUPPORT=$BUNDLE_CONTENTS/SharedSupport
 # TODO: Do we really want to regenerate everything? (consider if one task fails)
 
 # Build libraries against SDK
-echo "\nBuilding libaries\n"
+echo "\nBuilding libraries\n"
 pushd ../../libraries/osx > /dev/null
 ./build-osx-libs.sh $JOBS --force-rebuild >> $build_log 2>&1 || die "Libraries build script failed"
 popd > /dev/null
