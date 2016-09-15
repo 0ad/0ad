@@ -136,8 +136,11 @@ function getUsernameList()
 {
 	let usernames = sortGUIDsByPlayerID().map(guid => colorizePlayernameByGUID(guid));
 
-	return sprintf(translate("Users: %(users)s"),
-		{ "users": usernames.join(translate(", ")) });
+	// Translation: Number of currently connected players/observers and their names
+	return sprintf(translate("Users (%(num)s): %(users)s"), {
+		"users": usernames.join(translate(", ")),
+		"num": usernames.length
+	});
 }
 
 /**
