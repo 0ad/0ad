@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -153,7 +153,7 @@ namespace JSI_L10n
 	std::vector<std::wstring> TranslateArray(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::vector<std::wstring>& sourceArray);
 
 	/**
-	 * Returns the specified date using the specified date format.
+	 * Returns the specified date converted to the local timezone using the specified date format.
 	 *
 	 * This is a JavaScript interface to
 	 * L10n::FormatMillisecondsIntoDateString().
