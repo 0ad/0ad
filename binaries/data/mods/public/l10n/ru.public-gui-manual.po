@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-10 07:13+0000\n"
-"Last-Translator: Prince Moth <princemoth@rambler.ru>\n"
+"PO-Revision-Date: 2016-09-14 22:23+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,7 +203,7 @@ msgstr "[font=\"sans-bold-16\"]Горячие клавиши:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]Глобальный"
+msgstr "[font=\"sans-bold-14\"]Глобальные"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -317,7 +317,7 @@ msgstr "Shift + Delete: Удалить только выделенные юни�
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (Прямая дробь): Выбрать бездействующего бойца"
+msgstr "/ (Косая черта): Выбрать бездействующего бойца"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
@@ -329,7 +329,7 @@ msgstr ". (Точка): Выбрать бездействующего рабоч
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr "Shift + .: добавить незанятого рабочего к выделенным (включая солдат-горожан)"
+msgstr "Shift + .: добавить бездействующего рабочего к выделенным юнитам (включая солдат-горожан)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -337,7 +337,7 @@ msgstr "H    Остановить выбранных юнитов."
 
 #: gui/manual/intro.txt:73
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr "U: Вывести гарнизон из выделенных строений"
+msgstr "U: Вывести гарнизон из выделенных зданий"
 
 #: gui/manual/intro.txt:74
 msgid ""
@@ -377,17 +377,17 @@ msgstr "Z, X, C, V, B, N, M        При выбранных постройка�
 msgid ""
 "PageUp with units selected: highlights the units/buildings guarded by the "
 "selection."
-msgstr "PageUp при выделенных юнитах: подсветить здания/юниты, охраняемые выделенными."
+msgstr "PageUp при выделенных юнитах: подсветить здания/юниты, охраняемые ими."
 
 #: gui/manual/intro.txt:81
 msgid ""
 "PageDown with units/buildings selected: highlights the units guarding the "
 "selection."
-msgstr "PageDown при выделенных юнитах/зданиях: подсветить юниты, охраняющие выделенных."
+msgstr "PageDown при выделенных юнитах/зданиях: подсветить юниты, охраняющие их."
 
 #: gui/manual/intro.txt:82
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr "Примечание: просматривайте все строки состояния (которые могут также показывать прогресс строительства)"
+msgstr "Tab: посмотреть все строки состояния (которые могут так же показывать прогресс строительства)"
 
 #: gui/manual/intro.txt:84
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -436,7 +436,7 @@ msgstr "Ctrl + Left Click на значке юнита / группы при н�
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Нажатие ПКМ при выбранном здании       Установить точку сбора для юнитов созданных / освобожденных зданием. "
+msgstr "ПКМ при выбранном здании: установить точку сбора для юнитов, созданных / выведенных из здания. "
 
 #: gui/manual/intro.txt:95
 msgid "Ctrl + Right Click with units selected:"
@@ -564,7 +564,7 @@ msgstr "Alt + W     Переключение режимов отображени
 
 #: gui/manual/intro.txt:125
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr "СКМ: удерживайте и перемещайте мышь для прокрутки"
+msgstr "СКМ: удерживайте и перемещайте мышь для панорамирования"
 
 #: gui/manual/intro.txt:127
 msgid "[font=\"sans-bold-14\"]During Building Placement"
