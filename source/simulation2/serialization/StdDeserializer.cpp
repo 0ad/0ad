@@ -486,6 +486,9 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 #error TODO: probably need to convert JS strings from little-endian
 #endif
 
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
 	bool isLatin1;
 	Bool("isLatin1", isLatin1);
 	if (isLatin1)
@@ -493,7 +496,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 		std::vector<JS::Latin1Char> str;
 		ReadStringLatin1(name, str);
 
-		out.set(JS_NewStringCopyN(m_ScriptInterface.GetContext(), (const char*)str.data(), str.size()));
+		out.set(JS_NewStringCopyN(cx, (const char*)str.data(), str.size()));
 		if (!out)
 			throw PSERROR_Deserialize_ScriptError("JS_NewStringCopyN failed");
 	}
@@ -502,7 +505,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 		utf16string str;
 		ReadStringUTF16(name, str);
 
-		out.set(JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const char16_t*)str.data(), str.length()));
+		out.set(JS_NewUCStringCopyN(cx, (const char16_t*)str.data(), str.length()));
 		if (!out)
 			throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 	}

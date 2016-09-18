@@ -91,8 +91,11 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
  
 	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
 	// build array in the callback function
-	BuildDirEntListState state(pCxPrivate->pScriptInterface->GetContext());
+	BuildDirEntListState state(cx);
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	return OBJECT_TO_JSVAL(state.filename_array);

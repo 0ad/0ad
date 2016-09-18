@@ -185,7 +185,11 @@ bool CGame::StartVisualReplay(const std::string& replayPath)
 
 	std::string line;
 	std::getline(*m_ReplayStream, line);
-	JS::RootedValue attribs(scriptInterface.GetContext());
+
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue attribs(cx);
 	scriptInterface.ParseJSON(line, &attribs);
 	StartGame(&attribs, "");
 

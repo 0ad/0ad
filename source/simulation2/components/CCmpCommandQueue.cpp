@@ -82,6 +82,8 @@ public:
 	virtual void PushLocalCommand(player_id_t player, JS::HandleValue cmd)
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+		JSAutoRequest rq(cx);
+
 		m_LocalQueue.emplace_back(SimulationCommand(player, cx, cmd));
 	}
 
