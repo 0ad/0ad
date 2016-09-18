@@ -282,6 +282,7 @@ function project_set_build_flags()
 				end
 
 				if os.is("linux") or os.is("bsd") then
+					buildoptions { "-fPIC" }
 					linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
 				end
 
