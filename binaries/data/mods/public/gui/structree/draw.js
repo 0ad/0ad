@@ -14,7 +14,8 @@ var g_TooltipFunctions = [
 	getProjectilesTooltip,
 	getSpeedTooltip,
 	getGatherTooltip,
-	getPopulationBonusTooltip
+	getPopulationBonusTooltip,
+	getLootTooltip
 ];
 
 /**

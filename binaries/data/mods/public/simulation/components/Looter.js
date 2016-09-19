@@ -14,32 +14,22 @@ Looter.prototype.Collect = function(targetEntity)
 	if (!cmpLoot)
 		return;
 
+	// Collect resources carried by workers and traders
+	var cmpResourceGatherer = Engine.QueryInterface(targetEntity, IID_ResourceGatherer);
+	var cmpTrader = Engine.QueryInterface(targetEntity, IID_Trader);
+
+	let resourcesCarried = calculateCarriedResources(
+		cmpResourceGatherer && cmpResourceGatherer.GetCarryingStatus(),
+		cmpTrader && cmpTrader.GetGoods()
+	);
+
 	// Loot resources as defined in the templates
 	var resources = cmpLoot.GetResources();
 	for (let type in resources)
-		resources[type] = ApplyValueModificationsToEntity("Looter/Resource/"+type, resources[type], this.entity);
+		resources[type] = ApplyValueModificationsToEntity("Looter/Resource/"+type, resources[type], this.entity)
+			+ (resourcesCarried[type] || 0);
 
 	// TODO: stop assuming that cmpLoot.GetResources() delivers all resource types (by defining them in a central location)
-
-	// Loot resources that killed enemies carried
-	var cmpResourceGatherer = Engine.QueryInterface(targetEntity, IID_ResourceGatherer);
-	if (cmpResourceGatherer)
-		for (let resource of cmpResourceGatherer.GetCarryingStatus())
-			resources[resource.type] += resource.amount;
-
-	// Loot resources traders carry
-	var cmpTrader = Engine.QueryInterface(targetEntity, IID_Trader);
-	if (cmpTrader)
-	{
-		let carriedGoods = cmpTrader.GetGoods();
-		if (carriedGoods.amount)
-		{
-			resources[carriedGoods.type] +=
-				+ (carriedGoods.amount.traderGain || 0)
-				+ (carriedGoods.amount.market1Gain || 0)
-				+ (carriedGoods.amount.market2Gain || 0);
-		}
-	}
 
 	// Transfer resources
 	var cmpPlayer = QueryOwnerInterface(this.entity);

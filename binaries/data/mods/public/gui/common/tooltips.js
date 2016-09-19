@@ -575,3 +575,38 @@ function getVisibleEntityClassesFormatted(template)
 	return headerFont(translate("Classes:")) + ' ' +
 		bodyFont(template.visibleIdentityClasses.map(c => translate(c)).join(translate(", ")));
 }
+
+function getLootTooltip(template)
+{
+	if (!template.loot && !template.resourceCarrying)
+		return "";
+
+	let resourcesCarried = [];
+	if (template.resourceCarrying)
+		resourcesCarried = calculateCarriedResources(
+			template.resourceCarrying,
+			template.trader && template.trader.goods
+		);
+
+	const lootTypes = ["xp", "food", "wood", "stone", "metal"];
+	let lootLabels = [];
+	for (let type of lootTypes)
+	{
+		let loot =
+			(template.loot && template.loot[type] || 0) +
+			(resourcesCarried[type] || 0);
+
+		if (!loot)
+			continue;
+
+		lootLabels.push(sprintf(translate("%(component)s %(loot)s"), {
+			"component": costIcon(type),
+			"loot": loot
+		}));
+	}
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Loot:")),
+		"details": lootLabels.join("  ")
+	});
+}

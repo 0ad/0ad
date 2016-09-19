@@ -244,6 +244,13 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 			"rate": getEntityValue("Heal/Rate")
 		};
 
+	if (template.Loot)
+	{
+		ret.loot = {};
+		for (let type in template.Loot)
+			ret.loot[type] = getEntityValue("Loot/"+ type);
+	}
+
 	if (template.Obstruction)
 	{
 		ret.obstruction = {
@@ -381,3 +388,22 @@ function GetTechnologyDataHelper(template, civ)
 
 	return ret;
 }
+
+function calculateCarriedResources(carriedResources, tradingGoods)
+{
+	var resources = {};
+
+	if (carriedResources)
+		for (let resource of carriedResources)
+			resources[resource.type] = (resources[resource.type] || 0) + resource.amount;
+
+	if (tradingGoods && tradingGoods.amount)
+		resources[tradingGoods.type] =
+			(resources[tradingGoods.type] || 0) +
+			(tradingGoods.amount.traderGain || 0) +
+			(tradingGoods.amount.market1Gain || 0) +
+			(tradingGoods.amount.market2Gain || 0);
+
+	return resources;
+}
+
