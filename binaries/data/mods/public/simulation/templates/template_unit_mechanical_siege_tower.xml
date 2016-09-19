@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
-  <Armour>
-    <Hack>1</Hack>
-    <Pierce>20</Pierce>
-    <Crush>1</Crush>
-  </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
       <Pierce>10.0</Pierce>
       <Crush>5.0</Crush>
       <MaxRange>55.0</MaxRange>
-      <MinRange>2.0</MinRange>
+      <MinRange>0.0</MinRange>
       <ElevationBonus>10</ElevationBonus>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
@@ -26,8 +21,9 @@
     </Capture>
   </Attack>
   <BuildingAI>
-    <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0.5</GarrisonArrowMultiplier>
+    <DefaultArrowCount>0</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <MaxArrowCount>10</MaxArrowCount>
     <GarrisonArrowClasses>Infantry</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
-  <Armour>
-    <Hack>1</Hack>
-    <Pierce>40</Pierce>
-    <Crush>1</Crush>
-  </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -15,7 +10,7 @@
       <Spread>2.5</Spread>
       <ProjectileSpeed>300.0</ProjectileSpeed>
       <PrepareTime>5000</PrepareTime>
-      <RepeatTime>5000</RepeatTime>
+      <RepeatTime>4000</RepeatTime>
     </Ranged>
   </Attack>
   <Capturable>
