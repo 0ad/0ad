@@ -298,6 +298,7 @@ public:
 		ENSURE(pCxPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
 		JSContext* cx(self->m_ScriptInterface->GetContext());
+		JSAutoRequest rq(cx);
 
 		CFixedVector2D pos, goalPos;
 		std::vector<CFixedVector2D> waypoints;
@@ -327,6 +328,7 @@ public:
 		ENSURE(pCxPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
 		JSContext* cx(self->m_ScriptInterface->GetContext());
+		JSAutoRequest rq(cx);
 
 		JS::RootedValue retVal(cx);
 		self->m_ScriptInterface->ToJSVal<Grid<u16> >(cx, &retVal, self->m_LongPathfinder.GetConnectivityGrid(passClass));
@@ -521,6 +523,7 @@ public:
 
 		m_GameState = gameState;
 		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
 
 		if (dirtinessInformations.dirty)
 		{
@@ -770,13 +773,17 @@ public:
 		// Require unique prototype and name (for reverse lookup)
 		// TODO: this is yucky - see comment in Deserialize()
 		ENSURE(proto.isObject() && "A serializable prototype has to be an object!");
-		JS::RootedObject obj(m_ScriptInterface->GetContext(), &proto.toObject());
+
+		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+
+		JS::RootedObject obj(cx, &proto.toObject());
 		if (m_SerializablePrototypes->has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
 		{
 			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj.get(), utf8_from_wstring(name));
 			return;
 		}
-		m_SerializablePrototypes->add(m_ScriptInterface->GetContext(), obj, name);
+		m_SerializablePrototypes->add(cx, obj, name);
 		m_DeserializablePrototypes[name] = JS::Heap<JSObject*>(obj);
 	}
 

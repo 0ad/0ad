@@ -465,7 +465,10 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 	if (m_ScriptBackrefs.find(obj, tag))
 		return tag;
 
-	m_ScriptBackrefs.add(m_ScriptInterface.GetContext(), obj, m_ScriptBackrefsNext);
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	m_ScriptBackrefs.add(cx, obj, m_ScriptBackrefsNext);
 
 	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object

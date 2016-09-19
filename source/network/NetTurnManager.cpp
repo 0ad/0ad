@@ -292,7 +292,11 @@ void CNetTurnManager::AddCommand(int client, int player, JS::HandleValue data, u
 	}
 
 	m_Simulation2.GetScriptInterface().FreezeObject(data, true);
-	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, m_Simulation2.GetScriptInterface().GetContext(), data);
+
+	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+
+	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, cx, data);
 }
 
 void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
@@ -556,10 +560,13 @@ void CNetReplayTurnManager::DoTurn(u32 turn)
 
 	m_TurnLength = m_ReplayTurnLengths[turn];
 
+	JSContext* cx = m_Simulation2.GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+
 	// Simulate commands for that turn
 	for (const std::pair<player_id_t, std::string>& p : m_ReplayCommands[turn])
 	{
-		JS::RootedValue command(m_Simulation2.GetScriptInterface().GetContext());
+		JS::RootedValue command(cx);
 		m_Simulation2.GetScriptInterface().ParseJSON(p.second, &command);
 		AddCommand(m_ClientId, p.first, command, m_CurrentTurn + 1);
 	}

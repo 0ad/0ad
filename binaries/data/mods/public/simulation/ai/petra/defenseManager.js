@@ -388,6 +388,8 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			return;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 			return;
+		if (gameState.getGameType() === "regicide" && ent.hasClass("Hero") && ent.healthLevel() < 0.8)
+			return;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
@@ -475,8 +477,41 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
-		// If inside a started attack plan, let the plan deal with this unit
 		let plan = target.getMetadata(PlayerID, "plan");
+
+		// Retreat the hero in regicide mode if wounded
+		if (gameState.getGameType() == "regicide" && target.hasClass("Hero") && target.healthLevel() < 0.7)
+		{
+			target.stopMoving();
+
+			if (plan >= 0)
+			{
+				let attackPlan = gameState.ai.HQ.attackManager.getPlan(target.getMetadata(PlayerID, "plan"));
+				if (attackPlan)
+					attackPlan.removeUnit(target, true);
+			}
+
+			if (target.getMetadata(PlayerID, "PartOfArmy"))
+			{
+				let army = gameState.ai.HQ.defenseManager.getArmy(target.getMetadata(PlayerID, "PartOfArmy"));
+				if (army)
+					army.removeOwn(gameState, target.id());
+			}
+
+			this.garrisonUnitForHealing(gameState, target);
+
+			if (plan >= 0) // couldn't find a place to garrison, so the hero will flee from attacks
+			{
+				target.setStance("passive");
+				let accessIndex = gameState.ai.accessibility.getAccessValue(target.position());
+				let basePos = m.getBestBase(gameState, target);
+				if (basePos && basePos.accessIndex == accessIndex)
+					target.move(basePos.anchor.position()[0], basePos.anchor.position()[1]);
+			}
+			continue;
+		}
+
+		// If inside a started attack plan, let the plan deal with this unit
 		if (plan !== undefined && plan >= 0)
 		{
 			let attack = gameState.ai.HQ.attackManager.getPlan(plan);

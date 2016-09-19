@@ -117,6 +117,8 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 
 	shared_ptr<ScriptInterface> scriptInterface = m_PageStack.back().gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
 	JS::RootedValue initDataVal(cx);
 	if (!initDataClone)
 	{

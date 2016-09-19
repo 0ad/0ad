@@ -421,6 +421,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"barterMarket": null,
 		"buildingAI": null,
 		"heal": null,
+		"loot": null,
 		"obstruction": null,
 		"turretParent":null,
 		"promotion": null,
@@ -567,6 +568,19 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
 			"healableClasses": cmpHeal.GetHealableClasses(),
 		};
+
+	let cmpLoot = Engine.QueryInterface(ent, IID_Loot);
+	if (cmpLoot)
+	{
+		let resources = cmpLoot.GetResources();
+		ret.loot = {
+			"xp": cmpLoot.GetXp(),
+			"food": resources.food,
+			"wood": resources.wood,
+			"stone": resources.stone,
+			"metal": resources.metal
+		};
+	}
 
 	let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 	if (cmpUnitMotion)

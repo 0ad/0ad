@@ -643,6 +643,8 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 			continue;
 		if (ent.hasClass("Ship") || ent.hasClass("Support") || ent.attackTypes() === undefined)
 			continue;
+		if (gameState.getGameType() === "regicide" && ent.hasClass("Hero") && (this.overseas || ent.healthLevel() < 0.8))
+			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
 		this.unitCollection.updateEnt(ent);
 		added = true;

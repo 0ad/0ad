@@ -291,7 +291,8 @@ function displaySingle(entState)
 		getBuildRateTooltip,
 		getSpeedTooltip,
 		getGarrisonTooltip,
-		getProjectilesTooltip
+		getProjectilesTooltip,
+		getLootTooltip
 	].map(func => func(entState)).filter(tip => tip).join("\n");
 
 	let iconTooltips = [];
@@ -319,11 +320,12 @@ function displayMultiple(selection)
 	let maxCapturePoints = 0;
 	let capturePoints = (new Array(g_MaxPlayers + 1)).fill(0);
 	let playerID = 0;
-	let totalResourcesCarried = {};
+	let totalCarrying = {};
+	let totalLoot = {};
 
 	for (let i = 0; i < selection.length; ++i)
 	{
-		let entState = GetEntityState(selection[i]);
+		let entState = GetExtendedEntityState(selection[i]);
 		if (!entState)
 			continue;
 		playerID = entState.player; // trust that all selected entities have the same owner
@@ -338,10 +340,18 @@ function displayMultiple(selection)
 			capturePoints = entState.capturePoints.map((v, i) => v + capturePoints[i]);
 		}
 
-		if (entState.resourceCarrying && entState.resourceCarrying.length)
+		let carrying = calculateCarriedResources(
+			entState.resourceCarrying,
+			entState.trader && entState.trader.goods
+		);
+
+		for (let type in entState.loot)
+			totalLoot[type] = (totalLoot[type] || 0) + entState.loot[type];
+
+		for (let type in carrying)
 		{
-			let carrying = entState.resourceCarrying[0];
-			totalResourcesCarried[carrying.type] = (totalResourcesCarried[carrying.type] || 0) + carrying.amount;
+			totalCarrying[type] = (totalCarrying[type] || 0) + carrying[type];
+			totalLoot[type] = (totalLoot[type] || 0) + carrying[type];
 		}
 	}
 
@@ -394,9 +404,23 @@ function displayMultiple(selection)
 
 	let numberOfUnits = Engine.GetGUIObjectByName("numberOfUnits");
 	numberOfUnits.caption = selection.length;
-	numberOfUnits.tooltip = Object.keys(totalResourcesCarried).map(res =>
-		costIcon(res) + totalResourcesCarried[res]
-	).join(" ");
+	numberOfUnits.tooltip = "";
+
+	if (Object.keys(totalCarrying).length)
+		numberOfUnits.tooltip = sprintf(translate("%(label)s %(details)s\n"), {
+			"label": headerFont(translate("Carrying:")),
+			"details": bodyFont(Object.keys(totalCarrying).map(
+				res => sprintf(translate("%(type)s %(amount)s"),
+					{ "type": costIcon(res), "amount": totalCarrying[res] })).join("  "))
+		});
+
+	if (Object.keys(totalLoot).length)
+		numberOfUnits.tooltip += sprintf(translate("%(label)s %(details)s"), {
+			"label": headerFont(translate("Loot:")),
+			"details": bodyFont(Object.keys(totalLoot).map(
+				res => sprintf(translate("%(type)s %(amount)s"),
+					{ "type": costIcon(res), "amount": totalLoot[res] })).join("  "))
+		});
 
 	// Unhide Details Area
 	Engine.GetGUIObjectByName("detailsAreaMultiple").hidden = false;

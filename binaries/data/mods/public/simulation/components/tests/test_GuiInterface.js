@@ -15,6 +15,7 @@ Engine.LoadComponentScript("interfaces/Gate.js");
 Engine.LoadComponentScript("interfaces/Guard.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/Loot.js");
 Engine.LoadComponentScript("interfaces/Market.js");
 Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/ProductionQueue.js");
@@ -535,6 +536,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 	},
 	buildingAI: null,
 	heal: null,
+	loot: null,
 	obstruction: null,
 	turretParent: null,
 	promotion: null,
