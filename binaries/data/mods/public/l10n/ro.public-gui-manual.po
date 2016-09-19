@@ -5,6 +5,7 @@
 # Translators:
 # Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>, 2015
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Raz Taz <raztaz.ubuntu@gmail.com>, 2016
 # coyoty <sacuiu.andy@gmail.com>, 2014
 # Stefan Georgescu <steffanner@gmail.com>, 2015
 # w3as3l54, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-05 09:00+0200\n"
-"PO-Revision-Date: 2016-08-09 05:13+0000\n"
-"Last-Translator: Alex Hex <alexhex14@gmail.com>\n"
+"PO-Revision-Date: 2016-09-18 16:08+0000\n"
+"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,19 +153,19 @@ msgstr "Mai întâi selectați tipul de hartă pe care doriți să îl jucați:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Hartă aleatoare[font=\"sans-14\"] — O hartă creată automat pe baza unui script"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Hartă scenariu[font=\"sans-14\"] — O hartă creată de proiectanți de hărți, cu civilizații fixe."
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Hartă încăierare[font=\"sans-14\"] — O hartă creată de proiectanții de harți dar în care civilizatiile se pot alege"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -173,7 +174,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Hărțile pot fi filtrate mai departe. Hărțile implicite sunt hărți care se pot juca la modul general. Hărțile navale sunt hărți unde nu la toți adversarii se poate ajunge pe pământ și hărțile demo sunt hărți folosite pentru diverse teste (în general inutilizabile pentru joaca propriu-zisă). Filtrul „Toate Hărțile” afișează toate hărțile într-o singură listă."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -182,7 +183,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "În sfârșit, schimbă setările. Pentru hărți aleatorii asta include numărul de jucători, mărimea hărții, etc. Pentru scenarii poți selecta doar cine controlează ce jucător (ceea ce are impact asupra locului unde vei începe pe hartă etc). Opțiunile cuprind:  jucător uman, IA sau nici un jucător (acest adversar va rămâne pasiv)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -194,7 +195,7 @@ msgstr "[font=\"sans-bold-16\"]Scurtături:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Global"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

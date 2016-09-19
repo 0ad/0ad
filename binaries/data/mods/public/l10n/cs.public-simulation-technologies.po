@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-17 16:53+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 08:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1287,8 +1287,8 @@ msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků př
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Postupuje do velkoměstské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%.  Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +9 k regeneraci jejich posádky."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1318,8 +1318,8 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Postupuje do velkoměstské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%. Civilizační přídavek Stříbrné sovy poskytuje všem dělníkům dalších +10% na rychlosti sbírání kovu. Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +9 k regeneraci jejich posádky."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1782,8 +1782,10 @@ msgid ""
 msgstr "Pomocí obchodu a cestování, lidé objevovali vzdálené krajiny za hranicemi jejich země a vytvářeli mapy pro sdílení a zapamatování jejich objevů."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "Hráč vidí to, co vidí spojenci."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

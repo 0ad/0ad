@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:06+0000\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 08:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -33,16 +33,16 @@ msgstr "市政建筑"
 msgid "Civic"
 msgstr "市政厅"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 msgid "Civic Center"
 msgstr "市政大厅"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "建设以增大领土。可训练市民。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
-#: simulation/templates/template_structure_civic_civil_centre.xml:33
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 msgid "CivilCentre"
 msgstr "市政中心"
 
@@ -51,13 +51,28 @@ msgid "Colony"
 msgstr "殖民地"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
-#: simulation/templates/structures/ptol_military_colony.xml:5
+#: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "军事殖民地"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "城镇"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -98,16 +113,6 @@ msgid ""
 msgstr "训练医疗者。一个医疗者可以使驻军单位快速恢复生命值(每秒3点生命)。研究改进医疗技术及宗教。"
 
 #: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "Town"
-msgstr "城镇"
-
-#: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Temple"
 msgstr "寺庙"
@@ -115,11 +120,6 @@ msgstr "寺庙"
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
 msgstr "防御建筑"
-
-#: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:66
-msgid "Defensive"
-msgstr "防守的"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
@@ -148,12 +148,12 @@ msgstr "在中立和同盟国的领土上建造建筑去侦察地图上的区域
 msgid "Outpost"
 msgstr "哨岗"
 
-#: simulation/templates/template_structure_defense_wall.xml:27
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "石墙"
 
-#: simulation/templates/template_structure_defense_wall.xml:28
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wallset.xml:12
 msgid "Wall off your town for a stout defense."
 msgstr "在城镇周围建造围墙，可以用来侦查和防御。"
 
@@ -175,15 +175,15 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "这允许你让你的单位在你的要塞巡逻。"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:53
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "城墙箭塔"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:54
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "箭垛。驻兵用弓箭抵御进攻者。"
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "City Wall"
 msgstr "城墙"
 
@@ -286,6 +286,11 @@ msgstr "码头"
 msgid "Embassy"
 msgstr "大使馆"
 
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
+msgid "Fortress"
+msgstr "城堡"
+
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
@@ -293,14 +298,10 @@ msgid ""
 msgstr "训练英雄，精英单位以及攻城武器。研究改进攻城武器技术。"
 
 #: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_special.xml:45
+#: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
 msgstr "城市"
-
-#: simulation/templates/template_structure_military_fortress.xml:66
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
-msgid "Fortress"
-msgstr "城堡"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -363,15 +364,16 @@ msgstr "希腊剧院"
 msgid "Théātron"
 msgstr "希腊剧院"
 
-#: simulation/templates/template_structure_wonder.xml:47
-msgid "Wonder"
-msgstr "奇迹"
-
 #: simulation/templates/template_structure_wonder.xml:48
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "给你的文明带来荣耀，并且能增加你帝国的领土"
+
+#: simulation/templates/template_structure_wonder.xml:49
+#: simulation/templates/template_structure_wonder.xml:47
+msgid "Wonder"
+msgstr "奇迹"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -550,8 +552,8 @@ msgstr "Gwersyllty"
 msgid "Amoridas"
 msgstr "Amoridas"
 
-#: simulation/templates/structures/brit_civil_centre.xml:9
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/brit_civil_centre.xml:12
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Caer"
 msgstr "Caer"
 
@@ -673,7 +675,7 @@ msgstr "训练北非民兵。研究北非单位升级。"
 msgid "?"
 msgstr "？"
 
-#: simulation/templates/structures/cart_civil_centre.xml:5
+#: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
 msgstr "Merkāz"
 
@@ -760,15 +762,19 @@ msgstr "迦太基前哨"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:35
 msgid "Naval Shipyard"
 msgstr "海军造船厂"
 
-#: simulation/templates/structures/cart_super_dock.xml:12
+#: simulation/templates/structures/cart_super_dock.xml:36
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:15
+#: simulation/templates/structures/cart_super_dock.xml:37
+msgid "Shipyard"
+msgstr ""
+
+#: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
 msgstr "建设和修复战舰。"
 
@@ -837,7 +843,7 @@ msgstr "Kaserna"
 msgid "Harotz"
 msgstr "Harotz"
 
-#: simulation/templates/structures/iber_civil_centre.xml:5
+#: simulation/templates/structures/iber_civil_centre.xml:8
 msgid "Oppidum"
 msgstr "Oppidum"
 
@@ -959,7 +965,7 @@ msgstr "Sainyavasa"
 msgid "Lohakāra"
 msgstr "Lohakāra"
 
-#: simulation/templates/structures/maur_civil_centre.xml:9
+#: simulation/templates/structures/maur_civil_centre.xml:12
 msgid "Rajadhanika"
 msgstr "Rajadhanika"
 
@@ -1083,7 +1089,7 @@ msgstr "波斯宫殿"
 msgid "Apadana"
 msgstr "阿波陀那"
 
-#: simulation/templates/structures/pers_apadana.xml:34
+#: simulation/templates/structures/pers_apadana.xml:31
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
@@ -1101,11 +1107,11 @@ msgstr "征召民兵步兵单位。"
 msgid "Arštišta"
 msgstr "Arštišta"
 
-#: simulation/templates/structures/pers_civil_centre.xml:5
+#: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "省长"
 
-#: simulation/templates/structures/pers_civil_centre.xml:6
+#: simulation/templates/structures/pers_civil_centre.xml:9
 msgid "Xšaçapāvan"
 msgstr "Xšaçapāvan"
 
@@ -1232,7 +1238,7 @@ msgid ""
 "improvements."
 msgstr "训练埃及和中东民兵。研究训练的改进科技。"
 
-#: simulation/templates/structures/ptol_civil_centre.xml:15
+#: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
 msgstr "pr-'a"
 
@@ -1274,7 +1280,7 @@ msgstr "灯塔"
 msgid "Pháros"
 msgstr "Pháros"
 
-#: simulation/templates/structures/ptol_lighthouse.xml:20
+#: simulation/templates/structures/ptol_lighthouse.xml:21
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
@@ -1294,21 +1300,20 @@ msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
-"Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
-"- Train Mercenaries. \n"
-"- Min. distance from other Military Settlements: 100 meters."
-msgstr "便宜的类军营式的建筑，可以在中立的领土上建造，但对领土范围则无任何影响。\n- 训练雇佣兵。 \n- 与其他军事殖民地的最小距离：100米。"
+"Cheap barracks-like structure that is buildable in neutral territory, but "
+"casts no territory influence. Train Mercenaries."
+msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:6
+#: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
 msgstr "科隆西亚"
 
-#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
-"This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
-"- Train settler-soldiers of various nationalities.\n"
-"- Min. distance from other Military Colonies: 120 meters."
-msgstr "这是托勒密王朝的的扩张建筑，类似于其他文明中的镇中心。它更加脆弱。并且携带的领土范围并不大，但它比较便宜，而且建造速度更快一些。\n- 训练不同文明的殖民士兵。\n- 与其他军事殖民地的最小距离：120米。"
+"This is the Ptolemaic expansion building, similar to Civic Centers for other"
+" factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr ""
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1353,7 +1358,7 @@ msgstr "加强型军营"
 msgid "Castrum Vallum"
 msgstr "军营壁垒"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:63
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1367,7 +1372,7 @@ msgstr "军营"
 msgid "Armamentarium"
 msgstr "医疗器械"
 
-#: simulation/templates/structures/rome_civil_centre.xml:9
+#: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
 msgstr "论坛"
 
@@ -1428,9 +1433,9 @@ msgstr "围墙"
 msgid "Murus Circummunitionis"
 msgstr "Murus Circummunitionis"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:57
-#: simulation/templates/structures/rome_siege_wall_medium.xml:51
-#: simulation/templates/structures/rome_siege_wall_short.xml:38
+#: simulation/templates/structures/rome_siege_wall_long.xml:55
+#: simulation/templates/structures/rome_siege_wall_medium.xml:49
+#: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "可在敌对及中立领土上建造的木造柵欄。。"
@@ -1547,10 +1552,10 @@ msgstr "市场"
 
 #: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
-"This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
-"- Train settler-soldiers of various nationalities.\n"
-"- Min. distance from other Military Colonies: 120 meters."
-msgstr "这是塞琉古的扩张建筑物，类似于其他文明的城鎮中心。它比较脆弱且领土范围较小，但它较便宜且建造较快。\n- 训练不同民族的开拓者士兵。\n- 与其他军事殖民地的最小距离：120米。"
+"This is the Seleucid expansion building, similar to Civic Centers for other "
+"factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr ""
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1593,7 +1598,7 @@ msgstr "军事食堂"
 msgid "Syssítion"
 msgstr "Syssítion"
 
-#: simulation/templates/structures/spart_syssiton.xml:26
+#: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "训练斯巴达英雄及斯巴达重裝步兵。"
 

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-09-04 23:03+0000\n"
-"Last-Translator: Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 08:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1291,8 +1291,8 @@ msgstr "Avancera från en livlig stad till en veritabel metropol, full av modern
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Avancera till Storstadsfasen, som låser upp mer strukturer och enheter. Territorieradius för samhällscenter ökar med +50% igen. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +9 garnisonerad regenereringstakt."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1322,8 +1322,8 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Avancera till Storstadsfasen, som låser upp mer strukturer och enheter. Territorieradius för samhällscenter ökar med +50% igen. Silverugglor civilisationsbonusen ger extra +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +9 garnisonerad regenereringstakt."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1786,8 +1786,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "Spelaren ser vad sina allierade ser."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

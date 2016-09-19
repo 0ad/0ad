@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:05+0000\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 08:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -32,16 +32,16 @@ msgstr "Kansalaisrakennus"
 msgid "Civic"
 msgstr "Kansalainen"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 msgid "Civic Center"
 msgstr "Kansalaiskeskus"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
-#: simulation/templates/template_structure_civic_civil_centre.xml:33
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 msgid "CivilCentre"
 msgstr "Hallintokeskus"
 
@@ -50,13 +50,28 @@ msgid "Colony"
 msgstr "Siirtomaa"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
-#: simulation/templates/structures/ptol_military_colony.xml:5
+#: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Sotilaallinen siirtomaa"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Kaupunki"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -97,16 +112,6 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "Town"
-msgstr "Kaupunki"
-
-#: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Temple"
 msgstr "Temppeli"
@@ -114,11 +119,6 @@ msgstr "Temppeli"
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
 msgstr "Puolustusrakennelma"
-
-#: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:66
-msgid "Defensive"
-msgstr "Puolustava"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
@@ -147,12 +147,12 @@ msgstr "Rakenna neutraaleihin ja omiin alueisiin tiedustellaksi kartan alueita. 
 msgid "Outpost"
 msgstr "Vartiotorni"
 
-#: simulation/templates/template_structure_defense_wall.xml:27
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "Kivimuuri"
 
-#: simulation/templates/template_structure_defense_wall.xml:28
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wallset.xml:12
 msgid "Wall off your town for a stout defense."
 msgstr "Paranna kaupunkisi puolustusta rakentamalla muuri sen ympärille."
 
@@ -174,15 +174,15 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr ""
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:53
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "Muurin tykkitorni"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:54
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Ampuu nuolia. Kokoa joukko puolustaaksesi kaupunginmuuria hyökkääjiä vastaan."
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "City Wall"
 msgstr "Kaupunginmuuri"
 
@@ -285,6 +285,11 @@ msgstr "Satama"
 msgid "Embassy"
 msgstr "Suurlähetystö"
 
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
+msgid "Fortress"
+msgstr "Linnoitus"
+
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
@@ -292,14 +297,10 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_special.xml:45
+#: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
 msgstr "Suurkaupunki"
-
-#: simulation/templates/template_structure_military_fortress.xml:66
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
-msgid "Fortress"
-msgstr "Linnoitus"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -362,15 +363,16 @@ msgstr "Kreikkalainen teatteri"
 msgid "Théātron"
 msgstr "Théātron"
 
-#: simulation/templates/template_structure_wonder.xml:47
-msgid "Wonder"
-msgstr "Ihme"
-
 #: simulation/templates/template_structure_wonder.xml:48
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Tuo kunniaa sivilisaatiollesi ja lisää suuria maa-alueita imperiumiisi."
+
+#: simulation/templates/template_structure_wonder.xml:49
+#: simulation/templates/template_structure_wonder.xml:47
+msgid "Wonder"
+msgstr "Ihme"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -549,8 +551,8 @@ msgstr "Gwersyllty"
 msgid "Amoridas"
 msgstr "Amoridas"
 
-#: simulation/templates/structures/brit_civil_centre.xml:9
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/brit_civil_centre.xml:12
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Caer"
 msgstr "Caer"
 
@@ -672,7 +674,7 @@ msgstr "Kouluta Pohjois-Afrikkalaisia kansalaissotilaita. Tutki Pohjois-Afrikkal
 msgid "?"
 msgstr "?"
 
-#: simulation/templates/structures/cart_civil_centre.xml:5
+#: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
 msgstr "Merkāz"
 
@@ -759,15 +761,19 @@ msgstr "Karthagolainen Vartiotorni"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:35
 msgid "Naval Shipyard"
 msgstr "Merisatama"
 
-#: simulation/templates/structures/cart_super_dock.xml:12
+#: simulation/templates/structures/cart_super_dock.xml:36
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:15
+#: simulation/templates/structures/cart_super_dock.xml:37
+msgid "Shipyard"
+msgstr ""
+
+#: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
 msgstr "Rakenna ja korjaa mahtavia sotalaivoja."
 
@@ -836,7 +842,7 @@ msgstr "Kaserna"
 msgid "Harotz"
 msgstr "Harotz"
 
-#: simulation/templates/structures/iber_civil_centre.xml:5
+#: simulation/templates/structures/iber_civil_centre.xml:8
 msgid "Oppidum"
 msgstr "Oppidum"
 
@@ -958,7 +964,7 @@ msgstr "Sainyavasa"
 msgid "Lohakāra"
 msgstr "Lohakāra"
 
-#: simulation/templates/structures/maur_civil_centre.xml:9
+#: simulation/templates/structures/maur_civil_centre.xml:12
 msgid "Rajadhanika"
 msgstr "Rajadhanika"
 
@@ -1082,7 +1088,7 @@ msgstr "Persian palatsi"
 msgid "Apadana"
 msgstr "Apadana"
 
-#: simulation/templates/structures/pers_apadana.xml:34
+#: simulation/templates/structures/pers_apadana.xml:31
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
@@ -1100,11 +1106,11 @@ msgstr "Värvää nostoväkeä."
 msgid "Arštišta"
 msgstr "Arštišta"
 
-#: simulation/templates/structures/pers_civil_centre.xml:5
+#: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Provincial Governor"
 
-#: simulation/templates/structures/pers_civil_centre.xml:6
+#: simulation/templates/structures/pers_civil_centre.xml:9
 msgid "Xšaçapāvan"
 msgstr "Xšaçapāvan"
 
@@ -1231,7 +1237,7 @@ msgid ""
 "improvements."
 msgstr ""
 
-#: simulation/templates/structures/ptol_civil_centre.xml:15
+#: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
 msgstr "pr-'a"
 
@@ -1273,7 +1279,7 @@ msgstr "Majakka"
 msgid "Pháros"
 msgstr "Pháros"
 
-#: simulation/templates/structures/ptol_lighthouse.xml:20
+#: simulation/templates/structures/ptol_lighthouse.xml:21
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
@@ -1293,21 +1299,20 @@ msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
-"Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
-"- Train Mercenaries. \n"
-"- Min. distance from other Military Settlements: 100 meters."
-msgstr "Halpa kasarmin kaltainen rakenne, joka on rakennettavissa neutraalilla alueella, muttei vaikuta maa-alueiden hallintaan.\n- Kouluta palkkasotureita.\n- Minimietäisyys muihin armeija-asutuksiin: 100 metriä."
+"Cheap barracks-like structure that is buildable in neutral territory, but "
+"casts no territory influence. Train Mercenaries."
+msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:6
+#: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
-"This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
-"- Train settler-soldiers of various nationalities.\n"
-"- Min. distance from other Military Colonies: 120 meters."
-msgstr "Tämä on ptolemaioisten rakennusten laajennus, samanlainen kuin kansalaiskeskus eri kansakunnilla. Se on heikompi ja vaikuttaa vähemmän alueiden hallintaan, mutta se on halvempi ja nopeampi rakentaa.\n- Kouluta uudisasukassotilaita eri kansallisuuksista.\n- Minimietäisyys muihin armeijayhdyskuntiin: 120 metriä."
+"This is the Ptolemaic expansion building, similar to Civic Centers for other"
+" factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr ""
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1352,7 +1357,7 @@ msgstr "Linnoitettu armeijan leiri"
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:63
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1366,7 +1371,7 @@ msgstr "Castrum"
 msgid "Armamentarium"
 msgstr "Armamentarium"
 
-#: simulation/templates/structures/rome_civil_centre.xml:9
+#: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
 msgstr "Forum"
 
@@ -1427,9 +1432,9 @@ msgstr "Muurin piirityslaite"
 msgid "Murus Circummunitionis"
 msgstr "Murus Circummunitionis"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:57
-#: simulation/templates/structures/rome_siege_wall_medium.xml:51
-#: simulation/templates/structures/rome_siege_wall_short.xml:38
+#: simulation/templates/structures/rome_siege_wall_long.xml:55
+#: simulation/templates/structures/rome_siege_wall_medium.xml:49
+#: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "Puusta ja turpeesta rakennettu paalutus, joka on rakennettavissa vihollis- ja neutraalille alueelle."
@@ -1546,10 +1551,10 @@ msgstr "Empórion"
 
 #: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
-"This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
-"- Train settler-soldiers of various nationalities.\n"
-"- Min. distance from other Military Colonies: 120 meters."
-msgstr "Tämä on Seleucidien rakennusten laajennus, samanlainen kuin kansalaiskeskus eri kansakunnilla. Se on heikompi ja vaikuttaa vähemmän alueiden hallintaan, mutta se on halvempi ja nopeampi rakentaa.\n- Kouluta uudisasukassotilaita eri kansallisuuksista.\n- Minimietäisyys muihin armeijayhdyskuntiin: 120 metriä."
+"This is the Seleucid expansion building, similar to Civic Centers for other "
+"factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr ""
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1592,7 +1597,7 @@ msgstr "Sotilaallinen ruokasali"
 msgid "Syssítion"
 msgstr "Syssítion"
 
-#: simulation/templates/structures/spart_syssiton.xml:26
+#: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Kouluta spartalaisia sankareita ja Homoioi-hopliittisankareita."
 

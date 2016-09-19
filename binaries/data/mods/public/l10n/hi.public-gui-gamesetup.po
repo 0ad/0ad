@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
+"POT-Creation-Date: 2016-09-05 09:00+0200\n"
+"PO-Revision-Date: 2016-09-18 08:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -33,173 +33,141 @@ msgstr "कोई नहीं"
 msgid "AI will be disabled for this player."
 msgstr "AI इस खिलाड़ी के लिए निष्क्रिय कर दिया जाएगा."
 
-#: gui/gamesetup/gamesetup.js:44
+#: gui/gamesetup/gamesetup.js:46
 msgid "Game settings have been changed"
 msgstr "खेल सेटिंग्स बदल दिया गया है"
 
-#: gui/gamesetup/gamesetup.js:45
+#: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s शामिल हो गया है"
 
-#: gui/gamesetup/gamesetup.js:46
+#: gui/gamesetup/gamesetup.js:48
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s जा चुका है"
 
-#: gui/gamesetup/gamesetup.js:47
+#: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "% (username)s निकाल दिया गया है"
 
-#: gui/gamesetup/gamesetup.js:48
+#: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "% (username)s पर प्रतिबंध लगा दिया गया है"
 
-#: gui/gamesetup/gamesetup.js:49
+#: gui/gamesetup/gamesetup.js:51
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:50
+#: gui/gamesetup/gamesetup.js:52
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:53
+#: gui/gamesetup/gamesetup.js:55
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "%(username)s तैयार है"
 
-#: gui/gamesetup/gamesetup.js:56
+#: gui/gamesetup/gamesetup.js:58
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "%(username)s तैयार नहीं है"
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
+#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1389
 msgid "Default"
 msgstr "डिफ़ॉल्ट"
 
-#: gui/gamesetup/gamesetup.js:73
+#: gui/gamesetup/gamesetup.js:75
 msgid "Naval Maps"
 msgstr "समुद्री नक्शे"
 
-#: gui/gamesetup/gamesetup.js:78
+#: gui/gamesetup/gamesetup.js:80
 msgid "Demo Maps"
 msgstr "डेमो नक्शे"
 
-#: gui/gamesetup/gamesetup.js:83
+#: gui/gamesetup/gamesetup.js:85
 msgid "Trigger Maps"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:88
+#: gui/gamesetup/gamesetup.js:90
 msgid "All Maps"
 msgstr "सभी नक्शे"
 
-#: gui/gamesetup/gamesetup.js:142
+#: gui/gamesetup/gamesetup.js:139
 msgctxt "map selection"
 msgid "Random"
 msgstr "क्रम रहित"
 
-#: gui/gamesetup/gamesetup.js:147
+#: gui/gamesetup/gamesetup.js:144
 msgctxt "civilization"
 msgid "Random"
 msgstr "अनियमित"
 
-#: gui/gamesetup/gamesetup.js:270
+#: gui/gamesetup/gamesetup.js:267
 msgid "Return to the lobby."
 msgstr "लॉबी में वापस जाएँ"
 
-#: gui/gamesetup/gamesetup.js:270
+#: gui/gamesetup/gamesetup.js:267
 msgid "Return to the main menu."
 msgstr "मुख्य मीनु में वापस जाएँ"
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:592
 msgid "Yes"
 msgstr "हाँ"
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:592
 msgid "No"
 msgstr "नहीं"
 
-#: gui/gamesetup/gamesetup.js:606
+#: gui/gamesetup/gamesetup.js:631
 msgctxt "team"
 msgid "None"
 msgstr "कोई नहीं"
 
-#: gui/gamesetup/gamesetup.js:1273
+#: gui/gamesetup/gamesetup.js:1297
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1437
+#: gui/gamesetup/gamesetup.js:1459
 msgid "Loading..."
 msgstr "लोड हो रहा है..."
 
-#: gui/gamesetup/gamesetup.js:1487
-#, javascript-format
-msgid "%(number)s player. "
-msgid_plural "%(number)s players. "
-msgstr[0] "% (number)s खिलाड़ी. "
-msgstr[1] "% (number)s खिलाड़ी. "
-
-#: gui/gamesetup/gamesetup.js:1497
-msgid "Randomly selects a map from the list"
-msgstr "निरुद्देश्य ढंग से सूची से एक नक्शे का चयन करता है"
-
-#: gui/gamesetup/gamesetup.js:1500
-msgid "Sorry, no description available."
-msgstr "क्षमा करें, कोई उपलब्ध विवरण नहीं."
-
-#: gui/gamesetup/gamesetup.js:1506
-msgctxt "victory condition"
-msgid "Unknown"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1511
-#, javascript-format
-msgctxt "victory condition"
-msgid "Wonder (%(min)s minute)"
-msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-
-#: gui/gamesetup/gamesetup.js:1528 gui/gamesetup/gamesetup.xml:(caption):320
-msgid "Victory Condition:"
-msgstr "विजय शर्त : "
-
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1592
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ए.आइ.: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1597
 msgid "Unassigned"
 msgstr "असाइन नहीं की गई"
 
-#: gui/gamesetup/gamesetup.js:1781
+#: gui/gamesetup/gamesetup.js:1757
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1788
+#: gui/gamesetup/gamesetup.js:1764
 msgid "Unknown Player"
 msgstr "अज्ञात प्लेयर"
 
-#: gui/gamesetup/gamesetup.js:1858
+#: gui/gamesetup/gamesetup.js:1842
 msgid "I'm not ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1859
+#: gui/gamesetup/gamesetup.js:1843
 msgid "I'm ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1862
+#: gui/gamesetup/gamesetup.js:1846
 msgid "State that you are not ready to play."
 msgstr "बताएं कि आप खेलने के लिए तैयार नहीं हैं."
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1847
 msgid "State that you are ready to play!"
 msgstr "बताएं कि आप खेलने के लिए तैयार हैं !"
 
@@ -276,256 +244,260 @@ msgid "Cancel"
 msgstr "रद्द करें"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):447
+#: gui/gamesetup/gamesetup.xml:(caption):448
 msgid "OK"
 msgstr "ठीक है"
 
-#: gui/gamesetup/gamesetup.xml:(caption):20
+#: gui/gamesetup/gamesetup.xml:(caption):21
 msgid "Match Setup"
 msgstr "मैच सेटअप"
 
-#: gui/gamesetup/gamesetup.xml:(caption):26
+#: gui/gamesetup/gamesetup.xml:(caption):27
 msgid "Loading"
 msgstr "लोड हो रहा है"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):31
 msgid "Loading map data. Please wait..."
 msgstr "नक्शा डेटा लोड हो रहा है. कृपया प्रतीक्षा करें..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Player Name"
 msgstr "खिलाड़ी का नाम"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):51
 msgid "Color"
 msgstr "रंग"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):55
 msgid "Player Placement"
 msgstr "खिलाडी स्थान नियोजन"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):59
 msgid "Civilization"
 msgstr "सभ्यता"
 
-#: gui/gamesetup/gamesetup.xml:(caption):86
+#: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
 msgstr "टीम"
 
-#: gui/gamesetup/gamesetup.xml:(caption):139
+#: gui/gamesetup/gamesetup.xml:(caption):140
 msgid "Map Type:"
 msgstr "नक्शा प्रकार:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):142
+#: gui/gamesetup/gamesetup.xml:(caption):143
 msgid "Map Filter:"
 msgstr "नक्शा फिल्टर:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):145
+#: gui/gamesetup/gamesetup.xml:(caption):146
 msgid "Select Map:"
 msgstr "नक्शे का चयन करें:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):148
+#: gui/gamesetup/gamesetup.xml:(caption):149
 msgid "Number of Players:"
 msgstr "खिलाड़ियों की संख्या:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):151
+#: gui/gamesetup/gamesetup.xml:(caption):152
 msgid "Map Size:"
 msgstr "नक्शे का आकार:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):230
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Send"
 msgstr "भेजें"
 
-#: gui/gamesetup/gamesetup.xml:(caption):248
+#: gui/gamesetup/gamesetup.xml:(caption):249
 msgid "Cheats enabled."
 msgstr "जालसाजी का अधिकार प्राप्त"
 
-#: gui/gamesetup/gamesetup.xml:(caption):261
+#: gui/gamesetup/gamesetup.xml:(caption):262
 msgid "Start game!"
 msgstr "खेल शुरू करें!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):279
+#: gui/gamesetup/gamesetup.xml:(caption):280
 msgid "Back"
 msgstr "वापस"
 
-#: gui/gamesetup/gamesetup.xml:(caption):293
-#: gui/gamesetup/gamesetup.xml:(caption):305
+#: gui/gamesetup/gamesetup.xml:(caption):294
+#: gui/gamesetup/gamesetup.xml:(caption):306
 msgid "More Options"
 msgstr "अतिरिक्त विकल्प"
 
-#: gui/gamesetup/gamesetup.xml:(caption):310
+#: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Game Speed:"
 msgstr "खेल की गति:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):330
+#: gui/gamesetup/gamesetup.xml:(caption):321
+msgid "Victory Condition:"
+msgstr "विजय शर्त : "
+
+#: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Wonder Victory:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):340
+#: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Population Cap:"
 msgstr "जनसंख्या कैप:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):350
+#: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Starting Resources:"
 msgstr "शुररुआती संसाधन:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):360
+#: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Ceasefire:"
 msgstr "संघर्ष विराम : "
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):370
+#: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "Revealed Map:"
 msgstr "प्रकट नक्शा"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):380
+#: gui/gamesetup/gamesetup.xml:(caption):381
 msgid "Explored Map:"
 msgstr "अन्वेषित नक्शा"
 
-#: gui/gamesetup/gamesetup.xml:(caption):390
+#: gui/gamesetup/gamesetup.xml:(caption):391
 msgid "Disable Treasures:"
 msgstr "अक्षम खजाने : "
 
-#: gui/gamesetup/gamesetup.xml:(caption):400
+#: gui/gamesetup/gamesetup.xml:(caption):401
 msgid "Teams Locked:"
 msgstr "अवरोधित दलें"
 
-#: gui/gamesetup/gamesetup.xml:(caption):410
+#: gui/gamesetup/gamesetup.xml:(caption):411
 msgid "Last Man Standing:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):420
+#: gui/gamesetup/gamesetup.xml:(caption):421
 msgid "Cheats:"
 msgstr "जालसाजी:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):430
+#: gui/gamesetup/gamesetup.xml:(caption):431
 msgid "Rated Game:"
 msgstr "खेल मूल्यांकन : "
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):68
+#: gui/gamesetup/gamesetup.xml:(tooltip):69
 msgid "View civilization info"
 msgstr "सभ्यता की जानकारी देखें"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):81
+#: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):96
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):107
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
 msgstr "एक रंग चुनें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):110
+#: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
 msgstr "खिलाड़ी का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):120
+#: gui/gamesetup/gamesetup.xml:(tooltip):121
 msgid "Configure AI settings."
 msgstr "AI सेटिंग्स कॉन्फ़िगर करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):123
+#: gui/gamesetup/gamesetup.xml:(tooltip):124
 msgid "Select player's civilization."
 msgstr "खिलाड़ी की सभ्यता का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
+#: gui/gamesetup/gamesetup.xml:(tooltip):128
 msgid "Select player's team."
 msgstr "खिलाड़ी के टीम का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):168
+#: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select a map type."
 msgstr "नक्शे का प्रकार चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):176
+#: gui/gamesetup/gamesetup.xml:(tooltip):177
 msgid "Select a map filter."
 msgstr "नक्शे का प्रकार चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):185
+#: gui/gamesetup/gamesetup.xml:(tooltip):186
 msgid "Select a map to play on."
 msgstr "खेलने के लिए नक्शे का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):195
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Select number of players."
 msgstr "खिलाड़ियों की संख्या का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):199
+#: gui/gamesetup/gamesetup.xml:(tooltip):200
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "नक्शे का आकार चयन करें. (बड़े आकार प्रदर्शन को कम कर सकते.)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):262
+#: gui/gamesetup/gamesetup.xml:(tooltip):263
 msgid "Start a new game with the current settings."
 msgstr "वर्तमान सेटिंग्स के साथ एक नया खेल शुरू करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):294
+#: gui/gamesetup/gamesetup.xml:(tooltip):295
 msgid "See more game options"
 msgstr "अधिक खेल विकल्प देखें"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):314
+#: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select game speed."
 msgstr "खेल की गति का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):324
+#: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select victory condition."
 msgstr "जीत के हालत का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):334
+#: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):344
+#: gui/gamesetup/gamesetup.xml:(tooltip):345
 msgid "Select population cap."
 msgstr "जनसंख्या का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):354
+#: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Select the game's starting resources."
 msgstr "खेल के शुरुआती संसाधनों का चयन करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):364
+#: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Set time where no attacks are possible."
 msgstr "समय निर्धारित कीजिये जिसमे कोई हमला नहीं कर सकता."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):374
+#: gui/gamesetup/gamesetup.xml:(tooltip):375
 msgid "Toggle revealed map (see everything)."
 msgstr "टॉगल करे प्रकाशित नक्शा."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):384
+#: gui/gamesetup/gamesetup.xml:(tooltip):385
 msgid "Toggle explored map (see initial map)."
 msgstr "टॉगल करे खोज हुआ नक्शा. "
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):394
+#: gui/gamesetup/gamesetup.xml:(tooltip):395
 msgid "Disable all treasures on the map."
 msgstr "नक्शे पर सभी खजाने को अक्षम करें."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):404
+#: gui/gamesetup/gamesetup.xml:(tooltip):405
 msgid "Toggle locked teams."
 msgstr "अवरोधित टीमें टॉगल करे."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):414
+#: gui/gamesetup/gamesetup.xml:(tooltip):415
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):424
+#: gui/gamesetup/gamesetup.xml:(tooltip):425
 msgid "Toggle the usability of cheats."
 msgstr "जालसाजी "
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):434
+#: gui/gamesetup/gamesetup.xml:(tooltip):435
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "जालसाजी की उपयोगिता टॉगल करे."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):448
+#: gui/gamesetup/gamesetup.xml:(tooltip):449
 msgid "Close more game options window"
 msgstr "अधिक खेल विकल्प विंडो को बंद करे"
 

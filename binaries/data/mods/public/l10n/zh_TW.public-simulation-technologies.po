@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 12:58+0000\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 13:39+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1283,8 +1283,8 @@ msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。民兵的血量上限 +20%。所有建築物 +9 駐守回復率。"
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1314,8 +1314,8 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "進階到城市階段，解鎖了更多建築物及單位。城鎮中心的領土範圍也再度增加了 +50%。銀鴞的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。民兵的血量上限 +20%。所有建築物 +9 駐守回復率。"
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "進階到城市階段，解鎖了更多建築物及單位。城鎮中心的領土範圍也再度增加了 +50%。銀鴞的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1778,8 +1778,10 @@ msgid ""
 msgstr "透過貿易與旅行，人們探索到了他們土地的界限以外，並繪製了地圖以分享並紀錄他們的發現。"
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "玩家看見他的盟友可以看見的。"
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr "檢視您的盟友們看到的，在頂部面板瀏覽他們的總覽並檢查他們的資源與人口數。"
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

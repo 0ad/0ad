@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 10:21+0000\n"
+"POT-Creation-Date: 2016-09-05 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 12:45+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -678,12 +678,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ellenséges"
 
-#: simulation/components/CeasefireManager.js:100
+#: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "%(time)s múlva támadhatsz"
 
-#: simulation/components/CeasefireManager.js:113
+#: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
 msgstr "Most már támadhatsz!"
 
@@ -792,7 +792,7 @@ msgstr "Nem lehet kiengedni az egységeket"
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1041
+#: simulation/helpers/Commands.js:1040
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -877,40 +877,42 @@ msgid "Fast Forward (20x)"
 msgstr "Gyors előretekerés (20×)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid "Defeat all opponents"
-msgstr "Az összes ellenfél legyőzése"
+msgid "Defeat all opponents to win."
+msgstr "Győzd le az összes ellenfelet a győzelemhez."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
 msgstr "Hódítás"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Destroy all structures of enemies"
-msgstr "Az összes ellenséges épület lerombolása"
+msgid "Destroy all enemy structures to win."
+msgstr "Pusztítsd el az összes ellenséges épületet a győzelemhez."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
 msgstr "Épületek meghódítása"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Kill all enemy units"
-msgstr "Az összes ellenséges egység megölése"
+msgid "Kill all enemy units to win."
+msgstr "Öld meg az összes ellenséges egységet a győzelemhez."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
 msgstr "Egységek meghódítása"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero"
-msgstr "Győzd le az ellenfeleket a hősük megölésével"
+msgid "Defeat opponents by killing their hero."
+msgstr "Győzd le az ellenfeleket a hősük megölésével."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
 msgstr "Királygyilkosság"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid "Build and protect a wonder to win"
-msgstr "Egy csoda építése és megvédése a győzelemhez"
+msgid ""
+"Be the first to build or capture a wonder and keep it for a certain time to "
+"win the game."
+msgstr "Légy az első aki felépít vagy elfoglal egy csodát, és megtartja egy bizonyos ideig, hogy megnyerje a játékot."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

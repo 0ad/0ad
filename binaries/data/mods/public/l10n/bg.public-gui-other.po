@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-30 16:13+0000\n"
+"POT-Creation-Date: 2016-09-12 09:00+0200\n"
+"PO-Revision-Date: 2016-09-18 12:05+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -94,129 +94,13 @@ msgctxt "map selection"
 msgid "Random"
 msgstr "Случайна"
 
-#: gui/common/functions_utility.js:131
-msgid "A randomly selected map."
-msgstr "Случайно избрана карта."
-
-#: gui/common/functions_utility.js:138
-msgid "Sorry, no description available."
-msgstr "Съжаляваме, но няма описание."
-
-#: gui/common/functions_utility.js:163
+#: gui/common/functions_utility.js:132
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:165
+#: gui/common/functions_utility.js:134
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:311
-#, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:314
-#, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:320
-#, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr "%(playerName)s (%(AIname)s, %(AIdifficulty)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:323
-#, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr "%(playerName)s (%(AIname)s, %(AIdifficulty)s, %(state)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:333
-#, javascript-format
-msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (ИЗВЪН ЛИНИЯ)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:336
-#, javascript-format
-msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (ИЗВЪН ЛИНИЯ, %(state)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:343
-#, javascript-format
-msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:346
-#, javascript-format
-msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(state)s)"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:350
-#, javascript-format
-msgid "%(playerName)s"
-msgstr "%(playerName)s"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:353
-#, javascript-format
-msgid "%(playerName)s (%(state)s)"
-msgstr "%(playerName)s (%(state)s)"
-
-#: gui/common/functions_utility.js:371
-msgid "Unknown Civilization"
-msgstr "Неизвестна цивилизация"
-
-#: gui/common/functions_utility.js:378
-msgctxt "playerstate"
-msgid "defeated"
-msgstr "победен"
-
-#: gui/common/functions_utility.js:379
-msgctxt "playerstate"
-msgid "won"
-msgstr "спечелил"
-
-#: gui/common/functions_utility.js:401
-msgid "No Team"
-msgstr "Няма отбор"
-
-#: gui/common/functions_utility.js:402
-#, javascript-format
-msgid "Team %(team)s"
-msgstr "Отбор %(team)s"
-
-#. Translation: Describe players of one team in a selected game, f.e. in the
-#. replay- or savegame menu or lobby
-#: gui/common/functions_utility.js:405 gui/common/functions_utility.js:412
-#, javascript-format
-msgid ""
-"%(team)s:\n"
-"%(playerDescriptions)s"
-msgstr "%(team)s:\n%(playerDescriptions)s"
-
-#: gui/common/functions_utility.js:413
-msgid "Observer"
-msgid_plural "Observers"
-msgstr[0] "Наблюдател"
-msgstr[1] "Наблюдатели"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -240,6 +124,256 @@ msgstr "%(dateString)s %(map)s — %(description)s"
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
+
+#: gui/common/gamedescription.js:13
+msgid "A randomly selected map."
+msgstr "Случайно избрана карта."
+
+#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:280
+msgid "Sorry, no description available."
+msgstr "Съжаляваме, но няма описание."
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:71
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:74
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:80
+#, javascript-format
+msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
+msgstr "%(playerName)s (%(AIname)s, %(AIdifficulty)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:83
+#, javascript-format
+msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr "%(playerName)s (%(AIname)s, %(AIdifficulty)s, %(state)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:93
+#, javascript-format
+msgid "%(playerName)s (OFFLINE)"
+msgstr "%(playerName)s (ИЗВЪН ЛИНИЯ)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:96
+#, javascript-format
+msgid "%(playerName)s (OFFLINE, %(state)s)"
+msgstr "%(playerName)s (ИЗВЪН ЛИНИЯ, %(state)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:103
+#, javascript-format
+msgid "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s (%(civ)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:106
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(state)s)"
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:110
+#, javascript-format
+msgid "%(playerName)s"
+msgstr "%(playerName)s"
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:113
+#, javascript-format
+msgid "%(playerName)s (%(state)s)"
+msgstr "%(playerName)s (%(state)s)"
+
+#: gui/common/gamedescription.js:131
+msgid "Unknown Civilization"
+msgstr "Неизвестна цивилизация"
+
+#: gui/common/gamedescription.js:138
+msgctxt "playerstate"
+msgid "defeated"
+msgstr "победен"
+
+#: gui/common/gamedescription.js:139
+msgctxt "playerstate"
+msgid "won"
+msgstr "спечелил"
+
+#: gui/common/gamedescription.js:161
+msgid "No Team"
+msgstr "Няма отбор"
+
+#: gui/common/gamedescription.js:162
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "Отбор %(team)s"
+
+#. Translation: Describe players of one team in a selected game, f.e. in the
+#. replay- or savegame menu or lobby
+#: gui/common/gamedescription.js:165 gui/common/gamedescription.js:172
+#, javascript-format
+msgid ""
+"%(team)s:\n"
+"%(playerDescriptions)s"
+msgstr "%(team)s:\n%(playerDescriptions)s"
+
+#: gui/common/gamedescription.js:173
+msgid "Observer"
+msgid_plural "Observers"
+msgstr[0] "Наблюдател"
+msgstr[1] "Наблюдатели"
+
+#: gui/common/gamedescription.js:195
+#, javascript-format
+msgctxt "victory condition"
+msgid "Wonder (%(min)s minute)"
+msgid_plural "Wonder (%(min)s minutes)"
+msgstr[0] "Чудо (%(min)s минута)"
+msgstr[1] "Чудо (%(min)s минути)"
+
+#: gui/common/gamedescription.js:212
+msgid "Rated game"
+msgstr "Игра за класация"
+
+#: gui/common/gamedescription.js:213
+msgid ""
+"When the winner of this match was determined, the lobby score will be "
+"adapted."
+msgstr "След като победителят от този мач бъде определен, резултатът в чакалнята ще бъде променен."
+
+#: gui/common/gamedescription.js:218
+msgid "Locked Teams"
+msgstr "Заключени отбори"
+
+#: gui/common/gamedescription.js:219
+msgid "Players can't change the initial teams."
+msgstr "Играчите не могат да променят първоначално зададения си отбор."
+
+#: gui/common/gamedescription.js:223
+msgid "Diplomacy"
+msgstr "Дипломация"
+
+#: gui/common/gamedescription.js:224
+msgid "Players can setup alliances and declare war on allies."
+msgstr "Играчите могат да създават съюзи и да обявяват война на съюзниците си"
+
+#: gui/common/gamedescription.js:229
+msgid "Last Man Standing"
+msgstr "Последният оцелял:"
+
+#: gui/common/gamedescription.js:230
+msgid ""
+"Only one player can win the game. If the remaining players are allies, the "
+"game continues until only one remains."
+msgstr "Само един играч може да спечели играта. Ако в играта са останали само съюзници, тя продължава докато остане само един."
+
+#: gui/common/gamedescription.js:234
+msgid "Allied Victory"
+msgstr "Съюзническа победа"
+
+#: gui/common/gamedescription.js:235
+msgid ""
+"If one player wins, his or her allies win too. If one group of allies "
+"remains, they win."
+msgstr "Ако един играч победи, съюзниците му също печелят. Ако остане една група от съюзници, всички печелят."
+
+#: gui/common/gamedescription.js:241
+msgid "Ceasefire"
+msgstr "Примирие"
+
+#: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
+msgid "disabled"
+msgstr "изключено"
+
+#: gui/common/gamedescription.js:245
+msgid "For the first minute, enemies will stay neutral."
+msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
+msgstr[0] "През първата една минута, враговете ще бъдат неутрални."
+msgstr[1] "През първите %(min)s минути, враговете ще бъдат неутрални."
+
+#: gui/common/gamedescription.js:253
+msgid "Map Name"
+msgstr "Име на картата"
+
+#: gui/common/gamedescription.js:258
+msgid "Map Type"
+msgstr "Вид на картата"
+
+#: gui/common/gamedescription.js:267
+msgid "Map Size"
+msgstr "Размер на картата"
+
+#: gui/common/gamedescription.js:274
+msgid "Map Description"
+msgstr "Описание на картата"
+
+#: gui/common/gamedescription.js:277
+msgid "Randomly selects a map from the list"
+msgstr "Избира произволна карта от списъка."
+
+#: gui/common/gamedescription.js:286
+msgid "Starting Resources"
+msgstr "Начални ресурси:"
+
+#: gui/common/gamedescription.js:287
+#, javascript-format
+msgid "%(startingResourcesTitle)s (%(amount)s)"
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
+
+#: gui/common/gamedescription.js:297
+msgid "Population Limit"
+msgstr "Максимално население"
+
+#: gui/common/gamedescription.js:305
+msgid "Disable Treasure"
+msgstr "Без съкровище"
+
+#: gui/common/gamedescription.js:310
+msgid "Revealed Map"
+msgstr "Открита карта"
+
+#: gui/common/gamedescription.js:315
+msgid "Explored Map"
+msgstr "Проучена карта"
+
+#: gui/common/gamedescription.js:320
+msgid "Cheats"
+msgstr "Измами"
+
+#: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
+#: gui/common/tooltips.js:105 gui/common/tooltips.js:147
+#: gui/common/tooltips.js:347
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/common/gamedescription.js:328
+msgctxt "gamesetup option"
+msgid "enabled"
+msgstr "включено"
+
+#: gui/common/gamedescription.js:329
+msgctxt "gamesetup option"
+msgid "disabled"
+msgstr "изключено"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -435,7 +569,7 @@ msgstr "%(previousAmounts)s и %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:140 gui/common/tooltips.js:118
+#: gui/common/l10n.js:92 gui/common/network.js:141 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:489 gui/common/tooltips.js:523
@@ -541,10 +675,12 @@ msgstr "Неуспешно забраняване на достъпа на %(nam
 msgid "Could not kick %(name)s."
 msgstr "Неуспешно изритване на %(name)s."
 
-#: gui/common/network.js:139
+#. Translation: Number of currently connected players/observers and their
+#. names
+#: gui/common/network.js:140
 #, javascript-format
-msgid "Users: %(users)s"
-msgstr "Потребители: %(users)s"
+msgid "Users (%(num)s): %(users)s"
+msgstr "Потребители (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -617,7 +753,7 @@ msgid "None"
 msgstr "Няма"
 
 #: gui/common/settings.js:229
-msgid "Endless Game"
+msgid "Endless game."
 msgstr "Безкрайна игра"
 
 #: gui/common/settings.js:270
@@ -677,12 +813,6 @@ msgstr "Пробождане"
 #: gui/common/tooltips.js:17
 msgid "Crush"
 msgstr "Разбиване"
-
-#: gui/common/tooltips.js:58 gui/common/tooltips.js:105
-#: gui/common/tooltips.js:147 gui/common/tooltips.js:347
-#, javascript-format
-msgid "%(label)s %(details)s"
-msgstr "%(label)s %(details)s"
 
 #: gui/common/tooltips.js:59
 msgid "Health:"
@@ -807,7 +937,7 @@ msgid "Friendly Fire: %(enabled)s"
 msgstr "Приятелски огън: %(enabled)s"
 
 #: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:290
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
 #: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:130
 #: gui/savedgames/load.js:179 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:92 gui/summary/summary.js:147
@@ -815,7 +945,7 @@ msgid "Yes"
 msgstr "Да"
 
 #: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:290
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
 #: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:130
 #: gui/savedgames/load.js:179 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:92 gui/summary/summary.js:147
@@ -1007,7 +1137,7 @@ msgstr "Без"
 msgid "<invalid>"
 msgstr "<неправилен>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "Добре"
@@ -1027,38 +1157,34 @@ msgstr "Внимание"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Има незапазени промени. Искате ли да затворите този прозорец?"
 
-#: gui/pregame/mainmenu.js:85
-msgid "disabled"
-msgstr "изключено"
-
-#: gui/pregame/mainmenu.js:88
+#: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
 msgstr "свързване към сървъра"
 
-#: gui/pregame/mainmenu.js:93
+#: gui/pregame/mainmenu.js:92
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "качване (%f%%)"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:98
 msgid "upload succeeded"
 msgstr "качването завърши успешно"
 
-#: gui/pregame/mainmenu.js:102
+#: gui/pregame/mainmenu.js:100
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "качването не беше успешно (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:104
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "качването не беше успешно (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:112
+#: gui/pregame/mainmenu.js:106
 msgid "unknown"
 msgstr "неизвестно"
 
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1071,51 +1197,51 @@ msgstr "%(startWarning)sВнимание:%(endWarning)s Изглежда изп�
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Моля, натиснете „Вижте повече“ за повече информация или „Добре“, за да продължите."
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "ВНИМАНИЕ!"
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "Вижте повече"
 
-#: gui/pregame/mainmenu.js:256
+#: gui/pregame/mainmenu.js:242
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версия: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:288
+#: gui/pregame/mainmenu.js:254
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Наистина ли искате да излезете от 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
+#: gui/pregame/mainmenu.js:255 gui/summary/summary.js:146
 msgid "Confirmation"
 msgstr "Потвърждаване"
 
-#: gui/pregame/mainmenu.js:304
+#: gui/pregame/mainmenu.js:270
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Редакторът на сценарии не е намерен или не успя да зареди. Вижте журналите на играта за повече информация."
 
-#: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Грешка"
 
-#: gui/pregame/mainmenu.js:311
+#: gui/pregame/mainmenu.js:277
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Влизане в чакалнята. \\[ЗАБРАНЕНО ПРИ КОМПИЛИРАНЕТО]"
 
-#: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:282 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Технически подробности"
 
-#: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Наръчник"
 
@@ -1242,11 +1368,11 @@ msgstr "Игри за класация"
 msgid "Unrated games"
 msgstr "Игри без класация"
 
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:293
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:313
+#: gui/replaymenu/replay_menu.js:323
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -1596,7 +1722,7 @@ msgstr "Избор на цивилизация"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
-#: gui/structree/structree.xml:(caption):119
+#: gui/structree/structree.xml:(caption):120
 msgid "Close"
 msgstr "Затваряне"
 
@@ -1625,7 +1751,7 @@ msgstr "Идентификатор:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):28 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -1766,7 +1892,7 @@ msgid "Disable Feedback"
 msgstr "Изключване"
 
 #: gui/pregame/mainmenu.xml:(caption):166
-#: gui/structree/structree.xml:(caption):17
+#: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr "Структурно дърво"
 
@@ -1782,7 +1908,7 @@ msgstr "Мачове"
 msgid "Campaigns"
 msgstr "Кампании"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):19
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Зареждане на игра"
 
@@ -1963,91 +2089,91 @@ msgstr "Натиснете, за да отворите страницата за
 msgid "Click to see the 0 A.D. credits."
 msgstr "Щракнете, за да видите кой има заслуга за 0 A.D."
 
-#: gui/replaymenu/replay_menu.xml:(caption):27
+#: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
 msgstr "Гледане на записи"
 
-#: gui/replaymenu/replay_menu.xml:(caption):112
+#: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
 msgstr "Само съвместими повторения"
 
-#: gui/replaymenu/replay_menu.xml:(caption):153
-#: gui/savedgames/load.xml:(caption):57
+#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/savedgames/load.xml:(caption):58
 msgid "Map Type:"
 msgstr "Вид на картата:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):168
-#: gui/savedgames/load.xml:(caption):61
+#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/savedgames/load.xml:(caption):62
 msgid "Map Size:"
 msgstr "Размер на картата:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):183
-#: gui/savedgames/load.xml:(caption):65
+#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/savedgames/load.xml:(caption):66
 msgid "Victory:"
 msgstr "Победа:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):204
-#: gui/savedgames/load.xml:(caption):49
+#: gui/replaymenu/replay_menu.xml:(caption):215
+#: gui/savedgames/load.xml:(caption):50
 msgid "Players:"
 msgstr "Играчи:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):221
+#: gui/replaymenu/replay_menu.xml:(caption):232
 msgid "Spoiler"
 msgstr "Разкриване на резултатите"
 
-#: gui/replaymenu/replay_menu.xml:(caption):233
+#: gui/replaymenu/replay_menu.xml:(caption):244
 msgid "Main Menu"
 msgstr "Главно меню"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
-#: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Изтриване"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/replaymenu/replay_menu.xml:(caption):256
 #: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "Обобщение"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):262
 msgid "Start Replay"
 msgstr "Пускане"
 
-#: gui/replaymenu/replay_menu.xml:(heading):75
+#: gui/replaymenu/replay_menu.xml:(heading):86
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Дата / час"
 
-#: gui/replaymenu/replay_menu.xml:(heading):79
+#: gui/replaymenu/replay_menu.xml:(heading):90
 msgctxt "replay"
 msgid "Players"
 msgstr "Играчи"
 
-#: gui/replaymenu/replay_menu.xml:(heading):83
+#: gui/replaymenu/replay_menu.xml:(heading):94
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Име на картата"
 
-#: gui/replaymenu/replay_menu.xml:(heading):87
+#: gui/replaymenu/replay_menu.xml:(heading):98
 msgctxt "replay"
 msgid "Size"
 msgstr "Размер"
 
-#: gui/replaymenu/replay_menu.xml:(heading):91
+#: gui/replaymenu/replay_menu.xml:(heading):102
 msgctxt "replay"
 msgid "Population"
 msgstr "Население"
 
-#: gui/replaymenu/replay_menu.xml:(heading):95
+#: gui/replaymenu/replay_menu.xml:(heading):106
 msgctxt "replay"
 msgid "Duration"
 msgstr "Времетраене"
 
-#: gui/savedgames/load.xml:(caption):38
+#: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Зареждане"
 
-#: gui/savedgames/load.xml:(caption):53
+#: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
 msgstr "Изиграно време:"
 
@@ -2071,11 +2197,11 @@ msgstr "Показване на това съобщение в бъдеще"
 msgid "Known Issues (web)"
 msgstr "Известни проблеми (в Интернет)"
 
-#: gui/structree/structree.xml:(caption):29
+#: gui/structree/structree.xml:(caption):30
 msgid "Civilization:"
 msgstr "Цивилизация:"
 
-#: gui/structree/structree.xml:(caption):92
+#: gui/structree/structree.xml:(caption):93
 msgid "Trainer Units"
 msgstr "Обучаващи единици"
 

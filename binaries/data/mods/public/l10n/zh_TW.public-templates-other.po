@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 14:32+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,11 +115,11 @@ msgstr "寶藏"
 msgid "A treasure that can be quickly gathered."
 msgstr "可以快速收集的資源。"
 
-#: simulation/templates/template_structure.xml:58
+#: simulation/templates/template_structure.xml:55
 msgid "Structure"
 msgstr "建築物"
 
-#: simulation/templates/template_unit.xml:39
+#: simulation/templates/template_unit.xml:40
 msgid "Unit"
 msgstr "單位"
 
@@ -152,6 +152,11 @@ msgstr "列奧尼達一世的軍隊。"
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
 msgstr "列奧尼達一世的軍隊"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:25
+#: simulation/templates/campaigns/campaign_city_test.xml:25
+msgid "Market"
+msgstr "市集"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -294,7 +299,7 @@ msgstr "尼羅鱷"
 msgid "Deer"
 msgstr "鹿"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
 msgid "African Bush Elephant"
 msgstr "普通非洲象"
 
@@ -302,7 +307,7 @@ msgstr "普通非洲象"
 msgid "African Elephant (Infant)"
 msgstr "非洲象(幼兒)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:46
+#: simulation/templates/gaia/fauna_elephant_asian.xml:33
 msgid "Asian Elephant"
 msgstr "亞洲象"
 
@@ -771,11 +776,11 @@ msgstr "柵欄要塞"
 msgid "Wooden Tower"
 msgstr "木製塔樓"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:25
+#: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
 msgstr "柵欄門"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:26
+#: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
 msgstr "木門"
 
@@ -843,11 +848,11 @@ msgstr "客棧"
 msgid "Warehouse"
 msgstr "倉庫"
 
-#: simulation/templates/other/plane.xml:37
+#: simulation/templates/other/plane.xml:41
 msgid "P-51 Mustang"
 msgstr "P-51野馬戰鬥機"
 
-#: simulation/templates/other/plane.xml:39
+#: simulation/templates/other/plane.xml:43
 msgid "A World War 2 American fighter plane."
 msgstr "一個第2次世界大戰美國戰鬥機。"
 
@@ -941,7 +946,7 @@ msgid ""
 "for other civs"
 msgstr "將有那些房舍的文明變為10單位容量的房舍，其他文明的則刪除"
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:5
+#: simulation/templates/skirmish/structures/default_house_5.xml:9
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"

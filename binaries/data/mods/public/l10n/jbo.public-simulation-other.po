@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:55+0000\n"
+"POT-Creation-Date: 2016-09-05 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 09:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/wildfire-games/0ad/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -673,12 +673,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr ""
 
-#: simulation/components/CeasefireManager.js:100
+#: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr ""
 
-#: simulation/components/CeasefireManager.js:113
+#: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
 msgstr ""
 
@@ -787,7 +787,7 @@ msgstr ""
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1041
+#: simulation/helpers/Commands.js:1040
 msgid "The building's technology requirements are not met."
 msgstr ""
 
@@ -872,7 +872,7 @@ msgid "Fast Forward (20x)"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid "Defeat all opponents"
+msgid "Defeat all opponents to win."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
@@ -880,7 +880,7 @@ msgid "Conquest"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Destroy all structures of enemies"
+msgid "Destroy all enemy structures to win."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
@@ -888,7 +888,7 @@ msgid "Conquest Structures"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Kill all enemy units"
+msgid "Kill all enemy units to win."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
@@ -896,7 +896,7 @@ msgid "Conquest Units"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero"
+msgid "Defeat opponents by killing their hero."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
@@ -904,7 +904,9 @@ msgid "Regicide"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid "Build and protect a wonder to win"
+msgid ""
+"Be the first to build or capture a wonder and keep it for a certain time to "
+"win the game."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title

@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-01 09:00+0200\n"
-"PO-Revision-Date: 2016-07-01 08:39+0000\n"
+"POT-Creation-Date: 2016-09-05 09:00+0200\n"
+"PO-Revision-Date: 2016-09-18 08:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -46,173 +46,141 @@ msgstr "Κανένα"
 msgid "AI will be disabled for this player."
 msgstr "Το AI θα απενεργοποιηθεί για αυτόν τον παίκτη."
 
-#: gui/gamesetup/gamesetup.js:44
+#: gui/gamesetup/gamesetup.js:46
 msgid "Game settings have been changed"
 msgstr "Οι ρυθμίσεις του παιχνιδιού έχουν αλλάξει"
 
-#: gui/gamesetup/gamesetup.js:45
+#: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s εισήλθε"
 
-#: gui/gamesetup/gamesetup.js:46
+#: gui/gamesetup/gamesetup.js:48
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s έφυγε"
 
-#: gui/gamesetup/gamesetup.js:47
+#: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "Ο παίκτης %(username)s εκδιώχθηκε από το παιχνίδι."
 
-#: gui/gamesetup/gamesetup.js:48
+#: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "Στον παίκτη %(username)s απαγορεύτηκε η πρόσβαση"
 
-#: gui/gamesetup/gamesetup.js:49
+#: gui/gamesetup/gamesetup.js:51
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:50
+#: gui/gamesetup/gamesetup.js:52
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:53
+#: gui/gamesetup/gamesetup.js:55
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s είναι έτοιμος!"
 
-#: gui/gamesetup/gamesetup.js:56
+#: gui/gamesetup/gamesetup.js:58
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s δεν είναι έτοιμος."
 
-#: gui/gamesetup/gamesetup.js:68 gui/gamesetup/gamesetup.js:1367
+#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1389
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: gui/gamesetup/gamesetup.js:73
+#: gui/gamesetup/gamesetup.js:75
 msgid "Naval Maps"
 msgstr "Ναυτικοί Χάρτες"
 
-#: gui/gamesetup/gamesetup.js:78
+#: gui/gamesetup/gamesetup.js:80
 msgid "Demo Maps"
 msgstr "Χάρτες Επίδειξης"
 
-#: gui/gamesetup/gamesetup.js:83
+#: gui/gamesetup/gamesetup.js:85
 msgid "Trigger Maps"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:88
+#: gui/gamesetup/gamesetup.js:90
 msgid "All Maps"
 msgstr "Όλοι οι χάρτες"
 
-#: gui/gamesetup/gamesetup.js:142
+#: gui/gamesetup/gamesetup.js:139
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/gamesetup.js:147
+#: gui/gamesetup/gamesetup.js:144
 msgctxt "civilization"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/gamesetup.js:270
+#: gui/gamesetup/gamesetup.js:267
 msgid "Return to the lobby."
 msgstr "Επιστροφή στο λόμπι."
 
-#: gui/gamesetup/gamesetup.js:270
+#: gui/gamesetup/gamesetup.js:267
 msgid "Return to the main menu."
 msgstr "Επιστροφή στο κεντρικό μενού."
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:592
 msgid "Yes"
 msgstr "Ναι"
 
-#: gui/gamesetup/gamesetup.js:567
+#: gui/gamesetup/gamesetup.js:592
 msgid "No"
 msgstr "Όχι"
 
-#: gui/gamesetup/gamesetup.js:606
+#: gui/gamesetup/gamesetup.js:631
 msgctxt "team"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/gamesetup/gamesetup.js:1273
+#: gui/gamesetup/gamesetup.js:1297
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1437
+#: gui/gamesetup/gamesetup.js:1459
 msgid "Loading..."
 msgstr "Φόρτωση..."
 
-#: gui/gamesetup/gamesetup.js:1487
-#, javascript-format
-msgid "%(number)s player. "
-msgid_plural "%(number)s players. "
-msgstr[0] "%(number)s παίκτης."
-msgstr[1] "%(number)s παίκτες."
-
-#: gui/gamesetup/gamesetup.js:1497
-msgid "Randomly selects a map from the list"
-msgstr "Επιλέγει έναν τυχαίο χάρτη από τη λίστα"
-
-#: gui/gamesetup/gamesetup.js:1500
-msgid "Sorry, no description available."
-msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
-
-#: gui/gamesetup/gamesetup.js:1506
-msgctxt "victory condition"
-msgid "Unknown"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1511
-#, javascript-format
-msgctxt "victory condition"
-msgid "Wonder (%(min)s minute)"
-msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-
-#: gui/gamesetup/gamesetup.js:1528 gui/gamesetup/gamesetup.xml:(caption):320
-msgid "Victory Condition:"
-msgstr "Προϋπόθεση νίκης:"
-
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1592
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1597
 msgid "Unassigned"
 msgstr "Δεν ορίστηκε"
 
-#: gui/gamesetup/gamesetup.js:1781
+#: gui/gamesetup/gamesetup.js:1757
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1788
+#: gui/gamesetup/gamesetup.js:1764
 msgid "Unknown Player"
 msgstr "Άγνωστος παίκτης"
 
-#: gui/gamesetup/gamesetup.js:1858
+#: gui/gamesetup/gamesetup.js:1842
 msgid "I'm not ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1859
+#: gui/gamesetup/gamesetup.js:1843
 msgid "I'm ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1862
+#: gui/gamesetup/gamesetup.js:1846
 msgid "State that you are not ready to play."
 msgstr "Πείτε δεν είστε έτοιμοι να παίξετε."
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1847
 msgid "State that you are ready to play!"
 msgstr "Πείτε είστε έτοιμοι να παίξετε."
 
@@ -289,256 +257,260 @@ msgid "Cancel"
 msgstr "Ακύρωση"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):447
+#: gui/gamesetup/gamesetup.xml:(caption):448
 msgid "OK"
 msgstr "ΟΚ"
 
-#: gui/gamesetup/gamesetup.xml:(caption):20
+#: gui/gamesetup/gamesetup.xml:(caption):21
 msgid "Match Setup"
 msgstr "Διαμόρφωση αναμέτρησης"
 
-#: gui/gamesetup/gamesetup.xml:(caption):26
+#: gui/gamesetup/gamesetup.xml:(caption):27
 msgid "Loading"
 msgstr "Φόρτωση"
 
-#: gui/gamesetup/gamesetup.xml:(caption):30
+#: gui/gamesetup/gamesetup.xml:(caption):31
 msgid "Loading map data. Please wait..."
 msgstr "Φόρτωση δεδομένων χάρτη. Παρακαλώ περιμένετε..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):46
+#: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Player Name"
 msgstr "Όνομα παίκτη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):50
+#: gui/gamesetup/gamesetup.xml:(caption):51
 msgid "Color"
 msgstr "Χρώμα"
 
-#: gui/gamesetup/gamesetup.xml:(caption):54
+#: gui/gamesetup/gamesetup.xml:(caption):55
 msgid "Player Placement"
 msgstr "Τοποθέτηση παίκτη"
 
-#: gui/gamesetup/gamesetup.xml:(caption):58
+#: gui/gamesetup/gamesetup.xml:(caption):59
 msgid "Civilization"
 msgstr "Πολιτισμός"
 
-#: gui/gamesetup/gamesetup.xml:(caption):86
+#: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
 msgstr "Ομάδα"
 
-#: gui/gamesetup/gamesetup.xml:(caption):139
+#: gui/gamesetup/gamesetup.xml:(caption):140
 msgid "Map Type:"
 msgstr "Τύπος Χάρτη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):142
+#: gui/gamesetup/gamesetup.xml:(caption):143
 msgid "Map Filter:"
 msgstr "Φίλτρο Χάρτη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):145
+#: gui/gamesetup/gamesetup.xml:(caption):146
 msgid "Select Map:"
 msgstr "Επιλογή Χάρτη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):148
+#: gui/gamesetup/gamesetup.xml:(caption):149
 msgid "Number of Players:"
 msgstr "Αριθμός Παικτών:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):151
+#: gui/gamesetup/gamesetup.xml:(caption):152
 msgid "Map Size:"
 msgstr "Μέγεθος Χάρτη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):230
+#: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Send"
 msgstr "Αποστολή"
 
-#: gui/gamesetup/gamesetup.xml:(caption):248
+#: gui/gamesetup/gamesetup.xml:(caption):249
 msgid "Cheats enabled."
 msgstr "Τα κόλπα ενεργοποιήθηκαν"
 
-#: gui/gamesetup/gamesetup.xml:(caption):261
+#: gui/gamesetup/gamesetup.xml:(caption):262
 msgid "Start game!"
 msgstr "Έναρξη παιχνιδιού!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):279
+#: gui/gamesetup/gamesetup.xml:(caption):280
 msgid "Back"
 msgstr "Πίσω"
 
-#: gui/gamesetup/gamesetup.xml:(caption):293
-#: gui/gamesetup/gamesetup.xml:(caption):305
+#: gui/gamesetup/gamesetup.xml:(caption):294
+#: gui/gamesetup/gamesetup.xml:(caption):306
 msgid "More Options"
 msgstr "Περισσότερες Επιλογές"
 
-#: gui/gamesetup/gamesetup.xml:(caption):310
+#: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Game Speed:"
 msgstr "Ταχύτητα παιχνιδιού:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):330
+#: gui/gamesetup/gamesetup.xml:(caption):321
+msgid "Victory Condition:"
+msgstr "Προϋπόθεση νίκης:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Wonder Victory:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):340
+#: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Population Cap:"
 msgstr "Ανώτατο όριο πληθυσμού:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):350
+#: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Starting Resources:"
 msgstr "Πόροι κατά την έναρξη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):360
+#: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Ceasefire:"
 msgstr "Παύση Πυρός:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):370
+#: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "Revealed Map:"
 msgstr "Αποκάλυψη Χάρτη:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):380
+#: gui/gamesetup/gamesetup.xml:(caption):381
 msgid "Explored Map:"
 msgstr "Εξερεύνησε Χάρτη"
 
-#: gui/gamesetup/gamesetup.xml:(caption):390
+#: gui/gamesetup/gamesetup.xml:(caption):391
 msgid "Disable Treasures:"
 msgstr "Απενεργοποίηση θησαυρών:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):400
+#: gui/gamesetup/gamesetup.xml:(caption):401
 msgid "Teams Locked:"
 msgstr "Κλειδωμένες ομάδες:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):410
+#: gui/gamesetup/gamesetup.xml:(caption):411
 msgid "Last Man Standing:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):420
+#: gui/gamesetup/gamesetup.xml:(caption):421
 msgid "Cheats:"
 msgstr "Ζαβολιές:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):430
+#: gui/gamesetup/gamesetup.xml:(caption):431
 msgid "Rated Game:"
 msgstr "Βαθμολογημένο παιχνίδι:"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):68
+#: gui/gamesetup/gamesetup.xml:(tooltip):69
 msgid "View civilization info"
 msgstr "Προβολή πληροφοριών για τον πολιτισμό"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):81
+#: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):96
+#: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):107
+#: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
 msgstr "Διάλεξε χρώμα."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):110
+#: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
 msgstr "Επιλογή παίκτη."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):120
+#: gui/gamesetup/gamesetup.xml:(tooltip):121
 msgid "Configure AI settings."
 msgstr "Διαμόρφωση Ρυθμίσεων AI (τεχνητής νοημοσύνης)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):123
+#: gui/gamesetup/gamesetup.xml:(tooltip):124
 msgid "Select player's civilization."
 msgstr "Επιλογή πολιτισμού του παίκτη."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):127
+#: gui/gamesetup/gamesetup.xml:(tooltip):128
 msgid "Select player's team."
 msgstr "Επιλογή ομάδας του παίκτη."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):168
+#: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select a map type."
 msgstr "Επιλογή τύπου χάρτη."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):176
+#: gui/gamesetup/gamesetup.xml:(tooltip):177
 msgid "Select a map filter."
 msgstr "Επιλογή φίλτρου χάρτη."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):185
+#: gui/gamesetup/gamesetup.xml:(tooltip):186
 msgid "Select a map to play on."
 msgstr "Επιλογή χάρτη για παιχνίδι."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):195
+#: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Select number of players."
 msgstr "Επιλογή αριθμού παικτών."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):199
+#: gui/gamesetup/gamesetup.xml:(tooltip):200
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Επιλογή μεγέθους χάρτη. (τα μεγαλύτερα μεγέθη ίσως επηρεάσουν αρνητικά τις επιδόσεις)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):262
+#: gui/gamesetup/gamesetup.xml:(tooltip):263
 msgid "Start a new game with the current settings."
 msgstr "Έναρξη νέου παιχνιδιού με τις τρέχουσες ρυθμίσεις."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):294
+#: gui/gamesetup/gamesetup.xml:(tooltip):295
 msgid "See more game options"
 msgstr "Προβολή περισσότερων επιλογών για το παιχνίδι"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):314
+#: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select game speed."
 msgstr "Επιλογή της ταχύτητας παιχνιδιού."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):324
+#: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select victory condition."
 msgstr "Επιλογή συνθηκών/προϋποθέσεων νίκης."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):334
+#: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):344
+#: gui/gamesetup/gamesetup.xml:(tooltip):345
 msgid "Select population cap."
 msgstr "Επιλογή ανώτατου ορίου πληθυσμού (μονάδων)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):354
+#: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Select the game's starting resources."
 msgstr "Επιλογή των διαθέσιμων πόρων κατά την έναρξη του παιχνιδιού."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):364
+#: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Set time where no attacks are possible."
 msgstr "Ρυθμίστε την ώρα όπου δεν είναι δυνατόν να γίνουν επιθέσεις."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):374
+#: gui/gamesetup/gamesetup.xml:(tooltip):375
 msgid "Toggle revealed map (see everything)."
 msgstr "Εναλλαγή σε φανερωμένο χάρτη (δείτε τα πάντα)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):384
+#: gui/gamesetup/gamesetup.xml:(tooltip):385
 msgid "Toggle explored map (see initial map)."
 msgstr "Εναλλαγή σε εξερευνημένο χάρτη (δείτε αρχικό χάρτη)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):394
+#: gui/gamesetup/gamesetup.xml:(tooltip):395
 msgid "Disable all treasures on the map."
 msgstr "Απενεργοποίηση όλων των θυσαυρών."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):404
+#: gui/gamesetup/gamesetup.xml:(tooltip):405
 msgid "Toggle locked teams."
 msgstr "Εναλλαγή κλειδωμένων ομάδων."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):414
+#: gui/gamesetup/gamesetup.xml:(tooltip):415
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):424
+#: gui/gamesetup/gamesetup.xml:(tooltip):425
 msgid "Toggle the usability of cheats."
 msgstr "Εναλλαγή χρήσης ζαβολιών."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):434
+#: gui/gamesetup/gamesetup.xml:(tooltip):435
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):448
+#: gui/gamesetup/gamesetup.xml:(tooltip):449
 msgid "Close more game options window"
 msgstr "Κλείσιμο παραθύρου περισσότερων επιλογών"
 
