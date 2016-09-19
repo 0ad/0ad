@@ -13,6 +13,7 @@
     <GenericName>Island Settlement</GenericName>
     <Civ>brit</Civ>
     <Classes datatype="tokens">Naval</Classes>
+    <Icon>structures/crannog.png</Icon>
     <Tooltip>Increase population limit and defend waterways.</Tooltip>
     <SpecificName>Crannóc</SpecificName>
     <History>A crannóc (or crannoge) is the name given in Scotland and Ireland to an artificial island or natural island, used for a settlement. The name can also be used to refer to wooden platforms erected on shallow loch floors, although understandably few remains of this sort have been found. The choice of an island as a home is thought to have been for defense as well as the availability of food in the form of fish nearby.</History>
@@ -33,6 +34,9 @@
       units/{civ}_ship_merchant
       units/{civ}_ship_trireme
     </Entities>
+    <Technologies datatype="tokens">
+      -phase_town
+    </Technologies>
   </ProductionQueue>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
