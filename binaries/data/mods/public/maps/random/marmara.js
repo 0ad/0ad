@@ -16,6 +16,7 @@ log("Initializing environment...");
 setSunColor(0.753, 0.586, 0.584);
 setSkySet("sunset");
 
+setWaterHeight(18);
 setWaterTint(0.25, 0.67, 0.65);
 setWaterColor(0.18, 0.36, 0.39);
 setWaterWaviness(8);
