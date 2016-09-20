@@ -12,6 +12,11 @@
     <SpecificName>Harmya</SpecificName>
     <Icon>gaia/special_stoa.png</Icon>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>50</stone>
+    <metal>50</metal>
+  </Loot>
   <Obstruction>
     <Static width="36.0" depth="12.0"/>
   </Obstruction>

@@ -27,11 +27,8 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
-    <xp>100</xp>
-    <food>0</food>
-    <wood>5</wood>
+    <wood disable=""/>
     <stone>15</stone>
-    <metal>0</metal>
   </Loot>
   <Obstruction>
     <Static width="6.0" depth="6.0"/>

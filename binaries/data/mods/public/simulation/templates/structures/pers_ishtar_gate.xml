@@ -27,6 +27,11 @@
     <Tooltip>Increases the loyalty regeneration of nearby structures, making them harder to capture.</Tooltip>
     <Icon>structures/gate.png</Icon>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>50</stone>
+    <metal>125</metal>
+  </Loot>
   <Obstruction>
     <Static disable=""/>
     <Obstructions>

@@ -21,6 +21,9 @@
     <Icon>structures/siege_workshop.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>75</wood>
+  </Loot>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">

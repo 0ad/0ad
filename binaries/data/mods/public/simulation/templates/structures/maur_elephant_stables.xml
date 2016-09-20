@@ -28,6 +28,11 @@
     <Tooltip>Train elephant units.</Tooltip>
     <VisibleClasses datatype="tokens">-City Town</VisibleClasses>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>50</stone>
+    <metal>50</metal>
+  </Loot>
   <Obstruction>
     <Static width="30.0" depth="29.0"/>
   </Obstruction>

@@ -27,6 +27,11 @@
     <History>The Prytaneion is the meeting place for the city elders to dine and to make swift decisions.</History>
     <Icon>structures/tholos.png</Icon>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>25</stone>
+    <metal>50</metal>
+  </Loot>
   <Obstruction>
     <Static width="24.0" depth="30.0"/>
   </Obstruction>

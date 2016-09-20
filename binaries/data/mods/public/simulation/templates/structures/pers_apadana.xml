@@ -30,6 +30,11 @@
     <Icon>structures/palace.png</Icon>
     <Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources. Train Persian heroes and their "Immortals" bodyguards.</Tooltip>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>75</stone>
+    <metal>50</metal>
+  </Loot>
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>

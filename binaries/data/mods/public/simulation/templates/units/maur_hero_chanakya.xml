@@ -33,21 +33,6 @@
     <Icon>units/maur_hero_chanakya.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
   <UnitMotion>
     <WalkSpeed>9</WalkSpeed>
     <Run>

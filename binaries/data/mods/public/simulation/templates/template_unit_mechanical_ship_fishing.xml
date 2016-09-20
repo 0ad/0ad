@@ -34,6 +34,11 @@
     <Classes datatype="tokens">FishingBoat</Classes>
     <Formations disable=""/>
   </Identity>
+  <Loot>
+    <xp>1</xp>
+    <wood>10</wood>
+    <metal>0</metal>
+  </Loot>
   <ResourceGatherer>
     <MaxDistance>6.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>

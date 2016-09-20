@@ -49,6 +49,10 @@
     <VisibleClasses datatype="tokens">Village -Town</VisibleClasses>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>20</wood>
+    <stone disable=""/>
+  </Loot>
   <Obstruction>
     <Static width="9.0" depth="7.5"/>
   </Obstruction>

@@ -32,6 +32,11 @@
     <Tooltip>All units within vision of this monument will fight harder. Buildings in the territory of the monument do not decay.</Tooltip>
     <History>The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.</History>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>25</stone>
+    <metal>25</metal>
+  </Loot>
   <Obstruction>
     <Static width="10.0" depth="10.0"/>
   </Obstruction>

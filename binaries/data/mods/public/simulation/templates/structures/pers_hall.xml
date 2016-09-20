@@ -25,9 +25,13 @@
     <GenericName>Persian Hall</GenericName>
     <SpecificName>Duvarthi Visadahyu</SpecificName>
     <Icon>structures/palace.png</Icon>
-    <Tooltip>Special Building.
-Train War Elephants and Kardakes mercenaries.</Tooltip>
+    <Tooltip>Train War Elephants and Kardakes mercenaries.</Tooltip>
   </Identity>
+  <Loot>
+    <wood disable=""/>
+    <stone>50</stone>
+    <metal>50</metal>
+  </Loot>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
