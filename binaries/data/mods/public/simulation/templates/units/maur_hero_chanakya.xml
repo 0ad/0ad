@@ -5,7 +5,7 @@
     <Pierce>8.0</Pierce>
     <Crush>4.0</Crush>
   </Armour>
-  <Auras datatype="tokens">maur_hero_chanakya</Auras>
+  <Auras datatype="tokens">hero_garrison maur_hero_chanakya</Auras>
   <Cost>
     <Population>2</Population>
     <BuildTime>60</BuildTime>
@@ -33,6 +33,21 @@
     <Icon>units/maur_hero_chanakya.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
+  <Selectable>
+    <Overlay>
+      <AlwaysVisible/>
+      <Texture>
+        <MainTexture>star/256x256.png</MainTexture>
+        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <TrainingRestrictions>
+    <Category>Hero</Category>
+  </TrainingRestrictions>
   <UnitMotion>
     <WalkSpeed>9</WalkSpeed>
     <Run>
