@@ -242,7 +242,7 @@ Attack.prototype.CanAttack = function(target)
 		if (!restrictedClasses.length)
 			return true;
 
-		if (targetClasses.every(c => restrictedClasses.indexOf(c) == -1))
+		if (!MatchesClassList(targetClasses, restrictedClasses))
 			return true;
 	}
 
