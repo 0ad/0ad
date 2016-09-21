@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-29 20:30+0000\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 10:07+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1282,8 +1282,8 @@ msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongant
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha buannachd dhe +20% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha buannachd dhe +10% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1313,8 +1313,8 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Cruinnichidh gach obraiche meatailt +10% nas luaithe le buannachd an t-sìobhaltais “Cailleachan-oidhche airgid.” Gheibh saighdearan-dùthcha buannachd dhe +20% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Cruinnichidh gach obraiche meatailt +10% nas luaithe le buannachd an t-sìobhaltais “Cailleachan-oidhche airgid.” Gheibh saighdearan-dùthcha buannachd dhe +10% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1777,8 +1777,10 @@ msgid ""
 msgstr "Rùraicheadh daoine na dùthchannan thar nan crìochan aca fhèin nuair a bhiodh iad ri malart no siubhal agus tharraingeadh iad mapaichean dhiubh gus na lorg iad a cho-roinneadh is a chur an cuimhne."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "Chì an cluicheadair na chì na caidreabhaich aige."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr "Faic na chì do chaidreabhaich, rùraich na gearr-chunntasan aca agus thoir sùil air na stòrasan ’s an slugadh aca sa phanail aig a’ bharr."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

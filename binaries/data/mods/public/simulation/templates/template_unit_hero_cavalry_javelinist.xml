@@ -36,28 +36,6 @@
       formations/skirmish
     </Formations>
   </Identity>
-  <Loot>
-    <xp>450</xp>
-    <food>10</food>
-    <wood>20</wood>
-    <stone>0</stone>
-    <metal>0</metal>
-  </Loot>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
   <UnitMotion>
     <WalkSpeed>17.0</WalkSpeed>
     <Run>

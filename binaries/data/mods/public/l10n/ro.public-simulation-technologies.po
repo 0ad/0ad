@@ -7,13 +7,14 @@
 # Baadur Jobava <jobaval10n@gmail.com>, 2015
 # Nicolae Crefelean, 2015
 # oltean bogdan <bogdan_xpc@yahoo.com>, 2016
+# Raz Taz <raztaz.ubuntu@gmail.com>, 2016
 # w3as3l54, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 16:46+0000\n"
+"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "Armură de metal pentru fața calului."
+msgstr "Armură de metal pentru capul calului."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
@@ -390,11 +391,11 @@ msgstr "Khrysaspís"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "Doar cei mai apreciați soldați au scuturi suflate cu argint, după cum aveau cei din faimosul regiment 'Scuturi Argintii' din armata lui Alexandru cel Mare."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "Campioni +2 Niveluri Armura Străpungere, dar și +10 Cost Metal"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -1284,7 +1285,7 @@ msgstr ""
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
@@ -1315,7 +1316,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
@@ -1779,8 +1780,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "Jucătorul vede ce văd si aliații săi."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

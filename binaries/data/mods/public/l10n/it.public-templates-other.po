@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-08-09 16:26+0000\n"
-"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 10:05+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,11 +121,11 @@ msgstr "Tesoro"
 msgid "A treasure that can be quickly gathered."
 msgstr "Un tesoro che può essere raccolto velocemente."
 
-#: simulation/templates/template_structure.xml:58
+#: simulation/templates/template_structure.xml:55
 msgid "Structure"
 msgstr "Struttura"
 
-#: simulation/templates/template_unit.xml:39
+#: simulation/templates/template_unit.xml:40
 msgid "Unit"
 msgstr "Unità"
 
@@ -158,6 +158,11 @@ msgstr "Esercito di Leonida I"
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
 msgstr "Esercito di Leonida I"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:25
+#: simulation/templates/campaigns/campaign_city_test.xml:25
+msgid "Market"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -300,7 +305,7 @@ msgstr "Coccodrillo del Nilo"
 msgid "Deer"
 msgstr "Cervo"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
 msgid "African Bush Elephant"
 msgstr "Elefante africano"
 
@@ -308,7 +313,7 @@ msgstr "Elefante africano"
 msgid "African Elephant (Infant)"
 msgstr "Elefante africano (cucciolo)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:46
+#: simulation/templates/gaia/fauna_elephant_asian.xml:33
 msgid "Asian Elephant"
 msgstr "Elefante asiatico"
 
@@ -777,11 +782,11 @@ msgstr "Forte Palizzato"
 msgid "Wooden Tower"
 msgstr "Torre in legno"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:25
+#: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
 msgstr "Cancello Palizzato"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:26
+#: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
 msgstr "Cancello di Legno"
 
@@ -849,11 +854,11 @@ msgstr "Locanda"
 msgid "Warehouse"
 msgstr "Magazzino"
 
-#: simulation/templates/other/plane.xml:37
+#: simulation/templates/other/plane.xml:41
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/other/plane.xml:39
+#: simulation/templates/other/plane.xml:43
 msgid "A World War 2 American fighter plane."
 msgstr "Un aereo da caccia americano della 2a Guerra Mondiale."
 
@@ -947,7 +952,7 @@ msgid ""
 "for other civs"
 msgstr "Si trasforma in una casa da +10 unità di popolazione per le civiltà che la utilizzano, è annullata per le altre civiltà."
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:5
+#: simulation/templates/skirmish/structures/default_house_5.xml:9
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"

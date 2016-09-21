@@ -40,6 +40,10 @@
     <Icon>structures/uber_dock.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>75</wood>
+    <stone>50</stone>
+  </Loot>
   <Obstruction>
     <Static width="42.0" depth="58.0"/>
   </Obstruction>

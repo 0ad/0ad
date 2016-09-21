@@ -6,13 +6,14 @@
 # Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>, 2015
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Nicolae Crefelean, 2014
+# Raz Taz <raztaz.ubuntu@gmail.com>, 2016
 # zsofiaforro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-08-07 18:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-18 17:08+0000\n"
+"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,11 +54,11 @@ msgstr "Eroare"
 
 #: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
 msgid "No error"
-msgstr ""
+msgstr "Nicio eroare"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Player already logged in"
-msgstr ""
+msgstr "Jucător deja autentificat"
 
 #: lobby/XmppClient.cpp:1008
 msgid "Forbidden"
@@ -77,7 +78,7 @@ msgstr "Neautorizat"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Destinatarul este indisponibil temporar"
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
@@ -90,69 +91,69 @@ msgstr "Serviciu indisponibil"
 #: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
 #: lobby/XmppClient.cpp:1097
 msgid "Unknown error"
-msgstr ""
+msgstr "Eroare necunoscută"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
-msgstr ""
+msgstr "Eroare de flux."
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "Versiunea fluxului de intrare nu este suportată"
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "Fluxul a fost închis de către server"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr ""
+msgstr "S-a produs o eroare I/O"
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Conexiune refuzată de server"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Nu s-a reușit rezolvarea numelui gazdă al serverului"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Sistemul nu mai are memorie"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Nu a putut fi verificat certificatul serverului sau negocierea TSL nu s-a încheiat cu succes."
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Serverul nu a oferit criptarea TLS necesară."
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Autentificarea a eșuat. Parolă incorectă sau cont inexistent"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Utilizatorul sau sistemul a solicitat deconectarea"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "Nu există nicio conexiune activă."
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
-msgstr ""
+msgstr "Succes"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Nu toate informațiile necesare au fost furnizate"
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "Numele de utilizator există deja"
 
 #: ps/SavedGame.cpp:133
 #, c-format

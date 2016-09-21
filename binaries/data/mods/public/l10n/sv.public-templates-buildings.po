@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:06+0000\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 08:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -35,16 +35,16 @@ msgstr "Samhällsbyggnad"
 msgid "Civic"
 msgstr "Civic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
+#: simulation/templates/template_structure_civic_civil_centre.xml:72
 msgid "Civic Center"
 msgstr "Samhällscenter"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:69
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Bygg för att förvärva stora landområden. Träna invånare."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:71
-#: simulation/templates/template_structure_civic_civil_centre.xml:33
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 msgid "CivilCentre"
 msgstr "Samhällscentrum"
 
@@ -53,13 +53,28 @@ msgid "Colony"
 msgstr "Koloni"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
-#: simulation/templates/structures/ptol_military_colony.xml:5
+#: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Militärkoloni "
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
+
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Stad"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
@@ -100,16 +115,6 @@ msgid ""
 msgstr "Träna helare. Garnisonera enheter för att hela dem i snabb takt (3 HP per sekund). Forska om helande och religiösa förbättringar."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "Town"
-msgstr "Stad"
-
-#: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Temple"
 msgstr "Tempel"
@@ -117,11 +122,6 @@ msgstr "Tempel"
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
 msgstr "Försvarsbyggnad"
-
-#: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:66
-msgid "Defensive"
-msgstr "Defensiv"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
@@ -150,12 +150,12 @@ msgstr "Bygg i neutrala och egna territorier för att utforska områden. Konvert
 msgid "Outpost"
 msgstr "Utpost"
 
-#: simulation/templates/template_structure_defense_wall.xml:27
+#: simulation/templates/template_structure_defense_wall.xml:24
 msgid "Stone Wall"
 msgstr "Stenmur"
 
-#: simulation/templates/template_structure_defense_wall.xml:28
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wallset.xml:12
 msgid "Wall off your town for a stout defense."
 msgstr "Mur utanför din stad för ett kraftigt försvar."
 
@@ -177,15 +177,15 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Detta gör att du kan låta enheter passera dina murar."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:53
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
 msgstr "Murtorn"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:54
+#: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Skjuter pilar. Bemanna för att skydda en mur mot anfallare."
 
-#: simulation/templates/template_structure_defense_wallset.xml:10
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "City Wall"
 msgstr "Stadsmur"
 
@@ -288,6 +288,11 @@ msgstr "Hamn"
 msgid "Embassy"
 msgstr "Ambassad"
 
+#: simulation/templates/template_structure_military_fortress.xml:30
+#: simulation/templates/template_structure_military_fortress.xml:63
+msgid "Fortress"
+msgstr "Fort"
+
 #: simulation/templates/template_structure_military_fortress.xml:64
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
@@ -295,14 +300,10 @@ msgid ""
 msgstr "Träna hjältar, kämpar, och belägringsvapen. Forska fram förbättringar för belägringsvapen."
 
 #: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_special.xml:45
+#: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
 msgstr "Stad"
-
-#: simulation/templates/template_structure_military_fortress.xml:66
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
-msgid "Fortress"
-msgstr "Fort"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -365,15 +366,16 @@ msgstr "Grekisk teater"
 msgid "Théātron"
 msgstr "Théātron"
 
-#: simulation/templates/template_structure_wonder.xml:47
-msgid "Wonder"
-msgstr "Underverk"
-
 #: simulation/templates/template_structure_wonder.xml:48
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "Ge ära till din civilisation och lägg till stora ytor till ditt imperium."
+
+#: simulation/templates/template_structure_wonder.xml:49
+#: simulation/templates/template_structure_wonder.xml:47
+msgid "Wonder"
+msgstr "Underverk"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/mace_barracks.xml:18
@@ -552,8 +554,8 @@ msgstr "Gwersyllty"
 msgid "Amoridas"
 msgstr "Amoridas"
 
-#: simulation/templates/structures/brit_civil_centre.xml:9
-#: simulation/templates/structures/gaul_civil_centre.xml:9
+#: simulation/templates/structures/brit_civil_centre.xml:12
+#: simulation/templates/structures/gaul_civil_centre.xml:12
 msgid "Caer"
 msgstr "Caer"
 
@@ -675,7 +677,7 @@ msgstr "Träna nordafrikanska medborgarsoldater. Forska fram förbättringar fö
 msgid "?"
 msgstr "?"
 
-#: simulation/templates/structures/cart_civil_centre.xml:5
+#: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
 msgstr "Merkāz"
 
@@ -762,15 +764,19 @@ msgstr "Kartagisk utpost"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:11
+#: simulation/templates/structures/cart_super_dock.xml:35
 msgid "Naval Shipyard"
 msgstr "Örlogsvarv"
 
-#: simulation/templates/structures/cart_super_dock.xml:12
+#: simulation/templates/structures/cart_super_dock.xml:36
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:15
+#: simulation/templates/structures/cart_super_dock.xml:37
+msgid "Shipyard"
+msgstr ""
+
+#: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
 msgstr "Bygg och reparera mäktiga krigsskepp."
 
@@ -839,7 +845,7 @@ msgstr "Kaserna"
 msgid "Harotz"
 msgstr "Harotz"
 
-#: simulation/templates/structures/iber_civil_centre.xml:5
+#: simulation/templates/structures/iber_civil_centre.xml:8
 msgid "Oppidum"
 msgstr "Oppidum"
 
@@ -961,7 +967,7 @@ msgstr "Sainyavasa"
 msgid "Lohakāra"
 msgstr "Lohakāra"
 
-#: simulation/templates/structures/maur_civil_centre.xml:9
+#: simulation/templates/structures/maur_civil_centre.xml:12
 msgid "Rajadhanika"
 msgstr "Rajadhanika"
 
@@ -1085,7 +1091,7 @@ msgstr "Persiskt palats"
 msgid "Apadana"
 msgstr "Apadana"
 
-#: simulation/templates/structures/pers_apadana.xml:34
+#: simulation/templates/structures/pers_apadana.xml:31
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
@@ -1103,11 +1109,11 @@ msgstr "Uppbåda bosättarinfanterisoldater."
 msgid "Arštišta"
 msgstr "Arštišta"
 
-#: simulation/templates/structures/pers_civil_centre.xml:5
+#: simulation/templates/structures/pers_civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Provinsguvernös"
 
-#: simulation/templates/structures/pers_civil_centre.xml:6
+#: simulation/templates/structures/pers_civil_centre.xml:9
 msgid "Xšaçapāvan"
 msgstr "Xšaçapāvan"
 
@@ -1234,7 +1240,7 @@ msgid ""
 "improvements."
 msgstr "Träna medborgarsoldater från Egypten och Mellanöstern. Forska fram träningsförbättringar."
 
-#: simulation/templates/structures/ptol_civil_centre.xml:15
+#: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
 msgstr "pr-'a"
 
@@ -1276,7 +1282,7 @@ msgstr "Fyr"
 msgid "Pháros"
 msgstr "Pháros"
 
-#: simulation/templates/structures/ptol_lighthouse.xml:20
+#: simulation/templates/structures/ptol_lighthouse.xml:21
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
@@ -1296,21 +1302,20 @@ msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
-"Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
-"- Train Mercenaries. \n"
-"- Min. distance from other Military Settlements: 100 meters."
-msgstr "Billig baracker-liknande struktur som är byggbar i neutralt territorium, men som inte har något territorieinflytande.\n- Utbilda legosoldater.\n- Min. avstånd från andra militära byggnader: 100 meter."
+"Cheap barracks-like structure that is buildable in neutral territory, but "
+"casts no territory influence. Train Mercenaries."
+msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:6
+#: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
-"This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
-"- Train settler-soldiers of various nationalities.\n"
-"- Min. distance from other Military Colonies: 120 meters."
-msgstr "Detta är den Ptolemeiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Den är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
+"This is the Ptolemaic expansion building, similar to Civic Centers for other"
+" factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr ""
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1355,7 +1360,7 @@ msgstr "Befäst militärläger"
 msgid "Castrum Vallum"
 msgstr "Castrum Vallum"
 
-#: simulation/templates/structures/rome_army_camp.xml:65
+#: simulation/templates/structures/rome_army_camp.xml:63
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1369,7 +1374,7 @@ msgstr "Castrum"
 msgid "Armamentarium"
 msgstr "Armamentarium"
 
-#: simulation/templates/structures/rome_civil_centre.xml:9
+#: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
 msgstr "Forum"
 
@@ -1430,9 +1435,9 @@ msgstr "Belägringsmur"
 msgid "Murus Circummunitionis"
 msgstr "Murus Circummunitionis"
 
-#: simulation/templates/structures/rome_siege_wall_long.xml:57
-#: simulation/templates/structures/rome_siege_wall_medium.xml:51
-#: simulation/templates/structures/rome_siege_wall_short.xml:38
+#: simulation/templates/structures/rome_siege_wall_long.xml:55
+#: simulation/templates/structures/rome_siege_wall_medium.xml:49
+#: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
 msgstr "En palissad av trä och grästorvor som kan byggas i fientliga och neutrala territorier."
@@ -1549,10 +1554,10 @@ msgstr "Empórion"
 
 #: simulation/templates/structures/sele_military_colony.xml:6
 msgid ""
-"This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
-"- Train settler-soldiers of various nationalities.\n"
-"- Min. distance from other Military Colonies: 120 meters."
-msgstr "Detta är den Seleukidiska expansionsbyggnaden, liknande samhällsbyggnaden för andra fraktioner. Den är svagare och har mindre territorieinflytande, men är billigare och byggs snabbare.\n- Utbilda medborgarsoldater av olika nationaliteter.\n- Min. avstånd från andra militära kolonier: 120 meter."
+"This is the Seleucid expansion building, similar to Civic Centers for other "
+"factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster. Train settler-soldiers of various nationalities."
+msgstr ""
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1595,7 +1600,7 @@ msgstr "Militär Matsal"
 msgid "Syssítion"
 msgstr "Syssítion"
 
-#: simulation/templates/structures/spart_syssiton.xml:26
+#: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Train Spartan heroes and Spartiate champion hoplites."
 msgstr "Träna Spartanska hjältar och Spartanska elithopliter."
 

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-31 15:08+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 10:05+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,11 +117,11 @@ msgstr "tresor"
 msgid "A treasure that can be quickly gathered."
 msgstr "Un tresor que es pot recollir ràpidament."
 
-#: simulation/templates/template_structure.xml:58
+#: simulation/templates/template_structure.xml:55
 msgid "Structure"
 msgstr "Estructura"
 
-#: simulation/templates/template_unit.xml:39
+#: simulation/templates/template_unit.xml:40
 msgid "Unit"
 msgstr "Unitat"
 
@@ -154,6 +154,11 @@ msgstr "Exèrcit de Leònides I."
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
 msgstr "Exèrcit de Leònides I"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:25
+#: simulation/templates/campaigns/campaign_city_test.xml:25
+msgid "Market"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -296,7 +301,7 @@ msgstr "Cocodril del Nil"
 msgid "Deer"
 msgstr "Cérvol"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
 msgid "African Bush Elephant"
 msgstr "Elefant africà de sabana"
 
@@ -304,7 +309,7 @@ msgstr "Elefant africà de sabana"
 msgid "African Elephant (Infant)"
 msgstr "Elefant africà (cria)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:46
+#: simulation/templates/gaia/fauna_elephant_asian.xml:33
 msgid "Asian Elephant"
 msgstr "Elefant asiàtic"
 
@@ -773,11 +778,11 @@ msgstr "Fort d'estacada"
 msgid "Wooden Tower"
 msgstr "Torre de fusta"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:25
+#: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
 msgstr "Porta d'estacada"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:26
+#: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
 msgstr "Porta de fusta"
 
@@ -845,11 +850,11 @@ msgstr "Hostal"
 msgid "Warehouse"
 msgstr "Magatzem"
 
-#: simulation/templates/other/plane.xml:37
+#: simulation/templates/other/plane.xml:41
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/other/plane.xml:39
+#: simulation/templates/other/plane.xml:43
 msgid "A World War 2 American fighter plane."
 msgstr "Un caça americà de la Segona Guerra Mundial."
 
@@ -943,7 +948,7 @@ msgid ""
 "for other civs"
 msgstr "Es converteix en una casa de +10 de límit de població en les civilitzacions que tenen aquestes cases, s'esborra en les altres civilitzacions"
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:5
+#: simulation/templates/skirmish/structures/default_house_5.xml:9
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"

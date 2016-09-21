@@ -314,7 +314,6 @@ g_SelectionPanels.Construction = {
 			getEntityTooltip,
 			getEntityCostTooltip,
 			getGarrisonTooltip,
-			getProjectilesTooltip,
 			getPopulationBonusTooltip
 		].map(func => func(template));
 

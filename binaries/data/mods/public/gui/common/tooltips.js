@@ -465,7 +465,10 @@ function getNeededResourcesTooltip(resources)
 			"cost": resources[resource]
 		}));
 
-	return '\n[font="sans-bold-13"][color="red"]' + translate("Insufficient resources:") + '[/color][/font]\n' + formatted.join("  ");
+	return '[font="sans-bold-13"][color="red"]' +
+		translate("Insufficient resources:") +
+		'[/color][/font]' + " " +
+		formatted.join("  ");
 }
 
 function getSpeedTooltip(template)

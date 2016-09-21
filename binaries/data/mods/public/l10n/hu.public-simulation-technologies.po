@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:29+0000\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 12:36+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1291,8 +1291,8 @@ msgstr "Egy nyüzsgő városból igazi metropolisszá fejlődik a modern technol
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. A polgár katonák maximális életereje +20%-kal növelve. Minden épületnek +9 beszállásolási regeneráció sebesség."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. A polgár katonák maximális életereje +10%-kal növelve. Minden épületnek +9 beszállásolási regeneráció sebesség."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1322,8 +1322,8 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. Az „ezüst baglyok” civilizációs bónusz további +10% fémgyűjtési sebességet ad minden munkásnak. A polgár katonák maximális életereje +20%-kal növelve. Minden épületnek +9 beszállásolási regeneráció sebesség."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Nagyvárosi szakasszá fejlődés, amely több épületet és egységet tesz elérhetővé. A városházák terület sugara további +50%-kal növelve. Az „ezüst baglyok” civilizációs bónusz további +10% fémgyűjtési sebességet ad minden munkásnak. A polgár katonák maximális életereje +10%-kal növelve. Minden épületnek +9 beszállásolási regeneráció sebesség."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1786,8 +1786,10 @@ msgid ""
 msgstr "A kereskedelem és utazás által, az emberek a saját földjeik határán túl is felderítették a területeket és térképeket készítettek, hogy megosszák és megőrizzék felfedezéseiket."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "A játékos látja, amit a szövetségesei látnak."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr "Lásd amit a szövetségeseid látnak, böngészd az összegzésüket, és olvasd le a nyersanyagaik és népességük számát a fenti panelen."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

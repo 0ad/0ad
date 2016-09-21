@@ -326,11 +326,10 @@ m.Template = m.Class({
 		for (let type in this.get("Attack"))
 		{
 			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
-			if (!restrictedClasses)
-				continue;
-			if (restrictedClasses.split(" ").indexOf(saidClass) !== -1)
+			if (restrictedClasses && !MatchesClassList([saidClass], restrictedClasses))
 				return false;
 		}
+
 		return true;
 	},
 

@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-04 09:01+0200\n"
-"PO-Revision-Date: 2016-07-04 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-08-22 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 11:15+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,11 +119,11 @@ msgstr "Schatz"
 msgid "A treasure that can be quickly gathered."
 msgstr "Ein Schatz, der schnell geplündert werden kann."
 
-#: simulation/templates/template_structure.xml:58
+#: simulation/templates/template_structure.xml:55
 msgid "Structure"
 msgstr "Gebäude"
 
-#: simulation/templates/template_unit.xml:39
+#: simulation/templates/template_unit.xml:40
 msgid "Unit"
 msgstr "Einheit"
 
@@ -156,6 +156,11 @@ msgstr "Armee von Leonidas I."
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
 msgstr "Armee von Leonidas I."
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:25
+#: simulation/templates/campaigns/campaign_city_test.xml:25
+msgid "Market"
+msgstr "Markt"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -298,7 +303,7 @@ msgstr "Nilkrokodil"
 msgid "Deer"
 msgstr "Reh"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
 msgid "African Bush Elephant"
 msgstr "Afrikanischer Buschelefant"
 
@@ -306,7 +311,7 @@ msgstr "Afrikanischer Buschelefant"
 msgid "African Elephant (Infant)"
 msgstr "Afrikanischer Elefant (Kalb)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:46
+#: simulation/templates/gaia/fauna_elephant_asian.xml:33
 msgid "Asian Elephant"
 msgstr "Asiatischer Elefant"
 
@@ -775,11 +780,11 @@ msgstr "Palisadenfort"
 msgid "Wooden Tower"
 msgstr "Holzturm"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:25
+#: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
 msgstr "Palisadentor"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:26
+#: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
 msgstr "Holztor"
 
@@ -847,11 +852,11 @@ msgstr "Schenke"
 msgid "Warehouse"
 msgstr "Lagerhaus"
 
-#: simulation/templates/other/plane.xml:37
+#: simulation/templates/other/plane.xml:41
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/other/plane.xml:39
+#: simulation/templates/other/plane.xml:43
 msgid "A World War 2 American fighter plane."
 msgstr "Ein amerikanisches Kampfflugzeug aus dem zweiten Weltkrieg."
 
@@ -945,7 +950,7 @@ msgid ""
 "for other civs"
 msgstr "Änderungen in einem 10er Wohnhaus für Zivilisationen mit diesen Häusern. Ist in anderen Zivilisationen gelöscht."
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:5
+#: simulation/templates/skirmish/structures/default_house_5.xml:9
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"

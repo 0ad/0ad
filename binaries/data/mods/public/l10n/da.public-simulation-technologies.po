@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:06+0000\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 08:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -1283,7 +1283,7 @@ msgstr ""
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
 #: simulation/data/technologies/phase_city.jsongenericName
@@ -1314,7 +1314,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
@@ -1778,7 +1778,9 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
 msgstr ""
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName

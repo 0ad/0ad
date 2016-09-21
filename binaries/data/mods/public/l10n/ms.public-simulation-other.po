@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-07-22 09:01+0200\n"
-"PO-Revision-Date: 2016-07-22 09:55+0000\n"
+"POT-Creation-Date: 2016-09-05 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 09:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -672,12 +672,12 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "musuh"
 
-#: simulation/components/CeasefireManager.js:100
+#: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
 msgstr "Anda boleh serang dalam tempoh %(time)s"
 
-#: simulation/components/CeasefireManager.js:113
+#: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
 msgstr "Anda boleh serang sekarang!"
 
@@ -786,7 +786,7 @@ msgstr ""
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1041
+#: simulation/helpers/Commands.js:1040
 msgid "The building's technology requirements are not met."
 msgstr "Keperluan tekonologi bangunan tidak dipenuhi."
 
@@ -871,31 +871,31 @@ msgid "Fast Forward (20x)"
 msgstr "Mundar Pantas (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid "Defeat all opponents"
-msgstr "Kalahkan semua pihak lawan"
+msgid "Defeat all opponents to win."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
 msgstr "Penaklukan"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Destroy all structures of enemies"
-msgstr "Musnahkan semua struktur pihak musuh"
+msgid "Destroy all enemy structures to win."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
 msgstr "Tawan Struktur"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Kill all enemy units"
-msgstr "Bunuh semua unit musuh"
+msgid "Kill all enemy units to win."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
 msgstr "Tawan Unit"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero"
+msgid "Defeat opponents by killing their hero."
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
@@ -903,8 +903,10 @@ msgid "Regicide"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid "Build and protect a wonder to win"
-msgstr "Bina dan lindungi keajaiban untuk menang"
+msgid ""
+"Be the first to build or capture a wonder and keep it for a certain time to "
+"win the game."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"

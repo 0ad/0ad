@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Catalanoic <catalanoic@gmail.com>, 2016
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2014
 # Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 10:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-16 09:01+0200\n"
+"PO-Revision-Date: 2016-09-18 09:01+0000\n"
+"Last-Translator: Catalanoic <catalanoic@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -958,7 +959,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Contractar servents per ajudar a la mina de pedra. + 15% taxa de recol·lecció de pedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -1017,7 +1018,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "Equipar els treballadors amb eines útils, +15% taxa de recol·lecció de metall."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1282,8 +1283,8 @@ msgstr "Avança d'una vila bulliciosa a una veritable metròpoli, plena de les m
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Avança a la fase de ciutat, que desbloqueja més estructures i unitats. El radi de territori dels centres cívics augmenta un altre 50%. La salut màxima dels soldats ciutadans augmenta un 20%. Totes les estructures augmenten +9 la velocitat de regeneració de les unitats refugiades."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Avança a la Fase de Ciutat, que desbloqueja més estructures i unitats. El radi de territori augmenta pels Centres cívics en + 50%. La salut màxima dels ciutadans soldats augmenta en un + 10%. Totes les estructures +9 guarnició de taxa de regeneració."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1313,8 +1314,8 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
-"health increased by +20%. All structures +9 garrisoned regeneration rate."
-msgstr "Avança a la fase de ciutat, que desbloqueja més estructures i unitats. El radi de territori dels centres cívics augmenta un altre 50%. La bonificació \"Òlibes de plata\" augmenta un 10% la velocitat d'obtenció de metall per a tots els treballadors. La salut màxima dels soldats ciutadans augmenta un 20%. Totes les estructures augmenten +9 la velocitat de regeneració de les unitats refugiades."
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Avançar a la Fase de Ciutat, que desbloqueja més estructures i unitats. El radi de territori augmenta pels Centres cívics en + 50%. La bonificació de plata atorga un extra + 10% de metall a tots els treballadors. La salut màxima dels ciutadans soldats augmenta en un + 10%. Totes les estructures +9 guarnició de taxa de regeneració."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1777,8 +1778,10 @@ msgid ""
 msgstr "Els viatgers i mercaders van explorar noves terres més enllà de les pròpies fronteres, i van dibuixar mapes per compartir i recordar els seus descobriments."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
-msgid "Player sees what his allies see."
-msgstr "El jugador veu tot el que veuen els seus aliats."
+msgid ""
+"See what your allies see, browse their summary and check their resources and"
+" population count in the top panel."
+msgstr "Mireu el que els seus aliats veuen, navegar pel seu resum i comprovar els seus recursos i recompte de la població en el panell superior."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

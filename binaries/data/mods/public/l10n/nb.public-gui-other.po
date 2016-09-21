@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-12 09:01+0200\n"
-"PO-Revision-Date: 2016-08-12 08:26+0000\n"
+"POT-Creation-Date: 2016-09-12 09:00+0200\n"
+"PO-Revision-Date: 2016-09-18 09:13+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -92,129 +92,13 @@ msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
-#: gui/common/functions_utility.js:131
-msgid "A randomly selected map."
-msgstr "Et tilfeldig valgt kart"
-
-#: gui/common/functions_utility.js:138
-msgid "Sorry, no description available."
-msgstr "Beklager, ingen beskrivelse tilgjengelig."
-
-#: gui/common/functions_utility.js:163
+#: gui/common/functions_utility.js:132
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:165
+#: gui/common/functions_utility.js:134
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:311
-#, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:314
-#, javascript-format
-msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:320
-#, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:323
-#, javascript-format
-msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:333
-#, javascript-format
-msgid "%(playerName)s (OFFLINE)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:336
-#, javascript-format
-msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:343
-#, javascript-format
-msgid "%(playerName)s (%(civ)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:346
-#, javascript-format
-msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:350
-#, javascript-format
-msgid "%(playerName)s"
-msgstr ""
-
-#. Translation: Describe a player in a selected game, f.e. in the replay- or
-#. savegame menu
-#: gui/common/functions_utility.js:353
-#, javascript-format
-msgid "%(playerName)s (%(state)s)"
-msgstr ""
-
-#: gui/common/functions_utility.js:371
-msgid "Unknown Civilization"
-msgstr "Ukjente sivilisasjoner"
-
-#: gui/common/functions_utility.js:378
-msgctxt "playerstate"
-msgid "defeated"
-msgstr ""
-
-#: gui/common/functions_utility.js:379
-msgctxt "playerstate"
-msgid "won"
-msgstr ""
-
-#: gui/common/functions_utility.js:401
-msgid "No Team"
-msgstr "Ingen lag"
-
-#: gui/common/functions_utility.js:402
-#, javascript-format
-msgid "Team %(team)s"
-msgstr "Lag %(team)s"
-
-#. Translation: Describe players of one team in a selected game, f.e. in the
-#. replay- or savegame menu or lobby
-#: gui/common/functions_utility.js:405 gui/common/functions_utility.js:412
-#, javascript-format
-msgid ""
-"%(team)s:\n"
-"%(playerDescriptions)s"
-msgstr ""
-
-#: gui/common/functions_utility.js:413
-msgid "Observer"
-msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -238,6 +122,256 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
+
+#: gui/common/gamedescription.js:13
+msgid "A randomly selected map."
+msgstr "Et tilfeldig valgt kart"
+
+#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:280
+msgid "Sorry, no description available."
+msgstr "Beklager, ingen beskrivelse tilgjengelig."
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:71
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:74
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:80
+#, javascript-format
+msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:83
+#, javascript-format
+msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:93
+#, javascript-format
+msgid "%(playerName)s (OFFLINE)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:96
+#, javascript-format
+msgid "%(playerName)s (OFFLINE, %(state)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:103
+#, javascript-format
+msgid "%(playerName)s (%(civ)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:106
+#, javascript-format
+msgid "%(playerName)s (%(civ)s, %(state)s)"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:110
+#, javascript-format
+msgid "%(playerName)s"
+msgstr ""
+
+#. Translation: Describe a player in a selected game, f.e. in the replay- or
+#. savegame menu
+#: gui/common/gamedescription.js:113
+#, javascript-format
+msgid "%(playerName)s (%(state)s)"
+msgstr ""
+
+#: gui/common/gamedescription.js:131
+msgid "Unknown Civilization"
+msgstr "Ukjente sivilisasjoner"
+
+#: gui/common/gamedescription.js:138
+msgctxt "playerstate"
+msgid "defeated"
+msgstr ""
+
+#: gui/common/gamedescription.js:139
+msgctxt "playerstate"
+msgid "won"
+msgstr ""
+
+#: gui/common/gamedescription.js:161
+msgid "No Team"
+msgstr "Ingen lag"
+
+#: gui/common/gamedescription.js:162
+#, javascript-format
+msgid "Team %(team)s"
+msgstr "Lag %(team)s"
+
+#. Translation: Describe players of one team in a selected game, f.e. in the
+#. replay- or savegame menu or lobby
+#: gui/common/gamedescription.js:165 gui/common/gamedescription.js:172
+#, javascript-format
+msgid ""
+"%(team)s:\n"
+"%(playerDescriptions)s"
+msgstr ""
+
+#: gui/common/gamedescription.js:173
+msgid "Observer"
+msgid_plural "Observers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/gamedescription.js:195
+#, javascript-format
+msgctxt "victory condition"
+msgid "Wonder (%(min)s minute)"
+msgid_plural "Wonder (%(min)s minutes)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/gamedescription.js:212
+msgid "Rated game"
+msgstr ""
+
+#: gui/common/gamedescription.js:213
+msgid ""
+"When the winner of this match was determined, the lobby score will be "
+"adapted."
+msgstr ""
+
+#: gui/common/gamedescription.js:218
+msgid "Locked Teams"
+msgstr ""
+
+#: gui/common/gamedescription.js:219
+msgid "Players can't change the initial teams."
+msgstr ""
+
+#: gui/common/gamedescription.js:223
+msgid "Diplomacy"
+msgstr ""
+
+#: gui/common/gamedescription.js:224
+msgid "Players can setup alliances and declare war on allies."
+msgstr ""
+
+#: gui/common/gamedescription.js:229
+msgid "Last Man Standing"
+msgstr ""
+
+#: gui/common/gamedescription.js:230
+msgid ""
+"Only one player can win the game. If the remaining players are allies, the "
+"game continues until only one remains."
+msgstr ""
+
+#: gui/common/gamedescription.js:234
+msgid "Allied Victory"
+msgstr ""
+
+#: gui/common/gamedescription.js:235
+msgid ""
+"If one player wins, his or her allies win too. If one group of allies "
+"remains, they win."
+msgstr ""
+
+#: gui/common/gamedescription.js:241
+msgid "Ceasefire"
+msgstr ""
+
+#: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
+msgid "disabled"
+msgstr "Deaktivert"
+
+#: gui/common/gamedescription.js:245
+msgid "For the first minute, enemies will stay neutral."
+msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/gamedescription.js:253
+msgid "Map Name"
+msgstr ""
+
+#: gui/common/gamedescription.js:258
+msgid "Map Type"
+msgstr ""
+
+#: gui/common/gamedescription.js:267
+msgid "Map Size"
+msgstr ""
+
+#: gui/common/gamedescription.js:274
+msgid "Map Description"
+msgstr ""
+
+#: gui/common/gamedescription.js:277
+msgid "Randomly selects a map from the list"
+msgstr ""
+
+#: gui/common/gamedescription.js:286
+msgid "Starting Resources"
+msgstr ""
+
+#: gui/common/gamedescription.js:287
+#, javascript-format
+msgid "%(startingResourcesTitle)s (%(amount)s)"
+msgstr ""
+
+#: gui/common/gamedescription.js:297
+msgid "Population Limit"
+msgstr ""
+
+#: gui/common/gamedescription.js:305
+msgid "Disable Treasure"
+msgstr ""
+
+#: gui/common/gamedescription.js:310
+msgid "Revealed Map"
+msgstr ""
+
+#: gui/common/gamedescription.js:315
+msgid "Explored Map"
+msgstr ""
+
+#: gui/common/gamedescription.js:320
+msgid "Cheats"
+msgstr ""
+
+#: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
+#: gui/common/tooltips.js:105 gui/common/tooltips.js:147
+#: gui/common/tooltips.js:347
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/common/gamedescription.js:328
+msgctxt "gamesetup option"
+msgid "enabled"
+msgstr ""
+
+#: gui/common/gamedescription.js:329
+msgctxt "gamesetup option"
+msgid "disabled"
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -433,7 +567,7 @@ msgstr "%(previousAmounts)s og %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:140 gui/common/tooltips.js:118
+#: gui/common/l10n.js:92 gui/common/network.js:141 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:489 gui/common/tooltips.js:523
@@ -539,10 +673,12 @@ msgstr "Kunne ikke utestenge %(name)s."
 msgid "Could not kick %(name)s."
 msgstr "Kunne ikke kaste ut %(name)s. "
 
-#: gui/common/network.js:139
+#. Translation: Number of currently connected players/observers and their
+#. names
+#: gui/common/network.js:140
 #, javascript-format
-msgid "Users: %(users)s"
-msgstr "Brukere: %(users)s"
+msgid "Users (%(num)s): %(users)s"
+msgstr ""
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -615,8 +751,8 @@ msgid "None"
 msgstr "Ingen"
 
 #: gui/common/settings.js:229
-msgid "Endless Game"
-msgstr "Endeløst spill"
+msgid "Endless game."
+msgstr ""
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -675,12 +811,6 @@ msgstr "Spidd"
 #: gui/common/tooltips.js:17
 msgid "Crush"
 msgstr "Knus"
-
-#: gui/common/tooltips.js:58 gui/common/tooltips.js:105
-#: gui/common/tooltips.js:147 gui/common/tooltips.js:347
-#, javascript-format
-msgid "%(label)s %(details)s"
-msgstr "%(label)s %(details)s"
 
 #: gui/common/tooltips.js:59
 msgid "Health:"
@@ -805,7 +935,7 @@ msgid "Friendly Fire: %(enabled)s"
 msgstr ""
 
 #: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:290
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
 #: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:130
 #: gui/savedgames/load.js:179 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:92 gui/summary/summary.js:147
@@ -813,7 +943,7 @@ msgid "Yes"
 msgstr "Ja"
 
 #: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:290
+#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
 #: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:130
 #: gui/savedgames/load.js:179 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:92 gui/summary/summary.js:147
@@ -1005,7 +1135,7 @@ msgstr "Ingen"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
@@ -1025,38 +1155,34 @@ msgstr "Advarsel"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Du har endringer som ikke er lagret, ønsker du å lukke dette vinduet?"
 
-#: gui/pregame/mainmenu.js:85
-msgid "disabled"
-msgstr "Deaktivert"
-
-#: gui/pregame/mainmenu.js:88
+#: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
 msgstr "Kobler til server"
 
-#: gui/pregame/mainmenu.js:93
+#: gui/pregame/mainmenu.js:92
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "Laster opp (%f%%)"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:98
 msgid "upload succeeded"
 msgstr "Opplastningen ble fullført"
 
-#: gui/pregame/mainmenu.js:102
+#: gui/pregame/mainmenu.js:100
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "opplasting sviktet (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:104
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "opplasting sviktet (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:112
+#: gui/pregame/mainmenu.js:106
 msgid "unknown"
 msgstr "ukjent"
 
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1069,51 +1195,51 @@ msgstr "%(startWarning)sWarning:%(endWarning)s Det ser ut til at du bruker non-s
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Vennligst trykk \"Les Mer\" for mer informasjon eller \"OK\" for å fortsette."
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "ADVARSEL!"
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "Les mer"
 
-#: gui/pregame/mainmenu.js:256
+#: gui/pregame/mainmenu.js:242
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Bygg: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:288
+#: gui/pregame/mainmenu.js:254
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Er du sikker på at du vil avslutte 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:289 gui/summary/summary.js:146
+#: gui/pregame/mainmenu.js:255 gui/summary/summary.js:146
 msgid "Confirmation"
 msgstr "Bekreftelse"
 
-#: gui/pregame/mainmenu.js:304
+#: gui/pregame/mainmenu.js:270
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Kartverktøyet er ikke tilgjengelig eller kunne ikke lastes inn. Se loggene for spillet for ytterligere informasjon."
 
-#: gui/pregame/mainmenu.js:305 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Feil"
 
-#: gui/pregame/mainmenu.js:311
+#: gui/pregame/mainmenu.js:277
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Start flerspillerlobbyen. \\[DEAKTIVERT AV BYGG]"
 
-#: gui/pregame/mainmenu.js:316 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:282 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Tekniske detaljer"
 
-#: gui/pregame/mainmenu.js:321 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Manual"
 
@@ -1240,11 +1366,11 @@ msgstr ""
 msgid "Unrated games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:293
 msgid "yyyy-MM-dd HH:mm"
 msgstr "åååå-MM-dd TT:mm"
 
-#: gui/replaymenu/replay_menu.js:313
+#: gui/replaymenu/replay_menu.js:323
 msgid "yyyy-MM"
 msgstr "åååå-MM"
 
@@ -1594,7 +1720,7 @@ msgstr "Siviliasjons Valg"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
-#: gui/structree/structree.xml:(caption):119
+#: gui/structree/structree.xml:(caption):120
 msgid "Close"
 msgstr "Lukk"
 
@@ -1623,7 +1749,7 @@ msgstr "Lokalisering"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):28 gui/savedgames/save.xml:(caption):37
+#: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1764,7 +1890,7 @@ msgid "Disable Feedback"
 msgstr "Skru av tilbakemeldinger"
 
 #: gui/pregame/mainmenu.xml:(caption):166
-#: gui/structree/structree.xml:(caption):17
+#: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr "Bygningstre"
 
@@ -1780,7 +1906,7 @@ msgstr "Kamper"
 msgid "Campaigns"
 msgstr "Kampanjer"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):19
+#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Last inn spill"
 
@@ -1961,91 +2087,91 @@ msgstr "Klikk for å åpne 0 A.D oversettelsesiden i din nettleser."
 msgid "Click to see the 0 A.D. credits."
 msgstr "Klikk for å se 0 A.D æreshenvisninger"
 
-#: gui/replaymenu/replay_menu.xml:(caption):27
+#: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
 msgstr "Spill spill på nytt"
 
-#: gui/replaymenu/replay_menu.xml:(caption):112
+#: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
 msgstr "Filtrer kompatible repriser"
 
-#: gui/replaymenu/replay_menu.xml:(caption):153
-#: gui/savedgames/load.xml:(caption):57
+#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/savedgames/load.xml:(caption):58
 msgid "Map Type:"
 msgstr "Karttype:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):168
-#: gui/savedgames/load.xml:(caption):61
+#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/savedgames/load.xml:(caption):62
 msgid "Map Size:"
 msgstr "Kartstørrelse:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):183
-#: gui/savedgames/load.xml:(caption):65
+#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/savedgames/load.xml:(caption):66
 msgid "Victory:"
 msgstr "Seier:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):204
-#: gui/savedgames/load.xml:(caption):49
+#: gui/replaymenu/replay_menu.xml:(caption):215
+#: gui/savedgames/load.xml:(caption):50
 msgid "Players:"
 msgstr "Spillere:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):221
+#: gui/replaymenu/replay_menu.xml:(caption):232
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):233
+#: gui/replaymenu/replay_menu.xml:(caption):244
 msgid "Main Menu"
 msgstr "Hovedmeny"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
-#: gui/savedgames/load.xml:(caption):33 gui/savedgames/save.xml:(caption):42
+#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Slett"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/replaymenu/replay_menu.xml:(caption):256
 #: gui/summary/summary.xml:(caption):22
 msgid "Summary"
 msgstr "Oppsummering"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):262
 msgid "Start Replay"
 msgstr "Start reprise"
 
-#: gui/replaymenu/replay_menu.xml:(heading):75
+#: gui/replaymenu/replay_menu.xml:(heading):86
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Dato / tid"
 
-#: gui/replaymenu/replay_menu.xml:(heading):79
+#: gui/replaymenu/replay_menu.xml:(heading):90
 msgctxt "replay"
 msgid "Players"
 msgstr "Spillere"
 
-#: gui/replaymenu/replay_menu.xml:(heading):83
+#: gui/replaymenu/replay_menu.xml:(heading):94
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Kartnavn"
 
-#: gui/replaymenu/replay_menu.xml:(heading):87
+#: gui/replaymenu/replay_menu.xml:(heading):98
 msgctxt "replay"
 msgid "Size"
 msgstr "Størrelse"
 
-#: gui/replaymenu/replay_menu.xml:(heading):91
+#: gui/replaymenu/replay_menu.xml:(heading):102
 msgctxt "replay"
 msgid "Population"
 msgstr "Befolkning"
 
-#: gui/replaymenu/replay_menu.xml:(heading):95
+#: gui/replaymenu/replay_menu.xml:(heading):106
 msgctxt "replay"
 msgid "Duration"
 msgstr "Varighet"
 
-#: gui/savedgames/load.xml:(caption):38
+#: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Last"
 
-#: gui/savedgames/load.xml:(caption):53
+#: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
 msgstr ""
 
@@ -2069,11 +2195,11 @@ msgstr "Vis denne meldingen igjen"
 msgid "Known Issues (web)"
 msgstr "Kjente problemer (internett)"
 
-#: gui/structree/structree.xml:(caption):29
+#: gui/structree/structree.xml:(caption):30
 msgid "Civilization:"
 msgstr "Sivilisasjon:"
 
-#: gui/structree/structree.xml:(caption):92
+#: gui/structree/structree.xml:(caption):93
 msgid "Trainer Units"
 msgstr "Treningsenheter"
 
