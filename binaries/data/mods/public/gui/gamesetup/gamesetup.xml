@@ -61,10 +61,10 @@
 
 					<object name="civInfoButton"
 						type="button"
+						style="IconButton"
 						sprite="iconInfoGold"
 						sprite_over="iconInfoWhite"
 						size="85%-37 0 85%-21 16"
-						tooltip_style="onscreenToolTip"
 					>
 						<translatableAttribute id="tooltip">View civilization info</translatableAttribute>
 						<action on="Press"><![CDATA[
@@ -74,10 +74,10 @@
 
 					<object name="civResetButton"
 						type="button"
+						style="IconButton"
 						sprite="iconResetGold"
 						sprite_over="iconResetWhite"
 						size="85%-16 0 85% 16"
-						tooltip_style="onscreenToolTip"
 					>
 						<translatableAttribute id="tooltip">Reset any civilizations that have been selected to the default (random)</translatableAttribute>
 						<action on="Press">resetCivilizations();</action>
@@ -89,10 +89,10 @@
 
 					<object name="teamResetButton"
 						type="button"
+						style="IconButton"
 						sprite="iconResetGold"
 						sprite_over="iconResetWhite"
 						size="100%-21 0 100%-5 16"
-						tooltip_style="onscreenToolTip"
 					>
 						<translatableAttribute id="tooltip">Reset all teams to the default.</translatableAttribute>
 						<action on="Press">resetTeams();</action>
