@@ -75,7 +75,7 @@
 				</object>
 			</repeat>
 
-			<object type="image" style="TreeDisplay" size="48+16+8 0 100%-12 100%">
+			<object type="image" name="tree_display" style="TreeDisplay" size="48+16+8 0 100%-12 100%">
 				<include file="gui/structree/rows.xml"/>
 			</object>
 		</object>
