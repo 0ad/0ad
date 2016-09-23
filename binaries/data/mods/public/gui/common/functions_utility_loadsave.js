@@ -75,3 +75,17 @@ function reallyDeleteGame(gameID)
 	// Run init again to refresh saved game list
 	init();
 }
+
+function deleteTooltip()
+{
+	let deleteTooltip = colorizeHotkey(
+		translate("Delete the selected entry using %(hotkey)s."),
+		"session.savedgames.delete");
+
+	if (deleteTooltip)
+		deleteTooltip += colorizeHotkey(
+			"\n"  + translate("Hold %(hotkey)s to delete without confirmation."),
+			"session.savedgames.noconfirmation");
+
+	return deleteTooltip;
+}

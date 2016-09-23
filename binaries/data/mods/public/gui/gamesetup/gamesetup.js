@@ -294,6 +294,8 @@ function initGUIObjects()
 
 	resizeMoreOptionsWindow();
 
+	Engine.GetGUIObjectByName("chatInput").tooltip = colorizeAutocompleteHotkey();
+
 	if (g_IsNetworked)
 		Engine.GetGUIObjectByName("chatInput").focus();
 

@@ -34,6 +34,8 @@ function init()
 		gameSelection.selected = savedGames.length - 1;
 	else
 		selectionChanged();
+
+	Engine.GetGUIObjectByName("deleteGameButton").tooltip = deleteTooltip();
 }
 
 function selectionChanged()

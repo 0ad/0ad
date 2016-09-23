@@ -224,6 +224,8 @@ function init(attribs)
 	Engine.LobbyClearPresenceUpdates();
 	updatePlayerList();
 	updateSubject(Engine.LobbyGetRoomSubject());
+
+	Engine.GetGUIObjectByName("chatInput").tooltip = colorizeAutocompleteHotkey();
 }
 
 function returnToMainMenu()

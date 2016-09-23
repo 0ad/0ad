@@ -15,7 +15,6 @@
 		<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
 	</object>
 	<object name="chatInput" size="75 44 100%-16 68" type="input" style="ModernInput" max_length="80">
-		<translatableAttribute id="tooltip" context="chat input">Type the message to send.</translatableAttribute>
 		<action on="Press">submitChatInput();</action>
 		<action on="Tab">
 			let playernames = [];
