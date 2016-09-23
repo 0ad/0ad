@@ -3381,6 +3381,11 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 			this.Stop(false);
 		}
 
+		this.workOrders = [];
+		let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+		if (cmpTrader)
+			cmpTrader.StopTrading();
+
 		this.SetStance(this.template.DefaultStance);
 		if (this.IsTurret())
 			this.SetTurretStance();
@@ -5197,7 +5202,7 @@ UnitAI.prototype.SetTargetMarket = function(target, source)
 
 UnitAI.prototype.SwitchMarketOrder = function(oldMarket, newMarket)
 {
-	if (this.order.data && this.order.data.target && this.order.data.target == oldMarket)
+	if (this.order && this.order.data && this.order.data.target && this.order.data.target == oldMarket)
 		this.order.data.target = newMarket;
 };
 
@@ -5205,18 +5210,12 @@ UnitAI.prototype.MoveToMarket = function(targetMarket)
 {
 	if (this.waypoints && this.waypoints.length > 1)
 	{
-		var point = this.waypoints.pop();
-		var ok = this.MoveToPoint(point.x, point.z);
-		if (!ok)
-			ok = this.MoveToMarket(targetMarket);
-	}
-	else
-	{
-		this.waypoints = undefined;
-		var ok = this.MoveToTarget(targetMarket);
+		let point = this.waypoints.pop();
+		return this.MoveToPoint(point.x, point.z) || this.MoveToMarket(targetMarket);
 	}
 
-	return ok;
+	this.waypoints = undefined;
+	return this.MoveToTarget(targetMarket);
 };
 
 UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
