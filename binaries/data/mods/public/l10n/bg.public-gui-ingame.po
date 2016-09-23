@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 12:05+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 08:59+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -464,13 +464,13 @@ msgstr "Вие бяхте нападнат(а) от %(attacker)s!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:821
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:366
+#: gui/session/selection_details.js:398 gui/session/session.js:821
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:367
 msgid "Hitpoints:"
 msgstr "Жизнени точки:"
 
@@ -561,10 +561,33 @@ msgstr "Текущи/максимум събирачи"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:389
+#: gui/session/selection_details.js:399
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Пленителни точки:"
+
+#: gui/session/selection_details.js:410
+#, javascript-format
+msgid "%(label)s %(details)s\n"
+msgstr "%(label)s %(details)s\n"
+
+#: gui/session/selection_details.js:411
+msgid "Carrying:"
+msgstr "Носи:"
+
+#: gui/session/selection_details.js:413 gui/session/selection_details.js:421
+#, javascript-format
+msgid "%(type)s %(amount)s"
+msgstr "%(type)s %(amount)s"
+
+#: gui/session/selection_details.js:418
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/session/selection_details.js:419
+msgid "Loot:"
+msgstr "Плячка:"
 
 #: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
@@ -822,43 +845,43 @@ msgstr "Да"
 msgid "Health:"
 msgstr "Здраве:"
 
-#: gui/session/session.js:936
+#: gui/session/session.js:957
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:939
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:957
+#: gui/session/session.js:978
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:958
+#: gui/session/session.js:979
 msgid "Population (current / limit)"
 msgstr "Население (текущо / максимално)"
 
-#: gui/session/session.js:959
+#: gui/session/session.js:980
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Максимално население: %(popCap)s"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1132
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версия: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1121
+#: gui/session/session.js:1142
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Бележка: Изкривяването на времето е предназначено за разработчици и не може да се използва твърде продължително. Неправилната употреба може да изчерпа паметта или да предизвика срив."
 
-#: gui/session/session.js:1122
+#: gui/session/session.js:1143
 msgid "Time warp mode"
 msgstr "Изкривяване на времето"
 

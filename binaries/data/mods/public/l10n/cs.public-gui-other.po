@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-12 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 12:30+0000\n"
-"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-20 11:04+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,9 +251,9 @@ msgstr[2] "Pozorovatelů"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Div světa (%(min)s minuta)"
+msgstr[1] "Div světa (%(min)s minuty)"
+msgstr[2] "Div světa (%(min)s minut)"
 
 #: gui/common/gamedescription.js:212
 msgid "Rated game"
@@ -263,7 +263,7 @@ msgstr "Hodnocená hra"
 msgid ""
 "When the winner of this match was determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Když byl určen vítěz zápasu, je upraven výsledek herní skupiny."
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
@@ -271,7 +271,7 @@ msgstr "Zamčené týmy"
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Hráči nemohou změnit počáteční týmy."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
@@ -289,21 +289,21 @@ msgstr "Každý proti každému"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Pouze jeden hráč může vyhrát hru. Pokud zbývající hráči jsou spojenci, hra stále pokračuje dokud nezbyde jen jeden."
+msgstr "Pouze jeden hráč může vyhrát hru. Pokud jsou zbývající hráči spojenci, hra stále pokračuje, dokud nezbyde jen jeden."
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Spojenecké vítězství"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Pokud vyhraje jeden hráč, vyhrají zároveň i jeho nebo její spojenci. Pokud zůstane jedna skupina spojenců, zvítězí."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Klid zbraní"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -312,9 +312,9 @@ msgstr "vypnuto"
 #: gui/common/gamedescription.js:245
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "V první %(min)s minutě zůstanou nepřátelé neutrální."
+msgstr[1] "V prvních %(min)s minutách zůstanou nepřátelé neutrální."
+msgstr[2] "Po prvních %(min)s minut zůstanou nepřátelé neutrální."
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
@@ -343,15 +343,15 @@ msgstr "Počáteční zdroje"
 #: gui/common/gamedescription.js:287
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr "Populační limit"
+msgstr "Populační mez"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Zakázat poklad"
 
 #: gui/common/gamedescription.js:310
 msgid "Revealed Map"
@@ -363,11 +363,11 @@ msgstr "Prozkoumaná mapa"
 
 #: gui/common/gamedescription.js:320
 msgid "Cheats"
-msgstr ""
+msgstr "Kódy"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -687,7 +687,7 @@ msgstr "Nepodařilo se vykopnout %(name)s."
 #: gui/common/network.js:140
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Uživatelé (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -1139,6 +1139,15 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 #: gui/common/tooltips.js:575
 msgid "Classes:"
 msgstr "Třídy:"
+
+#: gui/common/tooltips.js:602
+#, javascript-format
+msgid "%(component)s %(loot)s"
+msgstr "%(component)s %(loot)s"
+
+#: gui/common/tooltips.js:609
+msgid "Loot:"
+msgstr "Kořist:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1691,7 +1700,7 @@ msgstr "Tým celkem"
 
 #: gui/summary/summary.js:145
 msgid "Are you sure you want to quit the lobby?"
-msgstr "Opravdu si přejete opustit skupinu?"
+msgstr "Opravdu si přejete opustit herní skupinu?"
 
 #: gui/summary/summary.js:196
 msgid "Current Scores"

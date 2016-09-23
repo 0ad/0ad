@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-12 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 10:40+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-22 04:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -1101,6 +1101,15 @@ msgstr ""
 msgid "Classes:"
 msgstr "계급:"
 
+#: gui/common/tooltips.js:602
+#, javascript-format
+msgid "%(component)s %(loot)s"
+msgstr ""
+
+#: gui/common/tooltips.js:609
+msgid "Loot:"
+msgstr ""
+
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
@@ -1208,7 +1217,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
 msgid "Error"
-msgstr ""
+msgstr "오류"
 
 #: gui/pregame/mainmenu.js:277
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -1501,7 +1510,7 @@ msgstr "보병"
 
 #: gui/summary/layout.js:61
 msgid "Worker"
-msgstr ""
+msgstr "노동자"
 
 #: gui/summary/layout.js:62
 msgid "Cavalry"

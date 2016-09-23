@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 10:20+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 09:30+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -481,13 +481,13 @@ msgstr "Thug %(attacker)s ionnsaigh ort!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:821
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:366
+#: gui/session/selection_details.js:398 gui/session/session.js:821
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:367
 msgid "Hitpoints:"
 msgstr "Puingean-slàinte:"
 
@@ -582,10 +582,33 @@ msgstr "Cruinnichean an-dràsta/as motha"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:389
+#: gui/session/selection_details.js:399
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Puingean glacaidh:"
+
+#: gui/session/selection_details.js:410
+#, javascript-format
+msgid "%(label)s %(details)s\n"
+msgstr "%(label)s %(details)s\n"
+
+#: gui/session/selection_details.js:411
+msgid "Carrying:"
+msgstr "A’ giùlan:"
+
+#: gui/session/selection_details.js:413 gui/session/selection_details.js:421
+#, javascript-format
+msgid "%(type)s %(amount)s"
+msgstr "%(type)s %(amount)s"
+
+#: gui/session/selection_details.js:418
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/session/selection_details.js:419
+msgid "Loot:"
+msgstr "Spùinn:"
 
 #: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
@@ -845,43 +868,43 @@ msgstr "Tha"
 msgid "Health:"
 msgstr "Slàinte:"
 
-#: gui/session/session.js:936
+#: gui/session/session.js:957
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:939
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:957
+#: gui/session/session.js:978
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:958
+#: gui/session/session.js:979
 msgid "Population (current / limit)"
 msgstr "Sluagh (an-dràsta / as motha)"
 
-#: gui/session/session.js:959
+#: gui/session/session.js:980
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "An sluagh as motha: %(popCap)s"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1132
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Togail: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1121
+#: gui/session/session.js:1142
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "An aire: ’s e modh nan leasaichear a tha sa mhodh dlùthadh an ama is cha bu chòir dhut a chleachdadh fad ùine mòire. Mur cleachd thu mar bu chòir e, dh’fhaoidte gum falbh an cuimhne air a’ gheama no gun tuislich e."
 
-#: gui/session/session.js:1122
+#: gui/session/session.js:1143
 msgid "Time warp mode"
 msgstr "Modh dlùthadh an ama"
 

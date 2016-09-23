@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 13:52+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 12:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -470,13 +470,13 @@ msgstr "%(attacker)s megtámadott!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:821
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:366
+#: gui/session/selection_details.js:398 gui/session/session.js:821
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:367
 msgid "Hitpoints:"
 msgstr "Életerő:"
 
@@ -567,10 +567,33 @@ msgstr "Jelenlegi/maximum gyűjtögető"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:389
+#: gui/session/selection_details.js:399
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Foglalási pontok:"
+
+#: gui/session/selection_details.js:410
+#, javascript-format
+msgid "%(label)s %(details)s\n"
+msgstr "%(label)s %(details)s\n"
+
+#: gui/session/selection_details.js:411
+msgid "Carrying:"
+msgstr "Szállít:"
+
+#: gui/session/selection_details.js:413 gui/session/selection_details.js:421
+#, javascript-format
+msgid "%(type)s %(amount)s"
+msgstr "%(amount)s %(type)s"
+
+#: gui/session/selection_details.js:418
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/session/selection_details.js:419
+msgid "Loot:"
+msgstr "Zsákmány:"
 
 #: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
@@ -828,43 +851,43 @@ msgstr "Igen"
 msgid "Health:"
 msgstr "Életerő:"
 
-#: gui/session/session.js:936
+#: gui/session/session.js:957
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:939
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:957
+#: gui/session/session.js:978
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:958
+#: gui/session/session.js:979
 msgid "Population (current / limit)"
 msgstr "Népesség (jelenlegi / maximális)"
 
-#: gui/session/session.js:959
+#: gui/session/session.js:980
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Legnagyobb népesség: %(popCap)s"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1132
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Verzió: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1121
+#: gui/session/session.js:1142
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Megjegyzés: az időhurok mód egy fejlesztői beállítás, és nem hosszú idejű felhasználásra szánt. Nem megfelelő használata a játék összeomlását okozhatja, vagy elfogyhat a memória."
 
-#: gui/session/session.js:1122
+#: gui/session/session.js:1143
 msgid "Time warp mode"
 msgstr "Időhurok mód"
 
