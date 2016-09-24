@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <textures>
+        <texture file="structural/ao/gaul_wooden_tower_2_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="wood1">
+      <mesh>structural/gaul_wooden_tower_2_roof.dae</mesh>
+      <textures>
+        <texture file="structural/gaul_tile_small.png" name="baseTex"/>
+        <texture file="structural/gaul_tile_small_norm.png" name="normTex"/>
+        <texture file="structural/gaul_tile_small_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="wood2">
+      <mesh>structural/gaul_wooden_tower_2_roof_2.dae</mesh>
+      <textures>
+        <texture file="structural/gaul_tile.png" name="baseTex"/>
+        <texture file="structural/gaul_tile_norm.png" name="normTex"/>
+        <texture file="structural/gaul_tile_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="wood3">
+      <mesh>structural/gaul_wooden_tower_2_roof_2.dae</mesh>
+      <textures>
+        <texture file="structural/gaul_tile_mossy.png" name="baseTex"/>
+        <texture file="structural/gaul_tile_norm.png" name="normTex"/>
+        <texture file="structural/gaul_tile_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

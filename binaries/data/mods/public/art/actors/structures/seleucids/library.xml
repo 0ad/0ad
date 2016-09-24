@@ -2,25 +2,24 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Seleucid Tower">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
-      <mesh>structural/sele_wooden_tower.dae</mesh>
+    <variant frequency="1" name="Seleucid_Civic_Centre">
+      <mesh>structural/sele_library.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/flora/bush.xml" attachpoint="bush"/>
-        <prop actor="props/flora/bush.xml" attachpoint="bush_1"/>
-        <prop actor="props/flora/bush.xml" attachpoint="bush_2"/>
-        <prop attachpoint=""/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_4" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_5" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>
         <texture file="structural/Sele_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/ao/sele_library_AO.png" name="aoTex"/>
         <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
-        <texture file="structural/ao/sele_wooden_tower_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>

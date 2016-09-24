@@ -2,32 +2,29 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="base">
+    <variant frequency="1" name="gaul outpost a">
       <animations>
         <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
+      <mesh>structural/brit_wooden_tower.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/structures/celts/kennel_mud.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="structural/pers_struct.png" name="baseTex"/>
-        <texture file="structural/pers_struct_norm.png" name="normTex"/>
-        <texture file="structural/pers_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/pers_wooden_tower_AO.png" name="aoTex"/>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_wooden_tower_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="scouttowerb">
-      <mesh>structural/pers_wooden_tower.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="ungarrisoned"/>
+    <variant frequency="1" name="alive"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
   </group>
