@@ -514,33 +514,78 @@ public:
 
 		return true;
 	}
-	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, 
-		const Grid<NavcellData>& passabilityMap, const GridUpdateInformation& dirtinessInformations,
-		const Grid<u8>& territoryMap, bool territoryMapDirty, 
+
+	void UpdateGameState(const shared_ptr<ScriptInterface::StructuredClone>& gameState)
+	{
+		ENSURE(m_CommandsComputed);
+		m_GameState = gameState;
+	}
+
+	void UpdatePathfinder(const Grid<NavcellData>& passabilityMap, bool globallyDirty, const Grid<u8>& dirtinessGrid,
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		ENSURE(m_CommandsComputed);
+		bool dimensionChange = m_PassabilityMap.m_W != passabilityMap.m_W || m_PassabilityMap.m_H != passabilityMap.m_H;
 
-		m_GameState = gameState;
+		m_PassabilityMap = passabilityMap;
+		if (globallyDirty)
+			m_LongPathfinder.Reload(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+		else
+			m_LongPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
+
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-
-		if (dirtinessInformations.dirty)
-		{
-			m_PassabilityMap = passabilityMap;
-			if (dirtinessInformations.globallyDirty)
-				m_LongPathfinder.Reload(&m_PassabilityMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
-			else
-				m_LongPathfinder.Update(&m_PassabilityMap, dirtinessInformations.dirtinessGrid);
+		if (dimensionChange)
 			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
-		}
-
-		if (territoryMapDirty)
+		else
 		{
-			m_TerritoryMap = territoryMap;
-			ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, m_TerritoryMap);
-		}
+			// Avoid a useless memory reallocation followed by a garbage collection.
+			JSAutoRequest rq(cx);
 
+			JS::RootedObject mapObj(cx, &m_PassabilityMapVal.toObject());
+			JS::RootedValue mapData(cx);
+			ENSURE(JS_GetProperty(cx, mapObj, "data", &mapData));
+			JS::RootedObject dataObj(cx, &mapData.toObject());
+
+			u32 length = 0;
+			ENSURE(JS_GetArrayLength(cx, dataObj, &length));
+			u32 nbytes = (u32)(length * sizeof(NavcellData));
+
+			JS::AutoCheckCannotGC nogc;
+			memcpy((void*)JS_GetUint16ArrayData(dataObj, nogc), m_PassabilityMap.m_Data, nbytes);
+		}		
+	}
+
+	void UpdateTerritoryMap(const Grid<u8>& territoryMap)
+	{
+		ENSURE(m_CommandsComputed);
+		bool dimensionChange = m_TerritoryMap.m_W != territoryMap.m_W || m_TerritoryMap.m_H != territoryMap.m_H;
+
+		m_TerritoryMap = territoryMap;
+		
+		JSContext* cx = m_ScriptInterface->GetContext();
+		if (dimensionChange)
+			ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, m_TerritoryMap);
+		else
+		{
+			// Avoid a useless memory reallocation followed by a garbage collection.
+			JSAutoRequest rq(cx);
+
+			JS::RootedObject mapObj(cx, &m_TerritoryMapVal.toObject());
+			JS::RootedValue mapData(cx);
+			ENSURE(JS_GetProperty(cx, mapObj, "data", &mapData));
+			JS::RootedObject dataObj(cx, &mapData.toObject());
+
+			u32 length = 0;
+			ENSURE(JS_GetArrayLength(cx, dataObj, &length));
+			u32 nbytes = (u32)(length * sizeof(u8));
+
+			JS::AutoCheckCannotGC nogc;
+			memcpy((void*)JS_GetUint8ArrayData(dataObj, nogc), m_TerritoryMap.m_Data, nbytes);
+		}
+	}
+
+	void StartComputation()
+	{
 		m_CommandsComputed = false;
 	}
 
@@ -1065,37 +1110,39 @@ public:
 			cmpAIInterface->GetFullRepresentation(&state, false);
 		else
 			cmpAIInterface->GetRepresentation(&state);
+		LoadPathfinderClasses(state); // add the pathfinding classes to it
 
-		// Get the passability data
-		Grid<NavcellData> dummyGrid;
-		const Grid<NavcellData>* passabilityMap = &dummyGrid;
+		// Update the game state
+		m_Worker.UpdateGameState(scriptInterface.WriteStructuredClone(state));
+
+		// Update the pathfinding data
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
-			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
+		{
+			GridUpdateInformation dirtinessInformations = cmpPathfinder->GetDirtinessData();
 
-		GridUpdateInformation dirtinessInformations = cmpPathfinder->GetDirtinessData();
+			if (dirtinessInformations.dirty)
+			{
+				const Grid<NavcellData>& passabilityMap = cmpPathfinder->GetPassabilityGrid();
 
-		// Get the territory data
+				std::map<std::string, pass_class_t> nonPathfindingPassClassMasks, pathfindingPassClassMasks;
+				cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+
+				m_Worker.UpdatePathfinder(passabilityMap, dirtinessInformations.globallyDirty, dirtinessInformations.dirtinessGrid,
+					nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+			}
+		}
+
+		// Update the territory data
 		// Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
-		bool territoryMapDirty = false;
-		Grid<u8> dummyGrid2;
-		const Grid<u8>* territoryMap = &dummyGrid2;
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
 		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 		{
-			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
-			territoryMapDirty = true;
+			const Grid<u8>& territoryMap = cmpTerritoryManager->GetTerritoryGrid();
+			m_Worker.UpdateTerritoryMap(territoryMap);
 		}
 
-		LoadPathfinderClasses(state);
-		std::map<std::string, pass_class_t> nonPathfindingPassClassMasks, pathfindingPassClassMasks;
-		if (cmpPathfinder)
-			cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
-
-		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), 
-			*passabilityMap, dirtinessInformations,
-			*territoryMap, territoryMapDirty,
-			nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+		m_Worker.StartComputation();
 
 		m_JustDeserialized = false;
 	}
