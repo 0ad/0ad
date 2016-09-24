@@ -1080,7 +1080,7 @@ g_SelectionPanels.Upgrade = {
 			if (data.item.cost)
 				tooltip += "\n" + getEntityCostTooltip(data.item);
 
-			tooltip += formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
+			tooltip += "\n" + formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
 			if (!technologyEnabled)
 				tooltip += "\n" + sprintf(translate("Requires %(technology)s"), {
 					"technology": getEntityNames(GetTechnologyData(data.item.requiredTechnology))

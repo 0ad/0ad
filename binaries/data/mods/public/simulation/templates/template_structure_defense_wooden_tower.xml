@@ -14,13 +14,6 @@
       <MinRange>4.0</MinRange>
     </Ranged>
   </Attack>
-  <BuildRestrictions>
-    <Category>DefenseTower</Category>
-    <Distance>
-      <FromClass>DefenseTower</FromClass>
-      <MinDistance>40</MinDistance>
-    </Distance>
-  </BuildRestrictions>
   <Capturable>
     <CapturePoints>800</CapturePoints>
   </Capturable>
@@ -68,6 +61,18 @@
     <HeightOffset>18.0</HeightOffset>
   </StatusBars>
   <TerritoryInfluence disable=""/>
+  <Upgrade>
+    <Tower>
+      <Entity>structures/{civ}_defense_tower</Entity>
+      <Tooltip>Enforce with stone and upgrade to a defense tower.</Tooltip>
+      <RequiredTechnology>phase_town</RequiredTechnology>
+      <Cost>
+        <wood>50</wood>
+        <stone>100</stone>
+      </Cost>
+      <Time>100</Time>
+    </Tower>
+  </Upgrade>
   <VisualActor>
     <Actor>props/special/palisade_rocks_fort.xml</Actor>
   </VisualActor>
