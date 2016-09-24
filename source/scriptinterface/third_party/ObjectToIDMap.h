@@ -37,7 +37,6 @@ public:
 	ObjectIdCache(shared_ptr<ScriptRuntime> rt)
 		: table_(nullptr), m_rt(rt)
 	{
-		JS_AddExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
 	}
 
 	~ObjectIdCache()
@@ -46,9 +45,8 @@ public:
 		{
 			m_rt->AddDeferredFinalizationObject(std::shared_ptr<void>((void*)table_, DeleteTable));
 			table_ = nullptr;
+			JS_RemoveExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
 		}
-
-		JS_RemoveExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
 	}
 
 	bool init()
@@ -57,6 +55,7 @@ public:
 			return true;
 
 		table_ = new Table(js::SystemAllocPolicy());
+		JS_AddExtraGCRootsTracer(m_rt->m_rt, ObjectIdCache::Trace, this);
 		return table_ && table_->init(32);
 	}
 
