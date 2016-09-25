@@ -1,4 +1,4 @@
-const g_MaxHeadingTitle= 8;
+const g_MaxHeadingTitle= 9;
 
 // const for filtering long collective headings
 const g_LongHeadingWidth = 250;
@@ -16,7 +16,7 @@ const g_KilledColor = '[color="196 198 255"]';
 const g_CapturedColor = '[color="255 255 157"]';
 
 const g_BuildingsTypes = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
-const g_UnitsTypes = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship", "Trader" ];
+const g_UnitsTypes = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Siege", "Ship", "Trader" ];
 const g_ResourcesTypes = [ "food", "wood", "stone", "metal" ];
 
 // Colors used for gathered and traded resources

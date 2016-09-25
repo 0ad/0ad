@@ -159,7 +159,7 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 
 	let cmpCapturedPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpCapturedPlayerStatisticsTracker)
-		cmpCapturedPlayerStatisticsTracker.CapturedBuilding(this.entity);
+		cmpCapturedPlayerStatisticsTracker.CapturedEntity(this.entity);
 };
 
 Capturable.prototype.GetRegenRate = function()

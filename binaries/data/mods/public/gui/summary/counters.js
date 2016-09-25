@@ -5,11 +5,11 @@ function resetDataHelpers()
 	g_TeamHelperData = [];
 }
 
-function formatTrained(trained, lost, killed)
+function formatTrained(trained, killed, lost)
 {
 	return g_TrainedColor + trained + '[/color] / ' +
-		g_LostColor + lost + '[/color] / ' +
-		g_KilledColor + killed + '[/color]';
+		g_KilledColor + killed + '[/color] / ' +
+		g_LostColor + lost + '[/color]';
 }
 
 function formatCaptured(constructed, destroyed, captured, lost)
@@ -217,25 +217,57 @@ function calculateUnitsTeam(counters)
 
 		for (let w in counters)
 		{
-			let total = {
-				"constructed": 0,
-				"lost": 0,
-				"destroyed": 0
+			let total =
+			{
+				"trained": 0,
+				"killed": 0,
+				"captured" : 0,
+				"lost": 0
 			};
 
 			for (let p = 0; p < g_Teams[t]; ++p)
 			{
-				let splitCaption = cleanGUICaption(t, p, w).split("/");
+				if (w == 0 || w == 6)
+				{
+					let splitCaption = cleanGUICaption(t, p, w, false).split("\n");
+					let first = splitCaption[0].split("/");
+					let second = splitCaption[1].split("/");
 
-				total.constructed += +splitCaption[0];
-				total.lost += +splitCaption[1];
-				total.destroyed += +splitCaption[2];
+					total.trained += +first[0];
+					total.killed += +first[1];
+					total.captured += +second[0];
+					total.lost += +second[1];
+				}
+				else
+				{
+					let splitCaption = cleanGUICaption(t, p, w).split("/");
+					total.trained += +splitCaption[0];
+					total.killed += +splitCaption[1];
+					total.lost += +splitCaption[2];
+				}
 			}
 
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption =
-				formatTrained(total.constructed, total.lost, total.destroyed);
+			let formattedCaption = "";
+
+			if (w == 0 || w == 6)
+				formattedCaption = formatCaptured(total.trained, total.killed, total.captured, total.lost);
+			else
+				formattedCaption = formatTrained(total.trained, total.killed, total.lost);
+
+			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = formattedCaption;
 		}
 	}
+}
+
+function calculateUnitsWithCaptured(playerState, position)
+{
+	let type = g_UnitsTypes[position];
+
+	return formatCaptured(
+		playerState.statistics.unitsTrained[type],
+		playerState.statistics.enemyUnitsKilled[type],
+		playerState.statistics.unitsCaptured[type],
+		playerState.statistics.unitsLost[type]);
 }
 
 function calculateUnits(playerState, position)
@@ -244,8 +276,8 @@ function calculateUnits(playerState, position)
 
 	return formatTrained(
 		playerState.statistics.unitsTrained[type],
-		playerState.statistics.unitsLost[type],
-		playerState.statistics.enemyUnitsKilled[type]);
+		playerState.statistics.enemyUnitsKilled[type],
+		playerState.statistics.unitsLost[type]);
 }
 
 function calculateResources(playerState, position)

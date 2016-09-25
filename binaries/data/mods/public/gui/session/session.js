@@ -1177,6 +1177,7 @@ function reportGame()
 		"Cavalry",
 		"Champion",
 		"Hero",
+		"Siege",
 		"Ship",
 		"Trader"
 	];
