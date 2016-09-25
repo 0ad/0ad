@@ -1801,7 +1801,17 @@ function addChatMessage(msg)
 
 	let user = colorizePlayernameByGUID(msg.guid || -1, msg.username || "");
 
-	g_ChatMessages.push(g_FormatChatMessage[msg.type](msg, user));
+	let text = g_FormatChatMessage[msg.type](msg, user);
+
+	if (Engine.ConfigDB_GetValue("user", "chat.timestamp") == "true")
+		text = sprintf(translate("%(time)s %(message)s"), {
+			"time": sprintf(translate("\\[%(time)s]"), {
+				"time": Engine.FormatMillisecondsIntoDateString(new Date().getTime(), translate("HH:mm"))
+			}),
+			"message": text
+		});
+
+	g_ChatMessages.push(text);
 
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }

@@ -1,39 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<object name="chatDialogPanel" size="50%-180 50%-66 50%+180 50%+54" type="image" hidden="true" sprite="genericPanel">
+<object
+	name="chatDialogPanel"
+	size="50%-210 50%-410 50%+210 50%+60"
+	type="image"
+	hidden="true"
+	sprite="genericPanel"
+	z="90"
+>
+	<!-- Chat History Page -->
+	<object type="image" name="chatHistoryPage" size="0 0 100% 300" hidden="false">
 
-	<!-- Message addressee -->
-	<object size="16 14 50 38" type="text" style="chatPanel">
-		<translatableAttribute id="caption" context="chat input">To:</translatableAttribute>
-	</object>
-	<object size="75 12 100%-16 36" name="chatAddressee" type="dropdown" style="ModernDropDown" tooltip_style="sessionToolTipBold">
-		<translatableAttribute id="tooltip" context="chat input">Select chatmessage addressee</translatableAttribute>
+		<!-- Chat History Filter -->
+		<object type="text" size="16 12 60 32" style="ModernLeftLabelText">
+			<translatableAttribute id="caption" context="chat input">Filter:</translatableAttribute>
+		</object>
+
+		<object
+			type="dropdown"
+			name="chatHistoryFilter"
+			size="75 10 100%-16 34"
+			style="ModernDropDown"
+			tooltip_style="sessionToolTipBold"
+		>
+			<translatableAttribute id="tooltip" context="chat input">Filter the chat history.</translatableAttribute>
+			<action on="SelectionChange">updateChatHistory();</action>
+		</object>
+
+		<object
+			type="text"
+			name="chatHistory"
+			size="10 46 100%-10 100%"
+			sprite="ModernDarkBoxGold"
+			style="ChatPanel"
+		/>
 	</object>
 
-	<!-- Message text -->
-	<object size="16 46 50 70" type="text" style="chatPanel">
-		<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
-	</object>
-	<object name="chatInput" size="75 44 100%-16 68" type="input" style="ModernInput" max_length="80">
-		<action on="Press">submitChatInput();</action>
-		<action on="Tab">
-			let playernames = [];
-			for (let player in g_PlayerAssignments)
-				playernames.push(g_PlayerAssignments[player].name);
-			autoCompleteNick(this, playernames);
-		</action>
-	</object>
+	<!-- Chat input elements -->
+	<object name="chatPage" size="0 100%-120 100% 100%">
 
-	<!-- Cancel Button -->
-	<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
-		<translatableAttribute id="caption">Cancel</translatableAttribute>
-		<action on="Press">closeChat();</action>
-	</object>
+		<!-- Message addressee -->
+		<object size="16 100%-106 50 100%-82" type="text" style="ModernLeftLabelText">
+			<translatableAttribute id="caption" context="chat input">To:</translatableAttribute>
+		</object>
+		<object
+			name="chatAddressee"
+			type="dropdown"
+			size="75 100%-108 100%-16 100%-84"
+			style="ModernDropDown"
+			tooltip_style="sessionToolTipBold"
+		>
+			<translatableAttribute id="tooltip" context="chat input">Select chatmessage addressee.</translatableAttribute>
+		</object>
 
-	<!-- Send Button -->
-	<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
-		<translatableAttribute id="caption">Send</translatableAttribute>
-		<action on="Press">submitChatInput();</action>
+		<!-- Message text -->
+		<object type="text" size="16 100%-74 50 100%-50" style="ModernLeftLabelText">
+			<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
+		</object>
+		<object
+			type="input"
+			name="chatInput"
+			size="75 100%-76 100%-16 100%-52"
+			style="ModernInput"
+			max_length="80"
+		>
+			<action on="Press">submitChatInput();</action>
+			<action on="Tab">
+				let playernames = [];
+				for (let player in g_PlayerAssignments)
+					playernames.push(g_PlayerAssignments[player].name);
+				autoCompleteNick(this, playernames);
+			</action>
+		</object>
+
+		<!-- Cancel Button -->
+		<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
+			<translatableAttribute id="caption">Cancel</translatableAttribute>
+			<action on="Press">closeChat();</action>
+		</object>
+
+		<!-- Extended Chat Checkbox -->
+		<object
+			type="checkbox"
+			name="extendedChat"
+			checked="false"
+			style="ModernTickBox"
+			size="50%-50 100%-38 50%-24 100%-12"
+		>
+			<action on="Press">onToggleChatWindowExtended();</action>
+		</object>
+
+		<!-- Extended Chat Label -->
+		<object type="text" size="50%-24 100%-38 50%+40 100%-12" text_align="left" textcolor="white">
+			<translatableAttribute id="caption" context="chat">History</translatableAttribute>
+		</object>
+
+		<!-- Send Button -->
+		<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
+			<translatableAttribute id="caption">Send</translatableAttribute>
+			<action on="Press">submitChatInput();</action>
+		</object>
 	</object>
 
 </object>

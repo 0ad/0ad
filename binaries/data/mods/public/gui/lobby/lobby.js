@@ -9,11 +9,6 @@ const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 
 /**
- * Whether or not to display timestamps in the chat window.
- */
-const g_ShowTimestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
-
-/**
  * Mute clients who exceed the rate of 1 message per second for this time
  */
 const g_SpamBlockTimeframe = 5;
@@ -973,7 +968,7 @@ function ircFormat(msg)
 	}
 
 	// Add chat message timestamp
-	if (!g_ShowTimestamp)
+	if (Engine.ConfigDB_GetValue("user", "chat.timestamp") != "true")
 		return formattedMessage;
 
 	let time;
