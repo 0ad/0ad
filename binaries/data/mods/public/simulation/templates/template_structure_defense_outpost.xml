@@ -28,8 +28,12 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
+    <Category>Outpost</Category>
+    <Distance>
+      <FromClass>Outpost</FromClass>
+      <MinDistance>50</MinDistance>
+    </Distance>
     <Territory>own neutral</Territory>
-    <Category>House</Category>
   </BuildRestrictions>
   <Cost>
     <BuildTime>40</BuildTime>
