@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
-  <Attack>
-    <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>15.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>72.0</MaxRange>
-      <MinRange>10.0</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <PrepareTime>1200</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
-      <Spread>1.5</Spread>
-    </Ranged>
-  </Attack>
   <BuildingAI>
     <DefaultArrowCount>1</DefaultArrowCount>
     <MaxArrowCount>15</MaxArrowCount>
