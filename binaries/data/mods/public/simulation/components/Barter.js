@@ -97,6 +97,18 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		cmpPlayer.AddResource(resourceToBuy, amountToAdd);
 		var numberOfDeals = Math.round(amount / 100);
 
+		// Display chat message to observers
+		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		if (cmpGUIInterface)
+			cmpGUIInterface.PushNotification({
+				"type": "barter",
+				"players": [cmpPlayer.GetPlayerID()],
+				"amountsSold": amount,
+				"amountsBought": amountToAdd,
+				"resourceSold": resourceToSell,
+				"resourceBought": resourceToBuy
+			});
+
 		var cmpStatisticsTracker = Engine.QueryInterface(playerEntity, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
 		{

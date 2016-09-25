@@ -109,6 +109,7 @@ var g_FormatChatMessage = {
 	"won": msg => formatWinMessage(msg),
 	"diplomacy": msg => formatDiplomacyMessage(msg),
 	"tribute": msg => formatTributeMessage(msg),
+	"barter": msg => formatBarterMessage(msg),
 	"attack": msg => formatAttackMessage(msg)
 };
 
@@ -340,6 +341,17 @@ var g_NotificationsTypes =
 			"sourcePlayer": notification.donator,
 			"targetPlayer": player,
 			"amounts": notification.amounts
+		});
+	},
+	"barter": function(notification, player)
+	{
+		addChatMessage({
+			"type": "barter",
+			"player": player,
+			"amountsSold": notification.amountsSold,
+			"amountsBought": notification.amountsBought,
+			"resourceSold": notification.resourceSold,
+			"resourceBought": notification.resourceBought
 		});
 	},
 	"attack": function(notification, player)
@@ -863,6 +875,24 @@ function formatTributeMessage(msg)
 		"player": colorizePlayernameByID(msg.sourcePlayer),
 		"player2": colorizePlayernameByID(msg.targetPlayer),
 		"amounts": getLocalizedResourceAmounts(msg.amounts)
+	});
+}
+
+function formatBarterMessage(msg)
+{
+	if (!g_IsObserver)
+		return "";
+
+	let amountsSold = {};
+	amountsSold[msg.resourceSold] = msg.amountsSold;
+
+	let amountsBought = {};
+	amountsBought[msg.resourceBought] = msg.amountsBought;
+
+	return sprintf(translate("%(player)s bartered %(amountsBought)s for %(amountsSold)s."), {
+		"player": colorizePlayernameByID(msg.player),
+		"amountsBought": getLocalizedResourceAmounts(amountsBought),
+		"amountsSold": getLocalizedResourceAmounts(amountsSold)
 	});
 }
 
