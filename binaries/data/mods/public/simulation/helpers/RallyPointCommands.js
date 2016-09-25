@@ -32,7 +32,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 		switch (command)
 		{
 		case "gather":
-			ret.push( {
+			ret.push({
 				"type": "gather-near-position",
 				"entities": spawnedEnts,
 				"x": rallyPos[i].x,
@@ -66,6 +66,17 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"entities": spawnedEnts,
 				"x": rallyPos[i].x,
 				"z": rallyPos[i].z,
+				"targetClasses": data[i].targetClasses,
+				"queued": true
+			});
+			break;
+		case "patrol":
+			ret.push( {
+				"type": "patrol",
+				"entities": spawnedEnts,
+				"x": rallyPos[i].x,
+				"z": rallyPos[i].z,
+				"target": data[i].target,
 				"targetClasses": data[i].targetClasses,
 				"queued": true
 			});

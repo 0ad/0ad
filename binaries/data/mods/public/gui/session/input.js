@@ -16,6 +16,7 @@ const ACTION_NONE = 0;
 const ACTION_GARRISON = 1;
 const ACTION_REPAIR = 2;
 const ACTION_GUARD = 3;
+const ACTION_PATROL = 4;
 var preSelectedAction = ACTION_NONE;
 
 const INPUT_NORMAL = 0;
@@ -205,10 +206,16 @@ function getActionInfo(action, target)
 				data.targetClasses = Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] };
 				cursor = "action-attack-move";
 			}
+			else if (Engine.HotkeyIsPressed("session.patrol"))
+			{
+				data.command = "patrol";
+				data.targetClasses = { "attack": ["Unit"] };
+				cursor = "action-patrol";
+			}
 			return { "possible": true, "data": data, "cursor": cursor };
 		}
 
-		return { "possible": (action == "move" || action == "attack-move" || action == "remove-guard") };
+		return { "possible": ["move", "attack-move", "remove-guard", "patrol"].indexOf(action) > -1 };
 	}
 
 	// Look at the first targeted entity
