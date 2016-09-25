@@ -28,6 +28,7 @@ function init(initData)
 		if (country != "" && countryListData.indexOf(country) == -1)
 			countryListData.push(country);
 	}
+	countryListData.sort();
 
 	// fill the languageList
 	languageList.list = languageListData;

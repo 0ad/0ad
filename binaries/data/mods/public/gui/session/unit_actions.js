@@ -1154,7 +1154,8 @@ var g_EntityCommands =
 				return false;
 
 			return {
-				"tooltip": translate("Back to Work"),
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.backtowork") +
+				           translate("Back to Work"),
 				"icon": "production.png"
 			};
 		},

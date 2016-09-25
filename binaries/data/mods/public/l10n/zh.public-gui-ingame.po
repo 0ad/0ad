@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 09:55+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 08:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -468,13 +468,13 @@ msgstr "您正被 %(attacker)s 攻击!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:356
-#: gui/session/selection_details.js:388 gui/session/session.js:821
+#: gui/session/selection_details.js:52 gui/session/selection_details.js:366
+#: gui/session/selection_details.js:398 gui/session/session.js:821
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:357
+#: gui/session/selection_details.js:53 gui/session/selection_details.js:367
 msgid "Hitpoints:"
 msgstr "生命值:"
 
@@ -563,10 +563,33 @@ msgstr "现有/最大 采集者"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:389
+#: gui/session/selection_details.js:399
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "捕获点:"
+
+#: gui/session/selection_details.js:410
+#, javascript-format
+msgid "%(label)s %(details)s\n"
+msgstr ""
+
+#: gui/session/selection_details.js:411
+msgid "Carrying:"
+msgstr ""
+
+#: gui/session/selection_details.js:413 gui/session/selection_details.js:421
+#, javascript-format
+msgid "%(type)s %(amount)s"
+msgstr ""
+
+#: gui/session/selection_details.js:418
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr ""
+
+#: gui/session/selection_details.js:419
+msgid "Loot:"
+msgstr ""
 
 #: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
@@ -823,43 +846,43 @@ msgstr "是"
 msgid "Health:"
 msgstr "生命值："
 
-#: gui/session/session.js:936
+#: gui/session/session.js:957
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s：%(statValue)s"
 
-#: gui/session/session.js:939
+#: gui/session/session.js:960
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:957
+#: gui/session/session.js:978
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:958
+#: gui/session/session.js:979
 msgid "Population (current / limit)"
 msgstr "人口(当前/上限)"
 
-#: gui/session/session.js:959
+#: gui/session/session.js:980
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "最大人口数量： %(popCap)s"
 
-#: gui/session/session.js:1111
+#: gui/session/session.js:1132
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1121
+#: gui/session/session.js:1142
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注意： 时空隧道模式是开发者选项，不适用于长时间开启。不恰当的使用可能导致内存不足或程序崩溃。"
 
-#: gui/session/session.js:1122
+#: gui/session/session.js:1143
 msgid "Time warp mode"
 msgstr "时空隧道模式"
 

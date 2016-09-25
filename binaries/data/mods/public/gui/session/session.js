@@ -293,8 +293,6 @@ function init(initData, hotloadData)
 	if (Engine.IsAtlasRunning())
 		Engine.GetGUIObjectByName("menuExitButton").enabled = false;
 
-	initHotkeyTooltips();
-
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
@@ -313,8 +311,21 @@ function init(initData, hotloadData)
 	//setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
-function initHotkeyTooltips()
+/**
+ * Depends on the current player (g_IsObserver).
+ */
+function updateHotkeyTooltips()
 {
+	Engine.GetGUIObjectByName("chatInput").tooltip =
+		translateWithContext("chat input", "Type the message to send.") + "\n" +
+		colorizeAutocompleteHotkey() +
+		colorizeHotkey("\n" + translate("Press %(hotkey)s to open the public chat."), "chat") +
+		colorizeHotkey(
+			"\n" + (g_IsObserver ?
+				translate("Press %(hotkey)s to open the observer chat.") :
+				translate("Press %(hotkey)s to open the ally chat.")),
+			"teamchat");
+
 	Engine.GetGUIObjectByName("idleWorkerButton").tooltip =
 		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
 		translate("Find idle worker");
@@ -389,8 +400,8 @@ function selectViewPlayer(playerID)
 	Engine.SetViewedPlayer(g_ViewedPlayer);
 
 	updateTopPanel();
-
 	updateChatAddressees();
+	updateHotkeyTooltips();
 
 	// Update GUI and clear player-dependent cache
 	onSimulationUpdate();

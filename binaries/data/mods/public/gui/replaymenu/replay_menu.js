@@ -67,6 +67,7 @@ function init(data)
 		return;
 	}
 
+	initHotkeyTooltips();
 	displayReplayList();
 }
 
@@ -183,6 +184,15 @@ function sanitizeGameAttributes(attribs)
 		if (!pData.Name)
 			pData.Name = "";
 	});
+}
+
+function initHotkeyTooltips()
+{
+	Engine.GetGUIObjectByName("playersFilter").tooltip =
+		translate("Filter replays by typing one or more, partial or complete playernames.") +
+		" " + colorizeAutocompleteHotkey();
+
+	Engine.GetGUIObjectByName("deleteReplayButton").tooltip = deleteTooltip();
 }
 
 /**

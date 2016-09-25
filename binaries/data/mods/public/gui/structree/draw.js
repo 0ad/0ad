@@ -29,8 +29,10 @@ function draw()
 	if (!Object.keys(g_DrawLimits).length)
 		predraw();
 
-	let defWidth = 96;
-	let defMargin = 4;
+	const leftMargin = Engine.GetGUIObjectByName("tree_display").size.left;
+	const defWidth = 96;
+	const defMargin = 4;
+
 	let phaseList = g_ParsedData.phaseList;
 
 	Engine.GetGUIObjectByName("civEmblem").sprite = "stretched:" + g_CivData[g_SelectedCiv].Emblem;
@@ -40,6 +42,7 @@ function draw()
 	let i = 0;
 	for (let pha of phaseList)
 	{
+		let prodBarWidth = 0;
 		let s = 0;
 		let y = 0;
 
@@ -135,8 +138,20 @@ function draw()
 			++r;
 			hideRemaining("phase["+i+"]_struct["+s+"]_row[", r, "]");
 			++s;
+			prodBarWidth += eleWidth + defMargin;
 		}
 		hideRemaining("phase["+i+"]_struct[", s, "]");
+		let offset = getPositionOffset(i);
+
+		// Resize phase bars
+		for (let j = 1; j < phaseList.length - i; ++j)
+		{
+			let prodBar = Engine.GetGUIObjectByName("phase["+i+"]_bar["+(j-1)+"]");
+			let prodBarSize = prodBar.size;
+			prodBarSize.right = leftMargin + prodBarWidth;
+			prodBar.size = prodBarSize;
+		}
+
 		++i;
 	}
 
@@ -273,13 +288,13 @@ function predraw()
 		phaseIcon.sprite = "stretched:session/portraits/"+g_ParsedData.phases[pha].icon;
 		phaseIcon.size = "16 32+"+offset+" 48+16 48+32+"+offset;
 
-		// Position prod bars
+		// Set initial prod bar size and icon
 		let j = 1;
-		for (; j < phaseCount - i; ++j)
+		for (; j < phaseList.length - i; ++j)
 		{
 			let prodBar = Engine.GetGUIObjectByName("phase["+i+"]_bar["+(j-1)+"]");
-			prodBar.size = "40 1+"+(24*j)+"+98+"+offset+" 100%-8 1+"+(24*j)+"+98+"+offset+"+22";
-			// Set phase icon
+			prodBar.size = "40 1+"+(24*j)+"+98+"+offset+" 0 1+"+(24*j)+"+98+"+offset+"+22";
+
 			let prodBarIcon = Engine.GetGUIObjectByName("phase["+i+"]_bar["+(j-1)+"]_icon");
 			prodBarIcon.sprite = "stretched:session/portraits/"+g_ParsedData.phases[phaseList[i+j]].icon;
 		}

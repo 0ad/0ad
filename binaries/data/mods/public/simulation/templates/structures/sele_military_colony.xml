@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre_military_colony">
+  <Footprint>
+    <Square width="31.0" depth="31.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>sele</Civ>
     <History>The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, and Thracians alike to settle in within the vast territories of the empire. They settled in military colonies called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the great king's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the Syrian kings and helped grow the available manpower for the imperial Seleucid army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's eventual conquest by Rome.</History>
     <Tooltip>This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster. Train settler-soldiers of various nationalities.</Tooltip>
   </Identity>
+  <Obstruction>
+    <Static width="30.0" depth="29.0"/>
+  </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_infantry_swordsman_merc_b
@@ -13,7 +20,7 @@
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <Actor>structures/ptolemies/settlement.xml</Actor>
+    <Actor>structures/seleucids/military_colony.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

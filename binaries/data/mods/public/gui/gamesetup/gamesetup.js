@@ -81,6 +81,11 @@ const g_MapFilters = [
 		"filter": mapKeywords => mapKeywords.indexOf("demo") != -1
 	},
 	{
+		"id": "new",
+		"name": translate("New Maps"),
+		"filter": mapKeywords => mapKeywords.indexOf("new") != -1
+	},
+	{
 		"id": "trigger",
 		"name": translate("Trigger Maps"),
 		"filter": mapKeywords => mapKeywords.indexOf("trigger") != -1
@@ -293,6 +298,8 @@ function initGUIObjects()
 	initPlayerAssignments();
 
 	resizeMoreOptionsWindow();
+
+	Engine.GetGUIObjectByName("chatInput").tooltip = colorizeAutocompleteHotkey();
 
 	if (g_IsNetworked)
 		Engine.GetGUIObjectByName("chatInput").focus();
@@ -895,7 +902,7 @@ function initMapNameList()
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
 	mapSelectionBox.onSelectionChange = function() {
-		if (this.selected != -1)
+		if (this.list_data[this.selected])
 			selectMap(this.list_data[this.selected]);
 	};
 	mapSelectionBox.selected = Math.max(0, mapListFiles.indexOf(g_GameAttributes.map || ""));

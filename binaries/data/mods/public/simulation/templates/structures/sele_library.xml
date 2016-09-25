@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special_library">
+  <Footprint>
+    <Square width="26.0" depth="26.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Bibliothikon</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/seleucids/library.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
 </Entity>

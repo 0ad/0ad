@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-12 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 15:44+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 15:46+0000\n"
 "Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +389,7 @@ msgstr "Читы"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1172,6 +1172,15 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgid "Classes:"
 msgstr "Классы:"
 
+#: gui/common/tooltips.js:602
+#, javascript-format
+msgid "%(component)s %(loot)s"
+msgstr "%(component)s %(loot)s"
+
+#: gui/common/tooltips.js:609
+msgid "Loot:"
+msgstr "Трофеи:"
+
 #: gui/credits/credits.js:69
 #, javascript-format
 msgid "%(nick)s - %(name)s"
@@ -1646,7 +1655,7 @@ msgstr "Собрано сокровищ"
 
 #: gui/summary/layout.js:110
 msgid "Loot"
-msgstr "Добыча"
+msgstr "Трофеи"
 
 #: gui/summary/layout.js:114
 #, javascript-format

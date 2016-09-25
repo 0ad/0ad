@@ -54,6 +54,10 @@
 		<action on="Press">stopUnits(g_Selection.toList());</action>
 	</object>
 
+	<object hotkey="session.backtowork">
+		<action on="Press">backToWork();</action>
+	</object>
+
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
 		<action on="Press">findIdleUnit(g_MilitaryTypes);</action>

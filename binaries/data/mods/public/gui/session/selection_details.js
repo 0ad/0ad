@@ -409,7 +409,7 @@ function displayMultiple(selection)
 	if (Object.keys(totalCarrying).length)
 		numberOfUnits.tooltip = sprintf(translate("%(label)s %(details)s\n"), {
 			"label": headerFont(translate("Carrying:")),
-			"details": bodyFont(Object.keys(totalCarrying).map(
+			"details": bodyFont(RESOURCES.filter(res => !!totalCarrying[res]).map(
 				res => sprintf(translate("%(type)s %(amount)s"),
 					{ "type": costIcon(res), "amount": totalCarrying[res] })).join("  "))
 		});

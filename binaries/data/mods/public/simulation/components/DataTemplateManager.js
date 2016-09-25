@@ -15,13 +15,6 @@ DataTemplateManager.prototype.Init = function()
 		this.GetTechnologyTemplate(techNames[i]);
 };
 
-DataTemplateManager.prototype.Serialize = null; // we have no dynamic state to save
-
-DataTemplateManager.prototype.Deserialize = function()
-{
-	this.Init();
-};
-
 DataTemplateManager.prototype.GetTechnologyTemplate = function(template)
 {
 	if (!this.allTechs[template])

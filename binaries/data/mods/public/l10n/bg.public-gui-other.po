@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-12 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 12:05+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 08:59+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -360,7 +360,7 @@ msgstr "Измами"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1122,6 +1122,15 @@ msgstr ""
 #: gui/common/tooltips.js:575
 msgid "Classes:"
 msgstr "Класове:"
+
+#: gui/common/tooltips.js:602
+#, javascript-format
+msgid "%(component)s %(loot)s"
+msgstr ""
+
+#: gui/common/tooltips.js:609
+msgid "Loot:"
+msgstr "Плячка:"
 
 #: gui/credits/credits.js:69
 #, javascript-format

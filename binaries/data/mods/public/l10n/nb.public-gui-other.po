@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-12 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 09:13+0000\n"
+"POT-Creation-Date: 2016-09-19 09:00+0200\n"
+"PO-Revision-Date: 2016-09-19 08:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -358,7 +358,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -1120,6 +1120,15 @@ msgstr ""
 #: gui/common/tooltips.js:575
 msgid "Classes:"
 msgstr "Klasser:"
+
+#: gui/common/tooltips.js:602
+#, javascript-format
+msgid "%(component)s %(loot)s"
+msgstr ""
+
+#: gui/common/tooltips.js:609
+msgid "Loot:"
+msgstr ""
 
 #: gui/credits/credits.js:69
 #, javascript-format

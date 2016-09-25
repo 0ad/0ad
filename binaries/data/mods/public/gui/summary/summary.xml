@@ -56,42 +56,42 @@
 		<object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 120 174 122"/>
 		<object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 120 330 122"/>
 
-		<object name="scorePanelButton" type="button" sprite="ForegroundTab" size="20 92 136 120">
+		<object name="scorePanelButton" type="button" sprite="ForegroundTab" style="TabButton" size="20 92 136 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Score</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="buildingsPanelButton" type="button" sprite="BackgroundTab" size="142 92 260 120">
+		<object name="buildingsPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="142 92 260 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Buildings</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="unitsPanelButton" type="button" sprite="BackgroundTab" size="266 92 384 120">
+		<object name="unitsPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="266 92 384 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Units</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="resourcesPanelButton" type="button" sprite="BackgroundTab" size="390 92 508 120">
+		<object name="resourcesPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="390 92 508 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Resources</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="marketPanelButton" type="button" sprite="BackgroundTab" size="514 92 632 120">
+		<object name="marketPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="514 92 632 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Market</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="miscPanelButton" type="button" sprite="BackgroundTab" size="638 92 756 120">
+		<object name="miscPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="638 92 756 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Miscellaneous</translatableAttribute>

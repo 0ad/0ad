@@ -3,6 +3,14 @@
   <Identity>
     <Civ>iber</Civ>
   </Identity>
+  <Upgrade>
+    <Tower>
+      <Cost>
+        <stone>250</stone>
+      </Cost>
+      <Time>120</Time>
+    </Tower>
+  </Upgrade>
   <VisualActor>
     <Actor>structures/iberians/wooden_tower.xml</Actor>
   </VisualActor>

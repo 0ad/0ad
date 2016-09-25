@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Tower">
+      <animations>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/maur_wooden_tower_2.dae</mesh>
+      <textures>
+        <texture file="structural/maur_struct_b.png" name="baseTex"/>
+        <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_wooden_tower_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned"/>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
