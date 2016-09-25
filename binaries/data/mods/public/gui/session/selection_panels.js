@@ -12,9 +12,8 @@
  * {
  *   "i":              index
  *   "item":           item coming from the getItems function
- *   "selection":      list of currently selected items
  *   "playerState":    playerState
- *   "unitEntState":   first selected entity state
+ *   "unitEntStates":  states of the selected entities
  *   "rowLength":      rowLength
  *   "numberOfItems":  number of items that will be processed
  *   "button":         gui Button object
@@ -37,49 +36,59 @@ let g_SelectionPanels = {};
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
-		return 2;
+		return 3;
 	},
-	"getItems": function(unitEntState)
+	"conflictsWith": ["Barter"],
+	"getItems": function(unitEntStates)
 	{
-		if (!unitEntState.alertRaiser)
-			return [];
-		return ["increase", "end"];
+		let ret = [];
+
+		if (unitEntStates.some(state => state.alertRaiser && !state.alertRaiser.hasRaisedAlert))
+			ret.push("raise");
+
+		if (unitEntStates.some(state => state.alertRaiser && state.alertRaiser.hasRaisedAlert && state.alertRaiser.canIncreaseLevel))
+			ret.push("increase");
+
+		if (unitEntStates.some(state => state.alertRaiser && state.alertRaiser.hasRaisedAlert))
+			ret.push("end");
+
+		return ret;
 	},
 	"setupButton": function(data)
 	{
 		data.button.onPress = function() {
-			if (data.item == "increase")
+			switch (data.item)
+			{
+			case "raise":
+				raiseAlert();
+				return;
+			case "increase":
 				increaseAlertLevel();
-			else if (data.item == "end")
+				return;
+			case "end":
 				endOfAlert();
+				return;
+			}
 		};
 
-		if (data.item == "increase")
+		switch (data.item)
 		{
-			if (data.unitEntState.alertRaiser.hasRaisedAlert)
-				data.button.tooltip = translate("Increase the alert level to protect more units");
-			else
-				data.button.tooltip = translate("Raise an alert!");
-		}
-		else if (data.item == "end")
+		case "raise":
+			data.icon.sprite = "stretched:session/icons/bell_level1.png";
+			data.button.tooltip = translate("Raise an alert!");
+			break;
+		case "increase":
+			data.icon.sprite = "stretched:session/icons/bell_level2.png";
+			data.button.tooltip = translate("Increase the alert level to protect more units");
+			break;
+		case "end":
 			data.button.tooltip = translate("End of alert.");
-
-		if (data.item == "increase")
-		{
-			data.button.hidden = !data.unitEntState.alertRaiser.canIncreaseLevel;
-			if (data.unitEntState.alertRaiser.hasRaisedAlert)
-				data.icon.sprite = "stretched:session/icons/bell_level2.png";
-			else
-				data.icon.sprite = "stretched:session/icons/bell_level1.png";
-		}
-		else if (data.item == "end")
-		{
-			data.button.hidden = !data.unitEntState.alertRaiser.hasRaisedAlert;
 			data.icon.sprite = "stretched:session/icons/bell_level0.png";
+			break;
 		}
-		data.button.enabled = !data.button.hidden && controlsPlayer(data.unitEntState.player);
+		data.button.enabled = controlsPlayer(data.player);
 
-		setPanelObjectPosition(data.button, data.i, data.rowLength);
+		setPanelObjectPosition(data.button, this.getMaxNumberOfItems() - data.i - 1, data.rowLength);
 		return true;
 	}
 };
@@ -90,9 +99,10 @@ g_SelectionPanels.Barter = {
 		return 4;
 	},
 	"rowLength": 4,
-	"getItems": function(unitEntState, selection)
+	"conflictsWith": ["Alert", "Garrison"],
+	"getItems": function(unitEntStates)
 	{
-		if (!unitEntState.barterMarket)
+		if (unitEntStates.every(state => !state.barterMarket))
 			return [];
 		// ["food", "wood", "stone", "metal"]
 		return BARTER_RESOURCES;
@@ -116,7 +126,14 @@ g_SelectionPanels.Barter = {
 			amountToSell *= BARTER_BUNCH_MULTIPLIER;
 
 		amount.Sell.caption = "-" + amountToSell;
-		let prices = data.unitEntState.barterMarket.prices;
+		let prices;
+		for (let state of data.unitEntStates)
+			if (state.barterMarket)
+			{
+				prices = state.barterMarket.prices;
+				break;
+			}
+
 		amount.Buy.caption = "+" + Math.round(prices.sell[g_BarterSell] / prices.buy[data.item] * amountToSell);
 
 		let resource = getLocalizedResourceName(data.item, "withinSentence");
@@ -145,7 +162,7 @@ g_SelectionPanels.Barter = {
 		neededRes[data.item] = amountToSell;
 		let canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", {
 			"cost": neededRes,
-			"player": data.unitEntState.player
+			"player": data.player
 		}) ? "color:255 0 0 80:" : "";
 
 		// Let's see if we have enough resources to barter.
@@ -153,14 +170,14 @@ g_SelectionPanels.Barter = {
 		neededRes[g_BarterSell] = amountToSell;
 		let canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", {
 			"cost": neededRes,
-			"player": data.unitEntState.player
+			"player": data.player
 		}) ? "color:255 0 0 80:" : "";
 
 		icon.Sell.sprite = canSellCurrent + "stretched:" + grayscale + "session/icons/resources/" + data.item + ".png";
 		icon.Buy.sprite = canBuyAny + "stretched:" + grayscale + "session/icons/resources/" + data.item + ".png";
 
 		button.Buy.hidden = isSelected;
-		button.Buy.enabled = controlsPlayer(data.unitEntState.player);
+		button.Buy.enabled = controlsPlayer(data.player);
 		button.Sell.hidden = false;
 		selectionIcon.hidden = !isSelected;
 
@@ -175,18 +192,22 @@ g_SelectionPanels.Command = {
 	{
 		return 6;
 	},
-	"getItems": function(unitEntState)
+	"getItems": function(unitEntStates)
 	{
 		let commands = [];
 
-		for (let c in g_EntityCommands)
+		for (let command in g_EntityCommands)
 		{
-			let info = g_EntityCommands[c].getInfo(unitEntState);
-			if (!info)
-				continue;
-
-			info.name = c;
-			commands.push(info);
+			for (let state of unitEntStates)
+			{
+				let info = g_EntityCommands[command].getInfo(state);
+				if (info)
+				{
+					info.name = command;
+					commands.push(info);
+					break;
+				}
+			}
 		}
 		return commands;
 	},
@@ -198,15 +219,15 @@ g_SelectionPanels.Command = {
 			if (data.item.callback)
 				data.item.callback(data.item);
 			else
-				performCommand(data.unitEntState.id, data.item.name);
+				performCommand(data.unitEntStates[0], data.item.name);
 		};
 
 		data.countDisplay.caption = data.item.count || "";
 
 		data.button.enabled =
 			g_IsObserver && data.item.name == "focus-rally" ||
-			controlsPlayer(data.unitEntState.player) &&
-				(data.item.name != "delete" || !isUndeletable(data.unitEntState));
+			controlsPlayer(data.player) && (data.item.name != "delete" ||
+				data.unitEntStates.some(state => !isUndeletable(state)));
 
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 
@@ -229,16 +250,21 @@ g_SelectionPanels.AllyCommand = {
 		return 2;
 	},
 	"conflictsWith": ["Command"],
-	"getItems": function(unitEntState)
+	"getItems": function(unitEntStates)
 	{
 		let commands = [];
-		for (let c in g_AllyEntityCommands)
+		for (let command in g_AllyEntityCommands)
 		{
-			let info = g_AllyEntityCommands[c].getInfo(unitEntState);
-			if (!info)
-				continue;
-			info.name = c;
-			commands.push(info);
+			for (let state of unitEntStates)
+			{
+				let info = g_AllyEntityCommands[command].getInfo(state);
+				if (info)
+				{
+					info.name = command;
+					commands.push(info);
+					break;
+				}
+			}
 		}
 		return commands;
 	},
@@ -250,7 +276,7 @@ g_SelectionPanels.AllyCommand = {
 			if (data.item.callback)
 				data.item.callback(data.item);
 			else
-				performAllyCommand(data.unitEntState.id, data.item.name);
+				performAllyCommand(data.unitEntStates[0].id, data.item.name);
 		};
 
 		data.countDisplay.caption = data.item.count || "";
@@ -292,14 +318,14 @@ g_SelectionPanels.Construction = {
 
 		let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
 			"tech": template.requiredTechnology,
-			"player": data.unitEntState.player
+			"player": data.player
 		});
 
 		let neededResources;
 		if (template.cost)
 			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": multiplyEntityCosts(template, 1),
-				"player": data.unitEntState.player
+				"player": data.player
 			});
 
 		if (template.wallSet)
@@ -341,7 +367,7 @@ g_SelectionPanels.Construction = {
 			modifier += resourcesToAlphaMask(neededResources) +":";
 		}
 		else
-			data.button.enabled = controlsPlayer(data.unitEntState.player);
+			data.button.enabled = controlsPlayer(data.player);
 
 		if (template.icon)
 			data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
@@ -359,13 +385,13 @@ g_SelectionPanels.Formation = {
 	},
 	"rowLength": 4,
 	"conflictsWith": ["Garrison"],
-	"getItems": function(unitEntState)
+	"getItems": function(unitEntStates)
 	{
-		if (!hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
+		if (unitEntStates.some(state => !hasClass(state, "Unit") || hasClass(state, "Animal")))
 			return [];
-		if (!g_AvailableFormations.has(unitEntState.player))
-			g_AvailableFormations.set(unitEntState.player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntState.player));
-		return g_AvailableFormations.get(unitEntState.player);
+		if (!g_AvailableFormations.has(unitEntStates[0].player))
+			g_AvailableFormations.set(unitEntStates[0].player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntStates[0].player));
+		return g_AvailableFormations.get(unitEntStates[0].player);
 	},
 	"setupButton": function(data)
 	{
@@ -375,18 +401,20 @@ g_SelectionPanels.Formation = {
 		let formationInfo = g_FormationsInfo.get(data.item);
 		let formationOk = canMoveSelectionIntoFormation(data.item);
 		let formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
-			"ents": data.selection,
+			"ents": data.unitEntStates.map(state => state.id),
 			"formationTemplate": data.item
 		});
 
-		data.button.onPress = function() { performFormation(data.unitEntState.id, data.item); };
+		data.button.onPress = function() {
+			performFormation(data.unitEntStates.map(state => state.id), data.item);
+		};
 
 		let tooltip = translate(formationInfo.name);
 		if (!formationOk && formationInfo.tooltip)
 			tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
 		data.button.tooltip = tooltip;
 
-		data.button.enabled = formationOk && controlsPlayer(data.unitEntState.player);
+		data.button.enabled = formationOk && controlsPlayer(data.player);
 		let grayscale = formationOk ? "" : "grayscale:";
 		data.guiSelection.hidden = !formationSelected;
 		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + formationInfo.icon;
@@ -402,19 +430,17 @@ g_SelectionPanels.Garrison = {
 		return 12;
 	},
 	"rowLength": 4,
-	"getItems": function(unitEntState, selection)
+	"conflictsWith": ["Barter"],
+	"getItems": function(unitEntStates)
 	{
-		if (!unitEntState.garrisonHolder)
+		if (unitEntStates.every(state => !state.garrisonHolder))
 			return [];
 
 		let groups = new EntityGroups();
 
-		for (let ent of selection)
-		{
-			let state = GetEntityState(ent);
+		for (let state of unitEntStates)
 			if (state.garrisonHolder)
 				groups.add(state.garrisonHolder.entities);
-		}
 
 		return groups.getEntsGrouped();
 	},
@@ -433,7 +459,7 @@ g_SelectionPanels.Garrison = {
 		let garrisonedUnitOwner = GetEntityState(data.item.ents[0]).player;
 
 		let canUngarrison =
-			g_ViewedPlayer == data.unitEntState.player ||
+			g_ViewedPlayer == data.player ||
 			g_ViewedPlayer == garrisonedUnitOwner;
 
 		data.button.enabled = canUngarrison && controlsPlayer(g_ViewedPlayer);
@@ -470,12 +496,11 @@ g_SelectionPanels.Gate = {
 	{
 		return 24 - getNumberOfRightPanelButtons();
 	},
-	"getItems": function(unitEntState, selection)
+	"getItems": function(unitEntStates)
 	{
 		let gates = [];
-		for (let ent of selection)
+		for (let state of unitEntStates)
 		{
-			let state = GetEntityState(ent);
 			if (state.gate && !gates.length)
 			{
 				gates.push({
@@ -505,7 +530,7 @@ g_SelectionPanels.Gate = {
 
 		data.button.tooltip = data.item.tooltip;
 
-		data.button.enabled = controlsPlayer(data.unitEntState.player);
+		data.button.enabled = controlsPlayer(data.player);
 		let gateIcon;
 		if (data.item.gate)
 		{
@@ -530,12 +555,11 @@ g_SelectionPanels.Pack = {
 	{
 		return 24 - getNumberOfRightPanelButtons();
 	},
-	"getItems": function(unitEntState, selection)
+	"getItems": function(unitEntStates)
 	{
 		let checks = {};
-		for (let ent of selection)
+		for (let state of unitEntStates)
 		{
-			let state = GetEntityState(ent);
 			if (!state.pack)
 				continue;
 
@@ -603,7 +627,7 @@ g_SelectionPanels.Pack = {
 		else
 			data.icon.sprite = "stretched:session/icons/pack.png";
 
-		data.button.enabled = controlsPlayer(data.unitEntState.player);
+		data.button.enabled = controlsPlayer(data.player);
 
 		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
@@ -616,9 +640,29 @@ g_SelectionPanels.Queue = {
 	{
 		return 16;
 	},
-	"getItems": function(unitEntState, selection)
+	/**
+	 * Returns a list of all items in the productionqueue of the selection
+	 * The first entry of every entity's production queue will come before
+	 * the second entry of every entity's production queue
+	 */
+	"getItems": function(unitEntStates)
 	{
-		return getTrainingQueueItems(selection);
+		let queue = [];
+		let foundNew = true;
+		for (let i = 0; foundNew; ++i)
+		{
+			foundNew = false;
+			for (let state of unitEntStates)
+			{
+				if (!state.production || !state.production.queue[i])
+					continue;
+				let item = state.production.queue[i];
+				item.producingEnt = state.id;
+				queue.push(item);
+				foundNew = true;
+			}
+		}
+		return queue;
 	},
 	"resizePanel": function(numberOfItems, rowLength)
 	{
@@ -671,7 +715,7 @@ g_SelectionPanels.Queue = {
 		if (template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + template.icon;
 
-		data.button.enabled = controlsPlayer(data.unitEntState.player);
+		data.button.enabled = controlsPlayer(data.player);
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);
 		return true;
@@ -683,23 +727,37 @@ g_SelectionPanels.Research = {
 	{
 		return 8;
 	},
-	"getItems": function(unitEntState, selection)
+	"getItems": function(unitEntStates)
 	{
-		// Tech-pairs require two rows. Thus only show techs when there is only one row in use.
-		// TODO Use a reference instead of a magic number
-		if (getNumberOfRightPanelButtons() > 8 && selection.length > 1)
-			return [];
-
-		for (let ent of selection)
-		{
-			let entState = GetEntityState(ent);
-			if (entState.production && entState.production.technologies.length)
-				return entState.production.technologies.map(tech => ({
+		let ret = [];
+		if (unitEntStates.length == 1)
+			return !unitEntStates[0].production || !unitEntStates[0].production.technologies ? ret :
+				unitEntStates[0].production.technologies.map(tech => ({
 					"tech": tech,
-					"techCostMultiplier": entState.production.techCostMultiplier
+					"techCostMultiplier": unitEntStates[0].production.techCostMultiplier,
+					"researchFacilityId": unitEntStates[0].id
 				}));
+
+		for (let state of unitEntStates)
+		{
+			if (!state.production || !state.production.technologies)
+				continue;
+			// Remove the techs we already have in ret (with the same name and techCostMultiplier)
+			let filteredTechs = state.production.technologies.filter(
+				tech => tech != null && !ret.some(
+					item => item.tech == tech && Object.keys(item.techCostMultiplier).every(
+						k => item.techCostMultiplier[k] == state.production.techCostMultiplier[k]
+			)));
+
+			if (filteredTechs.length + ret.length <= this.getMaxNumberOfItems() &&
+			    getNumberOfRightPanelButtons() <= this.getMaxNumberOfItems() * (filteredTechs.some(tech => !!tech.pair) ? 1 : 2))
+				ret = ret.concat(filteredTechs.map(tech => ({
+					"tech": tech,
+					"techCostMultiplier": state.production.techCostMultiplier,
+					"researchFacilityId": state.id
+				})));
 		}
-		return [];
+		return ret;
 	},
 	"hideItem": function(i, rowLength) // Called when no item is found
 	{
@@ -729,7 +787,7 @@ g_SelectionPanels.Research = {
 		pair.hidden = data.item.tech.pair == null;
 		setPanelObjectPosition(pair, data.i, data.rowLength);
 
-		// Handle one or two techs
+		// Handle one or two techs (tech pair)
 		for (let i in techs)
 		{
 			let tech = techs[i];
@@ -742,12 +800,12 @@ g_SelectionPanels.Research = {
 
 			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": template.cost,
-				"player": data.unitEntState.player
+				"player": data.player
 			});
 
 			let requirementsPassed = Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
 				"tech": tech,
-				"player": data.unitEntState.player
+				"player": data.player
 			});
 
 			let button = Engine.GetGUIObjectByName("unitResearchButton[" + position + "]");
@@ -764,7 +822,7 @@ g_SelectionPanels.Research = {
 				let tip = template.requirementsTooltip;
 				if (template.classRequirements)
 				{
-					let player = data.unitEntState.player;
+					let player = data.player;
 					let current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
 					let remaining = template.classRequirements.number - current;
 					tip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), {
@@ -777,7 +835,7 @@ g_SelectionPanels.Research = {
 			button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 			button.onPress = function () {
-				addResearchToQueue(data.unitEntState.id, tech);
+				addResearchToQueue(data.item.researchFacilityId, tech);
 			};
 
 			if (data.item.tech.pair)
@@ -806,7 +864,7 @@ g_SelectionPanels.Research = {
 				modifier += resourcesToAlphaMask(neededResources) + ":";
 			}
 			else
-				button.enabled = controlsPlayer(data.unitEntState.player);
+				button.enabled = controlsPlayer(data.player);
 
 			if (template.icon)
 				icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
@@ -827,9 +885,9 @@ g_SelectionPanels.Selection = {
 		return 16;
 	},
 	"rowLength": 4,
-	"getItems": function(unitEntState, selection)
+	"getItems": function(unitEntStates)
 	{
-		if (selection.length < 2)
+		if (unitEntStates.length < 2)
 			return [];
 		return g_Selection.groups.getTemplateNames();
 	},
@@ -898,25 +956,26 @@ g_SelectionPanels.Stance = {
 	{
 		return 5;
 	},
-	"getItems": function(unitEntState)
+	"getItems": function(unitEntStates)
 	{
-		if (!unitEntState.unitAI || !hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
+		if (unitEntStates.some(state => !state.unitAI || !hasClass(state, "Unit") || hasClass(state, "Animal")))
 			return [];
-		return unitEntState.unitAI.possibleStances;
+
+		return unitEntStates[0].unitAI.possibleStances;
 	},
 	"setupButton": function(data)
 	{
-		data.button.onPress = function() { performStance(data.unitEntState, data.item); };
+		data.button.onPress = function() { performStance(data.unitEntStates.map(state => state.id), data.item); };
 
 		data.button.tooltip = getStanceDisplayName(data.item) + "\n" +
 			"[font=\"sans-13\"]" + getStanceTooltip(data.item) + "[/font]";
 
 		data.guiSelection.hidden = !Engine.GuiInterfaceCall("IsStanceSelected", {
-			"ents": data.selection,
+			"ents": data.unitEntStates.map(state => state.id),
 			"stance": data.item
 		});
 		data.icon.sprite = "stretched:session/icons/stances/" + data.item + ".png";
-		data.button.enabled = controlsPlayer(data.unitEntState.player);
+		data.button.enabled = controlsPlayer(data.player);
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);
 		return true;
@@ -940,11 +999,11 @@ g_SelectionPanels.Training = {
 
 		let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
 			"tech": template.requiredTechnology,
-			"player": data.unitEntState.player
+			"player": data.player
 		});
 
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-			getTrainingBatchStatus(data.playerState, data.unitEntState.id, data.item, data.selection);
+			getTrainingBatchStatus(data.playerState, data.item, data.unitEntStates.map(status => status.id));
 
 		let trainNum = buildingsCountToTrainFullBatch || 1;
 		if (Engine.HotkeyIsPressed("session.batchtrain"))
@@ -954,10 +1013,12 @@ g_SelectionPanels.Training = {
 		if (template.cost)
 			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": multiplyEntityCosts(template, trainNum),
-				"player": data.unitEntState.player
+				"player": data.player
 			});
 
-		data.button.onPress = function() { addTrainingToQueue(data.selection, data.item, data.playerState); };
+		data.button.onPress = function() {
+			addTrainingToQueue(data.unitEntStates.map(state => state.id), data.item, data.playerState);
+		};
 
 		data.countDisplay.caption = trainNum > 1 ? trainNum : "";
 
@@ -968,7 +1029,7 @@ g_SelectionPanels.Training = {
 			getVisibleEntityClassesFormatted(template),
 			getAurasTooltip(template),
 			getEntityTooltip(template),
-			getEntityCostTooltip(template, trainNum, data.unitEntState.id)
+			getEntityCostTooltip(template, trainNum, data.unitEntStates[0].id)
 		];
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
@@ -1013,7 +1074,7 @@ g_SelectionPanels.Training = {
 			modifier = resourcesToAlphaMask(neededResources) +":";
 		}
 		else
-			data.button.enabled = controlsPlayer(data.unitEntState.player);
+			data.button.enabled = controlsPlayer(data.player);
 
 		if (template.icon)
 		data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
@@ -1030,14 +1091,13 @@ g_SelectionPanels.Upgrade = {
 	{
 		return 24 - getNumberOfRightPanelButtons();
 	},
-	"getItems": function(unitEntState, selection)
+	"getItems": function(unitEntStates)
 	{
-		// Interface becomes complicated with multiple units and this is meant per-entity, so prevent it if the selection has multiple units.
-		// TODO: if the units are all the same, this should probably still be possible.
-		if (selection.length > 1)
+		// Interface becomes complicated with multiple different units and this is meant per-entity, so prevent it if the selection has multiple different units.
+		if (unitEntStates.some(state => state.template != unitEntStates[0].template))
 			return false;
 
-		return unitEntState.upgrade && unitEntState.upgrade.upgrades;
+		return unitEntStates[0].upgrade && unitEntStates[0].upgrade.upgrades;
 	},
 	"setupButton" : function(data)
 	{
@@ -1050,19 +1110,19 @@ g_SelectionPanels.Upgrade = {
 		if (data.item.requiredTechnology)
 			technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
 				"tech": data.item.requiredTechnology,
-				"player": data.unitEntState.player
+				"player": data.player
 			});
 
 		let neededResources;
 		if (data.item.cost)
 			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": data.item.cost,
-				"player": data.unitEntState.player
+				"player": data.player
 			});
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item.entity);
-		let progress = data.unitEntState.upgrade.progress || 0;
-		let isUpgrading = data.unitEntState.upgrade.template == data.item.entity;
+		let progress = data.unitEntStates[0].upgrade.progress || 0;
+		let isUpgrading = data.unitEntStates[0].upgrade.template == data.item.entity;
 
 		let tooltip;
 		if (!progress)
