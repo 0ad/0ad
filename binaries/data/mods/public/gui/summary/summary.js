@@ -5,7 +5,7 @@ const g_LongHeadingWidth = 250;
 
 const g_PlayerBoxYSize = 40;
 const g_PlayerBoxGap = 2;
-const g_PlayerBoxAlpha = " 32";
+const g_PlayerBoxAlpha = " 50";
 const g_PlayerColorBoxAlpha = " 255";
 const g_TeamsBoxYStart = 40;
 
@@ -91,16 +91,16 @@ function updatePanelData(panelInfo)
 
 		let positionObject = playerBoxesCounts[playerState.team+1] - 1;
 		let rowPlayer = "playerBox[" + positionObject + "]";
+		let playerOutcome = "playerOutcome[" + positionObject + "]";
 		let playerNameColumn = "playerName[" + positionObject + "]";
-		let playerColorBoxColumn = "playerColorBox[" + positionObject + "]";
 		let playerCivicBoxColumn = "civIcon[" + positionObject + "]";
 		let playerCounterValue = "valueData[" + positionObject + "]";
 
 		if (playerState.team != -1)
 		{
 			rowPlayer = "playerBoxt[" + playerState.team + "][" + positionObject + "]";
+			playerOutcome = "playerOutcomet[" + playerState.team + "][" + positionObject + "]";
 			playerNameColumn = "playerNamet[" + playerState.team + "][" + positionObject + "]";
-			playerColorBoxColumn = "playerColorBoxt[" + playerState.team + "][" + positionObject + "]";
 			playerCivicBoxColumn = "civIcont[" + playerState.team + "][" + positionObject + "]";
 			playerCounterValue = "valueDataTeam[" + playerState.team + "][" + positionObject + "]";
 		}
@@ -118,8 +118,17 @@ function updatePanelData(panelInfo)
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
 
-		let playerColorBox = Engine.GetGUIObjectByName(playerColorBoxColumn);
-		playerColorBox.sprite = colorString + g_PlayerColorBoxAlpha;
+		let outcome = Engine.GetGUIObjectByName(playerOutcome);
+		if (playerState.state == "won")
+		{
+			outcome.sprite = "stretched:session/icons/stances/violent.png";
+			outcome.tooltip = translate("Victory");
+		}
+		else if (playerState.state == "defeated")
+		{
+			outcome.sprite = "stretched:session/icons/stances/passive.png";
+			outcome.tooltip = translate("Defeated");
+		}
 
 		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.sim.playerStates[i+1].name;
 
