@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-19 09:00+0200\n"
-"PO-Revision-Date: 2016-09-19 08:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-25 19:02+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,58 +252,58 @@ msgstr[1] "Osservatori"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Meraviglia (%(min)s minuto)"
+msgstr[1] "Meraviglia (%(min)s minuti)"
 
 #: gui/common/gamedescription.js:212
 msgid "Rated game"
-msgstr ""
+msgstr "Classifica partita"
 
 #: gui/common/gamedescription.js:213
 msgid ""
 "When the winner of this match was determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Quando il vincitore di questa partita è stato determinato, il punteggio del gruppo sarà adattato."
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
-msgstr ""
+msgstr "Squadre bloccate"
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "I giocatori non possono cambiare la squadra iniziale."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomazia"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can setup alliances and declare war on allies."
-msgstr ""
+msgstr "I giocatori possono impostare le alleanze e dichiarare guerra agli alleati."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
-msgstr ""
+msgstr "All'Utimo Uomo"
 
 #: gui/common/gamedescription.js:230
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Solo un giocatore può vincere la partita, se i giocatori rimasti sono alleati il gioco continua fino a quando uno solo di loro rimane"
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Vittoria Alleata"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Se un giocatore vince, anche gli alleati vincono. Se un gruppo di alleati rimangono da soli vincono"
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Cessate il fuoco"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -312,57 +312,57 @@ msgstr "disabilitato"
 #: gui/common/gamedescription.js:245
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Per il primo minuto, i nemici rimangono neutrali."
+msgstr[1] "Per i primi %(min)s minuti, i nemici rimangono neutrali."
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Nome Mappa"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Tipo di Mappa"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Dimensione Mappa"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Descrizione mappa"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Seleziona casualmente una mappa dalla lista"
 
 #: gui/common/gamedescription.js:286
 msgid "Starting Resources"
-msgstr ""
+msgstr "Risorse Iniziali"
 
 #: gui/common/gamedescription.js:287
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Limite della Popolazione"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Disabilita Tesori"
 
 #: gui/common/gamedescription.js:310
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mappa Rivelata"
 
 #: gui/common/gamedescription.js:315
 msgid "Explored Map"
-msgstr ""
+msgstr "Mappa Esplorata"
 
 #: gui/common/gamedescription.js:320
 msgid "Cheats"
-msgstr ""
+msgstr "Trucchi"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -374,12 +374,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "abilitato"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "disabilitato"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -686,7 +686,7 @@ msgstr "Impossibile espellere %(name)s."
 #: gui/common/network.js:140
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Utenti (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -760,7 +760,7 @@ msgstr "Nessuno"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Partita Infinita"
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -1132,11 +1132,11 @@ msgstr "Classi:"
 #: gui/common/tooltips.js:602
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:609
 msgid "Loot:"
-msgstr ""
+msgstr "Bottino"
 
 #: gui/credits/credits.js:69
 #, javascript-format

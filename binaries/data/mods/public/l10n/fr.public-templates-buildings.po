@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 08:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-23 09:01+0200\n"
+"PO-Revision-Date: 2016-09-25 14:19+0000\n"
+"Last-Translator: nicolas t <phidias2052@yahoo.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,21 +70,6 @@ msgstr "Colonie militaire"
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
-#: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_defense_wallset.xml:10
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/cart_super_dock.xml:37
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-#: simulation/templates/structures/maur_elephant_stables.xml:29
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "Ville"
-
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
 msgstr "Stoa"
@@ -96,6 +81,22 @@ msgstr "Stoa royale hellénique"
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
 msgstr "Recruter des unités spéciales."
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:31
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/gaul_tavern.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Ville"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -164,7 +165,7 @@ msgid "Stone Wall"
 msgstr "Mur de pierre"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
-#: simulation/templates/template_structure_defense_wallset.xml:12
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Entourez votre ville d'une muraille pour une défense robuste."
 
@@ -194,7 +195,7 @@ msgstr "Tourelle"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Tire des flèches. Placez-y une garnison pour défendre une muraille contre les attaques."
 
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Remparts"
 
@@ -203,11 +204,11 @@ msgstr "Remparts"
 msgid "Wooden Tower"
 msgstr "Tour en bois"
 
-#: simulation/templates/template_structure_economic.xml:11
+#: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Bâtiment économique"
 
-#: simulation/templates/template_structure_economic.xml:12
+#: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Économique"
@@ -297,18 +298,18 @@ msgstr "Port"
 msgid "Embassy"
 msgstr "Ambassade"
 
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:29
+#: simulation/templates/template_structure_military_fortress.xml:62
 msgid "Fortress"
 msgstr "Forteresse"
 
-#: simulation/templates/template_structure_military_fortress.xml:64
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
 msgstr "Entraîner des héros, des champions, et construire des armes de siège. Rechercher les améliorations d'armes de siège."
 
-#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
@@ -573,15 +574,15 @@ msgstr "Caer"
 msgid "Cavalidos"
 msgstr "Cavalidos"
 
-#: simulation/templates/structures/brit_crannog.xml:21
+#: simulation/templates/structures/brit_crannog.xml:13
 msgid "Island Settlement"
 msgstr "Colonie insulaire"
 
-#: simulation/templates/structures/brit_crannog.xml:24
+#: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
 msgstr "Augmenter la limite de population et défendre les voies navigables."
 
-#: simulation/templates/structures/brit_crannog.xml:25
+#: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
@@ -621,7 +622,7 @@ msgstr "Annedd"
 msgid "Kennel"
 msgstr "Chenil"
 
-#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Train Celtic war dogs."
 msgstr "Dresser des chiens de guerre celtes."
 
@@ -1164,10 +1165,8 @@ msgid "Duvarthi Visadahyu"
 msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Bâtiment spécial.\nFormer des Éléphants de guerre et des Mercenaires kardakes."
+msgid "Train War Elephants and Kardakes mercenaries."
+msgstr "Former des éléphants de guerre et des mercenaires kardakes."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1313,7 +1312,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Structure peu coûteuse semblable aux casernes, qui est constructible en territoire neutre, mais ne possède aucune influence territoriale. Forme les mercenaires."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"

@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 08:37+0000\n"
+"POT-Creation-Date: 2016-09-23 09:01+0200\n"
+"PO-Revision-Date: 2016-09-23 09:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -64,21 +64,6 @@ msgstr "Colônia Militar"
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
-#: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_defense_wallset.xml:10
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/cart_super_dock.xml:37
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-#: simulation/templates/structures/maur_elephant_stables.xml:29
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "Cidade"
-
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
 msgstr "Estoa"
@@ -90,6 +75,22 @@ msgstr "Estoa Real Helênica"
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
 msgstr "Recrutar unidades especiais."
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:31
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/gaul_tavern.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Cidade"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -158,7 +159,7 @@ msgid "Stone Wall"
 msgstr "Muralha de pedra"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
-#: simulation/templates/template_structure_defense_wallset.xml:12
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Mure sua cidade para uma defesa robusta."
 
@@ -188,7 +189,7 @@ msgstr "Guarita"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Lança flechas. Abrigue para defender sua muralha contra atacantes."
 
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Muralha da Cidade"
 
@@ -197,11 +198,11 @@ msgstr "Muralha da Cidade"
 msgid "Wooden Tower"
 msgstr "Torre de Madeira"
 
-#: simulation/templates/template_structure_economic.xml:11
+#: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Estrutura Econômica"
 
-#: simulation/templates/template_structure_economic.xml:12
+#: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Econômico"
@@ -291,18 +292,18 @@ msgstr "Doca"
 msgid "Embassy"
 msgstr "Embaixada"
 
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:29
+#: simulation/templates/template_structure_military_fortress.xml:62
 msgid "Fortress"
 msgstr "Fortaleza"
 
-#: simulation/templates/template_structure_military_fortress.xml:64
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
 msgstr "Treine heróis, campeões e armas de cerco. Pesquise melhorias de arma de cerco."
 
-#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
@@ -567,15 +568,15 @@ msgstr "Caer"
 msgid "Cavalidos"
 msgstr "Cavalidos"
 
-#: simulation/templates/structures/brit_crannog.xml:21
+#: simulation/templates/structures/brit_crannog.xml:13
 msgid "Island Settlement"
 msgstr "Povoado Insular"
 
-#: simulation/templates/structures/brit_crannog.xml:24
+#: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
 msgstr "Aumenta o limite populacional e defende as hidrovias."
 
-#: simulation/templates/structures/brit_crannog.xml:25
+#: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
@@ -615,7 +616,7 @@ msgstr "Annedd"
 msgid "Kennel"
 msgstr "Canil"
 
-#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Train Celtic war dogs."
 msgstr "Treinar cães de guerra celtas."
 
@@ -1158,10 +1159,8 @@ msgid "Duvarthi Visadahyu"
 msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "\nBuilding. especial Trem de Guerra elefantes e mercenários Kardakes."
+msgid "Train War Elephants and Kardakes mercenaries."
+msgstr ""
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"

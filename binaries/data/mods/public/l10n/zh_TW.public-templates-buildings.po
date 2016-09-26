@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 14:32+0000\n"
+"POT-Creation-Date: 2016-09-23 09:01+0200\n"
+"PO-Revision-Date: 2016-09-23 13:51+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -54,21 +54,6 @@ msgstr "軍事殖民地"
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
-#: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_defense_wallset.xml:10
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/cart_super_dock.xml:37
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-#: simulation/templates/structures/maur_elephant_stables.xml:29
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "城鎮"
-
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
 msgstr "拱廊"
@@ -80,6 +65,22 @@ msgstr "希臘皇家柱廊"
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
 msgstr "招募特殊單位。"
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:31
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/gaul_tavern.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "城鎮"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -148,7 +149,7 @@ msgid "Stone Wall"
 msgstr "石牆"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
-#: simulation/templates/template_structure_defense_wallset.xml:12
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
 
@@ -178,7 +179,7 @@ msgstr "城牆塔樓"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "射出箭矢。在城牆中駐軍以對抗攻擊者。"
 
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "城牆"
 
@@ -187,11 +188,11 @@ msgstr "城牆"
 msgid "Wooden Tower"
 msgstr "木製塔樓"
 
-#: simulation/templates/template_structure_economic.xml:11
+#: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "經濟建築物"
 
-#: simulation/templates/template_structure_economic.xml:12
+#: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "經濟"
@@ -281,18 +282,18 @@ msgstr "碼頭"
 msgid "Embassy"
 msgstr "大使館"
 
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:29
+#: simulation/templates/template_structure_military_fortress.xml:62
 msgid "Fortress"
 msgstr "堡壘"
 
-#: simulation/templates/template_structure_military_fortress.xml:64
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
 msgstr "訓練英雄、精英、以及攻城武器。研究攻城武器改進。"
 
-#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
@@ -557,15 +558,15 @@ msgstr "Caer"
 msgid "Cavalidos"
 msgstr "Cavalidos"
 
-#: simulation/templates/structures/brit_crannog.xml:21
+#: simulation/templates/structures/brit_crannog.xml:13
 msgid "Island Settlement"
 msgstr "島嶼殖民地"
 
-#: simulation/templates/structures/brit_crannog.xml:24
+#: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
 msgstr "增加人口上限並防禦水路。"
 
-#: simulation/templates/structures/brit_crannog.xml:25
+#: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
@@ -605,7 +606,7 @@ msgstr "Annedd"
 msgid "Kennel"
 msgstr "狗屋"
 
-#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Train Celtic war dogs."
 msgstr "訓練塞爾特戰犬。"
 
@@ -1148,10 +1149,8 @@ msgid "Duvarthi Visadahyu"
 msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "特殊建築物。\n訓練戰象或 Kardakes 傭兵。"
+msgid "Train War Elephants and Kardakes mercenaries."
+msgstr "訓練戰象或 Kardakes 傭兵。"
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
