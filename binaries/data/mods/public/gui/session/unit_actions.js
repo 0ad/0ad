@@ -1273,7 +1273,7 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.patrol") +
 				           translate("Patrol") + "\n" +
-				           translate("Attack encountered encountered units while avoiding buildings."),
+				           translate("Attack encountered units while avoiding buildings."),
 				"icon": "patrol.png"
 			};
 		},
