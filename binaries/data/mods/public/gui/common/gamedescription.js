@@ -210,7 +210,7 @@ function getGameDescription(extended = false)
 	    g_GameAttributes.settings.PlayerData.length == 2)
 		titles.push({
 			"label": translate("Rated game"),
-			"value": translate("When the winner of this match was determined, the lobby score will be adapted.")
+			"value": translate("When the winner of this match is determined, the lobby score will be adapted.")
 		});
 
 	if (g_GameAttributes.settings.LockTeams)
