@@ -791,7 +791,9 @@ g_SelectionPanels.Research = {
 		for (let i in techs)
 		{
 			let tech = techs[i];
-			let template = GetTechnologyData(tech);
+
+			// Don't change the object returned by GetTechnologyData
+			let template = clone(GetTechnologyData(tech));
 			if (!template)
 				return false;
 
