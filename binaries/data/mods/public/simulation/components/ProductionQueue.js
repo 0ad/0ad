@@ -337,6 +337,11 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var template = cmpDataTemplateManager.GetTechnologyTemplate(templateName);
 			if (!template)
 				return;
+			if (this.GetTechnologiesList().indexOf(templateName) == -1)
+			{
+				warn("This entity cannot research " + JSON.stringify(templateName));
+				return;
+			}
 			var cmpPlayer = QueryOwnerInterface(this.entity);
 			let techCostMultiplier = this.GetTechCostMultiplier();
 			let time =  techCostMultiplier.time * template.researchTime * cmpPlayer.GetCheatTimeMultiplier();

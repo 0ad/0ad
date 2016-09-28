@@ -11,41 +11,42 @@
 	</object>
 
 	<object name="diplomacyHeader" size="32 32 100%-32 64">
-		<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="chatPanel" ghost="true">
+		<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="DiplomacyText" ghost="true">
 			<translatableAttribute id="caption">Name</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="chatPanel" ghost="true">
+		<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="DiplomacyText" ghost="true">
 			<translatableAttribute id="caption">Civilization</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderTeam" size="250 0 300 100%" type="text" style="chatPanel" ghost="true">
+		<object name="diplomacyHeaderTeam" size="250 0 300 100%" type="text" style="DiplomacyText" ghost="true">
 			<translatableAttribute id="caption">Team</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderTheirs" size="300 0 360 100%" type="text" style="chatPanel" ghost="true">
+		<object name="diplomacyHeaderTheirs" size="300 0 360 100%" type="text" style="DiplomacyText" ghost="true">
 			<translatableAttribute id="caption">Theirs</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="chatPanel" tooltip_style="sessionToolTipBold">
+		<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
 			<translatableAttribute id="caption">A</translatableAttribute>
 			<translatableAttribute id="tooltip">Ally</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="chatPanel" tooltip_style="sessionToolTipBold">
+		<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
 			<translatableAttribute id="caption">N</translatableAttribute>
 			<translatableAttribute id="tooltip">Neutral</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="chatPanel" tooltip_style="sessionToolTipBold">
+		<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
 			<translatableAttribute id="caption">E</translatableAttribute>
 			<translatableAttribute id="tooltip">Enemy</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderTribute" size="100%-110 0 100% 100%" type="text" style="chatPanel">
+		<object name="diplomacyHeaderTribute" size="100%-110 0 100% 100%" type="text" style="DiplomacyText">
 			<translatableAttribute id="caption">Tribute</translatableAttribute>
 		</object>
 	</object>
+
 	<object size="32 64 100%-32 384">
 		<repeat count="16">
 			<object name="diplomacyPlayer[n]" size="0 0 100% 20" type="image" hidden="false">
-				<object name="diplomacyPlayerName[n]" size="0 0 150 100%" type="text" style="chatPanel" ghost="true"/>
-				<object name="diplomacyPlayerCiv[n]" size="150 0 250 100%" type="text" style="chatPanel" ghost="true"/>
-				<object name="diplomacyPlayerTeam[n]" size="250 0 300 100%" type="text" style="chatPanel" ghost="true"/>
-				<object name="diplomacyPlayerTheirs[n]" size="300 0 360 100%" type="text" style="chatPanel" ghost="true"/>
+				<object name="diplomacyPlayerName[n]" size="0 0 150 100%" type="text" style="DiplomacyText" ghost="true"/>
+				<object name="diplomacyPlayerCiv[n]" size="150 0 250 100%" type="text" style="DiplomacyText" ghost="true"/>
+				<object name="diplomacyPlayerTeam[n]" size="250 0 300 100%" type="text" style="DiplomacyText" ghost="true"/>
+				<object name="diplomacyPlayerTheirs[n]" size="300 0 360 100%" type="text" style="DiplomacyText" ghost="true"/>
 
 				<!-- Diplomatic stance - selection -->
 				<object name="diplomacyPlayerAlly[n]" size="100%-180 0 100%-160 100%" type="button" style="StoneButton" hidden="true"/>
@@ -73,7 +74,7 @@
 		</repeat>
 	</object>
 
-	<object name="diplomacyCeasefireCounter" size="32 100%-90 100%-32 100%-62" type="text" style="chatPanel" ghost="true"></object>
+	<object name="diplomacyCeasefireCounter" size="32 100%-90 100%-32 100%-62" type="text" style="DiplomacyText" ghost="true"></object>
 
 	<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
 		<translatableAttribute id="caption">Close</translatableAttribute>

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-05 09:00+0200\n"
+"POT-Creation-Date: 2016-09-26 09:00+0200\n"
+"PO-Revision-Date: 2016-09-26 09:00+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,7 +65,7 @@ msgstr ""
 msgid "* %(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1389
+#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1396
 msgid "Default"
 msgstr ""
 
@@ -78,84 +78,102 @@ msgid "Demo Maps"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:85
-msgid "Trigger Maps"
+msgid "New Maps"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:90
+msgid "Trigger Maps"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:139
+#: gui/gamesetup/gamesetup.js:144
 msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:149
 msgctxt "civilization"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:267
+#: gui/gamesetup/gamesetup.js:272
 msgid "Return to the lobby."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:267
+#: gui/gamesetup/gamesetup.js:272
 msgid "Return to the main menu."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:599
 msgid "Yes"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:599
 msgid "No"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:638
 msgctxt "team"
 msgid "None"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1297
+#: gui/gamesetup/gamesetup.js:1304
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1459
+#: gui/gamesetup/gamesetup.js:1466
 msgid "Loading..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1592
+#: gui/gamesetup/gamesetup.js:1599
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1597
+#: gui/gamesetup/gamesetup.js:1604
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1757
+#: gui/gamesetup/gamesetup.js:1764
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1764
+#: gui/gamesetup/gamesetup.js:1771
 msgid "Unknown Player"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1842
+#: gui/gamesetup/gamesetup.js:1807
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1808
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1809
+msgid "HH:mm"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1859
 msgid "I'm not ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1843
+#: gui/gamesetup/gamesetup.js:1860
 msgid "I'm ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1847
+#: gui/gamesetup/gamesetup.js:1864
 msgid "State that you are ready to play!"
 msgstr ""
 

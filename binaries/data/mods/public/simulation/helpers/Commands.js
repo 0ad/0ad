@@ -176,6 +176,13 @@ var g_Commands = {
 		});
 	},
 
+	"patrol": function(player, cmd, data)
+	{
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI =>
+			cmpUnitAI.Patrol(cmd.x, cmd.z, cmd.targetClasses, cmd.queued)
+		);
+	},
+
 	"heal": function(player, cmd, data)
 	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))

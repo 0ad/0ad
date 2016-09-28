@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-09-20 10:53+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2016-09-23 09:01+0200\n"
+"PO-Revision-Date: 2016-09-25 13:35+0000\n"
+"Last-Translator: Jaroslav Lichtblau <dragonlord@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,21 +55,6 @@ msgstr "Vojenská kolonie"
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
-#: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_defense_wallset.xml:10
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/cart_super_dock.xml:37
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-#: simulation/templates/structures/maur_elephant_stables.xml:29
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "Město"
-
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
 msgstr "Kolonáda"
@@ -81,6 +66,22 @@ msgstr "Helénská královská kolonáda"
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
 msgstr "Provést nábor zvláštních jednotek."
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:31
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/gaul_tavern.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Město"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -149,7 +150,7 @@ msgid "Stone Wall"
 msgstr "Kamenná hradba"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
-#: simulation/templates/template_structure_defense_wallset.xml:12
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Obežeňte město zdí kvůli lepší obraně."
 
@@ -179,7 +180,7 @@ msgstr "Věž v hradbě"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Střílí šípy. Obsaďte posádkou pro obranu města proti útočníkům."
 
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Městská hradba"
 
@@ -188,11 +189,11 @@ msgstr "Městská hradba"
 msgid "Wooden Tower"
 msgstr "Dřevěná věž"
 
-#: simulation/templates/template_structure_economic.xml:11
+#: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Hospodářská stavba"
 
-#: simulation/templates/template_structure_economic.xml:12
+#: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "Hospodářství"
@@ -282,18 +283,18 @@ msgstr "Přístaviště"
 msgid "Embassy"
 msgstr "Vyslanectví"
 
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:29
+#: simulation/templates/template_structure_military_fortress.xml:62
 msgid "Fortress"
 msgstr "Pevnost"
 
-#: simulation/templates/template_structure_military_fortress.xml:64
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
 msgstr "Cvičte reky, přeborníky a obléhací stroje. Zkoumejte vylepšení obléhacích strojů."
 
-#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
@@ -558,15 +559,15 @@ msgstr "Caer"
 msgid "Cavalidos"
 msgstr "Cavalidos"
 
-#: simulation/templates/structures/brit_crannog.xml:21
+#: simulation/templates/structures/brit_crannog.xml:13
 msgid "Island Settlement"
 msgstr "Ostrovní osada"
 
-#: simulation/templates/structures/brit_crannog.xml:24
+#: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
 msgstr "Zvyšuje populační limit brání plavební cesty."
 
-#: simulation/templates/structures/brit_crannog.xml:25
+#: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
@@ -606,7 +607,7 @@ msgstr "Annedd"
 msgid "Kennel"
 msgstr "Bouda"
 
-#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Train Celtic war dogs."
 msgstr "Trénovat keltské válečné psy."
 
@@ -1149,10 +1150,8 @@ msgid "Duvarthi Visadahyu"
 msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Zvláštní budova.\nCvičte válečné slony a kardacké žoldnéře."
+msgid "Train War Elephants and Kardakes mercenaries."
+msgstr "Cvičte válečné slony a Kardacké žoldnéře."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"

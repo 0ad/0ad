@@ -43,7 +43,7 @@
 	</object>
 
 	<object hotkey="session.kill">
-		<action on="Press">performCommand(g_Selection.getFirstSelected(), "delete");</action>
+		<action on="Press">performCommand(GetExtendedEntityState(g_Selection.getFirstSelected()), "delete");</action>
 	</object>
 
 	<object hotkey="session.unload">

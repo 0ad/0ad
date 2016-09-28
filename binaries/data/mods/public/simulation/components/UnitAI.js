@@ -514,6 +514,24 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.FinishOrder();
 	},
 
+	"Order.Patrol": function(msg) {
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() || this.IsTurret())
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		if (this.CanPack())
+		{
+			this.PushOrderFront("Pack", { "force": true });
+			return;
+		}
+
+		this.MoveToPoint(this.order.data.x, this.order.data.z);
+		this.SetNextState("INDIVIDUAL.PATROL");
+	},
+
 	"Order.Heal": function(msg) {
 		// Check the target is alive
 		if (!this.TargetIsAlive(this.order.data.target))
@@ -829,6 +847,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.FinishOrder();
 		},
 
+		"Order.Patrol": function(msg) {
+			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+
+			this.MoveToPoint(this.order.data.x, this.order.data.z);
+			this.SetNextState("PATROL");
+		},
+
 		"Order.Guard": function(msg) {
 			this.CallMemberFunction("Guard", [msg.data.target, false]);
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
@@ -1075,6 +1100,59 @@ UnitAI.prototype.UnitFsmSpec = {
 			"MoveCompleted": function(msg) {
 				if (this.FinishOrder())
 					this.CallMemberFunction("ResetFinishOrder", []);
+			},
+		},
+
+		"PATROL": {
+			"enter": function(msg) {
+				// Memorize the origin position in case that we want to go back
+				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+				if (!cmpPosition || !cmpPosition.IsInWorld())
+				{
+					this.FinishOrder();
+					return;
+				}
+				if (!this.patrolStartPosOrder)
+				{
+					this.patrolStartPosOrder = cmpPosition.GetPosition();
+					this.patrolStartPosOrder.targetClasses = { "attack": ["Unit"] };
+				}
+
+				this.StartTimer(0, 1000);
+			},
+
+			"Timer": function(msg) {
+				// Check if there are no enemies to attack
+				this.FindWalkAndFightTargets();
+			},
+
+			"leave": function(msg) {
+				this.StopTimer();
+				delete this.patrolStartPosOrder;
+			},
+
+			"MoveStarted": function(msg) {
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
+			},
+
+			"MoveCompleted": function() {
+				/**
+				 * A-B-A-B-..:
+				 * if the user only commands one patrol order, the patrol will be between
+				 * the last position and the defined waypoint
+				 * A-B-C-..-A-B-..:
+				 * otherwise, the patrol is only between the given patrol commands and the
+				 * last position is not included (last position = the position where the unit
+				 * is located at the time of the first patrol order)
+				 */
+
+				if (this.orderQueue.length == 1)
+					this.PushOrder("Patrol", this.patrolStartPosOrder);
+
+				this.PushOrder(this.order.type, this.order.data);
+				this.FinishOrder();
 			},
 		},
 
@@ -1551,6 +1629,43 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function() {
+				this.FinishOrder();
+			},
+		},
+
+		"PATROL": {
+			"enter": function () {
+				// Memorize the origin position in case that we want to go back
+				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+				if (!cmpPosition || !cmpPosition.IsInWorld())
+				{
+					this.FinishOrder();
+					return;
+				}
+				if (!this.patrolStartPosOrder)
+				{
+					this.patrolStartPosOrder = cmpPosition.GetPosition();
+					this.patrolStartPosOrder.targetClasses = { "attack": ["Unit"] };
+				}
+
+				this.StartTimer(0, 1000);
+				this.SelectAnimation("move");
+			},
+
+			"leave": function() {
+				this.StopTimer();
+				delete this.patrolStartPosOrder;
+			},
+
+			"Timer": function(msg) {
+				this.FindWalkAndFightTargets();
+			},
+
+			"MoveCompleted": function() {
+				if (this.orderQueue.length == 1)
+					this.PushOrder("Patrol",this.patrolStartPosOrder);
+
+				this.PushOrder(this.order.type, this.order.data);
 				this.FinishOrder();
 			},
 		},
@@ -4762,6 +4877,7 @@ UnitAI.prototype.GetTargetPositions = function()
 		case "WalkToPointRange":
 		case "MoveIntoFormation":
 		case "GatherNearPosition":
+		case "Patrol":
 			targetPositions.push(new Vector2D(order.data.x, order.data.z));
 			break; // and continue the loop
 
@@ -4972,6 +5088,11 @@ UnitAI.prototype.WalkToTarget = function(target, queued)
 UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, queued)
 {
 	this.AddOrder("WalkAndFight", { "x": x, "z": z, "targetClasses": targetClasses, "force": true }, queued);
+};
+
+UnitAI.prototype.Patrol = function(x, z, targetClasses, queued)
+{
+	this.AddOrder("Patrol", { "x": x, "z": z, "targetClasses": targetClasses, "force": true }, queued);
 };
 
 /**

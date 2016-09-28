@@ -90,6 +90,12 @@
 			"label": "Batch Training Size",
 			"tooltip": "Number of units trained per batch",
 			"parameters": { "config": "gui.session.batchtrainingsize", "min": 1, "max": 20 }
+		},
+		{
+			"type": "boolean",
+			"label": "Chat Timestamp",
+			"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",
+			"parameters": { "config": "chat.timestamp" }
 		}
 	],
 	"graphicsSetting":
@@ -245,12 +251,6 @@
 			"label": "Chat Backlog",
 			"tooltip": "Number of backlogged messages to load when joining the lobby",
 			"parameters": { "config": "lobby.history", "min": "0" }
-		},
-		{
-			"type": "boolean",
-			"label": "Chat Timestamp",
-			"tooltip": "Show time that messages are posted in the lobby chat",
-			"parameters": { "config": "lobby.chattimestamp" }
 		}
 	]
 }

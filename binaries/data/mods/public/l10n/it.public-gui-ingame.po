@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-19 09:00+0200\n"
-"PO-Revision-Date: 2016-09-19 08:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-25 18:29+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -447,7 +447,7 @@ msgstr "Giocatore sconosciuto"
 #: gui/session/messages.js:752
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr "%(player)s hai abbandonato."
+msgstr "%(player)s ha abbandonato."
 
 #: gui/session/messages.js:753
 #, javascript-format
@@ -589,25 +589,25 @@ msgstr "Punti cattura:"
 #: gui/session/selection_details.js:410
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:411
 msgid "Carrying:"
-msgstr ""
+msgstr "Trasportati:"
 
 #: gui/session/selection_details.js:413 gui/session/selection_details.js:421
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:419
 msgid "Loot:"
-msgstr ""
+msgstr "Bottino:"
 
 #: gui/session/selection_panels.js:60
 msgid "Increase the alert level to protect more units"
@@ -1178,7 +1178,7 @@ msgstr "Esci"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Obiettivi"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"

@@ -13,7 +13,7 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>20.0</Pierce>
+      <Pierce>16.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>55.0</MaxRange>
       <MinRange>13.0</MinRange>
@@ -21,14 +21,19 @@
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Spread>2.0</Spread>
+      <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>
   </Attack>
   <BuildingAI>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
+    <Category>Outpost</Category>
+    <Distance>
+      <FromClass>Outpost</FromClass>
+      <MinDistance>50</MinDistance>
+    </Distance>
     <Territory>own neutral</Territory>
-    <Category>House</Category>
   </BuildRestrictions>
   <Cost>
     <BuildTime>40</BuildTime>

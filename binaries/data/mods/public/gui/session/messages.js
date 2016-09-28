@@ -15,9 +15,14 @@ const g_ChatTimeout = 30;
 const g_ChatLines = 20;
 
 /**
- * The strings to be displayed including sender and formating.
+ * The currently displayed strings, limited by the given timeframe and limit above.
  */
 var g_ChatMessages = [];
+
+/**
+ * All unparsed chat messages received since connect, including timestamp.
+ */
+var g_ChatHistory = [];
 
 /**
  * Holds the timer-IDs used for hiding the chat after g_ChatTimeout seconds.
@@ -104,6 +109,7 @@ var g_FormatChatMessage = {
 	"won": msg => formatWinMessage(msg),
 	"diplomacy": msg => formatDiplomacyMessage(msg),
 	"tribute": msg => formatTributeMessage(msg),
+	"barter": msg => formatBarterMessage(msg),
 	"attack": msg => formatAttackMessage(msg)
 };
 
@@ -172,6 +178,55 @@ var g_IsChatAddressee = {
 		addresseeGUID == Engine.GetPlayerGUID()
 };
 
+/**
+ * Notice only messages will be filtered that are visible to the player in the first place.
+ */
+var g_ChatHistoryFilters = [
+	{
+		"key": "all",
+		"text": translateWithContext("chat history filter", "Chat and notifications"),
+		"filter": (msg, senderID) => true
+	},
+	{
+		"key": "chat",
+		"text": translateWithContext("chat history filter", "Chat messages"),
+		"filter": (msg, senderID) => msg.type == "message"
+	},
+	{
+		"key": "player",
+		"text": translateWithContext("chat history filter", "Players chat"),
+		"filter": (msg, senderID) =>
+			msg.type == "message" &&
+			senderID > 0 && !isPlayerObserver(senderID)
+	},
+	{
+		"key": "ally",
+		"text": translateWithContext("chat history filter", "Ally chat"),
+		"filter": (msg, senderID) =>
+			msg.type == "message" &&
+			msg.cmd && msg.cmd == "/allies"
+	},
+	{
+		"key": "enemy",
+		"text": translateWithContext("chat history filter", "Enemy chat"),
+		"filter": (msg, senderID) =>
+			msg.type == "message" &&
+			msg.cmd && msg.cmd == "/enemies"
+	},
+	{
+		"key": "observer",
+		"text": translateWithContext("chat history filter", "Observer chat"),
+		"filter": (msg, senderID) =>
+			msg.type == "message" &&
+			msg.cmd && msg.cmd == "/observers"
+	},
+	{
+		"key": "private",
+		"text": translateWithContext("chat history filter", "Private chat"),
+		"filter": (msg, senderID) => !!msg.isVisiblePM
+	}
+];
+
 var g_PlayerStateMessages = {
 	"won": translate("You have won!"),
 	"defeated": translate("You have been defeated!")
@@ -212,7 +267,6 @@ var g_NotificationsTypes =
 			"guid": findGuidForPlayerID(player) || -1,
 			"text": notification.message
 		};
-
 		if (message.guid == -1)
 			message.player = player;
 
@@ -221,14 +275,12 @@ var g_NotificationsTypes =
 	"aichat": function(notification, player)
 	{
 		let message = {
-			"guid": findGuidForPlayerID(player) || -1,
 			"type": "message",
 			"text": notification.message,
+			"guid": findGuidForPlayerID(player) || -1,
+			"player": player,
 			"translate": true
 		};
-
-		if (message.guid == -1)
-			message.player = player;
 
 		if (notification.translateParameters)
 		{
@@ -289,6 +341,17 @@ var g_NotificationsTypes =
 			"sourcePlayer": notification.donator,
 			"targetPlayer": player,
 			"amounts": notification.amounts
+		});
+	},
+	"barter": function(notification, player)
+	{
+		addChatMessage({
+			"type": "barter",
+			"player": player,
+			"amountsSold": notification.amountsSold,
+			"amountsBought": notification.amountsBought,
+			"resourceSold": notification.resourceSold,
+			"resourceBought": notification.resourceBought
 		});
 	},
 	"attack": function(notification, player)
@@ -617,7 +680,7 @@ function updateChatAddressees()
 	let guids = sortGUIDsByPlayerID();
 	for (let guid of guids)
 	{
-		if (guid == Engine.GetPlayerGUID())
+		if (guid == Engine.GetPlayerGUID() || guid == "local")
 			continue;
 
 		let playerID = g_PlayerAssignments[guid].player;
@@ -703,6 +766,7 @@ function addChatMessage(msg)
 	if (!formatted)
 		return;
 
+	// Update chat overlay
 	g_ChatMessages.push(formatted);
 	g_ChatTimers.push(setTimeout(removeOldChatMessage, g_ChatTimeout * 1000));
 
@@ -710,6 +774,23 @@ function addChatMessage(msg)
 		removeOldChatMessage();
 	else
 		Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+
+	// Save to chat history
+	let historical = {
+		"txt": formatted,
+		"timePrefix": sprintf(translate("\\[%(time)s]"), {
+			"time": Engine.FormatMillisecondsIntoDateString(new Date().getTime(), translate("HH:mm"))
+		}),
+		"filter": {}
+	};
+
+	// Apply the filters now before diplomacies or playerstates change
+	let senderID = msg.guid && g_PlayerAssignments[msg.guid] ? g_PlayerAssignments[msg.guid].player : 0;
+	for (let filter of g_ChatHistoryFilters)
+		historical.filter[filter.key] = filter.filter(msg, senderID);
+
+	g_ChatHistory.push(historical);
+	updateChatHistory();
 }
 
 /**
@@ -797,6 +878,24 @@ function formatTributeMessage(msg)
 	});
 }
 
+function formatBarterMessage(msg)
+{
+	if (!g_IsObserver)
+		return "";
+
+	let amountsSold = {};
+	amountsSold[msg.resourceSold] = msg.amountsSold;
+
+	let amountsBought = {};
+	amountsBought[msg.resourceBought] = msg.amountsBought;
+
+	return sprintf(translate("%(player)s bartered %(amountsBought)s for %(amountsSold)s."), {
+		"player": colorizePlayernameByID(msg.player),
+		"amountsBought": getLocalizedResourceAmounts(amountsBought),
+		"amountsSold": getLocalizedResourceAmounts(amountsSold)
+	});
+}
+
 function formatAttackMessage(msg)
 {
 	if (msg.player != g_ViewedPlayer)
@@ -861,7 +960,7 @@ function formatChatCommand(msg)
 
 /**
  * Checks if the current user is an addressee of the chatmessage sent by another player.
- * Sets the context of that message.
+ * Sets the context and potentially addresseeGUID of that message.
  * Returns true if the message should be displayed.
  *
  * @param {Object} msg
@@ -872,24 +971,19 @@ function parseChatAddressee(msg)
 		return true;
 
 	// Split addressee command and message-text
-	let cmd = msg.text.split(/\s/)[0];
-	msg.text = msg.text.substr(cmd.length + 1);
+	msg.cmd = msg.text.split(/\s/)[0];
+	msg.text = msg.text.substr(msg.cmd.length + 1);
 
-	if (cmd == "/ally")
-		cmd = "/allies";
+	// GUID is "local" in singleplayer, some string in multiplayer.
+	// Chat messages sent by the simulation (AI) come with the playerID.
+	let senderID = msg.player ? msg.player : (g_PlayerAssignments[msg.guid] || msg).player;
 
-	if (cmd == "/enemy")
-		cmd = "/enemies";
-
-	if (cmd == "/observer")
-		cmd = "/observers";
-
-	// GUID for players and observers, ID for bots
-	let senderID = (g_PlayerAssignments[msg.guid] || msg).player;
-	let isSender = msg.guid ? msg.guid == Engine.GetPlayerGUID() : senderID == Engine.GetPlayerID();
+	let isSender = msg.guid && msg.guid != "local" ?
+		msg.guid == Engine.GetPlayerGUID() :
+		senderID == Engine.GetPlayerID();
 
 	// Parse private message
-	let isPM = cmd == "/msg";
+	let isPM = msg.cmd == "/msg";
 	let addresseeGUID;
 	let addresseeIndex;
 	if (isPM)
@@ -912,20 +1006,22 @@ function parseChatAddressee(msg)
 	}
 
 	// Set context string
-	if (!g_ChatAddresseeContext[cmd])
+	if (!g_ChatAddresseeContext[msg.cmd])
 	{
 		if (isSender)
-			warn("Unknown chat command: " + cmd);
+			warn("Unknown chat command: " + msg.cmd);
 		return false;
 	}
-	msg.context = g_ChatAddresseeContext[cmd];
+	msg.context = g_ChatAddresseeContext[msg.cmd];
 
 	// For observers only permit public- and observer-chat and PM to observers
 	if (isPlayerObserver(senderID) &&
-	    (isPM && !isPlayerObserver(addresseeIndex) || !isPM && cmd != "/observers"))
+	    (isPM && !isPlayerObserver(addresseeIndex) || !isPM && msg.cmd != "/observers"))
 		return false;
+	let visible = isSender || g_IsChatAddressee[msg.cmd](senderID, addresseeGUID);
+	msg.isVisiblePM = isPM && visible;
 
-	return isSender || g_IsChatAddressee[cmd](senderID, addresseeGUID);
+	return visible;
 }
 
 /**

@@ -56,36 +56,39 @@ var g_ScorePanelsData = {
 	"units": {
 		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Total"), "yStart": 34, "width": 120 },
-			{ "caption": translate("Infantry"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Worker"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Cavalry"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Champion"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Heroes"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Navy"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Traders"), "yStart": 34, "width": 100 }
+			{ "caption": translate("Total"), "yStart": 34, "width": 105 },
+			{ "caption": translate("Infantry"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Worker"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Cavalry"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Champion"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Heroes"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Siege"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Navy"), "yStart": 34, "width": 85 },
+			{ "caption": translate("Traders"), "yStart": 34, "width": 85 }
 		],
 		"titleHeadings": [
 			{
-				"caption": sprintf(translate("Units Statistics (%(trained)s / %(lost)s / %(killed)s)"),
+				"caption": sprintf(translate("Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"),
 					{
 						"trained": g_TrainedColor + translate("Trained") + '[/color]',
-						"lost": g_LostColor + translate("Lost") + '[/color]',
-						"killed": g_KilledColor + translate("Killed") + '[/color]'
+						"killed": g_KilledColor + translate("Killed") + '[/color]',
+						"captured": g_CapturedColor + translate("Captured") + '[/color]',
+						"lost": g_LostColor + translate("Lost") + '[/color]'
 					}),
 				"yStart": 16,
 				"width": (100 * 7 + 120)
 			},	// width = 820
 		],
 		"counters": [
-			{ "width": 120, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateUnits, "verticalOffset": 12 }
+			{ "width": 105, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 105, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateUnitsTeam
 	},

@@ -44,10 +44,10 @@ function setPanelObjectPosition(object, index, rowLength, vMargin = 1, hMargin =
  * (i.e. panels with rows of icons) for the currently selected unit.
  *
  * @param guiName Short identifier string of this panel. See g_SelectionPanels.
- * @param unitEntState Entity state of the selected unit with the lowest id.
- * @param payerState Player state
+ * @param unitEntStates Entity states of the selected units
+ * @param playerState Player state
  */
-function setupUnitPanel(guiName, unitEntState, playerState)
+function setupUnitPanel(guiName, unitEntStates, playerState)
 {
 	if (!g_SelectionPanels[guiName])
 	{
@@ -56,7 +56,7 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	}
 
 	let selection = g_Selection.toList();
-	let items = g_SelectionPanels[guiName].getItems(unitEntState, selection);
+	let items = g_SelectionPanels[guiName].getItems(unitEntStates);
 
 	if (!items || !items.length)
 		return;
@@ -72,9 +72,9 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 		let data = {
 			"i": i,
 			"item": items[i],
-			"selection": selection,
 			"playerState": playerState,
-			"unitEntState": unitEntState,
+			"player": unitEntStates[0].player,
+			"unitEntStates": unitEntStates,
 			"rowLength": rowLength,
 			"numberOfItems": numberOfItems,
 			// depending on the XML, some of the GUI objects may be undefined
@@ -119,13 +119,12 @@ function setupUnitPanel(guiName, unitEntState, playerState)
  * Delegates to setupUnitPanel to set up individual subpanels,
  * appropriately activated depending on the selected unit's state.
  *
- * @param entState Entity state of the selected unit with the lowest id.
+ * @param entStates Entity states of the selected units
  * @param supplementalDetailsPanel Reference to the
  *        "supplementalSelectionDetails" GUI Object
  * @param commandsPanel Reference to the "commandsPanel" GUI Object
- * @param selection Array of currently selected entity IDs.
  */
-function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
+function updateUnitCommands(entStates, supplementalDetailsPanel, commandsPanel)
 {
 	for (let panel in g_SelectionPanels)
 		g_SelectionPanels[panel].used = false;
@@ -137,7 +136,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	let playerStates = GetSimState().players;
 	let playerState = playerStates[Engine.GetPlayerID()];
 
-	if (controlsPlayer(entState.player) || g_IsObserver)
+	if (g_IsObserver || entStates.every(entState => controlsPlayer(entState.player)))
 	{
 		for (var guiName of g_PanelsOrder)
 		{
@@ -145,18 +144,18 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			    g_SelectionPanels[guiName].conflictsWith.some(p => g_SelectionPanels[p].used))
 				continue;
 
-			setupUnitPanel(guiName, entState, playerStates[entState.player]);
+			setupUnitPanel(guiName, entStates, playerStates[entStates[0].player]);
 		}
 
 		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = false;
 	}
-	else if (playerState.isMutualAlly[entState.player]) // owned by allied player
+	else if (playerState.isMutualAlly[entStates[0].player]) // owned by allied player
 	{
 		// TODO if there's a second panel needed for a different player
 		// we should consider adding the players list to g_SelectionPanels
-		setupUnitPanel("Garrison", entState, playerState);
-		setupUnitPanel("AllyCommand", entState, playerState);
+		setupUnitPanel("Garrison", entStates, playerState);
+		setupUnitPanel("AllyCommand", entStates, playerState);
 
 		supplementalDetailsPanel.hidden = !g_SelectionPanels.Garrison.used;
 

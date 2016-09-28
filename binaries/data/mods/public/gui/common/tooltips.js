@@ -235,7 +235,7 @@ function getGarrisonTooltip(template)
 			sprintf(translate("%(healRateLabel)s %(value)s %(health)s / %(second)s"), {
 				"healRateLabel": headerFont(translate("Heal:")),
 				"value": Math.round(template.garrisonHolder.buffHeal),
-				"health": unitFont(translate("health")),
+				"health": unitFont(translate("Health")),
 				"second": unitFont(translate("second")),
 			})
 		);
@@ -284,9 +284,9 @@ function getRepairRateTooltip(template)
 	return sprintf(translate("%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
 		"repairRateLabel": headerFont(translate("Repair Rate:")),
 		"value": template.repairRate.toFixed(1),
-		"health": unitFont(translate("health")),
+		"health": unitFont(translate("Health")),
 		"second": unitFont(translate("second")),
-		"worker": unitFont(translate("worker"))
+		"worker": unitFont(translate("Worker"))
 	});
 }
 
@@ -298,9 +298,9 @@ function getBuildRateTooltip(template)
 	return sprintf(translate("%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"), {
 		"buildRateLabel": headerFont(translate("Build Rate:")),
 		"value": template.buildRate.toFixed(1),
-		"health": unitFont(translate("health")),
+		"health": unitFont(translate("Health")),
 		"second": unitFont(translate("second")),
-		"worker": unitFont(translate("worker"))
+		"worker": unitFont(translate("Worker"))
 	});
 }
 

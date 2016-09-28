@@ -219,6 +219,8 @@ function openChat(teamChat = false)
 
 	Engine.GetGUIObjectByName("chatInput").focus();
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
+
+	updateChatHistory();
 }
 
 function closeChat()
@@ -226,6 +228,70 @@ function closeChat()
 	Engine.GetGUIObjectByName("chatInput").caption = "";
 	Engine.GetGUIObjectByName("chatInput").blur(); // Remove focus
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = true;
+}
+
+function initChatWindow()
+{
+	let filters = prepareForDropdown(g_ChatHistoryFilters);
+	let chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
+	chatHistoryFilter.list = filters.text;
+	chatHistoryFilter.list_data = filters.key;
+	chatHistoryFilter.selected = 0;
+
+	Engine.GetGUIObjectByName("extendedChat").checked =
+		Engine.ConfigDB_GetValue("user", "chat.session.extended") == "true";
+
+	resizeChatWindow();
+}
+
+function resizeChatWindow()
+{
+	// Hide/show the panel
+	let chatHistoryPage = Engine.GetGUIObjectByName("chatHistoryPage");
+	let extended = Engine.GetGUIObjectByName("extendedChat").checked;
+	chatHistoryPage.hidden = !extended;
+
+	// Resize the window
+	let chatDialogPanel = Engine.GetGUIObjectByName("chatDialogPanel");
+	let chatPage = Engine.GetGUIObjectByName("chatPage");
+	let panelSize = chatDialogPanel.size;
+	let topOffset = 80;
+	let height = -chatPage.size.top + (extended ? chatHistoryPage.size.bottom : 0);
+	panelSize.top = -height / 2 - topOffset;
+	panelSize.bottom = height / 2 - topOffset;
+	chatDialogPanel.size = panelSize;
+}
+
+function updateChatHistory()
+{
+	if (Engine.GetGUIObjectByName("chatDialogPanel").hidden ||
+	    !Engine.GetGUIObjectByName("extendedChat").checked)
+		return;
+
+	let chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
+	let selected = chatHistoryFilter.list_data[chatHistoryFilter.selected];
+
+	Engine.GetGUIObjectByName("chatHistory").caption =
+		g_ChatHistory.filter(msg => msg.filter[selected]).map(msg =>
+			Engine.ConfigDB_GetValue("user", "chat.timestamp") == "true" ?
+				sprintf(translate("%(time)s %(message)s"), {
+					"time": msg.timePrefix,
+					"message": msg.txt
+				}) :
+				msg.txt
+		).join("\n");
+}
+
+function onToggleChatWindowExtended()
+{
+	// Save user preference
+	let extended = Engine.GetGUIObjectByName("extendedChat").checked.toString();
+	Engine.ConfigDB_CreateValue("user", "chat.session.extended", extended);
+	Engine.ConfigDB_WriteValueToFile("user", "chat.session.extended", extended, "config/user.cfg");
+
+	resizeChatWindow();
+
+	Engine.GetGUIObjectByName("chatInput").focus();
 }
 
 function openDiplomacy()

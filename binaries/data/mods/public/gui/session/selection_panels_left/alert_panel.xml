@@ -4,8 +4,8 @@
 	size="4 100%-43 100%-4 100%-4"
 	type="text"
 >
-	<object size="100%-72 2 100% 100%">
-		<repeat count="2">
+	<object size="100%-110 2 100% 100%-2">
+		<repeat count="3">
 			<object name="unitAlertButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
 				<object name="unitAlertIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
 			</object>

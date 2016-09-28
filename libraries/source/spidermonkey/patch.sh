@@ -48,12 +48,3 @@ patch -p1 < ../FixZLibMozBuild.diff
 #    Always make sure there are 3 free slots for events.
 # ===
 patch -p1  < ../FixTracelogger.diff
-
-# Hack for fixing the segfault occurring in the GC when built with GCC 6
-# This could be fixed by applying the following patches
-#   https://bugzilla.mozilla.org/show_bug.cgi?id=1245783#c36
-# but they are not compatible with MSVC 2013, which doesn't support unrestricted
-# unions (the contributor of those patches somehow managed to build under VS2013
-# but I can't).
-# TODO: test those patches with VS 2015.
-patch -p1 < ../FixGCSegfault.diff

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 10:21+0000\n"
+"POT-Creation-Date: 2016-09-23 09:01+0200\n"
+"PO-Revision-Date: 2016-09-23 10:17+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -53,21 +53,6 @@ msgstr "Tuineachas an airm"
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:49
-#: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_defense_defense_tower.xml:57
-#: simulation/templates/template_structure_defense_wallset.xml:10
-#: simulation/templates/template_structure_economic_market.xml:24
-#: simulation/templates/template_structure_military_blacksmith.xml:32
-#: simulation/templates/template_structure_military_embassy.xml:24
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/cart_super_dock.xml:37
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-#: simulation/templates/structures/maur_elephant_stables.xml:29
-#: simulation/templates/structures/ptol_lighthouse.xml:20
-msgid "Town"
-msgstr "Baile"
-
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:25
 msgid "Stoa"
 msgstr "Stoa"
@@ -79,6 +64,22 @@ msgstr "Stoa rìoghail Greugach"
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
 msgstr "Trus aonadan sònraichte."
+
+#: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:31
+#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_economic_market.xml:24
+#: simulation/templates/template_structure_military_blacksmith.xml:32
+#: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/gaul_blacksmith.xml:11
+#: simulation/templates/structures/gaul_tavern.xml:29
+#: simulation/templates/structures/maur_elephant_stables.xml:29
+#: simulation/templates/structures/ptol_lighthouse.xml:20
+msgid "Town"
+msgstr "Baile"
 
 #: simulation/templates/template_structure_civic_house.xml:34
 msgid "Increase the population limit."
@@ -147,7 +148,7 @@ msgid "Stone Wall"
 msgstr "Balla cloiche"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
-#: simulation/templates/template_structure_defense_wallset.xml:12
+#: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Tog balla timcheall air a’ bhaile agad airson dìona làidir."
 
@@ -177,7 +178,7 @@ msgstr "Turaid balla"
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Losgaidh e saighdean. Cuir gearastan ann gus balla a’ bhaile a dhìon an aghaidh ionnsaighean."
 
-#: simulation/templates/template_structure_defense_wallset.xml:11
+#: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Balla a’ bhaile"
 
@@ -186,11 +187,11 @@ msgstr "Balla a’ bhaile"
 msgid "Wooden Tower"
 msgstr "Tùr fiodha"
 
-#: simulation/templates/template_structure_economic.xml:11
+#: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
 msgstr "Togalach eaconamach"
 
-#: simulation/templates/template_structure_economic.xml:12
+#: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
 msgstr "An eaconamaidh"
@@ -280,18 +281,18 @@ msgstr "Cala"
 msgid "Embassy"
 msgstr "Ambasaid"
 
-#: simulation/templates/template_structure_military_fortress.xml:30
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:29
+#: simulation/templates/template_structure_military_fortress.xml:62
 msgid "Fortress"
 msgstr "Dùn"
 
-#: simulation/templates/template_structure_military_fortress.xml:64
+#: simulation/templates/template_structure_military_fortress.xml:63
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
 msgstr "Trèanaich curaidhean, laoich is airm sèiste. Rannsaich leasachaidhean air innealan sèiste."
 
-#: simulation/templates/template_structure_military_fortress.xml:66
+#: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
 #: simulation/templates/template_structure_wonder.xml:49
 msgid "City"
@@ -556,15 +557,15 @@ msgstr "Caer"
 msgid "Cavalidos"
 msgstr "Cavalidos"
 
-#: simulation/templates/structures/brit_crannog.xml:21
+#: simulation/templates/structures/brit_crannog.xml:13
 msgid "Island Settlement"
 msgstr "Tuineachadh eilein"
 
-#: simulation/templates/structures/brit_crannog.xml:24
+#: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
 msgstr "Cuir ri na tha ceadaichte dhut a shluagh is dìon slighean-uisge."
 
-#: simulation/templates/structures/brit_crannog.xml:25
+#: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
@@ -604,7 +605,7 @@ msgstr "Annedd"
 msgid "Kennel"
 msgstr "Taigh-chon"
 
-#: simulation/templates/structures/brit_kennel.xml:35
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Train Celtic war dogs."
 msgstr "Trèanaich coin-chogaidh Cheilteach"
 
@@ -1147,10 +1148,8 @@ msgid "Duvarthi Visadahyu"
 msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
-msgid ""
-"Special Building.\n"
-"Train War Elephants and Kardakes mercenaries."
-msgstr "Togalach sònraichte\nTrèanaich ailbheanan-cogaidh is saighdearan-duaise Kardakes."
+msgid "Train War Elephants and Kardakes mercenaries."
+msgstr "Trèanaich ailbheanan-cogaidh is saighdearan-duaise Kardakes."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"

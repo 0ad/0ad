@@ -296,6 +296,8 @@ function init(initData, hotloadData)
 	if (hotloadData)
 		g_Selection.selected = hotloadData.selection;
 
+	initChatWindow();
+
 	sendLobbyPlayerlistUpdate();
 	onSimulationUpdate();
 	setTimeout(displayGamestateNotifications, 1000);
@@ -1175,6 +1177,7 @@ function reportGame()
 		"Cavalry",
 		"Champion",
 		"Hero",
+		"Siege",
 		"Ship",
 		"Trader"
 	];
