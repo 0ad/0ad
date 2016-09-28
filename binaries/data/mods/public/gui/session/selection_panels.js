@@ -1115,10 +1115,16 @@ g_SelectionPanels.Upgrade = {
 
 		let neededResources;
 		if (data.item.cost)
+		{
+			for (let cost in data.item.cost)
+				if (cost != "time")
+					data.item.cost[cost] *= data.unitEntStates.length;
+
 			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": data.item.cost,
 				"player": data.player
 			});
+		}
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item.entity);
 		let progress = data.unitEntStates[0].upgrade.progress || 0;
@@ -1179,6 +1185,8 @@ g_SelectionPanels.Upgrade = {
 
 		data.icon.sprite = modifier + "stretched:session/" +
 			(data.item.icon || "portraits/" + template.icon);
+
+		data.countDisplay.caption = data.unitEntStates.length > 1 ? data.unitEntStates.length : "";
 
 		let progressOverlay = Engine.GetGUIObjectByName("unitUpgradeProgressSlider[" + data.i + "]");
 		if (isUpgrading)
