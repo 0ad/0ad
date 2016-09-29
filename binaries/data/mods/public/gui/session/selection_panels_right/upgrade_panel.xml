@@ -9,6 +9,7 @@
 		<object name="unitUpgradeUpgradeIcon[n]" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/upgrade.png"/>
 		<object name="unitUpgradeProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 43 43" z="20"/>
 		<object name="unitUpgradeSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
+		<object name="unitUpgradeCount[n]" ghost="true" style="groupIconsText" type="text" z="30"/>
 		</object>
 	</repeat>
 	</object>
