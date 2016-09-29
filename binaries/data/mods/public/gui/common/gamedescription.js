@@ -221,7 +221,7 @@ function getGameDescription(extended = false)
 	else
 		titles.push({
 			"label": translate("Diplomacy"),
-			"value": translate("Players can setup alliances and declare war on allies.")
+			"value": translate("Players can make alliances and declare war on allies.")
 		});
 
 	if (g_GameAttributes.settings.LastManStanding)

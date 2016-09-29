@@ -333,7 +333,7 @@ function updateHotkeyTooltips()
 		translate("Find idle worker");
 
 	Engine.GetGUIObjectByName("tradeHelp").tooltip =
-		translate("Select one goods as origin of the changes, then use the arrows of the target goods to make the changes.") +
+		translate("Select one type of goods as origin of the changes, then use the arrows of the target type of goods to make the changes.") +
 		colorizeHotkey(
 			"\n" + translate("Using %(hotkey)s will put the selected resource to 100%%."),
 			"session.fulltradeswap");

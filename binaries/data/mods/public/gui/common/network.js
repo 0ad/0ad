@@ -60,7 +60,7 @@ function getDisconnectReason(id, wasConnected)
 	{
 	case 0: return wasConnected ?
 		translateWithContext("network disconnect", "Unknown reason") :
-		translate("This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall or anti-virus software");
+		translate("This is often caused by UDP port 20595 not being forwarded on the host side, by a firewall, or anti-virus software");
 	case 1: return translate("The host has ended the game");
 	case 2: return translate("Incorrect network protocol version");
 	case 3: return translate("Game is loading, please try again later");
