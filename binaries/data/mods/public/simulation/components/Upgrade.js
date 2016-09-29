@@ -55,6 +55,7 @@ Upgrade.prototype.Schema =
 Upgrade.prototype.Init = function()
 {
 	this.upgrading = false;
+	this.completed = false;
 	this.elapsedTime = 0;
 	this.timer = undefined;
 
@@ -75,7 +76,8 @@ Upgrade.prototype.Init = function()
 // This will also deal with the "OnDestroy" case.
 Upgrade.prototype.OnOwnershipChanged = function(msg)
 {
-	this.CancelUpgrade(msg.from);
+	if (!this.completed)
+		this.CancelUpgrade(msg.from);
 	if (msg.to !== -1)
 		this.owner = msg.to;
 };
@@ -84,7 +86,7 @@ Upgrade.prototype.ChangeUpgradedEntityCount = function(amount)
 {
 	if (!this.IsUpgrading())
 		return;
-	
+
 	let cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let template = cmpTempMan.GetTemplate(this.upgrading);
 
@@ -296,6 +298,8 @@ Upgrade.prototype.UpgradeProgress = function(data, lateness)
 	}
 
 	this.CancelTimer();
+
+	this.completed = true;
 
 	let newEntity = ChangeEntityTemplate(this.entity, this.upgrading);
 
