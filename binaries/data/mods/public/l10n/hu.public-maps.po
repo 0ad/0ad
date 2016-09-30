@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-09 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 13:52+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-29 09:36+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -54,12 +54,11 @@ msgstr "Alpesi völgy"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
-"The Amazon River in South America is the largest river by discharge of water"
-" in the world, and the longest in length. The Amazon basin is the largest "
-"drainage basin in the world, with an area of approximately 7,050,000 square "
-"kilometers, and accounts for roughly one-fifth of the world's total river "
-"flow."
-msgstr "A dél-amerikai Amazonas folyó a világ legnagyobb vízhozamú és leghosszabb folyama. Az Amazonas-medence a világ legnagyobb vízgyűjtőterülete, körölbelül 7.050.000 négyzetkilométeres, és a világ vízfolyásainak durván egyötödét adja."
+"Players are transported into the tropics to the mouth of the great Amazon, "
+"which is arguably the longest and largest river in the world. Will you "
+"triumph and take control of this tropical paradise, or will you be trampled "
+"into the dust by ruthless and ambitious enemies?"
+msgstr "A játékosok elkerülnek a trópusokra, a nagy Amazonas szájához, amely vitathatatlanul a világ leghosszabb és legnagyobb folyója. Győzedelmeskedni fogsz, és átveszed at eme trópusi paradicsom feletti uralmat, vagy a porba tipornak a könyörtelen és becsvágyó ellenségek? "
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
@@ -118,10 +117,14 @@ msgstr "Atlasz-hegység"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"The Kingdom of Bahrain is an island country situated between Saudia Arabia "
-"to the west and Qatar to the east. From the 6th to 3rd century BC, Bahrain "
-"was part of the Persian Empire."
-msgstr "A Bahreini Királyság egy szigetország, amely Szaúd-Arábiától keletre, Katartól pedig nyugatra található. Az i. e. 6. századtól a 3.-ig, Bahrein a Perzsa Birodalom része volt."
+"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
+"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
+" and also centre of pearl trading due to its magnificent pearl fisheries, "
+"Bahrain is never left unoccupied for long. But now, with the previous "
+"occupants gone, the land prepares for war. Will you be the next Ruler of "
+"Bahrain?"
+msgstr "Bahrein, a i. e. 800-ban elbukott dilmun civilizáció központja volt, amelyet sumerok, asszírok, babilóniaik, perzsák és más későbbi népek irányítottak. A Perzsa-öbölben található stratégiailag jó helyen lévő sziget, amely a gyöngykereskedelem központja is a gyöngyhalászat miatt, sosem marad sokáig lakatlan. De most, hogy az előző lakók elmentek, a föld felkészül a háborúra. Te leszel Bahrein következő uralkodója?"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -137,6 +140,17 @@ msgstr "Egy kísérleti térkép az erózió által előállított magasságtér
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "Belga felföldek"
+
+#: maps/random/caledonian_meadows.jsonsettings.Description
+msgid ""
+"Fertile lands surrounded by harsh terrain.\n"
+"Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt barely died away.\n"
+"Aiming at a realistic terrain, this map might not always be balanced."
+msgstr "Termékeny földeket övez a durva terep.\nA közelmúltbeli hóesések maradványai még mindig kísértik az erdőket, és az olvadás okozta hegyi folyók alig tűntek még el.\nA realisztikus terepre törekedve, ez a térkép lehet, hogy nem mindig kiegyensúlyozott."
+
+#: maps/random/caledonian_meadows.jsonsettings.Name
+msgid "Caledonian Meadows"
+msgstr "Kaledóniai rétek"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -308,8 +322,11 @@ msgstr "A pokol hágója"
 #: maps/random/howe_sound.jsonsettings.Description
 msgid ""
 "Howe Sound is a roughly triangular network of fjords located directly "
-"northwest of Vancouver in British Columbia, Canada."
-msgstr "Howe Sound egy körülbelül háromszög alakú fjordhálózat pontosan északnyugatra Vancouvertől, Brit Columbiában, Kanadában."
+"northwest of present-day Vancouver, on the West Coast of today's Canada. The"
+" waters teem with whales and fish, while on land herds of muskox dig through"
+" deep snow to get at mushrooms and last summer's roots. Mines and forests "
+"also abound in this cold haven."
+msgstr "Howe Sound egy durván háromszög alakú fjordhálózat a jelenkori Vancouvertől pontosan északnyugatra, a mai Kanada nyugati partján. A vizek telis-tele bálnákkal és halakkal, míg a szárazföldön pézsmatulok csordák ásnak a hóban, gombák és a tavalyi nyárról maradt gyökerek után kutatva. Bányákban és erdőkben is bővelkedik ez a hideg menedékhely."
 
 #: maps/random/howe_sound.jsonsettings.Name
 msgid "Howe Sound"
@@ -402,11 +419,15 @@ msgstr "Szárazföld"
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
-"The Sea of Marmara connects the Black Sea to the Aegean Sea and separates "
-"Turkey into it's European and Asian parts. The ancient city of Troy stood at"
-" the western entrance to the sea which became the focal point of the Trojan "
-"War."
-msgstr "A Márvány-tenger köti össze a Fekete-tengert az Égei-tengerrel, és kettéválasztja Törökországot az európai és az ázsiai részeire. Az ókori Trója városa a tenger nyugati bejáratánál állt, amely a trójai háború fókuszpontja lett"
+"The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
+"the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
+" the Hellespont (Dardanelles), at the entrance of which the ancient city of "
+"Ilium (Troy) once stood. To the north-east lies the Bosporus Thraciae "
+"(Bosporus strait) where in time the Greek city of Byzantium would be "
+"founded, later to become the capital of the great Byzantine Empire under the"
+" new name of Constantinople. Players start on fertile land with adequate "
+"resources."
+msgstr "A Propontis (Márvány-tenger) köti össze a Pontus Euxinust (Fekete-tenger) az Égei-tengerrel, és elválasztja Kis-Ázsiát Trákiától. Délnyugatra a Hellészpontosz (Dardanellák) fekszik, amelynek a bejáratánál egykor Ilium (Trója) városa állt. Északkeletre a Bosporus Thraciae (Boszporusz-szoros) fekszik, ahol idővel Bizánc görög városa fog állni, amely később a nagy Bizánci Birodalom központja lesz, az új, Konstantinápoly név alatt. A játékosok termékeny földön kezdenek, elégséges nyersanyagokkal."
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
@@ -414,12 +435,17 @@ msgstr "Márvány-tenger"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
-"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
-" the Mediterranean Basin and almost completely enclosed by land: on the "
-"north by Southern Europe and Anatolia, on the south by North Africa, and on "
-"the east by the Levant. The name Mediterranean is derived from the Latin "
-"mediterraneus, meaning 'inland' or 'in the middle of land'."
-msgstr "A Földközi-tenger az Atlanti-óceánnal van összekötve, a Földközi-tenger medencéje veszi körül, és majdnem teljesen közrezárja a szárazföld: az északon Dél-Európa és Anatólia, délen Észak-Afrika, kelenten pedig Levante. A Mediterráneum név a latin mediterraneus szóból származik, amely jelentése „szárazföldi” vagy „a föld közepén”."
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "A Földközi-tenger: a föníciaiak, görögök, egyiptomiak és később a rómaiak otthona. Fogták a mezopotámiai kezdetleges tudást és szervezési elveket, és valami többé kovácsolták, ezáltal eltolva a tanulás és a tudás központját a Földközi-tenger partvidékére, megalapozva a ma ismert civilizációt. A Földközi-tenger majdnem teljesen földdel körülzárt: északról Gallia Transalpina (Transzalpoki Gallia), Itália, Görögország (Graecia) és Anatólia, keletről Szíria, délről Líbia és Mauritánia, nyugaton pedig Ibéria. A Földközi-tenger a latin nevéből származik, de a rómaiak a „Mare Internum” vagy a „Mare Nostrum” nevet használták."
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
@@ -533,9 +559,10 @@ msgstr "Pireneusi hegylánc"
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
-"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
-"and Asia and the world's northernmost tropical sea."
-msgstr "A Vörös-tenger az Indiai-óceán beltengere, amely Afrika és Ázsia között fekszik, és a világ legészakibb trópusi tengere."
+"Historically, the Red Sea was a sea of many nations. Ideally situated for "
+"trade with the Far East, it was coveted by all. Although dry, this land is "
+"by no means inhospitable, and is amply provided with all resources."
+msgstr "Történelmileg a Vörös-tenger sok nemzet tengere volt. Ideálisan helyen található a Távol-Kelettel történő kereskedelemhez, sokan áhítoznak rá. Bár száraz, ez a föld korántsem lakhatatlan, és bőségesen elérhető minden nyersanyag."
 
 #: maps/random/red_sea.jsonsettings.Name
 msgid "Red Sea"
@@ -562,13 +589,11 @@ msgstr "Folyók"
 
 #: maps/random/rouen.jsonsettings.Description
 msgid ""
-"Rouen is a city on the River Seine in the north of France and the capital of"
-" Normandy. Formerly one of the largest and most prosperous cities of "
-"medieval Europe, Rouen was the seat of the Exchequer of Normandy during the "
-"Middle Ages. It was one of the capitals of the Anglo-Norman dynasties, which"
-" ruled both England and large parts of modern France from the 11th to the "
-"15th centuries."
-msgstr "Rouen egy észak-franciaországi város a Szajna folyó mentén, és Normandia fővárosa. A középkori Európa egyik legnagyobb és leggazdagabb városaként, Rouen a Normandiai Kincstár székhelye volt. Az anglonormand dinasztiák egyik fővárosa volt, akik Angliának és a modern Franciaországnak a nagy részét uralták a 11.-től a 15. századig."
+"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
+" in the place of the modern-day city of Rouen. Destined to become one of the"
+" largest and most prosperous cities of medeival Europe and one of the Anglo-"
+"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
+msgstr "A játékosok a Sequana (Szajna) folyó partjainál kezdenek, Észak-Galliában, a mai Rouen városa helyén. Arra rendeltetve, hogy a középkori Európa egyik legnagyobb és leggazdagabb városa, valamint az anglo-normann dinasztia székhelye legyen, Rouen még egy békés vidék – de már nem sokáig."
 
 #: maps/random/rouen.jsonsettings.Name
 msgid "Rouen"

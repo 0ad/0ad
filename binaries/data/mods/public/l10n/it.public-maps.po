@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-09 09:01+0200\n"
-"PO-Revision-Date: 2016-09-25 17:29+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-28 20:01+0000\n"
 "Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -53,12 +53,11 @@ msgstr "Valle Alpina"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
-"The Amazon River in South America is the largest river by discharge of water"
-" in the world, and the longest in length. The Amazon basin is the largest "
-"drainage basin in the world, with an area of approximately 7,050,000 square "
-"kilometers, and accounts for roughly one-fifth of the world's total river "
-"flow."
-msgstr "Il Rio delle Amazzoni è il più grande fiume, per portata d'acqua, del mondo, nonché il più lungo. Il bacino Amazzonico è il più grande bacino idrografico mondiale, con un'area di circa 7.050.000 chilometri quadrati, e rappresenta un quinto di tutta la portata mondiale dei fiumi."
+"Players are transported into the tropics to the mouth of the great Amazon, "
+"which is arguably the longest and largest river in the world. Will you "
+"triumph and take control of this tropical paradise, or will you be trampled "
+"into the dust by ruthless and ambitious enemies?"
+msgstr "I giocatori sono trasportati nei tropici fino alla foce del grande Rio delle Amazzoni, che è probabilmente il fiume più lungo e più grande del mondo. Vorresti trionfare e prendere il controllo di questo paradiso tropicale, o sarai calpestato nella polvere da nemici spietati e ambiziosi?"
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
@@ -117,10 +116,14 @@ msgstr "Montagne dell'Atlante"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"The Kingdom of Bahrain is an island country situated between Saudia Arabia "
-"to the west and Qatar to the east. From the 6th to 3rd century BC, Bahrain "
-"was part of the Persian Empire."
-msgstr "Il Regno del Bahrain è uno stato insulare situato tra l'Arabia Saudita a ovest e il Qatar ad est. Dal 6° al 3 ° secolo AC, il Bahrain era parte dell'impero persiano."
+"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
+"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
+" and also centre of pearl trading due to its magnificent pearl fisheries, "
+"Bahrain is never left unoccupied for long. But now, with the previous "
+"occupants gone, the land prepares for war. Will you be the next Ruler of "
+"Bahrain?"
+msgstr "Bahrein, centro della civiltà Dilmun che decadde nel 800 AC, fu a sua volta controllata da Sumeri, Assiri, Babilonesi, Persiani ed altri popoli successivi. Un'isola in posizione strategica nel Sinus Persicus (Golfo Persico), ed anche il centro del commercio di perle per i suoi magnifici allevamenti di perle, Bahrain non è mai rimasta disabitata a lungo. Ma ora, con gli occupanti precedenti scomparsi, il territorio si prepara alla guerra. Vuoi essere il prossimo Sovrano del Bahrain?"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -136,6 +139,17 @@ msgstr "Una mappa sperimentale, usando la sua topografia genera un aspetto più 
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "Altipiani Belgi"
+
+#: maps/random/caledonian_meadows.jsonsettings.Description
+msgid ""
+"Fertile lands surrounded by harsh terrain.\n"
+"Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt barely died away.\n"
+"Aiming at a realistic terrain, this map might not always be balanced."
+msgstr "Terre fertili circondati da terreni duri.\nResti di recenti nevicate permangono ancora sulle foreste e fiumi resi torrenziali dallo scioglimento della neve a malapena si acquietano.\nPuntando su un terreno realistico, questa mappa potrebbe non essere sempre equilibrata."
+
+#: maps/random/caledonian_meadows.jsonsettings.Name
+msgid "Caledonian Meadows"
+msgstr "Prati Caledoni"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -307,8 +321,11 @@ msgstr "Passo dell'inferno"
 #: maps/random/howe_sound.jsonsettings.Description
 msgid ""
 "Howe Sound is a roughly triangular network of fjords located directly "
-"northwest of Vancouver in British Columbia, Canada."
-msgstr "La Baia di Howe è una grande baia triangolare con una rete di fiordi situata direttamente a nord ovest dell'attuale città di Vancouver nella Columbia Britannica, in Canada."
+"northwest of present-day Vancouver, on the West Coast of today's Canada. The"
+" waters teem with whales and fish, while on land herds of muskox dig through"
+" deep snow to get at mushrooms and last summer's roots. Mines and forests "
+"also abound in this cold haven."
+msgstr "La Baia di Howe è una rete approssimativamente triangolare di fiordi situati direttamente a nord ovest dell' odierna Vancouver, sulla costa occidentale del Canada attuale. Le acque pullulano di balene e pesci, mentre sulla terra branchi di buoi muschiati scavano nella neve alta per arrivare ai funghi e alle radici dell'estate precedente. Miniere e boschi sono abbondanti anche in questo paradiso freddo."
 
 #: maps/random/howe_sound.jsonsettings.Name
 msgid "Howe Sound"
@@ -401,11 +418,15 @@ msgstr "Terraferma"
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
-"The Sea of Marmara connects the Black Sea to the Aegean Sea and separates "
-"Turkey into it's European and Asian parts. The ancient city of Troy stood at"
-" the western entrance to the sea which became the focal point of the Trojan "
-"War."
-msgstr "Il Mar di Marmara collega il Mar Nero al Mar Egeo e divide la Turchia nelle sue parti europea e asiatica. L'antica città di Troia si trovava all'ingresso occidentale del mare che divenne il punto di riferimento della guerra di Troia."
+"The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
+"the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
+" the Hellespont (Dardanelles), at the entrance of which the ancient city of "
+"Ilium (Troy) once stood. To the north-east lies the Bosporus Thraciae "
+"(Bosporus strait) where in time the Greek city of Byzantium would be "
+"founded, later to become the capital of the great Byzantine Empire under the"
+" new name of Constantinople. Players start on fertile land with adequate "
+"resources."
+msgstr "Propontide (Mar di Marmara) collega il Pontus Euxinus (Mar Nero) al Mar Egeo, e separa l'Asia Minore dalla Tracia. A sud-ovest si trova l'Ellesponto (Dardanelli), all'ingresso del quale sorgeva l'antica città di Ilio (Troia). A nord-est si trova il Bosporus Thraciae (stretto del Bosforo), dove verrà fondata la città greca di Bisanzio, in seguito diventata la capitale del grande Impero Bizantino col nuovo nome di Costantinopoli. I giocatori iniziano su un terreno fertile con adeguate risorse."
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
@@ -413,12 +434,17 @@ msgstr "Marmara"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
-"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
-" the Mediterranean Basin and almost completely enclosed by land: on the "
-"north by Southern Europe and Anatolia, on the south by North Africa, and on "
-"the east by the Levant. The name Mediterranean is derived from the Latin "
-"mediterraneus, meaning 'inland' or 'in the middle of land'."
-msgstr "Il Mar mediterraneo è un mare circoscritto tra tre continenti, Europa, Asia, ed ,Africa è collegato attraverso stretti all'Oceano Atlantico ed al Mar Nero. Il suo nome deriva dal Latino Mediterraneus che significa \"in mezzo alle terre\"."
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Il Mediterraneo, casa dei Fenici, Greci, Egiziani ed in seguito dei Romani. Presero la conoscenza e principi di organizzazione rudimentali dalla Mesopotamia e la forgiarono in qualcosa di più, spostando così il centro di apprendimento e di conoscenza alla Costiera Mediterranea, gettando così le basi della civiltà così come la conosciamo oggi. Il Mar Mediterraneo è quasi completamente racchiuso da terre: a nord da Gallia Transalpina (Transalpin Gaul), Italia, Grecia (Graecia) e l'Anatolia, a est con la Siria, a sud con la Libia e la Mauritania, e a ovest con l'Iberia . Il nome Mediterraneo deriva dal latino, ma i romani stessi preferivano il termine 'Mare Internum' oppure 'Mare Nostrum'."
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
@@ -532,9 +558,10 @@ msgstr "Sierra Pirenei"
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
-"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
-"and Asia and the world's northernmost tropical sea."
-msgstr "Il Mar Rosso è un mare posto tra l'Africa e l'Asia, si apre a nord-ovest dell'Oceano Indiano e risale fino quasi al Mar Mediterraneo, è il mare tropicale più a nord nell'emisfero boreale."
+"Historically, the Red Sea was a sea of many nations. Ideally situated for "
+"trade with the Far East, it was coveted by all. Although dry, this land is "
+"by no means inhospitable, and is amply provided with all resources."
+msgstr "Storicamente, il Mar Rosso è stato un mare di molti popoli. Situato in posizione ideale per il commercio con l'Estremo Oriente, è stato agognato da tutti. Anche se asciutta, questa terra non è affatto inospitale, ed è ampiamente dotata di tutte le risorse."
 
 #: maps/random/red_sea.jsonsettings.Name
 msgid "Red Sea"
@@ -561,13 +588,11 @@ msgstr "Fiumi"
 
 #: maps/random/rouen.jsonsettings.Description
 msgid ""
-"Rouen is a city on the River Seine in the north of France and the capital of"
-" Normandy. Formerly one of the largest and most prosperous cities of "
-"medieval Europe, Rouen was the seat of the Exchequer of Normandy during the "
-"Middle Ages. It was one of the capitals of the Anglo-Norman dynasties, which"
-" ruled both England and large parts of modern France from the 11th to the "
-"15th centuries."
-msgstr "Rouen è una città sulla Senna, nel nord della Francia e capoluogo della Normandia. Al tempo una delle più importanti e ricche città dell'Europa medievale, Rouen fu sede dello Scacchiere di Normandia -Parlamento- durante il Medioevo. E' stata una delle capitali delle dinastie Anglo-Normanne, che hanno governato sia gli attuali Regno Unito che parti della Francia dall'11° al 15° secolo."
+"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
+" in the place of the modern-day city of Rouen. Destined to become one of the"
+" largest and most prosperous cities of medeival Europe and one of the Anglo-"
+"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
+msgstr "I giocatori iniziano sulle rive del Fiume Sequana (Senna) nel nord della Gallia nei luoghi della moderna città di Rouen. Destinata a divenire una delle maggiori e più prospere città dell'Europa medievale e una delle capitali della dinastia anglo-normanna, Rouen è ancora una terra pacifica - ma non per molto."
 
 #: maps/random/rouen.jsonsettings.Name
 msgid "Rouen"

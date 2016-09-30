@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-09 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 20:47+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-29 22:28+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -49,12 +49,11 @@ msgstr "Valle alpino"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
-"The Amazon River in South America is the largest river by discharge of water"
-" in the world, and the longest in length. The Amazon basin is the largest "
-"drainage basin in the world, with an area of approximately 7,050,000 square "
-"kilometers, and accounts for roughly one-fifth of the world's total river "
-"flow."
-msgstr "El Amazonas de Sudamérica es el río más largo del mundo, así como el más grande por caudal. La cuenca del Amazonas es la mayor hoya imbrífera del globo, de unos 7.050.000 kilómetros cuadrados, abarcando una quinta parte del flujo fluvial mundial."
+"Players are transported into the tropics to the mouth of the great Amazon, "
+"which is arguably the longest and largest river in the world. Will you "
+"triumph and take control of this tropical paradise, or will you be trampled "
+"into the dust by ruthless and ambitious enemies?"
+msgstr ""
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
@@ -113,10 +112,14 @@ msgstr "Macizo del Atlas"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"The Kingdom of Bahrain is an island country situated between Saudia Arabia "
-"to the west and Qatar to the east. From the 6th to 3rd century BC, Bahrain "
-"was part of the Persian Empire."
-msgstr "El reino de Baréin es un estado isleño a caballo entre la Arabia Saudita occidental y el Catar oriental. Del siglo VI al IIIº antes de Cristo formaba parte consustancial del imperio persa."
+"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
+"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
+" and also centre of pearl trading due to its magnificent pearl fisheries, "
+"Bahrain is never left unoccupied for long. But now, with the previous "
+"occupants gone, the land prepares for war. Will you be the next Ruler of "
+"Bahrain?"
+msgstr ""
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -132,6 +135,17 @@ msgstr "Un mapa experimental con su relieve generado por erosión para dar un as
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "Altiplanos belgas"
+
+#: maps/random/caledonian_meadows.jsonsettings.Description
+msgid ""
+"Fertile lands surrounded by harsh terrain.\n"
+"Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt barely died away.\n"
+"Aiming at a realistic terrain, this map might not always be balanced."
+msgstr "Tierras fértiles rodeadas de un escarpado terreno.\nLos últimos copos de invierno todavía cubren los bosques, límpidos torrentes agua que auguran el fin del frío.\n\nPecando a veces de realismo, el terreno no es del todo favorable."
+
+#: maps/random/caledonian_meadows.jsonsettings.Name
+msgid "Caledonian Meadows"
+msgstr "Campiña caledonia"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -303,8 +317,11 @@ msgstr "El paso del averno"
 #: maps/random/howe_sound.jsonsettings.Description
 msgid ""
 "Howe Sound is a roughly triangular network of fjords located directly "
-"northwest of Vancouver in British Columbia, Canada."
-msgstr "El fondeadero de Howe es un amasijo geográfico más o menos triangular de fiordos superpuestos, ubicado en la zona noroeste de Vancouver, en la Columbia británica de Canadá."
+"northwest of present-day Vancouver, on the West Coast of today's Canada. The"
+" waters teem with whales and fish, while on land herds of muskox dig through"
+" deep snow to get at mushrooms and last summer's roots. Mines and forests "
+"also abound in this cold haven."
+msgstr "El fondeadero de Howe, ubicado en la costa occidental de la actual Canadá, está formado por una red de fiordos más o menos triangular al noroeste de lo que hoy es Vancouver. Ballenas y peces se arremolinan en sus aguas, manadas del buey almizclero se afanan cavando en la nieve buscando brotes verdes y setas. Bosques y yacimientos acentúan el frío paisaje."
 
 #: maps/random/howe_sound.jsonsettings.Name
 msgid "Howe Sound"
@@ -397,11 +414,15 @@ msgstr "Tierra firme"
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
-"The Sea of Marmara connects the Black Sea to the Aegean Sea and separates "
-"Turkey into it's European and Asian parts. The ancient city of Troy stood at"
-" the western entrance to the sea which became the focal point of the Trojan "
-"War."
-msgstr "El mar de Mármara conecta el mar Negro con el Egeo, separando Turquía en sus partes occidental y oriental. La antigua ciudad de Troya se erigía en su golfo norte, y fue el punto focal de la guerra relatada en la Ilíada de Homero."
+"The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
+"the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
+" the Hellespont (Dardanelles), at the entrance of which the ancient city of "
+"Ilium (Troy) once stood. To the north-east lies the Bosporus Thraciae "
+"(Bosporus strait) where in time the Greek city of Byzantium would be "
+"founded, later to become the capital of the great Byzantine Empire under the"
+" new name of Constantinople. Players start on fertile land with adequate "
+"resources."
+msgstr ""
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
@@ -409,12 +430,17 @@ msgstr "Mármara"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
-"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
-" the Mediterranean Basin and almost completely enclosed by land: on the "
-"north by Southern Europe and Anatolia, on the south by North Africa, and on "
-"the east by the Levant. The name Mediterranean is derived from the Latin "
-"mediterraneus, meaning 'inland' or 'in the middle of land'."
-msgstr "El mar Mediterráneo conecta con el océano Atlántico. Está rodeado por una cuenca imbrífera y una única línea de costa; Europa del sur y Anatolia bordean su lado occidental, África septentrional al sur y la antigua Fenicia al este. Su nombre proviene del Latín y significa entretierras."
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr ""
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
@@ -528,9 +554,10 @@ msgstr "Sierra pirenáica"
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
-"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
-"and Asia and the world's northernmost tropical sea."
-msgstr "El mar Rojo es una lengua de agua que forma parte del océano Índico. A caballo entre África y Asia, es el mar tropical más al norte del globo."
+"Historically, the Red Sea was a sea of many nations. Ideally situated for "
+"trade with the Far East, it was coveted by all. Although dry, this land is "
+"by no means inhospitable, and is amply provided with all resources."
+msgstr "El mar rojo siempre ha sido hogar de múltiples naciones. Reivindicado por muchos dada su estratégica ubicación para el comercio con el más lejano oriente, sus áridas costas no son ni mucho menos inhóspitas y proveen de innumerables recursos."
 
 #: maps/random/red_sea.jsonsettings.Name
 msgid "Red Sea"
@@ -557,13 +584,11 @@ msgstr "Riachuelos"
 
 #: maps/random/rouen.jsonsettings.Description
 msgid ""
-"Rouen is a city on the River Seine in the north of France and the capital of"
-" Normandy. Formerly one of the largest and most prosperous cities of "
-"medieval Europe, Rouen was the seat of the Exchequer of Normandy during the "
-"Middle Ages. It was one of the capitals of the Anglo-Norman dynasties, which"
-" ruled both England and large parts of modern France from the 11th to the "
-"15th centuries."
-msgstr "Ruan es una ciudad afincada en el río Sena, al norte de Francia, y capital de Normandía. Antaño una de las ciudades más prósperas y bulliciosas de la Europa medieval, se la conoce por ser el hogar del Échiquier de Normandía durante la Edad Media, además de capital de una de las dinastías anglonormandas que regía Inglaterra, así como partes importantes de la Francia contemporánea, del siglo XI al XV."
+"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
+" in the place of the modern-day city of Rouen. Destined to become one of the"
+" largest and most prosperous cities of medeival Europe and one of the Anglo-"
+"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
+msgstr ""
 
 #: maps/random/rouen.jsonsettings.Name
 msgid "Rouen"

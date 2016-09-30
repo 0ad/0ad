@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Danila Catalin <dlcatalin@ymail.com>, 2016
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Gabriel-Ciprian Stanciu <stanciu.gabriel.ciprian@gmail.com>, 2014
 # Lucian Lupescu <l.lupescu@yahoo.com>, 2014
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 16:20+0000\n"
-"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
+"POT-Creation-Date: 2016-09-26 09:00+0200\n"
+"PO-Revision-Date: 2016-09-29 16:24+0000\n"
+"Last-Translator: Danila Catalin <dlcatalin@ymail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +80,7 @@ msgstr "* %(username)s este pregătit!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nu este pregătit."
 
-#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1389
+#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1396
 msgid "Default"
 msgstr "Default"
 
@@ -92,84 +93,102 @@ msgid "Demo Maps"
 msgstr "Mape Demo"
 
 #: gui/gamesetup/gamesetup.js:85
+msgid "New Maps"
+msgstr "Hărți Noi"
+
+#: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
 msgstr "Comutați hărți"
 
-#: gui/gamesetup/gamesetup.js:90
+#: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
 msgstr "Toate mapele"
 
-#: gui/gamesetup/gamesetup.js:139
+#: gui/gamesetup/gamesetup.js:144
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleator"
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:149
 msgctxt "civilization"
 msgid "Random"
 msgstr "Aleatoriu"
 
-#: gui/gamesetup/gamesetup.js:267
+#: gui/gamesetup/gamesetup.js:272
 msgid "Return to the lobby."
 msgstr "Întoarceți-vă la foaier."
 
-#: gui/gamesetup/gamesetup.js:267
+#: gui/gamesetup/gamesetup.js:272
 msgid "Return to the main menu."
 msgstr "Întoarceți-vă lameniul principal."
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:599
 msgid "Yes"
 msgstr "Da"
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:599
 msgid "No"
 msgstr "Nu"
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:638
 msgctxt "team"
 msgid "None"
 msgstr "Nimic"
 
-#: gui/gamesetup/gamesetup.js:1297
+#: gui/gamesetup/gamesetup.js:1304
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1459
+#: gui/gamesetup/gamesetup.js:1466
 msgid "Loading..."
 msgstr "Se incarca..."
 
-#: gui/gamesetup/gamesetup.js:1592
+#: gui/gamesetup/gamesetup.js:1599
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Al: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1597
+#: gui/gamesetup/gamesetup.js:1604
 msgid "Unassigned"
 msgstr "Neatribuit"
 
-#: gui/gamesetup/gamesetup.js:1757
+#: gui/gamesetup/gamesetup.js:1764
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1764
+#: gui/gamesetup/gamesetup.js:1771
 msgid "Unknown Player"
 msgstr "Jucător necunoscut"
 
-#: gui/gamesetup/gamesetup.js:1842
+#: gui/gamesetup/gamesetup.js:1807
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1808
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1809
+msgid "HH:mm"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1859
 msgid "I'm not ready!"
 msgstr "Nu sunt pregătit!"
 
-#: gui/gamesetup/gamesetup.js:1843
+#: gui/gamesetup/gamesetup.js:1860
 msgid "I'm ready"
 msgstr "Sunt pregătit"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are not ready to play."
 msgstr "Declarați ca nu sunteți pregătit să jucați."
 
-#: gui/gamesetup/gamesetup.js:1847
+#: gui/gamesetup/gamesetup.js:1864
 msgid "State that you are ready to play!"
 msgstr "Declarați ca sunteți pregătit să jucați!"
 
@@ -527,7 +546,7 @@ msgstr "Port Server:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Setează-ți serverul pentru a găzdui."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"

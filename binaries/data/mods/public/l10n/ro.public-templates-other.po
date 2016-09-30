@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Danila Catalin <dlcatalin@ymail.com>, 2016
 # Raz Taz <raztaz.ubuntu@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 16:23+0000\n"
-"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
+"PO-Revision-Date: 2016-09-29 14:18+0000\n"
+"Last-Translator: Danila Catalin <dlcatalin@ymail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -202,7 +203,7 @@ msgstr "Cutie"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
-msgstr ""
+msgstr "Coloană închisă"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -218,7 +219,7 @@ msgstr "Flanc"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr ""
+msgstr "Linie închisă"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
@@ -230,11 +231,11 @@ msgstr "Nimic"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "Necesită 10 unități infanterie de luptă corp la corp"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr ""
+msgstr "Falancă"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
@@ -242,15 +243,15 @@ msgstr "Împrăștie"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
-msgstr ""
+msgstr "Doar unitățile de rază sunt permise"
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr ""
+msgstr "Luptă"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
-msgstr ""
+msgstr "Necesită 9 unități infanterie cu suliță "
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
@@ -258,7 +259,7 @@ msgstr "Syntagma"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "Necesită 9 unități infanterie de luptă corp la corp"
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
@@ -266,11 +267,11 @@ msgstr "Testudo"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "Necesită 3 unități cavalerie"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
-msgstr ""
+msgstr "Pană"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -290,23 +291,23 @@ msgstr "Găină"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Crocodil de Nil"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
-msgstr ""
+msgstr "Căprioară"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "Elefant de tufiș African"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr ""
+msgstr "Elefant African (pui)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:33
 msgid "Asian Elephant"
@@ -314,7 +315,7 @@ msgstr "Elefant asiatic"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr ""
+msgstr "Elefant Nord-African"
 
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
@@ -324,7 +325,7 @@ msgstr "peşte"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "Adună măncare din această resursă oceanică abundentă."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -332,7 +333,7 @@ msgstr "Peşte telapia"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+msgstr "Adună măncare din această resursă riverană abundentă."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
@@ -364,7 +365,7 @@ msgstr "Leoaică"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "Bou moscat"
 
 #: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Peacock"
@@ -404,15 +405,15 @@ msgstr "Morsă"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
-msgstr ""
+msgstr "Balenă cu înotătoare"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
-msgstr ""
+msgstr "Balenă cu cocoașă"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "Connochaetes"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
@@ -420,7 +421,7 @@ msgstr "Lup"
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
-msgstr ""
+msgstr "Lup de zăpadă"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -428,11 +429,11 @@ msgstr "Zebră"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr ""
+msgstr "Hardy Bush"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
-msgstr ""
+msgstr "Căutare de mâncare"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
@@ -440,19 +441,19 @@ msgstr "Struguri"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
-msgstr ""
+msgstr "Culege struguri din această viță pentru Mâncare."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr ""
+msgstr "Tufă Deciduous"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
-msgstr ""
+msgstr "Copac Acacia"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
-msgstr ""
+msgstr "Pin de Aleppo"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
@@ -464,30 +465,30 @@ msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
-msgstr ""
+msgstr "Copac Roșcov"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr ""
+msgstr "Finic Cretan"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
-msgstr ""
+msgstr "Copac Cypress "
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
-msgstr ""
+msgstr "Finic"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
-msgstr ""
+msgstr "Copac Mort"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
+msgstr "Fag European"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
@@ -499,7 +500,7 @@ msgstr "Adună smochine pentru mâncare."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr ""
+msgstr "Palmier Fan Mediteranean"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
@@ -511,7 +512,7 @@ msgstr "Stejar"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "Stejar Mare"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
@@ -532,23 +533,23 @@ msgstr "Pin"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr ""
+msgstr "Copac Plop"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "Copac Plop Lombardez"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr ""
+msgstr "Finic Senegalez"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr ""
+msgstr "Cedru sărat"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
-msgstr ""
+msgstr "Cedru chinezesc"
 
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
@@ -564,11 +565,11 @@ msgstr "Ruine de piatră"
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
 msgid "Celtic Standing Stone"
-msgstr ""
+msgstr "Piatră Celtică"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
-msgstr ""
+msgstr "Statui Egiptene Ptolemaice"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
@@ -585,15 +586,15 @@ msgstr "Comoară de mâncare"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
-msgstr ""
+msgstr "Butoaie pe jumătate îngropate"
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
-msgstr ""
+msgstr "Magazine de mâncare persane"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
-msgstr ""
+msgstr "Comoară de Mâncare Persană"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
@@ -611,7 +612,7 @@ msgstr "Cutie secretă"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr ""
+msgstr "Bunuri Persane"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
@@ -650,15 +651,15 @@ msgstr "Pod de lemn"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "Templu de Sacrificiu"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "Tophet"
 
 #: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "Antrenează doctori și Călăreți din Banda Sacră"
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -666,7 +667,7 @@ msgstr "Colibă"
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
-msgstr ""
+msgstr "Casă Lungă"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -711,19 +712,19 @@ msgstr "Templu epic"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Pune unitațile în garnizoană pentru a le vindeca mai repede."
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "Portico"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "Propylaea"
 
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
@@ -731,47 +732,47 @@ msgstr "Stoa"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "Stoa Elenica"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
-msgstr ""
+msgstr "Harmya"
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
-msgstr ""
+msgstr "Obelisc"
 
 #: simulation/templates/other/obelisk.xml:21
 msgid "Egyptian Obelisk"
-msgstr ""
+msgstr "Obelisc Egiptean"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
-msgstr ""
+msgstr "Palisadă Engleză cu Țepi"
 
 #: simulation/templates/other/palisades_angle_spike.xml:17
 msgid "Big Spike"
-msgstr ""
+msgstr "Țepușă Mare"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
-msgstr ""
+msgstr "Palisadă Curbată\n"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
-msgstr ""
+msgstr "Colț Zid de Lemn"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
-msgstr ""
+msgstr "Sfârșit de Palisadă"
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
-msgstr ""
+msgstr "Sfârșit Zid de Lemn"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
-msgstr ""
+msgstr "Fort de Palisadă"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Wooden Tower"
@@ -779,11 +780,11 @@ msgstr "Turn de lemn"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
-msgstr ""
+msgstr "Poartă de Palisadă"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
-msgstr ""
+msgstr "Poartă de Lemn"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27
@@ -792,7 +793,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
-msgstr ""
+msgstr "Palisadă"
 
 #: simulation/templates/other/palisades_rocks_long.xml:28
 #: simulation/templates/other/palisades_rocks_medium.xml:28
@@ -805,12 +806,12 @@ msgstr "Zid de lemn"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
-msgstr ""
+msgstr "Avantpost"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
-msgstr ""
+msgstr "Turn de veghe din lemn"
 
 #: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Watchtower"
@@ -851,11 +852,11 @@ msgstr "Depozit"
 
 #: simulation/templates/other/plane.xml:41
 msgid "P-51 Mustang"
-msgstr ""
+msgstr "P-51 Mustang"
 
 #: simulation/templates/other/plane.xml:43
 msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "Un avion de luptă American din al 2-le Război Mondial."
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -864,7 +865,7 @@ msgstr "Piramidă"
 
 #: simulation/templates/other/pyramid_great.xml:10
 msgid "Great Pyramid"
-msgstr ""
+msgstr "Marea Piramidă"
 
 #: simulation/templates/other/pyramid_minor.xml:10
 msgid "Minor Pyramid"
@@ -887,25 +888,25 @@ msgstr "Epavă"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "O epavă în descompunere. O oportunitate bună pentru orice om de afaceri. "
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "Încărcătură de Epavă"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr ""
+msgstr "O epavă cu pierdere mare de vieți. O oportunitate bună pentru orice om de afaceri. "
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "Epava unei bărci mici de marfă. O oportunitate bună pentru orice om de afaceri. "
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "O navă de marfă ruptă în două. O oportunitate bună pentru orice om de afaceri. "
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -945,18 +946,18 @@ msgstr "Templul este neterminat si a căzut în ruină."
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr ""
+msgstr "Schimbările la o casă cu 10-pop pentru civilizațiile cu acele case, sunt eliminate pentru alte civilizații. "
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:9
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
+msgstr "Schimbările la o casă cu 5-pop pentru civilizațiile cu acele case, sunt eliminate pentru alte civilizații. "
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "Marcaj"
 
 #: simulation/templates/special/player.xml:56
 msgid "Player"
@@ -967,24 +968,24 @@ msgstr "Jucător"
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "Lithobólos"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr ""
+msgstr "Oxybelḗs"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
 msgid "Ballista"
-msgstr ""
+msgstr "Balistă"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr ""
+msgstr "Polybolos"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
 msgid "Scorpio"
-msgstr ""
+msgstr "Scorpion"
