@@ -300,6 +300,7 @@ Upgrade.prototype.UpgradeProgress = function(data, lateness)
 	this.CancelTimer();
 
 	this.completed = true;
+	this.ChangeUpgradedEntityCount(-1);
 
 	let newEntity = ChangeEntityTemplate(this.entity, this.upgrading);
 
