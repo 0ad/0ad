@@ -508,7 +508,7 @@ public:
 		m_GameState = gameState;
 	}
 
-	void UpdatePathfinder(const Grid<NavcellData>& passabilityMap, bool globallyDirty, const Grid<u8>& dirtinessGrid,
+	void UpdatePathfinder(const Grid<NavcellData>& passabilityMap, bool globallyDirty, const Grid<u8>& dirtinessGrid, bool justDeserialized,
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		ENSURE(m_CommandsComputed);
@@ -521,7 +521,7 @@ public:
 			m_LongPathfinder.Update(&m_PassabilityMap, dirtinessGrid);
 
 		JSContext* cx = m_ScriptInterface->GetContext();
-		if (dimensionChange)
+		if (dimensionChange || justDeserialized)
 			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
 		else
 		{
@@ -1108,14 +1108,15 @@ public:
 		{
 			GridUpdateInformation dirtinessInformations = cmpPathfinder->GetDirtinessData();
 
-			if (dirtinessInformations.dirty)
+			if (dirtinessInformations.dirty || m_JustDeserialized)
 			{
 				const Grid<NavcellData>& passabilityMap = cmpPathfinder->GetPassabilityGrid();
 
 				std::map<std::string, pass_class_t> nonPathfindingPassClassMasks, pathfindingPassClassMasks;
 				cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
-				m_Worker.UpdatePathfinder(passabilityMap, dirtinessInformations.globallyDirty, dirtinessInformations.dirtinessGrid,
+				m_Worker.UpdatePathfinder(passabilityMap,
+					dirtinessInformations.globallyDirty, dirtinessInformations.dirtinessGrid, m_JustDeserialized,
 					nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 			}
 		}
@@ -1123,7 +1124,7 @@ public:
 		// Update the territory data
 		// Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
+		if (cmpTerritoryManager && (cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID) || m_JustDeserialized))
 		{
 			const Grid<u8>& territoryMap = cmpTerritoryManager->GetTerritoryGrid();
 			m_Worker.UpdateTerritoryMap(territoryMap);

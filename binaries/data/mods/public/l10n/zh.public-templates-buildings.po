@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-23 09:01+0200\n"
-"PO-Revision-Date: 2016-09-23 09:46+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-26 08:34+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -33,29 +33,29 @@ msgstr "市政建筑"
 msgid "Civic"
 msgstr "市政厅"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
 msgstr "市政大厅"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:73
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "建设以增大领土。可训练市民。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
-#: simulation/templates/template_structure_civic_civil_centre.xml:37
+#: simulation/templates/template_structure_civic_civil_centre.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:38
 msgid "CivilCentre"
 msgstr "市政中心"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "Colony"
 msgstr "殖民地"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "军事殖民地"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
@@ -92,8 +92,8 @@ msgid "Increase the population limit."
 msgstr "增加人口上限"
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:49
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_wooden_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -134,18 +134,18 @@ msgstr "发射弩箭。驻军可增加额外攻击力。需要研发猎杀洞以
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
-#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "防御塔"
 
-#: simulation/templates/template_structure_defense_outpost.xml:58
+#: simulation/templates/template_structure_defense_outpost.xml:63
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "在中立和同盟国的领土上建造建筑去侦察地图上的区域。当你建在中立领土上时，建筑会慢慢得成为大地的一部分。"
 
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_outpost.xml:57
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_outpost.xml:33
+#: simulation/templates/template_structure_defense_outpost.xml:62
 msgid "Outpost"
 msgstr "哨岗"
 
@@ -188,10 +188,14 @@ msgstr "箭垛。驻兵用弓箭抵御进攻者。"
 msgid "City Wall"
 msgstr "城墙"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:46
-#: simulation/templates/template_structure_defense_wooden_tower.xml:45
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
 msgstr "木制防御塔"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:67
+msgid "Enforce with stone and upgrade to a defense tower."
+msgstr ""
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -1467,11 +1471,11 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr "最多训练医生。驻守军队，并可以快速治疗。"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:16
+#: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
 msgstr "灶神维斯塔神庙"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "灶神庙"
 
@@ -1541,7 +1545,7 @@ msgid ""
 "defense."
 msgstr "建造攻城武器及训练精英。驻守军队用以增强防御。"
 
-#: simulation/templates/structures/sele_library.xml:5
+#: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 
@@ -1549,7 +1553,7 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "市场"
 
-#: simulation/templates/structures/sele_military_colony.xml:6
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "

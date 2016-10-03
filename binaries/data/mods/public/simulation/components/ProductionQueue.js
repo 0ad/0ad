@@ -337,9 +337,13 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var template = cmpDataTemplateManager.GetTechnologyTemplate(templateName);
 			if (!template)
 				return;
-			if (this.GetTechnologiesList().indexOf(templateName) == -1)
+			if (!this.GetTechnologiesList().some(tech =>
+				tech &&
+					(tech == templateName ||
+						tech.pair &&
+						(tech.top == templateName || tech.bottom == templateName))))
 			{
-				warn("This entity cannot research " + JSON.stringify(templateName));
+				error("This entity cannot research " + templateName);
 				return;
 			}
 			var cmpPlayer = QueryOwnerInterface(this.entity);

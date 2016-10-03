@@ -560,6 +560,7 @@ function getEntityNamesFormatted(template)
 	if (!template.name.specific)
 		return '[font="sans-bold-16"]' + template.name.generic + "[/font]";
 
+	// Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian Marine)[/font]"
 	return sprintf(translate("%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"), {
 		"specificName":
 			'[font="sans-bold-16"]' + template.name.specific[0] + '[/font]' +
@@ -602,6 +603,7 @@ function getLootTooltip(template)
 		if (!loot)
 			continue;
 
+		// Translation: %(component) will be the icon for the loot type and %(loot) will be the value.
 		lootLabels.push(sprintf(translate("%(component)s %(loot)s"), {
 			"component": costIcon(type),
 			"loot": loot

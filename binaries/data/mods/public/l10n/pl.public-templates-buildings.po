@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Adrian Budasz <adrianbudasz@gmail.com>, 2014
+# Adrian Budasz <adrianbudasz@gmail.com>, 2014,2016
 # Andrzej Preibisz <andrzejjpreibisz@gmail.com>, 2016
 # Artur Motyka <slashcraftpl@gmail.com>, 2015
 # FoskamPL <fifi4001@o2.pl>, 2014
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-23 09:01+0200\n"
-"PO-Revision-Date: 2016-09-23 09:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-28 10:57+0000\n"
+"Last-Translator: Michał Karol\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,29 +42,29 @@ msgstr "Budynek miejski"
 msgid "Civic"
 msgstr "Miejski"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
 msgstr "Centrum osady"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:73
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Zbuduj aby pozyskać duże połacie ziemi. Trenuj obywateli."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
-#: simulation/templates/template_structure_civic_civil_centre.xml:37
+#: simulation/templates/template_structure_civic_civil_centre.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:38
 msgid "CivilCentre"
 msgstr "Centrum osady"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "Colony"
 msgstr "Kolonia"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Kolonia wojskowa"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
@@ -101,8 +101,8 @@ msgid "Increase the population limit."
 msgstr "Zwiększ limit populacji."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:49
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_wooden_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -143,18 +143,18 @@ msgstr "Strzela z łuku. Umieszczony w garnizonie daje dodatkową obronę. Wymag
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
-#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Wieża obronna."
 
-#: simulation/templates/template_structure_defense_outpost.xml:58
+#: simulation/templates/template_structure_defense_outpost.xml:63
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "Buduj na neutralnym oraz własnym terytorium aby widzieć większe obszary mapy. Powoli przechodzi do Gaja gdy znajduje się na neutralnym terytorium."
 
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_outpost.xml:57
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_outpost.xml:33
+#: simulation/templates/template_structure_defense_outpost.xml:62
 msgid "Outpost"
 msgstr "Posterunek"
 
@@ -197,10 +197,14 @@ msgstr "Strzela za pomocą strzał. Umieść wewnątrz jednostki do obrony muró
 msgid "City Wall"
 msgstr "Mury miasta"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:46
-#: simulation/templates/template_structure_defense_wooden_tower.xml:45
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
 msgstr "Drewniana wieża"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:67
+msgid "Enforce with stone and upgrade to a defense tower."
+msgstr "Wzmocnij kamieniem i zmodernizuj do wieży obronnej."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -782,7 +786,7 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Shipyard"
-msgstr ""
+msgstr "Stocznia"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
@@ -1476,11 +1480,11 @@ msgstr "Świątynia Marsa"
 msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr "Trenuj uzdrowicieli. Umieść jednostki, aby wyleczyć je szybko."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:16
+#: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
 msgstr "Świątynia Westy"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Świątynia Vesty"
 
@@ -1550,7 +1554,7 @@ msgid ""
 "defense."
 msgstr "Buduj machiny oblężnicze i trenuj elitarne jednostki. Umieść wewnątrz żołnierzy dla mocnej obrony."
 
-#: simulation/templates/structures/sele_library.xml:5
+#: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr "Biblioteka"
 
@@ -1558,7 +1562,7 @@ msgstr "Biblioteka"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:6
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "

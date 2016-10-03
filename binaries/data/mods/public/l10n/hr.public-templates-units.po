@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-08-23 09:49+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-26 09:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -56,21 +56,21 @@ msgid "Basic"
 msgstr "Osnovni"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:18
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_champion_elephant_melee.xml:13
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
+#: simulation/templates/template_unit_champion_elephant_melee.xml:14
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:48
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
+#: simulation/templates/template_unit_hero_elephant_melee.xml:49
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee.xml:18
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:39
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "Melee"
@@ -80,12 +80,12 @@ msgid "Melee Cavalry"
 msgstr "Melee konjica"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spear"
@@ -97,10 +97,10 @@ msgstr "Konjički kopljanik"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Sword"
 msgstr "Mač"
 
@@ -114,30 +114,29 @@ msgstr "Streljačka Konjica"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_champion_ranged.xml:5
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:32
-#: simulation/templates/template_unit_hero_infantry_archer.xml:24
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
+#: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:41
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:44
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "Ranged"
 msgstr "Dalekodometni"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_archer.xml:24
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_infantry_archer.xml:25
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:28
 msgid "Archer"
@@ -148,10 +147,10 @@ msgid "Cavalry Archer"
 msgstr "Strijelac Konjanik"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:32
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
 msgstr "Bacač koplja"
@@ -176,11 +175,11 @@ msgstr "Velikaška Konjica"
 msgid "Champion Cavalry Archer."
 msgstr "Velikaški Strijelac-Konjanik"
 
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:24
 msgid "Champion Cavalry Skirmisher"
 msgstr "Velikaški Čarkaš-Konjanik"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
 msgstr "Velikaški Kopljanik-Konjanik"
 
@@ -211,52 +210,32 @@ msgstr "Šampion Strijelac"
 msgid "Champion Skirmisher"
 msgstr "Velikaški Čarkaš"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "Koplje"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 msgid "Champion Pikeman"
 msgstr "Velikaški Kopljonoša"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:35
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:34
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
 msgstr "Odbija: 3x štete protiv konjice"
 
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:31
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 msgid "Champion Spearman"
 msgstr "Velikaški Kopljanik"
 
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
 msgid "Champion Swordsman"
 msgstr "Velikaški Mačevalac"
-
-#: simulation/templates/template_unit_champion_ranged.xml:4
-msgid "Champion Ranged"
-msgstr "Streljački Velikaš"
-
-#: simulation/templates/template_unit_champion_siege.xml:17
-msgid "Super Siege"
-msgstr "Super opsada"
-
-#: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical.xml:13
-#: simulation/templates/template_unit_mechanical.xml:12
-msgid "Mechanical"
-msgstr "Mehaničko"
-
-#: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical_siege.xml:17
-#: simulation/templates/template_unit_mechanical_siege.xml:18
-msgid "Siege"
-msgstr "Opsada"
 
 #: simulation/templates/template_unit_dog.xml:43
 msgid "Dog"
@@ -274,7 +253,7 @@ msgstr "Nemože napadati građevine."
 msgid "Fauna"
 msgstr "Fauna"
 
-#: simulation/templates/template_unit_fauna_fish.xml:9
+#: simulation/templates/template_unit_fauna_fish.xml:10
 msgid "Fish"
 msgstr "Riba"
 
@@ -297,11 +276,11 @@ msgstr "Junak"
 msgid "Hero Cavalry"
 msgstr "Junačka Konjica"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:27
 msgid "Hero Cavalry Archer"
 msgstr "Junački Strijelac-Konjanik"
 
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
 msgid "Hero Cavalry Skirmisher"
 msgstr "Junački Čarkaš-Konjanik"
 
@@ -313,23 +292,23 @@ msgstr "Junački Kopljanik-Konjanik"
 msgid "Hero Cavalry Swordsman"
 msgstr "Junački Mačevalac-Konjanik"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
 msgstr "Junački Strijelac"
 
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
 msgid "Hero Skirmisher"
 msgstr "Junački Čarkaš"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
 msgstr "Junački Kopljonoša"
 
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 msgid "Hero Spearman"
 msgstr "Junački Kopljanik"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 msgid "Hero Swordsman"
 msgstr "Junački Mačevalac"
 
@@ -351,7 +330,7 @@ msgstr "Kopljonoša"
 msgid "Spearman"
 msgstr "Kopljanik"
 
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
 msgid "Swordsman"
 msgstr "Mačevalac"
 
@@ -366,6 +345,11 @@ msgstr "Praćka"
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
 msgstr "Praćkaš"
+
+#: simulation/templates/template_unit_mechanical.xml:13
+#: simulation/templates/template_unit_mechanical.xml:12
+msgid "Mechanical"
+msgstr "Mehaničko"
 
 #: simulation/templates/template_unit_mechanical_ship.xml:33
 #: simulation/templates/template_unit_mechanical_ship.xml:32
@@ -386,7 +370,7 @@ msgstr "Ratni Brod"
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Garrison units for transport and to increase firepower."
 msgstr ""
 
@@ -438,35 +422,40 @@ msgstr "Teški Ratni Brod"
 msgid "Medium Warship"
 msgstr "Srednji Ratni Brod"
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
+#: simulation/templates/template_unit_mechanical_siege.xml:17
+#: simulation/templates/template_unit_mechanical_siege.xml:18
+msgid "Siege"
+msgstr "Opsada"
+
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:36
 msgid "Bolt Shooter"
 msgstr "Balista"
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:41
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "BoltShooter"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:47
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:43
 msgid "Siege Catapult"
 msgstr "Opsadni Katapult"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Catapult"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:38
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:33
 msgid "Battering Ram"
 msgstr "Udarni Ovan"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:39
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 msgid "Ram"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:47
 msgid "Siege Tower"
 msgstr "Obsadna Kula"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "SiegeTower"
 msgstr ""
 

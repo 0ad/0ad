@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-09 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 09:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-28 13:17+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,12 +47,11 @@ msgstr "Gleann Alpach"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
-"The Amazon River in South America is the largest river by discharge of water"
-" in the world, and the longest in length. The Amazon basin is the largest "
-"drainage basin in the world, with an area of approximately 7,050,000 square "
-"kilometers, and accounts for roughly one-fifth of the world's total river "
-"flow."
-msgstr "’S e an abhainn as motha air an t-saoghal a thaobh uisge a chur dhan mhuir a tha san Amason ann an Ameireaga a Deas agus is ise an abhainn as fhaide. Is srath Amasoin an lag-drèanaidh as motha air an t-saoghal le raon dhe mu 7,050,000 cilemeatair ceàrnagach aige agus thèid mun chòigeamh uiread dhe shruthadh aibhne an t-saoghail troimhe."
+"Players are transported into the tropics to the mouth of the great Amazon, "
+"which is arguably the longest and largest river in the world. Will you "
+"triumph and take control of this tropical paradise, or will you be trampled "
+"into the dust by ruthless and ambitious enemies?"
+msgstr "Thèid na cluicheadairean a chur gu beul an Amasoin mhòir, seo an abhainn as fhaide agus as motha air an t-saoghal. Ab dèid an latha leat agus am faigh thu smachd air a’ phàrrais thropaigich seo no an dèid cur às dhut le nàimhdean glòir-mhiannach gun truas?"
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
@@ -111,14 +110,18 @@ msgstr "Monadh Atlais"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"The Kingdom of Bahrain is an island country situated between Saudia Arabia "
-"to the west and Qatar to the east. From the 6th to 3rd century BC, Bahrain "
-"was part of the Persian Empire."
-msgstr ""
+"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
+"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
+" and also centre of pearl trading due to its magnificent pearl fisheries, "
+"Bahrain is never left unoccupied for long. But now, with the previous "
+"occupants gone, the land prepares for war. Will you be the next Ruler of "
+"Bahrain?"
+msgstr "’S e meadhan sìobhaltas Dilmun a bh’ ann am Bachrain a thuit ann an 800 RC agus bha an sìobhaltas seo fo smachd rìoghachdan na Suimèir, Aisiria, Bàbiloin, na Peirse agus rìoghachdan eile an uairsin. ’S e eilean a th’ ann am Bachrain a tha suidhichte gu ro-innleachdach san t-Sinus Persicus (Camas-mòr na Peirse) agus a bha na ionad malairt neamhnaidean ri linn nan ionadan-iasgach neamhnaide mòra a bh’ aige agus bhiodh e fo fhor-ghlacadh gu minig ri linn sin. Co-dhiù no co-dheth, dh’fhalbh na h-uachdaran agus tha an tìr ’ga ullachadh airson a’ chogaidh. An tusa ath-rìgh Bhachrain?"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
-msgstr ""
+msgstr "Bachrain"
 
 #: maps/random/belgian_uplands.jsonsettings.Description
 msgid ""
@@ -130,6 +133,17 @@ msgstr "Seo mapa deuchainneach ’s chaidh a mhapa-àirde a ghintinn le bleith-t
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "Am Monadh Beilgeach"
+
+#: maps/random/caledonian_meadows.jsonsettings.Description
+msgid ""
+"Fertile lands surrounded by harsh terrain.\n"
+"Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt barely died away.\n"
+"Aiming at a realistic terrain, this map might not always be balanced."
+msgstr "Tha talamh torrach ann am meadhan tìre gairbhe.\nTha badan sneachda sa choille fhathast agus is gann gu bheil tuiltean an leaghaidh seachad oirnn.\nOn a tha am mapa seo ag amas air cruth-tìre fìor-riochdail, ’s dòcha nach eil e cothromach an-còmhnaidh."
+
+#: maps/random/caledonian_meadows.jsonsettings.Name
+msgid "Caledonian Meadows"
+msgstr "Cluaintean Cailleannach"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -280,11 +294,11 @@ msgid ""
 "cliffs in the deep ocean. Small passages at the base of the cliffs make for "
 "tight fighting and easy fortification. Will you fight your way through the "
 "narrow passageways or take to the sea?"
-msgstr ""
+msgstr "Tòisichidh na cluicheadairean le cothrom air beagan iasgach ann an sàl sèimh calaidh fhasgaich. Tha pailteas èisg sa chuan taobh thall nan creagan dìonach. Tha na cumhangan beaga aig bonn nan creagan iomchaidh dha shabaid theann is daingneachadh gun dhuilgheadas. An dèan thu strì gus tighinn tro na cumhangan no an dèid thu dhan mhuir?"
 
 #: maps/random/harbor.jsonsettings.Name
 msgid "Harbor"
-msgstr ""
+msgstr "Cala"
 
 #: maps/random/hells_pass.jsonsettings.Description
 msgid ""
@@ -301,12 +315,15 @@ msgstr "Bealach na h-ifrinne"
 #: maps/random/howe_sound.jsonsettings.Description
 msgid ""
 "Howe Sound is a roughly triangular network of fjords located directly "
-"northwest of Vancouver in British Columbia, Canada."
-msgstr ""
+"northwest of present-day Vancouver, on the West Coast of today's Canada. The"
+" waters teem with whales and fish, while on land herds of muskox dig through"
+" deep snow to get at mushrooms and last summer's roots. Mines and forests "
+"also abound in this cold haven."
+msgstr "’S e lìonra dhe dh’fhiòrdan le cruth cha mhòr triantanach a th’ ann an Linne Howe a tha air an oirthir siarach gu iar-thuath air Vancouver Chanada an latha an-diugh. Tha a’ mhuir làn mucan-mara agus èisg fhad ’s a tha treudan dhe dhaimh-mhusgach a’ rùrachadh an t-sneachda domhainn an tòir air balgain-bhuachair agus freumhan an t-samhraidh sa chaidh. Tha pailteas dhe mhèinnean agus coilltean sa chomraich fhuar seo cuideachd."
 
 #: maps/random/howe_sound.jsonsettings.Name
 msgid "Howe Sound"
-msgstr ""
+msgstr "Linne Howe"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -395,24 +412,33 @@ msgstr "An tìr mòr"
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
-"The Sea of Marmara connects the Black Sea to the Aegean Sea and separates "
-"Turkey into it's European and Asian parts. The ancient city of Troy stood at"
-" the western entrance to the sea which became the focal point of the Trojan "
-"War."
-msgstr ""
+"The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
+"the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
+" the Hellespont (Dardanelles), at the entrance of which the ancient city of "
+"Ilium (Troy) once stood. To the north-east lies the Bosporus Thraciae "
+"(Bosporus strait) where in time the Greek city of Byzantium would be "
+"founded, later to become the capital of the great Byzantine Empire under the"
+" new name of Constantinople. Players start on fertile land with adequate "
+"resources."
+msgstr "Tha am Propontis (Muir Mharmara) a’ ceangal Pontus Euxinus (Am Muir Dubh) ris a’ Mhuir Àigeanach agus a’ sgaradh An Àisia Bheag o Thràicea. Tha an Hellespont (na Dàrdainealan) gu iar-dheas air agus bhiodh baile Ilium (Tròidh) ri taobh a’ chaolais. Tha Bosporus Thraciae (caolas Bhòsfaras) gu ear-thuath air far an deachadh am baile Greugach Byzantium a stèidheachadh an uairsin. Chaidh am baile seo ’na chathair-bhaile air Impireachd mhòr Bhiosantach agus chuireadh Baile Chòiseim air. Tòisichidh na cluicheadairean air tìr thorrach le stòras gu leòr."
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
-msgstr ""
+msgstr "Marmara"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
-"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
-" the Mediterranean Basin and almost completely enclosed by land: on the "
-"north by Southern Europe and Anatolia, on the south by North Africa, and on "
-"the east by the Levant. The name Mediterranean is derived from the Latin "
-"mediterraneus, meaning 'inland' or 'in the middle of land'."
-msgstr "’S e am muir a tha ceangailte ris a’ Chuan Shiar agus a tha cuairtiche leis an Amar Meadhan-tìreach a tha sa Mhuir Mheadhanach. Tha tìr mun cuairt gach taobh aige: Ceann a deas an Roinn-Eòrpa agus Anatolia gu tuath, Ceann a tuath Afraga gu deas agus an Levant taobh an ear. ’S e “mediterraneus” am t-ainm Laideann a th’ air agus is ciall dha “meadhan tìre” no “a-staigh san tìr.”"
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "Ghabh na Phenicich, na Greugaich, na h-Èipheitich agus an uairsin na Ròmanaich còmhnaidh ri taobh na Mara Meadhanaich. Chleachd iad an eòlas toiseachail agus na prionnsabalan eagrachaidh à Mesopotamia agus chuir iad piseach orra gus an deach costa na Mara Meadhanaich ’na phrìomh-ionad ionnsachaidh ’s eòlais. Seo an dòigh san deach an sìobhaltas againne a stèidheachadh. Cha mhòr nach eil am Muir Meadhanach cuairtichte le tìr gu tur: Tha Gallia Transalpina (A’ Ghall thar-Ailpeach), an Eadailt, A’ Ghreug (Graecia) agus Anatolia gu tuath, Siridhea gu ear, Libia agus Moratàinea gu deas agus an Ibèir gu iar air. Bhiodh “Mare Internum” no fiù ’s “Mare Nostrum” aig na Ròmanaich air."
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
@@ -454,11 +480,11 @@ msgid ""
 "of the Seven Natural Wonders of Africa. Due to it's climate, biodiversity "
 "and history, Ngorongoro is believed by some to be Africa's Garden of Eden "
 "and the birthplace of mankind."
-msgstr ""
+msgstr "Is sloc Ngorongoro fear dhe na caldarathan bolcànach slàna as motha air an t-saoghal agus fear dhe na seachd mìorbhailean nàdarra Afraga. Air sàilleibh a ghnàth-sìde, bith-iomadachd agus eachdraidh, cha cuid dhen bheachd gur e Gàrradh Edein Afraga agus àite-breith a’ chinne-dhaonna a th’ ann an Ngorongoro."
 
 #: maps/random/ngorongoro.jsonsettings.Name
 msgid "Ngorongoro"
-msgstr ""
+msgstr "Ngorongoro"
 
 #: maps/random/northern_lights.jsonsettings.Description
 msgid ""
@@ -526,9 +552,10 @@ msgstr "Na Beanntan Pirineach"
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
-"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
-"and Asia and the world's northernmost tropical sea."
-msgstr "’S e geodha sàile aig Cuain nan Innseachan a tha sa Mhuir Ruadh agus e eadar Afraga is Àisia agus am muir tropaigeach as fhaide tuath air an t-saoghal."
+"Historically, the Red Sea was a sea of many nations. Ideally situated for "
+"trade with the Far East, it was coveted by all. Although dry, this land is "
+"by no means inhospitable, and is amply provided with all resources."
+msgstr "Bhiodh iomadh sluagh a’ fuireach ri taobh na Mara Ruaidhe o shean. Tha a suidheachadh foirfe gus malart ris an Ear Chèin agus bha gach sluagh ’ga iarraidh. Ged a tha i tioram, chan eil an tìr seo mì-àraidh agus chan eil stòras a dhìth oirre."
 
 #: maps/random/red_sea.jsonsettings.Name
 msgid "Red Sea"
@@ -555,17 +582,15 @@ msgstr "Aibhnean"
 
 #: maps/random/rouen.jsonsettings.Description
 msgid ""
-"Rouen is a city on the River Seine in the north of France and the capital of"
-" Normandy. Formerly one of the largest and most prosperous cities of "
-"medieval Europe, Rouen was the seat of the Exchequer of Normandy during the "
-"Middle Ages. It was one of the capitals of the Anglo-Norman dynasties, which"
-" ruled both England and large parts of modern France from the 11th to the "
-"15th centuries."
-msgstr ""
+"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
+" in the place of the modern-day city of Rouen. Destined to become one of the"
+" largest and most prosperous cities of medeival Europe and one of the Anglo-"
+"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
+msgstr "Tòisichidh na cluicheadairean air tràigh na h-aibhne Sequana (Seine) ceann a tuath na Gaille far a bheil baile Rouen san latha an-diugh. Is gun dèid e ’na fhear dhe na bailtean as motha agus nas sealbhaiche na Roinn-Eòrpa meadhan-aoisiche agus ’na chathair-bhaile dhan t-sliochd Angla-Nòrmannach an dàn dha ach tha Rouen ’na thìr shìtheil fhathast – cha bhi ùine fada co-dhiù."
 
 #: maps/random/rouen.jsonsettings.Name
 msgid "Rouen"
-msgstr ""
+msgstr "Rouen"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."

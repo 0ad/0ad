@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Kanetaka Suto, 2014-2016
-# Werkt <werkt3639@gmail.com>, 2015
+# Cheung Hung, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-22 09:01+0200\n"
-"PO-Revision-Date: 2016-08-23 09:49+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-26 09:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -54,21 +54,21 @@ msgid "Basic"
 msgstr "通常"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:18
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_champion_elephant_melee.xml:13
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
+#: simulation/templates/template_unit_champion_elephant_melee.xml:14
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:48
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
+#: simulation/templates/template_unit_hero_elephant_melee.xml:49
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee.xml:18
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:39
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "近接攻撃"
@@ -78,12 +78,12 @@ msgid "Melee Cavalry"
 msgstr "近接攻撃騎兵"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:25
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spear"
@@ -95,10 +95,10 @@ msgstr "槍騎兵"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:26
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Sword"
 msgstr "剣"
 
@@ -112,30 +112,29 @@ msgstr "遠隔攻撃騎兵"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_champion_ranged.xml:5
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:32
-#: simulation/templates/template_unit_hero_infantry_archer.xml:24
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
+#: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:41
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:44
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "Ranged"
 msgstr "遠隔攻撃"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_archer.xml:24
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_infantry_archer.xml:25
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:28
 msgid "Archer"
@@ -146,10 +145,10 @@ msgid "Cavalry Archer"
 msgstr "弓騎兵"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:22
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:32
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:23
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
 msgstr "投槍"
@@ -174,11 +173,11 @@ msgstr "チャンピオン騎兵"
 msgid "Champion Cavalry Archer."
 msgstr "チャンピオン弓騎兵。"
 
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:24
 msgid "Champion Cavalry Skirmisher"
 msgstr "チャンピオン騎馬散兵"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
 msgstr "チャンピオン槍騎兵"
 
@@ -209,52 +208,32 @@ msgstr "チャンピオン弓兵"
 msgid "Champion Skirmisher"
 msgstr "チャンピオン散兵"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:32
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "長槍"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 msgid "Champion Pikeman"
 msgstr "チャンピオン長槍兵"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:35
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:34
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
 msgstr "得意：3倍 対騎兵。"
 
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:31
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 msgid "Champion Spearman"
 msgstr "チャンピオン槍兵"
 
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
 msgid "Champion Swordsman"
 msgstr "チャンピオン剣士"
-
-#: simulation/templates/template_unit_champion_ranged.xml:4
-msgid "Champion Ranged"
-msgstr "チャンピオン射撃兵"
-
-#: simulation/templates/template_unit_champion_siege.xml:17
-msgid "Super Siege"
-msgstr "スーパー包囲攻撃"
-
-#: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical.xml:13
-#: simulation/templates/template_unit_mechanical.xml:12
-msgid "Mechanical"
-msgstr "機械"
-
-#: simulation/templates/template_unit_champion_siege.xml:18
-#: simulation/templates/template_unit_mechanical_siege.xml:17
-#: simulation/templates/template_unit_mechanical_siege.xml:18
-msgid "Siege"
-msgstr "包囲攻撃"
 
 #: simulation/templates/template_unit_dog.xml:43
 msgid "Dog"
@@ -272,7 +251,7 @@ msgstr "建物を攻撃できません。"
 msgid "Fauna"
 msgstr "動物"
 
-#: simulation/templates/template_unit_fauna_fish.xml:9
+#: simulation/templates/template_unit_fauna_fish.xml:10
 msgid "Fish"
 msgstr "魚"
 
@@ -295,11 +274,11 @@ msgstr "英雄"
 msgid "Hero Cavalry"
 msgstr "英雄騎兵"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:27
 msgid "Hero Cavalry Archer"
 msgstr "英雄弓騎兵"
 
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
 msgid "Hero Cavalry Skirmisher"
 msgstr "英雄騎馬散兵"
 
@@ -311,23 +290,23 @@ msgstr "英雄槍騎兵"
 msgid "Hero Cavalry Swordsman"
 msgstr "英雄剣騎兵"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
 msgstr "英雄弓兵"
 
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
 msgid "Hero Skirmisher"
 msgstr "英雄散兵"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
 msgstr "英雄長槍兵"
 
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 msgid "Hero Spearman"
 msgstr "英雄槍兵"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 msgid "Hero Swordsman"
 msgstr "英雄剣士"
 
@@ -349,7 +328,7 @@ msgstr "長槍兵"
 msgid "Spearman"
 msgstr "槍兵"
 
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
 msgid "Swordsman"
 msgstr "剣士"
 
@@ -364,6 +343,11 @@ msgstr "投石器"
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
 msgstr "投石兵"
+
+#: simulation/templates/template_unit_mechanical.xml:13
+#: simulation/templates/template_unit_mechanical.xml:12
+msgid "Mechanical"
+msgstr "機械"
 
 #: simulation/templates/template_unit_mechanical_ship.xml:33
 #: simulation/templates/template_unit_mechanical_ship.xml:32
@@ -384,7 +368,7 @@ msgstr "軍艦"
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:58
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Garrison units for transport and to increase firepower."
 msgstr ""
 
@@ -436,35 +420,40 @@ msgstr "大型軍艦"
 msgid "Medium Warship"
 msgstr "中型軍艦"
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:40
+#: simulation/templates/template_unit_mechanical_siege.xml:17
+#: simulation/templates/template_unit_mechanical_siege.xml:18
+msgid "Siege"
+msgstr "包囲攻撃"
+
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:36
 msgid "Bolt Shooter"
 msgstr "弩砲"
 
-#: simulation/templates/template_unit_mechanical_siege_ballista.xml:41
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "BoltShooter"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:47
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:43
 msgid "Siege Catapult"
 msgstr "攻城投石機"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:48
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Catapult"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:38
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:33
 msgid "Battering Ram"
 msgstr "破城槌"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:39
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 msgid "Ram"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:56
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:47
 msgid "Siege Tower"
 msgstr "攻城塔"
 
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:57
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "SiegeTower"
 msgstr ""
 

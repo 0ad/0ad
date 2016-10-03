@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-23 09:01+0200\n"
-"PO-Revision-Date: 2016-09-23 10:17+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-26 09:41+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -27,29 +27,29 @@ msgstr "Togalach sìobhalta"
 msgid "Civic"
 msgstr "Sìobhalta"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
 msgstr "Ionad sìobhalta"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:73
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Tog fear gus cnap mòr de ranntair a ghabhail. Trèanaich saoranaich."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
-#: simulation/templates/template_structure_civic_civil_centre.xml:37
+#: simulation/templates/template_structure_civic_civil_centre.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:38
 msgid "CivilCentre"
 msgstr "Ionad sìobhalta"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "Colony"
 msgstr "Tuineachadh"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Tuineachas an airm"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
@@ -86,8 +86,8 @@ msgid "Increase the population limit."
 msgstr "Ceadaich barrachd sluaigh."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:49
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_wooden_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -128,18 +128,18 @@ msgstr "Losgaidh e saighdean. Cuir gearastan ann airson barrachd dìona. Feumaid
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
-#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Tùr dìona"
 
-#: simulation/templates/template_structure_defense_outpost.xml:58
+#: simulation/templates/template_structure_defense_outpost.xml:63
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "Tog seo air ranntair neo-phàirteach no air an ranntair agad fhèin gus roinn dhen mhapa a rùrachadh. Thèid e ’na Ghaìa mean air mhean nuair a bhios e air ranntair neo-phàirteach."
 
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_outpost.xml:57
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_outpost.xml:33
+#: simulation/templates/template_structure_defense_outpost.xml:62
 msgid "Outpost"
 msgstr "Gearastan"
 
@@ -182,10 +182,14 @@ msgstr "Losgaidh e saighdean. Cuir gearastan ann gus balla a’ bhaile a dhìon 
 msgid "City Wall"
 msgstr "Balla a’ bhaile"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:46
-#: simulation/templates/template_structure_defense_wooden_tower.xml:45
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
 msgstr "Tùr fiodha"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:67
+msgid "Enforce with stone and upgrade to a defense tower."
+msgstr "Neartaich le clachan is àrdaich gu tùr dìona e."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -1461,11 +1465,11 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr "Trèanaich lighichean. Cuir sonadan ’nan gearastan ann gus an slànachadh gu luath."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:16
+#: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
 msgstr "Teampall Bheasta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1535,7 +1539,7 @@ msgid ""
 "defense."
 msgstr "Tog innealan-sèiste agus trèanaich laoich. Cuir saighdearan ’nan gearastan ann airson dìona sheasmhaich."
 
-#: simulation/templates/structures/sele_library.xml:5
+#: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 
@@ -1543,7 +1547,7 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:6
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "

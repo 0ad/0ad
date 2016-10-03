@@ -625,6 +625,7 @@ function updateGameSelection()
 	sgGameStartTime.hidden = !game.startTime;
 	if (game.startTime)
 		sgGameStartTime.caption = sprintf(
+			// Translation: %(time)s is the hour and minute here.
 			translate("Game started at %(time)s"), {
 				"time": Engine.FormatMillisecondsIntoDateString(+game.startTime*1000, translate("HH:mm"))
 			});

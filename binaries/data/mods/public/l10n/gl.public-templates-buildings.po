@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-23 09:01+0200\n"
-"PO-Revision-Date: 2016-09-23 09:46+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-26 08:34+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -27,29 +27,29 @@ msgstr "Estrutura civil"
 msgid "Civic"
 msgstr "Cívica"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
 msgstr "Centro cívico"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:73
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
-#: simulation/templates/template_structure_civic_civil_centre.xml:37
+#: simulation/templates/template_structure_civic_civil_centre.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:38
 msgid "CivilCentre"
 msgstr "Centro cívico"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "Colony"
 msgstr "Colonia"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Colonia militar"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
@@ -86,8 +86,8 @@ msgid "Increase the population limit."
 msgstr "Aumenta o límite de poboación."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:49
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_wooden_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -128,18 +128,18 @@ msgstr "Dispara frechas. Acuartela unidades para fornecer mellores defensas. Req
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
-#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Torre de defensa"
 
-#: simulation/templates/template_structure_defense_outpost.xml:58
+#: simulation/templates/template_structure_defense_outpost.xml:63
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "Constrúeo en territorio neutral ou propio para explorar zonas do mapa. Convértese a gaia lentamente cando está situado en territorio neutral."
 
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_outpost.xml:57
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_outpost.xml:33
+#: simulation/templates/template_structure_defense_outpost.xml:62
 msgid "Outpost"
 msgstr "Atalaia"
 
@@ -182,10 +182,14 @@ msgstr "Dispara frechas. Poden acuartelarse unidades nela para defender dun ataq
 msgid "City Wall"
 msgstr "Muralla urbana"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:46
-#: simulation/templates/template_structure_defense_wooden_tower.xml:45
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
 msgstr "Torre de madeira"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:67
+msgid "Enforce with stone and upgrade to a defense tower."
+msgstr ""
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -1461,11 +1465,11 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr ""
 
-#: simulation/templates/structures/rome_temple_vesta.xml:16
+#: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
 msgstr "Templo de Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1535,7 +1539,7 @@ msgid ""
 "defense."
 msgstr ""
 
-#: simulation/templates/structures/sele_library.xml:5
+#: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 
@@ -1543,7 +1547,7 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:6
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "

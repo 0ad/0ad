@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-09 09:01+0200\n"
-"PO-Revision-Date: 2016-09-19 01:23+0000\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-26 13:21+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -48,12 +48,11 @@ msgstr "阿爾卑斯大峽谷"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
-"The Amazon River in South America is the largest river by discharge of water"
-" in the world, and the longest in length. The Amazon basin is the largest "
-"drainage basin in the world, with an area of approximately 7,050,000 square "
-"kilometers, and accounts for roughly one-fifth of the world's total river "
-"flow."
-msgstr "南美洲的亞馬遜河是世界上排水量最大，同時也是最長的和流。亞馬遜河的流域也是世界上最大的流域，其面積約為 7,050,000 平方公里，佔了世界總河流量的約五分之一。"
+"Players are transported into the tropics to the mouth of the great Amazon, "
+"which is arguably the longest and largest river in the world. Will you "
+"triumph and take control of this tropical paradise, or will you be trampled "
+"into the dust by ruthless and ambitious enemies?"
+msgstr "玩家被運送到熱帶，到了亞馬遜河的河口，這是世界上最長也最大的河流。您將會吹響號角並控制這個熱帶天堂，又或是被無情且野心勃勃的敵人無情地掃進歷史的塵埃之中？"
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
@@ -112,10 +111,14 @@ msgstr "阿特拉斯山脈"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"The Kingdom of Bahrain is an island country situated between Saudia Arabia "
-"to the west and Qatar to the east. From the 6th to 3rd century BC, Bahrain "
-"was part of the Persian Empire."
-msgstr "巴林王國是一個位於西邊是沙烏地阿拉伯，東邊是卡達的島國。西元前六到三世紀時，巴林曾是波斯帝國的一部份。"
+"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
+"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
+" and also centre of pearl trading due to its magnificent pearl fisheries, "
+"Bahrain is never left unoccupied for long. But now, with the previous "
+"occupants gone, the land prepares for war. Will you be the next Ruler of "
+"Bahrain?"
+msgstr "巴林，在西元前800年時衰弱的迪爾門文明的中心，隨後又被蘇美人、亞述人、巴比倫人、波斯人與其他許多文明所統治過。其在波斯灣地區是具重要戰略地位的島嶼，同時也是珍珠與水產的貿易中心，巴林已經很久未處於無人居住的狀態了。但現在，先前的佔有者離去，土地準備好進行戰爭。您是否會成為巴林的下一個統治者？"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -131,6 +134,17 @@ msgstr "以侵蝕方式產生的，看起來更接近自然高度的實驗性地
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "比利時高原"
+
+#: maps/random/caledonian_meadows.jsonsettings.Description
+msgid ""
+"Fertile lands surrounded by harsh terrain.\n"
+"Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt barely died away.\n"
+"Aiming at a realistic terrain, this map might not always be balanced."
+msgstr "肥沃的土地被惡劣的地形所包圍。\n最近的降雪仍困擾著森林，融雪在急流中迅速的消失。\n目標是盡量貼近真實地形，所以這張地圖可能並不會總是那麼平衡。"
+
+#: maps/random/caledonian_meadows.jsonsettings.Name
+msgid "Caledonian Meadows"
+msgstr "蘇格蘭草原"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -302,8 +316,11 @@ msgstr "地獄通道"
 #: maps/random/howe_sound.jsonsettings.Description
 msgid ""
 "Howe Sound is a roughly triangular network of fjords located directly "
-"northwest of Vancouver in British Columbia, Canada."
-msgstr "豪灣是一個大約位於加拿大卑詩省內，溫哥華的西北方的三角形海灣。"
+"northwest of present-day Vancouver, on the West Coast of today's Canada. The"
+" waters teem with whales and fish, while on land herds of muskox dig through"
+" deep snow to get at mushrooms and last summer's roots. Mines and forests "
+"also abound in this cold haven."
+msgstr "豪灣是位於加拿大西岸，今日的溫哥華西北部的一個大致上是三角形的峽灣。該處盛產各種鯨類與其他魚類，陸地上則有牛群挖通厚厚的積雪來找到在去年夏天的根部位置的蘑菇。礦產與森林在這個寒冷的天堂中也比比皆是。"
 
 #: maps/random/howe_sound.jsonsettings.Name
 msgid "Howe Sound"
@@ -396,11 +413,15 @@ msgstr "大陸"
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
-"The Sea of Marmara connects the Black Sea to the Aegean Sea and separates "
-"Turkey into it's European and Asian parts. The ancient city of Troy stood at"
-" the western entrance to the sea which became the focal point of the Trojan "
-"War."
-msgstr "馬摩拉海連接著黑海與愛琴海，並將土耳其分割為在歐洲與在亞洲的部份。特洛伊戰爭的焦點，特洛伊古城，就位於此海的西方入口。"
+"The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
+"the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
+" the Hellespont (Dardanelles), at the entrance of which the ancient city of "
+"Ilium (Troy) once stood. To the north-east lies the Bosporus Thraciae "
+"(Bosporus strait) where in time the Greek city of Byzantium would be "
+"founded, later to become the capital of the great Byzantine Empire under the"
+" new name of Constantinople. Players start on fertile land with adequate "
+"resources."
+msgstr "馬摩拉海連接著黑海與愛琴海，並將小亞細亞與色雷斯分開。西南方有達達尼爾海，其入口位於特洛伊古城曾經佇立的位置。東北方則是博斯普魯斯海峽，曾是希臘城市拜占庭的所在地，爾後變為拜占庭帝國的首都，也被重新命名為君士坦丁堡。玩家一開始就位於有著充足資源的肥沃土地上。"
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
@@ -408,12 +429,17 @@ msgstr "馬摩拉"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
-"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
-" the Mediterranean Basin and almost completely enclosed by land: on the "
-"north by Southern Europe and Anatolia, on the south by North Africa, and on "
-"the east by the Levant. The name Mediterranean is derived from the Latin "
-"mediterraneus, meaning 'inland' or 'in the middle of land'."
-msgstr "地中海是與大西洋相連接，被許多土地所包圍，幾乎完全封閉的海洋：北邊是南歐與安那托利亞，南邊是北非，東邊則是地中海東岸。地中海的名字衍生自拉丁文的「mediterraneus」，其意義為「土地」或是「土地的中央」。"
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
+msgstr "地中海，曾是腓尼基人、希臘人、埃及人以及稍後的羅馬人的家。他們以美索不達米亞的知室為基礎，雜揉了從地中海沿岸學到的其他東西，由此奠定我們今日所知文明的基礎。地中海幾乎完全被陸地所包圍：從北邊的阿爾卑斯山與安那托利亞，東邊的敘利亞，南邊的利比亞與茅利塔尼亞，以及西邊的伊比利亞。地中海這個名字是源自於拉丁文，但羅馬人自己則偏好稱為 'Mare Internum' 或 'Mare Nostrum'。"
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
@@ -527,9 +553,10 @@ msgstr "庇里牛斯山脈"
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
-"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
-"and Asia and the world's northernmost tropical sea."
-msgstr "紅海是印度洋的陸間海，位於非洲與亞洲間，並是世界最北端的熱帶海洋。"
+"Historically, the Red Sea was a sea of many nations. Ideally situated for "
+"trade with the Far East, it was coveted by all. Although dry, this land is "
+"by no means inhospitable, and is amply provided with all resources."
+msgstr "從歷史上看，紅海是許多國家的海洋。該處的地理位置適於與遠東的貿易，所以被很多國家所覬覦。雖然乾旱，但這片土地絕不荒涼，並充份提供了所有資源。"
 
 #: maps/random/red_sea.jsonsettings.Name
 msgid "Red Sea"
@@ -556,13 +583,11 @@ msgstr "河流"
 
 #: maps/random/rouen.jsonsettings.Description
 msgid ""
-"Rouen is a city on the River Seine in the north of France and the capital of"
-" Normandy. Formerly one of the largest and most prosperous cities of "
-"medieval Europe, Rouen was the seat of the Exchequer of Normandy during the "
-"Middle Ages. It was one of the capitals of the Anglo-Norman dynasties, which"
-" ruled both England and large parts of modern France from the 11th to the "
-"15th centuries."
-msgstr "盧昂是一個在法國北部，位於塞納河邊，同時也是諾曼第大區的首府。中世紀時曾是歐洲最大且最繁榮的城市之一，魯昂是中世紀時，諾曼第的國庫所在地。它也曾是盎格魯-諾曼王朝的首都之一，其在11至15世紀時統治了英格蘭與現代法國的很大一部份。"
+"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
+" in the place of the modern-day city of Rouen. Destined to become one of the"
+" largest and most prosperous cities of medeival Europe and one of the Anglo-"
+"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
+msgstr "玩家起始於塞納河的北岸，現今的魯昂一帶。其為中世紀歐洲最大且最繁榮的城市之一，也曾為盎格魯－諾曼王朝的首都，魯昂仍是一片祥和的土地－但不久了。"
 
 #: maps/random/rouen.jsonsettings.Name
 msgid "Rouen"

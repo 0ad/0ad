@@ -485,9 +485,9 @@ function calculateMiscellaneous(counters)
 			else if (w == 3)
 				teamTotal = g_TeamHelperData[t].percentMapExplored + "%";
 			else if (w == 4)
-				teamTotal = g_TeamHelperData[t].percentMapControlled + "%";
-			else if (w == 5)
 				teamTotal = g_TeamHelperData[t].peakPercentMapControlled + "%";
+			else if (w == 5)
+				teamTotal = g_TeamHelperData[t].percentMapControlled + "%";
 
 			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotal;
 		}

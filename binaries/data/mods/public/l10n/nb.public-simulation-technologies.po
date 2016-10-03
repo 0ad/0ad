@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2016
-# Jarl.Arntzen <jarl.arntzen@gmail.com>, 2015
+# Jarl Arntzen <jarl.arntzen@gmail.com>, 2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Matias Lavik <matias.lavik@hotmail.com>, 2016
 # Ole Sannes Riiser <OLE-SR@online.no>, 2015-2016
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-16 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 08:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-09-30 02:54+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1020,7 +1020,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "Utstyr dine arbeidere med hjelpsomme verktøy. +15% metallutvinningsrate."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1286,7 +1286,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avanser til by-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med enda +50%. Innbyggersoldater høyeste helsenivå økes med +10%. Alle strukturer får +9 helbredingsrate med enheter forskanset i dem."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1317,7 +1317,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avanser til by-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med enda +50%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metall sankebonus til alle arbeidere. Innbyggersoldaters høyeste helsenivå økes med +10%. Alle strukturer får +9 helbredingsrate med enheter forskanset i dem."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1329,7 +1329,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avanser til tettsted-fasen, som tilgjengeliggjør flere strukturer og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%.\nInnbyggersoldater høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1361,7 +1361,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Avanser til tettsted-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metall-utvinningsbonus til alle arbeidere. Innbyggersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1464,7 +1464,7 @@ msgstr "Underet tiltrekker seg mange flere folk til din sivilisasjon."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Skru på praktfull utvidelse. Øker befolkningstaket med ytterligere 40 per eide under."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1758,7 +1758,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Utvidelse av handelsvirksomhet fører til at materialforvaltere og deres familier etablerer seg i fremmede land, der de vil utnytte disse landenes rikdom. "
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -1783,7 +1783,7 @@ msgstr "Ved handel og reiser utforsket folk forbi yttergrensene av deres eget la
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Se hva dine allierte ser, se gjennom deres sammendrag og sjekk deres ressurser og befolkningsantall i toppanelet."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -2164,7 +2164,7 @@ msgstr "Oppgrader alle dine iberiske leiesoldater til eliterang."
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Oppgrader alle dine iberiske leiesoldater til eliterang. Dette øker deres militære djervhet, men reduserer deres resurs-sanking med ytterligere -25%."
+msgstr "Oppgrader alle dine iberiske leiesoldater til eliterang. Dette øker deres militære djervhet, men reduserer deres evne til å sanke ressurser med ytterligere -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"

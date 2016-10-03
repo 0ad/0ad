@@ -6,6 +6,7 @@
 # Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>, 2016
 # Alexandru Diaconu <alex.dcnu@gmail.com>, 2016
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Danila Catalin <dlcatalin@ymail.com>, 2016
 # Baadur Jobava <jobaval10n@gmail.com>, 2015
 # Lucian Lupescu <l.lupescu@yahoo.com>, 2016
 # bogdomania <mintoi.bogdan@gmail.com>, 2014
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-23 09:01+0200\n"
-"PO-Revision-Date: 2016-09-23 09:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-29 16:23+0000\n"
+"Last-Translator: Danila Catalin <dlcatalin@ymail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,29 +38,29 @@ msgstr "Structură civică"
 msgid "Civic"
 msgstr "Civic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:72
+#: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
 msgstr "Centru Civic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:73
+#: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
 msgstr "Construiește pentru a dobândi suprafețe mari de teritoriu. Antrenează cetățeni."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:75
-#: simulation/templates/template_structure_civic_civil_centre.xml:37
+#: simulation/templates/template_structure_civic_civil_centre.xml:76
+#: simulation/templates/template_structure_civic_civil_centre.xml:38
 msgid "CivilCentre"
 msgstr "Centru civil"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:25
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "Colony"
 msgstr "Colonie"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:46
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
 msgstr "Colonie militară"
 
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:47
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
 msgid "Klēroukhía"
 msgstr "Klēroukhía"
 
@@ -96,8 +97,8 @@ msgid "Increase the population limit."
 msgstr "Crește limita populației."
 
 #: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_wooden_tower.xml:49
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_wooden_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -138,18 +139,18 @@ msgstr "Trage săgeți. Pune unități în garnizoană pentru sporirea defensive
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
-#: simulation/templates/template_structure_defense_wooden_tower.xml:20
 msgid "DefenseTower"
 msgstr "Turn de apărare"
 
-#: simulation/templates/template_structure_defense_outpost.xml:58
+#: simulation/templates/template_structure_defense_outpost.xml:63
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
 msgstr "Construiește în teritoriul neutru și controlat pentru a descoperi zone de pe hartă. Se convertește încet la Gala în timp ce se află pe teritoriu neutru."
 
-#: simulation/templates/template_structure_defense_outpost.xml:60
-#: simulation/templates/template_structure_defense_outpost.xml:57
+#: simulation/templates/template_structure_defense_outpost.xml:65
+#: simulation/templates/template_structure_defense_outpost.xml:33
+#: simulation/templates/template_structure_defense_outpost.xml:62
 msgid "Outpost"
 msgstr "Avantpost"
 
@@ -192,10 +193,14 @@ msgstr "Trage săgeți. Pune în garnizoană pentru a apăra un zid al orașului
 msgid "City Wall"
 msgstr "Zid oraș"
 
-#: simulation/templates/template_structure_defense_wooden_tower.xml:46
-#: simulation/templates/template_structure_defense_wooden_tower.xml:45
+#: simulation/templates/template_structure_defense_wooden_tower.xml:39
+#: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Wooden Tower"
 msgstr "Turn de lemn"
+
+#: simulation/templates/template_structure_defense_wooden_tower.xml:67
+msgid "Enforce with stone and upgrade to a defense tower."
+msgstr "Intărește cu piatră si upgradează în turn de apărare "
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -777,7 +782,7 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Shipyard"
-msgstr ""
+msgstr "Șantier naval"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
@@ -1066,7 +1071,7 @@ msgstr "Puratta"
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
-msgstr "Great Stupa"
+msgstr "Marea Stupă"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
@@ -1159,7 +1164,7 @@ msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Antrenează Elefanți de război și mercenari Karkakes"
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1305,7 +1310,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Construcție ieftină asemeni unei barăci ce poate fi construită pe teritoriu neutru, nu exercită influență teritorială. Antrenează mercenari. "
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1316,7 +1321,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Aceasta este clădirea de expansiune Ptolemaică, similară cu Centrele Civice ale celorlalte factiuni. Este mai slabă și deține o influență teritorială mai mică, dar este mai ieftină și este construită mai repede. Antrenează coloniști-soldați de naționalități diverse. "
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1471,11 +1476,11 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr "Antrenează vindecători. Plasează unități în garizoană pentru ai vindeca într-un ritm accelerat."
 
-#: simulation/templates/structures/rome_temple_vesta.xml:16
+#: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
 msgstr "Templul lui Vesta"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:18
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1545,7 +1550,7 @@ msgid ""
 "defense."
 msgstr "Construiește mașini de asediu și campioni. Încartiruiți soldați aici pentru o defensiva solidă."
 
-#: simulation/templates/structures/sele_library.xml:5
+#: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
 msgstr "Bibliothikon"
 
@@ -1553,12 +1558,12 @@ msgstr "Bibliothikon"
 msgid "Empórion"
 msgstr "Empórion"
 
-#: simulation/templates/structures/sele_military_colony.xml:6
+#: simulation/templates/structures/sele_military_colony.xml:10
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Aceasta este cladirea de expasiune Seleucidă, similară cu Centrele Civice ale celorlalte factiuni. Este mai slabă și deține o influență teritorială mai mică, dar este mai ieftină și este construită mai repede. Antrenează coloniști-soldați de naționalități diverse.\n"
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

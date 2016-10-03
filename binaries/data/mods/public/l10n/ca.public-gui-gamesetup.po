@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:00+0200\n"
-"PO-Revision-Date: 2016-09-18 08:40+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-26 09:00+0200\n"
+"PO-Revision-Date: 2016-09-27 19:36+0000\n"
+"Last-Translator: Catalanoic <catalanoic@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +80,7 @@ msgstr "* %(username)s està a punt!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s no està a punt."
 
-#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1389
+#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1396
 msgid "Default"
 msgstr "Per defecte"
 
@@ -93,84 +93,102 @@ msgid "Demo Maps"
 msgstr "Mapes de demostració"
 
 #: gui/gamesetup/gamesetup.js:85
+msgid "New Maps"
+msgstr "Nous Mapes"
+
+#: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
 msgstr "Mapes de factors desencadenants"
 
-#: gui/gamesetup/gamesetup.js:90
+#: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
 msgstr "Tots els mapes"
 
-#: gui/gamesetup/gamesetup.js:139
+#: gui/gamesetup/gamesetup.js:144
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:149
 msgctxt "civilization"
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/gamesetup/gamesetup.js:267
+#: gui/gamesetup/gamesetup.js:272
 msgid "Return to the lobby."
 msgstr "Torna a la sala multijugador."
 
-#: gui/gamesetup/gamesetup.js:267
+#: gui/gamesetup/gamesetup.js:272
 msgid "Return to the main menu."
 msgstr "Torna al menú principal."
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:599
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/gamesetup/gamesetup.js:592
+#: gui/gamesetup/gamesetup.js:599
 msgid "No"
 msgstr "No"
 
-#: gui/gamesetup/gamesetup.js:631
+#: gui/gamesetup/gamesetup.js:638
 msgctxt "team"
 msgid "None"
 msgstr "Cap"
 
-#: gui/gamesetup/gamesetup.js:1297
+#: gui/gamesetup/gamesetup.js:1304
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1459
+#: gui/gamesetup/gamesetup.js:1466
 msgid "Loading..."
 msgstr "S'està carregant..."
 
-#: gui/gamesetup/gamesetup.js:1592
+#: gui/gamesetup/gamesetup.js:1599
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1597
+#: gui/gamesetup/gamesetup.js:1604
 msgid "Unassigned"
 msgstr "Sense assignar"
 
-#: gui/gamesetup/gamesetup.js:1757
+#: gui/gamesetup/gamesetup.js:1764
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1764
+#: gui/gamesetup/gamesetup.js:1771
 msgid "Unknown Player"
 msgstr "Jugador desconegut"
 
-#: gui/gamesetup/gamesetup.js:1842
+#: gui/gamesetup/gamesetup.js:1807
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1808
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/gamesetup/gamesetup.js:1809
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/gamesetup/gamesetup.js:1859
 msgid "I'm not ready!"
 msgstr "No estic a punt!"
 
-#: gui/gamesetup/gamesetup.js:1843
+#: gui/gamesetup/gamesetup.js:1860
 msgid "I'm ready"
 msgstr "Estic a punt"
 
-#: gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are not ready to play."
 msgstr "Digueu que no esteu a punt per jugar."
 
-#: gui/gamesetup/gamesetup.js:1847
+#: gui/gamesetup/gamesetup.js:1864
 msgid "State that you are ready to play!"
 msgstr "Digueu que esteu a punt per jugar!"
 

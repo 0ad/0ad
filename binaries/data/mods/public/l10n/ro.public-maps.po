@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Alex Hex <alexhex14@gmail.com>, 2016
+# Danila Catalin <dlcatalin@ymail.com>, 2016
 # bogdomania <mintoi.bogdan@gmail.com>, 2014-2015
 # Raz Taz <raztaz.ubuntu@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-09 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 16:36+0000\n"
-"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
+"POT-Creation-Date: 2016-09-26 09:01+0200\n"
+"PO-Revision-Date: 2016-09-29 15:10+0000\n"
+"Last-Translator: Danila Catalin <dlcatalin@ymail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,12 +48,11 @@ msgstr "Vale alpină"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
-"The Amazon River in South America is the largest river by discharge of water"
-" in the world, and the longest in length. The Amazon basin is the largest "
-"drainage basin in the world, with an area of approximately 7,050,000 square "
-"kilometers, and accounts for roughly one-fifth of the world's total river "
-"flow."
-msgstr "Râul Amazon din America de Sud este cel mai mare râu din lume după debitul de apă, și cel mai lung ca lungime. Bazinul Amazonului este cel mai mare bazin de drenare din lume, cu o suprafață de aproximativ 7.050.000 kilometri pătrați, și reprezintă cam o cincime din volumul mondial de apă curgătoare."
+"Players are transported into the tropics to the mouth of the great Amazon, "
+"which is arguably the longest and largest river in the world. Will you "
+"triumph and take control of this tropical paradise, or will you be trampled "
+"into the dust by ruthless and ambitious enemies?"
+msgstr "Jucătorii sunt transportați la tropice la gura marelui Amazon, care este fără îndoială cel mai lung si cel mai lat râu din lume. Vei triumfa si vei detine controlul asupra acestui paradis tropical, sau vei fi nimicit in țărână de inamici nemiloși și ambițioși? "
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
@@ -111,10 +111,14 @@ msgstr "Munţii Atlas"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"The Kingdom of Bahrain is an island country situated between Saudia Arabia "
-"to the west and Qatar to the east. From the 6th to 3rd century BC, Bahrain "
-"was part of the Persian Empire."
-msgstr "Regatul Bahrein este o țară insulară situată între Arabia Saudită, la vest și Qatar, la est. Din secolul al 6-lea și până în secolul al 3-lea Î.E.N., Bahreinul a fost parte din Imperiul Persan."
+"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
+"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
+" and also centre of pearl trading due to its magnificent pearl fisheries, "
+"Bahrain is never left unoccupied for long. But now, with the previous "
+"occupants gone, the land prepares for war. Will you be the next Ruler of "
+"Bahrain?"
+msgstr ""
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -130,6 +134,17 @@ msgstr "O hartă experimentală cu harta elevației generată prin eroziune pent
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "Zonele muntoase belgiene"
+
+#: maps/random/caledonian_meadows.jsonsettings.Description
+msgid ""
+"Fertile lands surrounded by harsh terrain.\n"
+"Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt barely died away.\n"
+"Aiming at a realistic terrain, this map might not always be balanced."
+msgstr ""
+
+#: maps/random/caledonian_meadows.jsonsettings.Name
+msgid "Caledonian Meadows"
+msgstr ""
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -301,7 +316,10 @@ msgstr ""
 #: maps/random/howe_sound.jsonsettings.Description
 msgid ""
 "Howe Sound is a roughly triangular network of fjords located directly "
-"northwest of Vancouver in British Columbia, Canada."
+"northwest of present-day Vancouver, on the West Coast of today's Canada. The"
+" waters teem with whales and fish, while on land herds of muskox dig through"
+" deep snow to get at mushrooms and last summer's roots. Mines and forests "
+"also abound in this cold haven."
 msgstr ""
 
 #: maps/random/howe_sound.jsonsettings.Name
@@ -395,10 +413,14 @@ msgstr ""
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
-"The Sea of Marmara connects the Black Sea to the Aegean Sea and separates "
-"Turkey into it's European and Asian parts. The ancient city of Troy stood at"
-" the western entrance to the sea which became the focal point of the Trojan "
-"War."
+"The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
+"the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
+" the Hellespont (Dardanelles), at the entrance of which the ancient city of "
+"Ilium (Troy) once stood. To the north-east lies the Bosporus Thraciae "
+"(Bosporus strait) where in time the Greek city of Byzantium would be "
+"founded, later to become the capital of the great Byzantine Empire under the"
+" new name of Constantinople. Players start on fertile land with adequate "
+"resources."
 msgstr ""
 
 #: maps/random/marmara.jsonsettings.Name
@@ -407,11 +429,16 @@ msgstr ""
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
-"The Mediterranean Sea is a sea connected to the Atlantic Ocean surrounded by"
-" the Mediterranean Basin and almost completely enclosed by land: on the "
-"north by Southern Europe and Anatolia, on the south by North Africa, and on "
-"the east by the Levant. The name Mediterranean is derived from the Latin "
-"mediterraneus, meaning 'inland' or 'in the middle of land'."
+"The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
+"Romans. They took the rudimentary knowledge and principles of organisation "
+"from Mesopotamia and forged it into something more, thereby shifting the "
+"centre of learning and knowledge to the Mediterranean Coast, thus laying the"
+" foundations of civilization as we know it today. The Mediterranean Sea is "
+"almost completely enclosed by land: on the north by Gallia Transalpina "
+"(Transalpine Gaul), Italia, Greece (Graecia) and Anatolia, on the east by "
+"Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
+"name Mediterranean is derived from Latin, but the Romans themselves "
+"preferred the term 'Mare Internum' or even 'Mare Nostrum'."
 msgstr ""
 
 #: maps/random/mediterranean.jsonsettings.Name
@@ -526,8 +553,9 @@ msgstr ""
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
-"The Red Sea is a seawater inlet of the Indian Ocean, lying between Africa "
-"and Asia and the world's northernmost tropical sea."
+"Historically, the Red Sea was a sea of many nations. Ideally situated for "
+"trade with the Far East, it was coveted by all. Although dry, this land is "
+"by no means inhospitable, and is amply provided with all resources."
 msgstr ""
 
 #: maps/random/red_sea.jsonsettings.Name
@@ -555,12 +583,10 @@ msgstr "Râuri"
 
 #: maps/random/rouen.jsonsettings.Description
 msgid ""
-"Rouen is a city on the River Seine in the north of France and the capital of"
-" Normandy. Formerly one of the largest and most prosperous cities of "
-"medieval Europe, Rouen was the seat of the Exchequer of Normandy during the "
-"Middle Ages. It was one of the capitals of the Anglo-Norman dynasties, which"
-" ruled both England and large parts of modern France from the 11th to the "
-"15th centuries."
+"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
+" in the place of the modern-day city of Rouen. Destined to become one of the"
+" largest and most prosperous cities of medeival Europe and one of the Anglo-"
+"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
 msgstr ""
 
 #: maps/random/rouen.jsonsettings.Name
@@ -1565,7 +1591,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[0].Name:41
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaios A' Soter"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[1].Name:41
 msgid "Kautilya"

@@ -1117,7 +1117,7 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.garrison") +
-				           translate("Order the selected units to garrison a building or unit."),
+				           translate("Order the selected units to garrison in a building or unit."),
 				"icon": "garrison.png"
 			};
 		},
@@ -1273,7 +1273,7 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.patrol") +
 				           translate("Patrol") + "\n" +
-				           translate("Attack encountered units while avoiding buildings."),
+				           translate("Attack all encountered enemy units while avoiding buildings."),
 				"icon": "patrol.png"
 			};
 		},

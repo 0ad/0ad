@@ -102,7 +102,7 @@ m.chatNewTradeRoute = function(gameState, player)
 	if (proba < 0.5)
 		message = markForTranslation("I have set up a new route with %(_player_)s. Trading will be profitable for all of us.");
 	else
-		message = markForTranslation("A new trade route is set up with %(_player_)s. Take your share of the profits");
+		message = markForTranslation("A new trade route is set up with %(_player_)s. Take your share of the profits.");
 
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
