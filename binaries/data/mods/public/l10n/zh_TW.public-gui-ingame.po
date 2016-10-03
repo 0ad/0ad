@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 13:42+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 14:02+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -650,8 +650,8 @@ msgstr "購買 %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "賣出 %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
@@ -703,27 +703,27 @@ msgstr "人口上限不足："
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩餘： %(number)s 要建造。"
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "升級至 %(name)s。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "升級至 %(name)s。"
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "取消升級"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "當該實體正在升級時無法升級。"
 
@@ -848,9 +848,9 @@ msgstr "尋找閒置工人"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "選擇一種貨物做為交換的原始貨物，然後使用目標貨物的箭頭以做出交換。"
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr "選擇一種貨物類型做為交換的原始貨物，然後使用目標貨物類型的箭頭以做出交換。"
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -995,7 +995,7 @@ msgid "Abort the current order."
 msgstr "放棄目前的命令。"
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr "命令選定的單位駐守至建築物或單位內。"
 
 #: gui/session/unit_actions.js:1142
@@ -1031,8 +1031,8 @@ msgid "Patrol"
 msgstr "巡邏"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr "攻擊遭遇到的單位但避開建築物。"
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr "攻擊所有遭遇到的單位但避開建築物。"
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1113,7 +1113,7 @@ msgstr "過濾聊天歷史。"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
+msgid "Select chat addressee."
 msgstr "選擇聊天訊息收件人。"
 
 #: gui/session/developer_overlay.xml:(caption):18
@@ -1322,5 +1322,5 @@ msgid "Menu"
 msgstr "選單"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX：Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI：Ulysses"

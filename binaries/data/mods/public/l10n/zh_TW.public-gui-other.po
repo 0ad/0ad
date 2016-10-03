@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 13:41+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 14:03+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -266,7 +266,7 @@ msgstr "排名的遊戲"
 
 #: gui/common/gamedescription.js:213
 msgid ""
-"When the winner of this match was determined, the lobby score will be "
+"When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "當這場比賽的贏家確定後，大廳的分數將會進行調整。"
 
@@ -283,8 +283,8 @@ msgid "Diplomacy"
 msgstr "外交"
 
 #: gui/common/gamedescription.js:224
-msgid "Players can setup alliances and declare war on allies."
-msgstr "玩家可以設定盟友與對盟友宣戰。"
+msgid "Players can make alliances and declare war on allies."
+msgstr "玩家可以讓盟友與盟友宣戰。"
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -370,7 +370,7 @@ msgstr "作弊秘技"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:611
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -583,7 +583,7 @@ msgstr "%(previousAmounts)s 和 %(lastAmount)s"
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:579 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -617,7 +617,7 @@ msgstr "未知原因"
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall or anti-virus software"
+" by a firewall, or anti-virus software"
 msgstr "這通常是因為主機端未轉發 UDP 20595 埠所造成的，可能是由防火牆或防毒軟體阻擋。"
 
 #: gui/common/network.js:64
@@ -629,7 +629,7 @@ msgid "Incorrect network protocol version"
 msgstr "網路協定版本不正確"
 
 #: gui/common/network.js:66
-msgid "Game is loading, please try later"
+msgid "Game is loading, please try again later"
 msgstr "遊戲載入中，請稍後再試"
 
 #: gui/common/network.js:67
@@ -757,6 +757,7 @@ msgid "Scenario"
 msgstr "劇情"
 
 #: gui/common/settings.js:228
+msgctxt "victory condition"
 msgid "None"
 msgstr "無"
 
@@ -974,7 +975,7 @@ msgstr "治療："
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
-msgid "health"
+msgid "Health"
 msgstr "生命值"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
@@ -1007,7 +1008,8 @@ msgid "Repair Rate:"
 msgstr "修復速率："
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
-msgid "worker"
+#: gui/summary/layout.js:61
+msgid "Worker"
 msgstr "工人"
 
 #: gui/common/tooltips.js:298
@@ -1114,21 +1116,25 @@ msgstr "%(auraname)s："
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:563
+#. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
+#. Marine)[/font]"
+#: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:579
 msgid "Classes:"
 msgstr "類型："
 
-#: gui/common/tooltips.js:605
+#. Translation: %(component) will be the icon for the loot type and %(loot)
+#. will be the value.
+#: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 msgid "Loot:"
 msgstr "寶藏："
 
@@ -1534,10 +1540,6 @@ msgstr "遺失數"
 msgid "Infantry"
 msgstr "步兵"
 
-#: gui/summary/layout.js:61
-msgid "Worker"
-msgstr "工人"
-
 #: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "騎兵"
@@ -1897,8 +1899,8 @@ msgid "Status: $status."
 msgstr "狀態：$status。"
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XX: Timosthenes"
-msgstr "Alpha XX：Timosthenes"
+msgid "Alpha XXI: Ulysses"
+msgstr "Alpha XXI：Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""

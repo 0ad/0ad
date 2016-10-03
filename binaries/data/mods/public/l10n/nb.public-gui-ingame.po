@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-29 21:04+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-01 21:55+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -169,8 +169,8 @@ msgstr "Det finnes ingen landhandlere"
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "Det er %(numberTrading)s kjøpmann som handler"
-msgstr[1] "Det er %(numberTrading)s kjøpmenn som handler"
+msgstr[0] "Det er %(numberTrading)s landhandler som handler"
+msgstr[1] "Det er %(numberTrading)s landhandlere som handler"
 
 #: gui/session/menu.js:578
 #, javascript-format
@@ -666,8 +666,8 @@ msgstr "Kjøp %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Selg %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Krever %(technology)s"
@@ -719,28 +719,28 @@ msgstr "Utilstrekkelig befolkningskapasitet:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Gjenstår: %(number)s å bygge."
 msgstr[1] "Gjenstår: %(number)s å bygge."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Oppgrader til en %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Oppgrader til en %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Avbryt oppgradering"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Avbryting kan ikke finne sted når enheten allerede oppgraderes."
 
@@ -865,8 +865,8 @@ msgstr "Finn ledig arbeider"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
 msgstr "Velg en kommoditet som opphavet til endringene, bruk så pilene til målets kommoditet for å gjøre endringer."
 
 #: gui/session/session.js:338
@@ -1012,7 +1012,7 @@ msgid "Abort the current order."
 msgstr "Avbryt gjeldende ordre."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr "Beordre valgte enheter om å forskanse seg i en bygning eller enhet."
 
 #: gui/session/unit_actions.js:1142
@@ -1048,24 +1048,24 @@ msgid "Patrol"
 msgstr "Patruljer"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
+msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Angrip enheter du møter mens du unngår bygninger."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Trykk for å hindre allierte fra å bruke dette droppstedet"
+msgstr "Trykk for å hindre allierte fra å bruke dette avlastningsstedet"
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to allow allies to use this dropsite"
-msgstr "Trykk for å tillate allierte å bruke dette droppstedet"
+msgstr "Trykk for å tillate allierte å bruke dette avlastningsstedet"
 
 #: gui/session/unit_actions.js:1367
 msgid "You are allowed to use this dropsite"
-msgstr "Du har tillatelse til å bruke dette droppstedet"
+msgstr "Du har tillatelse til å bruke dette avlastningsstedet"
 
 #: gui/session/unit_actions.js:1372
 msgid "The use of this dropsite is prohibited"
-msgstr "Bruk av dette droppstedet er ikke tillatt"
+msgstr "Bruk av dette avlastningsstedet er ikke tillatt"
 
 #: gui/session/unit_actions.js:1432
 msgid "The entity has to be killed before it can be gathered from"
@@ -1130,7 +1130,7 @@ msgstr "Filtrer sludrehistorikken."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
+msgid "Select chat addressee."
 msgstr "Velg mottaker av sludremeldingen."
 
 #: gui/session/developer_overlay.xml:(caption):18
@@ -1255,7 +1255,7 @@ msgstr "Mål"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
-msgstr "Spill satt på Pause"
+msgstr "Spill satt på pause"
 
 #: gui/session/session.xml:(caption):61
 msgid "Click to Resume Game"
@@ -1339,5 +1339,5 @@ msgid "Menu"
 msgstr "Meny"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI: Ulysses"

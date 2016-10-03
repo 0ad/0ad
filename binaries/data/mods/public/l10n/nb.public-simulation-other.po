@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:01+0200\n"
-"PO-Revision-Date: 2016-09-27 22:42+0000\n"
+"POT-Creation-Date: 2016-09-30 09:01+0200\n"
+"PO-Revision-Date: 2016-10-01 21:38+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Jeg har satt opp en ny rute med %(_player_)s. Handel vil være innbringe
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
-"profits"
+"profits."
 msgstr "En ny handelsrute er satt opp med %(_player_)s. Ta din andel av inntektene. "
 
 #: simulation/ai/petra/chatHelper.js:120
@@ -286,7 +286,7 @@ msgstr "Legg en gruppe (Shift+klikk) spydkastere i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr "Utforsk teknikk for steingruver fra lagerhuset."
+msgstr "Utforsk teknikk for steinutgraving fra lagerhuset."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
@@ -747,11 +747,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Utilstrekkelige ressurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:391
+#: simulation/components/ProductionQueue.js:400
 msgid "The production queue is full."
 msgstr "Produksjonskøen er full."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:777
 msgid "Can't find free space to spawn trained units"
 msgstr "Kan ikke finne ledig rom for å frembringe trente enheter"
 
@@ -763,34 +763,34 @@ msgstr "Du må velge en bygning som trener enheter."
 msgid "(Cheat - control all units)"
 msgstr "(Juksekode - kontroller alle enheter)"
 
-#: simulation/helpers/Commands.js:568
+#: simulation/helpers/Commands.js:575
 msgid "(Cheat - promoted units)"
 msgstr "(Juksekode - forfremmede enheter)"
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:685
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan ikke oppgradere siden distansekrav ikke er bekreftet eller terrenget har hindringer."
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:695
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Kan ikke oppgradere en forskanset enhet."
 
-#: simulation/helpers/Commands.js:734
+#: simulation/helpers/Commands.js:741
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Angrep mot %(_player_)s forespurt."
 
-#: simulation/helpers/Commands.js:771
+#: simulation/helpers/Commands.js:778
 msgid "Unable to ungarrison unit(s)"
 msgstr "Kan ikke stasjonere enhet(er)"
 
-#: simulation/helpers/Commands.js:785
+#: simulation/helpers/Commands.js:792
 msgid "Some unit(s) can't go back to work"
 msgstr "Enhet(er) kan ikke gå tilbake til arbeid"
 
-#: simulation/helpers/Commands.js:1040
+#: simulation/helpers/Commands.js:1047
 msgid "The building's technology requirements are not met."
 msgstr "Bygningens teknologikrav er ikke oppfylt."
 

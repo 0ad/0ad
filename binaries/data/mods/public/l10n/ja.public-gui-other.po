@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 10:10+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 09:22+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:213
 msgid ""
-"When the winner of this match was determined, the lobby score will be "
+"When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
@@ -284,7 +284,7 @@ msgid "Diplomacy"
 msgstr ""
 
 #: gui/common/gamedescription.js:224
-msgid "Players can setup alliances and declare war on allies."
+msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
 #: gui/common/gamedescription.js:229
@@ -371,7 +371,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:611
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -584,7 +584,7 @@ msgstr "%(previousAmounts)sと%(lastAmount)s"
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:579 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -618,7 +618,7 @@ msgstr ""
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall or anti-virus software"
+" by a firewall, or anti-virus software"
 msgstr ""
 
 #: gui/common/network.js:64
@@ -630,8 +630,8 @@ msgid "Incorrect network protocol version"
 msgstr "ネットワークプロトコルのバージョン不適合"
 
 #: gui/common/network.js:66
-msgid "Game is loading, please try later"
-msgstr "ゲーム読込み中です。後ほどやり直してください"
+msgid "Game is loading, please try again later"
+msgstr ""
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -758,8 +758,9 @@ msgid "Scenario"
 msgstr "シナリオ"
 
 #: gui/common/settings.js:228
+msgctxt "victory condition"
 msgid "None"
-msgstr "なし"
+msgstr ""
 
 #: gui/common/settings.js:229
 msgid "Endless game."
@@ -975,8 +976,8 @@ msgstr "回復："
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
-msgid "health"
-msgstr "耐久力"
+msgid "Health"
+msgstr ""
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1008,7 +1009,8 @@ msgid "Repair Rate:"
 msgstr "修復速度："
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
-msgid "worker"
+#: gui/summary/layout.js:61
+msgid "Worker"
 msgstr "労働者"
 
 #: gui/common/tooltips.js:298
@@ -1115,21 +1117,25 @@ msgstr "%(auraname)s:"
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:563
+#. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
+#. Marine)[/font]"
+#: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:579
 msgid "Classes:"
 msgstr "分類："
 
-#: gui/common/tooltips.js:605
+#. Translation: %(component) will be the icon for the loot type and %(loot)
+#. will be the value.
+#: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 msgid "Loot:"
 msgstr ""
 
@@ -1535,10 +1541,6 @@ msgstr ""
 msgid "Infantry"
 msgstr "歩兵"
 
-#: gui/summary/layout.js:61
-msgid "Worker"
-msgstr "労働者"
-
 #: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "騎兵"
@@ -1898,7 +1900,7 @@ msgid "Status: $status."
 msgstr "状態： $status。"
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XX: Timosthenes"
+msgid "Alpha XXI: Ulysses"
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:537

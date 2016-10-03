@@ -4,6 +4,7 @@
 # 
 # Translators:
 # rentt777 <35974380@qq.com>, 2014
+# Brett Dong <brett.browning.dong@gmail.com>, 2016
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # hyln9 <hyln9@live.cn>, 2014
@@ -31,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-29 09:11+0000\n"
-"Last-Translator: 李武军 <lwj7863439@gmail.com>\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-03 06:14+0000\n"
+"Last-Translator: Brett Dong <brett.browning.dong@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -365,27 +366,27 @@ msgstr "聊天信息"
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "玩家聊天"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "同盟聊天"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "敌人聊天"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "观察者聊天"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "私人聊天"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -668,8 +669,8 @@ msgstr "购买 %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "出售 %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
@@ -721,27 +722,27 @@ msgstr "人口容量不足"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "剩余: %(number)s 。"
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "升级至 %(name)s。%(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "升级至 %(name)s。"
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "取消升级"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "升级无法在独立存在的实体已升级时进行。"
 
@@ -866,9 +867,9 @@ msgstr "寻找空闲工人"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "请选择卖出的货物，随后使用目标货物的箭头来进行更改。"
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr ""
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -997,7 +998,7 @@ msgstr "预期收益: %(gain)s"
 
 #: gui/session/unit_actions.js:1044 gui/session/unit_actions.js:1346
 msgid "Unload All."
-msgstr ""
+msgstr "卸载全部。"
 
 #: gui/session/unit_actions.js:1066
 msgid "Destroy the selected units or buildings."
@@ -1013,8 +1014,8 @@ msgid "Abort the current order."
 msgstr "中止当前的命令。"
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
-msgstr "命令选定的单位驻守建筑物或单位。"
+msgid "Order the selected units to garrison in a building or unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1049,7 +1050,7 @@ msgid "Patrol"
 msgstr ""
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
+msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr ""
 
 #: gui/session/unit_actions.js:1299
@@ -1131,7 +1132,7 @@ msgstr "筛选聊天历史。"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
+msgid "Select chat addressee."
 msgstr ""
 
 #: gui/session/developer_overlay.xml:(caption):18
@@ -1252,7 +1253,7 @@ msgstr "退出"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "目标"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1340,5 +1341,5 @@ msgid "Menu"
 msgstr "菜单"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr ""

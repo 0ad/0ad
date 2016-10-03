@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-29 06:48+0000\n"
-"Last-Translator: Filip Hemerka <fhemerka@komtesa.com>\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 08:59+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,8 +685,8 @@ msgstr "Koupit %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Prodat %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Vyžaduje %(technology)s"
@@ -738,7 +738,7 @@ msgstr "Nedostatečný kapacita populace:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -746,21 +746,21 @@ msgstr[0] "Zbývá: %(number)s k postavení."
 msgstr[1] "Zbývá: %(number)s k postavení."
 msgstr[2] "Zbývá: %(number)s k postavení."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Vylepšit na %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Vylepšit na %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Zrušit vylepšování"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Nelze vylepšit, protože se již vylepšuje."
 
@@ -885,9 +885,9 @@ msgstr "Najít nečinného dělníka"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Vyberte jedno zboží jako předmět výměny, potom použijte šipky cílového zboží k provedení směny."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr ""
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1032,8 +1032,8 @@ msgid "Abort the current order."
 msgstr "Zrušit nynější příkaz."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
-msgstr "Přikažte vybraným jednotkám obsadit budovu nebo jednotku."
+msgid "Order the selected units to garrison in a building or unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1068,8 +1068,8 @@ msgid "Patrol"
 msgstr "Hlídka"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr "Útočit na objevené jednotky, ale vyhnout se budovám."
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr ""
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1150,8 +1150,8 @@ msgstr "Filtrovat historii chatu"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Vybrat adresáta chatu."
+msgid "Select chat addressee."
+msgstr ""
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1359,5 +1359,5 @@ msgid "Menu"
 msgstr "Nabídka"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr ""

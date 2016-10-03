@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 10:26+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 09:30+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -665,8 +665,8 @@ msgstr "Купуване на %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Продаване на %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Изисква %(technology)s"
@@ -718,28 +718,28 @@ msgstr "Недостатъчен капацитет за население:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Остава: %(number)s за построяване."
 msgstr[1] "Остават: %(number)s за построяване."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Надграждане до %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Надграждане до %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Спиране на надграждането"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Не можете да надградите нещо, което вече се надгражда."
 
@@ -864,8 +864,8 @@ msgstr "Търсене на бездействащ работник"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
 msgstr "Изберете една от стоките като източник на промените. След това използвайте стрелките на целевата стока, за да направите промените."
 
 #: gui/session/session.js:338
@@ -1011,7 +1011,7 @@ msgid "Abort the current order."
 msgstr "Отмяна на текущата заповед."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr "Поставяне на избраните единици на гарнизон в сграда или единица."
 
 #: gui/session/unit_actions.js:1142
@@ -1047,8 +1047,8 @@ msgid "Patrol"
 msgstr "Патрулиране"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr "Нападане на срещнатите единици, но не и сградите."
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr "Нападане на всички срещнати единици, но не и на сградите."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1129,8 +1129,8 @@ msgstr "Филтриране на историята на чата"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Изберете съобщение и получател."
+msgid "Select chat addressee."
+msgstr "Изберете получател."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1338,5 +1338,5 @@ msgid "Menu"
 msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "АЛФА XX : Тимостен"
+msgid "ALPHA XXI : Ulysses"
+msgstr "АЛФА XXI : Одисей"

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-29 21:29+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-01 21:56+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -273,7 +273,7 @@ msgstr "Poenggitt spill"
 
 #: gui/common/gamedescription.js:213
 msgid ""
-"When the winner of this match was determined, the lobby score will be "
+"When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Endelig lobbypoengsum vil først bestemmes når en seierherre er kronet."
 
@@ -290,7 +290,7 @@ msgid "Diplomacy"
 msgstr "Diplomati"
 
 #: gui/common/gamedescription.js:224
-msgid "Players can setup alliances and declare war on allies."
+msgid "Players can make alliances and declare war on allies."
 msgstr "Spillere kan inngå allianser med og annonsere krig mot allierte."
 
 #: gui/common/gamedescription.js:229
@@ -378,7 +378,7 @@ msgstr "Juksekoder"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:611
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -591,7 +591,7 @@ msgstr "%(previousAmounts)s og %(lastAmount)s"
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:579 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -625,8 +625,8 @@ msgstr "Ukjent grunn"
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall or anti-virus software"
-msgstr "Dette har ofte sin årsak i at UDP-port nummer 20595 ikke er åpen på vertsskapets side, av brannmur eller antivirusprogramvare."
+" by a firewall, or anti-virus software"
+msgstr "Dette har ofte sin årsak i at UDP-port nummer 20595 ikke er åpen på vertsskapets side, av brannmur, eller antivirusprogramvare."
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -637,8 +637,8 @@ msgid "Incorrect network protocol version"
 msgstr "Feil versjon av nettverksprotokoll"
 
 #: gui/common/network.js:66
-msgid "Game is loading, please try later"
-msgstr "Spillet laster, vennligst prøv senere"
+msgid "Game is loading, please try again later"
+msgstr "Spillet laster, prøv igjen senere"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -767,6 +767,7 @@ msgid "Scenario"
 msgstr "Scenario"
 
 #: gui/common/settings.js:228
+msgctxt "victory condition"
 msgid "None"
 msgstr "Ingen"
 
@@ -990,8 +991,8 @@ msgstr "Leg:"
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
-msgid "health"
-msgstr "helse"
+msgid "Health"
+msgstr "Helse"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1023,8 +1024,9 @@ msgid "Repair Rate:"
 msgstr "Reparasjonshastighet:"
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
-msgid "worker"
-msgstr "arbeider"
+#: gui/summary/layout.js:61
+msgid "Worker"
+msgstr "Arbeider"
 
 #: gui/common/tooltips.js:298
 #, javascript-format
@@ -1132,21 +1134,25 @@ msgstr "%(auraname)s:"
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:563
+#. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
+#. Marine)[/font]"
+#: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:579
 msgid "Classes:"
 msgstr "Klasser:"
 
-#: gui/common/tooltips.js:605
+#. Translation: %(component) will be the icon for the loot type and %(loot)
+#. will be the value.
+#: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 msgid "Loot:"
 msgstr "Bytte"
 
@@ -1186,7 +1192,7 @@ msgstr "Du har endringer som ikke er lagret, ønsker du å lukke dette vinduet?"
 
 #: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
-msgstr "Kobler til server"
+msgstr "Kobler til tjener"
 
 #: gui/pregame/mainmenu.js:92
 #, javascript-format
@@ -1554,10 +1560,6 @@ msgstr "Tapte"
 msgid "Infantry"
 msgstr "Infanteri"
 
-#: gui/summary/layout.js:61
-msgid "Worker"
-msgstr "Arbeider"
-
 #: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Kavaleri"
@@ -1896,7 +1898,7 @@ msgstr "Endringer som ikke er lagret vil kun påvirke denne økten"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
-msgstr "Hjelp med å forbedre 0 A.D.!"
+msgstr "Hjelp til med å forbedre 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:64
 msgid ""
@@ -1906,19 +1908,19 @@ msgstr "Du kan automatisk sende oss anonyme tilbakemeldinger som vil hjelpe oss 
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Takk for at du hjelper med å forbedre 0 A.D.!"
+msgstr "Takk for at du hjelper til med å forbedre 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
-msgstr "Anonyme tilbakemeldinger er aktivert."
+msgstr "Anonyme tilbakemeldinger er påslått."
 
 #: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
 msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XX: Timosthenes"
-msgstr "ALPHA XX: Timosthenes"
+msgid "Alpha XXI: Ulysses"
+msgstr "Alpha XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -2096,7 +2098,7 @@ msgstr "Lær hvordan du spiller, oppdag teknologitrær og lær om historien bak 
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
-msgstr "Utfordre datamaskinen til en enkeltspillerkamp."
+msgstr "Utfordre datamaskinen til en énspillerkamp."
 
 #: gui/pregame/mainmenu.xml:(tooltip):483
 msgid "Fight against one or more human players in a multiplayer game."
@@ -2523,7 +2525,7 @@ msgstr "Nettverksadvarsler"
 
 #: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "Vis bilder pr sek i øvre høyre hjørne."
+msgstr "Vis bilder per sekund øverst i høyre hjørne."
 
 #: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
@@ -2961,7 +2963,7 @@ msgstr "- Øker ildkraften til stasjonert infanteri."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Kan ikke bruke rambukk som andre triremes men har bedre helse og panser."
+msgstr "- Kan ikke ramme, som andre triremer men har bedre helse og panser."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3089,7 +3091,7 @@ msgstr "Enheter i hans formasjon er både raskere og sterkere."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr "- Fortropper forflytter seg raskere så lenge han lever."
+msgstr "- Fortropper forflytter seg raskere i hans levetid."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3144,7 +3146,7 @@ msgstr "Bygninger konstrueres raskere i nærheten av han. "
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr "- Templer er billigere så lenge han er i live"
+msgstr "- Templer er billigere i hans levetid."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -3170,7 +3172,7 @@ msgstr "- Persere har også tilgang til et stort antall teknologier for bygninge
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr "LANSEMENN"
+msgstr "PIKENÉRER"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
@@ -3311,7 +3313,7 @@ msgstr "LAGERHUS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr "- En billig lagerhus for ressurser som ikke er mat. (tømmer, stein, metall)"
+msgstr "- Et billig avlastningssted for ressurser som ikke er mat. (tømmer, stein, metall)"
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
@@ -3396,11 +3398,11 @@ msgstr "- Athensk helt som ledet grekerne ved de store sjøslagene ved Artemisiu
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr "- Skip konstrueres raskere så lenge han er i live"
+msgstr "- Skip konstrueres raskere i hans levetid."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr "Skip der han er stasjonert beveger seg mye raskere-"
+msgstr "- Skip der han er stasjonert forflytter seg mye raskere."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -3465,7 +3467,7 @@ msgstr "KRIGSELEFANTER"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "Store udyr fra Afrika og India, trent til krig. "
+msgstr "- Store udyr fra Afrika og India, trent for krig. "
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""

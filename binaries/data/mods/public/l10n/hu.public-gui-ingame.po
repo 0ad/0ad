@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 11:23+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-01 17:58+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -671,8 +671,8 @@ msgstr "%(resource)s vétele"
 msgid "Sell %(resource)s"
 msgstr "%(resource)s eladása"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Szükséges hozzá: %(technology)s"
@@ -724,28 +724,28 @@ msgstr "Nem elegendő népességkapacitás:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Hátralévő: %(number)s építendő."
 msgstr[1] "Hátralévő: %(number)s építendő."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Fejlesztés erre: %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Fejlesztés erre: %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Fejlesztés megszakítása"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Nem lehet fejleszteni, ha az egység már fejlesztés alatt van."
 
@@ -870,9 +870,9 @@ msgstr "Tétlen munkás keresése"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Válassz egy árut a változások kiindulópontjául, majd használd a céláru nyilait a változtatások elvégzéséhez."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr "Válassz egy árutípust a változások kiindulópontjául, majd használd a cél árutípus nyilait a változtatások elvégzéséhez."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1017,7 +1017,7 @@ msgid "Abort the current order."
 msgstr "Jelenlegi utasítás megszakítása."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr "Kijelölt egységek utasítása egy épületbe vagy egységbe történő beszállásolásra."
 
 #: gui/session/unit_actions.js:1142
@@ -1053,7 +1053,7 @@ msgid "Patrol"
 msgstr "Őrjárat"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
+msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "A látott ellenséges egységek megtámadása, és az épületek elkerülése."
 
 #: gui/session/unit_actions.js:1299
@@ -1135,8 +1135,8 @@ msgstr "A csevegés előzményeinek szűrése."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Válaszd ki a csevegésüzenet címzettjét."
+msgid "Select chat addressee."
+msgstr "Válaszd ki a csevegés címzettjét."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1344,5 +1344,5 @@ msgid "Menu"
 msgstr "Menü"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALFA XX: Timoszthenész"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALFA XXI: Ulisszész"

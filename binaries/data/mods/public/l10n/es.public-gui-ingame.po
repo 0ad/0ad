@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-29 10:58+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 10:42+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -692,8 +692,8 @@ msgstr "Comprar %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Vender %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Necesita %(technology)s"
@@ -745,28 +745,28 @@ msgstr "Capacidad de población insuficiente:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Queda: %(number)s por construir."
 msgstr[1] "Quedan: %(number)s por construir."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Mejorar a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Mejorar a %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Cancelar mejora"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Espera a que termine la mejora actual."
 
@@ -891,9 +891,9 @@ msgstr "Buscar un trabajador desocupado"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Elige uno de los bienes como origen de los intercambios, después utiliza las flechas de los bienes destino para realizar los cambios."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr "Elige uno de los tipos de bienes como origen de los intercambios, después utiliza las flechas de los bienes destino para realizar los cambios."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1038,7 +1038,7 @@ msgid "Abort the current order."
 msgstr "Cancelar la orden actual."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr "Ordenar a las unidades seleccionadas guarnecerse en un edificio o unidad."
 
 #: gui/session/unit_actions.js:1142
@@ -1074,7 +1074,7 @@ msgid "Patrol"
 msgstr "Patrullar"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
+msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Ataca a los enemigos que se encuentren por el camino, evitando edificios."
 
 #: gui/session/unit_actions.js:1299
@@ -1156,7 +1156,7 @@ msgstr "Filtra el historial de mensajes."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
+msgid "Select chat addressee."
 msgstr "Elige a quien va dirigido el mensaje."
 
 #: gui/session/developer_overlay.xml:(caption):18
@@ -1365,5 +1365,5 @@ msgid "Menu"
 msgstr "Menú"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALFA XX: Timóstenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALFA XXI: Ulises"

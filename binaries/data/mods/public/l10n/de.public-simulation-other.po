@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-05 09:01+0200\n"
-"PO-Revision-Date: 2016-09-18 11:20+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"POT-Creation-Date: 2016-09-30 09:01+0200\n"
+"PO-Revision-Date: 2016-09-30 08:28+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,8 +141,8 @@ msgstr "Ich habe eine neue Route mit %(_player_)s etabliert. Der Handel wird pro
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
-"profits"
-msgstr "Eine neue Handelsroute ist mit %(_player_)s etabliert. Nimm deinen Anteil an den Gewinnen."
+"profits."
+msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
@@ -754,11 +754,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:391
+#: simulation/components/ProductionQueue.js:400
 msgid "The production queue is full."
 msgstr "Die Produktionswarteschlange ist voll."
 
-#: simulation/components/ProductionQueue.js:768
+#: simulation/components/ProductionQueue.js:777
 msgid "Can't find free space to spawn trained units"
 msgstr "Es konnte kein freier Platz gefunden werden, um ausgebildete Einheiten zu platzieren."
 
@@ -770,34 +770,34 @@ msgstr "Du musst ein Gebäude auswählen, um Einheiten zu trainieren."
 msgid "(Cheat - control all units)"
 msgstr "(Cheat – alle Einheiten steuern)"
 
-#: simulation/helpers/Commands.js:568
+#: simulation/helpers/Commands.js:575
 msgid "(Cheat - promoted units)"
 msgstr "(Cheat – beförderte Einheiten)"
 
-#: simulation/helpers/Commands.js:678
+#: simulation/helpers/Commands.js:685
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Die Aufrüstung kann nicht innerhalb diesen Abstands stattfinden oder es befinden sich Hindernissen im Gelände."
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:695
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Das Aufrüsten kann mit der Besatzungs Einheit nicht durchgeführt werden."
 
-#: simulation/helpers/Commands.js:734
+#: simulation/helpers/Commands.js:741
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Angriff gegen %(_player_)s erbeten."
 
-#: simulation/helpers/Commands.js:771
+#: simulation/helpers/Commands.js:778
 msgid "Unable to ungarrison unit(s)"
 msgstr "Einheit(en) können nicht ausquartiert werden"
 
-#: simulation/helpers/Commands.js:785
+#: simulation/helpers/Commands.js:792
 msgid "Some unit(s) can't go back to work"
 msgstr "Einige Einheit(en) können die Arbeit nicht wieder aufnehmen"
 
-#: simulation/helpers/Commands.js:1040
+#: simulation/helpers/Commands.js:1047
 msgid "The building's technology requirements are not met."
 msgstr "Erforderliche Technologien für das Gebäude fehlen."
 

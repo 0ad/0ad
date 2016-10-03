@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 10:44+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 10:05+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -280,9 +280,9 @@ msgstr "Geama rangaichte"
 
 #: gui/common/gamedescription.js:213
 msgid ""
-"When the winner of this match was determined, the lobby score will be "
+"When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Thèid sgòr an lobaidh ùrachadh nuair bhios cuideigin air an geama seo a bhuannachd."
+msgstr "Thèid sgòr an lobaidh ùrachadh nuair bhuannaicheas cuideigin an geama seo."
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
@@ -297,7 +297,7 @@ msgid "Diplomacy"
 msgstr "Dioplòmasachd"
 
 #: gui/common/gamedescription.js:224
-msgid "Players can setup alliances and declare war on allies."
+msgid "Players can make alliances and declare war on allies."
 msgstr "’S urrainn dha na cluicheadairean caidreachas a stèidheachadh agus cogadh a ghairm an aghaidh chaidreabhach."
 
 #: gui/common/gamedescription.js:229
@@ -387,7 +387,7 @@ msgstr "Cealgaireachd"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:611
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -600,7 +600,7 @@ msgstr "%(previousAmounts)s ’s %(lastAmount)s"
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:579 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -634,7 +634,7 @@ msgstr "Chan eil fhios dè as adhbhar"
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall or anti-virus software"
+" by a firewall, or anti-virus software"
 msgstr "Mar as trice, is as adhbhar nach eil am port UDP 20595 ’ga shìneadh air adhart leis an òstair ri linn cachaileith-teine no bhathar-bog an aghaidh bhìorasan"
 
 #: gui/common/network.js:64
@@ -646,7 +646,7 @@ msgid "Incorrect network protocol version"
 msgstr "Chan eil tionndadh a’ phròtacail lìonraidh mar bu chòir"
 
 #: gui/common/network.js:66
-msgid "Game is loading, please try later"
+msgid "Game is loading, please try again later"
 msgstr "Tha an geama ’ga luchdadh, feuch ris a-rithist an ceann greis"
 
 #: gui/common/network.js:67
@@ -780,6 +780,7 @@ msgid "Scenario"
 msgstr "Cnàmh-sgeul"
 
 #: gui/common/settings.js:228
+msgctxt "victory condition"
 msgid "None"
 msgstr "Gun chumha"
 
@@ -1015,8 +1016,8 @@ msgstr "Slànachadh:"
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
-msgid "health"
-msgstr "slàinte"
+msgid "Health"
+msgstr "Slàinte"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1048,8 +1049,9 @@ msgid "Repair Rate:"
 msgstr "Luaths a’ chàraidh"
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
-msgid "worker"
-msgstr "obraiche"
+#: gui/summary/layout.js:61
+msgid "Worker"
+msgstr "Obraiche"
 
 #: gui/common/tooltips.js:298
 #, javascript-format
@@ -1161,21 +1163,25 @@ msgstr "%(auraname)s:"
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:563
+#. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
+#. Marine)[/font]"
+#: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:579
 msgid "Classes:"
 msgstr "Seòrsa:"
 
-#: gui/common/tooltips.js:605
+#. Translation: %(component) will be the icon for the loot type and %(loot)
+#. will be the value.
+#: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 msgid "Loot:"
 msgstr "Spùinn:"
 
@@ -1587,10 +1593,6 @@ msgstr "Call"
 msgid "Infantry"
 msgstr "Coisridh"
 
-#: gui/summary/layout.js:61
-msgid "Worker"
-msgstr "Obraiche"
-
 #: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Eachraidh"
@@ -1950,8 +1952,8 @@ msgid "Status: $status."
 msgstr "Staid: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XX: Timosthenes"
-msgstr "Alpha XX: Timosthenes"
+msgid "Alpha XXI: Ulysses"
+msgstr "Alpha XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""

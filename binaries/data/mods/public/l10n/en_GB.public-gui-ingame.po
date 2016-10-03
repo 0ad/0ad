@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 10:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 18:55+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "Delete"
 #: gui/session/menu.js:277
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:343
 msgctxt "team"
@@ -351,37 +351,37 @@ msgstr "Private"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Chat and notifications"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Chat messages"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Players chat"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Ally chat"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Enemy chat"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Observer chat"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Private chat"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -464,11 +464,11 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:781
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -502,7 +502,7 @@ msgstr "%(player)s has sent you %(amounts)s."
 #: gui/session/messages.js:892
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -624,25 +624,25 @@ msgstr "Capture points:"
 #: gui/session/selection_details.js:407
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Carrying:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:415
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Loot:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -666,8 +666,8 @@ msgstr "Buy %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Sell %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Requires %(technology)s"
@@ -719,28 +719,28 @@ msgstr "Insufficient population capacity:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Remaining: %(number)s to build."
 msgstr[1] "Remaining: %(number)s to build."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Upgrade into a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Upgrade into a %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Cancel Upgrading"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Cannot upgrade when the entity is already upgrading."
 
@@ -847,17 +847,17 @@ msgstr "Type the message to send."
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Press %(hotkey)s to open the public chat."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Press %(hotkey)s to open the observer chat."
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Press %(hotkey)s to open the ally chat."
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -865,9 +865,9 @@ msgstr "Find idle worker"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Select one goods as origin of the changes, then use the arrows of the target goods to make the changes."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr "Select one type of goods as origin of the changes, then use the arrows of the target type of goods to make the changes."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1012,8 +1012,8 @@ msgid "Abort the current order."
 msgstr "Abort the current order."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
-msgstr "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
+msgstr "Order the selected units to garrison in a building or unit."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1045,11 +1045,11 @@ msgstr "Select trading goods"
 
 #: gui/session/unit_actions.js:1275
 msgid "Patrol"
-msgstr ""
+msgstr "Patrol"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr ""
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr "Attack all encountered enemy units while avoiding buildings."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1098,7 +1098,7 @@ msgstr ", "
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filter:"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
@@ -1117,7 +1117,7 @@ msgstr "Cancel"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "History"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1126,12 +1126,12 @@ msgstr "Send"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Filter the chat history."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr ""
+msgid "Select chat addressee."
+msgstr "Select chat addressee."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1251,7 +1251,7 @@ msgstr "Exit"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Objectives"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1339,5 +1339,5 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI : Ulysses"

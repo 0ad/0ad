@@ -29,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-28 11:06+0000\n"
-"Last-Translator: Michał Karol\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-02 10:53+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +81,7 @@ msgstr "Historia %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Wciśnij %(hotkey)s aby auto uzupełnić nazwy graczy."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -291,11 +291,11 @@ msgstr[2] "Cud (%(min)s minut)"
 
 #: gui/common/gamedescription.js:212
 msgid "Rated game"
-msgstr ""
+msgstr "Ocenione gry"
 
 #: gui/common/gamedescription.js:213
 msgid ""
-"When the winner of this match was determined, the lobby score will be "
+"When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
@@ -305,14 +305,14 @@ msgstr "Sztywne drużyny."
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Gracze nie mogą zmieniać początkowych zespołów."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
 msgstr "Dyplomacja"
 
 #: gui/common/gamedescription.js:224
-msgid "Players can setup alliances and declare war on allies."
+msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
 #: gui/common/gamedescription.js:229
@@ -401,7 +401,7 @@ msgstr "Kody"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:611
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -614,7 +614,7 @@ msgstr "%(previousAmounts)s oraz %(lastAmount)s"
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:579 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -648,8 +648,8 @@ msgstr "Nieznany powód"
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall or anti-virus software"
-msgstr "Jest to często spowodowane przez port UDP 20595 nie jest on przekazywany po stronie hostów, przez zaporę lub oprogramowanie antywirusowe"
+" by a firewall, or anti-virus software"
+msgstr ""
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -660,8 +660,8 @@ msgid "Incorrect network protocol version"
 msgstr "Niewłaściwa wersja protokołu sieciowego"
 
 #: gui/common/network.js:66
-msgid "Game is loading, please try later"
-msgstr "Ładowanie gry, proszę spróbować później"
+msgid "Game is loading, please try again later"
+msgstr "Ładowanie gry, proszę spróbować jeszcze raz."
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -792,6 +792,7 @@ msgid "Scenario"
 msgstr "Scenariusz"
 
 #: gui/common/settings.js:228
+msgctxt "victory condition"
 msgid "None"
 msgstr "Żaden"
 
@@ -1021,8 +1022,8 @@ msgstr "Ulecz:"
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
-msgid "health"
-msgstr "zdrowie"
+msgid "Health"
+msgstr "Zdrowie"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1054,8 +1055,9 @@ msgid "Repair Rate:"
 msgstr "Tempo naprawiania:"
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
-msgid "worker"
-msgstr "pracownik"
+#: gui/summary/layout.js:61
+msgid "Worker"
+msgstr "Pracownik"
 
 #: gui/common/tooltips.js:298
 #, javascript-format
@@ -1165,23 +1167,27 @@ msgstr "%(auraname)s:"
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:563
+#. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
+#. Marine)[/font]"
+#: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:579
 msgid "Classes:"
 msgstr "Klasy:"
 
-#: gui/common/tooltips.js:605
+#. Translation: %(component) will be the icon for the loot type and %(loot)
+#. will be the value.
+#: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 msgid "Loot:"
-msgstr ""
+msgstr "Łup:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1589,10 +1595,6 @@ msgstr "Stracono"
 msgid "Infantry"
 msgstr "Piechota"
 
-#: gui/summary/layout.js:61
-msgid "Worker"
-msgstr "Pracownik"
-
 #: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Kawaleria"
@@ -1616,7 +1618,7 @@ msgstr "Kupcy"
 #: gui/summary/layout.js:71
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Statystyki jednostek (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:73
 msgid "Trained"
@@ -1952,8 +1954,8 @@ msgid "Status: $status."
 msgstr "Stan: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XX: Timosthenes"
-msgstr "Alpha XX: Timosthenes "
+msgid "Alpha XXI: Ulysses"
+msgstr "Alpha XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
