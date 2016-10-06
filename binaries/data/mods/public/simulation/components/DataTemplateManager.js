@@ -10,9 +10,12 @@ DataTemplateManager.prototype.Init = function()
 {
 	this.allTechs = {};
 	this.allAuras = {};
-	var techNames = this.ListAllTechs();
-	for (var i in techNames)
-		this.GetTechnologyTemplate(techNames[i]);
+
+	for (let techName of this.ListAllTechs())
+		this.GetTechnologyTemplate(techName);
+
+	for (let auraName of this.ListAllAuras())
+		this.GetAuraTemplate(auraName);
 };
 
 DataTemplateManager.prototype.GetTechnologyTemplate = function(template)
@@ -42,6 +45,11 @@ DataTemplateManager.prototype.GetAuraTemplate = function(template)
 DataTemplateManager.prototype.ListAllTechs = function()
 {
 	return Engine.FindJSONFiles("technologies", true);
+};
+
+DataTemplateManager.prototype.ListAllAuras = function()
+{
+	return Engine.FindJSONFiles("auras", true);
 };
 
 DataTemplateManager.prototype.GetAllTechs = function()
