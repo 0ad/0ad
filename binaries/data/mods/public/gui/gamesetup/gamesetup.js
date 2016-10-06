@@ -1081,7 +1081,7 @@ function onTick()
 /**
  * Called when the map or the number of players changes.
  */
-function resizePlayerData(targetPlayerData, maxPlayers)
+function unassignInvalidPlayers(maxPlayers)
 {
 	if (g_IsNetworked)
 	{
@@ -1097,11 +1097,6 @@ function resizePlayerData(targetPlayerData, maxPlayers)
 				"player": 1
 			}
 		};
-
-	let pData = g_GameAttributes.settings.PlayerData;
-	return maxPlayers > pData.length ?
-		pData.concat(targetPlayerData.slice(pData.length, maxPlayers)) :
-		pData.slice(0, maxPlayers);
 }
 
 /**
@@ -1113,7 +1108,13 @@ function selectNumPlayers(num)
 	if (g_IsInGuiUpdate || !g_IsController || g_GameAttributes.mapType != "random")
 		return;
 
-	g_GameAttributes.settings.PlayerData = resizePlayerData(g_DefaultPlayerData, num);
+	let pData = g_GameAttributes.settings.PlayerData;
+	g_GameAttributes.settings.PlayerData =
+		num > pData.length ?
+			pData.concat(g_DefaultPlayerData.slice(pData.length, num)) :
+			pData.slice(0, num);
+
+	unassignInvalidPlayers(num);
 
 	updateGameAttributes();
 }
@@ -1224,16 +1225,14 @@ function selectMap(name)
 	if (mapSettings.PlayerData)
 		sanitizePlayerData(mapSettings.PlayerData);
 
-	// Persist player data
-	if (g_GameAttributes.mapType == "skirmish")
-		mapSettings.PlayerData = resizePlayerData(mapSettings.PlayerData, mapSettings.PlayerData.length);
-
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
 	if (g_GameAttributes.map !== "random")
 		for (let prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
+
+	unassignInvalidPlayers(g_GameAttributes.settings.PlayerData.length);
 
 	updateGameAttributes();
 }
