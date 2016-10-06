@@ -995,7 +995,13 @@ function sanitizePlayerData(playerData)
 	playerData.forEach((pData, index) => {
 		pData.Color = pData.Color || g_PlayerColors[index];
 		pData.Civ = pData.Civ || "random";
-		pData.AI = pData.AI || "";
+
+		// Use default AI if the map doesn't specify any explicitly
+		if (!("AI" in pData))
+			pData.AI = g_DefaultPlayerData[index].AI;
+
+		if (!("AIDiff" in pData))
+			pData.AIDiff = g_DefaultPlayerData[index].AIDiff;
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults
@@ -1228,15 +1234,6 @@ function selectMap(name)
 	if (g_GameAttributes.map !== "random")
 		for (let prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
-
-	// Use default AI if the map doesn't specify any explicitly
-	for (let i in g_GameAttributes.settings.PlayerData)
-	{
-		if (!('AI' in g_GameAttributes.settings.PlayerData[i]))
-			g_GameAttributes.settings.PlayerData[i].AI = g_DefaultPlayerData[i].AI;
-		if (!('AIDiff' in g_GameAttributes.settings.PlayerData[i]))
-			g_GameAttributes.settings.PlayerData[i].AIDiff = g_DefaultPlayerData[i].AIDiff;
-	}
 
 	updateGameAttributes();
 }
