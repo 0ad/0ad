@@ -5,15 +5,16 @@
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
-# Joshua Christo Randiny <jrandiny2@gmail.com>, 2016
-# Joshua Christo Randiny <jrandiny2@gmail.com>, 2014-2015
+# Joshua Randiny <jrandiny2@gmail.com>, 2016
+# Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
+# Joshua Randiny <jrandiny2@gmail.com>, 2016
 # Samuel Christo Randiny <srandiny@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-05 14:43+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr "Waktu tersisa sebelum genjatan senjata berakhir: %(time)s."
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Acak"
 
 #: gui/common/functions_utility.js:132
 msgid "mm:ss"
@@ -137,7 +138,7 @@ msgstr ""
 #: gui/common/functions_utility_loadsave.js:87
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Tahan %(hotkey)s untuk menghapus tanpa konfirmasi."
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -152,70 +153,70 @@ msgstr "Maaf, tidak ada deskripsi yang tersedia."
 #: gui/common/gamedescription.js:71
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:74
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:83
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:96
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:106
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:131
 msgid "Unknown Civilization"
@@ -224,12 +225,12 @@ msgstr "Peradaban Tidak Diketahui"
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "kalah"
 
 #: gui/common/gamedescription.js:139
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "menang"
 
 #: gui/common/gamedescription.js:161
 msgid "No Team"
@@ -247,12 +248,12 @@ msgstr "Tim %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:173
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
+msgstr[0] "Pengamat"
 
 #: gui/common/gamedescription.js:195
 #, javascript-format
@@ -273,19 +274,19 @@ msgstr ""
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
-msgstr ""
+msgstr "Tim terkunci"
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Pemain tidak dapat mengganti tim."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomasi"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Pemain dapat membuat aliansi dan menyatakan perang dengan aliansi lain."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -309,7 +310,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Gencatan Senjata"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -322,40 +323,40 @@ msgstr[0] ""
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Nama Peta"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Tipe Peta"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Ukuran Peta"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Deskripsi Peta"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Memilih peta secara acak dari daftar"
 
 #: gui/common/gamedescription.js:286
 msgid "Starting Resources"
-msgstr ""
+msgstr "Sumber Daya Awal"
 
 #: gui/common/gamedescription.js:287
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Batas Populasi"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Nonaktifkan Harta Karun"
 
 #: gui/common/gamedescription.js:310
 msgid "Revealed Map"
@@ -379,7 +380,7 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "Diaktifkan"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
@@ -670,7 +671,7 @@ msgstr "Kehilangan koneksi dengan server."
 
 #: gui/common/network.js:92
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Gagal untuk menyambungkan dengan server."
 
 #: gui/common/network.js:94
 msgid "Disconnected"
@@ -691,7 +692,7 @@ msgstr "Tidak bisa mengeluarkan %(name)s."
 #: gui/common/network.js:140
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Pengguna (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -728,7 +729,7 @@ msgstr "Sangat Susah"
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s menit"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -745,7 +746,7 @@ msgstr[0] "%(minutes)s menit"
 #: gui/common/settings.js:188
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Perperangan"
 
 #: gui/common/settings.js:193
 msgctxt "map"
@@ -760,7 +761,7 @@ msgstr "Skenario"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Tidak ada"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
@@ -773,17 +774,17 @@ msgstr "Tak terbatas"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -793,12 +794,12 @@ msgstr "Standar"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
@@ -845,7 +846,7 @@ msgstr[0] "detik"
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:81
 msgid "arrow"
@@ -860,7 +861,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:95
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:106
 msgid "Armor:"
@@ -903,7 +904,7 @@ msgstr "%(attackLabel)s %(details)s, %(rate)s"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s "
 "(%(relative)s), %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s (%(relative)s), %(rate)s"
 
 #: gui/common/tooltips.js:176
 #, javascript-format
@@ -929,7 +930,7 @@ msgstr[0] "meter"
 #: gui/common/tooltips.js:207
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/common/tooltips.js:208
 msgid "Splash Damage:"
@@ -959,7 +960,7 @@ msgstr "Tidak"
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:228
 msgid "Garrison Limit"
@@ -968,7 +969,7 @@ msgstr ""
 #: gui/common/tooltips.js:235
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:511
 msgid "Heal:"
@@ -977,27 +978,27 @@ msgstr "Pemulihan:"
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "Nyawa"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:263
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Batas Proyektil"
 
 #: gui/common/tooltips.js:268
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Standar"
 
 #: gui/common/tooltips.js:273
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Per Unit"
 
 #: gui/common/tooltips.js:284
 #, javascript-format
@@ -1064,7 +1065,7 @@ msgstr "Bonus Populasi:"
 
 #: gui/common/tooltips.js:469
 msgid "Insufficient resources:"
-msgstr "Sumberdaya tidak cukup:"
+msgstr "Sumber daya tidak cukup:"
 
 #: gui/common/tooltips.js:485
 #, javascript-format
@@ -1122,7 +1123,7 @@ msgstr "%(specificName)s (%(genericName)s)"
 #: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:579
 msgid "Classes:"
@@ -1133,11 +1134,11 @@ msgstr "Kelas:"
 #: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:614
 msgid "Loot:"
-msgstr ""
+msgstr "Jarahan:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1175,12 +1176,12 @@ msgstr "Anda memiliki perubahan yang belum tersimpan, yakin anda ingin menutup j
 
 #: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
-msgstr "Menyambungkan ke server"
+msgstr "menyambungkan ke server"
 
 #: gui/pregame/mainmenu.js:92
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr "sedang mengupload (%f%%)"
+msgstr "sedang mengunggah (%f%%)"
 
 #: gui/pregame/mainmenu.js:98
 msgid "upload succeeded"
@@ -1282,12 +1283,12 @@ msgstr "Replay ini tidak kompatibel dengan versi permainan anda!"
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Versi Anda: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Versi yang dibutuhkan: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
@@ -1368,7 +1369,7 @@ msgstr "Main Bersama"
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
 msgid "Any gametype"
-msgstr ""
+msgstr "Tipe permainan apapun"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
@@ -1523,19 +1524,19 @@ msgstr ""
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "Sudah dibangun"
 
 #: gui/summary/layout.js:36
 msgid "Destroyed"
-msgstr ""
+msgstr "Sudah dihancurkan"
 
 #: gui/summary/layout.js:37 gui/summary/layout.js:75
 msgid "Captured"
-msgstr ""
+msgstr "Sudah diambil alih"
 
 #: gui/summary/layout.js:38 gui/summary/layout.js:76
 msgid "Lost"
-msgstr ""
+msgstr "Sudah hilang"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
@@ -1568,11 +1569,11 @@ msgstr ""
 
 #: gui/summary/layout.js:73
 msgid "Trained"
-msgstr ""
+msgstr "Sudah dilatih"
 
 #: gui/summary/layout.js:74
 msgid "Killed"
-msgstr ""
+msgstr "Sudah dibunuh"
 
 #: gui/summary/layout.js:98
 msgid "Food"
@@ -1599,11 +1600,11 @@ msgstr ""
 
 #: gui/summary/layout.js:106
 msgid "Sent"
-msgstr ""
+msgstr "Terkirim"
 
 #: gui/summary/layout.js:107
 msgid "Received"
-msgstr ""
+msgstr "Mendapat"
 
 #: gui/summary/layout.js:112
 msgid "Treasures collected"
@@ -1616,15 +1617,15 @@ msgstr "Jarahan"
 #: gui/summary/layout.js:117
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "Statistika Sumber Daya (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:119
 msgid "Gathered"
-msgstr ""
+msgstr "Terkumpul"
 
 #: gui/summary/layout.js:120
 msgid "Used"
-msgstr ""
+msgstr "Terpakai"
 
 #: gui/summary/layout.js:141
 msgid "Food exchanged"
@@ -1851,7 +1852,7 @@ msgstr "Pengaturan Lobi"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1901,7 +1902,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XXI: Ulysses"
-msgstr ""
+msgstr "Alpha XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -2201,7 +2202,7 @@ msgstr "Muatkan"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
-msgstr ""
+msgstr "Dimainkan sebanyak:"
 
 #: gui/savedgames/save.xml:(caption):16
 msgid "Save Game"
@@ -2257,7 +2258,7 @@ msgstr "Lain-lain"
 
 #: gui/summary/summary.xml:(caption):156
 msgid "Replay"
-msgstr ""
+msgstr "Tayangan Ulang"
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Continue"
@@ -2269,7 +2270,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Manajer Suara"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
@@ -2305,11 +2306,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "Flute"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "Djembe"
 
 #: gui/credits/texts/art.jsonContent[5].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
@@ -2317,15 +2318,15 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
-msgstr ""
+msgstr "Didgeridoo"
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "Terompet"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "Harpa Kelt"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
@@ -2333,7 +2334,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "Biola"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2345,15 +2346,15 @@ msgstr "Suara"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "Yunani"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "Latin"
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "Suara"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
@@ -2379,7 +2380,7 @@ msgstr "Penyumbang"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Kepala"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -2387,11 +2388,11 @@ msgstr "Referensi Sejarah"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Komunitas dan Manajemen"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Manajer pemograman"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
@@ -2427,7 +2428,7 @@ msgstr "Dan terima kasih untuk seluruh komunitas yang telah membuat \n0 A.D. mun
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Tidak ada sejarawan yang disakiti dalam pembuatan proyek ini."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"

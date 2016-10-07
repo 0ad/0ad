@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# lynx121 <adam.ostruszka@seznam.cz>, 2016
 # attilla1996 <attilla1996@gmail.com>, 2014
 # David Exner <essdyk@gmail.com>, 2014
 # Devinate <m.brezek@gmail.com>, 2014
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 08:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-05 16:04+0000\n"
+"Last-Translator: Jaroslav Lichtblau <dragonlord@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -887,7 +888,7 @@ msgstr "Najít nečinného dělníka"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Vyberte jeden typ zboží jako předmět výměny, potom použijte šipky cílového typu zboží k provedení výměny."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1033,7 +1034,7 @@ msgstr "Zrušit nynější příkaz."
 
 #: gui/session/unit_actions.js:1120
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Přikažte vybraným jednotkám obsadit budovu nebo jednotku."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1069,7 +1070,7 @@ msgstr "Hlídka"
 
 #: gui/session/unit_actions.js:1276
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Útočit na všechny objevené nepřátelské jednotky, ale vyhnout se budovám."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1151,7 +1152,7 @@ msgstr "Filtrovat historii chatu"
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Vybrat adresáta chatu."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1360,4 +1361,4 @@ msgstr "Nabídka"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "ALPHA XXI: Ulysses"

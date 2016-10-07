@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Filip Kružík <fildakr@gmail.com>, 2015
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Josef Hrdina <hrdinajosef11@gmail.com>, 2016
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-05 16:01+0000\n"
+"Last-Translator: Jaroslav Lichtblau <dragonlord@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,7 +284,7 @@ msgstr "Hodnocená hra"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Když je určen vítěz zápasu, je upraven i výsledek herní skupiny."
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
@@ -299,7 +300,7 @@ msgstr "Diplomacie"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Hráči mohou založit alliance and vyhlásit válku spojencům."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -635,7 +636,7 @@ msgstr "Neznámý důvod"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "Toto je často způsobeno tím, že UDP port 20595 není správně směrován k serveru, kvůli firewallu nebo antivirovému programu."
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -647,7 +648,7 @@ msgstr "Nesprávná verze síťového protokolu"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Hra se načítá, zkuste to prosím znovu později"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -780,7 +781,7 @@ msgstr "Scénář"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Žádný"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
@@ -1009,7 +1010,7 @@ msgstr "Léčit:"
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "Zdraví"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1941,7 +1942,7 @@ msgstr "Stav: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XXI: Ulysses"
-msgstr ""
+msgstr "Alpha XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
