@@ -15,14 +15,13 @@ Damage.prototype.Init = function()
  */
 Damage.prototype.InterpolatedLocation = function(ent, lateness)
 {
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	let turnLength = cmpTimer.GetLatestTurnLength() / 1000;
 	let cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
 		return undefined;
 	let curPos = cmpTargetPosition.GetPosition();
 	let prevPos = cmpTargetPosition.GetPreviousPosition();
-	lateness /= 1000;
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let turnLength = cmpTimer.GetLatestTurnLength();
 	return new Vector3D(
 			(curPos.x * (turnLength - lateness) + prevPos.x * lateness) / turnLength,
 			0,
