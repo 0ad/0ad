@@ -40,24 +40,28 @@ Damage.prototype.TestCollision = function(ent, point, lateness)
 	let targetPosition = this.InterpolatedLocation(ent, lateness);
 	if (!targetPosition)
 		return false;
-	
+
 	let cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
 	if (!cmpFootprint)
 		return false;
-	
+
 	let targetShape = cmpFootprint.GetShape();
 
 	if (!targetShape)
 		return false;
 
-	if (targetShape.type === 'circle')
-		// Use VectorDistanceSquared and square targetShape.radius to avoid square roots.
-		return targetPosition.horizDistanceTo(point) < (targetShape.radius * targetShape.radius);
+	if (targetShape.type == "circle")
+		return targetPosition.horizDistanceToSquared(point) < targetShape.radius * targetShape.radius;
 
-	let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
-	let distance = Vector2D.from3D(Vector3D.sub(point, targetPosition)).rotate(-angle);
+	if (targetShape.type == "square")
+	{
+		let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
+		let distance = Vector2D.from3D(Vector3D.sub(point, targetPosition)).rotate(-angle);
+		return Math.abs(distance.x) < targetShape.width / 2 && Math.abs(distance.y) < targetShape.depth / 2;
+	}
 
-	return distance.x < Math.abs(targetShape.width/2) && distance.y < Math.abs(targetShape.depth/2);
+	warn("TestCollision called with an invalid footprint shape");
+	return false;
 };
 
 /**
