@@ -86,7 +86,15 @@ Damage.prototype.MissileHit = function(data, lateness)
 	// Do this first in case the direct hit kills the target
 	if (data.isSplash)
 	{
-		let playersToDamage = !data.friendlyFire ? QueryPlayerIDInterface(data.attackerOwner).GetEnemies() : null;
+		let playersToDamage = [];
+		if (!data.friendlyFire)
+			playersToDamage = QueryPlayerIDInterface(data.attackerOwner).GetEnemies();
+		else
+		{
+			let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+			for (let i = 0; i < numPlayers; ++i)
+				playersToDamage.push(i);
+		}
 
 		this.CauseSplashDamage({
 			"attacker": data.attacker,
@@ -147,7 +155,7 @@ Damage.prototype.MissileHit = function(data, lateness)
  * @param {string}   data.type - the type of damage.
  * @param {number}   data.attackerOwner - the player id of the attacker.
  * @param {Vector3D} data.direction - the unit vector defining the direction.
- * @param {number[]} [data.playersToDamage] - the array of player id's to damage.
+ * @param {number[]} data.playersToDamage - the array of player id's to damage.
  */
 Damage.prototype.CauseSplashDamage = function(data)
 {
