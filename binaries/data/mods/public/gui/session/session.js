@@ -897,7 +897,7 @@ function updateGroups()
 	let getCostSum = (template) =>
 	{
 		let cost = GetTemplateData(template).cost;
-		return Object.keys(cost).map(key => cost[key]).reduce((sum, cur) => sum + cur);
+		return cost ? Object.keys(cost).map(key => cost[key]).reduce((sum, cur) => sum + cur) : 0;
 	};
 
 	for (let i in Engine.GetGUIObjectByName("unitGroupPanel").children)

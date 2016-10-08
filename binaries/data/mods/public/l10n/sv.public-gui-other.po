@@ -5,7 +5,7 @@
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # Jonatan Nyberg <jonatan@autistici.org>, 2016
-# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
 # pilino1234 <mhilgendrf@aol.com>, 2015-2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 13:10+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-01 15:35+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -266,58 +266,58 @@ msgstr[1] "Observatörer"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Under (%(min)s minut)"
+msgstr[1] "Under (%(min)s minuter)"
 
 #: gui/common/gamedescription.js:212
 msgid "Rated game"
-msgstr ""
+msgstr "Värderat spel"
 
 #: gui/common/gamedescription.js:213
 msgid ""
-"When the winner of this match was determined, the lobby score will be "
+"When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "När vinnaren av denna match avgörs kommer lobbypoängen anpassas."
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
-msgstr ""
+msgstr "Låsta lag"
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Spelare kan inte ändra de ursprungliga lagen."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomati"
 
 #: gui/common/gamedescription.js:224
-msgid "Players can setup alliances and declare war on allies."
-msgstr ""
+msgid "Players can make alliances and declare war on allies."
+msgstr "Spelare kan forma allianser och förklara krig mot allierade."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Sista Man Stående"
 
 #: gui/common/gamedescription.js:230
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Bara en spelare kan vinna matchen. Om de sista spelarna är allierade fortsätts matchen tills bara en återstår."
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Allierade Seger"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Om en spelare vinner, vinner även deras allierade. Om en grupp allierade är kvar vinner de."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Vapenvila"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -326,61 +326,61 @@ msgstr "avaktiverad"
 #: gui/common/gamedescription.js:245
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "För den första minuten kommer fienderna vara neutrala."
+msgstr[1] "För de första %(min)s minuterna kommer fienderna vara neutrala."
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Kartnamn"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Karttyp"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Kartstorlek"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Kartbeskrivning"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Väljer slumpmässigt en karta från listan"
 
 #: gui/common/gamedescription.js:286
 msgid "Starting Resources"
-msgstr ""
+msgstr "Start-resurser"
 
 #: gui/common/gamedescription.js:287
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Befolkningsgräns"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Inaktivera skatter"
 
 #: gui/common/gamedescription.js:310
 msgid "Revealed Map"
-msgstr ""
+msgstr "Synlig karta"
 
 #: gui/common/gamedescription.js:315
 msgid "Explored Map"
-msgstr ""
+msgstr "Utforskad karta"
 
 #: gui/common/gamedescription.js:320
 msgid "Cheats"
-msgstr ""
+msgstr "Fusk"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:611
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -388,12 +388,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "aktiverat"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "inaktiverat"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -593,7 +593,7 @@ msgstr "%(previousAmounts)s och %(lastAmount)s"
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:579 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -627,7 +627,7 @@ msgstr "Okänd anledning"
 #: gui/common/network.js:63
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
-" by a firewall or anti-virus software"
+" by a firewall, or anti-virus software"
 msgstr "Detta orsakas ofta av att UDP-port 20595 inte port-forwardas på värdsidan, genom en brandvägg eller ett antivirusprogram"
 
 #: gui/common/network.js:64
@@ -639,8 +639,8 @@ msgid "Incorrect network protocol version"
 msgstr "Felaktig nätverksprotokollversion"
 
 #: gui/common/network.js:66
-msgid "Game is loading, please try later"
-msgstr "Spelet laddar, försök igen senare"
+msgid "Game is loading, please try again later"
+msgstr "Spelet laddar, vänligen försök igen senare"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -700,7 +700,7 @@ msgstr "Kunde ej sparka ut %(name)s."
 #: gui/common/network.js:140
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Användare (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -769,12 +769,13 @@ msgid "Scenario"
 msgstr "Scenario"
 
 #: gui/common/settings.js:228
+msgctxt "victory condition"
 msgid "None"
-msgstr "Ingen"
+msgstr "Inget"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Oändligt spel."
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -992,7 +993,7 @@ msgstr "Läka:"
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
-msgid "health"
+msgid "Health"
 msgstr "Hälsa"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
@@ -1025,7 +1026,8 @@ msgid "Repair Rate:"
 msgstr "Repareringstakt:"
 
 #: gui/common/tooltips.js:289 gui/common/tooltips.js:303
-msgid "worker"
+#: gui/summary/layout.js:61
+msgid "Worker"
 msgstr "Arbetare"
 
 #: gui/common/tooltips.js:298
@@ -1134,21 +1136,25 @@ msgstr "%(auraname)s:"
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:563
+#. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
+#. Marine)[/font]"
+#: gui/common/tooltips.js:564
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:578
+#: gui/common/tooltips.js:579
 msgid "Classes:"
 msgstr "Klasser:"
 
-#: gui/common/tooltips.js:605
+#. Translation: %(component) will be the icon for the loot type and %(loot)
+#. will be the value.
+#: gui/common/tooltips.js:607
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 msgid "Loot:"
 msgstr "Plundringsgods:"
 
@@ -1399,7 +1405,7 @@ msgstr "Icke-värderade spel"
 
 #: gui/replaymenu/replay_menu.js:192
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr ""
+msgstr "Filtrera replays genom att skriva en eller flera, hela eller delvis spelarnamn."
 
 #: gui/replaymenu/replay_menu.js:303
 msgid "yyyy-MM-dd HH:mm"
@@ -1556,10 +1562,6 @@ msgstr "Förlorade"
 msgid "Infantry"
 msgstr "Infanteri"
 
-#: gui/summary/layout.js:61
-msgid "Worker"
-msgstr "Arbetare"
-
 #: gui/summary/layout.js:62
 msgid "Cavalry"
 msgstr "Kavalleri"
@@ -1570,7 +1572,7 @@ msgstr "Mästare"
 
 #: gui/summary/layout.js:65
 msgid "Siege"
-msgstr ""
+msgstr "Belägring"
 
 #: gui/summary/layout.js:66
 msgid "Navy"
@@ -1583,7 +1585,7 @@ msgstr "Handelsmän"
 #: gui/summary/layout.js:71
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Enheter Statistik (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:73
 msgid "Trained"
@@ -1709,11 +1711,11 @@ msgstr "Lag total"
 
 #: gui/summary/summary.js:125
 msgid "Victory"
-msgstr ""
+msgstr "Seger"
 
 #: gui/summary/summary.js:130
 msgid "Defeated"
-msgstr ""
+msgstr "Besegrad"
 
 #: gui/summary/summary.js:154
 msgid "Are you sure you want to quit the lobby?"
@@ -1919,8 +1921,8 @@ msgid "Status: $status."
 msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:535
-msgid "Alpha XX: Timosthenes"
-msgstr "Alpha XX: Timosthenes"
+msgid "Alpha XXI: Ulysses"
+msgstr "Alpha XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -2591,7 +2593,7 @@ msgstr "Träningsgrupp Storlek"
 #: gui/options/options.jsongeneralSetting[15].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr ""
+msgstr "Visa tiden som meddelanden skickades i lobby, spelinställningar, eller spelchatten."
 
 #: gui/options/options.jsongeneralSetting[15].label
 msgid "Chat Timestamp"
@@ -3257,7 +3259,7 @@ msgstr "- Starkaste infanterienheten i spelet."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Kämpeinfanteri tillgänglig för Spartanerna."
+msgstr "- Mästarinfanteri tillgänglig för Spartanerna."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""

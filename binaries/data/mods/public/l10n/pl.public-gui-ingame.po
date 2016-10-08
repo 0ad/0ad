@@ -53,9 +53,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-28 10:54+0000\n"
-"Last-Translator: Michał Karol\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-02 10:49+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +133,7 @@ msgstr "Usuń"
 #: gui/session/menu.js:277
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:343
 msgctxt "team"
@@ -404,7 +404,7 @@ msgstr "Czat i powiadomienia"
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Wiadomości na czacie"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
@@ -512,11 +512,11 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:781
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -550,7 +550,7 @@ msgstr "%(player)s wysłał Ci %(amounts)s."
 #: gui/session/messages.js:892
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s wymienił %(amountsBought)s dla %(amountsSold)s."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -678,7 +678,7 @@ msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Przenieś:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
@@ -692,7 +692,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Łup:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -716,8 +716,8 @@ msgstr "Kup %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Sprzedaj %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Wymaga technologii %(technology)s"
@@ -769,7 +769,7 @@ msgstr "Niewystarczająca populacja:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -777,21 +777,21 @@ msgstr[0] "Pozostał: %(number)s do wybudowania."
 msgstr[1] "Pozostało: %(number)s do wybudowania."
 msgstr[2] "Pozostało: %(number)s do wybudowania."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Uaktualnij do %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Uaktualnij do %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Przerwij Aktualizowanie"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Nie można ulepszyć kiedy jednostka jest już uaktualniana."
 
@@ -898,17 +898,17 @@ msgstr "Typ wiadomości do wysłania."
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Wciśnij %(hotkey)s aby otworzyć publiczny czat."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Wciśnij %(hotkey)s aby otworzyć czat obserwatorów."
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Wciśnij %(hotkey)s aby otworzyć sojuszniczy czat."
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -916,9 +916,9 @@ msgstr "Znajdź niepracującego robotnika"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Wybierz surowiec początkowy do zmiany, a następnie użyj strzałek przy surowcu docelowym aby dokonać zmian."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr ""
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1063,7 +1063,7 @@ msgid "Abort the current order."
 msgstr "Przerwij aktualny rozkaz."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr "Rozkaż zaznaczonym jednostkom wprowadzenie do budynku lub jednostki."
 
 #: gui/session/unit_actions.js:1142
@@ -1099,7 +1099,7 @@ msgid "Patrol"
 msgstr "Patrol"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
+msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr ""
 
 #: gui/session/unit_actions.js:1299
@@ -1181,8 +1181,8 @@ msgstr "Filtruj historię czatu"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Wybierz adresata wiadomości czatu."
+msgid "Select chat addressee."
+msgstr "Wybierz adresata czatu."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1390,5 +1390,5 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes "
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI : Ulysses"

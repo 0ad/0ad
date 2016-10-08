@@ -545,7 +545,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		};
 		if (this.template.Ranged.Splash)
 		{
-			data.friendlyFire = this.template.Ranged.Splash.FriendlyFire;
+			data.friendlyFire = this.template.Ranged.Splash.FriendlyFire != "false";
 			data.radius = +this.template.Ranged.Splash.Range;
 			data.shape = this.template.Ranged.Splash.Shape;
 			data.isSplash = true;

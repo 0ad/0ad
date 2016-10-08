@@ -264,7 +264,7 @@ public:
 		// If we serialized a different seed or different actor, reload actor
 		if (oldSeed != GetActorSeed() || m_BaseActorName != m_ActorName)
 			ReloadActor();
-		else
+		else if (m_Unit)
 			m_Unit->SetEntitySelection(m_VariantSelections);
 
 		fixed repeattime = m_AnimSyncRepeatTime; // save because SelectAnimation overwrites it
@@ -745,7 +745,7 @@ void CCmpVisualActor::ReloadActor()
 
 void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 {
-	if (m_Unit == NULL)
+	if (!m_Unit)
 		return;
 
 	// If we're in the special movement mode, select an appropriate animation

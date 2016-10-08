@@ -10,17 +10,17 @@
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Fqn Kdgzd <inactive+D1sgaea@transifex.com>, 2014
 # IndoGuy <Fresh.Farz@gmail.com>, 2013-2014
-# Joshua Christo Randiny <jrandiny2@gmail.com>, 2015
-# Joshua Christo Randiny <jrandiny2@gmail.com>, 2013-2014
+# Joshua Randiny <jrandiny2@gmail.com>, 2015
+# Joshua Randiny <jrandiny2@gmail.com>, 2013-2014
 # La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2014
 # Samuel Christo Randiny <srandiny@gmail.com>, 2014-2016
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 10:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-05 14:26+0000\n"
+"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -235,7 +235,7 @@ msgstr ""
 
 #: gui/session/menu.js:827
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:840 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -347,7 +347,7 @@ msgstr ""
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Pesan Percakapan"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
@@ -357,30 +357,30 @@ msgstr ""
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Percakapan sekutu"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Percakapan musuh"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Percakapan pengamat"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Percakapan pribadi"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
-msgstr ""
+msgstr "Anda telah menang!"
 
 #: gui/session/messages.js:232
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Anda telah dikalahkan!"
 
 #: gui/session/messages.js:240
 #, javascript-format
@@ -459,7 +459,7 @@ msgstr ""
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -478,7 +478,7 @@ msgstr "%(player)s telah kalah."
 #: gui/session/messages.js:841
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s telah menang."
 
 #: gui/session/messages.js:870
 #, javascript-format
@@ -613,25 +613,25 @@ msgstr "Titik penangkapan:"
 #: gui/session/selection_details.js:407
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Membawa:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:415
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Jarahan:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -655,8 +655,8 @@ msgstr "Beli %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Jual %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Membutuhkan %(technology)s"
@@ -673,7 +673,7 @@ msgstr "Klik untuk mengeluarkan 1. Shift-klik untuk mengeluarkan pasukan dengan 
 #: gui/session/selection_panels.js:473
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Pemain: %(playername)s"
 
 #: gui/session/selection_panels.js:508
 msgid "Lock Gate"
@@ -708,27 +708,27 @@ msgstr "Kapasitas populasi tidak cukup:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "%(number)s belum dibangun"
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr ""
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr ""
 
@@ -853,8 +853,8 @@ msgstr "Temukan pekerja menganggur"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
 msgstr ""
 
 #: gui/session/session.js:338
@@ -911,17 +911,17 @@ msgstr "Nyawa:"
 #: gui/session/session.js:970
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:973
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:991
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:992
 msgid "Population (current / limit)"
@@ -984,11 +984,11 @@ msgstr "Perolehan diharapkan: %(gain)s"
 
 #: gui/session/unit_actions.js:1044 gui/session/unit_actions.js:1346
 msgid "Unload All."
-msgstr ""
+msgstr "Keluarkan Semua"
 
 #: gui/session/unit_actions.js:1066
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Hancurkan unit atau bangunan yang sedan terpilih."
 
 #: gui/session/unit_actions.js:1068
 #, javascript-format
@@ -1000,7 +1000,7 @@ msgid "Abort the current order."
 msgstr ""
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
+msgid "Order the selected units to garrison in a building or unit."
 msgstr ""
 
 #: gui/session/unit_actions.js:1142
@@ -1033,10 +1033,10 @@ msgstr "Pilih barang dagangan"
 
 #: gui/session/unit_actions.js:1275
 msgid "Patrol"
-msgstr ""
+msgstr "Patroli"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
+msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr ""
 
 #: gui/session/unit_actions.js:1299
@@ -1105,7 +1105,7 @@ msgstr "Batal"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Sejarah"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1118,7 +1118,7 @@ msgstr ""
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
+msgid "Select chat addressee."
 msgstr ""
 
 #: gui/session/developer_overlay.xml:(caption):18
@@ -1239,7 +1239,7 @@ msgstr "Tutup"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Obyektif"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1327,5 +1327,5 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI : Ulysses"

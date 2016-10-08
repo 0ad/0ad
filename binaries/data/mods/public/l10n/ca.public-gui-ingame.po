@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-27 20:01+0000\n"
-"Last-Translator: Catalanoic <catalanoic@gmail.com>\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 08:59+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -666,8 +666,8 @@ msgstr "Compra %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Ven %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Necessita %(technology)s"
@@ -719,28 +719,28 @@ msgstr "La capacitat de població és insuficient:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "En falta %(number)s per construir."
 msgstr[1] "En falten %(number)s per construir."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Millora a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Millora a %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Cancel·la la millora"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "No es pot millorar una entitat que ja s'està millorant."
 
@@ -865,9 +865,9 @@ msgstr "Busca un treballador inactiu"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Seleccioneu un recurs com a origen de l'intercanvi, i després feu servir les fletxes del recurs de destinació per fer els canvis."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr ""
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1012,8 +1012,8 @@ msgid "Abort the current order."
 msgstr "Cancel·la l'ordre actual."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
-msgstr "Ordena a les unitats seleccionades refugiar-se en un edifici o unitat."
+msgid "Order the selected units to garrison in a building or unit."
+msgstr ""
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1048,8 +1048,8 @@ msgid "Patrol"
 msgstr "Patrulla"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr "Ataca les unitats trobades evitant els edificis."
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr ""
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1130,8 +1130,8 @@ msgstr "Filtra l'historial de xat."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Selecciona destinatari missatge de xat."
+msgid "Select chat addressee."
+msgstr ""
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1339,5 +1339,5 @@ msgid "Menu"
 msgstr "Menú"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALFA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr ""

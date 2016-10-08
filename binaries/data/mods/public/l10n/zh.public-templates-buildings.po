@@ -11,13 +11,14 @@
 # Mysterelee <8161525@qq.com>, 2014
 # Tong Hui <tonghuix@gmail.com>, 2015
 # liulitchi <xingzuo88@qq.com>, 2014
+# 李武军 <lwj7863439@gmail.com>, 2016
 # 艳伟 车 <313049312@qq.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:01+0200\n"
-"PO-Revision-Date: 2016-09-26 08:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-09-30 09:01+0200\n"
+"PO-Revision-Date: 2016-10-04 05:44+0000\n"
+"Last-Translator: 李武军 <lwj7863439@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,11 +191,11 @@ msgstr "城墙"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
-msgid "Wooden Tower"
-msgstr "木制防御塔"
+msgid "Sentry Tower"
+msgstr "岗哨塔"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:67
-msgid "Enforce with stone and upgrade to a defense tower."
+msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr ""
 
 #: simulation/templates/template_structure_economic.xml:14
@@ -495,8 +496,8 @@ msgid "Apothḗkē"
 msgstr "仓库"
 
 #: simulation/templates/structures/athen_temple.xml:9
-msgid "Neṓs"
-msgstr "万神殿"
+msgid "Naṓs"
+msgstr ""
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -777,7 +778,7 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Shipyard"
-msgstr ""
+msgstr "造船厂"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
@@ -1159,7 +1160,7 @@ msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "训练战象或 Kardakes 傭兵。"
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1305,7 +1306,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "便宜的类军营式的建筑，可以在中立的领土上建造，但对领土范围则无任何影响。训练雇佣兵。 "
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1316,7 +1317,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "這是托勒密的扩张建筑物，类似于其他文明的城镇中心。它比较脆弱且领土范围较小，但它比较便宜且建造较快。训练不同民族的开拓者士兵。"
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1558,7 +1559,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "這是塞琉古的扩张建筑物，类似于其他文明的城镇中心。它比较脆弱且领土范围较小，但它比较便宜且建造较快。训练不同民族的开拓者士兵。"
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

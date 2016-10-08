@@ -33,6 +33,7 @@
 # Olivier <olivier.torrens@gmail.com>, 2013
 # PRIME Gildas <prime.gildas@gmail.com>, 2013
 # Rémi Verschelde <akien@mageia.org>, 2014
+# Rémy J. <remy@remyj.fr>, 2016
 # robin moussu <robin.moussu+transifex@gmail.com>, 2013
 # Rodrigue March <rodriguemarch@sfr.fr>, 2013
 # Ross1396, 2014
@@ -53,8 +54,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-28 20:11+0000\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-10-02 08:15+0000\n"
 "Last-Translator: François Poirotte <clicky@erebot.net>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -703,8 +704,8 @@ msgstr "Acheter %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Vendre %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Nécessite %(technology)s"
@@ -756,28 +757,28 @@ msgstr "Limite de population insuffisante :"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Reste : %(number)s à construire."
 msgstr[1] "Restent : %(number)s à construire."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Améliorer en %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Améliorer en %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Annuler l'amélioration"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Amélioration impossible tant qu'une autre amélioration est en cours."
 
@@ -902,9 +903,9 @@ msgstr "Trouver un travailleur inactif"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Sélectionner une ressource comme ressource de départ puis utiliser les flèches autour de la ressource désirée pour appliquer les changements."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr "Sélectionner une ressource comme point de départ puis utiliser les flèches autour de la ressource désirée pour appliquer les changements."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1049,8 +1050,8 @@ msgid "Abort the current order."
 msgstr "Abandonner l'ordre actuel."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
-msgstr "Ordonne aux unités sélectionnées de se mettre en garnison dans un bâtiment ou une unité."
+msgid "Order the selected units to garrison in a building or unit."
+msgstr "Ordonner aux unités sélectionnées de se mettre en garnison dans un bâtiment ou une unité."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1085,8 +1086,8 @@ msgid "Patrol"
 msgstr "Patrouille"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr ""
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr "Attaquer toutes les unités ennemies rencontrées en évitant les batiments."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1167,8 +1168,8 @@ msgstr "Filtrer l'historique de discussion."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Sélectionnez le destinataire du message."
+msgid "Select chat addressee."
+msgstr "Sélectionnez le destinataire."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1376,5 +1377,5 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI : Ulysses"

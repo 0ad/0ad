@@ -29,6 +29,18 @@ MAKE_OPTS="${JOBS}"
 
 CONF_OPTS="--enable-shared-js --disable-tests --without-intl-api"
 
+# Bug 1269319
+# When compiled with GCC 6 (or later), SpiderMonkey 38 (and versions up to 49) is
+# subject to segfaults. Disabling a few optimizations fixes that.
+# See also #4053
+if [ "${OS}" != "Windows_NT" ]
+then
+  if [ "`${CXX:=g++} -dumpversion | cut -f1 -d.`" -ge "6" ]
+  then
+    CXXFLAGS="${CXXFLAGS} -fno-schedule-insns2 -fno-delete-null-pointer-checks"
+  fi
+fi
+
 # Change the default location where the tracelogger should store its output.
 # The default location is . on Windows and /tmp/ on *nix.
 TLCXXFLAGS='-DTRACE_LOG_DIR="\"../../source/tools/tracelogger/\""'
@@ -91,14 +103,14 @@ rm -rf build-release
 perl -i.bak -pe 's/(SHARED_LIBRARY_NAME\s+=).*/$1 '\''mozjs38-ps-debug'\''/' moz.build
 mkdir -p build-debug
 cd build-debug
-CXXFLAGS="${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-debug --disable-optimize --enable-js-diagnostics --enable-gczeal
+CXXFLAGS="${CXXFLAGS} ${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-debug --disable-optimize --enable-js-diagnostics --enable-gczeal
 ${MAKE} ${MAKE_OPTS}
 cd ..
 
 perl -i.bak -pe 's/(SHARED_LIBRARY_NAME\s+=).*/$1 '\''mozjs38-ps-release'\''/' moz.build
 mkdir -p build-release
 cd build-release
-CXXFLAGS="${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-optimize  # --enable-gczeal --enable-debug-symbols
+CXXFLAGS="${CXXFLAGS} ${TLCXXFLAGS}" ../configure ${CONF_OPTS} --with-nspr-libs="$NSPR_LIBS" --with-nspr-cflags="$NSPR_INCLUDES" --enable-optimize  # --enable-gczeal --enable-debug-symbols
 ${MAKE} ${MAKE_OPTS}
 cd ..
 

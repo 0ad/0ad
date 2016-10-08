@@ -5,7 +5,7 @@
 # Translators:
 # Daniel Sandman <revoltism@gmail.com>, 2015
 # Jacob Carlsson <yejcob@gmail.com>, 2015
-# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
+# Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016
 # leper <leper@wildfiregames.com>, 2015
 # Marco tom Suden, 2014
 # pilino1234 <mhilgendrf@aol.com>, 2016
@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:01+0200\n"
-"PO-Revision-Date: 2016-09-26 12:55+0000\n"
+"POT-Creation-Date: 2016-09-30 09:01+0200\n"
+"PO-Revision-Date: 2016-10-01 15:37+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -192,12 +192,12 @@ msgstr "Stadsmur"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
-msgid "Wooden Tower"
-msgstr "Trätorn"
+msgid "Sentry Tower"
+msgstr "Vakttorn"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:67
-msgid "Enforce with stone and upgrade to a defense tower."
-msgstr "Förstärk med sten och uppgradera till försvarstorn."
+msgid "Reinforce with stone and upgrade to a defense tower."
+msgstr "Förstärk med sten och uppgradera till ett försvarstorn."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -302,7 +302,7 @@ msgstr "Fort"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr "Träna hjältar, kämpar, och belägringsvapen. Forska fram förbättringar för belägringsvapen."
+msgstr "Träna hjältar, mästare, och belägringsvapen. Forska fram förbättringar för belägringsvapen."
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -450,7 +450,7 @@ msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen_gymnasion.xml:22
 msgid "Train champion units."
-msgstr "Träna kämpar."
+msgstr "Träna mästarenheter."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -497,8 +497,8 @@ msgid "Apothḗkē"
 msgstr "Apothḗkē"
 
 #: simulation/templates/structures/athen_temple.xml:9
-msgid "Neṓs"
-msgstr "Neṓs"
+msgid "Naṓs"
+msgstr "Naṓs"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -602,11 +602,11 @@ msgstr "Varmo"
 
 #: simulation/templates/structures/brit_fortress.xml:21
 msgid "Brythonic Broch"
-msgstr "Brythonsk broch"
+msgstr "Britonsk Broch"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Träna brytonska hjältar och kämpar. Bygg murbräckor."
+msgstr "Träna britonska hjältar och mästare. Bygg murbräckor."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
@@ -628,7 +628,7 @@ msgstr "Marchnaty"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr "Brythonsk utpost"
+msgstr "Britonsk utpost"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -820,7 +820,7 @@ msgstr "Gallisk Dun"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Träna galliska hjältar och kämpar. Bygg murbräckor."
+msgstr "Träna galliska hjältar och mästare. Bygg murbräckor."
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
@@ -1014,7 +1014,7 @@ msgstr "Durg"
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
-msgstr "Träna hjältar och kämpar."
+msgstr "Träna hjältar och mästare."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
@@ -1149,7 +1149,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Träna kavallerikämpar och bygg murbräckor."
+msgstr "Träna mästarkavallerister och bygg murbräckor."
 
 #: simulation/templates/structures/pers_hall.xml:25
 msgid "Persian Hall"

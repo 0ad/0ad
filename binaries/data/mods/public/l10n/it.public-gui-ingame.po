@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-28 06:41+0000\n"
-"Last-Translator: Samuele Marazzita <samuelemarazzita@gmail.com>\n"
+"POT-Creation-Date: 2016-09-30 09:00+0200\n"
+"PO-Revision-Date: 2016-09-30 19:15+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,8 +685,8 @@ msgstr "Compra %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Vendi %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1056
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Richiesta %(technology)s"
@@ -738,28 +738,28 @@ msgstr "Popolazione Insufficiente:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:828
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Rimanenti: %(number)s da costruire."
 msgstr[1] "Rimanenti: %(number)s da costruire."
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Incrementa ad %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Incrementa ad %(name)s."
 
-#: gui/session/selection_panels.js:1155
+#: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
 msgstr "Cancella l'incremento"
 
-#: gui/session/selection_panels.js:1160
+#: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Non si può incrementare ciò che è stato già incrementato."
 
@@ -884,9 +884,9 @@ msgstr "Trova lavoratori non attivi"
 
 #: gui/session/session.js:336
 msgid ""
-"Select one goods as origin of the changes, then use the arrows of the target"
-" goods to make the changes."
-msgstr "Selezionare una merce come base degli scambi, poi utilizzare le frecce dei beni da ricevere per effettuare lo scambio."
+"Select one type of goods as origin of the changes, then use the arrows of "
+"the target type of goods to make the changes."
+msgstr "Selezionare un tipo di merce come origine degli scambi, poi utilizzare le frecce dei beni di destinazione per effettuare gli scambi."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1031,8 +1031,8 @@ msgid "Abort the current order."
 msgstr "Annulla l'ordine corrente."
 
 #: gui/session/unit_actions.js:1120
-msgid "Order the selected units to garrison a building or unit."
-msgstr "Ordina alle unità selezionate di presidiare un edificio od unità."
+msgid "Order the selected units to garrison in a building or unit."
+msgstr "Ordina alle unità selezionate di acquartierarsi in un edificio od unità."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1067,8 +1067,8 @@ msgid "Patrol"
 msgstr "Pattuglia"
 
 #: gui/session/unit_actions.js:1276
-msgid "Attack encountered encountered units while avoiding buildings."
-msgstr "Attacca unità incontrate evitando gli edifici."
+msgid "Attack all encountered enemy units while avoiding buildings."
+msgstr "Attacca tutte le unità incontrate evitando gli edifici."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1149,8 +1149,8 @@ msgstr "Filtra la cronologia della chat."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
-msgid "Select chatmessage addressee."
-msgstr "Seleziona il messaggio del destinatario."
+msgid "Select chat addressee."
+msgstr "Seleziona il destinatario del messaggio."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1358,5 +1358,5 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XX : Timosthenes"
-msgstr "ALPHA XX : Timosthenes"
+msgid "ALPHA XXI : Ulysses"
+msgstr "ALPHA XXI : Ulisse"

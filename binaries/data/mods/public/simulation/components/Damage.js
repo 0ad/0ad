@@ -15,14 +15,13 @@ Damage.prototype.Init = function()
  */
 Damage.prototype.InterpolatedLocation = function(ent, lateness)
 {
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	let turnLength = cmpTimer.GetLatestTurnLength() / 1000;
 	let cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
 		return undefined;
 	let curPos = cmpTargetPosition.GetPosition();
 	let prevPos = cmpTargetPosition.GetPreviousPosition();
-	lateness /= 1000;
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	let turnLength = cmpTimer.GetLatestTurnLength();
 	return new Vector3D(
 			(curPos.x * (turnLength - lateness) + prevPos.x * lateness) / turnLength,
 			0,
@@ -41,24 +40,28 @@ Damage.prototype.TestCollision = function(ent, point, lateness)
 	let targetPosition = this.InterpolatedLocation(ent, lateness);
 	if (!targetPosition)
 		return false;
-	
+
 	let cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
 	if (!cmpFootprint)
 		return false;
-	
+
 	let targetShape = cmpFootprint.GetShape();
 
 	if (!targetShape)
 		return false;
 
-	if (targetShape.type === 'circle')
-		// Use VectorDistanceSquared and square targetShape.radius to avoid square roots.
-		return targetPosition.horizDistanceTo(point) < (targetShape.radius * targetShape.radius);
+	if (targetShape.type == "circle")
+		return targetPosition.horizDistanceToSquared(point) < targetShape.radius * targetShape.radius;
 
-	let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
-	let distance = Vector2D.from3D(Vector3D.sub(point, targetPosition)).rotate(-angle);
+	if (targetShape.type == "square")
+	{
+		let angle = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
+		let distance = Vector2D.from3D(Vector3D.sub(point, targetPosition)).rotate(-angle);
+		return Math.abs(distance.x) < targetShape.width / 2 && Math.abs(distance.y) < targetShape.depth / 2;
+	}
 
-	return distance.x < Math.abs(targetShape.width/2) && distance.y < Math.abs(targetShape.depth/2);
+	warn("TestCollision called with an invalid footprint shape");
+	return false;
 };
 
 /**
@@ -87,7 +90,15 @@ Damage.prototype.MissileHit = function(data, lateness)
 	// Do this first in case the direct hit kills the target
 	if (data.isSplash)
 	{
-		let playersToDamage = !data.friendlyFire ? QueryPlayerIDInterface(data.attackerOwner).GetEnemies() : null;
+		let playersToDamage = [];
+		if (!data.friendlyFire)
+			playersToDamage = QueryPlayerIDInterface(data.attackerOwner).GetEnemies();
+		else
+		{
+			let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+			for (let i = 0; i < numPlayers; ++i)
+				playersToDamage.push(i);
+		}
 
 		this.CauseSplashDamage({
 			"attacker": data.attacker,
@@ -148,7 +159,7 @@ Damage.prototype.MissileHit = function(data, lateness)
  * @param {string}   data.type - the type of damage.
  * @param {number}   data.attackerOwner - the player id of the attacker.
  * @param {Vector3D} data.direction - the unit vector defining the direction.
- * @param {number[]} [data.playersToDamage] - the array of player id's to damage.
+ * @param {number[]} data.playersToDamage - the array of player id's to damage.
  */
 Damage.prototype.CauseSplashDamage = function(data)
 {
