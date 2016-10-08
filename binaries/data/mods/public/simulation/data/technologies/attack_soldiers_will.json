@@ -22,6 +22,6 @@
 		{"value": "Attack/Ranged/Pierce", "multiply": 1.25},
 		{"value": "Attack/Ranged/Crush", "multiply": 1.25}
 	],
-	"affects": ["CitizenSoldier", "Champion", "Hero"],
+	"affects": ["Melee", "Ranged"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
