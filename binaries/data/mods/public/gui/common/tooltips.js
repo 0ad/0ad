@@ -226,7 +226,7 @@ function getGarrisonTooltip(template)
 	let tooltips = [
 		sprintf(translate("%(label)s: %(garrisonLimit)s"), {
 			"label": headerFont(translate("Garrison Limit")),
-			"garrisonLimit": template.garrisonHolder.capacity || template.garrisonHolder.max
+			"garrisonLimit": template.garrisonHolder.capacity
 		})
 	];
 
@@ -252,7 +252,7 @@ function getProjectilesTooltip(template)
 		template.buildingAI.maxArrowCount || Infinity,
 		template.buildingAI.defaultArrowCount +
 			template.buildingAI.garrisonArrowMultiplier *
-			(template.garrisonHolder.capacity || template.garrisonHolder.max)
+			template.garrisonHolder.capacity
 	);
 
 	if (!limit)

@@ -234,7 +234,7 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 		};
 
 		if (template.GarrisonHolder.Max)
-			ret.garrisonHolder.max = getEntityValue("GarrisonHolder/Max");
+			ret.garrisonHolder.capacity = getEntityValue("GarrisonHolder/Max");
 	}
 
 	if (template.Heal)
