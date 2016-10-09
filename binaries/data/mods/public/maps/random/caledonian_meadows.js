@@ -142,34 +142,35 @@ function getOrderOfPointsForShortestClosePath(points)
 
 /**
  * Drags a path to a target height smoothing it at the edges and return some points along the path.
- *
- * TODO:
- * Would be nice to tell the function what to do and how often in the arguments
- * Adding painted tiles to a tile class
  */
-function placeRandomPathToHeight(start, pathTexture, target, targetHeight, width = 10, occurrence = 2, strength = 0.1, heightmap = g_Map.height)
+function placeRandomPathToHeight(
+	start, target, targetHeight, tileClass = undefined, texture = "road_rome_a",
+	width = 10, distance = 4, strength = 0.08, heightmap = g_Map.height)
 {
-	if (pathTexture === true)
-		pathTexture = ['temp_road', "temp_road_overgrown", 'temp_grass_b'];
-	
-	let clTempPath = createTileClass();
-	let targetReached = false;
+	let pathPoints = [];
 	let position = deepcopy(start);
-	while (!targetReached)
+	while (true)
 	{
 		rectangularSmoothToHeight(position, width, width, targetHeight, strength, heightmap);
-		if (pathTexture)
-			createArea(new ClumpPlacer(0.2 * width * width, 1, 1, 1, floor(position.x), floor(position.y)), [new TerrainPainter(pathTexture), paintClass(clTempPath)]);
-		
-		// Set lets for next loop
+		if (texture)
+		{
+			if (tileClass !== undefined)
+				createArea(new ClumpPlacer(0.3 * width * width, 1, 1, 1, floor(position.x), floor(position.y)),
+					[new TerrainPainter(texture), paintClass(tileClass)]);
+			else
+				createArea(new ClumpPlacer(0.3 * width * width, 1, 1, 1, floor(position.x), floor(position.y)),
+					new TerrainPainter(texture));
+		}
+		pathPoints.push({ "x": position.x, "y": position.y, "dist": distance });
+		// Check for distance to target and setup for next loop if needed
+		if (getDistance(position.x, position.y, target.x, target.y) < distance / 2)
+			break;
 		let angleToTarget = getAngle(position.x, position.y, target.x, target.y);
 		let angleOff = PI * (randFloat() - 0.5);
-		position.x += occurrence * cos(angleToTarget + angleOff);
-		position.y += occurrence * sin(angleToTarget + angleOff);
-		if (getDistance(position.x, position.y, target.x, target.y) < occurrence / 2)
-			targetReached = true;
+		position.x += distance * cos(angleToTarget + angleOff);
+		position.y += distance * sin(angleToTarget + angleOff);
 	}
-	return clTempPath;
+	return pathPoints;
 }
 
 function getGrad(wrapped = true, scalarField = g_Map.height)
@@ -240,35 +241,39 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 /**
  * Meant to place e.g. resource spots within a height range
  * @param {array} [heightRange] - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
- * @param {array} [avoidPoints] - An array of objects of the form {"x": int, "y": int, "dist": int}, points that will be avoided in the given dist e.g. start locations
- * @param {array} [avoidArea] - List of tiles to avoid
+ * @param {array} [avoidPoints=[]] - An array of objects of the form {"x": int, "y": int, "dist": int}, points that will be avoided in the given dist e.g. start locations
+ * @param {object} [avoidClass=undefined] - TileClass to be avoided
  * @param {integer} [minDistance=30] - How many tile widths the entities to place have to be away from each other, start locations and the map border
  * @param {array} [heightmap=g_Map.height] - The reliefmap the entities should be distributed on
- * @param {integer} [maxTries=1000] - How often random player distributions are rolled to be compared
+ * @param {integer} [maxTries=2 * g_Map.size] - How often random player distributions are rolled to be compared (256 to 1024)
  * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
  */
-function getPointsByHeight(heightRange, avoidPoints, avoidArea, minDistance = 20, maxTries = 1000, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
+function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined, minDistance = 20, maxTries = 2 * g_Map.size, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
 	let points = [];
 	let placements = deepcopy(avoidPoints);
 	let validVertices = [];
 	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
+	let avoidMap;
+	if (avoidClass !== undefined)
+		avoidMap = g_Map.tileClasses[avoidClass].inclusionCount;
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
 	{
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
 		{
-			let isValid = true;
-			for (let i = 0; i < pathArea.length; ++i)
-				if (pathArea[i].x == x && pathArea[i].y == y)
-					isValid = false;
-			if (!isValid)
+			if (avoidClass !== undefined && // Avoid adjecting tiles in avoidClass
+				(avoidMap[max(x - 1, 0)][y] > 0 ||
+				avoidMap[x][max(y - 1, 0)] > 0 ||
+				avoidMap[min(x + 1, avoidMap.length - 1)][y] > 0 ||
+				avoidMap[x][min(y + 1, avoidMap[0].length - 1)] > 0))
 				continue;
-			
-			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && (!isCircular || r - getDistance(x, y, r, r) >= minDistance)) // Has correct height and enough distance to map border
+
+			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && // Has correct height
+				(!isCircular || r - getDistance(x, y, r, r) >= minDistance)) // Enough distance to map border
 				validVertices.push({ "x": x, "y": y , "dist": minDistance});
 		}
 	}
-	
+
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
 		let point = validVertices[randInt(validVertices.length)];
@@ -277,8 +282,10 @@ function getPointsByHeight(heightRange, avoidPoints, avoidArea, minDistance = 20
 			points.push(point);
 			placements.push(point);
 		}
+		if ((tries != 0) && (tries % 100 == 0)) // Time Check
+			log(points.length + " points found after " + tries + " tries after " + ((new Date().getTime() - genStartTime) / 1000) + "s");
 	}
-	
+
 	return points;
 }
 
@@ -294,7 +301,6 @@ let decorations = [
 	"actor|props/flora/bush.xml", "actor|props/flora/bush_dry_a.xml", "actor|props/flora/bush_highlands.xml",
 	"actor|props/flora/bush_tempe_a.xml", "actor|props/flora/bush_tempe_b.xml", "actor|props/flora/ferns.xml"
 ];
-
 function placeMine(point, centerEntity)
 {
 	placeObject(point.x, point.y, centerEntity, 0, randFloat(0, TWO_PI));
@@ -334,9 +340,7 @@ for (let i = 0; i < num; ++i)
 	fences.push(new Fortress("fence", deepcopy(fences[i].wall).reverse()));
 
 // Groves, only Wood
-let groveEntities = [
-	"gaia/flora_bush_temperate", "gaia/flora_tree_euro_beech"
-];
+let groveEntities = ["gaia/flora_bush_temperate", "gaia/flora_tree_euro_beech"];
 let groveActors = [
 	"actor|geology/highland1_moss.xml", "actor|geology/highland2_moss.xml",
 	"actor|props/flora/bush.xml", "actor|props/flora/bush_dry_a.xml", "actor|props/flora/bush_highlands.xml",
@@ -383,9 +387,8 @@ function placeCamp(point,
 	}
 }
 
-let foodEntities = ["gaia/flora_bush_berry", "gaia/fauna_chicken", "gaia/fauna_chicken"];
-// Start loaction resources
-function placeStartLocationResources(point)
+
+function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_berry", "gaia/fauna_chicken", "gaia/fauna_chicken"])
 {
 	let currentAngle = randFloat(0, TWO_PI);
 	// Stone and chicken
@@ -438,36 +441,41 @@ function placeStartLocationResources(point)
 	}
 }
 
+log("Functions loaded after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+
 /**
- * Set height limits and water level by map size
+ * Environment settings
  */
+setBiome(g_BiomeAlpine);
+g_Environment.Fog.FogColor = { "r": 0.8, "g": 0.8, "b": 0.8, "a": 0.01 };
+g_Environment.Water.WaterBody.Colour = { "r" : 0.3, "g" : 0.05, "b" : 0.1, "a" : 0.1 };
+g_Environment.Water.WaterBody.Murkiness = 0.4;
+
+/**
+ * Base terrain shape generation and settings
+ */
+ // Height range by map size
 let heightScale = (g_Map.size + 256) / 768 / 4;
 let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
-
+// Water coverage
 let averageWaterCoverage = 1/5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
 let waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
 let waterHeightAdjusted = waterHeight + MIN_HEIGHT; // Water height in RMGEN
 setWaterHeight(waterHeight);
-
-
-/**
- * Generate base terrain
- */
+// Generate base terrain shape
 let medH = (heightRange.min + heightRange.max) / 2;
 let initialHeightmap = [[medH, medH], [medH, medH]];
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 0.8);
-
-/**
- * Apply simple erosion
- */
-// globalSmoothHeightmap(0.5);
+// Apply simple erosion
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
-
+// Final rescale
 rescaleHeightmap(heightRange.min, heightRange.max);
 
+RMS.SetProgress(25);
+
 /**
- * Height presets
+ * Prepare terrain texture placement
  */
 let heighLimits = [
 	heightRange.min + 1/3 * (waterHeightAdjusted - heightRange.min), // 0 Deep water
@@ -481,19 +489,8 @@ let heighLimits = [
 	waterHeightAdjusted + 6/8 * (heightRange.max - waterHeightAdjusted), // 8 Forest
 	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 9 Upper forest border
 	waterHeightAdjusted + (heightRange.max - waterHeightAdjusted)]; // 10 Hilltop
-
-/**
- * Set environment
- */
-setBiome(g_BiomeAlpine);
-g_Environment.Fog.FogColor = { "r": 0.8, "g": 0.8, "b": 0.8, "a": 0.01 };
-g_Environment.Water.WaterBody.Colour = { "r" : 0.3, "g" : 0.05, "b" : 0.1, "a" : 0.1 };
-g_Environment.Water.WaterBody.Murkiness = 0.4;
-
-/**
- * Add tile painting presets
- */
-let dummyActor = "actor|props/special/common/waypoint_flag.xml";
+let playerHeight = (heighLimits[4] + heighLimits[5]) / 2; // Average player height
+// Texture and actor presets
 let myBiome = [];
 myBiome.push({ // 0 Deep water
 	"texture": ["shoreline_stoney_a"],
@@ -551,6 +548,7 @@ myBiome.push({ // 10 Hilltop
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
+log("Terrain shape generation and texture presets after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
 
 /**
  * Get start locations
@@ -573,7 +571,6 @@ for (let i = 0; i < g_MapSettings.PlayerData.length - 1; ++i)
 		teams.push(t);
 }
 playerIDs = sortPlayers(playerIDs);
-
 // Minimize maximum distance between players within a team
 if (teams.length)
 {
@@ -616,52 +613,35 @@ if (teams.length)
 	}
 }
 
-let playerHeight = (heighLimits[4] + heighLimits[5]) / 2;
+log("Start location chosen after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+RMS.SetProgress(30);
 
 /**
- * Place start locations (resources later)
+ * Add paths
  */
-for (let p = 0; p < playerIDs.length; ++p)
-{
-	let point = startLocations[p];
-	rectangularSmoothToHeight(point, 35, 35, playerHeight, 0.7);
-	placeCivDefaultEntities(point.x, point.y, playerIDs[p], { "iberWall": true });
-}
-
-/**
- * Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false (default) for this map to work properly)
- */
-let tchm = getTileCenteredHeightmap();
-
-/**
- * Add paths class and area but don't paint before resource spots are chosen!
- */
-let pathTerrainClassIDs = [];
+let tchm = getTileCenteredHeightmap(); // Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false)
+let pathPoints = [];
+let clPath = createTileClass();
 for (let i = 0; i < startLocations.length; ++i)
 {
 	let start = startLocations[i];
 	let target = startLocations[(i + 1) % startLocations.length];
-	pathTerrainClassIDs.push(placeRandomPathToHeight(start, ["road_rome_a"], target, playerHeight, 8, 3, 0.1));
+	pathPoints = pathPoints.concat(placeRandomPathToHeight(start, target, playerHeight, clPath));
 }
-let pathArea = [];
-for (let x = 0; x < tchm.length; ++x)
-	for (let y = 0; y < tchm[0].length; ++y)
-		for (let i = 0; i < pathTerrainClassIDs.length; ++i)
-			if (getTileClass(pathTerrainClassIDs[i]).countMembersInRadius(x, y, 0.5))
-				pathArea.push({ "x": x, "y": y });
+
+log("Paths placed after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+RMS.SetProgress(45);
 
 /**
- * Get resource spots after players start locations after path are calculated but before they are placed!
+ * Get resource spots after players start locations calculation
  */
 let avoidPoints = deepcopy(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
-let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, pathArea);
+let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);
 
-/**
- * Calculate slope map
- */
-let slopeMap = getSlopeMap();
+log("Resource spots chosen after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+RMS.SetProgress(55);
 
 /**
  * Divide tiles in areas by height and avoid paths
@@ -673,11 +653,7 @@ for (let x = 0; x < tchm.length; ++x)
 {
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
-		let isPath = false;
-		for (let i = 0; i < pathArea.length; ++i)
-			if (pathArea[i].x == x && pathArea[i].y == y)
-				isPath = true;
-		if (isPath)
+		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
 			continue;
 		
 		let minHeight = heightRange.min;
@@ -697,6 +673,7 @@ for (let x = 0; x < tchm.length; ++x)
 /**
  * Get max slope of each area
  */
+let slopeMap = getSlopeMap(); // Calculate slope map
 let minSlope = [];
 let maxSlope = [];
 for (let h = 0; h < heighLimits.length; ++h)
@@ -744,15 +721,19 @@ for (let h = 0; h < heighLimits.length; ++h)
 	}
 }
 
-/**
- * Add starting resources after terrain texture painting
- */
-for (let p = 0; p < g_MapSettings.PlayerData.length - 1; ++p)
-	placeStartLocationResources(startLocations[p]);
+log("Terrain texture placement finished after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+RMS.SetProgress(80);
 
 /**
- * Add resource spots after terrain texture painting
+ * Add start locations and resource spots after terrain texture and path painting
  */
+for (let p = 0; p < playerIDs.length; ++p)
+{
+	let point = startLocations[p];
+	rectangularSmoothToHeight(point, 40, 40, playerHeight, 0.7);
+	placeCivDefaultEntities(point.x, point.y, playerIDs[p], { "iberWall": true });
+	placeStartLocationResources(startLocations[p]);
+}
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;
@@ -771,7 +752,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 /**
  * Stop Timer
  */
-log("Map generation finished after " + ((new Date().getTime() - genStartTime) / 1000) + "s")
+log("Map generation finished after " + ((new Date().getTime() - genStartTime) / 1000) + "s");
 
 /**
  * Export map data
