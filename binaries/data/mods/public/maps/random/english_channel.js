@@ -24,7 +24,6 @@ const oPoplar = "gaia/flora_tree_poplar";
 const oApple = "gaia/flora_tree_apple";
 const oOak = "gaia/flora_tree_oak";
 const oBerryBush = "gaia/flora_bush_berry";
-const oChicken = "gaia/fauna_chicken";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
 const oGoat = "gaia/fauna_goat";
@@ -142,26 +141,14 @@ for (var i = 0; i < numPlayers; i++)
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 	
-	// create animals
-	for (var j = 0; j < 2; ++j)
-	{
-		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 9;
-		var aX = round(fx + aDist * cos(aAngle));
-		var aZ = round(fz + aDist * sin(aAngle));
-		var group = new SimpleGroup(
-			[new SimpleObject(oChicken, 5,5, 0,3)],
-			true, clBaseResource, aX, aZ
-		);
-		createObjectGroup(group, 0);
-	}
-	
+	placeDefaultChicken(fx, fz, clBaseResource);
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
-	group = new SimpleGroup(
+	var group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
 	);

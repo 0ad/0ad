@@ -34,7 +34,6 @@ var eFanPalm = "gaia/flora_tree_medit_fan_palm";
 var eCypress = "gaia/flora_tree_cypress";
 var eApple = "gaia/flora_tree_apple"
 var eBush = "gaia/flora_bush_berry";
-var eChicken = "gaia/fauna_chicken";
 var eFish = "gaia/fauna_fish";
 var ePig = "gaia/fauna_pig";
 var eStoneMine = "gaia/geology_stonemine_medit_quarry";
@@ -334,26 +333,14 @@ for (var i = 0; i < numPlayers; i++)
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
 	
-	// create animals
-	for (var j = 0; j < 2; ++j)
-	{
-		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 7;
-		var aX = round(fx + aDist * cos(aAngle));
-		var aZ = round(fz + aDist * sin(aAngle));
-		var group = new SimpleGroup(
-			[new SimpleObject(eChicken, 5,5, 0,2)],
-			true, clBaseResource, aX, aZ
-		);
-		createObjectGroup(group, 0);
-	}
+	placeDefaultChicken(fx, fz, clBaseResource);
 	
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 11;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
-	group = new SimpleGroup(
+	var group = new SimpleGroup(
 		[new SimpleObject(eBush, 5,5, 1,2)],
 		true, clBaseResource, bbX, bbZ
 	);

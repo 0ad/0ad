@@ -26,7 +26,6 @@ const oTree3 = rBiomeE3();
 const oTree4 = rBiomeE4();
 const oTree5 = rBiomeE5();
 const oFruitBush = rBiomeE6();
-const oChicken = rBiomeE7();
 const oMainHuntableAnimal = rBiomeE8();
 const oFish = rBiomeE9();
 const oSecondaryHuntableAnimal = rBiomeE10();

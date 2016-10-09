@@ -186,19 +186,8 @@ for (var i=0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 
 	// Create starter animals
-	for (var j = 0; j < 2; ++j)
-	{
-		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 7;
-		var aX = round(fx + aDist * cos(aAngle));
-		var aZ = round(fz + aDist * sin(aAngle));
-		var group = new SimpleGroup(
-			[new SimpleObject(oPig, 5,5, 0,2)],
-			true, clBaseResource, aX, aZ
-		);
-		createObjectGroup(group, 0);
-	}	
-	
+	placeDefaultChicken(fx, fz, clBaseResource, undefined, oPig);
+
 	// Create starter berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;

@@ -39,7 +39,6 @@ const oTree3 = rBiomeE3();
 const oTree4 = rBiomeE4();
 const oTree5 = rBiomeE5();
 const oFruitBush = rBiomeE6();
-const oChicken = rBiomeE7();
 const oMainHuntableAnimal = rBiomeE8();
 const oFish = rBiomeE9();
 const oSecondaryHuntableAnimal = rBiomeE10();
@@ -198,19 +197,7 @@ for (let i = 0; i < teams.length; ++i)
 	{
 		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
 
-		// create initial chicken
-		for (let j = 0; j < 2; ++j)
-		{
-			let aAngle = randFloat(0, TWO_PI);
-			let aDist = 7;
-			let aX = round(fx + aDist * cos(aAngle));
-			let aZ = round(fz + aDist * sin(aAngle));
-			let group = new SimpleGroup(
-				[new SimpleObject(oChicken, 5, 5, 0, 2)],
-				true, clBaseResource, aX, aZ
-			);
-			createObjectGroup(group, 0, [stayClasses(clLand, 5)]);
-		}
+		placeDefaultChicken(fx, fz, clBaseResource, [stayClasses(clLand, 5)]);
 
 		// create initial berry bushes
 		let bbAngle = randFloat(PI, PI*1.5);
