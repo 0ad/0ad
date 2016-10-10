@@ -339,6 +339,7 @@ public:
 		serialize.NumberFixed_Unbounded("target max range", m_TargetMaxRange);
 
 		serialize.NumberFixed_Unbounded("speed", m_Speed);
+		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
 
 		serialize.Bool("moving", m_Moving);
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
