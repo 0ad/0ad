@@ -226,6 +226,8 @@ public:
 		serialize.NumberFixed_Unbounded("g", m_G);
 		serialize.NumberFixed_Unbounded("b", m_B);
 
+		SerializeMap<SerializeString, SerializeString>()(serialize, "anim overrides", m_AnimOverride);
+
 		serialize.NumberFixed_Unbounded("anim run threshold", m_AnimRunThreshold);
 		serialize.StringASCII("anim name", m_AnimName, 0, 256);
 		serialize.Bool("anim once", m_AnimOnce);
@@ -266,17 +268,8 @@ public:
 		// If we serialized a different seed or different actor, reload actor
 		if (oldSeed != GetActorSeed() || m_BaseActorName != m_ActorName)
 			ReloadActor();
-		else if (m_Unit)
-			m_Unit->SetEntitySelection(m_VariantSelections);
-
-		fixed repeattime = m_AnimSyncRepeatTime; // save because SelectAnimation overwrites it
-
-		if (m_AnimRunThreshold.IsZero())
-			SelectAnimation(m_AnimName, m_AnimOnce, m_AnimSpeed, m_SoundGroup);
 		else
-			SelectMovementAnimation(m_AnimRunThreshold);
-
-		SetAnimationSyncRepeat(repeattime);
+			ReloadUnitAnimation();
 
 		if (m_Unit)
 		{
@@ -459,14 +452,8 @@ public:
 
 	virtual void SelectMovementAnimation(fixed runThreshold)
 	{
+		SelectAnimation("walk", false, fixed::FromFloat(1.f), L"");
 		m_AnimRunThreshold = runThreshold;
-
-		if (m_Unit)
-		{
-			SetVariant("animation", "walk");
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState("walk", false, 1.f, 0.f, L"");
-		}
 	}
 
 	virtual void SetAnimationSyncRepeat(fixed repeattime)
@@ -542,7 +529,11 @@ private:
 	/// Helper method; initializes the model selection shape descriptor from XML. Factored out for readability of @ref Init.
 	void InitSelectionShapeDescriptor(const CParamNode& paramNode);
 
+	// ReloadActor is used when the actor or seed changes.
 	void ReloadActor();
+	// ReloadUnitAnimation is used for a minimal reloading upon deserialization, when the actor and seed are identical.
+	// It is also used by ReloadActor.
+	void ReloadUnitAnimation();
 
 	void Update(fixed turnLength);
 };
@@ -716,18 +707,7 @@ void CCmpVisualActor::ReloadActor()
 
 	InitModel(node->GetChild("VisualActor"));
 
-	m_Unit->SetEntitySelection(m_VariantSelections);
-
-	if (m_Unit->GetAnimation())
-		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
-
-	// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
-	if (!m_AnimSyncRepeatTime.IsZero())
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
-	if (!m_AnimSyncOffsetTime.IsZero())
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationSyncOffset(m_AnimSyncOffsetTime.ToFloat());
+	ReloadUnitAnimation();
 
 	m_Unit->GetModel().SetShadingColor(shading);
 
@@ -742,41 +722,64 @@ void CCmpVisualActor::ReloadActor()
 	}
 }
 
-void CCmpVisualActor::Update(fixed UNUSED(turnLength))
+void CCmpVisualActor::ReloadUnitAnimation()
 {
 	if (!m_Unit)
 		return;
 
-	// If we're in the special movement mode, select an appropriate animation
-	if (!m_AnimRunThreshold.IsZero())
+	m_Unit->SetEntitySelection(m_VariantSelections);
+
+	if (!m_Unit->GetAnimation())
+		return;
+
+	m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
+
+	// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
+	if (!m_AnimSyncRepeatTime.IsZero())
+		m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
+	if (!m_AnimSyncOffsetTime.IsZero())
+		m_Unit->GetAnimation()->SetAnimationSyncOffset(m_AnimSyncOffsetTime.ToFloat());
+}
+
+void CCmpVisualActor::Update(fixed UNUSED(turnLength))
+{
+	// This function is currently only used to update the animation if the speed in
+	// CCmpUnitMotion changes. This also only happens in the "special movement mode"
+	// triggered by SelectMovementAnimation.
+
+	// TODO: This should become event based, in order to save performance and to make the code
+	// far less hacky. We should also take into account the speed when the animation is different
+	// from the "special movement mode" walking animation.
+
+	// If we're not in the special movement mode, nothing to do.
+	if (m_AnimRunThreshold.IsZero())
+		return;
+
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	if (!cmpPosition || !cmpPosition->IsInWorld())
+		return;
+
+	CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetEntityHandle());
+	if (!cmpUnitMotion)
+		return;
+
+	fixed speed = cmpUnitMotion->GetCurrentSpeed();
+	std::string name;
+
+	if (speed.IsZero())
 	{
-		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-		if (!cmpPosition || !cmpPosition->IsInWorld())
-			return;
-
-		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetEntityHandle());
-		if (!cmpUnitMotion)
-			return;
-
-		float speed = cmpUnitMotion->GetCurrentSpeed().ToFloat();
-
-		std::string name;
-		if (speed == 0.0f)
-			name = "idle";
-		else
-			name = (speed < m_AnimRunThreshold.ToFloat()) ? "walk" : "run";
-
-		std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
-		if (it != m_AnimOverride.end())
-			name = it->second;
-
-		SetVariant("animation", name);
-		if (m_Unit->GetAnimation())
-		{
-			if (speed == 0.0f)
-				m_Unit->GetAnimation()->SetAnimationState(name, false, 1.f, 0.f, L"");
-			else
-				m_Unit->GetAnimation()->SetAnimationState(name, false, speed, 0.f, L"");
-		}
+		speed = fixed::FromFloat(1.f);
+		name = "idle";
 	}
+	else
+		name = speed < m_AnimRunThreshold ? "walk" : "run";
+
+	std::map<std::string, std::string>::const_iterator it = m_AnimOverride.find(name);
+	if (it != m_AnimOverride.end())
+		name = it->second;
+
+	// Selecting the animation is going to reset the anim run threshold, so save it
+	fixed runThreshold = m_AnimRunThreshold;
+	SelectAnimation(name, false, speed, L"");
+	m_AnimRunThreshold = runThreshold;
 }
