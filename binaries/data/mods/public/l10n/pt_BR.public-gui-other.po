@@ -17,14 +17,15 @@
 # pizzaiolo, 2015
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
+# Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-08 14:26+0000\n"
+"Last-Translator: Rafael Monteiro <rafaelimabsb2@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,12 +72,12 @@ msgstr "História dos %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Pressione %(hotkey)s para completar o nome dos jogadores automaticamente."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -151,7 +152,7 @@ msgstr ""
 #: gui/common/functions_utility_loadsave.js:87
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Segure %(hotkey)s para deletar sem confirmar"
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -289,19 +290,19 @@ msgstr ""
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
-msgstr ""
+msgstr "Times fechados."
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Jogadores não podem mudar os times iniciais."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Os jogadores podem fazer alianças e declarar guerra aos aliados."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -311,21 +312,21 @@ msgstr ""
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Apenas um jogador pode vencer o jogo. Se os jogadores restantes forem aliados, o jogo continua até restar apenas um."
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Vitória aliada"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Se um jogador vencer, seus aliados também vencerão. Se um grupo de aliados sobreviver, eles vencerão."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Cessar fogo"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -334,32 +335,32 @@ msgstr "desabilitado"
 #: gui/common/gamedescription.js:245
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "No primeiro minuto, os inimigos permanecem neutros"
+msgstr[1] "Pelos primeiros %(min)s minutos, os inimigos permanecerão neutros."
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Nome do mapa"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Tipo do mapa"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Tamanho do mapa"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Descrição do mapa"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Selecionar um mapa da lista aleatoriamente"
 
 #: gui/common/gamedescription.js:286
 msgid "Starting Resources"
-msgstr ""
+msgstr "Recursos iniciais"
 
 #: gui/common/gamedescription.js:287
 #, javascript-format
@@ -368,23 +369,23 @@ msgstr ""
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Limite de população"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Desativar tesouros"
 
 #: gui/common/gamedescription.js:310
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mapa revelado"
 
 #: gui/common/gamedescription.js:315
 msgid "Explored Map"
-msgstr ""
+msgstr "Mapa explorado"
 
 #: gui/common/gamedescription.js:320
 msgid "Cheats"
-msgstr ""
+msgstr "Trapaças"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -396,12 +397,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "ativado"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "desativado"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -636,7 +637,7 @@ msgstr "Razão desconhecida"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "Isto geralmente acontece quando a Porta UDP 20595 não foi aberta pelo Host, no firewall ou no software antivirus"
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -648,7 +649,7 @@ msgstr "Versão incorreta do protocolo de rede"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "O jogo está carregando, por favor tente novamente mais tarde."
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -779,11 +780,11 @@ msgstr "Cenário"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Jogo sem fim."
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -1002,7 +1003,7 @@ msgstr "Curar:"
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "Saúde"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1164,7 +1165,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:614
 msgid "Loot:"
-msgstr ""
+msgstr "Saque:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1580,7 +1581,7 @@ msgstr "Campeão"
 
 #: gui/summary/layout.js:65
 msgid "Siege"
-msgstr ""
+msgstr "Cerco"
 
 #: gui/summary/layout.js:66
 msgid "Navy"
@@ -1719,11 +1720,11 @@ msgstr "Equipe total"
 
 #: gui/summary/summary.js:125
 msgid "Victory"
-msgstr ""
+msgstr "Vitória"
 
 #: gui/summary/summary.js:130
 msgid "Defeated"
-msgstr ""
+msgstr "Derrota"
 
 #: gui/summary/summary.js:154
 msgid "Are you sure you want to quit the lobby?"

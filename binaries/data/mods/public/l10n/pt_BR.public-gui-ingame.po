@@ -39,6 +39,7 @@
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # PedroDognani <pedro_dognani_@hotmail.com>, 2014
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
+# Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
 # Rowel <luciomeiradavid@hotmail.com>, 2014
 # Sturm <gravador202@yahoo.com.br>, 2014
@@ -48,8 +49,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 08:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-08 14:17+0000\n"
+"Last-Translator: Rafael Monteiro <rafaelimabsb2@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,37 +383,37 @@ msgstr "Privado"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Chat e notificações"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Mensagens do Chat"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Chat dos jogadores"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Chat dos aliados"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Chat dos inimigos"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Chat dos observadores"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Chat privado"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -659,7 +660,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Carregando:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
@@ -673,7 +674,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Saque:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -878,17 +879,17 @@ msgstr "Digite a mensagem para enviar."
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Aperte %(hotkey)s para abrir o chat público."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Aperte %(hotkey)s para abrir o chat de observador."
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Aperte %(hotkey)s para abrir o chat de aliados."
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -898,7 +899,7 @@ msgstr "Encontrar trabalhador ocioso"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Selecione um tipo de mercadoria para começar a transação, depois use as setas da mercadoria desejada para fazer a troca."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1044,7 +1045,7 @@ msgstr "Abortar a ordem atual."
 
 #: gui/session/unit_actions.js:1120
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Ordena as unidades selecionadas para guarnecer uma construção ou unidade."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1076,11 +1077,11 @@ msgstr "Escolha mercadorias para troca"
 
 #: gui/session/unit_actions.js:1275
 msgid "Patrol"
-msgstr ""
+msgstr "Patrulha"
 
 #: gui/session/unit_actions.js:1276
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Ataca todas as unidades inimigas, evitando construções."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1129,7 +1130,7 @@ msgstr ","
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filtro:"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
@@ -1148,7 +1149,7 @@ msgstr "Cancelar"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Histórico"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1157,7 +1158,7 @@ msgstr "Enviar"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Filtrar o histórico do chat."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
@@ -1282,7 +1283,7 @@ msgstr "Sair"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Objetivos"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1371,4 +1372,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "ALPHA XXI: Ulisses"

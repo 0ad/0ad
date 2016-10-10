@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
+# Oleg Adept <adeptoleg@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
 # Victor Ptah, 2015
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-09 08:52+0000\n"
+"Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,12 +64,12 @@ msgstr "Історія %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Натисніть %(hotkey) для автоматичного доповнення імені користувача."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Таб"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -138,12 +139,12 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/functions_utility_loadsave.js:82
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Видаліть обраний запис використовуючи клавішу %(hotkey)s"
 
 #: gui/common/functions_utility_loadsave.js:87
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Утримуйте клавішу %(hotkey)s для видалення без підтвердження"
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -291,11 +292,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Дипломатичність"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Гравці можуть укладати союзи та оголошувати війну у союзі"
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -338,7 +339,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Тип Мапи"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
@@ -363,7 +364,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Ліміт населення"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
@@ -391,12 +392,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "увімкнено"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "вимкнено"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1169,7 +1170,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:614
 msgid "Loot:"
-msgstr ""
+msgstr "Здобич:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -3348,15 +3349,15 @@ msgstr ""
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- Формування є повільним і громіздким."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- Майже невразливим з боків."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- Вразливий для атак з тилу."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -3364,7 +3365,7 @@ msgstr "ХРАМИ"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "Структура фази міста"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -3411,15 +3412,15 @@ msgstr ""
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- Афінський герой, що командував Греками на великих морських битвах у Артемісії і Саламіні."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- Усі судна будуються швидше поки він живий"
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "- Корабель з гарнізоном всередині рухається значно швидше."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -3432,15 +3433,15 @@ msgstr "Середній військовий корабель."
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- Доступно для римлян, карфагенян, еллінських фракцій і персів."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- Придатний для транспортування або бойових дій"
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Гарнізонні війська на борту для збільшення військової потужності."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
@@ -3480,7 +3481,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "БОЙОВІ СЛОНИ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
@@ -3494,19 +3495,19 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "Схильність стрілецької піхоти"
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "- Доступно для: Маур'їв, Птолемеїв, Селевкідів і Карфагенян."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "КИТИ"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- Океанічний ресурс."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
@@ -3514,8 +3515,8 @@ msgstr "- 2000 харчів"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- Збираьні рибальскі човни після того як кит буде вбитий"
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Блукають навколо океанів під час гри та втікають якщо їх атакувати."

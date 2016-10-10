@@ -204,7 +204,7 @@ function createBase(player, walls = true)
 	var bbDist = 10;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
-	group = new SimpleGroup(
+	var group = new SimpleGroup(
 		[new SimpleObject(g_Gaia.fruitBush, 5, 5, 0, 3)],
 		true, g_TileClasses.baseResource, bbX, bbZ
 	);
@@ -234,25 +234,13 @@ function createBase(player, walls = true)
 	);
 	createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 2));
 
-	// Create initial chicken
-	for (var j = 0; j < 2; ++j)
-	{
-		for (var tries = 0; tries < 10; ++tries)
-		{
-			var aAngle = randFloat(0, TWO_PI);
-			var aDist = 9;
-			var aX = round(fx + aDist * cos(aAngle));
-			var aZ = round(fz + aDist * sin(aAngle));
-
-			var group = new SimpleGroup(
-				[new SimpleObject(g_Gaia.chicken, 5, 5, 0, 2)],
-				true, g_TileClasses.baseResource, aX, aZ
-			);
-
-			if (createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4)))
-				break;
-		}
-	}
+	placeDefaultChicken(
+		fx,
+		fz,
+		g_TileClasses.baseResource,
+		avoidClasses(g_TileClasses.baseResource, 4),
+		g_Gaia.chicken
+	);
 
 	var hillSize = PI * g_MapInfo.mapRadius * g_MapInfo.mapRadius;
 

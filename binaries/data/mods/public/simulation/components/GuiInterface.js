@@ -498,6 +498,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	if (cmpBuildingAI)
 		ret.buildingAI = {
 			"defaultArrowCount": cmpBuildingAI.GetDefaultArrowCount(),
+			"maxArrowCount": cmpBuildingAI.GetMaxArrowCount(),
 			"garrisonArrowMultiplier": cmpBuildingAI.GetGarrisonArrowMultiplier(),
 			"garrisonArrowClasses": cmpBuildingAI.GetGarrisonArrowClasses(),
 			"arrowCount": cmpBuildingAI.GetArrowCount()

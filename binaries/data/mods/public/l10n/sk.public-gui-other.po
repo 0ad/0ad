@@ -10,14 +10,14 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Miroslav Remák <Unknown>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
-# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015
+# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-10 04:20+0000\n"
+"Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +33,9 @@ msgstr "Hra za civilizáciu %(civilization)s"
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Civilizačný bonus"
+msgstr[1] "Civilizačné bonusy"
+msgstr[2] "Civilizačných bonusov"
 
 #: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
@@ -313,17 +313,17 @@ msgstr ""
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Spojenecké víťazstvo"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Ak jeden z hráčov vyhrá, jeho spojenci vyhrávajú tiež. Ak jedna skupina spojencov zostane, vyhrávajú."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Prímerie"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -663,11 +663,11 @@ msgstr "Bol ti udelený ban"
 
 #: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Používané hráčske meno. Ak ste odpojení, skúste to znovu o niekoľko sekúnd."
 
 #: gui/common/network.js:71
 msgid "Server full"
-msgstr ""
+msgstr "Server je plný"
 
 #: gui/common/network.js:74
 #, javascript-format

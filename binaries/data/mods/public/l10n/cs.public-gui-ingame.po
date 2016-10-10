@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-05 16:04+0000\n"
-"Last-Translator: Jaroslav Lichtblau <dragonlord@seznam.cz>\n"
+"PO-Revision-Date: 2016-10-08 18:19+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,37 +369,37 @@ msgstr "Soukromý"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Chat a upozornění"
+msgstr "Rozhovor a upozornění"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr "Chat"
+msgstr "Rozhovor"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "Chat mezi hráči"
+msgstr "Rozhovor mezi hráči"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Spojenecký chat"
+msgstr "Spojenecký rozhovor"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Nepřátelský chat"
+msgstr "Nepřátelský rozhovor"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Chat diváků"
+msgstr "Rozhovor diváků"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr "Soukromý chat"
+msgstr "Soukromý rozhovor"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -868,17 +868,17 @@ msgstr "Napište zprávu, která se má odeslat."
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Zmáčkni %(hotkey)s pro otevření veřejného chatu."
+msgstr "Zmáčkni %(hotkey)s pro otevření veřejného rozhovoru."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Zmáčkni %(hotkey)s pro otevření diváckého chatu."
+msgstr "Zmáčkni %(hotkey)s pro otevření diváckého rozhovoru."
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Zmáčkni %(hotkey)s pro otevření spojeneckého chatu."
+msgstr "Zmáčkni %(hotkey)s pro otevření spojeneckého rozhovoru."
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -1147,12 +1147,12 @@ msgstr "Poslat"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Filtrovat historii chatu"
+msgstr "Filtrovat historii rozhovoru"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "Vybrat adresáta chatu."
+msgstr "Vybrat adresáta rozhovoru."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"

@@ -20,7 +20,6 @@ const tWater = "temp_mud_a";
 const oBeech = "gaia/flora_tree_euro_beech_aut";
 const oOak = "gaia/flora_tree_oak_aut";
 const oPine = "gaia/flora_tree_pine";
-const oChicken = "gaia/fauna_chicken";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_rabbit";

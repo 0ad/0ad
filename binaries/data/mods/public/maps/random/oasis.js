@@ -17,7 +17,6 @@ const tWater = "desert_sand_wet";
 const ePalmShort = "gaia/flora_tree_cretan_date_palm_short";
 const ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
 const eBush = "gaia/flora_bush_grapes";
-const eChicken = "gaia/fauna_chicken";
 const eCamel = "gaia/fauna_camel";
 const eGazelle = "gaia/fauna_gazelle";
 const eLion = "gaia/fauna_lion";
@@ -125,26 +124,14 @@ for (var i = 0; i < numPlayers; i++)
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 		
-	// create animals
-	for (var j = 0; j < 2; ++j)
-	{
-		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 9;
-		var aX = round(fx + aDist * cos(aAngle));
-		var aZ = round(fz + aDist * sin(aAngle));
-		var group = new SimpleGroup(
-			[new SimpleObject(eChicken, 5,5, 0,2)],
-			true, clBaseResource, aX, aZ
-		);
-		createObjectGroup(group, 0);
-	}
+	placeDefaultChicken(fx, fz, clBaseResource);
 	
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
-	group = new SimpleGroup(
+	var group = new SimpleGroup(
 		[new SimpleObject(eBush, 5,5, 0,3)],
 		true, clBaseResource, bbX, bbZ
 	);

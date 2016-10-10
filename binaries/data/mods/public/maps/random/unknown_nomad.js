@@ -27,7 +27,6 @@ var oApple = rBiomeE3();
 var oPine = rBiomeE4();
 var oAleppoPine = rBiomeE5();
 var oBerryBush = rBiomeE6();
-var oChicken = rBiomeE7();
 var oDeer = rBiomeE8();
 var oFish = rBiomeE9();
 var oSheep = rBiomeE10();
