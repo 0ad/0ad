@@ -9,6 +9,7 @@
 # Dimaver <dimaver@ukr.net>, 2014
 # Dimaver <dimaver@ukr.net>, 2014
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
+# Oleg Adept <adeptoleg@gmail.com>, 2016
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 08:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-09 10:48+0000\n"
+"Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "Видалити"
 #: gui/session/menu.js:277
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:343
 msgctxt "team"
@@ -366,37 +367,37 @@ msgstr "Приватний"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Чат та повідомлення"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Повідомлення Чату"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Чат гравців"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Чат Альянсу"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Чат ворогів"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Чат спостерігачів"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Приватний чат"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -479,11 +480,11 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:781
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\n\\[%(time)s]"
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -517,7 +518,7 @@ msgstr "%(player)s надіслав вам %(amounts)s."
 #: gui/session/messages.js:892
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s обміняв %(amountsBought)s на сумму %(amountsSold)s."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -641,25 +642,25 @@ msgstr "Очки захвату:"
 #: gui/session/selection_details.js:407
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Перевезення:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:415
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Здобич:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -860,22 +861,22 @@ msgstr "Гая"
 #: gui/session/session.js:322
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Введіть повідомлення для надсилання."
 
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Натисніть %(hotkey)s, щоб відкрити загальний чат."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Натисніть %(hotkey)s, щоб відкрити чат спостерігачів"
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Натисніть %(hotkey)s, щоб відкрити чат альянсу"
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -885,7 +886,7 @@ msgstr "Знайти вільних робітників"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Виберіть один вид товарів, який хочете обміняти, а потім за допомогою стрілок товар який хочете отримати."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1031,7 +1032,7 @@ msgstr "Перервати поточний порядок."
 
 #: gui/session/unit_actions.js:1120
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Замовте вибрані одиниці для гарнізону в будинку або юніті."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1063,15 +1064,15 @@ msgstr "Вибрати товари"
 
 #: gui/session/unit_actions.js:1275
 msgid "Patrol"
-msgstr ""
+msgstr "Патрульний"
 
 #: gui/session/unit_actions.js:1276
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Атакувати всіх ворожих юнітів, з якими стикаються, уникаючи при цьому будівлі."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Натисніть, щоб попередити союзників від використання цього посилання"
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to allow allies to use this dropsite"
@@ -1126,7 +1127,7 @@ msgstr ""
 #: gui/session/chat_window.xml:(caption):58
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Текст:"
 
 #: gui/session/chat_window.xml:(caption):78
 msgid "Cancel"

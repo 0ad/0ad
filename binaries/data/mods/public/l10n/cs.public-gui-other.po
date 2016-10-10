@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-05 16:01+0000\n"
-"Last-Translator: Jaroslav Lichtblau <dragonlord@seznam.cz>\n"
+"PO-Revision-Date: 2016-10-08 18:34+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +68,7 @@ msgstr "Historie %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "Zmáčkni %(hotkey)s k automatickému doplnění jmen hráčů."
+msgstr "Stiskněte %(hotkey)s k automatickému doplnění jmen hráčů."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -143,12 +143,12 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/functions_utility_loadsave.js:82
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr "Smaž vybrané položky zmáčknutím %(hotkey)s."
+msgstr "Smažte vybrané položky zmáčknutím %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:87
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr "Podrž %(hotkey)s k odstranění bez potvrzení."
+msgstr "Podržte %(hotkey)s k odstranění bez potvrzení."
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -300,7 +300,7 @@ msgstr "Diplomacie"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr "Hráči mohou založit alliance and vyhlásit válku spojencům."
+msgstr "Hráči mohou založit spolky a vyhlásit válku spojencům."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -1425,7 +1425,7 @@ msgstr "Nehodnocené hry"
 
 #: gui/replaymenu/replay_menu.js:192
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Filtrování záznamů, podle jednoho či více anebo částečných jmen hráčů."
+msgstr "Filtrování záznamů her, podle jednoho či více anebo částečných jmen hráčů."
 
 #: gui/replaymenu/replay_menu.js:303
 msgid "yyyy-MM-dd HH:mm"
@@ -2613,7 +2613,7 @@ msgstr "Velikost cvičené skupiny"
 #: gui/options/options.jsongeneralSetting[15].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "Zobrazit čas, kdy jsou zprávy napsány v lobby, v nastavení hry a ve hře."
+msgstr "Zobrazit čas, kdy jsou zprávy napsány v herní skupině, v nastavení hry a ve hře."
 
 #: gui/options/options.jsongeneralSetting[15].label
 msgid "Chat Timestamp"

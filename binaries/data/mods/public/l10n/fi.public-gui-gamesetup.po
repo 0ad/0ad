@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-07 07:32+0000\n"
+"Last-Translator: Riku Viitanen <riisseli4@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,11 +168,11 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1808
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:1809
 msgid "HH:mm"
-msgstr ""
+msgstr "TT:mm"
 
 #: gui/gamesetup/gamesetup.js:1859
 msgid "I'm not ready!"
@@ -506,7 +506,7 @@ msgstr "Lukitut joukkueet."
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Voittaako viimeinen jäljellä oleva pelaaja vai viimeiset selvinneet liittolaiset."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):425
 msgid "Toggle the usability of cheats."
@@ -557,7 +557,7 @@ msgstr "Jatka"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Jätä tyhjäksi käyttääksesi oletusporttia."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
@@ -1004,7 +1004,7 @@ msgstr "\"Lait ovat hiljaisia sodan aikana.2 - Marcus Tullius Cicero"
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Ideaalivaltio ei ikinä aloita sotaa, paitsi kunniaansa tai turvallisuuttaan puolustaakseen.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1100,7 +1100,7 @@ msgstr "\"Se ei ole, että olen vihainen, se on ainoastaan, että pääni on eri
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
-msgstr ""
+msgstr "\"Olkoon heidän puheensa parempi kuin hiljaisuus, tai olkoot hiljaa.\" - Dionysius I Surakusalainen"
 
 #: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
@@ -1365,7 +1365,7 @@ msgstr "\"Rohkealla miehellä on kaikkien siunaus,\" - Plautus"
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
-msgstr ""
+msgstr "\"Kukaan ei ole niin tervetullut vieras, etteikö muuttuisi maanvaivaksi kolmessa päivässä.\" - Plautus"
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
@@ -1399,7 +1399,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"Vihaisina meidän ei pitäisi puhua eikä toimia.\" - Pythagoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
