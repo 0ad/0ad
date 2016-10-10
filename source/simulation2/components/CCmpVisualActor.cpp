@@ -202,7 +202,7 @@ public:
 
 		m_VisibleInAtlasOnly = paramNode.GetChild("VisibleInAtlasOnly").ToBool();
 		m_IsActorOnly = paramNode.GetChild("ActorOnly").IsOk();
-		
+
 		InitModel(paramNode);
 
 		// We need to select animation even if graphics are disabled, as this modifies serialized state
@@ -287,7 +287,7 @@ public:
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		// Quick exit for running in non-graphical mode
-		if (m_Unit == NULL)
+		if (!m_Unit)
 			return;
 
 		switch (msg.GetType())
@@ -420,9 +420,9 @@ public:
 	virtual void SetVariant(const CStr& key, const CStr& selection)
 	{
 		m_VariantSelections[key] = selection;
-		if (!m_Unit)
-			return;
-		m_Unit->SetEntitySelection(key, selection);
+
+		if (m_Unit)
+			m_Unit->SetEntitySelection(key, selection);
 	}
 
 	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup)
@@ -471,20 +471,14 @@ public:
 	{
 		m_AnimSyncRepeatTime = repeattime;
 
-		if (m_Unit)
-		{
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
-		}
+		if (m_Unit && m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
 	}
 
 	virtual void SetAnimationSyncOffset(fixed actiontime)
 	{
-		if (m_Unit)
-		{
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationSyncOffset(actiontime.ToFloat());
-		}
+		if (m_Unit && m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationSyncOffset(actiontime.ToFloat());
 	}
 
 	virtual void SetShadingColor(fixed r, fixed g, fixed b, fixed a)
@@ -504,16 +498,14 @@ public:
 	virtual void SetVariable(const std::string& name, float value)
 	{
 		if (m_Unit)
-		{
 			m_Unit->GetModel().SetEntityVariable(name, value);
-		}
 	}
 
 	virtual u32 GetActorSeed()
 	{
 		return m_Seed;
 	}
-	
+
 	virtual void SetActorSeed(u32 seed)
 	{
 		if (seed == m_Seed)
@@ -653,10 +645,10 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 				float size0 = fpSize0.ToFloat();
 				float size1 = fpSize1.ToFloat();
 
-				// TODO: we should properly distinguish between CIRCLE and SQUARE footprint shapes here, but since cylinders 
-				// aren't implemented yet and are almost indistinguishable from boxes for small enough sizes anyway, 
-				// we'll just use boxes for either case. However, for circular footprints the size0 and size1 values both 
-				// represent the radius, so we do have to adjust them to match the size1 and size0's of square footprints 
+				// TODO: we should properly distinguish between CIRCLE and SQUARE footprint shapes here, but since cylinders
+				// aren't implemented yet and are almost indistinguishable from boxes for small enough sizes anyway,
+				// we'll just use boxes for either case. However, for circular footprints the size0 and size1 values both
+				// represent the radius, so we do have to adjust them to match the size1 and size0's of square footprints
 				// (which represent the full width and depth).
 				if (fpShape == ICmpFootprint::CIRCLE)
 				{
