@@ -206,7 +206,6 @@ public:
 
 		InitModel(paramNode);
 
-		// We need to select animation even if graphics are disabled, as this modifies serialized state
 		SelectAnimation("idle", false, fixed::FromInt(1), L"");
 	}
 
@@ -281,10 +280,6 @@ public:
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
-		// Quick exit for running in non-graphical mode
-		if (!m_Unit)
-			return;
-
 		switch (msg.GetType())
 		{
 		case MT_Update_Final:
@@ -295,12 +290,18 @@ public:
 		}
 		case MT_OwnershipChanged:
 		{
+			if (!m_Unit)
+				break;
+
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			m_Unit->GetModel().SetPlayerID(msgData.to);
 			break;
 		}
 		case MT_TerrainChanged:
 		{
+			if (!m_Unit)
+				break;
+
 			const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
 			m_Unit->GetModel().SetTerrainDirty(msgData.i0, msgData.j0, msgData.i1, msgData.j1);
 			break;
@@ -430,12 +431,10 @@ public:
 		m_AnimDesync = fixed::FromInt(1)/20; // TODO: make this an argument
 		m_AnimSyncRepeatTime = fixed::Zero();
 
-		if (m_Unit)
-		{
-			SetVariant("animation", m_AnimName);
-			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
-		}
+		SetVariant("animation", m_AnimName);
+
+		if (m_Unit && m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
 	}
 
 	virtual void ReplaceMoveAnimation(const std::string& name, const std::string& replace)
