@@ -81,6 +81,7 @@ private:
 	std::wstring m_SoundGroup;
 	fixed m_AnimDesync;
 	fixed m_AnimSyncRepeatTime; // 0.0 if not synced
+	fixed m_AnimSyncOffsetTime;
 
 	std::map<CStr, CStr> m_VariantSelections;
 
@@ -232,6 +233,7 @@ public:
 		serialize.String("sound group", m_SoundGroup, 0, 256);
 		serialize.NumberFixed_Unbounded("anim desync", m_AnimDesync);
 		serialize.NumberFixed_Unbounded("anim sync repeat time", m_AnimSyncRepeatTime);
+		serialize.NumberFixed_Unbounded("anim sync offset time", m_AnimSyncOffsetTime);
 
 		SerializeMap<SerializeString, SerializeString>()(serialize, "variation", m_VariantSelections);
 
@@ -477,8 +479,10 @@ public:
 
 	virtual void SetAnimationSyncOffset(fixed actiontime)
 	{
+		m_AnimSyncOffsetTime = actiontime;
+
 		if (m_Unit && m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationSyncOffset(actiontime.ToFloat());
+			m_Unit->GetAnimation()->SetAnimationSyncOffset(m_AnimSyncOffsetTime.ToFloat());
 	}
 
 	virtual void SetShadingColor(fixed r, fixed g, fixed b, fixed a)
@@ -721,6 +725,9 @@ void CCmpVisualActor::ReloadActor()
 	if (!m_AnimSyncRepeatTime.IsZero())
 		if (m_Unit->GetAnimation())
 			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
+	if (!m_AnimSyncOffsetTime.IsZero())
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationSyncOffset(m_AnimSyncOffsetTime.ToFloat());
 
 	m_Unit->GetModel().SetShadingColor(shading);
 
