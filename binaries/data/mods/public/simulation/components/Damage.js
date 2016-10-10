@@ -130,21 +130,24 @@ Damage.prototype.MissileHit = function(data, lateness)
 	// If we didn't hit the main target look for nearby units
 	let cmpPlayer = QueryPlayerIDInterface(data.attackerOwner);
 	let ents = this.EntitiesNearPoint(Vector2D.from3D(data.position), targetPosition.horizDistanceTo(data.position) * 2, cmpPlayer.GetEnemies());
+	let projectileHit = false;
 	for (let ent of ents)
+	{
 		if (!this.TestCollision(ent, data.position, lateness))
-		{
-			this.CauseDamage({
-				"strengths": data.strengths,
-				"target": ent,
-				"attacker": data.attacker,
-				"multiplier": data.multiplier,
-				"type": data.type,
-				"attackerOwner": data.attackerOwner
-			});
+			continue;
 
-			cmpProjectileManager.RemoveProjectile(data.projectileId);
-			break;
-		}
+		projectileHit = true;
+		this.CauseDamage({
+			"strengths": data.strengths,
+			"target": ent,
+			"attacker": data.attacker,
+			"multiplier": data.multiplier,
+			"type": data.type,
+			"attackerOwner": data.attackerOwner
+		});
+	}
+	if (projectileHit)
+		cmpProjectileManager.RemoveProjectile(data.projectileId);
 };
 
 /**
