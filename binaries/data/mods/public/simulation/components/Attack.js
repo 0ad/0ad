@@ -549,6 +549,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			data.radius = +this.template.Ranged.Splash.Range;
 			data.shape = this.template.Ranged.Splash.Shape;
 			data.isSplash = true;
+			data.splashStrengths = this.GetAttackStrengths(type+".Splash");
 		}
 		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000, data);
 	}

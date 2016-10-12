@@ -142,9 +142,10 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 
 	for (let evt of events.Create)
 	{
-		// Let's check if we have a building set to create a new base.
+		// Let's check if we have a valuable foundation needing builders quickly
+		// (normal foundations are taken care in baseManager.assignToFoundations)
 		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || !ent.isOwn(PlayerID))
+		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() === undefined)
 			continue;
 
 		if (ent.getMetadata(PlayerID, "base") == -1)
