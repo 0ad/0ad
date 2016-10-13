@@ -8,13 +8,14 @@
 # Michal Ján Mária Polovka <michal.polovka@gmail.com>, 2016
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # SuroX <peter.surovcik@gmail.com>, 2014,2016
+# Peter Tuharsky <peter.tuharsky@gmail.com>, 2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 09:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-10 12:56+0000\n"
+"Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -726,7 +727,7 @@ msgstr "Spevné základy budov ako prípravu proti útoku."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armor level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Zvyšuje odolnosť obrannej veže o 2 úrovne."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -961,7 +962,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Najmite sluhov na pomoc v kameňolome. +15% v rýchlosti ťažby kameňa."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -1020,7 +1021,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "Vybavte svojich robotníkov užitočnými nástrojmi. +15% v rýchlosti ťažby kovu."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1286,7 +1287,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Postúpi na fázu metropoly, ktorá sprístupní viac stavieb a jednotiek. Územný dosah pre administratívne centrá sa zväčší o ďalších +50%. Zvýši sa maximálne zdravie vojenských občanov o +10%. Všetky budovy zvýšia rýchlosť uzdravovania ich posádok o +9."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1317,7 +1318,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Postúpi na fázu metropoly, ktorá sprístupní viac stavieb a jednotiek. Územný dosah pre administratívne centrá sa zväčší o ďalších +50%. Bonus 'Striebornej Sovy' pridáva všetkým robotníkom ďalších +10% v rýchlosti ťažby kovu. Zvýši sa maximálne zdravie vojenských občanov o +10%. Všetky budovy zvýšia rýchlosť uzdravovania ich posádok o +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1329,7 +1330,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Postúpi na fázu mesta, ktorá sprístupní viac stavieb a jednotiek. Územný dosah pre administratívne centrá sa zväčší o +30%. Zvýši sa maximálne zdravie vojenských občanov o +20%. Všetky budovy zvýšia rýchlosť uzdravovania ich posádok o +7."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1361,7 +1362,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Postúpi na fázu mesta, ktorá sprístupní viac stavieb a jednotiek. Územný dosah pre administratívne centrá sa zväčší o +30%. Bonus 'Striebornej Sovy' pridáva všetkým robotníkom ďalších +10% v rýchlosti ťažby kovu. Zvýši sa maximálne zdravie vojenských občanov o +20%. Všetky budovy zvýšia rýchlosť uzdravovania ich posádok o +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1464,7 +1465,7 @@ msgstr "Div sveta priláka oveľa viac ľudí k tvojej civilizácii."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Umožňuje Majestátnu Expanziu. Zvyšuje populačný limit o ďalších 40 na každý postavený div."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1527,7 +1528,7 @@ msgstr "Zlepšenie presnosti striel"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Presnosť vrhačov šípov zvýšená o 25%"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1563,7 +1564,7 @@ msgstr "Nepohyblivé obliehacie zbrane budú môcť byť zmontované a rozmontov
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% čas rozbalenia a skladania pre nepohyblivé obliehacie stroje."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1592,11 +1593,11 @@ msgstr "Rýchlostný tréning jazdy"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
-msgstr ""
+msgstr "Zvyšuje zisk z medzinárodného obchodu."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Market +10% International Bonus."
-msgstr ""
+msgstr "Trh +10% medzinárodný bonus."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1758,11 +1759,11 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Rozšírenie obchodu vedie k trvalej prítomnosti skladníkov a ich rodín v cudzích krajinách, vďaka čomu ťažíme z bohatstva týchto krajín."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr ""
+msgstr "Hráč môže využívať skladiská svojich spojencov."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1783,7 +1784,7 @@ msgstr "Pomocou obchodovania a cestovania ľudia objavovali územia za hranicami
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Vidíte to, čo vaši spojenci, môžete si prezerať ich súpis a skontrolovať ich zdroje a populáciu vo vrchnom paneli."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -2319,7 +2320,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "Maurovia budovali svoje mestské hradby z dreva, v Indii sa hojne vyskytujúcej prírodnej suroviny. Maurské mestské hradby preto majú -20% zdravia, ale stavajú sa o 20% rýchlejšie."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

@@ -11,14 +11,15 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # SuroX <peter.surovcik@gmail.com>, 2016
+# Peter Tuharsky <peter.tuharsky@gmail.com>, 2016
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-10 12:44+0000\n"
+"Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Občianske centrum"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Získava veľké územie. Trénuje občanov."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -70,7 +71,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:28
 msgid "Recruit special units."
-msgstr ""
+msgstr "Najíma špeciálne jednotky."
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:31
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -112,7 +113,7 @@ msgstr "Dom"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Umožňuje vytvoriť liečiteľov. Obsaďte jednotkami ktoré chcete rýchlo uzdraviť (3 HP za sekundu). Skúmajte liečiteľské a náboženské vylepšenia."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
@@ -175,7 +176,7 @@ msgstr "Dlhšie úseky hradieb môžu byť prestavané na brány."
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "Umožní vám kolobeh jednotiek vašimi opevneniami."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
@@ -192,11 +193,11 @@ msgstr "Mestské hradby"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Sentry Tower"
-msgstr ""
+msgstr "Strážna veža"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:67
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr ""
+msgstr "Posilnite ju kameňom a povýšte na obrannú vežu."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -258,7 +259,7 @@ msgstr "Vojenské"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Vytvorte občanov-vojakov. Skúmajte zlepšenia výcviku."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -301,7 +302,7 @@ msgstr "Pevnosť"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Umožňuje výcvik hrdinov, šampiónov a obliehacích strojov. Skúma zlepšenia obliehacích strojov."
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -352,7 +353,7 @@ msgstr "Knižnica"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Research special technologies."
-msgstr ""
+msgstr "Skúmajte špeciálne technológie."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:20
 msgid "Rotary Mill"
@@ -437,7 +438,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Postav obliehacie stroje. Obsaď jednotkami a získaj silnú obranu."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 msgid "Gymnasium"
@@ -546,7 +547,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Prines slávu svojej civilizácii a pridaj svojej ríši rozsiahle územia. Jednotky umiestnené vnútri sa veľmi rýchlo uzdravujú."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -778,7 +779,7 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Shipyard"
-msgstr ""
+msgstr "Lodenica"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
@@ -835,7 +836,7 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Výcvik nahých fanatikov."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
@@ -898,7 +899,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr ""
+msgstr "Všetky jednotky na dohľad od tohto pamätníka bojujú udatnejšie. Budovy v jeho okolí sa nerozpadajú."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -939,7 +940,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Umožňuje výcvik šampiónov a hrdinov. Silnejšia obrana sa dá získať umiestnením posádky."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1178,7 +1179,7 @@ msgstr "Ištarina brána v Babylóne"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Zvyšuje regeneráciu loajality blízkych budov, vďaka čomu ich protivník ťažšie zajme."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1240,7 +1241,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Umožňuje výcvik egyptských a blízkovýchodných občanov-bojovníkov. Výskum zlepšení výcviku."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1274,7 +1275,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Zvyšuje populačný limit. Keďže egyptské domy sú z nepálených tehál (sušenej hliny), ich stavba je zadarmo, ale sú veľmi slabé."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1306,7 +1307,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Lacné budovy kasární, dajú sa postaviť aj na neutrálnom území, no nezískavajú územný vplyv. Umožňujú trénovať žoldnierov."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1317,7 +1318,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Toto je ptolemajská budova určená na zväčšovanie územia, podobná občianskym centrám ostatných frakcií. Je slabšia a má menší územný vplyv, je však lacnejšia a rýchlejšie sa postaví. Trénuje vojakov-osadníkov rôznych národností."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1470,7 +1471,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Umožňuje vytvoriť liečiteľov. Obsaďte jednotkami ktoré chcete rýchlo uzdraviť."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
@@ -1490,7 +1491,7 @@ msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Dočasné prístrešie pre vojakov."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1544,7 +1545,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Buduj obliehacie stroje a trénuj Šampiónov. Pre pevnejšiu obranu je možné mať vo vnútri posádku."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1559,7 +1560,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Toto je seleukovská budova určená na zväčšovanie územia, podobná administratívnym centrám ostatných frakcií. Je slabšia a má menší územný vplyv, je však lacnejšia a rýchlejšie sa postaví. Trénuje vojakov-osadníkov rôznych národností."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
