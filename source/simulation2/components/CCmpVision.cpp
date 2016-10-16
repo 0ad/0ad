@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,13 +85,14 @@ public:
 		{
 		case MT_OwnershipChanged:
 		{
-			if (!m_RevealShore)
-				break;
-
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			if (msgData.entity != GetEntityId())
 				break;
 
+			ReloadRange();
+
+			if (!m_RevealShore)
+				break;
 			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 			cmpRangeManager->RevealShore(msgData.from, false);
 			cmpRangeManager->RevealShore(msgData.to, true);
@@ -102,20 +103,7 @@ public:
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component != L"Vision")
 				break;
-
-			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
-			if (!cmpValueModificationManager)
-				break;
-
-			entity_pos_t newRange = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
-			if (newRange == m_Range)
-				break;
-
-			// Update our vision range and broadcast message
-			entity_pos_t oldRange = m_Range;
-			m_Range = newRange;
-			CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
-			GetSimContext().GetComponentManager().BroadcastMessage(msg);
+			ReloadRange();
 			break;
 		}
 		case MT_Deserialized:
@@ -126,6 +114,23 @@ public:
 			break;
 		}
 		}
+	}
+
+	virtual void ReloadRange()
+	{
+		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+		if (!cmpValueModificationManager)
+			return;
+
+		entity_pos_t newRange = cmpValueModificationManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
+		if (newRange == m_Range)
+			return;
+
+		// Update our vision range and broadcast message
+		entity_pos_t oldRange = m_Range;
+		m_Range = newRange;
+		CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
+		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
 	virtual entity_pos_t GetRange()

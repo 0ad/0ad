@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-10 09:09+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -657,7 +657,7 @@ msgstr "Неизвестная причина"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "Это часто случается, когда UDP-порт 20595 закрыт на принимающей стороне из-за брандмауэра или антивирусного программного обеспечения"
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -669,7 +669,7 @@ msgstr "Неверная версия протокола"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Игра загружается, пожалуйста, попробуйте позже"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -1039,7 +1039,7 @@ msgstr "Лечение:"
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "Здоровье"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1625,7 +1625,7 @@ msgstr "Чемпионы"
 
 #: gui/summary/layout.js:65
 msgid "Siege"
-msgstr ""
+msgstr "Осада"
 
 #: gui/summary/layout.js:66
 msgid "Navy"
@@ -1764,11 +1764,11 @@ msgstr "Итог по команде"
 
 #: gui/summary/summary.js:125
 msgid "Victory"
-msgstr ""
+msgstr "Победа"
 
 #: gui/summary/summary.js:130
 msgid "Defeated"
-msgstr ""
+msgstr "Поражение"
 
 #: gui/summary/summary.js:154
 msgid "Are you sure you want to quit the lobby?"
@@ -1975,7 +1975,7 @@ msgstr "Статус: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XXI: Ulysses"
-msgstr ""
+msgstr "Альфа XXI: Ulysses"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""

@@ -14,14 +14,14 @@
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
 # SuroX <peter.surovcik@gmail.com>, 2016
-# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015
+# Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 08:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-10 12:00+0000\n"
+"Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgstr "Vymazať"
 #: gui/session/menu.js:277
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:343
 msgctxt "team"
@@ -365,37 +365,37 @@ msgstr "Súkromné"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Pokec a upozornenia"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Textové správy"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Správy hráča"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Správy spojenca"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Správy nepriateľa"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Správy pozorovateľa"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Súkromné správy"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -478,11 +478,11 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:781
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -516,7 +516,7 @@ msgstr "Hráč %(player)s vám poslal %(amounts)s."
 #: gui/session/messages.js:892
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s vymenil %(amountsBought)s za %(amountsSold)s."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -644,21 +644,21 @@ msgstr ""
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Nesie:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:415
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Korisť:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -864,17 +864,17 @@ msgstr "Napíš správu na odoslanie."
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Stlačením %(hotkey)s otvoríte verejný pokec."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Stlačením %(hotkey)s otvoríte pozorovateľský pokec."
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Stlačením %(hotkey)s otvoríte spojenecký pokec."
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -884,7 +884,7 @@ msgstr "Nájsť nečinného robotníka"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Vyberte jeden tovar ako zdrojový, potom nastavte výmenu použitím šípok pri cieľovom tovare."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -940,17 +940,17 @@ msgstr "Život:"
 #: gui/session/session.js:970
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:973
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:991
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:992
 msgid "Population (current / limit)"
@@ -1013,7 +1013,7 @@ msgstr "Očakávaný zisk: %(gain)s"
 
 #: gui/session/unit_actions.js:1044 gui/session/unit_actions.js:1346
 msgid "Unload All."
-msgstr ""
+msgstr "Vyložiť všetkých"
 
 #: gui/session/unit_actions.js:1066
 msgid "Destroy the selected units or buildings."
@@ -1030,7 +1030,7 @@ msgstr "Zrušte aktuálny príkaz."
 
 #: gui/session/unit_actions.js:1120
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Prikázať vybraným jednotkám, aby vošli do budovy, stroja alebo dopravného prostriedku."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1038,7 +1038,7 @@ msgstr "Vyložiť"
 
 #: gui/session/unit_actions.js:1160
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "Prikázať jednotkám aby opravili budovu, stroj alebo dopravný prostriedok."
 
 #: gui/session/unit_actions.js:1179
 msgid "Focus on Rally Point."
@@ -1050,7 +1050,7 @@ msgstr "Naspäť k práci"
 
 #: gui/session/unit_actions.js:1223
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Prikázať vybraným jednotkám aby strážili budovu alebo jednotku."
 
 #: gui/session/unit_actions.js:1241
 msgid "Remove guard"
@@ -1062,11 +1062,11 @@ msgstr "Vyber zbožie na obchodovanie"
 
 #: gui/session/unit_actions.js:1275
 msgid "Patrol"
-msgstr ""
+msgstr "Hliadka"
 
 #: gui/session/unit_actions.js:1276
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Zaútočiť na všetky nepriateľské jednotky, no nie na budovy."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1086,7 +1086,7 @@ msgstr "Použitie tohto úložného miesta je zakázané"
 
 #: gui/session/unit_actions.js:1432
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "Ak si to chcete zobrať, táto jednotka musí byť najprv zabitá."
 
 #: gui/session/unit_actions.js:1435
 msgid ""
@@ -1115,7 +1115,7 @@ msgstr ", "
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filter:"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
@@ -1143,7 +1143,7 @@ msgstr "Poslať"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Filtrovať záznam pokecu."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
@@ -1268,7 +1268,7 @@ msgstr "Ukončiť"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Ciele"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"

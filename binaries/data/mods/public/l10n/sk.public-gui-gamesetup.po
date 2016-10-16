@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-10-10 04:15+0000\n"
+"PO-Revision-Date: 2016-10-10 12:57+0000\n"
 "Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr "Ukážkové - demo - mapy"
 
 #: gui/gamesetup/gamesetup.js:85
 msgid "New Maps"
-msgstr ""
+msgstr "Nové mapy"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
@@ -109,7 +109,7 @@ msgstr "Všetky mapy"
 #: gui/gamesetup/gamesetup.js:144
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Náhodné"
 
 #: gui/gamesetup/gamesetup.js:149
 msgctxt "civilization"
@@ -167,24 +167,24 @@ msgstr "Neznámy hráč"
 #: gui/gamesetup/gamesetup.js:1807
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1808
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:1809
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/gamesetup/gamesetup.js:1859
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Nie som pripravený!"
 
 #: gui/gamesetup/gamesetup.js:1860
 msgid "I'm ready"
-msgstr ""
+msgstr "Som pripravený"
 
 #: gui/gamesetup/gamesetup.js:1863
 msgid "State that you are not ready to play."
@@ -223,7 +223,7 @@ msgstr "Názov hry sa už používa."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Nemôžem hosťovať hru: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
@@ -232,7 +232,7 @@ msgstr "Chyba"
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Nedá sa pripojiť k hre: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
@@ -354,7 +354,7 @@ msgstr "Podmienky víťazstva:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Víťazstvo divu:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Population Cap:"
@@ -390,7 +390,7 @@ msgstr "Uzavreté tímy:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):411
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "Do posledného muža:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):421
 msgid "Cheats:"
@@ -407,7 +407,7 @@ msgstr "Zobraziť informácie o civilizácií"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Vrátiť všetky nastavenia civilizácií na predvolenú hodnotu (náhodné)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
@@ -510,7 +510,7 @@ msgstr "Prepnúť uzavreté tímy."
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Zvoľte, či vyhráva posledný zostávajúcu hráč, alebo posledná zostávajúca koalícia spojencov."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):425
 msgid "Toggle the usability of cheats."
@@ -561,7 +561,7 @@ msgstr "Pokračovať"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Ak ponecháte prázdne, použije sa predvolený port."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

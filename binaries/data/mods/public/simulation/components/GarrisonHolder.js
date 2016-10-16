@@ -737,8 +737,8 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 	for (let ent of this.initGarrison)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (cmpUnitAI && cmpUnitAI.CanGarrison(this.entity))
-			this.Garrison(ent);
+		if (cmpUnitAI && cmpUnitAI.CanGarrison(this.entity) && this.Garrison(ent))
+			cmpUnitAI.SetGarrisoned();
 	}
 	this.initGarrison = undefined;
 };
