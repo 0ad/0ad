@@ -430,6 +430,7 @@ public:
 		m_SoundGroup = soundgroup;
 		m_AnimDesync = fixed::FromInt(1)/20; // TODO: make this an argument
 		m_AnimSyncRepeatTime = fixed::Zero();
+		m_AnimSyncOffsetTime = fixed::Zero();
 
 		SetVariant("animation", m_AnimName);
 
