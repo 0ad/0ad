@@ -217,7 +217,7 @@ var chosenPoint;
 var landAreaLen;
 
 log("Creating big islands...");
-var numIslands = scaleByMapSize(4, 14)
+var numIslands = scaleByMapSize(4, 14);
 for (var i = 0; i < numIslands; ++i)
 {
 	landAreaLen = landAreas.length;
@@ -257,7 +257,7 @@ playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9
 landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
 
 log("Creating small islands...");
-numIslands = scaleByMapSize(6, 18)*scaleByMapSize(1,3)
+numIslands = scaleByMapSize(6, 18) * scaleByMapSize(1,3);
 for (var i = 0; i < numIslands; ++i)
 {
 	landAreaLen = landAreas.length;
@@ -280,7 +280,7 @@ for (var i = 0; i < numIslands; ++i)
 	);
 	if (newIsland !== undefined)
 	{
-		var temp = []
+		var temp = [];
 		for (var j = 0; j < landAreaLen; ++j)
 		{
 			var x = landAreas[j][0], z = landAreas[j][1];
@@ -389,7 +389,7 @@ log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 var numb = 1;
 if (random_terrain == g_BiomeSavanna)
-	numb = 3
+	numb = 3;
 for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
@@ -577,16 +577,14 @@ createObjectGroups(group, 0,
 	planetm * scaleByMapSize(13, 200), 50
 );
 
-random_terrain = randInt(1,3)
-if (random_terrain==1){
+random_terrain = randInt(1,3);
+if (random_terrain == 1)
 	setSkySet("cirrus");
-}
-else if (random_terrain ==2){
+else if (random_terrain == 2)
 	setSkySet("cumulus");
-}
-else if (random_terrain ==3){
+else if (random_terrain == 3)
 	setSkySet("sunny");
-}
+
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 setWaterWaviness(2);

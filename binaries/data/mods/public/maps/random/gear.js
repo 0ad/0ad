@@ -379,8 +379,8 @@ paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, tShore);
 paintTerrainBasedOnHeight(2, 5, 1, tMainTerrain);
 
-paintTileClassBasedOnHeight(-6, 0.5, 1, clWater)
-unPaintTileClassBasedOnHeight(0.5, 10, 1, clWater)
+paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
+unPaintTileClassBasedOnHeight(0.5, 10, 1, clWater);
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -440,7 +440,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1)
-)
+);
 
 log("Creating metal mines...");
 // create large metal quarries
@@ -450,7 +450,7 @@ createMines(
  ],
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
  clMetal
-)
+);
 
 RMS.SetProgress(65);
 

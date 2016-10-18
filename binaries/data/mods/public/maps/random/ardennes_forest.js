@@ -175,7 +175,7 @@ for (var i=0; i < numPlayers; i++)
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 	
-	var citySize = 250
+	var citySize = 250;
 
 	var placer = new ClumpPlacer(citySize, 0.95, 0.3, 0.1, ix, iz);
 	createArea(placer, [paintClass(clPlayer)], null);

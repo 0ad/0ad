@@ -472,7 +472,7 @@ else if (md == 4) //central river
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 2);
 	createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
 	
-	var mdd2 = randInt(1,2)
+	var mdd2 = randInt(1,2);
 	if (mdd2 == 1)
 	{
 		// create the shallows of the main river
@@ -1474,7 +1474,7 @@ log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
 var numb = 1;
 if (rt == 6)
-	numb = 3
+	numb = 3;
 for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
@@ -1673,25 +1673,20 @@ createObjectGroups(group, 0,
 	planetm * scaleByMapSize(13, 200), 50
 );
 
-rt = randInt(1,6)
-if (rt==1){
-setSkySet("cirrus");
-}
-else if (rt ==2){
-setSkySet("cumulus");
-}
-else if (rt ==3){
-setSkySet("sunny");
-}
-else if (rt ==4){
-setSkySet("sunny 1");
-}
-else if (rt ==5){
-setSkySet("mountainous");
-}
-else if (rt ==6){
-setSkySet("stratus");
-}
+rt = randInt(1,6);
+if (rt == 1)
+	setSkySet("cirrus");
+else if (rt == 2)
+	setSkySet("cumulus");
+else if (rt == 3)
+	setSkySet("sunny");
+else if (rt == 4)
+	setSkySet("sunny 1");
+else if (rt == 5)
+	setSkySet("mountainous");
+else if (rt == 6)
+	setSkySet("stratus");
+
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 

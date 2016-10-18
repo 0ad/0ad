@@ -491,7 +491,7 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, or
 	// Placing the fortress wall
 	var startX = centerX + centerToFirstElement.x * cos(orientation) - centerToFirstElement.y * sin(orientation);
 	var startY = centerY + centerToFirstElement.y * cos(orientation) + centerToFirstElement.x * sin(orientation);
-	placeWall(startX, startY, fortress.wall, style, playerId, orientation)
+	placeWall(startX, startY, fortress.wall, style, playerId, orientation);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

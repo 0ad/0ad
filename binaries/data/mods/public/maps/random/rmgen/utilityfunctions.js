@@ -1,4 +1,4 @@
-var g_numStragglerTrees = 0
+var g_numStragglerTrees = 0;
 
 function createBumps(constraint, count, minsize, maxsize, spread, failfraction, elevation)
 {
@@ -61,7 +61,7 @@ function createMountains(terrain, constraint, tileclass, count, maxHeight, minRa
 	maxRadius = (maxRadius !== undefined ? maxRadius : floor(scaleByMapSize(6, 12)));
 	numCircles = (numCircles !== undefined ? numCircles : floor(scaleByMapSize(4, 10)));
 	
-	var numHills = count
+	var numHills = count;
 	for (var i = 0; i < numHills; ++i)
 	{
 		
@@ -89,11 +89,7 @@ function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID
 	numMultiplier = (numMultiplier !== undefined ? numMultiplier : 1.0);
 	biomeID = (biomeID !== undefined ? biomeID : 0);
 	
-	var tM = terrainset[0]
-	var tFF1 = terrainset[1]
-	var tFF2 = terrainset[2]
-	var tF1 = terrainset[3]
-	var tF2 = terrainset[4]
+	var [tM, tFF1, tFF2, tF1, tF2] = terrainset;
 
 	if (biomeID == g_BiomeSavanna)
 	{
@@ -178,7 +174,7 @@ function createPatches(sizes, terrain, constraint, count,  tileclass, failfracti
 	for (var i = 0; i < sizes.length; i++)
 	{
 		var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], failfraction);
-		var painter = new TerrainPainter(terrain)
+		var painter = new TerrainPainter(terrain);
 		createAreas(
 			placer,
 			[painter, paintClass(tileclass)],

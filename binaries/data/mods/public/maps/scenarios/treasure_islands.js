@@ -17,7 +17,7 @@ Trigger.prototype.TreasureCollected = function(data)
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
 	var count = ++this.treasureCount.players[data.player];
-	var goalCount = this.treasureCount.maximum / 2 + 1
+	var goalCount = this.treasureCount.maximum / 2 + 1;
 	var otherPlayer = (data.player == 1 ? 2 : 1);
 	
 	// Check if having more treasures than the enemy is still possible
@@ -31,8 +31,11 @@ Trigger.prototype.TreasureCollected = function(data)
 		});
 		
 		// keep notifying the player that the victory condition has changed.
-		var timerData = {"enabled": true, "delay": 10000, "interval": 12000}
-		this.RegisterTrigger("OnInterval", "BattleMessage", timerData);
+		this.RegisterTrigger("OnInterval", "BattleMessage", {
+			"enabled": true,
+			"delay": 10000,
+			"interval": 12000
+		});
 	}
 	else if (count >= goalCount) // Check for victory
 	{
@@ -89,12 +92,12 @@ Trigger.prototype.BattleMessage = function()
 		"message": markForTranslation("Defeat your enemy to win!"),
 		"translateMessage": true
 	});
-}
+};
 
 Trigger.prototype.Victory = function(playerID)
 {
 	TriggerHelper.SetPlayerWon(playerID);
-}
+};
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger); 
 	

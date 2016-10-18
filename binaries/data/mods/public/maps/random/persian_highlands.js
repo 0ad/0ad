@@ -232,7 +232,7 @@ RMS.SetProgress(30);
 
 // create hills
 log("Creating hills...");
-var numHills = scaleByMapSize(20, 80)
+var numHills = scaleByMapSize(20, 80);
 for (var i = 0; i < numHills; ++i)
 {
 	

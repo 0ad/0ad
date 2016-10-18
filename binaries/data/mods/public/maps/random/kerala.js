@@ -76,7 +76,7 @@ var playerPos = new Array(numPlayers);
 for (var i = 0; i < numPlayers; i++)
 {
 	playerPos[i] = (i + 1) / (numPlayers + 1);
-	playerX[i] = 0.45 + 0.2*(i%2)
+	playerX[i] = 0.45 + 0.2*(i%2);
 	playerZ[i] = playerPos[i];
 }
 
@@ -190,9 +190,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			}
 		}
 		else if (ix > 0.69 * mapSize)
-		{
-			addToClass(ix, iz, clMountains)
-		}
+			addToClass(ix, iz, clMountains);
 	}
 }
 
@@ -216,7 +214,7 @@ for (var i = 0; i < scaleByMapSize(20,120); i++)
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 paintTerrainBasedOnHeight(0, 1, 1, tShore);
-paintTileClassBasedOnHeight(-6, 0.5, 1, clWater)
+paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 RMS.SetProgress(45);
 

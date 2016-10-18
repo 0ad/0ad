@@ -316,7 +316,7 @@ for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
 			var painter = new LayeredPainter(
 				[tShore, tWater, tWater],		// terrains
 				[1, 3]								// widths);
-			)
+			);
 			var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -3, 3);
 			createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 23));
 		}
@@ -328,7 +328,7 @@ passageMaker(round(fractionToTiles(0.2)), round(fractionToTiles(0.75)), round(fr
 
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 3, 1, tShore);
-paintTileClassBasedOnHeight(-6, 0.5, 1, clWater)
+paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 
 RMS.SetProgress(25);
@@ -382,7 +382,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
  avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clRock, 10, clHill, 2)
-)
+);
 
 log("Creating metal mines...");
 // create large metal quarries
@@ -392,7 +392,7 @@ createMines(
  ],
  avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
  clMetal
-)
+);
 
 RMS.SetProgress(85);
 

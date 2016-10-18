@@ -259,8 +259,8 @@ passageMaker(floor(fractionToTiles(0.2)), floor(fractionToTiles(0.25)), floor(fr
 passageMaker(floor(fractionToTiles(0.2)), floor(fractionToTiles(0.75)), floor(fractionToTiles(0.8)), floor(fractionToTiles(0.75)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
 
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
-paintTerrainBasedOnHeight(1, 2, 1, pForestR)
-paintTileClassBasedOnHeight(-6, 0.5, 1, clWater)
+paintTerrainBasedOnHeight(1, 2, 1, pForestR);
+paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 
 RMS.SetProgress(50);

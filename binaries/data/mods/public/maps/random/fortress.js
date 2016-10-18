@@ -95,7 +95,7 @@ for (var i=0; i < numPlayers; i++)
 {
 	var startEntities = getStartingEntities(i);
 	// Place starting entities
-	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities)
+	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities);
 	var uDist = 8;
 	var uSpace = 2;
 	for (var j = 1; j < startEntities.length - 1; ++j)
@@ -310,7 +310,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
  avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clHill, 1)
-)
+);
 
 log("Creating metal mines...");
 // create large metal quarries
@@ -320,7 +320,7 @@ createMines(
  ],
  avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clMetal, 10, clRock, 5, clHill, 1),
  clMetal
-)
+);
 
 RMS.SetProgress(70);
 

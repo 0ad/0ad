@@ -32,7 +32,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 				cmpPlayer.SetState("defeated");
 		}
 	}
-}
+};
 
 Trigger.prototype.ConquestAddStructure = function(msg)
 {
@@ -58,7 +58,7 @@ Trigger.prototype.ConquestAddStructure = function(msg)
 		return;
 
 	this.conquestEntitiesByPlayer[player].push(msg.building);
-}
+};
 
 Trigger.prototype.ConquestTrainingFinished = function(msg)
 {

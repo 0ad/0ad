@@ -176,7 +176,7 @@ function placeCivDefaultEntities(fx, fz, playerid, kwargs = {})
 		iberWall = false;
 	if ('iberWall' in kwargs)
 		iberWall = kwargs['iberWall'];
-	var orientation = BUILDING_ORIENTATION
+	var orientation = BUILDING_ORIENTATION;
 	if ('orientation' in kwargs)
 		orientation = kwargs['orientation'];
 	// Place default civ starting entities
@@ -438,7 +438,7 @@ function checkIfIntersect (x1, y1, x2, y2, x3, y3, x4, y4, width)
 	{
 		var m = (y1 - y2) / (x1 - x2);
 		var b = y1 - m * x1;
-		var m2 = sqrt(m * m + 1)
+		var m2 = sqrt(m * m + 1);
 		if ((Math.abs((y3 - x3 * m - b)/m2) < width) || (Math.abs((y4 - x4 * m - b)/m2) < width))
 			return true;
 		//neccessary for some situations.
@@ -451,7 +451,7 @@ function checkIfIntersect (x1, y1, x2, y2, x3, y3, x4, y4, width)
 		{
 			var m = (y3 - y4) / (x3 - x4);
 			var b = y3 - m * x3;
-			var m2 = sqrt(m * m + 1)
+			var m2 = sqrt(m * m + 1);
 			if ((Math.abs((y1 - x1 * m - b)/m2) < width) || (Math.abs((y2 - x2 * m - b)/m2) < width))
 				return true;
 		}
@@ -491,7 +491,7 @@ function distanceOfPointFromLine (x1, y1, x2, y2, x3, y3)
 	{
 		var m = (y1 - y2) / (x1 - x2);
 		var b = y1 - m * x1;
-		var m2 = sqrt(m * m + 1)
+		var m2 = sqrt(m * m + 1);
 		return Math.abs((y3 - x3 * m - b)/m2);
 	}
 }
@@ -606,7 +606,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 	if (minRadius < 1) minRadius = 1;
 	if (minRadius > maxRadius) minRadius = maxRadius;
 	
-	var edges = [[x, z]]
+	var edges = [[x, z]];
 	var circles = [];
 	
 	for (var i = 0; i < numCircles; ++i)
@@ -644,7 +644,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 			{
 				dx = ix - cx;
 				dz = iz - cz;
-				distance2 = dx * dx + dz * dz
+				distance2 = dx * dx + dz * dz;
 				if (dx * dx + dz * dz <= radius2)
 				{
 					if (g_Map.inMapBounds(ix, iz))

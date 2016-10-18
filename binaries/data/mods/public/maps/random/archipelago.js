@@ -283,7 +283,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
  [avoidClasses(clForest, 1, clPlayer, 7, clRock, 10, clHill, 1), stayClasses(clLand, 6)]
-)
+);
 
 log("Creating metal mines...");
 // create large metal quarries
@@ -293,7 +293,7 @@ createMines(
  ],
  [avoidClasses(clForest, 1, clPlayer, 7, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 6)],
  clMetal
-)
+);
 
 RMS.SetProgress(65);
 

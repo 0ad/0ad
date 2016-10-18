@@ -320,7 +320,7 @@ else if (md == 2) //continent
 		[terrainPainter, elevationPainter, unPaintClass(clLand)], 
 		[avoidClasses(clPlayer, 20, clPeninsulaSteam, 20), borderClasses(clLand, 7, 7)],
 		scaleByMapSize(7, 130) * 2, 150
-	)
+	);
 	
 	// create outward shore jaggedness
 	log("Creating shore jaggedness...");
@@ -335,7 +335,7 @@ else if (md == 2) //continent
 		[terrainPainter, elevationPainter, paintClass(clLand)], 
 		[avoidClasses(clPlayer, 20), borderClasses(clLand, 7, 7)],
 		scaleByMapSize(7, 130) * 2, 150
-	)
+	);
 }
 //********************************************************************************************************
 else if (md == 3) //central sea
@@ -682,7 +682,7 @@ else if (md == 4) //central river
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 2);
 	createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
 	
-	var mdd2 = randInt(1,2)
+	var mdd2 = randInt(1,2);
 	if (mdd2 == 1)
 	{
 		// create the shallows of the main river
@@ -1844,7 +1844,7 @@ log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
 var numb = 1;
 if (random_terrain == g_BiomeSavanna)
-	numb = 3
+	numb = 3;
 for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
@@ -2042,25 +2042,20 @@ createObjectGroups(group, 0,
 	planetm * scaleByMapSize(13, 200), 50
 );
 
-random_terrain = randInt(1,6)
-if (random_terrain==1){
+random_terrain = randInt(1,6);
+if (random_terrain == 1)
 	setSkySet("cirrus");
-}
-else if (random_terrain ==2){
+else if (random_terrain == 2)
 	setSkySet("cumulus");
-}
-else if (random_terrain ==3){
+else if (random_terrain == 3)
 	setSkySet("sunny");
-}
-else if (random_terrain ==4){
+else if (random_terrain == 4)
 	setSkySet("sunny 1");
-}
-else if (random_terrain ==5){
+else if (random_terrain == 5)
 	setSkySet("mountainous");
-}
-else if (random_terrain ==6){
+else if (random_terrain == 6)
 	setSkySet("stratus");
-}
+
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 

@@ -250,7 +250,7 @@ if(mapSize > 150 && randInt(0,1)) {
 	var py = round(fz) + round(fractionToTiles(0.13 * sin(pAngle)));
 	var pex = round(fx) + round(fractionToTiles(0.13 * -cos(pAngle)));
 	var pey = round(fz) + round(fractionToTiles(0.13 * sin(pAngle + PI)));
-	var path = new PathPlacer(px,py,pex,pey,scaleByMapSize(7,18), 0.4,1,0.2,0)
+	var path = new PathPlacer(px,py,pex,pey,scaleByMapSize(7,18), 0.4, 1, 0.2, 0);
 	terrainPainter = new TerrainPainter(tSand);
 	elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 5 );
 	createArea(path, [terrainPainter, elevationPainter, paintClass(clPassage)], null);

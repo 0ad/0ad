@@ -421,7 +421,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
  [avoidClasses(clForest, 1, clPlayer, 3, clRock, 10, clHill, 1, clHill2, 1), stayClasses(clLand, 2)]
-)
+);
 
 log("Creating metal mines...");
 // create large metal quarries
@@ -431,7 +431,7 @@ createMines(
  ],
  [avoidClasses(clForest, 1, clPlayer, 3, clMetal, 10, clRock, 5, clHill, 1, clHill2, 1), stayClasses(clLand, 2)],
  clMetal
-)
+);
 
 RMS.SetProgress(65);
 
@@ -512,13 +512,10 @@ createStragglerTrees(types, [avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, c
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 for (var i = 0; i < randInt(3,8); i++)
-{
-	placeObject(fx+randFloat(-7,7), fz+randFloat(-7,7), oWood, 0, randFloat(0, TWO_PI))
-}
+	placeObject(fx+randFloat(-7,7), fz+randFloat(-7,7), oWood, 0, randFloat(0, TWO_PI));
+
 for (var i = 0; i < randInt(3,8); i++)
-{
-	placeObject(fx+randFloat(-7,7), fz+randFloat(-7,7), oFood, 0, randFloat(0, TWO_PI))
-}
+	placeObject(fx+randFloat(-7,7), fz+randFloat(-7,7), oFood, 0, randFloat(0, TWO_PI));
 
 // Export map data
 ExportMap();

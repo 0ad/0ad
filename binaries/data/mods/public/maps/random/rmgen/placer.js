@@ -138,7 +138,7 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc, 
 {
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
-	this.numCircles = numCircles
+	this.numCircles = numCircles;
 	this.failFraction = (failFraction !== undefined ? failFraction : 0);
 	this.x = (x !== undefined ? x : -1);
 	this.z = (z !== undefined ? z : -1);
@@ -174,7 +174,7 @@ ChainPlacer.prototype.place = function(constraint)
 	if (this.minRadius < 1) this.minRadius = 1;
 	if (this.minRadius > this.maxRadius) this.minRadius = this.maxRadius;
 	
-	var edges = [[this.x, this.z]]
+	var edges = [[this.x, this.z]];
 	
 	for (var i = 0; i < this.numCircles; ++i)
 	{

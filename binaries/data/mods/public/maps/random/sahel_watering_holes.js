@@ -18,7 +18,7 @@ const tWater = "savanna_riparian_wet";
 const oBaobab = "gaia/flora_tree_baobab";
 const oFig = "gaia/flora_tree_fig";
 const oBerryBush = "gaia/flora_bush_berry";
-const oWildebeest = "gaia/fauna_wildebeest"
+const oWildebeest = "gaia/fauna_wildebeest";
 const oFish = "gaia/fauna_fish";
 const oGazelle = "gaia/fauna_gazelle";
 const oElephant = "gaia/fauna_elephant_african_bush";
@@ -186,7 +186,7 @@ RMS.SetProgress(20);
 log ("Creating rivers...");
 for (var m = 0; m < numPlayers; m++)
 {
-	var tang = startAngle + (m+0.5)*TWO_PI/numPlayers
+	var tang = startAngle + (m + 0.5) * TWO_PI / numPlayers;
 	placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,50)*scaleByMapSize(10,50)/3), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.15*cos(tang)), fractionToTiles(0.5 + 0.15*sin(tang)));
 	var painter = new LayeredPainter([tShore, tWater, tWater], [1, 3]);
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
@@ -213,7 +213,12 @@ for (var i = 0; i < numPlayers; i++)
 {
 	if (i+1 == numPlayers)
 	{
-		passageMaker(round(fractionToTiles(playerX[i])), round(fractionToTiles(playerZ[i])), round(fractionToTiles(playerX[0])), round(fractionToTiles(playerZ[0])), 6, -2, -2, 4, clShallows, undefined, -4)
+		passageMaker(
+			round(fractionToTiles(playerX[i])),
+			round(fractionToTiles(playerZ[i])),
+			round(fractionToTiles(playerX[0])),
+			round(fractionToTiles(playerZ[0])),
+			6, -2, -2, 4, clShallows, undefined, -4);
 		
 		// create animals in shallows
 		log("Creating animals in shallows...");
@@ -232,7 +237,12 @@ for (var i = 0; i < numPlayers; i++)
 	}
 	else
 	{
-		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[i+1]), fractionToTiles(playerZ[i+1]), 6, -2, -2, 4, clShallows, undefined, -4)
+		passageMaker(
+			fractionToTiles(playerX[i]),
+			fractionToTiles(playerZ[i]),
+			fractionToTiles(playerX[i+1]),
+			fractionToTiles(playerZ[i+1]),
+			6, -2, -2, 4, clShallows, undefined, -4);
 
 		// create animals in shallows
 		log("Creating animals in shallows...");

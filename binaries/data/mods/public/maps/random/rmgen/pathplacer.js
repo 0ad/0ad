@@ -171,7 +171,7 @@ PathPlacer.prototype.place = function(constraint)
 						failed++;
 					}
 				}
-			}
+			};
 			
 			var A = tri[0];
 			var B = tri[1];
@@ -207,4 +207,5 @@ PathPlacer.prototype.place = function(constraint)
 	}
 	
 	return ((failed > this.width*this.failfraction*dist) ? undefined : retVec);
-}
+};
+

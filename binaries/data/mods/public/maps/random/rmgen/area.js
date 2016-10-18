@@ -16,4 +16,4 @@ function Area(points, id)
 Area.prototype.getID = function()
 {
 	return this.id;
-}
+};

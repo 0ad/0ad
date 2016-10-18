@@ -22,7 +22,7 @@ var tGrassPatch = "medit_dirt_b";
 
 var tShoreBlend = ["medit_sand_wet","medit_rocks_wet"];
 var tShore = ["medit_rocks","medit_sand","medit_sand"];
-var tSandTransition = ["medit_sand","medit_rocks_grass","medit_rocks_grass","medit_rocks_grass"]
+var tSandTransition = ["medit_sand","medit_rocks_grass","medit_rocks_grass","medit_rocks_grass"];
 var tVeryDeepWater = ["medit_sea_depths","medit_sea_coral_deep"];
 var tDeepWater = ["medit_sea_coral_deep","tropic_ocean_coral"];
 var tCreekWater = "medit_sea_coral_plants";
@@ -32,7 +32,7 @@ var ePine = "gaia/flora_tree_aleppo_pine";
 var ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
 var eFanPalm = "gaia/flora_tree_medit_fan_palm";
 var eCypress = "gaia/flora_tree_cypress";
-var eApple = "gaia/flora_tree_apple"
+var eApple = "gaia/flora_tree_apple";
 var eBush = "gaia/flora_bush_berry";
 var eFish = "gaia/fauna_fish";
 var ePig = "gaia/fauna_pig";
@@ -407,7 +407,7 @@ if(mapSize > 150)
 		var y1 = round(CorsZ + (radius+5)*sin(angle));	
 		var x2 = round(CorsX + (radius-4)*cos(angle));
 		var y2 = round(CorsZ + (radius-4)*sin(angle));	
-		straightPassageMaker(x1, y1, x2, y2, 1, 6, 2,clPassage,tGrass)
+		straightPassageMaker(x1, y1, x2, y2, 1, 6, 2, clPassage, tGrass);
 	}
 	for (var i = 0; i < nb; i++) {
 		var radius = sqrt(fractionToSize(0.1)/PI)+ 2;
@@ -418,7 +418,7 @@ if(mapSize > 150)
 		var y1 = round(SardZ + (radius+5)*sin(angle));	
 		var x2 = round(SardX + (radius-4)*cos(angle));
 		var y2 = round(SardZ + (radius-4)*sin(angle));	
-		straightPassageMaker(x1, y1, x2, y2, 1, 6, 2,clPassage,tGrass)
+		straightPassageMaker(x1, y1, x2, y2, 1, 6, 2, clPassage, tGrass);
 	}
 }
 for (var i = 0; i <= 3; i++) {
@@ -430,7 +430,7 @@ for (var i = 0; i <= 3; i++) {
 	var y1 = round(CorsZ + (radius+7)*sin(angle));	
 	var x2 = round(CorsX + (radius-5)*cos(angle));
 	var y2 = round(CorsZ + (radius-5)*sin(angle));	
-	straightPassageMaker(x1, y1, x2, y2, 4, 10, 3,clPassage,tGrass)
+	straightPassageMaker(x1, y1, x2, y2, 4, 10, 3, clPassage, tGrass);
 }
 for (var i = 0; i <= 3; i++) {
 	var radius = sqrt(fractionToSize(0.18)*1.8/PI)+ 2;
@@ -441,7 +441,7 @@ for (var i = 0; i <= 3; i++) {
 	var y1 = round(SardZ + (radius+7)*sin(angle));	
 	var x2 = round(SardX + (radius-5)*cos(angle));
 	var y2 = round(SardZ + (radius-5)*sin(angle));	
-	straightPassageMaker(x1, y1, x2, y2, 4, 10, 3,clPassage,tGrass)
+	straightPassageMaker(x1, y1, x2, y2, 4, 10, 3, clPassage, tGrass);
 }
 RMS.SetProgress(50);
 

@@ -8,7 +8,7 @@ const tOceanCoral = "medit_sea_coral_plants";
 const tBeachWet = "medit_sand_wet";
 const tBeachDry = "medit_sand";
 const tBeachGrass = "medit_rocks_grass";
-const tBeach = ["medit_rocks_grass","medit_sand", "medit_rocks_grass_shrubs"]
+const tBeach = ["medit_rocks_grass","medit_sand", "medit_rocks_grass_shrubs"];
 //const tBeachBlend = ["medit_rocks_grass","medit_grass_field_dry", "medit_grass_field_brown","medit_rocks_shrubs", "medit_rocks_grass_shrubs"];
 const tBeachBlend = ["medit_rocks_grass", "medit_rocks_grass_shrubs"];
 const tBeachCliff = "medit_dirt";
@@ -18,7 +18,7 @@ const tGrassDry = ["medit_grass_field_dry", "medit_grass_field_b"];
 const tGrass = ["medit_rocks_grass", "medit_rocks_grass","medit_dirt","medit_rocks_grass_shrubs"];
 const tGrassLush = ["grass_temperate_dry_tufts", "medit_grass_flowers"];
 const tGrassShrubs = "medit_shrubs";
-const tCliffShrubs = ["medit_cliff_aegean_shrubs", "medit_cliff_italia_grass","medit_cliff_italia"]
+const tCliffShrubs = ["medit_cliff_aegean_shrubs", "medit_cliff_italia_grass","medit_cliff_italia"];
 const tGrassRock = ["medit_rocks_grass"];
 const tDirt = "medit_dirt";
 const tDirtGrass = "medit_dirt_b";
@@ -278,7 +278,7 @@ RMS.SetProgress(15);
 
 // get the x and z in tiles
 
-var nCenter=floor(scaleByMapSize(1,4))
+var nCenter = floor(scaleByMapSize(1,4));
 var startAngle = randFloat() * 2 * PI;
 for (var i=0; i < nCenter; i++)
 {

@@ -16,7 +16,7 @@ var clForest = createTileClass();
 var clBaseResource = createTileClass();
 
 // Setup Templates
-var templateStone = "gaia/geology_stone_temperate"
+var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetal = "gaia/geology_metal_temperate";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
@@ -122,13 +122,13 @@ if (numPlayers > 4)
 	doublePaths = false;
 var doublePathMayPlayers = 4;
 if (doublePaths == true)
-	var maxI = numPlayers+1
+	var maxI = numPlayers+1;
 else
 	var maxI = numPlayers;
 for (var i = 0; i < maxI; i++)
 {
 	if (doublePaths == true)
-		var minJ = 0
+		var minJ = 0;
 	else
 		var minJ = i+1;
 	for (var j = minJ; j < numPlayers+1; j++)
@@ -224,7 +224,7 @@ for (var x = 0; x < mapSize; x++)
 		var radius = Math.pow(Math.pow(mapCenterX - x - 0.5, 2) + Math.pow(mapCenterZ - z - 0.5, 2), 1/2); // The 0.5 is a correction for the entities placed on the center of tiles
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
-			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z))
+			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z));
 		// Woods tile based
 		var tDensFactSL = max(min((minDistToSL - baseRadius) / baseRadius, 1), 0);
 		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);

@@ -104,13 +104,18 @@ function getOrderOfPointsForShortestClosePath(points)
 	let pointsToAdd = deepcopy(points);
 	for (let i = 0; i < 3; ++i)
 	{
-		order.push(i)
+		order.push(i);
 		pointsToAdd.shift(i);
 		if (i)
 			distances.push(getDistance(points[order[i]].x, points[order[i]].y, points[order[i - 1]].x, points[order[i - 1]].y));
 	}
-	distances.push(getDistance(points[order[0]].x, points[order[0]].y, points[order[order.length - 1]].x, points[order[order.length - 1]].y))
-	
+
+	distances.push(getDistance(
+		points[order[0]].x,
+		points[order[0]].y,
+		points[order[order.length - 1]].x,
+		points[order[order.length - 1]].y));
+
 	// Add remaining points so the path lengthens the least
 	let numPointsToAdd = pointsToAdd.length;
 	for (let i = 0; i < numPointsToAdd; ++i)

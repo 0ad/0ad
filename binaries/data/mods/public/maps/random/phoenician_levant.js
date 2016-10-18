@@ -84,7 +84,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	playerPos[i] = (i + 1) / (numPlayers + 1);
 	playerZ[i] = playerPos[i];
-	playerX[i] = 0.66 + 0.2*(i%2)
+	playerX[i] = 0.66 + 0.2*(i%2);
 }
 
 for (var i = 0; i < numPlayers; i++)
