@@ -186,7 +186,7 @@ for (var island = 0; island <= 1; island++)
 		if (swap)
 			angle += PI/2;
 		fx = radius * cos(angle);
-		fz = radius * sin(angle);	
+		fz = radius * sin(angle);
 		fx = round(islandX[island] + fx);
 		fz = round(islandZ[island] + fz);
 		var size = scaleByMapSize(75,100);
@@ -211,19 +211,19 @@ for (var island = 0; island <= 1; island++)
 		if (swap)
 			angle += PI/2;
 		var startX = smallRadius * cos(angle);
-		var startZ = smallRadius * sin(angle);	
+		var startZ = smallRadius * sin(angle);
 		startX = round(islandX[island] + startX);
 		startZ = round(islandZ[island] + startZ);
-		
+
 		var endX = bigRadius * cos(angle);
-		var endZ = bigRadius * sin(angle);	
+		var endZ = bigRadius * sin(angle);
 		endX = round(islandX[island] + endX);
 		endZ = round(islandZ[island] + endZ);
-		
+
 		var placer = new ClumpPlacer(130, 0.7, 0.8, 10, round((startX+endX*3)/4),round((startZ+endZ*3)/4));
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -1,5);	// base height is -10
 		createArea(placer, [elevationPainter], null);
-		
+
 		straightPassageMaker(startX, startZ,endX,endZ, 25, 18, 4,clShore,null);
 	}
 }
@@ -310,15 +310,15 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = 23;
-	
+
 	// get the x and z in tiles
 	fx = playerX[i];
 	fz = playerZ[i];
-	
-	
+
+
 	// let's create a nice platform
 	var placer = new ClumpPlacer(PI*radius*radius, 0.95, 0.3, 10, fx,fz);
 	var PlayerArea = createArea(placer, [paintClass(clPlayer)], null);
@@ -329,12 +329,12 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild,tRoad],[1]);
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, getHeight(fx,fz),10);
 	createArea(placer, [painter,paintClass(clSettlement),elevationPainter], null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 11;
@@ -345,7 +345,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	// this makes sure it's created on the same level as the player.
 	var mAngle = randFloat(playerAngle[i] + PI/2,playerAngle[i] + PI/3);
@@ -362,7 +362,7 @@ for (var i = 0; i < numPlayers; i++)
 	group = new SimpleGroup(
 		[new SimpleObject(eStoneMine, 1,1, 0,2),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3), new SimpleObject(ePine, 0,1, 3,3)], true, clBaseResource, mX, mZ );
 	createObjectGroup(group, 0);
-	
+
 	group = new SimpleGroup([new SimpleObject(ePine, 1,3, 1,4),new SimpleObject(ePalmTall, 0,1, 1,4),new SimpleObject(eFanPalm, 0,1, 0,2)], true, clForest);
 	createObjectGroups(group, 0, [avoidClasses(clBaseResource,3, clSettlement,0), stayClasses(clPlayer,1)], 150, 1000);
 }
@@ -404,9 +404,9 @@ if(mapSize > 150)
 		if (swap)
 			angle += PI/2;
 		var x1 = round(CorsX + (radius+5)*cos(angle));
-		var y1 = round(CorsZ + (radius+5)*sin(angle));	
+		var y1 = round(CorsZ + (radius+5)*sin(angle));
 		var x2 = round(CorsX + (radius-4)*cos(angle));
-		var y2 = round(CorsZ + (radius-4)*sin(angle));	
+		var y2 = round(CorsZ + (radius-4)*sin(angle));
 		straightPassageMaker(x1, y1, x2, y2, 1, 6, 2, clPassage, tGrass);
 	}
 	for (var i = 0; i < nb; i++) {
@@ -415,9 +415,9 @@ if(mapSize > 150)
 		if (swap)
 			angle += PI/2;
 		var x1 = round(SardX + (radius+5)*cos(angle));
-		var y1 = round(SardZ + (radius+5)*sin(angle));	
+		var y1 = round(SardZ + (radius+5)*sin(angle));
 		var x2 = round(SardX + (radius-4)*cos(angle));
-		var y2 = round(SardZ + (radius-4)*sin(angle));	
+		var y2 = round(SardZ + (radius-4)*sin(angle));
 		straightPassageMaker(x1, y1, x2, y2, 1, 6, 2, clPassage, tGrass);
 	}
 }
@@ -427,9 +427,9 @@ for (var i = 0; i <= 3; i++) {
 	if (swap)
 		angle += PI/2;
 	var x1 = round(CorsX + (radius+7)*cos(angle));
-	var y1 = round(CorsZ + (radius+7)*sin(angle));	
+	var y1 = round(CorsZ + (radius+7)*sin(angle));
 	var x2 = round(CorsX + (radius-5)*cos(angle));
-	var y2 = round(CorsZ + (radius-5)*sin(angle));	
+	var y2 = round(CorsZ + (radius-5)*sin(angle));
 	straightPassageMaker(x1, y1, x2, y2, 4, 10, 3, clPassage, tGrass);
 }
 for (var i = 0; i <= 3; i++) {
@@ -438,9 +438,9 @@ for (var i = 0; i <= 3; i++) {
 	if (swap)
 		angle += PI/2;
 	var x1 = round(SardX + (radius+7)*cos(angle));
-	var y1 = round(SardZ + (radius+7)*sin(angle));	
+	var y1 = round(SardZ + (radius+7)*sin(angle));
 	var x2 = round(SardX + (radius-5)*cos(angle));
-	var y2 = round(SardZ + (radius-5)*sin(angle));	
+	var y2 = round(SardZ + (radius-5)*sin(angle));
 	straightPassageMaker(x1, y1, x2, y2, 4, 10, 3, clPassage, tGrass);
 }
 RMS.SetProgress(50);
@@ -622,7 +622,7 @@ function straightPassageMaker(x1, z1, x2, z2, startWidth, centerWidth, smooth, t
 {
 	var mapSize = g_Map.size;
 	var stepNB = sqrt((x2-x1)*(x2-x1) + (z2-z1)*(z2-z1)) + 2;
-	
+
 	var startHeight = getHeight(x1,z1);
 	var finishHeight = getHeight(x2,z2);
 	for (var step = 0; step <= stepNB; step+=0.5)
@@ -652,7 +652,7 @@ function straightPassageMaker(x1, z1, x2, z2, startWidth, centerWidth, smooth, t
 		{
 			var rx = po*direction[0];
 			var rz = po*direction[1];
-			
+
 			var relativeWidth = abs(po / Math.floor(width/2));
 			var targetHeight = ((stepNB-step)*startHeight + finishHeight*step) / stepNB;
 			if (round(ix + rx) < mapSize && round(iz + rz) < mapSize && round(ix + rx) >= 0 && round(iz + rz) >= 0)

@@ -46,7 +46,7 @@ var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "
 	"temp_highlands|gaia/fauna_goat"];
 
 
-// Setup map 
+// Setup map
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
 var playableMapRadius = mapRadius - 5;
@@ -81,7 +81,7 @@ var resourcePerPlayer = [templateStone, templateMetalMine];
 // Setup woods
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok 
+var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 RMS.SetProgress(2);

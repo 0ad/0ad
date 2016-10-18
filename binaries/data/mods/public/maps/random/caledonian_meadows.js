@@ -2,7 +2,7 @@
  * ToDo:
  * Place start locations of one team close to each other
  */
- 
+
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("heightmap");
 
@@ -96,10 +96,10 @@ function getOrderOfPointsForShortestClosePath(points)
 	{
 		for (let i = 0; i < points.length; ++i)
 			order.push(i);
-		
+
 		return order;
 	}
-	
+
 	// Just add the first 3 points
 	let pointsToAdd = deepcopy(points);
 	for (let i = 0; i < 3; ++i)
@@ -141,7 +141,7 @@ function getOrderOfPointsForShortestClosePath(points)
 		distances.splice(indexToAddTo, 1, minDist1, minDist2);
 		pointsToAdd.shift();
 	}
-	
+
 	return order;
 }
 
@@ -194,7 +194,7 @@ function getGrad(wrapped = true, scalarField = g_Map.height)
 		for (let y = 0; y < max_y; ++y)
 			vectorField[x].push({"x": scalarField[(x + 1) % max_x][y] - scalarField[x][y], "y": scalarField[x][(y + 1) % max_y] - scalarField[x][y]});
 	}
-		
+
 	return vectorField;
 }
 
@@ -202,9 +202,9 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 {
 	let max_x = heightmap.length;
 	let max_y = heightmap[0].length;
-	
+
 	let dHeight = getGrad(heightmap);
-	
+
 	for (let x = 0; x < max_x; ++x)
 	{
 		let next_x = (x + 1) % max_x;
@@ -213,14 +213,14 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 		{
 			let next_y = (y + 1) % max_y;
 			let prev_y = (y + max_y - 1) % max_y;
-			
+
 			let slopes = [- dHeight[x][y].x, - dHeight[x][y].y, dHeight[prev_x][y].x, dHeight[x][prev_y].y];
-			
+
 			let sumSlopes = 0;
 			for (let i = 0; i < slopes.length; ++i)
 				if (slopes[i] > 0)
 					sumSlopes += slopes[i];
-			
+
 			let drain = [];
 			for (let i = 0; i < slopes.length; ++i)
 			{
@@ -228,11 +228,11 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 				if (slopes[i] > 0)
 					drain[i] += min(strength * slopes[i] / sumSlopes, slopes[i]);
 			}
-			
+
 			let sumDrain = 0;
 			for (let i = 0; i < drain.length; ++i)
 				sumDrain += drain[i];
-			
+
 			// Apply changes to maps
 			heightmap[x][y] -= sumDrain;
 			heightmap[next_x][y] += drain[0];
@@ -403,9 +403,9 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	let x = point.x + dist * Math.cos(angle);
 	let y = point.y + dist * Math.sin(angle);
 	placeMine({ "x": x, "y": y }, "gaia/geology_stonemine_temperate_quarry");
-		
+
 	currentAngle += dAngle;
-	
+
 	// Wood
 	let quantity = 80;
 	dAngle = TWO_PI / quantity / 3;
@@ -422,7 +422,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 		createArea(new ClumpPlacer(5, 1, 1, 1, floor(x), floor(y)), [new TerrainPainter("temp_grass_plants"), paintClass(clGrove)]);
 		currentAngle += dAngle;
 	}
-	
+
 	// Metal and chicken
 	dAngle = TWO_PI * 2 / 9;
 	angle = currentAngle + randFloat(dAngle / 4, 3 * dAngle / 4);
@@ -431,7 +431,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	y = point.y + dist * Math.sin(angle);
 	placeMine({ "x": x, "y": y }, "gaia/geology_metal_temperate_slabs");
 	currentAngle += dAngle;
-	
+
 	// Berries
 	quantity = 15;
 	dAngle = TWO_PI / quantity * 2 / 9;
@@ -660,7 +660,7 @@ for (let x = 0; x < tchm.length; ++x)
 	{
 		if (g_Map.tileClasses[clPath].inclusionCount[x][y] > 0) // Avoid paths
 			continue;
-		
+
 		let minHeight = heightRange.min;
 		for (let h = 0; h < heighLimits.length; ++h)
 		{
@@ -707,7 +707,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		let x = areas[h][t].x;
 		let y = areas[h][t].y;
 		let actor = undefined;
-		
+
 		let texture = myBiome[h].texture[randInt(myBiome[h].texture.length)];
 		if (slopeMap[x][y] < 0.4 * (minSlope[h] + maxSlope[h]))
 		{

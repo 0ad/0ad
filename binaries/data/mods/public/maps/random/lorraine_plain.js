@@ -105,10 +105,10 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// scale radius of player area by map size
 	var radius = scaleByMapSize(15,25);
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -117,22 +117,22 @@ for (var i = 0; i < numPlayers; i++)
 
 	// calculate size based on the radius
 	var size = PI * radius * radius / 4;
-	
+
 	// create the player area
 	var placer = new ClumpPlacer(size, 0.9, 0.5, 10, ix, iz);
 	createArea(placer, paintClass(clPlayer), null);
-	
+
 	// create the city patch
 	var cityRadius = 10;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [3]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -143,7 +143,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -158,7 +158,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -168,7 +168,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create starting trees
 	var num = 3;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
@@ -271,7 +271,7 @@ placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
 	placer,
-	painter, 
+	painter,
 	avoidClasses(clWater, 2, clPlayer, 15),
 	scaleByMapSize(100, 200)
 );
@@ -304,7 +304,7 @@ for (var i = 0; i < types.length; ++i)
 		);
 	createAreas(
 		placer,
-		[painter, paintClass(clForest)], 
+		[painter, paintClass(clForest)],
 		avoidClasses(clPlayer, 15, clWater, 3, clForest, 16, clHill, 1),
 		num
 	);

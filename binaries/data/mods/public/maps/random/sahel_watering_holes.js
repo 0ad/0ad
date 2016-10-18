@@ -88,12 +88,12 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -104,18 +104,18 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -126,7 +126,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -141,7 +141,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -163,7 +163,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -219,7 +219,7 @@ for (var i = 0; i < numPlayers; i++)
 			round(fractionToTiles(playerX[0])),
 			round(fractionToTiles(playerZ[0])),
 			6, -2, -2, 4, clShallows, undefined, -4);
-		
+
 		// create animals in shallows
 		log("Creating animals in shallows...");
 		var group = new SimpleGroup(
@@ -227,13 +227,13 @@ for (var i = 0; i < numPlayers; i++)
 			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
 		);
 		createObjectGroup(group, 0);
-		
+
 		var group = new SimpleGroup(
 			[new SimpleObject(oWildebeest, 5,6, 0,4)],
 			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
 		);
 		createObjectGroup(group, 0);
-		
+
 	}
 	else
 	{
@@ -251,15 +251,15 @@ for (var i = 0; i < numPlayers; i++)
 			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[i+1]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[i+1]))/2)
 		);
 		createObjectGroup(group, 0);
-		
+
 		var group = new SimpleGroup(
 			[new SimpleObject(oWildebeest, 5,6, 0,4)],
 			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[i+1]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[i+1]))/2)
 		);
 		createObjectGroup(group, 0);
-		
+
 	}
-	
+
 }
 paintTerrainBasedOnHeight(-6, 2, 1, tWater);
 
@@ -270,7 +270,7 @@ placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
 	placer,
-	painter, 
+	painter,
 	avoidClasses(clWater, 2, clPlayer, 20),
 	scaleByMapSize(100, 200)
 );
@@ -285,7 +285,7 @@ terrainPainter = new LayeredPainter(
 elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 35, 3);
 createAreas(
 	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
+	[terrainPainter, elevationPainter, paintClass(clHill)],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 3),
 	scaleByMapSize(1, 4) * numPlayers
 );
@@ -318,7 +318,7 @@ for (var i = 0; i < types.length; ++i)
 		);
 	createAreas(
 		placer,
-		[painter, paintClass(clForest)], 
+		[painter, paintClass(clForest)],
 		avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 2),
 		num
 	);

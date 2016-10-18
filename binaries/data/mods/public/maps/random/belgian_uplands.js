@@ -125,7 +125,7 @@ while (!goodStartPositionsFound)
 
 	rescaleHeightmap(heightRange.min, heightRange.max, myReliefmap);
 	setReliefmap(myReliefmap);
-	
+
 	// Find good start position tiles
 	var startPositions = [];
 	var possibleStartPositions = [];
@@ -159,9 +159,9 @@ while (!goodStartPositionsFound)
 					// placeTerrain(x, y, "blue"); // For debug reasons. Plz don't remove. // Only works properly for 1 loop
 			}
 		}
-	
+
 	// Trying to reduce the number of possible start locations...
-	
+
 	// Reduce to tiles in a circle of mapSize / 2 distance to the center (to avoid players placed in corners)
 	var possibleStartPositionsTemp = [];
 	var maxDistToCenter = mapSize / 2;
@@ -176,7 +176,7 @@ while (!goodStartPositionsFound)
 			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "purple"); // Only works properly for 1 loop
 	}
 	possibleStartPositions = deepcopy(possibleStartPositionsTemp);
-	
+
 	// Reduce to tiles near low and high ground (Rectangular check since faster) to make sure each player has access to all resource types.
 	var possibleStartPositionsTemp = [];
 	var maxDistToResources = distToBorder; // Has to be <= distToBorder!
@@ -211,7 +211,7 @@ while (!goodStartPositionsFound)
 	}
 
 	possibleStartPositions = deepcopy(possibleStartPositionsTemp);
-	
+
 	if(possibleStartPositions.length > numPlayers)
 		enoughTiles = true;
 	else
@@ -219,7 +219,7 @@ while (!goodStartPositionsFound)
 		enoughTiles = false;
 		log("possibleStartPositions.length < numPlayers, possibleStartPositions.length = " + possibleStartPositions.length + ", numPlayers = " + numPlayers);
 	}
-	
+
 	// Find a good start position derivation
 	if (enoughTiles)
 	{
@@ -233,7 +233,7 @@ while (!goodStartPositionsFound)
 				vector.push(randInt(possibleStartPositions.length));
 			possibleDerivations.push(vector);
 		}
-		
+
 		// Choose the start location derivation with the greatest minimum distance between players
 		var maxMinDist = 0;
 		for (var d = 0; d < possibleDerivations.length; d++)
@@ -430,9 +430,9 @@ for (var p = 0; p < numPlayers; p++)
 			var uz = actualY + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
 
 			if (j % 2 == 0)
-				placeObject(ux, uz, "gaia/flora_bush_berry", 0, randFloat(0, 2*PI)); 
+				placeObject(ux, uz, "gaia/flora_bush_berry", 0, randFloat(0, 2*PI));
 			else
-				placeObject(ux, uz, "gaia/flora_tree_cypress", 0, randFloat(0, 2*PI)); 
+				placeObject(ux, uz, "gaia/flora_tree_cypress", 0, randFloat(0, 2*PI));
 		}
 	}
 }

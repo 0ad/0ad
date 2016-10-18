@@ -65,7 +65,7 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 		if (cmpFootprint)
 			pos = cmpFootprint.PickSpawnPoint(ent);
 
-		// TODO this can happen if the player build on the place 
+		// TODO this can happen if the player build on the place
 		// where our trigger point is
 		// We should probably warn the trigger maker in some way,
 		// but not interrupt the game for the player
@@ -76,7 +76,7 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 	}
 
 	return entities;
-}; 
+};
 
 /**
  * Spawn units from all trigger points with this reference
@@ -89,7 +89,7 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
  * @return A list of new entities per origin like
  * {originId1: [entId1, entId2], originId2: [entId3, entId4], ...}
  */
-TriggerHelper.SpawnUnitsFromTriggerPoints = function(ref, template, count, owner = null)          
+TriggerHelper.SpawnUnitsFromTriggerPoints = function(ref, template, count, owner = null)
 {
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 	let triggerPoints = cmpTrigger.GetTriggerPoints(ref);
@@ -111,7 +111,7 @@ TriggerHelper.GetResourceType = function(entity)
 		return undefined;
 
 	return cmpResourceSupply.GetType();
-}; 
+};
 
 /**
  * The given player will win the game.

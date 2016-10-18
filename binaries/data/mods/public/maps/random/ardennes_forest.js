@@ -47,8 +47,8 @@ const aCeltHouse = "actor|structures/celts/house.xml";
 const aCeltLongHouse = "actor|structures/celts/longhouse.xml";
 
 var pForest = [
-		tPineForestFloor+TERRAIN_SEPARATOR+oOak, tForestFloor, 
-		tPineForestFloor+TERRAIN_SEPARATOR+oPine, tForestFloor, 
+		tPineForestFloor+TERRAIN_SEPARATOR+oOak, tForestFloor,
+		tPineForestFloor+TERRAIN_SEPARATOR+oPine, tForestFloor,
 		tPineForestFloor+TERRAIN_SEPARATOR+oAleppoPine, tForestFloor,
 		tForestFloor
 		];
@@ -71,7 +71,7 @@ var clHillDeco = createTileClass();
 // Create central dip
 var centerX = fractionToTiles(0.5);
 var centerZ = fractionToTiles(0.5);
-	
+
 var placer = new ClumpPlacer(scaleByMapSize(mapSize * 70, mapSize * 300), 0.94, 0.05, 0.1, centerX, centerZ);
 var elevationPainter = new SmoothElevationPainter(
 	    ELEVATION_SET,
@@ -82,12 +82,12 @@ var painter = new LayeredPainter(
 		[tCliff, tGrass],		// terrains
 		[3]		// widths
 	);
-createArea(placer, 
-	[painter, elevationPainter], 
+createArea(placer,
+	[painter, elevationPainter],
 	null);
-	
+
 RMS.SetProgress(5);
-	
+
 // Find all hills
 var noise0 = new Noise2D(20);
 for (var ix = 0; ix < mapSize; ix++)
@@ -97,7 +97,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		var h = getHeight(ix,iz);
 		if(h > 40){
 			addToClass(ix,iz,clHill);
-			
+
 			// Add hill noise
 			var x = ix / (mapSize + 1.0);
 			var z = iz / (mapSize + 1.0);
@@ -144,7 +144,7 @@ function distanceToPlayers(x, z)
 function playerNearness(x, z)
 {
 	var d = fractionToTiles(distanceToPlayers(x,z));
-	
+
 	if (d < 13)
 	{
 		return 0;
@@ -165,7 +165,7 @@ for (var i=0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -174,12 +174,12 @@ for (var i=0; i < numPlayers; i++)
 
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	var citySize = 250;
 
 	var placer = new ClumpPlacer(citySize, 0.95, 0.3, 0.1, ix, iz);
 	createArea(placer, [paintClass(clPlayer)], null);
-	
+
 	// Create the city patch
 	var placer = new ClumpPlacer(citySize * 0.4, 0.6, 0.05, 10, ix, iz);
 	var painter = new TerrainPainter([tCity]);
@@ -198,7 +198,7 @@ for (var i=0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// Create starter metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -213,7 +213,7 @@ for (var i=0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// Create starter stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -223,7 +223,7 @@ for (var i=0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create starting trees
 	var num = 2;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
@@ -235,7 +235,7 @@ for (var i=0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 }
 
 RMS.SetProgress(30);
@@ -254,15 +254,15 @@ for (var i = 0; i < sizes.length; i++)
 	    50,
 	    sizes[i] < 50 ? 2 : 4
     );
-	 
+
 	var mountains = createAreas(
 		placer,
-		[painter, paintClass(clHill), elevationPainter], 
+		[painter, paintClass(clHill), elevationPainter],
 		avoidClasses(clPlayer, 8, clBaseResource, 2, clHill, 5),
 		scaleByMapSize(1, 4)
 	);
-	
-	
+
+
 	if(sizes[i] > 100 && mountains.length > 0)
 	{
 		var placer = new ClumpPlacer(sizes[i] * 0.3, 0.94, 0.05, 0.1);
@@ -275,33 +275,33 @@ for (var i = 0; i < sizes.length; i++)
 			[tCliff, tForestFloor],		// terrains
 			[2]		// widths
 		);
-		
+
 		createAreasInAreas(
 			placer,
-			[painter, elevationPainter], 
+			[painter, elevationPainter],
 			stayClasses(clHill, 4),
 			mountains.length * 2,
 			20,
 			mountains
 		);
 	}
-	
-	
+
+
 	var placer = new ClumpPlacer(sizes[i], 0.1, 0.2, 0.1);
-	
+
 	var elevationPainter = new SmoothElevationPainter(
 	    ELEVATION_SET,
 	    10,
 	    2
     );
-	
+
 	var ravine = createAreas(
 		placer,
-		[painter, paintClass(clHill), elevationPainter], 
+		[painter, paintClass(clHill), elevationPainter],
 		avoidClasses(clPlayer, 6, clBaseResource, 2, clHill, 5),
 		scaleByMapSize(1, 3)
 	);
-	
+
 	if(sizes[i] > 150 && ravine.length > 0)
 	{
 		// Place huts in ravines
@@ -316,7 +316,7 @@ for (var i = 0; i < sizes.length; i++)
 			ravine.length * 5, 20,
 			ravine
 		);
-		
+
 		var group = new RandomGroup(
 		[
 			new SimpleObject(aCeltHomestead, 1,1, 1,1)
@@ -327,7 +327,7 @@ for (var i = 0; i < sizes.length; i++)
 			ravine.length * 2, 100,
 			ravine
 		);
-		
+
 		// Place noise
 		var placer = new ClumpPlacer(sizes[i] * 0.3, 0.94, 0.05, 0.1);
 		var elevationPainter = new SmoothElevationPainter(
@@ -339,16 +339,16 @@ for (var i = 0; i < sizes.length; i++)
 			[tCliff, tForestFloor],		// terrains
 			[2]		// widths
 		);
-		
+
 		createAreasInAreas(
 			placer,
-			[painter, elevationPainter], 
+			[painter, elevationPainter],
 			[avoidClasses(clHillDeco, 2), stayClasses(clHill, 0)],
 			ravine.length * 2,
 			20,
 			ravine
 		);
-		
+
 		var placer = new ClumpPlacer(sizes[i] * 0.1, 0.3, 0.05, 0.1);
 		var elevationPainter = new SmoothElevationPainter(
 				 ELEVATION_SET,
@@ -359,17 +359,17 @@ for (var i = 0; i < sizes.length; i++)
 			[tCliff, tForestFloor],		// terrains
 			[2]		// widths
 		);
-		
+
 		createAreasInAreas(
 			placer,
-			[painter, paintClass(clHill), elevationPainter], 
+			[painter, paintClass(clHill), elevationPainter],
 			[avoidClasses(clHillDeco, 2), borderClasses(clHill, 15, 1)],
 			ravine.length * 2,
 			50,
 			ravine
 		);
 	}
-	
+
 	RMS.SetProgress(30 + (20 * (i / sizes.length)));
 }
 
@@ -386,7 +386,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var h = getHeight(ix,iz);
-		
+
 		if(h > 15 && h < 45 && playerClass.countMembersInRadius(ix, iz, 1) == 0)
 		{
 			// explorable area
@@ -395,7 +395,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			pt.z = iz;
 			explorableArea.points.push(pt);
 		}
-		
+
 		if(h > 35)
 		{
 			var rnd = randFloat();
@@ -453,7 +453,7 @@ placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
 painter = new TerrainPainter(pForest);
 createAreasInAreas(
 	placer,
-	[painter, paintClass(clForest)], 
+	[painter, paintClass(clForest)],
 	avoidClasses(clPlayer, 5, clBaseResource, 4, clForest, 6, clHill, 4),
 	num,
 	100,
@@ -465,8 +465,8 @@ placer = new ClumpPlacer(numForestJoin / num, 0.1, 0.1, 1);
 painter = new TerrainPainter(pForest);
 createAreasInAreas(
 	placer,
-	[painter, paintClass(clForest), paintClass(clForestJoin)], 
-	[avoidClasses(clPlayer, 5, clBaseResource, 4, clForestJoin, 5, clHill, 4), borderClasses(clForest, 1, 4)], 
+	[painter, paintClass(clForest), paintClass(clForestJoin)],
+	[avoidClasses(clPlayer, 5, clBaseResource, 4, clForestJoin, 5, clHill, 4), borderClasses(clForest, 1, 4)],
 	num,
 	100,
 	[explorableArea]
@@ -614,7 +614,7 @@ for (var i = 0; i < types.length; ++i)
 		[new SimpleObject(types[i], 1,1, 0,3)],
 		true, clForest
 	);
-	
+
 	createObjectGroupsByAreas(group, 0,
 		avoidClasses(clForest, 4, clHill, 5, clPlayer, 10, clBaseResource, 2, clMetal, 5, clRock, 5),
 		num, 20,

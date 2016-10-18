@@ -60,7 +60,7 @@ var oFish = "gaia/fauna_fish";
 
 
 // Setup terrain
-var terrainWood = ['alpine_forrestfloor|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine']; 
+var terrainWood = ['alpine_forrestfloor|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine'];
 
 var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine',
 	'temp_grass_long|gaia/flora_bush_temperate', 'temp_grass_clovers|gaia/flora_bush_berry', 'temp_grass_clovers_2|gaia/flora_bush_grapes',
@@ -109,7 +109,7 @@ var terrainHillBorder = ['temp_highlands', 'temp_highlands', 'temp_highlands', '
 var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
 
-// Setup map 
+// Setup map
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
 var playableMapRadius = mapRadius - 5;
@@ -141,7 +141,7 @@ var resourceRadius = 2*mapRadius/3; // 3*mapRadius/8;
 // Setup woods
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok 
+var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 
@@ -158,7 +158,7 @@ function HeightPlacer(lowerBound, upperBound) {
 
 HeightPlacer.prototype.place = function (constraint) {
 	constraint = (constraint || new NullConstraint());
-	
+
     var ret = [];
     for (var x = 0; x < g_Map.size; x++) {
         for (var y = 0; y < g_Map.size; y++) {
@@ -241,12 +241,12 @@ for (var i=0; i < numPlayers; i++)
 	rectangularSmoothToHeight({"x": x,"y": z} , 20, 20, playerHeight, 0.8);
 
 	placeCivDefaultEntities(x, z, i+1, { 'iberWall': false });
-	
+
 	// Place base texture
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
 	var painter = [new TerrainPainter([baseTex], [baseRadius/4, baseRadius/4]), paintClass(clPlayer)];
 	createArea(placer, painter);
-	
+
 	// Place starting resources
 	var distToSL = 15;
 	var resStartAngle = playerAngle[i] + PI;
@@ -369,7 +369,7 @@ RMS.SetProgress(75);
 log("Creating decoration...");
 createDecoration
 (
- [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)],
   [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
   [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
   [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
@@ -393,7 +393,7 @@ createFood
 (
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
- ], 
+ ],
  [
   100 * numPlayers
  ],
@@ -443,7 +443,7 @@ for (var x = 0; x < mapSize; x++)
 			else
 			{
 				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWood), paintClass(clForest)]; 
+				var painter = [new TerrainPainter(terrainWood), paintClass(clForest)];
 				createArea(placer, painter, avoidClasses(clPath, 2, clOpen, 3, clWater, 4));}
 		}
 	}

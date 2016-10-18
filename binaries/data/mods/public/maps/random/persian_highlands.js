@@ -109,10 +109,10 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// scale radius of player area by map size
 	var radius = scaleByMapSize(15,25);
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -121,22 +121,22 @@ for (var i = 0; i < numPlayers; i++)
 
 	// calculate size based on the radius
 	var size = PI * radius * radius;
-	
+
 	// create the player area
 	var placer = new ClumpPlacer(size, 0.9, 0.5, 10, ix, iz);
 	createArea(placer, paintClass(clPlayer), null);
-	
+
 	// create the city patch
 	var cityRadius = 10;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tCity, tCity], [3]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -147,7 +147,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -162,7 +162,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -172,7 +172,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create starting trees
 	var num = 3;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
@@ -192,7 +192,7 @@ RMS.SetProgress(10);
 log("Creating rock patches...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(3, 6)), floor(scaleByMapSize(20, 45)), 0);
 painter = new TerrainPainter(tRocky);
-createAreas(placer, [painter, paintClass(clPatch)], 
+createAreas(placer, [painter, paintClass(clPatch)],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(5, 20)
 );
@@ -201,7 +201,7 @@ RMS.SetProgress(15);
 
 var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(15, 40)), 0);
 var painter = new TerrainPainter([tRocky, tRocks]);
-createAreas(placer, [painter, paintClass(clPatch)], 
+createAreas(placer, [painter, paintClass(clPatch)],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50)
 );
@@ -211,7 +211,7 @@ RMS.SetProgress(20);
 log("Creating dirt patches...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(15, 40)), 0);
 painter = new TerrainPainter([tGrass]);
-createAreas(placer, [painter, paintClass(clPatch)], 
+createAreas(placer, [painter, paintClass(clPatch)],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50)
 );
@@ -235,7 +235,7 @@ log("Creating hills...");
 var numHills = scaleByMapSize(20, 80);
 for (var i = 0; i < numHills; ++i)
 {
-	
+
 	createMountain(
 		floor(scaleByMapSize(40, 60)),
 		floor(scaleByMapSize(3, 4)),
@@ -278,7 +278,7 @@ for (var i = 0; i < types.length; ++i)
 		);
 	createAreas(
 		placer,
-		[painter, paintClass(clForest)], 
+		[painter, paintClass(clForest)],
 		avoidClasses(clPlayer, 6, clWater, 3, clForest, 10, clHill, 1, clCP, 1),
 		num
 	);
@@ -430,7 +430,7 @@ for (var i = 0; i < types.length; ++i)
 if (!random_season)
 	setTerrainAmbientColor(0.329412, 0.419608, 0.501961);
 
-setSunColor(1.0, 0.796, 0.374);	
+setSunColor(1.0, 0.796, 0.374);
 setSunElevation(PI / 6);
 setSunRotation(-1.86532);
 

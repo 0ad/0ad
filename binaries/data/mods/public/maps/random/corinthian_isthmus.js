@@ -159,30 +159,30 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = floor(fx);
 	var iz = floor(fz);
 	addToClass(ix, iz, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tCityPlaza, tCity], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -193,7 +193,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -208,7 +208,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -230,7 +230,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -255,7 +255,7 @@ createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 // create forests
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
- avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3), 
+ avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
  clForest
 );
 
@@ -314,7 +314,7 @@ RMS.SetProgress(65);
 // create decoration
 createDecoration
 (
- [[new SimpleObject(aDecorativeRock, 1,3, 0,1)], 
+ [[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
   [new SimpleObject(aBush2, 1,2, 0,1), new SimpleObject(aBush1, 1,3, 0,2), new SimpleObject(aBush4, 1,2, 0,1), new SimpleObject(aBush3, 1,3, 0,2)]
  ],
  [
@@ -331,7 +331,7 @@ createFood
 (
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
- ], 
+ ],
  [
   3*scaleByMapSize(5,20)
  ],
@@ -345,7 +345,7 @@ createFood
   [new SimpleObject(oSheep, 5,7, 0,4)],
   [new SimpleObject(oGoat, 2,4, 0,3)],
   [new SimpleObject(oDeer, 2,4, 0,2)]
- ], 
+ ],
  [
   scaleByMapSize(5,20),
   scaleByMapSize(5,20),
@@ -359,7 +359,7 @@ createFood
 (
  [
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ], 
+ ],
  [
   3 * numPlayers
  ],
@@ -375,9 +375,9 @@ createStragglerTrees(types, avoidClasses(clForest, 0, clWater, 2, clPlayer, 8, c
 
 // Set environment
 setSkySet("sunny");
-setSunColor(0.917, 0.828, 0.734);	
-setWaterColor(0.292, 0.347, 0.691);		
-setWaterColor(0, 0.501961, 1);		
+setSunColor(0.917, 0.828, 0.734);
+setWaterColor(0.292, 0.347, 0.691);
+setWaterColor(0, 0.501961, 1);
 setWaterTint(0.501961, 1, 1);
 setWaterWaviness(2.5);
 setWaterType("ocean");

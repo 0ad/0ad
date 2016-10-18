@@ -61,7 +61,7 @@ function passageMaker(x1, z1, x2, z2, width, maxheight, height, smooth, tileclas
 					if (tileclass !== undefined)
 					{
 						addToClass(ix, iz, tileclass);
-					}	
+					}
 					if (terrain !== undefined)
 					{
 						placeTerrain(ix, iz, terrain);
@@ -69,7 +69,7 @@ function passageMaker(x1, z1, x2, z2, width, maxheight, height, smooth, tileclas
 				}
 			}
 		}
-	}	
+	}
 	TILE_CENTERED_HEIGHT_MAP = tchm;
 }
 
@@ -152,7 +152,7 @@ function createStartingPlayerEntities(fx, fz, playerid, civEntities, orientation
 		{
 			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
 			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, civEntities[j].Template, playerid, uAngle); 
+			placeObject(ux, uz, civEntities[j].Template, playerid, uAngle);
 		}
 	}
 }
@@ -193,7 +193,7 @@ function placeCivDefaultEntities(fx, fz, playerid, kwargs = {})
 		{
 			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
 			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, civEntities[j].Template, playerid, uAngle); 
+			placeObject(ux, uz, civEntities[j].Template, playerid, uAngle);
 		}
 	}
 	// Add defensive structiures for Iberians as their civ bonus
@@ -380,7 +380,7 @@ function unPaintTileClassBasedOnHeight(minheight, maxheight, mode, tileclass)
 //	startPoint: [x, y] array defining the start point
 //	endPoint: [x, y] array defining the ending point
 //	heightRange: [min, max] array defining the range which the height of the intended point can be. includes both "min" and "max"
-//  step: how much tile units per turn should the search go. more value means faster but less accurate 
+//  step: how much tile units per turn should the search go. more value means faster but less accurate
 //  n: how many points to skip before ending the search. skips """n-1 points""".
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -514,7 +514,7 @@ function createRamp (x1, y1, x2, y2, minHeight, maxHeight, width, smoothLevel, m
 {
 	var halfWidth = width / 2;
 	var mapSize = g_Map.size;
-	
+
 	if (y1 == y2)
 	{
 		var x3 = x2;
@@ -527,12 +527,12 @@ function createRamp (x1, y1, x2, y2, minHeight, maxHeight, width, smoothLevel, m
 		var x3 = x2 + halfWidth;
 		var y3 = - m * x3 + b;
 	}
-	
+
 	var minBoundX = (x1 <= x2 ? (x1 > halfWidth ? x1 - halfWidth : 0) : (x2 > halfWidth ? x2 - halfWidth : 0));
 	var maxBoundX = (x1 >= x2 ? (x1 < mapSize - halfWidth ? x1 + halfWidth : mapSize) : (x2 < mapSize - halfWidth ? x2 + halfWidth : mapSize));
 	var minBoundY = (y1 <= y2 ? (y1 > halfWidth ? y1 - halfWidth : 0) : (y2 > halfWidth ? y2 - halfWidth : 0));
 	var maxBoundY = (y1 >= y2 ? (x1 < mapSize - halfWidth ? y1 + halfWidth : mapSize) : (y2 < mapSize - halfWidth ? y2 + halfWidth : mapSize));
-	
+
 	for (var x = minBoundX; x < maxBoundX; ++x)
 	{
 		for (var y = minBoundY; y < maxBoundY; ++y)
@@ -574,14 +574,14 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 {
 	fcc = (fcc !== undefined ? fcc : 0);
 	q = (q !== undefined ? q : []);
-	
+
 	// checking for an array of constraints
 	if (constraint instanceof Array)
 	{
 		var constraintArray = constraint;
 		constraint = new AndConstraint(constraintArray);
 	}
-	
+
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(x, z) || !constraint.allows(x, z))
 	{
@@ -590,7 +590,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 
 	var size = getMapSize();
 	var queueEmpty = (q.length ? false : true);
-	
+
 	var gotRet = new Array(size);
 	for (var i = 0; i < size; ++i)
 	{
@@ -600,21 +600,21 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 			gotRet[i][j] = -1;
 		}
 	}
-	
+
 	--size;
-	
+
 	if (minRadius < 1) minRadius = 1;
 	if (minRadius > maxRadius) minRadius = maxRadius;
-	
+
 	var edges = [[x, z]];
 	var circles = [];
-	
+
 	for (var i = 0; i < numCircles; ++i)
 	{
 		var badPoint = false;
 		var point = edges[randInt(edges.length)];
 		var cx = point[0], cz = point[1];
-		
+
 		if (queueEmpty)
 		{
 			var radius = randInt(minRadius, maxRadius);
@@ -624,20 +624,20 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 			var radius = q.pop();
 			queueEmpty = (q.length ? false : true);
 		}
-		
+
 		var sx = cx - radius, lx = cx + radius;
 		var sz = cz - radius, lz = cz + radius;
-		
+
 		sx = (sx < 0 ? 0 : sx);
 		sz = (sz < 0 ? 0 : sz);
 		lx = (lx > size ? size : lx);
 		lz = (lz > size ? size : lz);
-		
+
 		var radius2 = radius * radius;
 		var dx, dz, distance2;
-		
+
 		//log (uneval([sx, sz, lx, lz]));
-		
+
 		for (var ix = sx; ix <= lx; ++ix)
 		{
 			for (var iz = sz; iz <= lz; ++ iz)
@@ -654,9 +654,9 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 							badPoint = true;
 							break;
 						}
-						
+
 						var state = gotRet[ix][iz];
-						
+
 						if (state == -1)
 						{
 							gotRet[ix][iz] = -2;
@@ -667,7 +667,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 							var s = edges.splice(state, 1);
 
 							gotRet[ix][iz] = -2;
-							
+
 							var edgesLength = edges.length;
 							for (var k = state; k < edges.length; ++k)
 							{
@@ -680,13 +680,13 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 			if (badPoint)
 				break;
 		}
-		
+
 		if (badPoint)
 			continue;
 		else
 			circles.push([cx, cz, radius]);
-			
-		
+
+
 		for (var ix = sx; ix <= lx; ++ix)
 		{
 			for (var iz = sz; iz <= lz; ++ iz)
@@ -694,7 +694,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 				if (fcc)
 					if ((x - ix) > fcc || (ix - x) > fcc || (z - iz) > fcc || (iz - z) > fcc)
 						continue;
-				
+
 				if (gotRet[ix][iz] == -2)
 				{
 					if (ix > 0)
@@ -737,27 +737,27 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 			}
 		}
 	}
-	
+
 	var numFinalCircles = circles.length;
-	
+
 	for (var i = 0; i < numFinalCircles; ++i)
 	{
 		var point = circles[i];
 		var cx = point[0], cz = point[1], radius = point[2];
-		
+
 		var sx = cx - radius, lx = cx + radius;
 		var sz = cz - radius, lz = cz + radius;
-		
+
 		sx = (sx < 0 ? 0 : sx);
 		sz = (sz < 0 ? 0 : sz);
 		lx = (lx > size ? size : lx);
 		lz = (lz > size ? size : lz);
-		
+
 		var radius2 = radius * radius;
 		var dx, dz, distance2;
-		
+
 		var clumpHeight = (radius/maxRadius)*maxHeight*randFloat(0.8,1.2);
-		
+
 		for (var ix = sx; ix <= lx; ++ix)
 		{
 			for (var iz = sz; iz <= lz; ++ iz)
@@ -765,9 +765,9 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 				dx = ix - cx;
 				dz = iz - cz;
 				distance2 = dx * dx + dz * dz;
-				
+
 				var newHeight = round((Math.sin(PI*(2*((radius - sqrt(distance2))/radius)/3 - 1/6)) + 0.5) * 2 / 3 *clumpHeight) + randInt(0,2);
-				
+
 				if (dx * dx + dz * dz <= radius2)
 				{
 					if (g_Map.getHeight(ix, iz) < newHeight)

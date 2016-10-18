@@ -90,10 +90,10 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// scale radius of player area by map size
 	var radius = scaleByMapSize(15,25);
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -102,22 +102,22 @@ for (var i = 0; i < numPlayers; i++)
 
 	// calculate size based on the radius
 	var size = PI * radius * radius;
-	
+
 	// create the player area
 	var placer = new ClumpPlacer(size, 0.9, 0.5, 10, ix, iz);
 	createArea(placer, paintClass(clPlayer), null);
-	
+
 	// create the city patch
 	var cityRadius = 10;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tCity, tCityPlaza], [3]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -128,7 +128,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -143,7 +143,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -153,7 +153,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = floor(hillSize / 100);
@@ -174,7 +174,7 @@ RMS.SetProgress(10);
 log("Creating dune patches...");
 placer = new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, 0);
 painter = new TerrainPainter(tDunes);
-createAreas(placer, [painter, paintClass(clPatch)], 
+createAreas(placer, [painter, paintClass(clPatch)],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(5, 20)
 );
@@ -184,7 +184,7 @@ RMS.SetProgress(15);
 log("Creating sand patches...");
 var placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
 var painter = new TerrainPainter([tSand, tFineSand]);
-createAreas(placer, [painter, paintClass(clPatch)], 
+createAreas(placer, [painter, paintClass(clPatch)],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(15, 50)
 );
@@ -194,7 +194,7 @@ RMS.SetProgress(20);
 log("Creating dirt patches...");
 placer = new ClumpPlacer(scaleByMapSize(25, 100), 0.2, 0.1, 0);
 painter = new TerrainPainter([tDirt]);
-createAreas(placer, [painter, paintClass(clPatch)], 
+createAreas(placer, [painter, paintClass(clPatch)],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(15, 50)
 );
@@ -225,7 +225,7 @@ for (var i = 0; i < num; ++i)
 		var gz = round(halfSize + r * sin(angle));
 		++r;
 	} while (!constraint.allows(gx,gz) && r < halfSize);
-	
+
 	group = new RandomGroup(
 		[	new SimpleObject(oGiraffe, 2,4, 0,3),		// select from these groups randomly
 			new SimpleObject(oWildebeest, 3,5, 0,3),
@@ -242,12 +242,12 @@ for (var i = 0; i < num; ++i)
 	var r = 0;
 	var angle = TWO_PI / num * i;
 	do {
-		// Work outward until constraint met 
+		// Work outward until constraint met
 		var gx = round(halfSize + r * cos(angle));
 		var gz = round(halfSize + r * sin(angle));
 		++r;
 	} while (!constraint.allows(gx,gz) && r < halfSize);
-	
+
 	group = new SimpleGroup(
 		[new SimpleObject(oFish, 1,1, 0,1)],
 		true, clFood, gx, gz
@@ -265,7 +265,7 @@ var terrainPainter = new LayeredPainter(
 	[1]				// widths
 );
 var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
-var hillAreas = createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill1)], 
+var hillAreas = createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill1)],
 	avoidClasses(clForest, 3, clPlayer, 0, clHill1, 10),
 	scaleByMapSize(10,20), 100
 );
@@ -279,7 +279,7 @@ terrainPainter = new LayeredPainter(
 	[1]				// widths
 );
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
-var tempAreas = createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill1)], 
+var tempAreas = createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill1)],
 	avoidClasses(clForest, 3, clPlayer, 0, clHill1, 3),
 	scaleByMapSize(15,25), 100
 );
@@ -311,7 +311,7 @@ terrainPainter = new LayeredPainter(
 	[1]				// widths
 );
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
-createAreasInAreas(placer, [terrainPainter, elevationPainter], 
+createAreasInAreas(placer, [terrainPainter, elevationPainter],
 	[stayClasses(clHill1, 0)],
 	scaleByMapSize(15,25), 50,
 	hillAreas
@@ -326,7 +326,7 @@ terrainPainter = new LayeredPainter(
 	[1]				// widths
 );
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
-createAreas(placer, [terrainPainter, elevationPainter], 
+createAreas(placer, [terrainPainter, elevationPainter],
 	[stayClasses(clHill1, 0)],
 	scaleByMapSize(15,25), 50,
 	hillAreas
@@ -341,7 +341,7 @@ placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 0);
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
 	placer,
-	elevationPainter, 
+	elevationPainter,
 	avoidClasses(clForest, 0, clPlayer, 0, clHill1, 2),
 	scaleByMapSize(100, 200)
 );
@@ -362,7 +362,7 @@ log("Creating forests...");
 var num = scaleByMapSize(10,30);
 placer = new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5);
 painter = new TerrainPainter([tSand, pForest]);
-createAreas(placer, [painter, paintClass(clForest)], 
+createAreas(placer, [painter, paintClass(clForest)],
 	avoidClasses(clPlayer, 1, clForest, 10, clHill1, 1),
 	num, 50
 );

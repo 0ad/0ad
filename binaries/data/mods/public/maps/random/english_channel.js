@@ -85,7 +85,7 @@ var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
 var playerPos = new Array(numPlayers);
 var iop = 0;
-	
+
 for (var i = 0; i < numPlayers; i++)
 {
 	iop = i - 1;
@@ -111,36 +111,36 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-	// Setting tile class	
+	// Setting tile class
 	addToClass(ix, iz, clPlayer);
 	addToClass(ix+5, iz, clPlayer);
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// calculate size based on the radius
 	var hillSize = PI * radius * radius;
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, [painter, paintClass(clPlayer)], null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
@@ -153,7 +153,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -168,7 +168,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -178,7 +178,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create starting trees
 	var num = 2;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
@@ -190,7 +190,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -220,15 +220,15 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
-		
+
 		// add the rough shape of the water
 		var km = 20/scaleByMapSize(35, 160);
-		
+
 		var fadeDist = 0.02;
-	
+
 		var cu = km*rndRiver(theta+x*0.5*(mapSize/64),seed);
 		var cu2 = km*rndRiver(theta2+x*0.5*(mapSize/64),seed2);
-		
+
 		if ((z > cu + 0.5 - WATER_WIDTH/2) && (z < cu2 + 0.5 + WATER_WIDTH/2))
 		{
 			var h;
@@ -244,7 +244,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				h = -4.0;
 			}
-			
+
 			if (h < -1.5)
 			{
 				placeTerrain(ix, iz, tWater);
@@ -253,7 +253,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				placeTerrain(ix, iz, tShore);
 			}
-			
+
 			setHeight(ix, iz, h);
 		}
 		else
@@ -346,7 +346,7 @@ RMS.SetProgress(50);
 // create forests
 createForests(
  [tGrass, tGrassDForest, tGrassDForest, pForestD, pForestD],
- avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6), 
+ avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
  clForest,
  1.0,
  0
@@ -399,7 +399,7 @@ RMS.SetProgress(85);
 // create decoration
 createDecoration
 (
- [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)],
   [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
   [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
   [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
@@ -418,7 +418,7 @@ createDecoration
 // create water decoration in the shallow parts
 createDecoration
 (
- [[new SimpleObject(aReeds, 1,3, 0,1)], 
+ [[new SimpleObject(aReeds, 1,3, 0,1)],
   [new SimpleObject(aLillies, 1,2, 0,1)]
  ],
  [
@@ -435,7 +435,7 @@ createFood
   [new SimpleObject(oDeer, 5,7, 0,4)],
   [new SimpleObject(oGoat, 2,3, 0,2)],
   [new SimpleObject(oBoar, 2,3, 0,2)]
- ], 
+ ],
  [
   3 * numPlayers,
   3 * numPlayers,
@@ -449,7 +449,7 @@ createFood
 (
  [
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ], 
+ ],
  [
   randInt(1, 4) * numPlayers + 2
  ],
@@ -461,7 +461,7 @@ createFood
 (
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
- ], 
+ ],
  [
   25 * numPlayers
  ],

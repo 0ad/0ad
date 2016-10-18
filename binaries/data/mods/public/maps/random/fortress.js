@@ -119,7 +119,7 @@ for (var i=0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	bbAngle += PI/2;
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
@@ -137,7 +137,7 @@ for (var i=0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	bbAngle += PI/2;
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
@@ -146,16 +146,16 @@ for (var i=0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// Base texture
 	var civ = getCivCode(i);
 	var tilesSize = (civ == "cart" ? 27 : 22);
-	
+
 	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);
 	const minBoundY = (playerZ[i] > tilesSize ? playerZ[i] - tilesSize : 0);
 	const maxBoundX = (playerX[i] < mapSize - tilesSize ? playerX[i] + tilesSize : mapSize);
 	const maxBoundY = (playerZ[i] < mapSize - tilesSize ? playerZ[i] + tilesSize : mapSize);
-	
+
 	for (var tx = minBoundX; tx < maxBoundX; ++tx)
 	{
 		for (var ty = minBoundY; ty < maxBoundY; ++ty)
@@ -168,7 +168,7 @@ for (var i=0; i < numPlayers; i++)
 			}
 		}
 	}
-	
+
 	// Place custom fortress
 	if (civ == "brit" || civ == "gaul" || civ == "iber")
 	{
@@ -200,7 +200,7 @@ var terrainPainter = new LayeredPainter(
 var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 3);
 var waterAreas = createAreas(
 	placer,
-	[terrainPainter, elevationPainter, paintClass(clWater)], 
+	[terrainPainter, elevationPainter, paintClass(clWater)],
 	avoidClasses(clPlayer, 7, clWater, 20),
 	numLakes
 );
@@ -273,7 +273,7 @@ for (var i = 0; i < types.length; ++i)
 		);
 	createAreas(
 		placer,
-		[painter, paintClass(clForest)], 
+		[painter, paintClass(clForest)],
 		avoidClasses(clPlayer, 5, clWater, 3, clForest, 15, clHill, 1),
 		num
 	);
@@ -327,7 +327,7 @@ RMS.SetProgress(70);
 //create decoration
 createDecoration
 (
- [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)],
   [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
   [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
   [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
@@ -351,7 +351,7 @@ createFood
  [
   [new SimpleObject(oSheep, 2,3, 0,2)],
   [new SimpleObject(oDeer, 5,7, 0,4)]
- ], 
+ ],
  [
   3 * numPlayers,
   3 * numPlayers
@@ -364,7 +364,7 @@ createFood
 (
  [
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ], 
+ ],
  [
   randInt(1, 4) * numPlayers + 2
  ],

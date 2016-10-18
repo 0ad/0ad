@@ -94,7 +94,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(20,29);
 	var shoreRadius = 6;
@@ -118,12 +118,12 @@ for (var i = 0; i < numPlayers; i++)
 		shoreRadius				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -134,7 +134,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create woods
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 13;
@@ -145,7 +145,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -160,7 +160,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -182,7 +182,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -197,7 +197,7 @@ for (var i = 0; i < numPlayers; i++)
 		);
 		createObjectGroup(group, 0);
 	}
-	
+
 	//create docks
 	var dockLocation = getTIPIADBON([ix, iz], [mapSize / 2, mapSize / 2], [-3 , 2.6], 0.5, 3);
 	if (dockLocation !== undefined)
@@ -223,9 +223,9 @@ for (var i = 0; i < numIslands; ++i)
 	landAreaLen = landAreas.length;
 	if (!landAreaLen)
 		break;
-	
+
 	chosenPoint = landAreas[randInt(landAreaLen)];
-	
+
 	// create big islands
 	placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30,70));
 	//placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
@@ -236,7 +236,7 @@ for (var i = 0; i < numIslands; ++i)
 	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
 	var newIsland = createAreas(
 		placer,
-		[terrainPainter, elevationPainter, paintClass(clLand)], 
+		[terrainPainter, elevationPainter, paintClass(clLand)],
 		avoidClasses(clLand, 3, clPlayer, 3),
 		1, 1
 	);
@@ -263,9 +263,9 @@ for (var i = 0; i < numIslands; ++i)
 	landAreaLen = landAreas.length;
 	if (!landAreaLen)
 		break;
-	
+
 	chosenPoint = landAreas[randInt(0, landAreaLen)];
-	
+
 	placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22,40));
 	terrainPainter = new LayeredPainter(
 		[tMainTerrain, tMainTerrain],		// terrains
@@ -274,7 +274,7 @@ for (var i = 0; i < numIslands; ++i)
 	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
 	createAreas(
 		placer,
-		[terrainPainter, elevationPainter, paintClass(clLand)], 
+		[terrainPainter, elevationPainter, paintClass(clLand)],
 		avoidClasses(clLand, 3, clPlayer, 3),
 		1, 1
 	);
@@ -312,7 +312,7 @@ placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
 	placer,
-	painter, 
+	painter,
 	[avoidClasses(clWater, 2, clPlayer, 0), stayClasses(clLand, 3)],
 	scaleByMapSize(20, 100)
 );
@@ -327,7 +327,7 @@ terrainPainter = new LayeredPainter(
 elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
 	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
+	[terrainPainter, elevationPainter, paintClass(clHill)],
 	[avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)],
 	scaleByMapSize(4, 13)
 );
@@ -376,7 +376,7 @@ if (random_terrain != g_BiomeSavanna)
 			);
 		createAreas(
 			placer,
-			[painter, paintClass(clForest)], 
+			[painter, paintClass(clForest)],
 			[avoidClasses(clPlayer, 0, clForest, 10, clHill, 0), stayClasses(clLand, 6)],
 			num
 		);

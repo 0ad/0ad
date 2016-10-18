@@ -99,11 +99,11 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	fx = fractionToTiles(playerX[i]);
 	fz = fractionToTiles(playerZ[i]);
@@ -114,18 +114,18 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-		
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -136,7 +136,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -174,7 +174,7 @@ for (var i = 0; i < numPlayers; i++)
 							[new SimpleObject(eStoneMine, 1,1, 0,2),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 3,3),new SimpleObject(ePalmShort, 2,2, 3,3),new SimpleObject(ePalmTall, 1,1, 3,3)],
 							true, clBaseResource, mX, mZ
 							);
-	createObjectGroup(group, 0);	
+	createObjectGroup(group, 0);
 	// Create starting batches of wood
 	var types = [tForestFloor, pForestMain];	// some variation
 	var forestX = 0;
@@ -192,7 +192,7 @@ for (var i = 0; i < numPlayers; i++)
 	do {
 		var watAngle = forestAngle + randFloat((PI/3), (5*PI/3));
 		var watX = round(forestX + 6 * cos(watAngle));
-		var watY = round(forestY + 6 * sin(watAngle));	
+		var watY = round(forestY + 6 * sin(watAngle));
 		placer = new ClumpPlacer(60, 0.9, 0.4, 5,watX,watY);
 		terrainPainter = new LayeredPainter( [tShore,tShoreBlend], [1] );
 		painter = new SmoothElevationPainter(ELEVATION_MODIFY, -5, 3);
@@ -201,7 +201,7 @@ for (var i = 0; i < numPlayers; i++)
 		group = new SimpleGroup( [new SimpleObject(aReedsA, 1,3, 0,0)], true, undefined, round(forestX + 5 * cos(watAngle)),round(forestY + 5 * sin(watAngle)) );
 		createObjectGroup(group, 0);
 	} while (createArea( placer, [terrainPainter, painter],  avoidClasses(clBaseResource,0) ) === undefined);
-	
+
 	// TODO: add a few random trees here and there
 }
 
@@ -211,7 +211,7 @@ RMS.SetProgress(20);
 log("Creating bumps...");
 placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3);
-createAreas( placer, painter, 
+createAreas( placer, painter,
 			avoidClasses(clWater, 5, clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(30, 70)
 			);
@@ -224,7 +224,7 @@ log("Creating Dunes...");
 placer = new ClumpPlacer(120, 0.3, 0.06, 1);
 var terrainPainter = new TerrainPainter(tDune);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 18, 30);
-createAreas( placer, [terrainPainter, painter], 
+createAreas( placer, [terrainPainter, painter],
 			avoidClasses(clWater, 13, clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(15, 50)
 			);
@@ -408,7 +408,7 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 				{
 					group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 					createObjectGroup(group, 0);
-				}				
+				}
 			}
 		}
 	}

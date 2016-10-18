@@ -132,19 +132,19 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// place the attacker spawning trigger point
 	var ax = round(fractionToTiles(attackerX[i]));
 	var az = round(fractionToTiles(attackerZ[i]));
 	placeObject(ax, az, "special/trigger_point_A", id, PI);
 	addToClass(ax, az, clPlayer);
 	addToClass(round(fractionToTiles((attackerX[i] + playerX[i]) / 2)), round(fractionToTiles((attackerZ[i] + playerZ[i]) / 2)), clPlayer);
-	
+
 	// get the x and z in tiles
 	fx = fractionToTiles(playerX[i]);
 	fz = fractionToTiles(playerZ[i]);
@@ -155,7 +155,7 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// Place default civ starting entities
 	var uDist = 6;
 	var uSpace = 2;
@@ -166,9 +166,9 @@ for (var i = 0; i < numPlayers; i++)
 	{
 		var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
 		var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-		placeObject(ux, uz, "skirmish/units/default_infantry_melee_b", id, uAngle); 
+		placeObject(ux, uz, "skirmish/units/default_infantry_melee_b", id, uAngle);
 	}
-	
+
 	// create grass tufts
 	var num = radius * radius * 3.14 / 250;
 	for (var j = 0; j < num; j++)
@@ -196,7 +196,7 @@ for (var i = 0; i < numPlayers; i++)
 		4				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
-	
+
 	//creating female citizens
 	var femaleLocation = getTIPIADBON([ix, iz], [mapSize / 2, mapSize / 2], [-3 , 3.5], 1, 3);
 	if (femaleLocation !== undefined)
@@ -241,7 +241,7 @@ createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 5, clBas
 // create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- [avoidClasses(clPlayer, 20, clForest, 5, clHill, 0, clBaseResource,2, clWomen, 5), stayClasses(clLand, 4)], 
+ [avoidClasses(clPlayer, 20, clForest, 5, clHill, 0, clBaseResource,2, clWomen, 5), stayClasses(clLand, 4)],
  clForest,
  1.0,
  random_terrain
@@ -274,7 +274,7 @@ if (random_terrain == g_BiomeTropic)
 
 createDecoration
 (
- [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)],
   [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
   [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
   [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],

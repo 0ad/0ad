@@ -10,7 +10,7 @@ const ELEVATION_MODIFY = 1;
 //	elevation: Target elevation/height to be painted
 //
 /////////////////////////////////////////////////////////////////////////////
-	
+
 function ElevationPainter(elevation)
 {
 	this.elevation = elevation;
@@ -22,11 +22,11 @@ ElevationPainter.prototype.paint = function(area)
 {
 	var length = area.points.length;
 	var elevation = this.elevation;
-	
+
 	for (var i=0; i < length; i++)
 	{
 		var pt = area.points[i];
-		
+
 		for (var j=0; j < 4; j++)
 		{
 			if (g_Map.inMapBounds(pt.x + this.DX[j],pt.z + this.DZ[j]))
@@ -51,13 +51,13 @@ function LayeredPainter(terrainArray, widths)
 	{
 		throw("LayeredPainter: terrains must be an array!");
 	}
-	
+
 	this.terrains = [];
 	for (var i = 0; i < terrainArray.length; ++i)
 	{
 		this.terrains.push(createTerrain(terrainArray[i]));
 	}
-	
+
 	this.widths = widths;
 }
 
@@ -66,7 +66,7 @@ LayeredPainter.prototype.paint = function(area)
 	var size = getMapSize();
 	var saw = new Array(size);
 	var dist = new Array(size);
-	
+
 	// init typed arrays
 	for (var i = 0; i < size; ++i)
 	{
@@ -81,19 +81,19 @@ LayeredPainter.prototype.paint = function(area)
 	var pts = area.points;
 	var length = pts.length;
 	var areaID = area.getID();
-	
+
 	for (var i=0; i < length; i++)
 	{
 		var x = pts[i].x;
 		var z = pts[i].z;
-		
+
 		for (var dx=-1; dx <= 1; dx++)
 		{
 			var nx = x+dx;
 			for (var dz=-1; dz <= 1; dz++)
 			{
 				var nz = z+dz;
-				
+
 				if (g_Map.inMapBounds(nx, nz) && g_Map.area[nx][nz] != areaID && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
@@ -103,7 +103,7 @@ LayeredPainter.prototype.paint = function(area)
 			}
 		}
 	}
-	
+
 	// do BFS inwards to find distances to edge
 	while (pointQ.length)
 	{
@@ -117,7 +117,7 @@ LayeredPainter.prototype.paint = function(area)
 		{
 			var w=0;
 			var i=0;
-			
+
 			for (; i < this.widths.length; i++)
 			{
 				w += this.widths[i];
@@ -136,7 +136,7 @@ LayeredPainter.prototype.paint = function(area)
 			for (var dz=-1; dz<=1; dz++)
 			{
 				var nz = pz+dz;
-				
+
 				if (g_Map.inMapBounds(nx, nz) && g_Map.area[nx][nz] == areaID && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
@@ -156,7 +156,7 @@ LayeredPainter.prototype.paint = function(area)
 //	painters: Array of painter objects
 //
 /////////////////////////////////////////////////////////////////////////////
-	
+
 function MultiPainter(painters)
 {
 	this.painters = painters;
@@ -188,7 +188,7 @@ function SmoothElevationPainter(type, elevation, blendRadius)
 	this.type = type;
 	this.elevation = elevation;
 	this.blendRadius = blendRadius;
-	
+
 	if (type != ELEVATION_SET && type != ELEVATION_MODIFY)
 	{
 		throw("SmoothElevationPainter: invalid type '"+type+"'");
@@ -211,14 +211,14 @@ SmoothElevationPainter.prototype.paint = function(area)
 	var pointQ = [];
 	var pts = area.points;
 	var heightPts = [];
-	
+
 	var mapSize = getMapSize()+1;
-	
+
 	var saw = new  Array(mapSize);
 	var dist = new Array(mapSize);
 	var gotHeightPt = new Array(mapSize);
 	var newHeight = new Array(mapSize);
-	
+
 	// init typed arrays
 	for (var i = 0; i < mapSize; ++i)
 	{
@@ -227,23 +227,23 @@ SmoothElevationPainter.prototype.paint = function(area)
 		gotHeightPt[i] = new Uint8Array(mapSize);	// bool / uint8
 		newHeight[i] = new Float32Array(mapSize);	// float32
 	}
-	
+
 	var length = pts.length;
 	var areaID = area.getID();
-	
+
 	// get a list of all points
 	for (var i=0; i < length; i++)
 	{
 		var x = pts[i].x;
 		var z = pts[i].z;
-		
+
 		for (var dx=-1; dx <= 2; dx++)
 		{
 			var nx = x+dx;
 			for (var dz=-1; dz <= 2; dz++)
 			{
 				var nz = z+dz;
-				
+
 				if (g_Map.validH(nx, nz) && !gotHeightPt[nx][nz])
 				{
 					gotHeightPt[nx][nz] = 1;
@@ -265,7 +265,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			for (var dz=-1; dz <= 2; dz++)
 			{
 				var nz = z+dz;
-				
+
 				if (g_Map.validH(nx, nz) && !this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
 				{
 					saw[nx][nz]= 1;
@@ -319,7 +319,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			for (var dz=-1; dz <= 1; dz++)
 			{
 				var nz = pz+dz;
-				
+
 				if (g_Map.validH(nx, nz) && this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
@@ -331,26 +331,26 @@ SmoothElevationPainter.prototype.paint = function(area)
 	}
 
 	length = heightPts.length;
-	
+
 	// smooth everything out
 	for (var i = 0; i < length; ++i)
 	{
 		var pt = heightPts[i];
 		var px = pt.x;
 		var pz = pt.z;
-		
+
 		if (this.checkInArea(areaID, px, pz))
 		{
 			var sum = 8 * newHeight[px][pz];
 			var count = 8;
-			
+
 			for (var dx=-1; dx <= 1; dx++)
 			{
 				var nx = px+dx;
 				for (var dz=-1; dz <= 1; dz++)
 				{
 					var nz = pz+dz;
-					
+
 					if (g_Map.validH(nx, nz))
 					{
 						sum += newHeight[nx][nz];
@@ -358,7 +358,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 					}
 				}
 			}
-			
+
 			g_Map.height[px][pz] = sum/count;
 		}
 	}

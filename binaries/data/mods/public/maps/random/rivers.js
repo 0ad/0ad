@@ -126,12 +126,12 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	fx = fractionToTiles(playerX[i]);
 	fz = fractionToTiles(playerZ[i]);
@@ -142,18 +142,18 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -164,7 +164,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -179,7 +179,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -201,7 +201,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -253,7 +253,7 @@ for (var c = 0 ; c < numPlayers ; c++)
 	// join the point in the center of the map
 	riverAngle[c] = startAngle + (((2 * c + 1) / (numPlayers * 2)) * TWO_PI );
 	PX[c] = round(fractionToTiles(0.5 + 0.5 * cos(riverAngle[c])));
-	PZ[c] = round(fractionToTiles(0.5 + 0.5 * sin(riverAngle[c])));	
+	PZ[c] = round(fractionToTiles(0.5 + 0.5 * sin(riverAngle[c])));
 	//log (playerIDs[c], ",,," ,playerIDs[0]);
 	//isRiver[c][numPlayers]=1;
 	if ((c == numPlayers-1)&&(!areAllies(playerIDs[c]-1, playerIDs[0]-1)))
@@ -266,7 +266,7 @@ for (var c = 0 ; c < numPlayers ; c++)
 	}
 }
 
-//theta is the start value for rndRiver function. seed implies 
+//theta is the start value for rndRiver function. seed implies
 //the randomness. we must have one of these for each river we create.
 //shallowpoint and shallow length define the place and size of the shallow part
 var theta = new Array(numPlayers);
@@ -293,8 +293,8 @@ for (var ix = 0; ix < mapSize; ix++)
 				//checking if there is a river between those points
 				if(isRiver[m][n] == 1)
 				{
-					//very important calculations. don't change anything. results 
-					//"dis" which is the distance to the riverline and "y" and "xm" which are 
+					//very important calculations. don't change anything. results
+					//"dis" which is the distance to the riverline and "y" and "xm" which are
 					//the coordinations for the point it's image is in.
 					var a = PZ[m]-PZ[n];
 					var b = PX[n]-PX[m];
@@ -339,7 +339,7 @@ for (var ix = 0; ix < mapSize; ix++)
 							{
 								if (2-(sbms-dis)<-1)
 								{
-									//checking if there is shallow water here 
+									//checking if there is shallow water here
 									var h = -1;
 									addToClass(ix, iz, clShallow);
 								}
@@ -390,7 +390,7 @@ else
 // create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2), 
+ avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
  clForest,
  1.0,
  random_terrain
@@ -447,7 +447,7 @@ if (random_terrain == g_BiomeTropic)
 
 createDecoration
 (
- [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)],
   [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
   [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
   [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
@@ -466,7 +466,7 @@ createDecoration
 // create water decoration in the shallow parts
 createDecoration
 (
- [[new SimpleObject(aReeds, 1,3, 0,1)], 
+ [[new SimpleObject(aReeds, 1,3, 0,1)],
   [new SimpleObject(aLillies, 1,2, 0,1)]
  ],
  [
@@ -484,7 +484,7 @@ createFood
  [
   [new SimpleObject(oMainHuntableAnimal, 5,7, 0,4)],
   [new SimpleObject(oSecondaryHuntableAnimal, 2,3, 0,2)]
- ], 
+ ],
  [
   3 * numPlayers,
   3 * numPlayers
@@ -497,7 +497,7 @@ createFood
 (
  [
   [new SimpleObject(oFruitBush, 5,7, 0,4)]
- ], 
+ ],
  [
   3 * numPlayers
  ],
@@ -509,7 +509,7 @@ createFood
 (
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
- ], 
+ ],
  [
   25 * numPlayers
  ],

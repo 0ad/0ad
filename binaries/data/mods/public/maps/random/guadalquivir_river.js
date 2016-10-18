@@ -124,12 +124,12 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	fx = fractionToTiles(playerX[i]);
 	fz = fractionToTiles(playerZ[i]);
@@ -140,18 +140,18 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 8;
@@ -162,7 +162,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -177,7 +177,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -199,7 +199,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -229,12 +229,12 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
-		
+
 		var h = 0;
 		var distToWater = 0;
-		
+
 		h = 32 * (z - 0.5);
-		
+
 		// add the rough shape of the water
 		var km = 12/scaleByMapSize(35, 160);
 		var cu = km*rndRiver(theta+z*0.5*(mapSize/64),seed);
@@ -245,13 +245,13 @@ for (var ix = 0; ix < mapSize; ix++)
 		{
 			if (xk < cu+((1.05-WATER_WIDTH)/2))
 			{
-				h = -3 + 200.0* abs(cu+((1.05-WATER_WIDTH)/2-xk));	
+				h = -3 + 200.0* abs(cu+((1.05-WATER_WIDTH)/2-xk));
 				if ((((zk>0.3)&&(zk<0.4))||((zk>0.5)&&(zk<0.6))||((zk>0.7)&&(zk<0.8)))&&(h<-1.5))
 				{
 					h=-1.5;
 					addToClass(ix, iz, clShallow);
 				}
-			
+
 			}
 			else if (xk > (cu+(0.95+WATER_WIDTH)/2))
 			{
@@ -290,7 +290,7 @@ createBumps([avoidClasses(clWater, 2, clPlayer, 20, clRiver, 1), stayClasses(clL
 // create forests
 createForests(
  [tGrass, tForestFloorP, tForestFloorC, pForestC, pForestP],
- [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clRiver, 1), stayClasses(clLand, 7)], 
+ [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clRiver, 1), stayClasses(clLand, 7)],
  clForest,
  1.0,
  0
@@ -342,7 +342,7 @@ RMS.SetProgress(65);
 // create decoration
 createDecoration
 (
- [[new SimpleObject(aRockMedium, 1,3, 0,1)], 
+ [[new SimpleObject(aRockMedium, 1,3, 0,1)],
   [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
   [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
   [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
@@ -361,7 +361,7 @@ createDecoration
 // create water decoration in the shallow parts
 createDecoration
 (
- [[new SimpleObject(aReeds, 1,3, 0,1)], 
+ [[new SimpleObject(aReeds, 1,3, 0,1)],
   [new SimpleObject(aLillies, 1,2, 0,1)]
  ],
  [
@@ -379,7 +379,7 @@ createFood
  [
   [new SimpleObject(oDeer, 5,7, 0,4)],
   [new SimpleObject(oSheep, 2,3, 0,2)]
- ], 
+ ],
  [
   3 * numPlayers,
   3 * numPlayers
@@ -392,7 +392,7 @@ createFood
 (
  [
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ], 
+ ],
  [
   randInt(1, 4) * numPlayers + 2
  ],
@@ -404,7 +404,7 @@ createFood
 (
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
- ], 
+ ],
  [
   25 * numPlayers
  ],

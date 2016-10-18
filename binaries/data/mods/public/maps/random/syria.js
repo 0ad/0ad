@@ -87,10 +87,10 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// scale radius of player area by map size
 	var radius = scaleByMapSize(15,25);
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -99,28 +99,28 @@ for (var i = 0; i < numPlayers; i++)
 
 	// calculate size based on the radius
 	var size = PI * radius * radius;
-	
+
 	// create the player area
 	var placer = new ClumpPlacer(size, 0.9, 0.5, 10, ix, iz);
 	createArea(placer, paintClass(clPlayer), null);
-	
+
 	// create the grass patches
 	var grassRadius = floor(scaleByMapSize(16 ,30));
 	placer = new ChainPlacer(2, floor(scaleByMapSize(5, 12)), floor(scaleByMapSize(25, 60)), 1, ix, iz, 0, [grassRadius]);
 	var painter = new LayeredPainter([tGrassSands, tGrass], [3]);
 	createArea(placer, [painter, paintClass(clGrass)], null);
-	
+
 	// create the city patch
 	var cityRadius = 10;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [3]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -131,7 +131,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -146,7 +146,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -156,7 +156,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create starting trees
 	var num = 3;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
@@ -178,7 +178,7 @@ placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
 	placer,
-	painter, 
+	painter,
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800)
 );
@@ -193,7 +193,7 @@ var terrainPainter = new LayeredPainter(
 var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 22, 2);
 createAreas(
 	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)], 
+	[terrainPainter, elevationPainter, paintClass(clHill)],
 	avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),
 	scaleByMapSize(1, 3) * numPlayers * 3
 );
@@ -226,7 +226,7 @@ for (var i = 0; i < types.length; ++i)
 		);
 	createAreas(
 		placer,
-		[painter, paintClass(clForest)], 
+		[painter, paintClass(clForest)],
 		avoidClasses(clPlayer, 1, clGrass, 1, clWater, 3, clForest, 10, clHill, 1),
 		num
 	);
@@ -395,9 +395,9 @@ for (var i = 0; i < types.length; ++i)
 setSkySet("sunny");
 setSunElevation(PI / 8);
 setSunRotation(randFloat(0, TWO_PI));
-setSunColor(0.746, 0.718, 0.539);	
-setWaterColor(0.292, 0.347, 0.691);		
-setWaterTint(0.550, 0.543, 0.437);				
+setSunColor(0.746, 0.718, 0.539);
+setWaterColor(0.292, 0.347, 0.691);
+setWaterTint(0.550, 0.543, 0.437);
 setWaterMurkiness(0.83);
 
 setFogColor(0.8, 0.76, 0.61);

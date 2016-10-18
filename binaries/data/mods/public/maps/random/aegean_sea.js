@@ -112,30 +112,30 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = floor(fx);
 	var iz = floor(fz);
 	addToClass(ix, iz, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tCityPlaza, tCity], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -146,7 +146,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -161,7 +161,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -171,7 +171,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = 2;
@@ -184,7 +184,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -216,14 +216,14 @@ for (var ix = 0; ix < mapSize; ix++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
-		
+
 		// add the rough shape of the water
 		var km = 20/scaleByMapSize(35, 160);
 		var cu = km*rndRiver(theta+z*0.5*(mapSize/64),seed);
 		var cu2 = km*rndRiver(theta2+z*0.5*(mapSize/64),seed2);
-		
+
 		var fadeDist = 0.05;
-		
+
 		if ((x > cu + 0.5 - WATER_WIDTH/2) && (x < cu2 + 0.5 + WATER_WIDTH/2))
 		{
 			var h;
@@ -239,7 +239,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				h = -3.0;
 			}
-			
+
 			setHeight(ix, iz, h);
 			if (h < 0.7){
 				addToClass(ix, iz, clWater);
@@ -259,7 +259,7 @@ createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 // create forests
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
- avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3), 
+ avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
  clForest
 );
 
@@ -299,7 +299,7 @@ placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16
 painter = new SmoothElevationPainter(ELEVATION_SET, -2.5, 3);
 createAreas(
 	placer,
-	[painter, paintClass(clCorals)], 
+	[painter, paintClass(clCorals)],
 	stayClasses(clWater, 6),
 	scaleByMapSize(10, 50)
 );
@@ -314,7 +314,7 @@ var terrainPainter = new LayeredPainter(
 var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 6, 4);
 createAreas(
 	placer,
-	[terrainPainter, elevationPainter, paintClass(clIsland)], 
+	[terrainPainter, elevationPainter, paintClass(clIsland)],
 	[avoidClasses(clPlayer, 8, clForest, 1, clIsland, 15), stayClasses (clWater, 6)],
 	scaleByMapSize(1, 4) * numPlayers
 );
@@ -369,7 +369,7 @@ RMS.SetProgress(65);
 // create decoration
 createDecoration
 (
- [[new SimpleObject(aDecorativeRock, 1,3, 0,1)], 
+ [[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
   [new SimpleObject(aBush2, 1,2, 0,1), new SimpleObject(aBush1, 1,3, 0,2), new SimpleObject(aBush4, 1,2, 0,1), new SimpleObject(aBush3, 1,3, 0,2)]
  ],
  [
@@ -386,7 +386,7 @@ createFood
 (
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
- ], 
+ ],
  [
   3*scaleByMapSize(5,20)
  ],
@@ -400,7 +400,7 @@ createFood
   [new SimpleObject(oSheep, 5,7, 0,4)],
   [new SimpleObject(oGoat, 2,4, 0,3)],
   [new SimpleObject(oDeer, 2,4, 0,2)]
- ], 
+ ],
  [
   scaleByMapSize(5,20),
   scaleByMapSize(5,20),
@@ -414,7 +414,7 @@ createFood
 (
  [
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ], 
+ ],
  [
   3 * numPlayers
  ],
@@ -433,8 +433,8 @@ createStragglerTrees(types, stayClasses(clIsland, 4));
 
 // Set environment
 setSkySet("cumulus");
-setSunColor(0.866667, 0.776471, 0.486275);	
-setWaterColor(0, 0.501961, 1);		
+setSunColor(0.866667, 0.776471, 0.486275);
+setWaterColor(0, 0.501961, 1);
 setWaterTint(0.501961, 1, 1);
 setWaterWaviness(4.0);
 setWaterType("ocean");

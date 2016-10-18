@@ -331,7 +331,7 @@ function getWallAlignment(startX, startY, wall, style, orientation)
 		style = "athen";
 	}
 	orientation = (orientation || 0);
-	
+
 	var alignment = [];
 	var wallX = startX;
 	var wallY = startY;
@@ -407,7 +407,7 @@ function getWallLength(wall, style)
 		warn("Function getWallLength: Unknown style: " + style + ' (falling back to "athen")');
 		style = "athen";
 	}
-	
+
 	var length = 0;
 	for (var i = 0; i < wall.length; i++)
 	{
@@ -449,7 +449,7 @@ function placeWall(startX, startY, wall, style, playerId, orientation)
 			style = (getCivCode(playerId-1));
 	}
 	orientation = (orientation || 0);
-	
+
 	// Get wall alignment
 	var AM = getWallAlignment(startX, startY, wall, style, orientation);
 	// Place the wall
@@ -483,7 +483,7 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, or
 		else
 			style = (getCivCode(playerId-1));
 	}
-	
+
 	// Calculate center if fortress.centerToFirstElement is undefined (default)
 	var centerToFirstElement = fortress.centerToFirstElement;
 	if (centerToFirstElement === undefined)
@@ -512,7 +512,7 @@ function placeFortress(centerX, centerY, type, style, playerId, orientation)
 			style = (getCivCode(playerId-1));
 	}
 	orientation = (orientation || 0);
-	
+
 	// Call placeCustomFortress with the given arguments
 	placeCustomFortress(centerX, centerY, fortressTypes[type], style, playerId, orientation);
 }
@@ -544,7 +544,7 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart, style, play
 			style = (getCivCode(playerId-1));
 	}
 	endWithFirst = typeof endWithFirst == "undefined" ? true : endWithFirst;
-	
+
 	// Check arguments
 	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
 	{
@@ -647,7 +647,7 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId, 
 			endWithFirst = true;
 	}
 	maxBendOff = (maxBendOff || 0);
-	
+
 	// Check arguments
 	if (maxBendOff > PI/2 || maxBendOff < 0)
 		warn("placeCircularWall maxBendOff sould satisfy 0 < maxBendOff < PI/2 (~1.5) but it is: " + maxBendOff);
@@ -755,7 +755,7 @@ function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElemen
 	orientation = (orientation || 0);
 	numCorners = (numCorners || 8);
 	skipFirstWall = (skipFirstWall || true);
-	
+
 	// Setup angles
 	var angleAdd = 2*PI/numCorners;
 	var angleStart = orientation - angleAdd/2;
@@ -814,7 +814,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 		else
 			style = (getCivCode(playerId-1));
 	}
-	
+
 	// Generating a generic wall part assortment with each wall part including 1 gate lengthened by walls and towers
 	// NOTE: It might be a good idea to write an own function for that...
 	var defaultWallPartsAssortment = [["wallShort"], ["wall"], ["wallLong"], ["gate", "tower", "wallShort"]];
@@ -940,7 +940,7 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 	irregularity = (irregularity || 1/2);
 	gateOccurence = (gateOccurence || 3);
 	maxTrys = (maxTrys || 100);
-	
+
 	// Setup some vars
 	var startAngle = randFloat(0, 2*PI);
 	var actualOffX = radius*cos(startAngle);

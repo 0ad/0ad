@@ -124,7 +124,7 @@ function distanceToPlayers(x, z)
 function playerNearness(x, z)
 {
 	var d = fractionToTiles(distanceToPlayers(x,z));
-	
+
 	if (d < 13)
 	{
 		return 0;
@@ -161,12 +161,12 @@ for (var ix = 0; ix <= mapSize; ix++)
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
-		
+
 		var h = 0;
 		var distToWater = 0;
-		
+
 		h = 32 * (x - 0.5);
-		
+
 		// add the rough shape of the water
 		if (x < WATER_WIDTH)
 		{
@@ -182,23 +182,23 @@ for (var ix = 0; ix <= mapSize; ix++)
 			var u = 1 - abs(x-0.5) / (0.5-WATER_WIDTH);
 			h = 12*u;
 		}
-		
+
 		// add some base noise
 		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
-		if ( baseNoise < 0 ) 
+		if ( baseNoise < 0 )
 		{
 			baseNoise *= pn;
 			baseNoise *= max(0.1, distToWater / (0.5-WATER_WIDTH));
 		}
 		var oldH = h;
 		h += baseNoise;
-		
+
 		// add some higher-frequency noise on land
 		if ( oldH > 0 )
 		{
 			h += (0.4*noise2a.get(x,z) + 0.2*noise2b.get(x,z)) * min(oldH/10.0, 1.0);
 		}
-		
+
 		// create cliff noise
 		if ( h > -10 )
 		{
@@ -222,7 +222,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 				h += 19 * min(cliffNoise, 0.045) / 0.045;
 			}
 		}
-		
+
 		// set the height
 		setHeight(ix, iz, h);
 	}
@@ -249,18 +249,18 @@ for (var ix = 0; ix < mapSize; ix++)
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
-		
+
 		// get heights of surrounding vertices
 		var h00 = getHeight(ix, iz);
 		var h01 = getHeight(ix, iz+1);
 		var h10 = getHeight(ix+1, iz);
 		var h11 = getHeight(ix+1, iz+1);
-		
+
 		// find min and max height
 		var maxH = Math.max(h00, h01, h10, h11);
 		var minH = Math.min(h00, h01, h10, h11);
 		var diffH = maxH - minH;
-		
+
 		// figure out if we're at the top of a cliff using min adjacent height
 		var minAdjHeight = minH;
 		if (maxH > 15)
@@ -275,10 +275,10 @@ for (var ix = 0; ix < mapSize; ix++)
 				}
 			}
 		}
-		
+
 		// choose a terrain based on elevation
 		var t = tGrass;
-		
+
 		// water
 		if (maxH < -12)
 		{
@@ -308,12 +308,12 @@ for (var ix = 0; ix < mapSize; ix++)
 		{
 			t = tBeachGrass;
 		}
-		
+
 		if (minH < 0)
 		{
 			addToClass(ix, iz, clWater);
 		}
-		
+
 		// cliffs
 		if (diffH > 2.9 && minH > -7)
 		{
@@ -328,35 +328,35 @@ for (var ix = 0; ix < mapSize; ix++)
 				t = tBeachCliff;
 			else
 				t = [tDirtCliff, tGrassCliff, tGrassCliff, tGrassRock, tCliff];
-			
+
 			addToClass(ix, iz, clCliff);
 		}
-		
+
 		if (minH >= 7)
 		{
 			addToClass(ix, iz, clCliff);
 		}
-		
+
 		// forests
 		if (getHeight(ix, iz) <11){
 			if (diffH < 2 && minH > 1)
 			{
 				var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
-				
+
 				// Thin out trees a bit
 				if (forestNoise > 0 && randFloat() < 0.5)
 				{
 					if (minH < 11 && minH >= 4)
 					{
 						var typeNoise = noise10.get(x,z);
-						
+
 						if (typeNoise < 0.43 && forestNoise < 0.05)
 							t = pPoplarForest;
 						else if (typeNoise < 0.63)
 							t = pMainForest;
 						else
 							t = pPineForest;
-						
+
 						addToClass(ix, iz, clForest);
 					}
 					else if (minH < 4)
@@ -395,7 +395,7 @@ for (var ix = 0; ix < mapSize; ix++)
 				}
 			}
 		}
-		
+
 		placeTerrain(ix, iz, t);
 	}
 }
@@ -406,14 +406,14 @@ for (var i = 1; i <= numPlayers; i++)
 {
 	var id = playerIDs[i-1];
 	log("Creating base for player " + id + "...");
-	
+
 	// get fractional locations in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
 	addToClass(ix, iz, clPlayer);
-	
+
 	// create the city patch, flatten area under TC
 	var cityRadius = 11;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
@@ -424,12 +424,12 @@ for (var i = 1; i <= numPlayers; i++)
 		2				// blend radius
 	);
 	createArea(placer, [painter, elevationPainter], null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create starting berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 9;
@@ -440,7 +440,7 @@ for (var i = 1; i <= numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -455,7 +455,7 @@ for (var i = 1; i <= numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -465,7 +465,7 @@ for (var i = 1; i <= numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	var radius = scaleByMapSize(15,25);
 	var hillSize = PI * radius * radius;
 	// create starting trees
@@ -486,7 +486,7 @@ RMS.SetProgress(40);
 log("Creating bushes...");
 // create bushes
 group = new SimpleGroup(
-	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2), 
+	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2),
 	new SimpleObject(aBushMed, 0,1, 0,2), new SimpleObject(aBushMedDry, 0,1, 0,2)]
 );
 createObjectGroups(group, 0,
@@ -499,7 +499,7 @@ RMS.SetProgress(45);
 log("Creating rocks...");
 // create rocks
 group = new SimpleGroup(
-	[new SimpleObject(aRockSmall, 0,3, 0,2), new SimpleObject(aRockMed, 0,2, 0,2), 
+	[new SimpleObject(aRockSmall, 0,3, 0,2), new SimpleObject(aRockMed, 0,2, 0,2),
 	new SimpleObject(aRockLarge, 0,1, 0,2)]
 );
 createObjectGroups(group, 0,
@@ -528,7 +528,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 15, clStone, 5, clCliff, 3), 
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 15, clStone, 5, clCliff, 3),
 	 borderClasses(clCliff, 0, 5)],
 	scaleByMapSize(4,16), 100
 );
