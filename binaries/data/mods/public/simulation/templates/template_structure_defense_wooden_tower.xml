@@ -60,7 +60,9 @@
   <StatusBars>
     <HeightOffset>18.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence disable=""/>
+  <TerritoryInfluence>
+    <Radius op="mul">0.5</Radius>
+  </TerritoryInfluence>
   <Upgrade>
     <Tower>
       <Entity>structures/{civ}_defense_tower</Entity>
