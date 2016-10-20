@@ -94,12 +94,12 @@ addElements([
 	{
 		"func": addLayeredPatches,
 		"avoid": [
-			g_TileClasses.bluff, 2, 
-			g_TileClasses.dirt, 5, 
-			g_TileClasses.forest, 2, 
-			g_TileClasses.mountain, 2, 
-			g_TileClasses.plateau, 2, 
-			g_TileClasses.player, 12, 
+			g_TileClasses.bluff, 2,
+			g_TileClasses.dirt, 5,
+			g_TileClasses.forest, 2,
+			g_TileClasses.mountain, 2,
+			g_TileClasses.plateau, 2,
+			g_TileClasses.player, 12,
 			g_TileClasses.valley, 5,
 			g_TileClasses.water, 3
 		],

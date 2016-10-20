@@ -18,7 +18,7 @@ function Entity(templateName, player, x, z, orientation)
 	this.id = g_Map.getEntityID();
 	this.templateName = templateName;
 	this.player = (player !== undefined ? player : 0);
-	
+
 	// Map units (4.0 map units per 1.0 tile)
 	this.position = {
 		x: x * CELL_SIZE,

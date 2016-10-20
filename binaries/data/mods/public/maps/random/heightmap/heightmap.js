@@ -70,7 +70,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max) // Is in height range
 				if (!isCircular || r - getDistance(x, y, r, r) >= minDistToBorder) // Is far enough away from map border
 					validStartLoc.push({ "x": x, "y": y });
-	
+
 	let maxMinDist = 0;
 	let finalStartLoc;
 	for (let tries = 0; tries < maxTries; ++tries)
@@ -94,7 +94,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 			finalStartLoc = startLoc;
 		}
 	}
-	
+
 	return finalStartLoc;
 }
 
@@ -118,7 +118,7 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, 
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max) // Has the right height
 				if (!isCircular || r - getDistance(x, y, r, r) >= minDistance) // Is far enough away from map border
 					validTiles.push({ "x": x, "y": y });
-	
+
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
 		let tile = validTiles[randInt(validTiles.length)];
@@ -170,9 +170,9 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	let heightRange = maxHeight - minHeight;
 	if (heightRange <= 0)
 		warn("setBaseTerrainDiamondSquare: heightRange <= 0");
-	
+
 	let offset = heightRange / 2;
-	
+
 	// Double initialHeightmap width until target width is reached (diamond square method)
 	let newHeightmap = [];
 	while (initialHeightmap.length < heightmap.length)
@@ -203,7 +203,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 			{
 				if (newHeightmap[x][y] !== undefined)
 					continue;
-				
+
 				if (x > 0 && x + 1 < newHeightmap.length - 1 && y > 0 && y + 1 < newHeightmap.length - 1) // Not a border tile
 				{
 					newHeightmap[x][y] = (newHeightmap[x+1][y] + newHeightmap[x][y+1] + newHeightmap[x-1][y] + newHeightmap[x][y-1]) / 4;
@@ -234,7 +234,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 		initialHeightmap = deepcopy(newHeightmap);
 		offset /= Math.pow(2, smoothness);
 	}
-	
+
 	// Cut initialHeightmap to fit target width
 	let shift = [floor((newHeightmap.length - heightmap.length) / 2), floor((newHeightmap[0].length - heightmap[0].length) / 2)];
 	for (let x = 0; x < heightmap.length; ++x)
@@ -285,7 +285,7 @@ function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength = 0.8,
 	let y = round(center.y);
 	dx = round(dx);
 	dy = round(dy);
-	
+
 	let heightmapWin = [];
 	for (let wx = 0; wx < 2 * dx + 1; ++wx)
 	{
@@ -311,7 +311,7 @@ function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength = 0.8,
 				// Window function polynomial 2nd degree
 				let scaleX = 1 - (wx / dx - 1) * (wx / dx - 1);
 				let scaleY = 1 - (wy / dy - 1) * (wy / dy - 1);
-				
+
 				heightmap[actualX][actualY] = heightmapWin[wx][wy] + strength * scaleX * scaleY * (targetHeight - heightmapWin[wx][wy]);
 			}
 		}

@@ -16,7 +16,7 @@ var clForest = createTileClass();
 var clBaseResource = createTileClass();
 
 // Setup Templates
-var templateStone = "gaia/geology_stone_temperate"
+var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetal = "gaia/geology_metal_temperate";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
@@ -46,7 +46,7 @@ var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "
 	"temp_highlands|gaia/fauna_goat"];
 
 
-// Setup map 
+// Setup map
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
 var playableMapRadius = mapRadius - 5;
@@ -81,7 +81,7 @@ var resourcePerPlayer = [templateStone, templateMetalMine];
 // Setup woods
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok 
+var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 RMS.SetProgress(2);
@@ -122,13 +122,13 @@ if (numPlayers > 4)
 	doublePaths = false;
 var doublePathMayPlayers = 4;
 if (doublePaths == true)
-	var maxI = numPlayers+1
+	var maxI = numPlayers+1;
 else
 	var maxI = numPlayers;
 for (var i = 0; i < maxI; i++)
 {
 	if (doublePaths == true)
-		var minJ = 0
+		var minJ = 0;
 	else
 		var minJ = i+1;
 	for (var j = minJ; j < numPlayers+1; j++)
@@ -224,7 +224,7 @@ for (var x = 0; x < mapSize; x++)
 		var radius = Math.pow(Math.pow(mapCenterX - x - 0.5, 2) + Math.pow(mapCenterZ - z - 0.5, 2), 1/2); // The 0.5 is a correction for the entities placed on the center of tiles
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
-			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z))
+			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z));
 		// Woods tile based
 		var tDensFactSL = max(min((minDistToSL - baseRadius) / baseRadius, 1), 0);
 		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);

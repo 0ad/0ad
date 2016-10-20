@@ -28,14 +28,14 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 	var pointQ = [];
 	var pts = area.points;
 	var heightPts = [];
-	
+
 	var mapSize = getMapSize()+1;
-	
+
 	var saw = new  Array(mapSize);
 	var dist = new Array(mapSize);
 	var gotHeightPt = new Array(mapSize);
 	var newHeight = new Array(mapSize);
-	
+
 	// init typed arrays
 	for (var i = 0; i < mapSize; ++i)
 	{
@@ -44,23 +44,23 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 		gotHeightPt[i] = new Uint8Array(mapSize);	// bool / uint8
 		newHeight[i] = new Float32Array(mapSize);	// float32
 	}
-	
+
 	var length = pts.length;
 	var areaID = area.getID();
-	
+
 	// get a list of all points
 	for (var i=0; i < length; i++)
 	{
 		var x = pts[i].x;
 		var z = pts[i].z;
-		
+
 		for (var dx=-1; dx <= 2; dx++)
 		{
 			var nx = x+dx;
 			for (var dz=-1; dz <= 2; dz++)
 			{
 				var nz = z+dz;
-				
+
 				if (g_Map.validH(nx, nz) && !gotHeightPt[nx][nz])
 				{
 					gotHeightPt[nx][nz] = 1;
@@ -70,7 +70,7 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 			}
 		}
 	}
-	
+
 	// push edge points
 	for (var i=0; i < length; i++)
 	{
@@ -82,7 +82,7 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 			for (var dz=-1; dz <= 2; dz++)
 			{
 				var nz = z+dz;
-				
+
 				if (g_Map.validH(nx, nz) && !this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
 				{
 					saw[nx][nz]= 1;
@@ -92,7 +92,7 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 			}
 		}
 	}
-	
+
 	// do BFS inwards to find distances to edge
 	while(pointQ.length)
 	{
@@ -100,7 +100,7 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 		var px = pt.x;
 		var pz = pt.z;
 		var d = dist[px][pz];
-		
+
 		// paint if in area
 		if (g_Map.validH(px, pz) && this.checkInArea(areaID, px, pz))
 		{
@@ -121,7 +121,7 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 			for (var dz=-1; dz <= 1; dz++)
 			{
 				var nz = pz+dz;
-				
+
 				if (g_Map.validH(nx, nz) && this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
@@ -131,28 +131,28 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 			}
 		}
 	}
-	
+
 	length = heightPts.length;
-	
+
 	// smooth everything out
 	for (var i = 0; i < length; ++i)
 	{
 		var pt = heightPts[i];
 		var px = pt.x;
 		var pz = pt.z;
-		
+
 		if (this.checkInArea(areaID, px, pz))
 		{
 			var sum = 8 * newHeight[px][pz];
 			var count = 8;
-			
+
 			for (var dx=-1; dx <= 1; dx++)
 			{
 				var nx = px+dx;
 				for (var dz=-1; dz <= 1; dz++)
 				{
 					var nz = pz+dz;
-					
+
 					if (g_Map.validH(nx, nz))
 					{
 						sum += newHeight[nx][nz];
@@ -160,7 +160,7 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 					}
 				}
 			}
-			
+
 			g_Map.height[px][pz] = sum/count;
 		}
 	}
@@ -288,7 +288,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			placeTerrain(ix, iz, tGrass);
 			setHeight(ix,iz,baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30))));
 			baseHeights[ix].push( baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30)))  );
-		} else 
+		} else
 			baseHeights[ix].push(-100);
 	}
 }
@@ -323,12 +323,12 @@ for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
-	
+
 	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
-	
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
@@ -339,18 +339,18 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix, iz+5, clPlayer);
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
-	
+
 	// create the city patch
 	var cityRadius = radius/3;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
-	
+
 	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-	
+
 	placeDefaultChicken(fx, fz, clBaseResource);
-	
+
 	// create berry bushes
 	var bbAngle = randFloat(0, TWO_PI);
 	var bbDist = 12;
@@ -361,7 +361,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -376,7 +376,7 @@ for (var i = 0; i < numPlayers; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+
 	// create stone mines
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
@@ -398,7 +398,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
@@ -450,10 +450,10 @@ for (var i = 0; i < NumOfIterations; i++)
 		// Ranges is 0-1, FormX is 0-1 too.
 		var FormX = (-2*(1-okDist/width)+1.9) - 4*(2*(1-okDist/width)-randFloat(0.9,1.1))*(2*(1-okDist/width)-randFloat(0.9,1.1))*(2*(1-okDist/width)-randFloat(0.9,1.1));
 		var Formula = (1/(1 + Math.exp(FormX)));
-		
+
 		// If we're too far from the border, we flatten
 		Formula *= (0.2 - Math.max(0,abs(0.5 - position) - 0.3)) * 5;
-		
+
 		var randHeight = randFloat(-9,9) * Formula;
 
 		var height = baseHeights[S1x][S1z];
@@ -541,7 +541,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 		if ( g_Map.inMapBounds(ix,iz) && getTileClass(clWater).countInRadius(ix,iz,5,true) > 0 ) {
 			// Allright smoothing
 			// I'll have to hack again.
-			
+
 			var averageHeight = 0;
 			var size = 5;
 			if (getTileClass(clPyrenneans).countInRadius(ix,iz,1,true) > 0)
@@ -772,7 +772,7 @@ setSunRotation(randFloat(0, TWO_PI));
 //	setTerrainAmbientColor(0.52,0.575,0.6);
 //	setUnitsAmbientColor(0.52,0.575,0.6);
 //	setSunElevation(PI/7);
-	
+
 //	setWaterTint(0.1, 0.1, 0.2);				// muddy brown
 //} else {
 	setSkySet("cumulus");
@@ -808,18 +808,18 @@ function PassMaker(x1, z1, x2, z2, startWidth, centerWidth, startElevation, cent
 {
 	var mapSize = g_Map.size;
 	var stepNB = sqrt((x2-x1)*(x2-x1) + (z2-z1)*(z2-z1)) + 2;
-	
+
 	var startHeight = startElevation;
 	var finishHeight = centerElevation;
-	
+
 	for (var step = 0; step <= stepNB; step+=0.5)
 	{
 		var ix = ((stepNB-step)*x1 + x2*step) / stepNB;
 		var iz = ((stepNB-step)*z1 + z2*step) / stepNB;
 
 		var width = (abs(step - stepNB/2.0) *startWidth + (stepNB/2 - abs(step - stepNB/2.0)) * centerWidth ) / (stepNB/2);
-		
-		
+
+
 		var oldDirection = [x2-x1, z2-z1];
 		// let's get the perpendicular direction
 		var direction = [ -oldDirection[1],oldDirection[0] ];
@@ -841,7 +841,7 @@ function PassMaker(x1, z1, x2, z2, startWidth, centerWidth, startElevation, cent
 		{
 			var rx = po*direction[0];
 			var rz = po*direction[1];
-			
+
 			var relativeWidth = abs(po / Math.floor(width/2));
 			var targetHeight = (abs(step - stepNB/2.0) *startHeight + (stepNB/2 - abs(step - stepNB/2.0)) * finishHeight ) / (stepNB/2);
 			if (round(ix + rx) < mapSize && round(iz + rz) < mapSize && round(ix + rx) >= 0 && round(iz + rz) >= 0)
@@ -853,7 +853,7 @@ function PassMaker(x1, z1, x2, z2, startWidth, centerWidth, startElevation, cent
 					var localPart = smooth - abs(abs(po) - abs(Math.floor(width/2.0)));
 					var targetHeight = (localHeight * localPart + targetHeight * (1/localPart) )/ (localPart + 1/localPart);
 				}
-				
+
 				g_Map.setHeight(round(ix + rx), round(iz + rz), targetHeight);
 				if (tileclass != null)
 					addToClass(round(ix + rx), round(iz + rz), tileclass);
@@ -873,9 +873,9 @@ function getHeightDifference(x1, z1)
 	if (!g_Map.inMapBounds(x1,z1))
 		return 0;
 	// I wanna store the height difference with any neighbor
-	
+
 	var toCheck = [ [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1] ];
-	
+
 	var diff = 0;
 	var todiv = 0;
 	for (var i in toCheck) {

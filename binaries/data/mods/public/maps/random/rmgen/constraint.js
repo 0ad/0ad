@@ -34,7 +34,7 @@ AndConstraint.prototype.allows = function(x, z)
 		if (!this.constraints[i].allows(x, z))
 			return false;
 	}
-	
+
 	return true;
 };
 
@@ -133,6 +133,6 @@ function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 
 BorderTileClassConstraint.prototype.allows = function(x, z)
 {
-	return (this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0 
+	return (this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0
 		&& this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0);
 };

@@ -96,7 +96,7 @@ function setBiome(biomeIndex)
 		setWaterTint(0.255, 0.361, 0.651);
 		setWaterWaviness(5.5);
 		setWaterMurkiness(0.83);
-		
+
 		setFogThickness(0.25);
 		setFogFactor(0.4);
 
@@ -257,14 +257,14 @@ function setBiome(biomeIndex)
 	}
 	else if (g_BiomeID == g_BiomeDesert)
 	{
-		setSunColor(0.733, 0.746, 0.574);	
+		setSunColor(0.733, 0.746, 0.574);
 
 		// Went for a very clear, slightly blue-ish water in this case, basically no waves.
 		setWaterColor(0, 0.227, 0.843);
 		setWaterTint(0, 0.545, 0.859);
 		setWaterWaviness(1);
 		setWaterMurkiness(0.22);
-		
+
 		setFogFactor(0.5);
 		setFogThickness(0.0);
 		setFogColor(0.852, 0.746, 0.493);
@@ -459,12 +459,12 @@ function setBiome(biomeIndex)
 			g_Gaia.tree1 = "gaia/flora_tree_medit_fan_palm";
 			g_Gaia.tree2 = "gaia/flora_tree_medit_fan_palm";
 		}
-		
+
 		if (randInt(2))
 			g_Gaia.tree3 = "gaia/flora_tree_apple";
 		else
 			g_Gaia.tree3 = "gaia/flora_tree_poplar_lombardy";
-		
+
 		if (randInt(2))
 		{
 			g_Gaia.tree4 = "gaia/flora_tree_cypress";
@@ -475,7 +475,7 @@ function setBiome(biomeIndex)
 			g_Gaia.tree4 = "gaia/flora_tree_aleppo_pine";
 			g_Gaia.tree5 = "gaia/flora_tree_aleppo_pine";
 		}
-		
+
 		if (randInt(2))
 			g_Gaia.fruitBush = "gaia/flora_bush_berry";
 		else
@@ -566,7 +566,7 @@ function setBiome(biomeIndex)
 	}
 	else if (g_BiomeID == g_BiomeTropic)
 	{
-		
+
 		// Bora-Bora ish. Quite transparent, not wavy.
 		// Mostly for shallow maps. Maps where the water level goes deeper should use a much darker Water Color to simulate deep water holes.
 		setWaterColor(0.584,0.824,0.929);

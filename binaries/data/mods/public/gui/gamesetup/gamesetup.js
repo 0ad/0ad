@@ -1116,6 +1116,8 @@ function selectNumPlayers(num)
 
 	unassignInvalidPlayers(num);
 
+	sanitizePlayerData(g_GameAttributes.settings.PlayerData);
+
 	updateGameAttributes();
 }
 

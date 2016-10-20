@@ -12,7 +12,7 @@ function RangeOp(size)
 	while (this.nn < size) {
 		this.nn *= 2;
 	}
-	
+
 	this.vals = new Int16Array(2*this.nn);	// int16
 }
 
@@ -35,7 +35,7 @@ RangeOp.prototype.get = function(start, end)
 	var ret = 0;
 	var i = 1;
 	var nn = this.nn;
-	
+
 	// Count from start to end by powers of 2
 	for (; start+i <= end; i *= 2)
 	{
@@ -45,8 +45,8 @@ RangeOp.prototype.get = function(start, end)
 			start += i;
 		}
 	}
-	
-	// 
+
+	//
 	while(i >= 1)
 	{
 		if(start+i <= end)
@@ -56,7 +56,7 @@ RangeOp.prototype.get = function(start, end)
 		}
 		i /= 2;
 	}
-	
+
 	return ret;
 };
 
@@ -75,7 +75,7 @@ function TileClass(size, id)
 	this.size = size;
 	this.inclusionCount = new Array(size);
 	this.rangeCount = new Array(size);
-	
+
 	for (var i=0; i < size; ++i)
 	{
 		this.inclusionCount[i] = new Int16Array(size); //int16
@@ -89,7 +89,7 @@ TileClass.prototype.add = function(x, z)
 	{
 		this.rangeCount[z].add(x, 1);
 	}
-	
+
 	this.inclusionCount[x][z]++;
 };
 
@@ -110,7 +110,7 @@ TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)
 
 	var ymax = cy+radius;
 	var radius2 = radius*radius;
-	
+
 	for (var y = cy-radius; y <= ymax; y++)
 	{
 		var iy = Math.floor(y);
@@ -120,16 +120,16 @@ TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)
 			{
 				var dy = y - cy;
 				var dx = Math.sqrt(radius*radius - dy*dy);
-				
+
 				var lowerX = Math.floor(cx - dx);
 				var upperX = Math.floor(cx + dx);
-				
-				var minX = (lowerX > 0 ? lowerX : 0);		
+
+				var minX = (lowerX > 0 ? lowerX : 0);
 				var maxX = (upperX < size ? upperX+1 : size);
-				
+
 				var total = maxX - minX;
 				var mem = this.rangeCount[iy].get(minX, maxX);
-				
+
 				members += mem;
 				nonMembers += total - mem;
 			}
@@ -154,7 +154,7 @@ TileClass.prototype.countInRadius = function(cx, cy, radius, returnMembers)
 			}
 		}
 	}
-	
+
 	if (returnMembers)
 		return members;
 	else

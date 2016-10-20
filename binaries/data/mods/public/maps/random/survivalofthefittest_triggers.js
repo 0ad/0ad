@@ -183,7 +183,7 @@ Trigger.prototype.PlaceTreasures = function()
 	let triggerPoints = cmpTrigger.GetTriggerPoints(point);
 	for (let point of triggerPoints)
 	{
-		let template = treasures[Math.floor(Math.random() * treasures.length)]
+		let template = treasures[Math.floor(Math.random() * treasures.length)];
 		TriggerHelper.SpawnUnits(point, template, 1, 0);
 	}
 	cmpTrigger.DoAfterDelay(4*60*1000, "PlaceTreasures", {}); //Place more treasures after 4 minutes

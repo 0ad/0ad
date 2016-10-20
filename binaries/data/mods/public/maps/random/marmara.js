@@ -64,7 +64,7 @@ g_Decoratives.rockLarge = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_granite_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_medit_me_dry.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
-g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml"
+g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
 
 initBiome();
 RMS.SetProgress(5);
