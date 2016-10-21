@@ -3,29 +3,15 @@
   <Armour>
     <Hack>10</Hack>
     <Pierce>10</Pierce>
-    <Crush>12</Crush>
+    <Crush>25</Crush>
   </Armour>
   <Attack replace="">
     <Melee>
-      <Hack>17.5</Hack>
+      <Hack>20.0</Hack>
       <Pierce>0</Pierce>
-      <Crush>25.0</Crush>
+      <Crush>50.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-      <Bonuses>
-        <BonusStructures>
-          <Classes>Structure</Classes>
-          <Multiplier>1.5</Multiplier>
-        </BonusStructures>
-        <BonusCav>
-          <Classes>Cavalry</Classes>
-          <Multiplier>2</Multiplier>
-        </BonusCav>
-        <BonusGates>
-          <Classes>Gates</Classes>
-          <Multiplier>1.5</Multiplier>
-        </BonusGates>
-      </Bonuses>
       <PreferredClasses datatype="tokens">Structure</PreferredClasses>
     </Melee>
   </Attack>
