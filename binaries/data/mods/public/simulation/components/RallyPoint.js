@@ -103,6 +103,16 @@ RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 	}
 };
 
+RallyPoint.prototype.OnOwnershipChanged = function(msg)
+{
+	// No need to reset when constructing or destructing the entity
+	// Don't reset upon defeat to improve performance
+	if (msg.from == -1 || msg.to < 1)
+		return;
+
+	this.Reset();
+};
+
 /**
  * Returns true if the target exists and has non-zero hitpoints.
  */
