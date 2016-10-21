@@ -17,6 +17,9 @@
     <Square width="32.0" depth="32.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
   <Health>
     <Max>3000</Max>
     <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>

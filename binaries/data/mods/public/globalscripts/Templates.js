@@ -378,11 +378,19 @@ function GetTechnologyDataHelper(template, civ)
 	ret.tooltip = template.tooltip;
 	ret.requirementsTooltip = template.requirementsTooltip || "";
 
+	// TODO: This doesn't handle all types of requirements
 	if (template.requirements && template.requirements.class)
 		ret.classRequirements = {
 			"class": template.requirements.class,
 			"number": template.requirements.number
 		};
+	else if (template.requirements && template.requirements.all)
+		for (let req of template.requirements.all)
+			if (req.class)
+				ret.classRequirements = {
+					"class": req.class,
+					"number": req.number
+				};
 
 	ret.description = template.description;
 

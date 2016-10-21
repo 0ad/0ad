@@ -22,7 +22,9 @@
     <Square width="8.0" depth="7.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <GarrisonHolder disable=""/>
+  <GarrisonHolder>
+    <List>Dog</List>
+  </GarrisonHolder>
   <Health>
     <Max>500</Max>
     <SpawnEntityOnDeath>rubble/rubble_2x2</SpawnEntityOnDeath>
