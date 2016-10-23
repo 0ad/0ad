@@ -502,6 +502,9 @@ bool CNetServerWorker::RunStep()
 			event.peer->data = NULL;
 		}
 
+		if (m_State == SERVER_STATE_LOADING)
+			CheckGameLoadStatus(NULL);
+
 		break;
 	}
 
