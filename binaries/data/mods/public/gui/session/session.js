@@ -455,6 +455,12 @@ function playerFinished(player, won)
 	updateDiplomacy();
 	updateChatAddressees();
 
+	if (player != g_ViewedPlayer)
+		return;
+
+	// Select "observer" item on loss. On win enable observermode without changing perspective
+	Engine.GetGUIObjectByName("viewPlayer").selected = won ? g_ViewedPlayer + 1 : 0;
+
 	if (player != Engine.GetPlayerID() || Engine.IsAtlasRunning())
 		return;
 
@@ -463,9 +469,6 @@ function playerFinished(player, won)
 			global.music.states.VICTORY :
 			global.music.states.DEFEAT
 	);
-
-	// Select "observer" item on loss. On win enable observermode without changing perspective
-	Engine.GetGUIObjectByName("viewPlayer").selected = won ? g_ViewedPlayer + 1 : 0;
 
 	g_ConfirmExit = won ? "won" : "defeated";
 }
