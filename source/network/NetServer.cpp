@@ -808,7 +808,9 @@ void CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 	CKickedMessage kickedMessage;
 	kickedMessage.m_Name = playerName;
 	kickedMessage.m_Ban = ban;
-	Broadcast(&kickedMessage);
+	for (CNetServerSession* session : m_Sessions)
+		if (session->GetCurrState() > NSS_AUTHENTICATE)
+			session->SendMessage(&kickedMessage);
 }
 
 void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
@@ -1321,10 +1323,8 @@ bool CNetServerWorker::OnClientPaused(void* context, CFsmEvent* event)
 void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 {
 	for (const CNetServerSession* session : m_Sessions)
-	{
 		if (session != changedSession && session->GetCurrState() != NSS_INGAME)
 			return;
-	}
 
 	CLoadedGameMessage loaded;
 	loaded.m_CurrentTurn = 0;
