@@ -36,6 +36,12 @@ var g_IsController;
 var g_IsNetworked = false;
 
 /**
+ * Whether we have finished the synchronization and
+ * can start showing simulation related message boxes.
+ */
+var g_IsNetworkedActive = false;
+
+/**
  * True if the connection to the server has been lost.
  */
 var g_Disconnected = false;
@@ -685,6 +691,9 @@ function onSimulationUpdate()
  */
 function confirmExit()
 {
+	if (g_IsNetworked && !g_IsNetworkedActive)
+		return;
+
 	closeOpenDialogs();
 
 	let subject = g_PlayerStateMessages[g_ConfirmExit] + "\n" +
