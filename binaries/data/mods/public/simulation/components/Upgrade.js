@@ -179,7 +179,7 @@ Upgrade.prototype.WillCheckPlacementRestrictions = function(template)
 
 Upgrade.prototype.GetRequiredTechnology = function(templateArg)
 {
-	let choice = this.upgradeTemplates[templateArg] || templateArg
+	let choice = this.upgradeTemplates[templateArg] || templateArg;
 
 	if (this.template[choice].RequiredTechnology)
 		return this.template[choice].RequiredTechnology;
