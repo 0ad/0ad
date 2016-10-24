@@ -143,7 +143,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
 	{
-		if (!gameState.isEntityExclusiveAlly(cc))
+		if (!gameState.isEntityExclusiveAlly(cc) || cc.foundationProgress() === 0)
 			continue;
 		let cooperation = this.GetCooperationLevel(cc);
 		if (cooperation < 0.6 && cc.foundationProgress() !== undefined)
