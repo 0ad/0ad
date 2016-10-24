@@ -498,6 +498,7 @@ setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 6, PI / 4));
 
 setWaterColor(0.035,0.098,0.314);
+setWaterTint(0.28, 0.3, 0.59);
 setWaterWaviness(5.0);
 setWaterType("lake");
 setWaterMurkiness(0.88);

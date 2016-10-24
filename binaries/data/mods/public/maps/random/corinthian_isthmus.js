@@ -376,7 +376,6 @@ createStragglerTrees(types, avoidClasses(clForest, 0, clWater, 2, clPlayer, 8, c
 // Set environment
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);
-setWaterColor(0.292, 0.347, 0.691);
 setWaterColor(0, 0.501961, 1);
 setWaterTint(0.501961, 1, 1);
 setWaterWaviness(2.5);

@@ -1,134 +1,152 @@
+var g_Environment = {
+	"SkySet": "default", // textures for the skybox, subdirectory name of art/textures/skies
+	"SunColor": { "r": 0.749020, "g": 0.749020, "b": 0.749020, "a": 0 }, // all rgb from 0 to 1
+	"SunElevation": 0.785398, // 0 to 2pi
+	"SunRotation": 5.49779, // 0 to 2pi
+	"TerrainAmbientColor": { "r": 0.501961, "g": 0.501961, "b": 0.501961, "a": 0 },
+	"UnitsAmbientColor": { "r": 0.501961, "g": 0.501961, "b": 0.501961, "a": 0 },
+	"Water": {
+		"WaterBody": {
+			"Type": "ocean", // Subdirectory name of art/textures/animated/water
+			"Color": { "r": 0.3, "g": 0.35, "b": 0.7, "a": 0 },
+			"Tint": { "r": 0.28, "g": 0.3, "b": 0.59, "a": 0 },
+			"Height": 5, // TODO: The true default is 19.9, see ExportMap() in mapgen.js and  SEA_LEVEL in library.js
+			"Waviness": 8, // typically from 0 to 10
+			"Murkiness": 0.45, // 0 to 1, amount of tint to blend in with the refracted color
+			"WindAngle": 0.0 // 0 to 2pi, direction of waves
+		}
+	},
+	"Fog": {
+		"FogFactor": 0.0,
+		"FogThickness": 0.5,
+		"FogColor": { "r": 0.8, "g": 0.8, "b": 0.8, "a": 0 }
+	},
+	"Postproc": {
+		"Brightness": 0.0,
+		"Contrast": 1.0,
+		"Saturation": 1.0,
+		"Bloom": 0.2,
+		"PostprocEffect": "default" // "default", "hdr" or "DOF"
+	}
+};
 
 ////////////////////////////////////////////////////////////////////////////
-//	Sky + lighting
+// Sun, Sky and Terrain
 ////////////////////////////////////////////////////////////////////////////
 
-// Set skyset
 function setSkySet(set)
 {
 	g_Environment.SkySet = set;
 }
 
-// Set sun color RGB
 function setSunColor(r, g, b)
 {
-	g_Environment.SunColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.SunColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
-// Set sun elevation
 function setSunElevation(e)
 {
 	g_Environment.SunElevation = e;
 }
 
-// Set sun rotation
 function setSunRotation(r)
 {
 	g_Environment.SunRotation = r;
 }
 
-// Set terrain ambient color RGB (0-1)
 function setTerrainAmbientColor(r, g, b)
 {
-	g_Environment.TerrainAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.TerrainAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
-// Set terrain ambient color RGB (0-1)
 function setUnitsAmbientColor(r, g, b)
 {
-	g_Environment.UnitsAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.UnitsAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// 	Water
+// Water
 ////////////////////////////////////////////////////////////////////////////
 
-// Set water color RGB (0,1)
 function setWaterColor(r, g, b)
 {
-	g_Environment.Water.WaterBody.Color = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.Water.WaterBody.Color = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
-// Set water tint RGB (0,1)
 function setWaterTint(r, g, b)
 {
-	g_Environment.Water.WaterBody.Tint = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.Water.WaterBody.Tint = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
-// Set water height
 function setWaterHeight(h)
 {
 	g_Environment.Water.WaterBody.Height = h;
 	WATER_LEVEL_CHANGED = true;
 }
 
-// Set water waviness
 function setWaterWaviness(w)
 {
 	g_Environment.Water.WaterBody.Waviness = w;
 }
 
-// Set water murkiness
 function setWaterMurkiness(m)
 {
 	g_Environment.Water.WaterBody.Murkiness = m;
 }
 
-// Set water type
 function setWaterType(m)
 {
 	g_Environment.Water.WaterBody.Type = m;
 }
 
-// Set wind angle for water (thus direction of waves)
 function setWindAngle(m)
 {
 	g_Environment.Water.WaterBody.WindAngle = m;
 }
 
-// Set fog factor (0,1)
+////////////////////////////////////////////////////////////////////////////
+// Fog (numerical arguments between 0 and 1)
+////////////////////////////////////////////////////////////////////////////
+
 function setFogFactor(s)
 {
 	g_Environment.Fog.FogFactor = s / 100.0;
 }
 
-// Set fog thickness (0,1)
-function setFogThickness(s)
+function setFogThickness(thickness)
 {
-	g_Environment.Fog.FogThickness = s;
+	g_Environment.Fog.FogThickness = thickness;
 }
 
-// Set fog color RGB (0,1)
 function setFogColor(r, g, b)
 {
-	g_Environment.Fog.FogColor = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.Fog.FogColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
-// Set postproc brightness (0,1)
+////////////////////////////////////////////////////////////////////////////
+// Post Processing (numerical arguments between 0 and 1)
+////////////////////////////////////////////////////////////////////////////
+
 function setPPBrightness(s)
 {
 	g_Environment.Postproc.Brightness = s - 0.5;
 }
 
-// Set postproc contrast (0,1)
 function setPPContrast(s)
 {
 	g_Environment.Postproc.Contrast = s + 0.5;
 }
 
-// Set postproc saturation (0,1)
 function setPPSaturation(s)
 {
 	g_Environment.Postproc.Saturation = s * 2;
 }
 
-// Set postproc bloom (0,1)
 function setPPBloom(s)
 {
 	g_Environment.Postproc.Bloom = (1 - s) * 0.2;
 }
 
-// Set postproc effect ("default", "hdr", "DOF")
 function setPPEffect(s)
 {
 	g_Environment.Postproc.PostprocEffect = s;
