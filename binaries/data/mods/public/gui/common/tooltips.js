@@ -339,6 +339,7 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 
 	return costs;
 }
+
 function getGatherTooltip(template)
 {
 	if (!template.gather)
@@ -353,6 +354,16 @@ function getGatherTooltip(template)
 					"rate": template.gather[type]
 				})
 			).join("  ")
+	});
+}
+
+function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology)
+{
+	if (technologyEnabled)
+		return "";
+
+	return sprintf(translate("Requires %(technology)s"), {
+		"technology": getEntityNames(GetTechnologyData(requiredTechnology))
 	});
 }
 

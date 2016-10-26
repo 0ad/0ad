@@ -344,14 +344,10 @@ g_SelectionPanels.Construction = {
 		].map(func => func(template));
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
-		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers));
-
-		if (!technologyEnabled)
-			tooltips.push(sprintf(translate("Requires %(technology)s"), {
-				"technology": getEntityNames(GetTechnologyData(template.requiredTechnology))
-			}));
-
-		tooltips.push(getNeededResourcesTooltip(neededResources));
+		tooltips.push(
+			formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
+			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology),
+			getNeededResourcesTooltip(neededResources));
 
 		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
@@ -1058,15 +1054,9 @@ g_SelectionPanels.Training = {
 		tooltips.push(
 			"[color=\"" + g_HotkeyColor + "\"]" +
 			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) +
-			"[/color]");
-
-		if (!technologyEnabled)
-			tooltips.push(sprintf(translate("Requires %(technology)s"), {
-				"technology": getEntityNames(GetTechnologyData(template.requiredTechnology))
-			}));
-
-		if (neededResources)
-			tooltips.push(getNeededResourcesTooltip(neededResources));
+			"[/color]",
+			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology),
+			getNeededResourcesTooltip(neededResources));
 
 		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
@@ -1141,26 +1131,24 @@ g_SelectionPanels.Upgrade = {
 		let tooltip;
 		if (!progress)
 		{
+			let tooltips = [];
 			if (data.item.tooltip)
-				tooltip = sprintf(translate("Upgrade into a %(name)s. %(tooltip)s"), {
+				tooltips.push(sprintf(translate("Upgrade into a %(name)s. %(tooltip)s"), {
 					"name": template.name.generic,
-					"tooltip": data.item.tooltip
-				});
+					"tooltip": translate(data.item.tooltip)
+				}));
 			else
-				tooltip = sprintf(translate("Upgrade into a %(name)s."), {
+				tooltips.push(sprintf(translate("Upgrade into a %(name)s."), {
 					"name": template.name.generic
-				});
+				}));
 
-			if (data.item.cost)
-				tooltip += "\n" + getEntityCostTooltip(data.item);
+			tooltips.push(
+				getEntityCostTooltip(data.item),
+				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
+				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology),
+				getNeededResourcesTooltip(neededResources));
 
-			tooltip += "\n" + formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers);
-			if (!technologyEnabled)
-				tooltip += "\n" + sprintf(translate("Requires %(technology)s"), {
-					"technology": getEntityNames(GetTechnologyData(data.item.requiredTechnology))
-				});
-
-			tooltip += getNeededResourcesTooltip(neededResources);
+			tooltip = tooltips.filter(tip => tip).join("\n");
 
 			data.button.onPress = function() { upgradeEntity(data.item.entity); };
 		}
