@@ -357,16 +357,6 @@ function getGatherTooltip(template)
 	});
 }
 
-function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology)
-{
-	if (technologyEnabled)
-		return "";
-
-	return sprintf(translate("Requires %(technology)s"), {
-		"technology": getEntityNames(GetTechnologyData(requiredTechnology))
-	});
-}
-
 /**
  * Returns an array of strings for a set of wall pieces. If the pieces share
  * resource type requirements, output will be of the form '10 to 30 Stone',
