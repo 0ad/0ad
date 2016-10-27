@@ -212,20 +212,20 @@ log("Creating bumps...");
 placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3);
 createAreas( placer, painter,
-			avoidClasses(clWater, 5, clPlayer, 10, clBaseResource, 6),
+			avoidClasses(clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(30, 70)
 			);
 log("Creating dirt Patches...");
 placer = new ClumpPlacer(80, 0.3, 0.06, 1);
 var terrainPainter = new TerrainPainter(tDirt);
-createAreas( placer, terrainPainter, avoidClasses(clWater, 10, clPlayer, 10, clBaseResource, 6), scaleByMapSize(15, 50) );
+createAreas(placer, terrainPainter, avoidClasses(clPlayer, 10, clBaseResource, 6), scaleByMapSize(15, 50) );
 
 log("Creating Dunes...");
 placer = new ClumpPlacer(120, 0.3, 0.06, 1);
 var terrainPainter = new TerrainPainter(tDune);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 18, 30);
 createAreas( placer, [terrainPainter, painter],
-			avoidClasses(clWater, 13, clPlayer, 10, clBaseResource, 6),
+			avoidClasses(clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(15, 50)
 			);
 

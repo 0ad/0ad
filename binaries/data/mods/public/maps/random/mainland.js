@@ -59,7 +59,6 @@ const mapArea = mapSize*mapSize;
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();

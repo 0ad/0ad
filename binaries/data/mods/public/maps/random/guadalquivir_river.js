@@ -56,7 +56,6 @@ const mapArea = mapSize*mapSize;
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -285,7 +284,7 @@ paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
 // create bumps
-createBumps([avoidClasses(clWater, 2, clPlayer, 20, clRiver, 1), stayClasses(clLand, 3)]);
+createBumps([avoidClasses(clPlayer, 20, clRiver, 1), stayClasses(clLand, 3)]);
 
 // create forests
 createForests(
@@ -355,7 +354,7 @@ createDecoration
   scaleByMapSize(13, 200),
   scaleByMapSize(13, 200)
  ],
- [avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]
+ [avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]
 );
 
 // create water decoration in the shallow parts
@@ -384,7 +383,7 @@ createFood
   3 * numPlayers,
   3 * numPlayers
  ],
- [avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20, clRiver, 1), stayClasses(clLand, 3)]
+ [avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20, clRiver, 1), stayClasses(clLand, 3)]
 );
 
 // create fruits
@@ -396,7 +395,7 @@ createFood
  [
   randInt(1, 4) * numPlayers + 2
  ],
- [avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRiver, 1), stayClasses(clLand, 3)]
+ [avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRiver, 1), stayClasses(clLand, 3)]
 );
 
 // create fish
@@ -417,7 +416,7 @@ RMS.SetProgress(85);
 // create straggler trees
 log("Creating straggler trees...");
 var types = [oPoplar, oCarob, oApple];	// some variation
-createStragglerTrees(types, [avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 9, clMetal, 1, clRock, 1, clRiver, 1), stayClasses(clLand, 7)]);
+createStragglerTrees(types, [avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 1, clRock, 1, clRiver, 1), stayClasses(clLand, 7)]);
 
 setSkySet("cumulus");
 setWaterColor(0.443,0.412,0.322);

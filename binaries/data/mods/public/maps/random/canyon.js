@@ -63,7 +63,6 @@ var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clHill2 = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -484,7 +483,7 @@ createFood
   3 * numPlayers,
   3 * numPlayers
  ],
- [avoidClasses(clWater, 0, clForest, 0, clPlayer, 4, clHill, 1, clFood, 20, clHill2, 1), stayClasses(clLand, 3)]
+ [avoidClasses(clForest, 0, clPlayer, 4, clHill, 1, clFood, 20, clHill2, 1), stayClasses(clLand, 3)]
 );
 
 // create fruits
@@ -496,7 +495,7 @@ createFood
  [
   3 * numPlayers
  ],
- [avoidClasses(clWater, 0, clForest, 0, clPlayer, 4, clHill, 1, clFood, 10, clHill2, 1), stayClasses(clLand, 3)]
+ [avoidClasses(clForest, 0, clPlayer, 4, clHill, 1, clFood, 10, clHill2, 1), stayClasses(clLand, 3)]
 );
 
 RMS.SetProgress(85);

@@ -284,11 +284,13 @@ for (var ix = 0; ix < mapSize; ix++)
 	baseHeights.push([]);
 	for (var iz = 0; iz < mapSize; iz++)
 	{
-		if (g_Map.inMapBounds(ix,iz) && !checkIfInClass(ix,iz,clWater)) {
+		if (g_Map.inMapBounds(ix,iz))
+		{
 			placeTerrain(ix, iz, tGrass);
 			setHeight(ix,iz,baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30))));
 			baseHeights[ix].push( baseHeight +randFloat(-1,1) + scaleByMapSize(1,3)*(cos(ix/scaleByMapSize(5,30))+sin(iz/scaleByMapSize(5,30)))  );
-		} else
+		}
+		else
 			baseHeights[ix].push(-100);
 	}
 }

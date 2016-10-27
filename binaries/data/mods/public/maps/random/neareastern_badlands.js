@@ -57,7 +57,6 @@ var clHill1 = createTileClass();
 var clHill2 = createTileClass();
 var clHill3 = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clPatch = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();

@@ -13,7 +13,6 @@ var clPlayer = createTileClass();
 var clPath = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clRock = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
