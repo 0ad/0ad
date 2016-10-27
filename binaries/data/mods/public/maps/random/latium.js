@@ -301,35 +301,34 @@ for (var ix = 0; ix < mapSize; ix++)
 			addToClass(ix, iz, clCliff);
 
 		// forests
-		if (getHeight(ix, iz) <11){
-			if (diffH < 2 && minH > 1)
+		if (getHeight(ix, iz) < 11 && diffH < 2 && minH > 1)
+		{
+			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
+
+			// Thin out trees a bit
+			if (forestNoise > 0 && randFloat() < 0.5)
 			{
-				var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
-
-				// Thin out trees a bit
-				if (forestNoise > 0 && randFloat() < 0.5)
+				if (minH < 11 && minH >= 4)
 				{
-					if (minH < 11 && minH >= 4)
-					{
-						var typeNoise = noise10.get(x,z);
+					var typeNoise = noise10.get(x,z);
 
-						if (typeNoise < 0.43 && forestNoise < 0.05)
-							t = pPoplarForest;
-						else if (typeNoise < 0.63)
-							t = pMainForest;
-						else
-							t = pPineForest;
+					if (typeNoise < 0.43 && forestNoise < 0.05)
+						t = pPoplarForest;
+					else if (typeNoise < 0.63)
+						t = pMainForest;
+					else
+						t = pPineForest;
 
-						addToClass(ix, iz, clForest);
-					}
-					else if (minH < 4)
-					{
-						t = pPalmForest;
-						addToClass(ix, iz, clForest);
-					}
+					addToClass(ix, iz, clForest);
+				}
+				else if (minH < 4)
+				{
+					t = pPalmForest;
+					addToClass(ix, iz, clForest);
 				}
 			}
 		}
+
 		// grass variations
 		if (t == tGrass)
 		{

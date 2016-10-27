@@ -130,10 +130,7 @@ for (var i = 0; i < numIslands; ++i)
 
 	//create base
 	var placer = new ClumpPlacer(islandBottom, .7, .1, 10, ix, iz);
-	var terrainPainter = new LayeredPainter(
-        [tOceanRockDeep, tOceanCoral],
-        [5]
-	);
+	var terrainPainter = new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]);
 	createArea(placer, [terrainPainter, paintClass(clCoral)],avoidClasses(clCoral,0));
 }
 
@@ -163,17 +160,12 @@ for (var i=0; i < numIslands; i++)
 	// create island
 	var placer = new ClumpPlacer(islandSize, .7, .1, 10, ix, iz);
 	var terrainPainter = new LayeredPainter(
-        [tOceanCoral,tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass],
-        [1,wet,dry,1,gbeach]
+		[tOceanCoral,tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass],
+		[1, wet, dry, 1, gbeach]
 	);
-	var elevationPainter = new SmoothElevationPainter(
-	    ELEVATION_SET,
-	    elevation,
-	    5
-    );
-    var temp = createArea(placer, [terrainPainter, paintClass(clPlayer), elevationPainter],avoidClasses(clPlayer,0));
-
-    areas.push(temp);
+	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, elevation, 5);
+	var temp = createArea(placer, [terrainPainter, paintClass(clPlayer), elevationPainter],avoidClasses(clPlayer,0));
+	areas.push(temp);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
 
@@ -228,87 +220,77 @@ RMS.SetProgress(15);
 
 log("Populating islands ...");
 //nPlayer is the player we are on i is the island we are on
-var nPlayer=0;
-for(var i=0;i<numIslands;i++)
-{
-if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
+var nPlayer = 0;
+for (let i = 0; i < numIslands; ++i)
+	if (numPlayers >= 6 || i == startingPlaces[numPlayers-1][nPlayer])
+	{
+		var id = playerIDs[nPlayer];
 
-	var id = playerIDs[nPlayer];
+		// Get the x and z in tiles
+		var fx = fractionToTiles(islandX[i]);
+		var fz = fractionToTiles(islandZ[i]);
+		var ix = round(fx);
+		var iz = round(fz);
 
-	// get the x and z in tiles
-	var fx = fractionToTiles(islandX[i]);
-	var fz = fractionToTiles(islandZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
+		// Create city patch
+		var cityRadius = 6;
+		var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+		var painter = new LayeredPainter([tGrass, tCity], [1]);
+		createArea(placer, [painter,paintClass(clCity)], null);
 
-    //create city patch
-    var cityRadius = 6;
-	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
-	var painter = new LayeredPainter([tGrass, tCity], [1]);
-	createArea(placer, [painter,paintClass(clCity)], null);
+		placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
-	// create starting units
-	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
-
-    nPlayer++;
-}
-}
-
-
-RMS.SetProgress(15);
-
+		++nPlayer;
+	}
+RMS.SetProgress(20);
 
 // get the x and z in tiles
 var nCenter = floor(scaleByMapSize(1,4));
 var startAngle = randFloat() * 2 * PI;
 for (var i = 0; i < nCenter; ++i)
 {
-	var fx=.5;
-	var fz=.5;
-	if(nCenter==1){
-	    fx=.5;
-	    fz=.5;
-	}else{
-	    var isangle = startAngle + i*2*PI/nCenter+randFloat(-PI/8,PI/8);
-	    var dRadius = randFloat(.1,.16);
-	    fx = 0.5 + dRadius*cos(isangle);
-	    fz = 0.5 + dRadius*sin(isangle);
+	var fx = 0.5;
+	var fz = 0.5;
+
+	if (nCenter != 1)
+	{
+		let isangle = startAngle + i*2*PI/nCenter + PI/8 * randFloat(-1, -1);
+		let dRadius = randFloat(0.1, 0.16);
+		fx = 0.5 + dRadius * cos(isangle);
+		fz = 0.5 + dRadius * sin(isangle);
 	}
-    var ix = round(fractionToTiles(fx));
-    var iz = round(fractionToTiles(fz));
 
-    var radius = scaleByMapSize(15,30);
-    var coral= 2;
-    var wet = 3;
-    var dry = 1;
-    var gbeach = 2;
-    var elevation = 3;
+	var ix = round(fractionToTiles(fx));
+	var iz = round(fractionToTiles(fz));
 
-    var islandSize = PI*radius*radius;
-    var islandBottom=PI*(radius+coral)*(radius+coral);
+	var radius = scaleByMapSize(15,30);
+	var coral= 2;
+	var wet = 3;
+	var dry = 1;
+	var gbeach = 2;
+	var elevation = 3;
 
-    //create base
-    var placer = new ClumpPlacer(islandBottom, .7, .1, 10, ix, iz);
-    var terrainPainter = new LayeredPainter(
-        [tOceanRockDeep, tOceanCoral],
-        [5]
-    );
-    createArea(placer, [terrainPainter, paintClass(clCoral)],avoidClasses(clCoral,0,clPlayer,0));
+	var islandSize = PI*radius*radius;
+	var islandBottom=PI*(radius+coral)*(radius+coral);
 
-    // create island
-    var placer = new ClumpPlacer(islandSize, .7, .1, 10, ix, iz);
-    var terrainPainter = new LayeredPainter(
-        [tOceanCoral,tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass],
-        [1,wet,dry,1,gbeach]
-    );
-    var elevationPainter = new SmoothElevationPainter(
-        ELEVATION_SET,
-        elevation,
-        5
-    );
-    var temp = createArea(placer, [terrainPainter, paintClass(clIsland), elevationPainter],avoidClasses(clPlayer,0));
+	// Create base
+	var placer = new ClumpPlacer(islandBottom, .7, .1, 10, ix, iz);
+	var terrainPainter = new LayeredPainter(
+		[tOceanRockDeep, tOceanCoral],
+		[5]
+	);
+	createArea(placer, [terrainPainter, paintClass(clCoral)],avoidClasses(clCoral,0,clPlayer,0));
 
-    areas.push(temp);
+	// Create island
+	var placer = new ClumpPlacer(islandSize, .7, .1, 10, ix, iz);
+	var terrainPainter = new LayeredPainter(
+		[tOceanCoral,tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass],
+		[1, wet, dry, 1, gbeach]
+	);
+	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, elevation, 5);
+	var temp = createArea(placer, [terrainPainter, paintClass(clIsland), elevationPainter],avoidClasses(clPlayer,0));
+
+	areas.push(temp);
 }
 RMS.SetProgress(30);
 
