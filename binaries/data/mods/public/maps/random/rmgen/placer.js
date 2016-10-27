@@ -165,8 +165,7 @@ ChainPlacer.prototype.place = function(constraint)
 
 	--size;
 
-	if (this.minRadius < 1) this.minRadius = 1;
-	if (this.minRadius > this.maxRadius) this.minRadius = this.maxRadius;
+	this.minRadius = Math.min(this.maxRadius, Math.max(this.minRadius, 1));
 
 	var edges = [[this.x, this.z]];
 	for (var i = 0; i < this.numCircles; ++i)

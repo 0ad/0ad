@@ -300,14 +300,9 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
-if (random_terrain == 6)
-{
-var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
-}
-else
-{
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-}
+var size = numForest / (scaleByMapSize(2,8) * numPlayers) *
+	(random_terrain == g_BiomeSavanna ? 2 : 1);
+
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
@@ -467,12 +462,8 @@ for (var i = 0; i < types.length; ++i)
 }
 RMS.SetProgress(86);
 
-var planetm = 1;
-if (random_terrain==7)
-{
-	planetm = 8;
-}
-//create small grass tufts
+var planetm = random_terrain == g_BiomeTropic ? 8 : 1;
+
 log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]

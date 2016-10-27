@@ -212,61 +212,43 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(20);
 
 var split = 1;
-if ((mapSize == 128)&&(numPlayers <= 2))
-{
+if (mapSize == 128 && numPlayers <= 2)
 	split = 2;
-}
-else if ((mapSize == 192)&&(numPlayers <= 3))
-{
+else if (mapSize == 192 && numPlayers <= 3)
 	split = 2;
-}
-else if ((mapSize == 256)&&(numPlayers <= 3))
+else if (mapSize == 256)
 {
-	split = 3;
+	if (numPlayers <= 3)
+		split = 3;
+	else if (numPlayers == 4)
+		split = 2;
 }
-else if ((mapSize == 256)&&(numPlayers <= 4))
+else if (mapSize == 320)
 {
-	split = 2;
+	if (numPlayers <= 3)
+		split = 3;
+	else if (numPlayers == 4)
+		split = 2;
 }
-else if ((mapSize == 320)&&(numPlayers <= 3))
+else if (mapSize == 384)
 {
-	split = 3;
+	if (numPlayers <= 3)
+		split = 4;
+	else if (numPlayers == 4)
+		split = 3;
+	else if (numPlayers == 5)
+		split = 2;
 }
-else if ((mapSize == 320)&&(numPlayers <= 4))
+else if (mapSize == 448)
 {
-	split = 2;
-}
-else if ((mapSize == 384)&&(numPlayers <= 3))
-{
-	split = 4;
-}
-else if ((mapSize == 384)&&(numPlayers <= 4))
-{
-	split = 3;
-}
-else if ((mapSize == 384)&&(numPlayers <= 5))
-{
-	split = 2;
-}
-else if ((mapSize == 448)&&(numPlayers <= 2))
-{
-	split = 5;
-}
-else if ((mapSize == 448)&&(numPlayers <= 3))
-{
-	split = 4;
-}
-else if ((mapSize == 448)&&(numPlayers <= 4))
-{
-	split = 4;
-}
-else if ((mapSize == 448)&&(numPlayers <= 5))
-{
-	split = 3;
-}
-else if ((mapSize == 448)&&(numPlayers <= 6))
-{
-	split = 2;
+	if (numPlayers <= 2)
+		split = 5;
+	else if (numPlayers <= 4)
+		split = 4;
+	else if (numPlayers == 5)
+		split = 3;
+	else if (numPlayers == 6)
+		split = 2;
 }
 
 log ("Creating rivers...");

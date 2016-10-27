@@ -261,12 +261,7 @@ for (var i = 0; i < numPoints; ++i)
 {
 	matrix.push([]);
 	for (var j = 0; j < numPoints; ++j)
-	{
-		if (i < numPlayers && j < numPlayers && i != j && (i == j - 1 || i == j + 1) )
-			matrix[i].push(true);
-		else
-			matrix[i].push(false);
-	}
+		matrix[i].push(i < numPlayers && j < numPlayers && i != j && (i == j - 1 || i == j + 1))
 }
 
 //find and place the edges
@@ -311,10 +306,9 @@ while (possibleEdges.length)
 			if (matrix[selected][i])
 			{
 				if (i == backtree[tree.lastIndexOf(selected)])
-				{
 					continue;
-				}
-				else if (tree.indexOf(i) == -1)
+
+				if (tree.indexOf(i) == -1)
 				{
 					tree.push(i);
 					backtree.push(selected);

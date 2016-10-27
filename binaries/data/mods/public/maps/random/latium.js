@@ -120,20 +120,13 @@ function playerNearness(x, z)
 	var d = fractionToTiles(distanceToPlayers(x,z));
 
 	if (d < 13)
-	{
 		return 0;
-	}
-	else if (d < 19)
-	{
-		return (d-13)/(19-13);
-	}
-	else
-	{
-		return 1;
-	}
-}
 
-// Paint elevation
+	if (d < 19)
+		return (d-13)/(19-13);
+
+	return 1;
+}
 
 log("Painting elevation...");
 
@@ -341,27 +334,19 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randFloat() < 0.02)
-				{
 					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat(0, TWO_PI));
-				}
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
-			else
-			{
-				if (diffH < 0.5 && randFloat() < 0.02)
-				{
-					placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat(0, TWO_PI));
-				}
-			}
+			else if (diffH < 0.5 && randFloat() < 0.02)
+				placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat(0, TWO_PI));
 		}
 
 		placeTerrain(ix, iz, t);
 	}
 }
-
 RMS.SetProgress(30);
 
 for (var i = 1; i <= numPlayers; i++)

@@ -85,20 +85,13 @@ var iop = 0;
 for (var i = 0; i < numPlayers; i++)
 {
 	iop = i - 1;
-	if (!(numPlayers%2)){
-		playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-	}
+	if (numPlayers % 2 == 0)
+		playerPos[i] = ((iop + abs(iop % 2)) / 2 + 1) / ((numPlayers / 2) + 1);
+	else if (iop % 2 != 0)
+		playerPos[i] = ((iop + abs(iop % 2)) / 2 + 1) / (((numPlayers + 1) / 2) + 1);
 	else
-	{
-		if (iop%2)
-		{
-			playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-		}
-		else
-		{
-			playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-		}
-	}
+		playerPos[i] = (iop / 2 + 1) / (((numPlayers - 1) / 2) + 1);
+
 	playerZ[i] = 0.2 + 0.6*(i%2);
 	playerX[i] = playerPos[i];
 }
@@ -250,15 +243,9 @@ log("Creating rivers");
 for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
 {
 	var cLocation = randFloat(0.05,0.95);
-	var tang = randFloat(PI*0.2, PI*0.8)*((randInt(2)-0.5)*2);
-	if (tang > 0)
-	{
-		var cDistance = 0.05;
-	}
-	else
-	{
-		var cDistance = -0.05;
-	}
+	var tang = 2*PI * randFloat(0.2, 0.8) * (randInt(2) - 0.5);
+	var cDistance = 0.05 * (tang > 0 ? 1 : -1);
+
 	var point = getTIPIADBON([fractionToTiles(cLocation), fractionToTiles(0.5 + cDistance)], [fractionToTiles(cLocation), fractionToTiles(0.5 - cDistance)], [-6, -1.5], 0.5, 4, 0.01);
 	if (point !== undefined)
 	{
