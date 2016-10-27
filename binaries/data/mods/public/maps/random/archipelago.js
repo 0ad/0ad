@@ -358,7 +358,7 @@ createFood
  [
   25 * numPlayers
  ],
- avoidClasses(clLand, 2, clFood, 20)
+ avoidClasses(clLand, 3, clPlayer, 2, clFood, 20)
 );
 
 RMS.SetProgress(85);
