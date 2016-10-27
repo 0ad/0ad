@@ -75,11 +75,10 @@ for (var i = 0; i < numPlayers; i++)
 playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 
 // place players
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-var playerPos = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
+var playerPos = [];
 var iop = 0;
 
 for (var i = 0; i < numPlayers; i++)

@@ -462,20 +462,16 @@ createObjectGroups(group, 0,
 	avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clStone, 30, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
-
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
 	avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clMetal, 50, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
-
 RMS.SetProgress(60);
 
 log("Creating straggler trees...");
-// create straggler trees
-var trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine];
-for (var t in trees)
+for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
 {
 	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,

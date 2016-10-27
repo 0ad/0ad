@@ -408,16 +408,13 @@ for (var i = 0; i < sizes.length; i++)
 RMS.SetProgress(62);
 
 log("Creating straggler trees...");
-// create straggler trees
-var trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine];
-for (var t in trees)
-{
-	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
-	createObjectGroupsByAreas(group, 0,
+for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
+	createObjectGroupsByAreas(
+		new SimpleGroup([new SimpleObject(tree, 1,1, 0,1)], true, clForest),
+		0,
 		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
 		scaleByMapSize(2, 38), 50, areas
 	);
-}
 RMS.SetProgress(66);
 
 log("Create straggler cypresses...");

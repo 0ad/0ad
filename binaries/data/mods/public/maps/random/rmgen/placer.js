@@ -30,12 +30,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	var retVec = [];
 
 	var size = getMapSize();
-	var gotRet = new Array(size);
-	for (var i = 0; i < size; ++i)
-	{
-		gotRet[i] = new Uint8Array(size);			// bool / uint8
-	}
-
+	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
 	var radius = sqrt(this.size / PI);
 	var perim = 4 * radius * 2 * PI;
 	var intPerim = ceil(perim);
@@ -153,16 +148,7 @@ ChainPlacer.prototype.place = function(constraint)
 	var failed = 0, count = 0;
 	var queueEmpty = (this.q.length ? false : true);
 
-	var gotRet = new Array(size);
-	for (var i = 0; i < size; ++i)
-	{
-		gotRet[i] = new Array(size);
-		for (var j = 0; j < size; ++j)
-		{
-			gotRet[i][j] = -1;
-		}
-	}
-
+	var gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
 	--size;
 
 	this.minRadius = Math.min(this.maxRadius, Math.max(this.minRadius, 1));
@@ -536,28 +522,25 @@ SimpleGroup.prototype.place = function(player, constraint)
 	var resultObjs = [];
 
 	// Try placement of objects
-	var length = this.elements.length;
-	for (var i = 0; i < length; i++)
+	for (let element of this.elements)
 	{
-		var objs = this.elements[i].place(this.x, this.z, player, this.avoidSelf, constraint);
+		var objs = element.place(this.x, this.z, player, this.avoidSelf, constraint);
 
 		if (objs === undefined)
 			return false;
 
-		for (var j = 0; j < objs.length; ++j)
-			resultObjs.push(objs[j]);
+		resultObjs = resultObjs.concat(objs);
 	}
 
 	// Add placed objects to map
-	length = resultObjs.length;
-	for (var i=0; i < length; i++)
+	for (let obj of resultObjs)
 	{
-		if (g_Map.validT(resultObjs[i].position.x / CELL_SIZE, resultObjs[i].position.z / CELL_SIZE, MAP_BORDER_WIDTH))
-			g_Map.addObject(resultObjs[i]);
+		if (g_Map.validT(obj.position.x / CELL_SIZE, obj.position.z / CELL_SIZE, MAP_BORDER_WIDTH))
+			g_Map.addObject(obj);
 
 		// Convert position to integer number of tiles
 		if (this.tileClass !== undefined)
-			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
+			this.tileClass.add(Math.floor(obj.position.x/CELL_SIZE), Math.floor(obj.position.z/CELL_SIZE));
 	}
 
 	return true;
@@ -586,32 +569,21 @@ function RandomGroup(elements, avoidSelf, tileClass, x, z)
 
 RandomGroup.prototype.place = function(player, constraint)
 {
-	var resultObjs = [];
-
 	// Pick one of the object placers at random
 	var placer = this.elements[randInt(this.elements.length)];
 
-	var objs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
-	// Failure
-	if (objs === undefined)
-	{
+	var resultObjs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
+	if (resultObjs === undefined)
 		return false;
-	}
-	else
-	{
-		for (var j = 0; j < objs.length; ++j)
-			resultObjs.push(objs[j]);
-	}
 
 	// Add placed objects to map
-	var length = resultObjs.length;
-	for (var i=0; i < length; i++)
+	for (let obj of resultObjs)
 	{
-		g_Map.addObject(resultObjs[i]);
+		g_Map.addObject(obj);
 
 		// Convert position to integer number of tiles
 		if (this.tileClass !== undefined)
-			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
+			this.tileClass.add(Math.floor(obj.position.x/CELL_SIZE), Math.floor(obj.position.z/CELL_SIZE));
 	}
 
 	return true;

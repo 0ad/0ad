@@ -108,9 +108,9 @@ for (var i = 0; i < numPlayers; i++)
 playerIDs = sortPlayers(playerIDs);
 
 // place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
 
 var startAngle = randFloat(0, TWO_PI);
 for (var i = 0; i < numPlayers; i++)
