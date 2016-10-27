@@ -266,22 +266,6 @@ for (var ix = 0; ix < mapSize; ix++)
 
 RMS.SetProgress(20);
 
-// create fish
-log("Creating fish...");
-
-num = scaleByMapSize(10, 20);
-for (var i=0; i < num; i++){
-group = new SimpleGroup(
-	[new SimpleObject(oFish, 2,3, 0,2)],
-	true, clFood
-);
-createObjectGroups(group, 0,
-	[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
-	numPlayers, 50
-);
-}
-
-// create rivers
 log("Creating rivers");
 
 for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
@@ -462,10 +446,8 @@ createFood
  [
   [new SimpleObject(oFish, 2,3, 0,2)]
  ],
- [
-  25 * numPlayers
- ],
- [avoidClasses(clFood, 20), stayClasses(clWater, 6)]
+ [scaleByMapSize(3, 25) * numPlayers],
+ [avoidClasses(clFood, 6), stayClasses(clWater, 4)]
 );
 
 // create straggler trees

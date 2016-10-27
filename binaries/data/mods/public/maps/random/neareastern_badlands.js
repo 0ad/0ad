@@ -456,6 +456,7 @@ setWaterTint(0, 0.545, 0.859);
 setWaterWaviness(1.0);
 setWaterType("clap");
 setWaterMurkiness(0.75);
+setWaterHeight(20);
 
 // Export map data
 ExportMap();

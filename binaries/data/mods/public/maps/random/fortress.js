@@ -222,16 +222,17 @@ RMS.SetProgress(20);
 
 // create fish
 log("Creating fish...");
-group = new SimpleGroup(
-	[new SimpleObject(oFish, 1,1, 0,1)],
-	true, clFood
-);
-createObjectGroupsByAreas(group, 0,
-	borderClasses(clWater, 2, 0),  avoidClasses(clFood, 8),
-	numLakes, 50,
+createObjectGroupsByAreas(
+	new SimpleGroup(
+		[new SimpleObject(oFish, 1,1, 0,1)],
+		true, clFood
+	),
+	0,
+	[stayClasses(clWater, 4),  avoidClasses(clFood, 8)],
+	numLakes / 4,
+	50,
 	waterAreas
 );
-waterAreas = [];
 
 RMS.SetProgress(25);
 
