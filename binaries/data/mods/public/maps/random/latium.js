@@ -424,7 +424,6 @@ for (var i = 1; i <= numPlayers; i++)
 	);
 	createArea(placer, [painter, elevationPainter], null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -477,7 +476,7 @@ for (var i = 1; i <= numPlayers; i++)
 		[new SimpleObject(oPalm, num, num, 0,5)],
 		false, clBaseResource, tX, tZ
 	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
+	createObjectGroup(group, 0, avoidClasses(clBaseResource, 2, clCliff, 0));
 }
 
 RMS.SetProgress(40);
@@ -508,27 +507,24 @@ createObjectGroups(group, 0,
 
 RMS.SetProgress(50);
 
-log("Creating stone mines...");
-// create large stone quarries
+log("Creating large stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clStone);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 1, clForest, 1, clPlayer, 20, clStone, 15, clCliff, 3)],
+	avoidClasses(clWater, 1, clForest, 4, clPlayer, 40, clStone, 40, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
 
-// create small stone quarries
+log("Creating small stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clStone);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clStone, 15, clCliff, 3)],
+	avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clStone, 30, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 15, clStone, 5, clCliff, 3),
-	 borderClasses(clCliff, 0, 5)],
+	avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clMetal, 50, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
 
@@ -541,20 +537,20 @@ for (var t in trees)
 {
 	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clCliff, 4, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
+		avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 4, clStone, 4),
 		scaleByMapSize(2, 38), 50
 	);
 }
 
 RMS.SetProgress(70);
 
-// create straggler cypresses
+log("Creating straggler cypresses...");
 group = new SimpleGroup(
 	[new SimpleObject(oCypress2, 1,3, 0,3), new SimpleObject(oCypress1, 0,2, 0,2)],
 	true
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 4, clCliff, 4, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
+	avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 4, clStone, 4),
 	scaleByMapSize(5, 75), 50
 );
 
@@ -564,7 +560,7 @@ log("Creating sheep...");
 // create sheep
 group = new SimpleGroup([new SimpleObject(oSheep, 2,4, 0,2)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
 	3 * numPlayers, 50
 );
 
@@ -599,7 +595,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
 	3 * numPlayers, 50
 );
 
@@ -609,7 +605,7 @@ log("Creating berry bushes...");
 // create berry bushes
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
 	1.5 * numPlayers, 100
 );
 
