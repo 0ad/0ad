@@ -228,7 +228,7 @@ function init(data)
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(
 		translate("%(mapName)s - %(mapType)s"), {
 			"mapName": translate(g_GameData.sim.mapSettings.Name),
-			"mapType": mapSize ? mapSize.LongName : (mapType ? mapType.Title : "")
+			"mapType": mapSize ? mapSize.Name : (mapType ? mapType.Title : "")
 		});
 
 	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.gui.isInGame || !g_GameData.gui.replayDirectory;

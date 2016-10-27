@@ -115,6 +115,7 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 					"value": getAttackStat("Value")
 				};
 			else
+			{
 				ret.attack[type] = {
 					"hack": getAttackStat("Hack"),
 					"pierce": getAttackStat("Pierce"),
@@ -123,7 +124,9 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 					"maxRange": getAttackStat("MaxRange"),
 					"elevationBonus": getAttackStat("ElevationBonus")
 				};
-
+				ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
+					(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
+			}
 			ret.attack[type].repeatTime = getAttackStat("RepeatTime");
 
 			if (template.Attack[type].Splash)

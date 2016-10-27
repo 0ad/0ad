@@ -480,7 +480,7 @@ function initWonderDurations()
 function initMapSizes()
 {
 	let mapSize = Engine.GetGUIObjectByName("mapSize");
-	mapSize.list = g_MapSizes.LongName;
+	mapSize.list = g_MapSizes.Name;
 	mapSize.list_data = g_MapSizes.Tiles;
 	mapSize.onSelectionChange = function() {
 		if (this.selected != -1)
@@ -1391,7 +1391,7 @@ function updateGUIObjects()
 	}
 
 	// Can be visible to both host and clients
-	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.LongName[mapSizeIdx] : translate("Default");
+	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.Name[mapSizeIdx] : translate("Default");
 	Engine.GetGUIObjectByName("numPlayersText").caption = numPlayers;
 	Engine.GetGUIObjectByName("victoryConditionText").caption = g_VictoryConditions.Title[victoryIdx];
 	Engine.GetGUIObjectByName("wonderDurationText").caption = g_WonderDurations.Title[wonderDurationIdx];

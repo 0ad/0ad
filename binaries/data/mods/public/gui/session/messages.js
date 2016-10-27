@@ -580,6 +580,8 @@ function handleNetStatusMessage(message)
 		return;
 	}
 
+	g_IsNetworkedActive = message.status == "active";
+
 	let label = Engine.GetGUIObjectByName("netStatus");
 	let statusMessage = g_StatusMessageTypes[message.status](message);
 	label.caption = statusMessage;

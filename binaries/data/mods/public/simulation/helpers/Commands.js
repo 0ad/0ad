@@ -133,6 +133,13 @@ var g_Commands = {
 
 	"reveal-map": function(player, cmd, data)
 	{
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({
+			"type": "aichat",
+			"players": [player],
+			"message": "(Cheat - reveal map)" // TODO: translate me!
+		});
+
 		// Reveal the map for all players, not just the current player,
 		// primarily to make it obvious to everyone that the player is cheating
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);

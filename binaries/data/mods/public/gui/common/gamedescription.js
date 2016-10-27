@@ -261,7 +261,7 @@ function getGameDescription(extended = false)
 
 		if (g_GameAttributes.mapType == "random")
 		{
-			let mapSize = g_MapSizes.LongName[g_MapSizes.Tiles.indexOf(g_GameAttributes.settings.Size)];
+			let mapSize = g_MapSizes.Name[g_MapSizes.Tiles.indexOf(g_GameAttributes.settings.Size)];
 			if (mapSize)
 				titles.push({
 					"label": translate("Map Size"),

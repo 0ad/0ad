@@ -687,10 +687,11 @@ function handleInputBeforeGui(ev, hoveredObject)
 
 				if (result && result.cost)
 				{
-					placementSupport.tooltipMessage = getEntityCostTooltip(result);
 					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", { "cost": result.cost });
-					if (neededResources)
-						placementSupport.tooltipMessage += getNeededResourcesTooltip(neededResources);
+					placementSupport.tooltipMessage = [
+						getEntityCostTooltip(result),
+						getNeededResourcesTooltip(neededResources)
+					].filter(tip => tip).join("\n");
 				}
 
 				break;
@@ -716,9 +717,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 						}
 					}
 					else
-					{
 						placementSupport.tooltipMessage = translate("Cannot build wall here!");
-					}
 
 					updateBuildingPlacementPreview();
 					return true;

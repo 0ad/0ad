@@ -339,6 +339,7 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 
 	return costs;
 }
+
 function getGatherTooltip(template)
 {
 	if (!template.gather)

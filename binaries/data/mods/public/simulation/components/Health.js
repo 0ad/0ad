@@ -413,7 +413,7 @@ Health.prototype.OnValueModification = function(msg)
 Health.prototype.RegisterHealthChanged = function(from)
 {
 	this.CheckRegenTimer();
-	this.UpdateActor()
+	this.UpdateActor();
 	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": from, "to": this.hitpoints });
 };
 
