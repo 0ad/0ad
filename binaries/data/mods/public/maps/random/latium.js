@@ -332,10 +332,9 @@ for (var ix = 0; ix < mapSize; ix++)
 			addToClass(ix, iz, clCliff);
 		}
 
-		if (minH >= 7)
-		{
+		// Don't place resources onto potentially impassable mountains
+		if (minH >= 20)
 			addToClass(ix, iz, clCliff);
-		}
 
 		// forests
 		if (getHeight(ix, iz) <11){
