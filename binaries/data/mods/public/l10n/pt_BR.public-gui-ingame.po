@@ -6,6 +6,7 @@
 # alrope <alexandre.rp@gmail.com>, 2014
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2015
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
+# Dalcio Marçal <dalciomarcal@gmail.com>, 2016
 # Dianakc <dianakac@gmail.com>, 2014
 # Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
 # alveselvis16 <elvis.alves.ismart@gmail.com>, 2014
@@ -20,6 +21,7 @@
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Hunteros <jorgebosch@ymail.com>, 2013
 # Igor Aleixo <igor.pavao@gmail.com>, 2016
+# J. P. Lacerda <jp-lacerda@msn.com>, 2016
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
@@ -49,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-08 14:17+0000\n"
-"Last-Translator: Rafael Monteiro <rafaelimabsb2@hotmail.com>\n"
+"PO-Revision-Date: 2016-10-22 01:03+0000\n"
+"Last-Translator: J. P. Lacerda <jp-lacerda@msn.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +128,7 @@ msgstr "Deletar"
 #: gui/session/menu.js:277
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:343
 msgctxt "team"
@@ -496,11 +498,11 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:781
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -534,7 +536,7 @@ msgstr "%(player)s lhe enviou %(amounts)s."
 #: gui/session/messages.js:892
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s trocou %(amountsBought)s por %(amountsSold)s."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -656,7 +658,7 @@ msgstr "Pontos de captura:"
 #: gui/session/selection_details.js:407
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
@@ -665,12 +667,12 @@ msgstr "Carregando:"
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:415
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
@@ -1163,7 +1165,7 @@ msgstr "Filtrar o histórico do chat."
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Selecione um destinatário do chat."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"

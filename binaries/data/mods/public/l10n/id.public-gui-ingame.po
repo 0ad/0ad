@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adhika Setya Pramudita <hello@adhikasetyap.me>, 2016
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # azayrahmad <azayrahmad@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-05 14:26+0000\n"
-"Last-Translator: Samuel Christo Randiny <srandiny@gmail.com>\n"
+"PO-Revision-Date: 2016-10-22 04:40+0000\n"
+"Last-Translator: Adhika Setya Pramudita <hello@adhikasetyap.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,7 +232,7 @@ msgstr "Jeda"
 #: gui/session/menu.js:826
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Dijeda oleh %(players)s"
 
 #: gui/session/menu.js:827
 msgid ", "
@@ -342,7 +343,7 @@ msgstr "Pribadi"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Chat dan notifikasi"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
@@ -352,7 +353,7 @@ msgstr "Pesan Percakapan"
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Chat pemain"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
@@ -468,7 +469,7 @@ msgstr "Pemain Tidak Dikenal"
 #: gui/session/messages.js:833
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s telah menyerah."
 
 #: gui/session/messages.js:834
 #, javascript-format
@@ -726,7 +727,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Gagalkan Pembaharuan"
 
 #: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
@@ -997,7 +998,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1100
 msgid "Abort the current order."
-msgstr ""
+msgstr "Gagalkan perintah saat ini."
 
 #: gui/session/unit_actions.js:1120
 msgid "Order the selected units to garrison in a building or unit."

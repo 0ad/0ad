@@ -5,12 +5,13 @@
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
 # Osoitz <oelkoro@gmail.com>, 2015
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-15 09:00+0200\n"
-"PO-Revision-Date: 2016-08-15 09:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-25 11:47+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +95,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:631
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Partida %(time)s-(e)tan hasita"
 
 #: gui/lobby/lobby.js:632 gui/lobby/lobby.js:994
 msgid "HH:mm"
@@ -103,7 +104,7 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:636
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Jokalariak: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:678
 msgid "The game has already started."
@@ -145,19 +146,19 @@ msgstr "* %(sender)s"
 #: gui/lobby/lobby.js:906
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:915 gui/lobby/lobby.js:936 gui/lobby/lobby.js:962
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:920 gui/lobby/lobby.js:941 gui/lobby/lobby.js:967
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:930
@@ -169,11 +170,11 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:958
 msgid "Private"
-msgstr ""
+msgstr "Pribatua"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
@@ -186,7 +187,7 @@ msgstr "\\[%(time)s]"
 #: gui/lobby/lobby.js:1002
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1063
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -200,7 +201,7 @@ msgstr "-"
 #: gui/lobby/lobby.js:1132
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%%%(percentage)s"
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -264,7 +265,7 @@ msgstr "Erabilera baldintzak"
 
 #: gui/lobby/lobby.xml:(caption):17 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Multiplayer gela"
 
 #: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):303
 msgid "Current Rank:"
@@ -333,7 +334,7 @@ msgstr "Eguneratu"
 
 #: gui/lobby/lobby.xml:(caption):289
 msgid "Enter username:"
-msgstr ""
+msgstr "Sartu erabiltzailea:"
 
 #: gui/lobby/lobby.xml:(caption):295
 msgid "View Profile"

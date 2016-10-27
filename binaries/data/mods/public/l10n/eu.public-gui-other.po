@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Osoitz <oelkoro@gmail.com>, 2015
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-25 11:47+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +62,7 @@ msgstr ""
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Erlaitza"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -95,7 +96,7 @@ msgstr "Suetena bukatzeko geratzen den denbora: %(time)s."
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Ausazko"
 
 #: gui/common/functions_utility.js:132
 msgid "mm:ss"
@@ -165,60 +166,60 @@ msgstr ""
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:83
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (DESKONEKATUTA)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:96
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (DESKONEKTATUTA, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:106
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:113
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:131
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Zibilizazio ezezaguna"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
@@ -237,7 +238,7 @@ msgstr ""
 #: gui/common/gamedescription.js:162
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "%(team)s taldea"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -246,7 +247,7 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:173
 msgid "Observer"
@@ -278,7 +279,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Jokalariek ezin dituzte hasierako taldeak aldatu."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
@@ -324,19 +325,19 @@ msgstr[1] ""
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Maparen Izena"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Mapa Mota"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Mapa Tamaina"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Mapa Deskripzioa"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
@@ -349,7 +350,7 @@ msgstr ""
 #: gui/common/gamedescription.js:287
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
@@ -578,7 +579,7 @@ msgstr ""
 #: gui/common/l10n.js:90
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s eta %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -595,12 +596,12 @@ msgstr ", "
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Konexioa zerbitzariarekin galtzen (%(seconds)sak)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s konexioa galtzen (%(seconds)sak)"
 
 #: gui/common/network.js:28
 #, javascript-format
@@ -633,7 +634,7 @@ msgstr "Sare protokolo bertsio desegokia"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Partida kargatzen ari da, saiatu geroago"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -645,7 +646,7 @@ msgstr ""
 
 #: gui/common/network.js:69
 msgid "You have been banned"
-msgstr ""
+msgstr "Debekatua izan zara"
 
 #: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -653,7 +654,7 @@ msgstr ""
 
 #: gui/common/network.js:71
 msgid "Server full"
-msgstr ""
+msgstr "Zerbitzaria beteta"
 
 #: gui/common/network.js:74
 #, javascript-format
@@ -681,19 +682,19 @@ msgstr "Deskonektatuta"
 #: gui/common/network.js:105
 #, javascript-format
 msgid "Could not ban %(name)s."
-msgstr ""
+msgstr "Ezin izan da %(name)s debekatu."
 
 #: gui/common/network.js:105
 #, javascript-format
 msgid "Could not kick %(name)s."
-msgstr ""
+msgstr "Ezin izan da %(name)s bota."
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:140
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Erabiltzaileak (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -759,16 +760,16 @@ msgstr "Ausazko"
 #: gui/common/settings.js:197
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Jokalekua"
 
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Ez dago"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Partida mugagabea."
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -777,17 +778,17 @@ msgstr "Mugagabea"
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -797,12 +798,12 @@ msgstr "Lehenetsia"
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
@@ -868,7 +869,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #: gui/common/tooltips.js:95
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%%%(percentage)s"
 
 #: gui/common/tooltips.js:106
 msgid "Armor:"
@@ -1149,7 +1150,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:614
 msgid "Loot:"
-msgstr ""
+msgstr "Harrapakina:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -2192,7 +2193,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):94
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Maparen Izena"
 
 #: gui/replaymenu/replay_menu.xml:(heading):98
 msgctxt "replay"

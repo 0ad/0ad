@@ -1,0 +1,416 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-09-30 09:01+0200\n"
+"PO-Revision-Date: 2016-09-30 08:38+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Cornish (http://www.transifex.com/wildfire-games/0ad/language/kw/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: kw\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n == 3) ? 2 : 3;\n"
+
+#: simulation/data/auras/athen_hero_iphicrates_1.jsonauraName
+msgid "Formation Reforms"
+msgstr ""
+
+#: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
+msgid "All units in his formation +15% speed and +1 armor."
+msgstr ""
+
+#: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
+msgid "Peltast Reforms"
+msgstr ""
+
+#: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
+msgid "All Peltasts +15% speed."
+msgstr ""
+
+#: simulation/data/auras/athen_hero_pericles_1.jsonauraName
+msgid "Builder Aura"
+msgstr ""
+
+#: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
+msgid "Buildings construct 15% faster within his vision."
+msgstr ""
+
+#: simulation/data/auras/athen_hero_pericles_2.jsonauraName
+msgid "Acropolis Aura"
+msgstr ""
+
+#: simulation/data/auras/athen_hero_pericles_2.jsonauraDescription
+msgid "Temples are 50 stone cheaper during his lifetime."
+msgstr ""
+
+#: simulation/data/auras/athen_hero_themistocles_1.jsonauraName
+msgid "Naval Commander Aura"
+msgstr ""
+
+#: simulation/data/auras/athen_hero_themistocles_1.jsonauraDescription
+msgid "When garrisoned in a ship, his ship is +50% faster."
+msgstr ""
+
+#: simulation/data/auras/athen_hero_themistocles_2.jsonauraName
+msgid "Naval Architect Aura"
+msgstr ""
+
+#: simulation/data/auras/athen_hero_themistocles_2.jsonauraDescription
+msgid "-20% build time for ships during his lifespan."
+msgstr ""
+
+#: simulation/data/auras/brit_hero_boudicca.jsonauraName
+msgid "Champion Army"
+msgstr ""
+
+#: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
+msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
+msgstr ""
+
+#: simulation/data/auras/brit_hero_caratacos.jsonauraName
+#: simulation/data/auras/brit_hero_cunobelin.jsonauraName
+#: simulation/data/auras/gaul_hero_brennus.jsonauraName
+#: simulation/data/auras/gaul_hero_britomartus.jsonauraName
+#: simulation/data/auras/gaul_hero_vercingetorix.jsonauraName
+#: simulation/data/auras/mace_hero_demetrius.jsonauraName
+#: simulation/data/auras/mace_hero_philip.jsonauraName
+msgid "Hero Aura"
+msgstr ""
+
+#: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
+#: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
+msgid "All Units +15% speed."
+msgstr ""
+
+#: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
+msgid "+1 HP per second healing rate for all units."
+msgstr ""
+
+#: simulation/data/auras/cart_hero_hamilcar.jsonauraName
+msgid "Lightning Aura"
+msgstr ""
+
+#: simulation/data/auras/cart_hero_hannibal.jsonauraName
+msgid "Tactician Aura"
+msgstr ""
+
+#: simulation/data/auras/cart_hero_hannibal.jsonauraDescription
+msgid "All allied units +2 Attack and +1 Capture within his vision range."
+msgstr ""
+
+#: simulation/data/auras/cart_hero_maharbal.jsonauraName
+msgid "Commander Aura"
+msgstr ""
+
+#: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
+msgid "+5 Cavalry melee attack within vision range of him."
+msgstr ""
+
+#: simulation/data/auras/cart_super_dock_repair.jsonauraName
+msgid "Repairing Ship aura"
+msgstr ""
+
+#: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
+msgid "Heals garrisoned ship at 3 HP per second."
+msgstr ""
+
+#: simulation/data/auras/epic_temple_heal.jsonauraName
+#: simulation/data/auras/temple_heal.jsonauraName
+msgid "Healing Aura"
+msgstr ""
+
+#: simulation/data/auras/epic_temple_heal.jsonauraDescription
+msgid "Heals nearby units at 3 HP per second."
+msgstr ""
+
+#: simulation/data/auras/female_inspiration.jsonauraName
+msgid "Inspiration Aura"
+msgstr ""
+
+#: simulation/data/auras/female_inspiration.jsonauraDescription
+msgid "Nearby males work 10% faster."
+msgstr ""
+
+#: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
+msgid "+10 Metal loot for every enemy unit killed."
+msgstr ""
+
+#: simulation/data/auras/gaul_hero_britomartus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr ""
+
+#: simulation/data/auras/gaul_hero_vercingetorix.jsonauraDescription
+msgid "+2 Attack and +1 Capture for all units within his aura."
+msgstr ""
+
+#: simulation/data/auras/hero_garrison.jsonauraName
+msgid "Garrisoned Capture Aura"
+msgstr ""
+
+#: simulation/data/auras/hero_garrison.jsonauraDescription
+msgid ""
+"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
+"capture points recovery rate."
+msgstr ""
+
+#: simulation/data/auras/iber_monument.jsonauraName
+msgid "Defensive Aura"
+msgstr ""
+
+#: simulation/data/auras/iber_monument.jsonauraDescription
+msgid ""
+"Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost. Effect "
+"Range: 50 meters"
+msgstr ""
+
+#: simulation/data/auras/library.jsonauraName
+msgid "Library Aura"
+msgstr ""
+
+#: simulation/data/auras/library.jsonauraDescription
+msgid ""
+"Reduce the cost and research time of technologies by 10% per Library owned."
+msgstr ""
+
+#: simulation/data/auras/loyalty_regen.jsonauraName
+msgid "Loyalty Aura"
+msgstr ""
+
+#: simulation/data/auras/loyalty_regen.jsonauraDescription
+msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/mace_hero_alexander.jsonauraName
+msgid "Imperialism Aura"
+msgstr ""
+
+#: simulation/data/auras/mace_hero_alexander.jsonauraDescription
+msgid "+10% territory effect for all buildings while he lives."
+msgstr ""
+
+#: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
+msgid "+15% Range and +10 Crush Attack for Siege Engines."
+msgstr ""
+
+#: simulation/data/auras/mace_hero_philip.jsonauraDescription
+msgid "+5 Attack and +2 Capture for Champion Units."
+msgstr ""
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraName
+msgid "Evangelism Aura"
+msgstr ""
+
+#: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
+msgid ""
+"All player and allied Temple technologies -50% cost and -50% research time."
+msgstr ""
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraName
+msgid "Teacher Aura"
+msgstr ""
+
+#: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
+msgid ""
+"Empower a building with -50% research time while he is garrisoned in it."
+msgstr ""
+
+#: simulation/data/auras/maur_pillar.jsonauraDescription
+msgid "All traders in range +20% walk speed."
+msgstr ""
+
+#: simulation/data/auras/pers_hero_cyrus.jsonauraName
+msgid "Lead from the Front Aura"
+msgstr ""
+
+#: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
+msgid "+2 Attack and +1 Capture for nearby cavalry units."
+msgstr ""
+
+#: simulation/data/auras/pers_hero_darius.jsonauraName
+msgid "Leadership Aura"
+msgstr ""
+
+#: simulation/data/auras/pers_hero_darius.jsonauraDescription
+msgid "+15% Movement Speed for all units."
+msgstr ""
+
+#: simulation/data/auras/pers_hero_xerxes.jsonauraName
+msgid "Administrator Aura"
+msgstr ""
+
+#: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
+msgid "+15% Gather Rate and Build Rate of nearby units."
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+msgid "Patriot Aura"
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+msgid "Egyptian units fight 25% faster in her vision range."
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
+msgid "Raphia Aura"
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
+msgid "Egyptian Pikemen have 40% greater health during his lifetime."
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
+msgid "Construction Aura"
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
+msgid "Buildings construct 10% faster within his vision."
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
+msgid "Mercenary Patron Aura"
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraDescription
+msgid "Mercenaries cost -50% resources during his lifetime."
+msgstr ""
+
+#: simulation/data/auras/rome_hero_marcellus.jsonauraName
+msgid "Sword of Rome Aura"
+msgstr ""
+
+#: simulation/data/auras/rome_hero_marcellus.jsonauraDescription
+msgid "+5 Attack and +2 Capture for Roman units within his vision range."
+msgstr ""
+
+#: simulation/data/auras/rome_hero_maximus.jsonauraName
+msgid "Shield of Rome Aura"
+msgstr ""
+
+#: simulation/data/auras/rome_hero_maximus.jsonauraDescription
+msgid "+1 armor for all units and structures."
+msgstr ""
+
+#: simulation/data/auras/rotary_mill.jsonauraName
+msgid "Farming bonus"
+msgstr ""
+
+#: simulation/data/auras/rotary_mill.jsonauraDescription
+msgid "Boosts nearby farming with +25% gathering rate."
+msgstr ""
+
+#: simulation/data/auras/sele_hero_antiochus_great.jsonauraName
+msgid "Ilarchès Aura"
+msgstr ""
+
+#: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
+msgid "All Cavalry gains +2 levels of all armor types."
+msgstr ""
+
+#: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
+msgid "Conquest Aura"
+msgstr ""
+
+#: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraDescription
+msgid ""
+"All nearby enemy Buildings, Siege engines, and Ships have their health "
+"reduced by 20%."
+msgstr ""
+
+#: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
+msgid "Zooiarchos Aura"
+msgstr ""
+
+#: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
+msgid "Boosts War Elephant attack and speed +20% within his vision."
+msgstr ""
+
+#: simulation/data/auras/spart_hero_brasidas.jsonauraName
+msgid "Helot Reforms"
+msgstr ""
+
+#: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
+msgid ""
+"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
+msgstr ""
+
+#: simulation/data/auras/spart_hero_leonidas.jsonauraName
+msgid "Last Stand Aura"
+msgstr ""
+
+#: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
+msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
+msgstr ""
+
+#: simulation/data/auras/temple_heal.jsonauraDescription
+msgid "Heals nearby units at 1 HP per second."
+msgstr ""
+
+#: simulation/data/auras/theatron.jsonauraName
+msgid "Hellenization."
+msgstr ""
+
+#: simulation/data/auras/theatron.jsonauraDescription
+msgid "Increase territory influence by 20% per Theatron owned."
+msgstr ""
+
+#: simulation/data/auras/wall_garrisoned.jsonauraName
+msgid "Wall Protection"
+msgstr ""
+
+#: simulation/data/auras/wall_garrisoned.jsonauraDescription
+msgid "Units on walls have 3 extra Armor levels and higher vision."
+msgstr ""
+
+#: simulation/data/auras/wonder_pop_1.jsonauraName
+msgid "Wonder Aura"
+msgstr ""
+
+#: simulation/data/auras/wonder_pop_1.jsonauraDescription
+msgid "Increase the population limit by 10 per Wonder owned."
+msgstr ""
+
+#: simulation/data/auras/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion Aura"
+msgstr ""
+
+#: simulation/data/auras/wonder_pop_2.jsonauraDescription
+msgid ""
+"Further increase the population limit by 40 per Wonder owned (requires "
+"\"Glorious Expansion\" tech)."
+msgstr ""
+
+#: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
+msgid "Delian League"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
+msgid ""
+"Shortly after the great naval victories at Salamis and Mycale, the Greek "
+"city-states instituted the so-called Delian League in 478 BC, whose purpose "
+"was to push the Persians out of the Aegean region. The allied states "
+"contributed ships and money, while the Athenians offered their entire navy."
+msgstr ""
+
+#: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
+msgid "Saripeko"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
+msgid ""
+"Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
+"Iberian players"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
+msgid "Syrian Tetrapolis"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
+msgid ""
+"Reduces the cost for civil centers with 20% for allies of Seleucid players"
+msgstr ""

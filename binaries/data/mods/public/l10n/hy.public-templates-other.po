@@ -1,0 +1,989 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# Gagik Papikyan <gagspapikyan@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-09-30 09:01+0200\n"
+"PO-Revision-Date: 2016-09-30 08:24+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hy\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/templates/template_gaia.xml:6
+msgid "Gaia"
+msgstr "Գայա"
+
+#: simulation/templates/template_gaia_flora.xml:8
+msgid "Generic Flora"
+msgstr "Ընդհանուր բուսական աշխարհ"
+
+#: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/template_gaia_flora_bush_berry.xml:8
+msgid "Bush"
+msgstr "Թուփ"
+
+#: simulation/templates/template_gaia_flora_bush_berry.xml:9
+msgid "Berries"
+msgstr "Հատապտուղներ"
+
+#: simulation/templates/template_gaia_flora_bush_berry.xml:10
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Հավաքել այս թփի պտուղները՝ սնունդ ստանալու նպատակով։"
+
+#: simulation/templates/template_gaia_flora_tree.xml:5
+msgid "Tree"
+msgstr "Ծառ"
+
+#: simulation/templates/template_gaia_flora_tree.xml:7
+msgid "Chop down to accumulate Wood."
+msgstr "Կտրել՝ փայտ ստանալու նպատակով։"
+
+#: simulation/templates/template_gaia_geo.xml:8
+msgid "Generic Geology"
+msgstr "Ընդհանուր երկրաբանություն"
+
+#: simulation/templates/template_gaia_geo_mineral.xml:4
+msgid "Mineral"
+msgstr "Հանքանյութ"
+
+#: simulation/templates/template_gaia_geo_mineral.xml:5
+msgid "Metal Mine"
+msgstr "Մետաղի հանք"
+
+#: simulation/templates/template_gaia_geo_mineral.xml:6
+msgid "A mineral deposit, providing access to rare forms of precious Metal."
+msgstr "Թանկարժեք մետաղի հազվադեպ հանդիպող տեսակներ ստանալու հանքավայր։"
+
+#: simulation/templates/template_gaia_geo_rock.xml:4
+msgid "Rock"
+msgstr "Ժայռ"
+
+#: simulation/templates/template_gaia_geo_rock.xml:5
+msgid "Stone Mine"
+msgstr "Քարի հանքավայր"
+
+#: simulation/templates/template_gaia_geo_rock.xml:6
+msgid "Mine these to provide Stone building material."
+msgstr "Մշակել հանքավայրը՝ քար ստանալու նպատակով։"
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Generic Ruins"
+msgstr "Ընդհանուր ավեևակներ"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+#: simulation/templates/gaia/special_ruins.xml:9
+#: simulation/templates/gaia/special_ruins_column_doric.xml:9
+#: simulation/templates/other/unfinished_greek_temple.xml:9
+msgid "Ruins"
+msgstr "Ավերակներ"
+
+#: simulation/templates/template_gaia_ruins.xml:10
+msgid "These ruins that can be mined for resources."
+msgstr "Այս ավերակները կարող են հանքաշակվել՝ ռեսուրսներ ստանալու նպատակով։"
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Generic Treasure"
+msgstr "Ընդհանուր գանձ"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
+#: simulation/templates/gaia/special_treasure_food_bin.xml:9
+#: simulation/templates/gaia/special_treasure_food_crate.xml:9
+#: simulation/templates/gaia/special_treasure_food_jars.xml:9
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
+#: simulation/templates/gaia/special_treasure_pegasus.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:9
+#: simulation/templates/gaia/special_treasure_wood.xml:9
+#: simulation/templates/other/special_treasure_shipwreck.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+msgid "Treasure"
+msgstr "Գանձ"
+
+#: simulation/templates/template_gaia_treasure.xml:10
+msgid "A treasure that can be quickly gathered."
+msgstr "Գանձ, որը կարելի է արագ հավաքել։"
+
+#: simulation/templates/template_structure.xml:55
+msgid "Structure"
+msgstr "Կառուցվածք"
+
+#: simulation/templates/template_unit.xml:40
+msgid "Unit"
+msgstr "Միավոր"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
+msgid "Army of Alexander the Great."
+msgstr "Ալեքսանդր Մեծի բանակ։"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+msgid "Army of Alexander the Great"
+msgstr "Ալեքսանդր Մեծի բանակ"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_standard.xml:21
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
+msgid "This is what an army would look like on the Strat Map."
+msgstr ""
+
+#: simulation/templates/campaigns/army_mace_standard.xml:19
+msgid "Army of Macedonia"
+msgstr "Մակեդոնիայի բանակ"
+
+#: simulation/templates/campaigns/army_mace_standard.xml:20
+msgid "Army of Macedon"
+msgstr "Մակեդոնիայի բանակ"
+
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
+msgid "Army of Leonidas I."
+msgstr "Լեոնիդաս l-ի բանակ։"
+
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
+msgid "Army of Leonidas I"
+msgstr "Լեոնիդաս I-ի բանակ"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:25
+#: simulation/templates/campaigns/campaign_city_test.xml:25
+msgid "Market"
+msgstr "Շուկա"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:26
+#: simulation/templates/campaigns/campaign_city_test.xml:26
+msgid "Settlement"
+msgstr "Բնակավայր"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:27
+msgid "Minor Greek Polis"
+msgstr "Հունական փոքր քաղաք"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
+msgid "This is a minor Greek city."
+msgstr "Սա հունական փոքր քաղաք է։"
+
+#: simulation/templates/campaigns/campaign_city_test.xml:27
+msgid "Greek Polis"
+msgstr "Հունական քաղաք"
+
+#: simulation/templates/campaigns/campaign_city_test.xml:28
+msgid "This is a major Greek city."
+msgstr "Սա հունական մեծ քաղաք է։"
+
+#: simulation/templates/campaigns/campaign_religious_test.xml:12
+msgid "Religious Sanctuary"
+msgstr "Կրոնական սրբավայր"
+
+#: simulation/templates/campaigns/campaign_religious_test.xml:13
+msgid "Greek Religious Sanctuary"
+msgstr "Հունական կրոնական սրբավայր"
+
+#: simulation/templates/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Ուղղագիծ մարտական դասավորություն"
+
+#: simulation/templates/formations/box.xml:6
+msgid "4 units required"
+msgstr "Անհրաժեշտ է 4 միավոր"
+
+#: simulation/templates/formations/box.xml:7
+msgid "Box"
+msgstr "Արկղ"
+
+#: simulation/templates/formations/column_closed.xml:5
+msgid "Column Closed"
+msgstr "Փակ սյունաձև դասավորություն"
+
+#: simulation/templates/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Բաց սյունաձև դասավորություն"
+
+#: simulation/templates/formations/flank.xml:6
+msgid "8 units required"
+msgstr "Անհրաժեշտ է 8 միավոր"
+
+#: simulation/templates/formations/flank.xml:7
+msgid "Flank"
+msgstr "Թև"
+
+#: simulation/templates/formations/line_closed.xml:5
+msgid "Line Closed"
+msgstr "Փակ գծային դասավորություն"
+
+#: simulation/templates/formations/line_open.xml:5
+msgid "Line Open"
+msgstr "Բաց գծային դասավորություն"
+
+#: simulation/templates/formations/null.xml:5
+msgid "None"
+msgstr "Ոչ մեկը"
+
+#: simulation/templates/formations/phalanx.xml:6
+msgid "10 melee infantry units required"
+msgstr "Անհրաժեշտ է 10 ձեռնամարտ վարող միավոր"
+
+#: simulation/templates/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Փաղանգ"
+
+#: simulation/templates/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Ցրված դասավորություն"
+
+#: simulation/templates/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Թույլատրվում են միայն հեռամարտ վարող միավորներ"
+
+#: simulation/templates/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr ""
+
+#: simulation/templates/formations/syntagma.xml:6
+msgid "9 pike infantry units required"
+msgstr "Անհրաժեշտ է 9 նիզակավոր հետևակային միավոր"
+
+#: simulation/templates/formations/syntagma.xml:7
+msgid "Syntagma"
+msgstr "Սինտագմա"
+
+#: simulation/templates/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "Անհրաշետ է 9 ձեռնամարտ վարող հետևակային միավոր"
+
+#: simulation/templates/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Կրիա"
+
+#: simulation/templates/formations/wedge.xml:6
+msgid "3 cavalry units required"
+msgstr "Անհրաժեշտ է 3 հեծյալ միավոր"
+
+#: simulation/templates/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Սեպ"
+
+#: simulation/templates/gaia/fauna_bear.xml:18
+msgid "Bear"
+msgstr "Արջ"
+
+#: simulation/templates/gaia/fauna_boar.xml:18
+msgid "Boar"
+msgstr "Զարազ"
+
+#: simulation/templates/gaia/fauna_camel.xml:9
+msgid "Camel"
+msgstr "Ուղտ"
+
+#: simulation/templates/gaia/fauna_chicken.xml:12
+msgid "Chicken"
+msgstr "Հավ"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:18
+msgid "Crocodylus niloticus"
+msgstr "Նեղոսյան կոկորդիլոս"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:19
+msgid "Nile Crocodile"
+msgstr "Նեղոսյան կոկորդիլոս"
+
+#: simulation/templates/gaia/fauna_deer.xml:9
+msgid "Deer"
+msgstr "Եղնիկ"
+
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
+msgid "African Bush Elephant"
+msgstr "Աֆրիկյան սավաննային փիղ"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
+msgid "African Elephant (Infant)"
+msgstr "Աֆրիկյան փիղ (նորածին)"
+
+#: simulation/templates/gaia/fauna_elephant_asian.xml:33
+msgid "Asian Elephant"
+msgstr "Ասիական փիղ"
+
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+msgid "North African Elephant"
+msgstr "Հյուսիսաֆրիկյան փիղ"
+
+#: simulation/templates/gaia/fauna_fish.xml:5
+#: simulation/templates/gaia/fauna_fish_tuna.xml:5
+msgid "Tuna Fish"
+msgstr "Թյունա ձուկ"
+
+#: simulation/templates/gaia/fauna_fish.xml:6
+#: simulation/templates/gaia/fauna_fish_tuna.xml:6
+msgid "Collect food from this bountiful oceanic resource."
+msgstr "Սնունդ հավաքել այս օվկիանոսային հարուստ ռեսուրսից։"
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
+msgid "Tilapia Fish"
+msgstr "Թիլապիա ձուկ"
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
+msgid "Collect food from this bountiful riparian resource."
+msgstr "Սնունդ հավաքել այս մերձափնյա հարուստ ռեսուրսից։"
+
+#: simulation/templates/gaia/fauna_gazelle.xml:9
+msgid "Gazelle"
+msgstr "Վիթ"
+
+#: simulation/templates/gaia/fauna_giraffe.xml:12
+msgid "Giraffe (Adult)"
+msgstr "Ընձուղտ (հասուն)"
+
+#: simulation/templates/gaia/fauna_giraffe_infant.xml:9
+msgid "Giraffe (Juvenile)"
+msgstr "Ընձուղտ (փոքրահասակ)"
+
+#: simulation/templates/gaia/fauna_goat.xml:15
+msgid "Goat"
+msgstr "Այծ"
+
+#: simulation/templates/gaia/fauna_horse.xml:9
+msgid "Horse"
+msgstr "Ձի"
+
+#: simulation/templates/gaia/fauna_lion.xml:18
+msgid "Lion"
+msgstr "Առյուծ"
+
+#: simulation/templates/gaia/fauna_lioness.xml:18
+msgid "Lioness"
+msgstr "Առյուծ"
+
+#: simulation/templates/gaia/fauna_muskox.xml:9
+msgid "Muskox"
+msgstr "Մուսկունյան ցուլ"
+
+#: simulation/templates/gaia/fauna_peacock.xml:12
+msgid "Peacock"
+msgstr "Սիրամարգ"
+
+#: simulation/templates/gaia/fauna_pig.xml:15
+msgid "Pig"
+msgstr "Խոզ"
+
+#: simulation/templates/gaia/fauna_rabbit.xml:9
+msgid "Rabbit"
+msgstr "Ճագար"
+
+#: simulation/templates/gaia/fauna_rhino.xml:18
+msgid "Rhinoceros"
+msgstr "Ռնգեղջյուր"
+
+#: simulation/templates/gaia/fauna_shark.xml:13
+msgid "Great White"
+msgstr "Մեծ սպիտակ շնաձուկ"
+
+#: simulation/templates/gaia/fauna_shark.xml:14
+msgid "Shark"
+msgstr "Շնաձուկ"
+
+#: simulation/templates/gaia/fauna_sheep.xml:15
+msgid "Sheep"
+msgstr "Ոչխար"
+
+#: simulation/templates/gaia/fauna_tiger.xml:18
+msgid "Tiger"
+msgstr "Վագր"
+
+#: simulation/templates/gaia/fauna_walrus.xml:23
+msgid "Walrus"
+msgstr "Ծովափիղ"
+
+#: simulation/templates/gaia/fauna_whale_fin.xml:8
+msgid "Fin Whale"
+msgstr "Ֆինվալ"
+
+#: simulation/templates/gaia/fauna_whale_humpback.xml:8
+msgid "Humpback Whale"
+msgstr "Սապատավոր կետ"
+
+#: simulation/templates/gaia/fauna_wildebeest.xml:9
+msgid "Wildebeest"
+msgstr "Գնու"
+
+#: simulation/templates/gaia/fauna_wolf.xml:18
+msgid "Wolf"
+msgstr "Գայլ"
+
+#: simulation/templates/gaia/fauna_wolf_snow.xml:18
+msgid "Snow Wolf"
+msgstr "Սպիտակ գայլ"
+
+#: simulation/templates/gaia/fauna_zebra.xml:9
+msgid "Zebra"
+msgstr "Զեբր"
+
+#: simulation/templates/gaia/flora_bush_badlands.xml:8
+msgid "Hardy Bush"
+msgstr "Դիմացկուն թուփ"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
+msgid "Forage"
+msgstr "Անասնակեր"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
+msgid "Grapes"
+msgstr "Խաղող"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:6
+msgid "Gather grapes from these vines for Food."
+msgstr "Հավաքել խաղող այս վազերից՝ սնունդ ստանալու նպատակով։"
+
+#: simulation/templates/gaia/flora_bush_temperate.xml:8
+msgid "Deciduous Bush"
+msgstr "Տերևաթափվող թուփ"
+
+#: simulation/templates/gaia/flora_tree_acacia.xml:4
+msgid "Acacia Tree"
+msgstr "Ակացիա"
+
+#: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
+msgid "Aleppo Pine Tree"
+msgstr "Հալեպյան սոճի"
+
+#: simulation/templates/gaia/flora_tree_apple.xml:8
+msgid "Apple Tree"
+msgstr "Խնձորենի"
+
+#: simulation/templates/gaia/flora_tree_baobab.xml:8
+msgid "Baobab"
+msgstr "Բաոբաբ"
+
+#: simulation/templates/gaia/flora_tree_carob.xml:4
+msgid "Carob Tree"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
+#: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
+#: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
+msgid "Cretan Date Palm"
+msgstr "Փյունիկյան արմավենի"
+
+#: simulation/templates/gaia/flora_tree_cypress.xml:4
+msgid "Cypress Tree"
+msgstr "Նոճի"
+
+#: simulation/templates/gaia/flora_tree_date_palm.xml:4
+msgid "Date Palm"
+msgstr "Արմավենի"
+
+#: simulation/templates/gaia/flora_tree_dead.xml:4
+msgid "Dead Tree"
+msgstr "Մահացած ծառ"
+
+#: simulation/templates/gaia/flora_tree_euro_beech.xml:4
+#: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
+msgid "European Beech Tree"
+msgstr "Եվրոպական հաճարենի"
+
+#: simulation/templates/gaia/flora_tree_fig.xml:8
+msgid "Fig"
+msgstr "Թզենի"
+
+#: simulation/templates/gaia/flora_tree_fig.xml:10
+msgid "Gather figs for Food."
+msgstr "Հավաքել թուզ՝ սնունդ ստանալու նպատակով։"
+
+#: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
+msgid "Mediterranean Fan Palm"
+msgstr "Միջերկրածովային արմավենի"
+
+#: simulation/templates/gaia/flora_tree_oak.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
+#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
+#: simulation/templates/gaia/flora_tree_oak_new.xml:4
+msgid "Oak Tree"
+msgstr "Կաղնի"
+
+#: simulation/templates/gaia/flora_tree_oak_large.xml:4
+msgid "Large Oak Tree"
+msgstr "Մեծ կաղնի"
+
+#: simulation/templates/gaia/flora_tree_olive.xml:8
+msgid "Olive Tree"
+msgstr "Ձիթենի"
+
+#: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
+msgid "Palm"
+msgstr "Արմավենի"
+
+#: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
+msgid "Tropical Palm"
+msgstr "Արադարձային արմավենի"
+
+#: simulation/templates/gaia/flora_tree_pine.xml:4
+#: simulation/templates/gaia/flora_tree_pine_w.xml:4
+msgid "Pine Tree"
+msgstr "Սոճի"
+
+#: simulation/templates/gaia/flora_tree_poplar.xml:4
+msgid "Poplar Tree"
+msgstr "Բարդի"
+
+#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
+msgid "Lombardy Poplar Tree"
+msgstr "Բրգաձև մարդի"
+
+#: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
+msgid "Senegal Date Palm"
+msgstr "Սենեգալյան արմավենի"
+
+#: simulation/templates/gaia/flora_tree_tamarix.xml:4
+msgid "Tamarix Tree"
+msgstr "Կարմրան"
+
+#: simulation/templates/gaia/flora_tree_toona.xml:4
+msgid "Toona Tree"
+msgstr "Թունա ծառ"
+
+#: simulation/templates/gaia/special_ruins.xml:10
+#: simulation/templates/gaia/special_ruins_column_doric.xml:10
+msgid "Ancient Ruins"
+msgstr "Հին ավերակներ"
+
+#: simulation/templates/gaia/special_ruins_standing_stone.xml:9
+#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
+#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
+msgid "Stone Ruins"
+msgstr "Քարե ավերակներ"
+
+#: simulation/templates/gaia/special_ruins_standing_stone.xml:10
+#: simulation/templates/gaia/special_treasure_standing_stone.xml:10
+msgid "Celtic Standing Stone"
+msgstr "Կելտական կանգուն քար"
+
+#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
+msgid "Ptolemaic Egyptian Statues"
+msgstr "Պտղոմեոսյան եգիպտական քարեր"
+
+#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
+msgid "Roman Statues"
+msgstr "Հռոմեական արձաններ"
+
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:10
+#: simulation/templates/gaia/special_treasure_food_bin.xml:10
+#: simulation/templates/gaia/special_treasure_food_crate.xml:10
+#: simulation/templates/gaia/special_treasure_food_jars.xml:10
+#: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
+#: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
+msgid "Food Treasure"
+msgstr ""
+
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
+msgid "Half-buried Barrels"
+msgstr "Կիսաթաղված տակառներ"
+
+#: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
+msgid "Persian Food Stores"
+msgstr "Սննդի պարսկական պաշարներ"
+
+#: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
+msgid "Persian Food Treasure"
+msgstr ""
+
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
+msgid "Golden Fleece"
+msgstr "Ոսկե գեղմ"
+
+#: simulation/templates/gaia/special_treasure_metal.xml:9
+#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
+#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
+msgid "Metal Treasure"
+msgstr ""
+
+#: simulation/templates/gaia/special_treasure_metal.xml:10
+msgid "Secret Box"
+msgstr "Գաղտնի արկղ"
+
+#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
+msgid "Persian Wares"
+msgstr "Պարսկական ապրանքներ"
+
+#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
+msgid "Persian Rugs"
+msgstr "Պարսկական գորգեր"
+
+#: simulation/templates/gaia/special_treasure_pegasus.xml:10
+msgid "Pegasus"
+msgstr "Պեգաս"
+
+#: simulation/templates/gaia/special_treasure_standing_stone.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:10
+msgid "Stone Treasure"
+msgstr ""
+
+#: simulation/templates/gaia/special_treasure_wood.xml:10
+msgid "Wood Treasure"
+msgstr ""
+
+#: simulation/templates/other/bench.xml:20
+msgid "Bench"
+msgstr "Դազգահ"
+
+#: simulation/templates/other/bench.xml:21
+msgid "Wooden Bench"
+msgstr "Փայտե դազգահ"
+
+#: simulation/templates/other/bridge_hele.xml:16
+#: simulation/templates/other/bridge_hele.xml:17
+msgid "Bridge"
+msgstr "Կամուրջ"
+
+#: simulation/templates/other/bridge_wooden.xml:16
+#: simulation/templates/other/bridge_wooden.xml:17
+msgid "Wooden Bridge"
+msgstr "Փայտե կամուրջ"
+
+#: simulation/templates/other/cart_tophet.xml:22
+msgid "Sacrificial Temple"
+msgstr "Զոհարանային տաճար"
+
+#: simulation/templates/other/cart_tophet.xml:23
+msgid "Tophet"
+msgstr "Տոֆետ"
+
+#: simulation/templates/other/cart_tophet.xml:24
+msgid "Train physicians and Sacred Band Cavalrymen."
+msgstr "Բժիշկների և Անիծված Խմբի Հեծյալների ստեղծում։"
+
+#: simulation/templates/other/celt_hut.xml:21
+msgid "Hut"
+msgstr "Խրճիթ"
+
+#: simulation/templates/other/celt_longhouse.xml:22
+msgid "Longhouse"
+msgstr "Երկար տուն"
+
+#: simulation/templates/other/column_doric.xml:20
+#: simulation/templates/other/column_doric_fallen.xml:20
+#: simulation/templates/other/column_doric_fallen_b.xml:20
+msgid "Column"
+msgstr "Սյուն"
+
+#: simulation/templates/other/column_doric.xml:21
+msgid "Doric Column"
+msgstr "Շոտլանդական սյուն"
+
+#: simulation/templates/other/column_doric_fallen.xml:21
+#: simulation/templates/other/column_doric_fallen_b.xml:21
+msgid "Fallen Doric Column"
+msgstr "Ընկած շոտլանդական սյուն"
+
+#: simulation/templates/other/fence_long.xml:21
+#: simulation/templates/other/fence_short.xml:21
+msgid "Fence"
+msgstr "Ցանկապատ"
+
+#: simulation/templates/other/fence_long.xml:22
+msgid "Long Wooden Fence"
+msgstr "Փայտյա երկար ցանկապատ"
+
+#: simulation/templates/other/fence_short.xml:22
+msgid "Short Wooden Fence"
+msgstr "Փայտյա կարճ ցանկապատ"
+
+#: simulation/templates/other/fence_stone.xml:21
+#: simulation/templates/other/fence_stone.xml:22
+msgid "Stone Fence"
+msgstr "Քարե ցանկապատ"
+
+#: simulation/templates/other/generic_field.xml:9
+msgid "Wheat Field"
+msgstr "Ցորենի դաշտ"
+
+#: simulation/templates/other/hellenic_epic_temple.xml:29
+msgid "Epic Temple"
+msgstr "Առասպելական տաճար"
+
+#: simulation/templates/other/hellenic_epic_temple.xml:30
+msgid "Naos Parthenos"
+msgstr ""
+
+#: simulation/templates/other/hellenic_epic_temple.xml:32
+msgid "Garrison units to heal them at a quick rate."
+msgstr "Միավորների տեղակայում՝ նրանց արագ բուժման նպատակով։"
+
+#: simulation/templates/other/hellenic_propylaea.xml:25
+msgid "Portico"
+msgstr "Սյունասրահ"
+
+#: simulation/templates/other/hellenic_propylaea.xml:26
+msgid "Propylaea"
+msgstr "Պրոպիլեա"
+
+#: simulation/templates/other/hellenic_stoa.xml:25
+msgid "Stoa"
+msgstr "Ստոյա"
+
+#: simulation/templates/other/hellenic_stoa.xml:26
+msgid "Hellenic Stoa"
+msgstr "Հունական ստոյա"
+
+#: simulation/templates/other/maur_palace.xml:12
+msgid "Harmya"
+msgstr ""
+
+#: simulation/templates/other/obelisk.xml:20
+msgid "Obelisk"
+msgstr "Օբելիքս"
+
+#: simulation/templates/other/obelisk.xml:21
+msgid "Egyptian Obelisk"
+msgstr "Եգիպտական օբելիքս"
+
+#: simulation/templates/other/palisades_angle_spike.xml:16
+msgid "Palisade Angle Spike"
+msgstr "Ցանկապատի անկյունային սեպ"
+
+#: simulation/templates/other/palisades_angle_spike.xml:17
+msgid "Big Spike"
+msgstr "Մեծ սեպ"
+
+#: simulation/templates/other/palisades_rocks_curve.xml:15
+msgid "Palisade Curve"
+msgstr "Ցանկապատային կոր"
+
+#: simulation/templates/other/palisades_rocks_curve.xml:16
+msgid "Wooden Wall Corner"
+msgstr "Փայտե պարիսպի անկյուն"
+
+#: simulation/templates/other/palisades_rocks_end.xml:15
+msgid "Palisade End"
+msgstr "Ցանկապատի ծայր"
+
+#: simulation/templates/other/palisades_rocks_end.xml:16
+msgid "Wooden Wall End"
+msgstr "Փայտե պարիսպի ծայր"
+
+#: simulation/templates/other/palisades_rocks_fort.xml:5
+msgid "Palisade Fort"
+msgstr ""
+
+#: simulation/templates/other/palisades_rocks_fort.xml:6
+msgid "Sentry Tower"
+msgstr ""
+
+#: simulation/templates/other/palisades_rocks_gate.xml:18
+msgid "Palisade Gate"
+msgstr "Ցանկապատի դարպաս"
+
+#: simulation/templates/other/palisades_rocks_gate.xml:19
+msgid "Wooden Gate"
+msgstr "Փայտե դարպաս"
+
+#: simulation/templates/other/palisades_rocks_long.xml:27
+#: simulation/templates/other/palisades_rocks_medium.xml:27
+#: simulation/templates/other/palisades_rocks_short.xml:26
+#: simulation/templates/other/palisades_rocks_straight.xml:15
+#: simulation/templates/other/palisades_rocks_tower.xml:26
+#: simulation/templates/other/wallset_palisade.xml:6
+msgid "Palisade"
+msgstr "Ցանկապատ"
+
+#: simulation/templates/other/palisades_rocks_long.xml:28
+#: simulation/templates/other/palisades_rocks_medium.xml:28
+#: simulation/templates/other/palisades_rocks_short.xml:27
+#: simulation/templates/other/palisades_rocks_straight.xml:16
+#: simulation/templates/other/palisades_rocks_tower.xml:27
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Wooden Wall"
+msgstr "Փայտե պարիսպ"
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+msgid "Outpost"
+msgstr "Ուղեկալ"
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:16
+#: simulation/templates/other/palisades_rocks_watchtower.xml:16
+msgid "Wooden Watch Tower"
+msgstr "Փայտե հսկողական աշտարակ"
+
+#: simulation/templates/other/palisades_rocks_watchtower.xml:15
+msgid "Watchtower"
+msgstr "Հսկողական աշտարակ"
+
+#: simulation/templates/other/palisades_small_spikes.xml:16
+msgid "Spikes Small"
+msgstr "Փոքր սեպեր"
+
+#: simulation/templates/other/palisades_small_spikes.xml:17
+msgid "Small Spikes"
+msgstr "Փոքր սեպեր"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:16
+msgid "Spikes Tall"
+msgstr "Մեծ սեպեր"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:17
+msgid "Tall Spikes"
+msgstr "Մեծ սեպեր"
+
+#: simulation/templates/other/pers_apartment_block.xml:15
+msgid "Apartment Block"
+msgstr "Բազմաբնակարան կառույց"
+
+#: simulation/templates/other/pers_house_a.xml:12
+msgid "House"
+msgstr "Տուն"
+
+#: simulation/templates/other/pers_house_b.xml:15
+#: simulation/templates/other/pers_inn.xml:15
+msgid "Inn"
+msgstr "Պանդոկ"
+
+#: simulation/templates/other/pers_warehouse.xml:12
+msgid "Warehouse"
+msgstr "Պահեստ"
+
+#: simulation/templates/other/plane.xml:41
+msgid "P-51 Mustang"
+msgstr "P-51 Mustang"
+
+#: simulation/templates/other/plane.xml:43
+msgid "A World War 2 American fighter plane."
+msgstr "2-րդ համաշխարհային պատերազմի ամերիկյան ռազմական օդանավ։"
+
+#: simulation/templates/other/pyramid_great.xml:9
+#: simulation/templates/other/pyramid_minor.xml:9
+msgid "Pyramid"
+msgstr "Բուրգ"
+
+#: simulation/templates/other/pyramid_great.xml:10
+msgid "Great Pyramid"
+msgstr "Մեծ բուրգ"
+
+#: simulation/templates/other/pyramid_minor.xml:10
+msgid "Minor Pyramid"
+msgstr "Փոքր բուրգ"
+
+#: simulation/templates/other/sele_colonnade.xml:20
+msgid "Colonnade"
+msgstr "Սյունաշարք"
+
+#: simulation/templates/other/sele_colonnade.xml:21
+msgid "Corinthian Colonnade"
+msgstr "Կորնթական սյունաշարք"
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:10
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
+msgid "Shipwreck"
+msgstr "Նավաբեկության բայր"
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "Քայքայվող ռազմական նավի նավաբեկության վայր։ Լավ հնարավորթություն՝ ցանկացած գործարարի համար։"
+
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
+msgid "Shipwreck Cargo"
+msgstr ""
+
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
+msgid ""
+"A shipwreck with much loss of life. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
+msgid ""
+"The wreck of a small cargo ship. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
+msgid "A cargo ship rammed in half. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/other/stall_big.xml:12
+msgid "Big stall"
+msgstr "Մեծ տաղավար"
+
+#: simulation/templates/other/stall_med.xml:12
+msgid "Medium stall"
+msgstr "Միջին տաղավար"
+
+#: simulation/templates/other/stall_small_a.xml:12
+#: simulation/templates/other/stall_small_b.xml:12
+msgid "Small stall"
+msgstr "Փոքր տաղավար"
+
+#: simulation/templates/other/table_rectangle.xml:20
+#: simulation/templates/other/table_square.xml:20
+msgid "Table"
+msgstr "Սեղան"
+
+#: simulation/templates/other/table_rectangle.xml:21
+msgid "Rectangle Table"
+msgstr "Ուղղանկյուն սեղան"
+
+#: simulation/templates/other/table_square.xml:21
+msgid "Square Table"
+msgstr "Քառակուսի սեղան"
+
+#: simulation/templates/other/unfinished_greek_temple.xml:10
+msgid "Unfinished Greek Temple"
+msgstr "Հունական անավարտ տաճար"
+
+#: simulation/templates/other/unfinished_greek_temple.xml:12
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "Այս եկեղեցին անավարտ է և վերածվել է ավերակների։"
+
+#: simulation/templates/skirmish/structures/default_house_10.xml:5
+msgid ""
+"Changes in a 10-pop house for civilisations with those houses, is deleted "
+"for other civs"
+msgstr ""
+
+#: simulation/templates/skirmish/structures/default_house_5.xml:9
+msgid ""
+"Changes in a 5-pop house for civilisations with those houses, is deleted for"
+" other civs"
+msgstr ""
+
+#: simulation/templates/special/marker_object_sound.xml:15
+#: simulation/templates/special/marker_object_sound.xml:16
+msgid "Marker"
+msgstr "Նշիչ"
+
+#: simulation/templates/special/player.xml:56
+msgid "Player"
+msgstr "Խաղացող"
+
+#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
+msgid "Lithobólos"
+msgstr "Լիթոբոլ"
+
+#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybelḗs"
+msgstr "Օքսիբել"
+
+#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
+msgid "Ballista"
+msgstr "Բալիստա"
+
+#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
+msgid "Polybolos"
+msgstr "Պոլիբոլ"
+
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
+msgid "Scorpio"
+msgstr "Սկորպիոն"
