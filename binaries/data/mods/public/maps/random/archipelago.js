@@ -2,7 +2,6 @@ RMS.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-//random terrain textures
 var random_terrain = randomizeBiome();
 
 const tMainTerrain = rBiomeT1();
@@ -50,14 +49,11 @@ const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TE
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
 log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -70,12 +66,10 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-// randomize player order
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
-{
 	playerIDs.push(i+1);
-}
+
 playerIDs = sortPlayers(playerIDs);
 
 // place players
@@ -121,7 +115,6 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -151,9 +144,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
-	{
 		mAngle = randFloat(0, TWO_PI);
-	}
+
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
@@ -201,7 +193,6 @@ for (var i = 0; i < numPlayers; i++)
 	}
 }
 
-// create islands
 log("Creating islands...");
 placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, undefined, undefined, scaleByMapSize(30,70));
 terrainPainter = new LayeredPainter(
@@ -216,7 +207,6 @@ createAreas(
 	scaleByMapSize(1, 5)*randInt(5,10)
 );
 
-//painting the terrain
 paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
@@ -235,16 +225,13 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 }
 
-// create bumps
 createBumps([avoidClasses(clPlayer, 10), stayClasses(clLand, 5)]);
 
-// create hills
 if (randInt(1,2) == 1)
 	createHills([tMainTerrain, tCliff, tHill], [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(1, 4) * numPlayers);
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(1, 4) * numPlayers);
 
-// create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0), stayClasses(clLand, 4)],
@@ -252,10 +239,8 @@ createForests(
  1.0,
  random_terrain
 );
-
 RMS.SetProgress(50);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -264,18 +249,15 @@ createLayeredPatches(
  [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)]
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
  [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)]
 );
-
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -285,7 +267,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -293,15 +274,10 @@ createMines(
  [avoidClasses(clForest, 1, clPlayer, 7, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 6)],
  clMetal
 );
-
 RMS.SetProgress(65);
 
-// create decoration
-var planetm = 1;
-
-if (random_terrain == g_BiomeTropic)
-	planetm = 8;
-
+log("Creating decoration...");
+var planetm = random_terrain == g_BiomeTropic ? 8 : 1;
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -319,10 +295,9 @@ createDecoration
  ],
  [avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)]
 );
-
 RMS.SetProgress(70);
 
-// create animals
+log("Creating animals...");
 createFood
 (
  [
@@ -335,8 +310,9 @@ createFood
  ],
  [avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 20), stayClasses(clLand, 3)]
 );
+RMS.SetProgress(75);
 
-// create fruits
+log("Creating fruits...");
 createFood
 (
  [
@@ -347,8 +323,9 @@ createFood
  ],
  [avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 10), stayClasses(clLand, 3)]
 );
+RMS.SetProgress(80);
 
-// create fish
+log("Creating fish...");
 createFood
 (
  [
@@ -362,12 +339,10 @@ createFood
 
 RMS.SetProgress(85);
 
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
 createStragglerTrees(types, [avoidClasses(clForest, 7, clHill, 1, clPlayer, 3, clMetal, 1, clRock, 1), stayClasses(clLand, 7)]);
 setWaterWaviness(4.0);
 setWaterType("ocean");
 
-// Export map data
 ExportMap();

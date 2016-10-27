@@ -767,31 +767,17 @@ createObjectGroups(group, 0, [avoidClasses(clFood, 15), stayClasses(clWater, 6)]
 setSunElevation(randFloat(PI/5, PI / 3));
 setSunRotation(randFloat(0, TWO_PI));
 
-//var rt = randInt(1,6);
-//if (rt==1){
-//	setSkySet("stormy");
-//	setSunColor(0.36,0.38,0.45);
-//	setTerrainAmbientColor(0.52,0.575,0.6);
-//	setUnitsAmbientColor(0.52,0.575,0.6);
-//	setSunElevation(PI/7);
-
-//	setWaterTint(0.1, 0.1, 0.2);				// muddy brown
-//} else {
-	setSkySet("cumulus");
-	setSunColor(0.73,0.73,0.65);
-	setTerrainAmbientColor(0.45,0.45,0.50);
-	setUnitsAmbientColor(0.4,0.4,0.4);
-	setWaterColor(0.114, 0.192, 0.463);
-	setWaterTint(0.255, 0.361, 0.651);
-	setWaterWaviness(3.0);
+setSkySet("cumulus");
+setSunColor(0.73,0.73,0.65);
+setTerrainAmbientColor(0.45,0.45,0.50);
+setUnitsAmbientColor(0.4,0.4,0.4);
+setWaterColor(0.114, 0.192, 0.463);
+setWaterTint(0.255, 0.361, 0.651);
+setWaterWaviness(3.0);
 setWaterType("ocean");
-	setWaterMurkiness(0.83);
-//}
-
-// Export map data
+setWaterMurkiness(0.83);
 
 ExportMap();
-
 
 function getNeighborsHeight(x1, z1)
 {

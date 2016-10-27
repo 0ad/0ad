@@ -276,37 +276,8 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 10, clForest, 1, clPlayer, 30, clMetal, 10,clBaseResource, 2, clRock, 10, clHill, 1),
 	scaleByMapSize(6,25), 100
 );
-
 RMS.SetProgress(65);
 
-/*
-// create small decorative rocks
-log("Creating small decorative rocks...");
-group = new SimpleGroup(
-	[new SimpleObject(rba5, 1,3, 0,1)],
-	true
-);
-createObjectGroups(
-	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
-	scaleByMapSize(16, 262), 50
-);
-
-
-// create large decorative rocks
-log("Creating large decorative rocks...");
-group = new SimpleGroup(
-	[new SimpleObject(rba5, 1,2, 0,1), new SimpleObject(rba5, 1,3, 0,2)],
-	true
-);
-createObjectGroups(
-	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
-	scaleByMapSize(8, 131), 50
-);
-
-RMS.SetProgress(70);
-*/
 log("Creating small decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRock, 2,4, 0,2)], true, undefined );
 createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, scaleByMapSize(10,50) );

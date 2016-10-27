@@ -25,9 +25,7 @@ ClumpPlacer.prototype.place = function(constraint)
 {
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
-	{
 		return undefined;
-	}
 
 	var retVec = [];
 
@@ -45,9 +43,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	var ctrlPts = 1 + Math.floor(1.0/Math.max(this.smoothness,1.0/intPerim));
 
 	if (ctrlPts > radius * 2 * PI)
-	{
 		ctrlPts = Math.floor(radius * 2 * PI) + 1;
-	}
 
 	var noise = new Float32Array(intPerim);			//float32
 	var ctrlCoords = new Float32Array(ctrlPts+1);	//float32
@@ -92,8 +88,8 @@ ClumpPlacer.prototype.place = function(constraint)
 		var r = radius * (1 + (1-this.coherence)*noise[p]);
 		var s = sin(th);
 		var c = cos(th);
-		var xx=this.x;
-		var yy=this.z;
+		var xx = this.x;
+		var yy = this.z;
 
 		for (var k=0; k < ceil(r); k++)
 		{
@@ -102,21 +98,21 @@ ClumpPlacer.prototype.place = function(constraint)
 			if (g_Map.inMapBounds(i, j) && constraint.allows(i, j))
 			{
 				if (!gotRet[i][j])
-				{	// Only include each point once
+				{
+					// Only include each point once
 					gotRet[i][j] = 1;
 					retVec.push(new PointXZ(i, j));
 				}
 			}
 			else
-			{
 				failed++;
-			}
+
 			xx += s;
 			yy += c;
 		}
 	}
 
-	return ((failed > this.size*this.failFraction) ? undefined : retVec);
+	return failed > this.size * this.failFraction ? undefined : retVec;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -150,9 +146,7 @@ ChainPlacer.prototype.place = function(constraint)
 {
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
-	{
 		return undefined;
-	}
 
 	var retVec = [];
 	var size = getMapSize();
@@ -175,23 +169,18 @@ ChainPlacer.prototype.place = function(constraint)
 	if (this.minRadius > this.maxRadius) this.minRadius = this.maxRadius;
 
 	var edges = [[this.x, this.z]];
-
 	for (var i = 0; i < this.numCircles; ++i)
 	{
 		var point = edges[randInt(edges.length)];
 		var cx = point[0], cz = point[1];
 
 		if (queueEmpty)
-		{
 			var radius = randInt(this.minRadius, this.maxRadius);
-		}
 		else
 		{
 			var radius = this.q.pop();
 			queueEmpty = (this.q.length ? false : true);
 		}
-
-		//log (edges);
 
 		var sx = cx - radius, lx = cx + radius;
 		var sz = cz - radius, lz = cz + radius;
@@ -204,10 +193,7 @@ ChainPlacer.prototype.place = function(constraint)
 		var radius2 = radius * radius;
 		var dx, dz;
 
-		//log (uneval([sx, sz, lx, lz]));
-
 		for (var ix = sx; ix <= lx; ++ix)
-		{
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
 				dx = ix - cx;
@@ -224,31 +210,22 @@ ChainPlacer.prototype.place = function(constraint)
 						}
 						else if (state >= 0)
 						{
-							//log (uneval(edges));
-							//log (state)
 							var s = edges.splice(state, 1);
-							//log (uneval(s));
-							//log (uneval(edges));
 							gotRet[ix][iz] = -2;
 
 							var edgesLength = edges.length;
 							for (var k = state; k < edges.length; ++k)
-							{
 								--gotRet[edges[k][0]][edges[k][1]];
-							}
 						}
 					}
 					else
-					{
 						++failed;
-					}
+
 					++count;
 				}
 			}
-		}
 
 		for (var ix = sx; ix <= lx; ++ix)
-		{
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
 				if (this.fcc)
@@ -295,12 +272,10 @@ ChainPlacer.prototype.place = function(constraint)
 					}
 				}
 			}
-		}
-
 	}
 
 
-	return ((failed > count*this.failFraction) ? undefined : retVec);
+	return failed > count * this.failFraction ? undefined : retVec;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -321,9 +296,7 @@ function RectPlacer(x1, z1, x2, z2)
 	this.z2 = z2;
 
 	if (x1 > x2 || z1 > z2)
-	{
 		throw("RectPlacer: incorrect bounds on rect");
-	}
 }
 
 RectPlacer.prototype.place = function(constraint)
@@ -331,29 +304,18 @@ RectPlacer.prototype.place = function(constraint)
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
 		!g_Map.inMapBounds(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
-	{
 		return undefined;
-	}
 
 	var ret = [];
-
 	var x2 = this.x2;
 	var z2 = this.z2;
 
 	for (var x=this.x1; x < x2; x++)
-	{
 		for (var z=this.z1; z < z2; z++)
-		{
 			if (g_Map.inMapBounds(x, z) && constraint.allows(x, z))
-			{
 				ret.push(new PointXZ(x, z));
-			}
 			else
-			{
 				return undefined;
-			}
-		}
-	}
 
 	return ret;
 };
@@ -414,9 +376,7 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 			var fail = false; // reset place failure flag
 
 			if (!g_Map.validT(x, z))
-			{
 				fail = true;
-			}
 			else
 			{
 				if (avoidSelf)
@@ -427,21 +387,17 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 						var dx = x - resultObjs[i].position.x;
 						var dy = z - resultObjs[i].position.z;
 
-						if ((dx*dx + dy*dy) < 1)
-						{
+						if (dx*dx + dy*dy < 1)
 							fail = true;
-						}
 					}
 				}
 
 				if (!fail)
 				{
 					if (!constraint.allows(Math.floor(x), Math.floor(z)))
-					{
 						fail = true;
-					}
 					else
-					{	// if we got here, we're good
+					{
 						var angle = randFloat(this.minAngle, this.maxAngle);
 						resultObjs.push(new Entity(this.type, player, x, z, angle));
 						break;
@@ -511,9 +467,7 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 			var fail = false; // reset place failure flag
 
 			if (!g_Map.validT(x, z))
-			{
 				fail = true;
-			}
 			else
 			{
 				if (avoidSelf)
@@ -524,21 +478,17 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 						var dx = x - resultObjs[i].position.x;
 						var dy = z - resultObjs[i].position.z;
 
-						if ((dx*dx + dy*dy) < 1)
-						{
+						if (dx*dx + dy*dy < 1)
 							fail = true;
-						}
 					}
 				}
 
 				if (!fail)
 				{
 					if (!constraint.allows(Math.floor(x), Math.floor(z)))
-					{
 						fail = true;
-					}
 					else
-					{	// if we got here, we're good
+					{
 						var angle = randFloat(this.minAngle, this.maxAngle);
 
 						//Randomly select entity
@@ -591,15 +541,12 @@ SimpleGroup.prototype.place = function(player, constraint)
 	for (var i = 0; i < length; i++)
 	{
 		var objs = this.elements[i].place(this.x, this.z, player, this.avoidSelf, constraint);
+
 		if (objs === undefined)
-		{	// Failure
 			return false;
-		}
-		else
-		{
-			for (var j = 0; j < objs.length; ++j)
-				resultObjs.push(objs[j]);
-		}
+
+		for (var j = 0; j < objs.length; ++j)
+			resultObjs.push(objs[j]);
 	}
 
 	// Add placed objects to map

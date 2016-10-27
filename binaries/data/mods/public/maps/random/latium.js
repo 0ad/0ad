@@ -63,7 +63,6 @@ const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
 log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -71,7 +70,6 @@ const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
 // Create classes
-
 var clWater = createTileClass();
 var clCliff = createTileClass();
 var clForest = createTileClass();
@@ -85,12 +83,8 @@ var clSettlement = createTileClass();
 // randomize player order
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
-{
 	playerIDs.push(i+1);
-}
 playerIDs = sortPlayers(playerIDs);
-
-// Place players
 
 log("Creating players...");
 
@@ -195,9 +189,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 
 		// add some higher-frequency noise on land
 		if ( oldH > 0 )
-		{
 			h += (0.4*noise2a.get(x,z) + 0.2*noise2b.get(x,z)) * min(oldH/10.0, 1.0);
-		}
 
 		// create cliff noise
 		if ( h > -10 )
@@ -218,28 +210,20 @@ for (var ix = 0; ix <= mapSize; ix++)
 			cliffNoise -= 0.59;
 			cliffNoise *= pn;
 			if (cliffNoise > 0)
-			{
 				h += 19 * min(cliffNoise, 0.045) / 0.045;
-			}
 		}
 
 		// set the height
 		setHeight(ix, iz, h);
 	}
 }
-
 RMS.SetProgress(15);
 
-// Paint base terrain
-
 log("Painting terrain...");
-
 var noise6 = new Noise2D(scaleByMapSize(10, 40));
 var noise7 = new Noise2D(scaleByMapSize(20, 80));
-
 var noise8 = new Noise2D(scaleByMapSize(13, 52));
 var noise9 = new Noise2D(scaleByMapSize(26, 104));
-
 var noise10 = new Noise2D(scaleByMapSize(50, 200));
 
 for (var ix = 0; ix < mapSize; ix++)
@@ -268,12 +252,8 @@ for (var ix = 0; ix < mapSize; ix++)
 			var maxNx = min(ix+2, mapSize);
 			var maxNz = min(iz+2, mapSize);
 			for (var nx = max(ix-1, 0); nx <= maxNx; nx++)
-			{
 				for (var nz = max(iz-1, 0); nz <= maxNz; nz++)
-				{
 					minAdjHeight = min(minAdjHeight, getHeight(nx, nz));
-				}
-			}
 		}
 
 		// choose a terrain based on elevation
@@ -281,38 +261,22 @@ for (var ix = 0; ix < mapSize; ix++)
 
 		// water
 		if (maxH < -12)
-		{
 			t = tOceanDepths;
-		}
 		else if (maxH < -8.8)
-		{
 			t = tOceanRockDeep;
-		}
 		else if (maxH < -4.7)
-		{
 			t = tOceanCoral;
-		}
 		else if (maxH < -2.8)
-		{
 			t = tOceanRockShallow;
-		}
 		else if (maxH < 0.9 && minH < 0.35)
-		{
 			t = tBeachWet;
-		}
 		else if (maxH < 1.5 && minH < 0.9)
-		{
 			t = tBeachDry;
-		}
 		else if (maxH < 2.3 && minH < 1.3)
-		{
 			t = tBeachGrass;
-		}
 
 		if (minH < 0)
-		{
 			addToClass(ix, iz, clWater);
-		}
 
 		// cliffs
 		if (diffH > 2.9 && minH > -7)
@@ -320,7 +284,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			t = tCliff;
 			addToClass(ix, iz, clCliff);
 		}
-		else if ((diffH > 2.5 && minH > -5) || ((maxH - minAdjHeight) > 2.9 && minH > 0) )
+		else if (diffH > 2.5 && minH > -5 || maxH - minAdjHeight > 2.9 && minH > 0)
 		{
 			if (minH < -1)
 				t = tCliff;
@@ -442,9 +406,8 @@ for (var i = 1; i <= numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
-	{
 		mAngle = randFloat(0, TWO_PI);
-	}
+
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
@@ -478,11 +441,9 @@ for (var i = 1; i <= numPlayers; i++)
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource, 2, clCliff, 0));
 }
-
 RMS.SetProgress(40);
 
 log("Creating bushes...");
-// create bushes
 group = new SimpleGroup(
 	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2),
 	new SimpleObject(aBushMed, 0,1, 0,2), new SimpleObject(aBushMedDry, 0,1, 0,2)]
@@ -491,11 +452,9 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 4, clCliff, 2),
 	scaleByMapSize(9, 146), 50
 );
-
 RMS.SetProgress(45);
 
 log("Creating rocks...");
-// create rocks
 group = new SimpleGroup(
 	[new SimpleObject(aRockSmall, 0,3, 0,2), new SimpleObject(aRockMed, 0,2, 0,2),
 	new SimpleObject(aRockLarge, 0,1, 0,2)]
@@ -504,7 +463,6 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 2, clCliff, 1),
 	scaleByMapSize(9, 146), 50
 );
-
 RMS.SetProgress(50);
 
 log("Creating large stone mines...");
@@ -541,7 +499,6 @@ for (var t in trees)
 		scaleByMapSize(2, 38), 50
 	);
 }
-
 RMS.SetProgress(70);
 
 log("Creating straggler cypresses...");
@@ -553,21 +510,17 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 4, clStone, 4),
 	scaleByMapSize(5, 75), 50
 );
-
 RMS.SetProgress(80);
 
 log("Creating sheep...");
-// create sheep
 group = new SimpleGroup([new SimpleObject(oSheep, 2,4, 0,2)], true, clFood);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
 	3 * numPlayers, 50
 );
-
 RMS.SetProgress(85);
 
 log("Creating fish...");
-// create fish
 var num = scaleByMapSize(4, 16);
 var offsetX = mapSize * WATER_WIDTH/2;
 for (var i = 0; i < num; ++i)
@@ -577,7 +530,6 @@ for (var i = 0; i < num; ++i)
 	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
 	createObjectGroup(group, 0);
 }
-
 for (var i = 0; i < num; ++i)
 {
 	var cX = round(mapSize - offsetX + offsetX/2 * randFloat(-1, 1));
@@ -585,10 +537,8 @@ for (var i = 0; i < num; ++i)
 	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
 	createObjectGroup(group, 0);
 }
-
 RMS.SetProgress(90);
 
-// create deer
 log("Creating deer...");
 group = new SimpleGroup(
 	[new SimpleObject(oDeer, 5,7, 0,4)],
@@ -598,11 +548,9 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
 	3 * numPlayers, 50
 );
-
 RMS.SetProgress(95);
 
 log("Creating berry bushes...");
-// create berry bushes
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
@@ -617,5 +565,4 @@ setWaterWaviness(2.5);
 setWaterType("ocean");
 setWaterMurkiness(0.8);
 
-// Export map data
 ExportMap();

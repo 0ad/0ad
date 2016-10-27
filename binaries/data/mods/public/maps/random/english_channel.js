@@ -49,7 +49,6 @@ const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 const WATER_WIDTH = 0.25;
 
 log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -57,7 +56,6 @@ const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
 // create tile classes
-
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -73,9 +71,7 @@ var clShallow = createTileClass();
 // randomize player order
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
-{
 	playerIDs.push(i+1);
-}
 playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 
 // place players
@@ -206,7 +202,6 @@ for (var i = 0; i < numPlayers; i++)
 		createObjectGroup(group, 0);
 	}
 }
-
 RMS.SetProgress(10);
 
 log("Creating sea");
@@ -215,7 +210,6 @@ var theta2 = randFloat(0, 1);
 var seed = randFloat(2,3);
 var seed2 = randFloat(2,3);
 for (var ix = 0; ix < mapSize; ix++)
-{
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
@@ -229,45 +223,30 @@ for (var ix = 0; ix < mapSize; ix++)
 		var cu = km*rndRiver(theta+x*0.5*(mapSize/64),seed);
 		var cu2 = km*rndRiver(theta2+x*0.5*(mapSize/64),seed2);
 
-		if ((z > cu + 0.5 - WATER_WIDTH/2) && (z < cu2 + 0.5 + WATER_WIDTH/2))
+		if (z > cu  + 0.5 - WATER_WIDTH/2 &&
+		    z < cu2 + 0.5 + WATER_WIDTH/2)
 		{
 			var h;
 			if (z < (cu + 0.5 + fadeDist - WATER_WIDTH/2))
-			{
 				h = 3 - 7 * (1 - ((cu + 0.5 + fadeDist - WATER_WIDTH/2) - z)/fadeDist);
-			}
 			else if (z > (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))
-			{
 				h = 3 - 7 * (1 - (z - (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))/fadeDist);
-			}
 			else
-			{
 				h = -4.0;
-			}
 
 			if (h < -1.5)
-			{
 				placeTerrain(ix, iz, tWater);
-			}
 			else
-			{
 				placeTerrain(ix, iz, tShore);
-			}
 
 			setHeight(ix, iz, h);
 		}
 		else
-		{
 			setHeight(ix, iz, 3.1);
-		}
-
 	}
-}
-
 RMS.SetProgress(20);
 
 log("Creating rivers");
-
 for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
 {
 	var cLocation = randFloat(0.05,0.95);
@@ -313,21 +292,14 @@ passageMaker(round(fractionToTiles(0.2)), round(fractionToTiles(0.75)), round(fr
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 3, 1, tShore);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
-
-
 RMS.SetProgress(25);
 
-// create bumps
 createBumps(avoidClasses(clWater, 5, clPlayer, 20));
-
 RMS.SetProgress(30);
 
-// create hills
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 5), clHill, scaleByMapSize(1, 4) * numPlayers);
-
 RMS.SetProgress(50);
 
-// create forests
 createForests(
  [tGrass, tGrassDForest, tGrassDForest, pForestD, pForestD],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
@@ -335,10 +307,8 @@ createForests(
  1.0,
  0
 );
-
 RMS.SetProgress(70);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -347,7 +317,6 @@ createLayeredPatches(
  avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6)
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -355,11 +324,9 @@ createPatches(
  [1],
  avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6)
 );
-
 RMS.SetProgress(80);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -369,7 +336,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -377,10 +343,8 @@ createMines(
  avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
  clMetal
 );
-
 RMS.SetProgress(85);
 
-// create decoration
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -450,12 +414,9 @@ createFood
  [avoidClasses(clFood, 6), stayClasses(clWater, 4)]
 );
 
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oBeech, oPoplar, oApple];	// some variation
 createStragglerTrees(types, avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 1, clRock, 1));
-
-
 
 // Set environment
 setSkySet("cirrus");
@@ -473,6 +434,4 @@ setPPSaturation(0.62);
 setPPContrast(0.62);
 setPPBloom(0.37);
 
-
-// Export map data
 ExportMap();

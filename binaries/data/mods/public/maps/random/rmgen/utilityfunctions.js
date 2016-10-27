@@ -63,8 +63,6 @@ function createMountains(terrain, constraint, tileclass, count, maxHeight, minRa
 
 	var numHills = count;
 	for (var i = 0; i < numHills; ++i)
-	{
-
 		createMountain(
 			maxHeight,
 			minRadius,
@@ -77,7 +75,6 @@ function createMountains(terrain, constraint, tileclass, count, maxHeight, minRa
 			tileclass,
 			14
 		);
-	}
 }
 
 function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID)
@@ -113,7 +110,6 @@ function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID
 	var numForest = totalTrees * P_FOREST;
 	g_numStragglerTrees = totalTrees * (1.0 - P_FOREST);
 
-	// create forests
 	log("Creating forests...");
 	var types = [
 		[[tFF2, tM, tF1], [tFF2, tF1]],
