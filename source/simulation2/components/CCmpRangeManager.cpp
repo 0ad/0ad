@@ -170,14 +170,19 @@ static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutline
  */
 struct EntityData
 {
-	EntityData() : visibilities(0), size(0), retainInFog(0), owner(-1), inWorld(0), flags(1), scriptedVisibility(0) { }
+	EntityData() :
+		visibilities(0), size(0),
+		owner(-1), retainInFog(0), inWorld(0), revealShore(0),
+		flags(1), scriptedVisibility(0)
+		{ }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
 	u32 visibilities; // 2-bit visibility, per player
 	u32 size;
-	u8 retainInFog; // boolean
 	i8 owner;
+	u8 retainInFog; // boolean
 	u8 inWorld; // boolean
+	u8 revealShore; // boolean
 	u8 flags; // See GetEntityFlagMask
 	u8 scriptedVisibility; // boolean, see ComputeLosVisibility
 };
@@ -236,11 +241,12 @@ struct SerializeEntityData
 		serialize.NumberFixed_Unbounded("vision", value.visionRange);
 		serialize.NumberU32_Unbounded("visibilities", value.visibilities);
 		serialize.NumberU32_Unbounded("size", value.size);
-		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberI8_Unbounded("owner", value.owner);
+		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
+		serialize.NumberU8("reveal shore", value.revealShore, 0, 1);
 		serialize.NumberU8_Unbounded("flags", value.flags);
-		serialize.NumberU8_Unbounded("scripted visibility", value.scriptedVisibility);
+		serialize.NumberU8("scripted visibility", value.scriptedVisibility, 0, 1);
 	}
 };
 
@@ -292,6 +298,8 @@ public:
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_Destroy);
 		componentManager.SubscribeGloballyToMessageType(MT_VisionRangeChanged);
+
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 
 		componentManager.SubscribeToMessageType(MT_Update);
 
@@ -440,17 +448,21 @@ public:
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
-
-		// Reinitialise subdivisions and LOS data
-		m_Deserializing = true;
-		ResetDerivedData();
-		m_Deserializing = false;
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
+		case MT_Deserialized:
+		{
+			// Reinitialize subdivisions and LOS data after all
+			// other components have been deserialized.
+			m_Deserializing = true;
+			ResetDerivedData();
+			m_Deserializing = false;
+			break;
+		}
 		case MT_Create:
 		{
 			const CMessageCreate& msgData = static_cast<const CMessageCreate&> (msg);
@@ -473,7 +485,10 @@ public:
 			// Store the LOS data, if any
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
 			if (cmpVision)
+			{
 				entdata.visionRange = cmpVision->GetRange();
+				entdata.revealShore = cmpVision->GetRevealShore() ? 1 : 0;
+			}
 			CmpPtr<ICmpVisibility> cmpVisibility(GetSimContext(), ent);
 			if (cmpVisibility)
 				entdata.retainInFog = (cmpVisibility->GetRetainInFog() ? 1 : 0);
@@ -561,6 +576,12 @@ public:
 				CFixedVector2D pos(it->second.x, it->second.z);
 				LosRemove(it->second.owner, it->second.visionRange, pos);
 				LosAdd(msgData.to, it->second.visionRange, pos);
+
+				if (it->second.revealShore)
+				{
+					RevealShore(it->second.owner, false);
+					RevealShore(msgData.to, true);
+				}
 			}
 
 			ENSURE(-128 <= msgData.to && msgData.to <= 127);
@@ -751,6 +772,9 @@ public:
 			{
 				LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 				AddToTile(PosToLosTilesHelper(it->second.x, it->second.z), it->first);
+
+				if (it->second.revealShore)
+					RevealShore(it->second.owner, true);
 			}
 		}
 

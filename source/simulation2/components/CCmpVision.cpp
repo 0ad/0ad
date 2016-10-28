@@ -40,6 +40,9 @@ public:
 	// Template state:
 
 	entity_pos_t m_Range, m_BaseRange;
+
+	// TODO: The reveal shore system should be replaced by a general
+	// system of "special" vision methods that are not ranges.
 	bool m_RevealShore;
 
 	static std::string GetSchema()
@@ -90,12 +93,6 @@ public:
 				break;
 
 			ReloadRange();
-
-			if (!m_RevealShore)
-				break;
-			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
-			cmpRangeManager->RevealShore(msgData.from, false);
-			cmpRangeManager->RevealShore(msgData.to, true);
 			break;
 		}
 		case MT_ValueModification:
@@ -136,6 +133,11 @@ public:
 	virtual entity_pos_t GetRange()
 	{
 		return m_Range;
+	}
+
+	virtual bool GetRevealShore()
+	{
+		return m_RevealShore;
 	}
 };
 
