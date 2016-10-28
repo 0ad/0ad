@@ -16,9 +16,9 @@ function ClumpPlacer(size, coherence, smoothness, failFraction, x, z)
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
-	this.failFraction = (failFraction !== undefined ? failFraction : 0);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
+	this.failFraction = failFraction !== undefined ? failFraction : 0;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
 }
 
 ClumpPlacer.prototype.place = function(constraint)
@@ -69,7 +69,7 @@ ClumpPlacer.prototype.place = function(constraint)
 		var v2 = ctrlVals[(c+1)%ctrlPts];
 		var v3 = ctrlVals[(c+2)%ctrlPts];
 		var P = (v3 - v2) - (v0 - v1);
-		var Q = (v0 - v1) - P;
+		var Q = v0 - v1 - P;
 		var R = v2 - v0;
 		var S = v1;
 
@@ -130,11 +130,11 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc, 
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
 	this.numCircles = numCircles;
-	this.failFraction = (failFraction !== undefined ? failFraction : 0);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
-	this.fcc = (fcc !== undefined ? fcc : 0);
-	this.q = (q !== undefined ? q : []);
+	this.failFraction = failFraction !== undefined ? failFraction : 0;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
+	this.fcc = fcc !== undefined ? fcc : 0;
+	this.q = q !== undefined ? q : [];
 }
 
 ChainPlacer.prototype.place = function(constraint)
@@ -146,7 +146,7 @@ ChainPlacer.prototype.place = function(constraint)
 	var retVec = [];
 	var size = getMapSize();
 	var failed = 0, count = 0;
-	var queueEmpty = (this.q.length ? false : true);
+	var queueEmpty = !this.q.length;
 
 	var gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
 	--size;
@@ -164,16 +164,16 @@ ChainPlacer.prototype.place = function(constraint)
 		else
 		{
 			var radius = this.q.pop();
-			queueEmpty = (this.q.length ? false : true);
+			queueEmpty = !this.q.length;
 		}
 
 		var sx = cx - radius, lx = cx + radius;
 		var sz = cz - radius, lz = cz + radius;
 
-		sx = (sx < 0 ? 0 : sx);
-		sz = (sz < 0 ? 0 : sz);
-		lx = (lx > size ? size : lx);
-		lz = (lz > size ? size : lz);
+		sx = Math.max(0, sx);
+		sz = Math.max(0, sz);
+		lx = Math.min(lx, size);
+		lz = Math.min(lz, size);
 
 		var radius2 = radius * radius;
 		var dx, dz;
@@ -330,8 +330,8 @@ function SimpleObject(type, minCount, maxCount, minDistance, maxDistance, minAng
 	this.maxCount = maxCount;
 	this.minDistance = minDistance;
 	this.maxDistance = maxDistance;
-	this.minAngle = (minAngle !== undefined ? minAngle : 0);
-	this.maxAngle = (maxAngle !== undefined ? maxAngle : 2*PI);
+	this.minAngle = minAngle !== undefined ? minAngle : 0;
+	this.maxAngle = maxAngle !== undefined ? maxAngle : 2*PI;
 
 	if (minCount > maxCount)
 		warn("SimpleObject: minCount should be less than or equal to maxCount");
@@ -421,8 +421,8 @@ function RandomObject(types, minCount, maxCount, minDistance, maxDistance, minAn
 	this.maxCount = maxCount;
 	this.minDistance = minDistance;
 	this.maxDistance = maxDistance;
-	this.minAngle = (minAngle !== undefined ? minAngle : 0);
-	this.maxAngle = (maxAngle !== undefined ? maxAngle : 2*PI);
+	this.minAngle = minAngle !== undefined ? minAngle : 0;
+	this.maxAngle = maxAngle !== undefined ? maxAngle : 2*PI;
 
 	if (minCount > maxCount)
 		warn("RandomObject: minCount should be less than or equal to maxCount");
@@ -511,10 +511,10 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 function SimpleGroup(elements, avoidSelf, tileClass, x, z)
 {
 	this.elements = elements;
-	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : undefined);
-	this.avoidSelf = (avoidSelf !== undefined ? avoidSelf : false);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
+	this.tileClass = tileClass !== undefined ? getTileClass(tileClass) : undefined;
+	this.avoidSelf = avoidSelf !== undefined ? avoidSelf : false;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
 }
 
 SimpleGroup.prototype.place = function(player, constraint)
@@ -561,10 +561,10 @@ SimpleGroup.prototype.place = function(player, constraint)
 function RandomGroup(elements, avoidSelf, tileClass, x, z)
 {
 	this.elements = elements;
-	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : undefined);
-	this.avoidSelf = (avoidSelf !== undefined ? avoidSelf : false);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
+	this.tileClass = tileClass !== undefined ? getTileClass(tileClass) : undefined;
+	this.avoidSelf = avoidSelf !== undefined ? avoidSelf : false;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
 }
 
 RandomGroup.prototype.place = function(player, constraint)

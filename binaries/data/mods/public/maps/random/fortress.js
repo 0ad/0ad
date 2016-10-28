@@ -103,7 +103,8 @@ for (var i=0; i < numPlayers; i++)
 			placeObject(ux, uz, startEntities[j].Template, i+1, uAngle);
 		}
 	}
-	// create resources
+
+	// Create treasure
 	var bbAngle = BUILDING_ORIENTATION;
 	var bbDist = 10;
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
@@ -143,7 +144,7 @@ for (var i=0; i < numPlayers; i++)
 
 	// Base texture
 	var civ = getCivCode(i);
-	var tilesSize = (civ == "cart" ? 27 : 22);
+	var tilesSize = civ == "cart" ? 27 : 22;
 
 	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);
 	const minBoundY = (playerZ[i] > tilesSize ? playerZ[i] - tilesSize : 0);
@@ -151,7 +152,6 @@ for (var i=0; i < numPlayers; i++)
 	const maxBoundY = (playerZ[i] < mapSize - tilesSize ? playerZ[i] + tilesSize : mapSize);
 
 	for (var tx = minBoundX; tx < maxBoundX; ++tx)
-	{
 		for (var ty = minBoundY; ty < maxBoundY; ++ty)
 		{
 			var unboundSumOfXY = tx + ty - minBoundX - minBoundY;
@@ -161,7 +161,6 @@ for (var i=0; i < numPlayers; i++)
 				addToClass(floor(tx), floor(ty), clPlayer);
 			}
 		}
-	}
 
 	// Place custom fortress
 	if (civ == "brit" || civ == "gaul" || civ == "iber")

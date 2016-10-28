@@ -53,13 +53,13 @@ function createMountains(terrain, constraint, tileclass, count, maxHeight, minRa
 {
 	log("Creating mountains...");
 
-	tileclass = (tileclass !== undefined ? tileclass : clHill);
-	constraint = (constraint !== undefined ? constraint : avoidClasses(clPlayer, 20, clHill, 15));
-	count = (count !== undefined ? count : scaleByMapSize(1, 4) * getNumPlayers());
-	maxHeight = (maxHeight !== undefined ? maxHeight : floor(scaleByMapSize(30, 50)));
-	minRadius = (minRadius !== undefined ? minRadius : floor(scaleByMapSize(3, 4)));
-	maxRadius = (maxRadius !== undefined ? maxRadius : floor(scaleByMapSize(6, 12)));
-	numCircles = (numCircles !== undefined ? numCircles : floor(scaleByMapSize(4, 10)));
+	tileclass = tileclass !== undefined ? tileclass : clHill;
+	constraint = constraint !== undefined ? constraint : avoidClasses(clPlayer, 20, clHill, 15);
+	count = count !== undefined ? count : scaleByMapSize(1, 4) * getNumPlayers();
+	maxHeight = maxHeight !== undefined ? maxHeight : floor(scaleByMapSize(30, 50));
+	minRadius = minRadius !== undefined ? minRadius : floor(scaleByMapSize(3, 4));
+	maxRadius = maxRadius !== undefined ? maxRadius : floor(scaleByMapSize(6, 12));
+	numCircles = numCircles !== undefined ? numCircles : floor(scaleByMapSize(4, 10));
 
 	var numHills = count;
 	for (var i = 0; i < numHills; ++i)
@@ -236,8 +236,11 @@ function createStragglerTrees(types, constraint, tileclass)
 {
 	log("Creating straggler trees...");
 
-	constraint = (constraint !== undefined ? constraint : avoidClasses(clForest, 8, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1));
-	tileclass = (tileclass !== undefined ? tileclass : clForest);
+	constraint = constraint !== undefined ?
+		constraint :
+		avoidClasses(clForest, 8, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1);
+
+	tileclass = tileclass !== undefined ? tileclass : clForest;
 
 	var num = floor(g_numStragglerTrees / types.length);
 	for (var i = 0; i < types.length; ++i)
