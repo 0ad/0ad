@@ -32,13 +32,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
 	// Copy control groups
-	var cmpObstruction = Engine.QueryInterface(oldEnt, IID_Obstruction);
-	var cmpNewObstruction = Engine.QueryInterface(newEnt, IID_Obstruction);
-	if (cmpObstruction && cmpNewObstruction)
-	{
-		cmpNewObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
-		cmpNewObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
-	}
+	CopyControlGroups(oldEnt, newEnt);
 
 	// Rescale capture points
 	var cmpCapturable = Engine.QueryInterface(oldEnt, IID_Capturable);
@@ -100,6 +94,17 @@ function CanGarrisonedChangeTemplate(ent, template)
 	return true;
 }
 
+function CopyControlGroups(oldEnt, newEnt)
+{
+	let cmpObstruction = Engine.QueryInterface(oldEnt, IID_Obstruction);
+	let cmpNewObstruction = Engine.QueryInterface(newEnt, IID_Obstruction);
+	if (cmpObstruction && cmpNewObstruction)
+	{
+		cmpNewObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
+		cmpNewObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
+	}
+}
+
 function ObstructionsBlockingTemplateChange(ent, templateArg)
 {
 	var previewEntity = Engine.AddEntity("preview|"+templateArg);
@@ -107,6 +112,7 @@ function ObstructionsBlockingTemplateChange(ent, templateArg)
 	if (previewEntity == INVALID_ENTITY)
 		return true;
 
+	CopyControlGroups(ent, previewEntity);
 	var cmpBuildRestrictions = Engine.QueryInterface(previewEntity, IID_BuildRestrictions);
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
@@ -162,7 +168,7 @@ function ObstructionsBlockingTemplateChange(ent, templateArg)
 			if (cmpNewObstruction && cmpNewObstruction.GetBlockMovementFlag())
 			{
 				// Check for units
-				var collisions = cmpNewObstruction.GetEntityCollisions(false, true);
+				var collisions = cmpNewObstruction.GetUnitCollisions();
 				if (collisions.length)
 					return DeleteEntityAndReturn(previewEntity, cmpPosition, pos, angle, cmpNewPosition, true);
 			}
