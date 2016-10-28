@@ -140,7 +140,11 @@ m.Worker.prototype.update = function(gameState, ent)
 			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target &&
 				ent.getMetadata(PlayerID, "target-foundation") !== ent.unitAIOrderData()[0].target)
 				ent.setMetadata(PlayerID, "target-foundation", ent.unitAIOrderData()[0].target);
-			return;
+			// and check that the target still exists (useful in REPAIR.APPROACHING)
+			let target = ent.getMetadata(PlayerID, "target-foundation");
+			if (target && gameState.getEntityById(target))
+				return;
+			ent.stopMoving();
 		}
 		// okay so apparently we aren't working.
 		// Unless we've been explicitely told to keep our role, make us idle.
