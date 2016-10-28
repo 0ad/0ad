@@ -17,6 +17,27 @@ m.GarrisonManager = function()
 
 m.GarrisonManager.prototype.update = function(gameState, events)
 {
+	// First check for possible upgrade of a structure
+	for (let evt of events.EntityRenamed)
+	{
+		for (let id of this.holders.keys())
+		{
+			if (id !== evt.entity)
+				continue;
+			let list = this.holders.get(id);
+			this.holders.delete(id);
+			this.holders.set(evt.newentity, list);
+		}
+		for (let id of this.decayingStructures.keys())
+		{
+			if (id !== evt.entity)
+				continue;
+			let gmin = this.decayingStructures.get(id);
+			this.decayingStructures.delete(id);
+			this.decayingStructures.set(evt.newentity, gmin);
+		}
+	}
+
 	for (let [id, list] of this.holders.entries())
 	{
 		let holder = gameState.getEntityById(id);
