@@ -32,8 +32,13 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		{
 			if (id !== evt.entity)
 				continue;
-			let gmin = this.decayingStructures.get(id);
 			this.decayingStructures.delete(id);
+			if (this.decayingStructures.has(evt.newentity))
+				continue;
+			let ent = gameState.getEntityById(evt.newentity);
+			if (!ent || !ent.territoryDecayRate() || !ent.garrisonRegenRate())
+				continue;
+			let gmin = Math.ceil((ent.territoryDecayRate() - ent.defaultRegenRate()) / ent.garrisonRegenRate());
 			this.decayingStructures.set(evt.newentity, gmin);
 		}
 	}
