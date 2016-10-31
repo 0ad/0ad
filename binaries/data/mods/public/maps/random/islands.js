@@ -60,7 +60,6 @@ const mapArea = mapSize*mapSize;
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -313,7 +312,7 @@ painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
 	placer,
 	painter,
-	[avoidClasses(clWater, 2, clPlayer, 0), stayClasses(clLand, 3)],
+	[avoidClasses(clPlayer, 0), stayClasses(clLand, 3)],
 	scaleByMapSize(20, 100)
 );
 
@@ -455,7 +454,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)],
 	scaleByMapSize(16, 262), 50
 );
 
@@ -468,7 +467,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)],
 	scaleByMapSize(8, 131), 50
 );
 
@@ -481,7 +480,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
 	3 * numPlayers, 50
 );
 
@@ -494,7 +493,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
 	3 * numPlayers, 50
 );
 
@@ -505,7 +504,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
+	[avoidClasses(clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 5)],
 	randInt(1, 4) * numPlayers + 2, 50
 );
 
@@ -516,7 +515,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20),
+	avoidClasses(clLand, 4, clForest, 2, clPlayer, 2, clHill, 2, clFood, 20),
 	25 * numPlayers, 60
 );
 
@@ -534,7 +533,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 0, clMetal, 1, clRock, 1), stayClasses(clLand, 6)],
+		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 0, clMetal, 1, clRock, 1), stayClasses(clLand, 6)],
 		num
 	);
 }
@@ -549,7 +548,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 6)],
+	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 6)],
 	planetm * scaleByMapSize(13, 200)
 );
 
@@ -561,7 +560,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 5)],
+	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 5)],
 	planetm * scaleByMapSize(13, 200)
 );
 
@@ -573,7 +572,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
 );
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1), stayClasses(clLand, 6)],
+	[avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1), stayClasses(clLand, 6)],
 	planetm * scaleByMapSize(13, 200), 50
 );
 

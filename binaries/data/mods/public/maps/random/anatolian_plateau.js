@@ -45,7 +45,6 @@ var mapArea = mapSize*mapSize;
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -289,7 +288,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 10, clHill, 0),
+	avoidClasses(clForest, 0, clPlayer, 10, clHill, 0),
 	scaleByMapSize(16, 262), 50
 );
 
@@ -302,7 +301,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 10, clHill, 0),
+	avoidClasses(clForest, 0, clPlayer, 10, clHill, 0),
 	scaleByMapSize(8, 131), 50
 );
 
@@ -315,7 +314,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
+	avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	6 * numPlayers, 50
 );
 
@@ -326,7 +325,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
+	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
 	randInt(1, 4) * numPlayers + 2, 50
 );
 
@@ -339,7 +338,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
+	avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	3 * numPlayers, 50
 );
 
@@ -368,7 +367,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
+	avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
 	scaleByMapSize(13, 200)
 );
 
@@ -380,7 +379,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1),
+	avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1),
 	scaleByMapSize(13, 200), 50
 );
 

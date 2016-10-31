@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -135,22 +135,26 @@ struct SerializeShortRequest
 	}
 };
 
-void CCmpPathfinder::Serialize(ISerializer& serialize)
+template<typename S>
+void CCmpPathfinder::SerializeCommon(S& serialize)
 {
 	SerializeVector<SerializeLongRequest>()(serialize, "long requests", m_AsyncLongPathRequests);
 	SerializeVector<SerializeShortRequest>()(serialize, "short requests", m_AsyncShortPathRequests);
 	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
 	serialize.NumberU16_Unbounded("same turn moves count", m_SameTurnMovesCount);
+	serialize.NumberU16_Unbounded("map size", m_MapSize);
+}
+
+void CCmpPathfinder::Serialize(ISerializer& serialize)
+{
+	SerializeCommon(serialize);
 }
 
 void CCmpPathfinder::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 {
 	Init(paramNode);
 
-	SerializeVector<SerializeLongRequest>()(deserialize, "long requests", m_AsyncLongPathRequests);
-	SerializeVector<SerializeShortRequest>()(deserialize, "short requests", m_AsyncShortPathRequests);
-	deserialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
-	deserialize.NumberU16_Unbounded("same turn moves count", m_SameTurnMovesCount);
+	SerializeCommon(deserialize);
 }
 
 void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))

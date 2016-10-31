@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
-# Thadah <juchuf@gmail.com>, 2016
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 # Osoitz <oelkoro@gmail.com>, 2015
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:52+0100\n"
-"PO-Revision-Date: 2016-03-17 10:27+0000\n"
-"Last-Translator: Thadah <juchuf@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2016-10-20 07:57+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr "Baimendu gabea"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Hartzailea ez dago momentuz eskuragarri"
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
@@ -93,19 +94,19 @@ msgstr "Errore ezezaguna"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
-msgstr ""
+msgstr "Fluxu errorea"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "Heldu den fluxu bertsioa ez da jasangarria"
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "Fluxua zerbitzariarengatik itxia izan da"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr ""
+msgstr "S/I errore bat gertatu da"
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
@@ -113,7 +114,7 @@ msgstr "Konexioa zerbitzariarengatik errefuxatuta"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Errorea zerbitzariaren host izena ebaztean"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
@@ -123,19 +124,19 @@ msgstr "Sistema hau memoria gabe dago"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Zerbitzariaren zertifikatua ezin izan da balioztatu edo TLS handshake-a ez da ondo burutu"
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Zerbitzariak ez du beharrezko TLS enkripzioa erabili"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Errorea autentifikazioan. Pasahitza okerra da edo kontua ez da existitzen"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Erabiltzaileak edo sistemak deskonektatzeko eskaria bidali du"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
@@ -143,11 +144,11 @@ msgstr "Ez dago konexio aktiborik"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
-msgstr ""
+msgstr "Arrakasta"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Ez da beharrezko informazio guztia eman"
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"

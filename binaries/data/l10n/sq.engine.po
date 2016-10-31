@@ -1,0 +1,160 @@
+# Translation template for Pyrogenesis.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-03-19 09:25+0100\n"
+"PO-Revision-Date: 2013-06-22 12:54+0000\n"
+"Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: gui/scripting/ScriptFunctions.cpp:823
+#, c-format
+msgid "%s (custom build)"
+msgstr ""
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: gui/scripting/ScriptFunctions.cpp:828
+#, c-format
+msgid "%s (%ls)"
+msgstr ""
+
+#: gui/scripting/ScriptFunctions.cpp:849
+msgid "custom build"
+msgstr ""
+
+#: i18n/L10n.cpp:252
+msgid "Long strings"
+msgstr ""
+
+#: lobby/XmppClient.cpp:750
+msgid "unknown subtype (see logs)"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
+#: lobby/XmppClient.cpp:1084
+msgid "Error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+msgid "No error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1006
+msgid "Player already logged in"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1008
+msgid "Forbidden"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1010
+msgid "Internal server error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1014
+msgid "Not allowed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1015
+msgid "Not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1018
+msgid "Recipient temporarily unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1020
+msgid "Registration required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1024
+msgid "Service unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
+#: lobby/XmppClient.cpp:1097
+msgid "Unknown error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1049
+msgid "Stream error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1050
+msgid "The incoming stream version is unsupported"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1051
+msgid "The stream has been closed by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1055
+msgid "An I/O error occured"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1057
+msgid "The connection was refused by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1058
+msgid "Resolving the server's hostname failed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1059
+msgid "This system is out of memory"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1061
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1062
+msgid "The server did not offer required TLS encryption"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1064
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1065
+msgid "The user or system requested a disconnect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1066
+msgid "There is no active connection"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1087
+msgid "Success"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1088
+msgid "Not all necessary information provided"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1089
+msgid "Username already exists"
+msgstr ""
+
+#: ps/SavedGame.cpp:133
+#, c-format
+msgid "Saved game to '%s'"
+msgstr ""
+
+#: ps/Util.cpp:275 ps/Util.cpp:408
+#, c-format
+msgid "Screenshot written to '%s'"
+msgstr ""

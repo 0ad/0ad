@@ -170,14 +170,19 @@ static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutline
  */
 struct EntityData
 {
-	EntityData() : visibilities(0), size(0), retainInFog(0), owner(-1), inWorld(0), flags(1), scriptedVisibility(0) { }
+	EntityData() :
+		visibilities(0), size(0),
+		owner(-1), retainInFog(0), inWorld(0), revealShore(0),
+		flags(1), scriptedVisibility(0)
+		{ }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
 	u32 visibilities; // 2-bit visibility, per player
 	u32 size;
-	u8 retainInFog; // boolean
 	i8 owner;
+	u8 retainInFog; // boolean
 	u8 inWorld; // boolean
+	u8 revealShore; // boolean
 	u8 flags; // See GetEntityFlagMask
 	u8 scriptedVisibility; // boolean, see ComputeLosVisibility
 };
@@ -236,14 +241,14 @@ struct SerializeEntityData
 		serialize.NumberFixed_Unbounded("vision", value.visionRange);
 		serialize.NumberU32_Unbounded("visibilities", value.visibilities);
 		serialize.NumberU32_Unbounded("size", value.size);
-		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberI8_Unbounded("owner", value.owner);
+		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
+		serialize.NumberU8("reveal shore", value.revealShore, 0, 1);
 		serialize.NumberU8_Unbounded("flags", value.flags);
-		serialize.NumberU8_Unbounded("scripted visibility", value.scriptedVisibility);
+		serialize.NumberU8("scripted visibility", value.scriptedVisibility, 0, 1);
 	}
 };
-
 
 /**
  * Functor for sorting entities by distance from a source point.
@@ -293,8 +298,8 @@ public:
 		componentManager.SubscribeGloballyToMessageType(MT_Destroy);
 		componentManager.SubscribeGloballyToMessageType(MT_VisionRangeChanged);
 
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_Update);
-
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 	}
 
@@ -328,7 +333,7 @@ public:
 	std::vector<bool> m_LosRevealAll;
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
-	
+
 	// Cache for visibility tracking
 	i32 m_LosTilesPerSide;
 	bool m_GlobalVisibilityUpdate;
@@ -440,17 +445,21 @@ public:
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
-
-		// Reinitialise subdivisions and LOS data
-		m_Deserializing = true;
-		ResetDerivedData();
-		m_Deserializing = false;
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
+		case MT_Deserialized:
+		{
+			// Reinitialize subdivisions and LOS data after all
+			// other components have been deserialized.
+			m_Deserializing = true;
+			ResetDerivedData();
+			m_Deserializing = false;
+			break;
+		}
 		case MT_Create:
 		{
 			const CMessageCreate& msgData = static_cast<const CMessageCreate&> (msg);
@@ -473,7 +482,10 @@ public:
 			// Store the LOS data, if any
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
 			if (cmpVision)
+			{
 				entdata.visionRange = cmpVision->GetRange();
+				entdata.revealShore = cmpVision->GetRevealShore() ? 1 : 0;
+			}
 			CmpPtr<ICmpVisibility> cmpVisibility(GetSimContext(), ent);
 			if (cmpVisibility)
 				entdata.retainInFog = (cmpVisibility->GetRetainInFog() ? 1 : 0);
@@ -561,6 +573,12 @@ public:
 				CFixedVector2D pos(it->second.x, it->second.z);
 				LosRemove(it->second.owner, it->second.visionRange, pos);
 				LosAdd(msgData.to, it->second.visionRange, pos);
+
+				if (it->second.revealShore)
+				{
+					RevealShore(it->second.owner, false);
+					RevealShore(msgData.to, true);
+				}
 			}
 
 			ENSURE(-128 <= msgData.to && msgData.to <= 127);
@@ -716,16 +734,10 @@ public:
 		{
 			// recalc current exploration stats.
 			for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
-			{
 				for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
-				{
 					if (!LosIsOffWorld(i, j))
-					{
 						for (u8 k = 1; k < MAX_LOS_PLAYER_ID+1; ++k)
 							m_ExploredVertices.at(k) += ((m_LosState[j*m_TerrainVerticesPerSide + i] & (LOS_EXPLORED << (2*(k-1)))) > 0);
-					}
-				}
-			}
 		}
 		else
 		{
@@ -746,13 +758,14 @@ public:
 		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
-		{
 			if (it->second.inWorld)
 			{
 				LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 				AddToTile(PosToLosTilesHelper(it->second.x, it->second.z), it->first);
+
+				if (it->second.revealShore)
+					RevealShore(it->second.owner, true);
 			}
-		}
 
 		m_TotalInworldVertices = 0;
 		for (ssize_t j = 0; j < m_TerrainVerticesPerSide; ++j)
@@ -773,10 +786,8 @@ public:
 		m_Subdivision.Reset(x1, z1);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
-		{
 			if (it->second.inWorld)
 				m_Subdivision.Add(it->first, CFixedVector2D(it->second.x, it->second.z), it->second.size);
-		}
 	}
 
 	virtual tag_t CreateActiveQuery(entity_id_t source,
@@ -1155,9 +1166,7 @@ public:
 		entity_pos_t part =  entity_pos_t::FromInt(numberOfSteps);
 
 		for (int i = 0; i < numberOfSteps; i++)
-		{
 			r = r + CFixedVector2D(coords[2*i],coords[2*i+1]).Length() / part;
-		}
 
 		return r;
 
@@ -1282,7 +1291,6 @@ public:
 		return q;
 	}
 
-
 	void RenderSubmit(SceneCollector& collector)
 	{
 		if (!m_DebugOverlayEnabled)
@@ -1373,9 +1381,7 @@ public:
 
 				// Draw the min range circle
 				if (!q.minRange.IsZero())
-				{
 					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.minRange.ToFloat(), m_DebugOverlayLines.back(), true);
-				}
 
 				// Draw a ray from the source to each matched entity
 				for (size_t i = 0; i < q.lastMatch.size(); ++i)
@@ -1581,7 +1587,7 @@ public:
 	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player)
 	{
 		entity_id_t entId = ent.GetId();
-		
+
 		// Entities not with positions in the world are never visible
 		if (entId == INVALID_ENTITY)
 			return VIS_HIDDEN;
@@ -1654,13 +1660,10 @@ public:
 		for (i32 n = 0; n < m_LosTilesPerSide * m_LosTilesPerSide; ++n)
 		{
 			for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
-			{
 				if (IsVisibilityDirty(m_DirtyVisibility[n], player) || m_GlobalPlayerVisibilityUpdate[player-1] == 1 || m_GlobalVisibilityUpdate)
-				{
 					for (const entity_id_t& ent : m_LosTiles[n])
 						UpdateVisibility(ent, player);
-				}
-			}
+
 			m_DirtyVisibility[n] = 0;
 		}
 
@@ -1774,7 +1777,6 @@ public:
 	void ExploreAllTiles(player_id_t p)
 	{
 		for (u16 j = 0; j < m_TerrainVerticesPerSide; ++j)
-		{
 			for (u16 i = 0; i < m_TerrainVerticesPerSide; ++i)
 			{
 				if (LosIsOffWorld(i,j))
@@ -1783,7 +1785,6 @@ public:
 				explored += !(m_LosState[i + j*m_TerrainVerticesPerSide] & (LOS_EXPLORED << (2*(p-1))));
 				m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
 			}
-		}
 
 		SeeExploredEntities(p);
 	}
@@ -1811,7 +1812,6 @@ public:
 		ENSURE(grid.m_W*scale == m_TerrainVerticesPerSide-1 && grid.m_H*scale == m_TerrainVerticesPerSide-1);
 
 		for (u16 j = 0; j < grid.m_H; ++j)
-		{
 			for (u16 i = 0; i < grid.m_W; ++i)
 			{
 				u8 p = grid.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
@@ -1819,7 +1819,6 @@ public:
 				{
 					u32& explored = m_ExploredVertices.at(p);
 					for (int dj = 0; dj <= scale; ++dj)
-					{
 						for (int di = 0; di <= scale; ++di)
 						{
 							u32& losState = m_LosState[(i*scale+di) + (j*scale+dj)*m_TerrainVerticesPerSide];
@@ -1829,10 +1828,8 @@ public:
 								losState |= (LOS_EXPLORED << (2*(p-1)));
 							}
 						}
-					}
 				}
 			}
-		}
 
 		for (player_id_t p = 1; p < MAX_LOS_PLAYER_ID+1; ++p)
 			SeeExploredEntities(p);
@@ -1851,7 +1848,7 @@ public:
 		// change the indexes in the map, leading to segfaults. 
 		// So we just remember what entities to mirage and do that later.
 		std::vector<entity_id_t> miragableEntities;
-		
+
 		for (EntityMap<EntityData>::iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), it->first);
@@ -1896,7 +1893,6 @@ public:
 		u16* countsData = &counts[0];
 
 		for (u16 j = 0; j < shoreGrid.m_H; ++j)
-		{
 			for (u16 i = 0; i < shoreGrid.m_W; ++i)
 			{
 				u16 shoredist = shoreGrid.get(i, j);
@@ -1909,7 +1905,6 @@ public:
 				else
 					LosRemoveStripHelper(p, i, i, j, countsData);
 			}
-		}
 	}
 
 	/**
@@ -2275,11 +2270,8 @@ public:
 			LosUpdateHelper<true>((u8)owner, visionRange, to);
 		}
 		else
-		{
 			// Otherwise use the version optimised for mostly-overlapping circles
-
 			LosUpdateHelperIncremental((u8)owner, visionRange, from, to);
-		}
 	}
 
 	virtual u8 GetPercentMapExplored(player_id_t player)
@@ -2293,22 +2285,18 @@ public:
 		std::vector<player_id_t>::const_iterator playerIt;
 
 		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
-		{
 			for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
 			{
 				if (LosIsOffWorld(i, j))
 					continue;
 
 				for (playerIt = players.begin(); playerIt != players.end(); ++playerIt)
-				{
 					if (m_LosState[j*m_TerrainVerticesPerSide + i] & (LOS_EXPLORED << (2*((*playerIt)-1))))
 					{
 						exploredVertices += 1;
 						break;
 					}
-				}
 			}
-		}
 
 		return exploredVertices * 100 / m_TotalInworldVertices;
 	}

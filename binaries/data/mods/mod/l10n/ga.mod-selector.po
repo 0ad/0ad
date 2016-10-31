@@ -1,0 +1,140 @@
+# Translation template for Pyrogenesis - Mod Selector.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
+# 
+# Translators:
+# Kenny Oxley <coinneachoxley@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-09-14 12:21+0000\n"
+"Last-Translator: Kenny Oxley <coinneachoxley@gmail.com>\n"
+"Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ga\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
+#: gui/modmod/modmod.xml:(heading):134
+msgid "Name"
+msgstr "Ainm"
+
+#: gui/modmod/modmod.js:30
+msgid "Folder"
+msgstr "Fillteán"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Lipéad"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
+#: gui/modmod/modmod.xml:(heading):137
+msgid "Version"
+msgstr "Leagan"
+
+#: gui/modmod/modmod.js:36
+msgid "Type: Any"
+msgstr "Cineál: Aon"
+
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+msgid "Filter"
+msgstr "Scagaire"
+
+#: gui/modmod/modmod.js:74
+msgid "Message: Mods Loaded."
+msgstr ""
+
+#: gui/modmod/modmod.js:371
+msgid "All dependencies met"
+msgstr ""
+
+#: gui/modmod/modmod.js:497
+msgid "No mod has been selected."
+msgstr ""
+
+#: gui/modmod/modmod.xml:115
+msgid "Description"
+msgstr "Tuairisc"
+
+#: gui/modmod/modmod.xml:(caption):9
+msgid "Modifications"
+msgstr "Athrúithe"
+
+#: gui/modmod/modmod.xml:(caption):17
+msgid "Reset Filters"
+msgstr "Scagairí Athshocraigh"
+
+#: gui/modmod/modmod.xml:(caption):51
+msgid "Negate"
+msgstr "Cealaigh"
+
+#: gui/modmod/modmod.xml:(caption):58
+msgid "Sorting:"
+msgstr "Sórtáil:"
+
+#: gui/modmod/modmod.xml:(caption):70
+msgid "Descending."
+msgstr "Ag dul síos."
+
+#: gui/modmod/modmod.xml:(caption):86
+msgid "Available Mods"
+msgstr "Modhnuithe Fáil"
+
+#: gui/modmod/modmod.xml:(caption):118
+msgid "Enable"
+msgstr "Cumasaigh"
+
+#: gui/modmod/modmod.xml:(caption):127
+msgid "Enabled Mods"
+msgstr "Modhnuithe Cumasaithe"
+
+#: gui/modmod/modmod.xml:(caption):157
+msgid "Up"
+msgstr "Suas"
+
+#: gui/modmod/modmod.xml:(caption):161
+msgid "X"
+msgstr "X"
+
+#: gui/modmod/modmod.xml:(caption):165
+msgid "Down"
+msgstr "Síos"
+
+#: gui/modmod/modmod.xml:(caption):173
+msgid "Quit"
+msgstr "Scor"
+
+#: gui/modmod/modmod.xml:(caption):178
+msgid "Cancel"
+msgstr "Cealaigh"
+
+#: gui/modmod/modmod.xml:(caption):183
+msgid "Save Configuration"
+msgstr "Sábháil Cumraíocht"
+
+#: gui/modmod/modmod.xml:(caption):188
+msgid "Start Mods"
+msgstr "Tús Modhnuithe"
+
+#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+msgid "(Folder)"
+msgstr "(Fillteán)"
+
+#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+msgid "Mod Label"
+msgstr "Lipéad Modhnú"
+
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+msgid "Mod Type"
+msgstr "Cineál Modhnú"
+
+#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+msgid "Dependencies"
+msgstr "Spleáchais"
+
+#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+msgid "Website"
+msgstr "Suíomh Gréasáin"

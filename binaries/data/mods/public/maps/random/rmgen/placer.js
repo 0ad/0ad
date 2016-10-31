@@ -16,28 +16,21 @@ function ClumpPlacer(size, coherence, smoothness, failFraction, x, z)
 	this.size = size;
 	this.coherence = coherence;
 	this.smoothness = smoothness;
-	this.failFraction = (failFraction !== undefined ? failFraction : 0);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
+	this.failFraction = failFraction !== undefined ? failFraction : 0;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
 }
 
 ClumpPlacer.prototype.place = function(constraint)
 {
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
-	{
 		return undefined;
-	}
 
 	var retVec = [];
 
 	var size = getMapSize();
-	var gotRet = new Array(size);
-	for (var i = 0; i < size; ++i)
-	{
-		gotRet[i] = new Uint8Array(size);			// bool / uint8
-	}
-
+	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
 	var radius = sqrt(this.size / PI);
 	var perim = 4 * radius * 2 * PI;
 	var intPerim = ceil(perim);
@@ -45,9 +38,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	var ctrlPts = 1 + Math.floor(1.0/Math.max(this.smoothness,1.0/intPerim));
 
 	if (ctrlPts > radius * 2 * PI)
-	{
 		ctrlPts = Math.floor(radius * 2 * PI) + 1;
-	}
 
 	var noise = new Float32Array(intPerim);			//float32
 	var ctrlCoords = new Float32Array(ctrlPts+1);	//float32
@@ -78,7 +69,7 @@ ClumpPlacer.prototype.place = function(constraint)
 		var v2 = ctrlVals[(c+1)%ctrlPts];
 		var v3 = ctrlVals[(c+2)%ctrlPts];
 		var P = (v3 - v2) - (v0 - v1);
-		var Q = (v0 - v1) - P;
+		var Q = v0 - v1 - P;
 		var R = v2 - v0;
 		var S = v1;
 
@@ -92,8 +83,8 @@ ClumpPlacer.prototype.place = function(constraint)
 		var r = radius * (1 + (1-this.coherence)*noise[p]);
 		var s = sin(th);
 		var c = cos(th);
-		var xx=this.x;
-		var yy=this.z;
+		var xx = this.x;
+		var yy = this.z;
 
 		for (var k=0; k < ceil(r); k++)
 		{
@@ -102,21 +93,21 @@ ClumpPlacer.prototype.place = function(constraint)
 			if (g_Map.inMapBounds(i, j) && constraint.allows(i, j))
 			{
 				if (!gotRet[i][j])
-				{	// Only include each point once
+				{
+					// Only include each point once
 					gotRet[i][j] = 1;
 					retVec.push(new PointXZ(i, j));
 				}
 			}
 			else
-			{
 				failed++;
-			}
+
 			xx += s;
 			yy += c;
 		}
 	}
 
-	return ((failed > this.size*this.failFraction) ? undefined : retVec);
+	return failed > this.size * this.failFraction ? undefined : retVec;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -139,75 +130,55 @@ function ChainPlacer(minRadius, maxRadius, numCircles, failFraction, x, z, fcc, 
 	this.minRadius = minRadius;
 	this.maxRadius = maxRadius;
 	this.numCircles = numCircles;
-	this.failFraction = (failFraction !== undefined ? failFraction : 0);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
-	this.fcc = (fcc !== undefined ? fcc : 0);
-	this.q = (q !== undefined ? q : []);
+	this.failFraction = failFraction !== undefined ? failFraction : 0;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
+	this.fcc = fcc !== undefined ? fcc : 0;
+	this.q = q !== undefined ? q : [];
 }
 
 ChainPlacer.prototype.place = function(constraint)
 {
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(this.x, this.z) || !constraint.allows(this.x, this.z))
-	{
 		return undefined;
-	}
 
 	var retVec = [];
 	var size = getMapSize();
 	var failed = 0, count = 0;
-	var queueEmpty = (this.q.length ? false : true);
+	var queueEmpty = !this.q.length;
 
-	var gotRet = new Array(size);
-	for (var i = 0; i < size; ++i)
-	{
-		gotRet[i] = new Array(size);
-		for (var j = 0; j < size; ++j)
-		{
-			gotRet[i][j] = -1;
-		}
-	}
-
+	var gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
 	--size;
 
-	if (this.minRadius < 1) this.minRadius = 1;
-	if (this.minRadius > this.maxRadius) this.minRadius = this.maxRadius;
+	this.minRadius = Math.min(this.maxRadius, Math.max(this.minRadius, 1));
 
 	var edges = [[this.x, this.z]];
-
 	for (var i = 0; i < this.numCircles; ++i)
 	{
 		var point = edges[randInt(edges.length)];
 		var cx = point[0], cz = point[1];
 
 		if (queueEmpty)
-		{
 			var radius = randInt(this.minRadius, this.maxRadius);
-		}
 		else
 		{
 			var radius = this.q.pop();
-			queueEmpty = (this.q.length ? false : true);
+			queueEmpty = !this.q.length;
 		}
-
-		//log (edges);
 
 		var sx = cx - radius, lx = cx + radius;
 		var sz = cz - radius, lz = cz + radius;
 
-		sx = (sx < 0 ? 0 : sx);
-		sz = (sz < 0 ? 0 : sz);
-		lx = (lx > size ? size : lx);
-		lz = (lz > size ? size : lz);
+		sx = Math.max(0, sx);
+		sz = Math.max(0, sz);
+		lx = Math.min(lx, size);
+		lz = Math.min(lz, size);
 
 		var radius2 = radius * radius;
 		var dx, dz;
 
-		//log (uneval([sx, sz, lx, lz]));
-
 		for (var ix = sx; ix <= lx; ++ix)
-		{
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
 				dx = ix - cx;
@@ -224,31 +195,22 @@ ChainPlacer.prototype.place = function(constraint)
 						}
 						else if (state >= 0)
 						{
-							//log (uneval(edges));
-							//log (state)
 							var s = edges.splice(state, 1);
-							//log (uneval(s));
-							//log (uneval(edges));
 							gotRet[ix][iz] = -2;
 
 							var edgesLength = edges.length;
 							for (var k = state; k < edges.length; ++k)
-							{
 								--gotRet[edges[k][0]][edges[k][1]];
-							}
 						}
 					}
 					else
-					{
 						++failed;
-					}
+
 					++count;
 				}
 			}
-		}
 
 		for (var ix = sx; ix <= lx; ++ix)
-		{
 			for (var iz = sz; iz <= lz; ++ iz)
 			{
 				if (this.fcc)
@@ -295,12 +257,10 @@ ChainPlacer.prototype.place = function(constraint)
 					}
 				}
 			}
-		}
-
 	}
 
 
-	return ((failed > count*this.failFraction) ? undefined : retVec);
+	return failed > count * this.failFraction ? undefined : retVec;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -321,9 +281,7 @@ function RectPlacer(x1, z1, x2, z2)
 	this.z2 = z2;
 
 	if (x1 > x2 || z1 > z2)
-	{
 		throw("RectPlacer: incorrect bounds on rect");
-	}
 }
 
 RectPlacer.prototype.place = function(constraint)
@@ -331,29 +289,18 @@ RectPlacer.prototype.place = function(constraint)
 	// Preliminary bounds check
 	if (!g_Map.inMapBounds(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
 		!g_Map.inMapBounds(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
-	{
 		return undefined;
-	}
 
 	var ret = [];
-
 	var x2 = this.x2;
 	var z2 = this.z2;
 
 	for (var x=this.x1; x < x2; x++)
-	{
 		for (var z=this.z1; z < z2; z++)
-		{
 			if (g_Map.inMapBounds(x, z) && constraint.allows(x, z))
-			{
 				ret.push(new PointXZ(x, z));
-			}
 			else
-			{
 				return undefined;
-			}
-		}
-	}
 
 	return ret;
 };
@@ -383,8 +330,8 @@ function SimpleObject(type, minCount, maxCount, minDistance, maxDistance, minAng
 	this.maxCount = maxCount;
 	this.minDistance = minDistance;
 	this.maxDistance = maxDistance;
-	this.minAngle = (minAngle !== undefined ? minAngle : 0);
-	this.maxAngle = (maxAngle !== undefined ? maxAngle : 2*PI);
+	this.minAngle = minAngle !== undefined ? minAngle : 0;
+	this.maxAngle = maxAngle !== undefined ? maxAngle : 2*PI;
 
 	if (minCount > maxCount)
 		warn("SimpleObject: minCount should be less than or equal to maxCount");
@@ -414,9 +361,7 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 			var fail = false; // reset place failure flag
 
 			if (!g_Map.validT(x, z))
-			{
 				fail = true;
-			}
 			else
 			{
 				if (avoidSelf)
@@ -427,21 +372,17 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 						var dx = x - resultObjs[i].position.x;
 						var dy = z - resultObjs[i].position.z;
 
-						if ((dx*dx + dy*dy) < 1)
-						{
+						if (dx*dx + dy*dy < 1)
 							fail = true;
-						}
 					}
 				}
 
 				if (!fail)
 				{
 					if (!constraint.allows(Math.floor(x), Math.floor(z)))
-					{
 						fail = true;
-					}
 					else
-					{	// if we got here, we're good
+					{
 						var angle = randFloat(this.minAngle, this.maxAngle);
 						resultObjs.push(new Entity(this.type, player, x, z, angle));
 						break;
@@ -480,8 +421,8 @@ function RandomObject(types, minCount, maxCount, minDistance, maxDistance, minAn
 	this.maxCount = maxCount;
 	this.minDistance = minDistance;
 	this.maxDistance = maxDistance;
-	this.minAngle = (minAngle !== undefined ? minAngle : 0);
-	this.maxAngle = (maxAngle !== undefined ? maxAngle : 2*PI);
+	this.minAngle = minAngle !== undefined ? minAngle : 0;
+	this.maxAngle = maxAngle !== undefined ? maxAngle : 2*PI;
 
 	if (minCount > maxCount)
 		warn("RandomObject: minCount should be less than or equal to maxCount");
@@ -511,9 +452,7 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 			var fail = false; // reset place failure flag
 
 			if (!g_Map.validT(x, z))
-			{
 				fail = true;
-			}
 			else
 			{
 				if (avoidSelf)
@@ -524,21 +463,17 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 						var dx = x - resultObjs[i].position.x;
 						var dy = z - resultObjs[i].position.z;
 
-						if ((dx*dx + dy*dy) < 1)
-						{
+						if (dx*dx + dy*dy < 1)
 							fail = true;
-						}
 					}
 				}
 
 				if (!fail)
 				{
 					if (!constraint.allows(Math.floor(x), Math.floor(z)))
-					{
 						fail = true;
-					}
 					else
-					{	// if we got here, we're good
+					{
 						var angle = randFloat(this.minAngle, this.maxAngle);
 
 						//Randomly select entity
@@ -576,10 +511,10 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 function SimpleGroup(elements, avoidSelf, tileClass, x, z)
 {
 	this.elements = elements;
-	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : undefined);
-	this.avoidSelf = (avoidSelf !== undefined ? avoidSelf : false);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
+	this.tileClass = tileClass !== undefined ? getTileClass(tileClass) : undefined;
+	this.avoidSelf = avoidSelf !== undefined ? avoidSelf : false;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
 }
 
 SimpleGroup.prototype.place = function(player, constraint)
@@ -587,31 +522,25 @@ SimpleGroup.prototype.place = function(player, constraint)
 	var resultObjs = [];
 
 	// Try placement of objects
-	var length = this.elements.length;
-	for (var i = 0; i < length; i++)
+	for (let element of this.elements)
 	{
-		var objs = this.elements[i].place(this.x, this.z, player, this.avoidSelf, constraint);
+		var objs = element.place(this.x, this.z, player, this.avoidSelf, constraint);
+
 		if (objs === undefined)
-		{	// Failure
 			return false;
-		}
-		else
-		{
-			for (var j = 0; j < objs.length; ++j)
-				resultObjs.push(objs[j]);
-		}
+
+		resultObjs = resultObjs.concat(objs);
 	}
 
 	// Add placed objects to map
-	length = resultObjs.length;
-	for (var i=0; i < length; i++)
+	for (let obj of resultObjs)
 	{
-		if (g_Map.validT(resultObjs[i].position.x / CELL_SIZE, resultObjs[i].position.z / CELL_SIZE, MAP_BORDER_WIDTH))
-			g_Map.addObject(resultObjs[i]);
+		if (g_Map.validT(obj.position.x / CELL_SIZE, obj.position.z / CELL_SIZE, MAP_BORDER_WIDTH))
+			g_Map.addObject(obj);
 
 		// Convert position to integer number of tiles
 		if (this.tileClass !== undefined)
-			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
+			this.tileClass.add(Math.floor(obj.position.x/CELL_SIZE), Math.floor(obj.position.z/CELL_SIZE));
 	}
 
 	return true;
@@ -632,40 +561,29 @@ SimpleGroup.prototype.place = function(player, constraint)
 function RandomGroup(elements, avoidSelf, tileClass, x, z)
 {
 	this.elements = elements;
-	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : undefined);
-	this.avoidSelf = (avoidSelf !== undefined ? avoidSelf : false);
-	this.x = (x !== undefined ? x : -1);
-	this.z = (z !== undefined ? z : -1);
+	this.tileClass = tileClass !== undefined ? getTileClass(tileClass) : undefined;
+	this.avoidSelf = avoidSelf !== undefined ? avoidSelf : false;
+	this.x = x !== undefined ? x : -1;
+	this.z = z !== undefined ? z : -1;
 }
 
 RandomGroup.prototype.place = function(player, constraint)
 {
-	var resultObjs = [];
-
 	// Pick one of the object placers at random
 	var placer = this.elements[randInt(this.elements.length)];
 
-	var objs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
-	// Failure
-	if (objs === undefined)
-	{
+	var resultObjs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
+	if (resultObjs === undefined)
 		return false;
-	}
-	else
-	{
-		for (var j = 0; j < objs.length; ++j)
-			resultObjs.push(objs[j]);
-	}
 
 	// Add placed objects to map
-	var length = resultObjs.length;
-	for (var i=0; i < length; i++)
+	for (let obj of resultObjs)
 	{
-		g_Map.addObject(resultObjs[i]);
+		g_Map.addObject(obj);
 
 		// Convert position to integer number of tiles
 		if (this.tileClass !== undefined)
-			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
+			this.tileClass.add(Math.floor(obj.position.x/CELL_SIZE), Math.floor(obj.position.z/CELL_SIZE));
 	}
 
 	return true;

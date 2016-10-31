@@ -308,6 +308,7 @@ void main()
 	// reflMod is used to reduce the intensity of sky reflections, which otherwise are too extreme.
 	reflMod = max(refTex.a, 0.75);
 #else
+	reflMod = 0.75;
 	reflColor = vec3(0.15, 0.7, 0.82);
 #endif
 	

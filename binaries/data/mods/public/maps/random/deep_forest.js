@@ -4,15 +4,11 @@ RMS.LoadLibrary("rmgen");
 log("Initializing map...");
 InitMap();
 
-
 // Setup tile classes
 var clPlayer = createTileClass();
 var clPath = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-// var clWater = createTileClass();
-// var clRock = createTileClass();
-// var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
 // Setup Templates

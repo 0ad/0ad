@@ -73,12 +73,8 @@ var clSettlement = createTileClass();
 var clLand = createTileClass();
 
 for (var ix = 0; ix < mapSize; ix++)
-{
 	for (var iz = 0; iz < mapSize; iz++)
-	{
 		placeTerrain(ix, iz, tMainTerrain);
-	}
-}
 
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
@@ -99,18 +95,14 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 
-
-
 // randomize player order
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
-{
 	playerIDs.push(i+1);
-}
+
 playerIDs = sortPlayers(playerIDs);
 
 // place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -150,7 +142,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -169,9 +160,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
-	{
 		mAngle = randFloat(0, TWO_PI);
-	}
+
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
@@ -222,64 +212,45 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(20);
 
 var split = 1;
-if ((mapSize == 128)&&(numPlayers <= 2))
-{
+if (mapSize == 128 && numPlayers <= 2)
 	split = 2;
-}
-else if ((mapSize == 192)&&(numPlayers <= 3))
-{
+else if (mapSize == 192 && numPlayers <= 3)
 	split = 2;
-}
-else if ((mapSize == 256)&&(numPlayers <= 3))
+else if (mapSize == 256)
 {
-	split = 3;
+	if (numPlayers <= 3)
+		split = 3;
+	else if (numPlayers == 4)
+		split = 2;
 }
-else if ((mapSize == 256)&&(numPlayers <= 4))
+else if (mapSize == 320)
 {
-	split = 2;
+	if (numPlayers <= 3)
+		split = 3;
+	else if (numPlayers == 4)
+		split = 2;
 }
-else if ((mapSize == 320)&&(numPlayers <= 3))
+else if (mapSize == 384)
 {
-	split = 3;
+	if (numPlayers <= 3)
+		split = 4;
+	else if (numPlayers == 4)
+		split = 3;
+	else if (numPlayers == 5)
+		split = 2;
 }
-else if ((mapSize == 320)&&(numPlayers <= 4))
+else if (mapSize == 448)
 {
-	split = 2;
-}
-else if ((mapSize == 384)&&(numPlayers <= 3))
-{
-	split = 4;
-}
-else if ((mapSize == 384)&&(numPlayers <= 4))
-{
-	split = 3;
-}
-else if ((mapSize == 384)&&(numPlayers <= 5))
-{
-	split = 2;
-}
-else if ((mapSize == 448)&&(numPlayers <= 2))
-{
-	split = 5;
-}
-else if ((mapSize == 448)&&(numPlayers <= 3))
-{
-	split = 4;
-}
-else if ((mapSize == 448)&&(numPlayers <= 4))
-{
-	split = 4;
-}
-else if ((mapSize == 448)&&(numPlayers <= 5))
-{
-	split = 3;
-}
-else if ((mapSize == 448)&&(numPlayers <= 6))
-{
-	split = 2;
+	if (numPlayers <= 2)
+		split = 5;
+	else if (numPlayers <= 4)
+		split = 4;
+	else if (numPlayers == 5)
+		split = 3;
+	else if (numPlayers == 6)
+		split = 2;
 }
 
-//create rivers
 log ("Creating rivers...");
 for (var m = 0; m < numPlayers*split; m++)
 {
@@ -396,13 +367,11 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 }
 
-// create hills
 if (randInt(1,2) == 1)
 	createHills([tMainTerrain, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(1, 4) * numPlayers);
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(1, 4) * numPlayers);
 
-// create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
@@ -413,7 +382,6 @@ createForests(
 
 RMS.SetProgress(50);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -422,7 +390,6 @@ createLayeredPatches(
  avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12)
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -433,7 +400,6 @@ createPatches(
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -443,7 +409,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]

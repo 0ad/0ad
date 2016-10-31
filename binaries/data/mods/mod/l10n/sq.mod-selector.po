@@ -1,0 +1,140 @@
+# Translation template for Pyrogenesis - Mod Selector.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
+# 
+# Translators:
+# Alket Rexhepi <alketii@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-03-19 09:27+0100\n"
+"PO-Revision-Date: 2016-04-03 16:17+0000\n"
+"Last-Translator: Alket Rexhepi <alketii@gmail.com>\n"
+"Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
+#: gui/modmod/modmod.xml:(heading):134
+msgid "Name"
+msgstr "Emri"
+
+#: gui/modmod/modmod.js:30
+msgid "Folder"
+msgstr "Dosje"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Etiketim"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
+#: gui/modmod/modmod.xml:(heading):137
+msgid "Version"
+msgstr "Verzion"
+
+#: gui/modmod/modmod.js:36
+msgid "Type: Any"
+msgstr "Tipi: Çfardo"
+
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+msgid "Filter"
+msgstr "Filteri"
+
+#: gui/modmod/modmod.js:74
+msgid "Message: Mods Loaded."
+msgstr "Kumtesë: Modulet u ngarkuan."
+
+#: gui/modmod/modmod.js:371
+msgid "All dependencies met"
+msgstr "Të gjitha kërkesat u plotësuan"
+
+#: gui/modmod/modmod.js:497
+msgid "No mod has been selected."
+msgstr "Asnjë modul nuk është përzgjedhur."
+
+#: gui/modmod/modmod.xml:115
+msgid "Description"
+msgstr "Përshkrimi"
+
+#: gui/modmod/modmod.xml:(caption):9
+msgid "Modifications"
+msgstr "Ndryshimet"
+
+#: gui/modmod/modmod.xml:(caption):17
+msgid "Reset Filters"
+msgstr "Rivendos Filterët"
+
+#: gui/modmod/modmod.xml:(caption):51
+msgid "Negate"
+msgstr "Moho"
+
+#: gui/modmod/modmod.xml:(caption):58
+msgid "Sorting:"
+msgstr "Rradhitja:"
+
+#: gui/modmod/modmod.xml:(caption):70
+msgid "Descending."
+msgstr "Zbritëse."
+
+#: gui/modmod/modmod.xml:(caption):86
+msgid "Available Mods"
+msgstr "Modulet e pranishme"
+
+#: gui/modmod/modmod.xml:(caption):118
+msgid "Enable"
+msgstr "Lejo"
+
+#: gui/modmod/modmod.xml:(caption):127
+msgid "Enabled Mods"
+msgstr "Modulet e lejuara"
+
+#: gui/modmod/modmod.xml:(caption):157
+msgid "Up"
+msgstr "Lart"
+
+#: gui/modmod/modmod.xml:(caption):161
+msgid "X"
+msgstr "X"
+
+#: gui/modmod/modmod.xml:(caption):165
+msgid "Down"
+msgstr "Poshtë"
+
+#: gui/modmod/modmod.xml:(caption):173
+msgid "Quit"
+msgstr "Lëj"
+
+#: gui/modmod/modmod.xml:(caption):178
+msgid "Cancel"
+msgstr "Anulo"
+
+#: gui/modmod/modmod.xml:(caption):183
+msgid "Save Configuration"
+msgstr "Ruaj konfigurimin"
+
+#: gui/modmod/modmod.xml:(caption):188
+msgid "Start Mods"
+msgstr "Fillo modulet"
+
+#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+msgid "(Folder)"
+msgstr "(Dosje)"
+
+#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+msgid "Mod Label"
+msgstr "Etiketimi i modulit"
+
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+msgid "Mod Type"
+msgstr "Lloji i modulit"
+
+#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+msgid "Dependencies"
+msgstr "Kërkesat"
+
+#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+msgid "Website"
+msgstr "Ueb Faqja"

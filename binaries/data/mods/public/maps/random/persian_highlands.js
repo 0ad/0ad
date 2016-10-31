@@ -66,7 +66,6 @@ const mapArea = mapSize*mapSize;
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clPatch = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -279,7 +278,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreas(
 		placer,
 		[painter, paintClass(clForest)],
-		avoidClasses(clPlayer, 6, clWater, 3, clForest, 10, clHill, 1, clCP, 1),
+		avoidClasses(clPlayer, 6, clForest, 10, clHill, 1, clCP, 1),
 		num
 	);
 }
@@ -344,7 +343,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
+	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(16, 262), 50
 );
 
@@ -358,7 +357,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
+	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(8, 131), 50
 );
 
@@ -422,7 +421,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 1, clRock, 1, clCP, 2),
+		avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 1, clRock, 1, clCP, 2),
 		num
 	);
 }

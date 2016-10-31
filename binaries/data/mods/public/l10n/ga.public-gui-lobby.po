@@ -1,0 +1,593 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# Kenny Oxley <coinneachoxley@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2016-08-15 09:00+0200\n"
+"PO-Revision-Date: 2016-10-03 18:39+0000\n"
+"Last-Translator: Kenny Oxley <coinneachoxley@gmail.com>\n"
+"Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ga\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+
+#: gui/lobby/lobby.js:54
+msgid "Online"
+msgstr "Ar Líne"
+
+#: gui/lobby/lobby.js:55
+msgid "Away"
+msgstr "Amach"
+
+#: gui/lobby/lobby.js:56
+msgid "Busy"
+msgstr "Áitiú"
+
+#: gui/lobby/lobby.js:57
+msgid "Offline"
+msgstr "As Líne"
+
+#: gui/lobby/lobby.js:58
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "Anaithnid"
+
+#: gui/lobby/lobby.js:132
+msgid "Disconnected."
+msgstr "Dícheangailte"
+
+#: gui/lobby/lobby.js:150
+#, javascript-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s tagtha isteach"
+
+#: gui/lobby/lobby.js:159
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr " %(nick)s fhág"
+
+#: gui/lobby/lobby.js:169
+#, javascript-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "%(oldnick)s atá aitheanta anois mar %(newnick)s."
+
+#: gui/lobby/lobby.js:238
+msgctxt "map size"
+msgid "Any"
+msgstr "Aon"
+
+#: gui/lobby/lobby.js:243
+msgctxt "player number"
+msgid "Any"
+msgstr "Aon"
+
+#: gui/lobby/lobby.js:247
+msgctxt "map"
+msgid "Any"
+msgstr "Aon"
+
+#: gui/lobby/lobby.js:426
+msgid "Moderator"
+msgstr "Módhnóir"
+
+#: gui/lobby/lobby.js:426
+msgid "Player"
+msgstr "Imreoir"
+
+#: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
+#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:431 gui/lobby/lobby.js:432
+msgid "N/A"
+msgstr "Neamhbhainteach"
+
+#: gui/lobby/lobby.js:442
+#, javascript-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s (%(rating)s)"
+
+#: gui/lobby/lobby.js:631
+#, javascript-format
+msgid "Game started at %(time)s"
+msgstr "Cluiche a thosaigh ag  %(time)s"
+
+#: gui/lobby/lobby.js:632 gui/lobby/lobby.js:994
+msgid "HH:mm"
+msgstr "UU:nn"
+
+#: gui/lobby/lobby.js:636
+#, javascript-format
+msgid "Players: %(current)s/%(total)s"
+msgstr "Imreoirí: %(current)s/%(total)s"
+
+#: gui/lobby/lobby.js:678
+msgid "The game has already started."
+msgstr ""
+
+#: gui/lobby/lobby.js:679
+msgid "Do you want to join as observer?"
+msgstr ""
+
+#: gui/lobby/lobby.js:680
+msgid "Confirmation"
+msgstr "Deimhniú"
+
+#: gui/lobby/lobby.js:681
+msgid "No"
+msgstr "Ní hea"
+
+#: gui/lobby/lobby.js:681
+msgid "Yes"
+msgstr "Sea"
+
+#: gui/lobby/lobby.js:700
+#, javascript-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr ""
+
+#: gui/lobby/lobby.js:819
+#, javascript-format
+msgid "We're sorry, the '%(cmd)s' command is not supported."
+msgstr ""
+
+#. Translation: IRC message prefix when the sender uses the /me command.
+#: gui/lobby/lobby.js:901
+#, javascript-format
+msgid "* %(sender)s"
+msgstr "* %(sender)s"
+
+#. Translation: IRC message issued using the ‘/me’ command.
+#: gui/lobby/lobby.js:906
+#, javascript-format
+msgid "%(sender)s %(action)s"
+msgstr "%(sender)s %(action)s"
+
+#. Translation: IRC message prefix.
+#: gui/lobby/lobby.js:915 gui/lobby/lobby.js:936 gui/lobby/lobby.js:962
+#, javascript-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>"
+
+#. Translation: IRC message.
+#: gui/lobby/lobby.js:920 gui/lobby/lobby.js:941 gui/lobby/lobby.js:967
+#, javascript-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s %(message)s"
+
+#. Translation: IRC system message.
+#: gui/lobby/lobby.js:930
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/lobby/lobby.js:956
+#, javascript-format
+msgctxt "lobby private message"
+msgid "(%(private)s) <%(sender)s>"
+msgstr "(%(private)s) <%(sender)s>"
+
+#: gui/lobby/lobby.js:958
+msgid "Private"
+msgstr "Príobháideach"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the options page).
+#: gui/lobby/lobby.js:997
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#. Translation: IRC message format when there is a time prefix.
+#: gui/lobby/lobby.js:1002
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/lobby/lobby.js:1063
+msgid "Please do not spam. You have been blocked for thirty seconds."
+msgstr ""
+
+#: gui/lobby/lobby.js:1130
+msgctxt "Used for an undefined winning rate"
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/lobby.js:1132
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/lobby/prelobby.js:40
+msgid "Connecting..."
+msgstr "Nascadh ..."
+
+#: gui/lobby/prelobby.js:62
+msgid "Registering..."
+msgstr "Clárúainn..."
+
+#: gui/lobby/prelobby.js:92
+msgid "Please enter your username"
+msgstr "Cuir isteach d'ainm úsáideora le do thoil"
+
+#: gui/lobby/prelobby.js:98
+msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
+msgstr ""
+
+#: gui/lobby/prelobby.js:104
+msgid "Please enter your password"
+msgstr ""
+
+#: gui/lobby/prelobby.js:117
+msgid "Please enter your password again"
+msgstr ""
+
+#: gui/lobby/prelobby.js:123
+msgid "Passwords do not match"
+msgstr ""
+
+#: gui/lobby/prelobby.js:129
+msgid "Please read the Terms of Service"
+msgstr ""
+
+#: gui/lobby/prelobby.js:135
+msgid "Please read the Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:141
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr ""
+
+#: gui/lobby/prelobby.js:171
+msgid "Registered"
+msgstr "Cláraithe Banna"
+
+#: gui/lobby/prelobby.js:233
+msgid "Register"
+msgstr "Cláraigh"
+
+#: gui/lobby/prelobby.js:239 gui/lobby/prelobby.xml:(caption):109
+msgid "Connect"
+msgstr "Ceangal"
+
+#: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):78
+msgid "Terms of Service"
+msgstr "Tearmaí Seirbhís"
+
+#: gui/lobby/prelobby.js:258 gui/lobby/prelobby.xml:(caption):83
+msgid "Terms of Use"
+msgstr "Téarmaí Úsáide"
+
+#: gui/lobby/lobby.xml:(caption):17 gui/lobby/prelobby.xml:(caption):18
+msgid "Multiplayer Lobby"
+msgstr "Il Stocaireachta"
+
+#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):303
+msgid "Current Rank:"
+msgstr "Céim Reatha:"
+
+#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):307
+msgid "Highest Rating:"
+msgstr "Rátáil is Airde:"
+
+#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):311
+msgid "Total Games:"
+msgstr "Cluichí Iomlán:"
+
+#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):315
+msgid "Wins:"
+msgstr "Buann:"
+
+#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):319
+msgid "Losses:"
+msgstr "Caillteanais:"
+
+#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):323
+msgid "Win Rate:"
+msgstr "Ráta Bua:"
+
+#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):251
+msgid "Leaderboard"
+msgstr "Clár ceann riain"
+
+#: gui/lobby/lobby.xml:(caption):89 gui/lobby/lobby.xml:(caption):286
+msgid "User Profile Lookup"
+msgstr ""
+
+#: gui/lobby/lobby.xml:(caption):118
+msgid "Map Type:"
+msgstr "Cineál Léarscáil:"
+
+#: gui/lobby/lobby.xml:(caption):130
+msgid "Map Size:"
+msgstr "Méid Léarscáil:"
+
+#. Join the game currently selected in the list.
+#: gui/lobby/lobby.xml:(caption):155
+msgid "Join Game"
+msgstr "Member Cluiche"
+
+#: gui/lobby/lobby.xml:(caption):161
+msgid "Host Game"
+msgstr "Óstach Cluiche"
+
+#: gui/lobby/lobby.xml:(caption):168
+msgid "Main Menu"
+msgstr "Príomhroghchlár"
+
+#: gui/lobby/lobby.xml:(caption):223
+msgid "Show full games"
+msgstr "Taispeáin cluichí iomlán"
+
+#: gui/lobby/lobby.xml:(caption):271 gui/lobby/lobby.xml:(caption):333
+msgid "Back"
+msgstr "Ais"
+
+#: gui/lobby/lobby.xml:(caption):279
+msgid "Update"
+msgstr "Nuashonraigh"
+
+#: gui/lobby/lobby.xml:(caption):289
+msgid "Enter username:"
+msgstr "Iontráil ainm úsáideora:"
+
+#: gui/lobby/lobby.xml:(caption):295
+msgid "View Profile"
+msgstr "Grianghraf Próifíl"
+
+#: gui/lobby/lobby.xml:(caption):328
+msgid "Player not found."
+msgstr "Imreoir Gan Aimsiú."
+
+#: gui/lobby/lobby.xml:(heading):28
+msgid "Status"
+msgstr "Stádas"
+
+#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):180
+#: gui/lobby/lobby.xml:(heading):261
+msgid "Name"
+msgstr "Ainm"
+
+#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):264
+msgid "Rating"
+msgstr "Rátáil"
+
+#: gui/lobby/lobby.xml:(heading):184
+msgid "Map Name"
+msgstr "Léarscáil Ainm"
+
+#: gui/lobby/lobby.xml:(heading):187
+msgctxt "map"
+msgid "Size"
+msgstr "Méid"
+
+#: gui/lobby/lobby.xml:(heading):190
+msgctxt "map"
+msgid "Type"
+msgstr "Cineál"
+
+#: gui/lobby/lobby.xml:(heading):193
+msgid "Players"
+msgstr "imreoirí"
+
+#: gui/lobby/lobby.xml:(heading):258
+msgid "Rank"
+msgstr "Céim"
+
+#: gui/lobby/prelobby.xml:(caption):23
+msgid "Create a new account"
+msgstr "Cuntas Nua a Chruthú"
+
+#: gui/lobby/prelobby.xml:(caption):27
+msgid "Login to an existing account"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:(caption):33
+msgid "Connect to the game lobby"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
+msgid "Login:"
+msgstr "Logáil Isteach"
+
+#: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
+msgid "Password:"
+msgstr "Focal Faire:"
+
+#: gui/lobby/prelobby.xml:(caption):59
+msgid "Registration"
+msgstr "Clárú"
+
+#: gui/lobby/prelobby.xml:(caption):73
+msgid "Password again:"
+msgstr "Pasfhocal arís:"
+
+#: gui/lobby/prelobby.xml:(caption):88
+msgid "I have read and agree to the Terms of Service and Terms of Use:"
+msgstr ""
+
+#: gui/lobby/prelobby.xml:(caption):97
+msgid "Cancel"
+msgstr "Cealaigh"
+
+#: gui/lobby/Terms_of_Service.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
+msgid "Definitions:"
+msgstr "Sainmhínithe:"
+
+#: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
+msgid ""
+" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
+"provided by Wildfire Games (WFG)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
+msgid " * \"You\" are the user of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:5
+msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:6
+msgid ""
+" * \"Rating\" refers to the process of analyzing various user statistics for"
+" the purpose of generating a single comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:7
+msgid " * \"Moderate\" refers to the process of enforcing usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:8
+msgid "By using the service you agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:9
+msgid " 1. Follow all usage policies."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:10
+msgid ""
+" 2. Allow user identifiable statistics to be gathered for the purposes of "
+"rating, user profiles, and community statistics."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
+msgid "We also reserve the right to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:12
+msgid " 1. Moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:13
+msgid " 2. Appoint others to moderate the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:14
+msgid ""
+" 3. Discontinue or interrupt service at any time with or without prior "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:15
+msgid " 4. Change the service at any time with or without announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:16
+msgid ""
+" 5. Delete any and all service data at any time with or without "
+"announcement."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:17
+msgid ""
+" 6. Collect any or all user identifiable statistics at any time without "
+"consent for:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:18
+msgid ""
+"  a. Private analysis by Wildfire Games (WFG) team members and their "
+"affiliates."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:19
+msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
+msgstr ""
+
+#: gui/lobby/Terms_of_Service.txt:20
+msgid ""
+" 7. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:5
+msgid ""
+" * \"Impersonate\" refers to the action in which you attempt to exploit "
+"another's identity for your own purposes."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:6
+msgid ""
+" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
+"number of recipients."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:7
+msgid " * \"Rating\" refers to the per-user comprehensive score."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:8
+msgid ""
+" * \"Ranked games\" refers to games in which rating changing statistics are "
+"tracked."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:9
+msgid "You agree to:"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:10
+msgid ""
+" 1. Only create one account per unique user on the service unless authorized"
+" by a Wildfire Games (WFG) team member."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:11
+msgid ""
+" 2. Not post profane statements, rude humor, pornographic content, or "
+"discriminatory comments on the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:12
+msgid " 3. Not purposefully demean the worth of others using the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:13
+msgid ""
+" 4. Not use the service to promote specific goods, services, or products."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:14
+msgid " 5. Not impersonate other users of the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:15
+msgid " 6. Not spam the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:16
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or "
+"any of the statistics which impact it. (Examples of this are, but are not "
+"limited to: cheating in ranked games, reverse engineering the service, and "
+"taking advantage of other users of the service.)"
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:17
+msgid ""
+" 8. Allow yourself to be removed from the service if at any time a moderator"
+" determines your behavior is not consistent with these rules."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:19
+msgid ""
+" 1. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr ""

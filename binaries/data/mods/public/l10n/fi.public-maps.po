@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-10-07 07:48+0000\n"
-"Last-Translator: Riku Viitanen <riisseli4@gmail.com>\n"
+"PO-Revision-Date: 2016-10-17 10:28+0000\n"
+"Last-Translator: Pauli Kaikkonen <p.kaikkon@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -220,7 +220,7 @@ msgstr "Synkkä metsä"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr ""
+msgstr "Naapurialue on luvannut uskollisuutensa sinun hallinnollesi. Sinun tehtäväsi on komentaa heidät voittoon."
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -240,7 +240,7 @@ msgstr "Englannin kanaali"
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
 "battle in chest deep waters."
-msgstr ""
+msgstr "Suuri tulva on kulkenut laakson läpi mahdollistaen sekä laivojen että joukkojen liikkumisen matalassa vedessä."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -256,7 +256,7 @@ msgstr "Linnoitus"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
-msgstr ""
+msgstr "Villi ja tuntematon maisema odottaa kilpailevia tutkimusmatkailijoita."
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
@@ -391,7 +391,7 @@ msgstr "Latium"
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
-msgstr ""
+msgstr "Korkeat kalliot suojaavat jokaisen pelaajan päätukikohtaa. Seikkailu tuntemattomaan voi olla vaarallinen, mutta välttämätön."
 
 #: maps/random/lions_den.jsonsettings.Name
 msgid "Lion's Den"
@@ -726,7 +726,7 @@ msgstr ""
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
-msgstr "Muuri demo"
+msgstr "Muuridemo"
 
 #: maps/random/survivalofthefittest_triggers.js:127
 msgid "An enemy wave is attacking!"
@@ -1045,7 +1045,7 @@ msgstr "Belgialainen suoyö"
 
 #: maps/scenarios/Bridge_demo.xml:PlayerData[0].Name:31
 msgid "Bridge Demo"
-msgstr "Silta demo"
+msgstr "Siltademo"
 
 #: maps/scenarios/Bridge_demo.xml:PlayerData[1].Name:31
 msgid "Other"
@@ -1053,11 +1053,11 @@ msgstr "Muu"
 
 #: maps/scenarios/Bridge_demo.xml:Description:31
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
-msgstr "Demo kartta, joka näyttää miten simuloidaan siltoja Atlas -karttaeditorilla."
+msgstr "Demokartta, joka opettaa siltojen simuloinnin Atlas-karttaeditorilla."
 
 #: maps/scenarios/Bridge_demo.xml:Name:31
 msgid "Bridge demo"
-msgstr "Silta demo"
+msgstr "Siltademo"
 
 #: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:42
 msgid "Campaign Map - Test"
@@ -1107,7 +1107,7 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
-msgstr "Taistelu testi"
+msgstr "Taisteludemo"
 
 #: maps/scenarios/Combat_demo.xml:Description:30
 msgid ""
@@ -1117,7 +1117,7 @@ msgstr "Taistelunäytös pienen määrän kantama- ja lähitaistelujalkaväen yk
 
 #: maps/scenarios/Combat_demo_(huge).xml:Name:77
 msgid "Combat Demo (Huge)"
-msgstr "Taistelu testi (Valtava)"
+msgstr "Taisteludemo (Valtava)"
 
 #: maps/scenarios/Combat_demo_(huge).xml:Description:77
 msgid "1296 units. Extremely slow (we need more optimisation)."
@@ -1182,7 +1182,7 @@ msgstr "Kaupankäyntidemo"
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
-msgstr ""
+msgstr "Brittein saaret -demokartta, luotu korkeuskartalla."
 
 #: maps/scenarios/Eire and Albion.xml:Name:31
 msgid "Eire and Albion (British Isles)"
@@ -1607,11 +1607,11 @@ msgstr "Hiekkalaatikko - Ptolemaioksen egyptiläiset"
 
 #: maps/scenarios/Sandbox - Romans.xml:Description:42
 msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr ""
+msgstr "Hiekkalaatikkoskenaario, jossa pelaajat voivat kokeilla Rooman sivilisaatiota."
 
 #: maps/scenarios/Sandbox - Romans.xml:Name:42
 msgid "Sandbox - The Republican Romans"
-msgstr ""
+msgstr "Hiekkalaatikko - Rooman tasavaltalaiset"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:Description:41
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
@@ -1672,7 +1672,7 @@ msgstr "Serengeti 1"
 
 #: maps/scenarios/Ship Formations.xml:Description:31
 msgid "Ship formations mockup."
-msgstr ""
+msgstr "Laivojen muodostelmien malli."
 
 #: maps/scenarios/Ship Formations.xml:PlayerData[0].Name:31
 msgid "Ships"
@@ -1694,7 +1694,7 @@ msgstr "Siwan keidas"
 
 #: maps/scenarios/Territory Demo.xml:Description:31
 msgid "A demo map showing the territory effects of each type of structure."
-msgstr ""
+msgstr "Erityyppisten rakennusten aluevaikutukset näyttävä demokartta."
 
 #: maps/scenarios/Territory Demo.xml:Name:31
 msgid "Territory Demo"
@@ -2266,7 +2266,7 @@ msgstr "Savannijoki"
 
 #: maps/skirmishes/Sicilia (2).xml:Description:41
 msgid "The large Mediterranean island of Sicily is open for conquest."
-msgstr ""
+msgstr "Suuri Sisilian saari Välimerellä on avoinna valloitukselle."
 
 #: maps/skirmishes/Sicilia (2).xml:Name:41
 msgid "Sicilia (2)"

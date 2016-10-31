@@ -59,7 +59,6 @@ var mapArea = mapSize*mapSize;
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clWater = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
@@ -238,7 +237,7 @@ for (var i = 0; i < numPlayers; ++i)
 }
 
 // create bumps
-createBumps([avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 5)]);
+createBumps([avoidClasses(clPlayer, 10), stayClasses(clLand, 5)]);
 
 // create hills
 if (randInt(1,2) == 1)

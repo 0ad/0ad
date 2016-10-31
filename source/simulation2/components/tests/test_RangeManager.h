@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,8 +31,7 @@ public:
 	DEFAULT_MOCK_COMPONENT()
 
 	virtual entity_pos_t GetRange() { return entity_pos_t::FromInt(66); }
-	virtual bool GetRetainInFog() { return false; }
-	virtual bool GetAlwaysVisible() { return false; }
+	virtual bool GetRevealShore() { return false; }
 };
 
 class MockPosition : public ICmpPosition
@@ -84,6 +83,9 @@ public:
 	{
 		CXeromyces::Terminate();
 	}
+
+	// TODO It would be nice to call Verify() with the shore revealing system
+	// but that means testing on an actual map, with water and land.
 
 	void test_basic()
 	{
