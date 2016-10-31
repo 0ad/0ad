@@ -556,5 +556,5 @@ function getTileMap()
 
 function getTilePallet()
 {
-	return ["dirta","savanna_dirt_rocks_c","savanna_wash_a","savanna_dirt_b","savanna_dirt_rocks_b","savanna_riparian_bank","savanna_grass_b","grass b soft dirt 50","grass1_spring","grass_field","grass1_spring_fancy","savanna_grass_a_wetseason","savanna_grass_b_wetseason","savanna_grass_a","new_savanna_grass_a","new_savanna_grass_b","new_savanna_grass_c","steppe_grass_dirt_66","peat_temp"];
+	return ["dirta","savanna_dirt_rocks_c","savanna_wash_a","savanna_dirt_b","savanna_dirt_rocks_b","savanna_riparian_bank","savanna_grass_b","grass b soft dirt 50","grass1_spring","grass_field","grass1_spring","savanna_grass_a_wetseason","savanna_grass_b_wetseason","savanna_grass_a","new_savanna_grass_a","new_savanna_grass_b","new_savanna_grass_c","steppe_grass_dirt_66","peat_temp"];
 	}
