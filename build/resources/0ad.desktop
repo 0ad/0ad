@@ -1,10 +1,25 @@
 [Desktop Entry]
 Version=1.0
 Name=0 A.D.
-Comment=A real-time strategy game of ancient warfare
-Comment[it]=Videogioco strategico in tempo reale di guerre antiche
 Exec=0ad
 Icon=0ad
 Terminal=false
 Type=Application
 Categories=Game;StrategyGame;
+URL=https://play0ad.com/
+Comment=A real-time strategy game of ancient warfare
+Comment[de]=Ein Echtzeitstrategiespiel, das die Kriegsführung der Antike behandelt
+Comment[es]=Un juego de estrategia en tiempo real de guerra antigua
+Comment[fr]=Un jeu de statégie militaire en temps réel dans l'Antiquité
+Comment[it]=Videogioco strategico in tempo reale di guerre antiche
+Comment[nl]=Een real-time strategie spel over oorlog van de oudheid
+Comment[pl]=Gra strategiczna czasu rzeczywistego  o wojnach starożytnych
+Comment[pt_BR]=Um jogo em tempo real de guerra antiga
+Comment[ru]=Игра в жанре исторической стратегии в реальном времени
+Keywords=RTS;Realtime Strategy;Economic Simulation Game;History;Warfare;Infantry;Cavalry;Siege Engines;Fortress;Celtics;Hellenes;Athenians;Britons;Carthaginians;Gauls;Iberians;Macedonians;Mauryans;Persians;Ptolemies;Romans;Seleucids;Spartans;
+Actions=Atlas;
+
+[Desktop Action Atlas]
+Name=Atlas Map Editor
+Exec=0ad -editor
+
