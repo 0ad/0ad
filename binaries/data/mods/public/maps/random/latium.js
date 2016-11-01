@@ -539,8 +539,8 @@ createObjectGroups(group, 0,
 
 // Adjust environment
 setSkySet("sunny");
-setWaterColor(0.024,0.212,0.024);
-setWaterTint(0.133, 0.725,0.855);
+setWaterColor(0.024,0.262,0.224);
+setWaterTint(0.133, 0.325,0.255);
 setWaterWaviness(2.5);
 setWaterType("ocean");
 setWaterMurkiness(0.8);

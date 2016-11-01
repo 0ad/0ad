@@ -419,11 +419,11 @@ var types = [oPoplar, oCarob, oApple];	// some variation
 createStragglerTrees(types, [avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 1, clRock, 1, clRiver, 1), stayClasses(clLand, 7)]);
 
 setSkySet("cumulus");
-setWaterColor(0.443,0.412,0.322);
-setWaterTint(0.647,0.82,0.949);
+setWaterColor(0.2,0.312,0.522);
+setWaterTint(0.1,0.1,0.8);
 setWaterWaviness(4.0);
 setWaterType("lake");
-setWaterMurkiness(0.70);
+setWaterMurkiness(0.73);
 
 setFogFactor(0.3);
 setFogThickness(0.25);
