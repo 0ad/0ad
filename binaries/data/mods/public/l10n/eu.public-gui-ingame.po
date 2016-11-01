@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 08:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-25 11:46+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +88,7 @@ msgstr "Ezabatu"
 #: gui/session/menu.js:277
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:343
 msgctxt "team"
@@ -157,35 +157,35 @@ msgstr[1] "%(inactiveString)s daude."
 
 #: gui/session/menu.js:561
 msgid "There are no land traders."
-msgstr ""
+msgstr "Ez dago lurreko merkataririk"
 
 #: gui/session/menu.js:569
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lurreko merkatar %(numberTrading)s dago salerosten"
+msgstr[1] "%(numberTrading)s lurreko merkatari daude salerosten"
 
 #: gui/session/menu.js:578
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s geldi"
+msgstr[1] "%(numberOfLandTraders)s geldi"
 
 #: gui/session/menu.js:583
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "lurreko merkatari %(numberOfLandTraders)s geldi"
+msgstr[1] "%(numberOfLandTraders)s lurreko merkatari geldi"
 
 #: gui/session/menu.js:592
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s babestuta on a merkantzia onzti batean"
+msgstr[1] "%(numberGarrisoned)s babestuta merkantzia ontzi batean"
 
 #: gui/session/menu.js:597
 #, javascript-format
@@ -195,33 +195,33 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lurreko merkatari %(numberGarrisoned)s dago babestuta merkantzia ontzi batean"
+msgstr[1] "%(numberGarrisoned)s lurreko merkatari daude babestuta merkantzia ontzi batean"
 
 #: gui/session/menu.js:625
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Ez dago merkantzia ontzirik"
 
 #: gui/session/menu.js:632
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Merkantzia ontzi %(numberTrading)s dago salerosten"
+msgstr[1] "%(numberTrading)s merkantzia ontzi daude salerosten"
 
 #: gui/session/menu.js:641
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s geldi"
+msgstr[1] "%(numberOfShipTraders)s geldi"
 
 #: gui/session/menu.js:646
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Merkantzia ontzi %(numberOfShipTraders)s geldi"
+msgstr[1] "%(numberOfShipTraders)s merkantzia ontzi geldi"
 
 #: gui/session/menu.js:822
 msgid "Resume"
@@ -234,7 +234,7 @@ msgstr "Pausatu"
 #: gui/session/menu.js:826
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "%(players)s-engatik gelditua"
 
 #: gui/session/menu.js:827
 msgid ", "
@@ -345,37 +345,37 @@ msgstr "Pribatua"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Txat eta notifikazioak"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Txat mezuak"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Jokalarien txat"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Aliatuen txat"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Etsaien txat"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Ikuslearen txat"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Txat pribatua"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -458,11 +458,11 @@ msgstr "\\[DESKONEKTATUTA] %(player)s"
 #: gui/session/messages.js:781
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:782
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:826
 msgid "Unknown Player"
@@ -526,19 +526,19 @@ msgstr "Bizi puntuak"
 #: gui/session/selection_details.js:69
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Multzokatua"
 
 #: gui/session/selection_details.js:85
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s Maila"
 
 #: gui/session/selection_details.js:112
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fundazio hau segundu %(seconds)s-ean bukatuko da."
+msgstr[1] "Fundazio hau %(seconds)s segundutan bukatuko da."
 
 #: gui/session/selection_details.js:117
 #, javascript-format
@@ -618,25 +618,25 @@ msgstr "Atzemate puntuak:"
 #: gui/session/selection_details.js:407
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:408
 msgid "Carrying:"
-msgstr ""
+msgstr "Darama:"
 
 #: gui/session/selection_details.js:410 gui/session/selection_details.js:418
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:415
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:416
 msgid "Loot:"
-msgstr ""
+msgstr "Harrapakina:"
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
@@ -690,19 +690,19 @@ msgstr "Desblokeatu atea"
 
 #: gui/session/selection_panels.js:587
 msgid "Pack"
-msgstr ""
+msgstr "Multzokatu"
 
 #: gui/session/selection_panels.js:595
 msgid "Unpack"
-msgstr ""
+msgstr "Banandu"
 
 #: gui/session/selection_panels.js:603
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Multzokatzea ezeztatu"
 
 #: gui/session/selection_panels.js:611
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Banaketa ezeztatu"
 
 #: gui/session/selection_panels.js:694
 msgid "Insufficient population capacity:"
@@ -728,15 +728,15 @@ msgstr ""
 #: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "%(name)s(e)ra eguneratu."
 
 #: gui/session/selection_panels.js:1169
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Eguneraketa ezeztatu"
 
 #: gui/session/selection_panels.js:1174
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Ezin duzu jada eguneratzen ari den entitate bat eguneratu."
 
 #: gui/session/selection_panels_helpers.js:33
 msgctxt "stance"
@@ -866,7 +866,7 @@ msgstr ""
 #: gui/session/session.js:338
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "%(hotkey)s aukeratutako baliabidea %100era jarriko du."
 
 #: gui/session/session.js:480
 #, javascript-format
@@ -879,7 +879,7 @@ msgstr "Irten nahi duzu?"
 
 #: gui/session/session.js:694
 msgid "Leaving will disconnect all other players."
-msgstr ""
+msgstr "Irtetzeak beste jokalariak deskonektatuko ditu."
 
 #: gui/session/session.js:700
 msgid "VICTORIOUS!"
@@ -1111,7 +1111,7 @@ msgstr "Utzi"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Historiala"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1120,7 +1120,7 @@ msgstr "Bidali"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Txat historiala filtratu."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
@@ -1245,7 +1245,7 @@ msgstr "Irten"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Helburuak"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1334,4 +1334,4 @@ msgstr "Menua"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "ALPHA XXI : Ulysses"

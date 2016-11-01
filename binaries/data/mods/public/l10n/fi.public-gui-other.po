@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-17 09:59+0000\n"
+"Last-Translator: Pauli Kaikkonen <p.kaikkon@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr[1] "Joukkoebonukset"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
-msgstr "Erikois teknologiat"
+msgstr "Erikoisteknologiat"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Building"
@@ -63,7 +63,7 @@ msgstr "%(civilization)s historia"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Paina %(hotkey)s täydentääksesi pelaajanimet automaattisesti."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -75,7 +75,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr "Avaamassa %(url)s\nperusnettiselaimessasi. Ole hyvä ja odota...."
+msgstr "Avaataan %(url)s\noletusselaimessa. Ole hyvä ja odota...."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -143,7 +143,7 @@ msgstr ""
 #: gui/common/functions_utility_loadsave.js:87
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Pidä %(hotkey)s pohjassa poistaaksesi ilman vahvistusta."
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -289,11 +289,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomatia"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Pelaajat voivat muodostaa liittoumia ja julistaa sotia liittolaisille."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -313,11 +313,11 @@ msgstr ""
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Jos yksi pelaaja voittaa, hänen liittolaisensa voittavat myös. Jos pelissä on vain yhden liittouman jäseniä jäljellä, he voittavat."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Tulitauko"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -331,27 +331,27 @@ msgstr[1] ""
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Kartan nimi"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Kartan tyyppi"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Kartan koko"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Kartan kuvaus"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Valitsee listasta satunnaisen kartan"
 
 #: gui/common/gamedescription.js:286
 msgid "Starting Resources"
-msgstr ""
+msgstr "Aloitusresurssit"
 
 #: gui/common/gamedescription.js:287
 #, javascript-format
@@ -360,7 +360,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Väkilukuraja"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
@@ -372,7 +372,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:315
 msgid "Explored Map"
-msgstr ""
+msgstr "Tutkittu kartan alue"
 
 #: gui/common/gamedescription.js:320
 msgid "Cheats"
@@ -388,12 +388,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "käytössä"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "ei käytössä"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -640,7 +640,7 @@ msgstr "Väärä verkkoprotokollan versio"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Ladataan peliä, yritä myöhemmin uudelleen"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -775,7 +775,7 @@ msgstr ""
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Päättymätön peli"
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -980,7 +980,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:228
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Miehitysraja"
 
 #: gui/common/tooltips.js:235
 #, javascript-format
@@ -1156,7 +1156,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:614
 msgid "Loot:"
-msgstr ""
+msgstr "Ryöstösaalis:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1181,7 +1181,7 @@ msgstr "Ok"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Asetusten nollaus poistaa tallennetut asetuksesi. Haluatko jatkaa?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
 #: gui/savedgames/load.js:131
@@ -1872,7 +1872,7 @@ msgstr "Aula-asetukset"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
-msgstr "Nollauta"
+msgstr "Nollaa"
 
 #: gui/options/options.xml:(caption):78
 msgid "Revert"
@@ -1884,7 +1884,7 @@ msgstr "Tallenna"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr "Nollauttaa käyttäjän asetukset pelin tavallisiin asetuksiin"
+msgstr "Palauttaa käyttäjän asetukset oletusasetuksiin"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"

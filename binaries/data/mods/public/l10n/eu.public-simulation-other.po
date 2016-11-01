@@ -5,12 +5,13 @@
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 # Osoitz <oelkoro@gmail.com>, 2015
+# Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 08:28+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-25 11:47+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -578,7 +579,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "zure"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -592,7 +593,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "aliatuan"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -606,14 +607,14 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutrala"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:209
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "etsaian"
 
 #: simulation/components/BuildRestrictions.js:214
 #, javascript-format
@@ -652,33 +653,33 @@ msgstr[1] ""
 #: simulation/components/BuildRestrictions.js:339
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "zurea"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:341
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "aliatua"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:343
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "neutrala"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:345
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "etsaia"
 
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "%(time)s-(t)an eraso dezakezu"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
@@ -686,7 +687,7 @@ msgstr ""
 
 #: simulation/components/EndGameManager.js:114
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "Geratzen den azken jokalariak irabazten du."
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -799,35 +800,35 @@ msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "1. jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "2. jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "3. jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "4. jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "5. jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "6. Jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "7. jokalaria"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "8. jokalaria"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
