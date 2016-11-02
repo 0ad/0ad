@@ -5,13 +5,14 @@
 # Translators:
 # Alex Hex <alexhex14@gmail.com>, 2016
 # Danila Catalin <dlcatalin@ymail.com>, 2016
+# Marius Nan <waasszyie.x@gmail.com>, 2016
 # Raz Taz <qvovadis@yahoo.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-10-14 10:30+0000\n"
+"Last-Translator: Marius Nan <waasszyie.x@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -281,43 +282,43 @@ msgstr ""
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
-msgstr ""
+msgstr "Echipe blocate"
 
 #: gui/common/gamedescription.js:219
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Jucătorii nu-și pot schimba echipele initiale."
 
 #: gui/common/gamedescription.js:223
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomația"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Jucătorii pot crea alianțe și pot declara război aliaților."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Ultimul om în picioare"
 
 #: gui/common/gamedescription.js:230
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Doar un singur jucător poate câștiga jocul. Dacă jucătorii rămași sunt aliați, jocul continuă până cand va rămane doar un singur jucător."
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Victoria aliaților"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "În cazul în care un jucător câștigă, aliații lui sau ei câștiga, de asemenea. În cazul în care un grup de aliați rămâne, vor câștiga."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
-msgstr ""
+msgstr "Încetarea focului"
 
 #: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -332,19 +333,19 @@ msgstr[2] ""
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
-msgstr ""
+msgstr "Numele hărții"
 
 #: gui/common/gamedescription.js:258
 msgid "Map Type"
-msgstr ""
+msgstr "Tipul hărții"
 
 #: gui/common/gamedescription.js:267
 msgid "Map Size"
-msgstr ""
+msgstr "Mărimea hărții"
 
 #: gui/common/gamedescription.js:274
 msgid "Map Description"
-msgstr ""
+msgstr "Descrierea hărții"
 
 #: gui/common/gamedescription.js:277
 msgid "Randomly selects a map from the list"
@@ -361,23 +362,23 @@ msgstr ""
 
 #: gui/common/gamedescription.js:297
 msgid "Population Limit"
-msgstr ""
+msgstr "Limită populație"
 
 #: gui/common/gamedescription.js:305
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Dezactivare comoară"
 
 #: gui/common/gamedescription.js:310
 msgid "Revealed Map"
-msgstr ""
+msgstr "Hartă dezvăluită"
 
 #: gui/common/gamedescription.js:315
 msgid "Explored Map"
-msgstr ""
+msgstr "Hartă explorată"
 
 #: gui/common/gamedescription.js:320
 msgid "Cheats"
-msgstr ""
+msgstr "Coduri"
 
 #: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -389,12 +390,12 @@ msgstr ""
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "Activat"
 
 #: gui/common/gamedescription.js:329
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "Dezactivat"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -603,7 +604,7 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Se pierde conectarea la server (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
@@ -613,12 +614,12 @@ msgstr ""
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Conexiune proastă la server (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Conexiune proastă la %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:62
 msgctxt "network disconnect"
@@ -637,23 +638,23 @@ msgstr "Gazda a încheiat jocul"
 
 #: gui/common/network.js:65
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "Versiune protocol de retea incorectă"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Jocul se încarcă , incearcă din nou mai târziu"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Jocul a inceput deja , nu mai sunt permis observatorii "
 
 #: gui/common/network.js:68
 msgid "You have been kicked"
-msgstr ""
+msgstr "Ai fost respins"
 
 #: gui/common/network.js:69
 msgid "You have been banned"
-msgstr ""
+msgstr "Ai fost banat"
 
 #: gui/common/network.js:70
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -661,7 +662,7 @@ msgstr ""
 
 #: gui/common/network.js:71
 msgid "Server full"
-msgstr ""
+msgstr "Server plin"
 
 #: gui/common/network.js:74
 #, javascript-format
@@ -676,7 +677,7 @@ msgstr "Motiv: %(reason)s."
 
 #: gui/common/network.js:91
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "S-a pierdut conexiunea cu serverul"
 
 #: gui/common/network.js:92
 msgid "Failed to connect to the server."

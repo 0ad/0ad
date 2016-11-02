@@ -45,6 +45,7 @@ langs = {
     'hu': 'Magyar',
     'id': 'Bahasa Indonesia',
     'it': 'Italiano',
+    'nb': 'Norsk bokmål',
     'nl': 'Nederlands',
     'pl': 'Polski',
     'pt_BR': 'Português (Brasil)',
