@@ -144,17 +144,6 @@ Trigger.prototype.InitGame = function()
 				cmpTrigger.playerCivicCenter[i] = entity;
 	}
 
-	// Fix alliances
-	/* Until we can do something about limiting the victory conditions available for this map to "None"
-	for (let i = 1; i < numberOfPlayers; ++i)
-	{
-		let cmpPlayer = QueryPlayerIDInterface(i);
-		for (let j = 1; j < numberOfPlayers; ++j)
-			if (i != j)
-				cmpPlayer.SetAlly(j);
-		cmpPlayer.SetLockTeams(true);
-	}*/
-
 	// Make gaia black
 	QueryPlayerIDInterface(0).SetColor(0, 0, 0);
 
@@ -202,26 +191,8 @@ Trigger.prototype.InitializeEnemyWaves = function()
 
 Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
-	// Defeat a player that has lost his civic center
 	if (data.entity == cmpTrigger.playerCivicCenter[data.from])
-	{
 		TriggerHelper.DefeatPlayer(data.from);
-
-		// Check if only one player remains. He will be the winner.
-		let lastPlayerStanding = 0;
-		let numPlayersStanding = 0;
-		let numberOfPlayers = TriggerHelper.GetNumberOfPlayers();
-		for (let i = 1; i < numberOfPlayers; ++i)
-		{
-			if (QueryPlayerIDInterface(i).GetState() == "active")
-			{
-				lastPlayerStanding = i;
-				++numPlayersStanding;
-			}
-		}
-		if (numPlayersStanding == 1)
-			TriggerHelper.SetPlayerWon(lastPlayerStanding);
-	}
 };
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
