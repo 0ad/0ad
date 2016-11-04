@@ -16,8 +16,8 @@ var attackerEntityTemplates =
 		"units/athen_champion_infantry",
 		"units/athen_champion_marine",
 		"units/athen_champion_ranged",
-		"units/athen_siege_lithobolos_packed",
-		"units/athen_siege_oxybeles_packed",
+		"units/athen_mechanical_siege_lithobolos_packed",
+		"units/athen_mechanical_siege_oxybeles_packed",
 	],
 	[
 		"units/brit_champion_cavalry",
