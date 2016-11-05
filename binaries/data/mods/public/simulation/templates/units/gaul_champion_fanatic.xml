@@ -11,6 +11,9 @@
       <metal op="mul">2</metal>
     </Resources>
   </Cost>
+  <Health>
+    <Max op="mul">0.85</Max>
+  </Health>
   <Identity>
     <Civ>gaul</Civ>
     <GenericName>Naked Fanatic</GenericName>
@@ -20,7 +23,7 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <UnitMotion>
-    <WalkSpeed op="mul">1.5</WalkSpeed>
+    <WalkSpeed op="add">5</WalkSpeed>
     <Run>
       <Speed op="mul">1.5</Speed>
       <Range>600.0</Range>
