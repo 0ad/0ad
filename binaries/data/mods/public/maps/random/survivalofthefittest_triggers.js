@@ -195,9 +195,11 @@ Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 		TriggerHelper.DefeatPlayer(data.from);
 };
 
-var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-cmpTrigger.playerCivicCenter = {};
-cmpTrigger.DoAfterDelay(0, "InitGame", {});
-cmpTrigger.DoAfterDelay(1000, "InitializeEnemyWaves", {});
 
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "DefeatPlayerOnceCCIsDestroyed", { "enabled": true });
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.playerCivicCenter = {};
+	cmpTrigger.DoAfterDelay(0, "InitGame", {});
+	cmpTrigger.DoAfterDelay(1000, "InitializeEnemyWaves", {});
+	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "DefeatPlayerOnceCCIsDestroyed", { "enabled": true });
+}
