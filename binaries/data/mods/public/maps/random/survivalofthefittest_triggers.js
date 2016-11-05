@@ -127,7 +127,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 		"message": markForTranslation("An enemy wave is attacking!"),
 		"translateMessage": true
 	});
-	cmpTrigger.DoAfterDelay(nextTime, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
+	this.DoAfterDelay(nextTime, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
 };
 
 Trigger.prototype.InitGame = function()
@@ -141,7 +141,7 @@ Trigger.prototype.InitGame = function()
 
 		for (let entity of playerEntities)
 			if (TriggerHelper.EntityHasClass(entity, "CivilCentre"))
-				cmpTrigger.playerCivicCenter[i] = entity;
+				this.playerCivicCenter[i] = entity;
 	}
 
 	// Make gaia black
@@ -169,13 +169,13 @@ Trigger.prototype.InitGame = function()
 Trigger.prototype.PlaceTreasures = function()
 {
 	let point = ["B", "C", "D"][Math.floor(Math.random() * 3)];
-	let triggerPoints = cmpTrigger.GetTriggerPoints(point);
+	let triggerPoints = this.GetTriggerPoints(point);
 	for (let point of triggerPoints)
 	{
 		let template = treasures[Math.floor(Math.random() * treasures.length)];
 		TriggerHelper.SpawnUnits(point, template, 1, 0);
 	}
-	cmpTrigger.DoAfterDelay(4*60*1000, "PlaceTreasures", {}); //Place more treasures after 4 minutes
+	this.DoAfterDelay(4*60*1000, "PlaceTreasures", {}); // Place more treasures after 4 minutes
 };
 
 Trigger.prototype.InitializeEnemyWaves = function()
@@ -186,12 +186,12 @@ Trigger.prototype.InitializeEnemyWaves = function()
 		"message": markForTranslation("The first wave will start in %(time)s!"),
 		"translateMessage": true
 	}, time);
-	cmpTrigger.DoAfterDelay(time, "StartAnEnemyWave", {});
+	this.DoAfterDelay(time, "StartAnEnemyWave", {});
 };
 
 Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
-	if (data.entity == cmpTrigger.playerCivicCenter[data.from])
+	if (data.entity == this.playerCivicCenter[data.from])
 		TriggerHelper.DefeatPlayer(data.from);
 };
 
