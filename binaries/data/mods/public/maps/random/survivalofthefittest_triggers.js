@@ -142,8 +142,18 @@ Trigger.prototype.InitGame = function()
 		let playerEntities = cmpRangeManager.GetEntitiesByPlayer(i); // Get all of each player's entities
 
 		for (let entity of playerEntities)
+		{
 			if (TriggerHelper.EntityHasClass(entity, "CivilCentre"))
 				this.playerCivicCenter[i] = entity;
+			else if (TriggerHelper.EntityHasClass(entity, "Female"))
+			{
+				let cmpDamageReceiver = Engine.QueryInterface(entity, IID_DamageReceiver);
+				cmpDamageReceiver.SetInvulnerability(true);
+
+				let cmpHealth = Engine.QueryInterface(entity, IID_Health);
+				cmpHealth.SetUndeletable(true);
+			}
+		}
 	}
 
 	this.PlaceTreasures();
