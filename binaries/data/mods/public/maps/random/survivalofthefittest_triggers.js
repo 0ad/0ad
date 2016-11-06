@@ -146,10 +146,6 @@ Trigger.prototype.InitGame = function()
 				this.playerCivicCenter[i] = entity;
 	}
 
-	// Make gaia black
-	QueryPlayerIDInterface(0).SetColor(0, 0, 0);
-
-	// Place the treasures
 	this.PlaceTreasures();
 
 	// Disable farms, civic centers and walls for all players
