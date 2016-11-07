@@ -105,30 +105,34 @@ Trigger.prototype.RangeAction = function(data)
 	warn(uneval(data));
 };
 
-// Activate all possible triggers
-var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
-var data = {"enabled": true};
-cmpTrigger.RegisterTrigger("OnStructureBuilt", "StructureBuiltAction", data);
-cmpTrigger.RegisterTrigger("OnConstructionStarted", "ConstructionStartedAction", data);
-cmpTrigger.RegisterTrigger("OnTrainingFinished", "TrainingFinishedAction", data);
-cmpTrigger.RegisterTrigger("OnTrainingQueued", "TrainingQueuedAction", data);
-cmpTrigger.RegisterTrigger("OnResearchFinished", "ResearchFinishedAction", data);
-cmpTrigger.RegisterTrigger("OnResearchQueued", "ResearchQueuedAction", data);
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "OwnershipChangedAction", data);
-cmpTrigger.RegisterTrigger("OnPlayerCommand", "PlayerCommandAction", data);
+	// Activate all possible triggers
+	let data = { "enabled": true };
+	cmpTrigger.RegisterTrigger("OnStructureBuilt", "StructureBuiltAction", data);
+	cmpTrigger.RegisterTrigger("OnConstructionStarted", "ConstructionStartedAction", data);
+	cmpTrigger.RegisterTrigger("OnTrainingFinished", "TrainingFinishedAction", data);
+	cmpTrigger.RegisterTrigger("OnTrainingQueued", "TrainingQueuedAction", data);
+	cmpTrigger.RegisterTrigger("OnResearchFinished", "ResearchFinishedAction", data);
+	cmpTrigger.RegisterTrigger("OnResearchQueued", "ResearchQueuedAction", data);
+	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "OwnershipChangedAction", data);
+	cmpTrigger.RegisterTrigger("OnPlayerCommand", "PlayerCommandAction", data);
 
-data.delay = 10000; // after 10 seconds
-data.interval = 5000; // every 5 seconds
-cmpTrigger.numberOfTimerTrigger = 0;
-cmpTrigger.maxNumberOfTimerTrigger = 3; // execute it 3 times maximum
-cmpTrigger.RegisterTrigger("OnInterval", "IntervalAction", data);
-var entities = cmpTrigger.GetTriggerPoints("A");
-data = {
-	"entities": entities, // central points to calculate the range circles
-	"players": [1], // only count entities of player 1
-	"maxRange": 40,
-	"requiredComponent": IID_UnitAI, // only count units in range
-	"enabled": true,
-};
-cmpTrigger.RegisterTrigger("OnRange", "RangeAction", data);
+	cmpTrigger.numberOfTimerTrigger = 0;
+	cmpTrigger.maxNumberOfTimerTrigger = 3; // execute it 3 times maximum
+
+	cmpTrigger.RegisterTrigger("OnInterval", "IntervalAction", {
+		"enabled": true,
+		"delay": 10 * 1000,
+		"interval": 5 * 1000,
+	});
+
+	cmpTrigger.RegisterTrigger("OnRange", "RangeAction", {
+		"entities": cmpTrigger.GetTriggerPoints("A"), // central points to calculate the range circles
+		"players": [1], // only count entities of player 1
+		"maxRange": 40,
+		"requiredComponent": IID_UnitAI, // only count units in range
+		"enabled": true,
+	});
+}

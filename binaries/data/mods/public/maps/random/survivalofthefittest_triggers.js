@@ -88,46 +88,48 @@ var attackerEntityTemplates =
 Trigger.prototype.StartAnEnemyWave = function()
 {
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	let attackerEntities = attackerEntityTemplates[Math.floor(Math.random() * attackerEntityTemplates.length)];
+	let attackerTemplates = attackerEntityTemplates[Math.floor(Math.random() * attackerEntityTemplates.length)];
 	// A soldier for each 2-3 minutes of the game. Should be waves of 20 soldiers after an hour
 	let nextTime = Math.round(120000 + Math.random() * 60000);
-	let attackerCount = Math.round(cmpTimer.GetTime() / nextTime / attackerEntities.length);
+	let attackersPerTemplate = Math.round(cmpTimer.GetTime() / nextTime / attackerTemplates.length);
+	let spawned = false;
 
-	// spawn attackers
-	let attackers =  [];
-	for (let attackerEntity of attackerEntities)
-		attackers.push(TriggerHelper.SpawnUnitsFromTriggerPoints("A", attackerEntity, attackerCount, 0));
-
-	for (let entityType of attackers)
+	for (let point of this.GetTriggerPoints("A"))
 	{
-		for (let origin in entityType)
+		let cmpPlayer = QueryOwnerInterface(point, IID_Player);
+		if (cmpPlayer.GetPlayerID() == 0 || cmpPlayer.GetState() != "active")
+			continue;
+
+		let cmpPosition =  Engine.QueryInterface(this.playerCivicCenter[cmpPlayer.GetPlayerID()], IID_Position);
+		if (!cmpPosition || !cmpPosition.IsInWorld)
+			continue;
+		let targetPos = cmpPosition.GetPosition();
+
+		for (let template of attackerTemplates)
 		{
-			let cmpPlayer = QueryOwnerInterface(+origin, IID_Player);
-			if (cmpPlayer.GetState() != "active")
-				continue;
+			let entities = TriggerHelper.SpawnUnits(point, template, attackersPerTemplate, 0);
 
-			let cmpPosition =  Engine.QueryInterface(this.playerCivicCenter[cmpPlayer.GetPlayerID()], IID_Position);
-			// this shouldn't happen if the player is still active
-			if (!cmpPosition || !cmpPosition.IsInWorld)
-				continue;
-
-			// store the x and z coordinates in the command
-			let cmd = cmpPosition.GetPosition();
-			cmd.type = "attack-walk";
-			cmd.entities = entityType[origin];
-			cmd.queued = true;
-			cmd.targetClasses = undefined;
-			// send the attack-walk command
-			ProcessCommand(0, cmd);
+			ProcessCommand(0, {
+				"type": "attack-walk",
+				"entities": entities,
+				"x": targetPos.x,
+				"z": targetPos.z,
+				"queued": true,
+				"targetClasses": undefined
+			});
 		}
+		spawned = true;
 	}
+
+	if (!spawned)
+		return;
 
 	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification({
 		"message": markForTranslation("An enemy wave is attacking!"),
 		"translateMessage": true
 	});
-	cmpTrigger.DoAfterDelay(nextTime, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
+	this.DoAfterDelay(nextTime, "StartAnEnemyWave", {}); // The next wave will come in 3 minutes
 };
 
 Trigger.prototype.InitGame = function()
@@ -140,14 +142,20 @@ Trigger.prototype.InitGame = function()
 		let playerEntities = cmpRangeManager.GetEntitiesByPlayer(i); // Get all of each player's entities
 
 		for (let entity of playerEntities)
+		{
 			if (TriggerHelper.EntityHasClass(entity, "CivilCentre"))
-				cmpTrigger.playerCivicCenter[i] = entity;
+				this.playerCivicCenter[i] = entity;
+			else if (TriggerHelper.EntityHasClass(entity, "Female"))
+			{
+				let cmpDamageReceiver = Engine.QueryInterface(entity, IID_DamageReceiver);
+				cmpDamageReceiver.SetInvulnerability(true);
+
+				let cmpHealth = Engine.QueryInterface(entity, IID_Health);
+				cmpHealth.SetUndeletable(true);
+			}
+		}
 	}
 
-	// Make gaia black
-	QueryPlayerIDInterface(0).SetColor(0, 0, 0);
-
-	// Place the treasures
 	this.PlaceTreasures();
 
 	// Disable farms, civic centers and walls for all players
@@ -169,13 +177,13 @@ Trigger.prototype.InitGame = function()
 Trigger.prototype.PlaceTreasures = function()
 {
 	let point = ["B", "C", "D"][Math.floor(Math.random() * 3)];
-	let triggerPoints = cmpTrigger.GetTriggerPoints(point);
+	let triggerPoints = this.GetTriggerPoints(point);
 	for (let point of triggerPoints)
 	{
 		let template = treasures[Math.floor(Math.random() * treasures.length)];
 		TriggerHelper.SpawnUnits(point, template, 1, 0);
 	}
-	cmpTrigger.DoAfterDelay(4*60*1000, "PlaceTreasures", {}); //Place more treasures after 4 minutes
+	this.DoAfterDelay(4*60*1000, "PlaceTreasures", {}); // Place more treasures after 4 minutes
 };
 
 Trigger.prototype.InitializeEnemyWaves = function()
@@ -186,18 +194,20 @@ Trigger.prototype.InitializeEnemyWaves = function()
 		"message": markForTranslation("The first wave will start in %(time)s!"),
 		"translateMessage": true
 	}, time);
-	cmpTrigger.DoAfterDelay(time, "StartAnEnemyWave", {});
+	this.DoAfterDelay(time, "StartAnEnemyWave", {});
 };
 
 Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
-	if (data.entity == cmpTrigger.playerCivicCenter[data.from])
+	if (data.entity == this.playerCivicCenter[data.from])
 		TriggerHelper.DefeatPlayer(data.from);
 };
 
-var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-cmpTrigger.playerCivicCenter = {};
-cmpTrigger.DoAfterDelay(0, "InitGame", {});
-cmpTrigger.DoAfterDelay(1000, "InitializeEnemyWaves", {});
 
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "DefeatPlayerOnceCCIsDestroyed", { "enabled": true });
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.playerCivicCenter = {};
+	cmpTrigger.DoAfterDelay(0, "InitGame", {});
+	cmpTrigger.DoAfterDelay(1000, "InitializeEnemyWaves", {});
+	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "DefeatPlayerOnceCCIsDestroyed", { "enabled": true });
+}
