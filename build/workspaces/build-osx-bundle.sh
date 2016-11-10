@@ -22,13 +22,13 @@
 # Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
 export ARCH=${ARCH:="x86_64"}
 
-OSX_VERSION=`sw_vers -productVersion | grep -Eo "^\d+.\d+"`
+OSX_VERSION='10.12'
 # Set SDK and mimimum required OS X version
 export SYSROOT=${SYSROOT:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX$OSX_VERSION.sdk"}
 export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.7"}
 
 # 0 A.D. release version, e.g. Alpha 21 is 0.0.21
-BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.X"}
+BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.21"}
 
 # Define compiler as "clang", this is all Mavericks supports.
 # gcc symlinks may still exist, but they are simply clang with
@@ -104,10 +104,17 @@ BUNDLE_SHAREDSUPPORT=$BUNDLE_CONTENTS/SharedSupport
 # TODO: Do we really want to regenerate everything? (consider if one task fails)
 
 # Build libraries against SDK
-echo "\nBuilding libraries\n"
-pushd ../../libraries/osx > /dev/null
-./build-osx-libs.sh $JOBS --force-rebuild >> $build_log 2>&1 || die "Libraries build script failed"
-popd > /dev/null
+echo "\nSymlinking libraries\n"
+cd ../../
+ln -s /Users/Lancelot/Desktop/git-0AD/libraries
+cd binaries/data/mods/public/
+ln -s /Users/Lancelot/Desktop/git-0AD/binaries/data/mods/public/art
+ln -s /Users/Lancelot/Desktop/git-0AD/binaries/data/mods/public/audio
+cd ../../../../build/workspaces
+#echo "\nBuilding libraries\n"
+#pushd ../../libraries/osx > /dev/null
+#./build-osx-libs.sh $JOBS --force-rebuild >> $build_log 2>&1 || die "Libraries build script failed"
+#popd > /dev/null
 
 # Clean and update workspaces
 echo "\nGenerating workspaces\n"
@@ -117,6 +124,8 @@ echo "\nGenerating workspaces\n"
 
 pushd gcc > /dev/null
 echo "\nBuilding game\n"
+patch -p0 -i "/Users/Lancelot/diff.patch"
+patch -p0 -i "/Users/Lancelot/diff2.patch"
 (make clean && CC="$CC -arch $ARCH" CXX="$CXX -arch $ARCH" make ${JOBS}) >> $build_log 2>&1 || die "Game build failed!"
 popd > /dev/null
 
@@ -211,7 +220,7 @@ PlistBuddy -c "Add :CFBundleDevelopmentRegion string English" ${INFO_PLIST}
 PlistBuddy -c "Add :CFBundleInfoDictionaryVersion string 6.0" ${INFO_PLIST}
 PlistBuddy -c "Add :CFBundleIconFile string 0ad" ${INFO_PLIST}
 PlistBuddy -c "Add :LSMinimumSystemVersion string ${BUNDLE_MIN_OSX_VERSION}" ${INFO_PLIST}
-PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © 2015 Wildfire Games" ${INFO_PLIST}
+PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © 2016 Wildfire Games" ${INFO_PLIST}
 
 # TODO: Automatically create compressed DMG with hdiutil?
 # (this is a bit complicated so I do it manually for now)

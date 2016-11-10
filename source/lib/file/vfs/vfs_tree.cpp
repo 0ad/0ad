@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -49,6 +49,13 @@ VfsDirectory::VfsDirectory()
 {
 }
 
+static bool ShouldDelete(const VfsFile& file, const VfsFile& deletedFile)
+{
+	// We only check priority here, a .DELETED file in a mod should not
+	// delete files in that mod. For the same reason we ignore loose
+	// .DELETED files next to an archive.
+	return file.Priority() < deletedFile.Priority();
+}
 
 static bool ShouldReplaceWith(const VfsFile& previousFile, const VfsFile& newFile)
 {
@@ -75,6 +82,38 @@ static bool ShouldReplaceWith(const VfsFile& previousFile, const VfsFile& newFil
 		return false;
 
 	return true;
+}
+
+
+void VfsDirectory::DeleteSubtree(const VfsFile& file)
+{
+	ENSURE(file.Name().Extension() == L".DELETED");
+
+	const VfsPath basename = file.Name().Basename();
+	std::map<VfsPath, VfsFile>::iterator fit = m_files.find(basename);
+	if(fit != m_files.end() && ShouldDelete(fit->second, file))
+		m_files.erase(basename);
+
+	std::map<VfsPath, VfsDirectory>::iterator dit = m_subdirectories.find(basename);
+	if(dit != m_subdirectories.end() && dit->second.DeleteTree(file))
+		m_subdirectories.erase(dit);
+}
+
+bool VfsDirectory::DeleteTree(const VfsFile& file)
+{
+	for(std::map<VfsPath, VfsFile>::iterator it = m_files.begin(); it != m_files.end();)
+		if(ShouldDelete(it->second, file))
+			it = m_files.erase(it);
+		else
+			++it;
+
+	for(std::map<VfsPath, VfsDirectory>::iterator it = m_subdirectories.begin(); it != m_subdirectories.end();)
+		if(it->second.DeleteTree(file))
+			it = m_subdirectories.erase(it);
+		else
+			++it;
+
+	return m_files.empty() && m_subdirectories.empty();
 }
 
 
@@ -121,7 +160,6 @@ VfsFile* VfsDirectory::GetFile(const VfsPath& name)
 		return 0;
 	return &it->second;
 }
-
 
 VfsDirectory* VfsDirectory::GetSubdirectory(const VfsPath& name)
 {
