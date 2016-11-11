@@ -137,7 +137,7 @@ var g_Commands = {
 		cmpGuiInterface.PushNotification({
 			"type": "aichat",
 			"players": [player],
-			"message": "(Cheat - reveal map)" // TODO: translate me!
+			"message": markForTranslation("(Cheat - reveal map)")
 		});
 
 		// Reveal the map for all players, not just the current player,
