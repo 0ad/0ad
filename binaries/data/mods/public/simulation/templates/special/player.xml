@@ -60,6 +60,15 @@
     <SharedLosTech>unlock_shared_los</SharedLosTech>
     <SharedDropsitesTech>unlock_shared_dropsites</SharedDropsitesTech>
   </Player>
+  <ResourceTrickle>
+    <Rates>
+      <food>0.0</food>
+      <wood>0.0</wood>
+      <stone>0.0</stone>
+      <metal>0.0</metal>
+    </Rates>
+    <Interval>1000</Interval>
+  </ResourceTrickle>
   <StatisticsTracker/>
   <TechnologyManager/>
 </Entity>
