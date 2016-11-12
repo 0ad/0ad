@@ -608,6 +608,9 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
 		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 			return;
+		// And if in ally territory, don't hunt this ally's cattle
+		if (territoryOwner !== 0 && territoryOwner !== PlayerID && supply.owner() === territoryOwner)
+			return;
 
 		let dropsiteDist = nearestDropsiteDist(supply);
 		if (dropsiteDist > 35000)
