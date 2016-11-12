@@ -1579,7 +1579,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	entity_pos_t previousDistance = Geometry::DistanceToSquare(pos - CFixedVector2D(previousObstruction.x, previousObstruction.z), obstruction.u, obstruction.v, halfSize, true);
 
 	bool inside = distance.IsZero() && !Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize).IsZero(); 
-	if (distance < minRange && previousDistance < minRange || inside)
+	if ((distance < minRange && previousDistance < minRange) || inside)
 	{
 		// Too close to the square - need to move away
 
@@ -1701,7 +1701,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 
 		// See if we're too close to the target square
 		bool inside = distance.IsZero() && !Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize).IsZero();
-		if (distance < minRange && previousDistance < minRange || inside)
+		if ((distance < minRange && previousDistance < minRange) || inside)
 			return false;
 
 		// See if we're close enough to the target square
