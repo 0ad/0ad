@@ -10,12 +10,13 @@
 # malvanos <malvanos@gmail.com>, 2014-2015
 # Nick Mantas <inactive+nickthegreek@transifex.com>, 2014
 # Sander Deryckere, 2016
+# Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-11-10 19:35+0000\n"
+"Last-Translator: Steven Gikas <stevengk123@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,25 +148,25 @@ msgstr "[font=\"sans-14\"]Για παιχνίδια με πολλούς παίκ
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "Πρώτα, επέλεξε τι είδος χάρτη θέλεις να παίξεις:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — Ένας χάρτης δημιουργημένος αυτόματα από ένα σενάριο"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — Ένας χάρτης δημιουργημένος από σχεδιαστές χαρτών και με έτοιμους πολιτισμούς"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — Ένας χάρτης δημιουργημένος από σχεδιαστές χαρτών αλλά οι πολιτισμοί μπορούν να διαλεχτούν"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -174,7 +175,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Τότε οι χάρτες μπορούν να φιλτραριστούν περαιτέρω. Οι προεπιλεγμένοι χάρτες είναι γενικά παικτοί χάρτες. Οι ναυτικοί χάρτες είναι χάρτες όπου δεν μπορούν να φτάσουν όλους τους αντίπαλους από την ξηρά και οι demo χάρτες είναι χάρες που χρησιμοποιούνται για σκοπούς δοκιμών (γενικά δεν είναι χρήσιμο να παίζεις σε αυτούς). Το φίλτρο \"Όλοι οι χάρτες\" δείχνει όλους τους χάρτες μαζί σε μία λίστα."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -183,7 +184,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Τελικά άλλαξε τις ρυθμίσεις. Για τυχαίους χάρτες αυτό περιλαμβάνει τον αριθμό των παικτών, το μέγεθος του χάρτη, κτλ. Για σενάρια μπορείς μόνο να επιλέξεις ποιος ελέγχει ποιόν παίκτη (αποφασίζει σε ποια περιοχή του χάρτη θα ξεκινήσεις κτλ.). Οι επιλογές είναι είτε ένας ανθρώπινος παίκτης, ένας παίκτης ρομπότ ή κανένας παίκτης (οι μονάδες που ήδη υπάρχουν θα επιτεθούν σε εχθρούς που πλησιάζουν στην εμβέλειά τους αλλά δεν θα δημιουργηθούν καινούργιες μονάδες, ούτε θα σταλούν να επιτεθούν)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -195,7 +196,7 @@ msgstr "[font=\"sans-bold-16\"]Συντομεύσεις πληκτολογίου
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Παγκόσμια"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -299,29 +300,29 @@ msgstr "Pause:Παύση/συνέχεια παιχνιδιού."
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Διαγραφή: Διαγραφή επιλεγμένων μοναδών/κτηρίων"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift + Διαγραφή: Διαγραφή επιλεγμένων μοναδών/κτηρίων χωρίς επιβεβαίωση"
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (ForwardSlash): Επιλογή ακίνητου πολεμιστή"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: Προσθήκη ακίνητου πολεμιστή στην επιλογή"
 
 #: gui/manual/intro.txt:70
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (Τελεία): Επιλογή ακίνητου εργάτη (συμπεριλαμβάνονται μαχόμενοι πολίτες)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: Προσθήκη ακίνητου εργάτη στην επιλογή (συμπεριλαμβάνονται μαχόμενοι πολίτες)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -329,11 +330,11 @@ msgstr "H: Σταμάτημα (Αλτ!) των επιλεγμένων μονάδ
 
 #: gui/manual/intro.txt:73
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Υ: Η μονάδα θα γυρίσει στη δουλειά"
 
 #: gui/manual/intro.txt:74
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: Ξεφόρτωσε τις φρουρόμενες μονάδες από τα επιλεγμένα κτήρια"
 
 #: gui/manual/intro.txt:75
 msgid ""

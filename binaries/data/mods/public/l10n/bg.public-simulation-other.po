@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 08:55+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2016-11-01 17:10+0100\n"
+"PO-Revision-Date: 2016-11-02 09:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -764,34 +764,34 @@ msgstr "Трябва да изберете сграда, която обучав
 msgid "(Cheat - control all units)"
 msgstr "(Измама — управляване на всички единици)"
 
-#: simulation/helpers/Commands.js:575
+#: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"
 msgstr "(Измама — повишени единици)"
 
-#: simulation/helpers/Commands.js:685
+#: simulation/helpers/Commands.js:692
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Надграждането е невъзможно, тъй като изискванията за разстояние не са потвърдени или теренът пречи."
 
-#: simulation/helpers/Commands.js:695
+#: simulation/helpers/Commands.js:702
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Подобряването на единица на гарнизон не е възможно."
 
-#: simulation/helpers/Commands.js:741
+#: simulation/helpers/Commands.js:748
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Предложено е нападение срещу %(_player_)s."
 
-#: simulation/helpers/Commands.js:778
+#: simulation/helpers/Commands.js:785
 msgid "Unable to ungarrison unit(s)"
 msgstr "Неуспешно пускане от гарнизон"
 
-#: simulation/helpers/Commands.js:792
+#: simulation/helpers/Commands.js:799
 msgid "Some unit(s) can't go back to work"
 msgstr "Има единица (или единици), която не може да се върне обратно към работата си."
 
-#: simulation/helpers/Commands.js:1047
+#: simulation/helpers/Commands.js:1054
 msgid "The building's technology requirements are not met."
 msgstr "Не са изпълнени технологичните изисквания на сградата."
 
@@ -948,7 +948,6 @@ msgid "Deathmatch"
 msgstr "Смъртоносна битка"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
-#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "Миниатюрна"
 
@@ -956,44 +955,23 @@ msgstr "Миниатюрна"
 msgid "Small"
 msgstr "Малка"
 
-#: simulation/data/settings/map_sizes.jsonData[1].LongName
-msgid "Small (2 players)"
-msgstr "Малка (2-ма играчи)"
-
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Средна"
-
-#: simulation/data/settings/map_sizes.jsonData[2].LongName
-msgid "Medium (3 players)"
-msgstr "Средна (3-ма играчи)"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Нормална"
 
-#: simulation/data/settings/map_sizes.jsonData[3].LongName
-msgid "Normal (4 players)"
-msgstr "Нормална (4-ма играчи)"
-
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Голяма"
-
-#: simulation/data/settings/map_sizes.jsonData[4].LongName
-msgid "Large (6 players)"
-msgstr "Голяма (6-ма играчи)"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Много голяма"
 
-#: simulation/data/settings/map_sizes.jsonData[5].LongName
-msgid "Very Large (8 players)"
-msgstr "Много голяма (8-на играчи)"
-
 #: simulation/data/settings/map_sizes.jsonData[6].Name
-#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "Гигантска"
 
