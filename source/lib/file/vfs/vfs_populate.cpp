@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -58,13 +58,13 @@ public:
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(50);
 		RETURN_STATUS_IF_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
 
-		// to support .DELETED files inside archives safely, we need to load
-		// archives and loose files in a deterministic order in case they add
-		// and then delete the same file (or vice versa, depending on loading
-		// order). GetDirectoryEntries has undefined order so sort its output
-		std::sort(files.begin(), files.end(), CompareFileInfoByName());
-		std::sort(subdirectoryNames.begin(), subdirectoryNames.end());
-
+		// Since .DELETED files only remove files in lower priority mods
+		// loose files and archive files have no conflicts so we do not need
+		// to sort them.
+		// We add directories after they might have been removed by .DELETED
+		// files (as they did not contain any files at that point). The order
+		// of GetDirectoryEntries is undefined, but that does not really matter (TODO really?)
+		// so we do not need to sort its output.
 		RETURN_STATUS_IF_ERR(AddFiles(files));
 		AddSubdirectories(subdirectoryNames);
 
@@ -75,14 +75,14 @@ private:
 	void AddFile(const CFileInfo& fileInfo) const
 	{
 		const VfsPath name = fileInfo.Name();
+		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
 		if(name.Extension() == L".DELETED")
 		{
-			m_directory->RemoveFile(name.Basename());
+			m_directory->DeleteSubtree(file);
 			if(!(m_realDirectory->Flags() & VFS_MOUNT_KEEP_DELETED))
 				return;
 		}
 
-		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
 		m_directory->AddFile(file);
 	}
 
@@ -97,14 +97,14 @@ private:
 		WARN_IF_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
 
 		const VfsPath name = fileInfo.Name();
+		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		if(name.Extension() == L".DELETED")
 		{
-			directory->RemoveFile(name.Basename());
+			directory->DeleteSubtree(file);
 			if(!(this_->m_realDirectory->Flags() & VFS_MOUNT_KEEP_DELETED))
 				return;
 		}
 
-		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		directory->AddFile(file);
 	}
 

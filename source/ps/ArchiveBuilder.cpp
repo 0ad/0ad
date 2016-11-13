@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,11 +77,9 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 
 	CXeromyces xero;
 
-	for (size_t i = 0; i < m_Files.size(); ++i)
+	for (const VfsPath& path : m_Files)
 	{
 		Status ret;
-
-		const VfsPath path = m_Files[i];
 		OsPath realPath;
 		ret = m_VFS->GetRealPath(path, realPath);
 		ENSURE(ret == INFO::OK);

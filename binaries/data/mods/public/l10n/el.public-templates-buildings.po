@@ -25,12 +25,13 @@
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
 # Traumflut <sophiareg95@gmail.com>, 2014
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
+# Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-11-06 22:16+0000\n"
+"Last-Translator: Steven Gikas <stevengk123@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,11 +205,11 @@ msgstr "Τείχη της πόλης"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 #: simulation/templates/template_structure_defense_wooden_tower.xml:38
 msgid "Sentry Tower"
-msgstr ""
+msgstr "Πύργος Φρουράς"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:67
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr ""
+msgstr "Ενίσχυσε με πέτρα και αναβάθμισε σε πύργο άμυνας."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -509,7 +510,7 @@ msgstr "Αποθήκη"
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
-msgstr ""
+msgstr "Ναός"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -790,7 +791,7 @@ msgstr "Κοθόνι"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Shipyard"
-msgstr ""
+msgstr "Ναυπηγείο"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
@@ -804,7 +805,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Εκπαίδευσε ιερείς για να θεραπεύεις τα στρατεύματά σου. Εκπαίδευσε λογχοφόρους ιερής μπάντας. Θέσε μονάδες σε φρουρά για να τις θεραπεύσεις σε γρήγορο ρυθμό."
 
 #: simulation/templates/structures/cart_wall.xml:9
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -847,7 +848,7 @@ msgstr "Ταβέρνα"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Επιστράτευσε Γυμνούς Φανατικούς"
 
 #: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
@@ -951,7 +952,7 @@ msgstr "Τόιχισμα"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Εκπαίδευσε Πρωταθλητές και Ήρωες. Θέσε στρατιώτες σε φρουρά μέσα για δυνατή άμυνα."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1111,7 +1112,7 @@ msgstr "Αίθουσα Ακροάσεων"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Φόρος τιμής στους Σατράπηδες.\":  Κέρδισε λίγους πόρους φαγητού, ξύλου, πέτρας και μετάλλου. Εκπαίδευσε Πέρσες ήρωες και τους \"αθάνατους\" σωματοφύλακές τους."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1168,11 +1169,11 @@ msgstr "Περσική Αίθουσα"
 
 #: simulation/templates/structures/pers_hall.xml:26
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Εκπαίδευσε πολεμικούς ελέφαντες και Κάρδακες μισθοφόρους."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1252,7 +1253,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Εκπαίδευσε πολίτες-στρατιώτες από την Αίγυπτο και τη Μέση Ανατολή. Ερεύνησε βελτιώσεις εκπαίδευσης."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1318,18 +1319,18 @@ msgstr "Στρατοπεδεία Μισθοφόρων"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Φθηνό κτήριο παρόμοιο με στρατώνα που μπορεί να χτιστεί σε ουδέτερη περιοχή, όμως δεν δίνει καθόλου επιρροή περιοχής. Εκπαίδευσε Μισθοφόρους."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Αυτό είναι το κτήριο επέκτασης των Πτολεμαίων, παρόμοιο με τα Αστικά Κέντρα για άλλες   φατρίες. Είναι πιο αδύναμο και δίνει μικρότερη επιρροή περιοχής, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα. Εκπαίδευσε αποικιακούς στρατιώτες διαφόρων εθνικοτήτων."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1482,7 +1483,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Εκπαίδευσε θεραπευτές. Θέσε μονάδες σε φρουρά για να τις θεραπεύσεις σε γρήγορο ρυθμό."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
@@ -1502,7 +1503,7 @@ msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1556,7 +1557,7 @@ msgstr "Φρούριον"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Χτίσε μηχανές πολιορκίας και εκπαίδευσε Πρωταθλητές. Θέσε στρατιώτες σε φρουρά για δυνατή άμυνα."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1571,7 +1572,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Αυτό είναι το  κτήριο επέκτασης των Σελευκιδών, παρόμοιο με τα Αστικά Κέντρα για άλλες φατρίες. Είναι πιο αδύναμο και δίνει μικρότερη επιρροή περιοχής, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα. Εκπαίδευσε αποικιακούς στρατιώτες διαφόρων εθνικοτήτων."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1622,4 +1623,4 @@ msgstr "Εκπαίδευσε Σπαρτιάτες ήρωες και Σπαρτι
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Φέρε δόξα στον πολιτισμό σου και πρόσθεσε μεγάλες εκτάσεις γης στην αυτοκρατορία σου. Θέσε μονάδες σε φρουρά για να τις θεραπεύσεις σε γρήγορο ρυθμό."

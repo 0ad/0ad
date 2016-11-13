@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-02 10:53+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"PO-Revision-Date: 2016-11-08 11:10+0000\n"
+"Last-Translator: Lukasz B <boberstarosta@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,12 +156,12 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/functions_utility_loadsave.js:82
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Usuń zaznaczony wpis używając %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:87
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Przytrzymaj %(hotkey)s by skasować bez potwierdzenia."
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -297,7 +297,7 @@ msgstr "Ocenione gry"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Kiedy wyłoni się zwycięzca tej rozgrywki, punktacja w lobby będzie dostosowana."
 
 #: gui/common/gamedescription.js:218
 msgid "Locked Teams"
@@ -313,7 +313,7 @@ msgstr "Dyplomacja"
 
 #: gui/common/gamedescription.js:224
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Gracze mogą tworzyć sojusze i wypowiadać wojnę sojusznikom."
 
 #: gui/common/gamedescription.js:229
 msgid "Last Man Standing"
@@ -323,17 +323,17 @@ msgstr "Ostatni Stojący Mężczyzna:"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Tylko jeden gracz może wygrać grę. Jeśli pozostali gracze są sojusznikami, gra trwa dopóki nie zostanie tylko jeden."
 
 #: gui/common/gamedescription.js:234
 msgid "Allied Victory"
-msgstr ""
+msgstr "Zwycięstwo sojuszników"
 
 #: gui/common/gamedescription.js:235
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Jeśli jeden gracz wygra, jego lub jej sojusznicy też wygrywają. Jeśli pozostanie jedna grupa sojuszników, oni wygrywają."
 
 #: gui/common/gamedescription.js:241
 msgid "Ceasefire"
@@ -346,9 +346,9 @@ msgstr "zablokowane"
 #: gui/common/gamedescription.js:245
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Przez pierwszą minutę, przeciwnicy pozostaną neutralni."
+msgstr[1] "Przez pierwsze %(min)s minuty, przeciwnicy pozostaną neutralni."
+msgstr[2] "Przez pierwsze %(min)s minut, przeciwnicy pozostaną neutralni."
 
 #: gui/common/gamedescription.js:253
 msgid "Map Name"
@@ -649,7 +649,7 @@ msgstr "Nieznany powód"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "Jest to często spowodowane przez port UDP 20595 nie przekazywany po stronie hosta, przez zaporę lub oprogramowanie antywirusowe"
 
 #: gui/common/network.js:64
 msgid "The host has ended the game"
@@ -1438,7 +1438,7 @@ msgstr "Nieocenione gry"
 
 #: gui/replaymenu/replay_menu.js:192
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr ""
+msgstr "Filtruj replaye wpisując jedną lub więcej, częściowych lub kompletnych nazw graczy."
 
 #: gui/replaymenu/replay_menu.js:303
 msgid "yyyy-MM-dd HH:mm"
@@ -2626,7 +2626,7 @@ msgstr "Rozmiar trenowanej grupy"
 #: gui/options/options.jsongeneralSetting[15].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr ""
+msgstr "Pokaż godzinę przy wiadomościach w lobby, ustawieniach gry i na czacie w grze."
 
 #: gui/options/options.jsongeneralSetting[15].label
 msgid "Chat Timestamp"

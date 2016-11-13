@@ -1304,8 +1304,8 @@ function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
 				shift.y = - 1;
 
 			let neighbors = [];
-			for (let localYi = 0; localYi < 4; ++localYi)
-				for (let localXi = 0; localXi < 4; ++localXi)
+			for (let localXi = 0; localXi < 4; ++localXi)
+				for (let localYi = 0; localYi < 4; ++localYi)
 					neighbors.push(heightmap[(hmTile.x + localXi + shift.x - 1) * hmSize + (hmTile.y + localYi + shift.y - 1)]);
 
 			setHeight(x, y, bicubicInterpolation(hmPoint.x - hmTile.x - shift.x, hmPoint.y - hmTile.y - shift.y, ...neighbors) / scale);

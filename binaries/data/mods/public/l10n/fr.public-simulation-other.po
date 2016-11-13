@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-10-01 08:02+0000\n"
-"Last-Translator: François Poirotte <clicky@erebot.net>\n"
+"POT-Creation-Date: 2016-11-01 17:10+0100\n"
+"PO-Revision-Date: 2016-11-02 09:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -772,34 +772,34 @@ msgstr "Vous devez sélectionner un bâtiment qui produit des unités."
 msgid "(Cheat - control all units)"
 msgstr "(Triche - contrôler toutes les unités)"
 
-#: simulation/helpers/Commands.js:575
+#: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"
 msgstr "(Triche - promotion des unités)"
 
-#: simulation/helpers/Commands.js:685
+#: simulation/helpers/Commands.js:692
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Amélioration impossible en raison de contraintes de distance ou de terrain non respectées."
 
-#: simulation/helpers/Commands.js:695
+#: simulation/helpers/Commands.js:702
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Impossible d'améliorer une entité en garnison."
 
-#: simulation/helpers/Commands.js:741
+#: simulation/helpers/Commands.js:748
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Une attaque contre %(_player_)s a été demandée."
 
-#: simulation/helpers/Commands.js:778
+#: simulation/helpers/Commands.js:785
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossible de décharger la ou les unité(s)"
 
-#: simulation/helpers/Commands.js:792
+#: simulation/helpers/Commands.js:799
 msgid "Some unit(s) can't go back to work"
 msgstr "Une ou plusieurs unité(s) ne peuvent pas retourner travailler"
 
-#: simulation/helpers/Commands.js:1047
+#: simulation/helpers/Commands.js:1054
 msgid "The building's technology requirements are not met."
 msgstr "Les technologies nécessaires à la construction n'ont pas été recherchées."
 
@@ -956,7 +956,6 @@ msgid "Deathmatch"
 msgstr "Combat à mort"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
-#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "Minuscule"
 
@@ -964,44 +963,23 @@ msgstr "Minuscule"
 msgid "Small"
 msgstr "Petite"
 
-#: simulation/data/settings/map_sizes.jsonData[1].LongName
-msgid "Small (2 players)"
-msgstr "Petite (2 joueurs)"
-
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Moyenne"
-
-#: simulation/data/settings/map_sizes.jsonData[2].LongName
-msgid "Medium (3 players)"
-msgstr "Moyenne (3 joueurs)"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Normale"
 
-#: simulation/data/settings/map_sizes.jsonData[3].LongName
-msgid "Normal (4 players)"
-msgstr "Normale (4 joueurs)"
-
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Grande"
-
-#: simulation/data/settings/map_sizes.jsonData[4].LongName
-msgid "Large (6 players)"
-msgstr "Grande (6 joueurs)"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Très grande"
 
-#: simulation/data/settings/map_sizes.jsonData[5].LongName
-msgid "Very Large (8 players)"
-msgstr "Très grande (8 joueurs)"
-
 #: simulation/data/settings/map_sizes.jsonData[6].Name
-#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "Géante"
 

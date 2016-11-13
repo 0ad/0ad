@@ -1160,6 +1160,9 @@ function handleInputAfterGui(ev)
 
 function doAction(action, ev)
 {
+	if (Engine.GetPlayerID() != g_ViewedPlayer)
+		return false;
+
 	var selection = g_Selection.toList();
 
 	// If shift is down, add the order to the unit's order queue instead
@@ -1169,6 +1172,7 @@ function doAction(action, ev)
 
 	if (unitActions[action.type] && unitActions[action.type].execute)
 		return unitActions[action.type].execute(target, action, selection, queued);
+
 	error("Invalid action.type "+action.type);
 	return false;
 }

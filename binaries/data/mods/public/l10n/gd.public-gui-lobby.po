@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-08-15 09:00+0200\n"
-"PO-Revision-Date: 2016-08-29 20:25+0000\n"
+"PO-Revision-Date: 2016-11-10 14:34+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:631
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "Thòisich an geama aig %(time)s"
+msgstr "Thòisich e aig %(time)s"
 
 #: gui/lobby/lobby.js:632 gui/lobby/lobby.js:994
 msgid "HH:mm"
@@ -212,11 +212,11 @@ msgstr "’Ga chlàradh…"
 
 #: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
-msgstr "Cuir a-steach d’ ainm-cleachdaiche."
+msgstr "Cuir a-steach d’ far-ainm."
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr "Chan fhaod \\[, ], unicode, geal-spàs no cromag a bhith am broinn ainm-cleachdaiche"
+msgstr "Chan fhaod \\[, ], unicode, geal-spàs no cromag a bhith am broinn far-ainm"
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
@@ -333,7 +333,7 @@ msgstr "Ùraich"
 
 #: gui/lobby/lobby.xml:(caption):289
 msgid "Enter username:"
-msgstr "Cuir a-steach ainm:"
+msgstr "Cuir a-steach far-ainm:"
 
 #: gui/lobby/lobby.xml:(caption):295
 msgid "View Profile"

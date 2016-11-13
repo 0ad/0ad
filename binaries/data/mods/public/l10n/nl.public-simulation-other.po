@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 17:22+0000\n"
-"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
+"POT-Creation-Date: 2016-11-01 17:10+0100\n"
+"PO-Revision-Date: 2016-11-02 09:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -769,34 +769,34 @@ msgstr "Je moet een gebouw selecteren om eenheden te rekruteren."
 msgid "(Cheat - control all units)"
 msgstr "(Valsspelen - Bestuur alle eenheden)"
 
-#: simulation/helpers/Commands.js:575
+#: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"
 msgstr "(Valsspelen - promoveer eenheden)"
 
-#: simulation/helpers/Commands.js:685
+#: simulation/helpers/Commands.js:692
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan niet upgraden omdat de afstandsvereiste niet geverifieerd is of het terrein belemmerd is."
 
-#: simulation/helpers/Commands.js:695
+#: simulation/helpers/Commands.js:702
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Kan geen bemande entiteit upgraden."
 
-#: simulation/helpers/Commands.js:741
+#: simulation/helpers/Commands.js:748
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Aanvraag voor een aanval tegen %(_player_)s."
 
-#: simulation/helpers/Commands.js:778
+#: simulation/helpers/Commands.js:785
 msgid "Unable to ungarrison unit(s)"
 msgstr "Kan de extra bemanning niet toevoegen."
 
-#: simulation/helpers/Commands.js:792
+#: simulation/helpers/Commands.js:799
 msgid "Some unit(s) can't go back to work"
 msgstr "Sommige eenheden kunnen niet terug aan het werk"
 
-#: simulation/helpers/Commands.js:1047
+#: simulation/helpers/Commands.js:1054
 msgid "The building's technology requirements are not met."
 msgstr "Er is niet voldaan aan de technologie vereisten voor dit gebouw."
 
@@ -953,7 +953,6 @@ msgid "Deathmatch"
 msgstr "Dodenmatch"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
-#: simulation/data/settings/map_sizes.jsonData[0].LongName
 msgid "Tiny"
 msgstr "Mini"
 
@@ -961,44 +960,23 @@ msgstr "Mini"
 msgid "Small"
 msgstr "Klein"
 
-#: simulation/data/settings/map_sizes.jsonData[1].LongName
-msgid "Small (2 players)"
-msgstr "Klein (2 spelers)"
-
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Medium"
-
-#: simulation/data/settings/map_sizes.jsonData[2].LongName
-msgid "Medium (3 players)"
-msgstr "Medium (3 spelers)"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Normaal"
 
-#: simulation/data/settings/map_sizes.jsonData[3].LongName
-msgid "Normal (4 players)"
-msgstr "Normaal (4 spelers)"
-
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Groot"
-
-#: simulation/data/settings/map_sizes.jsonData[4].LongName
-msgid "Large (6 players)"
-msgstr "Groot (6 spelers)"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Erg Groot"
 
-#: simulation/data/settings/map_sizes.jsonData[5].LongName
-msgid "Very Large (8 players)"
-msgstr "Erg Groot (8 spelers)"
-
 #: simulation/data/settings/map_sizes.jsonData[6].Name
-#: simulation/data/settings/map_sizes.jsonData[6].LongName
 msgid "Giant"
 msgstr "Gigantisch"
 

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2016 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -77,11 +77,27 @@ private:
 
 class VfsDirectory
 {
+	/**
+	 * remove all files with a lower priority than @p file
+	 * and do the same for all subdirectories recursively.
+	 * @return true if the directory is empty afterwards
+	 **/
+	bool DeleteTree(const VfsFile& file);
+
 public:
 	typedef std::map<VfsPath, VfsFile> VfsFiles;
 	typedef std::map<VfsPath, VfsDirectory> VfsSubdirectories;
 
 	VfsDirectory();
+
+	/**
+	 * remove the given file or subdirectory according to the priority of the
+	 * passed .DELETED file.
+	 * CAUTION: Invalidates all previously returned pointers of the file or
+	 *          subdirectory (and contents) if those have lower priority
+	 *          than @p file.
+	 **/
+	void DeleteSubtree(const VfsFile& file);
 
 	/**
 	 * @return address of existing or newly inserted file.

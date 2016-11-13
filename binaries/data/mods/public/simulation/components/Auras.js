@@ -210,6 +210,17 @@ Auras.prototype.Clean = function()
 			continue;
 		}
 
+		// When only Player class affected, we do not need a rangeQuery as applicable only to player entity
+		// and templates TODO maybe add a new type "player"
+		if (this.IsGlobalAura(name) && this.GetClasses(name).length == 1 && this.GetClasses(name)[0] == "Player")
+		{
+			this.ApplyTemplateBonus(name, affectedPlayers);
+			let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+			let playerEnts = affectedPlayers.map(player => cmpPlayerManager.GetPlayerByID(player));
+			this.ApplyBonus(name, playerEnts);
+			continue;
+		}
+
 		this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
 		    this.entity,
 		    0,
