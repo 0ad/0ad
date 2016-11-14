@@ -23,10 +23,13 @@ uniform vec2 fogParams;
 
 uniform vec2 screenSize;
 uniform float time;
+varying float moddedTime;
 
 varying vec3 worldPos;
 varying float waterDepth;
 varying vec2 waterInfo;
+
+varying vec3 v;
 
 varying vec4 normalCoords;
 varying vec3 reflectionCoords;
@@ -132,9 +135,7 @@ void main()
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
 	float losMod, reflMod;
-	
-	vec3 v = normalize(cameraPos - worldPos);
-	
+
 	// Calculate water normals.
 
 	float wavyEffect = waveParams1.r;
@@ -142,9 +143,7 @@ void main()
 	float flattenism = waveParams1.b;
 	float baseBump = waveParams1.a;
 	float BigMovement = waveParams2.b;
-	
-	float moddedTime = mod(time * 60.0, 8.0) / 8.0;
-	
+
 	// This method uses 60 animated water frames. We're blending between each two frames
 	// Scale the normal textures by waviness so that big waviness means bigger waves.
 	vec3 ww1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
@@ -157,7 +156,7 @@ void main()
 	
 	// Flatten them based on waviness.
 	vec3 n = normalize(mix(vec3(0.0,1.0,0.0), ww1, clamp(baseBump + fwaviness/flattenism,0.0,1.0)));
-	
+
 	#if USE_FANCY_EFFECTS
 		vec4 fancyeffects = texture2D(waterEffectsTexNorm, gl_FragCoord.xy/screenSize);
 		n = mix(vec3(0.0,1.0,0.0), n,0.5 + waterInfo.r/2.0);
@@ -196,8 +195,6 @@ void main()
 	float water_b = gl_FragCoord.z;
 	float water_n = 2.0 * water_b - 1.0;
 	float waterDBuffer = 2.0 * zNear * zFar / (zFar + zNear - water_n * (zFar - zNear));
-	
-	float undistortedBuffer = texture2D(depthTex, (gl_FragCoord.xy) / screenSize).x;
 	
 	float undisto_z_b = texture2D(depthTex, (gl_FragCoord.xy) / screenSize).x;
 	float undisto_z_n = 2.0 * undisto_z_b - 1.0;
