@@ -437,6 +437,16 @@ function getEntityCostTooltip(template, trainNum, entity)
 	return "";
 }
 
+function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology)
+{
+	if (technologyEnabled)
+		return "";
+
+	return sprintf(translate("Requires %(technology)s"), {
+		"technology": getEntityNames(GetTechnologyData(requiredTechnology))
+	});
+}
+
 /**
  * Returns the population bonus information to display in the specified entity's construction button tooltip.
  */
