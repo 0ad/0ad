@@ -103,6 +103,5 @@ function reallyStartGame()
 	// Switch GUI from loading screen to game session.
 	Engine.SwitchGuiPage("page_session.xml", g_Data);
 
-	// Restore default cursor.
-	Engine.SetCursor("arrow-default");
+	Engine.ResetCursor();
 }

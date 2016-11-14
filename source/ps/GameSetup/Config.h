@@ -92,6 +92,7 @@ extern bool g_Quickstart;
 extern bool g_DisableAudio;
 
 extern CStrW g_CursorName;
+extern const wchar_t g_DefaultCursor[];
 
 class CmdLineArgs;
 extern void CONFIG_Init(const CmdLineArgs& args);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,6 +91,11 @@ public:
 	 * Called when a file has been modified, to hotload changes.
 	 */
 	Status ReloadChangedFile(const VfsPath& path);
+
+	/**
+	 * Sets the default mouse pointer.
+	 */
+	void ResetCursor();
 
 	/**
 	 * Called when we should reload all pages (e.g. translation hotloading update).

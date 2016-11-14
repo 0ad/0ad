@@ -79,7 +79,8 @@ function updateCursorAndTooltip()
 	}
 
 	if (!cursorSet)
-		Engine.SetCursor("arrow-default");
+		Engine.ResetCursor();
+
 	if (!tooltipSet)
 		informationTooltip.hidden = true;
 

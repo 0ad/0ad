@@ -24,6 +24,5 @@ function cancelOnError(msg)
 		});
 	}
 
-	// Reset cursor
-	Engine.SetCursor("arrow-default");
+	Engine.ResetCursor();
 }
