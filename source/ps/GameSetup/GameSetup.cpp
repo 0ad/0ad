@@ -711,6 +711,8 @@ void EndGame()
 	SAFE_DELETE(g_Game);
 
 	ISoundManager::CloseGame();
+
+	g_Renderer.ResetState();
 }
 
 
