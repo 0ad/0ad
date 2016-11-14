@@ -312,8 +312,7 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	if (isTargetClass("Domestic") && this.template.Slaughter)
 		return "Slaughter";
 
-	let attack = this;
-	let types = this.GetAttackTypes().filter(type => !attack.GetRestrictedClasses(type).some(isTargetClass));
+	let types = this.GetAttackTypes().filter(type => !this.GetRestrictedClasses(type).some(isTargetClass));
 
 	// check if the target is capturable
 	let captureIndex = types.indexOf("Capture");
@@ -324,11 +323,11 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 		let cmpPlayer = QueryOwnerInterface(this.entity);
 		if (allowCapture && cmpPlayer && cmpCapturable && cmpCapturable.CanCapture(cmpPlayer.GetPlayerID()))
 			return "Capture";
-		// not captureable, so remove this attack
+		// not capturable, so remove this attack
 		types.splice(captureIndex, 1);
 	}
 
-	let isPreferred = className => attack.GetPreferredClasses(className).some(isTargetClass);
+	let isPreferred = className => this.GetPreferredClasses(className).some(isTargetClass);
 
 	return types.sort((a, b) =>
 		(types.indexOf(a) + (isPreferred(a) ? types.length : 0)) -

@@ -1162,6 +1162,7 @@ g_SelectionPanels.Upgrade = {
 			tooltip = translate("Cannot upgrade when the entity is already upgrading.");
 			data.button.onPress = function() {};
 		}
+		data.button.enabled = controlsPlayer(data.player);
 		data.button.tooltip = tooltip;
 
 		let modifier = "";

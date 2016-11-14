@@ -1160,7 +1160,7 @@ function handleInputAfterGui(ev)
 
 function doAction(action, ev)
 {
-	if (Engine.GetPlayerID() != g_ViewedPlayer)
+	if (!controlsPlayer(g_ViewedPlayer))
 		return false;
 
 	var selection = g_Selection.toList();
