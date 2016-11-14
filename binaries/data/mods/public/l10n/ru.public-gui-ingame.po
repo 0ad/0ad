@@ -19,7 +19,7 @@
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # delpfine <delpfine2012@gmail.com>, 2014
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
-# dr&mx <dronmax@gmail.com>, 2014-2015
+# Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Igor <ggg2134@mail.ru>, 2013
@@ -47,14 +47,15 @@
 # Владимир Бочкарёв <zacharovannyu@gmail.com>, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
 # Кваша Владислав <vladislav.kwasha@yandex.ua>, 2014
+# Максим Дронь <dronmax@gmail.com>, 2016
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Чувак, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-10 08:58+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"PO-Revision-Date: 2016-11-13 21:15+0000\n"
+"Last-Translator: Максим Дронь <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -409,37 +410,37 @@ msgstr "Личный"
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Чат и уведомления"
 
 #: gui/session/messages.js:192
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Сообщения чата"
 
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Чат игроков"
 
 #: gui/session/messages.js:204
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Чат союзников"
 
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Чат соперников"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Чат наблюдателей"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Личная переписка"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -560,7 +561,7 @@ msgstr "%(player)s передал вам %(amounts)s."
 #: gui/session/messages.js:892
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s обменял %(amountsBought)s для %(amountsSold)s."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -911,17 +912,17 @@ msgstr "Введите сообщение для отправки."
 #: gui/session/session.js:324
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для открытия общего чата."
 
 #: gui/session/session.js:327
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для открытия чата наблюдателей."
 
 #: gui/session/session.js:328
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Нажмите %(hotkey)s для открытия чата союзников."
 
 #: gui/session/session.js:333
 msgid "Find idle worker"
@@ -931,7 +932,7 @@ msgstr "Найти свободных рабочих"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Выберите один основной тип продуктов для обмена, затем с помощью стрелок выбрать тип продукта для обмена."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -1077,7 +1078,7 @@ msgstr "Отменить текущий приказ."
 
 #: gui/session/unit_actions.js:1120
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Назначить выбранных юнитов в гарнизон постройки или юнита."
 
 #: gui/session/unit_actions.js:1142
 msgid "Unload"
@@ -1113,7 +1114,7 @@ msgstr "Патруль"
 
 #: gui/session/unit_actions.js:1276
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Атаковать всех вражеских юнитов, с которыми сталкиваются, избегая при этом здания."
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
@@ -1190,12 +1191,12 @@ msgstr "Отправить"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Фильтровать историю чата."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Выберите чат адресата."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 09:22+0000\n"
+"POT-Creation-Date: 2016-11-12 11:29+0100\n"
+"PO-Revision-Date: 2016-11-13 10:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -145,120 +145,120 @@ msgstr ""
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:279
 msgid "Sorry, no description available."
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:71
+#: gui/common/gamedescription.js:70
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:74
+#: gui/common/gamedescription.js:73
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:80
+#: gui/common/gamedescription.js:79
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:83
+#: gui/common/gamedescription.js:82
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:93
+#: gui/common/gamedescription.js:92
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:96
+#: gui/common/gamedescription.js:95
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:103
+#: gui/common/gamedescription.js:102
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:106
+#: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:110
+#: gui/common/gamedescription.js:109
 #, javascript-format
 msgid "%(playerName)s"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:113
+#: gui/common/gamedescription.js:112
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:131
+#: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
 msgstr ""
 
-#: gui/common/gamedescription.js:138
+#: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
 msgstr ""
 
-#: gui/common/gamedescription.js:139
+#: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
 msgstr ""
 
-#: gui/common/gamedescription.js:161
+#: gui/common/gamedescription.js:160
 msgid "No Team"
 msgstr ""
 
-#: gui/common/gamedescription.js:162
+#: gui/common/gamedescription.js:161
 #, javascript-format
 msgid "Team %(team)s"
 msgstr ""
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:165 gui/common/gamedescription.js:172
+#: gui/common/gamedescription.js:164 gui/common/gamedescription.js:171
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:173
+#: gui/common/gamedescription.js:172
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/gamedescription.js:195
+#: gui/common/gamedescription.js:194
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -267,129 +267,129 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/gamedescription.js:212
+#: gui/common/gamedescription.js:211
 msgid "Rated game"
 msgstr ""
 
-#: gui/common/gamedescription.js:213
+#: gui/common/gamedescription.js:212
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:218
+#: gui/common/gamedescription.js:217
 msgid "Locked Teams"
 msgstr ""
 
-#: gui/common/gamedescription.js:219
+#: gui/common/gamedescription.js:218
 msgid "Players can't change the initial teams."
 msgstr ""
 
-#: gui/common/gamedescription.js:223
+#: gui/common/gamedescription.js:222
 msgid "Diplomacy"
 msgstr ""
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:223
 msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
-#: gui/common/gamedescription.js:229
+#: gui/common/gamedescription.js:228
 msgid "Last Man Standing"
 msgstr ""
 
-#: gui/common/gamedescription.js:230
+#: gui/common/gamedescription.js:229
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr ""
 
-#: gui/common/gamedescription.js:234
+#: gui/common/gamedescription.js:233
 msgid "Allied Victory"
 msgstr ""
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:234
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr ""
 
-#: gui/common/gamedescription.js:241
+#: gui/common/gamedescription.js:240
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/common/gamedescription.js:244 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "onemogućen"
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:244
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:252
 msgid "Map Name"
 msgstr ""
 
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:257
 msgid "Map Type"
 msgstr ""
 
-#: gui/common/gamedescription.js:267
+#: gui/common/gamedescription.js:266
 msgid "Map Size"
 msgstr ""
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:273
 msgid "Map Description"
 msgstr ""
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:276
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:285
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:286
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:296
 msgid "Population Limit"
 msgstr ""
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
 msgstr ""
 
-#: gui/common/gamedescription.js:310
+#: gui/common/gamedescription.js:309
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:315
+#: gui/common/gamedescription.js:314
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:319
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:325 gui/common/tooltips.js:58
+#: gui/common/gamedescription.js:324 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:347 gui/common/tooltips.js:613
+#: gui/common/tooltips.js:348 gui/common/tooltips.js:614
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:328
+#: gui/common/gamedescription.js:327
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:329
+#: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
@@ -591,8 +591,8 @@ msgstr ""
 #: gui/common/l10n.js:92 gui/common/network.js:141 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
-#: gui/common/tooltips.js:492 gui/common/tooltips.js:526
-#: gui/common/tooltips.js:580 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:493 gui/common/tooltips.js:527
+#: gui/common/tooltips.js:581 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -850,7 +850,7 @@ msgstr[2] ""
 
 #: gui/common/tooltips.js:70 gui/common/tooltips.js:239
 #: gui/common/tooltips.js:288 gui/common/tooltips.js:302
-#: gui/common/tooltips.js:524
+#: gui/common/tooltips.js:525
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -909,7 +909,7 @@ msgstr ""
 msgid "Interval:"
 msgstr ""
 
-#: gui/common/tooltips.js:152 gui/common/tooltips.js:522
+#: gui/common/tooltips.js:152 gui/common/tooltips.js:523
 msgid "Rate:"
 msgstr ""
 
@@ -931,7 +931,7 @@ msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 msgstr ""
 
-#: gui/common/tooltips.js:181 gui/common/tooltips.js:517
+#: gui/common/tooltips.js:181 gui/common/tooltips.js:518
 msgid "Range:"
 msgstr ""
 
@@ -943,7 +943,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/tooltips.js:185 gui/common/tooltips.js:519
+#: gui/common/tooltips.js:185 gui/common/tooltips.js:520
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -994,7 +994,7 @@ msgstr ""
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr ""
 
-#: gui/common/tooltips.js:236 gui/common/tooltips.js:511
+#: gui/common/tooltips.js:236 gui/common/tooltips.js:512
 msgid "Heal:"
 msgstr ""
 
@@ -1046,74 +1046,74 @@ msgstr ""
 msgid "Build Rate:"
 msgstr ""
 
-#: gui/common/tooltips.js:335 gui/common/tooltips.js:463
+#: gui/common/tooltips.js:335 gui/common/tooltips.js:464
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr ""
 
-#: gui/common/tooltips.js:348
+#: gui/common/tooltips.js:349
 msgid "Gather Rates:"
 msgstr ""
 
-#: gui/common/tooltips.js:351
+#: gui/common/tooltips.js:352
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr ""
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:400
+#: gui/common/tooltips.js:401
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr ""
 
-#: gui/common/tooltips.js:429
+#: gui/common/tooltips.js:430
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:430
+#: gui/common/tooltips.js:431
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:446
+#: gui/common/tooltips.js:447
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr ""
 
-#: gui/common/tooltips.js:447
+#: gui/common/tooltips.js:448
 msgid "Population Bonus:"
 msgstr ""
 
-#: gui/common/tooltips.js:469
+#: gui/common/tooltips.js:470
 msgid "Insufficient resources:"
 msgstr ""
 
-#: gui/common/tooltips.js:485
+#: gui/common/tooltips.js:486
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/common/tooltips.js:486
+#: gui/common/tooltips.js:487
 msgid "Speed:"
 msgstr ""
 
-#: gui/common/tooltips.js:488 gui/common/tooltips.js:493
+#: gui/common/tooltips.js:489 gui/common/tooltips.js:494
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/common/tooltips.js:490
+#: gui/common/tooltips.js:491
 msgid "Walk"
 msgstr ""
 
-#: gui/common/tooltips.js:495
+#: gui/common/tooltips.js:496
 msgid "Run"
 msgstr ""
 
-#: gui/common/tooltips.js:510 gui/common/tooltips.js:516
-#: gui/common/tooltips.js:521
+#: gui/common/tooltips.js:511 gui/common/tooltips.js:517
+#: gui/common/tooltips.js:522
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1123,47 +1123,47 @@ msgstr[2] ""
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:514
+#: gui/common/tooltips.js:515
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/tooltips.js:535
+#: gui/common/tooltips.js:536
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:536
+#: gui/common/tooltips.js:537
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:552
+#: gui/common/tooltips.js:553
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:564
+#: gui/common/tooltips.js:565
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:579
+#: gui/common/tooltips.js:580
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:607
+#: gui/common/tooltips.js:608
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:614
+#: gui/common/tooltips.js:615
 msgid "Loot:"
 msgstr ""
 
@@ -2832,12 +2832,6 @@ msgid ""
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:8
-msgid ""
-"[imgleft=\"iconMap\"]This version features a new pathfinder, with increased "
-"performance, but it can be subject to new bugs."
-msgstr ""
-
-#: gui/splashscreen/splashscreen.txt:10
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
