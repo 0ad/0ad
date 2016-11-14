@@ -5,7 +5,6 @@ function init(data)
 {
 	g_Data = data;
 
-	// Set to "hourglass" cursor.
 	Engine.SetCursor("cursor-wait");
 
 	// Get tip image and corresponding tip text
@@ -100,7 +99,6 @@ function displayProgress()
  */
 function reallyStartGame()
 {
-	// Switch GUI from loading screen to game session.
 	Engine.SwitchGuiPage("page_session.xml", g_Data);
 
 	Engine.ResetCursor();

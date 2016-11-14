@@ -289,36 +289,31 @@ function determineAction(x, y, fromMinimap)
 	if (preSelectedAction != ACTION_NONE)
 	{
 		for (var action of actions)
-		{
 			if (unitActions[action].preSelectedActionCheck)
 			{
 				var r = unitActions[action].preSelectedActionCheck(target, selection);
 				if (r)
 					return r;
 			}
-		}
+
 		return { "type": "none", "cursor": "", "target": target };
 	}
 
 	for (var action of actions)
-	{
 		if (unitActions[action].hotkeyActionCheck)
 		{
 			var r = unitActions[action].hotkeyActionCheck(target, selection);
 			if (r)
 				return r;
 		}
-	}
 
 	for (var action of actions)
-	{
 		if (unitActions[action].actionCheck)
 		{
 			var r = unitActions[action].actionCheck(target, selection);
 			if (r)
 				return r;
 		}
-	}
 
 	return { "type": "none", "cursor": "", "target": target };
 }
@@ -330,14 +325,10 @@ function tryPlaceBuilding(queued)
 {
 	if (placementSupport.mode !== "building")
 	{
-		error(sprintf("[%(functionName)s] Called while in '%(mode)s' placement mode instead of 'building'", {
-			"functionName": "tryPlaceBuilding",
-			"mode": placementSupport.mode
-		}));
+		error("tryPlaceBuilding expected 'building', got '" + placementSupport.mode + "'");
 		return false;
 	}
 
-	// Use the preview to check it's a valid build location
 	if (!updateBuildingPlacementPreview())
 	{
 		// invalid location - don't build it
@@ -373,21 +364,14 @@ function tryPlaceWall(queued)
 {
 	if (placementSupport.mode !== "wall")
 	{
-		error(sprintf("[%(functionName)s] Called while in '%(mode)s' placement mode; expected 'wall' mode", {
-			functionName: "tryPlaceWall",
-			mode: placementSupport.mode
-		}));
+		error("tryPlaceWall expected 'wall', got '" + placementSupport.mode + "'");
 		return false;
 	}
 
 	var wallPlacementInfo = updateBuildingPlacementPreview(); // entities making up the wall (wall segments, towers, ...)
 	if (!(wallPlacementInfo === false || typeof(wallPlacementInfo) === "object"))
 	{
-		error(sprintf("[%(functionName)s] Unexpected return value from %(function2Name)s: '%(value)s'; expected either 'false' or 'object'", {
-			functionName: "tryPlaceWall",
-			function2Name: "updateBuildingPlacementPreview",
-			value: uneval(placementInfo)
-		}));
+		error("Invalid updateBuildingPlacementPreview return value: " + uneval(wallPlacementInfo));
 		return false;
 	}
 
@@ -1174,7 +1158,7 @@ function doAction(action, ev)
 	if (unitActions[action.type] && unitActions[action.type].execute)
 		return unitActions[action.type].execute(target, action, selection, queued);
 
-	error("Invalid action.type "+action.type);
+	error("Invalid action.type " + action.type);
 	return false;
 }
 
@@ -1196,7 +1180,7 @@ function handleMinimapEvent(target)
 	var queued = Engine.HotkeyIsPressed("session.queue");
 	if (unitActions[action.type] && unitActions[action.type].execute)
 		return unitActions[action.type].execute(target, action, selection, queued);
-	error("Invalid action.type "+action.type);
+	error("Invalid action.type " + action.type);
 	return false;
 }
 
