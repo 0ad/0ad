@@ -423,12 +423,14 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
-	const bool isReplay = args.Has("replay");
 	const bool isVisualReplay = args.Has("replay-visual");
-	const std::string replayFile = isReplay ? args.Get("replay") : (isVisualReplay ? args.Get("replay-visual") : "");
+	const bool isNonVisualReplay = args.Has("replay");
 
-	// Ensure the replay file exists
-	if (isReplay || isVisualReplay)
+	const CStr replayFile =
+		isVisualReplay ? args.Get("replay-visual") :
+		isNonVisualReplay ? args.Get("replay") : "";
+
+	if (isVisualReplay || isNonVisualReplay)
 	{
 		if (!FileExists(OsPath(replayFile)))
 		{
@@ -453,8 +455,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
-	// run non-visual simulation replay if requested
-	if (isReplay)
+	if (isNonVisualReplay)
 	{
 		if (!args.Has("mod"))
 		{
