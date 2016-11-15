@@ -473,12 +473,9 @@ m.GameState.prototype.getNeutralStructures = function()
 	return this.getStructures().filter(m.Filters.byOwners(this.getNeutrals()));
 };
 
-m.GameState.prototype.getEnemyEntities = function(enemyID)
+m.GameState.prototype.getEnemyEntities = function()
 {
-	if (enemyID === undefined)
-		return this.entities.filter(m.Filters.byOwners(this.getEnemies()));
-
-	return this.updatingGlobalCollection("" + enemyID + "-entities", m.Filters.byOwner(enemyID));
+	return this.entities.filter(m.Filters.byOwners(this.getEnemies()));
 };
 
 m.GameState.prototype.getEnemyStructures = function(enemyID)
@@ -486,7 +483,7 @@ m.GameState.prototype.getEnemyStructures = function(enemyID)
 	if (enemyID === undefined)
 		return this.updatingCollection("enemy-structures", m.Filters.byClass("Structure"), this.getEnemyEntities());
 
-	return this.updatingGlobalCollection("" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEnemyEntities(enemyID));
+	return this.updatingGlobalCollection("" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEntities(enemyID));
 };
 
 m.GameState.prototype.resetEnemyStructures = function()
@@ -499,7 +496,7 @@ m.GameState.prototype.getEnemyUnits = function(enemyID)
 	if (enemyID === undefined)
 		return this.getEnemyEntities().filter(m.Filters.byClass("Unit"));
 
-	return this.updatingGlobalCollection("" + enemyID + "-units", m.Filters.byClass("Unit"), this.getEnemyEntities(enemyID));
+	return this.updatingGlobalCollection("" + enemyID + "-units", m.Filters.byClass("Unit"), this.getEntities(enemyID));
 };
 
 /** if maintain is true, this will be stored. Otherwise it's one-shot. */
