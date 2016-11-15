@@ -22,7 +22,7 @@ AddMock(playerEnt1, IID_Player, {
 
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, true);
 cmpEndGameManager.SetAlliedVictory(true);
-TS_ASSERT_EQUALS(cmpEndGameManager.alliedVictory, true);
+TS_ASSERT_EQUALS(cmpEndGameManager.GetAlliedVictory(), true);
 cmpEndGameManager.SetGameType("wonder", { "wonderDuration": wonderDuration });
 TS_ASSERT_EQUALS(cmpEndGameManager.CheckGameType("regicide"), false);
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, false);

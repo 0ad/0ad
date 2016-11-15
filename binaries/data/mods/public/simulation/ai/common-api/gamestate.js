@@ -21,6 +21,8 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.playerData = SharedScript.playersData[this.player];
 	this.barterPrices = SharedScript.barterPrices;
 	this.gameType = SharedScript.gameType;
+	this.alliedVictory = SharedScript.alliedVictory;
+	this.ceasefireActive = SharedScript.ceasefireActive;
 
 	// get the list of possible phases for this civ:
 	// we assume all of them are researchable from the civil centre
@@ -55,6 +57,7 @@ m.GameState.prototype.update = function(SharedScript)
 	this.timeElapsed = SharedScript.timeElapsed;
 	this.playerData = SharedScript.playersData[this.player];
 	this.barterPrices = SharedScript.barterPrices;
+	this.ceasefireActive = SharedScript.ceasefireActive;
 };
 
 m.GameState.prototype.updatingCollection = function(id, filter, collection)
@@ -115,6 +118,16 @@ m.GameState.prototype.getBarterPrices = function()
 m.GameState.prototype.getGameType = function()
 {
 	return this.gameType;
+};
+
+m.GameState.prototype.getAlliedVictory = function()
+{
+	return this.alliedVictory;
+};
+
+m.GameState.prototype.isCeasefireActive = function()
+{
+	return this.ceasefireActive;
 };
 
 m.GameState.prototype.getTemplate = function(type)
@@ -291,9 +304,33 @@ m.GameState.prototype.getPlayerID = function()
 m.GameState.prototype.hasAllies = function()
 {
 	for (let i in this.playerData.isAlly)
-		if (this.playerData.isAlly[i] && +i !== this.player)
+		if (this.playerData.isAlly[i] && +i !== this.player &&
+		    this.sharedScript.playersData[i].state !== "defeated")
 			return true;
 	return false;
+};
+
+m.GameState.prototype.hasEnemies = function()
+{
+	for (let i in this.playerData.isEnemy)
+		if (this.playerData.isEnemy[i] && +i !== 0 &&
+		    this.sharedScript.playersData[i].state !== "defeated")
+			return true;
+	return false;
+};
+
+m.GameState.prototype.hasNeutrals = function()
+{
+	for (let i in this.playerData.isNeutral)
+		if (this.playerData.isNeutral[i] &&
+		    this.sharedScript.playersData[i].state !== "defeated")
+			return true;
+	return false;
+};
+
+m.GameState.prototype.isPlayerNeutral = function(id)
+{
+	return this.playerData.isNeutral[id];
 };
 
 m.GameState.prototype.isPlayerAlly = function(id)
@@ -383,9 +420,12 @@ m.GameState.prototype.getEntityById = function(id)
 	return undefined;
 };
 
-m.GameState.prototype.getEntities = function()
+m.GameState.prototype.getEntities = function(id)
 {
-	return this.entities;
+	if (id === undefined)
+		return this.entities;
+
+	return this.updatingGlobalCollection("" + id + "-entities", m.Filters.byOwner(id));
 };
 
 m.GameState.prototype.getStructures = function()

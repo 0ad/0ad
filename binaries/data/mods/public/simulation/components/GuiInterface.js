@@ -144,9 +144,10 @@ GuiInterface.prototype.GetSimulationState = function()
 		ret.ceasefireTimeRemaining = ret.ceasefireActive ? cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed : 0;
 	}
 
-	// Add the game type
+	// Add the game type and allied victory
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	ret.gameType = cmpEndGameManager.GetGameType();
+	ret.alliedVictory = cmpEndGameManager.GetAlliedVictory();
 
 	// Add bartering prices
 	let cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);

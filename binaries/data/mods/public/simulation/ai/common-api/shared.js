@@ -142,6 +142,8 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.mapSize = state.mapSize;
 	this.gameType = state.gameType;
 	this.barterPrices = state.barterPrices;
+	this.alliedVictory = state.alliedVictory;
+	this.ceasefireActive = state.ceasefireActive;
 
 	this.passabilityMap = state.passabilityMap;
 	if (this.mapSize % this.passabilityMap.width !== 0)
@@ -241,6 +243,7 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.playersData = state.players;
 	this.timeElapsed = state.timeElapsed;
 	this.barterPrices = state.barterPrices;
+	this.ceasefireActive = state.ceasefireActive;
 
 	this.passabilityMap = state.passabilityMap;
 	this.passabilityMap.cellSize = this.mapSize / this.passabilityMap.width;

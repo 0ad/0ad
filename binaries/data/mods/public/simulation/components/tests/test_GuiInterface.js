@@ -47,7 +47,8 @@ AddMock(SYSTEM_ENTITY, IID_Barter, {
 });
 
 AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
-	GetGameType: function() { return "conquest"; }
+	GetGameType: function() { return "conquest"; },
+	GetAlliedVictory: function() { return false; }
 });
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -331,6 +332,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	circularMap: false,
 	timeElapsed: 0,
 	gameType: "conquest",
+	alliedVictory: false,
 	barterPrices: {buy: {food: 150}, sell: {food: 25}}
 });
 
@@ -450,6 +452,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	circularMap: false,
 	timeElapsed: 0,
 	gameType: "conquest",
+	alliedVictory: false,
 	barterPrices: {buy: {food: 150}, sell: {food: 25}}
 });
 
