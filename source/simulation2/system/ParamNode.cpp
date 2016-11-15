@@ -171,6 +171,10 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	if (!hasSetValue)
 		node.m_Value = value;
 
+	// We also need to reset node's script val, even if it has no children
+	// or if the attributes change.
+	node.ResetScriptVal();
+
 	// Recurse through the element's children
 	XERO_ITER_EL(element, child)
 	{
