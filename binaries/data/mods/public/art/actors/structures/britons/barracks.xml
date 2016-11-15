@@ -2,26 +2,43 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Celtic Barracks">
+    <variant frequency="0" name="Celtic Barracks">
       <mesh>structural/brit_barracks_struct.dae</mesh>
       <props>
         <prop actor="props/structures/britons/barracks_props_new.xml" attachpoint="root"/>
-		<prop actor="props/structures/britons/barracks_palisade.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_palisade.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_props_1.xml" attachpoint="root"/>
-		<prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_weapons.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
       </props>
       <textures>
-		<texture file="structural/celt_struct.dds" name="baseTex"/>
-	    <texture file="structural/celt_struct_norm.png" name="normTex"/>
-	    <texture file="structural/celt_struct_spec.png" name="specTex"/>
-		<texture file="structural/ao/brit_barracks.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_barracks.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celtic Barracks test">
+      <mesh>structural/brit_barracks_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/britons/barracks_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_palisade.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_weapons.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/brit_struct.png" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_barracks.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant name="ungarrisoned" frequency="1"/>
+    <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
@@ -29,7 +46,7 @@
     </variant>
   </group>
   <group>
-    <variant name="alive" frequency="1"/>
+    <variant frequency="1" name="alive"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
@@ -37,7 +54,7 @@
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_props_1.xml" attachpoint="root"/>
-		<prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_weapons.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
       </props>

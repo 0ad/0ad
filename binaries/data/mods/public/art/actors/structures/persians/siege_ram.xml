@@ -4,12 +4,17 @@
   <group>
     <variant frequency="100" name="Assyrian Ram">
       <animations>
-        <animation file="mechanical/pers_siege_ram_move.dae" name="walk" speed="25"/>
-        <animation file="mechanical/pers_siege_ram_move.dae" name="run" speed="25"/>
-        <animation event="0.85" file="mechanical/pers_siege_ram_attack.dae" name="attack_melee" speed="50"/>
+        <animation file="mechanical/pers_ram_idle.dae" name="idle" speed="5"/>
+        <animation file="mechanical/pers_ram_walk.dae" name="walk" speed="25"/>
+        <animation file="mechanical/pers_ram_walk.dae" name="run" speed="25"/>
+        <animation event="0.41" file="mechanical/pers_ram.dae" name="attack_melee" speed="50"/>
       </animations>
-      <mesh>structural/pers_siege_ram.dae</mesh>
-      <textures><texture file="structural/assyrian_ram.png" name="baseTex"/></textures>
+      <mesh>structural/pers_ram.dae</mesh>
+      <textures>
+        <texture file="structural/assyrian_ram_2.png" name="baseTex"/>
+        <texture file="structural/assyrian_ram_2.png" name="normTex"/>
+        <texture file="structural/assyrian_ram_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -26,5 +31,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -1,0 +1,46 @@
+<skeletons>
+
+	<standard_skeleton title="pers_tower" id="pers_tower">
+ 
+		<bone name="Foot">
+
+			<bone name="wheel_front"></bone>
+
+			<bone name="wheel_middle"></bone>
+
+			<bone name="wheel_back"></bone>
+
+			<bone name="tower">
+				<bone name="weapon"></bone>
+
+			</bone>
+		</bone>
+
+	</standard_skeleton>
+
+
+	<skeleton title="pers_tower" target="pers_tower">
+
+		<identifier>
+
+			<root>pers_tower</root>
+
+		</identifier>
+
+		<bone name="Foot"><target>Foot</target>
+
+			<bone name="wheel_front"><target>wheel_front</target></bone>
+
+			<bone name="wheel_middle"><target>wheel_middle</target></bone>
+
+			<bone name="wheel_back"><target>wheel_back</target></bone>
+
+			<bone name="tower"><target>tower</target>
+				<bone name="weapon"><target>weapon</target></bone>
+
+			</bone>
+		</bone>
+
+	</skeleton>
+
+</skeletons>

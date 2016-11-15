@@ -2,14 +2,23 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="0" name="norm">
       <mesh>props/brit_civic_centre_roof.dae</mesh>
       <textures>
-	    <texture file="structural/celt_roof_round.png" name="baseTex"/>
-	    <texture file="structural/celt_roof_round_norm.png" name="normTex"/>
-	    <texture file="structural/celt_roof_round_spec.png" name="specTex"/>
-		<texture file="structural/ao/brit_civic_centre.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/celt_roof_round.png" name="baseTex"/>
+        <texture file="structural/celt_roof_round_norm.png" name="normTex"/>
+        <texture file="structural/celt_roof_round_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_civic_centre.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="test">
+      <mesh>props/brit_civic_centre_roof.dae</mesh>
+      <textures>
+        <texture file="structural/brit_roof_round.png" name="baseTex"/>
+        <texture file="structural/celt_roof_round_norm.png" name="normTex"/>
+        <texture file="structural/celt_roof_round_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_civic_centre.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

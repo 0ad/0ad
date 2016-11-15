@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="ptolemaic Statue 1">
+      <mesh>structural/ptol_library_sphynx.dae</mesh>
+      <textures>
+        <texture file="structural/ptol_statues_sphynx.png" name="baseTex"/>
+        <texture file="structural/ao/ptol_library_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

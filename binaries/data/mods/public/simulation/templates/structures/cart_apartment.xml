@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="structures/cart_house">
+  <Cost>
+    <PopulationBonus>15</PopulationBonus>
+    <BuildTime>75</BuildTime>
+    <Resources>
+      <wood>225</wood>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Apartment Building</GenericName>
+    <SpecificName>?</SpecificName>
+  </Identity>
+  <GarrisonHolder>
+    <Max>9</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max>1500</Max>
+  </Health>
+  <Loot>
+    <wood>30</wood>
+  </Loot>
+  <VisualActor>
+    <Actor>structures/carthaginians/apartment.xml</Actor>
+  </VisualActor>
+</Entity>

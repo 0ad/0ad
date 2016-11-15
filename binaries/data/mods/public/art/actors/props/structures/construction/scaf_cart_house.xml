@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <props>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/kart_defense_tower_scaffolding_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="10" name="House A">
+      <mesh>structural/kart_house_a_scaffolding.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kart_house_a_scaffolding_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="10" name="House B">
+      <mesh>structural/kart_house_b_scaffolding.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kart_house_b_scaffolding_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="10" name="House C">
+      <mesh>structural/kart_house_c_scaffolding.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kart_house_c_scaffolding_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

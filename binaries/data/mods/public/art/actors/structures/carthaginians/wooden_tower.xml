@@ -30,6 +30,24 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
+    <variant name="lightdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="mediumdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_med.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_med_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="heavydamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
+    </variant>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
@@ -38,6 +56,10 @@
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

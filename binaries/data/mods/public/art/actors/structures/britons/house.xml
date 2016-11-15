@@ -2,12 +2,19 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="base" frequency="1">
-	  <textures>
-	    <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-	    <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-	    <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-	  </textures>
+    <variant frequency="0" name="base">
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="base test">
+      <textures>
+        <texture file="structural/brit_struct_1.png" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -17,9 +24,9 @@
         <prop actor="props/structures/britons/house_a_props_1.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/house_a_props_new.xml" attachpoint="root"/>
       </props>
-	  <textures>
-		<texture file="structural/ao/brit_house_a.png" name="aoTex"/>
-	  </textures>
+      <textures>
+        <texture file="structural/ao/brit_house_a.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="brit house b">
       <mesh>structural/brit_house_b.dae</mesh>
@@ -27,9 +34,9 @@
         <prop actor="props/structures/britons/house_b_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/house_b_props_1.xml" attachpoint="root"/>
       </props>
-	  <textures>
-		<texture file="structural/ao/brit_house_b.png" name="aoTex"/>
-	  </textures>
+      <textures>
+        <texture file="structural/ao/brit_house_b.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="brit house c">
       <mesh>structural/brit_house_c.dae</mesh>
@@ -37,23 +44,23 @@
         <prop actor="props/structures/britons/house_c_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/house_c_props_1.xml" attachpoint="root"/>
       </props>
-	  <textures>
-		<texture file="structural/ao/brit_house_c.png" name="aoTex"/>
-	  </textures>
+      <textures>
+        <texture file="structural/ao/brit_house_c.png" name="aoTex"/>
+      </textures>
     </variant>
-	<variant frequency="1" name="brit house d">
+    <variant frequency="1" name="brit house d">
       <mesh>structural/brit_house_d.dae</mesh>
       <props>
         <prop actor="props/structures/britons/house_d_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/house_d_props_1.xml" attachpoint="root"/>
       </props>
-	  <textures>
-		<texture file="structural/ao/brit_house_d.png" name="aoTex"/>
-	  </textures>
+      <textures>
+        <texture file="structural/ao/brit_house_d.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant name="alive" frequency="1"/>
+    <variant frequency="1" name="alive"/>
     <variant name="death">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="dust"/>
