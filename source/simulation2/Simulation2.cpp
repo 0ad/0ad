@@ -51,7 +51,8 @@ class CSimulation2Impl
 public:
 	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain) :
 		m_SimContext(), m_ComponentManager(m_SimContext, rt),
-		m_EnableOOSLog(false), m_EnableSerializationTest(false),
+		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
+		m_SecondaryTerrain(nullptr), m_SecondaryContext(nullptr), m_SecondaryComponentManager(nullptr), m_SecondaryLoadedScripts(nullptr),
 		m_MapSettings(rt->m_rt), m_InitAttributes(rt->m_rt)
 	{
 		m_SimContext.m_UnitManager = unitManager;
@@ -65,6 +66,9 @@ public:
 		{
 			CFG_GET_VAL("ooslog", m_EnableOOSLog);
 			CFG_GET_VAL("serializationtest", m_EnableSerializationTest);
+			CFG_GET_VAL("rejointest", m_RejoinTestTurn);
+			if (m_RejoinTestTurn <= 0) // Handle bogus values of the arg
+				m_RejoinTestTurn = -1;
 		}
 
 		if (m_EnableOOSLog)
@@ -76,6 +80,11 @@ public:
 
 	~CSimulation2Impl()
 	{
+		delete m_SecondaryTerrain;
+		delete m_SecondaryContext;
+		delete m_SecondaryComponentManager;
+		delete m_SecondaryLoadedScripts;
+
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
 
@@ -130,6 +139,14 @@ public:
 	// Functions and data for the serialization test mode: (see Update() for relevant comments)
 
 	bool m_EnableSerializationTest;
+	int m_RejoinTestTurn;
+	bool m_TestingRejoin;
+
+	// Secondary simulation
+	CTerrain* m_SecondaryTerrain;
+	CSimContext* m_SecondaryContext;
+	CComponentManager* m_SecondaryComponentManager;
+	std::set<VfsPath>* m_SecondaryLoadedScripts;
 
 	struct SerializationTestState
 	{
@@ -332,6 +349,10 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	 * Then we run the update on the secondary context, and check that its new serialized
 	 * state matches the primary context after the update (to check that the simulation doesn't depend
 	 * on anything that's not serialized).
+	 *
+	 * In rejoin test mode, the secondary simulation is initialized from serialized data at turn N, then both
+	 * simulations run independantly while comparing their states each turn. This is way faster than a
+	 * complete serialization test and allows us to reproduce OOSes on rejoin.
 	 */
 
 	const bool serializationTestDebugDump = false; // set true to save human-readable state dumps before an error is detected, for debugging (but slow)
@@ -340,7 +361,11 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	SerializationTestState primaryStateBefore;
 	ScriptInterface& scriptInterface = m_ComponentManager.GetScriptInterface();
 
-	if (m_EnableSerializationTest)
+	const bool startRejoinTest = (int64_t) m_RejoinTestTurn == m_TurnNumber;
+	if (startRejoinTest)
+		m_TestingRejoin = true;
+
+	if (m_EnableSerializationTest || m_TestingRejoin)
 	{
 		ENSURE(m_ComponentManager.SerializeState(primaryStateBefore.state));
 		if (serializationTestDebugDump)
@@ -351,27 +376,35 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 	UpdateComponents(m_SimContext, turnLengthFixed, commands);
 
-
-	if (m_EnableSerializationTest)
+	if (m_EnableSerializationTest || startRejoinTest)
 	{
-		// Initialise the secondary simulation
-		CTerrain secondaryTerrain;
-		CSimContext secondaryContext;
-		secondaryContext.m_Terrain = &secondaryTerrain;
-		CComponentManager secondaryComponentManager(secondaryContext, scriptInterface.GetRuntime());
-		secondaryComponentManager.LoadComponentTypes();
-		std::set<VfsPath> secondaryLoadedScripts;
-		ENSURE(LoadDefaultScripts(secondaryComponentManager, &secondaryLoadedScripts));
-		ResetComponentState(secondaryComponentManager, false, false);
+		if (startRejoinTest)
+			debug_printf("Initializing the secondary simulation\n");
+
+		delete m_SecondaryTerrain;
+		m_SecondaryTerrain = new CTerrain();
+
+		delete m_SecondaryContext;
+		m_SecondaryContext = new CSimContext();
+		m_SecondaryContext->m_Terrain = m_SecondaryTerrain;
+
+		delete m_SecondaryComponentManager;
+		m_SecondaryComponentManager = new CComponentManager(*m_SecondaryContext, scriptInterface.GetRuntime());
+		m_SecondaryComponentManager->LoadComponentTypes();
+
+		delete m_SecondaryLoadedScripts;
+		m_SecondaryLoadedScripts = new std::set<VfsPath>();
+		ENSURE(LoadDefaultScripts(*m_SecondaryComponentManager, m_SecondaryLoadedScripts));
+		ResetComponentState(*m_SecondaryComponentManager, false, false);
 
 		// Load the trigger scripts after we have loaded the simulation.
 		{
-			JSContext* cx2 = secondaryComponentManager.GetScriptInterface().GetContext();
+			JSContext* cx2 = m_SecondaryComponentManager->GetScriptInterface().GetContext();
 			JSAutoRequest rq2(cx2);
 			JS::RootedValue mapSettingsCloned(cx2,
-				secondaryComponentManager.GetScriptInterface().CloneValueFromOtherContext(
+				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherContext(
 					scriptInterface, m_MapSettings));
-			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned, &secondaryLoadedScripts));
+			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts));
 		}
 
 		// Load the map into the secondary simulation
@@ -393,21 +426,23 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
 			mapReader->LoadMap(mapfilename, scriptInterface.GetJSRuntime(), JS::UndefinedHandleValue,
-				&secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
-				NULL, NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
+				m_SecondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
+				NULL, NULL, m_SecondaryContext, INVALID_PLAYER, true); // throws exception on failure
 		}
 
 		LDR_EndRegistering();
 		ENSURE(LDR_NonprogressiveLoad() == INFO::OK);
+		ENSURE(m_SecondaryComponentManager->DeserializeState(primaryStateBefore.state));
+	}
 
-		ENSURE(secondaryComponentManager.DeserializeState(primaryStateBefore.state));
-
+	if (m_EnableSerializationTest || m_TestingRejoin)
+	{
 		SerializationTestState secondaryStateBefore;
-		ENSURE(secondaryComponentManager.SerializeState(secondaryStateBefore.state));
+		ENSURE(m_SecondaryComponentManager->SerializeState(secondaryStateBefore.state));
 		if (serializationTestDebugDump)
-			ENSURE(secondaryComponentManager.DumpDebugState(secondaryStateBefore.debug, false));
+			ENSURE(m_SecondaryComponentManager->DumpDebugState(secondaryStateBefore.debug, false));
 		if (serializationTestHash)
-			ENSURE(secondaryComponentManager.ComputeStateHash(secondaryStateBefore.hash, false));
+			ENSURE(m_SecondaryComponentManager->ComputeStateHash(secondaryStateBefore.hash, false));
 
 		if (primaryStateBefore.state.str() != secondaryStateBefore.state.str() ||
 			primaryStateBefore.hash != secondaryStateBefore.hash)
@@ -420,19 +455,19 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		if (serializationTestHash)
 			ENSURE(m_ComponentManager.ComputeStateHash(primaryStateAfter.hash, false));
 
-		UpdateComponents(secondaryContext, turnLengthFixed,
-			CloneCommandsFromOtherContext(scriptInterface, secondaryComponentManager.GetScriptInterface(), commands));
+		UpdateComponents(*m_SecondaryContext, turnLengthFixed,
+			CloneCommandsFromOtherContext(scriptInterface, m_SecondaryComponentManager->GetScriptInterface(), commands));
 		SerializationTestState secondaryStateAfter;
-		ENSURE(secondaryComponentManager.SerializeState(secondaryStateAfter.state));
+		ENSURE(m_SecondaryComponentManager->SerializeState(secondaryStateAfter.state));
 		if (serializationTestHash)
-			ENSURE(secondaryComponentManager.ComputeStateHash(secondaryStateAfter.hash, false));
+			ENSURE(m_SecondaryComponentManager->ComputeStateHash(secondaryStateAfter.hash, false));
 
 		if (primaryStateAfter.state.str() != secondaryStateAfter.state.str() ||
 			primaryStateAfter.hash != secondaryStateAfter.hash)
 		{
 			// Only do the (slow) dumping now we know we're going to need to report it
 			ENSURE(m_ComponentManager.DumpDebugState(primaryStateAfter.debug, false));
-			ENSURE(secondaryComponentManager.DumpDebugState(secondaryStateAfter.debug, false));
+			ENSURE(m_SecondaryComponentManager->DumpDebugState(secondaryStateAfter.debug, false));
 
 			ReportSerializationFailure(&primaryStateBefore, &primaryStateAfter, &secondaryStateBefore, &secondaryStateAfter);
 		}
@@ -588,6 +623,16 @@ CSimulation2::~CSimulation2()
 
 // Forward all method calls to the appropriate CSimulation2Impl/CComponentManager methods:
 
+void CSimulation2::EnableSerializationTest()
+{
+	m->m_EnableSerializationTest = true;
+}
+
+void CSimulation2::EnableRejoinTest(int rejoinTestTurn)
+{
+	m->m_RejoinTestTurn = rejoinTestTurn;
+}
+
 void CSimulation2::EnableOOSLog()
 {
 	if (m->m_EnableOOSLog)
@@ -597,11 +642,6 @@ void CSimulation2::EnableOOSLog()
 	m->m_OOSLogPath = createDateIndexSubdirectory(psLogDir() / "oos_logs");
 
 	debug_printf("Writing ooslogs to %s\n", m->m_OOSLogPath.string8().c_str());
-}
-
-void CSimulation2::EnableSerializationTest()
-{
-	m->m_EnableSerializationTest = true;
 }
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)

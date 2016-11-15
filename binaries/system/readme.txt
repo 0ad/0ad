@@ -58,6 +58,9 @@ Advanced / diagnostic:
 -serializationtest  checks simulation state each turn for serialization errors; on test
                     failure, error is displayed and logs created in oos_log within the
                     game's log folder. NOTE: game will run much slower with this option!
+-rejointest=N       simulates a rejoin and checks simulation state each turn for serialization
+                    errors; this is similar to a serialization test but much faster and
+                    less complete. It should be enough for debugging most rejoin OOSes.
 
 Windows-specific:
 -wQpcTscSafe        allow timing via QueryPerformanceCounter despite the fact
