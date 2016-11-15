@@ -120,6 +120,28 @@ public:
 		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1", -1);
 		ScriptInterface::ToJSVal(cx, &val, &foundation->GetChild("VisualActor"));
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Actor:\"example1\", ActorOnly:(void 0), Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
+
+#define GET_FIRST_ELEMENT(n, templateName) \
+		const CParamNode* n = tempMan->LoadTemplate(ent2, templateName, -1); \
+		for (CParamNode::ChildrenMap::const_iterator it = n->GetChildren().begin(); it != n->GetChildren().end(); ++it) \
+		{ \
+			if (it->first[0] == '@') \
+				continue; \
+			ScriptInterface::ToJSVal(cx, &val, it->second); \
+			break; \
+		}
+
+		GET_FIRST_ELEMENT(n1, "inherit_a");
+		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({'@datatype':\"tokens\", _string:\"a b c\"})");
+		GET_FIRST_ELEMENT(n2, "inherit_b");
+		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({'@datatype':\"tokens\", _string:\"a b c d\"})");
+
+		GET_FIRST_ELEMENT(n3, "inherit_c");
+		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({'@a':\"b\", _string:\"a b c\"})");
+		GET_FIRST_ELEMENT(n4, "inherit_d");
+		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({'@a':\"b\", '@c':\"d\"})");
+
+#undef GET_FIRST_ELEMENT
 	}
 
 	void test_LoadTemplate_errors()
