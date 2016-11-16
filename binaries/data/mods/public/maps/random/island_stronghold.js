@@ -371,7 +371,7 @@ clRock
 
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 4, clMetal, 4), stayClasses(clLand, 3)],
+ [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
  clForest,
  1.0,
  random_terrain
@@ -387,7 +387,7 @@ let elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
 	placer,
 	[painter, elevationPainter, paintClass(clHill)],
-	[avoidClasses(clBaseResource, 20, clHill, 15, clRock, 4, clMetal, 4), stayClasses(clLand, 0)],
+	[avoidClasses(clBaseResource, 20, clHill, 15, clRock, 6, clMetal, 6), stayClasses(clLand, 0)],
 	scaleByMapSize(4, 13)
 );
 for (let i = 0; i < 3; ++i)
@@ -395,7 +395,7 @@ for (let i = 0; i < 3; ++i)
 
 createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
-		[avoidClasses(clForest, 10, clPlayer, 20, clMetal, 1, clRock, 1, clHill, 1),
+		[avoidClasses(clForest, 10, clPlayer, 20, clMetal, 6, clRock, 6, clHill, 1),
 		 stayClasses(clLand, 4)]
 );
 
@@ -405,7 +405,7 @@ createFood(
 		[new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)]
 	],
 	[3 * numPlayers, 3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clRock, 4, clMetal, 4), stayClasses(clLand, 2)]
+	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clRock, 6, clMetal, 6), stayClasses(clLand, 2)]
 );
 
 createFood(
@@ -413,7 +413,7 @@ createFood(
 		[new SimpleObject(oFruitBush, 5, 7, 0, 4)]
 	],
 	[3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 4, clMetal, 4), stayClasses(clLand, 2)]
+	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)]
 );
 
 if (random_terrain == g_BiomeDesert)

@@ -520,7 +520,7 @@ RMS.SetProgress(85);
 
 // create straggler trees
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
-createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1));
+createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
 
 setWaterWaviness(3.0);
 setWaterType("lake");

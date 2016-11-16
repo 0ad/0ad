@@ -287,7 +287,7 @@ log("Creating iceberg...");
 // create iceberg
 group = new SimpleGroup([new SimpleObject(aIceberg, 0,2, 0,4)], true, clRock);
 createObjectGroups(group, 0,
-	[avoidClasses(clRock, 4), stayClasses(clWater, 4)],
+	[avoidClasses(clRock, 6), stayClasses(clWater, 4)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -363,7 +363,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1),
+		avoidClasses(clWater, 5, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
 		num
 	);
 }

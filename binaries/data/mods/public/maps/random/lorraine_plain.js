@@ -446,7 +446,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 1, clForest, 7, clHill, 1, clPlayer, 5, clMetal, 1, clRock, 1),
+		avoidClasses(clWater, 1, clForest, 7, clHill, 1, clPlayer, 5, clMetal, 6, clRock, 6),
 		num
 	);
 }

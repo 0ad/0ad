@@ -238,7 +238,7 @@ function createStragglerTrees(types, constraint, tileclass)
 
 	constraint = constraint !== undefined ?
 		constraint :
-		avoidClasses(clForest, 8, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1);
+		avoidClasses(clForest, 8, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6);
 
 	tileclass = tileclass !== undefined ? tileclass : clForest;
 

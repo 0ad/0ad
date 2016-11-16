@@ -533,7 +533,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 	createObjectGroups(group, 0,
-		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 0, clMetal, 1, clRock, 1), stayClasses(clLand, 6)],
+		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 0, clMetal, 6, clRock, 6), stayClasses(clLand, 6)],
 		num
 	);
 }

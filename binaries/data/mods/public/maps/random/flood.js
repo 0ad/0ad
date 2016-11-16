@@ -304,7 +304,7 @@ createObjectGroups(group, 0,
 
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
-	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 3, clRock, 3, clMountain, 2), stayClasses(clHill, 6)],
+	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 3, clMountain, 2), stayClasses(clHill, 6)],
 	clForest,
 	0.7,
 	random_terrain
@@ -312,7 +312,7 @@ createForests(
 
 log("Creating straggeler trees...");
 let types = [oTree1, oTree2, oTree4, oTree3];
-createStragglerTrees(types, [avoidClasses(clBaseResource, 2, clMetal, 3, clRock, 3, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)]);
+createStragglerTrees(types, [avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 3, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)]);
 
 RMS.SetProgress(65);
 
@@ -360,7 +360,7 @@ createFood(
 		[new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)]
 	],
 	[3 * numPlayers, 3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 20, clMountain, 1, clFood, 4, clRock, 4, clMetal, 4), stayClasses(clHill, 2)]
+	[avoidClasses(clForest, 0, clPlayer, 20, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 2)]
 );
 
 RMS.SetProgress(75);
@@ -370,13 +370,13 @@ createFood(
 		[new SimpleObject(oFruitBush, 5, 7, 0, 4)]
 	],
 	[3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 15, clMountain, 1, clFood, 4, clRock, 4, clMetal, 4), stayClasses(clHill, 2)]
+	[avoidClasses(clForest, 0, clPlayer, 15, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 2)]
 );
 
 RMS.SetProgress(85);
 
 log("Creating more straggeler trees...");
-createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 3, clRock, 3));
+createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 6, clRock, 3));
 
 log("Creating decoration...");
 let planetm = random_terrain == g_BiomeTropic ? 8 : 1;

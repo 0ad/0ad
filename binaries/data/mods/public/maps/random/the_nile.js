@@ -534,7 +534,7 @@ for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
 	createObjectGroups(group, 0,
-		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 1, clDesert, 1, clTreasure, 2, clPond, 1),
+		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clDesert, 1, clTreasure, 2, clPond, 1),
 		num
 	);
 }
@@ -545,7 +545,7 @@ for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
 	createObjectGroups(group, 0,
-		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 1, clTreasure, 2),
+		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clTreasure, 2),
 		num
 	);
 }
@@ -571,7 +571,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(
 	group, 0,
-	[avoidClasses(clWater, 4, clForest, 3, clPlayer, 20, clMetal, 2, clRock, 2, clPond, 4, clTreasure, 2), stayClasses(clDesert, 3)],
+	[avoidClasses(clWater, 4, clForest, 3, clPlayer, 20, clMetal, 6, clRock, 2, clPond, 4, clTreasure, 2), stayClasses(clDesert, 3)],
 	scaleByMapSize(5, 30), 50
 );
 

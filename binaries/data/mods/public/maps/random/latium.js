@@ -452,7 +452,7 @@ RMS.SetProgress(50);
 log("Creating large stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clStone);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 1, clForest, 4, clPlayer, 40, clStone, 40, clMetal, 10, clCliff, 3),
+	avoidClasses(clWater, 1, clForest, 4, clPlayer, 40, clStone, 60, clMetal, 10, clCliff, 3),
 	scaleByMapSize(4,16), 100
 );
 
@@ -475,7 +475,7 @@ for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
 {
 	group = new SimpleGroup([new SimpleObject(tree, 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 4, clStone, 4),
+		avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 6, clStone, 6),
 		scaleByMapSize(2, 38), 50
 	);
 }
@@ -487,7 +487,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 4, clStone, 4),
+	avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 6, clStone, 6),
 	scaleByMapSize(5, 75), 50
 );
 RMS.SetProgress(80);
@@ -495,7 +495,7 @@ RMS.SetProgress(80);
 log("Creating sheep...");
 group = new SimpleGroup([new SimpleObject(oSheep, 2,4, 0,2)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 6, clStone, 6, clFood, 8),
 	3 * numPlayers, 50
 );
 RMS.SetProgress(85);
@@ -525,7 +525,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 6, clStone, 6, clFood, 8),
 	3 * numPlayers, 50
 );
 RMS.SetProgress(95);
@@ -533,7 +533,7 @@ RMS.SetProgress(95);
 log("Creating berry bushes...");
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 4, clStone, 4, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 2, clCliff, 1, clPlayer, 20, clMetal, 6, clStone, 6, clFood, 8),
 	1.5 * numPlayers, 100
 );
 

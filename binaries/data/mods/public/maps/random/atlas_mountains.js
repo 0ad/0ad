@@ -317,7 +317,7 @@ RMS.SetProgress(80);
 
 // create straggler trees
 var types = [oCarob, oAleppoPine];	// some variation
-createStragglerTrees(types, avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 1, clRock, 1, clTreasure, 1));
+createStragglerTrees(types, avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4));
 
 // create hill trees
 log("Creating hill trees...");

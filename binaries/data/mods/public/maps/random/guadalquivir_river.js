@@ -416,7 +416,7 @@ RMS.SetProgress(85);
 // create straggler trees
 log("Creating straggler trees...");
 var types = [oPoplar, oCarob, oApple];	// some variation
-createStragglerTrees(types, [avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 1, clRock, 1, clRiver, 1), stayClasses(clLand, 7)]);
+createStragglerTrees(types, [avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6, clRiver, 1), stayClasses(clLand, 7)]);
 
 setSkySet("cumulus");
 setWaterColor(0.2,0.312,0.522);

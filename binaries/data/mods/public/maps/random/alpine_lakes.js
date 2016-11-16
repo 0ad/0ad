@@ -412,7 +412,7 @@ RMS.SetProgress(85);
 
 // create straggler trees
 var types = [oPine];
-createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 3, clHill, 1, clPlayer, 12, clMetal, 1, clRock, 1));
+createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 3, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
 
 random_var = randInt(1,3);
 
