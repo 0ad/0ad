@@ -31,18 +31,19 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 	{
 		if (i === PlayerID || !gameState.isPlayerAlly(i) || gameState.ai.HQ.attackManager.defeated[i])
 			continue;
+		let donor = gameState.getAlliedVictory() || gameState.getEntities(i).length < gameState.getOwnEntities().length;
 		let allyResources = gameState.sharedScript.playersData[i].resourceCounts;
 		let allyPop = gameState.sharedScript.playersData[i].popCount;
 		let tribute = {};
 		let toSend = false;
 		for (let res in allyResources)
 		{
-			if (availableResources[res] > 200 && allyResources[res] < 0.2 * availableResources[res])
+			if (donor && availableResources[res] > 200 && allyResources[res] < 0.2 * availableResources[res])
 			{
 				tribute[res] = Math.floor(0.3*availableResources[res] - allyResources[res]);
 				toSend = true;
 			}
-			else if (allyPop < Math.min(30, 0.5*gameState.getPopulation()) && totalResources[res] > 500 && allyResources[res] < 100)
+			else if (donor && allyPop < Math.min(30, 0.5*gameState.getPopulation()) && totalResources[res] > 500 && allyResources[res] < 100)
 			{
 				tribute[res] = 100;
 				toSend = true;

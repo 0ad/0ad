@@ -372,6 +372,15 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		return true;
 	}
 
+	// or if diplomacy changed
+	if (events.DiplomacyChanged.length)
+	{
+		this.routeProspection = true;
+		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
+		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
+		return true;
+	}
+
 	return false;
 };
 

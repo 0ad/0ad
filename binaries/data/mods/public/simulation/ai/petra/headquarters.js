@@ -1155,6 +1155,9 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	{
 		enemyStructures = gameState.getNeutralStructures().filter(API3.Filters.not(API3.Filters.byOwner(0))).
 			filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"]));
+		if (!enemyStructures.hasEntities() && !gameState.getAlliedVictory())
+			enemyStructures = gameState.getAllyStructures().filter(API3.Filters.not(API3.Filters.byOwner(PlayerID))).
+				filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"]));
 		if (!enemyStructures.hasEntities())
 			return undefined;
 	}
