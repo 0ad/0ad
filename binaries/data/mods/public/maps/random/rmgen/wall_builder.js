@@ -739,7 +739,7 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId, 
 //	TODO: Check some arguments
 //	TODO: Add eccentricity and perhaps make it just call placeIrregularPolygonalWall with irregularity = 0
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElement, style, playerId, orientation, numCorners, skipFirstWall)
+function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElement, style, playerId, orientation, numCorners, skipFirstWall = true)
 {
 	// Setup optional arguments to the default
 	wallPart = wallPart || ["wallLong", "tower"];
@@ -755,7 +755,6 @@ function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElemen
 	}
 	orientation = orientation || 0;
 	numCorners = numCorners || 8;
-	skipFirstWall = skipFirstWall || true;
 
 	// Setup angles
 	var angleAdd = 2*PI/numCorners;
