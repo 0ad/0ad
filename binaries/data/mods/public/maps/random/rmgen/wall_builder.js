@@ -107,130 +107,155 @@ function Fortress(type, wall, centerToFirstElement)
 var wallStyles = {};
 
 // Generic civ dependent wall style definition. "rome_siege" needs some tweek...
-var wallScaleByType = {"athen" : 1.5, "brit" : 1.5, "cart" : 1.8, "gaul" : 1.5, "iber" : 1.5, "mace" : 1.5, "maur": 1.5, "pers" : 1.5, "ptol" : 1.5, "rome" : 1.5, "sele" : 1.5, "spart" : 1.5, "rome_siege" : 1.5};
+var wallScaleByType = {
+	"athen": 1.5,
+	"brit": 1.5,
+	"cart": 1.8,
+	"gaul": 1.5,
+	"iber": 1.5,
+	"mace": 1.5,
+	"maur": 1.5,
+	"pers": 1.5,
+	"ptol": 1.5,
+	"rome": 1.5,
+	"sele": 1.5,
+	"spart": 1.5,
+	"rome_siege": 1.5
+};
+
 for (var style in wallScaleByType)
 {
 	var civ = style;
 	if (style == "rome_siege")
 		civ = "rome";
-	wallStyles[style] = {};
-	// Default wall elements
-	wallStyles[style]["tower"] = new WallElement("tower", "structures/" + style + "_wall_tower", PI, wallScaleByType[style]);
-	wallStyles[style]["endLeft"] = new WallElement("endLeft", "structures/" + style + "_wall_tower", PI, wallScaleByType[style]); // Same as tower. To be compatible with palisades...
-	wallStyles[style]["endRight"] = new WallElement("endRight", "structures/" + style + "_wall_tower", PI, wallScaleByType[style]); // Same as tower. To be compatible with palisades...
-	wallStyles[style]["cornerIn"] = new WallElement("cornerIn", "structures/" + style + "_wall_tower", 5*PI/4, 0, 0.35*wallScaleByType[style], PI/2); // 2^0.5 / 4 ~= 0.35 ~= 1/3
-	wallStyles[style]["cornerOut"] = new WallElement("cornerOut", "structures/" + style + "_wall_tower", 3*PI/4, 0.71*wallScaleByType[style], 0, -PI/2); // // 2^0.5 / 2 ~= 0.71 ~= 2/3
-	wallStyles[style]["wallShort"] = new WallElement("wallShort", "structures/" + style + "_wall_short", 0*PI, 2*wallScaleByType[style]);
-	wallStyles[style]["wall"] = new WallElement("wall", "structures/" + style + "_wall_medium", 0*PI, 4*wallScaleByType[style]);
-	wallStyles[style]["wallMedium"] = new WallElement("wall", "structures/" + style + "_wall_medium", 0*PI, 4*wallScaleByType[style]);
-	wallStyles[style]["wallLong"] = new WallElement("wallLong", "structures/" + style + "_wall_long", 0*PI, 6*wallScaleByType[style]);
-	// Gate and entrance wall elements
-	var gateWidth = 6*wallScaleByType[style];
-	wallStyles[style]["gate"] = new WallElement("gate", "structures/" + style + "_wall_gate", PI, gateWidth);
-	wallStyles[style]["entry"] = new WallElement("entry", undefined, 0*PI, gateWidth);
-	wallStyles[style]["entryTower"] = new WallElement("entryTower", "structures/" + civ + "_defense_tower", PI, gateWidth, -4*wallScaleByType[style]);
-	wallStyles[style]["entryFort"] = new WallElement("entryFort", "structures/" + civ + "_fortress", 0*PI, 8*wallScaleByType[style], 6*wallScaleByType[style]);
-	// Defensive wall elements with 0 width outside the wall
-	wallStyles[style]["outpost"] = new WallElement("outpost", "structures/" + civ + "_outpost", PI, 0, -4*wallScaleByType[style]);
-	wallStyles[style]["defenseTower"] = new WallElement("defenseTower", "structures/" + civ + "_defense_tower", PI, 0, -4*wallScaleByType[style]);
-	// Base buildings wall elements with 0 width inside the wall
-	wallStyles[style]["barracks"] = new WallElement("barracks", "structures/" + civ + "_barracks", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["civilCentre"] = new WallElement("civilCentre", "structures/" + civ + "_civil_centre", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["farmstead"] = new WallElement("farmstead", "structures/" + civ + "_farmstead", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["field"] = new WallElement("field", "structures/" + civ + "_field", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["fortress"] = new WallElement("fortress", "structures/" + civ + "_fortress", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["house"] = new WallElement("house", "structures/" + civ + "_house", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["market"] = new WallElement("market", "structures/" + civ + "_market", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["storehouse"] = new WallElement("storehouse", "structures/" + civ + "_storehouse", PI, 0, 4.5*wallScaleByType[style]);
-	wallStyles[style]["temple"] = new WallElement("temple", "structures/" + civ + "_temple", PI, 0, 4.5*wallScaleByType[style]);
-	// Generic space/gap wall elements
-	wallStyles[style]["space1"] = new WallElement("space1", undefined, 0*PI, wallScaleByType[style]);
-	wallStyles[style]["space2"] = new WallElement("space2", undefined, 0*PI, 2*wallScaleByType[style]);
-	wallStyles[style]["space3"] = new WallElement("space3", undefined, 0*PI, 3*wallScaleByType[style]);
-	wallStyles[style]["space4"] = new WallElement("space4", undefined, 0*PI, 4*wallScaleByType[style]);
+
+	wallStyles[style] = {
+		// Default wall elements
+		"tower":      new WallElement("tower", "structures/" + style + "_wall_tower", PI, wallScaleByType[style]),
+		"endLeft":    new WallElement("endLeft", "structures/" + style + "_wall_tower", PI, wallScaleByType[style]), // Same as tower. To be compatible with palisades...
+		"endRight":   new WallElement("endRight", "structures/" + style + "_wall_tower", PI, wallScaleByType[style]), // Same as tower. To be compatible with palisades...
+		"cornerIn":   new WallElement("cornerIn", "structures/" + style + "_wall_tower", 5/4*PI, 0, 0.35 * wallScaleByType[style], PI/2), // 2^0.5 / 4 ~= 0.35 ~= 1/3
+		"cornerOut":  new WallElement("cornerOut", "structures/" + style + "_wall_tower", 3/4*PI, 0.71 * wallScaleByType[style], 0, -PI/2), // 2^0.5 / 2 ~= 0.71 ~= 2/3
+		"wallShort":  new WallElement("wallShort", "structures/" + style + "_wall_short", 0, 2*wallScaleByType[style]),
+		"wall":       new WallElement("wall", "structures/" + style + "_wall_medium", 0, 4*wallScaleByType[style]),
+		"wallMedium": new WallElement("wall", "structures/" + style + "_wall_medium", 0, 4*wallScaleByType[style]),
+		"wallLong":   new WallElement("wallLong", "structures/" + style + "_wall_long", 0, 6*wallScaleByType[style]),
+
+		// Gate and entrance wall elements
+		"gate":       new WallElement("gate", "structures/" + style + "_wall_gate", PI, 6*wallScaleByType[style]),
+		"entry":      new WallElement("entry", undefined, 0, 6*wallScaleByType[style]),
+		"entryTower": new WallElement("entryTower", "structures/" + civ + "_defense_tower", PI, 6*wallScaleByType[style], -4*wallScaleByType[style]),
+		"entryFort":  new WallElement("entryFort", "structures/" + civ + "_fortress", 0, 8*wallScaleByType[style], 6*wallScaleByType[style]),
+
+		// Defensive wall elements with 0 width outside the wall
+		"outpost":      new WallElement("outpost", "structures/" + civ + "_outpost", PI, 0, -4*wallScaleByType[style]),
+		"defenseTower": new WallElement("defenseTower", "structures/" + civ + "_defense_tower", PI, 0, -4*wallScaleByType[style]),
+
+		// Base buildings wall elements with 0 width inside the wall
+		"barracks":    new WallElement("barracks", "structures/" + civ + "_barracks", PI, 0, 4.5*wallScaleByType[style]),
+		"civilCentre": new WallElement("civilCentre", "structures/" + civ + "_civil_centre", PI, 0, 4.5*wallScaleByType[style]),
+		"farmstead":   new WallElement("farmstead", "structures/" + civ + "_farmstead", PI, 0, 4.5*wallScaleByType[style]),
+		"field":       new WallElement("field", "structures/" + civ + "_field", PI, 0, 4.5*wallScaleByType[style]),
+		"fortress":    new WallElement("fortress", "structures/" + civ + "_fortress", PI, 0, 4.5*wallScaleByType[style]),
+		"house":       new WallElement("house", "structures/" + civ + "_house", PI, 0, 4.5*wallScaleByType[style]),
+		"market":      new WallElement("market", "structures/" + civ + "_market", PI, 0, 4.5*wallScaleByType[style]),
+		"storehouse":  new WallElement("storehouse", "structures/" + civ + "_storehouse", PI, 0, 4.5*wallScaleByType[style]),
+		"temple":      new WallElement("temple", "structures/" + civ + "_temple", PI, 0, 4.5*wallScaleByType[style]),
+
+		// Generic space/gap wall elements
+		"space1": new WallElement("space1", undefined, 0, 1*wallScaleByType[style]),
+		"space2": new WallElement("space2", undefined, 0, 2*wallScaleByType[style]),
+		"space3": new WallElement("space3", undefined, 0, 3*wallScaleByType[style]),
+		"space4": new WallElement("space4", undefined, 0, 4*wallScaleByType[style])
+	};
 }
+
 // Add wall fortresses for all generic styles
-wallStyles["athen"]["wallFort"] = new WallElement("wallFort", "structures/athen_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
-wallStyles["brit"]["wallFort"] = new WallElement("wallFort", "structures/brit_fortress", PI, 2.8);
-wallStyles["cart"]["wallFort"] = new WallElement("wallFort", "structures/cart_fortress", PI, 5.1, 1.6);
-wallStyles["gaul"]["wallFort"] = new WallElement("wallFort", "structures/gaul_fortress", PI, 4.2, 1.5);
-wallStyles["iber"]["wallFort"] = new WallElement("wallFort", "structures/iber_fortress", PI, 5, 0.2);
-wallStyles["mace"]["wallFort"] = new WallElement("wallFort", "structures/mace_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
-wallStyles["maur"]["wallFort"] = new WallElement("wallFort", "structures/maur_fortress", PI, 5.5);
-wallStyles["pers"]["wallFort"] = new WallElement("wallFort", "structures/pers_fortress", PI, 5.6/*5.5*/, 1.9/*1.7*/);
-wallStyles["ptol"]["wallFort"] = new WallElement("wallFort", "structures/ptol_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
-wallStyles["rome"]["wallFort"] = new WallElement("wallFort", "structures/rome_fortress", PI, 6.3, 2.1);
-wallStyles["sele"]["wallFort"] = new WallElement("wallFort", "structures/sele_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
-wallStyles["spart"]["wallFort"] = new WallElement("wallFort", "structures/spart_fortress", 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
+wallStyles.athen.wallFort = new WallElement("wallFort", "structures/athen_fortress", 2*PI/2, 5.1, 1.9);
+wallStyles.brit.wallFort = new WallElement("wallFort", "structures/brit_fortress", PI, 2.8);
+wallStyles.cart.wallFort = new WallElement("wallFort", "structures/cart_fortress", PI, 5.1, 1.6);
+wallStyles.gaul.wallFort = new WallElement("wallFort", "structures/gaul_fortress", PI, 4.2, 1.5);
+wallStyles.iber.wallFort = new WallElement("wallFort", "structures/iber_fortress", PI, 5, 0.2);
+wallStyles.mace.wallFort = new WallElement("wallFort", "structures/mace_fortress", 2*PI/2, 5.1, 1.9);
+wallStyles.maur.wallFort = new WallElement("wallFort", "structures/maur_fortress", PI, 5.5);
+wallStyles.pers.wallFort = new WallElement("wallFort", "structures/pers_fortress", PI, 5.6, 1.9);
+wallStyles.ptol.wallFort = new WallElement("wallFort", "structures/ptol_fortress", 2*PI/2, 5.1, 1.9);
+wallStyles.rome.wallFort = new WallElement("wallFort", "structures/rome_fortress", PI, 6.3, 2.1);
+wallStyles.sele.wallFort = new WallElement("wallFort", "structures/sele_fortress", 2*PI/2, 5.1, 1.9);
+wallStyles.spart.wallFort = new WallElement("wallFort", "structures/spart_fortress", 2*PI/2, 5.1, 1.9);
+
 // Adjust "rome_siege" style
-wallStyles["rome_siege"]["wallFort"] = new WallElement("wallFort", "structures/rome_army_camp", PI, 7.2, 2);
-wallStyles["rome_siege"]["entryFort"] = new WallElement("entryFort", "structures/rome_army_camp", PI, 12, 7);
-wallStyles["rome_siege"]["house"] = new WallElement("house", "structures/rome_tent", PI, 0, 4);
+wallStyles.rome_siege.wallFort = new WallElement("wallFort", "structures/rome_army_camp", PI, 7.2, 2);
+wallStyles.rome_siege.entryFort = new WallElement("entryFort", "structures/rome_army_camp", PI, 12, 7);
+wallStyles.rome_siege.house = new WallElement("house", "structures/rome_tent", PI, 0, 4);
 
 // Add special wall styles not well to implement generic (and to show how custom styles can be added)
 
-// Add wall style "palisades"
-wallScaleByType["palisades"] = 0.55;
-wallStyles["palisades"] = {};
-wallStyles["palisades"]["wall"] = new WallElement("wall", "other/palisades_rocks_medium", 0*PI, 2.3);
-wallStyles["palisades"]["wallMedium"] = new WallElement("wall", "other/palisades_rocks_medium", 0*PI, 2.3);
-wallStyles["palisades"]["wallLong"] = new WallElement("wall", "other/palisades_rocks_long", 0*PI, 3.5);
-wallStyles["palisades"]["wallShort"] = new WallElement("wall", "other/palisades_rocks_short", 0*PI, 1.2);
-wallStyles["palisades"]["tower"] = new WallElement("tower", "other/palisades_rocks_tower", -PI/2, 0.7);
-wallStyles["palisades"]["wallFort"] = new WallElement("wallFort", "other/palisades_rocks_fort", PI, 1.7);
-wallStyles["palisades"]["gate"] = new WallElement("gate", "other/palisades_rocks_gate", PI, 3.6);
-wallStyles["palisades"]["entry"] = new WallElement("entry", undefined, wallStyles["palisades"]["gate"].angle, wallStyles["palisades"]["gate"].width);
-wallStyles["palisades"]["entryTower"] = new WallElement("entryTower", "other/palisades_rocks_watchtower", 0*PI, wallStyles["palisades"]["gate"].width, -3);
-wallStyles["palisades"]["entryFort"] = new WallElement("entryFort", "other/palisades_rocks_fort", PI, 6, 3);
-wallStyles["palisades"]["cornerIn"] = new WallElement("cornerIn", "other/palisades_rocks_curve", 3*PI/4, 2.1, 0.7, PI/2);
-wallStyles["palisades"]["cornerOut"] = new WallElement("cornerOut", "other/palisades_rocks_curve", 5*PI/4, 2.1, -0.7, -PI/2);
-wallStyles["palisades"]["outpost"] = new WallElement("outpost", "other/palisades_rocks_outpost", PI, 0, -2);
-wallStyles["palisades"]["house"] = new WallElement("house", "other/celt_hut", PI, 0, 5);
-wallStyles["palisades"]["barracks"] = new WallElement("barracks", "structures/gaul_tavern", PI, 0, 5);
-wallStyles["palisades"]["endRight"] = new WallElement("endRight", "other/palisades_rocks_end", -PI/2, 0.2);
-wallStyles["palisades"]["endLeft"] = new WallElement("endLeft", "other/palisades_rocks_end", PI/2, 0.2);
+wallScaleByType.palisades = 0.55;
+let gate = new WallElement("gate", "other/palisades_rocks_gate", PI, 3.6);
+wallStyles.palisades = {
+	"wall": new WallElement("wall", "other/palisades_rocks_medium", 0, 2.3),
+	"wallMedium": new WallElement("wall", "other/palisades_rocks_medium", 0, 2.3),
+	"wallLong": new WallElement("wall", "other/palisades_rocks_long", 0, 3.5),
+	"wallShort": new WallElement("wall", "other/palisades_rocks_short", 0, 1.2),
+	"tower": new WallElement("tower", "other/palisades_rocks_tower", -PI/2, 0.7),
+	"wallFort": new WallElement("wallFort", "other/palisades_rocks_fort", PI, 1.7),
+	"gate": gate,
+	"entry": new WallElement("entry", undefined, gate.angle, gate.width),
+	"entryTower": new WallElement("entryTower", "other/palisades_rocks_watchtower", 0, gate.width, -3),
+	"entryFort": new WallElement("entryFort", "other/palisades_rocks_fort", PI, 6, 3),
+	"cornerIn": new WallElement("cornerIn", "other/palisades_rocks_curve", 3*PI/4, 2.1, 0.7, PI/2),
+	"cornerOut": new WallElement("cornerOut", "other/palisades_rocks_curve", 5*PI/4, 2.1, -0.7, -PI/2),
+	"outpost": new WallElement("outpost", "other/palisades_rocks_outpost", PI, 0, -2),
+	"house": new WallElement("house", "other/celt_hut", PI, 0, 5),
+	"barracks": new WallElement("barracks", "structures/gaul_tavern", PI, 0, 5),
+	"endRight": new WallElement("endRight", "other/palisades_rocks_end", -PI/2, 0.2),
+	"endLeft": new WallElement("endLeft", "other/palisades_rocks_end", PI/2, 0.2)
+};
 
-// Add special wall style "road"
 // NOTE: This is not a wall style in the common sense. Use with care!
-wallStyles["road"] = {};
-wallStyles["road"]["short"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_short.xml", PI/2, 4.5);
-wallStyles["road"]["long"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_long.xml", PI/2, 9.5);
-wallStyles["road"]["cornerLeft"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_corner.xml", -PI/2, 4.5-2*1.25, 1.25, PI/2); // Correct width by -2*indent to fit xStraicht/corner
-wallStyles["road"]["cornerRight"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_corner.xml", 0*PI, 4.5-2*1.25, -1.25, -PI/2); // Correct width by -2*indent to fit xStraicht/corner
-wallStyles["road"]["curveLeft"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_curve_small.xml", -PI/2, 4.5+2*0.2, -0.2, PI/2); // Correct width by -2*indent to fit xStraicht/corner
-wallStyles["road"]["curveRight"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_curve_small.xml", 0*PI, 4.5+2*0.2, 0.2, -PI/2); // Correct width by -2*indent to fit xStraicht/corner
-wallStyles["road"]["start"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_end.xml", PI/2, 2);
-wallStyles["road"]["end"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_end.xml", -PI/2, 2);
-wallStyles["road"]["xStraight"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_x.xml", 0*PI, 4.5);
-wallStyles["road"]["xLeft"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_x.xml", 0*PI, 4.5, 0, PI/2);
-wallStyles["road"]["xRight"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_x.xml", 0*PI, 4.5, 0, -PI/2);
-wallStyles["road"]["tLeft"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_T.xml", PI, 4.5, 1.25);
-wallStyles["road"]["tRight"] = new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_T.xml", 0*PI, 4.5, -1.25);
+wallStyles.road = {
+	"short": new WallElement("road", "actor|props/special/eyecandy/road_temperate_short.xml", PI/2, 4.5),
+	"long": new WallElement("road", "actor|props/special/eyecandy/road_temperate_long.xml", PI/2, 9.5),
 
-// Add special wall element collection "other"
+	// Correct width by -2*indent to fit xStraicht/corner
+	"cornerLeft": new WallElement("road", "actor|props/special/eyecandy/road_temperate_corner.xml", -PI/2, 4.5-2*1.25, 1.25, PI/2),
+	"cornerRight": new WallElement("road", "actor|props/special/eyecandy/road_temperate_corner.xml", 0, 4.5-2*1.25, -1.25, -PI/2),
+	"curveLeft": new WallElement("road", "actor|props/special/eyecandy/road_temperate_curve_small.xml", -PI/2, 4.5+2*0.2, -0.2, PI/2),
+	"curveRight": new WallElement("road", "actor|props/special/eyecandy/road_temperate_curve_small.xml", 0, 4.5+2*0.2, 0.2, -PI/2),
+
+	"start": new WallElement("road", "actor|props/special/eyecandy/road_temperate_end.xml", PI/2, 2),
+	"end": new WallElement("road", "actor|props/special/eyecandy/road_temperate_end.xml", -PI/2, 2),
+	"xStraight": new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_x.xml", 0, 4.5),
+	"xLeft": new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_x.xml", 0, 4.5, 0, PI/2),
+	"xRight": new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_x.xml", 0, 4.5, 0, -PI/2),
+	"tLeft": new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_T.xml", PI, 4.5, 1.25),
+	"tRight": new WallElement("road", "actor|props/special/eyecandy/road_temperate_intersect_T.xml", 0, 4.5, -1.25),
+};
+
 // NOTE: This is not a wall style in the common sense. Use with care!
-wallStyles["other"] = {};
-wallStyles["other"]["fence"] = new WallElement("fence", "other/fence_long", -PI/2, 3.1);
-wallStyles["other"]["fence_medium"] = new WallElement("fence", "other/fence_long", -PI/2, 3.1);
-wallStyles["other"]["fence_short"] = new WallElement("fence_short", "other/fence_short", -PI/2, 1.5);
-wallStyles["other"]["fence_stone"] = new WallElement("fence_stone", "other/fence_stone", -PI/2, 2.5);
-wallStyles["other"]["palisade"] = new WallElement("palisade", "other/palisades_rocks_short", 0, 1.2);
-wallStyles["other"]["column"] = new WallElement("column", "other/column_doric", 0, 1);
-wallStyles["other"]["obelisk"] = new WallElement("obelisk", "other/obelisk", 0, 2);
-wallStyles["other"]["spike"] = new WallElement("spike", "other/palisades_angle_spike", -PI/2, 1);
-wallStyles["other"]["bench"] = new WallElement("bench", "other/bench", PI/2, 1.5);
-wallStyles["other"]["benchForTable"] = new WallElement("benchForTable", "other/bench", 0, 0.5);
-wallStyles["other"]["table"] = new WallElement("table", "other/table_rectangle", 0, 1);
-wallStyles["other"]["table_square"] = new WallElement("table_square", "other/table_square", PI/2, 1);
-wallStyles["other"]["flag"] = new WallElement("flag", "special/rallypoint", PI, 1);
-wallStyles["other"]["standing_stone"] = new WallElement("standing_stone", "gaia/special_ruins_standing_stone", PI, 1);
-wallStyles["other"]["settlement"] = new WallElement("settlement", "gaia/special_settlement", PI, 6);
-wallStyles["other"]["gap"] = new WallElement("gap", undefined, 0, 2);
-wallStyles["other"]["gapSmall"] = new WallElement("gapSmall", undefined, 0, 1);
-wallStyles["other"]["gapLarge"] = new WallElement("gapLarge", undefined, 0, 4);
-wallStyles["other"]["cornerIn"] = new WallElement("cornerIn", undefined, 0, 0, 0, PI/2);
-wallStyles["other"]["cornerOut"] = new WallElement("cornerOut", undefined, 0, 0, 0, -PI/2);
-
+wallStyles.other = {
+	"fence": new WallElement("fence", "other/fence_long", -PI/2, 3.1),
+	"fence_medium": new WallElement("fence", "other/fence_long", -PI/2, 3.1),
+	"fence_short": new WallElement("fence_short", "other/fence_short", -PI/2, 1.5),
+	"fence_stone": new WallElement("fence_stone", "other/fence_stone", -PI/2, 2.5),
+	"palisade": new WallElement("palisade", "other/palisades_rocks_short", 0, 1.2),
+	"column": new WallElement("column", "other/column_doric", 0, 1),
+	"obelisk": new WallElement("obelisk", "other/obelisk", 0, 2),
+	"spike": new WallElement("spike", "other/palisades_angle_spike", -PI/2, 1),
+	"bench": new WallElement("bench", "other/bench", PI/2, 1.5),
+	"benchForTable": new WallElement("benchForTable", "other/bench", 0, 0.5),
+	"table": new WallElement("table", "other/table_rectangle", 0, 1),
+	"table_square": new WallElement("table_square", "other/table_square", PI/2, 1),
+	"flag": new WallElement("flag", "special/rallypoint", PI, 1),
+	"standing_stone": new WallElement("standing_stone", "gaia/special_ruins_standing_stone", PI, 1),
+	"settlement": new WallElement("settlement", "gaia/special_settlement", PI, 6),
+	"gap": new WallElement("gap", undefined, 0, 2),
+	"gapSmall": new WallElement("gapSmall", undefined, 0, 1),
+	"gapLarge": new WallElement("gapLarge", undefined, 0, 4),
+	"cornerIn": new WallElement("cornerIn", undefined, 0, 0, 0, PI/2),
+	"cornerOut": new WallElement("cornerOut", undefined, 0, 0, 0, -PI/2)
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  fortressTypes data structure for some default fortress types
@@ -240,42 +265,36 @@ wallStyles["other"]["cornerOut"] = new WallElement("cornerOut", undefined, 0, 0,
 //	Examples: "tiny", "veryLarge"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var fortressTypes = {};
-// Setup some default fortress types
-// Add fortress type "tiny"
-fortressTypes["tiny"] = new Fortress("tiny");
-var wallPart = ["gate", "tower", "wallShort", "cornerIn", "wallShort", "tower"];
-fortressTypes["tiny"].wall = wallPart.concat(wallPart, wallPart, wallPart);
-// Add fortress type "small"
-fortressTypes["small"] = new Fortress("small");
-var wallPart = ["gate", "tower", "wall", "cornerIn", "wall", "tower"];
-fortressTypes["small"].wall = wallPart.concat(wallPart, wallPart, wallPart);
-// Add fortress type "medium"
-fortressTypes["medium"] = new Fortress("medium");
-var wallPart = ["gate", "tower", "wallLong", "cornerIn", "wallLong", "tower"];
-fortressTypes["medium"].wall = wallPart.concat(wallPart, wallPart, wallPart);
-// Add fortress type "normal"
-fortressTypes["normal"] = new Fortress("normal");
-var wallPart = ["gate", "tower", "wall", "cornerIn", "wall", "cornerOut", "wall", "cornerIn", "wall", "tower"];
-fortressTypes["normal"].wall = wallPart.concat(wallPart, wallPart, wallPart);
-// Add fortress type "large"
-fortressTypes["large"] = new Fortress("large");
-var wallPart = ["gate", "tower", "wallLong", "cornerIn", "wallLong", "cornerOut", "wallLong", "cornerIn", "wallLong", "tower"];
-fortressTypes["large"].wall = wallPart.concat(wallPart, wallPart, wallPart);
-// Add fortress type "veryLarge"
-fortressTypes["veryLarge"] = new Fortress("veryLarge");
-var wallPart = ["gate", "tower", "wall", "cornerIn", "wall", "cornerOut", "wallLong", "cornerIn", "wallLong", "cornerOut", "wall", "cornerIn", "wall", "tower"];
-fortressTypes["veryLarge"].wall = wallPart.concat(wallPart, wallPart, wallPart);
-// Add fortress type "giant"
-fortressTypes["giant"] = new Fortress("giant");
-var wallPart = ["gate", "tower", "wallLong", "cornerIn", "wallLong", "cornerOut", "wallLong", "cornerIn", "wallLong", "cornerOut", "wallLong", "cornerIn", "wallLong", "tower"];
-fortressTypes["giant"].wall = wallPart.concat(wallPart, wallPart, wallPart);
+
+{
+	let wallParts = {
+		"tiny": ["gate", "tower", "wallShort", "cornerIn", "wallShort", "tower"],
+		"small": ["gate", "tower", "wall", "cornerIn", "wall", "tower"],
+		"medium": ["gate", "tower", "wallLong", "cornerIn", "wallLong", "tower"],
+		"normal": ["gate", "tower", "wall", "cornerIn", "wall",
+		           "cornerOut", "wall", "cornerIn", "wall", "tower"],
+		"large": ["gate", "tower", "wallLong", "cornerIn", "wallLong",
+		          "cornerOut", "wallLong", "cornerIn", "wallLong", "tower"],
+		"veryLarge": ["gate", "tower", "wall", "cornerIn", "wall", "cornerOut", "wallLong",
+		              "cornerIn", "wallLong", "cornerOut", "wall", "cornerIn", "wall", "tower"],
+		"giant": ["gate", "tower", "wallLong", "cornerIn", "wallLong", "cornerOut", "wallLong",
+		          "cornerIn", "wallLong", "cornerOut", "wallLong", "cornerIn", "wallLong", "tower"]
+	};
+
+	for (let type in wallParts)
+	{
+		fortressTypes[type] = new Fortress(type);
+
+		let wp = wallParts[type];
+		fortressTypes[type].wall = wp.concat(wp, wp, wp);
+	}
+}
 
 // Setup some better looking semi default fortresses for "palisades" style
-var fortressTypeKeys = ["tiny", "small", "medium", "normal", "large", "veryLarge", "giant"];
-for (var i = 0; i < fortressTypeKeys.length; i++)
+for (let type in fortressTypes)
 {
-	var newKey = fortressTypeKeys[i] + "Palisades";
-	var oldWall = fortressTypes[fortressTypeKeys[i]].wall;
+	var newKey = type + "Palisades";
+	var oldWall = fortressTypes[type].wall;
 	fortressTypes[newKey] = new Fortress(newKey);
 	var fillTowersBetween = ["wallShort", "wall", "wallLong", "endLeft", "endRight", "cornerIn", "cornerOut"];
 	for (var j = 0; j < oldWall.length; j++)
@@ -291,22 +310,23 @@ for (var i = 0; i < fortressTypeKeys.length; i++)
 // TODO
 
 // Add some "fortress types" for roads (will only work with style "road")
-// ["start", "short", "xRight", "xLeft", "cornerLeft", "xStraight", "long", "xLeft", "xRight", "cornerRight", "tRight", "tLeft", "xRight", "xLeft", "curveLeft", "xStraight", "curveRight", "end"];
-var wall = ["short", "curveLeft", "short", "curveLeft", "short", "curveLeft", "short", "curveLeft"];
-fortressTypes["road01"] = new Fortress("road01", wall);
-var wall = ["short", "cornerLeft", "short", "cornerLeft", "short", "cornerLeft", "short", "cornerLeft"];
-fortressTypes["road02"] = new Fortress("road02", wall);
-var wall = ["xStraight", "curveLeft", "xStraight", "curveLeft", "xStraight", "curveLeft", "xStraight", "curveLeft"];
-fortressTypes["road03"] = new Fortress("road03", wall);
-var wall = ["start", "curveLeft", "tRight", "cornerLeft", "tRight", "curveRight", "short", "xRight", "curveLeft", "xRight", "short", "cornerLeft", "tRight", "short",
-	"curveLeft", "short", "tRight", "cornerLeft", "short", "xRight", "curveLeft", "xRight", "short", "curveRight", "tRight", "cornerLeft", "tRight", "curveLeft", "end"];
-fortressTypes["road04"] = new Fortress("road04", wall);
-var wall = ["start", "tLeft", "short", "xRight",
-	"curveLeft", "xRight", "tRight", "cornerLeft", "tRight",
-	"curveLeft", "short", "tRight", "cornerLeft", "xRight",
-	"cornerLeft", "xRight", "short", "tRight", "curveLeft", "end"];
-fortressTypes["road05"] = new Fortress("road05", wall);
+{
+	// ["start", "short", "xRight", "xLeft", "cornerLeft", "xStraight", "long", "xLeft", "xRight", "cornerRight", "tRight", "tLeft", "xRight", "xLeft", "curveLeft", "xStraight", "curveRight", "end"];
+	let roadTypes = {
+		"road01": ["short", "curveLeft", "short", "curveLeft", "short", "curveLeft", "short", "curveLeft"],
+		"road02": ["short", "cornerLeft", "short", "cornerLeft", "short", "cornerLeft", "short", "cornerLeft"],
+		"road03": ["xStraight", "curveLeft", "xStraight", "curveLeft", "xStraight", "curveLeft", "xStraight", "curveLeft"],
+		"road04": ["start", "curveLeft", "tRight", "cornerLeft", "tRight", "curveRight", "short", "xRight", "curveLeft", "xRight", "short", "cornerLeft", "tRight", "short",
+		           "curveLeft", "short", "tRight", "cornerLeft", "short", "xRight", "curveLeft", "xRight", "short", "curveRight", "tRight", "cornerLeft", "tRight", "curveLeft", "end"],
+		"road05": ["start", "tLeft", "short", "xRight",
+		           "curveLeft", "xRight", "tRight", "cornerLeft", "tRight",
+		           "curveLeft", "short", "tRight", "cornerLeft", "xRight",
+		           "cornerLeft", "xRight", "short", "tRight", "curveLeft", "end"],
+	};
 
+	for (let type in roadTypes)
+		fortressTypes[type] = new Fortress(type, roadTypes[type]);
+}
 
 ///////////////////////////////
 // Define some helper functions
