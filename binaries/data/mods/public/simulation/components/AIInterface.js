@@ -20,7 +20,8 @@ AIInterface.prototype.EventNames = [
 	"TerritoriesChanged",
 	"TerritoryDecayChanged",
 	"TributeExchanged",
-	"AttackRequest"
+	"AttackRequest",
+	"CeasefireEnded"
 ];
 
 AIInterface.prototype.Init = function()
@@ -195,6 +196,11 @@ AIInterface.prototype.OnGlobalTributeExchanged = function(msg)
 AIInterface.prototype.OnTerritoriesChanged = function(msg)
 {
 	this.events.TerritoriesChanged.push(msg);
+};
+
+AIInterface.prototype.OnCeasefireEnded = function(msg)
+{
+	this.events.CeasefireEnded.push(msg);
 };
 
 /**

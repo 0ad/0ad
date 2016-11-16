@@ -27,7 +27,9 @@
 
 // (these variables are documented in the header.)
 
-CStrW g_CursorName = L"test";
+const wchar_t g_DefaultCursor[] = L"default-arrow";
+
+CStrW g_CursorName = g_DefaultCursor;
 
 bool g_NoGLS3TC = false;
 bool g_NoGLAutoMipmap = false;
@@ -169,6 +171,9 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 	if (args.Has("serializationtest"))
 		g_ConfigDB.SetValueString(CFG_COMMAND, "serializationtest", "true");
+
+	if (args.Has("rejointest"))
+		g_ConfigDB.SetValueString(CFG_COMMAND, "rejointest", args.Get("rejointest"));
 }
 
 

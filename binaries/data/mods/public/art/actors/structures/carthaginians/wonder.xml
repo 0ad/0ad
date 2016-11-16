@@ -8,23 +8,23 @@
         <prop actor="props/structures/carthaginians/wonder_decals.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/wonder_dirt.xml" attachpoint="root"/>
         <prop actor="particle/smoke_light.xml" attachpoint="smoke"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_1"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_2"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_3"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_4"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_5"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_6"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_7"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_8"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_9"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_10"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_11"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_12"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_13"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_14"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_15"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_16"/>
-        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="palm_17"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_1"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_2"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_3"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_4"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_5"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_6"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_7"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_8"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_9"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_10"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_11"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_12"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_13"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_14"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_15"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_16"/>
+        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="palm_17"/>
       </props>
       <textures>
         <texture file="structural/kart_struct.dds" name="baseTex"/>
@@ -35,7 +35,7 @@
     </variant>
   </group>
   <group>
-    <variant name="ungarrisoned" frequency="1"/>
+    <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
@@ -46,7 +46,25 @@
     </variant>
   </group>
   <group>
-    <variant name="alive" frequency="1"/>
+    <variant frequency="1" name="alive"/>
+    <variant name="lightdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="mediumdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_med.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_med_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="heavydamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
+    </variant>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
@@ -54,6 +72,10 @@
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

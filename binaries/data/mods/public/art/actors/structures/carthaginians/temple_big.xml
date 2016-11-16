@@ -15,11 +15,11 @@
         <texture file="structural/ao/kart_temple_big.png" name="aoTex"/>
       </textures>
     </variant>
-	<variant frequency="1" name="Base">
+    <variant frequency="1" name="Base">
       <mesh>structural/kart_temple_b.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/temple_b_decor.xml" attachpoint="root"/>
-		<prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
       </props>
       <textures>
         <texture file="structural/kart_struct.dds" name="baseTex"/>
@@ -30,7 +30,25 @@
     </variant>
   </group>
   <group>
-    <variant name="alive" frequency="1"/>
+    <variant frequency="1" name="alive"/>
+    <variant name="lightdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="mediumdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_med.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_med_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="heavydamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
+    </variant>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
@@ -40,7 +58,11 @@
         <prop actor="props/structures/carthaginians/temple_big.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_3x6.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

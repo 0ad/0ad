@@ -16,11 +16,17 @@ uniform vec3 sunDir;
 uniform float time;
 uniform float mapSize;
 
+varying float moddedTime;
+
 uniform mat4 transform;
 
 varying vec3 worldPos;
 varying float waterDepth;
 varying vec2 waterInfo;
+
+uniform vec3 cameraPos;
+
+varying vec3 v;
 
 varying vec4 normalCoords;
 varying vec3 reflectionCoords;
@@ -62,6 +68,10 @@ void main()
 		#endif
 	#endif
 	
+	v = normalize(cameraPos - worldPos);
+
+	moddedTime = mod(time * 60.0, 8.0) / 8.0;
+
 	// Fix the waviness for local wind strength
 	fwaviness = waviness * ((0.15+a_waterInfo.r/1.15));
 	

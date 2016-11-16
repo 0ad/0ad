@@ -54,8 +54,9 @@ public:
 	CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptRuntime> rt, CTerrain* terrain);
 	~CSimulation2();
 
-	void EnableOOSLog();
 	void EnableSerializationTest();
+	void EnableRejoinTest(int rejoinTestTurn);
+	void EnableOOSLog();
 
 	/**
 	 * Load all scripts in the specified directory (non-recursively),

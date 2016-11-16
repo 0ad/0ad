@@ -114,7 +114,7 @@ void CReplayPlayer::Load(const std::string& path)
 	ENSURE(m_Stream->good());
 }
 
-void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
+void CReplayPlayer::Replay(bool serializationtest, int rejointestturn, bool ooslog)
 {
 	ENSURE(m_Stream);
 
@@ -130,6 +130,8 @@ void CReplayPlayer::Replay(bool serializationtest, bool ooslog)
 	g_Game = new CGame(true, false);
 	if (serializationtest)
 		g_Game->GetSimulation2()->EnableSerializationTest();
+	if (rejointestturn > 0)
+		g_Game->GetSimulation2()->EnableRejoinTest(rejointestturn);
 	if (ooslog)
 		g_Game->GetSimulation2()->EnableOOSLog();
 

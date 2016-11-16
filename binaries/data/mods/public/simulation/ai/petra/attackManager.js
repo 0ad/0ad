@@ -387,7 +387,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		if (attack.targetPlayer === undefined && this.currentEnemyPlayer !== undefined &&
 			!this.defeated[this.currentEnemyPlayer] &&
 			gameState.isPlayerEnemy(this.currentEnemyPlayer) &&
-			gameState.getEnemyEntities(this.currentEnemyPlayer).hasEntities())
+			gameState.getEntities(this.currentEnemyPlayer).hasEntities())
 			return this.currentEnemyPlayer;
 
 		let distmin;
@@ -435,7 +435,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			continue;
 		let enemyCount = 0;
 		let enemyCivCentre = false;
-		for (let ent of gameState.getEnemyEntities(i).values())
+		for (let ent of gameState.getEntities(i).values())
 		{
 			enemyCount++;
 			if (ent.hasClass("CivCentre"))

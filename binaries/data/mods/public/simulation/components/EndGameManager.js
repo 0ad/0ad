@@ -76,6 +76,11 @@ EndGameManager.prototype.SetAlliedVictory = function(flag)
 	this.alliedVictory = flag;
 };
 
+EndGameManager.prototype.GetAlliedVictory = function()
+{
+	return this.alliedVictory;
+};
+
 EndGameManager.prototype.AlliedVictoryCheck = function()
 {
 	if (this.skipAlliedVictoryCheck)

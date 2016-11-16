@@ -9,13 +9,14 @@
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
+# Максим Дронь <dronmax@gmail.com>, 2016
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-10-02 22:45+0000\n"
-"Last-Translator: Nergal Sham <sham-nergal@mail.ru>\n"
+"POT-Creation-Date: 2016-11-12 11:30+0100\n"
+"PO-Revision-Date: 2016-11-13 21:23+0000\n"
+"Last-Translator: Максим Дронь <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -300,7 +301,7 @@ msgstr "Аура \"Щит Рима\""
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraDescription
 msgid "+1 armor for all units and structures."
-msgstr ""
+msgstr "+1 к броне всех юнитов и конструкций."
 
 #: simulation/data/auras/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -316,7 +317,7 @@ msgstr "Аура командира"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All Cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "Все типы брони кавалерии растут на +2 уровня."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -347,7 +348,7 @@ msgstr "Илотские застрельщики под его взором п�
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
-msgstr "Аура Последней Битвы"
+msgstr "Аура последней битвы"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
@@ -375,21 +376,21 @@ msgstr "Юниты на стенах имеют 3 дополнительных �
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
-msgstr "Аура Чуда"
+msgstr "Аура чуда"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per Wonder owned."
-msgstr "Увеличение предел населения на 10 за каждое Чудо"
+msgstr "Увеличение предел населения на 10 за каждое чудо"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
-msgstr "Расширение Ауры Славы"
+msgstr "Расширение ауры славы"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
 "Further increase the population limit by 40 per Wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr "Дальнейшее увеличение лимита населения на 40 за каждое Чудо (требуется технология \"Расширение Славы\")."
+msgstr "Дальнейшее увеличение лимита населения на 40 за каждое чудо (требуется технология \"Расширение славы\")."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -405,7 +406,7 @@ msgstr "Вскоре после великих морских побед на С
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
-msgstr "Сарипеко - Наемник"
+msgstr "Сарипеко — Наёмник"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid ""
@@ -413,9 +414,17 @@ msgid ""
 "Iberian players"
 msgstr "Снижает затраты на граждан-солдат стрелков на 20% для союзных игроков Иберийцев"
 
+#: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
+msgid "Breadbasket of the Mediterranean"
+msgstr "Хлебница Средиземноморья"
+
+#: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
+msgid "All allies automatically gain a slow trickle of food income."
+msgstr "Все союзники автоматически получат дополнительный ручеек еды."
+
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "Сирийский тетраполис"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""

@@ -542,9 +542,8 @@ function updateGameList()
 			sortB = translate(b.niceMapName);
 			break;
 		case 'nPlayers':
-			// Compare playercount ratio
-			sortA = a.nbp * b.maxnbp;
-			sortB = b.nbp * a.maxnbp;
+			sortA = a.maxnbp;
+			sortB = b.maxnbp;
 			break;
 		case 'status':
 		default:

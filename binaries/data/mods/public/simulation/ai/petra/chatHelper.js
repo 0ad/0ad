@@ -115,11 +115,9 @@ m.chatNewTradeRoute = function(gameState, player)
 
 m.chatNewPhase = function(gameState, phase, started)
 {
-	let message;
-	if (started)
-		message = markForTranslation("I am advancing to the %(phase)s.");
-	else
-		message = markForTranslation("I have reached the %(phase)s.");
+	let message = started ?
+		markForTranslation("I am advancing to the %(phase)s.") :
+		markForTranslation("I have reached the %(phase)s.");
 
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
@@ -127,6 +125,21 @@ m.chatNewPhase = function(gameState, phase, started)
 		"translateMessage": true,
 		"translateParameters": ["phase"],
 		"parameters": { "phase": phase }
+	});
+};
+
+m.chatNewDiplomacy = function(gameState, player, enemy)
+{
+	let message = enemy ?
+		markForTranslation("%(_player_)s and I are now enemies.") :
+		markForTranslation("%(_player_)s and I are now allies.");
+
+	Engine.PostCommand(PlayerID, {
+		"type": "aichat",
+		"message": message,
+		"translateMessage": true,
+		"translateParameters": ["_player_"],
+		"parameters": {"_player_": player}
 	});
 };
 

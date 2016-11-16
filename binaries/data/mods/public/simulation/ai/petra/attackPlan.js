@@ -865,7 +865,7 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Village"));
 	// no buildings, attack anything conquest critical, even units
 	if (!targets.hasEntities())
-		targets = gameState.getEnemyEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	return targets;
 };
 

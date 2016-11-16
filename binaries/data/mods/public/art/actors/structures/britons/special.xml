@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="0" name="Base">
+      <mesh>structural/celt_rotary_mill.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/rotary_mill_hay_big.xml" attachpoint="haybig001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_hay_big.xml" attachpoint="haybig002" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_hay_small.xml" attachpoint="haysmall001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_hay_small.xml" attachpoint="haysmall002" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_vases.xml" attachpoint="vases" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_shield_a.xml" attachpoint="shield001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_shield_b.xml" attachpoint="shield002" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_grinder.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/celt_corral_mud.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Base test">
+      <mesh>structural/celt_rotary_mill.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/rotary_mill_hay_big.xml" attachpoint="haybig001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_hay_big.xml" attachpoint="haybig002" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_hay_small.xml" attachpoint="haysmall001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_hay_small.xml" attachpoint="haysmall002" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_vases.xml" attachpoint="vases" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_shield_a.xml" attachpoint="shield001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_shield_b.xml" attachpoint="shield002" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/celts/rotary_mill_grinder.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/celt_corral_mud.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/brit_struct.png" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_stone.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_donkey.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

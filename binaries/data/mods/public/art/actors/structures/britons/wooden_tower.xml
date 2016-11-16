@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="gaul outpost a">
+    <variant frequency="0" name="gaul outpost a">
       <animations>
         <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
@@ -14,6 +14,23 @@
       </props>
       <textures>
         <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_wooden_tower_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="gaul outpost a test">
+      <animations>
+        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/brit_wooden_tower.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/structures/celts/kennel_mud.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/brit_struct.png" name="baseTex"/>
         <texture file="structural/celt_struct_norm.png" name="normTex"/>
         <texture file="structural/celt_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/brit_wooden_tower_AO.png" name="aoTex"/>

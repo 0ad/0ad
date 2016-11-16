@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="2" name="Cretan-Date-Palm-02">
+      <mesh>gaia/tree_cretan_date_palm_02.dae</mesh>
+    </variant>
+    <variant frequency="3" name="Cretan-Date-Palm-04">
+      <mesh>gaia/tree_cretan_date_palm_04.dae</mesh>
+    </variant>
+    <variant frequency="3" name="Cretan-Date-Palm-05">
+      <mesh>gaia/tree_cretan_date_palm_05.dae</mesh>
+    </variant>
+    <variant frequency="0" name="Weird_Crooked_One">
+      <mesh>gaia/tree_cretan_date_palm_08.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Palm Fronds-a">
+      <textures>
+        <texture file="gaia/tree_palm_senegal_a.dds" name="baseTex"/>
+        <texture file="gaia/tree_palm_senegal_spec.png" name="specTex"/>
+        <texture file="gaia/tree_palm_senegal_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-b">
+      <textures>
+        <texture file="gaia/tree_palm_senegal_b.dds" name="baseTex"/>
+        <texture file="gaia/tree_palm_senegal_spec.png" name="specTex"/>
+        <texture file="gaia/tree_palm_senegal_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-c">
+      <textures>
+        <texture file="gaia/tree_palm_senegal_c.dds" name="baseTex"/>
+        <texture file="gaia/tree_palm_senegal_spec.png" name="specTex"/>
+        <texture file="gaia/tree_palm_senegal_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-d">
+      <textures>
+        <texture file="gaia/tree_palm_senegal_d.dds" name="baseTex"/>
+        <texture file="gaia/tree_palm_senegal_spec.png" name="specTex"/>
+        <texture file="gaia/tree_palm_senegal_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>trans_wind_parallax_spec.xml</material>
+</actor>

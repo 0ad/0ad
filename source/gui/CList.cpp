@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -151,6 +151,8 @@ void CList::HandleMessage(SGUIMessage& Message)
 		if (Message.value == "selected")
 		{
 			// TODO: Check range
+
+			UpdateAutoScroll();
 
 			// TODO only works if lower-case, shouldn't it be made case sensitive instead?
 			ScriptEvent("selectionchange");
@@ -486,10 +488,8 @@ void CList::UpdateAutoScroll()
 	GUI<int>::GetSetting(this, "selected", selected);
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
-	CRect rect = GetListRect();
-
 	// No scrollbar, no scrolling (at least it's not made to work properly).
-	if (!scrollbar)
+	if (!scrollbar || selected < 0 || (std::size_t) selected >= m_ItemsYPositions.size())
 		return;
 
 	scroll = GetScrollBar(0).GetPos();
@@ -503,6 +503,7 @@ void CList::UpdateAutoScroll()
 	}
 
 	// Check lower boundary
+	CRect rect = GetListRect();
 	if (m_ItemsYPositions[selected+1]-rect.GetHeight() > scroll)
 		GetScrollBar(0).SetPos(m_ItemsYPositions[selected+1]-rect.GetHeight());
 }

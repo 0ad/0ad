@@ -13,6 +13,8 @@ m.DiplomacyManager = function(Config)
 	this.nextTributeUpdate = -1;
 	this.nextTributeRequest = new Map();
 	this.nextTributeRequest.set("all", 240);
+	this.betrayLapseTime = -1;
+	this.waitingToBetray = false;
 };
 
 /**
@@ -108,8 +110,86 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 			continue;
 		this.Config.personality.cooperative = Math.min(1, this.Config.personality.cooperative + 0.003);
 	}
+
+	if (events.DiplomacyChanged.length || events.PlayerDefeated.length || events.CeasefireEnded.length)
+		this.lastManStandingCheck(gameState);
 };
 
+/**
+ * Check the diplomacy at the start of the game
+ */
+m.DiplomacyManager.prototype.diplomacyCheck = function(gameState)
+{
+	if (!gameState.getAlliedVictory() && !gameState.isCeasefireActive())
+		this.lastManStandingCheck(gameState);
+};
+
+/**
+ * If the "Last Man Standing" option is enabled, check if the only remaining players are allies or neutral.
+ * If so, turn against the strongest first, but be more likely to first turn against neutral players, if there are any.
+ */
+m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
+{
+	if (gameState.getAlliedVictory() || gameState.isCeasefireActive())
+		return;
+
+	if (gameState.hasEnemies())
+	{
+		this.waitingToBetray = false;
+		return;
+	}
+
+	if (!gameState.hasAllies() && !gameState.hasNeutrals())
+		return;
+
+	// wait a bit before turning
+	if (!this.waitingToBetray)
+	{
+		this.betrayLapseTime = gameState.ai.elapsedTime + Math.random() * 100 + 10;
+		this.waitingToBetray = true;
+		return;
+	}
+
+	// do not turn against a player yet if we are not strong enough
+	if (gameState.getOwnUnits().length < 50)
+	{
+		this.betrayLapseTime += 60;
+		return;
+	}
+
+	let playerToTurnAgainst;
+	let turnFactor = 0;
+	let max = 0;
+
+	// count the amount of entities remaining players have
+	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+	{
+		if (i === PlayerID || gameState.ai.HQ.attackManager.defeated[i])
+			continue;
+
+		turnFactor = gameState.getEntities(i).length;
+
+		if (gameState.isPlayerNeutral(i)) // be more inclined to turn against neutral players
+			turnFactor += 150;
+
+		if (turnFactor < max)
+			continue;
+
+		max = turnFactor;
+		playerToTurnAgainst = i;
+	}
+
+	if (playerToTurnAgainst)
+	{
+		Engine.PostCommand(PlayerID, { "type": "diplomacy", "player": playerToTurnAgainst, "to": "enemy" });
+		if (this.Config.debug > 1)
+			API3.warn("player " + playerToTurnAgainst + " is now an enemy");
+		if (this.Config.chat)
+			m.chatNewDiplomacy(gameState, playerToTurnAgainst, true);
+	}
+	this.betrayLapseTime = -1;
+	this.waitingToBetray = false;
+};
 
 m.DiplomacyManager.prototype.update = function(gameState, events)
 {
@@ -117,17 +197,25 @@ m.DiplomacyManager.prototype.update = function(gameState, events)
 
 	if (!gameState.ai.HQ.saveResources && gameState.ai.elapsedTime > this.nextTributeUpdate)
 		this.tributes(gameState);
+
+	if (this.waitingToBetray && gameState.ai.elapsedTime > this.betrayLapseTime)
+		this.lastManStandingCheck(gameState);
 };
 
 m.DiplomacyManager.prototype.Serialize = function()
 {
-	return { "nextTributeUpdate": this.nextTributeUpdate, "nextTributeRequest": this.nextTributeRequest };
+	return {
+		"nextTributeUpdate": this.nextTributeUpdate,
+		"nextTributeRequest": this.nextTributeRequest,
+		"betrayLapseTime": this.betrayLapseTime,
+		"waitingToBetray": this.waitingToBetray
+	};
 };
 
 m.DiplomacyManager.prototype.Deserialize = function(data)
 {
-	this.nextTributeUpdate = data.nextTributeUpdate;
-	this.nextTributeRequest = data.nextTributeRequest;
+	for (let key in data)
+		this[key] = data[key];
 };
 
 return m;

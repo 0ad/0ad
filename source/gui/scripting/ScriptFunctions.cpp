@@ -113,6 +113,11 @@ void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
 	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
+void ResetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	g_GUI->ResetCursor();
+}
+
 JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data)
 {
 	if (!g_Game)
@@ -1016,6 +1021,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &PopGuiPage>("PopGuiPage");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &PopGuiPageCB>("PopGuiPageCB");
 	scriptInterface.RegisterFunction<JS::Value, CStr, &GetGUIObjectByName>("GetGUIObjectByName");
+	scriptInterface.RegisterFunction<void, &ResetCursor>("ResetCursor");
 
 	// Simulation<->GUI interface functions:
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, JS::HandleValue, &GuiInterfaceCall>("GuiInterfaceCall");

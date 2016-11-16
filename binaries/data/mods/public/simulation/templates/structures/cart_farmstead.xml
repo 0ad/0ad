@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
     <Square width="18" depth="19"/>
@@ -13,6 +13,7 @@
     <Static width="16.0" depth="17"/>
   </Obstruction>
   <VisualActor>
+    <FoundationActor>structures/carthaginians/fndn_farmstead.xml</FoundationActor>
     <Actor>structures/carthaginians/farmstead.xml</Actor>
   </VisualActor>
 </Entity>

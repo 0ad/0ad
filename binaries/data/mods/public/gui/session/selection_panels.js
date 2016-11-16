@@ -1228,13 +1228,3 @@ let g_PanelsOrder = [
 	"Queue",
 	"Selection",
 ];
-
-function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology)
-{
-	if (technologyEnabled)
-		return "";
-
-	return sprintf(translate("Requires %(technology)s"), {
-		"technology": getEntityNames(GetTechnologyData(requiredTechnology))
-	});
-}

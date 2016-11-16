@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -2114,4 +2114,10 @@ CPostprocManager& CRenderer::GetPostprocManager()
 CFontManager& CRenderer::GetFontManager()
 {
 	return m->fontManager;
+}
+
+void CRenderer::ResetState()
+{
+	// Clear all emitters, that were created in previous games
+	GetParticleManager().ClearUnattachedEmitters();
 }

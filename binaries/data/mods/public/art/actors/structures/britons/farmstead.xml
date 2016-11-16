@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="0" name="Celt Farmstead">
+      <mesh>structural/celt_farmstead.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_hoe.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+        <texture file="structural/ao/celt_farmstead.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Celt Farmstead test">
+      <mesh>structural/celt_farmstead.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_hoe.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/brit_struct_1.png" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+        <texture file="structural/ao/celt_farmstead.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_hoe.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
