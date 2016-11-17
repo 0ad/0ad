@@ -179,6 +179,7 @@ m.createBorderMap = function(gameState)
 /** map of our frontier : 2 means narrow border, 1 means large border */
 m.createFrontierMap = function(gameState)
 {
+	let alliedVictory = gameState.getAlliedVictory();
 	let territoryMap = gameState.ai.HQ.territoryMap;
 	let borderMap = gameState.ai.HQ.borderMap;
 	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
@@ -204,7 +205,9 @@ m.createFrontierMap = function(gameState)
 				continue;
 			if (borderMap.map[jx+width*jz] > 1)
 				continue;
-			if (!gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
+			let territoryOwner = territoryMap.getOwnerIndex(jx+width*jz);
+			let safe = (alliedVictory && gameState.isPlayerAlly(territoryOwner)) || territoryOwner === PlayerID;
+			if (!safe)
 			{
 				map.map[j] = 2;
 				break;
@@ -217,7 +220,9 @@ m.createFrontierMap = function(gameState)
 				continue;
 			if (borderMap.map[jx+width*jz] > 1)
 				continue;
-			if (!gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
+			territoryOwner = territoryMap.getOwnerIndex(jx+width*jz);
+			safe = (alliedVictory && gameState.isPlayerAlly(territoryOwner)) || territoryOwner === PlayerID;
+			if (!safe)
 				map.map[j] = 1;
 		}
 	}

@@ -425,7 +425,7 @@ RMS.SetProgress(90);
 
 // create straggler trees
 var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];	// some variation
-createStragglerTrees(types, avoidClasses(clForest, 0, clWater, 2, clPlayer, 8, clMetal, 1, clHill, 1));
+createStragglerTrees(types, avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1));
 
 log("Creating straggler island trees...");
 g_numStragglerTrees *= 10;

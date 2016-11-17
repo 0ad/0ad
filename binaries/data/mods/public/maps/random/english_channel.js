@@ -402,7 +402,7 @@ createFood
 
 log("Creating straggler trees...");
 var types = [oBeech, oPoplar, oApple];	// some variation
-createStragglerTrees(types, avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 1, clRock, 1));
+createStragglerTrees(types, avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 6, clRock, 6));
 
 // Set environment
 setSkySet("cirrus");

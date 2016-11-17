@@ -78,20 +78,6 @@ function fetchValue(templateName, keypath)
 	return template[keys[k]];
 }
 
-/**
- * Fetch tokens from an entity's template
- * @return An array containing all tokens if found, else an empty array
- * @see fetchValue
- */
-function fetchTokens(templateName, keypath)
-{
-	var val = fetchValue(templateName, keypath);
-	if (!("_string" in val))
-		return [];
-
-	return val._string.split(" ");
-}
-
 function depath(path)
 {
 	return path.slice(path.lastIndexOf("/") + 1);

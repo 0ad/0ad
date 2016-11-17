@@ -395,7 +395,7 @@ for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
 	createObjectGroups(group, 0,
-		avoidClasses(clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 1, clRock, 1),
+		avoidClasses(clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 6, clRock, 6),
 		num
 	);
 }

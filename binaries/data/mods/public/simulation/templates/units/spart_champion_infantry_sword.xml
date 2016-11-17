@@ -10,8 +10,9 @@
   <Cost>
     <Resources>
       <food op="add">-10.0</food>
-      <metal op="add">+10.0</metal>
+      <metal op="add">+20.0</metal>
     </Resources>
+    <BuildTime op="add">+5</BuildTime>
   </Cost>
   <Identity>
     <Civ>spart</Civ>
@@ -23,6 +24,10 @@
     <Icon>units/spart_champion_infantry_sword.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Loot>
+    <food op="mul">2.0</food>
+    <metal op="mul">2.0</metal>
+  </Loot>
   <Promotion disable=""/>
   <VisualActor>
     <Actor>units/spartans/champion_infantry_sword.xml</Actor>

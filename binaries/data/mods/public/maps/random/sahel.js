@@ -330,7 +330,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 7, clMetal, 2),
+	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 7, clMetal, 6),
 	randInt(1, 4) * numPlayers + 2, 50
 );
 
@@ -345,7 +345,7 @@ group = new SimpleGroup(
 	true, clForest
 );
 createObjectGroups(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 1, clRock, 7, clWater, 1),
+	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 6, clRock, 7, clWater, 1),
 	num
 );
 

@@ -356,7 +356,7 @@ RMS.SetProgress(42);
 log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 1)],
+	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 6)],
 	scaleByMapSize(4,16), 200, areas
 );
 RMS.SetProgress(46);
@@ -372,7 +372,7 @@ RMS.SetProgress(50);
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 2, clRock, 1)],
+	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 6, clRock, 6)],
 	scaleByMapSize(4,16), 200, areas
 );
 RMS.SetProgress(54);
@@ -412,7 +412,7 @@ for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
 	createObjectGroupsByAreas(
 		new SimpleGroup([new SimpleObject(tree, 1,1, 0,1)], true, clForest),
 		0,
-		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
+		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 		scaleByMapSize(2, 38), 50, areas
 	);
 RMS.SetProgress(66);
@@ -423,7 +423,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
+	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
 RMS.SetProgress(70);
@@ -434,7 +434,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
+	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 1, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
 RMS.SetProgress(74);
@@ -456,7 +456,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 1, clHill, 1, clCity, 10, clMetal, 2, clRock, 2, clFood, 8),
+	avoidClasses(clWater, 5, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 2, clFood, 8),
 	3 * numPlayers, 50
 );
 RMS.SetProgress(82);
@@ -464,7 +464,7 @@ RMS.SetProgress(82);
 log("Creating berry bushes...");
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 2, clForest, 1, clHill, 1, clCity, 10, clMetal, 2, clRock, 2, clFood, 8),
+	avoidClasses(clWater, 2, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 2, clFood, 8),
 	1.5 * numPlayers, 100
 );
 RMS.SetProgress(86);

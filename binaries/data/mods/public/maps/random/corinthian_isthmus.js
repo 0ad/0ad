@@ -371,7 +371,7 @@ RMS.SetProgress(90);
 // create straggler trees
 log("Creating straggler trees...");
 var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];	// some variation
-createStragglerTrees(types, avoidClasses(clForest, 0, clWater, 2, clPlayer, 8, clMetal, 1, clHill, 1));
+createStragglerTrees(types, avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clMetal, 6, clHill, 1));
 
 // Set environment
 setSkySet("sunny");
