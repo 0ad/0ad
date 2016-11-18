@@ -40,11 +40,6 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Rollover'>" +
-			"<text/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
 		"<element name='History'>" +
 			"<text/>" +
 		"</element>" +
