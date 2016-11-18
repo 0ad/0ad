@@ -93,8 +93,7 @@ bool L10n::SaveLocale(const Locale& locale) const
 		return false;
 
 	g_ConfigDB.SetValueString(CFG_USER, "locale", locale.getName());
-	g_ConfigDB.WriteValueToFile(CFG_USER, "locale", locale.getName());
-	return true;
+	return g_ConfigDB.WriteValueToFile(CFG_USER, "locale", locale.getName());
 }
 
 bool L10n::ValidateLocale(const std::string& localeCode) const

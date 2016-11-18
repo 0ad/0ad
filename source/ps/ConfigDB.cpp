@@ -446,8 +446,7 @@ bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CS
 
 	TConfigMap newMap;
 	m_Map[ns].swap(newMap);
-	if (!Reload(ns))
-		return false;
+	Reload(ns);
 
 	SetValueString(ns, name, value);
 	bool ret = WriteFile(ns, path);
