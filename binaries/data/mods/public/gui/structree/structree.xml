@@ -64,16 +64,20 @@
 
 		<!-- Structure Tree display -->
 		<object size="0 54+64 100%-124 100%-54" name="display_tree">
-			<repeat count="4" var="n">
-				<object name="phase[n]_phase" type="image"/>
-				<object name="phase[n]_bar">
-					<repeat count="4" var="k">
-						<object name="phase[n]_bar[k]" type="image" sprite="ProdBar">
-							<object name="phase[n]_bar[k]_icon" type="image" size="2 2 20 20"/>
+			<object name="phase_ident">
+				<repeat count="4" var="n">
+					<object>
+						<object name="phase[n]_phase" type="image"/>
+						<object name="phase[n]_bars">
+							<repeat count="4" var="k">
+								<object name="phase[n]_bar[k]" type="image" sprite="ProdBar">
+									<object name="phase[n]_bar[k]_icon" type="image" size="2 2 20 20"/>
+								</object>
+							</repeat>
 						</object>
-					</repeat>
-				</object>
-			</repeat>
+					</object>
+				</repeat>
+			</object>
 
 			<object type="image" name="tree_display" style="TreeDisplay" size="48+16+8 0 100%-12 100%">
 				<include file="gui/structree/rows.xml"/>
@@ -93,7 +97,7 @@
 				<translatableAttribute id="caption">Trainer Units</translatableAttribute>
 			</object>
 
-			<object type="image" style="TreeDisplay" size="0 24 100% 100%">
+			<object type="image" style="TreeDisplay" size="0 24 100% 100%" name="trainers">
 				<repeat count="3" var="t">
 					<object type="image" style="StructBox" name="trainer[t]">
 						<object type="text" style="StructNameSpecific" name="trainer[t]_name"/>

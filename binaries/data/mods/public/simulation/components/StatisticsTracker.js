@@ -122,30 +122,18 @@ StatisticsTracker.prototype.Init = function()
 	this.buildingsCapturedValue = 0;
 
 	this.resourcesGathered = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0,
 		"vegetarianFood": 0
 	};
-	this.resourcesUsed = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0
-	};
-	this.resourcesSold = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0
-	};
-	this.resourcesBought = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0
-	};
+	this.resourcesUsed = {};
+	this.resourcesSold = {};
+	this.resourcesBought = {};
+	for (let res of Resources.GetCodes())
+	{
+		this.resourcesGathered[res] = 0;
+		this.resourcesUsed[res] = 0;
+		this.resourcesSold[res] = 0;
+		this.resourcesBought[res] = 0;
+	}
 
 	this.tributesSent = 0;
 	this.tributesReceived = 0;
@@ -385,7 +373,8 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
  */
 StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 {
-	this.resourcesUsed[type] += amount;
+	if (typeof this.resourcesUsed[type] === "number")
+		this.resourcesUsed[type] += amount;
 };
 
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()

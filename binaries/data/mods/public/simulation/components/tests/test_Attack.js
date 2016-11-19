@@ -152,8 +152,8 @@ function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 		if (!isBuilding)
 			allowCapturing.push(false);
 
-		for (let allowCapturing of allowCapturing)
-			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, allowCapturing), bestAttack);
+		for (let ac of allowCapturing)
+			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAttack);
 	});
 }
 

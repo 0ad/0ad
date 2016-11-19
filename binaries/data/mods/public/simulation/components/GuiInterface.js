@@ -153,6 +153,15 @@ GuiInterface.prototype.GetSimulationState = function()
 	let cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 	ret.barterPrices = cmpBarter.GetPrices();
 
+	// Add Resource Codes, untranslated names and AI Analysis
+	ret.resources = {
+		"codes": Resources.GetCodes(),
+		"names": Resources.GetNames(),
+		"aiInfluenceGroups": {}
+	};
+	for (let res of ret.resources.codes)
+		ret.resources.aiInfluenceGroups[res] = Resources.GetResource(res).aiAnalysisInfluenceGroup || 0;
+
 	// Add basic statistics to each player
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -628,7 +637,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	let aurasTemplate = {};
 
 	if (!template.Auras)
-		return GetTemplateDataHelper(template, player, aurasTemplate);
+		return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 
 	// Add aura name and description loaded from JSON file
 	let auraNames = template.Auras._string.split(/\s+/);
@@ -646,7 +655,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		aurasTemplate[name].auraName = auraTemplate.auraName || null;
 		aurasTemplate[name].auraDescription = auraTemplate.auraDescription || null;
 	}
-	return GetTemplateDataHelper(template, player, aurasTemplate);
+	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 };
 
 GuiInterface.prototype.GetTechnologyData = function(player, name)
@@ -661,7 +670,7 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 	}
 
 	let cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	return GetTechnologyDataHelper(template, cmpPlayer.GetCiv());
+	return GetTechnologyDataHelper(template, cmpPlayer.GetCiv(), Resources);
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)
@@ -1285,8 +1294,10 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 
 	let result = {
 		"pieces": [],
-		"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0, "time": 0 },
+		"cost": { "population": 0, "populationBonus": 0, "time": 0 },
 	};
+	for (let res of Resources.GetCodes())
+		result.cost[res] = 0;
 
 	let previewEntities = [];
 	if (end.pos)
@@ -1561,13 +1572,8 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			// copied over, so we need to fetch it from the template instead).
 			// TODO: we should really use a Cost object or at least some utility functions for this, this is mindless
 			// boilerplate that's probably duplicated in tons of places.
-			result.cost.food += tplData.cost.food;
-			result.cost.wood += tplData.cost.wood;
-			result.cost.stone += tplData.cost.stone;
-			result.cost.metal += tplData.cost.metal;
-			result.cost.population += tplData.cost.population;
-			result.cost.populationBonus += tplData.cost.populationBonus;
-			result.cost.time += tplData.cost.time;
+			for (let res of Resources.GetCodes().concat("population", "populationBonus", "time"))
+				result.cost[res] = tplData.cost[res];
 		}
 
 		let canAfford = true;

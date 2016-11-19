@@ -9,13 +9,15 @@
 					<object type="image" style="StructIcon" name="phase[k]_struct[s]_icon"
 						sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
 					/>
-					<repeat count="4" var="r">
-						<object name="phase[k]_struct[s]_row[r]">
-							<repeat count="24" var="p">
-								<object type="image" style="ProdBox" name="phase[k]_struct[s]_row[r]_prod[p]"/>
-							</repeat>
-						</object>
-					</repeat>
+					<object name="phase[k]_struct[s]_rows">
+						<repeat count="4" var="r">
+							<object name="phase[k]_struct[s]_row[r]">
+								<repeat count="24" var="p">
+									<object type="image" style="ProdBox" name="phase[k]_struct[s]_row[r]_prod[p]"/>
+								</repeat>
+							</object>
+						</repeat>
+					</object>
 				</object>
 			</repeat>
 		</object>

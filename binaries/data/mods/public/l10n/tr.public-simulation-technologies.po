@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 09:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-11-14 09:01+0100\n"
+"PO-Revision-Date: 2016-11-17 16:37+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -676,8 +676,9 @@ msgid "The will to fight is crucial to victory."
 msgstr "Mücadele iradesi zafer için çok önemlidir."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
-msgid "Inspire your troops with higher pay. All soldiers +25% attack."
-msgstr "Yüksek maaş alan birliklerinizi esinlendirin. Tüm askerler %+25 saldırı sağlar."
+msgid ""
+"Inspire your troops with higher pay. All land and naval army +25% attack."
+msgstr "Askerlerinize daha yüksek ücretle katkıda bulunun. Tüm kara ve deniz ordusu %+25 saldırı."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -735,7 +736,7 @@ msgstr "Saldırılara karşı yapıları güçlendir."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armor level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Savunma kulesi zırh seviyesini 2 seviye arttırır."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -807,7 +808,7 @@ msgstr "Karakollar tarafsız bölgede iki kat daha uzun hayatta kalır."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "Sınırlardaki çürüme oranı, karakollar için% -50'dir."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -1767,7 +1768,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Ticaretin uzatılması, yabancı ülkelerdeki mağazacılar ve ailelerinin kalıcı olarak kurulmasına ve böylece bu ülkelerin servetlerini kullanmalarına izin veriyor."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -2328,7 +2329,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "Mauryalılar kent duvarlarını ahşaptan çıkardı, Hindistan'da bol miktarda doğal bir kaynaktı. Sonuç olarak, Mauryan şehir surlarının % -20 sağlık ve % -20 inşa süresi var."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2554,7 +2555,7 @@ msgstr "Gümüş Kalkanlar, veya Argyraspidai, Makedon ordusunun seçkin ağır 
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr ""
+msgstr "Kalkan Taşıyıcı Şampiyonu Piyadesini daha sağlıklı ve zırhlı olarak Gümüş Kalkanlara yükseltin."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

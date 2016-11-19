@@ -17,7 +17,7 @@ m.chatLaunchAttack = function(gameState, player, type)
 		"message": "/allies "+ message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
-		"parameters": {"_player_": player}
+		"parameters": { "_player_": player }
 	});
 };
 
@@ -45,7 +45,7 @@ m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 		"message": "/allies " + message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
-		"parameters": {"_player_": player}
+		"parameters": { "_player_": player }
 	};
 	if (other !== undefined)
 	{
@@ -71,7 +71,7 @@ m.chatSentTribute = function(gameState, player)
 		"message": "/allies " + message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
-		"parameters": {"_player_": player}
+		"parameters": { "_player_": player }
 	});
 };
 
@@ -90,8 +90,8 @@ m.chatRequestTribute = function(gameState, resource)
 		"type": "aichat",
 		"message": "/allies " + message,
 		"translateMessage": true,
-		"translateParameters": {"resource": "withinSentence"},
-		"parameters": {"resource": gameState.sharedScript.resourceNames[resource]}
+		"translateParameters": { "resource": "withinSentence" },
+		"parameters": { "resource": gameState.sharedScript.resourceInfo.names[resource] }
 	});
 };
 
@@ -109,7 +109,7 @@ m.chatNewTradeRoute = function(gameState, player)
 		"message": "/allies " + message,
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
-		"parameters": {"_player_": player}
+		"parameters": { "_player_": player }
 	});
 };
 

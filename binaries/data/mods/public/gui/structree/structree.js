@@ -9,6 +9,7 @@ var g_Lists = {};
 var g_CivData = {};
 var g_SelectedCiv = "";
 var g_CallbackSet = false;
+var g_ResourceData = new Resources();
 
 /**
  * Initialize the dropdown containing all the available civs

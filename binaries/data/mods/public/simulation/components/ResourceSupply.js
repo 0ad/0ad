@@ -12,23 +12,8 @@ ResourceSupply.prototype.Schema =
 	"<element name='Amount' a:help='Amount of resources available from this entity'>" +
 		"<choice><data type='nonNegativeInteger'/><value>Infinity</value></choice>" +
 	"</element>" +
-	"<element name='Type' a:help='Type of resources'>" +
-		"<choice>" +
-			"<value>wood.tree</value>" +
-			"<value>wood.ruins</value>" +
-			"<value>stone.rock</value>" +
-			"<value>stone.ruins</value>" +
-			"<value>metal.ore</value>" +
-			"<value>food.fish</value>" +
-			"<value>food.fruit</value>" +
-			"<value>food.grain</value>" +
-			"<value>food.meat</value>" +
-			"<value>food.milk</value>" +
-			"<value>treasure.wood</value>" +
-			"<value>treasure.stone</value>" +
-			"<value>treasure.metal</value>" +
-			"<value>treasure.food</value>" +
-		"</choice>" +
+	"<element name='Type' a:help='Type and Subtype of resource available from this entity'>" +
+		Resources.BuildChoicesSchema(true, true) +
 	"</element>" +
 	"<element name='MaxGatherers' a:help='Amount of gatherers who can gather resources from this entity at the same time'>" +
 		"<data type='nonNegativeInteger'/>" +
@@ -45,16 +30,23 @@ ResourceSupply.prototype.Init = function()
 	this.amount = this.GetMaxAmount();
 
 	this.gatherers = [];	// list of IDs for each players
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-	for (var i = 0; i <= numPlayers; ++i)	// use "<=" because we want Gaia too.
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
+	let numPlayers = cmpPlayerManager.GetNumPlayers();
+	for (let i = 0; i <= numPlayers; ++i)	// use "<=" because we want Gaia too.
 		this.gatherers.push([]);
 
 	this.infinite = !isFinite(+this.template.Amount);
 
-	[this.type,this.subType] = this.template.Type.split('.');
-	this.cachedType = { "generic" : this.type, "specific" : this.subType };
+	let [type, subtype] = this.template.Type.split('.');
+	let resData = type === "treasure" ?
+		{ "subtypes": Resources.GetNames() } :
+		Resources.GetResource(type);
 
+	// Remove entity from gameworld if the resource supplied by this entity is disabled or not valid.
+	if (!resData || !resData.subtypes[subtype])
+		Engine.DestroyEntity(this.entity);
+
+	this.cachedType = { "generic": type, "specific": subtype };
 };
 
 ResourceSupply.prototype.IsInfinite = function()

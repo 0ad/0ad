@@ -4,12 +4,7 @@ ResourceDropsite.prototype.Schema =
 	"<element name='Types'>" +
 		"<list>" +
 			"<zeroOrMore>" +
-				"<choice>" +
-					"<value>food</value>" +
-					"<value>wood</value>" +
-					"<value>stone</value>" +
-					"<value>metal</value>" +
-				"</choice>" +
+				Resources.BuildChoicesSchema() +
 			"</zeroOrMore>" +
 		"</list>" +
 	"</element>" +
@@ -24,12 +19,14 @@ ResourceDropsite.prototype.Init = function()
 };
 
 /**
- * Returns the list of resource types accepted by this dropsite.
+ * Returns the list of resource types accepted by this dropsite,
+ * as defined by it being referred to in the template and the resource being enabled.
  */
 ResourceDropsite.prototype.GetTypes = function()
 {
 	let types = ApplyValueModificationsToEntity("ResourceDropsite/Types", this.template.Types, this.entity);
-	return types ? types.split(/\s+/) : [];
+	let resources = Resources.GetCodes();
+	return types.split(/\s+/).filter(type => resources.indexOf(type) != -1);
 };
 
 /**

@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 #
-# Copyright (C) 2015 Wildfire Games
+# Copyright (C) 2016 Wildfire Games
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -96,7 +96,7 @@ class Extractor(object):
     def extractFromFile(self, filepath):
         """ Extracts messages from a specific file.
 
-        :return:    An iterator over ``(message, plural, context, position, comments)`` tuples.
+        :return:    An iterator over ``(message, plural, context, breadcrumb, position, comments)`` tuples.
         :rtype:     ``iterator``
         """
         pass
@@ -306,11 +306,13 @@ class json(Extractor):
         self.breadcrumbs = []
         self.keywords = self.options.get("keywords", {})
         self.context = self.options.get("context", None)
+        self.comments = self.options.get("comments", [])
 
     def setOptions(self, options):
         self.options = options
         self.keywords = self.options.get("keywords", {})
         self.context = self.options.get("context", None)
+        self.comments = self.options.get("comments", [])
 
     @staticmethod
     def formatBreadcrumbs(breadcrumbs):
@@ -325,7 +327,7 @@ class json(Extractor):
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", 'utf-8') as fileObject:
             for message, breadcrumbs in self.extractFromString(fileObject.read()):
-                yield message, None, self.context, self.formatBreadcrumbs(breadcrumbs), -1, []
+                yield message, None, self.context, self.formatBreadcrumbs(breadcrumbs), -1, self.comments
 
     def extractFromString(self, string):
         self.breadcrumbs = []

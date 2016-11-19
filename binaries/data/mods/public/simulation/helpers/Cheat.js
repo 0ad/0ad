@@ -148,7 +148,7 @@ function Cheat(input)
 			cmpTechnologyManager.ResearchTechnology(techname);
 		return;
 	case "metaCheat":
-		for (let resource of ["food", "wood", "metal", "stone"])
+		for (let resource of Resources.GetCodes())
 			Cheat({ "player": input.player, "action": "addresource", "text": resource, "parameter": input.parameter });
 		Cheat({ "player": input.player, "action": "maxpopulation" });
 		Cheat({ "player": input.player, "action": "changemaxpopulation" });
