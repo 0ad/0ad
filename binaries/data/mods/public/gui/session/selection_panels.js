@@ -33,6 +33,8 @@ let g_FormationsInfo = new Map();
 
 let g_SelectionPanels = {};
 
+let g_BarterSell;
+
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
@@ -104,8 +106,7 @@ g_SelectionPanels.Barter = {
 	{
 		if (unitEntStates.every(state => !state.barterMarket))
 			return [];
-		// ["food", "wood", "stone", "metal"]
-		return BARTER_RESOURCES;
+		return g_ResourceData.GetCodes();
 	},
 	"setupButton": function(data)
 	{
@@ -125,6 +126,9 @@ g_SelectionPanels.Barter = {
 		if (Engine.HotkeyIsPressed("session.massbarter"))
 			amountToSell *= BARTER_BUNCH_MULTIPLIER;
 
+		if (!g_BarterSell)
+			g_BarterSell = g_ResourceData.GetCodes()[0];
+
 		amount.Sell.caption = "-" + amountToSell;
 		let prices;
 		for (let state of data.unitEntStates)
@@ -136,7 +140,7 @@ g_SelectionPanels.Barter = {
 
 		amount.Buy.caption = "+" + Math.round(prices.sell[g_BarterSell] / prices.buy[data.item] * amountToSell);
 
-		let resource = getLocalizedResourceName(data.item, "withinSentence");
+		let resource = getLocalizedResourceName(g_ResourceData.GetNames()[data.item], "withinSentence");
 		button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
 		button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
 

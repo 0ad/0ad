@@ -95,10 +95,11 @@ var g_ScorePanelsData = {
 	"resources": {
 		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Food"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Wood"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Stone"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Metal"), "yStart": 34, "width": 100 },
+			...g_ResourceData.GetResources().map(res => ({
+				"caption": translateWithContext("firstWord", res.name),
+				"yStart": 34,
+				"width": 100
+			})),
 			{ "caption": translate("Total"), "yStart": 34, "width": 110 },
 			{
 				"caption": sprintf(translate("Tributes \n(%(sent)s / %(received)s)"),
@@ -120,14 +121,15 @@ var g_ScorePanelsData = {
 						"used": g_OutcomeColor + translate("Used") + '[/color]'
 					}),
 				"yStart": 16,
-				"width": (100 * 4 + 110)
-			}, // width = 510
+				"width": 100 * g_ResourceData.GetCodes().length + 110
+			},
 		],
 		"counters": [
-			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateResources, "verticalOffset": 12 },
+			...g_ResourceData.GetCodes().map(code => ({
+				"fn": calculateResources,
+				"verticalOffset": 12,
+				"width": 100
+			})),
 			{ "width": 110, "fn": calculateTotalResources, "verticalOffset": 12 },
 			{ "width": 121, "fn": calculateTributeSent, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateTreasureCollected, "verticalOffset": 12 },
@@ -138,19 +140,28 @@ var g_ScorePanelsData = {
 	"market": {
 		"headings": [
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Food exchanged"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Wood exchanged"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Stone exchanged"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Metal exchanged"), "yStart": 16, "width": 100 },
+			...g_ResourceData.GetResources().map(res => {
+				return {
+					"caption":
+						// Translation: use %(resourceWithinSentence)s if needed
+						sprintf(translate("%(resourceFirstWord)s exchanged"), {
+							"resourceFirstWord": translateWithContext("firstWord", res.name),
+							"resourceWithinSentence": translateWithContext("withinSentence", res.name)
+						}),
+					"yStart": 16,
+					"width": 100
+				};
+			}),
 			{ "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Trade income"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
 		"counters": [
-			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateResourceExchanged, "verticalOffset": 12 },
+			...g_ResourceData.GetCodes().map(code => ({
+				"width": 100,
+				"fn": calculateResourceExchanged,
+				"verticalOffset": 12
+			})),
 			{ "width": 100, "fn": calculateBarterEfficiency, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateTradeIncome, "verticalOffset": 12 }
 		],

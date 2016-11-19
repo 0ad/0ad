@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <object name="diplomacyDialogPanel"
-	size="50%-300 50%-200 50%+300 50%+150"
+	size="50%-260 50%-200 50%+260 50%+150"
 	type="image"
 	hidden="true"
 	sprite="ModernDialog"
@@ -11,7 +11,7 @@
 	</object>
 
 	<object name="diplomacyHeader" size="32 32 100%-32 64">
-		<object name="diplomacyHeaderName" size="0 0 150 100%" type="text" style="DiplomacyText" ghost="true">
+		<object name="diplomacyHeaderName" size="0 0 140 100%" type="text" style="DiplomacyText" ghost="true" text_align="center">
 			<translatableAttribute id="caption">Name</translatableAttribute>
 		</object>
 		<object name="diplomacyHeaderCiv" size="150 0 250 100%" type="text" style="DiplomacyText" ghost="true">
@@ -23,25 +23,25 @@
 		<object name="diplomacyHeaderTheirs" size="300 0 360 100%" type="text" style="DiplomacyText" ghost="true">
 			<translatableAttribute id="caption">Theirs</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderAlly" size="100%-180 0 100%-160 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
+		<object name="diplomacyHeaderAlly" size="360 0 380 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
 			<translatableAttribute id="caption">A</translatableAttribute>
 			<translatableAttribute id="tooltip">Ally</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderNeutral" size="100%-160 0 100%-140 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
+		<object name="diplomacyHeaderNeutral" size="380 0 400 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
 			<translatableAttribute id="caption">N</translatableAttribute>
 			<translatableAttribute id="tooltip">Neutral</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderEnemy" size="100%-140 0 100%-120 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
+		<object name="diplomacyHeaderEnemy" size="400 0 420 100%" type="text" style="DiplomacyText" tooltip_style="sessionToolTipBold">
 			<translatableAttribute id="caption">E</translatableAttribute>
 			<translatableAttribute id="tooltip">Enemy</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderTribute" size="100%-110 0 100% 100%" type="text" style="DiplomacyText">
+		<object name="diplomacyHeaderTribute" size="430 0 100%-30 100%" type="text" style="DiplomacyText" text_align="center">
 			<translatableAttribute id="caption">Tribute</translatableAttribute>
 		</object>
 	</object>
 
 	<object size="32 64 100%-32 384">
-		<repeat count="16">
+		<repeat count="16" var="n">
 			<object name="diplomacyPlayer[n]" size="0 0 100% 20" type="image" hidden="false">
 				<object name="diplomacyPlayerName[n]" size="0 0 150 100%" type="text" style="DiplomacyText" ghost="true"/>
 				<object name="diplomacyPlayerCiv[n]" size="150 0 250 100%" type="text" style="DiplomacyText" ghost="true"/>
@@ -49,22 +49,17 @@
 				<object name="diplomacyPlayerTheirs[n]" size="300 0 360 100%" type="text" style="DiplomacyText" ghost="true"/>
 
 				<!-- Diplomatic stance - selection -->
-				<object name="diplomacyPlayerAlly[n]" size="100%-180 0 100%-160 100%" type="button" style="StoneButton" hidden="true"/>
-				<object name="diplomacyPlayerNeutral[n]" size="100%-160 0 100%-140 100%" type="button" style="StoneButton" hidden="true"/>
-				<object name="diplomacyPlayerEnemy[n]" size="100%-140 0 100%-120 100%" type="button" style="StoneButton" hidden="true"/>
+				<object name="diplomacyPlayerAlly[n]" size="360 0 380 100%" type="button" style="StoneButton" hidden="true"/>
+				<object name="diplomacyPlayerNeutral[n]" size="380 0 400 100%" type="button" style="StoneButton" hidden="true"/>
+				<object name="diplomacyPlayerEnemy[n]" size="400 0 420 100%" type="button" style="StoneButton" hidden="true"/>
 
 				<!-- Tribute -->
-				<object name="diplomacyPlayerTributeFood[n]" size="100%-110 0 100%-90 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
-					<object name="diplomacyPlayerTributeFoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
-				</object>
-				<object name="diplomacyPlayerTributeWood[n]" size="100%-90 0 100%-70 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
-					<object name="diplomacyPlayerTributeWoodImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/wood.png" ghost="true"/>
-				</object>
-				<object name="diplomacyPlayerTributeStone[n]" size="100%-70 0 100%-50 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
-					<object name="diplomacyPlayerTributeStoneImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/stone.png" ghost="true"/>
-				</object>
-				<object name="diplomacyPlayerTributeMetal[n]" size="100%-50 0 100%-30 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
-					<object name="diplomacyPlayerTributeMetalImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/resources/metal.png" ghost="true"/>
+				<object size="430 0 100%-40 100%">
+					<repeat count="8" var="r">
+						<object name="diplomacyPlayer[n]_tribute[r]" size="0 0 20 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
+							<object name="diplomacyPlayer[n]_tribute[r]_image" type="image" size="0 0 100% 100%" ghost="true"/>
+						</object>
+					</repeat>
 				</object>
 
 				<object name="diplomacyAttackRequest[n]" size="100%-20 0 100% 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">

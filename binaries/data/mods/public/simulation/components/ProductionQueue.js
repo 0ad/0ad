@@ -31,13 +31,7 @@ ProductionQueue.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<element name='TechCostMultiplier' a:help='Multiplier to modify ressources cost and research time of technologies searched in this building.'>" +
-		"<interleave>" +
-			"<element name='food'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='wood'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='stone'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='metal'><ref name='nonNegativeDecimal'/></element>" +
-			"<element name='time'><ref name='nonNegativeDecimal'/></element>" +
-		"</interleave>" +
+		Resources.BuildSchema("nonNegativeDecimal", ["time"]) +
 	"</element>";
 
 ProductionQueue.prototype.Init = function()
@@ -260,7 +254,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	// TODO: there should probably be a limit on the number of queued batches
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits)
-	var cmpPlayer = QueryOwnerInterface(this.entity);
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	let resCodes = Resources.GetCodes();
 
 	if (this.queue.length < MAX_QUEUE_SIZE)
 	{
@@ -293,10 +288,12 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var buildTime = ApplyValueModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, cmpPlayer.GetPlayerID(), template);
 			var time = timeMult * buildTime;
 
-			for (var r in template.Cost.Resources)
+			for (let res in template.Cost.Resources)
 			{
-				costs[r] = ApplyValueModificationsToTemplate("Cost/Resources/"+r, +template.Cost.Resources[r], cmpPlayer.GetPlayerID(), template);
-				totalCosts[r] = Math.floor(count * costs[r]);
+				if (resCodes.indexOf(res) == -1)
+					continue;
+				costs[res] = ApplyValueModificationsToTemplate("Cost/Resources/"+res, +template.Cost.Resources[res], cmpPlayer.GetPlayerID(), template);
+				totalCosts[res] = Math.floor(count * costs[res]);
 			}
 
 			var population = ApplyValueModificationsToTemplate("Cost/Population",  +template.Cost.Population, cmpPlayer.GetPlayerID(), template);
@@ -337,6 +334,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var template = cmpDataTemplateManager.GetTechnologyTemplate(templateName);
 			if (!template)
 				return;
+
 			if (!this.GetTechnologiesList().some(tech =>
 				tech &&
 					(tech == templateName ||
@@ -346,13 +344,17 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				error("This entity cannot research " + templateName);
 				return;
 			}
-			var cmpPlayer = QueryOwnerInterface(this.entity);
+
 			let techCostMultiplier = this.GetTechCostMultiplier();
 			let time =  techCostMultiplier.time * template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
 
-			var cost = {};
+			let cost = {};
 			for (let res in template.cost)
-				cost[res] = Math.floor(techCostMultiplier[res] * template.cost[res]);
+			{
+				if (resCodes.indexOf(res) == -1)
+					continue;
+				cost[res] = Math.floor((techCostMultiplier[res] || 1) * template.cost[res]);
+			}
 
 			// TrySubtractResources should report error to player (they ran out of resources)
 			if (!cmpPlayer.TrySubtractResources(cost))
@@ -370,7 +372,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"player": cmpPlayer.GetPlayerID(),
 				"count": 1,
 				"technologyTemplate": templateName,
-				"resources": deepcopy(template.cost), // need to copy to avoid serialization problems
+				"resources": cost,
 				"productionStarted": false,
 				"timeTotal": time*1000,
 				"timeRemaining": time*1000,
@@ -442,8 +444,10 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		// Refund the resource cost for this batch
 		var totalCosts = {};
 		var cmpStatisticsTracker = QueryPlayerIDInterface(item.player, IID_StatisticsTracker);
-		for each (var r in ["food", "wood", "stone", "metal"])
+		for (let r of Resources.GetCodes())
 		{
+			if (!item.resources[r])
+				continue;
 			totalCosts[r] = Math.floor(item.count * item.resources[r]);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -totalCosts[r]);

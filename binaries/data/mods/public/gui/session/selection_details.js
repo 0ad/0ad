@@ -12,11 +12,13 @@ function layoutSelectionMultiple()
 
 function getResourceTypeDisplayName(resourceType)
 {
-	let resourceCode = resourceType.generic;
-	if (resourceCode == "treasure")
-		return getLocalizedResourceName(resourceType.specific, "firstWord");
-	else
-		return getLocalizedResourceName(resourceCode, "firstWord");
+	return getLocalizedResourceName(
+		g_ResourceData.GetNames()[
+			resourceType.generic == "treasure" ?
+				resourceType.specific :
+				resourceType.generic
+		],
+		"firstWord");
 }
 
 // Updates the health bar of garrisoned units
@@ -182,15 +184,16 @@ function displaySingle(entState)
 				"max": entState.resourceSupply.max
 			});
 
-		let resourceType = getResourceTypeDisplayName(entState.resourceSupply.type);
-
 		let unitResourceBar = Engine.GetGUIObjectByName("resourceBar");
 		let resourceSize = unitResourceBar.size;
 
 		resourceSize.rright = entState.resourceSupply.isInfinite ? 100 :
 						100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
-		Engine.GetGUIObjectByName("resourceLabel").caption = sprintf(translate("%(resource)s:"), { "resource": resourceType });
+
+		Engine.GetGUIObjectByName("resourceLabel").caption = sprintf(translate("%(resource)s:"), {
+			"resource": getResourceTypeDisplayName(entState.resourceSupply.type)
+		});
 		Engine.GetGUIObjectByName("resourceStats").caption = resources;
 
 		if (entState.hitpoints)
@@ -406,7 +409,8 @@ function displayMultiple(entStates)
 	if (Object.keys(totalCarrying).length)
 		numberOfUnits.tooltip = sprintf(translate("%(label)s %(details)s\n"), {
 			"label": headerFont(translate("Carrying:")),
-			"details": bodyFont(RESOURCES.filter(res => !!totalCarrying[res]).map(
+			"details": bodyFont(Object.keys(totalCarrying).filter(
+				res => totalCarrying[res] != 0).map(
 				res => sprintf(translate("%(type)s %(amount)s"),
 					{ "type": costIcon(res), "amount": totalCarrying[res] })).join("  "))
 		});
@@ -414,7 +418,8 @@ function displayMultiple(entStates)
 	if (Object.keys(totalLoot).length)
 		numberOfUnits.tooltip += sprintf(translate("%(label)s %(details)s"), {
 			"label": headerFont(translate("Loot:")),
-			"details": bodyFont(Object.keys(totalLoot).map(
+			"details": bodyFont(Object.keys(totalLoot).filter(
+				res => totalLoot[res] != 0).map(
 				res => sprintf(translate("%(type)s %(amount)s"),
 					{ "type": costIcon(res), "amount": totalLoot[res] })).join("  "))
 		});

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="tradeDialogPanel"
-	size="50%-250 50%-130 50%+250 50%+100"
+	size="50%-134 50%-130 50%+134 50%+100"
 	type="image"
 	hidden="true"
 	sprite="ModernDialog"
@@ -15,8 +15,8 @@
 			<translatableAttribute id="caption">Trading goods selection:</translatableAttribute>
 		</object>
 
-		<object size="180 0 100% 100%">
-			<repeat count="4">
+		<object size="180 0 100% 100%" name="tradeResources">
+			<repeat count="8">
 				<object name="tradeResource[n]" size="0 0 58 32">
 					<object name="tradeResourceButton[n]" size="4 0 36 100%" type="button" style="StoneButton">
 						<object name="tradeResourceIcon[n]" type="image" ghost="true"/>

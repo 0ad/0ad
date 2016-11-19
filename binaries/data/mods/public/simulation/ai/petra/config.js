@@ -103,7 +103,26 @@ m.Config = function(difficulty)
 		"defensive": 0.5
 	};
 
-	this.resources = ["food", "wood", "stone", "metal"];
+	// See m.QueueManager.prototype.wantedGatherRates()
+	this.queues =
+	{
+		"firstTurn": {
+			"food": 10,
+			"wood": 10,
+			"default": 0
+		},
+		"short": {
+			"food": 200,
+			"wood": 200,
+			"default": 100
+		},
+		"medium": {
+			"default": 0
+		},
+		"long": {
+			"default": 0
+		}
+	};
 };
 
 m.Config.prototype.setConfig = function(gameState)

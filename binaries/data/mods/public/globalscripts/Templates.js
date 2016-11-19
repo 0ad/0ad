@@ -75,8 +75,9 @@ function MatchesClassList(classes, match)
  * @param player An optional player id to get the technology modifications
  *               of properties.
  * @param auraTemplates An object in the form of {key: {auraName: "", auraDescription: ""}}
+ * @param resources An instance of the Resources prototype
  */
-function GetTemplateDataHelper(template, player, auraTemplates)
+function GetTemplateDataHelper(template, player, auraTemplates, resources)
 {
 	// Return data either from template (in tech tree) or sim state (ingame)
 	let getEntityValue = function(tech_type) {
@@ -193,17 +194,9 @@ function GetTemplateDataHelper(template, player, auraTemplates)
 	if (template.Cost)
 	{
 		ret.cost = {};
-		if (template.Cost.Resources.food)
-			ret.cost.food = getEntityValue("Cost/Resources/food");
-
-		if (template.Cost.Resources.wood)
-			ret.cost.wood = getEntityValue("Cost/Resources/wood");
-
-		if (template.Cost.Resources.stone)
-			ret.cost.stone = getEntityValue("Cost/Resources/stone");
-
-		if (template.Cost.Resources.metal)
-			ret.cost.metal = getEntityValue("Cost/Resources/metal");
+		for (let resCode of resources.GetCodes())
+			if (template.Cost.Resources[resCode])
+				ret.cost[resCode] = getEntityValue("Cost/Resources/" + resCode);
 
 		if (template.Cost.Population)
 			ret.cost.population = getEntityValue("Cost/Population");
@@ -348,8 +341,9 @@ function GetTemplateDataHelper(template, player, auraTemplates)
  * Get information about a technology template.
  * @param template A valid template as obtained by loading the tech JSON file.
  * @param civ Civilization for which the specific name should be returned.
+ * @param resources An instance of the Resources prototype.
  */
-function GetTechnologyDataHelper(template, civ)
+function GetTechnologyDataHelper(template, civ, resources)
 {
 	var ret = {};
 
@@ -370,13 +364,9 @@ function GetTechnologyDataHelper(template, civ)
 
 	ret.icon = template.icon ? "technologies/" + template.icon : null;
 
-	ret.cost = {
-		"food": template.cost ? +template.cost.food : 0,
-		"wood": template.cost ? +template.cost.wood : 0,
-		"metal": template.cost ? +template.cost.metal : 0,
-		"stone": template.cost ? +template.cost.stone : 0,
-		"time": template.researchTime ? +template.researchTime : 0,
-	}
+	ret.cost = { "time": template.researchTime ? +template.researchTime : 0 }
+	for (let type of resources.GetCodes())
+		ret.cost[type] = template.cost ? +template.cost[type] : 0;
 
 	ret.tooltip = template.tooltip;
 	ret.requirementsTooltip = template.requirementsTooltip || "";

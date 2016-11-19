@@ -91,5 +91,5 @@ function depath(path)
 function GetTemplateData(templateName)
 {
 	var template = loadTemplate(templateName);
-	return GetTemplateDataHelper(template, null, g_AuraData);
+	return GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData);
 }

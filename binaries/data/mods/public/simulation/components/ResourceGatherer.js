@@ -25,35 +25,10 @@ ResourceGatherer.prototype.Schema =
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
 	"<element name='Rates' a:help='Per-resource-type gather rate multipliers. If a resource type is not specified then it cannot be gathered by this unit'>" +
-		"<interleave>" +
-			"<optional><element name='food' a:help='Food gather rate (may be overridden by \"food.*\" subtypes)'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='wood' a:help='Wood gather rate'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='stone' a:help='Stone gather rate'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='metal' a:help='Metal gather rate'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='treasure' a:help='Treasure gather rate (only presense on value makes sense, size is only used to determine the delay before gathering, so it should be set to 1)'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='food.fish' a:help='Fish gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='food.fruit' a:help='Fruit gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='food.grain' a:help='Grain gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='food.meat' a:help='Meat gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='food.milk' a:help='Milk gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='wood.tree' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='wood.ruins' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='stone.rock' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='stone.ruins' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='metal.ore' a:help='Ore gather rate (overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='treasure.food' a:help='Food treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='treasure.wood' a:help='Wood treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='treasure.stone' a:help='Stone treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='treasure.metal' a:help='Metal treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
-		"</interleave>" +
+		Resources.BuildSchema("positiveDecimal", ["treasure"], true) +
 	"</element>" +
 	"<element name='Capacities' a:help='Per-resource-type maximum carrying capacity'>" +
-		"<interleave>" +
-			"<element name='food' a:help='Food capacity'><ref name='positiveDecimal'/></element>" +
-			"<element name='wood' a:help='Wood capacity'><ref name='positiveDecimal'/></element>" +
-			"<element name='stone' a:help='Stone capacity'><ref name='positiveDecimal'/></element>" +
-			"<element name='metal' a:help='Metal capacity'><ref name='positiveDecimal'/></element>" +
-		"</interleave>" +
+		Resources.BuildSchema("positiveDecimal") +
 	"</element>";
 
 ResourceGatherer.prototype.Init = function()
@@ -137,6 +112,14 @@ ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
 	this.rates = {};
 	for (let r in this.template.Rates)
 	{
+		let type = r.split(".");
+
+		if (type[0] != "treasure" && type.length > 1 && !Resources.GetResource(type[0]).subtypes[type[1]])
+		{
+			error("Resource subtype not found: " + type[0] + "." + type[1]);
+			continue;
+		}
+
 		let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
 		this.rates[r] = rate * this.baseSpeed;
 	}
@@ -174,7 +157,7 @@ ResourceGatherer.prototype.GetRange = function()
 
 /**
  * Try to gather treasure
- * @return 'true' if treasure is successfully gathered and 'false' in the other case
+ * @return 'true' if treasure is successfully gathered, otherwise 'false'
  */
 ResourceGatherer.prototype.TryInstantGather = function(target)
 {

@@ -245,3 +245,32 @@ function notifyUser(userName, msgText)
 
 	g_LastNickNotification = timeNow;
 }
+
+/**
+ * Horizontally spaces objects within a parent
+ *
+ * @param margin The gap, in px, between the objects
+ */
+function horizontallySpaceObjects(parentName, margin=0)
+{
+	let objects = Engine.GetGUIObjectByName(parentName).children;
+	for (let i = 0; i < objects.length; ++i)
+	{
+		let size = objects[i].size;
+		let width = size.right - size.left;
+		size.left = i * (width + margin) + margin;
+		size.right = (i + 1) * (width + margin);
+		objects[i].size = size;
+	}
+}
+
+/**
+ * Hide all children after a certain index
+ */
+function hideRemaining(parentName, start = 0)
+{
+	let objects = Engine.GetGUIObjectByName(parentName).children;
+
+	for (let i = start; i < objects.length; ++i)
+		objects[i].hidden = true;
+}

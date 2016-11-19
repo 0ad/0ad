@@ -603,7 +603,7 @@ function getLootTooltip(template)
 			template.trader && template.trader.goods
 		);
 
-	const lootTypes = ["xp", "food", "wood", "stone", "metal"];
+	const lootTypes = g_ResourceData.GetCodes().concat(["xp"]);
 	let lootLabels = [];
 	for (let type of lootTypes)
 	{

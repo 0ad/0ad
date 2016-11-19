@@ -116,7 +116,7 @@ function draw()
 				if (p>c)
 					c = p;
 
-				hideRemaining("phase["+i+"]_struct["+s+"]_row["+r+"]_prod[", p, "]");
+				hideRemaining("phase["+i+"]_struct["+s+"]_row["+r+"]", p);
 			}
 
 			let size = thisEle.size;
@@ -136,13 +136,14 @@ function draw()
 				phaEle.size = size;
 			}
 			++r;
-			hideRemaining("phase["+i+"]_struct["+s+"]_row[", r, "]");
+			hideRemaining("phase["+i+"]_struct["+s+"]_rows", r);
 			++s;
 			prodBarWidth += eleWidth + defMargin;
 		}
-		hideRemaining("phase["+i+"]_struct[", s, "]");
-		let offset = getPositionOffset(i);
 
+		hideRemaining("phase["+i+"]", s);
+
+		let offset = getPositionOffset(i);
 		// Resize phase bars
 		for (let j = 1; j < phaseList.length - i; ++j)
 		{
@@ -195,7 +196,7 @@ function draw()
 				++p;
 			}
 		}
-		hideRemaining("trainer["+t+"]_prod[", p, "]");
+		hideRemaining("trainer["+t+"]_row", p);
 
 		let size = thisEle.size;
 		size.right = size.left + Math.max(p*24, defWidth) + 4;
@@ -209,7 +210,7 @@ function draw()
 		phaEle.size = size;
 		++t;
 	}
-	hideRemaining("trainer[", t, "]");
+	hideRemaining("trainers", t);
 
 	let size = Engine.GetGUIObjectByName("display_tree").size;
 	size.right = t > 0 ? -124 : -4;
@@ -251,18 +252,6 @@ function getPositionOffset(idx)
 	return size;
 }
 
-function hideRemaining(prefix, idx, suffix)
-{
-	let obj = Engine.GetGUIObjectByName(prefix + idx + suffix);
-	while (obj)
-	{
-		obj.hidden = true;
-		++idx;
-		obj = Engine.GetGUIObjectByName(prefix + idx + suffix);
-	}
-}
-
-
 /**
  * Positions certain elements that only need to be positioned once
  * (as <repeat> does not reposition automatically).
@@ -299,7 +288,7 @@ function predraw()
 			prodBarIcon.sprite = "stretched:session/portraits/"+g_ParsedData.phases[phaseList[i+j]].icon;
 		}
 		// Hide remaining prod bars
-		hideRemaining("phase["+i+"]_bar[", j-1, "]");
+		hideRemaining("phase["+i+"]_bars", j-1);
 
 		let s = 0;
 		let ele = Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]");
@@ -350,8 +339,8 @@ function predraw()
 		g_DrawLimits[pha].structQuant = s;
 		++i;
 	}
-	hideRemaining("phase[", i, "]");
-	hideRemaining("phase[", i, "]_bar");
+	hideRemaining("phase_rows", i);
+	hideRemaining("phase_ident", i);
 
 	let t = 0;
 	let ele = Engine.GetGUIObjectByName("trainer["+t+"]");

@@ -84,8 +84,8 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	if (gameState.ai.playedTurn === 0)
 	{
 		let ret = {};
-		for (let res of gameState.sharedScript.resourceList)
-			ret[res] = (res === "food" || res === "wood" ) ? 10 : 0;
+		for (let res of gameState.sharedScript.resourceInfo.codes)
+			ret[res] = this.Config.queues.firstTurn[res] || this.Config.queues.firstTurn.default;
 		return ret;
 	}
 
@@ -97,11 +97,11 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	let totalShort = {};
 	let totalMedium = {};
 	let totalLong = {};
-	for (let res of gameState.sharedScript.resourceList)
+	for (let res of gameState.sharedScript.resourceInfo.codes)
 	{
-		totalShort[res] = (res === "food" || res === "wood" ) ? 200 : 100;
-		totalMedium[res] = 0;
-		totalLong[res] = 0;
+		totalShort[res] = this.Config.queues.short[res] || this.Config.queues.short.default;
+		totalMedium[res] = this.Config.queues.medium[res] || this.Config.queues.medium.default;
+		totalLong[res] = this.Config.queues.long[res] || this.Config.queues.long.default;
 	}
 	let total;
 	//queueArrays because it's faster.
@@ -133,7 +133,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	// global rates
 	let rates = {};
 	let diff;
-	for (let res of gameState.sharedScript.resourceList)
+	for (let res of gameState.sharedScript.resourceInfo.codes)
 	{
 		if (current[res] > 0)
 		{

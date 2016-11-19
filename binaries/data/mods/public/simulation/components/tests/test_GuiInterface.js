@@ -34,6 +34,17 @@ Engine.LoadComponentScript("interfaces/Upgrade.js");
 Engine.LoadComponentScript("interfaces/BuildingAI.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
+Resources = {
+	"GetCodes": () => ["food", "metal", "stone", "wood"],
+	"GetNames": () => ({
+		"food": "Food",
+		"metal": "Metal",
+		"stone": "Stone",
+		"wood": "Wood"
+	}),
+	"GetResource": () => ({}),
+};
+
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
 
 
@@ -333,7 +344,25 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	timeElapsed: 0,
 	gameType: "conquest",
 	alliedVictory: false,
-	barterPrices: {buy: {food: 150}, sell: {food: 25}}
+	"barterPrices": {
+		"buy": { "food": 150 },
+		"sell": { "food": 25 }
+	},
+	"resources": {
+		"codes": ["food", "metal", "stone", "wood"],
+		"names": {
+			"food": "Food",
+			"metal": "Metal",
+			"stone": "Stone",
+			"wood": "Wood",
+		},
+		"aiInfluenceGroups": {
+			"food": 0,
+			"metal": 0,
+			"stone": 0,
+			"wood": 0,
+		}
+	},
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
@@ -453,7 +482,25 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	timeElapsed: 0,
 	gameType: "conquest",
 	alliedVictory: false,
-	barterPrices: {buy: {food: 150}, sell: {food: 25}}
+	"barterPrices": {
+		"buy": { "food": 150 },
+		"sell": { "food": 25 }
+	},
+	"resources": {
+		"codes": ["food", "metal", "stone", "wood"],
+		"names": {
+			"food": "Food",
+			"metal": "Metal",
+			"stone": "Stone",
+			"wood": "Wood",
+		},
+		"aiInfluenceGroups": {
+			"food": 0,
+			"metal": 0,
+			"stone": 0,
+			"wood": 0,
+		}
+	},
 });
 
 

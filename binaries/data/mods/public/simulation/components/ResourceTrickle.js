@@ -3,28 +3,7 @@ function ResourceTrickle() {}
 ResourceTrickle.prototype.Schema = 
 	"<a:help>Controls the resource trickle ability of the unit.</a:help>" +
 	"<element name='Rates' a:help='Trickle Rates'>" +
-		"<interleave>" +
-			"<optional>" +
-				"<element name='food' a:help='Food given to the player every interval'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-			"</optional>" +
-			"<optional>" +
-				"<element name='wood' a:help='Wood given to the player every interval'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-			"</optional>" +
-			"<optional>" +
-				"<element name='stone' a:help='Stone given to the player every interval'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-			"</optional>" +
-			"<optional>" +
-				"<element name='metal' a:help='Metal given to the player every interval'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-			"</optional>" +
-		"</interleave>" +
+		Resources.BuildSchema("nonNegativeDecimal") +
 	"</element>" +
 	"<element name='Interval' a:help='Number of miliseconds must pass for the player to gain the next trickle.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
@@ -33,7 +12,7 @@ ResourceTrickle.prototype.Schema =
 ResourceTrickle.prototype.Init = function()
 {
 	this.ComputeRates();
-	// Call the timer
+
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
  	cmpTimer.SetInterval(this.entity, IID_ResourceTrickle, "Trickle", this.GetTimer(), this.GetTimer(), undefined);
 };
@@ -51,11 +30,16 @@ ResourceTrickle.prototype.GetRates = function()
 ResourceTrickle.prototype.ComputeRates = function()
 {
 	this.rates = {};
+	let resCodes = Resources.GetCodes();
 	for (let resource in this.template.Rates)
+	{
+		if (resCodes.indexOf(resource) == -1)
+			continue;
+
 		this.rates[resource] = ApplyValueModificationsToEntity("ResourceTrickle/Rates/"+resource, +this.template.Rates[resource], this.entity);
+	}
 };
 
-// Do the actual work here
 ResourceTrickle.prototype.Trickle = function(data, lateness)
 {
 	// The player entity may also have a ResourceTrickle component
@@ -63,8 +47,7 @@ ResourceTrickle.prototype.Trickle = function(data, lateness)
 	if (!cmpPlayer)
 		return;
 
-	for (let resource in this.rates)
-		cmpPlayer.AddResource(resource, this.rates[resource]);
+	cmpPlayer.AddResources(this.rates);
 };
 
 ResourceTrickle.prototype.OnValueModification = function(msg)

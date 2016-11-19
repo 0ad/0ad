@@ -136,6 +136,7 @@ var g_EntityStates = {};
 var g_TemplateData = {};
 var g_TemplateDataWithoutLocalization = {};
 var g_TechnologyData = {};
+var g_ResourceData = new Resources();
 
 /**
  * Top coordinate of the research list.
@@ -274,7 +275,10 @@ function init(initData, hotloadData)
 	let gameSpeedIdx = g_GameSpeeds.Speed.indexOf(Engine.GetSimRate());
 	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
 	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); };
+
 	initMenuPosition();
+	resizeDiplomacyDialog();
+	resizeTradeDialog();
 
 	for (let slot in Engine.GetGUIObjectByName("unitHeroPanel").children)
 		initGUIHeroes(slot);
@@ -496,10 +500,27 @@ function updateTopPanel()
 	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayer.hidden = !g_IsObserver && !g_DevSettings.changePerspective;
 
-	Engine.GetGUIObjectByName("food").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("wood").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("stone").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("metal").hidden = !isPlayer;
+	let resCodes = g_ResourceData.GetCodes();
+	let r = 0;
+	for (let res of resCodes)
+	{
+		if (!Engine.GetGUIObjectByName("resource["+r+"]"))
+		{
+			warn("Current GUI limits prevent displaying more than " + r + " resources in the top panel!");
+			break;
+		}
+		Engine.GetGUIObjectByName("resource["+r+"]_icon").sprite = "stretched:session/icons/resources/" + res + ".png";
+		Engine.GetGUIObjectByName("resource["+r+"]").hidden = !isPlayer;
+		++r;
+	}
+	horizontallySpaceObjects("resourceCounts", 5);
+	hideRemaining("resourceCounts", r);
+
+	let resPop = Engine.GetGUIObjectByName("population");
+	let resPopSize = resPop.size;
+	resPopSize.left = Engine.GetGUIObjectByName("resource["+ (r-1) +"]").size.right;
+	resPop.size = resPopSize;
+
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("tradeButton1").hidden = !isPlayer;
@@ -994,10 +1015,15 @@ function updatePlayerDisplay()
 	if (!playerState)
 		return;
 
-	for (let res of RESOURCES)
+	let resCodes = g_ResourceData.GetCodes();
+	let resNames = g_ResourceData.GetNames();
+	for (let r = 0; r < resCodes.length; ++r)
 	{
-		Engine.GetGUIObjectByName("resource_" + res).caption = Math.floor(playerState.resourceCounts[res]);
-		Engine.GetGUIObjectByName(res).tooltip = getLocalizedResourceName(res, "firstWord") + getAllyStatTooltip(res);
+		if (!Engine.GetGUIObjectByName("resource["+r+"]"))
+			break;
+		let res = resCodes[r];
+		Engine.GetGUIObjectByName("resource["+r+"]").tooltip = getLocalizedResourceName(resNames[res], "firstWord") + getAllyStatTooltip(res);
+		Engine.GetGUIObjectByName("resource["+r+"]_count").caption = Math.floor(playerState.resourceCounts[res]);
 	}
 
 	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), playerState);

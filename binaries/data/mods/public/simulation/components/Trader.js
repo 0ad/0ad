@@ -4,9 +4,6 @@
 // Additional gain for ships for each garrisoned trader, in percents
 const GARRISONED_TRADER_ADDITION = 20;
 
-// Array of resource names
-const RESOURCES = ["food", "wood", "stone", "metal"];
-
 function Trader() {}
 
 Trader.prototype.Schema =

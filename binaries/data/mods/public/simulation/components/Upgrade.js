@@ -29,10 +29,7 @@ Upgrade.prototype.Schema =
 					"<element name='Cost' a:help='Resource cost to upgrade this unit'>" +
 						"<oneOrMore>" +
 							"<choice>" +
-								"<element name='food'><data type='nonNegativeInteger'/></element>" +
-								"<element name='wood'><data type='nonNegativeInteger'/></element>" +
-								"<element name='stone'><data type='nonNegativeInteger'/></element>" +
-								"<element name='metal'><data type='nonNegativeInteger'/></element>" +
+								Resources.BuildSchema("nonNegativeInteger") +
 							"</choice>" +
 						"</oneOrMore>" +
 					"</element>" +

@@ -17,7 +17,6 @@ const g_CapturedColor = '[color="255 255 157"]';
 
 const g_BuildingsTypes = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
 const g_UnitsTypes = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Siege", "Ship", "Trader" ];
-const g_ResourcesTypes = [ "food", "wood", "stone", "metal" ];
 
 // Colors used for gathered and traded resources
 const g_IncomeColor = '[color="201 255 200"]';
@@ -34,6 +33,7 @@ var g_PlayerCount = 0;
 // Count players without team (or all if teams are not displayed)
 var g_WithoutTeam = 0;
 var g_GameData;
+var g_ResourceData = new Resources();
 
 function selectPanel(panel)
 {

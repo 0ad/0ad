@@ -1,9 +1,8 @@
-// True price of 100 units of resource (for case if some resource is more worth).
+// The "true price" is a base price of 100 units of resource (for the case of some resources being of more worth than others).
 // With current bartering system only relative values makes sense
 // so if for example stone is two times more expensive than wood,
 // there will 2:1 exchange rate.
-const TRUE_PRICES = { "food": 100, "wood": 100, "stone": 100, "metal": 100 };
-
+//
 // Constant part of price difference between true price and buy/sell price.
 // In percents.
 // Buy price equal to true price plus constant difference.
@@ -21,9 +20,6 @@ const DIFFERENCE_RESTORE = 0.5;
 // Interval of timer which slowly restore prices after deals
 const RESTORE_TIMER_INTERVAL = 5000;
 
-// Array of resource names
-const RESOURCES = ["food", "wood", "stone", "metal"];
-
 function Barter() {}
 
 Barter.prototype.Schema =
@@ -32,7 +28,7 @@ Barter.prototype.Schema =
 Barter.prototype.Init = function()
 {
 	this.priceDifferences = {};
-	for (var resource of RESOURCES)
+	for (let resource of Resources.GetCodes())
 		this.priceDifferences[resource] = 0;
 	this.restoreTimer = undefined;
 };
@@ -40,10 +36,11 @@ Barter.prototype.Init = function()
 Barter.prototype.GetPrices = function()
 {
 	var prices = { "buy": {}, "sell": {} };
-	for (var resource of RESOURCES)
+	for (let resource of Resources.GetCodes())
 	{
-		prices["buy"][resource] = TRUE_PRICES[resource] * (100 + CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
-		prices["sell"][resource] = TRUE_PRICES[resource] * (100 - CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
+		let truePrice = Resources.GetResource(resource).truePrice;
+		prices.buy[resource] = truePrice * (100 + CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
+		prices.sell[resource] = truePrice * (100 - CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
 	}
 	return prices;
 };
@@ -71,12 +68,13 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		warn("ExchangeResources: incorrect amount: " + uneval(amount));
 		return;
 	}
-	if (RESOURCES.indexOf(resourceToSell) == -1)
+	let availResources = Resources.GetCodes();
+	if (availResources.indexOf(resourceToSell) == -1)
 	{
 		warn("ExchangeResources: incorrect resource to sell: " + uneval(resourceToSell));
 		return;
 	}
-	if (RESOURCES.indexOf(resourceToBuy) == -1)
+	if (availResources.indexOf(resourceToBuy) == -1)
 	{
 		warn("ExchangeResources: incorrect resource to buy: " + uneval(resourceToBuy));
 		return;
@@ -135,7 +133,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 Barter.prototype.ProgressTimeout = function(data)
 {
 	var needRestore = false;
-	for (var resource of RESOURCES)
+	for (let resource of Resources.GetCodes())
 	{
 		// Calculate value to restore, it should be limited to [-DIFFERENCE_RESTORE; DIFFERENCE_RESTORE] interval
 		var differenceRestore = Math.min(DIFFERENCE_RESTORE, Math.max(-DIFFERENCE_RESTORE, this.priceDifferences[resource]));
