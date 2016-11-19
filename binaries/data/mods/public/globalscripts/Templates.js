@@ -240,6 +240,13 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 			"rate": getEntityValue("Heal/Rate")
 		};
 
+	if (template.ResourceGatherer)
+	{
+		ret.resourceGatherRates = {};
+		for (let type in template.ResourceGatherer.Rates)
+			ret.resourceGatherRates[type] = getEntityValue("ResourceGatherer/Rates/"+ type);
+	}
+
 	if (template.Loot)
 	{
 		ret.loot = {};

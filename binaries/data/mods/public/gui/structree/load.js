@@ -1,36 +1,3 @@
-/**
- * Calculates gather rates.
- *
- * All available rates that have a value greater than 0 are summed and averaged
- */
-function getGatherRates(templateName)
-{
-	let rates = {};
-
-	for (let resource of g_ResourceData.GetResources())
-	{
-		let types = [resource.code];
-		for (let subtype in resource.subtypes)
-			// We ignore ruins as those are not that common and skew the results
-			if (subtype !== "ruins")
-				types.push(resource.code + "." + subtype);
-
-		let count, rate;
-		[rate, count] = types.reduce((sum, t) => {
-				let r = +fetchValue(templateName, "ResourceGatherer/Rates/"+t);
-				return [sum[0] + (r > 0 ? r : 0), sum[1] + (r > 0 ? 1 : 0)];
-			}, [0, 0]);
-
-		if (rate > 0)
-			rates[resource.code] = +(rate / count).toFixed(1);
-	}
-
-	if (!Object.keys(rates).length)
-		return null;
-
-	return rates;
-}
-
 function loadUnit(templateName)
 {
 	if (!Engine.TemplateExists(templateName))
@@ -47,8 +14,6 @@ function loadUnit(templateName)
 		else if (unit.requiredTechnology.length)
 			unit.required = unit.requiredTechnology;
 	}
-
-	unit.gather = getGatherRates(templateName);
 
 	if (template.ProductionQueue)
 	{

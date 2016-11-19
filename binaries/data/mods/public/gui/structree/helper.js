@@ -48,36 +48,6 @@ function loadAuraData(templateName)
 	return g_AuraData[templateName];
 }
 
-/**
- * Fetch a value from an entity's template
- *
- * @param templateName The template to retreive the value from
- * @param keypath The path to the value to be fetched. "Identity/GenericName"
- *                is equivalent to {"Identity":{"GenericName":"FOOBAR"}}
- *
- * @return The content requested at the key-path defined, or a blank array if
- *           not found
- */
-function fetchValue(templateName, keypath)
-{
-	var keys = keypath.split("/");
-	var template = loadTemplate(templateName);
-
-	let k;
-	for (k = 0; k < keys.length - 1; ++k)
-	{
-		if (template[keys[k]] === undefined)
-			return [];
-
-		template = template[keys[k]];
-	}
-
-	if (template[keys[k]] === undefined)
-		return [];
-
-	return template[keys[k]];
-}
-
 function depath(path)
 {
 	return path.slice(path.lastIndexOf("/") + 1);

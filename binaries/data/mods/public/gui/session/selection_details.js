@@ -290,6 +290,7 @@ function displaySingle(entState)
 		getSplashDamageTooltip,
 		getHealerTooltip,
 		getArmorTooltip,
+		getGatherTooltip,
 		getRepairRateTooltip,
 		getBuildRateTooltip,
 		getSpeedTooltip,

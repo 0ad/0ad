@@ -342,16 +342,38 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 
 function getGatherTooltip(template)
 {
-	if (!template.gather)
+	if (!template.resourceGatherRates)
+		return "";
+
+	// Average the resource rates (TODO: distinguish between subtypes)
+	let rates = {};
+	for (let resource of g_ResourceData.GetResources())
+	{
+		let types = [resource.code];
+		for (let subtype in resource.subtypes)
+			// We ignore ruins as those are not that common and skew the results
+			if (subtype !== "ruins")
+				types.push(resource.code + "." + subtype);
+
+		let [rate, count] = types.reduce((sum, t) => {
+				let r = template.resourceGatherRates[t];
+				return [sum[0] + (r > 0 ? r : 0), sum[1] + (r > 0 ? 1 : 0)];
+			}, [0, 0]);
+
+		if (rate > 0)
+			rates[resource.code] = +(rate / count).toFixed(1);
+	}
+
+	if (!Object.keys(rates).length)
 		return "";
 
 	return sprintf(translate("%(label)s %(details)s"), {
 		"label": headerFont(translate("Gather Rates:")),
 		"details":
-			Object.keys(template.gather).map(
+			Object.keys(rates).map(
 				type => sprintf(translate("%(resourceIcon)s %(rate)s"), {
 					"resourceIcon": costIcon(type),
-					"rate": template.gather[type]
+					"rate": rates[type]
 				})
 			).join("  ")
 	});
