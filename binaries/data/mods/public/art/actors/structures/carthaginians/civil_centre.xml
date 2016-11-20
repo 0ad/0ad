@@ -9,6 +9,7 @@
       <mesh>structural/kart_civiccentre.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/civil_centre_palms.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/damage_variant_preloader_1.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>

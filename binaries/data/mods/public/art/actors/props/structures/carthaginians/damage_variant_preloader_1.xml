@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant>
+      <mesh>structural/found_1x1.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/damage_variant_preloader_2.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/damage_variant_preloader_3.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax.xml</material>
+</actor>
