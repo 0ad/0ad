@@ -255,27 +255,12 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	if ("Mirages" in cmpResourceSupply)
 		return rate;
 
-	// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect. (GetDiminishingReturns will return null.)
-	// We can assume that for resources that are miraged this is the case. (else just add the diminishing returns data to the mirage data and remove the
-	// early return above)
-	// Note to people looking to change <DiminishingReturns> in a template: This is a bit complicated. Basically, the lower that number is
-	// the steeper diminishing returns will be. I suggest playing around with Wolfram Alpha or a graphing calculator a bit.
-	// In each of the following links, replace 0.65 with the gather rate of your worker for the resource with diminishing returns and
-	// 14 with the constant you wish to use to control the diminishing returns.
-	// (In this case 0.65 is the women farming rate, in resources/second, and 14 is a good constant for farming.)
-	// This is the gather rate in resources/second of each individual worker as the total number of workers goes up:
-	// http://www.wolframalpha.com/input/?i=plot+%281%2F2+cos%28%28x-1%29*pi%2F14%29+%2B+1%2F2%29+*+0.65+from+1+to+5
-	// This is the total output of the resource in resources/second:
-	// http://www.wolframalpha.com/input/?i=plot+x%281%2F2+cos%28%28x-1%29*pi%2F14%29+%2B+1%2F2%29+*+0.65+from+1+to+5
-	// This is the fraction of a worker each new worker is worth (the 5th worker in this example is only producing about half as much as the first one):
-	// http://www.wolframalpha.com/input/?i=plot+x%281%2F2+cos%28%28x-1%29*pi%2F14%29+%2B+1%2F2%29+-++%28x-1%29%281%2F2+cos%28%28x-2%29*pi%2F14%29+%2B+1%2F2%29+from+x%3D1+to+5+and+y%3D0+to+1
-	// Here's how this technically works:
-	// The cosine function is an oscillating curve, normally between -1 and 1. Multiplying by 0.5 squishes that down to
-	// between -0.5 and 0.5. Adding 0.5 to that changes the range to 0 to 1. The diminishingReturns constant
-	// adjusts the period of the curve.
+	// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect
+	// (GetDiminishingReturns will return null). We can assume that for resources that are miraged this is the case
+	// (else just add the diminishing returns data to the mirage data and remove the early return above)
 	let diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
-		rate = (0.5 * Math.cos((cmpResourceSupply.GetNumGatherers() - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
+		rate *= diminishingReturns;
 
 	return rate;
 };
