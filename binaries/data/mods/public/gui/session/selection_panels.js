@@ -897,16 +897,15 @@ g_SelectionPanels.Selection = {
 	{
 		if (unitEntStates.length < 2)
 			return [];
-		return g_Selection.groups.getTemplateNames();
+		return g_Selection.groups.getEntsGrouped();
 	},
 	"setupButton": function(data)
 	{
-		let template = GetTemplateData(data.item);
+		let template = GetTemplateData(data.item.template);
 		if (!template)
 			return false;
 
-		let ents = g_Selection.groups.getEntsByName(data.item);
-		for (let ent of ents)
+		for (let ent of data.item.ents)
 		{
 			let state = GetEntityState(ent);
 
@@ -939,17 +938,23 @@ g_SelectionPanels.Selection = {
 			}
 		}
 
+		let unitOwner = GetEntityState(data.item.ents[0]).player;
 		let tooltip = getEntityNames(template);
 		if (data.carried)
 			tooltip += "\n" + Object.keys(data.carried).map(res =>
 				costIcon(res) + data.carried[res]
 			).join(" ");
+		if (g_IsObserver)
+			tooltip += "\n" + sprintf(translate("Player: %(playername)s"), {
+				"playername": g_Players[unitOwner].name
+			});
 		data.button.tooltip = tooltip;
+		data.guiSelection.sprite = "color:" + (g_IsObserver ? rgbToGuiColor(g_Players[unitOwner].color) + " 120": "0 0 0 0");
 
-		data.countDisplay.caption = ents.length || "";
+		data.countDisplay.caption = data.item.ents.length || "";
 
-		data.button.onPress = function() { changePrimarySelectionGroup(data.item, false); };
-		data.button.onPressRight = function() { changePrimarySelectionGroup(data.item, true); };
+		data.button.onPress = function() { changePrimarySelectionGroup(data.item.template, false); };
+		data.button.onPressRight = function() { changePrimarySelectionGroup(data.item.template, true); };
 
 		if (template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + template.icon;

@@ -985,7 +985,7 @@ function handleInputAfterGui(ev)
 					Engine.CameraFollow(0);
 				}
 
-				if ((now.getTime() - doubleClickTimer < doubleClickTime) && (selectedEntity == prevClickedEntity))
+				if (now.getTime() - doubleClickTimer < doubleClickTime && selectedEntity == prevClickedEntity)
 				{
 					// Double click or triple click has occurred
 					var showOffscreen = Engine.HotkeyIsPressed("selection.offscreen");
@@ -999,24 +999,24 @@ function handleInputAfterGui(ev)
 						// Select similar units regardless of rank
 						templateToMatch = GetEntityState(selectedEntity).identity.selectionGroupName;
 						if (templateToMatch)
-						{
 							matchRank = false;
-						}
 						else
-						{	// No selection group name defined, so fall back to exact match
+							// No selection group name defined, so fall back to exact match
 							templateToMatch = GetEntityState(selectedEntity).template;
-						}
 
 						doubleClicked = true;
 						// Reset the timer so the user has an extra period 'doubleClickTimer' to do a triple-click
 						doubleClickTimer = now.getTime();
 					}
 					else
-					{
 						// Double click has already occurred, so this is a triple click.
 						// Select units matching exact template name (same rank)
 						templateToMatch = GetEntityState(selectedEntity).template;
-					}
+
+					// Remove the player prefix (e.g. "p3&")
+					let index = templateToMatch.indexOf("&");
+					if (index != -1)
+						templateToMatch = templateToMatch.slice(index+1);
 
 					// TODO: Should we handle "control all units" here as well?
 					ents = Engine.PickSimilarPlayerEntities(templateToMatch, showOffscreen, matchRank, false);
@@ -1034,13 +1034,9 @@ function handleInputAfterGui(ev)
 
 				// Update the list of selected units
 				if (Engine.HotkeyIsPressed("selection.add"))
-				{
 					g_Selection.addList(ents);
-				}
 				else if (Engine.HotkeyIsPressed("selection.remove"))
-				{
 					g_Selection.removeList(ents);
-				}
 				else
 				{
 					g_Selection.reset();
@@ -1375,15 +1371,11 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 			// Check if we are training in the same building(s) as the last batch
 			var sameEnts = false;
 			if (batchTrainingEntities.length == selection.length)
-			{
 				// NOTE: We just check if the arrays are the same and if the order is the same
 				// If the order changed, we have a new selection and we should create a new batch.
 				for (var i = 0; i < batchTrainingEntities.length; ++i)
-				{
 					if (!(sameEnts = batchTrainingEntities[i] == selection[i]))
 						break;
-				}
-			}
 			// If we're already creating a batch of this unit (in the same building(s)), then just extend it
 			// (if training limits allow)
 			if (sameEnts && batchTrainingType == trainEntType)

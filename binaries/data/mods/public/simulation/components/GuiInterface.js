@@ -385,8 +385,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"possibleStances": cmpUnitAI.GetPossibleStances(),
 			"isIdle":cmpUnitAI.IsIdle(),
 		};
-		// Add some information needed for ungarrisoning
-		if (cmpUnitAI.IsGarrisoned() && ret.player !== undefined)
+		// Add some information to differentiate between owner
+		if (ret.player !== undefined)
 			ret.template = "p" + ret.player + "&" + ret.template;
 	}
 
