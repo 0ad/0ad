@@ -100,8 +100,7 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 			let cost = template.cost;
 			let costMax = 0;
 			for (let res in cost)
-				if (gameState.sharedScript.resourceInfo.codes.indexOf(res) != -1)
-					costMax = Math.max(costMax, Math.max(cost[res]-available[res], 0));
+				costMax = Math.max(costMax, Math.max(cost[res]-available[res], 0));
 			if (10*numWorkers < costMax)
 				continue;
 		}

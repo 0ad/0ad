@@ -30,14 +30,8 @@ ResourceTrickle.prototype.GetRates = function()
 ResourceTrickle.prototype.ComputeRates = function()
 {
 	this.rates = {};
-	let resCodes = Resources.GetCodes();
 	for (let resource in this.template.Rates)
-	{
-		if (resCodes.indexOf(resource) == -1)
-			continue;
-
 		this.rates[resource] = ApplyValueModificationsToEntity("ResourceTrickle/Rates/"+resource, +this.template.Rates[resource], this.entity);
-	}
 };
 
 ResourceTrickle.prototype.Trickle = function(data, lateness)

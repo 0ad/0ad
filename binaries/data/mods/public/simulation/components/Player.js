@@ -198,8 +198,7 @@ Player.prototype.UnBlockTraining = function()
 Player.prototype.SetResourceCounts = function(resources)
 {
 	for (let res in resources)
-		if (this.resourceCount[res])
-			this.resourceCount[res] = resources[res];
+		this.resourceCount[res] = resources[res];
 };
 
 Player.prototype.GetResourceCounts = function()
@@ -288,10 +287,8 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 		return false;
 	}
 
-	// Subtract the resources
 	for (var type in amounts)
-		if (this.resourceCount[type])
-			this.resourceCount[type] -= amounts[type];
+		this.resourceCount[type] -= amounts[type];
 
 	return true;
 };
