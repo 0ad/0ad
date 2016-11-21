@@ -1,3 +1,28 @@
+var disabledTemplates = (civ) => [
+	// Economic structures
+	"structures/" + civ + "_corral",
+	"structures/" + civ + "_farmstead",
+	"structures/" + civ + "_field",
+	"structures/" + civ + "_storehouse",
+	"structures/brit_rotarymill",
+	"units/maur_support_elephant",
+
+	// Expansions
+	"structures/" + civ + "_civil_centre",
+	"structures/" + civ + "_military_colony",
+
+	// Walls
+	"structures/" + civ + "_wallset_stone",
+	"structures/rome_wallset_siege",
+	"other/wallset_palisade",
+
+	// Shoreline
+	"structures/" + civ + "_dock",
+	"structures/brit_crannog",
+	"structures/cart_super_dock",
+	"structures/ptol_lighthouse"
+];
+
 var treasures =
 [
 	"gaia/special_treasure_food_barrel",
@@ -10,6 +35,7 @@ var treasures =
 	"gaia/special_treasure_wood",
 	"gaia/special_treasure_wood"
 ];
+
 var attackerEntityTemplates =
 [
 	[
@@ -91,7 +117,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 	let attackerTemplates = attackerEntityTemplates[Math.floor(Math.random() * attackerEntityTemplates.length)];
 	// A soldier for each 2-3 minutes of the game. Should be waves of 20 soldiers after an hour
 	let nextTime = Math.round(120000 + Math.random() * 60000);
-	let attackersPerTemplate = Math.round(cmpTimer.GetTime() / nextTime / attackerTemplates.length);
+	let attackersPerTemplate = Math.ceil(cmpTimer.GetTime() / nextTime / attackerTemplates.length);
 	let spawned = false;
 
 	for (let point of this.GetTriggerPoints("A"))
@@ -158,19 +184,11 @@ Trigger.prototype.InitGame = function()
 
 	this.PlaceTreasures();
 
-	// Disable farms, civic centers and walls for all players
 	for (let i = 1; i < numberOfPlayers; ++i)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(i);
 		let civ = cmpPlayer.GetCiv();
-		cmpPlayer.SetDisabledTemplates([
-			"structures/" + civ + "_field",
-			"structures/" + civ + "_corral",
-			"structures/" + civ + "_civil_centre",
-			"structures/" + civ + "_military_colony",
-			"structures/" + civ + "_wallset_stone",
-			"other/wallset_palisade"
-		]);
+		cmpPlayer.SetDisabledTemplates(disabledTemplates(civ));
 	}
 };
 
