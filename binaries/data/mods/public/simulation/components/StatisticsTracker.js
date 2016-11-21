@@ -373,8 +373,7 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
  */
 StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 {
-	if (typeof this.resourcesUsed[type] === "number")
-		this.resourcesUsed[type] += amount;
+	this.resourcesUsed[type] += amount;
 };
 
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()

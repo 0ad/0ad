@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant>
+      <mesh>structural/found_1x1.dae</mesh>
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax.xml</material>
+</actor>

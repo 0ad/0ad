@@ -194,9 +194,8 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 	if (template.Cost)
 	{
 		ret.cost = {};
-		for (let resCode of resources.GetCodes())
-			if (template.Cost.Resources[resCode])
-				ret.cost[resCode] = getEntityValue("Cost/Resources/" + resCode);
+		for (let resCode in template.Cost.Resources)
+			ret.cost[resCode] = getEntityValue("Cost/Resources/" + resCode);
 
 		if (template.Cost.Population)
 			ret.cost.population = getEntityValue("Cost/Population");

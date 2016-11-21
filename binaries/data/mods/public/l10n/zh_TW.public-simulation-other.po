@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-11-14 00:21+0000\n"
+"POT-Creation-Date: 2016-11-18 09:02+0100\n"
+"PO-Revision-Date: 2016-11-21 00:05+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -19,28 +19,28 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:203
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "食物"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:205
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "木頭"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:207
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "金屬"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:209
+#: simulation/ai/common-api/shared.js:211
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "石頭"
@@ -135,15 +135,25 @@ msgid ""
 "profits."
 msgstr "與 %(_player_)s 成立一條新的貿易路線。獲取您的那一份利潤吧。"
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "我正在進階到 %(phase)s。"
 
-#: simulation/ai/petra/chatHelper.js:122
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "我已經到達 %(phase)s 了。"
+
+#: simulation/ai/petra/chatHelper.js:134
+#, javascript-format
+msgid "%(_player_)s and I are now enemies."
+msgstr "%(_player_)s 和我現在是敵人了。"
+
+#: simulation/ai/petra/chatHelper.js:135
+#, javascript-format
+msgid "%(_player_)s and I are now allies."
+msgstr "%(_player_)s 和我現在是盟友了。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -681,7 +691,7 @@ msgstr "您可以在 %(time)s 內攻擊"
 msgid "You can attack now!"
 msgstr "您現在可以攻擊了！"
 
-#: simulation/components/EndGameManager.js:114
+#: simulation/components/EndGameManager.js:119
 msgid "Last remaining player wins."
 msgstr "最後留下的玩家獲勝。"
 

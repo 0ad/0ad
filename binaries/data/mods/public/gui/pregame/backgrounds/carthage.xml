@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprites>
+	<sprite name="background-carthage1-1">
+		<image
+			texture="pregame/backgrounds/carthage1_1.png"
+			fixed_h_aspect_ratio="2"
+			round_coordinates="false"
+		/>
+	</sprite>
+
+	<sprite name="background-carthage1-2">
+		<image
+			texture="pregame/backgrounds/carthage1_2.png"
+			fixed_h_aspect_ratio="2"
+			round_coordinates="false"
+		/>
+	</sprite>
+
+	<sprite name="background-carthage1-3">
+		<image
+			texture="pregame/backgrounds/carthage1_3.png"
+			round_coordinates="false"
+			wrap_mode="clamp_to_edge"
+		/>
+	</sprite>
+
+	<sprite name="background-carthage1-4">
+		<image
+			texture="pregame/backgrounds/carthage1_4.png"
+			round_coordinates="false"
+			wrap_mode="clamp_to_edge"
+		/>
+	</sprite>
+</sprites>

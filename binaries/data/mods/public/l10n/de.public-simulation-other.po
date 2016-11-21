@@ -7,6 +7,7 @@
 # James Jakubczyk <beshir75@gmail.com>, 2016
 # Jonas <jesus_007@posteo.de>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
+# nautilusx, 2016
 # manuel <37d504fb@opayq.com>, 2014
 # Maximilian Wagenbach <foaly.f@web.de>, 2016
 # Thelxinoe, 2015
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-11-13 10:13+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"POT-Creation-Date: 2016-11-18 09:02+0100\n"
+"PO-Revision-Date: 2016-11-20 08:35+0000\n"
+"Last-Translator: nautilusx\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,28 +29,28 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:203
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Nahrung"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:205
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Holz"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:207
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Metall"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:209
+#: simulation/ai/common-api/shared.js:211
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Stein"
@@ -144,15 +145,25 @@ msgid ""
 "profits."
 msgstr "Eine neue Handelsroute ist mit %(_player_)s etabliert. Nimm deinen Anteil an den Gewinnen."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Ich schreite zur %(phase)s voran."
 
-#: simulation/ai/petra/chatHelper.js:122
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Ich habe die %(phase)s erreicht."
+
+#: simulation/ai/petra/chatHelper.js:134
+#, javascript-format
+msgid "%(_player_)s and I are now enemies."
+msgstr "%(_player_)s und ich sind jetzt Feinde."
+
+#: simulation/ai/petra/chatHelper.js:135
+#, javascript-format
+msgid "%(_player_)s and I are now allies."
+msgstr "%(_player_)s und ich sind jetzt Verbündete."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -692,7 +703,7 @@ msgstr "Du kannst in %(time)s angreifen"
 msgid "You can attack now!"
 msgstr "Du kannst jetzt angreifen!"
 
-#: simulation/components/EndGameManager.js:114
+#: simulation/components/EndGameManager.js:119
 msgid "Last remaining player wins."
 msgstr "Der letzte verbleibende Spieler gewinnt."
 

@@ -25,8 +25,7 @@ ResourceDropsite.prototype.Init = function()
 ResourceDropsite.prototype.GetTypes = function()
 {
 	let types = ApplyValueModificationsToEntity("ResourceDropsite/Types", this.template.Types, this.entity);
-	let resources = Resources.GetCodes();
-	return types.split(/\s+/).filter(type => resources.indexOf(type) != -1);
+	return types.split(/\s+/);
 };
 
 /**
