@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-11-14 08:49+0000\n"
+"POT-Creation-Date: 2016-11-18 09:02+0100\n"
+"PO-Revision-Date: 2016-11-18 13:02+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -23,28 +23,28 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:203
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Élelem"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:205
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Fa"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:207
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Fém"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:209
+#: simulation/ai/common-api/shared.js:211
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Kő"
@@ -139,15 +139,25 @@ msgid ""
 "profits."
 msgstr "Új kereskedelmi út jött létre vele: %(_player_)s. Vedd ki a részed a profitból."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Előrelépek a %(phase)sba."
 
-#: simulation/ai/petra/chatHelper.js:122
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Elértem a %(phase)st."
+
+#: simulation/ai/petra/chatHelper.js:134
+#, javascript-format
+msgid "%(_player_)s and I are now enemies."
+msgstr "%(_player_)s és én most már ellenségek vagyunk."
+
+#: simulation/ai/petra/chatHelper.js:135
+#, javascript-format
+msgid "%(_player_)s and I are now allies."
+msgstr "%(_player_)s és én most már szövetségesek vagyunk."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -687,7 +697,7 @@ msgstr "%(time)s múlva támadhatsz"
 msgid "You can attack now!"
 msgstr "Most már támadhatsz!"
 
-#: simulation/components/EndGameManager.js:114
+#: simulation/components/EndGameManager.js:119
 msgid "Last remaining player wins."
 msgstr "Az utolsó megmaradt játékos nyer."
 

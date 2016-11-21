@@ -9,6 +9,7 @@
 # ignius <ividiella@hotmail.es>, 2014
 # I M <ibrarm9@gmail.com>, 2016
 # Isaac Lleida <isakyllr@opmbx.org>, 2014
+# José Verdú Díaz <pepv@hotmail.es>, 2016
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2013,2015
 # ribasvilanova <ribasvilanova@gmail.com>, 2014
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 08:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-11-18 09:01+0100\n"
+"PO-Revision-Date: 2016-11-19 21:24+0000\n"
+"Last-Translator: José Verdú Díaz <pepv@hotmail.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,21 +27,21 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/session/input.js:146
+#: gui/session/input.js:147
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Abast bàsic: %(range)s metre"
 msgstr[1] "Abast bàsic: %(range)s metres"
 
-#: gui/session/input.js:147
+#: gui/session/input.js:148
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bonificació mitjana de l'abast: %(range)s metre"
 msgstr[1] "Bonificació mitjana de l'abast: %(range)s metres"
 
-#: gui/session/input.js:720
+#: gui/session/input.js:705
 msgid "Cannot build wall here!"
 msgstr "No es pot construir una muralla aquí!"
 
@@ -53,12 +54,12 @@ msgid "Confirmation"
 msgstr "Confirmació"
 
 #: gui/session/menu.js:117 gui/session/menu.js:149 gui/session/menu.js:182
-#: gui/session/session.js:702 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:714 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "No"
 
 #: gui/session/menu.js:117 gui/session/menu.js:149 gui/session/menu.js:182
-#: gui/session/session.js:702 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:714 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Si"
 
@@ -340,7 +341,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Equip"
 
-#: gui/session/messages.js:150 gui/session/session.js:277
+#: gui/session/messages.js:150 gui/session/session.js:283
 msgid "Observer"
 msgstr "Observador"
 
@@ -436,91 +437,91 @@ msgstr "%(player)s està en guerra amb %(player2)s."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s és neutral amb %(player2)s."
 
-#: gui/session/messages.js:657
+#: gui/session/messages.js:659
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Tothom"
 
-#: gui/session/messages.js:665
+#: gui/session/messages.js:667
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Aliats"
 
-#: gui/session/messages.js:669
+#: gui/session/messages.js:671
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Enemics"
 
-#: gui/session/messages.js:675
+#: gui/session/messages.js:677
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Observadors"
 
-#: gui/session/messages.js:704 gui/session/selection_details.js:80
+#: gui/session/messages.js:706 gui/session/selection_details.js:80
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[DESCONNECTAT] %(player)s"
 
-#: gui/session/messages.js:781
+#: gui/session/messages.js:783
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:782
+#: gui/session/messages.js:784
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:826
+#: gui/session/messages.js:828
 msgid "Unknown Player"
 msgstr "Jugador desconegut"
 
-#: gui/session/messages.js:833
+#: gui/session/messages.js:835
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s s'ha rendit."
 
-#: gui/session/messages.js:834
+#: gui/session/messages.js:836
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s ha estat vençut."
 
-#: gui/session/messages.js:841
+#: gui/session/messages.js:843
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "%(player)s ha guanyat."
 
-#: gui/session/messages.js:870
+#: gui/session/messages.js:872
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s ha enviat %(amounts)s a %(player2)s."
 
-#: gui/session/messages.js:872
+#: gui/session/messages.js:874
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s us ha enviat %(amounts)s."
 
-#: gui/session/messages.js:892
+#: gui/session/messages.js:894
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s bescanviats %(amountsBought)s per %(amountsSold)s."
 
-#: gui/session/messages.js:905
+#: gui/session/messages.js:907
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "%(attacker)s ha atacat el vostre bestiar!"
 
-#: gui/session/messages.js:906
+#: gui/session/messages.js:908
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)s us ataca!"
 
-#: gui/session/messages.js:957
+#: gui/session/messages.js:959
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:52 gui/session/selection_details.js:363
-#: gui/session/selection_details.js:395 gui/session/session.js:834
+#: gui/session/selection_details.js:395 gui/session/session.js:846
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -666,81 +667,75 @@ msgstr "Compra %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Ven %(resource)s"
 
-#: gui/session/selection_panels.js:350 gui/session/selection_panels.js:1064
-#: gui/session/selection_panels.js:1159
-#, javascript-format
-msgid "Requires %(technology)s"
-msgstr "Necessita %(technology)s"
-
-#: gui/session/selection_panels.js:468
+#: gui/session/selection_panels.js:464
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Expulsa %(name)s"
 
-#: gui/session/selection_panels.js:470
+#: gui/session/selection_panels.js:466
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Feu clic per expulsar-ne 1. Maj + clic per expulsar tots els d'aquest tipus."
 
-#: gui/session/selection_panels.js:473
+#: gui/session/selection_panels.js:469
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Jugador: %(playername)s"
 
-#: gui/session/selection_panels.js:508
+#: gui/session/selection_panels.js:504
 msgid "Lock Gate"
 msgstr "Tanca la porta"
 
-#: gui/session/selection_panels.js:514
+#: gui/session/selection_panels.js:510
 msgid "Unlock Gate"
 msgstr "Obre la porta"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:583
 msgid "Pack"
 msgstr "Desmunta"
 
-#: gui/session/selection_panels.js:595
+#: gui/session/selection_panels.js:591
 msgid "Unpack"
 msgstr "Munta"
 
-#: gui/session/selection_panels.js:603
+#: gui/session/selection_panels.js:599
 msgid "Cancel Packing"
 msgstr "Cancel·la el desmuntatge"
 
-#: gui/session/selection_panels.js:611
+#: gui/session/selection_panels.js:607
 msgid "Cancel Unpacking"
 msgstr "Cancel·la el muntatge"
 
-#: gui/session/selection_panels.js:694
+#: gui/session/selection_panels.js:690
 msgid "Insufficient population capacity:"
 msgstr "La capacitat de població és insuficient:"
 
-#: gui/session/selection_panels.js:695
+#: gui/session/selection_panels.js:691
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:836
+#: gui/session/selection_panels.js:832
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "En falta %(number)s per construir."
 msgstr[1] "En falten %(number)s per construir."
 
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:1136
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Millora a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1150
+#: gui/session/selection_panels.js:1141
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Millora a %(name)s."
 
-#: gui/session/selection_panels.js:1169
+#: gui/session/selection_panels.js:1157
 msgid "Cancel Upgrading"
 msgstr "Cancel·la la millora"
 
-#: gui/session/selection_panels.js:1174
+#: gui/session/selection_panels.js:1162
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "No es pot millorar una entitat que ja s'està millorant."
 
@@ -835,128 +830,128 @@ msgstr "%(action)s per reclutar %(number)s."
 msgid "Shift-click"
 msgstr "Maj + clic"
 
-#: gui/session/session.js:261
+#: gui/session/session.js:267
 msgid "Gaia"
 msgstr "Natura"
 
-#: gui/session/session.js:322
+#: gui/session/session.js:328
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Escriviu el missatge."
 
-#: gui/session/session.js:324
+#: gui/session/session.js:330
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Premeu %(hotkey)s per obrir el xat públic."
 
-#: gui/session/session.js:327
+#: gui/session/session.js:333
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Premeu %(hotkey)s per obrir el xat observador."
 
-#: gui/session/session.js:328
+#: gui/session/session.js:334
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Premeu %(hotkey)s per obrir el xat aliat."
 
-#: gui/session/session.js:333
+#: gui/session/session.js:339
 msgid "Find idle worker"
 msgstr "Busca un treballador inactiu"
 
-#: gui/session/session.js:336
+#: gui/session/session.js:342
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
 msgstr ""
 
-#: gui/session/session.js:338
+#: gui/session/session.js:344
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Utilitzeu %(hotkey)s posarà el recurs seleccionat a 100%%."
 
-#: gui/session/session.js:480
+#: gui/session/session.js:489
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Arbre d'estructures"
 
-#: gui/session/session.js:691
+#: gui/session/session.js:703
 msgid "Do you want to quit?"
 msgstr "Voleu sortir?"
 
-#: gui/session/session.js:694
+#: gui/session/session.js:706
 msgid "Leaving will disconnect all other players."
 msgstr "Si marxeu, es desconnectaran tots els altres jugadors."
 
-#: gui/session/session.js:700
+#: gui/session/session.js:712
 msgid "VICTORIOUS!"
 msgstr "VICTORIÓS!"
 
-#: gui/session/session.js:701
+#: gui/session/session.js:713
 msgid "DEFEATED!"
 msgstr "DERROTAT!"
 
-#: gui/session/session.js:753
+#: gui/session/session.js:765
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "La repetició ha acabat. Voleu sortir?"
 
-#: gui/session/session.js:754
+#: gui/session/session.js:766
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/session/session.js:755
+#: gui/session/session.js:767
 msgctxt "replayFinished"
 msgid "No"
 msgstr "No"
 
-#: gui/session/session.js:755
+#: gui/session/session.js:767
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/session/session.js:835
+#: gui/session/session.js:847
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salut:"
 
-#: gui/session/session.js:970
+#: gui/session/session.js:982
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:973
+#: gui/session/session.js:985
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:991
+#: gui/session/session.js:1003
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:992
+#: gui/session/session.js:1004
 msgid "Population (current / limit)"
 msgstr "Població (actual / límit)"
 
-#: gui/session/session.js:993
+#: gui/session/session.js:1005
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Límit de població: %(popCap)s"
 
-#: gui/session/session.js:1145
+#: gui/session/session.js:1157
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versió: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1155
+#: gui/session/session.js:1167
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: el mode de distorsió temporal és una opció per a desenvolupadors, i no està destinat a un ús prolongat. Un ús incorrecte pot provocar que el joc es quedi sense memòria o es pengi."
 
-#: gui/session/session.js:1156
+#: gui/session/session.js:1168
 msgid "Time warp mode"
 msgstr "Mode de distorsió temporal"
 
@@ -1131,7 +1126,7 @@ msgstr "Filtra l'historial de xat."
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Selecciona un destinatari del xat."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1340,4 +1335,4 @@ msgstr "Menú"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "ALPHA XXI : Ulysses"

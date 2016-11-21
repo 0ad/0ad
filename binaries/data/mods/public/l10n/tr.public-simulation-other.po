@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-11-13 08:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-11-18 09:02+0100\n"
+"PO-Revision-Date: 2016-11-19 19:40+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,28 +26,28 @@ msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:203
+#: simulation/ai/common-api/shared.js:205
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Gıda"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:205
+#: simulation/ai/common-api/shared.js:207
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Odun"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:207
+#: simulation/ai/common-api/shared.js:209
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:209
+#: simulation/ai/common-api/shared.js:211
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Taş"
@@ -142,15 +142,25 @@ msgid ""
 "profits."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "%(phase)s e doğru ilerliyorum."
 
-#: simulation/ai/petra/chatHelper.js:122
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "%(phase)s aşamasına ulaştım."
+
+#: simulation/ai/petra/chatHelper.js:134
+#, javascript-format
+msgid "%(_player_)s and I are now enemies."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:135
+#, javascript-format
+msgid "%(_player_)s and I are now allies."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -690,7 +700,7 @@ msgstr "%(time)s içinde saldırabilirsin"
 msgid "You can attack now!"
 msgstr "Şimdi sen saldırabilirsin!"
 
-#: simulation/components/EndGameManager.js:114
+#: simulation/components/EndGameManager.js:119
 msgid "Last remaining player wins."
 msgstr "Son kalan oyuncu kazandı"
 
@@ -780,7 +790,7 @@ msgstr "(Hile - birimleri terfi et)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "Mesafe gereksinimleri doğrulanmadığından veya arazinin engellendiği için yükseltilemiyor."
 
 #: simulation/helpers/Commands.js:702
 msgid "Cannot upgrade a garrisoned entity."
@@ -992,7 +1002,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra, 0 A.D. nin varsayılan botudur. Lütfen, Wildfire Games'e sorunları bildirin (ana menüdeki bağlantıya bakın) .⏎\n⏎\nAI, Sandbox için 0.5'den Çok Sert için 1.6'ya değişen (Orta = 1.0) kaynakların stoklanmasına (toplama oranı veya ticari kazanç) ilişkin bir ikramiye / cezaya sahiptir. Buna ek olarak, Sandbox seviyesi genişlemiyor veya saldırmıyor."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
