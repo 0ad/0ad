@@ -12,13 +12,16 @@ Timer.prototype.Init = function()
 };
 
 /**
- * Returns time since the start of the game, in integer milliseconds.
+ * Returns time since the start of the game in milliseconds.
  */
 Timer.prototype.GetTime = function()
 {
 	return this.time;
 };
 
+/**
+ * Returns the duration of the latest turn in milliseconds.
+ */
 Timer.prototype.GetLatestTurnLength = function()
 {
 	return this.turnLength;
@@ -32,8 +35,17 @@ Timer.prototype.GetLatestTurnLength = function()
  */
 Timer.prototype.SetTimeout = function(ent, iid, funcname, time, data)
 {
-	var id = ++this.id;
-	this.timers.set(id, [ent, iid, funcname, this.time + time, 0, data]);
+	let id = ++this.id;
+
+	this.timers.set(id, {
+		"entity": ent,
+		"iid": iid,
+		"functionName": funcname,
+		"time": this.time + time,
+		"repeatTime": 0,
+		"data": data
+	});
+
 	return id;
 };
 
@@ -50,8 +62,18 @@ Timer.prototype.SetInterval = function(ent, iid, funcname, time, repeattime, dat
 {
 	if (typeof repeattime != "number" || !(repeattime > 0))
 		error("Invalid repeattime to SetInterval of "+funcname);
-	var id = ++this.id;
-	this.timers.set(id, [ent, iid, funcname, this.time + time, repeattime, data]);
+
+	let id = ++this.id;
+
+	this.timers.set(id, {
+		"entity": ent,
+		"iid": iid,
+		"functionName": funcname,
+		"time": this.time + time,
+		"repeatTime": repeattime,
+		"data": data
+	});
+
 	return id;
 };
 
@@ -66,57 +88,59 @@ Timer.prototype.CancelTimer = function(id)
 
 Timer.prototype.OnUpdate = function(msg)
 {
-	var dt = Math.round(msg.turnLength * 1000);
-	this.time += dt;
-	this.turnLength = dt;
+	this.turnLength = Math.round(msg.turnLength * 1000);
+	this.time += this.turnLength;
 
 	// Collect the timers that need to run
 	// (We do this in two stages to avoid deleting from the timer list while
 	// we're in the middle of iterating through it)
-	var run = [];
-	for (let id of this.timers.keys())
-	{
-		if (this.timers.get(id)[3] <= this.time)
+	let run = [];
+	for (let [id, timer] of this.timers)
+		if (timer.time <= this.time)
 			run.push(id);
-	}
-	for (var i = 0; i < run.length; ++i)
+
+	for (let id of run)
 	{
-		var id = run[i];
+		let timer = this.timers.get(id);
 
-		var t = this.timers.get(id);
-		if (!t)
-			continue; // an earlier timer might have cancelled this one, so skip it
+		// An earlier timer might have cancelled this one, so skip it
+		if (!timer)
+			continue;
 
-		var cmp = Engine.QueryInterface(t[0], t[1]);
-		if (!cmp)
+		// The entity was probably destroyed; clean up the timer
+		let cmpTimer = Engine.QueryInterface(timer.entity, timer.iid);
+		if (!cmpTimer)
 		{
-			// The entity was probably destroyed; clean up the timer
 			this.timers.delete(id);
 			continue;
 		}
 
-		try {
-			var lateness = this.time - t[3];
-			cmp[t[2]](t[5], lateness);
-		} catch (e) {
-			var stack = e.stack.trimRight().replace(/^/mg, '  '); // indent the stack trace
-			error("Error in timer on entity "+t[0]+", IID "+t[1]+", function "+t[2]+": "+e+"\n"+stack+"\n");
+		try
+		{
+			cmpTimer[timer.functionName](timer.data, this.time - timer.time);
+		}
+		catch (e)
+		{
+			error(
+				"Error in timer on entity " + timer.entity + ", " +
+				"IID" + timer.iid + ", " +
+				"function " + timer.functionName + ": " +
+				e + "\n" +
+				// Indent the stack trace
+				e.stack.trimRight().replace(/^/mg, '  ') + "\n");
 		}
 
-		// Handle repeating timers
-		if (t[4])
+		if (!timer.repeatTime)
 		{
-			// Add the repeat time to the execution time
-			t[3] += t[4];
-			// Add it to the list to get re-executed if it's soon enough
-			if (t[3] <= this.time)
-				run.push(id);
-		}
-		else
-		{
-			// Non-repeating time - delete it
 			this.timers.delete(id);
+			continue;
 		}
+
+		timer.time += timer.repeatTime;
+
+		// Add it to the list to get re-executed if it's soon enough
+		if (timer.time <= this.time)
+			run.push(id);
 	}
 };
 
