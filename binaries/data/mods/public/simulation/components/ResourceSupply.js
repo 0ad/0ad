@@ -19,7 +19,7 @@ ResourceSupply.prototype.Schema =
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='DiminishingReturns' a:help='The rate at which adding more gatherers decreases overall efficiency. Lower numbers = faster dropoff. Leave the element out for no diminishing returns.'>" +
+		"<element name='DiminishingReturns' a:help='The relative rate of any new gatherer compared to the previous one (geometric sequence). Should be between 0 and 1 exclusives. Leave the element out for no diminishing returns.'>" +
 			"<ref name='positiveDecimal'/>" +
 		"</element>" +
 	"</optional>";
@@ -81,29 +81,18 @@ ResourceSupply.prototype.GetNumGatherers = function()
 	return this.gatherers.reduce((a, b) => a + b.length, 0); 
 };
 
-/** Note to people looking to change <DiminishingReturns> in a template: This is a bit complicated. Basically, the lower that number is
- * the steeper diminishing returns will be. I suggest playing around with Wolfram Alpha or a graphing calculator a bit.
- * In each of the following links, replace 0.65 with the gather rate of your worker for the resource with diminishing returns and
- * 14 with the constant you wish to use to control the diminishing returns.
- * (In this case 0.65 is the women farming rate, in resources/second, and 14 is a good constant for farming.)
- * This is the gather rate in resources/second of each individual worker as the total number of workers goes up:
- * http://www.wolframalpha.com/input/?i=plot+%281%2F2+cos%28%28x-1%29*pi%2F14%29+%2B+1%2F2%29+*+0.65+from+1+to+5
- * This is the total output of the resource in resources/second:
- * http://www.wolframalpha.com/input/?i=plot+x%281%2F2+cos%28%28x-1%29*pi%2F14%29+%2B+1%2F2%29+*+0.65+from+1+to+5
- * This is the fraction of a worker each new worker is worth (the 5th worker in this example is only producing about half as much as the first one):
- * http://www.wolframalpha.com/input/?i=plot+x%281%2F2+cos%28%28x-1%29*pi%2F14%29+%2B+1%2F2%29+-++%28x-1%29%281%2F2+cos%28%28x-2%29*pi%2F14%29+%2B+1%2F2%29+from+x%3D1+to+5+and+y%3D0+to+1
- * Here's how this technically works:
- * The cosine function is an oscillating curve, normally between -1 and 1. Multiplying by 0.5 squishes that down to
- * between -0.5 and 0.5. Adding 0.5 to that changes the range to 0 to 1. The diminishingReturns constant
- * adjusts the period of the curve.
- */
+/* The rate of each additionnal gatherer rate follow a geometric sequence, with diminishingReturns as common ratio. */
 ResourceSupply.prototype.GetDiminishingReturns = function()
 {
 	if ("DiminishingReturns" in this.template)
 	{
 		let diminishingReturns = ApplyValueModificationsToEntity("ResourceSupply/DiminishingReturns", +this.template.DiminishingReturns, this.entity);
 		if (diminishingReturns)
-			return (0.5 * Math.cos((this.GetNumGatherers() - 1) * Math.PI / diminishingReturns) + 0.5);
+		{
+			let numGatherers = this.GetNumGatherers();
+			if (numGatherers > 1)
+				return (1. - Math.pow(diminishingReturns, numGatherers)) / (1. - diminishingReturns) / numGatherers;
+		}
 	}
 	return null;
 };
