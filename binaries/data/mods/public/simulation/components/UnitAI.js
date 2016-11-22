@@ -1115,7 +1115,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.patrolStartPosOrder)
 				{
 					this.patrolStartPosOrder = cmpPosition.GetPosition();
-					this.patrolStartPosOrder.targetClasses = { "attack": ["Unit"] };
+					this.patrolStartPosOrder.targetClasses = this.order.data.targetClasses;
 				}
 
 				this.StartTimer(0, 1000);
@@ -1645,7 +1645,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.patrolStartPosOrder)
 				{
 					this.patrolStartPosOrder = cmpPosition.GetPosition();
-					this.patrolStartPosOrder.targetClasses = { "attack": ["Unit"] };
+					this.patrolStartPosOrder.targetClasses = this.order.data.targetClasses;
 				}
 
 				this.StartTimer(0, 1000);

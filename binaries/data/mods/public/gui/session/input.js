@@ -210,7 +210,7 @@ function getActionInfo(action, target)
 			else if (Engine.HotkeyIsPressed("session.patrol"))
 			{
 				data.command = "patrol";
-				data.targetClasses = { "attack": ["Unit"] };
+				data.targetClasses = { "attack": g_PatrolTargets };
 				cursor = "action-patrol";
 			}
 			return { "possible": true, "data": data, "cursor": cursor };
