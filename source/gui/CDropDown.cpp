@@ -382,24 +382,22 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 
 void CDropDown::SetupListRect()
 {
-	float size, buffer, button_width;
+	float size, buffer;
 	GUI<float>::GetSetting(this, "dropdown_size", size);
 	GUI<float>::GetSetting(this, "dropdown_buffer", buffer);
-	GUI<float>::GetSetting(this, "button_width", button_width);
 
 	if (m_ItemsYPositions.empty() || m_ItemsYPositions.back() >= size)
 	{
 		m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom+buffer,
-								m_CachedActualSize.right, m_CachedActualSize.bottom+buffer + size);
+								 m_CachedActualSize.right, m_CachedActualSize.bottom+buffer + size);
 
 		m_HideScrollBar = false;
 	}
 	else
 	{
 		m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom+buffer,
-								 m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width, m_CachedActualSize.bottom+buffer + m_ItemsYPositions.back());
+								 m_CachedActualSize.right, m_CachedActualSize.bottom+buffer + m_ItemsYPositions.back());
 
-		// We also need to hide the scrollbar
 		m_HideScrollBar = true;
 	}
 }
