@@ -13,7 +13,7 @@ Capturable.prototype.Schema =
 
 Capturable.prototype.Init = function()
 {
-	// Cache this value 
+	// Cache this value
 	this.maxCp = +this.template.CapturePoints;
 	this.cp = [];
 };

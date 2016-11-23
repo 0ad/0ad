@@ -78,7 +78,7 @@ ResourceSupply.prototype.GetMaxGatherers = function()
 
 ResourceSupply.prototype.GetNumGatherers = function()
 {
-	return this.gatherers.reduce((a, b) => a + b.length, 0); 
+	return this.gatherers.reduce((a, b) => a + b.length, 0);
 };
 
 /* The rate of each additionnal gatherer rate follow a geometric sequence, with diminishingReturns as common ratio. */
@@ -139,14 +139,14 @@ ResourceSupply.prototype.AddGatherer = function(player, gathererID)
 {
 	if (!this.IsAvailable(player, gathererID))
 		return false;
- 	
+
 	if (this.gatherers[player].indexOf(gathererID) === -1)
 	{
 		this.gatherers[player].push(gathererID);
 		// broadcast message, mainly useful for the AIs.
 		Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
 	}
-	
+
 	return true;
 };
 

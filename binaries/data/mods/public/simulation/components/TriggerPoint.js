@@ -39,7 +39,7 @@ TriggerPoint.prototype.OnDestroy = function()
  */
 TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
 {
-	
+
 	if (data.players)
 		var players = data.players;
 	else
@@ -52,7 +52,7 @@ TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
 	var minRange = data.minRange || 0;
 	var maxRange = data.maxRange || -1;
 	var cid = data.requiredComponent || -1;
-	
+
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var tag = cmpRangeManager.CreateActiveQuery(this.entity, minRange, maxRange, players, cid, cmpRangeManager.GetEntityFlagMask("normal"));
 
@@ -73,7 +73,7 @@ TriggerPoint.prototype.OnRangeUpdate = function(msg)
 		if (index > -1)
 			collection.splice(index, 1);
 	}
-		
+
 	for each (var entity in msg.added)
 		collection.push(entity);
 

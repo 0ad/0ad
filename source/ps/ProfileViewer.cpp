@@ -491,7 +491,7 @@ namespace
 		{
 		}
 
-		// std::for_each requires a move constructor and the use of JS::PersistentRooted<T> apparently breaks a requirement for an 
+		// std::for_each requires a move constructor and the use of JS::PersistentRooted<T> apparently breaks a requirement for an
 		// automatic move constructor
 		DumpTable(DumpTable && original) :
 			m_ScriptInterface(original.m_ScriptInterface),

@@ -1,15 +1,15 @@
 // Copyright (c) 2016 Wildfire Games
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -69,7 +69,7 @@ function refresh_jsonp(callback, source)
 function refresh_from_jsonp(callback, content)
 {
     var script = document.createElement('script');
-    
+
     window.profileDataCB = function(data)
     {
         script.parentNode.removeChild(script);
@@ -121,7 +121,7 @@ function refresh_thread(callback, thread, callback_data)
         success: function (data) {
             data.events = concat_events(data);
             thread.data = data;
-            
+
             if (++callback_data.completed == callback_data.threads.length)
             {
                 g_raw_data = { 'threads': callback_data.threads };
@@ -145,7 +145,7 @@ function compute_data(range)
         if (!processed_data.intervals.length && !processed_data.events.length)
             continue;
 
-        g_data.threads[thread] = processed_data; 
+        g_data.threads[thread] = processed_data;
 
         g_data.threads[thread].intervals_by_type_frame = {};
 
@@ -215,7 +215,7 @@ function process_raw_data(data, range)
                 break;
             }
         }
-        
+
         var framesfound = 0;
         for (var i = end - 1; i > 0; --i)
         {
@@ -226,7 +226,7 @@ function process_raw_data(data, range)
                     break;
             }
         }
-        
+
         tmin = data[start][1];
         tmax = data[end][1];
     }
@@ -243,7 +243,7 @@ function process_raw_data(data, range)
             }
         }
         tmin = tmax - range.seconds;
-    
+
         for (var i = end; i > 0; --i)
         {
             var type = data[i][0];
@@ -293,7 +293,7 @@ function process_raw_data(data, range)
     }
 
     var num_colours = 0;
-    
+
     var events = [];
 
     // Read events for the entire data period (not just start..end)
@@ -319,16 +319,16 @@ function process_raw_data(data, range)
             lastWasEvent = false;
         }
     }
-    
-    
+
+
     var intervals = [];
     var intervals_by_type = {};
-    
+
     // Read intervals from the focused data period (start..end)
     stack = [];
     var lastT = 0;
     var lastWasEvent = false;
- 
+
     for (var i = start; i <= end; ++i)
     {
         if (data[i][0] == ITEM_EVENT)
@@ -356,7 +356,7 @@ function process_raw_data(data, range)
 
             lastT = data[i][1];
             lastWasEvent = false;
-            
+
             if (!stack.length)
                 continue;
 
@@ -364,9 +364,9 @@ function process_raw_data(data, range)
 
             if (!g_used_colours[interval.id])
                 g_used_colours[interval.id] = new_colour(num_colours++);
-            
+
             interval.colour = g_used_colours[interval.id];
-                
+
             interval.t1 = data[i][1];
             interval.duration = interval.t1 - interval.t0;
             interval.depth = stack.length;

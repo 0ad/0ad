@@ -123,7 +123,7 @@ QUERYHANDLER(Ping)
 {
 	UNUSED2(msg);
 }
-    
+
 MESSAGEHANDLER(SimStopMusic)
 {
 	UNUSED2(msg);

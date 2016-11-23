@@ -305,10 +305,10 @@ template<> void ScriptInterface::ToJSVal<unsigned long>(JSContext* UNUSED(cx), J
 	ret.set(JS::NumberValue((int)val));
 }
 
-// (s)size_t are considered to be identical to (unsigned) int by GCC and 
-// their specializations would cause conflicts there. On x86_64 GCC, s/size_t 
-// is equivalent to (unsigned) long, but the same solution applies; use the 
-// long and unsigned long specializations instead of s/size_t. 
+// (s)size_t are considered to be identical to (unsigned) int by GCC and
+// their specializations would cause conflicts there. On x86_64 GCC, s/size_t
+// is equivalent to (unsigned) long, but the same solution applies; use the
+// long and unsigned long specializations instead of s/size_t.
 // for some reason, x64 MSC treats size_t as distinct from unsigned long:
 #if MSC_VERSION && ARCH_AMD64
 

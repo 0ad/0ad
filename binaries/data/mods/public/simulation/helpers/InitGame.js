@@ -6,10 +6,10 @@ function PreInitGame()
 {
 	// We need to replace skirmish "default" entities with real ones.
 	// This needs to happen before AI initialization (in InitGame).
-	// And we need to flush destroyed entities otherwise the AI gets the wrong game state in 
+	// And we need to flush destroyed entities otherwise the AI gets the wrong game state in
 	// the beginning and a bunch of "destroy" messages on turn 0, which just shouldn't happen.
 	Engine.BroadcastMessage(MT_SkirmishReplace, {});
-	Engine.FlushDestroyedEntities(); 
+	Engine.FlushDestroyedEntities();
 
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i) // ignore gaia

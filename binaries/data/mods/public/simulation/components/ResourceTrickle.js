@@ -1,6 +1,6 @@
 function ResourceTrickle() {}
 
-ResourceTrickle.prototype.Schema = 
+ResourceTrickle.prototype.Schema =
 	"<a:help>Controls the resource trickle ability of the unit.</a:help>" +
 	"<element name='Rates' a:help='Trickle Rates'>" +
 		Resources.BuildSchema("nonNegativeDecimal") +

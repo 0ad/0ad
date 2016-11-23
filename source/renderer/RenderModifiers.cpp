@@ -82,7 +82,7 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 		shader->Uniform(str_shadowTransform, GetShadowMap()->GetTextureMatrix());
 		int width = GetShadowMap()->GetWidth();
 		int height = GetShadowMap()->GetHeight();
-		shader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height); 
+		shader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
 	}
 
 	if (GetLightEnv())

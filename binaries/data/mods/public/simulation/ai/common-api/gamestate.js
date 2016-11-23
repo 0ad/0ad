@@ -85,7 +85,7 @@ m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection
 
 	let newCollection = collection !== undefined ? collection.filter(filter) : this.entities.filter(filter);
 	newCollection.registerUpdates();
-	this.EntCollecNames.set(id, newCollection);	
+	this.EntCollecNames.set(id, newCollection);
 	return newCollection;
 };
 
@@ -212,11 +212,11 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 
 	if (noRequirementCheck === true)
 		return true;
-	
+
 	// not already researched, check if we can.
 	// basically a copy of the function in technologyManager since we can't use it.
 	// Checks the requirements for a technology to see if it can be researched at the current time
-		
+
 	// The technology which this technology supersedes is required
 	if (template.supersedes() && !this.playerData.researchedTechs[template.supersedes()])
 		return false;
@@ -243,7 +243,7 @@ m.GameState.prototype.checkTechRequirements = function(reqs)
 	// If there are no requirements then all requirements are met
 	if (!reqs)
 		return true;
-	
+
 	if (reqs.all)
 		return reqs.all.every(r => this.checkTechRequirements(r));
 	if (reqs.any)
@@ -255,12 +255,12 @@ m.GameState.prototype.checkTechRequirements = function(reqs)
 	if (reqs.tech)
 		return this.playerData.researchedTechs[reqs.tech] !== undefined && this.playerData.researchedTechs[reqs.tech];
 	if (reqs.class && reqs.numberOfTypes)
-		return this.playerData.typeCountsByClass[reqs.class] && 
+		return this.playerData.typeCountsByClass[reqs.class] &&
 			Object.keys(this.playerData.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
 	if (reqs.class && reqs.number)
 		return this.playerData.classCounts[reqs.class] &&
 			this.playerData.classCounts[reqs.class] >= reqs.number;
-	
+
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));
 	return false;
@@ -404,7 +404,7 @@ m.GameState.prototype.isEntityEnemy = function(ent)
 		return false;
 	return this.playerData.isEnemy[ent.owner()];
 };
- 
+
 m.GameState.prototype.isEntityOwn = function(ent)
 {
 	if (!ent)
@@ -681,7 +681,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		let template = this.getTemplate(trainable);
 		if (!template || !template.available(this))
 			continue;
-		
+
 		let okay = true;
 		for (let clas of classes)
 		{
@@ -718,7 +718,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
  * If there are pairs, both techs are returned.
  */
 m.GameState.prototype.findAvailableTech = function()
-{	
+{
 	let allResearchable = [];
 	let civ = this.playerData.civ;
 	this.getOwnEntities().forEach(function(ent) {
@@ -754,7 +754,7 @@ m.GameState.prototype.findAvailableTech = function()
  * Return true if we have a building able to train that template
  */
 m.GameState.prototype.hasTrainer = function(template)
-{	
+{
 	let civ = this.playerData.civ;
 	for (let ent of this.getOwnTrainingFacilities().values())
 	{
@@ -769,7 +769,7 @@ m.GameState.prototype.hasTrainer = function(template)
  * Find buildings able to train that template.
  */
 m.GameState.prototype.findTrainers = function(template)
-{	
+{
 	let civ = this.playerData.civ;
 	return this.getOwnTrainingFacilities().filter(function(ent) {
 		let trainable = ent.trainableEntities(civ);

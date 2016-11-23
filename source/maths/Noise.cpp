@@ -19,7 +19,7 @@
  * 2D and 3D seamless Perlin noise
  */
 
-// Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html 
+// Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html
 // and http://mrl.nyu.edu/~perlin/paper445.pdf.
 // Not optimized for speed yet.
 
@@ -28,7 +28,7 @@
 #include <cmath>
 #include <boost/random/mersenne_twister.hpp>
 
-namespace 
+namespace
 {
 	/// Random number generator (Boost Mersenne Twister)
 	boost::mt19937 rng;
@@ -39,20 +39,20 @@ namespace
 	}
 
 	/// Utility function used in both noises as an ease curve
-	float easeCurve(float t) 
+	float easeCurve(float t)
 	{
 		return t*t*t*(t*(t*6-15)+10);
 	}
 }
 
-Noise2D::Noise2D(int f) 
+Noise2D::Noise2D(int f)
 {
 	freq = f;
 	grads = new CVector2D*[freq];
-	for(int i=0; i<freq; i++) 
+	for(int i=0; i<freq; i++)
 	{
 		grads[i] = new CVector2D[freq];
-		for(int j=0; j<freq; j++) 
+		for(int j=0; j<freq; j++)
 		{
 			float a = randFloat() * 2 * (float)M_PI;
 			grads[i][j] = CVector2D(cos(a), sin(a));
@@ -60,16 +60,16 @@ Noise2D::Noise2D(int f)
 	}
 }
 
-Noise2D::~ Noise2D() 
+Noise2D::~ Noise2D()
 {
-	for(int i=0; i<freq; i++) 
+	for(int i=0; i<freq; i++)
 	{
 		delete[] grads[i];
 	}
 	delete[] grads;
 }
 
-float Noise2D::operator()(float x, float y) 
+float Noise2D::operator()(float x, float y)
 {
 	x *= freq;
 	y *= freq;
@@ -98,16 +98,16 @@ float Noise2D::operator()(float x, float y)
 	return (a + ey*(b-a)) * .5 + .5;
 }
 
-Noise3D::Noise3D(int f, int v) : freq(f), vfreq(v) 
+Noise3D::Noise3D(int f, int v) : freq(f), vfreq(v)
 {
 	grads = new CVector3D**[freq];
-	for(int i=0; i<freq; i++) 
+	for(int i=0; i<freq; i++)
 	{
 		grads[i] = new CVector3D*[freq];
-		for(int j=0; j<freq; j++) 
+		for(int j=0; j<freq; j++)
 		{
 			grads[i][j] = new CVector3D[vfreq];
-			for(int k=0; k<vfreq; k++) 
+			for(int k=0; k<vfreq; k++)
 			{
 				CVector3D vec;
 				do {
@@ -121,11 +121,11 @@ Noise3D::Noise3D(int f, int v) : freq(f), vfreq(v)
 	}
 }
 
-Noise3D::~ Noise3D() 
+Noise3D::~ Noise3D()
 {
-	for(int i=0; i<freq; i++) 
+	for(int i=0; i<freq; i++)
 	{
-		for(int j=0; j<freq; j++) 
+		for(int j=0; j<freq; j++)
 		{
 			delete[] grads[i][j];
 		}
@@ -134,7 +134,7 @@ Noise3D::~ Noise3D()
 	delete[] grads;
 }
 
-float Noise3D::operator()(float x, float y, float z) 
+float Noise3D::operator()(float x, float y, float z)
 {
 	x *= freq;
 	y *= freq;

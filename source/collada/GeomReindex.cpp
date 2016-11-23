@@ -36,7 +36,7 @@ typedef std::pair<float, float> uv_pair_type;
 
 struct VertexData
 {
-	VertexData(const float* pos, const float* norm, const std::vector<uv_pair_type> &uvs, 
+	VertexData(const float* pos, const float* norm, const std::vector<uv_pair_type> &uvs,
 		   const std::vector<FCDJointWeightPair>& weights)
 		: x(pos[0]), y(pos[1]), z(pos[2]),
 		nx(norm[0]), ny(norm[1]), nz(norm[2]),

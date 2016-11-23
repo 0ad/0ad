@@ -43,22 +43,22 @@
 					"Armament": "",
 					"Emblem": "",
 					"History": "He was the first really successful Roman general against the Carthaginians. His campaigns in Spain and Africa helped to bring Carthage to its knees during the Second Punic War. He defeated Hannibal at the Battle of Zama in 202 B.C."
-				} 
+				}
 			]
-		} 
+		}
 	],
 	"CivBonuses":
 	[
 		{
 			"Name": "Testudo Formation",
 			"History": "The Romans commonly used the Testudo or 'turtle' formation for defense: Legionaries were formed into hollow squares with twelve men on each side, standing so close together that their shields overlapped like fish scales.",
-			"Description": "Roman Legionaries can form a Testudo." 
+			"Description": "Roman Legionaries can form a Testudo."
 		},
 		{
 			"Name": "Citizenship",
 			"History": "Roman Citizenship was highly prized in the ancient world. Basic rights and privileges were afforded Roman citizens that were denied other conquered peoples. It is said that harming a Roman citizen was akin to harming Rome herself, and would cause the entire might of Rome to fall upon the perpetrator.",
 			"Description": "Any Roman citizen-soldier fighting within Roman territory gains a non-permanent +10% bonus in armor."
-		} 
+		}
 	],
 	"TeamBonuses":
 	[
@@ -66,7 +66,7 @@
 			"Name": "Socii",
 			"History": "Being allied with Rome came with great benefits (as well as great peril).",
 			"Description": "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-		} 
+		}
 	],
 	"Structures":
 	[
@@ -77,7 +77,7 @@
 			"History": "Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within the Praetorian gate, which should either front the east or the enemy, the tents of the first centuries or cohorts are pitched, and the dracos (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution. It has a turf wall, and it's surrounded by a canal filled with water whenever possible for extra defense. Many towns started up as bigger military camps to evolve to more complicated cities.",
 			"Requirements": "",
 			"Phase": "",
-			"Special": "Trains citizen-soldiers from neutral or enemy territory." 
+			"Special": "Trains citizen-soldiers from neutral or enemy territory."
 		},
 		{
 			"Name": "Murus Latericius",
@@ -86,8 +86,8 @@
 			"History": "Turf walls built by legionaries during sieges.",
 			"Requirements": "",
 			"Phase": "",
-			"Special": "Can be built in neutral and enemy territory to strangle enemy towns." 
-		} 
+			"Special": "Can be built in neutral and enemy territory to strangle enemy towns."
+		}
 	],
 	"StartEntities":
 	[
@@ -101,7 +101,7 @@
 		{
 			"Template": "units/rome_infantry_swordsman_b",
 			"Count": 2
-		},		
+		},
 		{
 			"Template": "units/rome_infantry_javelinist_b",
 			"Count": 2

@@ -199,7 +199,7 @@ void CBoundingBoxAligned::Transform(const CMatrix3D& transform, CBoundingBoxOrie
 void CBoundingBoxAligned::IntersectFrustumConservative(const CFrustum& frustum)
 {
 	// if this bound is empty, then the result must be empty (we should not attempt to intersect with
-	// a brush, may cause crashes due to the numeric representation of empty bounds -- see 
+	// a brush, may cause crashes due to the numeric representation of empty bounds -- see
 	// http://trac.wildfiregames.com/ticket/1027)
 	if (IsEmpty())
 		return;

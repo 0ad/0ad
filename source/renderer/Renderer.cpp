@@ -1064,7 +1064,7 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, int cullG
 // - worldPlane is a clip plane in world space (worldPlane.Dot(v) >= 0 for any vector v passing the clipping test)
 void CRenderer::SetObliqueFrustumClipping(CCamera& camera, const CVector4D& worldPlane) const
 {
-	// First, we'll convert the given clip plane to camera space, then we'll 
+	// First, we'll convert the given clip plane to camera space, then we'll
 	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
 	CMatrix3D normalMatrix = camera.m_Orientation.GetTranspose();
 	CVector4D camPlane = normalMatrix.Transform(worldPlane);
@@ -1575,7 +1575,7 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	}
 
 #if !CONFIG2_GLES
-	// Clean up texture blend mode so particles and other things render OK 
+	// Clean up texture blend mode so particles and other things render OK
 	// (really this should be cleaned up by whoever set it)
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 #endif

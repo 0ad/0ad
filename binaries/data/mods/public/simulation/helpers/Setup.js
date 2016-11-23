@@ -63,7 +63,7 @@ function LoadMapSettings(settings)
 			else
 				cmpGarrisonHolder.initGarrison = settings.Garrison[holder];
 		}
-	
+
 	let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
 	if (settings.Ceasefire)
 		cmpCeasefireManager.StartCeasefire(settings.Ceasefire * 60 * 1000);

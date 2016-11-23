@@ -46,7 +46,7 @@ struct SVisibilitySegment
 	size_t m_StartIndex;
 	size_t m_EndIndex; // inclusive
 
-	SVisibilitySegment(bool visible, size_t startIndex, size_t endIndex) 
+	SVisibilitySegment(bool visible, size_t startIndex, size_t endIndex)
 		: m_Visible(visible), m_StartIndex(startIndex), m_EndIndex(endIndex)
 	{}
 
@@ -87,9 +87,9 @@ public:
 
 protected:
 
-	/// Display position of the rally points. Note that this are merely the display positions; they not necessarily the same as the 
+	/// Display position of the rally points. Note that this are merely the display positions; they not necessarily the same as the
 	/// actual positions used in the simulation at any given time. In particular, we need this separate copy to support
-	/// instantaneously rendering the rally point markers/lines when the user sets one in-game (instead of waiting until the 
+	/// instantaneously rendering the rally point markers/lines when the user sets one in-game (instead of waiting until the
 	/// network-synchronization code sets it on the RallyPoint component, which might take up to half a second).
 	std::vector<CFixedVector2D> m_RallyPoints;
 	/// Full path to the rally points as returned by the pathfinder, with some post-processing applied to reduce zig/zagging.
@@ -118,7 +118,7 @@ protected:
 	CTexturePtr m_Texture;
 	CTexturePtr m_TextureMask;
 
-	/// Textured overlay lines to be used for rendering the marker line. There can be multiple because we may need to render 
+	/// Textured overlay lines to be used for rendering the marker line. There can be multiple because we may need to render
 	/// dashes for segments that are inside the SoD.
 	std::vector<std::vector<SOverlayTexturedLine> > m_TexturedOverlayLines;
 
@@ -308,7 +308,7 @@ public:
 			UpdateMarkers();
 
 			// Check for changes to the SoD and update the overlay lines accordingly. We need to do this here because this method
-			// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred 
+			// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred
 			// while this rally point was not being displayed.
 			UpdateOverlayLines();
 
@@ -352,7 +352,7 @@ private:
 	/**
 	 * Repositions the rally point markers; moves them outside of the world (ie. hides them), or positions them at the currently
 	 * set rally points. Also updates the actor's variation according to the entity's current owning player's civilization.
-	 * 
+	 *
 	 * Should be called whenever either the position of a rally point changes (including whether it is set or not), or the display
 	 * flag changes, or the ownership of the entity changes.
 	 */
@@ -361,14 +361,14 @@ private:
 	/**
 	 * Recomputes all the full paths from this entity to the rally point and from the rally point to the next, and does all the necessary
 	 * post-processing to make them prettier.
-	 * 
+	 *
 	 * Should be called whenever all rally points' position changes.
 	 */
 	void RecomputeAllRallyPointPaths();
 
 	/**
 	 * Recomputes the full path for m_Path[ @p index], and does all the necessary post-processing to make it prettier.
-	 * 
+	 *
 	 * Should be called whenever either the starting position or the rally point's position changes.
 	 */
 	void RecomputeRallyPointPath_wrapper(size_t index);
@@ -376,33 +376,33 @@ private:
 	/**
 	 * Recomputes the full path from this entity/the previous rally point to the next rally point, and does all the necessary
 	 * post-processing to make it prettier. This doesn't check if we have a valid position or if a rally point is set.
-	 * 
+	 *
 	 * You shouldn't need to call this method directly.
 	 */
 	void RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPosition>& cmpPosition, CmpPtr<ICmpFootprint>& cmpFootprint, CmpPtr<ICmpPathfinder> cmpPathfinder);
 
 	/**
-	 * Checks for changes to the SoD to the previously saved state, and reconstructs the visibility segments and overlay lines to 
+	 * Checks for changes to the SoD to the previously saved state, and reconstructs the visibility segments and overlay lines to
 	 * match if necessary. Does nothing if the rally point lines are not currently set to be displayed, or if no rally point is set.
 	 */
 	void UpdateOverlayLines();
 
 	/**
-	 * Sets up all overlay lines for rendering according to the current full path and visibility segments. Splits the line into solid 
-	 * and dashed pieces (for the SoD). Should be called whenever the SoD has changed. If no full path is currently set, this method 
+	 * Sets up all overlay lines for rendering according to the current full path and visibility segments. Splits the line into solid
+	 * and dashed pieces (for the SoD). Should be called whenever the SoD has changed. If no full path is currently set, this method
 	 * does nothing.
 	 */
 	void ConstructAllOverlayLines();
 
 	/**
-	 * Sets up the overlay lines for rendering according to the full path and visibility segments at @p index. Splits the line into 
-	 * solid and dashed pieces (for the SoD). Should be called whenever the SoD of the path at @p index has changed. 
+	 * Sets up the overlay lines for rendering according to the full path and visibility segments at @p index. Splits the line into
+	 * solid and dashed pieces (for the SoD). Should be called whenever the SoD of the path at @p index has changed.
 	 */
 	void ConstructOverlayLines(size_t index);
 
 	/**
-	 * Removes points from @p coords that are obstructed by the originating building's footprint, and links up the last point 
-	 * nicely to the edge of the building's footprint. Only needed if the pathfinder can possibly return obstructed tile waypoints, 
+	 * Removes points from @p coords that are obstructed by the originating building's footprint, and links up the last point
+	 * nicely to the edge of the building's footprint. Only needed if the pathfinder can possibly return obstructed tile waypoints,
 	 * i.e. when pathfinding is started from an obstructed tile.
 	 */
 	void FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint);
@@ -413,13 +413,13 @@ private:
 	void GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint);
 
 	/**
-	 * Returns a list of indices of waypoints in the current path (m_Path[index]) where the LOS visibility changes, ordered from 
+	 * Returns a list of indices of waypoints in the current path (m_Path[index]) where the LOS visibility changes, ordered from
 	 * building/previous rally point to rally point. Used to construct the overlay line segments and track changes to the SoD.
 	 */
 	void GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index);
 
 	/**
-	 * Simplifies the path by removing waypoints that lie between two points that are visible from one another. This is primarily 
+	 * Simplifies the path by removing waypoints that lie between two points that are visible from one another. This is primarily
 	 * intended to reduce some unnecessary curviness of the path; the pathfinder returns a mathematically (near-)optimal path, which
 	 * will happily curve and bend to reduce costs. Visually, it doesn't make sense for a rally point path to curve and bend when it
 	 * could just as well have gone in a straight line; that's why we have this, to make it look more natural.
@@ -433,7 +433,7 @@ private:
 	void ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks = 0, bool floating = true);
 
 	/**
-	 * Helper function to GetVisibilitySegments, factored out for testing. Merges single-point segments with its neighbouring 
+	 * Helper function to GetVisibilitySegments, factored out for testing. Merges single-point segments with its neighbouring
 	 * segments. You should not have to call this method directly.
 	 */
 	static void MergeVisibilitySegments(std::deque<SVisibilitySegment>& segments);
@@ -688,7 +688,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 	//if (index == 0 && cmpFootprint)
 	//	FixFootprintWaypoints(m_Path[index], cmpPosition, cmpFootprint);
 
-	// Eliminate some consecutive waypoints that are visible from eachother. Reduce across a maximum distance of approx. 6 tiles 
+	// Eliminate some consecutive waypoints that are visible from eachother. Reduce across a maximum distance of approx. 6 tiles
 	// (prevents segments that are too long to properly stick to the terrain)
 	ReduceSegmentsByVisibility(m_Path[index], 6);
 
@@ -716,12 +716,12 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 
 	if (m_SmoothPath)
 		// The number of points to interpolate goes hand in hand with the maximum amount of node links allowed to be joined together
-		// by the visibility reduction. The more node links that can be joined together, the more interpolated points you need to 
+		// by the visibility reduction. The more node links that can be joined together, the more interpolated points you need to
 		// generate to be able to deal with local terrain height changes.
 		SimRender::InterpolatePointsRNS(m_Path[index], false, 0, 4); // no offset, keep line at its exact path
 
 	// find which point is the last visible point before going into the SoD, so we have a point to compare to on the next turn
-	GetVisibilitySegments(m_VisibilitySegments[index], index); 
+	GetVisibilitySegments(m_VisibilitySegments[index], index);
 
 	// build overlay lines for the new path
 	ConstructOverlayLines(index);
@@ -737,8 +737,8 @@ void CCmpRallyPointRenderer::ConstructAllOverlayLines()
 
 void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 {
-	// We need to create a new SOverlayTexturedLine every time we want to change the coordinates after having passed it to the 
-	// renderer, because it does some fancy vertex buffering thing and caches them internally instead of recomputing them on every 
+	// We need to create a new SOverlayTexturedLine every time we want to change the coordinates after having passed it to the
+	// renderer, because it does some fancy vertex buffering thing and caches them internally instead of recomputing them on every
 	// pass (which is only sensible).
 	while (index >= m_TexturedOverlayLines.size())
 	{
@@ -812,10 +812,10 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 			int numFitUnmodified = floor(distance/(dashSize + clearSize));
 			float remainderDistance = distance - (numFitUnmodified * (dashSize + clearSize));
 
-			// Now we want to make remainderDistance equal exactly one dash size (i.e. maxDashSize) by scaling dashSize and clearSize slightly. 
+			// Now we want to make remainderDistance equal exactly one dash size (i.e. maxDashSize) by scaling dashSize and clearSize slightly.
 			// We have (remainderDistance - maxDashSize) of space to distribute over numFitUnmodified instances of (dashSize + clearSize) to make
-			// it fit, so each (dashSize + clearSize) pair needs to adjust its length by (remainderDistance - maxDashSize)/numFitUnmodified 
-			// (which will be positive or negative accordingly). This number can then be distributed further proportionally among the dash's 
+			// it fit, so each (dashSize + clearSize) pair needs to adjust its length by (remainderDistance - maxDashSize)/numFitUnmodified
+			// (which will be positive or negative accordingly). This number can then be distributed further proportionally among the dash's
 			// length and the clear's length.
 
 			// we always want to have at least one dash/clear pair (i.e., "|===|   |===|"); also, we need to avoid division by zero below.
@@ -885,7 +885,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 
 void CCmpRallyPointRenderer::UpdateOverlayLines()
 {
-	// We should only do this if the rally point is currently being displayed and set inside the world, otherwise it's a massive 
+	// We should only do this if the rally point is currently being displayed and set inside the world, otherwise it's a massive
 	// waste of time to calculate all this stuff (this method is called every turn)
 	if (!m_Displayed || !IsSet())
 		return;
@@ -1100,7 +1100,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 		// find out whether curNode is visible from baseNode (careful; this is in 2D only; terrain height differences are ignored!)
 		bool curNodeVisible = cmpPathFinder->CheckMovement(obstructionFilter, baseNodeX, baseNodeZ, curNodeX, curNodeZ, lineRadius, passabilityClass);
 
-		// since height differences are ignored by CheckMovement, let's call two points visible from one another only if they're at 
+		// since height differences are ignored by CheckMovement, let's call two points visible from one another only if they're at
 		// roughly the same terrain elevation
 		curNodeVisible = curNodeVisible && (fabsf(curNodeY - baseNodeY) < 3.f); // TODO: this could probably use some tuning
 		if (maxSegmentLinks > 0)
@@ -1195,7 +1195,7 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment
 void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegment>& segments)
 {
 	// Scan for single-point segments; if they are inbetween two other segments, delete them and merge the surrounding segments.
-	// If they're at either end of the path, include them in their bordering segment (but only if those bordering segments aren't 
+	// If they're at either end of the path, include them in their bordering segment (but only if those bordering segments aren't
 	// themselves single-point segments, because then we would want those to get absorbed by its surrounding ones first).
 
 	// first scan for absorptions of single-point surrounded segments (i.e. excluding edge segments)

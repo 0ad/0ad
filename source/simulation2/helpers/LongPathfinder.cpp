@@ -375,7 +375,7 @@ public:
 
 //////////////////////////////////////////////////////////
 
-LongPathfinder::LongPathfinder() : 
+LongPathfinder::LongPathfinder() :
 	m_UseJPSCache(false),
 	m_Grid(NULL), m_GridSize(0),
 	m_DebugOverlay(NULL), m_DebugGrid(NULL), m_DebugPath(NULL)
@@ -1020,7 +1020,7 @@ void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passC
 
 		if (maxDist > fixed::Zero() && (curr - prev).CompareLength(maxDist) > 0)
 		{
-			// We are too far away from the previous waypoint, so create one in 
+			// We are too far away from the previous waypoint, so create one in
 			// between and continue with the improvement of the path
 			prev = prev + (curr - prev) / 2;
 			newWaypoints.emplace_back(Waypoint{ prev.X, prev.Y });
@@ -1072,7 +1072,7 @@ void LongPathfinder::SetDebugOverlay(bool enabled)
 		SAFE_DELETE(m_DebugOverlay);
 }
 
-void LongPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, 
+void LongPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
 	pass_class_t passClass, std::vector<CircularRegion> excludedRegions, WaypointPath& path)
 {
 	GenerateSpecialMap(passClass, excludedRegions);

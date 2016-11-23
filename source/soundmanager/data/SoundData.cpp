@@ -70,7 +70,7 @@ CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
 	  if (fExt == ".ogg")
 			answer = SoundDataFromOgg(itemPath);
 	
-		if (answer && answer->IsOneShot()) 
+		if (answer && answer->IsOneShot())
 		{
 			CSoundData::sSoundData[itemPath.string()] = answer;
 		}

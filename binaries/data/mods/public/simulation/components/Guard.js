@@ -37,7 +37,7 @@ Guard.prototype.AddGuard = function(ent)
 {
 	if (this.entities.indexOf(ent) != -1)
 		return;
-	this.entities.push(ent); 
+	this.entities.push(ent);
 };
 
 Guard.prototype.RemoveGuard = function(ent)

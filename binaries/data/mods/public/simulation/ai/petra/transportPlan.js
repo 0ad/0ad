@@ -18,7 +18,7 @@ var PETRA = function(m)
  *           = "onBoard" when garrisoned in a ship
  *           = undefined otherwise
  *   endPos  = position of destination
- * 
+ *
  *   metadata for ships
  *   transporter = this.ID
  */
@@ -81,7 +81,7 @@ m.TransportPlan.prototype.init = function(gameState)
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "transport", this.ID));
 	this.ships = gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
 	this.transportShips = gameState.ai.HQ.navalManager.transportShips.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
-	
+
 	this.units.registerUpdates();
 	this.ships.registerUpdates();
 	this.transportShips.registerUpdates();
@@ -290,7 +290,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 						self.boardingPos[shipId] = self.getBoardingPos(gameState, ship, self.startIndex, self.sea, undefined, false);
 					}
 					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
-					ship.setMetadata(PlayerID, "timeGarrison", time);				
+					ship.setMetadata(PlayerID, "timeGarrison", time);
 				}
 				else if (time - ent.getMetadata(PlayerID, "timeGarrison") > 2)
 				{

@@ -69,7 +69,7 @@ Formation.prototype.Schema =
 				"<text a:help='example text: \"1..1,1..-1:animation1;2..2,1..-1;animation2\", this will set animation1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animations. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
 			"</element>" +
 		"</zeroOrMore>" +
-	"</element>";	
+	"</element>";
 
 var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
 
@@ -367,7 +367,7 @@ Formation.prototype.RemoveMembers = function(ents)
 Formation.prototype.AddMembers = function(ents)
 {
 	this.offsets = undefined;
-	this.inPosition = []; 
+	this.inPosition = [];
 
 	for each (var ent in this.formationMembersWithAura)
 	{
@@ -385,7 +385,7 @@ Formation.prototype.AddMembers = function(ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
-		
+
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		if (cmpAuras && cmpAuras.HasFormationAura())
 		{
@@ -517,8 +517,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		var cmpUnitAI = Engine.QueryInterface(offset.ent, IID_UnitAI);
 		if (!cmpUnitAI)
 			continue;
-		
-		var data = 
+
+		var data =
 		{
 			"target": this.entity,
 			"x": offset.x,
@@ -604,9 +604,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 		var sortingClasses = this.sortingClasses.slice();
 	sortingClasses.push("Unknown");
 
-	// the entities will be assigned to positions in the formation in 
+	// the entities will be assigned to positions in the formation in
 	// the same order as the types list is ordered
-	var types = {}; 
+	var types = {};
 	for (var i = 0; i < sortingClasses.length; ++i)
 		types[sortingClasses[i]] = [];
 
@@ -750,7 +750,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	if (this.sortingOrder == "fillFromTheSides")
 		offsets.sort(function(o1, o2) { return Math.abs(o1.x) < Math.abs(o2.x);});
 	else if (this.sortingOrder == "fillToTheCenter")
-		offsets.sort(function(o1, o2) { 
+		offsets.sort(function(o1, o2) {
 			return Math.max(Math.abs(o1.x), Math.abs(o1.y)) < Math.max(Math.abs(o2.x), Math.abs(o2.y));
 		});
 
@@ -820,7 +820,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 };
 
 /**
- * calculate the estimated rotation of the formation 
+ * calculate the estimated rotation of the formation
  * based on the first unitAI target position when ordered to walk,
  * based on the current rotation in other cases
  * Return the sine and cosine of the angle
@@ -875,7 +875,7 @@ Formation.prototype.ComputeMotionParameters = function()
 
 Formation.prototype.ShapeUpdate = function()
 {
-	// Check the distance to twin formations, and merge if when 
+	// Check the distance to twin formations, and merge if when
 	// the formations could collide
 	for (var i = this.twinFormations.length - 1; i >= 0; --i)
 	{

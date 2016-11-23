@@ -461,7 +461,7 @@ Attack.prototype.PerformAttack = function(type, target)
 {
 	let attackerOwner = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
  	let cmpDamage = Engine.QueryInterface(SYSTEM_ENTITY, IID_Damage);
- 	
+
 	// If this is a ranged attack, then launch a projectile
 	if (type == "Ranged")
 	{
@@ -556,7 +556,7 @@ Attack.prototype.PerformAttack = function(type, target)
 	{
 		if (attackerOwner == -1)
 			return;
-		
+
 		let multiplier = this.GetAttackBonus(type, target);
 		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)

@@ -133,7 +133,7 @@ Vector2D.prototype.distanceTo = function(v)
 
 // Static 2D functions
 //
-// Static functions that return a new vector object. 
+// Static functions that return a new vector object.
 // Note that object creation is slow in JS, so use them only when necessary
 
 Vector2D.clone = function(v)
@@ -243,7 +243,7 @@ Vector3D.prototype.normalize = function()
 	var mag = this.length();
 	if (!mag)
 		return this;
-	
+
 	return this.div(mag);
 };
 
@@ -308,7 +308,7 @@ Vector3D.prototype.horizDistanceTo = function(v)
 
 // Static 3D functions
 //
-// Static functions that return a new vector object. 
+// Static functions that return a new vector object.
 // Note that object creation is slow in JS, so use them only when really necessary
 
 Vector3D.clone = function(v)

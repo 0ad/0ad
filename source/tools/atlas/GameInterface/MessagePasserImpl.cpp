@@ -149,7 +149,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 // 	// loop to avoid deadlocking the system (particularly when the game
 // 	// tries to show a dialog box); so timeoutCallback is called whenever we
 // 	// think it's necessary for that to happen.
-// 
+//
 // #if OS_WIN
 // 	// On Win32, use MsgWaitForMultipleObjects, which waits on the semaphore
 // 	// but is also interrupted by incoming Windows-messages.

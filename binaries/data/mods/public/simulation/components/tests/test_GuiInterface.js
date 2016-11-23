@@ -124,19 +124,19 @@ AddMock(100, IID_TechnologyManager, {
 });
 
 AddMock(100, IID_StatisticsTracker, {
-	GetBasicStatistics: function() { 
+	GetBasicStatistics: function() {
 		return {
 			"resourcesGathered": {
-				"food": 100,	
-				"wood": 0,	
-				"metal": 0,	
+				"food": 100,
+				"wood": 0,
+				"metal": 0,
 				"stone": 0,
-				"vegetarianFood": 0, 
+				"vegetarianFood": 0,
 			},
 			"percentMapExplored": 10
 		};
 	},
-	GetStatistics: function() { 
+	GetStatistics: function() {
 		return {
 			"unitsTrained": 10,
 			"unitsLost": 9,
@@ -145,11 +145,11 @@ AddMock(100, IID_StatisticsTracker, {
 			"buildingsLost": 4,
 			"civCentresBuilt": 1,
 			"resourcesGathered": {
-				"food": 100,	
-				"wood": 0,	
-				"metal": 0,	
+				"food": 100,
+				"wood": 0,
+				"metal": 0,
 				"stone": 0,
-				"vegetarianFood": 0, 
+				"vegetarianFood": 0,
 			},
 			"treasuresCollected": 0,
 			"lootCollected": 0,
@@ -208,19 +208,19 @@ AddMock(101, IID_TechnologyManager, {
 });
 
 AddMock(101, IID_StatisticsTracker, {
-	GetBasicStatistics: function() { 
+	GetBasicStatistics: function() {
 		return {
 			"resourcesGathered": {
-				"food": 100,	
-				"wood": 0,	
-				"metal": 0,	
+				"food": 100,
+				"wood": 0,
+				"metal": 0,
 				"stone": 0,
-				"vegetarianFood": 0, 
+				"vegetarianFood": 0,
 			},
 			"percentMapExplored": 10
 		};
 	},
-	GetStatistics: function() { 
+	GetStatistics: function() {
 		return {
 			"unitsTrained": 10,
 			"unitsLost": 9,
@@ -229,11 +229,11 @@ AddMock(101, IID_StatisticsTracker, {
 			"buildingsLost": 4,
 			"civCentresBuilt": 1,
 			"resourcesGathered": {
-				"food": 100,	
-				"wood": 0,	
-				"metal": 0,	
+				"food": 100,
+				"wood": 0,
+				"metal": 0,
 				"stone": 0,
-				"vegetarianFood": 0, 
+				"vegetarianFood": 0,
 			},
 			"treasuresCollected": 0,
 			"lootCollected": 0,
@@ -292,7 +292,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 					wood: 0,
 					metal: 0,
 					stone: 0,
-					vegetarianFood: 0, 
+					vegetarianFood: 0,
 				},
 				percentMapExplored: 10
 			},
@@ -334,7 +334,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 					wood: 0,
 					metal: 0,
 					stone: 0,
-					vegetarianFood: 0, 
+					vegetarianFood: 0,
 				},
 				percentMapExplored: 10
 			},
@@ -410,7 +410,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					wood: 0,
 					metal: 0,
 					stone: 0,
-					vegetarianFood: 0, 
+					vegetarianFood: 0,
 				},
 				treasuresCollected: 0,
 				lootCollected: 0,
@@ -465,7 +465,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					wood: 0,
 					metal: 0,
 					stone: 0,
-					vegetarianFood: 0, 
+					vegetarianFood: 0,
 				},
 				treasuresCollected: 0,
 				lootCollected: 0,

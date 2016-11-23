@@ -34,13 +34,13 @@ CSkeletonAnimDef::CSkeletonAnimDef() : m_FrameTime(0), m_NumKeys(0), m_NumFrames
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimDef destructor
-CSkeletonAnimDef::~CSkeletonAnimDef() 
+CSkeletonAnimDef::~CSkeletonAnimDef()
 {
 	delete[] m_Keys;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// BuildBoneMatrices: build matrices for all bones at the given time (in MS) in this 
+// BuildBoneMatrices: build matrices for all bones at the given time (in MS) in this
 // animation
 void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool loop) const
 {
@@ -48,10 +48,10 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool l
 	size_t startframe = (size_t)(int)(time/m_FrameTime);
 	float deltatime = fstartframe-startframe;
 
-	startframe %= m_NumFrames; 
+	startframe %= m_NumFrames;
 
 	size_t endframe = startframe + 1;
-	endframe %= m_NumFrames; 
+	endframe %= m_NumFrames;
 
 	if (!loop && endframe == 0)
 	{

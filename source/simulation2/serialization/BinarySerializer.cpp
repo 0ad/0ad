@@ -55,7 +55,7 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 }
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()), 
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()),
 	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(scriptInterface.GetRuntime())), m_ScriptBackrefsNext(1)
 {
 	m_ScriptBackrefs.init();
@@ -383,7 +383,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		// To reduce the size of the serialized data, we handle integers and doubles separately.
 		// We can't check for val.isInt32 and val.isDouble directly, because integer numbers are not guaranteed
 		// to be represented as integers. A number like 33 could be stored as integer on the computer of one player
-		// and as double on the other player's computer. That would cause out of sync errors in multiplayer games because 
+		// and as double on the other player's computer. That would cause out of sync errors in multiplayer games because
 		// their binary representation and thus the hash would be different.
 		
 		double d;

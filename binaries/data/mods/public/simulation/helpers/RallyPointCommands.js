@@ -36,7 +36,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"queued": true
 			});
 			break;
-		case "repair": 
+		case "repair":
 		case "build":
 			ret.push({
 				"type": "repair",
@@ -46,7 +46,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"autocontinue": i == rallyPos.length - 1
 			});
 			break;
-		case "garrison": 
+		case "garrison":
 			ret.push({
 				"type": "garrison",
 				"entities": spawnedEnts,

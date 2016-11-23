@@ -494,10 +494,10 @@ void CComponentManager::Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPriv
 	componentManager->DestroyComponentsSoon(ent);
 }
 
-void CComponentManager::Script_FlushDestroyedEntities(ScriptInterface::CxPrivate *pCxPrivate) 
-{ 
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData); 
-	componentManager->FlushDestroyedComponents(); 
+void CComponentManager::Script_FlushDestroyedEntities(ScriptInterface::CxPrivate *pCxPrivate)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	componentManager->FlushDestroyedComponents();
 }
 
 void CComponentManager::ResetState()

@@ -97,7 +97,7 @@ m.getMapIndices = function(i, map1, map2)
 };
 
 /**
- * Returns the list of points of map2 contained inside the cell i of map1 
+ * Returns the list of points of map2 contained inside the cell i of map1
  * map1.cellSize must be a multiple of map2.cellSize
  */
 m.getMapPoints = function(i, map1, map2)

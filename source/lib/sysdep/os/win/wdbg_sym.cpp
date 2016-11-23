@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -827,7 +827,7 @@ static Status DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const Du
 // called by dump_sym; lock is held.
 
 static Status dump_sym_array(DWORD type_id, const u8* p, DumpState& state)
-{ 
+{
 	ULONG64 size64 = 0;
 	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_LENGTH, &size64))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
@@ -846,7 +846,7 @@ static Status dump_sym_array(DWORD type_id, const u8* p, DumpState& state)
 	ENSURE(el_size != 0);
 	const size_t num_elements = size/el_size;
 	ENSURE(num_elements != 0);
- 
+
 	return dump_array(p, num_elements, el_type_id, el_size, state);
 }
 
@@ -883,7 +883,7 @@ static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState& state)
 	const wchar_t* fmt = L"";
 
 	u64 data = movzx_le64(p, size);
-	// if value is 0xCC..CC (uninitialized mem), we display as hex. 
+	// if value is 0xCC..CC (uninitialized mem), we display as hex.
 	// the output would otherwise be garbage; this makes it obvious.
 	// note: be very careful to correctly handle size=0 (e.g. void*).
 	for(size_t i = 0; i < size; i++)

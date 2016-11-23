@@ -267,7 +267,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			var cmpIdentity = Engine.QueryInterface(id, IID_Identity);
 			return cmpIdentity.GetClassesList().indexOf(cat) > -1;
 		};
-		
+
 		if (this.template.Distance.MinDistance)
 		{
 			var dist = +this.template.Distance.MinDistance;

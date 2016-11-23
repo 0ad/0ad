@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -207,11 +207,11 @@ wchar_t *sys_clipboard_get()
 			&len, &bytes_left,
 			&data);
 		if(result != Success)
-			debug_printf("clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n", 
+			debug_printf("clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n",
 				result, type, len, format, bytes_left);
 		if(result == Success && bytes_left > 0)
 		{
-			result = XGetWindowProperty (disp, selOwner, 
+			result = XGetWindowProperty (disp, selOwner,
 				pty, 0, bytes_left, 0,
 				AnyPropertyType, &type, &format,
 				&len, &dummy, &data);

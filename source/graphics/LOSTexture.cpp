@@ -157,7 +157,7 @@ void CLOSTexture::InterpolateLOS()
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &originalFBO);
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
 				   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
 	
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);

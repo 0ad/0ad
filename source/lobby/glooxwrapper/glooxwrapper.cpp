@@ -181,7 +181,7 @@ public:
 		m_Wrapped->handleMUCError(NULL, error);
 	}
 
-	virtual void handleMUCInfo(gloox::MUCRoom* UNUSED(room), int UNUSED(features), const std::string& UNUSED(name), const gloox::DataForm* UNUSED(infoForm)) 
+	virtual void handleMUCInfo(gloox::MUCRoom* UNUSED(room), int UNUSED(features), const std::string& UNUSED(name), const gloox::DataForm* UNUSED(infoForm))
 	{
 		/* Not supported */
 	}

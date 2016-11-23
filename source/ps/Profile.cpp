@@ -527,15 +527,15 @@ static intptr_t alloc_count = 0;
 // This behaviour can cause two types of problems:
 //
 // 1. Infinite recursion due to free call
-// Problem occurs if: We use any of the dl* functions in our free function and free gets called with an internal 
+// Problem occurs if: We use any of the dl* functions in our free function and free gets called with an internal
 // error message buffer allocated.
 // What happens: Our call to the dl* function causes another free-call insdie glibc which calls our free function
 // and can cause infinite recursion.
-// 
+//
 // 2. Use after free
-// Problem occurs if: An external library (or any other function) calls a dl* function that stores an internal 
+// Problem occurs if: An external library (or any other function) calls a dl* function that stores an internal
 // error string, then calls dlerror to receive the message and then calls any of our malloc/calloc/realloc/free fuctions.
-// Our function uses one of the dl* functions too. After calling our function, it tries to use the error message pointer 
+// Our function uses one of the dl* functions too. After calling our function, it tries to use the error message pointer
 // it got with dlerror before.
 // What happens: Our call to the dl* function will free the storage of the message and the pointer in the external library
 // becomes invalid. We get undefined behaviour if the extern library uses the error message pointer after that.
@@ -619,7 +619,7 @@ void* calloc(size_t nm, size_t sz)
 
 void free(void* ptr)
 {
-	// Might be triggered if free is called before any calloc/malloc calls or if the dlsym call inside 
+	// Might be triggered if free is called before any calloc/malloc calls or if the dlsym call inside
 	// our calloc/malloc function causes a free call. Read the known issue comment block a few lines above.
 	ENSURE (libc_free != NULL);
 

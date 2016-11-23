@@ -28,7 +28,7 @@
 #include "lib/byte_order.h"
 
 CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istream& stream) :
-	m_ScriptInterface(scriptInterface), m_Stream(stream), 
+	m_ScriptInterface(scriptInterface), m_Stream(stream),
 	m_dummyObject(scriptInterface.GetJSRuntime())
 {
 	JSContext* cx = m_ScriptInterface.GetContext();

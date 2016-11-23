@@ -487,9 +487,9 @@ bool wxVirtualDirTreeCtrl::IsFileNode(const wxTreeItemId &id)
 
 /** Appends subdirs up until root. This is done by finding the root first and
     going back down to the original caller. This is faster because no copying takes place */
-void wxVirtualDirTreeCtrl::AppendPathRecursively(VdtcTreeItemBase *b, wxFileName &dir, bool useRoot) 
+void wxVirtualDirTreeCtrl::AppendPathRecursively(VdtcTreeItemBase *b, wxFileName &dir, bool useRoot)
 {
-	wxCHECK2(b, return); 
+	wxCHECK2(b, return);
 	
 	VdtcTreeItemBase *parent = GetParent(b);
 	if(parent)

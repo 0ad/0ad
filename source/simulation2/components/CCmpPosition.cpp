@@ -192,12 +192,12 @@ public:
 			const char* anchor = "???";
 			switch (m_AnchorType)
 			{
-			case PITCH: 
-				anchor = "pitch"; 
+			case PITCH:
+				anchor = "pitch";
 				break;
 
-			case PITCH_ROLL: 
-				anchor = "pitch-roll"; 
+			case PITCH_ROLL:
+				anchor = "pitch-roll";
 				break;
 			
 			case ROLL:
@@ -205,8 +205,8 @@ public:
 				break;
 
 			case UPRIGHT: // upright is the default
-			default: 
-				anchor = "upright"; 
+			default:
+				anchor = "upright";
 				break;
 			}
 			serialize.StringASCII("anchor", anchor, 0, 16);
@@ -501,26 +501,26 @@ public:
 		return CFixedVector2D(m_X, m_Z);
 	}
 
-	virtual CFixedVector3D GetPreviousPosition() 
-	{ 
-		if (!m_InWorld) 
-		{ 
-			LOGERROR("CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false"); 
-			return CFixedVector3D(); 
-		} 
+	virtual CFixedVector3D GetPreviousPosition()
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR("CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false");
+			return CFixedVector3D();
+		}
 
-		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ); 
-	} 
+		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ);
+	}
 
-	virtual CFixedVector2D GetPreviousPosition2D() 
-	{ 
-		if (!m_InWorld) 
-		{ 
-			LOGERROR("CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false"); 
-			return CFixedVector2D(); 
-		} 
+	virtual CFixedVector2D GetPreviousPosition2D()
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR("CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false");
+			return CFixedVector2D();
+		}
 
-		return CFixedVector2D(m_PrevX, m_PrevZ); 
+		return CFixedVector2D(m_PrevX, m_PrevZ);
 	}
 
 	virtual void TurnTo(entity_angle_t y)
@@ -700,7 +700,7 @@ public:
 
 		CMatrix3D m;
 
-		// linear interpolation is good enough (for RotX/Z). 
+		// linear interpolation is good enough (for RotX/Z).
 		// As you always stay close to zero angle.	
 		m.SetXRotation(Interpolate(m_LastInterpolatedRotX, m_InterpolatedRotX, frameOffset));
 		m.RotateZ(Interpolate(m_LastInterpolatedRotZ, m_InterpolatedRotZ, frameOffset));

@@ -16,7 +16,7 @@ Armour.prototype.Schema =
 	"<element name='Crush' a:help='Crush damage protection'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<optional>" + 
+	"<optional>" +
 		"<element name='Foundation' a:help='Armour given to building foundations'>" +
 			"<interleave>" +
 				"<element name='Hack' a:help='Hack damage protection'>" +
@@ -48,7 +48,7 @@ Armour.prototype.SetInvulnerability = function(invulnerability)
  */
 Armour.prototype.TakeDamage = function(hack, pierce, crush)
 {
-	if (this.invulnerable) 
+	if (this.invulnerable)
 		return { "killed": false, "change": 0 };
 
 	// Adjust damage values based on armour; exponential armour: damage = attack * 0.9^armour
@@ -71,17 +71,17 @@ Armour.prototype.GetArmourStrengths = function()
 	// Work out the armour values with technology effects
 	var applyMods = (type, foundation) => {
 		var strength;
-		if (foundation) 
+		if (foundation)
 		{
 			strength = +this.template.Foundation[type];
 			type = "Foundation/" + type;
 		}
 		else
 			strength = +this.template[type];
-		
+
 		return ApplyValueModificationsToEntity("Armour/" + type, strength, this.entity);
 	};
-	
+
 	var foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
 
 	return {

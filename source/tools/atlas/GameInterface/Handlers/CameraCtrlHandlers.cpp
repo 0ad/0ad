@@ -236,7 +236,7 @@ QUERYHANDLER(GetView)
 	quatRot.Normalize();
 	CVector3D rotation = quatRot.ToEulerAngles();
 
-	info.rX = RADTODEG(rotation.X); 
+	info.rX = RADTODEG(rotation.X);
 	info.rY = RADTODEG(rotation.Y);
 	info.rZ = RADTODEG(rotation.Z);
 

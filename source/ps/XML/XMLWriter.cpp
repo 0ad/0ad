@@ -245,7 +245,7 @@ template <> void XMLWriter_Element::Text<const wchar_t*>(const wchar_t* text, bo
 	Text( CStrW(text).ToUTF8().c_str(), cdata );
 }
 
-// 
+//
 
 template <> void XMLWriter_File::ElementAttribute<const char*>(const char* name, const char* const& value, bool newelement)
 {

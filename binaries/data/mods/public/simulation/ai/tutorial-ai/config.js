@@ -5,7 +5,7 @@ var baseConfig = {
 		"enemyRatio" : 1.5, // attackMoveToLocation
 		"groupSize" : 10 // military
 	},
-	
+
 	// defence
 	"defence" : {
 		"acquireDistance" : 220,
@@ -15,7 +15,7 @@ var baseConfig = {
 		"groupMergeRadius" : 10,
 		"defenderRatio" : 2
 	},
-	
+
 	// military
 	"buildings" : {
 		"moderate" : {
@@ -46,7 +46,7 @@ var baseConfig = {
 		"defenceBuilding" : 17,
 		"civilCentre" : 1000
 	},
-	
+
 	"debug" : false
 };
 

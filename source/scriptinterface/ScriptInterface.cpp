@@ -729,7 +729,7 @@ bool ScriptInterface::GetPropertyInt_(JS::HandleValue obj, int name, JS::Mutable
 
 bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name)
 {
-	// TODO: proper errorhandling 
+	// TODO: proper errorhandling
 	JSAutoRequest rq(m->m_cx);
 	if (!obj.isObject())
 		return false;

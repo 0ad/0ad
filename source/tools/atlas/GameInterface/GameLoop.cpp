@@ -272,7 +272,7 @@ static void* RunEngine(void* data)
 	return NULL;
 }
 
-bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll) 
+bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 {
 	// Load required symbols from the DLL
 	try

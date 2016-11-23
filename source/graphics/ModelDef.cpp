@@ -246,7 +246,7 @@ CModelDef::~CModelDef()
 	delete[] m_pBlendIndices;
 }
 
-// FindPropPoint: find and return pointer to prop point matching given name; 
+// FindPropPoint: find and return pointer to prop point matching given name;
 // return null if no match (case insensitive search)
 const SPropPoint* CModelDef::FindPropPoint(const char* name) const
 {
@@ -273,11 +273,11 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 	std::unique_ptr<CModelDef> mdef (new CModelDef());
 	mdef->m_Name = name;
 
-	// now unpack everything 
+	// now unpack everything
 	mdef->m_NumVertices = unpacker.UnpackSize();
 	
 	// versions prior to 4 only support 1 UV set, 4 and later store it here
-	if (unpacker.GetVersion() <= 3) 
+	if (unpacker.GetVersion() <= 3)
 	{
 		mdef->m_NumUVsPerVertex = 1;
 	}

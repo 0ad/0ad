@@ -63,7 +63,7 @@ public:
 	DEFAULT_COMPONENT_ALLOCATOR(Selectable)
 
 	CCmpSelectable()
-		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL), 
+		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL),
 		  m_BuildingOverlay(NULL), m_UnitOverlay(NULL),
 		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f),
 		  m_Selected(false), m_Cached(false), m_Visible(false)
@@ -219,7 +219,7 @@ public:
 	void RenderSubmit(SceneCollector& collector);
 
 	/**
-	 * Called from RenderSubmit if using a static outline; responsible for ensuring that the static overlay 
+	 * Called from RenderSubmit if using a static outline; responsible for ensuring that the static overlay
 	 * is up-to-date before it is rendered. Has no effect unless the static overlay is explicitly marked as
 	 * invalid first (see InvalidateStaticOverlay).
 	 */
@@ -320,7 +320,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 
 		break;
 	}
-	case MT_OwnershipChanged: 
+	case MT_OwnershipChanged:
 	{
 		const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 
@@ -431,12 +431,12 @@ void CCmpSelectable::UpdateStaticOverlay()
 	entity_pos_t fpSize0_fixed, fpSize1_fixed, fpHeight_fixed;
 	cmpFootprint->GetShape(fpShape, fpSize0_fixed, fpSize1_fixed, fpHeight_fixed);
 
-	CTextureProperties texturePropsBase(m_OverlayDescriptor.m_LineTexture.c_str()); 
-	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+	CTextureProperties texturePropsBase(m_OverlayDescriptor.m_LineTexture.c_str());
+	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
 	texturePropsBase.SetMaxAnisotropy(4.f);
 
 	CTextureProperties texturePropsMask(m_OverlayDescriptor.m_LineTextureMask.c_str());
-	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
 	texturePropsMask.SetMaxAnisotropy(4.f);
 
 	// -------------------------------------------------------------------------------------
@@ -538,12 +538,12 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 		m_UnitOverlay = new SOverlayQuad;
 
 		// Assuming we don't need the capability of swapping textures on-demand.
-		CTextureProperties texturePropsBase(m_OverlayDescriptor.m_QuadTexture.c_str()); 
-		texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+		CTextureProperties texturePropsBase(m_OverlayDescriptor.m_QuadTexture.c_str());
+		texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
 		texturePropsBase.SetMaxAnisotropy(4.f);
 
 		CTextureProperties texturePropsMask(m_OverlayDescriptor.m_QuadTextureMask.c_str());
-		texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+		texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
 		texturePropsMask.SetMaxAnisotropy(4.f);
 
 		m_UnitOverlay->m_Texture = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
@@ -552,7 +552,7 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 
 	m_UnitOverlay->m_Color = m_Color;
 
-	// TODO: some code duplication here :< would be nice to factor out getting the corner points of an 
+	// TODO: some code duplication here :< would be nice to factor out getting the corner points of an
 	// entity based on its footprint sizes (and regardless of whether it's a circle or a square)
 
 	float s = sinf(-rotY);
@@ -652,10 +652,10 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 			if (!m_DebugSelectionBoxOverlay) m_DebugSelectionBoxOverlay = new SOverlayLine;
 
 			CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
-			if (cmpVisual) 
+			if (cmpVisual)
 			{
 				SimRender::ConstructBoxOutline(cmpVisual->GetBounds(), *m_DebugBoundingBoxOverlay);
-				m_DebugBoundingBoxOverlay->m_Thickness = 2; 
+				m_DebugBoundingBoxOverlay->m_Thickness = 2;
 				m_DebugBoundingBoxOverlay->m_Color = CColor(1.f, 0.f, 0.f, 1.f);
 
 				SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), *m_DebugSelectionBoxOverlay);

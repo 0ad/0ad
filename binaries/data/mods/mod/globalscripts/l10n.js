@@ -116,11 +116,11 @@ function translateMessageObject(object)
 }
 
 /**
- * Translates any string value in the specified JavaScript object 
+ * Translates any string value in the specified JavaScript object
  * that is associated with a key included in the specified keys array.
  *
  * it accepts an object in the form of
- * 
+ *
  * {
  *   translatedString1: "my first message",
  *   unTranslatedString1: "some English string",
@@ -139,7 +139,7 @@ function translateMessageObject(object)
  * }
  *
  * Together with a keys list to translate the strings and objects
- * ["translatedString1", "translatedString2", "translatedObject1", 
+ * ["translatedString1", "translatedString2", "translatedObject1",
  * "translatedObject2"]
  *
  * The result will be (f.e. in Dutch)
@@ -151,11 +151,11 @@ function translateMessageObject(object)
  *     unTranslatedString2: "some English string"
  *   },
  *   translatedObject1: "mijn derde bericht",
- *   translatedObject2: "lijst, van, teksten", 
+ *   translatedObject2: "lijst, van, teksten",
  * }
  *
  * So you see that the keys array can also contain lower-level keys,
- * And that you can include objects in the keys array to translate 
+ * And that you can include objects in the keys array to translate
  * them with a context, or to join a list of translations.
  *
  * Also, the keys array may be an object where properties are keys to translate

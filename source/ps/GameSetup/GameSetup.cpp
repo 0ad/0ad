@@ -487,7 +487,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
-	
+
 	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	g_VFS->Mount(L"config/", readonlyConfig);
 
@@ -576,7 +576,7 @@ static void InitInput()
 	in_add_handler(gui_handler);
 
 	in_add_handler(touch_input_handler);
-	
+
 	in_add_handler(cinema_manager_handler);
 
 	// must be registered after (called before) the GUI which relies on these globals
@@ -589,7 +589,7 @@ static void ShutdownPs()
 	SAFE_DELETE(g_GUI);
 
 	UnloadHotkeys();
-	
+
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, false);
 }
@@ -625,7 +625,7 @@ static void InitRenderer()
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterrefraction", g_WaterRefraction);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWSONWATER, g_WaterShadows);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "watershadows", g_WaterShadows);
-	
+
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadowpcf", g_ShadowPCF);
@@ -932,8 +932,8 @@ bool Init(const CmdLineArgs& args, int flags)
 
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
-	
-	// Using a global object for the runtime is a workaround until Simulation and AI use 
+
+	// Using a global object for the runtime is a workaround until Simulation and AI use
 	// their own threads and also their own runtimes.
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
@@ -1208,7 +1208,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * Examples:
  * 1) "Bob" will host a 2 player game on the Arcadia map:
  * -autostart="scenarios/Arcadia 02" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
- * 
+ *
  * 2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
  * -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
 */
@@ -1255,7 +1255,7 @@ bool Autostart(const CmdLineArgs& args)
 			else
 				seed = seedArg.ToULong();
 		}
-		
+
 		// Random map definition will be loaded from JSON file, so we need to parse it
 		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
 		JS::RootedValue scriptData(cx);
@@ -1313,7 +1313,7 @@ bool Autostart(const CmdLineArgs& args)
 		// partially configured
 		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
 		scriptInterface.ParseJSON(mapSettingsJSON, &settings);
-		
+
 		// Initialize the playerData array being modified by autostart
 		// with the real map data, so sensible values are present:
 		scriptInterface.GetProperty(settings, "PlayerData", &playerData);
@@ -1358,7 +1358,7 @@ bool Autostart(const CmdLineArgs& args)
 		std::vector<CStr> civArgs = args.GetMultiple("autostart-team");
 		for (size_t i = 0; i < civArgs.size(); ++i)
 		{
-			int playerID = civArgs[i].BeforeFirst(":").ToInt();		
+			int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
 			JS::RootedValue player(cx);
@@ -1426,7 +1426,7 @@ bool Autostart(const CmdLineArgs& args)
 				scriptInterface.Eval("({})", &player);
 			}
 
-			int difficulty = civArgs[i].AfterFirst(":").ToInt();			
+			int difficulty = civArgs[i].AfterFirst(":").ToInt();
 			scriptInterface.SetProperty(player, "AIDiff", difficulty);
 			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
 		}
@@ -1453,7 +1453,7 @@ bool Autostart(const CmdLineArgs& args)
 					}
 					scriptInterface.Eval("({})", &player);
 				}
-			
+
 				CStr name = civArgs[i].AfterFirst(":");
 				scriptInterface.SetProperty(player, "Civ", std::string(name));
 				scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
@@ -1554,7 +1554,7 @@ void CancelLoad(const CStrW& message)
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	JSContext* cx = pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue global(cx, pScriptInterface->GetGlobalObject());
 	// Cancel loader
 	LDR_Cancel();

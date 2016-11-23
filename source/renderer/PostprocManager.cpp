@@ -37,7 +37,7 @@
 #if !CONFIG2_GLES
 
 CPostprocManager::CPostprocManager()
-	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColorTex1(0), m_ColorTex2(0), 
+	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColorTex1(0), m_ColorTex2(0),
 	  m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0), m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0),
 	  m_BlurTex8a(0), m_BlurTex8b(0), m_WhichBuffer(true)
 {
@@ -111,7 +111,7 @@ void CPostprocManager::RecreateBuffers()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); \
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	// Two fullscreen ping-pong textures. 
+	// Two fullscreen ping-pong textures.
 	GEN_BUFFER_RGBA(m_ColorTex1, m_Width, m_Height);
 	GEN_BUFFER_RGBA(m_ColorTex2, m_Width, m_Height);
 	
@@ -344,7 +344,7 @@ void CPostprocManager::ApplyBlur()
 		ApplyBlurDownscale2x(tex1, tex2, width, height); \
 		width /= 2; \
 		height /= 2; \
-		ApplyBlurGauss(tex2, temptex, width, height); 
+		ApplyBlurGauss(tex2, temptex, width, height);
 	
 	// We do the same thing for each scale, incrementally adding more and more blur.
 	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
@@ -361,7 +361,7 @@ void CPostprocManager::CaptureRenderOutput()
 {
 	ENSURE(m_IsInitialized);
 
-	// clear both FBOs and leave m_PingFbo selected for rendering; 
+	// clear both FBOs and leave m_PingFbo selected for rendering;
 	// m_WhichBuffer stays true at this point
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -391,7 +391,7 @@ void CPostprocManager::ReleaseRenderOutput()
 		pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PongFbo);
 	
 	pglBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
-	pglBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height, 
+	pglBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
 			      GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
 	pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, 0);
 	
@@ -497,7 +497,7 @@ void CPostprocManager::ApplyPostproc()
 	
 	// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
 	// (This may need to change depending on future usage, however that will have a fps hit)
-	ApplyBlur(); 
+	ApplyBlur();
 
 	for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
 		ApplyEffect(m_PostProcTech, pass);

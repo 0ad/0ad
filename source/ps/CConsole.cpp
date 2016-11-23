@@ -366,7 +366,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 				m_szBuffer[m_iBufferPos] = '\0';
 				m_iBufferLength = m_iBufferPos;
 			}
-			else 
+			else
 			{
 				// Delete just one char and move the others left
 				for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)

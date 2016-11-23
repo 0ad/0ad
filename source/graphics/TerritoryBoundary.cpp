@@ -49,35 +49,35 @@ std::vector<STerritoryBoundary> CTerritoryBoundaryCalculator::ComputeBoundaries(
 	const int CURVE_CCW = 1;
 
 	// === Find territory boundaries ===
-	// 
-	// The territory boundaries delineate areas of tiles that belong to the same player, and that all have the same 
-	// connected-to-a-root-influence-entity status (see also STerritoryBoundary for a more wordy definition). Note that the grid 
-	// values contain bit-packed information (i.e. not just the owning player ID), so we must be careful to only compare grid 
+	//
+	// The territory boundaries delineate areas of tiles that belong to the same player, and that all have the same
+	// connected-to-a-root-influence-entity status (see also STerritoryBoundary for a more wordy definition). Note that the grid
+	// values contain bit-packed information (i.e. not just the owning player ID), so we must be careful to only compare grid
 	// values using the player ID and connected flag bits. The joint mask to select these is referred to as the discriminator mask.
-	// 
-	// The idea is to scan the (i,j)-grid going up row by row and look for tiles that have a different territory assignment from 
-	// the one right underneath it (or, if it's a tile on the first row, they need only have a territory assignment). These tiles 
-	// are necessarily edge tiles of a territory, and hence a territory boundary must pass through their bottom edge. Therefore, 
+	//
+	// The idea is to scan the (i,j)-grid going up row by row and look for tiles that have a different territory assignment from
+	// the one right underneath it (or, if it's a tile on the first row, they need only have a territory assignment). These tiles
+	// are necessarily edge tiles of a territory, and hence a territory boundary must pass through their bottom edge. Therefore,
 	// we start tracing the outline of the territory starting from said bottom edge, and go CCW around the territory boundary.
 	// Tracing continues until the starting point is reached, at which point the boundary is complete.
-	// 
+	//
 	// While tracing a boundary, every tile in which the boundary passes through the bottom edge are marked as 'processed', so that
-	// we know not to start a new run from these tiles when scanning continues (when the boundary is complete). This information 
-	// is maintained in the grid values themselves by means of the 'processed' bit mask (stressing the importance of using the 
+	// we know not to start a new run from these tiles when scanning continues (when the boundary is complete). This information
+	// is maintained in the grid values themselves by means of the 'processed' bit mask (stressing the importance of using the
 	// discriminator mask to compare only player ID and connected flag).
-	// 
-	// Thus, we can identify the following conditions for starting a trace from a tile (i,j). Let g(i,j) indicate the 
+	//
+	// Thus, we can identify the following conditions for starting a trace from a tile (i,j). Let g(i,j) indicate the
 	// discriminator grid value at position (i,j); then the conditions are:
 	//     - g(i,j) != 0; the tile must not be neutral
 	//     - j=0 or g(i,j) != g(i,j-1);  the tile directly underneath it must have a different owner and/or connected flag
 	//     - the tile must not already be marked as 'processed'
-	// 
+	//
 	// Additionally, there is one more point to be made; the algorithm initially assumes it's tracing CCW around the territory.
-	// If it's tracing an inner edge, however, this will actually cause it to trace in the CW direction (because inner edges curve 
-	// 'backwards' compared to the outer edges when starting the trace in the same direction). This turns out to actually be 
+	// If it's tracing an inner edge, however, this will actually cause it to trace in the CW direction (because inner edges curve
+	// 'backwards' compared to the outer edges when starting the trace in the same direction). This turns out to actually be
 	// exactly what the renderer needs to render two territory boundaries on the same edge back-to-back (instead of overlapping
 	// each other).
-	// 
+	//
 	// In either case, we keep track of the way the outline curves while we're tracing to determine whether we're going CW or CCW.
 	// If at some point we ever need to revert the winding order or external code needs to know about it explicitly, then we can
 	// do this by looking at a curvature value which we define to start at 0, and which is incremented by 1 for every CCW turn and

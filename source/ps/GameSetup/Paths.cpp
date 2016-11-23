@@ -66,7 +66,7 @@ Paths::Paths(const CmdLineArgs& args)
 
 		/* For reasoning behind our Windows paths, see the discussion here:
 		 * http://www.wildfiregames.com/forum/index.php?showtopic=14759
-		 * 
+		 *
 		 * Summary:
 		 *	1. Local appdata: for bulky unfriendly data like the cache,
 		 *      which can be recreated if deleted; doesn't need backing up.

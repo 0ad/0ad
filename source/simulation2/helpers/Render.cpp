@@ -204,7 +204,7 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 
 void SimRender::ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlayLine)
 {
-	overlayLine.m_Coords.clear(); 
+	overlayLine.m_Coords.clear();
 
 	if (bound.IsEmpty())
 		return;
@@ -212,13 +212,13 @@ void SimRender::ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLi
 	const CVector3D& pMin = bound[0];
 	const CVector3D& pMax = bound[1];
 	
-	// floor square 
+	// floor square
 	overlayLine.PushCoords(pMin.X, pMin.Y, pMin.Z);
 	overlayLine.PushCoords(pMax.X, pMin.Y, pMin.Z);
 	overlayLine.PushCoords(pMax.X, pMin.Y, pMax.Z);
 	overlayLine.PushCoords(pMin.X, pMin.Y, pMax.Z);
 	overlayLine.PushCoords(pMin.X, pMin.Y, pMin.Z);
-	// roof square 
+	// roof square
 	overlayLine.PushCoords(pMin.X, pMax.Y, pMin.Z);
 	overlayLine.PushCoords(pMax.X, pMax.Y, pMin.Z);
 	overlayLine.PushCoords(pMax.X, pMax.Y, pMax.Z);

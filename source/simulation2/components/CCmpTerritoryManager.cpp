@@ -444,7 +444,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 		u8 owner = (u8)pair.first;
 		const std::vector<entity_id_t>& ents = pair.second;
 		// With 2^16 entities, we're safe against overflows as the weight is also limited to 2^16
-		ENSURE(ents.size() < 1 << 16); 
+		ENSURE(ents.size() < 1 << 16);
 		// Compute the influence map of the current entity, then add it to the player grid
 		for (entity_id_t ent : ents)
 		{
@@ -771,7 +771,7 @@ bool CCmpTerritoryManager::IsTerritoryBlinking(entity_pos_t x, entity_pos_t z)
 }
 
 TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager) :
-	TerrainTextureOverlay((float)Pathfinding::NAVCELLS_PER_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE), 
+	TerrainTextureOverlay((float)Pathfinding::NAVCELLS_PER_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE),
 	m_TerritoryManager(manager)
 { }
 

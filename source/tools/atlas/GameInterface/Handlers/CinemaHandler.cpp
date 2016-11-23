@@ -121,7 +121,7 @@ void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 	
  		for ( size_t j=0; j<nodes.size(); ++j )
 		{	
-			spline.AddNode(CFixedVector3D(fixed::FromFloat(nodes[j].px), fixed::FromFloat(nodes[j].py), fixed::FromFloat(nodes[j].pz)), 
+			spline.AddNode(CFixedVector3D(fixed::FromFloat(nodes[j].px), fixed::FromFloat(nodes[j].py), fixed::FromFloat(nodes[j].pz)),
 				CFixedVector3D(fixed::FromFloat(nodes[j].rx), fixed::FromFloat(nodes[j].ry), fixed::FromFloat(nodes[j].rz)), fixed::FromFloat(nodes[j].t));
 		}
 		paths[pathName] = CCinemaPath(data, spline, TNSpline());
@@ -137,7 +137,7 @@ QUERYHANDLER(GetCameraInfo)
 	CQuaternion quatRot = cam->GetRotation();
 	quatRot.Normalize();
 	CVector3D rotation = quatRot.ToEulerAngles();
-	rotation.X = RADTODEG(rotation.X); 
+	rotation.X = RADTODEG(rotation.X);
 	rotation.Y = RADTODEG(rotation.Y);
 	rotation.Z = RADTODEG(rotation.Z);
 	CVector3D translation = cam->GetTranslation();

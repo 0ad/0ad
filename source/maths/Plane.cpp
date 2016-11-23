@@ -50,7 +50,7 @@ void CPlane::Set(const CVector3D& p1, const CVector3D& p2, const CVector3D& p3)
 	Set(Norm, p1);
 }
 
-//sets the plane equation from a normal and a point on 
+//sets the plane equation from a normal and a point on
 //that plane
 void CPlane::Set(const CVector3D& norm, const CVector3D& point)
 {

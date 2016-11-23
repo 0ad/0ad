@@ -66,18 +66,18 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
     // Previously all move commands during a turn were
     // queued up and processed asynchronously at the start
-    // of the next turn.  Now we are processing queued up 
+    // of the next turn.  Now we are processing queued up
     // events several times duing the turn.  This improves
     // responsiveness and units move more smoothly especially.
-    // when in formation.  There is still a call at the 
-    // beginning of a turn to process all outstanding moves - 
-    // this will handle any moves above the MaxSameTurnMoves 
-    // threshold.  
+    // when in formation.  There is still a call at the
+    // beginning of a turn to process all outstanding moves -
+    // this will handle any moves above the MaxSameTurnMoves
+    // threshold.
     //
-    // TODO - The moves processed at the beginning of the 
-    // turn do not count against the maximum moves per turn 
-    // currently.  The thinking is that this will eventually 
-    // happen in another thread.  Either way this probably 
+    // TODO - The moves processed at the beginning of the
+    // turn do not count against the maximum moves per turn
+    // currently.  The thinking is that this will eventually
+    // happen in another thread.  Either way this probably
     // will require some adjustment and rethinking.
 	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder");
 	m_MaxSameTurnMoves = (u16)pathingSettings.GetChild("MaxSameTurnMoves").ToInt();
@@ -651,7 +651,7 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability)
 	// Expand the impassability grid, for any class with non-zero clearance,
 	// so that we can stop units getting too close to impassable navcells.
 	// Note: It's not possible to perform this expansion once for all passabilities
-	// with the same clearance, because the impassable cells are not necessarily the 
+	// with the same clearance, because the impassable cells are not necessarily the
 	// same for all these passabilities.
 	for (PathfinderPassability& passability : m_PassClasses)
 	{

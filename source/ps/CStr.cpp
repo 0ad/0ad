@@ -171,7 +171,7 @@ double CStr::ToDouble() const
 }
 
 
-// Search the string for another string 
+// Search the string for another string
 long CStr::Find(const CStr& Str) const
 {
 	size_t Pos = find(Str, 0);
@@ -182,7 +182,7 @@ long CStr::Find(const CStr& Str) const
 	return -1;
 }
 
-// Search the string for another string 
+// Search the string for another string
 long CStr::Find(const tchar chr) const
 {
 	size_t Pos = find(chr, 0);
@@ -193,7 +193,7 @@ long CStr::Find(const tchar chr) const
 	return -1;
 }
 
-// Search the string for another string 
+// Search the string for another string
 long CStr::Find(const int start, const tchar chr) const
 {
 	size_t Pos = find(chr, start);
@@ -220,7 +220,7 @@ long CStr::ReverseFind(const CStr& Str) const
 
 }
 
-// Lowercase and uppercase 
+// Lowercase and uppercase
 CStr CStr::LowerCase() const
 {
 	std::tstring NewString = *this;
@@ -240,7 +240,7 @@ CStr CStr::UpperCase() const
 }
 
 
-// Retrieve the substring of the first n characters 
+// Retrieve the substring of the first n characters
 CStr CStr::Left(size_t len) const
 {
 	ENSURE(len <= length());
@@ -298,7 +298,7 @@ CStr CStr::BeforeFirst(const CStr& Str, size_t startPos) const
 		return substr(0, pos);
 }
 
-// Remove all occurrences of some character or substring 
+// Remove all occurrences of some character or substring
 void CStr::Remove(const CStr& Str)
 {
 	size_t FoundAt = 0;
@@ -311,7 +311,7 @@ void CStr::Remove(const CStr& Str)
 	}
 }
 
-// Replace all occurrences of some substring by another 
+// Replace all occurrences of some substring by another
 void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 {
 	size_t Pos = 0;

@@ -314,7 +314,7 @@ void CPatchRData::BuildBlends()
 	}
 }
 
-void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, 
+void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices,
 			   u16 i, u16 j, u8 shape, CTerrainTextureEntry* texture)
 {
 	CTerrain* terrain = m_Patch->m_Parent;
@@ -724,7 +724,7 @@ typedef POOLED_BATCH_MAP(CVertexBuffer*, IndexBufferBatches) VertexBufferBatches
 // Group batches by texture
 typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatches;
 
-void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
 			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
 	Allocators::DynamicArena arena(1 * MiB);
@@ -901,7 +901,7 @@ struct SBlendStackItem
 	SplatStack splats;
 };
 
-void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
 			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
 	Allocators::DynamicArena arena(1 * MiB);

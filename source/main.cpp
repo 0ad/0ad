@@ -273,7 +273,7 @@ static void Frame()
 	bool need_update = true;
 
 	// If we are not running a multiplayer game, disable updates when the game is
-	// minimized or out of focus and relinquish the CPU a bit, in order to make 
+	// minimized or out of focus and relinquish the CPU a bit, in order to make
 	// debugging easier.
 	if(g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus)
 	{
@@ -284,7 +284,7 @@ static void Frame()
 	}
 
 	// Throttling: limit update and render frequency to the minimum to 50 FPS
-	// in the "inactive" state, so that other windows get enough CPU time, 
+	// in the "inactive" state, so that other windows get enough CPU time,
 	// (and it's always nice for power+thermal management).
 	// TODO: when the game performance is high enough, implementing a limit for
 	// in-game framerate might be sensible.

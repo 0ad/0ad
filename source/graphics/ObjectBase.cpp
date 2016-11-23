@@ -563,7 +563,7 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 					if (randNum < 0)
 					{
 						remainingSelections.insert((*grp)[i].m_VariantName);
-						// (If this change to 'remainingSelections' interferes with earlier choices, then 
+						// (If this change to 'remainingSelections' interferes with earlier choices, then
 						// we'll get some non-fatal inconsistencies that just break the randomness. But that
 						// shouldn't happen, much.)
 						// (As an example, suppose you have a group with variants "a" and "b", and another

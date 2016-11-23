@@ -24,7 +24,7 @@ PlayerManager.prototype.AddPlayer = function(ent)
 	}
 	newDiplo[id] = 1;
 	cmpPlayer.SetDiplomacy(newDiplo);
-	
+
 	return id;
 };
 
@@ -97,7 +97,7 @@ PlayerManager.prototype.RemoveAllPlayers = function()
 
 PlayerManager.prototype.RemoveLastPlayer = function()
 {
-	if (this.playerEntities.length == 0) 
+	if (this.playerEntities.length == 0)
 		return;
 
 	var lastId = this.playerEntities.pop();

@@ -1,6 +1,6 @@
 /**
  * Safe, platform consistent implementations of some Math functions
- * 
+ *
  * These functions are implemented in JS to avoid observed differences
  * between results of different floating point libraries, see
  * https://bugzilla.mozilla.org/show_bug.cgi?id=531915
@@ -27,11 +27,11 @@ Math.cos = function(a)
 
 	// if a > pi/2 send a to pi-a, otherwise just send a to -a which has no effect
 	// Using the symmetry cos(x) = -cos(pi-x) to bring a to the 0 to pi/2 range.
-	a = b*Math.PI - a; 
+	a = b*Math.PI - a;
 
 	var c = 1 - 2*b; // sign of the output
 
-	// Taylor expansion about 0 with a correction term in the quadratic to make cos(pi/2)=0 
+	// Taylor expansion about 0 with a correction term in the quadratic to make cos(pi/2)=0
 	return c * (1 - a*a*(0.5000000025619951 - a*a*(1/24 - a*a*(1/720 - a*a*(1/40320 - a*a*(1/3628800 - a*a/479001600))))));
 };
 
@@ -74,7 +74,7 @@ Math.atan = function(a)
 		tanPiBy6Shift = Math.PI/6;
 		a = (a - tanPiBy6) / (1 + tanPiBy6*a);
 	}
-	// Now a will be in the range [-tan(pi/12), tan(pi/12)]  
+	// Now a will be in the range [-tan(pi/12), tan(pi/12)]
 
 	// Use the taylor expansion around 0 with a correction to the linear term to match the pi/12 boundary
 	// atan(x) = x - x^3/3 + x^5/5 - ...
@@ -198,7 +198,7 @@ Math.exp = function(x)
 	for (var i = 22; i > 0; i--)
 		dPart = 1+x*dPart/i;
 
-	// total precision ~=~ 17 decimal digits	
+	// total precision ~=~ 17 decimal digits
 	return iPart*dPart;
 };
 
@@ -222,7 +222,7 @@ Math.log = function(x)
 	// start with calculating the binary logarithm
 	// based on http://en.wikipedia.org/wiki/Binary_logarithm#Real_number
 
-	// calculate to 50 fractional bits -> error ~=~ 10^-16 
+	// calculate to 50 fractional bits -> error ~=~ 10^-16
 	var precisionBits = 50;
 
 	// calculate integer log, rounded down

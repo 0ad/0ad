@@ -373,16 +373,16 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 	/*
 	 * Rendering approach:
-	 * 
+	 *
 	 * m->submissions contains the list of CModels to render.
-	 * 
+	 *
 	 * The data we need to render a model is:
 	 *  - CShaderTechnique
 	 *  - CTexture
 	 *  - CShaderUniforms
 	 *  - CModelDef (mesh data)
 	 *  - CModel (model instance data)
-	 * 
+	 *
 	 * For efficient rendering, we need to batch the draw calls to minimise state changes.
 	 * (Uniform and texture changes are assumed to be cheaper than binding new mesh data,
 	 * and shader changes are assumed to be most expensive.)
@@ -390,35 +390,35 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 * Within those groups, sub-group by CModelDef.
 	 * Within those sub-groups, sub-sub-group by CTexture.
 	 * Within those sub-sub-groups, sub-sub-sub-group by CShaderUniforms.
-	 * 
+	 *
 	 * Alpha-blended models have to be sorted by distance from camera,
 	 * then we can batch as long as the order is preserved.
 	 * Non-alpha-blended models can be arbitrarily reordered to maximise batching.
-	 * 
+	 *
 	 * For each model, the CShaderTechnique is derived from:
 	 *  - The current global 'context' defines
 	 *  - The CModel's material's defines
 	 *  - The CModel's material's shader effect name
-	 * 
+	 *
 	 * There are a smallish number of materials, and a smaller number of techniques.
-	 * 
+	 *
 	 * To minimise technique lookups, we first group models by material,
 	 * in 'materialBuckets' (a hash table).
-	 * 
+	 *
 	 * For each material bucket we then look up the appropriate shader technique.
 	 * If the technique requires sort-by-distance, the model is added to the
 	 * 'sortByDistItems' list with its computed distance.
 	 * Otherwise, the bucket's list of models is sorted by modeldef+texture+uniforms,
 	 * then the technique and model list is added to 'techBuckets'.
-	 * 
+	 *
 	 * 'techBuckets' is then sorted by technique, to improve batching when multiple
 	 * materials map onto the same technique.
-	 * 
+	 *
 	 * (Note that this isn't perfect batching: we don't sort across models in
 	 * multiple buckets that share a technique. In practice that shouldn't reduce
 	 * batching much (we rarely have one mesh used with multiple materials),
 	 * and it saves on copying and lets us sort smaller lists.)
-	 * 
+	 *
 	 * Extra tech buckets are added for the sorted-by-distance models without reordering.
 	 * Finally we render by looping over each tech bucket, then looping over the model
 	 * list in each, rebinding the GL state whenever it changes.
@@ -602,13 +602,13 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		size_t idxTechStart = 0;
 		
 		// This vector keeps track of texture changes during rendering. It is kept outside the
-		// loops to avoid excessive reallocations. The token allocation of 64 elements 
+		// loops to avoid excessive reallocations. The token allocation of 64 elements
 		// should be plenty, though it is reallocated below (at a cost) if necessary.
 		typedef ProxyAllocator<CTexture*, Allocators::DynamicArena> TextureListAllocator;
 		std::vector<CTexture*, TextureListAllocator> currentTexs((TextureListAllocator(arena)));
 		currentTexs.reserve(64);
 		
-		// texBindings holds the identifier bindings in the shader, which can no longer be defined 
+		// texBindings holds the identifier bindings in the shader, which can no longer be defined
 		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
 		// keep track of when bindings need to be reevaluated.
 		typedef ProxyAllocator<CShaderProgram::Binding, Allocators::DynamicArena> BindingListAllocator;

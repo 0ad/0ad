@@ -270,7 +270,7 @@ public:
 	
 	virtual void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities, const CVector3D& origin, const CVector3D& dir, bool allowEditorSelectables)
 	{
-		// First, make a rough test with the worst-case bounding boxes to pick all 
+		// First, make a rough test with the worst-case bounding boxes to pick all
 		// entities/models that could possibly be hit by the ray.
 		std::vector<SUnit*> candidates;
 		for (size_t i = 0; i < m_Units.size(); ++i)
@@ -303,7 +303,7 @@ public:
 				//	see: http://trac.wildfiregames.com/ticket/1032
 				// Decals are flat objects without a selectionShape defined,
 				// but they should still be selectable in the editor to move them
-				// around or delete them after they are placed. 
+				// around or delete them after they are placed.
 				// Check campaigns/labels/ in the Actors tab of atlas for examples.
 				CBoundingBoxAligned aABBox = cmpVisual->GetBounds();
 				if (aABBox.IsEmpty())

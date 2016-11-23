@@ -32,7 +32,7 @@
 
 
 
-MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning) : m_Model(m), 
+MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning) : m_Model(m),
 			m_NewVertices(v), m_GpuSkinning(gpuSkinning)
 {
 	// ensure that m_NewVertices is empty
@@ -70,7 +70,7 @@ int MikkTSpace::getNumVerticesOfFace(const SMikkTSpaceContext* UNUSED(pContext),
 }
 
 
-void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext, 
+void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext,
 		float fvPosOut[], const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
@@ -83,7 +83,7 @@ void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext, 
+void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext,
 		float fvNormOut[], const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
@@ -96,7 +96,7 @@ void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext, 
+void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext,
 		float fvTexcOut[], const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
@@ -109,8 +109,8 @@ void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[], 
-		const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT), 
+void MikkTSpace::setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
+		const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
 		const tbool bIsOrientationPreserving, const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];

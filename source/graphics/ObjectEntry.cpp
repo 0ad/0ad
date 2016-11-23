@@ -87,7 +87,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			textureProps.SetWrap(GL_CLAMP_TO_BORDER);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			// TODO: Should check which renderpath is selected and only preload the necessary textures.
-			texture->Prefetch(); 
+			texture->Prefetch();
 			material.AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 		}
 
@@ -121,7 +121,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		return false;
 	}
 
-	// delete old model, create new 
+	// delete old model, create new
 	CModel* model = new CModel(objectManager.GetSkeletonAnimManager(), m_Simulation);
 	delete m_Model;
 	m_Model = model;
@@ -137,10 +137,10 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		CTextureProperties textureProps(samp.m_SamplerFile);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
-		// if we've loaded this model we're probably going to render it soon, so prefetch its texture. 
+		// if we've loaded this model we're probably going to render it soon, so prefetch its texture.
 		// All textures are prefetched even in the fixed pipeline, including the normal maps etc.
 		// TODO: Should check which renderpath is selected and only preload the necessary textures.
-		texture->Prefetch(); 
+		texture->Prefetch();
 		model->GetMaterial().AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 	}
 

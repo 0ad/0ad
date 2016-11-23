@@ -112,8 +112,8 @@ struct SliceOpInfo
 	std::vector<SliceOpNewVertexInfo> nvInfo;
 	
 	/**
-	 * Indices into nvInfo; during the execution of the slicing algorithm, holds the previously inserted new vertex on 
-	 * one of the edges of the face that's currently being evaluated for slice points, or NO_VERTEX if no such vertex 
+	 * Indices into nvInfo; during the execution of the slicing algorithm, holds the previously inserted new vertex on
+	 * one of the edges of the face that's currently being evaluated for slice points, or NO_VERTEX if no such vertex
 	 * exists.
 	 */
 	size_t thisFaceNewVertexIdx;
@@ -229,7 +229,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 
 	// Transfer faces. (Recall how faces are specified; see CBrush::m_Faces). The idea is to examine each face separately,
 	// and see where its edges cross the slicing plane (meaning that exactly one of the vertices of that edge was cut away).
-	// On those edges, new vertices are introduced where the edge intersects the plane, and the resulting brush's m_Faces 
+	// On those edges, new vertices are introduced where the edge intersects the plane, and the resulting brush's m_Faces
 	// array is updated to refer to the newly inserted vertices instead of the original one that got cut away.
 
 	size_t currentFaceStartIdx = NO_VERTEX; // index of the first vertex of the current face in the original brush
@@ -289,7 +289,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 	ENSURE(currentFaceStartIdx == NO_VERTEX);
 
 	// Create the face that lies in the slicing plane. Remember, all the intersections of the slicing plane with face
-	// edges of the brush have been stored in sliceOp.nvInfo by the SliceNewVertex function, and refer to their direct 
+	// edges of the brush have been stored in sliceOp.nvInfo by the SliceNewVertex function, and refer to their direct
 	// neighbours in the slicing plane face using the neighbIdx1 and neighbIdx2 fields (in no consistent winding order).
 
 	if (sliceOp.nvInfo.size())
@@ -297,9 +297,9 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 		// push the starting vertex
 		result.m_Faces.push_back(sliceOp.nvInfo[0].resIdx);
 		
-		// At this point, there is no consistent winding order in the neighbX fields, so at each vertex we need to figure 
+		// At this point, there is no consistent winding order in the neighbX fields, so at each vertex we need to figure
 		// out whether neighb1 or neighb2 points 'onwards' along the face, according to an initially chosen winding direction.
-		// (or, equivalently, which one points back to the one we were just at). At each vertex, we then set neighb1 to be the 
+		// (or, equivalently, which one points back to the one we were just at). At each vertex, we then set neighb1 to be the
 		// one to point onwards, deleting any pointers which we no longer need to complete the trace.
 
 		size_t idx;
@@ -360,7 +360,7 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 	const CBrush* prev = this;
 	CBrush* next;
 
-	// Repeatedly slice this brush with each plane of the frustum, alternating between 'result' and 'buf' to 
+	// Repeatedly slice this brush with each plane of the frustum, alternating between 'result' and 'buf' to
 	// save intermediate results. Set up the starting brush so that the final version always ends up in 'result'.
 
 	if (frustum.GetNumPlanes() & 1)
@@ -380,14 +380,14 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 
 	ENSURE(prev == &result);
 }
-std::vector<CVector3D> CBrush::GetVertices() const 
+std::vector<CVector3D> CBrush::GetVertices() const
 {
 	return m_Vertices;
 }
 
 void CBrush::GetFaces(std::vector<std::vector<size_t> >& out) const
 {
-	// split the back-to-back faces into separate face vectors, so that they're in a 
+	// split the back-to-back faces into separate face vectors, so that they're in a
 	// user-friendlier format than the back-to-back vertex index array
 	// i.e. split 'x--xy------yz----z' into 'x--x', 'y-------y', 'z---z'
 

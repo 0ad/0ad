@@ -6,7 +6,7 @@ function EndGameManager() {}
 
 EndGameManager.prototype.Schema =
 	"<a:component type='system'/><empty/>";
-	
+
 EndGameManager.prototype.Init = function()
 {
 	this.gameType = "conquest";

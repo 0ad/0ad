@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -355,7 +355,7 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
                     0, 1, PULONG_PTR(rgpdli));
 
                 // If we get to here, we blindly assume that the handler of the exception
-                // has magically fixed everything up and left the function pointer in 
+                // has magically fixed everything up and left the function pointer in
                 // dli.pfnCur.
                 //
                 return dli.pfnCur;
@@ -376,7 +376,7 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
         else {
             ::FreeLibrary(hmod);
             }
-        
+
         }
 
     // Go for the procedure now.
@@ -423,7 +423,7 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
                 0, 1, PULONG_PTR(rgpdli));
 
             // If we get to here, we blindly assume that the handler of the exception
-            // has magically fixed everything up and left the function pointer in 
+            // has magically fixed everything up and left the function pointer in
             // dli.pfnCur.
             //
             pfnRet = dli.pfnCur;

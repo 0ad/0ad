@@ -33,7 +33,7 @@ let type = "Melee";
 let damageTaken = false;
 
 cmpAttack.GetAttackStrengths = (type) => ({ "hack": 0, "pierce": 0, "crush": damage });
-cmpAttack.GetAttackBonus = (type, target) => 1.0; 
+cmpAttack.GetAttackBonus = (type, target) => 1.0;
 
 let data = {
 	"attacker": attacker,
@@ -55,9 +55,9 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	GetPlayerByID: (id) => atkPlayerEntity,
 });
 
-AddMock(SYSTEM_ENTITY, IID_RangeManager, { 
-	ExecuteQueryAroundPos: () => [target], 
-	GetElevationAdaptedRange: (pos, rot, max, bonus, a) => max, 
+AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+	ExecuteQueryAroundPos: () => [target],
+	GetElevationAdaptedRange: (pos, rot, max, bonus, a) => max,
 });
 
 AddMock(SYSTEM_ENTITY, IID_ProjectileManager, {
@@ -73,7 +73,7 @@ AddMock(target, IID_Position, {
 });
 
 AddMock(target, IID_Health, {});
- 
+
 AddMock(target, IID_DamageReceiver, {
 	TakeDamage: (hack, pierce, crush) => { damageTaken = true; return { "killed": false, "change": -crush }; },
 });
@@ -91,7 +91,7 @@ AddMock(attacker, IID_Ownership, {
 	GetOwner: () => attackerOwner,
 });
 
-AddMock(attacker, IID_Position, { 
+AddMock(attacker, IID_Position, {
 	GetPosition: () => new Vector3D(2, 0, 3),
 	GetRotation: () => new Vector3D(1, 2, 3),
 	IsInWorld: () => true,

@@ -253,7 +253,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 					else if (t == "samplerCube")
 						type = GL_TEXTURE_CUBE_MAP;
 					
-					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = 
+					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] =
 						std::make_pair(Attrs.GetNamedItem(at_loc).ToInt(), type);
 				}
 			}

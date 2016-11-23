@@ -20,7 +20,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 
 	let townPhase = gameState.townPhase();
 	let cityPhase = gameState.cityPhase();
-		
+
 	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10 &&
 		gameState.hasResearchers(townPhase, true))
 	{
@@ -153,7 +153,7 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 				continue;
 		}
 		for (let i in template.modifications)
-		{		
+		{
 			if (template.modifications[i].value === "ResourceGatherer/Rates/stone.rock")
 				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/metal.ore")

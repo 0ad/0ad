@@ -405,7 +405,7 @@ public:
 		}
 		case MT_ValueModification:
 		{
-			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg); 
+			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component != L"UnitMotion")
 				break;
 		}
@@ -657,7 +657,7 @@ private:
 
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
-	 * noTarget is true only when used inside tryGoingStraightToTargetEntity, 
+	 * noTarget is true only when used inside tryGoingStraightToTargetEntity,
 	 * in which case we do not want the target obstruction otherwise it would always fail
 	 */
 	ControlGroupMovementObstructionFilter GetObstructionFilter(bool noTarget = false) const;
@@ -1573,12 +1573,12 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 
 	entity_pos_t distance = Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize, true);
 
-	// Compare with previous obstruction 
+	// Compare with previous obstruction
 	ICmpObstructionManager::ObstructionSquare previousObstruction;
 	cmpObstruction->GetPreviousObstructionSquare(previousObstruction);
 	entity_pos_t previousDistance = Geometry::DistanceToSquare(pos - CFixedVector2D(previousObstruction.x, previousObstruction.z), obstruction.u, obstruction.v, halfSize, true);
 
-	bool inside = distance.IsZero() && !Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize).IsZero(); 
+	bool inside = distance.IsZero() && !Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize).IsZero();
 	if ((distance < minRange && previousDistance < minRange) || inside)
 	{
 		// Too close to the square - need to move away

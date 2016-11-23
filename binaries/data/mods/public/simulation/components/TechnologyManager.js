@@ -5,7 +5,7 @@ TechnologyManager.prototype.Schema =
 
 TechnologyManager.prototype.Serialize = function()
 {
-	// The modifications cache will be affected by property reads from the GUI and other places so we shouldn't 
+	// The modifications cache will be affected by property reads from the GUI and other places so we shouldn't
 	// serialize it.
 
 	var ret = {};
@@ -25,7 +25,7 @@ TechnologyManager.prototype.Init = function()
 	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
 
 	// This stores the modifications to unit stats from researched technologies
-	// Example data: {"ResourceGatherer/Rates/food.grain": [ 
+	// Example data: {"ResourceGatherer/Rates/food.grain": [
 	//                     {"multiply": 1.15, "affects": ["Female", "Infantry Swordsman"]},
 	//                     {"add": 2}
 	//                 ]}
@@ -38,7 +38,7 @@ TechnologyManager.prototype.Init = function()
 	this.typeCountsByClass = {}; // stores the number of entities of each type for each class i.e.
 	                             // {"someClass": {"unit/spearman": 2, "unit/cav": 5} "someOtherClass":...}
 
-	// Some technologies are automatically researched when their conditions are met.  They have no cost and are 
+	// Some technologies are automatically researched when their conditions are met.  They have no cost and are
 	// researched instantly.  This allows civ bonuses and more complicated technologies.
 	this.autoResearchTech = {};
 	var allTechs = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager).GetAllTechs();
@@ -49,7 +49,7 @@ TechnologyManager.prototype.Init = function()
 	}
 };
 
-TechnologyManager.prototype.OnUpdate = function() 
+TechnologyManager.prototype.OnUpdate = function()
 {
 	this.UpdateAutoResearch();
 };
@@ -287,7 +287,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 			var modification = template.modifications[i];
 			if (!this.modifications[modification.value])
 				this.modifications[modification.value] = [];
-			
+
 			var modAffects = affects.slice();
 			if (modification.affects)
 			{
@@ -314,7 +314,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 	if (template.replaces && template.replaces.length > 0)
 	{
-		for (var i of template.replaces) 
+		for (var i of template.replaces)
 		{
 			if (!i || this.IsTechnologyResearched(i))
 				continue;
@@ -348,7 +348,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	if (cmpPlayerEntityLimits)
 		cmpPlayerEntityLimits.UpdateLimitsFromTech(tech);
 
-	// always send research finished message 
+	// always send research finished message
 	Engine.PostMessage(this.entity, MT_ResearchFinished, {"player": playerID, "tech": tech});
 
 	for (var component in modifiedComponents)

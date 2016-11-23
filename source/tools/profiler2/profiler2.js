@@ -1,15 +1,15 @@
 // Copyright (c) 2016 Wildfire Games
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@ function save_as_file()
 function get_history_data(report, thread, type)
 {
     var ret = {"time_by_frame":[], "max" : 0, "log_scale" : null};
- 
+
     var report_data = g_reports[report].data().threads[thread];
     var interval_data = report_data.intervals;
 
@@ -275,7 +275,7 @@ function draw_history_graph()
                 y = Math.log10(1 + smoothed_time/y_scale * 9);
 
             if (item_nb === 1)
-            {   
+            {
                 context.beginPath();
                 context.fillStyle = colour;
                 context.fillRect(i/x_scale,canvas.height,1/x_scale,-y*canvas.height);
@@ -399,7 +399,7 @@ function recompute_choices(report, thread)
 
     for (let i = 0; i < data.intervals.length; i++)
         types[data.intervals[i].id] = 0;
-    
+
     var sorted_keys = Object.keys(types).sort();
 
     for (let key in sorted_keys)
@@ -433,7 +433,7 @@ function update_analysis()
     draw_history_graph();
     draw_frequency_graph();
 }
- 
+
 function load_report_from_file(evt)
 {
     var file = evt.target.files[0];
@@ -499,5 +499,5 @@ window.onload = function()
     load_report(true, {"name":"live"});
 
     // add new reports
-    document.getElementById('report_load_input').addEventListener('change', load_report_from_file, false); 
+    document.getElementById('report_load_input').addEventListener('change', load_report_from_file, false);
 }

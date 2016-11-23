@@ -133,7 +133,7 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 			{
 				typeID = DCOND_DISTANCE;
 				
-				float valmin = -1.0f; 
+				float valmin = -1.0f;
 				float valmax = -1.0f;
 				
 				CStr conf = attrs.GetNamedItem(at_conf);
@@ -171,8 +171,8 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 				}
 			}
 			
-			material.AddConditionalDefine(attrs.GetNamedItem(at_name).c_str(), 
-						      attrs.GetNamedItem(at_value).c_str(), 
+			material.AddConditionalDefine(attrs.GetNamedItem(at_name).c_str(),
+						      attrs.GetNamedItem(at_value).c_str(),
 						      typeID, args);
 		}		
 		else if (token == el_uniform)

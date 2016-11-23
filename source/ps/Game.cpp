@@ -296,7 +296,7 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
-		// Perform some simulation initializations (replace skirmish entities, explore territories, etc.) 
+		// Perform some simulation initializations (replace skirmish entities, explore territories, etc.)
 		// that needs to be done before setting up the AI and shouldn't be done in Atlas
 		if (!g_AtlasGameLoop->running)
 			m_Simulation2->PreInitGame();

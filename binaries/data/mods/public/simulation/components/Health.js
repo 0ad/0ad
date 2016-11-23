@@ -17,16 +17,16 @@ Health.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='DamageVariants'>" + 
-			"<oneOrMore>" + 
-				"<element a:help='Name of the variant to select when health drops under the defined ratio'>" + 
-					"<anyName/>" + 
-					"<data type='decimal'>" + 
-						"<param name='minInclusive'>0</param>" + 
-						"<param name='maxInclusive'>1</param>" + 
-					"</data>" + 
-				"</element>" + 
-			"</oneOrMore>" + 
+		"<element name='DamageVariants'>" +
+			"<oneOrMore>" +
+				"<element a:help='Name of the variant to select when health drops under the defined ratio'>" +
+					"<anyName/>" +
+					"<data type='decimal'>" +
+						"<param name='minInclusive'>0</param>" +
+						"<param name='maxInclusive'>1</param>" +
+					"</data>" +
+				"</element>" +
+			"</oneOrMore>" +
 		"</element>" +
 	"</optional>" +
 	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second.'>" +
@@ -97,7 +97,7 @@ Health.prototype.SetHitpoints = function(value)
 
 	var old = this.hitpoints;
 	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
-	
+
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
 	{
@@ -154,7 +154,7 @@ Health.prototype.ExecuteRegeneration = function()
 
 	if (regen > 0)
 		this.Increase(regen);
-	else 
+	else
 		this.Reduce(-regen);
 };
 
@@ -272,7 +272,7 @@ Health.prototype.Increase = function(amount)
 
 	var old = this.hitpoints;
 	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
-	
+
 	if (this.hitpoints == this.GetMaxHitpoints())
 	{
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -361,19 +361,19 @@ Health.prototype.UpdateActor = function()
 		return;
 	let ratio = this.GetHitpoints() / this.GetMaxHitpoints();
 	let newDamageVariant = "alive";
-	if (ratio > 0) 
-	{ 
+	if (ratio > 0)
+	{
 		let minTreshold = 1;
-		for (let key in this.template.DamageVariants) 
-		{ 
+		for (let key in this.template.DamageVariants)
+		{
 			let treshold = +this.template.DamageVariants[key];
-			if (treshold < ratio || treshold > minTreshold) 
+			if (treshold < ratio || treshold > minTreshold)
 				continue;
 			newDamageVariant = key;
 			minTreshold = treshold;
-		} 
-	} 
-	else 
+		}
+	}
+	else
 		newDamageVariant = "death";
 
 	if (this.damageVariant && this.damageVariant == newDamageVariant)
@@ -402,10 +402,10 @@ Health.prototype.OnValueModification = function(msg)
 
 	let oldRegenRate = this.regenRate;
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
-	
+
 	let oldIdleRegenRate = this.idleRegenRate;
 	this.idleRegenRate = ApplyValueModificationsToEntity("Health/IdleRegenRate", +this.template.IdleRegenRate, this.entity);
-	
+
 	if (this.regenRate != oldRegenRate || this.idleRegenRate != oldIdleRegenRate)
 		this.CheckRegenTimer();
 };

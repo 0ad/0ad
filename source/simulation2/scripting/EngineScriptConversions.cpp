@@ -272,7 +272,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 
 	ret.setObject(*obj);
 }
- 
+
 template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableHandleValue ret, const Grid<u16>& val)
  {
 	JSAutoRequest rq(cx);
@@ -284,7 +284,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 		JS::AutoCheckCannotGC nogc;
 		memcpy((void*)JS_GetUint16ArrayData(objArr, nogc), val.m_Data, nbytes);
 	}
- 
+
 	JS::RootedValue data(cx, JS::ObjectValue(*objArr));
 	JS::RootedValue w(cx);
 	JS::RootedValue h(cx);

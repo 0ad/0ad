@@ -55,7 +55,7 @@ void CMatrix3D::SetOrtho (float l, float r, float b, float t, float n, float f)
 	);
 }
 
-//The following clear the matrix and set the 
+//The following clear the matrix and set the
 //rotation of each of the 3 axes
 
 void CMatrix3D::SetXRotation (float angle)
@@ -276,11 +276,11 @@ void CMatrix3D::RotateTransposed(const CVector3D& vector,CVector3D& result) cons
 
 void CMatrix3D::GetInverse(CMatrix3D& dst) const
 {
-	float tmp[12];	// temp array for pairs 
-	float src[16];	// array of transpose source matrix 
-	float det;		// determinant 
+	float tmp[12];	// temp array for pairs
+	float src[16];	// array of transpose source matrix
+	float det;		// determinant
 	
-	// transpose matrix 
+	// transpose matrix
 	for (int i = 0; i < 4; ++i) {
 		src[i] = _data[i*4];
 		src[i + 4] = _data[i*4 + 1];
@@ -288,7 +288,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 		src[i + 12] = _data[i*4 + 3];
 	}
 
-	// calculate pairs for first 8 elements (cofactors) 
+	// calculate pairs for first 8 elements (cofactors)
 	tmp[0] = src[10] * src[15];
 	tmp[1] = src[11] * src[14];
 	tmp[2] = src[9] * src[15];
@@ -312,7 +312,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	dst._data[6] = (tmp[3]-tmp[2])*src[0] + (tmp[6]-tmp[7])*src[1] + (tmp[11]-tmp[10])*src[3];
 	dst._data[7] = (tmp[4]-tmp[5])*src[0] + (tmp[9]-tmp[8])*src[1] + (tmp[10]-tmp[11])*src[2];
 	
-	// calculate pairs for second 8 elements (cofactors) 
+	// calculate pairs for second 8 elements (cofactors)
 	tmp[0] = src[2]*src[7];
 	tmp[1] = src[3]*src[6];
 	tmp[2] = src[1]*src[7];
@@ -326,7 +326,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	tmp[10] = src[0]*src[5];
 	tmp[11] = src[1]*src[4];
 
-	// calculate second 8 elements (cofactors) 
+	// calculate second 8 elements (cofactors)
 	dst._data[8] = (tmp[0]-tmp[1])*src[13] + (tmp[3]-tmp[2])*src[14] + (tmp[4]-tmp[5])*src[15];
 	dst._data[9] = (tmp[1]-tmp[0])*src[12] + (tmp[6]-tmp[7])*src[14] + (tmp[9]-tmp[8])*src[15];
 	dst._data[10] = (tmp[2]-tmp[3])*src[12] + (tmp[7]-tmp[6])*src[13] + (tmp[10]-tmp[11])*src[15];
@@ -336,7 +336,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	dst._data[14] = (tmp[6]-tmp[7])*src[9] + (tmp[11]-tmp[10])*src[11] + (tmp[3]-tmp[2])*src[8];
 	dst._data[15] = (tmp[10]-tmp[11])*src[10] + (tmp[4]-tmp[5])*src[8] + (tmp[9]-tmp[8])*src[9];
 
-	// calculate matrix inverse 
+	// calculate matrix inverse
 	det=src[0]*dst._data[0]+src[1]*dst._data[1]+src[2]*dst._data[2]+src[3]*dst._data[3];
 	det = 1/det;
 	for ( int j = 0; j < 16; j++) {

@@ -36,7 +36,7 @@ static const wxString scenarioPath(L"maps/scenarios/");
 static const wxString skirmishPath(L"maps/skirmishes/");
 
 MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
-	: wxDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600,400), wxCAPTION|wxRESIZE_BORDER|wxCLOSE_BOX|wxSYSTEM_MENU), 
+	: wxDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600,400), wxCAPTION|wxRESIZE_BORDER|wxCLOSE_BOX|wxSYSTEM_MENU),
 	m_Type(type), m_SelectedPage(0)
 {
 	Freeze();
@@ -106,7 +106,7 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 
 	wxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 	if (m_Type == MAPDIALOG_OPEN)
-		buttonSizer->Add(new wxButton(this, wxID_OPEN, _("Open"))); 
+		buttonSizer->Add(new wxButton(this, wxID_OPEN, _("Open")));
 	else // MAPDIALOG_SAVE
 		buttonSizer->Add(new wxButton(this, wxID_SAVE, _("Save")));
 	buttonSizer->AddSpacer(5);

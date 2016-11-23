@@ -4,7 +4,7 @@
  * any global state, but each context should do its own caching as needed.
  * Also it cannot directly access the simulation and requires data passed to it.
  */
- 
+
 /**
  * Returns modified property value modified by the applicable tech
  * modifications.

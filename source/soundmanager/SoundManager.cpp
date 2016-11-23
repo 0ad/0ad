@@ -193,9 +193,9 @@ void ISoundManager::CreateSoundManager()
 
 void ISoundManager::SetEnabled(bool doEnable)
 {
-	if (g_SoundManager && !doEnable) 
+	if (g_SoundManager && !doEnable)
 		SAFE_DELETE(g_SoundManager);
-	else if (!g_SoundManager && doEnable) 
+	else if (!g_SoundManager && doEnable)
 		ISoundManager::CreateSoundManager();
 }
 void ISoundManager::CloseGame()

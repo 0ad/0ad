@@ -30,7 +30,7 @@ function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, t
 	if (cmpTechnologyManager)
 		value = cmpTechnologyManager.ApplyModificationsTemplate(tech_type, current_value, template);
 
-	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager); 
+	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	if (!cmpAuraManager)
 		return value;
 	return cmpAuraManager.ApplyTemplateModifications(tech_type, value, playerID, template);

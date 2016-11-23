@@ -34,7 +34,7 @@
 					"Name": "Nisean War Horses",
 					"History": "The beautiful and powerful breed of Nisean horses increases health for Persian cavalry.",
 					"Description": "+25% health for cavalry, but +10% train time."
-				} 
+				}
 			],
 			"Heroes":
 			[
@@ -43,14 +43,14 @@
 					"Class": "",
 					"Armament": "",
 					"Emblem": "",
-					"History": "Cyrus (ruled 559-530 B.C.) The son of a Median princess and the ruler of Anshan; justly called the 'Father of the Empire', Cyrus the Great conquered Media, Lydia, Babylonia and Bactria, thereby establishing the Persian Empire. He was also renown as a benevolent conqueror. (OP - Kurush). Technically the second ruler of the Persians by that name, and so appears as Kurush II on his documents and coins. Kurush I was his grandfather." 
+					"History": "Cyrus (ruled 559-530 B.C.) The son of a Median princess and the ruler of Anshan; justly called the 'Father of the Empire', Cyrus the Great conquered Media, Lydia, Babylonia and Bactria, thereby establishing the Persian Empire. He was also renown as a benevolent conqueror. (OP - Kurush). Technically the second ruler of the Persians by that name, and so appears as Kurush II on his documents and coins. Kurush I was his grandfather."
 				},
 				{
 					"Name": "Darayavahush I",
 					"Class": "",
 					"Armament": "",
 					"Emblem": "",
-					"History": "Darius (ruled 522-486 B.C.) The son of Vishtaspa (Hystaspes), the satrap of Parthia and Hyrcania; a great administrator as well as a decent general, Darius introduced the division of the empire into satrapies and conquered NW India, Thrace and Macedonia. He was called the 'Merchant of the Empire'." 
+					"History": "Darius (ruled 522-486 B.C.) The son of Vishtaspa (Hystaspes), the satrap of Parthia and Hyrcania; a great administrator as well as a decent general, Darius introduced the division of the empire into satrapies and conquered NW India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
 				},
 				{
 					"Name": "Xsayarsa I",
@@ -58,9 +58,9 @@
 					"Armament": "",
 					"Emblem": "",
 					"History": "Xerxes (ruled 485-465 B.C.) The son of Darius the Great and Atoosa, a daughter of Cyrus the Great, Xerxes was an able administrator, who also extended Imperial rule into Chorasmia. Apart from his failed invasion of Greece, he was famous for his extensive building programme, especially at Persepolis."
-				} 
+				}
 			]
-		} 
+		}
 	],
 	"CivBonuses":
 	[
@@ -73,7 +73,7 @@
 			"Name": "Great King's Levy",
 			"History": "The Persians could and did levy a large number of infantry during wartime due to the sheer size of the Achaemenid Empire and the way in which it was set-up. In general the Persian infantry was well trained and fought with great tenacity. However while this was true the infantry were poor hand-to-hand, close combat fighters. Also, with the exception of the elite regiments, the Persian infantry was not a standing professional force.",
 			"Description": "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the usual 300)."
-		} 
+		}
 	],
 	"TeamBonuses":
 	[
@@ -81,7 +81,7 @@
 			"Name": "Royal Road",
 			"History": "Coinage was invented by the Lydians in 7th Century B.C., but it was not very common until the Persian period. Darius the Great standardized coined money and his golden coins (known as 'darics') became commonplace not only throughout his empire, but as far to the west as Central Europe.",
 			"Description": "+25% trade profit land routes."
-		} 
+		}
 	],
 	"Structures":
 	[
@@ -92,7 +92,7 @@
 			"History": "The Persian Empire's best soldiers were Eastern horsemen.",
 			"Requirements": "",
 			"Phase": "Town",
-			"Special": "Train Cavalry citizen-soldiers." 
+			"Special": "Train Cavalry citizen-soldiers."
 		},
  		{
 			"Name": "Apadana",
@@ -101,7 +101,7 @@
 			"History": "The term Apadana designates a large hypostyle palace found in Persia. The best known example, and by far the largest, was the great Apadana at Persepolis. Functioning as the empire's central audience hall, the palace is famous for the reliefs of the tribute-bearers and of the army, including the Immortals.",
 			"Requirements": "",
 			"Phase": "City",
-			"Special": "Train heroes and Persian Immortals. Gives a slow trickle of all resources as 'Satrapy Tribute.'" 
+			"Special": "Train heroes and Persian Immortals. Gives a slow trickle of all resources as 'Satrapy Tribute.'"
 		}
 	],
 	"StartEntities":
@@ -115,14 +115,14 @@
 		},
 		{
 			"Template": "units/pers_infantry_spearman_b",
-			"Count": 2 
+			"Count": 2
 		},
 		{
 			"Template": "units/pers_infantry_archer_b",
-			"Count": 2 
+			"Count": 2
 		},
 		{
-			"Template": "units/pers_cavalry_javelinist_b" 
+			"Template": "units/pers_cavalry_javelinist_b"
 		}
 	],
 	"Formations":

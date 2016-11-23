@@ -469,7 +469,7 @@ MESSAGEHANDLER(MoveObjectPreview)
 	if (g_PreviewEntitiesID.size()==0)
 		return;
 
-	//TODO:Change pivot 
+	//TODO:Change pivot
 	entity_id_t referenceEntity = *g_PreviewEntitiesID.begin();
 
 	// All selected objects move relative to a pivot object,

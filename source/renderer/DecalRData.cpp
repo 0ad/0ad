@@ -74,7 +74,7 @@ void CDecalRData::Update(CSimulation2* simulation)
 	}
 }
 
-void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context, 
+void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context,
 			       ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
 	CShaderDefines contextDecal = context;
@@ -93,7 +93,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 		}
 		
 		int numPasses = 1;
-		CShaderTechniquePtr techBase; 
+		CShaderTechniquePtr techBase;
 		
 		if (!isDummyShader)
 		{

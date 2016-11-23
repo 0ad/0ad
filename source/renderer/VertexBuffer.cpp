@@ -42,7 +42,7 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 	if (target == GL_ARRAY_BUFFER) // vertex data buffer
 	{
 		// We want to store 16-bit indices to any vertex in a buffer, so the
-		// buffer must never be bigger than vertexSize*64K bytes since we can 
+		// buffer must never be bigger than vertexSize*64K bytes since we can
 		// address at most 64K of them with 16-bit indices
 		size = std::min(size, vertexSize*65536);
 	}
@@ -96,8 +96,8 @@ bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Allocate: try to allocate a buffer of given number of vertices (each of 
-// given size), with the given type, and using the given texture - return null 
+// Allocate: try to allocate a buffer of given number of vertices (each of
+// given size), with the given type, and using the given texture - return null
 // if no free chunks available
 CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore)
 {
@@ -135,7 +135,7 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 	chunk->m_Dirty = false;
 	chunk->m_Needed = false;
 
-	// split chunk into two; - allocate a new chunk using all unused vertices in the 
+	// split chunk into two; - allocate a new chunk using all unused vertices in the
 	// found chunk, and add it to the free list
 	if (chunk->m_Count > numVertices)
 	{

@@ -158,7 +158,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 			Normal[i] = CVector3D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2]);
 			q += 3;
 
-			Tangent[i] = CVector4D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2], 
+			Tangent[i] = CVector4D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2],
 					vertexDataOut[q + 3]);
 			q += 4;
 			
@@ -192,7 +192,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		size_t idxidx = 0;	
 
 		// reindex geometry and upload index
-		for (size_t j = 0; j < mdef->GetNumFaces(); ++j) 
+		for (size_t j = 0; j < mdef->GetNumFaces(); ++j)
 		{	
 			Indices[idxidx++] = remapTable[j * 3 + 0];
 			Indices[idxidx++] = remapTable[j * 3 + 1];

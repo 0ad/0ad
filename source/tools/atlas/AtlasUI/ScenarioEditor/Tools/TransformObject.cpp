@@ -123,7 +123,7 @@ public:
 		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 
 		// is the source code get here now you can add the objects to scene(preview)
-		// store id to move 
+		// store id to move
 		child = root->GetChildren();
 
 		while (child)
@@ -532,7 +532,7 @@ public:
 			}
 			else if (evt.LeftDown())
 			{
-				//Place the object and update 
+				//Place the object and update
 				obj->OnPasteEnd(false);
 				return true;
 			}

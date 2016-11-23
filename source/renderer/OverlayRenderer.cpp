@@ -100,7 +100,7 @@ struct OverlayRendererInternals
 	VertexArray::Attribute quadAttributeUV;
 	VertexIndexArray quadIndices;
 
-	/// Maximum amount of quad overlays we support for rendering. This limit is set to be able to 
+	/// Maximum amount of quad overlays we support for rendering. This limit is set to be able to
 	/// render all quads from a single dedicated VB without having to reallocate it, which is much
 	/// faster in the typical case of rendering only a handful of quads. When modifying this value,
 	/// you must take care for the new amount of quads to fit in a single VBO (which is not likely

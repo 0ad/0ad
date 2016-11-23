@@ -16,7 +16,7 @@ StatusBars.prototype.Schema =
 /**
  * For every sprite, the code will call their "Add" method when regenerating
  * the sprites. Every sprite adder should return the height it needs.
- * 
+ *
  * Modders who need extra sprites can just modify this array, and
  * provide the right methods.
  */
@@ -241,29 +241,29 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 	let iconSet = new Set();
 	for (let ent of sources)
 	{
-		let cmpAuras = Engine.QueryInterface(ent, IID_Auras); 
-		if (!cmpAuras) // probably the ent just died 
-			continue; 
-		for (let name of this.auraSources.get(ent)) 
-			iconSet.add(cmpAuras.GetOverlayIcon(name)); 
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		if (!cmpAuras) // probably the ent just died
+			continue;
+		for (let name of this.auraSources.get(ent))
+			iconSet.add(cmpAuras.GetOverlayIcon(name));
 	}
 
 	// World-space offset from the unit's position
 	let offset = { "x": 0, "y": +this.template.HeightOffset + yoffset, "z": 0 };
 
-	let iconSize = +this.template.BarWidth / 2; 
+	let iconSize = +this.template.BarWidth / 2;
 	let xoffset = -iconSize * (iconSet.size - 1) * 0.6;
-	for (let icon of iconSet) 
-	{ 
-		cmpOverlayRenderer.AddSprite( 
-			icon, 
-			{ "x": xoffset - iconSize/2, "y": yoffset }, 
-			{ "x": xoffset + iconSize/2, "y": iconSize + yoffset }, 
+	for (let icon of iconSet)
+	{
+		cmpOverlayRenderer.AddSprite(
+			icon,
+			{ "x": xoffset - iconSize/2, "y": yoffset },
+			{ "x": xoffset + iconSize/2, "y": iconSize + yoffset },
 			offset,
 			NATURAL_COLOR
-		); 
+		);
 		xoffset += iconSize * 1.2;
-	} 
+	}
 
 	return iconSize + this.template.BarHeight / 2;
 };

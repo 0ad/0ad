@@ -162,7 +162,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	return hitEnts;
 }
 
-std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, 
+std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera,
 	const std::string& templateName, player_id_t owner, bool includeOffScreen, bool matchRank,
 	bool allowEditorSelectables, bool allowFoundations)
 {

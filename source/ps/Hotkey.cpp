@@ -262,7 +262,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) || (ev->ev.type == SDL_MOUSEWHEEL);
 
-	// -- KEYDOWN SECTION -- 
+	// -- KEYDOWN SECTION --
 
 	std::vector<const char*> closestMapNames;
 	size_t closestMapMatch = 0;

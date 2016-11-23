@@ -58,7 +58,7 @@ AttackDetection.prototype.OnGlobalAttacked = function(msg)
 AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner)
 {
 	let playerID = Engine.QueryInterface(this.entity, IID_Player).GetPlayerID();
-	
+
 	// Don't register attacks dealt against other players
 	if (Engine.QueryInterface(target, IID_Ownership).GetOwner() != playerID)
 		return;
@@ -73,7 +73,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner
 	// and generally are not so valuable as other units/buildings,
 	// we have a lower priority notification for it, which can be
 	// overriden by a regular one.
-	var cmpTargetIdentity = Engine.QueryInterface(target, IID_Identity); 
+	var cmpTargetIdentity = Engine.QueryInterface(target, IID_Identity);
 	var targetIsDomesticAnimal = cmpTargetIdentity && cmpTargetIdentity.HasClass("Animal") && cmpTargetIdentity.HasClass("Domestic");
 
 	var cmpPosition = Engine.QueryInterface(target, IID_Position);

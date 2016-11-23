@@ -1844,8 +1844,8 @@ public:
 	{
 		// Warning: Code related to fogging (like ForceMiraging) shouldn't be
 		// invoked while iterating through m_EntityData.
-		// Otherwise, by deleting mirage entities and so on, that code will 
-		// change the indexes in the map, leading to segfaults. 
+		// Otherwise, by deleting mirage entities and so on, that code will
+		// change the indexes in the map, leading to segfaults.
 		// So we just remember what entities to mirage and do that later.
 		std::vector<entity_id_t> miragableEntities;
 

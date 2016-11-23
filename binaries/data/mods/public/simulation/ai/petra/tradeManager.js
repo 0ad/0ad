@@ -156,7 +156,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 	let tradingGoods = {};
 	for (let res in gameState.ai.HQ.wantedRates)
 		tradingGoods[res] = 0;
-	// first, try to anticipate future needs 
+	// first, try to anticipate future needs
 	let stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
 	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 	let remaining = 100;
@@ -247,7 +247,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 				else if (available[sell] > 1000)
 					barterRateMin = 10;
 			}
-			else 
+			else
 			{
 				barterRateMin = 70;
 				if (available[sell] > 1000)
@@ -386,7 +386,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 
 /**
  * fills the best trade route in this.tradeRoute and the best potential route in this.potentialTradeRoute
- * If an index is given, it returns the best route with this index or the best land route if index is a land index 
+ * If an index is given, it returns the best route with this index or the best land route if index is a land index
  */
 m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {

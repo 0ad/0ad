@@ -44,8 +44,8 @@ void CVertexBufferManager::Shutdown()
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Allocate: try to allocate a buffer of given number of vertices (each of 
-// given size), with the given type, and using the given texture - return null 
+// Allocate: try to allocate a buffer of given number of vertices (each of
+// given size), with the given type, and using the given texture - return null
 // if no free chunks available
 CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore)
 {
@@ -74,7 +74,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 	}
 #endif
 
-	// iterate through all existing buffers testing for one that'll 
+	// iterate through all existing buffers testing for one that'll
 	// satisfy the allocation
 	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
 		CVertexBuffer* buffer = *iter;

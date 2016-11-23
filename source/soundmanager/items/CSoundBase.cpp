@@ -240,11 +240,11 @@ bool CSoundBase::HandleFade()
 		else if (curGain == m_EndVolume)
 		{
 			if (m_ALSource != 0)
-				alSourcef(m_ALSource, AL_GAIN, curGain);	 
+				alSourcef(m_ALSource, AL_GAIN, curGain);	
 			ResetFade();
 		}
 		else if (m_ALSource != 0)
-			alSourcef(m_ALSource, AL_GAIN, curGain);	 
+			alSourcef(m_ALSource, AL_GAIN, curGain);	
 
 		AL_CHECK;
 	}

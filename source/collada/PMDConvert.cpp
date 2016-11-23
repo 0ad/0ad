@@ -222,7 +222,7 @@ public:
 			size_t jointCount = std::min(skin->GetJointCount(), controllerInstance.GetJointCount());
 			if (skin->GetJointCount() != controllerInstance.GetJointCount())
 			{
-				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)", 
+				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)",
 					skin->GetJointCount(), controllerInstance.GetJointCount());
 				for (size_t i = 0; i < skin->GetJointCount(); ++i)
 					Log(LOG_INFO, "Skin joint %d: %s", i, skin->GetJoint(i)->GetId().c_str());
@@ -503,9 +503,9 @@ public:
 		output("PSMD", 4);  // magic number
 		write(output, (uint32)4); // version number
 		write(output, (uint32)(
-			// for UVs, we add one uint32 (i.e. 4 bytes) per model that gives the number of 
-			// texcoord sets in the model, plus 2 floats per new UV 
-			// pair per vertex (i.e. 8 bytes * number of pairs * vertex count) 
+			// for UVs, we add one uint32 (i.e. 4 bytes) per model that gives the number of
+			// texcoord sets in the model, plus 2 floats per new UV
+			// pair per vertex (i.e. 8 bytes * number of pairs * vertex count)
 			4 + 11*4*vertexCount + 4 + 8*texcoords.size()*vertexCount + // vertices
 			4 + 6*faceCount + // faces
 			4 + 7*4*boneCount + // bones

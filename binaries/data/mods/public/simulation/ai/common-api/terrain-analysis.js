@@ -3,7 +3,7 @@ var API3 = function(m)
 
 /**
  * TerrainAnalysis, inheriting from the Map Component.
- * 
+ *
  * This creates a suitable passability map.
  * This is part of the Shared Script, and thus should only be used for things that are non-player specific.
  * This.map is a map of the world, where particular stuffs are pointed with a value
@@ -36,12 +36,12 @@ m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 	 201 is shallow water (passable by land units and water units)
 	 255 is land (or extremely shallow water where ships can't go).
 	*/
-	
+
 	for (let i = 0; i < passabilityMap.data.length; ++i)
 	{
 		// If impassable for land units, set to 0, else to 255.
 		obstructionTiles[i] = (passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
-		
+
 		if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 0)
 			obstructionTiles[i] = 200; // if navigable and not walkable (ie basic water), set to 200.
 		else if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 255)
@@ -53,14 +53,14 @@ m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 
 /**
  * Accessibility inherits from TerrainAnalysis
- *  
+ *
  * This can easily and efficiently determine if any two points are connected.
  * it can also determine if any point is "probably" reachable, assuming the unit can get close enough
  * for optimizations it's called after the TerrainAnalyser has finished initializing his map
  * so this can use the land regions already.
  */
 m.Accessibility = function()
-{	
+{
 };
 
 m.copyPrototype(m.Accessibility, m.TerrainAnalysis);
@@ -76,12 +76,12 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 	this.regionType = []; // "inaccessible", "land" or "water";
 	// ID of the region associated with an array of region IDs.
 	this.regionLinks = [];
-	
+
 	// initialized to 0, it's more optimized to start at 1 (I'm checking that if it's not 0, then it's already aprt of a region, don't touch);
 	// However I actually store all unpassable as region 1 (because if I don't, on some maps the toal nb of region is over 256, and it crashes as the mapis 8bit.)
 	// So start at 2.
 	this.regionID = 2;
-	
+
 	for (let i = 0; i < this.landPassMap.length; ++i)
 	{
 		if (this.map[i] !== 0)
@@ -97,7 +97,7 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 			this.floodFill(i,1,true);
 		}
 	}
-	
+
 	// calculating region links. Regions only touching diagonaly are not linked.
 	// since we're checking all of them, we'll check from the top left to the bottom right
 	let w = this.width;
@@ -135,7 +135,7 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 			}
 		}
 	}
-	
+
 	//Engine.DumpImage("LandPassMap.png", this.landPassMap, this.width, this.height, 255);
 	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
 };
@@ -276,7 +276,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		this.landPassMap[startIndex] = 1;	// impassable for land
 		return false;
 	}
-	
+
 	// here we'll be able to start.
 	for (let i = this.regionSize.length; i <= value; ++i)
 	{
@@ -292,7 +292,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	let IndexArray = [startIndex];
 	let newIndex;
 	while(IndexArray.length)
-	{		
+	{
 		newIndex = IndexArray.pop();
 
 		y = 0;
@@ -317,7 +317,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		let index;
 		do {
 			index = newIndex + w*y;
-			
+
 			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
 			{
 				this.landPassMap[index] = value;
@@ -330,7 +330,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 			}
 			else
 				break;
-			
+
 			if (index%w > 0)
 			{
 				if (floodFor === "land" && this.landPassMap[index -1] === 0 && this.map[index -1] !== 0 && this.map[index -1] !== 200)

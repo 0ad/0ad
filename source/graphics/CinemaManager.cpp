@@ -100,8 +100,8 @@ void CCinemaManager::SetEnabled(bool enabled)
 
 	// TODO: Enabling/Disabling does not work if the session GUI page is not the top page.
 	// This can happen in various situations, for example when the player wins/looses the game
-	// while the cinematic is running (a message box is the top page in this case). 
-	// It might be better to disable the whole GUI during the cinematic instead of a specific 
+	// while the cinematic is running (a message box is the top page in this case).
+	// It might be better to disable the whole GUI during the cinematic instead of a specific
 	// GUI object.
 	
 	// sn - session gui object

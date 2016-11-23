@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -370,7 +370,7 @@ void CProfiler2::ThreadStorage::WriteHold(EItem type, const void* item, u32 item
 std::string CProfiler2::ThreadStorage::GetBuffer()
 {
 	// Called from an arbitrary thread (not the one writing to the buffer).
-	// 
+	//
 	// See comments on m_BufferPos0 etc.
 
 	shared_ptr<u8> buffer(new u8[BUFFER_SIZE], ArrayDeleter());
