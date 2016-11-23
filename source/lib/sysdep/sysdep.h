@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -80,7 +80,7 @@ LIB_API std::wstring sys_WideFromArgv(const char* argv_i);
 
 /**
  * describe the current OS error state.
- * 
+ *
  * @param err: if not 0, use that as the error code to translate; otherwise,
  * uses GetLastError or similar.
  * @param buf output buffer
@@ -133,20 +133,20 @@ extern Status sys_open_url(const std::string& url);
 /**
  * return the largest sector size [bytes] of any storage medium
  * (HD, optical, etc.) in the system.
- * 
+ *
  * this may be a bit slow to determine (iterates over all drives),
  * but caches the result so subsequent calls are free.
  * (caveat: device changes won't be noticed during this program run)
- * 
+ *
  * sector size is relevant because Windows aio requires all IO
  * buffers, offsets and lengths to be a multiple of it. this requirement
  * is also carried over into the vfs / file.cpp interfaces for efficiency
  * (avoids the need for copying to/from align buffers).
- * 
+ *
  * waio uses the sector size to (in some cases) align IOs if
  * they aren't already, but it's also needed by user code when
  * aligning their buffers to meet the requirements.
- * 
+ *
  * the largest size is used so that we can read from any drive. while this
  * is a bit wasteful (more padding) and requires iterating over all drives,
  * it is the only safe way: this may be called before we know which

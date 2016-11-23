@@ -171,18 +171,18 @@ public:
 	 */
 	virtual CFixedVector2D GetPosition2D() = 0;
 
-	/** 
-	 * Returns the previous turn's x,y,z position (no interpolation). 
-	 * Depends on the current terrain heightmap. 
-	 * Must not be called unless IsInWorld is true. 
-	 */ 
-	virtual CFixedVector3D GetPreviousPosition() = 0; 
+	/**
+	 * Returns the previous turn's x,y,z position (no interpolation).
+	 * Depends on the current terrain heightmap.
+	 * Must not be called unless IsInWorld is true.
+	 */
+	virtual CFixedVector3D GetPreviousPosition() = 0;
 
-	/** 
-	 * Returns the previous turn's x,z position (no interpolation). 
-	 * Must not be called unless IsInWorld is true. 
-	 */ 
-	virtual CFixedVector2D GetPreviousPosition2D() = 0; 
+	/**
+	 * Returns the previous turn's x,z position (no interpolation).
+	 * Must not be called unless IsInWorld is true.
+	 */
+	virtual CFixedVector2D GetPreviousPosition2D() = 0;
 
 	/**
 	 * Rotate smoothly to the given angle around the upwards axis.

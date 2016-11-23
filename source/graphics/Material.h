@@ -28,18 +28,18 @@
 class CMaterial
 {
 public:
-	
+
 	struct TextureSampler
 	{
 		TextureSampler(const CStr &n, CTexturePtr t) : Name(n), Sampler(t) {}
 		TextureSampler(const CStrIntern &n, CTexturePtr t) : Name(n), Sampler(t) {}
-		
+
 		CStrIntern Name;
 		CTexturePtr Sampler;
 	};
-	
+
 	typedef std::vector<TextureSampler> SamplersVector;
-	
+
 	CMaterial();
 
 	// Whether this material's shaders use alpha blending, in which case
@@ -60,7 +60,7 @@ public:
 	// GetConditionalDefines() list are currently matching.
 	// Use 0 if you don't care about conditional defines.
 	const CShaderDefines& GetShaderDefines(uint32_t conditionFlags) const { return m_CombinedShaderDefines.at(conditionFlags); }
-	
+
 	// Must call RecomputeCombinedShaderDefines after this, before rendering with this material
 	void AddConditionalDefine(const char* defname, const char* defvalue, int type, std::vector<float> &args);
 
@@ -71,7 +71,7 @@ public:
 
 	void AddSampler(const TextureSampler& texture);
 	const SamplersVector& GetSamplers() const { return m_Samplers; }
-	
+
 	void AddRenderQuery(const char* key);
 	const CShaderRenderQueries& GetRenderQueries() const { return m_RenderQueries; }
 
@@ -82,14 +82,14 @@ public:
 	void RecomputeCombinedShaderDefines();
 
 private:
-	
-	// This pointer is kept to make it easier for the fixed pipeline to 
+
+	// This pointer is kept to make it easier for the fixed pipeline to
 	// access the only texture it's interested in.
 	CTexturePtr m_DiffuseTexture;
-	
+
 	SamplersVector m_Samplers;
 	std::vector<CStrIntern> m_RequiredSamplers;
-	
+
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;
 	CShaderConditionalDefines m_ConditionalDefines;

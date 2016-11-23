@@ -51,7 +51,7 @@ public:
 	{
 		m_Val.reset(new JS::PersistentRooted<T>(cx, val));
 	}
-	
+
 	void clear()
 	{
 		m_Val = nullptr;

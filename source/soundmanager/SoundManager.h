@@ -129,7 +129,7 @@ public:
 	ISoundItem* GetSoundItem(unsigned long itemRow);
 	unsigned long Count();
 	void IdleTask();
-	
+
 	void SetMemoryUsage(long bufferSize, int bufferCount);
 	long GetBufferCount();
 	long GetBufferSize();

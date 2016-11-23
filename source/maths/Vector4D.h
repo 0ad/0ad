@@ -25,7 +25,7 @@
 
 #include <math.h>
 
-class CVector4D 
+class CVector4D
 {
 public:
 	CVector4D() : X(0.0f), Y(0.0f), Z(0.0f), W(0.0f) { }

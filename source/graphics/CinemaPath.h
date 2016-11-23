@@ -31,7 +31,7 @@ class CCinemaData
 public:
 	CCinemaData() : m_LookAtTarget(false), m_GrowthCount(0), m_Growth(1), m_Switch(1), m_Timescale(fixed::FromInt(1)) {}
 	virtual ~CCinemaData() {}
-	
+
 	const CCinemaData* GetData() const { return this; }
 
 	CStrW m_Name;
@@ -104,7 +104,7 @@ public:
 	size_t m_CurrentNode;
 	CVector3D m_PreviousRotation;
 
-public: 
+public:
 
 	/**
 	 * Returns false if finished.

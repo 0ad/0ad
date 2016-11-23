@@ -91,7 +91,7 @@ public:
 			size_t n = rhs.m_DivisionsW * rhs.m_DivisionsH;
 			if (m_DivisionsW != rhs.m_DivisionsW || m_DivisionsH != rhs.m_DivisionsH)
 				Create(n); // size changed, recreate
-			
+
 			m_DivisionsW = rhs.m_DivisionsW;
 			m_DivisionsH = rhs.m_DivisionsH;
 			for (size_t i = 0; i < n; ++i)
@@ -117,7 +117,7 @@ public:
 	{
 		if (m_DivisionSize != rhs.m_DivisionSize || m_DivisionsW != rhs.m_DivisionsW || m_DivisionsH != rhs.m_DivisionsH)
 			return false;
-		
+
 		uint32_t n = m_DivisionsH * m_DivisionsW;
 		for (uint32_t i = 0; i < n; ++i)
 		{
@@ -345,7 +345,7 @@ struct SerializeSpatialSubdivision
 
 /**
  * A basic square subdivision scheme for finding entities in range
- * More efficient than SpatialSubdivision, but a bit less precise 
+ * More efficient than SpatialSubdivision, but a bit less precise
  * (so the querier will get more entities to perform tests on).
  *
  * Items are stored in vectors in fixed-size divisions.
@@ -355,7 +355,7 @@ struct SerializeSpatialSubdivision
  * This means that if too many objects have a size that's big, it'll end up being slow
  * We want subdivisions to be as small as possible yet contain as many items as possible.
  *
- * It is the caller's responsibility to ensure items are only added once, aren't removed 
+ * It is the caller's responsibility to ensure items are only added once, aren't removed
  * unless they've been added, etc, and that Move/Remove are called with the same coordinates
  * originally passed to Add (since this class doesn't remember which divisions an item
  * occupies).
@@ -397,12 +397,12 @@ private:
 	}
 
 public:
-	FastSpatialSubdivision() : 
-		m_SpatialDivisionsData(NULL), m_ArrayWidth(0) 
+	FastSpatialSubdivision() :
+		m_SpatialDivisionsData(NULL), m_ArrayWidth(0)
 	{
 	}
 
-	FastSpatialSubdivision(const FastSpatialSubdivision& other) : 
+	FastSpatialSubdivision(const FastSpatialSubdivision& other) :
 		m_SpatialDivisionsData(NULL), m_ArrayWidth(0)
 	{
 		Reset(other.m_ArrayWidth);
@@ -467,7 +467,7 @@ public:
 			if (std::find(m_OverSizedData.begin(), m_OverSizedData.end(), item) == m_OverSizedData.end())
 				m_OverSizedData.push_back(item);
 		}
-		else 
+		else
 		{
 			std::vector<entity_id_t>& subdivision = m_SpatialDivisionsData[SubdivisionIdx(position)];
 			if (std::find(subdivision.begin(), subdivision.end(), item) == subdivision.end())
@@ -483,7 +483,7 @@ public:
 	{
 		if (size > SUBDIVISION_SIZE)
 			EraseFrom(m_OverSizedData, item);
-		else 
+		else
 		{
 			std::vector<entity_id_t>& subdivision = m_SpatialDivisionsData[SubdivisionIdx(position)];
 			EraseFrom(subdivision, item);
@@ -495,7 +495,7 @@ public:
 	 * In particular for big objects nothing needs to be done.
 	 */
 	void Move(entity_id_t item, CFixedVector2D oldPosition, CFixedVector2D newPosition, u32 size)
-	{		
+	{
 		if (size > SUBDIVISION_SIZE)
 			return;
 		if (SubdivisionIdx(newPosition) == SubdivisionIdx(oldPosition))
@@ -549,7 +549,7 @@ public:
 	 */
 	void GetNear(std::vector<entity_id_t>& out, CFixedVector2D pos, entity_pos_t range) const
 	{
-		// Because the subdivision size is rather big wrt typical ranges, 
+		// Because the subdivision size is rather big wrt typical ranges,
 		// this square over-approximation is hopefully not too bad.
 		CFixedVector2D r(range, range);
 		GetInRange(out, pos - r, pos + r);
@@ -560,9 +560,9 @@ public:
 		return SUBDIVISION_SIZE;
 	}
 
-	size_t GetWidth() const 
-	{ 
-		return m_ArrayWidth; 
+	size_t GetWidth() const
+	{
+		return m_ArrayWidth;
 	}
 };
 

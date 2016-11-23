@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -29,11 +29,11 @@
 
 struct utsname
 {
-	char sysname[9];   // Name of this implementation of the operating system. 
-	char nodename[16]; // Name of this node within an implementation-defined communications network. 
-	char release[9];   // Current release level of this implementation. 
-	char version[16];  // Current version level of this release. 
-	char machine[9];   // Name of the hardware type on which the system is running. 
+	char sysname[9];   // Name of this implementation of the operating system.
+	char nodename[16]; // Name of this node within an implementation-defined communications network.
+	char release[9];   // Current release level of this implementation.
+	char version[16];  // Current version level of this release.
+	char machine[9];   // Name of the hardware type on which the system is running.
 };
 
 LIB_API int uname(struct utsname*);

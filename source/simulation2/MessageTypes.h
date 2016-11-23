@@ -429,7 +429,7 @@ public:
 	// so add some constructors for it:
 
 	// don't init tag in empty ctor
-	CMessageRangeUpdate() 
+	CMessageRangeUpdate()
 	{
 	}
 	CMessageRangeUpdate(u32 tag) : tag(tag)
@@ -439,7 +439,7 @@ public:
 		: tag(tag), added(added), removed(removed)
 	{
 	}
-	CMessageRangeUpdate(const CMessageRangeUpdate& other) 
+	CMessageRangeUpdate(const CMessageRangeUpdate& other)
 		: CMessage(), tag(other.tag), added(other.added), removed(other.removed)
 	{
 	}
@@ -483,7 +483,7 @@ public:
 	valueNames(valueNames)
 	{
 	}
-	
+
 	std::vector<entity_id_t> entities;
 	std::wstring component;
 	std::vector<std::wstring> valueNames;
@@ -496,14 +496,14 @@ class CMessageTemplateModification : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TemplateModification)
-	
+
 	CMessageTemplateModification(player_id_t player, std::wstring component, const std::vector<std::wstring>& valueNames) :
 	player(player),
 	component(component),
 	valueNames(valueNames)
 	{
 	}
-	
+
 	player_id_t player;
 	std::wstring component;
 	std::vector<std::wstring> valueNames;
@@ -535,7 +535,7 @@ class CMessageMinimapPing : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(MinimapPing)
 
-	CMessageMinimapPing() 
+	CMessageMinimapPing()
 	{
 	}
 };

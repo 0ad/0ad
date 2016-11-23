@@ -32,7 +32,7 @@ void restart_engine()
 }
 
 // just so that cxxtestgen doesn't complain "No tests defined"
-class TestDummy : public CxxTest::TestSuite 
+class TestDummy : public CxxTest::TestSuite
 {
 public:
 	void test_dummy()

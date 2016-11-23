@@ -56,7 +56,7 @@ struct CinematicSimulationData
 };
 
 /**
- * Class for in game playing of cinematics. Should only be instantiated in CGameView. 
+ * Class for in game playing of cinematics. Should only be instantiated in CGameView.
  */
 
 class CCinemaManager
@@ -73,8 +73,8 @@ public:
 	void AddPath(const CStrW& name, const CCinemaPath& path);
 
 	/**
-	 * Adds the path to the playlist 
-	 * @param name path name 
+	 * Adds the path to the playlist
+	 * @param name path name
 	 */
 	void AddPathToQueue(const CStrW& name);
 
@@ -89,7 +89,7 @@ public:
 	 * @return true if path with that name exists, else false
 	 */
 	bool HasPath(const CStrW& name) const;
-	
+
 	const std::map<CStrW, CCinemaPath>& GetAllPaths();
 	void SetAllPaths( const std::map<CStrW, CCinemaPath>& tracks);
 
@@ -130,7 +130,7 @@ public:
 	bool GetPathsDrawing() const;
 	void SetPathsDrawing(const bool drawPath);
 
-private:    
+private:
 	bool m_DrawPaths;
 
 	// Cinematic data is accessed from the simulation

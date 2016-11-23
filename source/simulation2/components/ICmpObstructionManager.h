@@ -92,7 +92,7 @@ public:
 
 	/**
 	 * Register a static shape.
-	 * 
+	 *
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x,z coordinates of center, in world space
 	 * @param a angle of rotation (clockwise from +Z direction)
@@ -104,12 +104,12 @@ public:
 	 * @return a valid tag for manipulating the shape
 	 * @see StaticShape
 	 */
-	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, 
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a,
 		entity_pos_t w, entity_pos_t h, flags_t flags, entity_id_t group, entity_id_t group2 = INVALID_ENTITY) = 0;
 
 	/**
 	 * Register a unit shape.
-	 * 
+	 *
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x,z coordinates of center, in world space
 	 * @param clearance pathfinding clearance of the unit (works as a radius)
@@ -191,13 +191,13 @@ public:
 	/**
 	 * Collision test a unit shape against the current set of registered shapes, and optionally writes a list of the colliding
 	 * shapes' entities to an output list.
-	 * 
+	 *
 	 * @param filter filter to restrict the shapes that are being tested against
 	 * @param x X coordinate of shape's center
 	 * @param z Z coordinate of shape's center
 	 * @param clearance clearance of the shape's unit
 	 * @param out if non-NULL, all colliding shapes' entities will be added to this list
-	 * 
+	 *
 	 * @return true if there is a collision
 	 */
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter,
@@ -290,11 +290,11 @@ public:
 	/**
 	 * Return true if the shape with the specified parameters should be tested for collisions.
 	 * This is called for all shapes that would collide, and also for some that wouldn't.
-	 * 
+	 *
 	 * @param tag tag of shape being tested
 	 * @param flags set of EFlags for the shape
 	 * @param group the control group of the shape (typically the shape's unit, or the unit's formation controller, or 0)
-	 * @param group2 an optional secondary control group of the shape, or INVALID_ENTITY if none specified. Currently 
+	 * @param group2 an optional secondary control group of the shape, or INVALID_ENTITY if none specified. Currently
 	 *               exists only for static shapes.
 	 */
 	virtual bool TestShape(tag_t tag, flags_t flags, entity_id_t group, entity_id_t group2) const = 0;
@@ -359,11 +359,11 @@ public:
  *     - AND, depending on the value of the 'exclude' argument:
  *       - have at least one of the specified flags set.
  *       - OR have none of the specified flags set.
- * 
+ *
  * The first (primary) control group to reject shapes from must be specified and valid. The secondary
  * control group to reject entities from may be set to INVALID_ENTITY to not use it.
- * 
- * This filter is useful to e.g. allow foundations within the same control group to be placed and 
+ *
+ * This filter is useful to e.g. allow foundations within the same control group to be placed and
  * constructed arbitrarily close together (e.g. for wall pieces that need to link up tightly).
  */
 class SkipControlGroupsRequireFlagObstructionFilter : public IObstructionTestFilter
@@ -374,13 +374,13 @@ class SkipControlGroupsRequireFlagObstructionFilter : public IObstructionTestFil
 	flags_t m_Mask;
 
 public:
-	SkipControlGroupsRequireFlagObstructionFilter(bool exclude, entity_id_t group1, entity_id_t group2, flags_t mask) : 
+	SkipControlGroupsRequireFlagObstructionFilter(bool exclude, entity_id_t group1, entity_id_t group2, flags_t mask) :
 		m_Exclude(exclude), m_Group(group1), m_Group2(group2), m_Mask(mask)
 	{
 		Init();
 	}
 
-	SkipControlGroupsRequireFlagObstructionFilter(entity_id_t group1, entity_id_t group2, flags_t mask) : 
+	SkipControlGroupsRequireFlagObstructionFilter(entity_id_t group1, entity_id_t group2, flags_t mask) :
 		m_Exclude(false), m_Group(group1), m_Group2(group2), m_Mask(mask)
 	{
 		Init();
@@ -418,9 +418,9 @@ private:
  * Obstruction test filter that will test only against shapes that:
  *     - are part of both of the specified control groups
  *     - AND have at least one of the specified flags set.
- * 
+ *
  * The first (primary) control group to include shapes from must be specified and valid.
- * 
+ *
  * This filter is useful for preventing entities with identical control groups
  * from colliding e.g. building a new wall segment on top of an existing wall)
  *
@@ -434,7 +434,7 @@ class SkipTagRequireControlGroupsAndFlagObstructionFilter : public IObstructionT
 	flags_t m_Mask;
 
 public:
-	SkipTagRequireControlGroupsAndFlagObstructionFilter(tag_t tag, entity_id_t group1, entity_id_t group2, flags_t mask) : 
+	SkipTagRequireControlGroupsAndFlagObstructionFilter(tag_t tag, entity_id_t group1, entity_id_t group2, flags_t mask) :
 		m_Tag(tag), m_Group(group1), m_Group2(group2), m_Mask(mask)
 	{
 		ENSURE(m_Group != INVALID_ENTITY);

@@ -41,13 +41,13 @@ public:
 
 	CSoundData();
 	virtual ~CSoundData();
-	
+
 	CSoundData* IncrementCount();
 	bool DecrementCount();
 	virtual bool IsOneShot();
 	virtual bool IsStereo();
 
-	
+
 	virtual unsigned int GetBuffer();
 	virtual int GetBufferCount();
 	virtual const Path& GetFileName();

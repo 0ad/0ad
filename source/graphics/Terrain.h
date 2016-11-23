@@ -108,7 +108,7 @@ public:
 
 	// get patch at given coordinates, expressed in patch-space; return 0 if
 	// coordinates represent patch off the edge of the map
-	CPatch* GetPatch(ssize_t i, ssize_t j) const; 
+	CPatch* GetPatch(ssize_t i, ssize_t j) const;
 	// get tile at given coordinates, expressed in tile-space; return 0 if
 	// coordinates represent tile off the edge of the map
 	CMiniPatch* GetTile(ssize_t i, ssize_t j) const;

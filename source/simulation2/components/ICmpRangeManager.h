@@ -326,7 +326,7 @@ public:
 	 *	(or other players it shares LOS with).
 	 */
 	virtual CLosQuerier GetLosQuerier(player_id_t player) = 0;
-	
+
 	/**
 	 * Toggle the scripted Visibility component activation for entity ent.
 	 */

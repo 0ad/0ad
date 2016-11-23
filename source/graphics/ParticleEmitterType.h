@@ -98,7 +98,7 @@ private:
 	GLenum m_BlendFuncDst;
 	bool m_StartFull;
 	bool m_UseRelativeVelocity;
-	
+
 	float m_MaxLifetime;
 	size_t m_MaxParticles;
 	CBoundingBoxAligned m_MaxBounds;

@@ -19,7 +19,7 @@
 
 #include "ps/XML/XMLWriter.h"
 
-class TestXmlWriter : public CxxTest::TestSuite 
+class TestXmlWriter : public CxxTest::TestSuite
 {
 public:
 	void test1()

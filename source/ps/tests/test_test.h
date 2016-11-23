@@ -19,7 +19,7 @@
 
 #include "ps/CStr.h"
 
-class TestTest : public CxxTest::TestSuite 
+class TestTest : public CxxTest::TestSuite
 {
 public:
 	void test_assert_size_t()

@@ -231,11 +231,11 @@ public:
 	 * translations for @p locale.
 	 */
 	std::vector<std::wstring> GetDictionariesForLocale(const std::string& locale) const;
-	
+
 	std::wstring GetFallbackToAvailableDictLocale(const Locale& locale) const;
-	
+
 	std::wstring GetFallbackToAvailableDictLocale(const std::string& locale) const;
-	
+
 	/**
 	 * Returns the code of the recommended locale for the current user that the
 	 * game supports.

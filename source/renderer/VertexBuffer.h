@@ -28,7 +28,7 @@
 #include <vector>
 
 /**
- * CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
+ * CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying
  * some additional functionality for sharing buffers between multiple objects.
  *
  * The class can be used in two modes, depending on the usage parameter:
@@ -130,14 +130,14 @@ public:
 
 protected:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
-	
-	/// Try to allocate a buffer of given number of vertices (each of given size), 
+
+	/// Try to allocate a buffer of given number of vertices (each of given size),
 	/// and with the given type - return null if no free chunks available
 	VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore);
 	/// Return given chunk to this buffer
 	void Release(VBChunk* chunk);
-	
-	
+
+
 private:
 
 	/// Vertex size of this vertex buffer

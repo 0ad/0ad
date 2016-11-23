@@ -473,10 +473,10 @@ struct sEnvironmentSettings
 	Shareable<Color> terraincolor;
 	Shareable<Color> unitcolor;
 	Shareable<Color> fogcolor;
-	
+
 	Shareable<float> fogfactor;
 	Shareable<float> fogmax;
-	
+
 	Shareable<float> brightness;
 	Shareable<float> contrast;
 	Shareable<float> saturation;
@@ -689,8 +689,8 @@ QUERY(GetTriggerChoices,
 	  ((std::vector<std::wstring>, choices))
 	  ((std::vector<std::wstring>, translations))
 	  );
-		
-COMMAND(SetAllTriggers, NOMERGE, 
+
+COMMAND(SetAllTriggers, NOMERGE,
 	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
 	  );
 

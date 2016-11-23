@@ -34,7 +34,7 @@ public:
 	// constructor; setup data
 	CHFTracer(CTerrain *pTerrain);
 
-	// intersect ray with this heightfield; return true if intersection 
+	// intersect ray with this heightfield; return true if intersection
 	// occurs (and fill in grid coordinates and point of intersection), or false otherwise
 	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, int& x, int& z, CVector3D& ipt) const;
 
@@ -56,9 +56,9 @@ public:
 	static bool PatchRayIntersect(CPatch* patch, const CVector3D& origin, const CVector3D& dir, CVector3D* out);
 
 private:
-	// test if ray intersects either of the triangles in the given 
+	// test if ray intersects either of the triangles in the given
 	bool CellIntersect(int cx, int cz, const CVector3D& origin, const CVector3D& dir, float& dist) const;
-	
+
 	// The terrain we're operating on
 	CTerrain *m_pTerrain;
 	// the heightfield were tracing

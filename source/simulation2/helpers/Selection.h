@@ -36,7 +36,7 @@ namespace EntitySelection
 
 /**
  * Finds all selectable entities under the given screen coordinates.
- * 
+ *
  * @param camera use this view to convert screen to world coordinates.
  * @param screenX,screenY 2D screen coordinates.
  * @param player player whose LOS will be used when selecting entities. In Atlas
@@ -66,7 +66,7 @@ std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCam
 
 /**
  * Finds all entities with the given entity template name, belonging to the given player.
- * 
+ *
  * @param camera use this view to convert screen to world coordinates.
  * @param templateName the name of the template to match, or the selection group name
  *	for similar matching.

@@ -341,12 +341,12 @@ public:
 		of every newly created instance of the (inherited) VdtcTreeItemBase class. */
 	VdtcTreeItemBase *AddDirItem(const wxString &name);
 
-	/** Returns parent of the passed VdtcItemBase object. It will fetch the wxTreeItemId of this parent, 
+	/** Returns parent of the passed VdtcItemBase object. It will fetch the wxTreeItemId of this parent,
 	    and return the VdtcTreeItemBase parent associated with it. If the associated item is nil, there is no
 		parent, this is most likely the root else an assertion failure occurs */
 	VdtcTreeItemBase *GetParent(VdtcTreeItemBase *item) const {
 		wxCHECK(item, 0);
-		
+
 		wxTreeItemId p = GetItemParent(item->GetId());
 		if (! p.IsOk()) return NULL;
 		return (VdtcTreeItemBase *)GetItemData(p);
@@ -445,7 +445,7 @@ public:
 		handler, subsequent calls to OnAddFile, OnAddDirectory will be made for every file and directory
 		encountered in this level to be scanned. NOTE: When this scan is veto'd there will be no call
 		to OnDirectoryScanEnd because there was no scan. Also OnAddedItems is not called */
-	
+
 	virtual bool OnDirectoryScanBegin(const wxFileName &path);
 
 	/** This handler is called when all files and all directories are scanned in the current dir and iterated in
@@ -454,7 +454,7 @@ public:
 	    contains the pointer array of all the items that are in the list, and the path parameter contains the
 	    current path investigated. NOTE: If you want to delete an item from the array, delete it with delete
 	    operator and remove the pointer from the list.  */
-		
+
 	virtual void OnDirectoryScanEnd(VdtcTreeItemBaseArray &items, const wxFileName &path);
 
 	/** This handler is called the very moment after all items are added to the tree control. The parent parameter
@@ -467,7 +467,7 @@ public:
 	    and 0 when a == b.
 	*/
 	virtual int OnCompareItems(const VdtcTreeItemBase *a, const VdtcTreeItemBase *b);
-	
+
 
 private:
     // WDR: member variable declarations for wxVirtualDirTreeCtrl

@@ -29,7 +29,7 @@
 namespace JSI_GameView
 {
 	void RegisterScriptFunctions(ScriptInterface& ScriptInterface);
-	
+
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Culling);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(LockCullCamera);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ConstrainCamera);

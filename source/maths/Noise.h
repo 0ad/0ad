@@ -19,7 +19,7 @@
  * 2D and 3D seamless Perlin noise
  */
 
-// Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html 
+// Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html
 // and http://mrl.nyu.edu/~perlin/paper445.pdf.
 // Not optimized for speed yet.
 
@@ -42,12 +42,12 @@ class Noise2D
 public:
 	Noise2D(int freq);
 	~Noise2D();
-	
+
 	/// Evaluate the noise function at a given point
 	float operator() (float x, float y);
 };
 
-class Noise3D 
+class Noise3D
 {
 	NONCOPYABLE(Noise3D);
 
@@ -62,7 +62,7 @@ class Noise3D
 public:
 	Noise3D(int freq, int vfreq);
 	~Noise3D();
-	
+
 	/// Evaluate the noise function at a given point
 	float operator() (float x, float y, float z);
 };

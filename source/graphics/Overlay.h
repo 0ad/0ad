@@ -52,7 +52,7 @@ struct SOverlayLine
 /**
  * Textured line overlay, with world-space coordinates, rendered in the world onto the terrain.
  * Designed for relatively static textured lines, i.e. territory borders, originally.
- * 
+ *
  * Once submitted for rendering, instances must not be copied afterwards. The reason is that they
  * are assigned rendering data that is unique to the submitted instance, and non-transferable to
  * any copies that would otherwise be made. Amongst others, this restraint includes that they must
@@ -104,11 +104,11 @@ struct SOverlayTexturedLine
 	const CSimContext* m_SimContext;
 
 	/**
-	 * Cached renderer data, because expensive to compute. Allocated by the renderer when necessary 
+	 * Cached renderer data, because expensive to compute. Allocated by the renderer when necessary
 	 * for rendering purposes.
-	 * 
-	 * Note: the rendering data may be shared between copies of this object to prevent having to 
-	 * recompute it, while at the same time maintaining copyability of this object (see also docs on 
+	 *
+	 * Note: the rendering data may be shared between copies of this object to prevent having to
+	 * recompute it, while at the same time maintaining copyability of this object (see also docs on
 	 * CTexturedLineRData).
 	 */
 	shared_ptr<CTexturedLineRData> m_RenderData;

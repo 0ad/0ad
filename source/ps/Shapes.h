@@ -105,7 +105,7 @@ public:
 	 * @return Width of Rectangle
 	 */
 	float GetWidth() const;
-	
+
 	/**
 	 * @return Height of Rectangle
 	 */
@@ -135,7 +135,7 @@ public:
 	 * Get Position equivalent to bottom/right corner
 	 */
 	CPos BottomRight() const;
-	
+
 	/**
 	 * Get Position equivalent to the center of the rectangle
 	 */

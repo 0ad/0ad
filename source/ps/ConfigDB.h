@@ -17,7 +17,7 @@
 
 /*
 	CConfigDB - Load, access and store configuration variables
-	
+
 	TDD		:	http://www.wildfiregames.com/forum/index.php?showtopic=1125
 	OVERVIEW:
 
@@ -111,7 +111,7 @@ public:
 	 * Remove a config value in the specified namespace.
 	 */
 	void RemoveValue(EConfigNamespace ns, const CStr& name);
-	
+
 	/**
 	 * Set the path to the config file used to populate the specified namespace
 	 * Note that this function does not actually load the config file. Use
@@ -120,7 +120,7 @@ public:
 	 * 'path': The path to the config file.
 	 */
 	void SetConfigFile(EConfigNamespace ns, const VfsPath& path);
-	
+
 	/**
 	 * Reload the config file associated with the specified config namespace
 	 * (the last config file path set with SetConfigFile)
@@ -130,7 +130,7 @@ public:
 	 *	false:	if the reload failed
 	 */
 	bool Reload(EConfigNamespace);
-	
+
 	/**
 	 * Write the current state of the specified config namespace to the file
 	 * specified by 'path'

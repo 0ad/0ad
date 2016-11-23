@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -74,7 +74,7 @@ __declspec(noinline) static void Func3()
 }
 
 
-class TestWdbgSym : public CxxTest::TestSuite 
+class TestWdbgSym : public CxxTest::TestSuite
 {
 	static void m_test_array()
 	{
@@ -188,7 +188,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		d_string.push_back("a"); d_string.push_back("b"); d_string.push_back("c");
 
 		std::list<float> l_float;
-		l_float.push_back(0.1f); l_float.push_back(0.2f); l_float.push_back(0.3f); l_float.push_back(0.4f); 
+		l_float.push_back(0.1f); l_float.push_back(0.2f); l_float.push_back(0.3f); l_float.push_back(0.4f);
 
 		std::map<std::string, int> m_string_int;
 		m_string_int.insert(std::make_pair<std::string,int>("s5", 5));

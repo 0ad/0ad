@@ -35,7 +35,7 @@
 
 /**
  * Shader manager: loads and caches shader programs.
- * 
+ *
  * For a high-level overview of shaders and materials, see
  * http://trac.wildfiregames.com/wiki/MaterialSystem
  */

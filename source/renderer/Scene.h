@@ -53,7 +53,7 @@ class Scene
 {
 public:
 	virtual ~Scene() {}
-	
+
 	/**
 	 * Send all objects that can be seen when rendering the given frustum
 	 * to the scene collector.

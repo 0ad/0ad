@@ -26,12 +26,12 @@
 
 /**
  * Rendering data for an STexturedOverlayLine.
- * 
+ *
  * Note that instances may be shared amongst multiple copies of the same STexturedOverlayLine instance.
  * The reason is that this rendering data is non-copyable, but we do wish to maintain copyability of
  * SOverlayTexturedLineData to not limit its usage patterns too much (particularly the practice of storing
  * them into containers).
- * 
+ *
  * For this reason, instead of storing a reverse pointer back to any single SOverlayTexturedLine, the methods
  * in this class accept references to STexturedOverlayLines to work with. It is up to client code to pass in
  * SOverlayTexturedLines to all methods that are consistently the same instance or non-modified copies of it.

@@ -27,7 +27,7 @@
 	TS_ASSERT_DELTA(v.Y, y, delta); \
 	TS_ASSERT_DELTA(v.Z, z, delta);
 
-class TestBound : public CxxTest::TestSuite 
+class TestBound : public CxxTest::TestSuite
 {
 public:
 	void setUp()
@@ -63,7 +63,7 @@ public:
 		CBoundingBoxAligned bound;
 		CVector3D v (1, 2, 3);
 		bound += v;
-		
+
 		CVector3D centre;
 		bound.GetCentre(centre);
 		TS_ASSERT_EQUALS(centre, v);
@@ -100,7 +100,7 @@ public:
 
 	void test_aabb_to_obb_rotation_around_origin()
 	{
-		// rotate a 4x3x3 AABB centered at (5,0,0) 90 degrees CCW around the Z axis, and verify that the 
+		// rotate a 4x3x3 AABB centered at (5,0,0) 90 degrees CCW around the Z axis, and verify that the
 		// resulting OBB is correct
 		CBoundingBoxAligned aabb(CVector3D(3, -1.5f, -1.5f), CVector3D(7, 1.5f, 1.5f));
 
@@ -196,10 +196,10 @@ public:
 		// and verify that the result does not contain any NaN values in its basis vectors
 		// and/or half-sizes
 		CBoundingBoxAligned flatAabb(CVector3D(-1,0,-1), CVector3D(1,0,1));
-		
+
 		CMatrix3D transform;
 		transform.SetIdentity();
-		
+
 		CBoundingBoxOriented result;
 		flatAabb.Transform(transform, result);
 

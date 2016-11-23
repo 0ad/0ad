@@ -29,7 +29,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue val(cx);
 		script.Eval("[4]", &val);
 		CSimulationMessage msg(script, 1, 2, 3, val);

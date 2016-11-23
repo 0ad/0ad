@@ -89,7 +89,7 @@ public:
 	{
 		m_Rot = rot;
 	}
-	
+
 	CQuaternion GetRotation() const
 	{
 		return m_Rot;

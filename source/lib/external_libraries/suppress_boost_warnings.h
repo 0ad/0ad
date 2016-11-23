@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -33,7 +33,7 @@
 #if ICC_VERSION
 # pragma warning(push)
 # pragma warning(disable:82)	// storage class is not first
-# pragma warning(disable:193)	// zero used for undefined preprocessing identifier 
+# pragma warning(disable:193)	// zero used for undefined preprocessing identifier
 # pragma warning(disable:304)	// access control not specified
 # pragma warning(disable:367)	// duplicate friend declaration
 # pragma warning(disable:444)	// destructor for base class is not virtual

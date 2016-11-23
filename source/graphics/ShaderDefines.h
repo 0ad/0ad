@@ -29,7 +29,7 @@ class CVector4D;
 /**
  * Represents a mapping of name strings to value, for use with
  * CShaderDefines (values are strings) and CShaderUniforms (values are vec4s).
- * 
+ *
  * Stored as interned vectors of name-value pairs, to support high performance
  * comparison operators.
  *
@@ -96,12 +96,12 @@ public:
 	{
 		// Name/value pair
 		typedef std::pair<CStrIntern, value_t> Item;
-		
+
 		// Sorted by name; no duplicated names
 		std::vector<Item> items;
-		
+
 		size_t hash;
-		
+
 		void RecalcHash();
 	};
 
@@ -181,14 +181,14 @@ enum RENDER_QUERIES
 
 /**
  * Uniform values that need to be evaluated in the renderer.
- * 
+ *
  * Not thread-safe - must only be used from the main thread.
  */
 class CShaderRenderQueries
 {
 public:
 	typedef std::pair<int, CStrIntern> RenderQuery;
-	
+
 	void Add(const char* name);
 	size_t GetSize() const { return m_Items.size(); }
 	RenderQuery GetItem(size_t i) const { return m_Items[i]; }
@@ -212,11 +212,11 @@ public:
 		int m_CondType;
 		std::vector<float> m_CondArgs;
 	};
-	
+
 	void Add(const char* defname, const char* defvalue, int type, std::vector<float> &args);
 	size_t GetSize() const { return m_Defines.size(); }
 	const CondDefine& GetItem(size_t i) const { return m_Defines[i]; }
-	
+
 private:
 	std::vector<CondDefine> m_Defines;
 };

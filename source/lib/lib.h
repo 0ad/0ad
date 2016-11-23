@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -126,7 +126,7 @@ extern u16 u32_lo(u32 x);	/// return lower 16-bits
 extern u64 u64_from_u32(u32 hi, u32 lo);	/// assemble u64 from u32
 extern u32 u32_from_u16(u16 hi, u16 lo);	/// assemble u32 from u16
 
-// safe downcasters: cast from any integral type to u32 or u16; 
+// safe downcasters: cast from any integral type to u32 or u16;
 // issues warning if larger than would fit in the target type.
 //
 // these are generally useful but included here (instead of e.g. lib.h) for

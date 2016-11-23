@@ -45,8 +45,8 @@ public:
 	CMapWriter();
 	// SaveMap: try to save the current map to the given file
 	void SaveMap(const VfsPath& pathname, CTerrain* pTerr,
-									WaterManager* pWaterMan, SkyManager* pSkyMan, 
-									CLightEnv* pLightEnv, CCamera* pCamera, 
+									WaterManager* pWaterMan, SkyManager* pSkyMan,
+									CLightEnv* pLightEnv, CCamera* pCamera,
 									CCinemaManager* pCinema, CPostprocManager* pPostproc,
 									CSimulation2* pSimulation2);
 
@@ -56,14 +56,14 @@ private:
 	// PackTerrain: pack the terrain onto the end of the data stream
 	void PackTerrain(CFilePacker& packer, CTerrain* pTerrain);
 
-	// EnumTerrainTextures: build lists of textures used by map, and indices into this list 
+	// EnumTerrainTextures: build lists of textures used by map, and indices into this list
 	// for each tile on the terrain
 	void EnumTerrainTextures(CTerrain* pTerrain, std::vector<CStr>& textures,
 		std::vector<STileDesc>& tileIndices);
 
 	// WriteXML: output some other data (entities, etc) in XML format
 	void WriteXML(const VfsPath& pathname, WaterManager* pWaterMan,
-								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
+								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera,
 								CCinemaManager* pCinema, CPostprocManager* pPostproc,
 								CSimulation2* pSimulation2);
 };

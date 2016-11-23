@@ -154,7 +154,7 @@ protected:
 	 * Draw an outlined quad on top of the given tile.
 	 */
 	void RenderTileOutline(const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
-	
+
 private:
 	// Process all tiles
 	virtual void RenderBeforeWater();

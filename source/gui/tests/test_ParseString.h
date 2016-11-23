@@ -21,7 +21,7 @@
 #include "gui/GUIutil.h"
 #include "ps/CLogger.h"
 
-class TestGuiParseString : public CxxTest::TestSuite 
+class TestGuiParseString : public CxxTest::TestSuite
 {
 public:
 	void test_clientarea()

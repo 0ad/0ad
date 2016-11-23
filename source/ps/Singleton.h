@@ -24,7 +24,7 @@ USAGE: class myClass : Singleton<myClass>{};
 
 Modified from http://gamedev.net/reference/articles/article1954.asp
 */
-            
+
 #ifndef INCLUDED_SINGLETON
 #define INCLUDED_SINGLETON
 

@@ -73,7 +73,7 @@ public:
 		{
 			JSContext* cx2 = script2.GetContext();
 			JSAutoRequest rq2(cx2);
-			
+
 			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
 
 			std::string source;
@@ -90,14 +90,14 @@ public:
 
 		JSContext* cx1 = script1.GetContext();
 		JSAutoRequest rq1(cx1);
-		
+
 		JS::RootedValue obj1(cx1);
 		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", &obj1));
 
 		{
 			JSContext* cx2 = script2.GetContext();
 			JSAutoRequest rq2(cx2);
-			
+
 			JS::RootedValue obj2(cx2, script2.CloneValueFromOtherContext(script1, obj1));
 
 			std::string source;
@@ -113,7 +113,7 @@ public:
 
 		JSContext* cx1 = script1.GetContext();
 		JSAutoRequest rq1(cx1);
-		
+
 		JS::RootedValue obj1(cx1);
 		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", &obj1));
 
@@ -135,7 +135,7 @@ public:
 			TS_ASSERT_EQUALS(prop_x1.get(), prop_b.get());
 		}
 	}
-	
+
 	/**
 	 * This test is mainly to make sure that all required template overloads get instantiated at least once so that compiler errors
 	 * in these functions are revealed instantly (but it also tests the basic functionality of these functions).
@@ -146,7 +146,7 @@ public:
 
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue val(cx);
 		JS::RootedValue out(cx);
 		TS_ASSERT(script.Eval("({ "
@@ -159,16 +159,16 @@ public:
 
 		JS::RootedValue nbrVal(cx, JS::NumberValue(3));
 		int nbr = 0;
-		
+
 		// CallFunctionVoid JS::RootedValue& parameter overload
 		script.CallFunctionVoid(val, "setTo", nbrVal);
 
 		// CallFunction JS::RootedValue* out parameter overload
 		script.CallFunction(val, "inc", &out);
-		
+
 		ScriptInterface::FromJSVal(cx, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
-		
+
 		// CallFunction const JS::RootedValue& parameter overload
 		script.CallFunction(val, "add", nbrVal, nbr);
 		TS_ASSERT_EQUALS(7, nbr);
@@ -197,10 +197,10 @@ public:
 
 		// CallFunction JS::MutableHandleValue out parameter overload
 		script.CallFunction(val, "inc", out);
-		
+
 		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
-		
+
 		// CallFunction const JS::HandleValue& parameter overload
 		script.CallFunction(val, "add", nbrVal, nbr);
 		TS_ASSERT_EQUALS(7, nbr);

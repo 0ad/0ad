@@ -67,7 +67,7 @@ public:
 
 	CObjectEntry* FindObject(const CStrW& objname);
 	void DeleteObject(CObjectEntry* entry);
-	
+
 	CObjectBase* FindObjectBase(const CStrW& objname);
 
 	CObjectEntry* FindObjectVariation(const CStrW& objname, const std::vector<std::set<CStr> >& selections);

@@ -72,7 +72,7 @@ public:
 		: m_ID(id), m_Name(name)
 	{
 	}
-	
+
 	wxString& GetID()
 	{
 		return m_ID;

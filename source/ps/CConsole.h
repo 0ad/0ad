@@ -102,7 +102,7 @@ private:
 	// "position" in show/hide animation, how visible the console is (0..1).
 	// allows implementing other animations than sliding, e.g. fading in/out.
 	float m_fVisibleFrac;
-	
+
 	std::deque<std::wstring> m_deqMsgHistory; // protected by m_Mutex
 	std::deque<std::wstring> m_deqBufHistory;
 

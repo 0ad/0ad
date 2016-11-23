@@ -15,9 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/** 
+/**
  * Contains classes for smooth splines
- * Borrowed from Game Programming Gems 4. (Slightly changed to better suit our purposes 
+ * Borrowed from Game Programming Gems 4. (Slightly changed to better suit our purposes
  * and compatability. Any references to external material can be found there.
  */
 

@@ -26,11 +26,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBufferManager: owner object for CVertexBuffer objects; acts as
-// 'front end' for their allocation and destruction 
+// 'front end' for their allocation and destruction
 class CVertexBufferManager
 {
 public:
-	
+
 	/**
 	 * Try to allocate a vertex buffer of the given size and type.
 	 *

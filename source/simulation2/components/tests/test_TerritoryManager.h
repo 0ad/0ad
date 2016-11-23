@@ -32,7 +32,7 @@ public:
 
 	void tearDown()
 	{
-		
+
 	}
 
 	void test_boundaries()
@@ -88,7 +88,7 @@ public:
 			{
 			case 1:
 				// to figure out which 1-boundary is which, we can use the number of points to distinguish between outer and inner,
-				// and within the inners we can split them by their X value (onesInner0 is the leftmost one, onesInner1 the 
+				// and within the inners we can split them by their X value (onesInner0 is the leftmost one, onesInner1 the
 				// rightmost one).
 				if (boundary.points.size() != onesInnerNumExpectedPoints)
 				{
@@ -200,7 +200,7 @@ public:
 						twosInner = &boundary;
 					else
 						TS_FAIL("Too many boundaries for territory owned by player 2");
-					
+
 					break;
 
 				default:
@@ -218,11 +218,11 @@ public:
 		TS_ASSERT_EQUALS(twosOuter->points.size(), 22U);
 		TS_ASSERT_EQUALS(twosInner->points.size(), 14U);
 		TS_ASSERT_EQUALS(threesOuter->points.size(), 14U);
-		
+
 		// See if we need to swap the outer and inner edges of the twos territories (uses the extremely simplistic
 		// heuristic of comparing the amount of points to determine which one is the outer one and which one the inner
 		// one (which does happen to work in this case though).
-		
+
 		if (twosOuter->points.size() < twosInner->points.size())
 		{
 			STerritoryBoundary* tmp = twosOuter;
@@ -248,7 +248,7 @@ public:
 
 private:
 	/// Parses a string representation of a grid into an actual Grid structure, such that the (i,j) axes are located in the bottom
-	/// left hand side of the map. Note: leaves all custom bits in the grid values at zero (anything outside 
+	/// left hand side of the map. Note: leaves all custom bits in the grid values at zero (anything outside
 	/// ICmpTerritoryManager::TERRITORY_PLAYER_MASK).
 	Grid<u8> GetGrid(std::string def, u16 w, u16 h)
 	{
@@ -275,8 +275,8 @@ private:
 	void TestBoundaryPointsEqual(std::vector<CVector2D> points, int expectedPoints[][2])
 	{
 		// TODO: currently relies on an exact point match, i.e. expectedPoints must be specified going CCW or CW (depending on
-		// whether we're testing an inner or an outer edge) starting from the exact same point that the algorithm happened to 
-		// decide to start the run from. This is an algorithmic detail and is not considered to be part of the specification 
+		// whether we're testing an inner or an outer edge) starting from the exact same point that the algorithm happened to
+		// decide to start the run from. This is an algorithmic detail and is not considered to be part of the specification
 		// of the return value. Hence, this method should also accept 'expectedPoints' to be a cyclically shifted
 		// version of 'points', so that the starting position doesn't need to match exactly.
 		for (size_t i = 0; i < points.size(); i++)

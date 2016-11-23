@@ -35,7 +35,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CAlphaMapCalculator: functionality for calculating which alpha blend map
 // fits a given shape
-namespace CAlphaMapCalculator {	
+namespace CAlphaMapCalculator {
 	// Calculate: return the index of the blend map that fits the given shape,
 	// and the set of flip/rotation flags to get the shape correctly oriented
 	int Calculate(BlendShape8 shape,unsigned int& flags);

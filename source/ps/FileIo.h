@@ -49,7 +49,7 @@ ERROR_TYPE(File, UnexpectedEOF);
  * resizable buffer that allows adding raw data and strings;
  * upon calling Write(), everything is written out to disk.
  **/
-class CFilePacker 
+class CFilePacker
 {
 public:
 	/**

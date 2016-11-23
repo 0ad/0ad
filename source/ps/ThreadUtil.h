@@ -54,7 +54,7 @@ public:
 		int ret = pthread_mutex_init(&m_Mutex, NULL);
 		ENSURE(ret == 0);
 	}
-	
+
 	~CMutex()
 	{
 		int ret = pthread_mutex_destroy(&m_Mutex);

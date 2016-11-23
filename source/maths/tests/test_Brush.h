@@ -21,7 +21,7 @@
 #include "maths/BoundingBoxAligned.h"
 #include "graphics/Frustum.h"
 
-class TestBrush : public CxxTest::TestSuite 
+class TestBrush : public CxxTest::TestSuite
 {
 public:
 	void setUp()
@@ -107,7 +107,7 @@ public:
 
 	void test_slice_plane_in_front_of_brush()
 	{
-		// slices the (0,0,0) to (1,1,1) cube by the plane z = -0.5, with the plane normal pointing towards the negative 
+		// slices the (0,0,0) to (1,1,1) cube by the plane z = -0.5, with the plane normal pointing towards the negative
 		// end of the Z axis (i.e. the entire cube is 'behind' the plane and should be cut away)
 		CPlane plane(CVector4D(0, 0, -1, -0.5f));
 		CBrush brush(CBoundingBoxAligned(CVector3D(0,0,0), CVector3D(1,1,1)));
@@ -116,7 +116,7 @@ public:
 		brush.Slice(plane, result);
 
 		TS_ASSERT_EQUALS((size_t)0, result.GetVertices().size());
-		
+
 		std::vector<std::vector<size_t> > faces;
 		result.GetFaces(faces);
 
@@ -157,15 +157,15 @@ private:
 		std::vector<std::vector<size_t> > faces;
 		brush.GetFaces(faces);
 
-		// the brush is free to use any starting vertex along the face, and to use any winding order, so have 'face' 
+		// the brush is free to use any starting vertex along the face, and to use any winding order, so have 'face'
 		// cycle through various starting values and see if any of them (or their reverse) matches one found in the brush.
-		
+
 		for (size_t c = 0; c < face.size() - 1; ++c)
 		{
 			std::vector<std::vector<size_t> >::iterator it1 = std::find(faces.begin(), faces.end(), face);
 			if (it1 != faces.end())
 				return;
-			
+
 			// no match, try the reverse
 			std::vector<size_t> faceReverse = face;
 			std::reverse(faceReverse.begin(), faceReverse.end());

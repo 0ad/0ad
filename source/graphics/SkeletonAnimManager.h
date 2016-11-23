@@ -32,7 +32,7 @@ class CSkeletonAnimDef;
 class CStr8;
 
 ///////////////////////////////////////////////////////////////////////////////
-// CSkeletonAnimManager : owner class of all skeleton anims - manages creation, 
+// CSkeletonAnimManager : owner class of all skeleton anims - manages creation,
 // loading and destruction of animation data
 class CSkeletonAnimManager
 {
@@ -41,7 +41,7 @@ public:
 	// constructor, destructor
 	CSkeletonAnimManager(CColladaManager& colladaManager);
 	~CSkeletonAnimManager();
-	
+
 	// return a given animation by filename; return null if filename doesn't
 	// refer to valid animation file
 	CSkeletonAnimDef* GetAnimation(const VfsPath& pathname);

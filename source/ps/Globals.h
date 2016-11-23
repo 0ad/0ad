@@ -49,7 +49,7 @@ extern std::map<int32_t, bool> g_keys;
  * g_mouse_buttons: Mouse buttons states, indexed by SDL_BUTTON_* constants.
  * If an entry is true, it represents a pressed button.
  * Updated by GlobalsInputHandler in response to mouse button up/down events.
- * 
+ *
  * Be aware that SDL_BUTTON_* constants start at 1. Therefore,
  * g_mouse_buttons[0] is unused. The order of entries is:
  * { unused, left, right, middle, wheel up, wheel down }

@@ -137,7 +137,7 @@ public:
 	struct Options {
 		bool m_NoVBO;
 		bool m_Shadows;
-		
+
 		bool m_WaterUgly;
 		bool m_WaterFancyEffects;
 		bool m_WaterRealDepth;
@@ -318,9 +318,9 @@ public:
 	CFontManager& GetFontManager();
 
 	CShaderDefines GetSystemShaderDefines() { return m_SystemShaderDefines; }
-	
+
 	CTimeManager& GetTimeManager();
-	
+
 	CPostprocManager& GetPostprocManager();
 
 	/**

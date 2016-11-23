@@ -54,7 +54,7 @@ public:
 	/**
 	 * Get status of the map generator thread
 	 *
-	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error 
+	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error
 	 */
 	int GetProgress();
 
@@ -97,7 +97,7 @@ public:
 	/**
 	 * Get status of the map generator thread
 	 *
-	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error 
+	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error
 	 */
 	int GetProgress();
 
@@ -108,18 +108,18 @@ public:
 	 * @return StructuredClone containing map data
 	 */
 	shared_ptr<ScriptInterface::StructuredClone> GetResults();
-	
+
 private:
 // Mapgen
 
 	/**
 	 * Load all scripts of the given library
-	 * 
+	 *
 	 * @param libraryName String specifying name of the library (subfolder of ../maps/random/)
 	 * @return true if all scripts ran successfully, false if there's an error
 	 */
 	bool LoadScripts(const std::wstring& libraryName);
-	
+
 	// callbacks for script functions
 	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);

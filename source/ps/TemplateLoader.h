@@ -30,7 +30,7 @@ enum ETemplatesType
 
 /**
  * Template loader: Handles the loading of entity template files for:
- * - the initialisation and deserialization of entity components in the 
+ * - the initialisation and deserialization of entity components in the
  *   simulation (CmpTemplateManager).
  * - access to actor templates, obstruction data, etc. in RMS/RMGEN
  * - access to various templates in the GUI, to display faction specificities
@@ -48,7 +48,7 @@ public:
 	CTemplateLoader()
 	{
 	}
-	
+
 	/**
 	 * Provides the file data for requested template.
 	 */
@@ -81,31 +81,31 @@ private:
 	 */
 	void ConstructTemplateActor(const std::string& actorName, CParamNode& out);
 
-	/** 
+	/**
 	 * Copy the non-interactive components of an entity template (position, actor, etc) into
 	 * a new entity template
 	 */
 	void CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse);
 
-	/** 
+	/**
 	 * Copy the components of an entity template necessary for a fogged "mirage"
 	 * entity (position, actor) into a new entity template
 	 */
 	void CopyMirageSubset(CParamNode& out, const CParamNode& in);
 
-	/** 
+	/**
 	 * Copy the components of an entity template necessary for a construction foundation
 	 * (position, actor, armour, health, etc) into a new entity template
 	 */
 	void CopyFoundationSubset(CParamNode& out, const CParamNode& in);
 
-	/** 
+	/**
 	 * Copy the components of an entity template necessary for a non-foundation construction entity
 	 * into a new entity template
 	 */
 	void CopyConstructionSubset(CParamNode& out, const CParamNode& in);
 
-	/** 
+	/**
 	 * Copy the components of an entity template necessary for a gatherable resource
 	 * into a new entity template
 	 */

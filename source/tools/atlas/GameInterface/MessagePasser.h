@@ -22,7 +22,7 @@
 
 namespace AtlasMessage
 {
-	
+
 struct IMessage;
 struct QueryMessage;
 

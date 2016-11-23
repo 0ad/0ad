@@ -188,7 +188,7 @@ public:
 /**
  * Structure holding grid dirtiness informations, for clever updates
  *
- * Note: globallyDirty should be used to know which parts of the grid have been changed after an update, 
+ * Note: globallyDirty should be used to know which parts of the grid have been changed after an update,
  * whereas globalRecompute should be used during the update itself, to avoid unnecessary recomputations.
  */
 struct GridUpdateInformation

@@ -112,7 +112,7 @@ public:
 	 * Should be called before using the class.
 	 */
 	static void Init();
-	
+
 	/**
 	 * Submit: Submit a model for rendering this frame.
 	 *
@@ -234,12 +234,12 @@ public:
 	static void BuildIndices(
 			const CModelDefPtr& mdef,
 			const VertexArrayIterator<u16>& Indices);
-	
+
 	/**
 	 * GenTangents: Generate tangents for the given CModelDef.
 	 *
 	 * @param mdef The model definition object.
-	 * @param newVertices An out vector of the unindexed vertices with tangents added. 
+	 * @param newVertices An out vector of the unindexed vertices with tangents added.
 	 * The new vertices cannot be used with existing face index and must be welded/reindexed.
 	 */
 	static void GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices, bool gpuSkinning);
@@ -251,7 +251,7 @@ struct ShaderModelRendererInternals;
 /**
  * Implementation of ModelRenderer that loads the appropriate shaders for
  * rendering each model, and that batches by shader (and by mesh and texture).
- * 
+ *
  * Note that the term "Shader" is somewhat misleading, as this handled
  * fixed-function rendering using the same API as real GLSL/ARB shaders.
  */

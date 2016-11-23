@@ -24,14 +24,14 @@ class CStrInternInternals;
  * Interned 8-bit strings.
  * Each instance with the same string content is a pointer to the same piece of
  * memory, allowing very fast string comparisons.
- * 
+ *
  * Since a CStrIntern is just a dumb pointer, copying is very fast,
  * and pass-by-value should be preferred over pass-by-reference.
- * 
+ *
  * Memory allocated for strings will never be freed, so don't use this for
  * unbounded numbers of strings (e.g. text rendered by gameplay scripts) -
  * it's intended for a small number of short frequently-used strings.
- * 
+ *
  * Not thread-safe - only allocate these strings from the main thread.
  */
 class CStrIntern

@@ -71,7 +71,7 @@ extern shared_ptr<ScriptRuntime> g_ScriptRuntime;
 class ScriptInterface
 {
 	NONCOPYABLE(ScriptInterface);
-	
+
 public:
 
 	/**
@@ -81,7 +81,7 @@ public:
 	 * Each runtime should only ever be used on a single thread.
 	 * @param runtimeSize Maximum size in bytes of the new runtime
 	 */
-	static shared_ptr<ScriptRuntime> CreateRuntime(shared_ptr<ScriptRuntime> parentRuntime = shared_ptr<ScriptRuntime>(), int runtimeSize = DEFAULT_RUNTIME_SIZE, 
+	static shared_ptr<ScriptRuntime> CreateRuntime(shared_ptr<ScriptRuntime> parentRuntime = shared_ptr<ScriptRuntime>(), int runtimeSize = DEFAULT_RUNTIME_SIZE,
 		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
 
 
@@ -195,7 +195,7 @@ public:
 	 */
 	template<typename T>
 	bool GetProperty(JS::HandleValue obj, const char* name, T& out);
-	
+
 	/**
 	 * Get the named property of the given object.
 	 */
@@ -207,7 +207,7 @@ public:
 	 */
 	template<typename T>
 	bool GetPropertyInt(JS::HandleValue obj, int name, T& out);
-	
+
 	/**
 	 * Get the named property of the given object.
 	 */
@@ -253,7 +253,7 @@ public:
 	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
 	 */
 	std::string StringifyJSON(JS::MutableHandleValue obj, bool indent = true);
-	
+
 	/**
 	 * Report the given error message through the JS error reporting mechanism,
 	 * and throw a JS exception. (Callers can check IsPendingException, and must
@@ -310,7 +310,7 @@ public:
 	 * This calls JS_MaybeGC directly, which does not do incremental GC. Usually you should prefer MaybeIncrementalRuntimeGC.
 	 */
 	void MaybeGC();
-	
+
 	/**
 	 * Triggers a full non-incremental garbage collection immediately. That should only be required in special cases and normally
 	 * you should try to use MaybeIncrementalRuntimeGC instead.
@@ -320,7 +320,7 @@ public:
 	/**
 	 * MathRandom (this function) calls the random number generator assigned to this ScriptInterface instance and
 	 * returns the generated number.
-	 * Math_random (with underscore, not this function) is a global function, but different random number generators can be 
+	 * Math_random (with underscore, not this function) is a global function, but different random number generators can be
 	 * stored per ScriptInterface. It calls MathRandom of the current ScriptInterface instance.
 	 */
 	bool MathRandom(double& nbr);
@@ -360,7 +360,7 @@ public:
 	 * The same as AssignOrToJSVal, but also allows JS::Value for T.
 	 * In most cases it's not safe to use the plain (unrooted) JS::Value type, but this can happen quite
 	 * easily with template functions. The idea is that the linker prints an error if AssignOrToJSVal is
-	 * used with JS::Value. If the specialization for JS::Value should be allowed, you can use this 
+	 * used with JS::Value. If the specialization for JS::Value should be allowed, you can use this
 	 * "unrooted" version of AssignOrToJSVal.
 	 */
 	template <typename T>
@@ -368,7 +368,7 @@ public:
 	{
 		AssignOrToJSVal(cx, handle, a);
 	}
-	
+
 	/**
 	 * Converts |val| to T if needed or just returns it if it's a handle.
 	 * This is meant for use in other templates where we want to use the same code for JS::HandleValue and
@@ -378,7 +378,7 @@ public:
 	static T AssignOrFromJSVal(JSContext* cx, const JS::HandleValue& val, bool& ret);
 
 private:
-	
+
 	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret);
 	bool Eval_(const char* code, JS::MutableHandleValue ret);
 	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret);
@@ -418,11 +418,11 @@ private:
 		JSNative m_Constructor;
 	};
 	void Register(const char* name, JSNative fptr, size_t nargs);
-	
+
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the runtime destructor.
 	std::unique_ptr<ScriptInterface_impl> m;
-	
+
 	boost::rand48* m_rng;
 	std::map<std::string, CustomType> m_CustomObjectTypes;
 

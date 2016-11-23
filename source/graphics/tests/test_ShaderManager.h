@@ -43,7 +43,7 @@ public:
 		TS_ASSERT(defines1 < defines2 || defines2 < defines1);
 
 		defines2.Add(CStrIntern("FOO"), CStrIntern("2"));
-		
+
 		TS_ASSERT_EQUALS(defines1.GetInt("FOO"), 1);
 		TS_ASSERT_EQUALS(defines2.GetInt("FOO"), 2);
 

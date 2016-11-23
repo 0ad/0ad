@@ -53,7 +53,7 @@ public:
 
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const VfsPath& pathname, JSRuntime* rt, JS::HandleValue settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
-		CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc, CSimulation2*, const CSimContext*, 
+		CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc, CSimulation2*, const CSimContext*,
 	        int playerID, bool skipEntities);
 
 	void LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*, CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc_, CSimulation2*, int playerID);
@@ -88,7 +88,7 @@ private:
 
 	// clean up everything used during delayed load
 	int DelayLoadFinished();
-	
+
 	// Copy random map settings over to sim
 	int LoadRMSettings();
 
@@ -108,7 +108,7 @@ private:
 	int ParseCamera();
 
 
-	// size of map 
+	// size of map
 	ssize_t m_PatchesPerSide;
 	// heightmap for map
 	std::vector<u16> m_Heightmap;

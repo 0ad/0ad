@@ -112,7 +112,7 @@ private:
 		u8 r, g, b, a;
 		float x, y;
 	} SBandboxVertex;
-	
+
 	std::vector<SBandboxVertex> m_BandboxArray;
 };
 
@@ -121,7 +121,7 @@ private:
 class ActorViewer;
 
 /**
- * Actor Viewer window in Atlas. Dedicated view for examining a single actor/entity and its variations, 
+ * Actor Viewer window in Atlas. Dedicated view for examining a single actor/entity and its variations,
  * animations, etc. in more detail.
  */
 class AtlasViewActor : public AtlasView

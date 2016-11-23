@@ -43,7 +43,7 @@ const OsPath testSkeletonDefs(L"art/skeletons/skeletons.xml");
 
 extern PIVFS g_VFS;
 
-class TestMeshManager : public CxxTest::TestSuite 
+class TestMeshManager : public CxxTest::TestSuite
 {
 	void initVfs()
 	{

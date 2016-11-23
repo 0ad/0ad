@@ -48,14 +48,14 @@ public:
 
 	void RenderWater(CShaderProgramPtr& shader, bool onlyShore = false, bool fixedPipeline = false);
 
-	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
 			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
-	static void RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+	static void RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
 			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
 
 	CPatch* GetPatch() { return m_Patch; }
-	
+
 	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 
 	const CBoundingBoxAligned& GetWaterBounds() const { return m_WaterBounds; }
@@ -119,7 +119,7 @@ private:
 	// build this renderdata object
 	void Build();
 
-	void AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, 
+	void AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices,
 			   u16 i, u16 j, u8 shape, CTerrainTextureEntry* texture);
 
 	void BuildBlends();

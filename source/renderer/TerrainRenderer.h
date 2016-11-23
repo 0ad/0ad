@@ -38,7 +38,7 @@ class TerrainRenderer
 {
 	friend class CPatchRData;
 	friend class CDecalRData;
-	
+
 public:
 	TerrainRenderer();
 	~TerrainRenderer();

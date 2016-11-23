@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -71,7 +71,7 @@ LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
 LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
 
-// NB: there is a need for 'generic' paths (e.g. for Trace entry / archive pathnames). 
+// NB: there is a need for 'generic' paths (e.g. for Trace entry / archive pathnames).
 // converting between specialized variants via c_str would be inefficient, and the
 // Os/VfsPath typedefs are hopefully sufficient to avoid errors.
 class Path

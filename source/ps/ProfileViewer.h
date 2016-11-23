@@ -40,10 +40,10 @@ struct ProfileColumn
 {
 	/// Title of the column
 	CStr title;
-	
+
 	/// Recommended width of the column, in pixels.
 	size_t width;
-	
+
 	ProfileColumn(const CStr& t, size_t w) : title(t), width(w) { }
 };
 
@@ -53,7 +53,7 @@ struct ProfileColumn
  *
  * Clients that wish to display debug information in the profile viewer
  * have to implement this class and hook it into CProfileViewer.
- * 
+ *
  * Note that the profiling system is robust against deletion of
  * object instances in the sense that it will automatically remove
  * an AbstractProfileTable instance from its internal records when
@@ -65,42 +65,42 @@ class AbstractProfileTable
 {
 public:
 	virtual ~AbstractProfileTable();
-	
+
 	/**
 	 * GetName: Short descriptive name of this table (should be static).
 	 *
 	 * @return Descriptive name of this table.
 	 */
 	virtual CStr GetName() = 0;
-	
+
 	/**
 	 * GetTitle: Longer, explanatory text (can be dynamic).
 	 *
 	 * @return Title for the table.
 	 */
 	virtual CStr GetTitle() = 0;
-	
-	
+
+
 	/**
 	 * GetNumberRows
 	 *
 	 * @return Number of rows in this table.
 	 */
 	virtual size_t GetNumberRows() = 0;
-	
+
 	/**
 	 * GetColumnDescriptions
-	 * 
+	 *
 	 * @return A vector describing all columns of the table.
 	 */
 	virtual const std::vector<ProfileColumn>& GetColumns() = 0;
-	
+
 	/**
 	 * GetCellText
-	 * 
+	 *
 	 * @param row Row index (the first row has index 0).
 	 * @param col Column index (the first column has index 0).
-	 * 
+	 *
 	 * @return Text to be displayed in the given cell.
 	 */
 	virtual CStr GetCellText(size_t row, size_t col) = 0;
@@ -114,7 +114,7 @@ public:
 	 * Otherwise, return 0.
 	 */
 	virtual AbstractProfileTable* GetChild(size_t row) = 0;
-	
+
 	/**
 	 * IsHighlightRow
 	 *
@@ -134,7 +134,7 @@ struct CProfileViewerInternals;
 class CProfileViewer : public Singleton<CProfileViewer>
 {
 	friend class AbstractProfileTable;
-	
+
 public:
 	CProfileViewer();
 	~CProfileViewer();
@@ -144,21 +144,21 @@ public:
 	 * has enabled it.
 	 */
 	void RenderProfile();
-	
+
 	/**
 	 * Input: Filter and handle any input events that the profile display
 	 * is interested in.
-	 * 
+	 *
 	 * In particular, this function handles enable/disable of the profile
 	 * display as well as navigating the information tree.
-	 * 
+	 *
 	 * @param ev The incoming event.
-	 * 
+	 *
 	 * @return IN_PASS or IN_HANDLED depending on whether the event relates
 	 * to the profiling display.
 	 */
 	InReaction Input(const SDL_Event_* ev);
-	
+
 	/**
 	 * AddRootTable: Add a new profile table as a root table (i.e. the
 	 * tables that you cycle through via the profile hotkey).
@@ -201,7 +201,7 @@ public:
 	 * or the empty string to display no table.
 	 */
 	void ShowTable(const CStr& table);
-	
+
 private:
 	CProfileViewerInternals* m;
 };

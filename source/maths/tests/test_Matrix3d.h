@@ -22,7 +22,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
 
-class TestMatrix : public CxxTest::TestSuite 
+class TestMatrix : public CxxTest::TestSuite
 {
 public:
 	void test_inverse()
@@ -67,7 +67,7 @@ public:
 
 			// Quaternions (x,y,z,w) and (-x,-y,-z,-w) are equivalent when
 			// interpreted as rotations, so it doesn't matter which we get
-			const bool ok_oneway = 
+			const bool ok_oneway =
 				feq(q2.m_W, q.m_W) &&
 				feq(q2.m_V.X, q.m_V.X) &&
 				feq(q2.m_V.Y, q.m_V.Y) &&

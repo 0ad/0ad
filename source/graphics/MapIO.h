@@ -18,10 +18,10 @@
 #ifndef INCLUDED_MAPIO
 #define INCLUDED_MAPIO
 
-class CMapIO 
+class CMapIO
 {
 public:
-	// current file version given to saved maps 
+	// current file version given to saved maps
 	enum { FILE_VERSION = 6 };
 	// supported file read version - file with version less than this will be reject
 	enum { FILE_READ_VERSION = 6 };

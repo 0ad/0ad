@@ -40,7 +40,7 @@ class CModelAbstract : public CRenderableObject
 public:
 
 	/**
-	 * Describes a custom selection shape to be used for a model's selection box instead of the default 
+	 * Describes a custom selection shape to be used for a model's selection box instead of the default
 	 * recursive bounding boxes.
 	 */
 	struct CustomSelectionShape
@@ -59,9 +59,9 @@ public:
 	};
 
 public:
-	
+
 	CModelAbstract()
-		: m_Parent(NULL), m_PositionValid(false), m_ShadingColor(1, 1, 1, 1), m_PlayerID(INVALID_PLAYER), 
+		: m_Parent(NULL), m_PositionValid(false), m_ShadingColor(1, 1, 1, 1), m_PlayerID(INVALID_PLAYER),
 		  m_SelectionBoxValid(false), m_CustomSelectionShape(NULL)
 	{ }
 
@@ -92,7 +92,7 @@ public:
 	virtual const CBoundingBoxAligned GetWorldBoundsRec() { return GetWorldBounds(); } // default implementation
 
 	/**
-	 * Returns the world-space selection box of this model. Used primarily for hittesting against against a selection ray. The 
+	 * Returns the world-space selection box of this model. Used primarily for hittesting against against a selection ray. The
 	 * returned selection box may be empty to indicate that it does not wish to participate in the selection process.
 	 */
 	virtual const CBoundingBoxOriented& GetSelectionBox();
@@ -105,7 +105,7 @@ public:
 		m_SelectionBoxValid = false;
 	}
 
-	/// Sets a custom selection shape as described by a @p descriptor. Argument may be NULL 
+	/// Sets a custom selection shape as described by a @p descriptor. Argument may be NULL
 	/// if you wish to keep the default behaviour of using the recursively-calculated bounding boxes.
 	void SetCustomSelectionShape(CustomSelectionShape* descriptor)
 	{
@@ -121,7 +121,7 @@ public:
 	 * May return an empty bound to indicate that this model and its children should not be selectable themselves, or should
 	 * not be included in its parent model's selection box. This method is used for constructing the default selection boxes,
 	 * as opposed to any boxes of custom shape specified by @ref m_CustomSelectionShape.
-	 * 
+	 *
 	 * If you wish your model type to be included in selection boxes, override this method and have it return the object-space
 	 * bounds of itself, augmented recursively (via this method) with the object-space selection bounds of its children.
 	 */
@@ -180,8 +180,8 @@ protected:
 	/// Is the current selection box valid?
 	bool m_SelectionBoxValid;
 
-	/// Pointer to a descriptor for a custom-defined selection box shape. If no custom selection box is required, this is NULL 
-	/// and the standard recursive-bounding-box-based selection box is used. Otherwise, a custom selection box described by this 
+	/// Pointer to a descriptor for a custom-defined selection box shape. If no custom selection box is required, this is NULL
+	/// and the standard recursive-bounding-box-based selection box is used. Otherwise, a custom selection box described by this
 	/// field will be used.
 	/// @see SetCustomSelectionShape
 	CustomSelectionShape* m_CustomSelectionShape;

@@ -68,7 +68,7 @@ class CProfileNode
 
 	friend class CProfileManager;
 	friend class CProfileNodeTable;
-	
+
 	const char* name;
 
 	int calls_frame_current;

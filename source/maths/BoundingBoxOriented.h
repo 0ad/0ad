@@ -23,14 +23,14 @@
 class CBoundingBoxAligned;
 
 /*
- * Generic oriented box. Originally intended to be used an Oriented Bounding Box (OBB), 
+ * Generic oriented box. Originally intended to be used an Oriented Bounding Box (OBB),
  * as opposed to CBoundingBoxAligned which is always aligned to the world-space axes (AABB).
  * However, it could also be used to represent more generic shapes, such as parallelepipeds.
  */
-class CBoundingBoxOriented 
+class CBoundingBoxOriented
 {
 public:
-	
+
 	/// Empty constructor; creates an empty box
 	CBoundingBoxOriented() { SetEmpty(); }
 
@@ -91,17 +91,17 @@ public:
 	bool IsEmpty() const
 	{
 		CVector3D empty;
-		return (m_Center == empty && 
-			    m_Basis[0] == empty && 
-				m_Basis[1] == empty && 
-				m_Basis[2] == empty && 
+		return (m_Center == empty &&
+			    m_Basis[0] == empty &&
+				m_Basis[1] == empty &&
+				m_Basis[2] == empty &&
 				m_HalfSizes == empty);
 	}
 
 public:
 	CVector3D m_Center; ///< Centroid location of the box
 	CVector3D m_HalfSizes; ///< Half the sizes of the box in each dimension (u,v,w). Positive values are expected.
-	/// Basis vectors (u,v,w) of the sides. Must always be normalized, and should be 
+	/// Basis vectors (u,v,w) of the sides. Must always be normalized, and should be
 	/// orthogonal for a proper rectangular cuboid.
 	CVector3D m_Basis[3];
 
