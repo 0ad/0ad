@@ -110,7 +110,7 @@ void wdll_ver_Append(const OsPath& pathname, VersionList& list)
 
 	if(!list.empty())
 		list += L", ";
-	
+
 	list += moduleName.Filename().string();
 	list += L" (";
 	list += versionString;

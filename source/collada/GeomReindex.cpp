@@ -201,7 +201,7 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 		{
 			const float* dataTexcoord = texcoordSources[set]->GetData();
 			uint32 strideTexcoord = texcoordSources[set]->GetStride();
-			
+
 			uv_pair_type p;
 			p.first = dataTexcoord[indicesTexcoord[i]*strideTexcoord];
 			p.second = dataTexcoord[indicesTexcoord[i]*strideTexcoord + 1];

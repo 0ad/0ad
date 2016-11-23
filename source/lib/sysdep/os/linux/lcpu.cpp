@@ -162,7 +162,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 				previousProcessorMask |= uintptr_t(1) << processor;
 		}
 	}
-	
+
 	CPU_ZERO_S(setSize, set);
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{

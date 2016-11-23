@@ -62,14 +62,14 @@ sEnvironmentSettings GetSettings()
 		sunrotation -= (float)M_PI*2;
 	s.sunrotation = sunrotation;
 	s.sunelevation = g_LightEnv.GetElevation();
-	
+
 	s.posteffect = g_Renderer.GetPostprocManager().GetPostEffect();
 
 	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();
-	
+
 	s.fogfactor = g_LightEnv.m_FogFactor;
 	s.fogmax = g_LightEnv.m_FogMax;
-	
+
 	s.brightness = g_LightEnv.m_Brightness;
 	s.contrast = g_LightEnv.m_Contrast;
 	s.saturation = g_LightEnv.m_Saturation;
@@ -109,7 +109,7 @@ void SetSettings(const sEnvironmentSettings& s)
 		wm->m_WaterType = *s.watertype;
 		wm->ReloadWaterNormalTextures();
 	}
-	
+
 #define COLOR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
 	COLOR(s.watercolor, wm->m_WaterColor);
 	COLOR(s.watertint, wm->m_WaterTint);
@@ -117,7 +117,7 @@ void SetSettings(const sEnvironmentSettings& s)
 
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
-	
+
 	CStrW posteffect = *s.posteffect;
 	if (posteffect.length() == 0)
 		posteffect = L"default";
@@ -127,10 +127,10 @@ void SetSettings(const sEnvironmentSettings& s)
 	if (skySet.length() == 0)
 		skySet = L"default";
 	g_Renderer.GetSkyManager()->SetSkySet(skySet);
-	
+
 	g_LightEnv.m_FogFactor = s.fogfactor;
 	g_LightEnv.m_FogMax = s.fogmax;
-	
+
 	g_LightEnv.m_Brightness = s.brightness;
 	g_LightEnv.m_Contrast = s.contrast;
 	g_LightEnv.m_Saturation = s.saturation;
@@ -181,15 +181,15 @@ BEGIN_COMMAND(RecalculateWaterData)
 	{
 		Redo();
 	}
-	
+
 	void Redo()
 	{
 		CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		ENSURE(cmpWaterManager);
-		
+
 		cmpWaterManager->RecomputeWaterData();
 	}
-	
+
 	void Undo()
 	{
 		Redo();
@@ -198,7 +198,7 @@ BEGIN_COMMAND(RecalculateWaterData)
 };
 END_COMMAND(RecalculateWaterData)
 
-	
+
 QUERYHANDLER(GetEnvironmentSettings)
 {
 	msg->settings = GetSettings();

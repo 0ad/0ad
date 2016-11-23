@@ -301,7 +301,7 @@ public:
 		if (!cmpEntityMotion)
 			return error;
 		pass_class_t entityPass = cmpEntityMotion->GetPassabilityClass();
-		
+
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 

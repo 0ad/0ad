@@ -49,7 +49,7 @@ CTerrainTextureManager::CTerrainTextureManager()
 CTerrainTextureManager::~CTerrainTextureManager()
 {
 	UnloadTerrainTextures();
-	
+
 	for (std::pair<const VfsPath, TerrainAlpha>& ta : m_TerrainAlphas)
 	{
 		ogl_tex_free(ta.second.m_hCompositeAlphaMap);

@@ -96,7 +96,7 @@ void CLogger::Init()
 	m_NumberOfMessages = 0;
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
-	
+
 	*m_MainLog << html_header0 << engine_version << ") Main log" << html_header1;
 	*m_InterestingLog << html_header0 << engine_version << ") Main log (warnings and errors only)" << html_header1;
 }
@@ -117,7 +117,7 @@ CLogger::~CLogger()
 
 	*m_MainLog << "<p>Engine exited successfully on " << currentDate;
 	*m_MainLog << " at " << currentTime << buffer << "</p>\n";
-	
+
 	*m_InterestingLog << "<p>Engine exited successfully on " << currentDate;
 	*m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
 
@@ -148,7 +148,7 @@ void CLogger::WriteMessage(const char* message, bool doRender = false)
 
 	*m_MainLog << "<p>" << cmessage << "</p>\n";
 	m_MainLog->flush();
-	
+
 	if (doRender)
 	{
 		if (g_Console) g_Console->InsertMessage(std::string("INFO: ") + message);

@@ -59,11 +59,11 @@ public:
 	virtual CStr GetTitle();
 	virtual size_t GetNumberRows();
 	virtual const std::vector<ProfileColumn>& GetColumns();
-	
+
 	virtual CStr GetCellText(size_t row, size_t col);
 	virtual AbstractProfileTable* GetChild(size_t row);
 	virtual bool IsHighlightRow(size_t row);
-	
+
 private:
 	/**
 	 * struct ColumnDescription: The only purpose of this helper structure
@@ -73,7 +73,7 @@ private:
 	struct ColumnDescription
 	{
 		std::vector<ProfileColumn> columns;
-		
+
 		ColumnDescription()
 		{
 			columns.push_back(ProfileColumn("Name", 230));
@@ -85,10 +85,10 @@ private:
 			columns.push_back(ProfileColumn("mallocs/turn", 80));
 		}
 	};
-	
+
 	/// The node represented by this table
 	CProfileNode* node;
-	
+
 	/// Columns description (shared by all instances)
 	static ColumnDescription columnDescription;
 };
@@ -139,7 +139,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 	size_t nrchildren = node->GetChildren()->size();
 	size_t nrscriptchildren = node->GetScriptChildren()->size();
 	char buf[256] = "?";
-	
+
 	if (row < nrchildren)
 		child = (*node->GetChildren())[row];
 	else if (row < nrchildren + nrscriptchildren)
@@ -155,7 +155,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			return "";
 		else if (col == 4)
 			return "";
-		
+
 		double unlogged_time_frame = node->GetFrameTime();
 		double unlogged_time_turn = node->GetTurnTime();
 		double unlogged_mallocs_frame = node->GetFrameMallocs();
@@ -176,7 +176,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			unlogged_mallocs_frame -= (*it)->GetFrameMallocs();
 			unlogged_mallocs_turn -= (*it)->GetTurnMallocs();
 		}
-		
+
 		// The root node can't easily count per-turn values (since Turn isn't called until
 		// halfway though a frame), so just reset them the zero to prevent weird displays
 		if (!node->GetParent())
@@ -193,16 +193,16 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", unlogged_time_turn * 1000.f);
 		else if (col == 6)
 			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged_mallocs_turn);
-		
+
 		return CStr(buf);
 	}
-	
+
 	switch(col)
 	{
 	default:
 	case 0:
 		return child->GetName();
-		
+
 	case 1:
 		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameCalls());
 		break;
@@ -231,17 +231,17 @@ AbstractProfileTable* CProfileNodeTable::GetChild(size_t row)
 	CProfileNode* child;
 	size_t nrchildren = node->GetChildren()->size();
 	size_t nrscriptchildren = node->GetScriptChildren()->size();
-	
+
 	if (row < nrchildren)
 		child = (*node->GetChildren())[row];
 	else if (row < nrchildren + nrscriptchildren)
 		child = (*node->GetScriptChildren())[row - nrchildren];
 	else
 		return 0;
-	
+
 	if (child->CanExpand())
 		return child->display_table;
-	
+
 	return 0;
 }
 
@@ -250,7 +250,7 @@ bool CProfileNodeTable::IsHighlightRow(size_t row)
 {
 	size_t nrchildren = node->GetChildren()->size();
 	size_t nrscriptchildren = node->GetScriptChildren()->size();
-	
+
 	return (row >= nrchildren && row < (nrchildren + nrscriptchildren));
 }
 
@@ -275,10 +275,10 @@ CProfileNode::~CProfileNode()
 {
 	profile_iterator it;
 	for( it = children.begin(); it != children.end(); ++it )
-		delete( *it );	
+		delete( *it );
 	for( it = script_children.begin(); it != script_children.end(); ++it )
 		delete( *it );
-	
+
 	delete display_table;
 }
 
@@ -346,7 +346,7 @@ CProfileNode* CProfileNode::GetChild( const char* childName )
 	for( it = children.begin(); it != children.end(); ++it )
 		if( (*it)->name == childName )
 			return( *it );
-	
+
 	CProfileNode* newNode = new CProfileNode( childName, this );
 	children.push_back( newNode );
 	return( newNode );
@@ -358,7 +358,7 @@ CProfileNode* CProfileNode::GetScriptChild( const char* childName )
 	for( it = script_children.begin(); it != script_children.end(); ++it )
 		if( (*it)->name == childName )
 			return( *it );
-	
+
 	CProfileNode* newNode = new CProfileNode( childName, this );
 	script_children.push_back( newNode );
 	return( newNode );
@@ -402,7 +402,7 @@ void CProfileNode::Frame()
 	calls_frame_current = 0;
 	time_frame_current = 0.0;
 	mallocs_frame_current = 0;
-	
+
 	profile_iterator it;
 	for (it = children.begin(); it != children.end(); ++it)
 		(*it)->Frame();

@@ -62,7 +62,7 @@ bool COggData::InitOggFile(const VfsPath& itemPath)
 	if (!sndManager)
 		return false;
 
-	int buffersToStart = sndManager->GetBufferCount();	
+	int buffersToStart = sndManager->GetBufferCount();
 	if (OpenOggNonstream(g_VFS, itemPath, ogg) != INFO::OK)
 		return false;
 
@@ -72,9 +72,9 @@ bool COggData::InitOggFile(const VfsPath& itemPath)
 	SetFileName(itemPath);
 
 	AL_CHECK;
-	
+
 	alGenBuffers(buffersToStart, m_Buffer);
-	
+
 	ALenum err = alGetError();
 	if (err != AL_NO_ERROR)
 	{
@@ -124,10 +124,10 @@ int COggData::FetchDataIntoBuffer(int count, ALuint* buffers)
 		return 0;
 
 	long bufferSize = sndManager->GetBufferSize();
-	
+
 	u8* pcmout = new u8[bufferSize + 5000];
 	int buffersWritten = 0;
-	
+
 	for (int i = 0; i < count && !m_FileFinished; ++i)
 	{
 		memset(pcmout, 0, bufferSize + 5000);

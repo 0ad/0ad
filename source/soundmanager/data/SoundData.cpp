@@ -56,7 +56,7 @@ void CSoundData::ReleaseSoundData(CSoundData* theData)
 }
 
 CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
-{	
+{
 	Path fExt = itemPath.Extension();
 	DataMap::iterator itemFind;
 	CSoundData* answer = NULL;
@@ -69,12 +69,12 @@ CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
 	{
 	  if (fExt == ".ogg")
 			answer = SoundDataFromOgg(itemPath);
-	
+
 		if (answer && answer->IsOneShot())
 		{
 			CSoundData::sSoundData[itemPath.string()] = answer;
 		}
-	
+
 	}
 
 	return answer;
@@ -124,7 +124,7 @@ CSoundData* CSoundData::IncrementCount()
 bool CSoundData::DecrementCount()
 {
 	m_RetentionCount--;
-	
+
 	return (m_RetentionCount <= 0);
 }
 

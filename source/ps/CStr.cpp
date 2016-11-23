@@ -305,7 +305,7 @@ void CStr::Remove(const CStr& Str)
 	while (FoundAt != npos)
 	{
 		FoundAt = find(Str, 0);
-		
+
 		if (FoundAt != npos)
 			erase(FoundAt, Str.length());
 	}
@@ -315,7 +315,7 @@ void CStr::Remove(const CStr& Str)
 void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 {
 	size_t Pos = 0;
-	
+
 	while (Pos != npos)
 	{
 		Pos = find(ToReplace, Pos);
@@ -358,7 +358,7 @@ std::string CStr::EscapeToPrintableASCII() const
 CStr CStr::Trim(PS_TRIM_MODE Mode) const
 {
 	size_t Left = 0, Right = 0;
-	
+
 	switch (Mode)
 	{
 		case PS_TRIM_LEFT:
@@ -367,7 +367,7 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 				if (_istspace((*this)[Left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 		} break;
-		
+
 		case PS_TRIM_RIGHT:
 		{
 			Right = length();
@@ -375,7 +375,7 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 				if (_istspace((*this)[Right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
-		
+
 		case PS_TRIM_BOTH:
 		{
 			for (Left = 0; Left < length(); Left++)
@@ -402,7 +402,7 @@ CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
 
 	if (Length <= length())
 		return *this;
-	
+
 	// From here: Length-length() >= 1
 
 	switch (Mode)

@@ -705,7 +705,7 @@ size_t Tex::img_size() const
 size_t tex_hdr_size(const VfsPath& filename)
 {
 	const ITexCodec* c;
-	
+
 	const OsPath extension = filename.Extension();
 	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);

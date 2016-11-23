@@ -559,7 +559,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 			memcpy(&len, buffer + readPos, sizeof(len));
 			ENSURE(len <= CProfiler2::MAX_ATTRIBUTE_LENGTH);
 			readPos += sizeof(len);
-			
+
 			char message[CProfiler2::MAX_ATTRIBUTE_LENGTH] = {0};
 			memcpy(&message[0], buffer + readPos, len);
 			CStr mess = CStr((const char*)message, len);
@@ -620,7 +620,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 		}
 
 		curTime += std::get<1>(type.second);
-		
+
 		float leave_time = (float)curTime;
 		buffer[writePos] = (u8)CProfiler2::ITEM_LEAVE;
 		memcpy(buffer + writePos + 1, &leave_time, sizeof(float));

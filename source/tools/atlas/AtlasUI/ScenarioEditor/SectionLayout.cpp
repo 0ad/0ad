@@ -284,7 +284,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 			sidebar->GetBottomBar()->Show(false); \
 		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
 		m_PageMappings.insert(std::make_pair(L###classname, (int)m_SidebarBook->GetPageCount()-1));
-	
+
 	ADD_SIDEBAR(MapSidebar,             _T("map.png"),         _("Map"));
 	ADD_SIDEBAR(PlayerSidebar,          _T("player.png"),      _("Player"));
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));

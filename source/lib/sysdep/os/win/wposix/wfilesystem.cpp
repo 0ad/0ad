@@ -62,7 +62,7 @@ static inline WDIR* wdir_alloc()
 {
 	if(cpu_CAS(&wdir_in_use, 0, 1))	// gained ownership
 		return &wdir_storage;
-	
+
 	// already in use (rare) - allocate from heap
 	return new WDIR;
 }

@@ -62,7 +62,7 @@ public:
 
 	typedef struct {
 		entity_pos_t dx, dz;
-		entity_angle_t da;	
+		entity_angle_t da;
 		entity_pos_t size0, size1;
 		flags_t flags;
 	} Shape;
@@ -522,7 +522,7 @@ public:
 	{
 		return m_ControlPersist;
 	}
-	
+
 	virtual EFoundationCheck CheckFoundation(std::string className)
 	{
 		return  CheckFoundation(className, false);
@@ -768,7 +768,7 @@ protected:
 		// Disable block movement and block pathfinding for the obstruction shape
 		flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
 		flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
-		
+
 		m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
 			x, z, a, m_Size0, m_Size1, flags, m_ControlGroup, m_ControlGroup2);
 
@@ -780,7 +780,7 @@ protected:
 			Shape& b = m_Shapes[i];
 			tag_t tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
 				x + b.dx.Multiply(c) + b.dz.Multiply(s), z + b.dz.Multiply(c) - b.dx.Multiply(s), a + b.da, b.size0, b.size1, b.flags, m_ControlGroup, m_ControlGroup2);
-			m_ClusterTags.push_back(tag);	
+			m_ClusterTags.push_back(tag);
 		}
 	}
 

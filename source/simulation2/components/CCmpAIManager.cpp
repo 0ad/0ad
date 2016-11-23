@@ -281,14 +281,14 @@ public:
 	{
 		for (size_t i=0; i<m_Players.size(); i++)
 		{
-			if (m_Players[i]->m_Player == playerid)	
+			if (m_Players[i]->m_Player == playerid)
 			{
 				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd));
 				return;
 			}
 		}
 
-		LOGERROR("Invalid playerid in PostCommand!");	
+		LOGERROR("Invalid playerid in PostCommand!");
 	}
 
 	static JS::Value ComputePath(ScriptInterface::CxPrivate* pCxPrivate,
@@ -539,7 +539,7 @@ public:
 
 			JS::AutoCheckCannotGC nogc;
 			memcpy((void*)JS_GetUint16ArrayData(dataObj, nogc), m_PassabilityMap.m_Data, nbytes);
-		}		
+		}
 	}
 
 	void UpdateTerritoryMap(const Grid<u8>& territoryMap)
@@ -548,7 +548,7 @@ public:
 		bool dimensionChange = m_TerritoryMap.m_W != territoryMap.m_W || m_TerritoryMap.m_H != territoryMap.m_H;
 
 		m_TerritoryMap = territoryMap;
-		
+
 		JSContext* cx = m_ScriptInterface->GetContext();
 		if (dimensionChange)
 			ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, m_TerritoryMap);

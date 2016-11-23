@@ -79,14 +79,14 @@ bool CLOSTexture::CreateShader()
 	CShaderProgramPtr shader = m_smoothShader->GetShader();
 
 	m_ShaderInitialized = m_smoothShader && shader;
-	
+
 	if (!m_ShaderInitialized)
 	{
 		LOGERROR("Failed to load SmoothLOS shader, disabling.");
 		g_Renderer.m_Options.m_SmoothLOS = false;
 		return false;
 	}
-		
+
 	pglGenFramebuffersEXT(1, &m_smoothFbo);
 	return true;
 }
@@ -159,7 +159,7 @@ void CLOSTexture::InterpolateLOS()
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
 				   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
-	
+
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
@@ -168,20 +168,20 @@ void CLOSTexture::InterpolateLOS()
 
 	m_smoothShader->BeginPass();
 	CShaderProgramPtr shader = m_smoothShader->GetShader();
-	
+
 	glDisable(GL_BLEND);
-	
+
 	shader->Bind();
-	
+
 	shader->BindTexture(str_losTex1, m_Texture);
 	shader->BindTexture(str_losTex2, whichTex ? m_TextureSmooth1 : m_TextureSmooth2);
-	
+
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
-	
+
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp = { 0, 0, m_TextureSize, m_TextureSize };
 	g_Renderer.SetViewport(vp);
-	
+
 	float quadVerts[] = {
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
@@ -204,16 +204,16 @@ void CLOSTexture::InterpolateLOS()
 	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-	
+
 	g_Renderer.SetViewport(oldVp);
 
 	shader->Unbind();
 	m_smoothShader->EndPass();
-	
+
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 0, 0);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, originalFBO);
-	
+
 	whichTex = !whichTex;
 }
 
@@ -257,12 +257,12 @@ void CLOSTexture::ConstructTexture(int unit)
 	// overwrite with glTexSubImage2D later
 	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
 	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
-	
+
 	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
 	{
 		glGenTextures(1, &m_TextureSmooth1);
 		glGenTextures(1, &m_TextureSmooth2);
-		
+
 		g_Renderer.BindTexture(unit, m_TextureSmooth1);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -277,16 +277,16 @@ void CLOSTexture::ConstructTexture(int unit)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	}
-	
+
 	g_Renderer.BindTexture(unit, m_Texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	
-	delete[] texData;	
-	
+
+	delete[] texData;
+
 	{
 		// Texture matrix: We want to map
 		//   world pos (0, y, 0)  (i.e. first vertex)
@@ -348,9 +348,9 @@ void CLOSTexture::RecomputeTexture(int unit)
 
 	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS && recreated)
 	{
-		g_Renderer.BindTexture(unit, m_TextureSmooth1);		
+		g_Renderer.BindTexture(unit, m_TextureSmooth1);
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
-		g_Renderer.BindTexture(unit, m_TextureSmooth2);		
+		g_Renderer.BindTexture(unit, m_TextureSmooth2);
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
 	}
 

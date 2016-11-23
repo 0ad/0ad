@@ -139,7 +139,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
 		return strcmp(locale.getLanguage(), l->getLanguage()) == 0
 		       && strcmp(locale.getCountry(), l->getCountry()) == 0;
 	};
-	
+
 	if (strcmp(locale.getCountry(), "") != 0
 	    && std::find_if(availableLocales.begin(), availableLocales.end(), checkLangAndCountry) != availableLocales.end())
 	{
@@ -156,7 +156,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
 		stream << locale.getLanguage();
 		return stream.str();
 	}
-	
+
 	return L"";
 }
 
@@ -181,7 +181,7 @@ void L10n::GetDictionaryLocale(const std::string& configLocaleString, Locale& ou
 		else
 			LOGWARNING("The configured locale is not valid or no translations are available. Falling back to another locale.");
 	}
-	
+
 	Locale systemLocale = Locale::getDefault();
 	if (ValidateLocale(systemLocale))
 		outLocale = systemLocale;

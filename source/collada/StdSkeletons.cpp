@@ -108,7 +108,7 @@ namespace
 
 			Bone b;
 			b.name = name;
-			
+
 			std::string newTargetName = targetName;
 
 			if (targetSkeleton)
@@ -151,7 +151,7 @@ namespace
 			std::unique_ptr<Skeleton> skeleton (new Skeleton());
 
 			std::string title (FUXmlParser::ReadNodeProperty(*skeletonNode, "title"));
-			
+
 			skeleton->m->title = title;
 
 			if (IsEquivalent((*skeletonNode)->name, "standard_skeleton"))

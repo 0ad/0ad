@@ -59,7 +59,7 @@ MessagePasserImpl::MessagePasserImpl()
 		m_SemaphoreName = name;
 		break;
 	}
-	
+
 	if (! m_Semaphore)
 	{
 		debug_warn(L"Failed to create semaphore for Atlas - giving up");
@@ -154,7 +154,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 // 	// On Win32, use MsgWaitForMultipleObjects, which waits on the semaphore
 // 	// but is also interrupted by incoming Windows-messages.
 //	// while (0 != (err = sem_msgwait_np(psem)))
-// 	
+//
 // 	while (0 != (err = sem_wait(psem)))
 // #else
 // 	// TODO: On non-Win32, I have no idea whether the same problem exists; but

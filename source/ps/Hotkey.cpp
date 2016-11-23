@@ -124,7 +124,7 @@ void LoadHotkeys()
 			for (const SKey& k : hotkey.requires)
 				if (!k.negated)
 					allNegated = false;
-			
+
 			if (allNegated)
 				g_HotkeyStatus[hotkey.name] = true;
 		}

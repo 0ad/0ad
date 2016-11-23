@@ -75,7 +75,7 @@ public:
 		// Because this is just graphical effects, and because it's all non-deterministic floating point,
 		// we don't do much serialization here.
 		// (That means projectiles will vanish if you save/load - is that okay?)
-		
+
 		// The attack code stores the id so that the projectile gets deleted when it hits the target
 		serialize.NumberU32_Unbounded("next id", m_NextId);
 	}
@@ -83,7 +83,7 @@ public:
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
-		
+
 		// The attack code stores the id so that the projectile gets deleted when it hits the target
 		deserialize.NumberU32_Unbounded("next id", m_NextId);
 	}
@@ -111,7 +111,7 @@ public:
 	{
 		return LaunchProjectile(source, target, speed, gravity);
 	}
-	
+
 	virtual void RemoveProjectile(uint32_t);
 
 private:
@@ -126,13 +126,13 @@ private:
 		float gravity;
 		bool stopped;
 		uint32_t id;
-		
+
 		CVector3D position(float t)
 		{
 			float t2 = t;
 			if (t2 > timeHit)
 				t2 = timeHit + logf(1.f + t2 - timeHit);
-			
+
 			CVector3D ret(origin);
 			ret.X += v.X * t2;
 			ret.Z += v.Z * t2;
@@ -144,7 +144,7 @@ private:
 	std::vector<Projectile> m_Projectiles;
 
 	uint32_t m_ActorSeed;
-	
+
 	uint32_t m_NextId;
 
 	uint32_t LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, fixed speed, fixed gravity);
@@ -162,7 +162,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 {
 	// This is network synced so don't use GUI checks before incrementing or it breaks any non GUI simulations
 	uint32_t currentId = m_NextId++;
-	
+
 	if (!GetSimContext().HasUnitManager())
 		return currentId; // do nothing if graphics are disabled
 
@@ -184,7 +184,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 	projectile.time = 0.f;
 	projectile.stopped = false;
 	projectile.gravity = gravity.ToFloat();
-	
+
 	projectile.origin = cmpSourceVisual->GetProjectileLaunchPoint();
 	if (!projectile.origin)
 	{
@@ -211,7 +211,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 	projectile.v.Y = offset.Y / projectile.timeHit  + 0.5f * projectile.gravity * projectile.timeHit;
 
 	m_Projectiles.push_back(projectile);
-	
+
 	return projectile.id;
 }
 
@@ -226,7 +226,7 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt)
 		delta = projectile.pos;
 	else // For big dt delta is unprecise
 		delta = projectile.position(projectile.time - 0.1f);
-	
+
 	projectile.pos = projectile.position(projectile.time);
 
 	delta = projectile.pos - delta;

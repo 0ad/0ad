@@ -98,7 +98,7 @@ void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& lo
 		wxLogError(_("Failed to load toolbar icon image '%s'"), iconPath.GetFullPath().c_str());
 		return;
 	}
-	
+
 	if (m_Size == -1)
 	{
 		m_Size = img.GetWidth();
@@ -110,7 +110,7 @@ void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& lo
 
 	AddCheckTool(m_Id, shortLabel, wxBitmap(img), wxNullBitmap, longLabel);
 	m_Buttons[m_Id] = Button(toolName, sectionPage);
-	
+
 	RegisterToolBarButton(this, m_Id, toolName);
 
 	++m_Id;

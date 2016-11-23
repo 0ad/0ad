@@ -211,7 +211,7 @@ void SimRender::ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLi
 
 	const CVector3D& pMin = bound[0];
 	const CVector3D& pMax = bound[1];
-	
+
 	// floor square
 	overlayLine.PushCoords(pMin.X, pMin.Y, pMin.Z);
 	overlayLine.PushCoords(pMax.X, pMin.Y, pMin.Z);
@@ -259,7 +259,7 @@ void SimRender::ConstructBoxOutline(const CBoundingBoxOriented& box, SOverlayLin
 void SimRender::ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps)
 {
 	ENSURE(numSteps > 0 && numSteps % 4 == 0); // must be a positive multiple of 4
-	
+
 	out.m_Coords.clear();
 
 	size_t fullCircleSteps = numSteps;
@@ -272,7 +272,7 @@ void SimRender::ConstructGimbal(const CVector3D& center, float radius, SOverlayL
 
 	// first draw a quarter of XZ gimbal; then complete the XY gimbal; then continue the XZ gimbal and finally add the YZ gimbal
 	// (that way we can keep a single continuous line)
-	
+
 	// -- XZ GIMBAL (PART 1/2) -----------------------------------------------
 
 	CQuaternion xzRotation;

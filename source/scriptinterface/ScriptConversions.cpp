@@ -405,7 +405,7 @@ template<typename T> static bool FromJSVal_vector(JSContext* cx, JS::HandleValue
 	obj = &v.toObject();
 	if (!(JS_IsArrayObject(cx, obj) || JS_IsTypedArrayObject(obj)))
 		FAIL("Argument must be an array");
-	
+
 	u32 length;
 	if (!JS_GetArrayLength(cx, obj, &length))
 		FAIL("Failed to get array length");

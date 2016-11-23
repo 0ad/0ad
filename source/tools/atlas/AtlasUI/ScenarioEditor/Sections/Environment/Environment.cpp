@@ -49,7 +49,7 @@ public:
 		m_Slider = new wxSlider(this, -1, 0, 0, range);
 		m_Sizer->Add(m_Slider, wxSizerFlags().Expand());
 	}
-	
+
 	void OnSettingsChange(const AtlasMessage::sEnvironmentSettings& WXUNUSED(env))
 	{
 		m_Slider->SetValue((m_Var - m_Min) * (range / (m_Max - m_Min)));
@@ -229,7 +229,7 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	list.push_back(L"ocean"); list.push_back(L"lake"); list.push_back(L"clap");
 	m_WaterTypeList->SetChoices(list);
 
-	
+
 	wxSizer* sunSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Sun / lighting settings"));
 	scrollSizer->Add(sunSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
@@ -244,7 +244,7 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Fog color"), g_EnvironmentSettings.fogcolor), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Terrain ambient color"), g_EnvironmentSettings.terraincolor), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Object ambient color"), g_EnvironmentSettings.unitcolor), wxSizerFlags().Expand());
-	
+
 	wxSizer* postProcSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Post-processing settings"));
 	scrollSizer->Add(postProcSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
@@ -264,7 +264,7 @@ void EnvironmentSidebar::OnFirstDisplay()
 	AtlasMessage::qGetSkySets qry_skysets;
 	qry_skysets.Post();
 	m_SkyList->SetChoices(*qry_skysets.skysets);
-	
+
 	AtlasMessage::qGetPostEffects qry_effects;
 	qry_effects.Post();
 	m_PostEffectList->SetChoices(*qry_effects.posteffects);

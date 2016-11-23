@@ -91,7 +91,7 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
 {
 	CFileUnpacker unpacker;
 	unpacker.Read(filename,"PSSA");
-			
+
 	// check version
 	if (unpacker.GetVersion()<FILE_READ_VERSION) {
 		throw PSERROR_File_InvalidVersion();

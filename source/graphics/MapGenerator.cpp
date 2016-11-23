@@ -88,10 +88,10 @@ bool CMapGeneratorWorker::Run()
 		~AutoFree() { SAFE_DELETE(m_p); }
 		ScriptInterface* m_p;
 	} autoFree(m_ScriptInterface);
-	
+
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
 	// Replace RNG with a seeded deterministic function
@@ -116,7 +116,7 @@ bool CMapGeneratorWorker::Run()
 		LOGERROR("CMapGeneratorWorker::Run: Failed to parse settings");
 		return false;
 	}
-	
+
 	// Init RNG seed
 	u32 seed;
 	if (!m_ScriptInterface->GetProperty(settingsVal, "Seed", seed))
@@ -228,7 +228,7 @@ CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPriva
 	const CParamNode& templateRoot = self->m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());
-	
+
 	return templateRoot;
 }
 

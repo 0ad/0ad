@@ -741,7 +741,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())
 	{
@@ -1205,11 +1205,11 @@ JS::Value CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate
 	componentManager->GetScriptInterface().ReadJSONFile(path, &out);
 	return out;
 }
-	
+
 Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	FindJSONFilesCallbackData* data = (FindJSONFilesCallbackData*)cbData;
-	
+
 	VfsPath pathstem = pathname.ChangeExtension(L"");
 	// Strip the root from the path
 	std::wstring name = pathstem.string().substr(data->path.string().length());
@@ -1223,7 +1223,7 @@ std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface
 {
 	FindJSONFilesCallbackData cbData;
 	cbData.path = VfsPath(L"simulation/data/" + subPath + L"/");
-	
+
 	int dir_flags = 0;
 	if (recursive) {
 		dir_flags = vfs::DIR_RECURSIVE;
@@ -1237,6 +1237,6 @@ std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface
 		wchar_t error[200];
 		LOGERROR("Error reading directory '%s': %s", cbData.path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
 	}
-	
+
 	return cbData.templates;
 }

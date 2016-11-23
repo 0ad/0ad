@@ -76,7 +76,7 @@ void CSoundItem::Attach(CSoundData* itemData)
 		AL_CHECK;
 		m_SoundData = itemData->IncrementCount();
 		alSourcei(m_ALSource, AL_BUFFER, m_SoundData->GetBuffer());
-		
+
 		AL_CHECK;
 	}
 }

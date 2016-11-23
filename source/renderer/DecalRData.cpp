@@ -83,57 +83,57 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 	for (size_t i = 0; i < decals.size(); ++i)
 	{
 		CDecalRData *decal = decals[i];
-		
+
 		CMaterial &material = decal->m_Decal->m_Decal.m_Material;
-		
+
 		if (material.GetShaderEffect().length() == 0)
 		{
 			LOGERROR("Terrain renderer failed to load shader effect.\n");
 			continue;
 		}
-		
+
 		int numPasses = 1;
 		CShaderTechniquePtr techBase;
-		
+
 		if (!isDummyShader)
 		{
 			techBase = g_Renderer.GetShaderManager().LoadEffect(
 				material.GetShaderEffect(), contextDecal, material.GetShaderDefines(0));
-			
+
 			if (!techBase)
 			{
-				LOGERROR("Terrain renderer failed to load shader effect (%s)\n", 			
+				LOGERROR("Terrain renderer failed to load shader effect (%s)\n",
 						material.GetShaderEffect().string().c_str());
 				continue;
 			}
-			
+
 			numPasses = techBase->GetNumPasses();
 		}
-		
+
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			if (!isDummyShader)
 			{
 				techBase->BeginPass(pass);
 				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
-				
+
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			}
-			
+
 			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
-				
+
 			if (material.GetSamplers().size() != 0)
 			{
 				const CMaterial::SamplersVector& samplers = material.GetSamplers();
 				size_t samplersNum = samplers.size();
-				
+
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
 					const CMaterial::TextureSampler& samp = samplers[s];
 					shader->BindTexture(samp.Name, samp.Sampler);
 				}
-				
+
 				material.GetStaticUniforms().BindUniforms(shader);
 
 				// TODO: Need to handle floating decals correctly. In particular, we need
@@ -160,7 +160,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 				else
 #endif
 				{
-					
+
 					shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
 				}
 
@@ -182,7 +182,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 
 				CVertexBuffer::Unbind();
 			}
-			
+
 			if (!isDummyShader)
 			{
 				glDisable(GL_BLEND);

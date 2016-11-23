@@ -342,7 +342,7 @@ static Status InitIdentifierString()
 				else if(model == 3 || model == 5)
 					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Pentium II");
 				else if(model == 6)
-					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Celeron");	
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Celeron");
 				else
 					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Pentium III");
 			}

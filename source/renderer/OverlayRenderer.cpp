@@ -154,7 +154,7 @@ void OverlayRendererInternals::Initialize()
 	// Perform any initialization after graphics capabilities have been detected. Notably,
 	// only at this point can we safely allocate VBOs (in contrast to e.g. in the constructor),
 	// because their creation depends on the shader path, which is not reliably set before this point.
-	
+
 	quadVertices.SetNumVertices(MAX_QUAD_OVERLAYS * 4);
 	quadVertices.Layout(); // allocate backing store
 
@@ -244,7 +244,7 @@ void OverlayRenderer::EndFrame()
 
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
-	
+
 	// Empty the batch rendering data structures, but keep their key mappings around for the next frames
 	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
@@ -323,7 +323,7 @@ void OverlayRenderer::PrepareForRendering()
 			*vertexPos++ = quad->m_Corners[1] + vOffset;
 			*vertexPos++ = quad->m_Corners[2] + vOffset;
 			*vertexPos++ = quad->m_Corners[3] + vOffset;
-			
+
 			(*vertexUV)[0] = 0;
 			(*vertexUV)[1] = 0;
 			++vertexUV;
@@ -551,10 +551,10 @@ void OverlayRenderer::RenderQuadOverlays()
 
 			if (streamflags & STREAM_UV1)
 				shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
-			
+
 			if (streamflags & STREAM_COLOR)
 				shader->ColorPointer(m->quadAttributeColor.elems, m->quadAttributeColor.type, vertexStride, vertexBase + m->quadAttributeColor.offset);
-			
+
 			shader->AssertPointersBound();
 			glDrawElements(GL_TRIANGLES, (GLsizei)(batchNumQuads * 6), GL_UNSIGNED_SHORT, indexBase + indexStride * batchRenderData.m_IndicesBase);
 
@@ -596,10 +596,10 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	
+
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
-	
+
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
 		tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
@@ -608,7 +608,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	}
 
 	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
-	
+
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
 	else
@@ -617,12 +617,12 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
 		SOverlaySprite* sprite = m->sprites[i];
-		
+
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 			shader->BindTexture(str_baseTex, sprite->m_Texture);
 		else
 			sprite->m_Texture->Bind();
-		
+
 		shader->Uniform(str_colorMul, sprite->m_Color);
 
 		CVector3D pos[4] = {
@@ -636,13 +636,13 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 			shader->VertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
 		else
 			glVertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
-		
+
 		glDrawArrays(GL_QUADS, 0, (GLsizei)4);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris += 2;
 	}
-	
+
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		tech->EndPass();
 

@@ -90,7 +90,7 @@ Status debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), co
 		wchar_t symbol[DEBUG_SYMBOL_CHARS];
 		int line;
 		int len;
-		
+
 		if (debug_ResolveSymbol(bt[i], symbol, file, &line) == 0)
 		{
 			if (file[0])
@@ -102,7 +102,7 @@ Status debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), co
 		{
 			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p)\n", bt[i]);
 		}
-		
+
 		if (len < 0)
 		{
 			// MAX_OUT_CHARS exceeded, realistically this was caused by some
@@ -111,7 +111,7 @@ Status debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), co
 			memcpy(&bufpos[MAX_OUT_CHARS-6], L"...\n", 5*sizeof(wchar_t));
 			len = MAX_OUT_CHARS;
 		}
-		
+
 		bufpos += len;
 	}
 

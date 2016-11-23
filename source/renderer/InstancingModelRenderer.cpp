@@ -85,7 +85,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_UVs[i].elems = 2;
 		m_Array.AddAttribute(&m_UVs[i]);
 	}
-	
+
 	if (gpuSkinning)
 	{
 		m_BlendJoints.type = GL_UNSIGNED_BYTE;
@@ -96,33 +96,33 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_BlendWeights.elems = 4;
 		m_Array.AddAttribute(&m_BlendWeights);
 	}
-	
+
 	if (calculateTangents)
 	{
 		// Generate tangents for the geometry:-
-		
+
 		m_Tangent.type = GL_FLOAT;
 		m_Tangent.elems = 4;
 		m_Array.AddAttribute(&m_Tangent);
-		
+
 		// floats per vertex; position + normal + tangent + UV*sets [+ GPUskinning]
 		int numVertexAttrs = 3 + 3 + 4 + 2 * mdef->GetNumUVsPerVertex();
 		if (gpuSkinning)
 		{
 			numVertexAttrs += 8;
 		}
-		
+
 		// the tangent generation can increase the number of vertices temporarily
 		// so reserve a bit more memory to avoid reallocations in GenTangents (in most cases)
 		std::vector<float> newVertices;
 		newVertices.reserve(numVertexAttrs * numVertices * 2);
-		
+
 		// Generate the tangents
 		ModelRenderer::GenTangents(mdef, newVertices, gpuSkinning);
-		
+
 		// how many vertices do we have after generating tangents?
 		int newNumVert = newVertices.size() / numVertexAttrs;
-		
+
 		std::vector<int> remapTable(newNumVert);
 		std::vector<float> vertexDataOut(newNumVert * numVertexAttrs);
 
@@ -131,14 +131,14 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 					&newVertices[0], newNumVert, numVertexAttrs);
 
 		// Copy the model data to graphics memory:-
-		
+
 		m_Array.SetNumVertices(numVertices2);
 		m_Array.Layout();
 
 		VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector4D> Tangent = m_Tangent.GetIterator<CVector4D>();
-		
+
 		VertexArrayIterator<u8[4]> BlendJoints;
 		VertexArrayIterator<u8[4]> BlendWeights;
 		if (gpuSkinning)
@@ -146,22 +146,22 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 			BlendJoints = m_BlendJoints.GetIterator<u8[4]>();
 			BlendWeights = m_BlendWeights.GetIterator<u8[4]>();
 		}
-		
+
 		// copy everything into the vertex array
 		for (int i = 0; i < numVertices2; i++)
 		{
 			int q = numVertexAttrs * i;
-			
+
 			Position[i] = CVector3D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2]);
 			q += 3;
-			
+
 			Normal[i] = CVector3D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2]);
 			q += 3;
 
 			Tangent[i] = CVector4D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2],
 					vertexDataOut[q + 3]);
 			q += 4;
-			
+
 			if (gpuSkinning)
 			{
 				for (size_t j = 0; j < 4; ++j)
@@ -171,7 +171,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 				}
 				q += 8;
 			}
-			
+
 			for (size_t j = 0; j < mdef->GetNumUVsPerVertex(); j++)
 			{
 				VertexArrayIterator<float[2]> UVit = m_UVs[j].GetIterator<float[2]>();
@@ -186,26 +186,26 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 
 		m_IndexArray.SetNumVertices(mdef->GetNumFaces() * 3);
 		m_IndexArray.Layout();
-		
+
 		VertexArrayIterator<u16> Indices = m_IndexArray.GetIterator();
-		
-		size_t idxidx = 0;	
+
+		size_t idxidx = 0;
 
 		// reindex geometry and upload index
 		for (size_t j = 0; j < mdef->GetNumFaces(); ++j)
-		{	
+		{
 			Indices[idxidx++] = remapTable[j * 3 + 0];
 			Indices[idxidx++] = remapTable[j * 3 + 1];
 			Indices[idxidx++] = remapTable[j * 3 + 2];
 		}
-		
+
 		m_IndexArray.Upload();
 		m_IndexArray.FreeBackingStore();
 	}
 	else
 	{
 		// Upload model without calculating tangents:-
-		
+
 		m_Array.SetNumVertices(numVertices);
 		m_Array.Layout();
 
@@ -250,7 +250,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 struct InstancingModelRendererInternals
 {
 	bool gpuSkinning;
-	
+
 	bool calculateTangents;
 
 	/// Previously prepared modeldef
@@ -333,13 +333,13 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 
 	if (streamflags & STREAM_NORMAL)
 		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
-	
+
 	if (m->calculateTangents)
 		shader->VertexAttribPointer(str_a_tangent, 4, GL_FLOAT, GL_TRUE, stride, base + m->imodeldef->m_Tangent.offset);
 
 	if (streamflags & STREAM_UV0)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[0].offset);
-	
+
 	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
 		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[1].offset);
 

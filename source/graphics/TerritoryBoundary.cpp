@@ -82,7 +82,7 @@ std::vector<STerritoryBoundary> CTerritoryBoundaryCalculator::ComputeBoundaries(
 	// If at some point we ever need to revert the winding order or external code needs to know about it explicitly, then we can
 	// do this by looking at a curvature value which we define to start at 0, and which is incremented by 1 for every CCW turn and
 	// decremented by 1 for every CW turn. Hence, a negative multiple of 4 means a CW winding order, and a positive one means CCW.
-	
+
 	const int TERRITORY_DISCR_MASK = (ICmpTerritoryManager::TERRITORY_BLINKING_MASK | ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
 
 	// Try to find an assigned tile

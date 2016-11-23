@@ -176,7 +176,7 @@ Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 {
 	char resolved[PATH_MAX + 1];
 
-	// init already failed; don't try again or complain	
+	// init already failed; don't try again or complain
 	if(initialized == -1)
 		return ERR::FAIL;	// NOWARN
 

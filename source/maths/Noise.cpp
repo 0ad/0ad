@@ -73,24 +73,24 @@ float Noise2D::operator()(float x, float y)
 {
 	x *= freq;
 	y *= freq;
-	
+
 	int ix = (int)floor(x);
 	int iy = (int)floor(y);
-	
+
 	float fx = x - ix;
 	float fy = y - iy;
-	
+
 	ix %= freq; if(ix<0) ix += freq;
 	iy %= freq; if(iy<0) iy += freq;
-	
+
 	int ix1 = (ix+1) % freq;
 	int iy1 = (iy+1) % freq;
-	
+
 	float s = grads[ix][iy].Dot(CVector2D(fx, fy));
 	float t = grads[ix1][iy].Dot(CVector2D(fx-1, fy));
 	float u = grads[ix][iy1].Dot(CVector2D(fx, fy-1));
 	float v = grads[ix1][iy1].Dot(CVector2D(fx-1, fy-1));
-	
+
 	float ex = easeCurve(fx);
 	float ey = easeCurve(fy);
 	float a = s + ex*(t-s);
@@ -139,45 +139,45 @@ float Noise3D::operator()(float x, float y, float z)
 	x *= freq;
 	y *= freq;
 	z *= vfreq;
-	
+
 	int ix = (int)floor(x);
 	int iy = (int)floor(y);
 	int iz = (int)floor(z);
-	
+
 	float fx = x - ix;
 	float fy = y - iy;
 	float fz = z - iz;
-	
+
 	ix %= freq; if(ix<0) ix += freq;
 	iy %= freq; if(iy<0) iy += freq;
 	iz %= vfreq; if(iz<0) iz += vfreq;
-	
+
 	int ix1 = (ix+1) % freq;
 	int iy1 = (iy+1) % freq;
 	int iz1 = (iz+1) % vfreq;
-	
+
 	float s0 = grads[ix][iy][iz].Dot(CVector3D(fx, fy, fz));
 	float t0 = grads[ix1][iy][iz].Dot(CVector3D(fx-1, fy, fz));
 	float u0 = grads[ix][iy1][iz].Dot(CVector3D(fx, fy-1, fz));
 	float v0 = grads[ix1][iy1][iz].Dot(CVector3D(fx-1, fy-1, fz));
-	
+
 	float s1 = grads[ix][iy][iz1].Dot(CVector3D(fx, fy, fz-1));
 	float t1 = grads[ix1][iy][iz1].Dot(CVector3D(fx-1, fy, fz-1));
 	float u1 = grads[ix][iy1][iz1].Dot(CVector3D(fx, fy-1, fz-1));
 	float v1 = grads[ix1][iy1][iz1].Dot(CVector3D(fx-1, fy-1, fz-1));
-	
+
 	float ex = easeCurve(fx);
 	float ey = easeCurve(fy);
 	float ez = easeCurve(fz);
-	
+
 	float a0 = s0 + ex*(t0-s0);
 	float b0 = u0 + ex*(v0-u0);
 	float c0 = a0 + ey*(b0-a0);
-	
+
 	float a1 = s1 + ex*(t1-s1);
 	float b1 = u1 + ex*(v1-u1);
 	float c1 = a1 + ey*(b1-a1);
-	
+
 	return (c0 + ez*(c1-c0)) * .5 + .5;
 }
 

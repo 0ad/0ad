@@ -37,7 +37,7 @@ MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSki
 {
 	// ensure that m_NewVertices is empty
 	m_NewVertices.clear();
-	
+
 	// set up SMikkTSpaceInterface struct
 	m_Interface.m_getNumFaces = getNumFaces;
 	m_Interface.m_getNumVerticesOfFace = getNumVerticesOfFace;
@@ -105,7 +105,7 @@ void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext,
 
 	// the tangents are calculated according to the 'default' UV set
 	fvTexcOut[0] = v.m_UVs[0];
-	fvTexcOut[1] = 1.0-v.m_UVs[1];		
+	fvTexcOut[1] = 1.0-v.m_UVs[1];
 }
 
 
@@ -115,27 +115,27 @@ void MikkTSpace::setTSpace(const SMikkTSpaceContext * pContext, const float fvTa
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
 	long i = face.m_Verts[iVert];
-	
+
 	SModelVertex* vertices = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetVertices();
 	size_t numUVsPerVertex = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetNumUVsPerVertex();
 	std::vector<float>& m_NewVertices = ((MikkTSpace*)pContext->m_pUserData)->m_NewVertices;
-	
+
 	const CVector3D &p = vertices[i].m_Coords;
-	const CVector3D &n = vertices[i].m_Norm;	
-	
+	const CVector3D &n = vertices[i].m_Norm;
+
 	m_NewVertices.push_back(p.X);
 	m_NewVertices.push_back(p.Y);
 	m_NewVertices.push_back(p.Z);
-	
+
 	m_NewVertices.push_back(n.X);
 	m_NewVertices.push_back(n.Y);
 	m_NewVertices.push_back(n.Z);
-	
+
 	m_NewVertices.push_back(fvTangent[0]);
 	m_NewVertices.push_back(fvTangent[1]);
 	m_NewVertices.push_back(fvTangent[2]);
 	m_NewVertices.push_back(bIsOrientationPreserving > 0.5 ? 1.0f : (-1.0f));
-	
+
 	if (((MikkTSpace*)pContext->m_pUserData)->m_GpuSkinning)
 	{
 		for (size_t j = 0; j < 4; ++j)

@@ -87,7 +87,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 	CVertexBuffer* buffer = new CVertexBuffer(vertexSize, usage, target);
 	m_Buffers.push_front(buffer);
 	result = buffer->Allocate(vertexSize, numVertices, usage, target, backingStore);
-	
+
 	if (!result)
 	{
 		LOGERROR("Failed to create VBOs (%lu*%lu)", (unsigned long)vertexSize, (unsigned long)numVertices);

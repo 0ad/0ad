@@ -409,7 +409,7 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 		if (g_ScriptStatsTable)
 			g_ScriptStatsTable->Add(this, debugName);
 	}
-	
+
 	m_CxPrivate.pScriptInterface = this;
 	JS_SetContextPrivate(m->m_cx, (void*)&m_CxPrivate);
 }
@@ -575,7 +575,7 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	JS::RootedObject obj(m->m_cx);
 	if (!JS_ValueToObject(m->m_cx, val, &obj) || !obj)
 		return false;
-	
+
 	// Check that the named function actually exists, to avoid ugly JS error reports
 	// when calling an undefined value
 	bool found;
@@ -708,7 +708,7 @@ bool ScriptInterface::GetProperty_(JS::HandleValue obj, const char* name, JS::Mu
 	if (!obj.isObject())
 		return false;
 	JS::RootedObject object(m->m_cx, &obj.toObject());
-	
+
 	if (!JS_GetProperty(m->m_cx, object, name, out))
 		return false;
 	return true;
@@ -721,7 +721,7 @@ bool ScriptInterface::GetPropertyInt_(JS::HandleValue obj, int name, JS::Mutable
 	if (!obj.isObject())
 		return false;
 	JS::RootedObject object(m->m_cx, &obj.toObject());
-	
+
 	if (!JS_GetPropertyById(m->m_cx, object, nameId, out))
 		return false;
 	return true;
@@ -744,16 +744,16 @@ bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name)
 bool ScriptInterface::EnumeratePropertyNamesWithPrefix(JS::HandleValue objVal, const char* prefix, std::vector<std::string>& out)
 {
 	JSAutoRequest rq(m->m_cx);
-	
+
 	if (!objVal.isObjectOrNull())
 	{
 		LOGERROR("EnumeratePropertyNamesWithPrefix expected object type!");
 		return false;
 	}
-		
+
 	if (objVal.isNull())
 		return true; // reached the end of the prototype chain
-	
+
 	JS::RootedObject obj(m->m_cx, &objVal.toObject());
 	JS::AutoIdArray props(m->m_cx, JS_Enumerate(m->m_cx, obj));
 	if (!props)
@@ -823,7 +823,7 @@ bool ScriptInterface::FreezeObject(JS::HandleValue objVal, bool deep)
 	JSAutoRequest rq(m->m_cx);
 	if (!objVal.isObject())
 		return false;
-	
+
 	JS::RootedObject obj(m->m_cx, &objVal.toObject());
 
 	if (deep)
@@ -926,7 +926,7 @@ bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval)
 	JSAutoRequest rq(m->m_cx);
 	JS::RootedObject global(m->m_cx, m->m_glob);
 	utf16string codeUtf16(code, code+strlen(code));
-	
+
 	JS::CompileOptions opts(m->m_cx);
 	opts.setFileAndLine("(eval)", 1);
 	return JS::Evaluate(m->m_cx, global, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval);

@@ -364,7 +364,7 @@ global.RunHardwareDetection = function(settings)
 
 	if (output.disable_allwater !== undefined)
 		Engine.SetDisableAllWater(output.disable_allwater);
-	
+
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
 

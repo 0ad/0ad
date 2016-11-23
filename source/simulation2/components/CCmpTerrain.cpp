@@ -95,7 +95,7 @@ public:
 	virtual u16 GetTilesPerSide()
 	{
 		ssize_t tiles = m_Terrain->GetTilesPerSide();
-		
+
 		if (tiles == -1)
 			return 0;
 		ENSURE(1 <= tiles && tiles <= 65535);
@@ -137,7 +137,7 @@ public:
 					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
 					vertices);
 		}
-		
+
 		if (ReloadWater && CRenderer::IsInitialised())
 		{
 			g_Renderer.GetWaterManager()->SetMapSize(vertices);

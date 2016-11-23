@@ -662,7 +662,7 @@ void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
 
 	for (size_t i = 0; i < m_BoundaryLines.size(); ++i)
 		collector.Submit(&m_BoundaryLines[i].overlay);
-	
+
 	for (size_t i = 0; i < m_DebugBoundaryLineNodes.size(); ++i)
 		collector.Submit(&m_DebugBoundaryLineNodes[i]);
 

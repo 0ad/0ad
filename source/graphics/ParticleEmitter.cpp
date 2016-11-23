@@ -181,7 +181,7 @@ void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 	shader->BindTexture(str_losTex, los.GetTextureSmooth());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
-	
+
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
 	shader->Uniform(str_fogColor, lightEnv.m_FogColor);

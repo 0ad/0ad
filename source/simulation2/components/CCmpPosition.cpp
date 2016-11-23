@@ -199,7 +199,7 @@ public:
 			case PITCH_ROLL:
 				anchor = "pitch-roll";
 				break;
-			
+
 			case ROLL:
 				anchor = "roll";
 				break;
@@ -353,12 +353,12 @@ public:
 		AdvertisePositionChanges();
 		AdvertiseInterpolatedPositionChanges();
 	}
-	
+
 	virtual void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry)
 	{
 		m_X = x;
 		m_Z = z;
-		
+
 		if (!m_InWorld)
 		{
 			m_InWorld = true;
@@ -366,7 +366,7 @@ public:
 			m_LastZ = m_PrevZ = m_Z;
 			m_LastYDifference = entity_pos_t::Zero();
 		}
-		
+
 		// TurnTo will advertise the position changes
 		TurnTo(ry);
 
@@ -680,7 +680,7 @@ public:
 		float x, z, rotY;
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
-	
+
 		float baseY = 0;
 		if (m_RelativeToGround)
 		{
@@ -701,7 +701,7 @@ public:
 		CMatrix3D m;
 
 		// linear interpolation is good enough (for RotX/Z).
-		// As you always stay close to zero angle.	
+		// As you always stay close to zero angle.
 		m.SetXRotation(Interpolate(m_LastInterpolatedRotX, m_InterpolatedRotX, frameOffset));
 		m.RotateZ(Interpolate(m_LastInterpolatedRotZ, m_InterpolatedRotZ, frameOffset));
 
@@ -777,7 +777,7 @@ public:
 				// Calculate new orientation, in a peculiar way in order to make sure the
 				// result gets close to m_orientation (rather than being n*2*M_PI out)
 				m_InterpolatedRotY = rotY + deltaClamped - delta;
-				
+
 				// update the visual XZ rotation
 				if (m_InWorld)
 				{
@@ -794,7 +794,7 @@ public:
 		}
 		case MT_TurnStart:
 		{
-			
+
 			m_LastInterpolatedRotX = m_InterpolatedRotX;
 			m_LastInterpolatedRotZ = m_InterpolatedRotZ;
 

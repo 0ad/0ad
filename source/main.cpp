@@ -158,7 +158,7 @@ static void PumpEvents()
 {
 	JSContext* cx = g_GUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	PROFILE3("dispatch events");
 
 	SDL_Event_ ev;

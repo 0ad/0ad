@@ -592,13 +592,13 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	cmpObstructionManager->GetStaticObstructionsInRange(filter, rangeXMin - clearance, rangeZMin - clearance, rangeXMax + clearance, rangeZMax + clearance, squares);
 	staticShapesNb = squares.size();
 	cmpObstructionManager->GetUnitObstructionsInRange(filter, rangeXMin - clearance, rangeZMin - clearance, rangeXMax + clearance, rangeZMax + clearance, squares);
-	
+
 	// Change array capacities to reduce reallocations
 	vertexes.reserve(vertexes.size() + squares.size()*4);
 	edgeSquares.reserve(edgeSquares.size() + squares.size()); // (assume most squares are AA)
 
 	entity_pos_t pathfindClearance = clearance;
-	
+
 	// Convert each obstruction square into collision edges and search graph vertexes
 	for (size_t i = 0; i < squares.size(); ++i)
 	{

@@ -110,11 +110,11 @@ static void* RunEngine(void* data)
 
 	const CmdLineArgs args = *reinterpret_cast<const CmdLineArgs*>(data);
 
-	MessagePasserImpl* msgPasser = (MessagePasserImpl*)AtlasMessage::g_MessagePasser;	
+	MessagePasserImpl* msgPasser = (MessagePasserImpl*)AtlasMessage::g_MessagePasser;
 
 	// Register all the handlers for message which might be passed back
 	RegisterHandlers();
-	
+
 	// Override ah_display_error to pass all errors to the Atlas UI
 	// TODO: this doesn't work well because it doesn't pause the game thread
 	//  and the error box is ugly, so only use it if we fix those issues
@@ -122,7 +122,7 @@ static void* RunEngine(void* data)
 	AppHooks hooks = {0};
 	hooks.display_error = AtlasDisplayError;
 	app_hooks_update(&hooks);
-	
+
 	// Disable the game's cursor rendering
 	extern CStrW g_CursorName;
 	g_CursorName = L"";
@@ -159,7 +159,7 @@ static void* RunEngine(void* data)
 			recent_activity = true;
 
 		//////////////////////////////////////////////////////////////////////////
-		
+
 		{
 			IMessage* msg;
 			while ((msg = msgPasser->Retrieve()) != NULL)

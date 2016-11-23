@@ -67,18 +67,18 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 		WARN_RETURN(ERR::FAIL);
 
 	int screen = XDefaultScreen(disp);
-	
+
 	/* 2004-07-13
 	NOTE: The XDisplayWidth/Height functions don't actually return the current
 	display mode - they return the size of the root window. This means that
 	users with "Virtual Desktops" bigger than what their monitors/graphics
 	card can handle will have to set their 0AD screen resolution manually.
-	
+
 	There's supposed to be an X extension that can give you the actual display
 	mode, probably including refresh rate info etc, but it's not worth
 	researching and implementing that at this stage.
 	*/
-	
+
 	if(xres)
 		*xres = XDisplayWidth(disp, screen);
 	if(yres)
@@ -99,10 +99,10 @@ Status GetMonitorSize(int& width_mm, int& height_mm)
 		WARN_RETURN(ERR::FAIL);
 
 	int screen = XDefaultScreen(disp);
-	
+
 	width_mm = XDisplayWidthMM(disp, screen);
 	height_mm = XDisplayHeightMM(disp, screen);
-	
+
 	XCloseDisplay(disp);
 	return INFO::OK;
 }
@@ -190,12 +190,12 @@ wchar_t *sys_clipboard_get()
 		Atom pty=XInternAtom(disp, "SelectionPropertyTemp", False);
 		XConvertSelection(disp, selSource, XA_STRING, pty, selOwner, CurrentTime);
 		XFlush(disp);
-		
+
 		Atom type;
 		int format=0, result=0;
 		unsigned long len=0, bytes_left=0, dummy=0;
 		u8 *data=NULL;
-		
+
 		// Get the length of the property and some attributes
 		// bytes_left will contain the length of the selection
 		result = XGetWindowProperty (disp, selOwner, pty,
@@ -215,12 +215,12 @@ wchar_t *sys_clipboard_get()
 				pty, 0, bytes_left, 0,
 				AnyPropertyType, &type, &format,
 				&len, &dummy, &data);
-			
+
 			if(result == Success)
 			{
 				debug_printf("clipboard_get: XGetWindowProperty succeeded, returning data\n");
 				debug_printf("clipboard_get: data was: \"%s\", type was %lu, XA_STRING atom is %lu\n", (char *)data, type, XA_STRING);
-				
+
 				if(type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
 				{
 					wchar_t *ret=(wchar_t *)malloc((bytes_left+1)*sizeof(wchar_t));
@@ -237,7 +237,7 @@ wchar_t *sys_clipboard_get()
 			}
 		}
 	}
-	
+
 	return NULL;
 }
 
@@ -286,12 +286,12 @@ int clipboard_filter(void* UNUSED(userdata), SDL_Event* event)
 			{
 				size_t size = wcslen(selection_data);
 				u8* buf = (u8*)alloca(size);
-				
+
 				for(size_t i = 0; i < size; i++)
 				{
 					buf[i] = selection_data[i] < 0x100 ? selection_data[i] : '?';
 				}
-			
+
 				XChangeProperty(g_SDL_Display, req->requestor, req->property,
 					sevent.xselection.target, 8, PropModeReplace,
 					buf, size);
@@ -359,7 +359,7 @@ Status sys_clipboard_set(const wchar_t *str)
 		free(selection_data);
 		selection_data = NULL;
 	}
-	
+
 	selection_size = (wcslen(str)+1)*sizeof(wchar_t);
 	selection_data = (wchar_t *)malloc(selection_size);
 	wcscpy(selection_data, str);

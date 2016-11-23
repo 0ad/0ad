@@ -79,7 +79,7 @@ bool CModel::InitModel(const CModelDefPtr& modeldef)
 	ReleaseData();
 
 	m_pModelDef = modeldef;
-	
+
 	size_t numBones = modeldef->GetNumBones();
 	if (numBones != 0)
 	{
@@ -161,7 +161,7 @@ void CModel::CalcAnimatedObjectBounds(CSkeletonAnimDef* anim, CBoundingBoxAligne
 	// having to recalculate the size of the box.
 	CMatrix3D transform, oldtransform = GetTransform();
 	CModelAbstract* oldparent = m_Parent;
-	
+
 	m_Parent = 0;
 	transform.SetIdentity();
 	CRenderableObject::SetTransform(transform);
@@ -238,7 +238,7 @@ const CBoundingBoxAligned CModel::GetObjectSelectionBoundsRec()
 		// From this, it is clear that either O or B x O is the object-space transformation matrix of the prop. So,
 		// all we need to do is apply our own inverse world-transform T^(-1) to T' to get our desired result. Luckily,
 		// this is precomputed upon setting the transform matrix (see @ref SetTransform), so it is free to fetch.
-		
+
 		CMatrix3D propObjectTransform = prop.m_Model->GetTransform(); // T'
 		propObjectTransform.Concatenate(GetInvTransform()); // T^(-1) x T'
 
@@ -324,13 +324,13 @@ void CModel::ValidatePosition()
 		ENSURE(!m_Parent || m_Parent->m_PositionValid);
 		return;
 	}
-	
+
 	if (m_Parent && !m_Parent->m_PositionValid)
 	{
 		// Make sure we don't base our calculations on
 		// a parent animation state that is out of date.
 		m_Parent->ValidatePosition();
-		
+
 		// Parent will recursively call our validation.
 		ENSURE(m_PositionValid);
 		return;
@@ -339,9 +339,9 @@ void CModel::ValidatePosition()
 	if (m_Anim && m_BoneMatrices)
 	{
 //		PROFILE( "generating bone matrices" );
-	
+
 		ENSURE(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
-	
+
 		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
 	}
 	else if (m_BoneMatrices)
@@ -379,7 +379,7 @@ void CModel::ValidatePosition()
 	// our own position is now valid; now we can safely update our props' positions without fearing
 	// that doing so will cause a revalidation of this model (see recursion above).
 	m_PositionValid = true;
-	
+
 	// re-position and validate all props
 	for (size_t j = 0; j < m_Props.size(); ++j)
 	{
@@ -548,7 +548,7 @@ void CModel::ShowAmmoProp()
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		if (m_Props[i].m_Point == m_AmmoPropPoint)
 			m_Props[i].m_Hidden = (i != m_AmmoLoadedProp);
-	
+
 	//  we only need to invalidate the selection box here if it is based on props and their visibilities
 	if (!m_CustomSelectionShape)
 		m_SelectionBoxValid = false;

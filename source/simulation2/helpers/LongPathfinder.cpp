@@ -892,7 +892,7 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 				AddJumpedDiag(i, j, -dpi, +1, g, state);
 				AddJumpedVert(i, j, +1, g, state, OnTheWay(i, j, 0, +1, state.goal));
 			}
-#endif	
+#endif
 			AddJumpedHoriz(i, j, -dpi, g, state, OnTheWay(i, j, -dpi, 0, state.goal));
 		}
 		else if (dpi == 0 && dpj != 0)

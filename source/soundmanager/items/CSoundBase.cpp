@@ -98,8 +98,8 @@ bool CSoundBase::InitOpenAL()
 
 	AL_CHECK;
 
-	if ( m_ALSource )	
-	{		
+	if ( m_ALSource )
+	{
 		alSourcef(m_ALSource,AL_PITCH,1.0f);
 		AL_CHECK;
 		alSourcef(m_ALSource,AL_GAIN,1.0f);
@@ -119,7 +119,7 @@ void CSoundBase::SetGain(ALfloat gain)
 {
 	AL_CHECK;
 
-	if ( m_ALSource )	
+	if ( m_ALSource )
 	{
 		CScopeLock lock(m_ItemMutex);
 		alSourcef(m_ALSource, AL_GAIN, gain);
@@ -240,11 +240,11 @@ bool CSoundBase::HandleFade()
 		else if (curGain == m_EndVolume)
 		{
 			if (m_ALSource != 0)
-				alSourcef(m_ALSource, AL_GAIN, curGain);	
+				alSourcef(m_ALSource, AL_GAIN, curGain);
 			ResetFade();
 		}
 		else if (m_ALSource != 0)
-			alSourcef(m_ALSource, AL_GAIN, curGain);	
+			alSourcef(m_ALSource, AL_GAIN, curGain);
 
 		AL_CHECK;
 	}
@@ -330,7 +330,7 @@ void CSoundBase::PlayLoop()
 void CSoundBase::FadeToIn(ALfloat newVolume, double fadeDuration)
 {
 	if (m_ALSource != 0)
-	{		
+	{
 		ALenum proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		if (proc_state == AL_PLAYING)

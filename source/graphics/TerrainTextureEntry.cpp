@@ -43,7 +43,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	m_BaseColorValid(false)
 {
 	ENSURE(properties);
-	
+
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, path, "terrain_texture") != PSRETURN_OK)
 	{
@@ -64,8 +64,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	AT(name);
 	#undef AT
 	#undef EL
-	
-	
+
+
 	XMBElement root = XeroFile.GetRoot();
 
 	if (root.GetNodeName() != el_terrain)
@@ -73,13 +73,13 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 		LOGERROR("Invalid terrain format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return;
 	}
-	
-	
+
+
 	std::vector<std::pair<CStr, VfsPath> > samplers;
 	VfsPath alphamap("standard");
 	m_Tag = utf8_from_wstring(path.Basename().string());
-	
-	
+
+
 	XERO_ITER_EL(root, child)
 	{
 		int child_name = child.GetNodeName();
@@ -89,7 +89,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 			XERO_ITER_EL(child, textures_element)
 			{
 				ENSURE(textures_element.GetNodeName() == el_texture);
-				
+
 				CStr name;
 				VfsPath path;
 				XERO_ITER_ATTR(textures_element, se)
@@ -101,7 +101,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 				}
 				samplers.emplace_back(name, path);
 			}
-		
+
 		}
 		else if (child_name == el_material)
 		{
@@ -124,8 +124,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 			m_Tag = child.GetText();
 		}
 	}
-	
-	
+
+
 	for (size_t i = 0; i < samplers.size(); ++i)
 	{
 		CTextureProperties texture(samplers[i].second);
@@ -155,7 +155,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 		texAngle = m_pProperties->GetTextureAngle();
 		texSize = m_pProperties->GetTextureSize();
 	}
-	
+
 	m_TextureMatrix.SetZero();
 	m_TextureMatrix._11 = cosf(texAngle) / texSize;
 	m_TextureMatrix._13 = -sinf(texAngle) / texSize;
@@ -206,16 +206,16 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	std::wstring key = L"(alpha map composite" + amtype.string() + L")";
 
 	CTerrainTextureManager::TerrainAlphaMap::iterator it = g_TexMan.m_TerrainAlphas.find(amtype);
-	
+
 	if (it != g_TexMan.m_TerrainAlphas.end())
 	{
 		m_TerrainAlpha = it;
 		return;
 	}
-	
+
 	g_TexMan.m_TerrainAlphas[amtype] = TerrainAlpha();
 	it = g_TexMan.m_TerrainAlphas.find(amtype);
-	
+
 	TerrainAlpha &result = it->second;
 
 	//
@@ -224,7 +224,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	Handle textures[NUM_ALPHA_MAPS] = {0};
 	VfsPath path(L"art/textures/terrain/alphamaps");
 	path = path / amtype;
-	
+
 	const wchar_t* fnames[NUM_ALPHA_MAPS] = {
 		L"blendcircle.png",
 		L"blendlshape.png",
@@ -254,7 +254,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		{
 			g_TexMan.m_TerrainAlphas.erase(it);
 			LOGERROR("Failed to load alphamap: %s", amtype.string8());
-			
+
 			VfsPath standard("standard");
 			if (path != standard)
 			{
@@ -334,11 +334,11 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	// upload the composite texture
 	Tex t;
 	(void)t.wrap(total_w, total_h, 8, TEX_GREY, data, 0);
-	
+
 	// uncomment the following to save a png of the generated texture
 	// in the public/ directory, for debugging
 	/*VfsPath filename("blendtex.png");
-	
+
 	DynArray da;
 	RETURN_STATUS_IF_ERR(tex_encode(&t, filename.Extension(), &da));
 
@@ -354,12 +354,12 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	}
 
 	(void)da_free(&da);*/
-	
+
 	Handle hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 	ogl_tex_upload(hCompositeAlphaMap, GL_ALPHA, 0, 0);
 	result.m_hCompositeAlphaMap = hCompositeAlphaMap;
-	
+
 	m_TerrainAlpha = it;
 }

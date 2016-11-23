@@ -259,7 +259,7 @@ void CProfileViewer::RenderProfile()
 		if (col > 0) // right-align all but the first column
 			x += columns[col].width - w;
 		textRenderer.Put(x, 0.0f, text.c_str());
-		
+
 		colX += columns[col].width;
 	}
 
@@ -503,13 +503,13 @@ namespace
 		{
 			JSContext* cx = m_ScriptInterface.GetContext();
 			JSAutoRequest rq(cx);
-			
+
 			JS::RootedValue t(cx);
 			JS::RootedValue rows(cx, DumpRows(table));
 			m_ScriptInterface.Eval(L"({})", &t);
 			m_ScriptInterface.SetProperty(t, "cols", DumpCols(table));
 			m_ScriptInterface.SetProperty(t, "data", rows);
-			
+
 			m_ScriptInterface.SetProperty(m_Root, table->GetTitle().c_str(), t);
 		}
 
@@ -529,7 +529,7 @@ namespace
 		{
 			JSContext* cx = m_ScriptInterface.GetContext();
 			JSAutoRequest rq(cx);
-			
+
 			JS::RootedValue data(cx);
 			m_ScriptInterface.Eval("({})", &data);
 
@@ -604,7 +604,7 @@ JS::Value CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-		
+
 	JS::RootedValue root(cx);
 	scriptInterface.Eval("({})", &root);
 

@@ -38,7 +38,7 @@ CStreamItem::~CStreamItem()
 }
 
 void CStreamItem::ReleaseOpenALStream()
-{	
+{
 	if (m_ALSource != 0)
 	{
 		int num_processed;
@@ -72,7 +72,7 @@ bool CStreamItem::IdleTask()
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK;
-		
+
 		if (proc_state == AL_STOPPED)
 		{
 			if (m_LastPlay)
@@ -81,13 +81,13 @@ bool CStreamItem::IdleTask()
 		else if (m_SoundData != NULL)
 		{
 			COggData* theData = (COggData*)m_SoundData;
-			
+
 			if (! theData->IsFileFinished())
 			{
 				int num_processed;
 				alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
 				AL_CHECK;
-				
+
 				if (num_processed > 0)
 				{
 					ALuint* al_buf = new ALuint[num_processed];

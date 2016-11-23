@@ -87,7 +87,7 @@ struct SliceOpNewVertexInfo
 	size_t edgeIdx1, edgeIdx2;
 	/// Index of newly introduced vertex in resulting brush
 	size_t resIdx;
-	
+
 	/**
 	 * Index into SliceOpInfo.nvInfo; hold the indices of this new vertex's direct neighbours in the slicing plane face,
 	 * with no consistent winding direction around the face for either field (e.g., the neighb1 of X can point back to
@@ -107,10 +107,10 @@ struct SliceOpInfo
 	 * Same size as m_Vertices of the brush getting sliced.
 	 */
 	std::vector<SliceOpVertexInfo> ovInfo;
-	
+
 	/// Holds information about newly inserted vertices during a slice operation.
 	std::vector<SliceOpNewVertexInfo> nvInfo;
-	
+
 	/**
 	 * Indices into nvInfo; during the execution of the slicing algorithm, holds the previously inserted new vertex on
 	 * one of the edges of the face that's currently being evaluated for slice points, or NO_VERTEX if no such vertex
@@ -144,7 +144,7 @@ size_t CBrush::Helper::SliceNewVertex(SliceOpInfo& sliceOp, size_t edgeIdx1, siz
 		// no previously inserted new vertex found on this edge; insert a new one
 		SliceOpNewVertexInfo nvi;
 		CVector3D newPos;
-		
+
 		// interpolate between the two vertices based on their distance from the plane
 		float inv = 1.0 / (sliceOp.ovInfo[edgeIdx1].planeDist - sliceOp.ovInfo[edgeIdx2].planeDist);
 		newPos = sliceOp.original->m_Vertices[edgeIdx2] * ( sliceOp.ovInfo[edgeIdx1].planeDist * inv) +
@@ -296,7 +296,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 	{
 		// push the starting vertex
 		result.m_Faces.push_back(sliceOp.nvInfo[0].resIdx);
-		
+
 		// At this point, there is no consistent winding order in the neighbX fields, so at each vertex we need to figure
 		// out whether neighb1 or neighb2 points 'onwards' along the face, according to an initially chosen winding direction.
 		// (or, equivalently, which one points back to the one we were just at). At each vertex, we then set neighb1 to be the

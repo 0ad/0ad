@@ -407,10 +407,10 @@ void CCmpSelectable::UpdateStaticOverlay()
 	// Static overlays are allocated once and not updated until they are explicitly deleted again
 	// (see InvalidateStaticOverlay). Since they are expected to change rarely (if ever) during
 	// normal gameplay, this saves us doing all the work below on each frame.
-	
+
 	if (m_BuildingOverlay || m_OverlayDescriptor.m_Type != STATIC_OUTLINE)
 		return;
-	
+
 	if (!CRenderer::IsInitialised())
 		return;
 
@@ -504,7 +504,7 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 	// Dynamic overlay lines are allocated once and never deleted. Since they are expected to change frequently,
 	// they are assumed dirty on every call to this function, and we should therefore use this function more
 	// thoughtfully than calling it right before every frame render.
-	
+
 	if (m_OverlayDescriptor.m_Type != DYNAMIC_QUAD)
 		return;
 

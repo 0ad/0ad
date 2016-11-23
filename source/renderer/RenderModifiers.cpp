@@ -90,7 +90,7 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 		shader->Uniform(str_ambient, GetLightEnv()->m_UnitsAmbientColor);
 		shader->Uniform(str_sunDir, GetLightEnv()->GetSunDir());
 		shader->Uniform(str_sunColor, GetLightEnv()->m_SunColor);
-		
+
 		shader->Uniform(str_fogColor, GetLightEnv()->m_FogColor);
 		shader->Uniform(str_fogParams, GetLightEnv()->m_FogFactor, GetLightEnv()->m_FogMax, 0.f, 0.f);
 	}

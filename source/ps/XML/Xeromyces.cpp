@@ -74,7 +74,7 @@ void CXeromyces::Terminate()
 bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const VfsPath& grammarPath)
 {
 	ENSURE(g_XeromycesStarted);
-	
+
 	RelaxNGValidator validator;
 	if (!validator.LoadGrammarFile(vfs, grammarPath))
 	{

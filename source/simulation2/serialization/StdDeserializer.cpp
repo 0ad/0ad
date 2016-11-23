@@ -104,7 +104,7 @@ void CStdDeserializer::RequireBytesInStream(size_t numBytes)
 	// but that doesn't work (at least on MSVC) since in_avail isn't
 	// guaranteed to return the actual number of bytes available; see e.g.
 	// http://social.msdn.microsoft.com/Forums/en/vclanguage/thread/13009a88-933f-4be7-bf3d-150e425e66a6#70ea562d-8605-4742-8851-1bae431ce6ce
-	
+
 	// Instead we'll just verify that it's not an extremely large number:
 	if (numBytes > 64*MiB)
 		throw PSERROR_Deserialize_OutOfBounds("RequireBytesInStream");
@@ -214,9 +214,9 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 				JS::RootedValue objVal(cx, JS::ObjectValue(*obj));
 				m_ScriptInterface.CallFunctionVoid(objVal, "Deserialize", data);
-				
+
 				AddScriptBackref(obj);
-				
+
 				return JS::ObjectValue(*obj);
 			}
 		}
@@ -428,7 +428,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 		// To match the serializer order, we reserve the map's backref tag here
 		u32 mapTag = ReserveScriptBackref();
-		
+
 		for (u32 i=0; i<mapSize; ++i)
 		{
 			JS::RootedValue key(cx, ReadScriptVal("map key", JS::NullPtr()));
@@ -520,7 +520,7 @@ void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objV
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	if (!objVal.isObject())
 		throw PSERROR_Deserialize_ScriptError();
 

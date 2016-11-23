@@ -28,7 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CAlphaMapCalculator: functionality for calculating which alpha blend map
 // fits a given shape
-namespace CAlphaMapCalculator {	
+namespace CAlphaMapCalculator {
 
 ///////////////////////////////////////////////////////////////////////////////
 // Blend4: structure mapping a blend shape for N,E,S,W to a particular map
@@ -167,7 +167,7 @@ bool MatchBlendShapeFlipped(const T& templateshape,const T& shape,unsigned int& 
 		flags|=BLENDMAP_FLIPV;
 		return true;
 	}
-	
+
 	// no joy; no match by flipping
 	return false;
 }
@@ -192,7 +192,7 @@ int MatchBlendShape(const T& templateshape,const T& shape,unsigned int& flags)
 		flags|=flags ? BLENDMAP_ROTATE270 : BLENDMAP_ROTATE90;
 		return true;
 	}
-	
+
 	templateshape.Rotate180(tstShape);
 	if (MatchBlendShapeFlipped(tstShape,shape,flags)) {
 		flags|=BLENDMAP_ROTATE180;
@@ -236,7 +236,7 @@ int LookupBlend(int tableSize,const S* table,const T& shape,unsigned int& flags)
 // Calculate: return the index of the blend map that fits the given shape,
 // and the set of flip/rotation flags to get the shape correctly oriented
 int Calculate(BlendShape8 shape,unsigned int& flags)
-{	
+{
 	// assume we're not going to require flipping or rotating
 	flags=0;
 
@@ -265,13 +265,13 @@ int Calculate(BlendShape8 shape,unsigned int& flags)
 
 				switch (count) {
 					case 1:
-						return LookupBlend(sizeof(Blends1Neighbour)/sizeof(Blend4),Blends1Neighbour,shape4,flags);		
+						return LookupBlend(sizeof(Blends1Neighbour)/sizeof(Blend4),Blends1Neighbour,shape4,flags);
 
 					case 2:
-						return LookupBlend(sizeof(Blends2Neighbour)/sizeof(Blend4),Blends2Neighbour,shape4,flags);		
+						return LookupBlend(sizeof(Blends2Neighbour)/sizeof(Blend4),Blends2Neighbour,shape4,flags);
 
 					case 3:
-						return LookupBlend(sizeof(Blends3Neighbour)/sizeof(Blend4),Blends3Neighbour,shape4,flags);		
+						return LookupBlend(sizeof(Blends3Neighbour)/sizeof(Blend4),Blends3Neighbour,shape4,flags);
 
 					case 4:
 						// N,S,E,W have same texture, NE,SE,SW,NW don't; use a blend 4 corners
@@ -289,22 +289,22 @@ int Calculate(BlendShape8 shape,unsigned int& flags)
 				return 0;
 
 			case 2:
-				return LookupBlend(sizeof(Blends2Neighbour8)/sizeof(Blend8),Blends2Neighbour8,shape,flags);		
+				return LookupBlend(sizeof(Blends2Neighbour8)/sizeof(Blend8),Blends2Neighbour8,shape,flags);
 
 			case 3:
-				return LookupBlend(sizeof(Blends3Neighbour8)/sizeof(Blend8),Blends3Neighbour8,shape,flags);		
+				return LookupBlend(sizeof(Blends3Neighbour8)/sizeof(Blend8),Blends3Neighbour8,shape,flags);
 
 			case 4:
-				return LookupBlend(sizeof(Blends4Neighbour8)/sizeof(Blend8),Blends4Neighbour8,shape,flags);		
+				return LookupBlend(sizeof(Blends4Neighbour8)/sizeof(Blend8),Blends4Neighbour8,shape,flags);
 
 			case 5:
-				return LookupBlend(sizeof(Blends5Neighbour8)/sizeof(Blend8),Blends5Neighbour8,shape,flags);		
+				return LookupBlend(sizeof(Blends5Neighbour8)/sizeof(Blend8),Blends5Neighbour8,shape,flags);
 
 			case 6:
-				return LookupBlend(sizeof(Blends6Neighbour8)/sizeof(Blend8),Blends6Neighbour8,shape,flags);		
+				return LookupBlend(sizeof(Blends6Neighbour8)/sizeof(Blend8),Blends6Neighbour8,shape,flags);
 
 			case 7:
-				return LookupBlend(sizeof(Blends7Neighbour8)/sizeof(Blend8),Blends7Neighbour8,shape,flags);		
+				return LookupBlend(sizeof(Blends7Neighbour8)/sizeof(Blend8),Blends7Neighbour8,shape,flags);
 		}
 
 	}

@@ -164,10 +164,10 @@ void CQuaternion::ToMatrix(CMatrix3D& result) const
 	xx = m_V.X * m_V.X * 2.f;
 	xy = m_V.X * m_V.Y * 2.f;
 	xz = m_V.X * m_V.Z * 2.f;
-	
+
 	yy = m_V.Y * m_V.Y * 2.f;
 	yz = m_V.Y * m_V.Z * 2.f;
-	
+
 	zz = m_V.Z * m_V.Z * 2.f;
 
 	wx = m_W * m_V.X * 2.f;
@@ -199,7 +199,7 @@ void CQuaternion::Slerp(const CQuaternion& from, const CQuaternion& to, float ra
 {
 	float to1[4];
 	float omega, cosom, sinom, scale0, scale1;
-	
+
 	// calc cosine
 	cosom = from.Dot(to);
 
@@ -301,7 +301,7 @@ CVector3D CQuaternion::Rotate(const CVector3D& vec) const
 {
 	// v' = q * v * q^-1
 	// (where v is the quat. with w=0, xyz=vec)
-	
+
 	return (*this * CQuaternion(vec.X, vec.Y, vec.Z, 0.f) * GetInverse()).m_V;
 }
 

@@ -75,7 +75,7 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 	{
 		result += newPoseMatrices[vtx.m_Blend.m_Bone[i]].Rotate(vtx.m_Norm) * vtx.m_Blend.m_Weight[i];
 	}
-	
+
 	// If there was more than one influence, the result is probably not going
 	// to be of unit length (since it's a weighted sum of several independent
 	// unit vectors), so we need to normalise it.
@@ -155,7 +155,7 @@ void CModelDef::SkinPointsAndNormals_SSE(
 		col1 = _mm_load_ps(mtx._data + 4);
 		col2 = _mm_load_ps(mtx._data + 8);
 		col3 = _mm_load_ps(mtx._data + 12);
-		
+
 		// Loads and computes vertex coordinates.
 		vec0 = _mm_load1_ps(&vtx.m_Coords.X);	// v0 = [x, x, x, x]
 		vec0 = _mm_mul_ps(col0, vec0);			// v0 = [_11*x, _21*x, _31*x, _41*x]
@@ -210,7 +210,7 @@ void CModelDef::BlendBoneMatrices(
 	{
 		const SVertexBlend& blend = m_pBlends[i];
 		CMatrix3D& boneMatrix = boneMatrices[m_NumBones + 1 + i];
-		
+
 		// Note: there is a special case of joint influence, in which the vertex
 		//	is influenced by the bind-shape matrix instead of a particular bone,
 		//	which we indicate by setting the bone ID to the total number of bones.
@@ -264,7 +264,7 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 
 	// read everything in from file
 	unpacker.Read(filename,"PSMD");
-			
+
 	// check version
 	if (unpacker.GetVersion()<FILE_READ_VERSION) {
 		throw PSERROR_File_InvalidVersion();
@@ -275,7 +275,7 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 
 	// now unpack everything
 	mdef->m_NumVertices = unpacker.UnpackSize();
-	
+
 	// versions prior to 4 only support 1 UV set, 4 and later store it here
 	if (unpacker.GetVersion() <= 3)
 	{
@@ -287,12 +287,12 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 	}
 
 	mdef->m_pVertices=new SModelVertex[mdef->m_NumVertices];
-	
+
 	for (size_t i = 0; i < mdef->m_NumVertices; ++i)
 	{
 		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Coords, 12);
 		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Norm, 12);
-		
+
 		for (size_t s = 0; s < mdef->m_NumUVsPerVertex; ++s)
 		{
 			float uv[2];
@@ -300,14 +300,14 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 			mdef->m_pVertices[i].m_UVs.push_back(uv[0]);
 			mdef->m_pVertices[i].m_UVs.push_back(uv[1]);
 		}
-		
+
 		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Blend, sizeof(SVertexBlend));
 	}
-	
+
 	mdef->m_NumFaces = unpacker.UnpackSize();
 	mdef->m_pFaces=new SModelFace[mdef->m_NumFaces];
 	unpacker.UnpackRaw(mdef->m_pFaces,sizeof(SModelFace)*mdef->m_NumFaces);
-	
+
 	mdef->m_NumBones = unpacker.UnpackSize();
 	if (mdef->m_NumBones)
 	{
@@ -432,7 +432,7 @@ void CModelDef::Save(const VfsPath& filename, const CModelDef* mdef)
 	const size_t numFaces = mdef->GetNumFaces();
 	packer.PackSize(numFaces);
 	packer.PackRaw(mdef->GetFaces(), sizeof(SModelFace) * numFaces);
-	
+
 	const size_t numBones = mdef->m_NumBones;
 	packer.PackSize(numBones);
 	if (numBones)
@@ -447,7 +447,7 @@ void CModelDef::Save(const VfsPath& filename, const CModelDef* mdef)
 		packer.PackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X, sizeof(mdef->m_PropPoints[i].m_Rotation));
 		packer.PackRaw(&mdef->m_PropPoints[i].m_BoneIndex, sizeof(mdef->m_PropPoints[i].m_BoneIndex));
 	}
-	
+
 	// flush everything out to file
 	packer.Write(filename);
 }
@@ -465,9 +465,9 @@ void CModelDef::SetRenderData(const void* key, CModelDefRPrivate* data)
 CModelDefRPrivate* CModelDef::GetRenderData(const void* key) const
 {
 	RenderDataMap::const_iterator it = m_RenderData.find(key);
-	
+
 	if (it != m_RenderData.end())
 		return it->second;
-	
+
 	return 0;
 }

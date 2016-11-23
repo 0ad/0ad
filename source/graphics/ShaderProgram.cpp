@@ -244,7 +244,7 @@ private:
 	GLuint m_FragmentProgram;
 
 	std::map<CStrIntern, int> m_VertexIndexes;
-	
+
 	// pair contains <index, gltype>
 	std::map<CStrIntern, frag_index_pair_t> m_FragmentIndexes;
 };
@@ -360,7 +360,7 @@ public:
 				LOGMESSAGE("Info when linking program '%s'+'%s':\n%s", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
 			else
 				LOGERROR("Failed to link program '%s'+'%s':\n%s", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
-			
+
 			delete[] infolog;
 		}
 

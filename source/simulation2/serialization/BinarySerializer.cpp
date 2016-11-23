@@ -236,7 +236,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			{
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
 				m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(cx, obj));
-				
+
 				JS::RootedValue keyValueIterator(cx);
 				if (!JS::MapEntries(cx, obj, &keyValueIterator))
 					throw PSERROR_Serialize_ScriptError("JS::MapEntries failed");
@@ -260,7 +260,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					JS::RootedValue value(cx);
 					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, &key));
 					ENSURE(JS_GetElement(cx, keyValuePairObj, 1, &value));
-					
+
 					HandleScriptVal(key);
 					HandleScriptVal(value);
 				}
@@ -385,11 +385,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		// to be represented as integers. A number like 33 could be stored as integer on the computer of one player
 		// and as double on the other player's computer. That would cause out of sync errors in multiplayer games because
 		// their binary representation and thus the hash would be different.
-		
+
 		double d;
 		d = val.toNumber();
 		i32 integer;
-		
+
 		if (JS_DoubleIsInt32(d, &integer))
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_INT);

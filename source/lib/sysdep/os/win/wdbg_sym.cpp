@@ -313,7 +313,7 @@ Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, CONTEXT& cont
 	sym_init();
 
 	STACKFRAME64 sf = PopulateStackFrame(context);
-	
+
 	wchar_t func[DEBUG_SYMBOL_CHARS];
 
 	Status ret = ERR::SYM_NO_STACK_FRAMES_FOUND;

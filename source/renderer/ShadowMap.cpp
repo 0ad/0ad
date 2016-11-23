@@ -87,7 +87,7 @@ struct ShadowMapInternals
 	// Copy of renderer's standard view camera, saved between
 	// BeginRender and EndRender while we replace it with the shadow camera
 	CCamera SavedViewCamera;
-	
+
 	// Save the caller's FBO so it can be restored
 	GLint SavedViewFBO;
 
@@ -372,8 +372,8 @@ void ShadowMapInternals::CreateTexture()
 		pglDeleteFramebuffersEXT(1, &Framebuffer);
 		Framebuffer = 0;
 	}
-	
-	// save the caller's FBO	
+
+	// save the caller's FBO
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &SavedViewFBO);
 
 	pglGenFramebuffersEXT(1, &Framebuffer);
@@ -507,7 +507,7 @@ void ShadowMapInternals::CreateTexture()
 void ShadowMap::BeginRender()
 {
 	// HACK HACK: this depends in non-obvious ways on the behaviour of the caller
-	
+
 	// save caller's FBO
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &m->SavedViewFBO);
 

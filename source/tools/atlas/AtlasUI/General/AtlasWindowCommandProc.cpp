@@ -63,7 +63,7 @@ bool AtlasWindowCommandProc::Submit(wxCommand *command, bool storeIt)
 	if (storeIt)
 	{
 		AtlasWindowCommand* currentCommand = wxDynamicCast(command, AtlasWindowCommand);
-		
+
 		if (currentCommand && previousCommand
 			&& !previousCommand->m_Finalized
 			&& currentCommand->Merge(previousCommand))

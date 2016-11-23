@@ -453,13 +453,13 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 					{
 						CVector3D modelpos = model->GetTransform().GetTranslation();
 						float dist = worldToCam.Transform(modelpos).Z;
-						
+
 						float dmin = item.m_CondArgs[0];
 						float dmax = item.m_CondArgs[1];
-						
+
 						if ((dmin < 0 || dist >= dmin) && (dmax < 0 || dist < dmax))
 							condFlags |= (1 << j);
-						
+
 						break;
 					}
 				}
@@ -600,14 +600,14 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		PROFILE3("rendering bucketed submissions");
 
 		size_t idxTechStart = 0;
-		
+
 		// This vector keeps track of texture changes during rendering. It is kept outside the
 		// loops to avoid excessive reallocations. The token allocation of 64 elements
 		// should be plenty, though it is reallocated below (at a cost) if necessary.
 		typedef ProxyAllocator<CTexture*, Allocators::DynamicArena> TextureListAllocator;
 		std::vector<CTexture*, TextureListAllocator> currentTexs((TextureListAllocator(arena)));
 		currentTexs.reserve(64);
-		
+
 		// texBindings holds the identifier bindings in the shader, which can no longer be defined
 		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
 		// keep track of when bindings need to be reevaluated.
@@ -642,14 +642,14 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				modifier->BeginPass(shader);
 
 				m->vertexRenderer->BeginPass(streamflags);
-				
+
 				// When the shader technique changes, textures need to be
 				// rebound, so ensure there are no remnants from the last pass.
 				// (the vector size is set to 0, but memory is not freed)
 				currentTexs.clear();
 				texBindings.clear();
 				texBindingNames.clear();
-				
+
 				CModelDef* currentModeldef = NULL;
 				CShaderUniforms currentStaticUniforms;
 
@@ -666,7 +666,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 						const CMaterial::SamplersVector& samplers = model->GetMaterial().GetSamplers();
 						size_t samplersNum = samplers.size();
-						
+
 						// make sure the vectors are the right virtual sizes, and also
 						// reallocate if there are more samplers than expected.
 						if (currentTexs.size() != samplersNum)
@@ -674,18 +674,18 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							currentTexs.resize(samplersNum, NULL);
 							texBindings.resize(samplersNum, CShaderProgram::Binding());
 							texBindingNames.resize(samplersNum, CStrIntern());
-							
+
 							// ensure they are definitely empty
 							std::fill(texBindings.begin(), texBindings.end(), CShaderProgram::Binding());
 							std::fill(currentTexs.begin(), currentTexs.end(), (CTexture*)NULL);
 							std::fill(texBindingNames.begin(), texBindingNames.end(), CStrIntern());
 						}
-						
+
 						// bind the samplers to the shader
 						for (size_t s = 0; s < samplersNum; ++s)
 						{
 							const CMaterial::TextureSampler& samp = samplers[s];
-							
+
 							CShaderProgram::Binding bind = texBindings[s];
 							// check that the handles are current
 							// and reevaluate them if necessary
@@ -708,7 +708,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								currentTexs[s] = newTex;
 							}
 						}
-						
+
 						// Bind modeldef when it changes
 						CModelDef* newModeldef = model->GetModelDef().get();
 						if (newModeldef != currentModeldef)
@@ -724,9 +724,9 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							currentStaticUniforms = newStaticUniforms;
 							currentStaticUniforms.BindUniforms(shader);
 						}
-						
+
 						const CShaderRenderQueries& renderQueries = model->GetMaterial().GetRenderQueries();
-						
+
 						for (size_t q = 0; q < renderQueries.GetSize(); q++)
 						{
 							CShaderRenderQueries::RenderQuery rq = renderQueries.GetItem(q);
@@ -745,7 +745,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								double time = WaterMgr->m_WaterTexTimer;
 								double period = 1.6;
 								int curTex = (int)(time*60/period) % 60;
-								
+
 								if (WaterMgr->m_RenderWater && WaterMgr->WillRenderFancyWater())
 									shader->BindTexture(str_waterTex, WaterMgr->m_NormalMap[curTex]);
 								else

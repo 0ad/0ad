@@ -521,7 +521,7 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 {
 	typedef typename T::iterator iterator;
 	typedef typename T::const_iterator const_iterator;
-	
+
 	ENSURE(sizeof(T) == size);
 	ENSURE(sizeof(iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
 

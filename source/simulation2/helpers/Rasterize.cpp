@@ -41,7 +41,7 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	// in parallel with setting clearance back to 1 for the default passability class (though this isn't strictly necessary).
 	// Also: the code detecting foundation obstruction in CcmpObstructionManager had to be changed similarly.
 	entity_pos_t rasterClearance = clearance + Pathfinding::CLEARANCE_EXTENSION_RADIUS;
-	
+
 	// Get the bounds of cells that might possibly be within the shape
 	// (We'll then test each of those cells more precisely)
 	CFixedVector2D shapeHalfSize(CFixedVector2D(shape.hw, shape.hh));
@@ -59,7 +59,7 @@ void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	rasterClearance = rasterClearance.Multiply(rasterClearance);
 
 	spans.reserve(j1 - j0);
-	
+
 	for (i16 j = j0; j < j1; ++j)
 	{
 		// Find the min/max range of cells that are strictly inside the square+rasterClearance.

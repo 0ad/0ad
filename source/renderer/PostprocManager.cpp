@@ -110,26 +110,26 @@ void CPostprocManager::RecreateBuffers()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); \
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); \
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	
+
 	// Two fullscreen ping-pong textures.
 	GEN_BUFFER_RGBA(m_ColorTex1, m_Width, m_Height);
 	GEN_BUFFER_RGBA(m_ColorTex2, m_Width, m_Height);
-	
+
 	// Textures for several blur sizes. It would be possible to reuse
 	// m_BlurTex2b, thus avoiding the need for m_BlurTex4b and m_BlurTex8b, though given
 	// that these are fairly small it's probably not worth complicating the coordinates passed
 	// to the blur helper functions.
 	GEN_BUFFER_RGBA(m_BlurTex2a, m_Width / 2, m_Height / 2);
 	GEN_BUFFER_RGBA(m_BlurTex2b, m_Width / 2, m_Height / 2);
-	
+
 	GEN_BUFFER_RGBA(m_BlurTex4a, m_Width / 4, m_Height / 4);
 	GEN_BUFFER_RGBA(m_BlurTex4b, m_Width / 4, m_Height / 4);
-	
+
 	GEN_BUFFER_RGBA(m_BlurTex8a, m_Width / 8, m_Height / 8);
 	GEN_BUFFER_RGBA(m_BlurTex8b, m_Width / 8, m_Height / 8);
-	
+
 	#undef GEN_BUFFER_RGBA
-	
+
 	// Allocate the Depth/Stencil texture.
 	glGenTextures(1, (GLuint*)&m_DepthTex);
 	glBindTexture(GL_TEXTURE_2D, m_DepthTex);
@@ -142,11 +142,11 @@ void CPostprocManager::RecreateBuffers()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Set up the framebuffers with some initial textures.
-	
+
 	pglGenFramebuffersEXT(1, &m_PingFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 
@@ -155,13 +155,13 @@ void CPostprocManager::RecreateBuffers()
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 							   GL_TEXTURE_2D, m_DepthTex, 0);
-	
+
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Framebuffer object incomplete (A): 0x%04X", status);
 	}
-	
+
 	pglGenFramebuffersEXT(1, &m_PongFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
@@ -170,20 +170,20 @@ void CPostprocManager::RecreateBuffers()
 
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 							   GL_TEXTURE_2D, m_DepthTex, 0);
-	
+
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
 	}
-	
+
 	pglGenFramebuffersEXT(1, &m_BloomFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
 
 	/*
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
 							   GL_TEXTURE_2D, m_BloomTex1, 0);
-	
+
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
@@ -200,18 +200,18 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	// Bind inTex to framebuffer for rendering.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, outTex, 0);
-	
+
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
 	defines.Add(str_BLOOM_NOP, str_1);
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
 			g_Renderer.GetSystemShaderDefines(), defines);
-	
+
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
-	
+
 	GLuint renderedTex = inTex;
-	
+
 	// Cheat by creating high quality mipmaps for inTex, so the copying operation actually
 	// produces good scaling due to hardware filtering.
 	glBindTexture(GL_TEXTURE_2D, renderedTex);
@@ -219,13 +219,13 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 	shader->BindTexture(str_renderedTex, renderedTex);
-	
+
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp = { 0, 0, inWidth / 2, inHeight / 2 };
 	g_Renderer.SetViewport(vp);
-	
+
 	float quadVerts[] = {
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
@@ -250,7 +250,7 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	g_Renderer.SetViewport(oldVp);
-	
+
 	tech->EndPass();
 }
 
@@ -259,22 +259,22 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	// Set tempTex as our rendering target.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, tempTex, 0);
-	
+
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
 	defines2.Add(str_BLOOM_PASS_H, str_1);
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
 			g_Renderer.GetSystemShaderDefines(), defines2);
-	
+
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 	shader->BindTexture(str_renderedTex, inOutTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
-	
+
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp = { 0, 0, inWidth, inHeight };
 	g_Renderer.SetViewport(vp);
-	
+
 	float quadVerts[] = {
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
@@ -301,26 +301,26 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	g_Renderer.SetViewport(oldVp);
 
 	tech->EndPass();
-	
+
 	// Set result texture as our render target.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, inOutTex, 0);
-	
+
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
 	defines3.Add(str_BLOOM_PASS_V, str_1);
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
 			g_Renderer.GetSystemShaderDefines(), defines3);
-	
+
 	tech->BeginPass();
 	shader = tech->GetShader();
-	
+
 	// Our input texture to the shader is the output of the horizontal pass.
 	shader->BindTexture(str_renderedTex, tempTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
-	
+
 	g_Renderer.SetViewport(vp);
-	
+
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
 	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
@@ -334,25 +334,25 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 void CPostprocManager::ApplyBlur()
 {
 	glDisable(GL_BLEND);
-	
+
 	GLint originalFBO;
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &originalFBO);
-	
+
 	int width = m_Width, height = m_Height;
-	
+
 	#define SCALE_AND_BLUR(tex1, tex2, temptex) \
 		ApplyBlurDownscale2x(tex1, tex2, width, height); \
 		width /= 2; \
 		height /= 2; \
 		ApplyBlurGauss(tex2, temptex, width, height);
-	
+
 	// We do the same thing for each scale, incrementally adding more and more blur.
 	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
 	SCALE_AND_BLUR(m_BlurTex2a, m_BlurTex4a, m_BlurTex4b);
 	SCALE_AND_BLUR(m_BlurTex4a, m_BlurTex8a, m_BlurTex8b);
-	
+
 	#undef SCALE_AND_BLUR
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, originalFBO);
 }
 
@@ -363,16 +363,16 @@ void CPostprocManager::CaptureRenderOutput()
 
 	// clear both FBOs and leave m_PingFbo selected for rendering;
 	// m_WhichBuffer stays true at this point
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);	
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	
+
 	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
 	pglDrawBuffers(1, buffers);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	pglDrawBuffers(1, buffers);
-	
+
 	m_WhichBuffer = true;
 }
 
@@ -383,18 +383,18 @@ void CPostprocManager::ReleaseRenderOutput()
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	
+
 	// we blit to screen from the previous active buffer
 	if (m_WhichBuffer)
 		pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PingFbo);
 	else
 		pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PongFbo);
-	
+
 	pglBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
 	pglBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
 			      GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
 	pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, 0);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
@@ -405,15 +405,15 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	else
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	
+
 	glDisable(GL_DEPTH_TEST);
 	glDepthMask(GL_FALSE);
 
 	shaderTech1->BeginPass(pass);
 	CShaderProgramPtr shader = shaderTech1->GetShader(pass);
-	
+
 	shader->Bind();
-	
+
 	// Use the textures from the current FBO as input to the shader.
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
@@ -421,23 +421,23 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 		shader->BindTexture(str_renderedTex, m_ColorTex1);
 	else
 		shader->BindTexture(str_renderedTex, m_ColorTex2);
-	
+
 	shader->BindTexture(str_depthTex, m_DepthTex);
-	
+
 	shader->BindTexture(str_blurTex2, m_BlurTex2a);
 	shader->BindTexture(str_blurTex4, m_BlurTex4a);
 	shader->BindTexture(str_blurTex8, m_BlurTex8a);
-	
+
 	shader->Uniform(str_width, m_Width);
 	shader->Uniform(str_height, m_Height);
 	shader->Uniform(str_zNear, g_Game->GetView()->GetNear());
 	shader->Uniform(str_zFar, g_Game->GetView()->GetFar());
-	
+
 	shader->Uniform(str_brightness, g_LightEnv.m_Brightness);
 	shader->Uniform(str_hdr, g_LightEnv.m_Contrast);
 	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
 	shader->Uniform(str_bloom, g_LightEnv.m_Bloom);
-	
+
 	float quadVerts[] = {
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
@@ -460,14 +460,14 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-	
+
 	shader->Unbind();
-	
-	shaderTech1->EndPass(pass);	
-		
+
+	shaderTech1->EndPass(pass);
+
 	glDepthMask(GL_TRUE);
 	glEnable(GL_DEPTH_TEST);
-	
+
 	m_WhichBuffer = !m_WhichBuffer;
 }
 
@@ -478,33 +478,33 @@ void CPostprocManager::ApplyPostproc()
 	// Don't do anything if we are using the default effect.
 	if (m_PostProcEffect == L"default")
 		return;
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
-	
+
 	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT };
 	pglDrawBuffers(1, buffers);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
-	pglDrawBuffers(1, buffers);	
-	
+	pglDrawBuffers(1, buffers);
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
-	
+
 	// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
 	// (This may need to change depending on future usage, however that will have a fps hit)
 	ApplyBlur();
 
 	for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
 		ApplyEffect(m_PostProcTech, pass);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
 }
@@ -562,7 +562,7 @@ void CPostprocManager::ApplyBlurGauss(GLuint UNUSED(inOutTex), GLuint UNUSED(tem
 void CPostprocManager::ApplyEffect(CShaderTechniquePtr &UNUSED(shaderTech1), int UNUSED(pass))
 {
 }
-	
+
 CPostprocManager::CPostprocManager()
 {
 }
@@ -599,7 +599,7 @@ void CPostprocManager::SetPostEffect(const CStrW& UNUSED(name))
 void CPostprocManager::CaptureRenderOutput()
 {
 }
-	
+
 void CPostprocManager::ApplyPostproc()
 {
 }

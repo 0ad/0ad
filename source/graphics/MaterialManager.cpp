@@ -81,10 +81,10 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	CMaterial material;
 
 	XMBElement root = xeroFile.GetRoot();
-	
+
 	CPreprocessorWrapper preprocessor;
 	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_Renderer.m_Options.m_ForceAlphaTest ? "1" : "0");
-	
+
 	CVector4D vec(qualityLevel,0,0,0);
 	material.AddStaticUniform("qualityLevel", vec);
 
@@ -101,12 +101,12 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 				if (cond.empty())
 					continue;
 				else
-				{	
+				{
 					if (cond.ToFloat() <= qualityLevel)
 						continue;
 				}
 			}
-				
+
 			material = LoadMaterial(VfsPath("art/materials") / attrs.GetNamedItem(at_material).FromUTF8());
 			break;
 		}
@@ -125,17 +125,17 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		else if (token == el_conditional_define)
 		{
 			std::vector<float> args;
-			
+
 			CStr type = attrs.GetNamedItem(at_type).c_str();
 			int typeID = -1;
-			
+
 			if (type == CStr("draw_range"))
 			{
 				typeID = DCOND_DISTANCE;
-				
+
 				float valmin = -1.0f;
 				float valmax = -1.0f;
-				
+
 				CStr conf = attrs.GetNamedItem(at_conf);
 				if (!conf.empty())
 				{
@@ -147,34 +147,34 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 					CStr dmin = attrs.GetNamedItem(at_min);
 					if (!dmin.empty())
 						valmin = attrs.GetNamedItem(at_min).ToFloat();
-					
+
 					CStr dmax = attrs.GetNamedItem(at_max);
 					if (!dmax.empty())
 						valmax = attrs.GetNamedItem(at_max).ToFloat();
 				}
-				
+
 				args.push_back(valmin);
 				args.push_back(valmax);
-				
+
 				if (valmin >= 0.0f)
 				{
 					std::stringstream sstr;
 					sstr << valmin;
 					material.AddShaderDefine(CStrIntern(conf + "_MIN"), CStrIntern(sstr.str()));
 				}
-				
+
 				if (valmax >= 0.0f)
-				{	
+				{
 					std::stringstream sstr;
 					sstr << valmax;
 					material.AddShaderDefine(CStrIntern(conf + "_MAX"), CStrIntern(sstr.str()));
 				}
 			}
-			
+
 			material.AddConditionalDefine(attrs.GetNamedItem(at_name).c_str(),
 						      attrs.GetNamedItem(at_value).c_str(),
 						      typeID, args);
-		}		
+		}
 		else if (token == el_uniform)
 		{
 			std::stringstream str(attrs.GetNamedItem(at_value));

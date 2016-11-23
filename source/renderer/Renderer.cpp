@@ -289,13 +289,13 @@ public:
 
 	/// Material manager
 	CMaterialManager materialManager;
-	
+
 	/// Time manager
 	CTimeManager timeManager;
 
 	/// Shadow map
 	ShadowMap shadow;
-	
+
 	/// Postprocessing effect manager
 	CPostprocManager postprocManager;
 
@@ -648,7 +648,7 @@ bool CRenderer::Open(int width, int height)
 	// Let component renderers perform one-time initialization after graphics capabilities and
 	// the shader path have been determined.
 	m->overlayRenderer.Initialize();
-	
+
 	if (m_Options.m_Postproc)
 		m->postprocManager.Initialize();
 
@@ -663,9 +663,9 @@ void CRenderer::Resize(int width, int height)
 
 	m_Width = width;
 	m_Height = height;
-	
+
 	m->postprocManager.Resize();
-	
+
 	m_WaterManager->Resize();
 }
 
@@ -856,7 +856,7 @@ void CRenderer::BeginFrame()
 
 	if (m->ShadersDirty)
 		ReloadShaders();
-	
+
 	m->Model.ModShader->SetShadowMap(&m->shadow);
 	m->Model.ModShader->SetLightEnv(m_LightEnv);
 }
@@ -1175,7 +1175,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 	// Save the post-processing framebuffer.
 	GLint fbo;
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
-	
+
 	WaterManager& wm = m->waterManager;
 
 	// Remember old camera
@@ -1202,7 +1202,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 
 	// try binding the framebuffer
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
-	
+
 	glClearColor(0.5f,0.5f,1.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -1224,7 +1224,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 		ogl_WarnIfError();
 	}
 	glFrontFace(GL_CCW);
-	
+
 	// Particles are always oriented to face the camera in the vertex shader,
 	// so they don't need the inverted glFrontFace
 	if (m_Options.m_Particles)
@@ -1232,16 +1232,16 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 		RenderParticles(CULL_REFLECTIONS);
 		ogl_WarnIfError();
 	}
-	
+
 	glDisable(GL_SCISSOR_TEST);
-	
+
   	// Reset old camera
   	m_ViewCamera = normalCamera;
   	m->SetOpenGLCamera(m_ViewCamera);
-	
+
 	// rebind post-processing frambuffer.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
-	
+
 	return;
 }
 
@@ -1255,7 +1255,7 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	// Save the post-processing framebuffer.
 	GLint fbo;
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
-	
+
 	WaterManager& wm = m->waterManager;
 
 	// Remember old camera
@@ -1282,13 +1282,13 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
-	
+
 	// try binding the framebuffer
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
 
 	glClearColor(1.0f,0.0f,0.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	// Render terrain and models
 	RenderPatches(context, CULL_REFRACTIONS);
 	ogl_WarnIfError();
@@ -1296,16 +1296,16 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	ogl_WarnIfError();
 	RenderTransparentModels(context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
 	ogl_WarnIfError();
-	
+
 	glDisable(GL_SCISSOR_TEST);
-	
+
   	// Reset old camera
   	m_ViewCamera = normalCamera;
   	m->SetOpenGLCamera(m_ViewCamera);
-	
+
 	// rebind post-processing frambuffer.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
-	
+
 	return;
 }
 
@@ -1447,9 +1447,9 @@ void CRenderer::RenderParticles(int cullGroup)
 void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 {
 	PROFILE3("render submissions");
-	
+
 	GetScene().GetLOSTexture().InterpolateLOS();
-	
+
 	if (m_Options.m_Postproc)
 	{
 		m->postprocManager.Initialize();
@@ -1562,7 +1562,7 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 		RenderParticles(cullGroup);
 		ogl_WarnIfError();
 	}
-	
+
 	if (m_Options.m_Postproc)
 	{
 		m->postprocManager.ApplyPostproc();
@@ -1594,7 +1594,7 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	// render overlays that should appear on top of all other objects
 	m->overlayRenderer.RenderForegroundOverlays(m_ViewCamera);
 	ogl_WarnIfError();
-	
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2017,9 +2017,9 @@ int CRenderer::LoadAlphaMaps()
 	// upload the composite texture
 	Tex t;
 	(void)t.wrap(total_w, total_h, 8, TEX_GREY, data, 0);
-	
+
 	/*VfsPath filename("blendtex.png");
-	
+
 	DynArray da;
 	RETURN_STATUS_IF_ERR(tex_encode(&t, filename.Extension(), &da));
 
@@ -2035,7 +2035,7 @@ int CRenderer::LoadAlphaMaps()
 	}
 
 	(void)da_free(&da);*/
-	
+
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);

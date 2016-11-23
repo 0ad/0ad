@@ -34,7 +34,7 @@ sTriggerSpec TriggerSpecToAtlas(const CTriggerSpec& spec)
 	sTriggerSpec atlasSpec;
 	std::vector< sTriggerParameter > atlasParameters;
 	const std::set<TriggerParameter>& parameters = spec.GetParameters();
-	
+
 	for ( std::set<TriggerParameter>::const_iterator it=parameters.begin(); it!=parameters.end(); ++it )
 	{
 		sTriggerParameter atlasParam;
@@ -43,7 +43,7 @@ sTriggerSpec TriggerSpecToAtlas(const CTriggerSpec& spec)
 		atlasParam.name = it->name;
 		atlasParam.parameterOrder = it->parameterOrder;
 		atlasParam.row = it->row;
-		
+
 		atlasParam.windowType = it->windowType;
 		atlasParam.xPos = it->xPos;
 		atlasParam.yPos = it->yPos;
@@ -65,10 +65,10 @@ sTrigger TriggerToAtlas(const MapTrigger& trigger)
 	atlasTrigger.maxRuns = trigger.maxRunCount;
 	atlasTrigger.group = trigger.groupName;
 	atlasTrigger.name = trigger.name;
-	
+
 	std::vector<bool> atlasNots;
 	std::vector<int> atlasBlocks, atlasBlockEnds;
-	
+
 	for ( std::set<MapTriggerLogicBlock>::const_iterator it = trigger.logicBlocks.begin();
 												it != trigger.logicBlocks.end(); ++it )
 	{
@@ -83,10 +83,10 @@ sTrigger TriggerToAtlas(const MapTrigger& trigger)
 	atlasTrigger.logicNots = atlasNots;
 	atlasTrigger.logicBlocks = atlasBlocks;
 	atlasTrigger.logicBlockEnds = atlasBlockEnds;
-	
+
 	std::vector<sTriggerCondition> atlasConditions;
 	std::vector<sTriggerEffect> atlasEffects;
-	
+
 	for ( std::list<MapTriggerCondition>::const_iterator it = trigger.conditions.begin();
 											it != trigger.conditions.end(); ++it )
 	{
@@ -97,13 +97,13 @@ sTrigger TriggerToAtlas(const MapTrigger& trigger)
 		atlasCondition.displayName = it->displayName;
 		atlasCondition.negated = it->negated;
 		std::vector<std::wstring> parameters;
-		
+
 		for ( std::list<CStrW>::const_iterator it2=it->parameters.begin();
 													it2 != it->parameters.end(); ++it2 )
 		{
 			parameters.push_back( std::wstring(it2->c_str()) );
 		}
-		
+
 		atlasCondition.parameters = parameters;
 		atlasConditions.push_back(atlasCondition);
 	}
@@ -136,7 +136,7 @@ sTriggerGroup GroupToAtlas(const MapTriggerGroup& group)
 	sTriggerGroup atlasGroup;
 	atlasGroup.parentName = group.parentName;
 	atlasGroup.name = group.name;
-	
+
 	std::vector<sTrigger> atlasTriggers;
 	std::vector<std::wstring> atlasChildren;
 	for ( std::list<MapTrigger>::const_iterator it = group.triggers.begin();
@@ -149,7 +149,7 @@ sTriggerGroup GroupToAtlas(const MapTriggerGroup& group)
 	{
 		atlasChildren.push_back( std::wstring(it->c_str()) );
 	}
-	
+
 	atlasGroup.triggers = atlasTriggers;
 	atlasGroup.children = atlasChildren;
 	return atlasGroup;
@@ -158,7 +158,7 @@ sTriggerGroup GroupToAtlas(const MapTriggerGroup& group)
 MapTrigger AtlasToTrigger(const sTrigger& trigger)
 {
 	MapTrigger engineTrigger;
-	
+
 	engineTrigger.active = trigger.active;
 	engineTrigger.groupName = *trigger.group;
 
@@ -169,7 +169,7 @@ MapTrigger AtlasToTrigger(const sTrigger& trigger)
 	engineTrigger.maxRunCount = trigger.maxRuns;
 	engineTrigger.name = *trigger.name;
 	engineTrigger.timeValue = trigger.timeValue;
-	
+
 	std::vector<sTriggerCondition> conditions = *trigger.conditions;
 	std::vector<sTriggerEffect> effects = *trigger.effects;
 
@@ -177,13 +177,13 @@ MapTrigger AtlasToTrigger(const sTrigger& trigger)
 	{
 		engineTrigger.conditions.push_back( MapTriggerCondition() );
 		MapTriggerCondition* cond = &engineTrigger.conditions.back();
-		
+
 		cond->functionName = *it->functionName;
 		cond->displayName = *it->displayName;
 		cond->linkLogic = it->linkLogic;
 		cond->name = *it->name;
 		cond->negated = it->negated;
-		
+
 		std::vector<std::wstring> parameters = *it->parameters;
 		for ( std::vector<std::wstring>::const_iterator it2 = parameters.begin(); it2 != parameters.end(); ++it2 )
 		{
@@ -216,11 +216,11 @@ MapTriggerGroup AtlasToGroup(const sTriggerGroup& group)
 	MapTriggerGroup engineGroup;
 	engineGroup.parentName = *group.parentName;
 	engineGroup.name = *group.name;
-	
+
 	std::list<MapTrigger> engineTriggers;
 	std::vector<std::wstring> atlasChildren = *group.children;
 	std::vector<sTrigger> atlasTriggers = *group.triggers;
-	
+
 	for ( std::vector<sTrigger>::const_iterator it = atlasTriggers.begin();
 													it != atlasTriggers.end(); ++it )
 	{
@@ -228,7 +228,7 @@ MapTriggerGroup AtlasToGroup(const sTriggerGroup& group)
 	}
 	for ( std::vector<std::wstring>::const_iterator it = atlasChildren.begin(); it != atlasChildren.end(); ++it )
 		engineGroup.childGroups.push_back(*it);
-	
+
 	engineGroup.triggers = engineTriggers;
 	return engineGroup;
 }
@@ -267,7 +267,7 @@ QUERYHANDLER(GetTriggerData)
 		atlasConditions.push_back( TriggerSpecToAtlas(*it) );
 	for ( std::list<CTriggerEffect>::const_iterator it=effects.begin(); it!=effects.end(); ++it )
 		atlasEffects.push_back( TriggerSpecToAtlas(*it) );
-	
+
 	msg->conditions = atlasConditions;
 	msg->effects = atlasEffects;
 	msg->groups = GetCurrentTriggers();
@@ -284,11 +284,11 @@ QUERYHANDLER(GetTriggerChoices)
 
 	if ( choices.empty() )
 		return;
-	
+
 	//If a special list (i.e. uses engine data)
 	if ( choices.size() == 1 )
 	{
-		
+
 		if ( choices[0] == std::wstring(L"ATLAS_CINEMA_LIST") )
 		{
 			choices.clear();

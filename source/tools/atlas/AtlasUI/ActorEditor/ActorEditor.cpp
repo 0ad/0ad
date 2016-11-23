@@ -48,7 +48,7 @@ ActorEditor::ActorEditor(wxWindow* parent)
 	AddCustomMenu(menu, _("&Actor"));
 
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	wxPanel* mainPanel = new wxPanel(this);
 
 	m_ActorEditorListCtrl = new ActorEditorListCtrl(mainPanel);
@@ -353,7 +353,7 @@ AtObj ActorEditor::ExportData()
 void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 {
 	// Create a very basic entity for this actor.
-	
+
 	// The output should be an XML file like:
 	//
 	//   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -364,7 +364,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 	// 'Actor' comes from this actor's filename.
 	// 'Parent' comes from the filename of a user-selected entity.
 	// The file will be saved into a user-selected location.
-	
+
 	// Get the entity's expected name
 	wxFileName currentFilename (GetCurrentFilename());
 	if (! currentFilename.IsOk())

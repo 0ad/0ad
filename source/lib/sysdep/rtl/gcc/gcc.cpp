@@ -70,11 +70,11 @@ void* rtl_AllocateAligned(size_t size, size_t align)
 	// least sizeof(void*) alignment.
 	if (align < 2*sizeof(void*))
 		align = 2*sizeof(void*);
-	
+
 	void* const malloc_ptr = malloc(size + align);
 	if (!malloc_ptr)
 		return NULL;
-	
+
 	// Round malloc_ptr up to the next aligned address, leaving some unused
 	// space before the pointer we'll return. The minimum alignment above
 	// ensures we'll have at least sizeof(void*) extra space.

@@ -117,7 +117,7 @@ const AtIter AtObj::operator [] (const char* key) const
 {
 	if (p)
 		return p->getChild(key);
-	else	
+	else
 		// This object doesn't exist, so return another object that doesn't exist
 		return AtIter();
 }

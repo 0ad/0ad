@@ -28,7 +28,7 @@ CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, JS:
 	// Cache the property detection for efficiency
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
 	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance, "Deserialize");
 
@@ -57,7 +57,7 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	const char* name = global ? msg.GetScriptGlobalHandlerName() : msg.GetScriptHandlerName();
 
 	JS::RootedValue msgVal(cx, msg.ToJSValCached(m_ScriptInterface));
@@ -71,7 +71,7 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	// If the component set Serialize = null, then do no work here
 	if (m_HasNullSerialize)
 		return;
-	
+
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
@@ -91,10 +91,10 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 }
 
 void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
-{	
+{
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
 	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
 

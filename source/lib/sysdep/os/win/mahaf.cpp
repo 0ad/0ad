@@ -274,7 +274,7 @@ static void StartDriver(const OsPath& driverPathname)
 		hService = 0;
 		UninstallDriver();
 	}
-#endif	
+#endif
 
 	// create service (note: this just enters the service into SCM's DB;
 	// no error is raised if the driver binary doesn't exist etc.)

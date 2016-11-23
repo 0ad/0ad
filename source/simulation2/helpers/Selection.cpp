@@ -33,11 +33,11 @@
 #include "ps/Profiler2.h"
 
 entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
-{	
+{
 	PROFILE2("PickEntityAtPoint");
 	CVector3D origin, dir;
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
-	
+
 	CmpPtr<ICmpUnitRenderer> cmpUnitRenderer(simulation.GetSimContext().GetSystemEntity());
 	ENSURE(cmpUnitRenderer);
 
@@ -45,7 +45,7 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 	cmpUnitRenderer->PickAllEntitiesAtPoint(entities, origin, dir, allowEditorSelectables);
 	if (entities.empty())
 		return INVALID_ENTITY;
-	
+
 	// Filter for relevent entities in the list of candidates (all entities below the mouse)
 	std::vector<std::pair<float, CEntityHandle> > hits; // (dist^2, entity) pairs
 	for (size_t i = 0; i < entities.size(); ++i)
@@ -63,14 +63,14 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 		[](const std::pair<float, CEntityHandle>& a, const std::pair<float, CEntityHandle>& b) {
 			return a.first < b.first;
 		});
-	
+
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
-	
+
 	for (size_t i = 0; i < hits.size(); ++i)
 	{
 		const CEntityHandle& handle = hits[i].second;
-		
+
 		CmpPtr<ICmpSelectable> cmpSelectable(handle);
 		if (!cmpSelectable)
 			continue;
@@ -82,7 +82,7 @@ entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const C
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		if (cmpRangeManager->GetLosVisibility(handle, player) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
-			
+
 		return handle.GetId();
 	}
 	return INVALID_ENTITY;

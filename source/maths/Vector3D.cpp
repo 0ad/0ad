@@ -39,9 +39,9 @@ int CVector3D::operator ! () const
 	if (X != 0.0f ||
 		Y != 0.0f ||
 		Z != 0.0f)
-		
+
 		return 0;
-	
+
 	return 1;
 }
 

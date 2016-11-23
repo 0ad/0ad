@@ -69,7 +69,7 @@ SkyManager::SkyManager()
 	m_SkySet = L"";
 
 	m_HorizonHeight = -150.0f;
-	
+
 	m_SkyCubeMap = 0;
 }
 
@@ -92,10 +92,10 @@ void SkyManager::LoadSkyTextures()
 	///////////////////////////////////////////////////////////////////////////
 	// HACK: THE HORRIBLENESS HERE IS OVER 9000. The following code is a HUGE hack and will be removed completely
 	// as soon as all the hardcoded GL_TEXTURE_2D references are corrected in the TextureManager/OGL/tex libs.
-	
+
 	glGenTextures(1, &m_SkyCubeMap);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
-	
+
 	int types[] = {
 		GL_TEXTURE_CUBE_MAP_POSITIVE_X,
 		GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
@@ -104,7 +104,7 @@ void SkyManager::LoadSkyTextures()
 		GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
 		GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
 	};
-	
+
 	const wchar_t* images[numTextures+1] = {
 		L"front",
 		L"back",
@@ -113,11 +113,11 @@ void SkyManager::LoadSkyTextures()
 		L"top",
 		L"top"
 	};
-	
+
 	for (size_t i = 0; i < numTextures+1; ++i)
 	{
 		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds");
-		
+
 		shared_ptr<u8> file;
 		size_t fileSize;
 		if (g_VFS->LoadFile(path, file, fileSize) < 0)
@@ -130,31 +130,31 @@ void SkyManager::LoadSkyTextures()
 				return;
 			}
 		}
-		
+
 		Tex tex;
 		tex.decode(file, fileSize);
-		
+
 		tex.transform_to((tex.m_Flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
-		
+
 		u8* data = tex.get_data();
-		
+
 		if (types[i] == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y || types[i] == GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
 		{
 			std::vector<u8> rotated(tex.m_DataSize);
-		
+
 			for (size_t y = 0; y < tex.m_Height; ++y)
 			{
 				for (size_t x = 0; x < tex.m_Width; ++x)
 				{
 					size_t invx = y, invy = tex.m_Width-x-1;
-					
+
 					rotated[(y*tex.m_Width + x) * 4 + 0] = data[(invy*tex.m_Width + invx) * 4 + 0];
 					rotated[(y*tex.m_Width + x) * 4 + 1] = data[(invy*tex.m_Width + invx) * 4 + 1];
 					rotated[(y*tex.m_Width + x) * 4 + 2] = data[(invy*tex.m_Width + invx) * 4 + 2];
 					rotated[(y*tex.m_Width + x) * 4 + 3] = data[(invy*tex.m_Width + invx) * 4 + 3];
 				}
 			}
-			
+
 			glTexImage2D(types[i], 0, GL_RGB, tex.m_Width, tex.m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
 		}
 		else
@@ -162,7 +162,7 @@ void SkyManager::LoadSkyTextures()
 			glTexImage2D(types[i], 0, GL_RGB, tex.m_Width, tex.m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		}
 	}
-	
+
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -183,13 +183,13 @@ void SkyManager::SetSkySet( const CStrW& newSet )
 {
 	if(newSet == m_SkySet)
 		return;
-	
+
 	if (m_SkyCubeMap)
 	{
 		glDeleteTextures(1, &m_SkyCubeMap);
 		m_SkyCubeMap = 0;
 	}
-	
+
 	m_SkySet = newSet;
 
 	LoadSkyTextures();
@@ -228,19 +228,19 @@ void SkyManager::RenderSky()
 
 	// Draw the sky as a small box around the map, with depth write enabled.
 	// This will be done before anything else is drawn so we'll be overlapped by everything else.
-	
+
 	// Do nothing unless SetSkySet was called
 	if (m_SkySet.empty())
 		return;
 
 	glDepthMask( GL_FALSE );
-	
+
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-	
+
 	// Translate so we are at the center of the map.
 	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	glTranslatef(mapSize*(TERRAIN_TILE_SIZE/2.0f), m_HorizonHeight, mapSize*(TERRAIN_TILE_SIZE/2.0f) );
@@ -253,10 +253,10 @@ void SkyManager::RenderSky()
 	const float D = 1500.0f; // distance from map center
 	const float H = 500.0f; // height of the ceiling
 	const float FH = -100.0f; // height of the "floor"
-	
+
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr skytech;
-	
+
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 	{
 		skytech = g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
@@ -284,19 +284,19 @@ void SkyManager::RenderSky()
 		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
 		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
 		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
-	
+
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
 		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
 		glTexCoord3f( -1, +1, -1 );  glVertex3f( +D, FH, +D );
 		glTexCoord3f( +1, +1, -1 );  glVertex3f( -D, FH, +D );
 		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
-		
+
 	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
 		glTexCoord3f( +1, -1, +1 );  glVertex3f( -D, +H, -D );
 		glTexCoord3f( +1, -1, -1 );  glVertex3f( -D, +H, +D );
 		glTexCoord3f( -1, -1, -1 );  glVertex3f( +D, +H, +D );
 		glTexCoord3f( -1, -1, +1 );  glVertex3f( +D, +H, -D );
-	
+
 	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
 		glTexCoord3f( -1, +1, +1 );  glVertex3f( +D, FH, -D );
 		glTexCoord3f( +1, +1, +1 );  glVertex3f( -D, FH, -D );
@@ -320,7 +320,7 @@ void SkyManager::RenderSky()
 		glDisable(GL_TEXTURE_CUBE_MAP);
 		glEnable(GL_TEXTURE_2D);
 	}
-	
+
 	glPopMatrix();
 
 	glDepthMask( GL_TRUE );

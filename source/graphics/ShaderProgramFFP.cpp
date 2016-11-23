@@ -677,7 +677,7 @@ public:
 		between the texture and {1,1,1}) giving
 		    A0/2 + 0.5
 		and use that as Arg0.
-		
+
 		So L = 4*(A0/2 * (Arg1-.5))
 		     = 2 (Rx+Gy+Bz)      (where Arg1 = {x+0.5, y+0.5, z+0.5})
 			 = 2x R + 2y G + 2z B
@@ -809,7 +809,7 @@ protected:
 		ID_playerColor,
 		ID_losTransform
 	};
-	
+
 	bool m_IgnoreLos;
 
 public:
@@ -837,7 +837,7 @@ public:
 		if (id.second == ID_transform)
 			glLoadMatrixf(&v._11);
 	}
-	
+
 	virtual void Uniform(Binding id, float v0, float v1, float UNUSED(v2), float UNUSED(v3))
 	{
 		if (id.second == ID_losTransform)
@@ -857,9 +857,9 @@ public:
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
-		
+
 		// -----------------------------------------------------------------------------
-		
+
 		pglActiveTextureARB(GL_TEXTURE3);
 		glEnable(GL_TEXTURE_2D);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -879,7 +879,7 @@ public:
 			glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 			glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 			// Overridden implementation of Uniform() sets GL_OBJECT_PLANE values
-			
+
 			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
@@ -891,7 +891,7 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		
+
 		// -----------------------------------------------------------------------------
 
 		BindClientStates();
@@ -900,13 +900,13 @@ public:
 	virtual void Unbind()
 	{
 		UnbindClientStates();
-		
+
 		pglActiveTextureARB(GL_TEXTURE3);
 		glDisable(GL_TEXTURE_2D);
 
 		glDisable(GL_TEXTURE_GEN_S);
 		glDisable(GL_TEXTURE_GEN_T);
-		
+
 		pglActiveTextureARB(GL_TEXTURE0);
 
 		glMatrixMode(GL_PROJECTION);

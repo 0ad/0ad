@@ -800,7 +800,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 
 			float maxDashSize = 3.f;
 			float maxClearSize = 3.f;
-			
+
 			float dashSize = maxDashSize;
 			float clearSize = maxClearSize;
 			float pairDashRatio = (dashSize / (dashSize + clearSize)); // ratio of the dash's length to a (dash + clear) pair's length
@@ -859,7 +859,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines(size_t index)
 
 				m_TexturedOverlayLines[index].push_back(dashOverlay);
 			}
-			
+
 		}
 	}
 

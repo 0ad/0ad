@@ -247,10 +247,10 @@ QUERYHANDLER(GetObjectSettings)
 QUERYHANDLER(GetObjectMapSettings)
 {
 	std::vector<entity_id_t> ids = *msg->ids;
-	
+
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	ENSURE(cmpTemplateManager);
-	
+
 	XML_Start();
 	{
 		XML_Element("Entities");
@@ -262,12 +262,12 @@ QUERYHANDLER(GetObjectMapSettings)
 				{
 					//Template name
 					XML_Setting("Template", cmpTemplateManager->GetCurrentTemplateName(id));
-					
+
 					//Player
 					CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), id);
 					if (cmpOwnership)
 						XML_Setting("Player", (int)cmpOwnership->GetOwner());
-					
+
 					//Adding position to make some relative position later
 					CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
 					if (cmpPosition)
@@ -296,7 +296,7 @@ QUERYHANDLER(GetObjectMapSettings)
 			}
 		}
 	}
-	
+
 	const CStr& data = XML_GetOutput();
 	msg->xmldata = std::wstring(data.begin(), data.end());
 }
@@ -475,11 +475,11 @@ MESSAGEHANDLER(MoveObjectPreview)
 	// All selected objects move relative to a pivot object,
 	//	so get its position and whether it's floating
 	CFixedVector3D referencePos;
-	
+
 	CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), referenceEntity);
 	if (cmpPosition && cmpPosition->IsInWorld())
 		referencePos = cmpPosition->GetPosition();
-		
+
 
 	// Calculate directional vector of movement for pivot object,
 	//	we apply the same movement to all objects
@@ -532,7 +532,7 @@ MESSAGEHANDLER(ObjectPreview)
 			g_PreviewEntityID = g_Game->GetSimulation2()->AddLocalEntity(L"preview|" + *msg->id);
 			g_PreviewEntitiesID.push_back(g_PreviewEntityID);
 		}
-		
+
 
 		g_PreviewUnitName = *msg->id;
 	}
@@ -587,7 +587,7 @@ BEGIN_COMMAND(CreateObject)
 	void Do()
 	{
 		// Calculate the position/orientation to create this unit with
-		
+
 		m_Pos = GetUnitPos(msg->pos, true); // don't really care about floating
 
 		if (msg->usetarget)
@@ -649,7 +649,7 @@ QUERYHANDLER(PickObject)
 {
 	float x, y;
 	msg->pos->GetScreenSpace(x, y);
-	
+
 	// Normally this function would be called with a player ID to check LOS,
 	//	but in Atlas the entire map is revealed, so just pass INVALID_PLAYER
 	entity_id_t ent = EntitySelection::PickEntityAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, INVALID_PLAYER, msg->selectActors);;
@@ -767,7 +767,7 @@ BEGIN_COMMAND(MoveObjects)
 				CFixedVector3D posFixed = cmpPosition->GetPosition();
 				CVector3D pos = CVector3D(posFixed.X.ToFloat(), posFixed.Y.ToFloat(), posFixed.Z.ToFloat());
 				m_PosNew[id] = pos + dir;
-				m_PosOld[id] = pos;			
+				m_PosOld[id] = pos;
 			}
 		}
 

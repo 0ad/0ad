@@ -334,7 +334,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	// now actually render the blend tile (if we need one)
 	if (alphamap == -1)
 		return;
-	
+
 	float u0 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].u0;
 	float u1 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].u1;
 	float v0 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].v0;
@@ -469,7 +469,7 @@ void CPatchRData::BuildIndices()
 	m_Splats.resize(textures.size());
 	// build indices for base splats
 	size_t base=m_VBBase->m_Index;
-	
+
 	for (size_t i=0;i<m_Splats.size();i++) {
 		CTerrainTextureEntry* tex=textures[i];
 
@@ -561,7 +561,7 @@ void CPatchRData::BuildVertices()
 			// for all vertices, it need not be stored in the vertex structure)
 			CVector3D normal;
 			terrain->CalcNormal(ix,iz,normal);
-			
+
 			vertices[v].m_Normal = normal;
 
 			vertices[v].m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
@@ -762,9 +762,9 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
  	for (TextureBatches::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
 		int numPasses = 1;
-		
+
 		CShaderTechniquePtr techBase;
-		
+
 		if (!isDummyShader)
 		{
 			if (itt->first->GetMaterial().GetShaderEffect().length() == 0)
@@ -772,13 +772,13 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				LOGERROR("Terrain renderer failed to load shader effect.\n");
 				continue;
 			}
-						
+
 			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
 						context, itt->first->GetMaterial().GetShaderDefines(0));
-			
+
 			numPasses = techBase->GetNumPasses();
 		}
-		
+
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			if (!isDummyShader)
@@ -786,20 +786,20 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				techBase->BeginPass(pass);
 				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
 			}
-			
+
 			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
-			
+
 			if (itt->first->GetMaterial().GetSamplers().size() != 0)
 			{
 				const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
 				size_t samplersNum = samplers.size();
-				
+
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
 					const CMaterial::TextureSampler& samp = samplers[s];
 					shader->BindTexture(samp.Name, samp.Sampler);
 				}
-				
+
 				itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 
 #if !CONFIG2_GLES
@@ -852,7 +852,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 					g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
 				}
 			}
-			
+
 			if (!isDummyShader)
 				techBase->EndPass();
 		}
@@ -908,7 +908,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 
 	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::DynamicArena > > BatchesStack;
 	BatchesStack batches((BatchesStack::allocator_type(arena)));
-	
+
 	CShaderDefines contextBlend = context;
 	contextBlend.Add(str_BLEND, str_1);
 
@@ -991,20 +991,20 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
  	CVertexBuffer* lastVB = NULL;
 
  	for (BatchesStack::iterator itt = batches.begin(); itt != batches.end(); ++itt)
-	{		
+	{
 		if (itt->m_Texture->GetMaterial().GetSamplers().size() == 0)
 			continue;
-		
+
 		int numPasses = 1;
 		CShaderTechniquePtr techBase;
-		
+
 		if (!isDummyShader)
 		{
 			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines(0));
-			
+
 			numPasses = techBase->GetNumPasses();
 		}
-		
+
 		CShaderProgramPtr previousShader;
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
@@ -1012,18 +1012,18 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 			{
 				techBase->BeginPass(pass);
 				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
-				
+
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			}
-				
+
 			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
-				
+
 			if (itt->m_Texture)
 			{
 				const CMaterial::SamplersVector& samplers = itt->m_Texture->GetMaterial().GetSamplers();
 				size_t samplersNum = samplers.size();
-				
+
 				for (size_t s = 0; s < samplersNum; ++s)
 				{
 					const CMaterial::TextureSampler& samp = samplers[s];
@@ -1033,7 +1033,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				shader->BindTexture(str_blendTex, itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
 
 				itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
-				
+
 #if !CONFIG2_GLES
 				if (isDummyShader)
 				{
@@ -1091,7 +1091,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 					g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
 				}
 			}
-			
+
 			if (!isDummyShader)
 			{
 				glDisable(GL_BLEND);
@@ -1311,7 +1311,7 @@ void CPatchRData::BuildWater()
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 	if (!cmpWaterManager)
 		return;
-	
+
 	// Build data for water
 	std::vector<SWaterVertex> water_vertex_data;
 	std::vector<GLushort> water_indices;
@@ -1323,14 +1323,14 @@ void CPatchRData::BuildWater()
 	std::vector<GLushort> water_indices_shore;
 	u16 water_shore_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_shore_index_map, 0xFF, sizeof(water_shore_index_map));
-	
+
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
 
 	ssize_t mapSize = (size_t)terrain->GetVerticesPerSide();
-	
+
 	//Top-left coordinates of our patch.
 	ssize_t x1 = m_Patch->m_X*PATCH_SIZE;
 	ssize_t z1 = m_Patch->m_Z*PATCH_SIZE;
@@ -1342,13 +1342,13 @@ void CPatchRData::BuildWater()
 	int moves[4][2] = { {0,0}, {water_cell_size,0}, {0,water_cell_size}, {water_cell_size,water_cell_size} };
 	// Where to look for when checking for water for shore tiles.
 	int check[10][2] = { {0,0},{water_cell_size,0},{water_cell_size*2,0},{0,water_cell_size},{0,water_cell_size*2},{water_cell_size,water_cell_size},{water_cell_size*2,water_cell_size*2}, {-water_cell_size,0}, {0,-water_cell_size}, {-water_cell_size,-water_cell_size} };
-	
+
 	// build vertices, uv, and shader varying
 	for (ssize_t z = 0; z < PATCH_SIZE; z += water_cell_size)
 	{
 		for (ssize_t x = 0; x < PATCH_SIZE; x += water_cell_size)
 		{
-			
+
 			// Check that this tile is close to water
 			bool nearWat = false;
 			for (size_t test = 0; test < 10; ++test)
@@ -1356,32 +1356,32 @@ void CPatchRData::BuildWater()
 					nearWat = true;
 			if (!nearWat)
 				continue;
-			
+
 			// This is actually lying and I should call CcmpTerrain
 			/*if (!terrain->IsOnMap(x+x1, z+z1)
 			 && !terrain->IsOnMap(x+x1, z+z1 + water_cell_size)
 			 && !terrain->IsOnMap(x+x1 + water_cell_size, z+z1)
 			 && !terrain->IsOnMap(x+x1 + water_cell_size, z+z1 + water_cell_size))
 			 continue;*/
-						
+
 			for (int i = 0; i < 4; ++i)
 			{
 				if (water_index_map[z+moves[i][1]][x+moves[i][0]] != 0xFFFF)
 					continue;
-				
+
 				ssize_t zz = z+z1+moves[i][1];
 				ssize_t xx = x+x1+moves[i][0];
-				
+
 				SWaterVertex vertex;
 				terrain->CalcPosition(xx,zz, vertex.m_Position);
 				float depth = waterHeight - vertex.m_Position.Y;
-				
+
 				vertex.m_Position.Y = waterHeight;
-				
+
 				m_WaterBounds += vertex.m_Position;
-				
+
 				vertex.m_WaterData = CVector2D(WaterMgr->m_WindStrength[xx + zz*mapSize], depth);
-				
+
 				water_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data.size();
 				water_vertex_data.push_back(vertex);
 			}
@@ -1391,7 +1391,7 @@ void CPatchRData::BuildWater()
 			water_indices.push_back(water_index_map[z + moves[1][1]][x + moves[1][0]]);
 			water_indices.push_back(water_index_map[z + moves[3][1]][x + moves[3][0]]);
 			water_indices.push_back(water_index_map[z + moves[2][1]][x + moves[2][0]]);
-			
+
 			// Check id this tile is partly over land.
 			// If so add a square over the terrain. This is necessary to render waves that go on shore.
 			if (terrain->GetVertexGroundLevel(x+x1, z+z1) < waterHeight
@@ -1399,22 +1399,22 @@ void CPatchRData::BuildWater()
 				&& terrain->GetVertexGroundLevel(x+x1, z+z1+water_cell_size) < waterHeight
 				&& terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1+water_cell_size) < waterHeight)
 				continue;
-			
+
 			for (int i = 0; i < 4; ++i)
 			{
 				if (water_shore_index_map[z+moves[i][1]][x+moves[i][0]] != 0xFFFF)
 					continue;
 				ssize_t zz = z+z1+moves[i][1];
 				ssize_t xx = x+x1+moves[i][0];
-				
+
 				SWaterVertex vertex;
 				terrain->CalcPosition(xx,zz, vertex.m_Position);
-				
+
 				vertex.m_Position.Y += 0.02f;
 				m_WaterBounds += vertex.m_Position;
-				
+
 				vertex.m_WaterData = CVector2D(0.0f, -5.0f);
-				
+
 				water_shore_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data_shore.size();
 				water_vertex_data_shore.push_back(vertex);
 			}
@@ -1444,7 +1444,7 @@ void CPatchRData::BuildWater()
 	{
 		m_VBWater = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater, &water_vertex_data[0]);
-		
+
 		m_VBWaterIndices = g_VBMan.Allocate(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
 	}
@@ -1453,7 +1453,7 @@ void CPatchRData::BuildWater()
 	{
 		m_VBWaterShore = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data_shore.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore, &water_vertex_data_shore[0]);
-		
+
 		// Construct indices buffer
 		m_VBWaterIndicesShore = g_VBMan.Allocate(sizeof(GLushort), water_indices_shore.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore, &water_indices_shore[0]);
@@ -1469,37 +1469,37 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	if (m_VBWater != 0x0 && !onlyShore)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
-		
+
 		// setup data pointers
 		GLsizei stride = sizeof(SWaterVertex);
 		shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
 		if (!fixedPipeline)
 			shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
-		
+
 		shader->AssertPointersBound();
-		
+
 		u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
 		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndices->m_Count,
 					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
-		
+
 		g_Renderer.m_Stats.m_DrawCalls++;
 		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 	}
 	if (m_VBWaterShore != 0x0 && g_Renderer.GetWaterManager()->m_WaterFancyEffects && !g_Renderer.GetWaterManager()->m_WaterUgly)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
-		
+
 		GLsizei stride = sizeof(SWaterVertex);
 		shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWaterShore->m_Index].m_Position);
 		if (!fixedPipeline)
 			shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWaterShore->m_Index].m_WaterData);
-		
+
 		shader->AssertPointersBound();
-		
+
 		u8* indexBase = m_VBWaterIndicesShore->m_Owner->Bind();
 		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndicesShore->m_Count,
 					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndicesShore->m_Index));
-		
+
 		g_Renderer.m_Stats.m_DrawCalls++;
 		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndicesShore->m_Count / 3;
 	}

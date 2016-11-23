@@ -760,7 +760,7 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 
 		m_SameTurnMovesCount = (u16)(m_SameTurnMovesCount + moveCount);
 	}
-	
+
 	if (!m_AsyncShortPathRequests.empty())
 	{
 		// Figure out how many moves we can do now

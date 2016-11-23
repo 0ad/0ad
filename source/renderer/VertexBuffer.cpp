@@ -149,7 +149,7 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 		// resize given chunk
 		chunk->m_Count = numVertices;
 	}
-	
+
 	// return found chunk
 	m_AllocList.push_back(chunk);
 	return chunk;

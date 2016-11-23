@@ -127,7 +127,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 	png_uint_32 w, h;
 	int bit_depth, color_type, interlace_type;
 	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, &interlace_type, 0, 0);
-	
+
 	// (The following is based on GdkPixbuf's PNG image loader)
 
 	// Convert the following images to 8-bit RGB/RGBA:
@@ -152,7 +152,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 
 	// Update info after transformations
 	png_read_update_info(png_ptr, info_ptr);
-	
+
 	png_get_IHDR(png_ptr, info_ptr, &w, &h, &bit_depth, &color_type, &interlace_type, 0, 0);
 
 	// make sure format is acceptable:
@@ -166,7 +166,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 		WARN_RETURN(ERR::TEX_NOT_8BIT_PRECISION);
 	if (!(color_type == PNG_COLOR_TYPE_RGB || color_type == PNG_COLOR_TYPE_RGB_ALPHA || color_type == PNG_COLOR_TYPE_GRAY))
 		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
-	
+
 	const int channels = png_get_channels(png_ptr, info_ptr);
 	if (!(channels == 3 || channels == 4 || channels == 1))
 		WARN_RETURN(ERR::TEX_FMT_INVALID);
@@ -298,7 +298,7 @@ TIMER_ACCRUE(tc_png_decode);
 	Status ret = png_decode_impl(&stream, png_ptr, info_ptr, t);
 
 	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
-	
+
 	return ret;
 }
 

@@ -40,7 +40,7 @@ CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_MovementClass("default")
 {
 	if (m_pParent)
-		m_Groups = m_pParent->m_Groups;	
+		m_Groups = m_pParent->m_Groups;
 }
 
 CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& parent, const VfsPath& pathname)
@@ -60,11 +60,11 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 			rootName);
 		return CTerrainPropertiesPtr();
 	}
-	
+
 	#define ELMT(x) int el_##x = XeroFile.GetElementID(#x)
 	ELMT(terrain);
 	#undef ELMT
-	
+
 	// Ignore all non-terrain nodes, loading the first terrain node and
 	// returning it.
 	// Really, we only expect there to be one child and it to be of the right
@@ -85,7 +85,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 			// Keep reading - typos shouldn't be showstoppers
 		}
 	}
-	
+
 	return CTerrainPropertiesPtr();
 }
 
@@ -120,7 +120,7 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 			CColor col;
 			if (!col.ParseString(attr.Value, 255))
 				continue;
-			
+
 			// m_BaseColor is BGRA
 			u8 *baseColor = (u8*)&m_BaseColor;
 			baseColor[0] = (u8)(col.b*255);

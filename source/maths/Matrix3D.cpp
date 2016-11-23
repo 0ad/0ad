@@ -62,7 +62,7 @@ void CMatrix3D::SetXRotation (float angle)
 {
 	const float Cos = cosf (angle);
 	const float Sin = sinf (angle);
-	
+
 	_11=1.0f; _12=0.0f; _13=0.0f; _14=0.0f;
 	_21=0.0f; _22=Cos;  _23=-Sin; _24=0.0f;
 	_31=0.0f; _32=Sin;  _33=Cos;  _34=0.0f;
@@ -165,7 +165,7 @@ void CMatrix3D::SetTranslation (float x, float y, float z)
 
 void CMatrix3D::SetTranslation(const CVector3D& vector)
 {
-	SetTranslation(vector.X, vector.Y, vector.Z);	
+	SetTranslation(vector.X, vector.Y, vector.Z);
 }
 
 //Applies a translation to the matrix
@@ -279,7 +279,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	float tmp[12];	// temp array for pairs
 	float src[16];	// array of transpose source matrix
 	float det;		// determinant
-	
+
 	// transpose matrix
 	for (int i = 0; i < 4; ++i) {
 		src[i] = _data[i*4];
@@ -301,7 +301,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	tmp[9] = src[10] * src[12];
 	tmp[10] = src[8] * src[13];
 	tmp[11] = src[9] * src[12];
-	
+
 	// calculate first 8 elements (cofactors)
 	dst._data[0] = (tmp[0]-tmp[1])*src[5] + (tmp[3]-tmp[2])*src[6] + (tmp[4]-tmp[5])*src[7];
 	dst._data[1] = (tmp[1]-tmp[0])*src[4] + (tmp[6]-tmp[7])*src[6] + (tmp[9]-tmp[8])*src[7];
@@ -311,7 +311,7 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	dst._data[5] = (tmp[0]-tmp[1])*src[0] + (tmp[7]-tmp[6])*src[2] + (tmp[8]-tmp[9])*src[3];
 	dst._data[6] = (tmp[3]-tmp[2])*src[0] + (tmp[6]-tmp[7])*src[1] + (tmp[11]-tmp[10])*src[3];
 	dst._data[7] = (tmp[4]-tmp[5])*src[0] + (tmp[9]-tmp[8])*src[1] + (tmp[10]-tmp[11])*src[2];
-	
+
 	// calculate pairs for second 8 elements (cofactors)
 	tmp[0] = src[2]*src[7];
 	tmp[1] = src[3]*src[6];

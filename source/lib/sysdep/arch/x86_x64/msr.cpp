@@ -47,7 +47,7 @@ bool HasEnergyPerfBias()
 #if 1
 	// the documentation is unclear. until it improves, disable
 	// this, lest we provoke a GPF.
-	return false;	
+	return false;
 #else
 	if(x86_x64::Vendor() != x86_x64::VENDOR_INTEL)
 		return false;

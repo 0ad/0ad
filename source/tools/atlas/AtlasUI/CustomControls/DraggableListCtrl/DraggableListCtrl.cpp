@@ -90,7 +90,7 @@ void DraggableListCtrl::OnMouseEvent(wxMouseEvent& event)
 		OnEndDrag();
 		ReleaseMouse();
 	}
-	
+
 	else if (event.Dragging())
 	{
 		// Find which item the mouse is now over
@@ -118,7 +118,7 @@ void DraggableListCtrl::OnMouseEvent(wxMouseEvent& event)
 				m_DragSource = dragTarget;
 			}
 	}
-	
+
 	else
 		// Some other kind of event which we're not interested in - ignore it
 		event.Skip();

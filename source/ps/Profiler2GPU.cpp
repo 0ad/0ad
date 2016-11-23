@@ -157,7 +157,7 @@ public:
 		// That will be this GL_TIMESTAMP get, which potentially distorts the
 		// reported results. So we'll only do it fairly rarely, and for most
 		// frames we'll just assume the clocks don't drift much
-		
+
 		const double RESYNC_PERIOD = 1.0; // seconds
 
 		double now = m_Profiler.GetTime();

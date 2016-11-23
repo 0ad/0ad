@@ -68,7 +68,7 @@ void udbg_launch_debugger()
 		// Child Process: exec() gdb (Debugger), set to attach to old fork
 		char buf[16];
 		snprintf(buf, 16, DEBUGGER_ARG_FORMAT, orgpid);
-		
+
 		int ret=execlp(DEBUGGER_CMD, DEBUGGER_CMD, buf, NULL);
 		// In case of success, we should never get here anyway, though...
 		if (ret != 0)

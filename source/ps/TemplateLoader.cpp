@@ -548,7 +548,7 @@ void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-	
+
 	// When dying, resources lose the unitMotion component
 	// This causes them to have no clearance. Since unit obstructions no longer have a radius,
 	// this makes them unreachable in some cases (see #3530).

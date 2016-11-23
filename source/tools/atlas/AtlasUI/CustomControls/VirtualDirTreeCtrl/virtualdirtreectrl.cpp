@@ -232,10 +232,10 @@ void wxVirtualDirTreeCtrl::GetFiles(VdtcTreeItemBase *WXUNUSED(parent), VdtcTree
 			while(bOk)
 			{
 				// TODO: Flag for double items
-										
+
 				item = AddFileItem(fname);
 				if(item)
-				{						
+				{
 					// fill it in, and marshall it by the user for info
 					fpath.SetFullName(fname);
 					if(OnAddFile(*item, fpath))
@@ -268,7 +268,7 @@ void wxVirtualDirTreeCtrl::GetDirectories(VdtcTreeItemBase *WXUNUSED(parent), Vd
 			// TODO: Flag for double items
 			item = AddDirItem(fname);
 			if(item)
-			{						
+			{
 				// fill it in, and marshall it by the user for info
 				fpath = path;
 				fpath.AppendDir(fname);
@@ -490,7 +490,7 @@ bool wxVirtualDirTreeCtrl::IsFileNode(const wxTreeItemId &id)
 void wxVirtualDirTreeCtrl::AppendPathRecursively(VdtcTreeItemBase *b, wxFileName &dir, bool useRoot)
 {
 	wxCHECK2(b, return);
-	
+
 	VdtcTreeItemBase *parent = GetParent(b);
 	if(parent)
 		AppendPathRecursively(parent, dir, useRoot);
@@ -501,7 +501,7 @@ void wxVirtualDirTreeCtrl::AppendPathRecursively(VdtcTreeItemBase *b, wxFileName
 			dir.AssignDir(b->GetName());
 		return;
 	}
-	
+
 	// now we are unwinding the other way around
 	if(b->IsDir())
 		dir.AppendDir(b->GetName());

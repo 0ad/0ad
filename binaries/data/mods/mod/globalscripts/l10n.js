@@ -226,4 +226,4 @@ function markForPluralTranslation(singularMessage, pluralMessage, number)
 		"pluralCount": number
 	};
 }
-	
+

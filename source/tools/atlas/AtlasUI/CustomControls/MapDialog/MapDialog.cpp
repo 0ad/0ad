@@ -111,7 +111,7 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 		buttonSizer->Add(new wxButton(this, wxID_SAVE, _("Save")));
 	buttonSizer->AddSpacer(5);
 	buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")));
-	
+
 	sizer->Add(buttonSizer, wxSizerFlags().Align(wxALIGN_RIGHT).Border(wxRIGHT|wxBOTTOM, 10));
 
 	SetSizer(sizer);

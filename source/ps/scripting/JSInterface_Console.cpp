@@ -24,7 +24,7 @@
 #include "ps/Profile.h"
 
 bool JSI_Console::CheckGlobalInitialized()
-{	
+{
 	if (!g_Console)
 	{
 		LOGERROR("Trying to access the console when it's not initialized!");

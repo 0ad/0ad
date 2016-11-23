@@ -53,7 +53,7 @@ void CBufferItem::ReleaseOpenALBuffer()
 	{
 		ALuint* al_buf = new ALuint[num_processed];
 		alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-		
+
 		AL_CHECK;
 		delete[] al_buf;
 	}
@@ -70,7 +70,7 @@ bool CBufferItem::IdleTask()
 		return false;
 
 	HandleFade();
-	
+
 	if (m_LastPlay)
 	{
 		CScopeLock lock(m_ItemMutex);
@@ -80,13 +80,13 @@ bool CBufferItem::IdleTask()
 		m_ShouldBePlaying = (proc_state != AL_STOPPED);
 		return (proc_state != AL_STOPPED);
 	}
-	
+
 	if (GetLooping())
 	{
 		int num_processed;
 		AL_CHECK;
 		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-		
+
 		AL_CHECK;
 		for (int i = 0; i < num_processed; i++)
 		{
@@ -105,7 +105,7 @@ void CBufferItem::Attach(CSoundData* itemData)
 {
 	if ( m_ALSource == 0 )
 		return;
-	
+
 	AL_CHECK;
 	if (m_SoundData != NULL)
 	{

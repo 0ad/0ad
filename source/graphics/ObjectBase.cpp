@@ -115,7 +115,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 			XERO_ITER_EL(option, textures_element)
 			{
 				ENSURE(textures_element.GetNodeName() == el_texture);
-				
+
 				Samp samp;
 				XERO_ITER_ATTR(textures_element, se)
 				{
@@ -458,7 +458,7 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		// and then insert the new ones:
 		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			variation.anims.insert(make_pair(it->m_AnimName, *it));
-		
+
 		// Same for samplers, though perhaps not strictly necessary:
 		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
 			variation.samplers.erase(it->m_SamplerName.string());

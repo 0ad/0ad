@@ -96,7 +96,7 @@ static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, const FMMatr
 
 		PropPoint p = {
 			propPointName,
-			
+
 			// Flip translation across the x-axis by swapping y and z
 			{ parts.t.x, parts.t.z, parts.t.y },
 
@@ -157,7 +157,7 @@ public:
 
 			FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
-			
+
 			FCDGeometrySourceList texcoordSources;
 			polys->GetParent()->FindSourcesByType(FUDaeGeometryInput::TEXCOORD, texcoordSources);
 
@@ -183,7 +183,7 @@ public:
 
 			// Default prop points are already given in game coordinates
 			AddDefaultPropPoints(propPoints);
-			
+
 			// Calculate transform to convert from COLLADA-defined up_axis to Z-up because
 			//	it's relatively straightforward to convert that to game coordinates
 			FMMatrix44 upAxisTransform = FMMatrix44_Identity;
@@ -207,7 +207,7 @@ public:
 			// (NB: GetType is deprecated and should be replaced with HasType,
 			// except that has irritating linker errors when using a DLL, so don't
 			// bother)
-			
+
 			assert(converter.GetInstance().GetEntity()->GetType() == FCDEntity::CONTROLLER); // assume this is always true?
 			FCDController* controller = static_cast<FCDController*>(converter.GetInstance().GetEntity());
 
@@ -565,7 +565,7 @@ public:
 
  		if (! mesh->IsTriangles())
  			FCDGeometryPolygonsTools::Triangulate(mesh);
-		
+
 		REQUIRE(mesh->IsTriangles(), "mesh is made of triangles");
 		REQUIRE(mesh->GetPolygonsCount() == 1, "mesh has single set of polygons");
 		FCDGeometryPolygons* polys = mesh->GetPolygons(0);

@@ -123,7 +123,7 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 		{
 			CGDisplayModeRef currentMode = CGDisplayCopyDisplayMode(kCGDirectMainDisplay);
 			*freq = (int)CGDisplayModeGetRefreshRate(currentMode);
-			
+
 			// We're responsible for this
 			CGDisplayModeRelease(currentMode);
 		}

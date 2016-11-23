@@ -127,7 +127,7 @@ private:
 
 			{
 				CScopeLock lock(m_WorkerMutex);
-		
+
 				ItemsList::iterator lstr = m_Items->begin();
 				ItemsList* nextItemList = new ItemsList;
 
@@ -288,7 +288,7 @@ CSoundManager::~CSoundManager()
 
 	if (m_Context)
 		alcDestroyContext(m_Context);
-	
+
 	if (m_Device)
 		alcCloseDevice(m_Device);
 }
@@ -300,7 +300,7 @@ void CSoundManager::StartWorker()
 }
 
 Status CSoundManager::AlcInit()
-{	
+{
 	Status ret = INFO::OK;
 
 	m_Device = alcOpenDevice(NULL);
@@ -380,7 +380,7 @@ void CSoundManager::SetDistressThroughShortage()
 	CScopeLock lock(m_DistressMutex);
 
 // Going into distress for normal reasons
-	
+
 	m_DistressTime = timer_Time();
 }
 
@@ -389,7 +389,7 @@ void CSoundManager::SetDistressThroughError()
 	CScopeLock lock(m_DistressMutex);
 
 // Going into distress due to unknown error
-	
+
 	m_DistressTime = timer_Time();
 	m_DistressErrCount++;
 }
@@ -503,7 +503,7 @@ void CSoundManager::SetUIGain(float gain)
 
 
 ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
-{	
+{
 	AL_CHECK;
 
 	if (m_Enabled)
@@ -519,12 +519,12 @@ ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
 }
 
 ISoundItem* CSoundManager::ItemForData(CSoundData* itemData)
-{	
+{
 	AL_CHECK;
 	ISoundItem* answer = NULL;
 
 	AL_CHECK;
-	
+
 	if (m_Enabled && (itemData != NULL))
 	{
 		if (itemData->IsOneShot())
@@ -694,7 +694,7 @@ void CSoundManager::PlayAsUI(const VfsPath& itemPath, bool looping)
 	if (m_Enabled)
 	{
 		IdleTask();
-	
+
 		if (ISoundItem* anItem = LoadItem(itemPath))
 		{
 			if (m_UIGain > 0)
@@ -795,7 +795,7 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 			m_CurrentEnvirons = NULL;
 		}
 		IdleTask();
-	
+
 		if (anItem)
 		{
 			if (m_AmbientGain > 0)
