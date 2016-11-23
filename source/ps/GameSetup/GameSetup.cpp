@@ -684,6 +684,9 @@ static void InitSDL()
 	}
 	atexit(SDL_Quit);
 
+	// Text input is active by default, disable it until it is actually needed.
+	SDL_StopTextInput();
+
 #if OS_MACOSX
 	// Some Mac mice only have one button, so they can't right-click
 	// but SDL2 can emulate that with Ctrl+Click
