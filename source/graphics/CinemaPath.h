@@ -61,7 +61,7 @@ public:
 	CCinemaPath(const CCinemaData& data, const TNSpline& spline, const TNSpline& targetSpline);
 
 	// Sets camera position to calculated point on spline
-	void MoveToPointAt(float t, float nodet, const CVector3D&);
+	void MoveToPointAt(float t, float nodet, const CVector3D& startRotation, CCamera* camera);
 
 	// Distortion mode functions-change how ratio is passed to distortion style functions
 	float EaseIn(float t) const;
@@ -109,8 +109,9 @@ public:
 	/**
 	 * Returns false if finished.
 	 * @param deltaRealTime Elapsed real time since the last frame.
+	 * @param camera An affected camera
 	 */
-	bool Play(const float deltaRealTime);
+	bool Play(const float deltaRealTime, CCamera* camera);
 
 	/**
 	 * Validate the path

@@ -217,9 +217,8 @@ void CCinemaPath::SetTimescale(fixed scale)
 	m_Timescale = scale;
 }
 
-void CCinemaPath::MoveToPointAt(float t, float nodet, const CVector3D& startRotation)
+void CCinemaPath::MoveToPointAt(float t, float nodet, const CVector3D& startRotation, CCamera* camera)
 {
-	CCamera *camera = g_Game->GetView()->GetCamera();
 	t = (this->*DistModePtr)(t);
 
 	CVector3D pos = GetPosition(t);
@@ -341,13 +340,13 @@ bool CCinemaPath::Validate()
 	return false;
 }
 
-bool CCinemaPath::Play(const float deltaRealTime)
+bool CCinemaPath::Play(const float deltaRealTime, CCamera* camera)
 {
 	m_TimeElapsed += m_Timescale.ToFloat() * deltaRealTime;
 	if (!Validate())
 		return false;
 
-	MoveToPointAt(m_TimeElapsed / GetDuration().ToFloat(), GetNodeFraction(), m_PreviousRotation);
+	MoveToPointAt(m_TimeElapsed / GetDuration().ToFloat(), GetNodeFraction(), m_PreviousRotation, camera);
 	return true;
 }
 

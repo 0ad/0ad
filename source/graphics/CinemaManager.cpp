@@ -172,7 +172,8 @@ void CCinemaManager::Update(const float deltaRealTime)
 		// TODO: implement skip
 	}
 
-	m_CinematicSimulationData.m_PathQueue.front().Play(deltaRealTime);
+	CCamera *camera = g_Game->GetView()->GetCamera();
+	m_CinematicSimulationData.m_PathQueue.front().Play(deltaRealTime, camera);
 }
 
 void CCinemaManager::Render()
