@@ -184,7 +184,7 @@ public:
 	}
 
 	void Reload(Grid<NavcellData>* passabilityGrid,
-		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, 
+		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks,
 		const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		m_Grid = passabilityGrid;
@@ -218,7 +218,7 @@ public:
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, 
+	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
 		pass_class_t passClass, WaypointPath& path)
 	{
 		if (!m_Grid)
@@ -236,7 +236,7 @@ public:
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, 
+	void ComputePath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
 		pass_class_t passClass, std::vector<CircularRegion> excludedRegions, WaypointPath& path);
 
 	Grid<u16> GetConnectivityGrid(pass_class_t passClass)

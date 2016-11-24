@@ -127,7 +127,7 @@ namespace Pathfinding
 	 * For extending the goal outwards/inwards a little bit
 	 * NOTE: keep next to the definition of NAVCELL_SIZE to avoid init order problems
 	 *	between translation units.
-	 * TODO: figure out whether this is actually needed. It was added back in r8751 (in 2010) for unclear reasons 
+	 * TODO: figure out whether this is actually needed. It was added back in r8751 (in 2010) for unclear reasons
 	 * and it does not seem to really improve behavior today
 	 */
 	const entity_pos_t GOAL_DELTA = NAVCELL_SIZE/8;
@@ -276,7 +276,7 @@ namespace Pathfinding
  * Passability is determined by water depth, terrain slope, forestness, buildingness.
  * We need at least one bit per class per tile to represent passability.
  *
- * Not all pass classes are used for actual pathfinding. The pathfinder calls 
+ * Not all pass classes are used for actual pathfinding. The pathfinder calls
  * CCmpObstructionManager's Rasterize() to add shapes onto the passability grid.
  * Which shapes are rasterized depend on the value of the m_Obstructions of each passability
  * class.
@@ -324,7 +324,7 @@ public:
 			 * the passability map.
 			 * This seems doubtful to me and my pathfinder fix makes having a clearance of 0.8 quite convenient
 			 * so I comment out this check, but leave it here for the purpose of documentation should a bug arise.
-			
+
 			if (!(m_Clearance % Pathfinding::NAVCELL_SIZE).IsZero())
 			{
 				// If clearance isn't an integer number of navcells then we'll

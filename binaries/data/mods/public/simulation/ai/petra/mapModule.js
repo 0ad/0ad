@@ -114,7 +114,7 @@ m.createTerritoryMap = function(gameState)
 {
 	let map = gameState.ai.territoryMap;
 
-	let ret = new API3.Map(gameState.sharedScript, "territory", map.data);	
+	let ret = new API3.Map(gameState.sharedScript, "territory", map.data);
 	ret.getOwner = function(p) { return this.point(p) & m.TERRITORY_PLAYER_MASK; };
 	ret.getOwnerIndex = function(p) { return this.map[p] & m.TERRITORY_PLAYER_MASK; };
 	return ret;

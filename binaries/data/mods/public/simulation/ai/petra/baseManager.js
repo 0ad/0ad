@@ -24,7 +24,7 @@ m.BaseManager = function(gameState, Config)
 	this.accessIndex = undefined;
 
 	// Maximum distance (from any dropsite) to look for resources
-	// 3 areas are used: from 0 to max/4, from max/4 to max/2 and from max/2 to max 
+	// 3 areas are used: from 0 to max/4, from max/4 to max/2 and from max/2 to max
 	this.maxDistResourceSquare = 360*360;
 
 	this.constructing = false;
@@ -45,7 +45,7 @@ m.BaseManager.prototype.init = function(gameState, state)
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID, "role", "worker"));
-	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));	
+	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 
 	this.units.registerUpdates();
 	this.workers.registerUpdates();
@@ -134,7 +134,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			continue;
 		if (evt.newentity == evt.entity)  // repaired building
 			continue;
-			
+
 		if (ent.getMetadata(PlayerID, "base") == this.ID)
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.assignResourceToDropsite(gameState, ent);
@@ -238,7 +238,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 			if (dist < maxDistResourceSquare)
 			{
 				if (dist < maxDistResourceSquare/16)        // distmax/4
-					nearby.push({ "dropsite": dropsiteId, "id": supply.id(), "ent": supply, "dist": dist }); 
+					nearby.push({ "dropsite": dropsiteId, "id": supply.id(), "ent": supply, "dist": dist });
 				else if (dist < maxDistResourceSquare/4)    // distmax/2
 					medium.push({ "dropsite": dropsiteId, "id": supply.id(), "ent": supply, "dist": dist });
 				else
@@ -253,13 +253,13 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 /*		let debug = false;
 		if (debug)
 		{
-			faraway.forEach(function(res){ 
+			faraway.forEach(function(res){
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [res.ent.id()], "rgb": [2,0,0]});
 			});
-			medium.forEach(function(res){ 
+			medium.forEach(function(res){
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [res.ent.id()], "rgb": [0,2,0]});
 			});
-			nearby.forEach(function(res){ 
+			nearby.forEach(function(res){
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [res.ent.id()], "rgb": [0,0,2]});
 			});
 		} */
@@ -304,11 +304,11 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 };
 
 /**
- * Returns the position of the best place to build a new dropsite for the specified resource 
+ * Returns the position of the best place to build a new dropsite for the specified resource
  */
 m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 {
-	
+
 	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
 	let halfSize = 0;
 	if (template.get("Footprint/Square"))
@@ -521,7 +521,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			this.gatherers[type].lost = 0;
 		}
 	}
-	
+
 };
 
 /** Adds the estimated gather rates from this base to the currentRates */
@@ -537,7 +537,7 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 
 		this.gatherersByType(gameState, res).forEach(function (ent) {
 			if (ent.isIdle() || !ent.position())
-				return;		
+				return;
 			let gRate = ent.currentGatherRate();
 			if (gRate)
 				currentRates[res] += Math.log(1+gRate)/1.1;
@@ -600,7 +600,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 	for (let i = mostNeeded.length-1; i > 0; --i)
 	{
 		let lessNeed = mostNeeded[i];
-		for (let j = 0; j < i; ++j) 
+		for (let j = 0; j < i; ++j)
 		{
 			let moreNeed = mostNeeded[j];
 			let lastFailed = gameState.ai.HQ.lastFailedGather[moreNeed.type];
@@ -616,7 +616,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
 					only = "CitizenSoldier";
 				else if ((lessNeed.type === "stone" || lessNeed.type === "metal") && moreNeed.type !== "stone" && moreNeed.type !== "metal" &&
-					gatherers.filter(API3.Filters.byClass("Female")).hasEntities()) 
+					gatherers.filter(API3.Filters.byClass("Female")).hasEntities())
 					only = "Female";
 
 				gatherers.forEach( function (ent) {
@@ -743,11 +743,11 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 
 /**
  * If we have some foundations, and we don't have enough builder-workers,
- * try reassigning some other workers who are nearby	
+ * try reassigning some other workers who are nearby
  * AI tries to use builders sensibly, not completely stopping its econ.
  */
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
-{	
+{
 	let foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
 
 	let damagedBuildings = this.buildings.filter(ent => ent.foundationProgress() === undefined && ent.needsRepair());
@@ -791,7 +791,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		}
 	}
 
-	let builderTot = builderWorkers.length - idleBuilderWorkers.length;	
+	let builderTot = builderWorkers.length - idleBuilderWorkers.length;
 
 	for (let target of foundations)
 	{
@@ -868,7 +868,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 						coeffB *= 0.5 * (1 + Math.sqrt(coeffB)/5/time);
 					else if (workerB.getMetadata(PlayerID, "gather-type") === "food")
 						coeffB *= 3;
-					return coeffA - coeffB;						
+					return coeffA - coeffB;
 				});
 				let current = 0;
 				let nonBuilderTot = nonBuilderWorkers.length;
@@ -941,7 +941,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 				});
 				let num = Math.min(nonBuilderWorkers.length, targetNB-assigned);
 				let nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), num);
-				
+
 				nearestNonBuilders.forEach(function(ent) {
 					assigned++;
 					builderTot++;

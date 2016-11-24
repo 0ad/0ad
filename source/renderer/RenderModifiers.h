@@ -19,7 +19,7 @@
  * RenderModifiers can affect the fragment stage behaviour of some
  * ModelRenderers. This file defines some common RenderModifiers in
  * addition to the base class.
- * 
+ *
  * TODO: See comment in CRendererInternals::Models - we no longer use multiple
  * subclasses of RenderModifier, so most of the stuff here is unnecessary
  * abstraction which should probably be cleaned up.

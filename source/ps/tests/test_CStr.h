@@ -19,7 +19,7 @@
 
 #include "ps/CStr.h"
 
-class TestCStr : public CxxTest::TestSuite 
+class TestCStr : public CxxTest::TestSuite
 {
 public:
 	void test_utf8_utf16_conversion()

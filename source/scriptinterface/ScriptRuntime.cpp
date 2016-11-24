@@ -70,21 +70,21 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 
 	const char16_t* str = desc.formatMessage(rt);
 	int len = 0;
-	
+
 	for(int i = 0; i < 10000; i++)
 	{
 		len++;
 		if(!str[i])
 			break;
 	}
-	
+
 	wchar_t outstring[len];
-	
+
 	for(int i = 0; i < len; i++)
 	{
 		outstring[i] = (wchar_t)str[i];
 	}
-	
+
 	printf("---------------------------------------\n: %ls \n---------------------------------------\n", outstring);
 	#endif
 }
@@ -155,32 +155,32 @@ void ScriptRuntime::UnRegisterContext(JSContext* cx)
 void ScriptRuntime::MaybeIncrementalGC(double delay)
 {
 	PROFILE2("MaybeIncrementalGC");
-	
+
 	if (JS::IsIncrementalGCEnabled(m_rt))
 	{
 		// The idea is to get the heap size after a completed GC and trigger the next GC when the heap size has
-		// reached m_LastGCBytes + X. 
+		// reached m_LastGCBytes + X.
 		// In practice it doesn't quite work like that. When the incremental marking is completed, the sweeping kicks in.
 		// The sweeping actually frees memory and it does this in a background thread (if JS_USE_HELPER_THREADS is set).
 		// While the sweeping is happening we already run scripts again and produce new garbage.
 
 		const int GCSliceTimeBudget = 30; // Milliseconds an incremental slice is allowed to run
-		
-		// Have a minimum time in seconds to wait between GC slices and before starting a new GC to distribute the GC 
-		// load and to hopefully make it unnoticeable for the player. This value should be high enough to distribute 
-		// the load well enough and low enough to make sure we don't run out of memory before we can start with the 
+
+		// Have a minimum time in seconds to wait between GC slices and before starting a new GC to distribute the GC
+		// load and to hopefully make it unnoticeable for the player. This value should be high enough to distribute
+		// the load well enough and low enough to make sure we don't run out of memory before we can start with the
 		// sweeping.
 		if (timer_Time() - m_LastGCCheck < delay)
 			return;
-		
+
 		m_LastGCCheck = timer_Time();
-		
+
 		int gcBytes = JS_GetGCParameter(m_rt, JSGC_BYTES);
-		
+
 #if GC_DEBUG_PRINT
 			std::cout << "gcBytes: " << gcBytes / 1024 << " KB" << std::endl;
 #endif
-		
+
 		if (m_LastGCBytes > gcBytes || m_LastGCBytes == 0)
 		{
 #if GC_DEBUG_PRINT
@@ -189,22 +189,22 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 			m_LastGCBytes = gcBytes;
 		}
 
-		// Run an additional incremental GC slice if the currently running incremental GC isn't over yet 
+		// Run an additional incremental GC slice if the currently running incremental GC isn't over yet
 		// ... or
 		// start a new incremental GC if the JS heap size has grown enough for a GC to make sense
 		if (JS::IsIncrementalGCInProgress(m_rt) || (gcBytes - m_LastGCBytes > m_HeapGrowthBytesGCTrigger))
-		{				
+		{
 #if GC_DEBUG_PRINT
 			if (JS::IsIncrementalGCInProgress(m_rt))
 				printf("An incremental GC cycle is in progress. \n");
 			else
 				printf("GC needed because JSGC_BYTES - m_LastGCBytes > m_HeapGrowthBytesGCTrigger \n"
-					"    JSGC_BYTES: %d KB \n    m_LastGCBytes: %d KB \n    m_HeapGrowthBytesGCTrigger: %d KB \n", 
-					gcBytes / 1024, 
-					m_LastGCBytes / 1024, 
+					"    JSGC_BYTES: %d KB \n    m_LastGCBytes: %d KB \n    m_HeapGrowthBytesGCTrigger: %d KB \n",
+					gcBytes / 1024,
+					m_LastGCBytes / 1024,
 					m_HeapGrowthBytesGCTrigger / 1024);
 #endif
-			
+
 			// A hack to make sure we never exceed the runtime size because we can't collect the memory
 			// fast enough.
 			if (gcBytes > m_RuntimeSize / 2)

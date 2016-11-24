@@ -147,7 +147,7 @@ public:
 
 	// Check whether the object contains anything (even if those things are empty)
 	bool defined() const { return (bool)p; }
-	
+
 	// Check recursively whether there's actually any non-empty data in the object
 	bool hasContent() const;
 

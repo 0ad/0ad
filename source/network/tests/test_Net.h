@@ -139,7 +139,7 @@ public:
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		TestStdoutLogger logger;
 
 		std::vector<CNetClient*> clients;
@@ -204,7 +204,7 @@ public:
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		TestStdoutLogger logger;
 
 		std::vector<CNetClient*> clients;

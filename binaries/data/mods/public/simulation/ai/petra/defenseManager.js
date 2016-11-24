@@ -130,7 +130,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	// TODO the 30 is to take roughly into account the structure size in following checks. Can be improved
 	if (entity.attackTypes().indexOf("Ranged") !== -1)
 		dist2Min = (entity.attackRange("Ranged").max + 30) * (entity.attackRange("Ranged").max + 30);
-    
+
 	for (let targetId of this.targetList)
 	{
 		let target = gameState.getEntityById(targetId);
@@ -187,7 +187,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 	{
 		if (!this.armies.length)
 		{
-			// check if we can recover capture points from any of our notdecaying structures		
+			// check if we can recover capture points from any of our notdecaying structures
 			for (let ent of gameState.getOwnStructures().values())
 			{
 				if (ent.decaying())
@@ -356,7 +356,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 {
 	if (this.armies.length === 0)
 		return;
-	
+
 	let armiesNeeding = [];
 	// let's add defenders
 	for (let army of this.armies)
@@ -364,7 +364,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		let needsDef = army.needsDefenders(gameState);
 		if (needsDef === false)
 			continue;
-		
+
 		// Okay for now needsDef is the total needed strength.
 		// we're dumb so we don't choose if we have a defender shortage.
 		armiesNeeding.push( {"army": army, "need": needsDef} );
@@ -374,7 +374,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		return;
 
 	// let's get our potential units
-	let potentialDefenders = []; 
+	let potentialDefenders = [];
 	gameState.getOwnUnits().forEach(function(ent) {
 		if (!ent.position())
 			return;
@@ -398,7 +398,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		}
 		potentialDefenders.push(ent.id());
 	});
-	
+
 	for (let a = 0; a < armiesNeeding.length; ++a)
 		armiesNeeding[a].army.recalculatePosition(gameState);
 
@@ -566,7 +566,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 
-		// try to garrison any attacked range siege unit 
+		// try to garrison any attacked range siege unit
 		if (target.hasClass("Siege") && !target.hasClass("Melee") &&
 			!target.getMetadata(PlayerID, "transport") && plan !== -2 && plan !== -3)
 		{
@@ -617,7 +617,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
-			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
+			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking"))
 				continue;
 		}
 		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)

@@ -1,8 +1,8 @@
 function Damage() {}
 
-Damage.prototype.Schema = 
+Damage.prototype.Schema =
 	"<a:component type='system'/><empty/>";
-	
+
 Damage.prototype.Init = function()
 {
 };
@@ -86,7 +86,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 {
 	if (!data.position)
 		return;
-	
+
 	// Do this first in case the direct hit kills the target
 	if (data.isSplash)
 	{
@@ -114,7 +114,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 	}
 
 	let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-	
+
 	// Deal direct damage if we hit the main target
 	if (this.TestCollision(data.target, data.position, lateness))
 	{
@@ -122,7 +122,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 		return;
 	}
-	
+
 	let targetPosition = this.InterpolatedLocation(data.target, lateness);
 	if (!targetPosition)
 		return;
@@ -264,7 +264,7 @@ Damage.prototype.TargetKilled = function(attacker, target, attackerOwner)
 {
 	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
 	let atkOwner =  cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != -1 ? cmpAttackerOwnership.GetOwner() : attackerOwner;
-	
+
 	// Add to killer statistics.
 	let cmpKillerPlayerStatisticsTracker = QueryPlayerIDInterface(atkOwner, IID_StatisticsTracker);
 	if (cmpKillerPlayerStatisticsTracker)
@@ -279,5 +279,5 @@ Damage.prototype.TargetKilled = function(attacker, target, attackerOwner)
 	if (cmpLooter)
 		cmpLooter.Collect(target);
 };
-	
+
 Engine.RegisterSystemComponentType(IID_Damage, "Damage", Damage);

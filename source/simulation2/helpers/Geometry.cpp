@@ -96,10 +96,10 @@ fixed Geometry::DistanceToSquareSquared(const CFixedVector2D& point, const CFixe
 {
 	fixed du = point.Dot(u).Absolute();
 	fixed dv = point.Dot(v).Absolute();
-	
+
 	fixed hw = halfSize.X;
 	fixed hh = halfSize.Y;
-	
+
 	if (du < hw) // regions B, I, G
 	{
 		if (dv < hh) // region I

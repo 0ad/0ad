@@ -41,7 +41,7 @@ class CCamera
 	public:
 		CCamera();
 		~CCamera();
-		
+
 		// Methods for projection
 		void SetProjection(float nearp, float farp, float fov);
 		void SetProjection(const CMatrix3D& matrix) { m_ProjMat = matrix; }
@@ -80,7 +80,7 @@ class CCamera
 
 		// General helpers that seem to fit here
 
-		// Get the screen-space coordinates corresponding to a given world-space position 
+		// Get the screen-space coordinates corresponding to a given world-space position
 		void GetScreenCoordinates(const CVector3D& world, float& x, float& y) const;
 
 		// Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
@@ -100,17 +100,17 @@ class CCamera
 		/**
 		 * Render: Renders the camera's frustum in world space.
 		 * The caller should set the color using glColorXy before calling Render.
-		 * 
+		 *
 		 * @param intermediates determines how many intermediate distance planes should
 		 * be hinted at between the near and far planes
 		 */
 		void Render(int intermediates = 0) const;
-		
+
 	public:
 		// This is the orientation matrix. The inverse of this
 		// is the view matrix
 		CMatrix3D		m_Orientation;
-		
+
 		// Should not be tweaked externally if possible
 		CMatrix3D		m_ProjMat;
 

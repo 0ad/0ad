@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -68,7 +68,7 @@ Status tex_codec_for_header(const u8* file, size_t file_size, const ITexCodec** 
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
-	
+
 	for(int i = 0; i < codecs_len; ++i)
 	{
 		// we found it

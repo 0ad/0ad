@@ -180,7 +180,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
 		JS::RootedValue val0(cx), val1(cx), val2(cx), val3(cx), val4(cx), val5(cx), val6(cx), val7(cx), val8(cx);
 		ScriptInterface::ToJSVal<i32>(cx, &val0, 0);

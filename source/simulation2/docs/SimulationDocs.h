@@ -309,28 +309,28 @@ The content will typically be one of:
 The <code>&lt;data&gt;</code> elements are native elements, while the <code>&lt;ref&gt;</code> elements are elements added for our engine. These non-native elements allow the definition of an operation that depends on the parent template. Possible operations are "add" and "mul", and can be applied as the example below.
 
 Say the parent template is
-@code 
-<Entity> 
-  <Example> 
-    <Name>Semi-Humanoids</Name> 
-    <Height>9000</Height> 
-    <Eyes/> 
-  </Example> 
-  <!-- ... other components ... --> 
-</Entity> 
-@endcode 
+@code
+<Entity>
+  <Example>
+    <Name>Semi-Humanoids</Name>
+    <Height>9000</Height>
+    <Eyes/>
+  </Example>
+  <!-- ... other components ... -->
+</Entity>
+@endcode
 and the child template appears like
-@code 
-<Entity> 
-  <Example> 
-    <Name>Barney</Name> 
-    <Height op="add">5</Height> 
-    <Eyes/> 
-  </Example> 
-  <!-- ... other components ... --> 
-</Entity> 
-@endcode 
-then Barney would have a height of 9005. 
+@code
+<Entity>
+  <Example>
+    <Name>Barney</Name>
+    <Height op="add">5</Height>
+    <Eyes/>
+  </Example>
+  <!-- ... other components ... -->
+</Entity>
+@endcode
+then Barney would have a height of 9005.
 
 Elements can be wrapped in <code>&lt;optional></code>.
 Groups of elements can be wrapped in <code>&lt;choice></code> to allow only one of them.
@@ -433,7 +433,7 @@ exposed (in template files etc) with the name "ExampleTwo", and implementing the
 The @c Init and @c Deinit functions are optional. Unlike C++, there are no @c Serialize/Deserialize functions -
 each JS component instance is automatically serialized and restored.
 (This automatic serialization restricts what you can store as properties in the object - e.g. you cannot store function closures,
-because they're too hard to serialize. This will serialize Strings, numbers, bools, null, undefined, arrays of serializable 
+because they're too hard to serialize. This will serialize Strings, numbers, bools, null, undefined, arrays of serializable
 values whose property names are purely numeric, objects whose properties are serializable values.  Cyclic structures are allowed.)
 
 Instead of @c ClassInit and @c HandleMessage, you simply add functions of the form <code>On<var>MessageType</var></code>.

@@ -50,7 +50,7 @@ protected:
 	{
 		if (ch == traits_type::eof())
 			return traits_type::not_eof(ch);
-		
+
 		ENSURE(pptr() <= epptr());
 		*pptr() = ch;
 		pbump(1);

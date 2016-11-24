@@ -408,7 +408,7 @@ m.QueueManager.prototype.update = function(gameState)
 
 	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 === 0)
 		this.printQueues(gameState);
-	
+
 	Engine.ProfileStop();
 };
 
@@ -533,7 +533,7 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 	delete this.queues[queueName];
 	delete this.priorities[queueName];
 	delete this.accounts[queueName];
-		
+
 	this.queueArrays = [];
 	for (let q in this.queues)
 		this.queueArrays.push([q, this.queues[q]]);

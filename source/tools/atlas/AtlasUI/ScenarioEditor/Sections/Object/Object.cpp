@@ -150,7 +150,7 @@ ObjectSidebar::ObjectSidebar(
 	objectType->SetSelection(0);
 	m_MainSizer->Add(objectType, wxSizerFlags().Expand());
 	m_MainSizer->AddSpacer(3);
-	
+
 	// ------------------------------------------------------------------------------------------
 
 	p->m_ObjectListBox = new wxListBox(this, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);

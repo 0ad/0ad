@@ -121,7 +121,7 @@ public:
 			wxStaticBitmap* bitmap = new wxStaticBitmap(this, wxID_ANY, wxBitmap(img), wxDefaultPosition, wxSize(qry.preview->imageWidth, qry.preview->imageHeight), wxBORDER_SIMPLE);
 			m_Sizer->Add(bitmap, wxSizerFlags(1).Align(wxALIGN_CENTRE));
 			m_Sizer->Add(label, wxSizerFlags().Expand());
-		
+
 			// We have to force the sidebar to layout manually
 			GetParent()->Layout();
 

@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -507,11 +507,11 @@ static std::wstring parse_proxy(const std::wstring& input)
 
 	std::vector<std::wstring> parts;
 	split(parts, input, boost::algorithm::is_any_of("; \t\r\n"), boost::algorithm::token_compress_on);
-	
+
 	for(size_t i = 0; i < parts.size(); ++i)
 		if(boost::algorithm::starts_with(parts[i], "http="))
 			return parts[i].substr(5);
-	
+
 	// If we got this far, proxies were only set for non-HTTP protocols
 	return L"";
 }

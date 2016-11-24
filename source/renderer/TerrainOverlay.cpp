@@ -177,7 +177,7 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 	}
-	
+
 #if CONFIG2_GLES
 #warning TODO: implement TerrainOverlay::RenderTile for GLES
 #else

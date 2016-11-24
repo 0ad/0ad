@@ -91,11 +91,11 @@ public:
 	}
 
 	/**
-	 * (Re)calculates and stores any bounds or bound-dependent data for this object. At this abstraction level, this is only the world-space 
-	 * bounds stored in @ref m_WorldBounds; subclasses may use this method to (re)compute additional bounds if necessary, or any data that 
-	 * depends on the bounds. Whenever bound-dependent data is requested through a public interface, @ref RecalculateBoundsIfNecessary should 
+	 * (Re)calculates and stores any bounds or bound-dependent data for this object. At this abstraction level, this is only the world-space
+	 * bounds stored in @ref m_WorldBounds; subclasses may use this method to (re)compute additional bounds if necessary, or any data that
+	 * depends on the bounds. Whenever bound-dependent data is requested through a public interface, @ref RecalculateBoundsIfNecessary should
 	 * be called first to ensure bound correctness, which will in turn call this method if it turns out that they're outdated.
-	 * 
+	 *
 	 * @see m_BoundsValid
 	 * @see RecalculateBoundsIfNecessary
 	 */
@@ -147,12 +147,12 @@ protected:
 	CRenderData* m_RenderData;
 
 	/**
-	 * Remembers whether any bounds need to be recalculated. Subclasses that add any data that depends on the bounds should 
+	 * Remembers whether any bounds need to be recalculated. Subclasses that add any data that depends on the bounds should
 	 * take care to consider the validity of the bounds and recalculate their data when necessary -- overriding @ref CalcBounds
 	 * to do so would be a good idea, since it's already set up to be called by @ref RecalculateBoundsIfNecessary whenever the
 	 * bounds are marked as invalid. The latter should then be called before returning any bounds or bounds-derived data through
 	 * a public interface (see the implementation of @ref GetWorldBounds for an example).
-	 * 
+	 *
 	 * @see CalcBounds
 	 * @see InvalidateBounds
 	 * @see RecalculateBoundsIfNecessary

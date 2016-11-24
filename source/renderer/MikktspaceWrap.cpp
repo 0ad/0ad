@@ -32,12 +32,12 @@
 
 
 
-MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning) : m_Model(m), 
+MikkTSpace::MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning) : m_Model(m),
 			m_NewVertices(v), m_GpuSkinning(gpuSkinning)
 {
 	// ensure that m_NewVertices is empty
 	m_NewVertices.clear();
-	
+
 	// set up SMikkTSpaceInterface struct
 	m_Interface.m_getNumFaces = getNumFaces;
 	m_Interface.m_getNumVerticesOfFace = getNumVerticesOfFace;
@@ -70,7 +70,7 @@ int MikkTSpace::getNumVerticesOfFace(const SMikkTSpaceContext* UNUSED(pContext),
 }
 
 
-void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext, 
+void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext,
 		float fvPosOut[], const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
@@ -83,7 +83,7 @@ void MikkTSpace::getPosition(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext, 
+void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext,
 		float fvNormOut[], const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
@@ -96,7 +96,7 @@ void MikkTSpace::getNormal(const SMikkTSpaceContext *pContext,
 }
 
 
-void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext, 
+void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext,
 		float fvTexcOut[], const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
@@ -105,37 +105,37 @@ void MikkTSpace::getTexCoord(const SMikkTSpaceContext *pContext,
 
 	// the tangents are calculated according to the 'default' UV set
 	fvTexcOut[0] = v.m_UVs[0];
-	fvTexcOut[1] = 1.0-v.m_UVs[1];		
+	fvTexcOut[1] = 1.0-v.m_UVs[1];
 }
 
 
-void MikkTSpace::setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[], 
-		const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT), 
+void MikkTSpace::setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
+		const float UNUSED(fvBiTangent)[], const float UNUSED(fMagS), const float UNUSED(fMagT),
 		const tbool bIsOrientationPreserving, const int iFace, const int iVert)
 {
 	SModelFace &face = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetFaces()[iFace];
 	long i = face.m_Verts[iVert];
-	
+
 	SModelVertex* vertices = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetVertices();
 	size_t numUVsPerVertex = ((MikkTSpace*)pContext->m_pUserData)->m_Model->GetNumUVsPerVertex();
 	std::vector<float>& m_NewVertices = ((MikkTSpace*)pContext->m_pUserData)->m_NewVertices;
-	
+
 	const CVector3D &p = vertices[i].m_Coords;
-	const CVector3D &n = vertices[i].m_Norm;	
-	
+	const CVector3D &n = vertices[i].m_Norm;
+
 	m_NewVertices.push_back(p.X);
 	m_NewVertices.push_back(p.Y);
 	m_NewVertices.push_back(p.Z);
-	
+
 	m_NewVertices.push_back(n.X);
 	m_NewVertices.push_back(n.Y);
 	m_NewVertices.push_back(n.Z);
-	
+
 	m_NewVertices.push_back(fvTangent[0]);
 	m_NewVertices.push_back(fvTangent[1]);
 	m_NewVertices.push_back(fvTangent[2]);
 	m_NewVertices.push_back(bIsOrientationPreserving > 0.5 ? 1.0f : (-1.0f));
-	
+
 	if (((MikkTSpace*)pContext->m_pUserData)->m_GpuSkinning)
 	{
 		for (size_t j = 0; j < 4; ++j)

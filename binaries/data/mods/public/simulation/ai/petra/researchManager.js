@@ -20,12 +20,15 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 
 	let townPhase = gameState.townPhase();
 	let cityPhase = gameState.cityPhase();
-		
+
 	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10 &&
 		gameState.hasResearchers(townPhase, true))
 	{
 		let plan = new m.ResearchPlan(gameState, townPhase, true);
-		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState); };
+		plan.onStart = function (gameState) {
+			gameState.ai.HQ.econState = "growth";
+			gameState.ai.HQ.OnTownPhase(gameState);
+		};
 		plan.isGo = function (gameState) {
 			let ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
 			if (ret && gameState.ai.HQ.econState !== "growth")
@@ -41,7 +44,14 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 			gameState.hasResearchers(cityPhase, true) && !queues.civilCentre.hasQueuedUnits())
 	{
 		let plan = new m.ResearchPlan(gameState, cityPhase, true);
-		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState); };
+		plan.onStart = function (gameState) {
+			gameState.ai.HQ.econState = "growth";
+			gameState.ai.HQ.OnCityPhase(gameState);
+		};
+		plan.isGo = function (gameState) {
+			gameState.ai.HQ.econState = "cityPhasing";
+			return true;
+		};
 		queues.majorTech.addPlan(plan);
 	}
 };
@@ -143,7 +153,7 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 				continue;
 		}
 		for (let i in template.modifications)
-		{		
+		{
 			if (template.modifications[i].value === "ResourceGatherer/Rates/stone.rock")
 				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/metal.ore")

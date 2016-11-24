@@ -62,7 +62,7 @@ public:
 
 	typedef struct {
 		entity_pos_t dx, dz;
-		entity_angle_t da;	
+		entity_angle_t da;
 		entity_pos_t size0, size1;
 		flags_t flags;
 	} Shape;
@@ -91,7 +91,7 @@ public:
 	 * Optional secondary control group identifier. Similar to m_ControlGroup; if set to a valid value,
 	 * then this field identifies an additional, secondary control group to which this entity's shape
 	 * belongs. Set to INVALID_ENTITY to not assign any secondary group. Defaults to INVALID_ENTITY.
-	 * 
+	 *
 	 * These are only necessary in case it is not sufficient for an entity to belong to only one control
 	 * group. Otherwise, they can be ignored.
 	 */
@@ -396,7 +396,7 @@ public:
 			else if (m_Type == UNIT)
 				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
 					pos.X, pos.Y, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
-			else 
+			else
 				AddClusterShapes(pos.X, pos.Y, cmpPosition->GetRotation().Y);
 		}
 		else if (!active && m_Active)
@@ -522,7 +522,7 @@ public:
 	{
 		return m_ControlPersist;
 	}
-	
+
 	virtual EFoundationCheck CheckFoundation(std::string className)
 	{
 		return  CheckFoundation(className, false);
@@ -554,7 +554,7 @@ public:
 		pass_class_t passClass = cmpPathfinder->GetPassabilityClass(className);
 
 		// Ignore collisions within the same control group, or with other non-foundation-blocking shapes.
-		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
+		// Note that, since the control group for each entity defaults to the entity's ID, this is typically
 		// equivalent to only ignoring the entity's own shape and other non-foundation-blocking shapes.
 		SkipControlGroupsRequireFlagObstructionFilter filter(m_ControlGroup, m_ControlGroup2,
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
@@ -595,7 +595,7 @@ public:
 			return !cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Clearance, NULL);
 		else
 			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
-	} 
+	}
 
 	virtual std::vector<entity_id_t> GetUnitCollisions()
 	{
@@ -648,12 +648,12 @@ public:
 		UpdateControlGroups();
 	}
 
-	virtual entity_id_t GetControlGroup() 
+	virtual entity_id_t GetControlGroup()
 	{
 		return m_ControlGroup;
 	}
 
-	virtual entity_id_t GetControlGroup2() 
+	virtual entity_id_t GetControlGroup2()
 	{
 		return m_ControlGroup2;
 	}
@@ -704,7 +704,7 @@ public:
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		// Ignore collisions within the same control group, or with other non-foundation-blocking shapes.
-		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
+		// Note that, since the control group for each entity defaults to the entity's ID, this is typically
 		// equivalent to only ignoring the entity's own shape and other non-foundation-blocking shapes.
 		SkipControlGroupsRequireFlagObstructionFilter filter(m_ControlGroup, m_ControlGroup2,
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
@@ -768,7 +768,7 @@ protected:
 		// Disable block movement and block pathfinding for the obstruction shape
 		flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
 		flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
-		
+
 		m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
 			x, z, a, m_Size0, m_Size1, flags, m_ControlGroup, m_ControlGroup2);
 
@@ -780,7 +780,7 @@ protected:
 			Shape& b = m_Shapes[i];
 			tag_t tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
 				x + b.dx.Multiply(c) + b.dz.Multiply(s), z + b.dz.Multiply(c) - b.dx.Multiply(s), a + b.da, b.size0, b.size1, b.flags, m_ControlGroup, m_ControlGroup2);
-			m_ClusterTags.push_back(tag);	
+			m_ClusterTags.push_back(tag);
 		}
 	}
 

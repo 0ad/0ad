@@ -63,8 +63,8 @@ public:
 	void Bounds(CBoundingBoxAligned& result) const;
 
 	/**
-	 * Slice: Cut the object along the given plane, resulting in a smaller (or even empty) brush representing 
-	 * the part of the object that lies in front of the plane (as defined by the positive direction of its 
+	 * Slice: Cut the object along the given plane, resulting in a smaller (or even empty) brush representing
+	 * the part of the object that lies in front of the plane (as defined by the positive direction of its
 	 * normal vector).
 	 *
 	 * @param plane the slicing plane
@@ -91,7 +91,7 @@ public:
 	void RenderOutline(CShaderProgramPtr& shader) const;
 
 private:
-	
+
 	/**
 	 * Returns a copy of the vertices in this brush. Intended for testing purposes; you should not need to use
 	 * this method directly.
@@ -99,8 +99,8 @@ private:
 	std::vector<CVector3D> GetVertices() const;
 
 	/**
-	 * Writes a vector of the faces in this brush to @p out. Each face is itself a vector, listing the vertex indices 
-	 * that make up the face, starting and ending with the same index. Intended for testing purposes; you should not 
+	 * Writes a vector of the faces in this brush to @p out. Each face is itself a vector, listing the vertex indices
+	 * that make up the face, starting and ending with the same index. Intended for testing purposes; you should not
 	 * need to use this method directly.
 	 */
 	void GetFaces(std::vector<std::vector<size_t> >& out) const;
@@ -115,7 +115,7 @@ private:
 	Vertices m_Vertices;
 
 	/**
-	 * Holds the face definitions of this brush. Each face is a sequence of indices into m_Vertices that starts and ends with 
+	 * Holds the face definitions of this brush. Each face is a sequence of indices into m_Vertices that starts and ends with
 	 * the same vertex index, completing a loop through all the vertices that make up the face. This vector holds all the face
 	 * sequences back-to-back, thus looking something like 'x---xy--------yz--z' in the general case.
 	 */

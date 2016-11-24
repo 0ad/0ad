@@ -34,23 +34,23 @@ CVector3D::CVector3D(const CFixedVector3D& v) :
 {
 }
 
-int CVector3D::operator ! () const 
+int CVector3D::operator ! () const
 {
 	if (X != 0.0f ||
 		Y != 0.0f ||
 		Z != 0.0f)
-		
+
 		return 0;
-	
+
 	return 1;
 }
 
-float CVector3D::LengthSquared () const 
+float CVector3D::LengthSquared () const
 {
 	return ( SQR(X) + SQR(Y) + SQR(Z) );
 }
 
-float CVector3D::Length () const 
+float CVector3D::Length () const
 {
 	return sqrtf ( LengthSquared() );
 }

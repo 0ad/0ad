@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -31,13 +31,13 @@
 #include "lib/posix/posix_filesystem.h" // mode_t
 
 #include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
-#include <CoreFoundation/CoreFoundation.h> 
-#include <CoreServices/CoreServices.h> 
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreServices/CoreServices.h>
 
 
 #include "ps/CLogger.h"
 
-static FSEventStreamRef g_Stream = NULL; 
+static FSEventStreamRef g_Stream = NULL;
 
 struct DirWatch
 {
@@ -53,8 +53,8 @@ static DirWatchNotifications g_QueuedDirs;
 static bool CanRunNotifications()
 {
   int major = 0;
-  int minor = 0;   
-  int bugfix = 0;   
+  int minor = 0;
+  int bugfix = 0;
 
   GetSystemVersion( major, minor, bugfix);
 
@@ -83,7 +83,7 @@ static void fsevent_callback(
 {
     unsigned long i;
     char **paths = (char **)eventPaths;
- 
+
     for (i=0; i<numEvents; i++)
     {
       bool    isWatched = false;
@@ -131,7 +131,7 @@ static FSEventStreamRef CreateEventStream( DirWatchMap path )
     CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void **)pathLists, index, NULL);
 
     FSEventStreamContext *callbackInfo = NULL;
- 
+
     FSEventStreamRef stream = FSEventStreamCreate(NULL, &fsevent_callback, callbackInfo, pathsToWatch,
         kFSEventStreamEventIdSinceNow, 1.0, kFSEventStreamCreateFlagFileEvents );
 
@@ -139,8 +139,8 @@ static FSEventStreamRef CreateEventStream( DirWatchMap path )
     free( pathLists );
 
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-    if (!FSEventStreamStart(stream)) 
-      debug_warn(L"event_loop FSEventStreamStart failed!"); 
+    if (!FSEventStreamStart(stream))
+      debug_warn(L"event_loop FSEventStreamStart failed!");
     else
       return stream;
   }
@@ -188,7 +188,7 @@ Status dir_watch_Poll(DirWatchNotifications& notifications)
 {
   if ( g_Stream == NULL )
   {
-    g_Stream = CreateEventStream( g_RootPaths );    
+    g_Stream = CreateEventStream( g_RootPaths );
   }
   else
   {

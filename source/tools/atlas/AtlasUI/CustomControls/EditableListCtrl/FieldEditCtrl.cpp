@@ -89,7 +89,7 @@ FieldEditCtrl_List::FieldEditCtrl_List(const char* listType)
 void FieldEditCtrl_List::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
 {
 	wxArrayString choices;
-	
+
 	AtObj list (Datafile::ReadList(m_ListType));
 	for (AtIter it = list["item"]; it.defined(); ++it)
 		 choices.Add((wxString)it);

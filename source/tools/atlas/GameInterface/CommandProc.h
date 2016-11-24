@@ -111,7 +111,7 @@ The following macros convert that into:
 	{
 		// (user's command code - mostly overriding virtual methods from Command)
 	}
-	
+
 	// Subclass the command to add things which require knowledge of the
 	// complete class definition
 	class cCommandName_sub : public cCommandName
@@ -152,7 +152,7 @@ The following macros convert that into:
 		c##t##_base() : msg(NULL) {} \
 		void MergeIntoPrevious(void*) { debug_warn(L"MergeIntoPrevious unimplemented in command " WIDEN(#t)); } \
 	}; \
-	struct c##t : public c##t##_base 
+	struct c##t : public c##t##_base
 
 #define END_COMMAND(t) \
 	class c##t##_sub : public c##t \

@@ -43,26 +43,26 @@ public:
 private:
 	// Tag = file name stripped of path and extension (grass_dark_1)
 	CStr m_Tag;
-	
+
 	// The property sheet used by this texture
 	CTerrainPropertiesPtr m_pProperties;
-	
+
 	CMaterial m_Material;
 
 	CMatrix3D m_TextureMatrix;
-	
+
 	// BGRA color of topmost mipmap level, for coloring minimap, or a color
 	// specified by the terrain properties
 	u32 m_BaseColor;
 	// ..Valid is true if the base color has been cached
 	bool m_BaseColorValid;
-	
+
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
 
 	// calculate the root color of the texture, used for coloring minimap
 	void BuildBaseColor();
-	
+
 	void LoadAlphaMaps(VfsPath &amtype);
 
 public:
@@ -73,15 +73,15 @@ public:
 
 	CStr GetTag() const
 	{ return m_Tag; }
-	
+
 	const CTerrainProperties& GetProperties() const
 	{ return *m_pProperties; }
-	
+
 	// Get texture handle, load texture if not loaded.
 	const CTexturePtr& GetTexture() {
 		return m_Material.GetDiffuseTexture();
 	}
-	
+
 	const CMaterial& GetMaterial() {
 		return m_Material;
 	}
@@ -95,9 +95,9 @@ public:
 		if (!m_BaseColorValid) BuildBaseColor();
 		return m_BaseColor;
 	}
-	
+
 	//TerrainAlpha *m_TerrainAlpha;
 	CTerrainTextureManager::TerrainAlphaMap::iterator m_TerrainAlpha;
 };
 
-#endif 
+#endif

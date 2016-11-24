@@ -63,15 +63,15 @@ public:
 
 	~CLogger();
 
-	// Functions to write different message types (Errors and warnings are placed 
+	// Functions to write different message types (Errors and warnings are placed
 	// both in mainLog and intrestingLog.)
 	void WriteMessage(const char* message, bool doRender);
 	void WriteError  (const char* message);
 	void WriteWarning(const char* message);
-	
+
 	// Render recent log messages onto the screen
 	void Render();
-	
+
 private:
 	void Init();
 

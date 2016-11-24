@@ -63,7 +63,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	for (std::multimap<CStr, CObjectBase::Samp>::iterator it = variation.samplers.begin(); it != variation.samplers.end(); ++it)
 		m_Samplers.push_back(it->second);
-	
+
 	m_ModelName = variation.model;
 
 	if (! variation.color.empty())
@@ -80,14 +80,14 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
 	{
 		CMaterial material = g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material);
-		
+
 		for (const CObjectBase::Samp& samp : m_Samplers)
 		{
 			CTextureProperties textureProps(samp.m_SamplerFile);
 			textureProps.SetWrap(GL_CLAMP_TO_BORDER);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			// TODO: Should check which renderpath is selected and only preload the necessary textures.
-			texture->Prefetch(); 
+			texture->Prefetch();
 			material.AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 		}
 
@@ -121,26 +121,26 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		return false;
 	}
 
-	// delete old model, create new 
+	// delete old model, create new
 	CModel* model = new CModel(objectManager.GetSkeletonAnimManager(), m_Simulation);
 	delete m_Model;
 	m_Model = model;
 	model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material));
 	model->GetMaterial().AddStaticUniform("objectColor", CVector4D(m_Color.r, m_Color.g, m_Color.b, m_Color.a));
 	model->InitModel(modeldef);
-	
+
 	if (m_Samplers.empty())
 		LOGERROR("Actor '%s' has no textures.", utf8_from_wstring(m_Base->m_ShortName));
-	
+
 	for (const CObjectBase::Samp& samp : m_Samplers)
 	{
 		CTextureProperties textureProps(samp.m_SamplerFile);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
-		// if we've loaded this model we're probably going to render it soon, so prefetch its texture. 
+		// if we've loaded this model we're probably going to render it soon, so prefetch its texture.
 		// All textures are prefetched even in the fixed pipeline, including the normal maps etc.
 		// TODO: Should check which renderpath is selected and only preload the necessary textures.
-		texture->Prefetch(); 
+		texture->Prefetch();
 		model->GetMaterial().AddSampler(CMaterial::TextureSampler(samp.m_SamplerName, texture));
 	}
 
@@ -150,7 +150,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		                 [&](const CObjectBase::Samp& sampler) { return sampler.m_SamplerName == requSampName; }) == m_Samplers.end())
 			LOGERROR("Actor %s: required texture sampler %s not found (material %s)", utf8_from_wstring(m_Base->m_ShortName), requSampName.string().c_str(), m_Base->m_Material.string8().c_str());
 	}
-	
+
 	// calculate initial object space bounds, based on vertex positions
 	model->CalcStaticObjectBounds();
 

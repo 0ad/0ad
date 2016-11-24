@@ -42,7 +42,7 @@ public:
 
 	/**
 	 * Get the oriented world-space bounding box of the object's visual representation, clipped at the Y=0 plane in object space
-	 * to prevent it from extending into the terrain. The primary difference with GetBounds is that this bounding box is not aligned 
+	 * to prevent it from extending into the terrain. The primary difference with GetBounds is that this bounding box is not aligned
 	 * to the world axes, but arbitrarily rotated according to the model transform.
 	 */
 	virtual CBoundingBoxOriented GetSelectionBox() = 0;
@@ -152,7 +152,7 @@ public:
 	 * Get actor seed used for random variations
 	 */
 	virtual u32 GetActorSeed() = 0;
-	
+
 	/**
 	 * Set actor seed for random variations and reload model
 	 */

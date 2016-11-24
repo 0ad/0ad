@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Abstract entity to serve as a bare-minimum dummy constructable entity to initiate wall placement.
-     Defines the set of actual entities that are part of the same wall construction system (i.e., towers, 
+     Defines the set of actual entities that are part of the same wall construction system (i.e., towers,
      gates, wall segments of various length, etc.) using the WallSet component (to be overridden by child
      templates). -->
 <Entity>

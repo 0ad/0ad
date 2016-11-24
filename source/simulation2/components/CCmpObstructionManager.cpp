@@ -183,7 +183,7 @@ public:
 		SerializeSpatialSubdivision()(serialize, "static subdiv", m_StaticSubdivision);
 
 		serialize.NumberFixed_Unbounded("max clearance", m_MaxClearance);
-		
+
 		SerializeMap<SerializeU32_Unbounded, SerializeUnitShape>()(serialize, "unit shapes", m_UnitShapes);
 		SerializeMap<SerializeU32_Unbounded, SerializeStaticShape>()(serialize, "static shapes", m_StaticShapes);
 		serialize.NumberU32_Unbounded("unit shape next", m_UnitShapeNext);
@@ -696,16 +696,16 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());
-		
+
 		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
-		
+
 		CFixedVector2D center(it->second.x, it->second.z);
 		CFixedVector2D halfSize(it->second.hw + r, it->second.hh + r);
 		if (Geometry::TestRaySquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, it->second.u, it->second.v, halfSize))
 			return true;
 	}
-	
+
 	return false;
 }
 
@@ -965,9 +965,9 @@ void CCmpObstructionManager::GetUnitObstructionsInRange(const IObstructionTestFi
 void CCmpObstructionManager::GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares)
 {
 	PROFILE("GetObstructionsInRange");
-	
+
 	ENSURE(x0 <= x1 && z0 <= z1);
-	
+
 	std::vector<entity_id_t> staticShapes;
 	m_StaticSubdivision.GetInRange(staticShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
 	for (entity_id_t& staticShape : staticShapes)

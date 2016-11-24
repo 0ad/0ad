@@ -30,7 +30,7 @@
 class CSoundBase : public ISoundItem
 {
 protected:
-	
+
 	ALuint m_ALSource;
 	CSoundData* m_SoundData;
 
@@ -39,7 +39,7 @@ protected:
 	bool m_ShouldBePlaying;
 	bool m_PauseAfterFade;
 	bool m_IsPaused;
-	
+
 	double m_StartFadeTime;
 	double m_EndFadeTime;
 
@@ -49,9 +49,9 @@ protected:
 
 public:
 	CSoundBase();
-	
+
 	virtual ~CSoundBase();
-	
+
 	bool InitOpenAL();
 	void ResetVars();
 	void EnsurePlay();
@@ -65,7 +65,7 @@ public:
 	void ReleaseOpenAL();
 	bool IsFading();
 	bool Finished();
-	
+
 	void Play();
 	void PlayAndDelete();
 	void PlayLoop();

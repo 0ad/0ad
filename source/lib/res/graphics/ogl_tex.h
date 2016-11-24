@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -93,7 +93,7 @@ Caching and Texture Instances
 Caching is both an advantage and drawback. When opening the same
 texture twice without previously freeing it, a reference to the
 first instance is returned. Therefore, be advised that concurrent use of the
-same texture but with differing parameters (e.g. upload quality) followed by 
+same texture but with differing parameters (e.g. upload quality) followed by
 a reload of the first instance will result in using the wrong parameters.
 For background and rationale why this is acceptable, see struct OglTex.
 
@@ -184,7 +184,7 @@ enum OglTexQualityFlags
 	/**
 	 * store the texture at half its original resolution.
 	 * this increases performance on older graphics cards due to
-	 * decreased size in vmem. 
+	 * decreased size in vmem.
 	 * this is useful for also reducing quality of compressed textures,
 	 * which are not affected by OGL_TEX_HALF_BPP.
 	 * currently only implemented for images that contain mipmaps

@@ -35,7 +35,7 @@ VertexArray::VertexArray(GLenum usage, GLenum target)
 	m_Usage = usage;
 	m_Target = target;
 	m_NumVertices = 0;
-	
+
 	m_VB = 0;
 	m_BackingStore = 0;
 	m_Stride = 0;
@@ -52,7 +52,7 @@ void VertexArray::Free()
 {
 	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
-	
+
 	if (m_VB)
 	{
 		g_VBMan.Release(m_VB);
@@ -66,7 +66,7 @@ void VertexArray::SetNumVertices(size_t num)
 {
 	if (num == m_NumVertices)
 		return;
-	
+
 	Free();
 	m_NumVertices = num;
 }
@@ -83,7 +83,7 @@ void VertexArray::AddAttribute(Attribute* attr)
 
 	attr->vertexArray = this;
 	m_Attributes.push_back(attr);
-	
+
 	Free();
 }
 
@@ -97,7 +97,7 @@ VertexArrayIterator<CVector3D> VertexArray::Attribute::GetIterator<CVector3D>() 
 	ENSURE(vertexArray);
 	ENSURE(type == GL_FLOAT);
 	ENSURE(elems >= 3);
-	
+
 	return vertexArray->MakeIterator<CVector3D>(this);
 }
 
@@ -107,7 +107,7 @@ VertexArrayIterator<CVector4D> VertexArray::Attribute::GetIterator<CVector4D>() 
 	ENSURE(vertexArray);
 	ENSURE(type == GL_FLOAT);
 	ENSURE(elems >= 4);
-	
+
 	return vertexArray->MakeIterator<CVector4D>(this);
 }
 
@@ -117,7 +117,7 @@ VertexArrayIterator<float[2]> VertexArray::Attribute::GetIterator<float[2]>() co
 	ENSURE(vertexArray);
 	ENSURE(type == GL_FLOAT);
 	ENSURE(elems >= 2);
-	
+
 	return vertexArray->MakeIterator<float[2]>(this);
 }
 
@@ -127,7 +127,7 @@ VertexArrayIterator<SColor3ub> VertexArray::Attribute::GetIterator<SColor3ub>() 
 	ENSURE(vertexArray);
 	ENSURE(type == GL_UNSIGNED_BYTE);
 	ENSURE(elems >= 3);
-	
+
 	return vertexArray->MakeIterator<SColor3ub>(this);
 }
 
@@ -137,7 +137,7 @@ VertexArrayIterator<SColor4ub> VertexArray::Attribute::GetIterator<SColor4ub>() 
 	ENSURE(vertexArray);
 	ENSURE(type == GL_UNSIGNED_BYTE);
 	ENSURE(elems >= 4);
-	
+
 	return vertexArray->MakeIterator<SColor4ub>(this);
 }
 
@@ -211,7 +211,7 @@ static size_t RoundStride(size_t stride)
 		return 8;
 	if (stride <= 16)
 		return 16;
-	
+
 	return Align<32>(stride);
 }
 
@@ -221,18 +221,18 @@ static size_t RoundStride(size_t stride)
 void VertexArray::Layout()
 {
 	Free();
-	
+
 	m_Stride = 0;
-	
+
 	//debug_printf("Layouting VertexArray\n");
-	
+
 	for (ssize_t idx = m_Attributes.size()-1; idx >= 0; --idx)
 	{
 		Attribute* attr = m_Attributes[idx];
-		
+
 		if (!attr->type || !attr->elems)
 			continue;
-	
+
 		size_t attrSize = 0;
 		switch(attr->type)
 		{
@@ -254,7 +254,7 @@ void VertexArray::Layout()
 		}
 
 		attrSize *= attr->elems;
-		
+
 		attr->offset = m_Stride;
 
 		m_Stride += attrSize;
@@ -264,12 +264,12 @@ void VertexArray::Layout()
 
 		//debug_printf("%i: offset: %u\n", idx, attr->offset);
 	}
-	
+
 	if (m_Target == GL_ARRAY_BUFFER)
 		m_Stride = RoundStride(m_Stride);
-	
+
 	//debug_printf("Stride: %u\n", m_Stride);
-	
+
 	if (m_Stride)
 		m_BackingStore = (char*)rtl_AllocateAligned(m_Stride * m_NumVertices, 16);
 }
@@ -284,7 +284,7 @@ void VertexArray::PrepareForRendering()
 void VertexArray::Upload()
 {
 	ENSURE(m_BackingStore);
-	
+
 	if (!m_VB)
 		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Usage, m_Target, m_BackingStore);
 

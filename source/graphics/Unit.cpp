@@ -115,7 +115,7 @@ void CUnit::ReloadObject()
 	// made might define some additional props that require a random variant choice). Also, FindObjectVariation
 	// expects the selectors passed to it to be complete.
 	// see http://trac.wildfiregames.com/ticket/979
-	
+
 	// Use the entity ID as randomization seed (same as when the unit was first created)
 	std::set<CStr> remainingSelections = m_Object->m_Base->CalculateRandomRemainingSelections(m_Seed, selections);
 	if (!remainingSelections.empty())

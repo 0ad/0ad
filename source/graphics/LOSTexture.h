@@ -93,11 +93,11 @@ private:
 
 	GLuint m_Texture;
 	GLuint m_TextureSmooth1, m_TextureSmooth2;
-	
+
 	bool whichTex;
-	
+
 	GLuint m_smoothFbo;
-	CShaderTechniquePtr m_smoothShader;	
+	CShaderTechniquePtr m_smoothShader;
 
 	ssize_t m_MapSize; // vertexes per side
 	GLsizei m_TextureSize; // texels per side

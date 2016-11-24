@@ -97,7 +97,7 @@ protected:
 };
 
 //////////////////////////////////////////////////////////////////////////
-	
+
 BEGIN_COMMAND(AlterElevation)
 {
 	TerrainArray m_TerrainDelta;
@@ -179,7 +179,7 @@ BEGIN_COMMAND(AlterElevation)
 END_COMMAND(AlterElevation)
 
 //////////////////////////////////////////////////////////////////////////
-	
+
 BEGIN_COMMAND(SmoothElevation)
 {
 	TerrainArray m_TerrainDelta;

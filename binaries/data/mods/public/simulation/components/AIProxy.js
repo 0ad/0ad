@@ -146,7 +146,7 @@ AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 {
 	if (!this.NotifyChange())
 		return;
-	
+
 	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	this.changes.garrisoned = cmpGarrisonHolder.GetEntities();
 
@@ -329,7 +329,7 @@ AIProxy.prototype.GetFullRepresentation = function()
 AIProxy.prototype.OnOwnershipChanged = function(msg)
 {
 	this.NotifyChange();
-	
+
 	if (msg.from === -1)
 	{
 		this.cmpAIInterface.PushEvent("Create", {"entity" : msg.entity});
@@ -341,7 +341,7 @@ AIProxy.prototype.OnOwnershipChanged = function(msg)
 		this.needsFullGet = true;
 		return;
 	}
-	
+
 	this.changes.owner = msg.to;
 	this.cmpAIInterface.PushEvent("OwnershipChanged", msg);
 };

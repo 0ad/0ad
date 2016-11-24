@@ -75,7 +75,7 @@ public:
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Median Oasis (2).pmp",
-			sim2.GetScriptInterface().GetJSRuntime(), JS::UndefinedHandleValue, 
+			sim2.GetScriptInterface().GetJSRuntime(), JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
@@ -185,8 +185,8 @@ public:
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
 
 		LDR_BeginRegistering();
-		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp", 
-			sim2.GetScriptInterface().GetJSRuntime(), JS::UndefinedHandleValue, 
+		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
+			sim2.GetScriptInterface().GetJSRuntime(), JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();

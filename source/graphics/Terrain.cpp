@@ -331,7 +331,7 @@ fixed CTerrain::GetSlopeFixed(ssize_t i, ssize_t j) const
 	u16 h01 = m_Heightmap[(j+1)*m_MapSize + i];
 	u16 h10 = m_Heightmap[j*m_MapSize + (i+1)];
 	u16 h11 = m_Heightmap[(j+1)*m_MapSize + (i+1)];
-	
+
 	// Difference of highest point from lowest point
 	u16 delta = std::max(std::max(h00, h01), std::max(h10, h11)) -
 	            std::min(std::min(h00, h01), std::min(h10, h11));

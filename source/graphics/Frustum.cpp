@@ -133,7 +133,7 @@ bool CFrustum::IsBoxVisible(const CVector3D& position, const CBoundingBoxAligned
 		FarPoint.X = m_aPlanes[i].m_Norm.X > 0.0f ? Max.X : Min.X;
 		FarPoint.Y = m_aPlanes[i].m_Norm.Y > 0.0f ? Max.Y : Min.Y;
 		FarPoint.Z = m_aPlanes[i].m_Norm.Z > 0.0f ? Max.Z : Min.Z;
-		
+
 		if (m_aPlanes[i].IsPointOnBackSide(FarPoint))
 			return false;
 	}
@@ -151,7 +151,7 @@ bool CFrustum::IsBoxVisible(const CBoundingBoxAligned& bounds) const
 		FarPoint.X = m_aPlanes[i].m_Norm.X > 0.0f ? bounds[1].X : bounds[0].X;
 		FarPoint.Y = m_aPlanes[i].m_Norm.Y > 0.0f ? bounds[1].Y : bounds[0].Y;
 		FarPoint.Z = m_aPlanes[i].m_Norm.Z > 0.0f ? bounds[1].Z : bounds[0].Z;
-		
+
 		if (m_aPlanes[i].IsPointOnBackSide(FarPoint))
 			return false;
 	}

@@ -102,7 +102,7 @@ bool L10n::ValidateLocale(const std::string& localeCode) const
 }
 
 // Returns true if both of these conditions are true:
-//  1. ICU has resources for that locale (which also ensures it's a valid locale string) 
+//  1. ICU has resources for that locale (which also ensures it's a valid locale string)
 //  2. Either a dictionary for language_country or for language is available.
 bool L10n::ValidateLocale(const Locale& locale) const
 {
@@ -139,7 +139,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
 		return strcmp(locale.getLanguage(), l->getLanguage()) == 0
 		       && strcmp(locale.getCountry(), l->getCountry()) == 0;
 	};
-	
+
 	if (strcmp(locale.getCountry(), "") != 0
 	    && std::find_if(availableLocales.begin(), availableLocales.end(), checkLangAndCountry) != availableLocales.end())
 	{
@@ -156,7 +156,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale) const
 		stream << locale.getLanguage();
 		return stream.str();
 	}
-	
+
 	return L"";
 }
 
@@ -181,7 +181,7 @@ void L10n::GetDictionaryLocale(const std::string& configLocaleString, Locale& ou
 		else
 			LOGWARNING("The configured locale is not valid or no translations are available. Falling back to another locale.");
 	}
-	
+
 	Locale systemLocale = Locale::getDefault();
 	if (ValidateLocale(systemLocale))
 		outLocale = systemLocale;
@@ -392,7 +392,7 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, co
 	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
 	if (U_FAILURE(status))
 		LOGERROR("Error creating calendar: %s", u_errorName(status));
-   
+
 	dateFormat->adoptCalendar(calendar);
 	dateFormat->format(milliseconds, dateString);
 	delete dateFormat;

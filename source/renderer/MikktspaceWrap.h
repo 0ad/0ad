@@ -25,13 +25,13 @@ class MikkTSpace
 {
 
 public:
-	
+
 	MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning);
 
 	void generate();
-	
+
 private:
-	
+
 	SMikkTSpaceInterface m_Interface;
 	SMikkTSpaceContext m_Context;
 
@@ -39,7 +39,7 @@ private:
 
 	std::vector<float>& m_NewVertices;
 	bool m_GpuSkinning;
-	
+
 
 	// Returns the number of faces (triangles/quads) on the mesh to be processed.
 	static int getNumFaces(const SMikkTSpaceContext *pContext);
@@ -52,13 +52,13 @@ private:
 
 	// returns the position/normal/texcoord of the referenced face of vertex number iVert.
 	// iVert is in the range {0,1,2} for triangles and {0,1,2,3} for quads.
-	static void getPosition(const SMikkTSpaceContext *pContext, 
+	static void getPosition(const SMikkTSpaceContext *pContext,
 			float fvPosOut[], const int iFace, const int iVert);
 
-	static void getNormal(const SMikkTSpaceContext *pContext, 
+	static void getNormal(const SMikkTSpaceContext *pContext,
 			float fvNormOut[], const int iFace, const int iVert);
 
-	static void getTexCoord(const SMikkTSpaceContext *pContext, 
+	static void getTexCoord(const SMikkTSpaceContext *pContext,
 			float fvTexcOut[], const int iFace, const int iVert);
 
 
@@ -70,8 +70,8 @@ private:
 	// For normal maps it is sufficient to use the following simplified version of the bitangent which is generated at pixel/vertex level.
 	// fSign = bIsOrientationPreserving ? 1.0f : (-1.0f);
 	// bitangent = fSign * cross(vN, tangent);
-	static void setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[], 
-			const float fvBiTangent[], const float fMagS, const float fMagT, 
+	static void setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[],
+			const float fvBiTangent[], const float fMagS, const float fMagT,
 			const tbool bIsOrientationPreserving, const int iFace, const int iVert);
 
 

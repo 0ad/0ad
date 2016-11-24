@@ -8,38 +8,38 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
-	
+
 	byClass: function(cls){
 		return {"func" : function(ent){
 			return ent.hasClass(cls);
 		},
 		"dynamicProperties": []};
 	},
-	
+
 	byClassesAnd: function(clsList){
 		return {"func" : function(ent){
 			let ret = true;
 			for (let cls of clsList)
 				ret = ret && ent.hasClass(cls);
 			return ret;
-		}, 
+		},
 		"dynamicProperties": []};
 	},
-	
+
 	byClassesOr: function(clsList){
 		return {"func" : function(ent){
 			let ret = false;
 			for (let cls of clsList)
 				ret = ret || ent.hasClass(cls);
 			return ret;
-		}, 
+		},
 		"dynamicProperties": []};
 	},
 
 	byMetadata: function(player, key, value){
 		return {"func" : function(ent){
 			return ent.getMetadata(player, key) == value;
-		}, 
+		},
 		"dynamicProperties": ['metadata.' + key]};
 	},
 
@@ -50,7 +50,7 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
-	
+
 	byHasMetadata: function(player, key){
 		return {"func" : function(ent){
 			return ent.getMetadata(player, key) !== undefined;
@@ -61,45 +61,45 @@ m.Filters = {
 	and: function(filter1, filter2){
 		return {"func": function(ent){
 			return filter1.func(ent) && filter2.func(ent);
-		}, 
+		},
 		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)};
 	},
-	
+
 	or: function(filter1, filter2){
 		return {"func" : function(ent){
 			return filter1.func(ent) || filter2.func(ent);
-		}, 
+		},
 		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)};
 	},
-	
+
 	not: function(filter){
 		return {"func": function(ent){
 			return !filter.func(ent);
 		},
 		"dynamicProperties": filter.dynamicProperties};
 	},
-	
+
 	byOwner: function(owner){
 		return {"func" : function(ent){
 			return ent.owner() === owner;
-		}, 
+		},
 		"dynamicProperties": ['owner']};
 	},
-	
+
 	byNotOwner: function(owner){
 		return {"func" : function(ent){
 			return ent.owner() !== owner;
-		}, 
+		},
 		"dynamicProperties": ['owner']};
 	},
-	
+
 	byOwners: function(owners){
 		return {"func" : function(ent){
 			for (let owner of owners)
 				if (ent.owner() === owner)
 					return true;
 			return false;
-		}, 
+		},
 		"dynamicProperties": ['owner']};
 	},
 
@@ -112,7 +112,7 @@ m.Filters = {
 	byTrainingQueue: function(){
 		return {"func" : function(ent){
 			return ent.trainingQueue();
-		}, 
+		},
 		"dynamicProperties": ['trainingQueue']};
 	},
 	byResearchAvailable: function(civ){
@@ -127,14 +127,14 @@ m.Filters = {
 		},
 		"dynamicProperties": ['unitAIOrderData']};
 	},
-	
+
 	byCanAttack: function(saidClass){
 		return {"func" : function(ent){
 			return ent.canAttackClass(saidClass);
 		},
 		"dynamicProperties": []};
 	},
-	
+
 	isGarrisoned: function(){
 		return {"func" : function(ent){
 			return ent.position() === undefined;
@@ -145,17 +145,17 @@ m.Filters = {
 	isSoldier: function(){
 		return {"func" : function(ent){
 			return Filters.byClassesOr(["CitizenSoldier", "Super"])(ent);
-		}, 
+		},
 		"dynamicProperties": []};
 	},
-	
+
 	isIdle: function(){
 		return {"func" : function(ent){
 			return ent.isIdle();
-		}, 
+		},
 		"dynamicProperties": ['idle']};
 	},
-	
+
 	isFoundation: function(){
 		return {"func": function(ent){
 			return ent.foundationProgress() !== undefined;
@@ -185,8 +185,8 @@ m.Filters = {
 		},
 		"dynamicProperties": ['position']};
 	},
-	
-	// Distance filter with no auto updating, use with care 
+
+	// Distance filter with no auto updating, use with care
 	byStaticDistance: function(startPoint, dist){
 		return {"func": function(ent){
 			if (!ent.position())
@@ -195,7 +195,7 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
-	
+
 	byTerritory: function(Map, territoryIndex){
 		return {"func": function(ent){
 			return Map.point(ent.position()) == territoryIndex;
@@ -209,7 +209,7 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
-	
+
 	byResource: function(resourceType){
 		return {"func" : function(ent){
 			if (!ent.resourceSupplyMax())
@@ -224,7 +224,7 @@ m.Filters = {
 				return false;
 
 			// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
-			if (ent.templateName() == "other/special_treasure_shipwreck_debris" || 
+			if (ent.templateName() == "other/special_treasure_shipwreck_debris" ||
 			    ent.templateName() == "other/special_treasure_shipwreck" )
 				return false;
 
@@ -245,7 +245,7 @@ m.Filters = {
 			// Skip targets that are too hard to hunt
 			if (!ent.isHuntable())
 				return false;
-			// And don't go for the fish! TODO: better accessibility checks 
+			// And don't go for the fish! TODO: better accessibility checks
 			if (ent.hasClass("SeaCreature"))
 				return false;
 			return true;

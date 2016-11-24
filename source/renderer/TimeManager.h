@@ -27,10 +27,10 @@ class CTimeManager
 {
 public:
 	CTimeManager();
-	
+
 	double GetFrameDelta();
 	double GetGlobalTime();
-	
+
 	void Update(double delta);
 
 private:

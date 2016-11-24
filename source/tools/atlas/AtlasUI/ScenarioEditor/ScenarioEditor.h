@@ -35,7 +35,7 @@ public:
 	void OnTimer(wxTimerEvent& event);
 	void OnIdle(wxIdleEvent& event);
 	wxToolBar* OnCreateToolBar(long style, wxWindowID id, const wxString &name);
-	
+
  	void OnNew(wxCommandEvent& event);
 	void OnOpen(wxCommandEvent& event);
 	void OnSave(wxCommandEvent& event);

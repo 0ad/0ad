@@ -19,7 +19,7 @@ m.HQ = function(Config)
 {
 	this.Config = Config;
 
-	this.econState = "growth";	// existing values: growth, townPhasing.
+	this.econState = "growth";	// existing values: growth, townPhasing and cityPhasing.
 	this.currentPhase = undefined;
 
 	// Cache the rates.
@@ -427,9 +427,6 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 /** Called by the "city phase" research plan once it's started */
 m.HQ.prototype.OnCityPhase = function(gameState)
 {
-	// increase the priority of defense buildings to free this queue for our first fortress
-	gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
-
 	let phaseName = gameState.getTemplate(gameState.cityPhase()).name();
 	m.chatNewPhase(gameState, phaseName, true);
 };
@@ -1279,10 +1276,20 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 m.HQ.prototype.buildTemple = function(gameState, queues)
 {
 	// at least one market (which have the same queue) should be build before any temple
-	if (gameState.currentPhase() < 3 || queues.economicBuilding.hasQueuedUnits() ||
+	if (queues.economicBuilding.hasQueuedUnits() ||
 		gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
 		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
+	if (gameState.currentPhase() < 3)
+	{
+		if (gameState.currentPhase() < 2 || this.econState !== "cityPhasing")
+			return;
+		let requirements = gameState.getPhaseRequirements(3);
+		if (!requirements || !requirements.number)
+			return;
+		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements.number)
+			return;
+	}
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
 	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_temple"));
@@ -1580,7 +1587,11 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		gameState.getOwnFoundationsByClass("DefenseTower").length < 3)
 	{
 		this.towerStartTime = gameState.ai.elapsedTime;
-		queues.defenseBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower"));
+		if (numTowers > 2 * this.numActiveBase() + 3)
+			gameState.ai.queueManager.changePriority("defenseBuilding", Math.round(0.7*this.Config.priorities.defenseBuilding));
+		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower");
+		plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("defenseBuilding", gameState.ai.Config.priorities.defenseBuilding); };
+		queues.defenseBuilding.addPlan(plan);
 	}
 };
 

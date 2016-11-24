@@ -295,7 +295,7 @@ private:
 		if (colorDlg.ShowModal() == wxID_OK)
 		{
 			m_Controls.color->SetBackgroundColour(colorDlg.GetColourData().GetColour());
-			
+
 			// Pass event on to next handler
 			evt.Skip();
 		}
@@ -328,7 +328,7 @@ private:
 	bool m_CameraDefined;
 	wxString m_Name;
 	size_t m_PlayerID;
-	
+
 	PlayerPageControls m_Controls;
 
 	DECLARE_EVENT_TABLE();
@@ -464,7 +464,7 @@ private:
 		if (!m_InGUIUpdate)
 		{
 			wxASSERT(evt.GetInt() > 0);
-			
+
 			// When wxMessageBox pops up, wxSpinCtrl loses focus, which
 			//	forces another EVT_SPINCTRL event, which we don't want
 			//	to handle, so we check here for a change
@@ -472,7 +472,7 @@ private:
 			{
 				return;	// No change
 			}
-			
+
 			size_t oldNumPlayers = m_NumPlayers;
 			m_NumPlayers = evt.GetInt();
 
@@ -605,14 +605,14 @@ void PlayerSettingsControl::CreateWidgets()
 	AtIter playerDefs = m_PlayerDefaults["item"];
 	if (playerDefs.defined())
 		++playerDefs;	// Skip gaia
-	
+
 	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i)
 	{
 		// Create new player tab and get controls
 		wxString name(_("Unknown"));
 		if (playerDefs["Name"].defined())
 			name = playerDefs["Name"];
-		
+
 		PlayerPageControls controls = m_Players->AddPlayer(name, i);
 		m_PlayerControls.push_back(controls);
 
@@ -820,7 +820,7 @@ void PlayerSettingsControl::ReadFromEngine()
 			info.rX = (float)(*camRot["x"]).getDouble();
 			info.rY = (float)(*camRot["y"]).getDouble();
 			info.rZ = (float)(*camRot["z"]).getDouble();
-			
+
 			controls.page->SetCamera(info, true);
 		}
 		else
@@ -934,7 +934,7 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 
 		players.add("item", player);
 	}
-	
+
 	m_MapSettings.set("PlayerData", players);
 
 	return m_MapSettings;

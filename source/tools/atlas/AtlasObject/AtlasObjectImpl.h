@@ -75,7 +75,7 @@ class AtIterImpl
 
 public:
 	AtIterImpl() : refcount(0) {}
-	
+
 	AtIterImpl(AtNode::child_maptype::const_iterator it, AtNode::child_maptype::const_iterator up)
 		: refcount(0), iter(it), iter_upperbound(up) {}
 

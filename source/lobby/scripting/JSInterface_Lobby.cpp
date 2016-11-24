@@ -185,7 +185,7 @@ JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
 
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-		
+
 	JS::RootedValue playerList(cx);
 	g_XmppClient->GUIGetPlayerList(*(pCxPrivate->pScriptInterface), &playerList);
 
@@ -254,7 +254,7 @@ JS::Value JSI_Lobby::LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate)
 
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	JS::RootedValue poll(cx);
 	g_XmppClient->GuiPollMessage(*(pCxPrivate->pScriptInterface), &poll);
 
@@ -265,7 +265,7 @@ void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate),
 {
 	if (!g_XmppClient)
 		return;
-		
+
 	g_XmppClient->SendMUCMessage(utf8_from_wstring(message));
 }
 

@@ -294,7 +294,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		}
 	}
 
-	// Find the best non-obstructed:	
+	// Find the best non-obstructed:
 	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close,
 	// this allows room for units to walk between buildings.
 	// note: not for houses and dropsites who ought to be closer to either each other or a resource.
@@ -468,7 +468,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	if (bestVal < 0)
 		return false;
 
-	// if no good place with enough water around and still in first phase, wait for expansion at the next phase 
+	// if no good place with enough water around and still in first phase, wait for expansion at the next phase
 	if (!this.metadata.proximity && bestWater < 10 && gameState.currentPhase() == 1)
 		return false;
 
@@ -517,7 +517,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 			let angle = (i/numPoints)*2*Math.PI;
 			pos = [x - (1+dist)*size*Math.sin(angle), z + (1+dist)*size*Math.cos(angle)];
 			pos = gameState.ai.accessibility.gamePosToMapPos(pos);
-			if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+			if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width ||
 			    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 				continue;
 			let j = pos[0] + pos[1]*gameState.ai.accessibility.width;
@@ -595,21 +595,21 @@ m.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, half
 	for (let i = 1; i < 5; ++i)
 	{
 		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*(sp+sw), z + cz + i*(cp-cw)]);
-		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width ||
 		    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 			break;
 		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
 			break;
 		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*sp, z + cz + i*cp]);
-		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width ||
 		    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 			break;
 		j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 		if (gameState.ai.accessibility.landPassMap[j] > 1 || gameState.ai.accessibility.navalPassMap[j] < 2)
 			break;
 		pos = gameState.ai.accessibility.gamePosToMapPos([x + sz + i*(sp-sw), z + cz + i*(cp+cw)]);
-		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width || 
+		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width ||
 		    pos[1] < 0 || pos[1] >= gameState.ai.accessibility.height)
 			break;
 		j = pos[0] + pos[1]*gameState.ai.accessibility.width;

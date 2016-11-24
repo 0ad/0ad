@@ -70,9 +70,9 @@ public:
 	CObjectManager& GetObjectManager() const;
 
 	/**
-	 * Updates all the view information (i.e. rotate camera, scroll, whatever). This will *not* change any 
+	 * Updates all the view information (i.e. rotate camera, scroll, whatever). This will *not* change any
 	 * World information - only the *presentation*.
-	 * 
+	 *
 	 * @param deltaRealTime Elapsed real time since the last frame.
 	 */
 	void Update(const float deltaRealTime);
@@ -102,7 +102,7 @@ public:
 	float GetNear() const;
 	float GetFar() const;
 	float GetFOV() const;
-	
+
 	#define DECLARE_BOOLEAN_SETTING(NAME) \
 	bool Get##NAME##Enabled(); \
 	void Set##NAME##Enabled(bool Enabled);

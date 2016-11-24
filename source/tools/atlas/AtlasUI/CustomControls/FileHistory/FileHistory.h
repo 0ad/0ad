@@ -41,7 +41,7 @@ private:
 	{
 		wxFileHistory::Save(config);
 	}
-	
+
 	wxString m_configSubdir;
 };
 

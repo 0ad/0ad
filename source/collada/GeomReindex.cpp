@@ -36,7 +36,7 @@ typedef std::pair<float, float> uv_pair_type;
 
 struct VertexData
 {
-	VertexData(const float* pos, const float* norm, const std::vector<uv_pair_type> &uvs, 
+	VertexData(const float* pos, const float* norm, const std::vector<uv_pair_type> &uvs,
 		   const std::vector<FCDJointWeightPair>& weights)
 		: x(pos[0]), y(pos[1]), z(pos[2]),
 		nx(norm[0]), ny(norm[1]), nz(norm[2]),
@@ -201,7 +201,7 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 		{
 			const float* dataTexcoord = texcoordSources[set]->GetData();
 			uint32 strideTexcoord = texcoordSources[set]->GetStride();
-			
+
 			uv_pair_type p;
 			p.first = dataTexcoord[indicesTexcoord[i]*strideTexcoord];
 			p.second = dataTexcoord[indicesTexcoord[i]*strideTexcoord + 1];

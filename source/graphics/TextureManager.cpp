@@ -60,7 +60,7 @@ struct TPhash
 struct TPequal_to
 	: std::binary_function<CTextureProperties, CTextureProperties, bool>,
 	std::binary_function<CTexturePtr, CTexturePtr, bool>
-{	
+{
 	bool operator()(CTextureProperties const& a, CTextureProperties const& b) const
 	{
 		return a.m_Path == b.m_Path && a.m_Filter == b.m_Filter

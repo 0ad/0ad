@@ -131,7 +131,7 @@ void ConstructBoxOutline(const CBoundingBoxAligned& box, SOverlayLine& overlayLi
  * @param[in] center
  * @param[in] radius
  * @param[in,out] out Updated overlay line representing the gimbal.
- * @param[in] numSteps The amount of steps to trace a circle's complete outline. Must be a (strictly) positive multiple of four. 
+ * @param[in] numSteps The amount of steps to trace a circle's complete outline. Must be a (strictly) positive multiple of four.
  *     For small radii, you can get away with small values; setting this to 4 will create a diamond shape.
  */
 void ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps = 16);
@@ -182,12 +182,12 @@ void ConstructDashedLine(const std::vector<CVector2D>& linePoints, SDashedLine& 
 /**
  * Computes angular step parameters @p out_stepAngle and @p out_numSteps, given a @p maxChordLength on a circle of radius @p radius.
  * The resulting values satisfy @p out_numSteps * @p out_stepAngle = 2*PI.
- * 
+ *
  * This function is used to find the angular step parameters when drawing a circle outline approximated by several connected chords;
  * it returns the step angle and number of steps such that the length of each resulting chord is less than or equal to @p maxChordLength.
  * By stating that each chord cannot be longer than a particular length, a certain level of visual smoothness of the resulting circle
  * outline can be guaranteed independently of the radius of the outline.
- * 
+ *
  * @param radius Radius of the circle. Must be strictly positive.
  * @param maxChordLength Desired maximum length of individual chords. Must be strictly positive.
  */
@@ -196,7 +196,7 @@ void AngularStepFromChordLen(const float maxChordLength, const float radius, flo
 /**
  * Subdivides a list of @p points into segments of maximum length @p maxSegmentLength that are of equal size between every two
  * control points. The resulting subdivided list of points is written back to @p points.
- * 
+ *
  * @param points The list of intermediate points to subdivide.
  * @param maxSegmentLength The maximum length of a single segment after subdivision. Must be strictly positive.
  * @param closed Should the provided list of points be treated as a closed shape? If true, the resulting list of points will include

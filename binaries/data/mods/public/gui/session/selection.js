@@ -137,16 +137,10 @@ EntityGroups.prototype.getEntsByName = function(templateName)
  */
 EntityGroups.prototype.getEntsGrouped = function()
 {
-	var templateNames = this.getTemplateNames();
-	var list = [];
-	for (var t of templateNames)
-	{
-		list.push({
-			"ents": this.getEntsByName(t),
-			"template": t,
-		});
-	}
-	return list;
+	return this.getTemplateNames().map(template => ({
+		"ents": this.getEntsByName(template),
+		"template": template
+	}));
 };
 
 /**
@@ -186,14 +180,9 @@ function EntitySelection()
  */
 EntitySelection.prototype.makePrimarySelection = function(templateName, modifierKey)
 {
-	var template = GetTemplateData(templateName);
-	var key = template.selectionGroupName || templateName;
-
-	var ents = [];
-	if (modifierKey)
-		ents = this.groups.getEntsByNameInverse(key);
-	else
-		ents = this.groups.getEntsByName(key);
+	let ents = modifierKey ?
+		this.groups.getEntsByNameInverse(templateName) :
+		this.groups.getEntsByName(templateName);
 
 	this.reset();
 	this.addList(ents);

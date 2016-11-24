@@ -88,7 +88,7 @@ public:
 	int PropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
 
 	SColor4ub Background;
-	
+
 	CTerrain Terrain;
 
 	CColladaManager ColladaManager;
@@ -153,7 +153,7 @@ public:
 					{
 						// prop point positions are automatically updated during animations etc. by CModel::ValidatePosition
 						const CMatrix3D& propCoordSystem = prop.m_Model->GetTransform();
-						
+
 						SOverlayLine pointGimbal;
 						pointGimbal.m_Color = CColor(1.f, 0.f, 1.f, 1.f);
 						SimRender::ConstructGimbal(propCoordSystem.GetTranslation(), 0.05f, pointGimbal);
@@ -235,7 +235,7 @@ void ActorViewerImpl::UpdatePropListRecursive(CModelAbstract* modelAbstract)
 		for (size_t i=0; i < modelProps.size(); i++)
 		{
 			CModel::Prop& modelProp = modelProps[i];
-			
+
 			Props.push_back(modelProp);
 			if (modelProp.m_Model)
 				UpdatePropListRecursive(modelProp.m_Model);
@@ -504,7 +504,7 @@ void ActorViewer::Render()
 	CCamera camera = AtlasView::GetView_Actor()->GetCamera();
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
 	camera.UpdateFrustum();
-	
+
 	g_Renderer.SetSceneCamera(camera, camera);
 
 	g_Renderer.RenderScene(m);

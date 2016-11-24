@@ -136,7 +136,7 @@ m.Worker.prototype.update = function(gameState, ent)
 	{
 		if (unitAIStateOrder === "REPAIR")
 		{
-			// update our target in case UnitAI sent us to a different foundation because of autocontinue	
+			// update our target in case UnitAI sent us to a different foundation because of autocontinue
 			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target &&
 				ent.getMetadata(PlayerID, "target-foundation") !== ent.unitAIOrderData()[0].target)
 				ent.setMetadata(PlayerID, "target-foundation", ent.unitAIOrderData()[0].target);
@@ -533,7 +533,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	if (!position && this.gatherTreasure(gameState))
 		return true;
 
-	let resources = gameState.getHuntableSupplies();	
+	let resources = gameState.getHuntableSupplies();
 	if (!resources.hasEntities())
 		return false;
 
@@ -587,7 +587,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 			return;
 
 		let canFlee = !supply.hasClass("Domestic") && supply.templateName().indexOf("resource|") == -1;
-		// Only cavalry and range units should hunt fleeing animals 
+		// Only cavalry and range units should hunt fleeing animals
 		if (canFlee && !isCavalry && !isRanged)
 			return;
 
@@ -766,11 +766,11 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 
 /**
  * WARNING with the present options of AI orders, the unit will not gather after building the farm.
- * This is done by calling the gatherNearestField function when construction is completed. 
+ * This is done by calling the gatherNearestField function when construction is completed.
  */
 m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
-	let baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));	
+	let baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
 	let maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 	let bestFarmEnt = false;
 	let bestFarmDist = 10000000;

@@ -58,7 +58,7 @@ void RegisterHandlers()
 	MESSAGE(UndoCommand, );
 	MESSAGE(RedoCommand, );
 	MESSAGE(MergeCommand, );
-	
+
 	#define MESSAGES_SKIP_SETUP
 	#include "Messages.h"
 }

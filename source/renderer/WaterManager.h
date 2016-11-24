@@ -54,7 +54,7 @@ public:
 	std::vector< WaveObject* > m_ShoreWaves;	// TODO: once we get C++11, remove pointer
 	// Waves indices buffer. Only one since All Wave Objects have the same.
 	CVertexBuffer::VBChunk* m_ShoreWaves_VBIndices;
-	
+
 	size_t m_MapSize;
 	ssize_t m_TexSize;
 
@@ -73,7 +73,7 @@ public:
 	u32 m_updatej0;
 	u32 m_updatei1;
 	u32 m_updatej1;
-	
+
 	int m_WaterCurrentTex;
 	bool m_RenderWater;
 
@@ -90,7 +90,7 @@ public:
 	bool m_WaterReflection;
 	// Show shadows on the water.
 	bool m_WaterShadows;
-	
+
 	bool m_NeedsReloading;
 	// requires also recreating the super fancy information.
 	bool m_NeedInfoUpdate;
@@ -122,7 +122,7 @@ public:
 	float m_Waviness;		// How big the waves are.
 	float m_Murkiness;		// How murky the water is.
 	float m_WindAngle;	// In which direction the water waves go.
-	
+
 public:
 	WaterManager();
 	~WaterManager();
@@ -168,7 +168,7 @@ public:
 	 * RecomputeBlurredNormalMap: calculates the blurred normal map of the terrain. Slow.
 	 */
 	void RecomputeBlurredNormalMap();
-	
+
 	/**
 	 * CreateWaveMeshes: Creates the waves objects (and meshes).
 	 */
@@ -183,13 +183,13 @@ public:
 	 * Updates the settings to the one from the renderer, and sets m_NeedsReloading.
 	 */
 	void UpdateQuality();
-	
+
 	/**
 	 * Returns true if fancy water shaders will be used (i.e. the hardware is capable
 	 * and it hasn't been configured off)
 	 */
 	bool WillRenderFancyWater();
-	
+
 	void RenderWaves(const CFrustum& frustrum);
 };
 

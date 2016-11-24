@@ -31,7 +31,7 @@ class CCinemaData
 public:
 	CCinemaData() : m_LookAtTarget(false), m_GrowthCount(0), m_Growth(1), m_Switch(1), m_Timescale(fixed::FromInt(1)) {}
 	virtual ~CCinemaData() {}
-	
+
 	const CCinemaData* GetData() const { return this; }
 
 	CStrW m_Name;
@@ -61,7 +61,7 @@ public:
 	CCinemaPath(const CCinemaData& data, const TNSpline& spline, const TNSpline& targetSpline);
 
 	// Sets camera position to calculated point on spline
-	void MoveToPointAt(float t, float nodet, const CVector3D&);
+	void MoveToPointAt(float t, float nodet, const CVector3D& startRotation, CCamera* camera);
 
 	// Distortion mode functions-change how ratio is passed to distortion style functions
 	float EaseIn(float t) const;
@@ -104,13 +104,14 @@ public:
 	size_t m_CurrentNode;
 	CVector3D m_PreviousRotation;
 
-public: 
+public:
 
 	/**
 	 * Returns false if finished.
 	 * @param deltaRealTime Elapsed real time since the last frame.
+	 * @param camera An affected camera
 	 */
-	bool Play(const float deltaRealTime);
+	bool Play(const float deltaRealTime, CCamera* camera);
 
 	/**
 	 * Validate the path

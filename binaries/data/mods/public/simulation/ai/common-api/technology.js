@@ -136,7 +136,7 @@ m.Technology.prototype.isAffected = function(classes)
 {
 	if (!this._template.affects)
 		return false;
-	
+
 	for (let affect of this._template.affects)
 	{
 		let reqClasses = affect.split(" ");

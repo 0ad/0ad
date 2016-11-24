@@ -59,7 +59,7 @@ public:
 	 * since the destructor will unload it.)
 	 */
 	void Unload();
-	
+
 	/**
 	 * Attempt to load a named symbol from the library. If {@link #IsLoaded} is
 	 * false, throws PSERROR_DllLoader_DllNotLoaded. If it cannot load the

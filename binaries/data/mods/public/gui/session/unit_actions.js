@@ -1,4 +1,9 @@
 /**
+ * Which enemy entity types will be attacked on sight when patroling.
+ */
+var g_PatrolTargets = ["Unit"];
+
+/**
  * List of different actions units can execute,
  * this is mostly used to determine which actions can be executed
  *
@@ -218,7 +223,7 @@ var unitActions =
 				"x": target.x,
 				"z": target.z,
 				"target": action.target,
-				"targetClasses": { "attack": ["Unit"] }, // patrol should only attack units
+				"targetClasses": { "attack": g_PatrolTargets },
 				"queued": queued,
 				"allowCapture": false
 			});

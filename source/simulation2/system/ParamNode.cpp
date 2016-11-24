@@ -99,12 +99,12 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 			}
 			else if (attr.Name == at_op)
 			{
-				if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"add") 
-					op = ADD; 
-				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul") 
-					op = MUL; 
-				else 
-					LOGWARNING("Invalid op '%ls'", attr.Value); 
+				if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"add")
+					op = ADD;
+				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul")
+					op = MUL;
+				else
+					LOGWARNING("Invalid op '%ls'", attr.Value);
 			}
 		}
 	}
@@ -152,22 +152,22 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 
 	// Add this element as a child node
 	CParamNode& node = m_Childs[name];
-	if (op != INVALID) 
-	{ 
+	if (op != INVALID)
+	{
 		// TODO: Support parsing of data types other than fixed; log warnings in other cases
 		fixed oldval = node.ToFixed();
 		fixed mod = fixed::FromString(CStrW(value));
-		switch (op) 
-		{ 
-		case ADD: 
-			node.m_Value = (oldval + mod).ToString().FromUTF8(); 
-			break; 
-		case MUL: 
-			node.m_Value = (oldval.Multiply(mod)).ToString().FromUTF8(); 
-			break; 
-		} 
-		hasSetValue = true; 
-	} 
+		switch (op)
+		{
+		case ADD:
+			node.m_Value = (oldval + mod).ToString().FromUTF8();
+			break;
+		case MUL:
+			node.m_Value = (oldval.Multiply(mod)).ToString().FromUTF8();
+			break;
+		}
+		hasSetValue = true;
+	}
 	if (!hasSetValue)
 		node.m_Value = value;
 
@@ -250,7 +250,7 @@ fixed CParamNode::ToFixed() const
 	return fixed::FromString(CStrW(m_Value));
 }
 
-float CParamNode::ToFloat() const 
+float CParamNode::ToFloat() const
 {
 	float ret = 0;
 	std::wstringstream strm;

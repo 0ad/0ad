@@ -385,8 +385,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"possibleStances": cmpUnitAI.GetPossibleStances(),
 			"isIdle":cmpUnitAI.IsIdle(),
 		};
-		// Add some information needed for ungarrisoning
-		if (cmpUnitAI.IsGarrisoned() && ret.player !== undefined)
+		// Add some information to differentiate between owner
+		if (ret.player !== undefined)
 			ret.template = "p" + ret.player + "&" + ret.template;
 	}
 
@@ -1572,8 +1572,8 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			// copied over, so we need to fetch it from the template instead).
 			// TODO: we should really use a Cost object or at least some utility functions for this, this is mindless
 			// boilerplate that's probably duplicated in tons of places.
-			for (let res of Resources.GetCodes().concat("population", "populationBonus", "time"))
-				result.cost[res] = tplData.cost[res];
+			for (let res of Resources.GetCodes().concat(["population", "populationBonus", "time"]))
+				result.cost[res] += tplData.cost[res];
 		}
 
 		let canAfford = true;

@@ -76,7 +76,7 @@ public:
 	void SetID(entity_id_t id);
 
 	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
-	
+
 	void SetActorSelections(const std::set<CStr>& selections);
 
 private:

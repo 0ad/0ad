@@ -51,7 +51,7 @@ namespace JSI_Sound
   }
 
   void AddPlaylistItem(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
-  {  
+  {
     if ( CSoundManager* sndManager = (CSoundManager*)g_SoundManager )
       sndManager->AddPlayListItem(VfsPath(filename));
   }

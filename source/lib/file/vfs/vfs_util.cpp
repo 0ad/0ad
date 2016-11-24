@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -103,7 +103,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	// highest matching filename found. this avoids filling "holes" in
 	// the number series due to deleted files, which could be confusing.
 	// example: add 1st and 2nd; [exit] delete 1st; [restart]
-	// add 3rd -> without this measure it would get number 1, not 3. 
+	// add 3rd -> without this measure it would get number 1, not 3.
 	if(nextNumber == 0)
 	{
 		const VfsPath nameFormat = pathnameFormat.Filename();

@@ -53,18 +53,18 @@ public:
 	virtual void UpdateUnit(tag_t tag, CUnit* unit, const CBoundingSphere& boundsApprox) = 0;
 
 	virtual void UpdateUnitPos(tag_t tag, bool inWorld, const CVector3D& pos0, const CVector3D& pos1) = 0;
-	
+
 	/**
 	 * Return a list of visual entities along with their center point.
-	 * Visual means they have an associated actor and a visual component, 
-	 * but they could still be hiden in the fog of war for a specific player, 
+	 * Visual means they have an associated actor and a visual component,
+	 * but they could still be hiden in the fog of war for a specific player,
 	 * for example.
-	 * NOTE: It's generally faster to do a lot of ray intersection tests than 
+	 * NOTE: It's generally faster to do a lot of ray intersection tests than
 	 * querying a lot of entities for component interfaces and doing these types
 	 * of tests first.
 	 */
-	virtual void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities, 
-		const CVector3D& origin, const CVector3D& dir, 
+	virtual void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities,
+		const CVector3D& origin, const CVector3D& dir,
 		bool allowEditorSelectables) = 0;
 
 	/**

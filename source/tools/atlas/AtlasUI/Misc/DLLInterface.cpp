@@ -127,7 +127,7 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 	// Initialise libxml2
 	// (If we're executed from the game instead, it has the responsibility to initialise libxml2)
 	LIBXML_TEST_VERSION
-	
+
 	g_InitialWindowType = type;
 #ifdef __WXMSW__
 	wxEntry(g_Module);

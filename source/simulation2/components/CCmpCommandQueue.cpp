@@ -66,7 +66,7 @@ public:
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 		JSAutoRequest rq(cx);
-	
+
 		u32 numCmds;
 		deserialize.NumberU32_Unbounded("num commands", numCmds);
 		for (size_t i = 0; i < numCmds; ++i)
@@ -91,7 +91,7 @@ public:
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 		JS::RootedValue cmd(cx, cmd1.get());
 
@@ -108,7 +108,7 @@ public:
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue global(cx, scriptInterface.GetGlobalObject());
 		std::vector<SimulationCommand> localCommands;
 		m_LocalQueue.swap(localCommands);

@@ -125,11 +125,11 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 				writer->AddFile(realPath, path);
 				continue;
 			}
-			
+
 			VfsPath cachedPath;
 			debug_printf("Converting model %s\n", realPath.string8().c_str());
 			bool ok = colladaManager.GenerateCachedFile(path, type, cachedPath);
-			
+
 			// The DAE might fail to convert for whatever reason, and in that case
 			//	it can't be used in the game, so we just exclude it
 			//  (alternatively we could throw release blocking errors on useless files)

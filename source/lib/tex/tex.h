@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -239,7 +239,7 @@ struct Tex
 
 	/**
 	 * Is the texture object valid and self-consistent?
-	 * 
+	 *
 	 * @return Status
 	 **/
 	Status validate() const;
@@ -273,7 +273,7 @@ struct Tex
 	 * @return Status
 	 **/
 	Status encode(const OsPath& extension, DynArray* da);
-	
+
 	/**
 	 * store the given image data into a Tex object; this will be as if
 	 * it had been loaded via tex_load.
@@ -298,7 +298,7 @@ struct Tex
 	 * @return Status
 	 **/
 	Status wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs);
-	
+
 	//
 	// modify image
 	//

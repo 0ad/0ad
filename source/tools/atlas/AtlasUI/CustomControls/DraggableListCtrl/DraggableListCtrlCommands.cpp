@@ -109,7 +109,7 @@ DeleteCommand::DeleteCommand(DraggableListCtrl* ctrl, long itemID)
 bool DeleteCommand::Do()
 {
 	wxASSERT(m_ItemID >= 0);
-	
+
 	// If we're asked to delete one of the blank rows off the end of the
 	// list, don't do anything
 	if (m_ItemID >= (long)m_Ctrl->m_ListData.size())

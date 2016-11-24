@@ -147,7 +147,7 @@ static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 		xmlChar* content = xmlNodeGetContent(cur_attr->children);
 		std::wstring value (fromXmlChar(content));
 		xmlFree(content);
-		
+
 		AtNode* newNode = new AtNode(value.c_str());
 		obj->children.insert(AtNode::child_pairtype(
 			name.c_str(), AtNode::Ptr(newNode)

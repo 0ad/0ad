@@ -8,6 +8,7 @@
 	<object size="0 0 100% 100%">
 		<repeat count="16">
 		<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBold" z="100">
+			<object name="unitSelectionSelection[n]" type="image" ghost="true" size="0 0 100% 100%"/>
 			<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
 			<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 			<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">

@@ -82,7 +82,7 @@ struct Vertex
 		OPEN,
 		CLOSED,
 	};
-	
+
 	CFixedVector2D p;
 	fixed g, h;
 	u16 pred;
@@ -154,7 +154,7 @@ public:
 	// Update data, used for clever updates and then stored for the AI manager
 	GridUpdateInformation m_ObstructionsDirty;
 	bool m_TerrainDirty;
-	// When other components request the passability grid and trigger an update, 
+	// When other components request the passability grid and trigger an update,
 	// the following regular update should not clean the dirtiness state.
 	bool m_PreserveUpdateInformations;
 
@@ -162,7 +162,7 @@ public:
 	LongPathfinder m_LongPathfinder;
 
 	// For responsiveness we will process some moves in the same turn they were generated in
-	
+
 	u16 m_MaxSameTurnMoves; // max number of moves that can be created and processed in the same turn
 
 	// memory optimizations: those vectors are created once, reused for all calculations;
@@ -171,7 +171,7 @@ public:
 	std::vector<EdgeAA> edgesRight;
 	std::vector<EdgeAA> edgesBottom;
 	std::vector<EdgeAA> edgesTop;
-	
+
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
 	// the graph defined by these vertexes
 	std::vector<Vertex> vertexes;
@@ -179,7 +179,7 @@ public:
 	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
 	std::vector<Edge> edges;
 	std::vector<Square> edgeSquares; // axis-aligned squares; equivalent to 4 edges
-	
+
 	bool m_DebugOverlay;
 	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
 	AtlasOverlay* m_AtlasOverlay;
@@ -282,7 +282,7 @@ public:
 	virtual void FinishAsyncRequests();
 
 	void ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests);
-	
+
 	void ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests);
 
 	virtual void ProcessSameTurnMoves();

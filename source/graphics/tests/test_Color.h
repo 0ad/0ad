@@ -42,7 +42,7 @@ private:
 		SColor4ub colorStruct = ConvertRGBColorTo4ub(RGBColor(r,g,b));
 		u32 actual;
 		memcpy(&actual, &colorStruct, sizeof(u32));
-		expected |= 0xff000000;	// ConvertRGBColorTo4ub sets alpha to opaque 
+		expected |= 0xff000000;	// ConvertRGBColorTo4ub sets alpha to opaque
 		TS_ASSERT_EQUALS(expected, actual);
 	}
 };

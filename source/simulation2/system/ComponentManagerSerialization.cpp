@@ -189,7 +189,7 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 	serializer.NumberU32_Unbounded("next entity id", m_NextEntityId);
 
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator cit;
-	
+
 	uint32_t numSystemComponentTypes = 0;
 	uint32_t numComponentTypes = 0;
 	std::set<ComponentTypeId> serializedSystemComponentTypes;

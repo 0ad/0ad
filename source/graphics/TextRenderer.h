@@ -36,7 +36,7 @@ public:
 	void ResetTransform();
 
 	CMatrix3D GetTransform();
-	
+
 	void SetTransform(const CMatrix3D& transform);
 
 	void Translate(float x, float y, float z);
@@ -53,12 +53,12 @@ public:
 	 * Set the color for subsequent print calls.
 	 */
 	void Color(const CColor& color);
-	
+
 	/**
 	 * Set the color for subsequent print calls.
 	 */
 	void Color(float r, float g, float b, float a = 1.0);
-	
+
 	/**
 	 * Set the font for subsequent print calls.
 	 */

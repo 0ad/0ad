@@ -206,7 +206,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
 
@@ -292,11 +292,11 @@ PSRETURN CGame::ReallyStartGame()
 {
 	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
-		// Perform some simulation initializations (replace skirmish entities, explore territories, etc.) 
+		// Perform some simulation initializations (replace skirmish entities, explore territories, etc.)
 		// that needs to be done before setting up the AI and shouldn't be done in Atlas
 		if (!g_AtlasGameLoop->running)
 			m_Simulation2->PreInitGame();
@@ -314,7 +314,7 @@ PSRETURN CGame::ReallyStartGame()
 	Interpolate(0, 0);
 
 	m_GameStarted=true;
-	
+
 	// Render a frame to begin loading assets
 	if (CRenderer::IsInitialised())
 		Render();
@@ -384,7 +384,7 @@ void CGame::Update(const double deltaRealTime, bool doInterpolate)
 		return;
 
 	const double deltaSimTime = deltaRealTime * m_SimRate;
-	
+
 	if (deltaSimTime)
 	{
 		// To avoid confusing the profiler, we need to trigger the new turn

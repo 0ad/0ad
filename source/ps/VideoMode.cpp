@@ -92,7 +92,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 					w, h, bpp, SDL_GetError());
 				// Using default size for the window for now, as the attempted setting
 				// could be as large, or larger than the screen size.
-				return SetVideoMode(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, bpp, false);	
+				return SetVideoMode(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, bpp, false);
 			}
 			else
 			{

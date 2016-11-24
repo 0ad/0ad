@@ -70,7 +70,7 @@ public:
 		float m_maxHeight;
 		bool m_selectable;
 	};
-	
+
 	struct Samp
 	{
 		// identifier name of sampler in GLSL shaders
@@ -128,11 +128,11 @@ public:
 
 	// Get a set of selection strings that are complete enough to specify an
 	// exact variation of the actor, using the initial selections wherever possible
-	// and choosing randomly where a choice is necessary. 
+	// and choosing randomly where a choice is necessary.
 	std::set<CStr> CalculateRandomVariation(uint32_t seed, const std::set<CStr>& initialSelections);
 
 	// Given a prioritized vector of selection string sets that partially specify
-	// a variation, calculates a remaining set of selection strings such that the resulting 
+	// a variation, calculates a remaining set of selection strings such that the resulting
 	// set merged with the initial selections fully specifies an exact variation of
 	// the actor. The resulting selections are selected randomly, but only where a choice
 	// is necessary (i.e. where there are multiple variants but the initial selections,

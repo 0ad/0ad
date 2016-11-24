@@ -14,15 +14,15 @@ ProductionQueue.prototype.Schema =
 	"<element name='BatchTimeModifier' a:help='Modifier that influences the time benefit for batch training'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<optional>" + 
+	"<optional>" +
 		"<element name='Entities' a:help='Space-separated list of entity template names that this building can train. The special string \"{civ}\" will be automatically replaced by the building&apos;s four-character civ code'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
 			"<text/>" +
 		"</element>" +
-	"</optional>" + 
-	"<optional>" + 
+	"</optional>" +
+	"<optional>" +
 		"<element name='Technologies' a:help='Space-separated list of technology names that this building can research.'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
@@ -52,7 +52,7 @@ ProductionQueue.prototype.Init = function()
 	//     "timeTotal": 15000, // msecs
 	//     "timeRemaining": 10000, // msecs
 	//   }
-	//   
+	//
 	//   {
 	//     "id": 1,
 	//     "player": 1, // who paid for this research; we need this to cope with refunds cleanly
@@ -321,7 +321,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"timeRemaining": time*1000,
 			});
 
-			// Call the related trigger event 
+			// Call the related trigger event
 			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 			cmpTrigger.CallEvent("TrainingQueued", {"playerid": cmpPlayer.GetPlayerID(), "unitTemplate": templateName, "count": count, "metadata": metadata, "trainerEntity": this.entity});
 		}
@@ -354,7 +354,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			if (!cmpPlayer.TrySubtractResources(cost))
 				return;
 
-			// Tell the technology manager that we have started researching this so that people can't research the same 
+			// Tell the technology manager that we have started researching this so that people can't research the same
 			// thing twice.
 			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.QueuedResearch(templateName, this.entity);
@@ -372,7 +372,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"timeRemaining": time*1000,
 			});
 
-			// Call the related trigger event 
+			// Call the related trigger event
 			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 			cmpTrigger.CallEvent("ResearchQueued", {"playerid": cmpPlayer.GetPlayerID(), "technologyTemplate": templateName, "researcherEntity": this.entity});
 		}
@@ -641,7 +641,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 
 	if (spawnedEnts.length > 0 && !cmpAutoGarrison)
 	{
-		// If a rally point is set, walk towards it (in formation) using a suitable command based on where the 
+		// If a rally point is set, walk towards it (in formation) using a suitable command based on where the
 		// rally point is placed.
 		if (cmpRallyPoint)
 		{

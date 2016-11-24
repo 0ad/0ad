@@ -65,7 +65,7 @@ bool ListCtrlValidator::TransferToWindow()
 bool ListCtrlValidator::TransferFromWindow()
 {
 	wxString newText;
-	
+
 	wxTextCtrl* textCtrl; wxComboBox* comboBox; // one of these will be the right object
 
 	if (NULL != (textCtrl = wxDynamicCast(GetWindow(), wxTextCtrl)))
@@ -77,7 +77,7 @@ bool ListCtrlValidator::TransferFromWindow()
 		wxLogError(L"Internal error: ListCtrlValidator::TransferFromWindow: invalid window");
 		return false;
 	}
-	
+
 	AtlasWindowCommandProc::GetFromParentFrame(m_listCtrl)->Submit(
 		new EditCommand_Text(m_listCtrl, m_Row, m_Col, newText)
 	);

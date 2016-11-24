@@ -200,12 +200,12 @@ public:
 					entity_pos_t RotX = entity_pos_t::FromFloat(((m_InitialXRotation.ToFloat() * (5.f - tiltSink)) + (m_SinkingAngleX * tiltSink)) / 5.f);
 					entity_pos_t RotZ = entity_pos_t::FromFloat(((m_InitialZRotation.ToFloat() * (3.f - tilt_time)) + (m_SinkingAngleZ * tilt_time)) / 3.f);
 					cmpPosition->SetXZRotation(RotX,RotZ);
-					
+
 					depth = m_SinkRate * (exp(t - 1.f) - 0.54881163609f) + (m_SinkAccel * exp(t - 4.f) - 0.01831563888f);
 					if (depth < 0.f)
 						depth = 0.f;
 				}
-				
+
 				cmpPosition->SetHeightOffset(entity_pos_t::FromFloat(-depth));
 
 				if (depth > m_TotalSinkDepth)

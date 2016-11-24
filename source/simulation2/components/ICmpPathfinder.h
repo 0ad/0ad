@@ -59,7 +59,7 @@ public:
 	* Get the list of passability classes, separating pathfinding classes and others.
 	*/
 	virtual void GetPassabilityClasses(
-		std::map<std::string, pass_class_t>& nonPathfindingPassClasses, 
+		std::map<std::string, pass_class_t>& nonPathfindingPassClasses,
 		std::map<std::string, pass_class_t>& pathfindingPassClasses) const = 0;
 
 	/**

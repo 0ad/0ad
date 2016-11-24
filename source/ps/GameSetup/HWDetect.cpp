@@ -74,7 +74,7 @@ void ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache,
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	scriptInterface.Eval("[]", ret);
 	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
 	{
@@ -97,7 +97,7 @@ void ConvertTLBs(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	scriptInterface.Eval("[]", ret);
 	for(size_t i = 0; ; i++)
 	{

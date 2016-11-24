@@ -90,7 +90,7 @@ void DraggableListCtrl::OnMouseEvent(wxMouseEvent& event)
 		OnEndDrag();
 		ReleaseMouse();
 	}
-	
+
 	else if (event.Dragging())
 	{
 		// Find which item the mouse is now over
@@ -118,7 +118,7 @@ void DraggableListCtrl::OnMouseEvent(wxMouseEvent& event)
 				m_DragSource = dragTarget;
 			}
 	}
-	
+
 	else
 		// Some other kind of event which we're not interested in - ignore it
 		event.Skip();
@@ -156,7 +156,7 @@ BEGIN_EVENT_TABLE(DraggableListCtrl, EditableListCtrl)
 	EVT_LIST_BEGIN_DRAG(wxID_ANY, DraggableListCtrl::OnBeginDrag)
 	EVT_LIST_ITEM_SELECTED(wxID_ANY, DraggableListCtrl::OnItemSelected)
 	EVT_MOTION(DraggableListCtrl::OnMouseEvent)
-	EVT_LEFT_UP(DraggableListCtrl::OnMouseEvent) 
+	EVT_LEFT_UP(DraggableListCtrl::OnMouseEvent)
 	EVT_CHAR(DraggableListCtrl::OnChar)
 	EVT_MOUSE_CAPTURE_LOST(DraggableListCtrl::OnMouseCaptureLost)
 END_EVENT_TABLE()

@@ -62,7 +62,7 @@ Engine.PostMessage = function(ent, iid, message)
 Engine.BroadcastMessage = function(iid, message)
 {
 	// TODO: make this send a message if necessary
-}; 
+};
 
 global.ResetState = function()
 {

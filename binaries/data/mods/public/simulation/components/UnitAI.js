@@ -1115,7 +1115,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.patrolStartPosOrder)
 				{
 					this.patrolStartPosOrder = cmpPosition.GetPosition();
-					this.patrolStartPosOrder.targetClasses = { "attack": ["Unit"] };
+					this.patrolStartPosOrder.targetClasses = this.order.data.targetClasses;
 				}
 
 				this.StartTimer(0, 1000);
@@ -1645,7 +1645,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.patrolStartPosOrder)
 				{
 					this.patrolStartPosOrder = cmpPosition.GetPosition();
-					this.patrolStartPosOrder.targetClasses = { "attack": ["Unit"] };
+					this.patrolStartPosOrder.targetClasses = this.order.data.targetClasses;
 				}
 
 				this.StartTimer(0, 1000);
@@ -5581,7 +5581,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 	// healers on a walk-and-fight order should heal injured units
 	if (this.IsHealer())
 		return this.FindNewHealTargets();
-	
+
 	return false;
 };
 

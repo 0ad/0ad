@@ -32,7 +32,7 @@ public:
 		m_Data(0), m_Stride(0)
 	{
 	}
-	
+
 	VertexArrayIterator(char* data, size_t stride) :
 		m_Data(data), m_Stride(stride)
 	{
@@ -138,15 +138,15 @@ public:
 		GLenum type;
 		// How many elements per vertex (e.g. 3 for RGB, 2 for UV)
 		GLuint elems;
-		
+
 		// Offset (in bytes) into a vertex structure (filled in by Layout())
 		size_t offset;
-		
+
 		VertexArray* vertexArray;
 
 		Attribute() : type(0), elems(0), offset(0), vertexArray(0) { }
-	
-		// Get an iterator over the backing store for the given attribute that 
+
+		// Get an iterator over the backing store for the given attribute that
 		// initially points at the first vertex.
 		// Supported types T: CVector3D, CVector4D, float[2], SColor3ub, SColor4ub,
 		// u16, u16[2], u8, u8[4], short, short[2].
@@ -155,11 +155,11 @@ public:
 		template<typename T>
 		VertexArrayIterator<T> GetIterator() const;
 	};
-	
+
 public:
 	VertexArray(GLenum usage, GLenum target = GL_ARRAY_BUFFER);
 	~VertexArray();
-	
+
 	// Set the number of vertices stored in the array
 	void SetNumVertices(size_t num);
 	// Add vertex attributes
@@ -167,7 +167,7 @@ public:
 
 	size_t GetNumVertices() const { return m_NumVertices; }
 	size_t GetStride() const { return m_Stride; }
-	
+
 	// Layout the vertex array format and create backing buffer in RAM.
 	// You must call Layout() after changing the number of vertices or
 	// attributes.
@@ -184,7 +184,7 @@ public:
 	// If you know for certain that you'll never have to change the data again,
 	// call this to free some memory.
 	void FreeBackingStore();
-	
+
 private:
 	void Free();
 

@@ -38,7 +38,7 @@ struct Position
 
 	// Constructs a position with specified world-space coordinates
 	Position(float x, float y, float z) : type(0) { type0.x = x; type0.y = y; type0.z = z; }
-	
+
 	// Constructs a position on the terrain underneath the screen-space coordinates
 	Position(const wxPoint& pt); // (implementation in ScenarioEditor.cpp)
 
@@ -91,7 +91,7 @@ struct sCinemaSplineNode
 {
 	Shareable<float> px, py, pz, rx, ry, rz, t;
 public:
-	sCinemaSplineNode(float _px, float _py, float _pz, float _rx, float _ry, float _rz) 
+	sCinemaSplineNode(float _px, float _py, float _pz, float _rx, float _ry, float _rz)
 			: px(_px), py(_py), pz(_pz), rx(_rx), ry(_ry), rz(_rz), t(0.0f) {}
 	sCinemaSplineNode() {}
 	void SetTime(float _t) { t = _t; }
@@ -155,11 +155,11 @@ struct sTriggerCondition
 {
 	sTriggerCondition() : linkLogic(1), negated(false) {}
 	sTriggerCondition(const std::wstring& _name) : linkLogic(1), negated(false), name(_name) {}
-	
+
 	//displayName is used for selecting choice items in Atlas
-	Shareable<std::wstring> name, functionName, displayName;	
+	Shareable<std::wstring> name, functionName, displayName;
 	Shareable< std::vector<std::wstring> > parameters;
-	
+
 	//0 = none, 1 = and, 2 = or
 	Shareable<int> linkLogic;
 	Shareable<bool> negated;
@@ -193,7 +193,7 @@ struct sTrigger
 	Shareable<std::wstring> name, group;
 	Shareable< std::vector<sTriggerCondition> > conditions;
 	Shareable< std::vector<sTriggerEffect> > effects;
-	
+
 	//For beginnings, the index of the term it comes before.  For ends, the index it comes after
 	Shareable< std::vector<int> > logicBlocks, logicBlockEnds;
 	Shareable< std::vector<bool> > logicNots;	//true if logicBlocks are not-ed
@@ -220,7 +220,7 @@ struct sTriggerGroup
 	Shareable<std::wstring> name, parentName;
 	Shareable< std::vector<std::wstring> > children;
 	Shareable< std::vector<sTrigger> > triggers;
-	
+
 	sTriggerGroup() { }
 	sTriggerGroup(const std::wstring& _name) : name(_name) { }
 

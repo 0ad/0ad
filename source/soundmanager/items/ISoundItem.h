@@ -28,19 +28,19 @@
 
 class ISoundItem
 {
-	
+
 public:
 	virtual ~ISoundItem(){};
 	virtual bool GetLooping() = 0;
 	virtual void SetLooping(bool loop) = 0;
 	virtual bool IsPlaying() = 0;
-	
-	
+
+
 	virtual const Path GetName() = 0;
 	virtual bool IdleTask() = 0;
 	virtual	bool IsFading() = 0;
 	virtual bool Finished() = 0;
-	
+
 	virtual void Play() = 0;
 	virtual void Stop() = 0;
 

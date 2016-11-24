@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
  // We use this special header for including the JSONSpirit header because some tweaking is needed to disable warnings.
 #ifndef JSON_SPIRIT_INCLUDE_H
 #define JSON_SPIRIT_INCLUDE_H

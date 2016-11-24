@@ -51,18 +51,18 @@ class CWorld
 	 * pointer to the CGame object representing the game.
 	 **/
 	CGame *m_pGame;
-	
+
 	/**
 	 * pointer to the CTerrain object representing the height map.
 	 **/
 	CTerrain *m_Terrain;
 
 	/**
-	 * pointer to the CUnitManager that holds all the units in the world. 
+	 * pointer to the CUnitManager that holds all the units in the world.
 	 **/
 	CUnitManager *m_UnitManager;
 	/**
-	 * pointer to the CTerritoryManager that holds territory matrix for the world. 
+	 * pointer to the CTerritoryManager that holds territory matrix for the world.
 	 **/
 	CTerritoryManager *m_TerritoryManager;
 

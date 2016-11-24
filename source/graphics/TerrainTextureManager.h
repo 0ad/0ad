@@ -55,7 +55,7 @@ public:
 		m_Name(name),
 		m_Index(index)
 	{}
-	
+
 	// Add a texture entry to this terrain type
 	void AddTerrain(CTerrainTextureEntry*);
 	// Remove a texture entry
@@ -87,7 +87,7 @@ struct TerrainAlpha
 class CTerrainTextureManager : public Singleton<CTerrainTextureManager>
 {
 	friend class CTerrainTextureEntry;
-	
+
 public:
 	typedef std::map<CStr, CTerrainGroup*> TerrainGroupMap;
 	typedef std::map<VfsPath, TerrainAlpha> TerrainAlphaMap;
@@ -98,7 +98,7 @@ private:
 	std::vector<CTerrainTextureEntry*> m_TextureEntries;
 
 	TerrainGroupMap m_TerrainGroups;
-	
+
 	TerrainAlphaMap m_TerrainAlphas;
 
 	size_t m_LastGroupIndex;
@@ -113,16 +113,16 @@ public:
 	int LoadTerrainTextures();
 
 	void UnloadTerrainTextures();
-	
+
 	CTerrainTextureEntry* FindTexture(const CStr& tag) const;
-	
+
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.
 	CTerrainTextureEntry* AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path);
-	
+
 	// Remove the texture from all our maps and lists and delete it afterwards.
 	void DeleteTexture(CTerrainTextureEntry* entry);
-	
+
 	// Find or create a new texture group. All terrain groups are owned by the
 	// texturemanager (TerrainTypeManager)
 	CTerrainGroup* FindGroup(const CStr& name);

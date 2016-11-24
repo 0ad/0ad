@@ -81,7 +81,7 @@ m.g_ResourceForbiddenComponents = {
 };
 
 m.SharedScript.prototype.GetTemplate = function(name)
-{	
+{
 	if (this._templates[name])
 		return this._templates[name];
 
@@ -92,24 +92,24 @@ m.SharedScript.prototype.GetTemplate = function(name)
 	if (name.indexOf("foundation|") !== -1)
 	{
 		let base = this.GetTemplate(name.substr(11));
-		
+
 		let foundation = {};
 		for (let key in base)
 			if (!m.g_FoundationForbiddenComponents[key])
 				foundation[key] = base[key];
-		
+
 		this._derivedTemplates[name] = foundation;
 		return foundation;
 	}
 	else if (name.indexOf("resource|") !== -1)
 	{
 		let base = this.GetTemplate(name.substr(9));
-		
+
 		let resource = {};
 		for (let key in base)
 			if (!m.g_ResourceForbiddenComponents[key])
 				resource[key] = base[key];
-		
+
 		this._derivedTemplates[name] = resource;
 		return resource;
 	}
@@ -234,13 +234,13 @@ m.SharedScript.prototype.onUpdate = function(state)
 	this.passabilityMap.cellSize = this.mapSize / this.passabilityMap.width;
 	this.territoryMap = state.territoryMap;
 	this.territoryMap.cellSize = this.mapSize / this.territoryMap.width;
-	
+
 	for (let i in this.gameState)
 		this.gameState[i].update(this);
 
 	// TODO: merge this with "ApplyEntitiesDelta" since after all they do the same.
 	this.updateResourceMaps(this.events);
-	
+
 	Engine.ProfileStop();
 };
 
@@ -249,7 +249,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	Engine.ProfileStart("Shared ApplyEntitiesDelta");
 
 	let foundationFinished = {};
-	
+
 	// by order of updating:
 	// we "Destroy" last because we want to be able to switch Metadata first.
 
@@ -263,7 +263,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		let entity = new m.Entity(this, state.entities[evt.entity]);
 		this._entities.set(evt.entity, entity);
 		this.entities.addEnt(entity);
-		
+
 		// Update all the entity collections since the create operation affects static properties as well as dynamic
 		for (let entCol of this._entityCollections.values())
 			entCol.updateEnt(entity);
@@ -305,7 +305,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		for (let key in evt.metadata)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key]);
 	}
-	
+
 	let DestroyEvents = state.events.Destroy;
 	for (let i = 0; i < DestroyEvents.length; ++i)
 	{
@@ -447,7 +447,7 @@ m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
 		return true;
 	metadata[key] = undefined;
 	delete metadata[key];
-	this.updateEntityCollections('metadata', ent);    
+	this.updateEntityCollections('metadata', ent);
 	this.updateEntityCollections('metadata.' + key, ent);
 	return true;
 };

@@ -23,7 +23,7 @@
 
 #include <libxml/parser.h>
 
-class TestXeroXMB : public CxxTest::TestSuite 
+class TestXeroXMB : public CxxTest::TestSuite
 {
 private:
 	shared_ptr<u8> m_Buffer;
@@ -127,7 +127,7 @@ public:
 	{
 		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
-		
+
 		text = xmb.GetRoot().GetText().FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 2);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
@@ -143,7 +143,7 @@ public:
 	{
 		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
-		
+
 		text = xmb.GetRoot().GetText().FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 4);
 		TS_ASSERT_EQUALS(text[0], 0x1234);

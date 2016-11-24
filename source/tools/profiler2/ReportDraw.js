@@ -1,15 +1,15 @@
 // Copyright (c) 2016 Wildfire Games
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -38,17 +38,17 @@ function rebuild_canvases(raw_data)
 
     g_canvas.canvas_zoom = $('<canvas width="1600" height="192"></canvas>').get(0);
     g_canvas.text_output = $('<pre></pre>').get(0);
-    
+
     $('#timelines').empty();
-        $('#timelines').append("<h3>Main thread frames</h3>");        
+        $('#timelines').append("<h3>Main thread frames</h3>");
     $('#timelines').append(g_canvas.canvas_frames);
     for (var thread = 0; thread < raw_data.threads.length; thread++)
     {
-        $('#timelines').append("<h3>" + raw_data.threads[thread].name + "</h3>");        
+        $('#timelines').append("<h3>" + raw_data.threads[thread].name + "</h3>");
         $('#timelines').append($(g_canvas.threads[thread]));
     }
 
-    $('#timelines').append("<h3>Zoomed frames</h3>");        
+    $('#timelines').append("<h3>Zoomed frames</h3>");
     $('#timelines').append(g_canvas.canvas_zoom);
     $('#timelines').append(g_canvas.text_output);
 }
@@ -114,13 +114,13 @@ function display_frames(data, canvas, range)
     var tmin = data.tmin;
     var tmax = data.tmax;
     var dx = width / (tmax-tmin);
-    
+
     canvas._zoomData = {
         'x_to_t': x => tmin + (x - xpadding) / dx,
         't_to_x': t => (t - tmin) * dx + xpadding
     };
-    
-    // log 100 scale, skip < 15 ms (60fps) 
+
+    // log 100 scale, skip < 15 ms (60fps)
     var scale = x => 1 - Math.max(0, Math.log(1 + (x-15)/10) / Math.log(100));
 
     ctx.strokeStyle = 'rgb(0, 0, 0)';
@@ -128,17 +128,17 @@ function display_frames(data, canvas, range)
     for (var i = 0; i < data.frames.length; ++i)
     {
         var frame = data.frames[i];
-        
+
         var duration = frame.t1 - frame.t0;
         var x0 = xpadding + dx*(frame.t0 - tmin);
         var x1 = x0 + dx*duration;
         var y1 = canvas.height;
         var y0 = y1 * scale(duration*1000);
-        
+
         ctx.beginPath();
         ctx.rect(x0, y0, x1-x0, y1-y0);
         ctx.stroke();
-        
+
         canvas._tooltips.push({
             'x0': x0, 'x1': x1,
             'y0': y0, 'y1': y1,
@@ -178,7 +178,7 @@ function display_frames(data, canvas, range)
     ctx.rect(xpadding + dx*(range.tmin - tmin), 0, dx*(range.tmax - range.tmin), canvas.height);
     ctx.fill();
     ctx.stroke();
-    
+
     ctx.restore();
 }
 outInterface.display_frames = display_frames;
@@ -187,26 +187,26 @@ function display_events(data, canvas)
 {
     var ctx = canvas.getContext('2d');
     ctx.save();
-    
+
     var x_to_time = canvas._zoomData.x_to_t;
     var time_to_x = canvas._zoomData.t_to_x;
-    
+
     for (var i = 0; i < data.events.length; ++i)
     {
         var event = data.events[i];
-        
+
         if (event.id == '__framestart')
             continue;
-        
+
         if (event.id == 'gui event' && event.attrs && event.attrs[0] == 'type: mousemove')
             continue;
-        
+
         var x = time_to_x(event.t);
         var y = 32;
 
         if (x < 2)
             continue;
-        
+
         var x0 = x;
         var x1 = x;
         var y0 = y-4;
@@ -232,7 +232,7 @@ function display_events(data, canvas)
             }} (event)
         });
     }
-    
+
     ctx.restore();
 }
 outInterface.display_events = display_events;
@@ -251,7 +251,7 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
     var padding_top = 40;
     var width = canvas.width - xpadding*2;
     var height = canvas.height - padding_top - 4;
-    
+
     var tmin, tmax, start, end;
 
     if (range.tmin)
@@ -266,12 +266,12 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
     }
 
     canvas._hierarchyData = { 'range': range, 'tmin': tmin, 'tmax': tmax };
-    
+
     function time_to_x(t)
     {
         return xpadding + (t - tmin) / (tmax - tmin) * width;
     }
-    
+
     function x_to_time(x)
     {
         return tmin + (x - xpadding) * (tmax - tmin) / width;
@@ -304,23 +304,23 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
     ctx.restore();
 
     var BAR_SPACING = 16;
-    
+
     for (var i = 0; i < data.intervals.length; ++i)
     {
         var interval = data.intervals[i];
-        
+
         if (interval.tmax <= tmin || interval.tmin > tmax)
             continue;
 
         var x0 = Math.floor(time_to_x(interval.t0));
         var x1 = Math.floor(time_to_x(interval.t1));
-        
+
         if (x1-x0 < 1)
             continue;
-        
+
         var y0 = padding_top + interval.depth * BAR_SPACING;
         var y1 = y0 + BAR_SPACING;
-        
+
         var label = interval.id;
         if (interval.attrs)
         {
@@ -338,7 +338,7 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
         ctx.stroke();
         ctx.fillStyle = 'black';
         ctx.fillText(label, x0+2, y0+BAR_SPACING-4, Math.max(1, x1-x0-4));
-        
+
         canvas._tooltips.push({
             'x0': x0, 'x1': x1,
             'y0': y0, 'y1': y1,
@@ -365,7 +365,7 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
             continue;
 
         var x = Math.floor(time_to_x(frame.t0));
-        
+
         ctx.save();
         ctx.lineWidth = 3;
         ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
@@ -392,7 +392,7 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
         ctx.fill();
         ctx.stroke();
     }
-    
+
     ctx.restore();
 }
 outInterface.display_hierarchy = display_hierarchy;
@@ -405,7 +405,7 @@ function set_frames_zoom_handlers(report, canvas0)
 
         var relativeX = event.pageX - this.offsetLeft;
         var relativeY = event.pageY - this.offsetTop;
-        
+
         var width = relativeY / canvas0.height;
         width = width*width;
         width *= zdata.x_to_t(canvas0.width)/10;
@@ -433,18 +433,18 @@ function set_frames_zoom_handlers(report, canvas0)
             do_zoom.call(this, report, event);
     });
 }
- 
+
 function set_zoom_handlers(main_data, data, canvas0, canvas1)
 {
     function do_zoom(event)
     {
         var hdata = canvas0._hierarchyData;
-        
+
         function x_to_time(x)
         {
             return hdata.tmin + x * (hdata.tmax - hdata.tmin) / canvas0.width;
         }
-        
+
         var relativeX = event.pageX - this.offsetLeft;
         var relativeY = (event.pageY + this.offsetTop) / canvas0.height;
         relativeY = relativeY - 0.5;

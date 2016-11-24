@@ -264,7 +264,7 @@ void CShaderConditionalDefines::Add(const char* defname, const char* defvalue, i
 	cd.m_DefValue = CStrIntern(defvalue);
 	cd.m_CondArgs = args;
 	cd.m_CondType = type;
-	
+
 	m_Defines.push_back(cd);
 }
 

@@ -15,11 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
+/*
 	Xeromyces - XMB reading library
 */
 
-/* 
+/*
 
 Brief outline:
 
@@ -92,7 +92,7 @@ XMB_Text {
 
 // Define to use a std::map for name lookups rather than a linear search.
 // (The map is usually slower.)
-//#define XERO_USEMAP 
+//#define XERO_USEMAP
 
 #include <string>
 
@@ -130,7 +130,7 @@ public:
 	// Returns the root element
 	XMBElement GetRoot() const;
 
-	
+
 	// Returns internal ID for a given element/attribute string.
 	int GetElementID(const char* Name) const;
 	int GetAttributeID(const char* Name) const;
@@ -222,7 +222,7 @@ public:
 	};
 	iterator begin() { return iterator(m_Size, m_Pointer); }
 	iterator end() { return iterator(m_Size, m_Pointer, m_EndPointer); }
-	
+
 	size_t size() const { return m_Size; }
 	bool empty() const { return m_Size == 0; }
 
@@ -291,7 +291,7 @@ public:
 	};
 	iterator begin() const { return iterator(m_Size, m_Pointer); }
 	iterator end() const { return iterator(m_Size, m_Pointer, m_EndPointer); }
-	
+
 	size_t size() const { return m_Size; }
 	bool empty() const { return m_Size == 0; }
 

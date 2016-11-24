@@ -259,7 +259,7 @@ m.Army.prototype.isCapturing = function (gameState)
 		return false;
 	let ent = gameState.getEntityById(this.foeEntities[0]);
 	return ent && ent.hasClass("Structure");
-};    
+};
 
 /**
  * this one is "undefined entity" proof because it's called at odd times.
@@ -305,7 +305,7 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 	}
 	for (let i in otherArmy.assignedTo)
 		this.assignedTo[i] = otherArmy.assignedTo[i];
-	
+
 	for (let id of otherArmy.foeEntities)
 		this.addFoe(gameState, id, true);
 	// TODO: reassign those ?
@@ -314,7 +314,7 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 
 	this.recalculatePosition(gameState, true);
 	this.recalculateStrengths(gameState);
-	
+
 	return true;
 };
 
@@ -395,7 +395,7 @@ m.Army.prototype.onUpdate = function (gameState)
 	let breakaways = [];
 	// TODO: assign unassigned defenders, cleanup of a few things.
 	// perhaps occasional strength recomputation
-	
+
 	// occasional update or breakaways, positions…
 	if (gameState.ai.elapsedTime - this.positionLastUpdate > 5)
 	{

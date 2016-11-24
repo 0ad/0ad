@@ -192,21 +192,21 @@ public:
 			const char* anchor = "???";
 			switch (m_AnchorType)
 			{
-			case PITCH: 
-				anchor = "pitch"; 
+			case PITCH:
+				anchor = "pitch";
 				break;
 
-			case PITCH_ROLL: 
-				anchor = "pitch-roll"; 
+			case PITCH_ROLL:
+				anchor = "pitch-roll";
 				break;
-			
+
 			case ROLL:
 				anchor = "roll";
 				break;
 
 			case UPRIGHT: // upright is the default
-			default: 
-				anchor = "upright"; 
+			default:
+				anchor = "upright";
 				break;
 			}
 			serialize.StringASCII("anchor", anchor, 0, 16);
@@ -353,12 +353,12 @@ public:
 		AdvertisePositionChanges();
 		AdvertiseInterpolatedPositionChanges();
 	}
-	
+
 	virtual void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry)
 	{
 		m_X = x;
 		m_Z = z;
-		
+
 		if (!m_InWorld)
 		{
 			m_InWorld = true;
@@ -366,7 +366,7 @@ public:
 			m_LastZ = m_PrevZ = m_Z;
 			m_LastYDifference = entity_pos_t::Zero();
 		}
-		
+
 		// TurnTo will advertise the position changes
 		TurnTo(ry);
 
@@ -501,26 +501,26 @@ public:
 		return CFixedVector2D(m_X, m_Z);
 	}
 
-	virtual CFixedVector3D GetPreviousPosition() 
-	{ 
-		if (!m_InWorld) 
-		{ 
-			LOGERROR("CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false"); 
-			return CFixedVector3D(); 
-		} 
+	virtual CFixedVector3D GetPreviousPosition()
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR("CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false");
+			return CFixedVector3D();
+		}
 
-		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ); 
-	} 
+		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ);
+	}
 
-	virtual CFixedVector2D GetPreviousPosition2D() 
-	{ 
-		if (!m_InWorld) 
-		{ 
-			LOGERROR("CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false"); 
-			return CFixedVector2D(); 
-		} 
+	virtual CFixedVector2D GetPreviousPosition2D()
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR("CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false");
+			return CFixedVector2D();
+		}
 
-		return CFixedVector2D(m_PrevX, m_PrevZ); 
+		return CFixedVector2D(m_PrevX, m_PrevZ);
 	}
 
 	virtual void TurnTo(entity_angle_t y)
@@ -680,7 +680,7 @@ public:
 		float x, z, rotY;
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
-	
+
 		float baseY = 0;
 		if (m_RelativeToGround)
 		{
@@ -700,8 +700,8 @@ public:
 
 		CMatrix3D m;
 
-		// linear interpolation is good enough (for RotX/Z). 
-		// As you always stay close to zero angle.	
+		// linear interpolation is good enough (for RotX/Z).
+		// As you always stay close to zero angle.
 		m.SetXRotation(Interpolate(m_LastInterpolatedRotX, m_InterpolatedRotX, frameOffset));
 		m.RotateZ(Interpolate(m_LastInterpolatedRotZ, m_InterpolatedRotZ, frameOffset));
 
@@ -777,7 +777,7 @@ public:
 				// Calculate new orientation, in a peculiar way in order to make sure the
 				// result gets close to m_orientation (rather than being n*2*M_PI out)
 				m_InterpolatedRotY = rotY + deltaClamped - delta;
-				
+
 				// update the visual XZ rotation
 				if (m_InWorld)
 				{
@@ -794,7 +794,7 @@ public:
 		}
 		case MT_TurnStart:
 		{
-			
+
 			m_LastInterpolatedRotX = m_InterpolatedRotX;
 			m_LastInterpolatedRotZ = m_InterpolatedRotZ;
 

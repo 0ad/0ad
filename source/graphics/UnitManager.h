@@ -54,7 +54,7 @@ public:
 
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }
-	
+
 	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
 
 private:

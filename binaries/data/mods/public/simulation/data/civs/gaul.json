@@ -20,13 +20,13 @@
 				{
 					"Name": "Uae Uictos",
 					"History": "Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos, spoke at the Capitol at Rome after they took their plunder.",
-					"Description": "A set amount of metal and food from every structure destroyed or captured." 
+					"Description": "A set amount of metal and food from every structure destroyed or captured."
 				},
 				{
 					"Name": "Carnutes",
 					"History": "The Carnutes were druids from Aulercia. They fought when needed, and were largely responsible for turning back the Belgae incursions into Armorica and Aulercia.",
-					"Description": "Gallic druids gain a small melee attack." 
-				} 
+					"Description": "Gallic druids gain a small melee attack."
+				}
 			],
 			"Heroes":
 			[
@@ -49,31 +49,31 @@
 					"Class": "",
 					"Armament": "",
 					"Emblem": "",
-					"History": "Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against the invading Romans under Julius Caesar, his actions during the revolt are remembered to this day. Vercingetorix was probably born near his tribes capital (Gergovia). From what little info we have Vercingetorix was probably born in 72 B.C., his father was Celtius and we don't know who his mother was. Because we only know of him from Roman sources we don't know much about Vercingetorix as a child or young man, except that perhaps he was probably very high spirited and probably gained some renown in deeds." 
-				} 
-			] 
-		} 
+					"History": "Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against the invading Romans under Julius Caesar, his actions during the revolt are remembered to this day. Vercingetorix was probably born near his tribes capital (Gergovia). From what little info we have Vercingetorix was probably born in 72 B.C., his father was Celtius and we don't know who his mother was. Because we only know of him from Roman sources we don't know much about Vercingetorix as a child or young man, except that perhaps he was probably very high spirited and probably gained some renown in deeds."
+				}
+			]
+		}
 	],
 	"CivBonuses":
 	[
 		{
 			"Name": "Ardiosmanae",
 			"History": "Represents Celtic farming methods. ",
-			"Description": "Enhanced food gained from ranching and farming. " 
+			"Description": "Enhanced food gained from ranching and farming. "
 		},
 		{
 			"Name": "Deas Celtica",
 			"History": "Celtic religion and druidry inspired their warlike mindset. ",
-			"Description": "Druids increase attack rates of soldiers near them slightly." 
-		} 
+			"Description": "Druids increase attack rates of soldiers near them slightly."
+		}
 	],
 	"TeamBonuses":
 	[
 		{
 			"Name": "Druides",
 			"History": "The Druids of the Celts maintained an organized religion that advanced the technology of their people even during wartime.",
-			"Description": "Bonus to tech speed." 
-		} 
+			"Description": "Bonus to tech speed."
+		}
 	],
 	"Structures":
 	[
@@ -84,13 +84,13 @@
 			"History": "The Celts developed the first rotary flour mill.",
 			"Requirements": "",
 			"Phase": "",
-			"Special": "" 
-		} 
+			"Special": ""
+		}
 	],
 	"StartEntities":
 	[
 		{
-			"Template": "structures/gaul_civil_centre" 
+			"Template": "structures/gaul_civil_centre"
 		},
 		{
 			"Template": "units/gaul_support_female_citizen",
@@ -98,14 +98,14 @@
 		},
 		{
 			"Template": "units/gaul_infantry_spearman_b",
-			"Count": 2 
+			"Count": 2
 		},
 		{
 			"Template": "units/gaul_infantry_javelinist_b",
-			"Count": 2 
+			"Count": 2
 		},
 		{
-			"Template": "units/gaul_cavalry_javelinist_b" 
+			"Template": "units/gaul_cavalry_javelinist_b"
 		}
 	],
 	"Formations":

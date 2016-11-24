@@ -362,7 +362,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	let veto = {};
 	for (let i in this.defeated)
 		veto[i] = true;
-	// No rush if enemy too well defended (i.e. iberians)     
+	// No rush if enemy too well defended (i.e. iberians)
 	if (attack.type === "Rush")
 	{
 		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)

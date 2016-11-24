@@ -1,6 +1,6 @@
 function SkirmishReplacer() {}
 
-SkirmishReplacer.prototype.Schema = 
+SkirmishReplacer.prototype.Schema =
 		"<optional>" +
 			"<element name='general' a:help='The general element replaces {civ} with the civ code.'>" +
 				"<interleave>" +
@@ -17,7 +17,7 @@ SkirmishReplacer.prototype.Serialize = null; // We have no dynamic state to save
 
 //this function gets the replacement entities from the {civ}.json file
 function getReplacementEntities(civ)
-{	
+{
 	var rawCivData = Engine.ReadCivJSONFile(civ+".json");
 	if (rawCivData && rawCivData.SkirmishReplacements)
 		return rawCivData.SkirmishReplacements;
@@ -36,10 +36,10 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpPlayer = QueryOwnerInterface(this.entity);
 	var civ = cmpPlayer.GetCiv();
 	var replacementEntities = getReplacementEntities(civ);
-	
+
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
-	
+
 	if (templateName in replacementEntities)
 		templateName = replacementEntities[templateName];
 	else if (this.template && "general" in this.template)
@@ -52,7 +52,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 		Engine.DestroyEntity(this.entity);
 		return;
 	}
-	
+
 	templateName = templateName.replace(/\{civ\}/g, civ);
 
 	var cmpCurPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -70,7 +70,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpCurOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpReplacementOwnership = Engine.QueryInterface(replacement, IID_Ownership);
 	cmpReplacementOwnership.SetOwner(cmpCurOwnership.GetOwner());
-	
+
 	Engine.BroadcastMessage(MT_EntityRenamed, { "entity": this.entity, "newentity": replacement });
 	Engine.DestroyEntity(this.entity);
 };

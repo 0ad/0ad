@@ -1,15 +1,15 @@
 var TutorialAI = (function() {
 var m = {};
-			 
+
 m.TutorialAI = function(settings) {
 	API3.BaseAI.call(this, settings);
 
 	this.turn = 0;
-	
+
 	this.firstTime = true;
 
 	this.savedEvents = [];
-	
+
 	this.toUpdate = [];
 }
 
@@ -19,21 +19,21 @@ m.TutorialAI.prototype = new API3.BaseAI();
 m.TutorialAI.prototype.runInit = function(gameState) {
 	if (this.firstTime){
 		this.firstTime = false;
-		
+
 		this.chooseTutorial(gameState);
-		
+
 		if (this.tutorial === undefined) return;
-		
+
 		this.currentPos = 0;
 		this.currentState = this.tutorial[this.currentPos];
-		
+
 		this.lastChat = -1000000;
 	}
 };
 
 m.TutorialAI.prototype.chooseTutorial = function(gameState) {
 	var trees = gameState.updatingCollection("trees", API3.Filters.byClass("ForestPlant"), gameState.getEntities());
-	
+
 	var numTrees = trees.length;
 	switch (numTrees) {
 	case 945:
@@ -50,22 +50,22 @@ m.TutorialAI.prototype.OnUpdate = function() {
 	if (this.gameFinished){
 		return;
 	}
-	
+
 	if (this.events.length)
 		this.savedEvents = this.savedEvents.concat(this.events);
-	
+
 	Engine.ProfileStart("tutorialBot");
-	
+
 	var gameState = this.gameState;
 	this.runInit(gameState);
-	
+
 	if (this.tutorial === undefined) return;
-	
+
 	if (gameState.getTimeElapsed() - this.lastChat > 30000){
 		this.chat(this.currentState.instructions);
 		this.lastChat = gameState.getTimeElapsed();
 	}
-	
+
 	// check to see if we need to change state
 	var nextState = this.tutorial[this.currentPos + 1];
 	var doNext = false;
@@ -73,7 +73,7 @@ m.TutorialAI.prototype.OnUpdate = function() {
 	case "near_cc":
 		var ents = gameState.getEnemyEntities();
 		var CC = gameState.updatingCollection("cc", API3.Filters.and(API3.Filters.byClass("CivCentre"), API3.Filters.byOwner(2)), gameState.getEntities());
-		
+
 		ents.forEach(function(ent) {
 			if (!ent.position()){
 				return;
@@ -114,7 +114,7 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		break;
 	case "entity_count":
 		var ents = gameState.updatingCollection(
-			nextState.template, 
+			nextState.template,
 			API3.Filters.byType(nextState.template),
 			gameState.getEnemyEntities());
 		if (ents.length >= nextState.count) {
@@ -125,7 +125,7 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		doNext = true;
 		for (var i = 0; i < nextState.templates.length; i++) {
 			var ents = gameState.updatingCollection(
-				nextState.templates[i], 
+				nextState.templates[i],
 				API3.Filters.byType(nextState.templates[i]),
 				gameState.getEnemyEntities());
 			if (ents.length < nextState.counts[i]) {
@@ -161,13 +161,13 @@ m.TutorialAI.prototype.OnUpdate = function() {
 		if (this.currentState.action) {
 			this.currentState.action(gameState);
 		}
-		
+
 		if (this.currentPos >= this.tutorial.length - 1){
 			gameState.getOwnEntities().destroy();
 			this.gameFinished = true;
 		}
 	}
-	
+
 	delete this.savedEvents;
 	this.savedEvents = [];
 
@@ -189,7 +189,7 @@ m.TutorialAI.prototype.Serialize = function()
 	return {
 		_rawEntities: this._rawEntities,
 		_ownEntities: this._ownEntities,
-		_entityMetadata: {} // We store fancy data structures in entity metadata so 
+		_entityMetadata: {} // We store fancy data structures in entity metadata so
 		                    //don't try and serialize it
 	};
 };

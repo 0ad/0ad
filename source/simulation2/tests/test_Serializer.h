@@ -294,7 +294,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue obj(cx);
 		TSM_ASSERT(msg, script.Eval(input, &obj));
 
@@ -467,7 +467,7 @@ public:
 			"var arr=new Uint32Array(8);"
 			"for(var i=0; i<arr.length; ++i)"
 			"  arr[i]=(i+1)*536870912;"
-			"arr", 
+			"arr",
 		/* expected: */
 			"({0:536870912, 1:1073741824, 2:1610612736, 3:2147483648, 4:2684354560, 5:3221225472, 6:3758096384, 7:0})"
 		);
@@ -476,7 +476,7 @@ public:
 			"var arr=new Float32Array(2);"
 			"arr[0]=3.4028234e38;"
 			"arr[1]=Infinity;"
-			"arr", 
+			"arr",
 		/* expected: */
 			"({0:3.4028234663852886e+38, 1:Infinity})"
 		);
@@ -485,7 +485,7 @@ public:
 			"var arr=new Float64Array(2);"
 			"arr[0]=1.7976931348623157e308;"
 			"arr[1]=-Infinity;"
-			"arr", 
+			"arr",
 		/* expected: */
 			"({0:1.7976931348623157e+308, 1:-Infinity})"
 		);
@@ -594,7 +594,7 @@ public:
 			"\x00\x00\x00\x00" // size
 		);
 
-		helper_script_roundtrip("Set with elements and property", 
+		helper_script_roundtrip("Set with elements and property",
 			"var a = new Set(); a.add(12); a.add(\"bar\"); a.foo = 27; a",
 		/* expected: */
 			"({})",
@@ -757,7 +757,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue obj(cx);
 
 		std::stringstream stream;
@@ -792,7 +792,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
-		
+
 		JS::RootedValue obj(cx);
 		TS_ASSERT(script.Eval(input, &obj));
 

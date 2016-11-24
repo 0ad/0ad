@@ -44,7 +44,7 @@ class CPlane
 		//sets the plane equation from 3 points on that plane
 		void Set(const CVector3D& p1, const CVector3D& p2, const CVector3D& p3);
 
-		//sets the plane equation from a normal and a point on 
+		//sets the plane equation from a normal and a point on
 		//that plane
 		void Set(const CVector3D& norm, const CVector3D& point);
 

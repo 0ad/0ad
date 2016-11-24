@@ -88,7 +88,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		if (sea > 1 && !this.navalRegions[sea])
 			this.navalRegions[sea] = true;
 
-		// if garrisoned units inside, ungarrison them except if a ship in which case we will make a transport 
+		// if garrisoned units inside, ungarrison them except if a ship in which case we will make a transport
 		// when a construction will start (see createTransportIfNeeded)
 		if (ent.isGarrisonHolder() && ent.garrisoned().length && !ent.hasClass("Ship"))
 			for (let id of ent.garrisoned())
@@ -176,7 +176,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	let totalSize = passabilityMap.width * passabilityMap.width;
 	let minLandSize = Math.floor(0.1*totalSize);
 	let minWaterSize = Math.floor(0.2*totalSize);
-	let cellArea = passabilityMap.cellSize * passabilityMap.cellSize;  
+	let cellArea = passabilityMap.cellSize * passabilityMap.cellSize;
 	for (let i = 0; i < accessibility.regionSize.length; ++i)
 	{
 		if (landIndex && i == landIndex)
@@ -269,7 +269,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 		goal = "dock";
 	}
 
-	// We first choose as startingPoint the point where we have the more units  
+	// We first choose as startingPoint the point where we have the more units
 	let startingPoint = [];
 	for (let ent of gameState.getOwnUnits().values())
 	{

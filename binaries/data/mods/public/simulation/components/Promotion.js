@@ -86,7 +86,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	if (cmpCurrentUnitAI.IsGarrisoned())
 		cmpPromotedUnitAI.SetGarrisoned();
 	if (cmpCurrentUnitPosition.IsInWorld())	// do not cheer if not visibly garrisoned
-		cmpPromotedUnitAI.Cheer();	
+		cmpPromotedUnitAI.Cheer();
 	cmpPromotedUnitAI.AddOrders(orders);
 
 	var workOrders = cmpCurrentUnitAI.GetWorkOrders();

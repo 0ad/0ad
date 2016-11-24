@@ -57,7 +57,7 @@ AtlasDialog::AtlasDialog(wxWindow* parent, const wxString& title, const wxSize& 
 	buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), wxSizerFlags().Border(wxRIGHT, 5));
 
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	// Set up handlers for Ctrl+Z, Ctrl+Y (undo/redo), since dialogs don't
 	// have any menu entries for them (since they don't have menus at all).
 	wxAcceleratorEntry entries[2];

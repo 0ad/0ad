@@ -23,7 +23,7 @@ Market.prototype.Init = function()
 
 Market.prototype.AddTrader = function(ent)
 {
-	this.traders.add(ent); 
+	this.traders.add(ent);
 };
 
 Market.prototype.RemoveTrader = function(ent)

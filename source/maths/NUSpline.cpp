@@ -19,19 +19,19 @@
 #include "NUSpline.h"
 #include "Matrix3D.h"
 
-//Note: column major order!  Each set of 4 constitutes a column. 
-CMatrix3D HermiteSpline(2.f, -3.f, 0.f, 1.f, 
-                        -2.f, 3.f, 0.f, 0.f, 
-                        1.f, -2.f, 1.f, 0.f, 
+//Note: column major order!  Each set of 4 constitutes a column.
+CMatrix3D HermiteSpline(2.f, -3.f, 0.f, 1.f,
+                        -2.f, 3.f, 0.f, 0.f,
+                        1.f, -2.f, 1.f, 0.f,
                         1.f, -1.f, 0.f, 0.f);  // Matrix H in article
 
 
 // cubic curve defined by 2 positions and 2 velocities
 CVector3D GetPositionOnCubic(const CVector3D& startPos, const CVector3D& startVel, const CVector3D& endPos, const CVector3D& endVel, float time)
 {
-	CMatrix3D m(startPos.X, endPos.X, startVel.X, endVel.X, 
+	CMatrix3D m(startPos.X, endPos.X, startVel.X, endVel.X,
 	            startPos.Y, endPos.Y, startVel.Y, endVel.Y,
-	            startPos.Z, endPos.Z, startVel.Z, endVel.Z, 
+	            startPos.Z, endPos.Z, startVel.Z, endVel.Z,
 	            0.0f, 0.0f, 0.0f, 1.0f);
 
 	m = m * HermiteSpline; // multiply by the mixer
@@ -136,7 +136,7 @@ const std::vector<SplineData>& RNSpline::GetAllNodes() const
 	return Node;
 }
 
-// internal. Based on Equation 14 
+// internal. Based on Equation 14
 CVector3D RNSpline::GetStartVelocity(int index)
 {
 	if (index >= NodeCount - 1 || index < 0)
@@ -145,7 +145,7 @@ CVector3D RNSpline::GetStartVelocity(int index)
 	return (temp - Node[index+1].Velocity)*0.5f;
 }
 
-// internal. Based on Equation 15 
+// internal. Based on Equation 15
 CVector3D RNSpline::GetEndVelocity(int index)
 {
 	if (index >= NodeCount || index < 1)

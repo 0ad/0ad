@@ -30,7 +30,7 @@ public:
 public:
 	CQuaternion();
 	CQuaternion(float x, float y, float z, float w);
-	
+
 	CQuaternion operator + (const CQuaternion &quat) const;
 	CQuaternion &operator += (const CQuaternion &quat);
 
@@ -43,10 +43,10 @@ public:
 	CQuaternion operator * (float factor) const;
 
 	float Dot(const CQuaternion& quat) const;
-	
+
 	void FromEulerAngles (float x, float y, float z);
 	CVector3D ToEulerAngles();
-	
+
 	// Convert the quaternion to matrix
 	CMatrix3D ToMatrix() const;
 	void ToMatrix(CMatrix3D& result) const;

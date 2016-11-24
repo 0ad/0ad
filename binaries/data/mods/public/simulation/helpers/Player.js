@@ -113,7 +113,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		if (getSetting(playerData, playerDefaults, i, "DisabledTechnologies") !== undefined)
 			cmpPlayer.SetDisabledTechnologies(getSetting(playerData, playerDefaults, i, "DisabledTechnologies"));
 
-		let disabledTemplates = []; 
+		let disabledTemplates = [];
 		if (settings.DisabledTemplates !== undefined)
 			disabledTemplates = settings.DisabledTemplates;
 		if (getSetting(playerData, playerDefaults, i, "DisabledTemplates") !== undefined)

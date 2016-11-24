@@ -71,7 +71,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 
 			let ent = gameState.getEntityById(list[j]);
 			if (!ent)	// unit must have been killed while garrisoning
-				list.splice(j--, 1);    
+				list.splice(j--, 1);
 			else if (holder.garrisoned().indexOf(list[j]) !== -1)   // unit is garrisoned
 			{
 				this.leaveGarrison(ent);
@@ -155,13 +155,13 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		}
 	}
 
-	// Warning new garrison orders (as in the following lines) should be done after having updated the holders 
+	// Warning new garrison orders (as in the following lines) should be done after having updated the holders
 	// (or TODO we should add a test that the garrison order is from a previous turn when updating)
 	for (let [id, gmin] of this.decayingStructures.entries())
 	{
 		let ent = gameState.getEntityById(id);
 		if (!ent || ent.owner() !== PlayerID)
-			this.decayingStructures.delete(id);		
+			this.decayingStructures.delete(id);
 		else if (this.numberOfGarrisonedUnits(ent) < gmin)
 			gameState.ai.HQ.defenseManager.garrisonRangedUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
 	}
@@ -231,7 +231,7 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 	case 'decay':
 		return this.decayingStructures.has(holder.id());
 	default:
-		if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager 
+		if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager
 			return true;
 		API3.warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType") +
 			  " for " + ent.id() + " inside " + holder.id());

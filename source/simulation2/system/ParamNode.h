@@ -123,7 +123,7 @@ public:
 	 * Loads the XML data specified by @a file into the node @a ret.
 	 * Any existing data in @a ret will be overwritten or else kept, so this
 	 * can be called multiple times to build up a node from multiple inputs.
-	 * 
+	 *
 	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
 	 *        the data getting loaded. Used for output to log messages if an error occurs.
 	 */
@@ -139,7 +139,7 @@ public:
 	/**
 	 * See LoadXML, but parses the XML string @a xml.
 	 * @return error code if parsing failed, else @c PSRETURN_OK
-	 * 
+	 *
 	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
 	 *        the data getting loaded. Used for output to log messages if an error occurs.
 	 */
@@ -234,10 +234,10 @@ public:
 	static std::wstring EscapeXMLString(const std::wstring& str);
 
 private:
-	
+
 	/**
 	 * Overlays the specified data onto this node. See class documentation for the concept and examples.
-	 * 
+	 *
 	 * @param xmb Representation of the XMB file containing an element with the data to apply.
 	 * @param element Element inside the specified @p xmb file containing the data to apply.
 	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of

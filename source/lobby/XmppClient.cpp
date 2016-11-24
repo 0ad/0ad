@@ -1035,7 +1035,7 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err) const
 /**
  * Convert a gloox connection error enum to string
  * Keep in sync with Gloox documentation
- * 
+ *
  * @param err Error to be converted
  * @return Converted error string
  */
@@ -1074,7 +1074,7 @@ std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err) cons
 /**
  * Convert a gloox registration result enum to string
  * Keep in sync with Gloox documentation
- * 
+ *
  * @param err Enum to be converted
  * @return Converted string
  */

@@ -73,7 +73,7 @@ public:
 
 	float m_FogFactor;
 	float m_FogMax;
-	
+
 	float m_Brightness, m_Contrast, m_Saturation, m_Bloom;
 
 public:

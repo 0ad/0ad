@@ -30,12 +30,12 @@ class CStreamItem : public CSoundBase
 public:
   CStreamItem(CSoundData* sndData);
   virtual ~CStreamItem();
-  
+
   virtual void SetLooping(bool loops);
   virtual bool IdleTask();
   virtual void Attach(CSoundData* itemData);
 
-protected:  
+protected:
   void ReleaseOpenALStream();
 };
 

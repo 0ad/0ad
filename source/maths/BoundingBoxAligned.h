@@ -35,7 +35,7 @@ class CBoundingBoxOriented;
 class CBoundingBoxAligned
 {
 public:
-	
+
 	CBoundingBoxAligned() { SetEmpty(); }
 	CBoundingBoxAligned(const CVector3D& min, const CVector3D& max) {
 		m_Data[0] = min;
@@ -50,7 +50,7 @@ public:
 
 	/**
 	 * Transform these bounds using the matrix @p transform, and write out the result as an oriented (i.e. non-axis-aligned) box.
-	 * The difference with @ref Transform(const CMatrix3D&, CBoundingBoxAligned&) is that that method is equivalent to first 
+	 * The difference with @ref Transform(const CMatrix3D&, CBoundingBoxAligned&) is that that method is equivalent to first
 	 * computing this result, and then taking the axis-aligned bounding boxes from the result again.
 	 */
 	void Transform(const CMatrix3D& m, CBoundingBoxOriented& result) const;
@@ -100,7 +100,7 @@ public:
 	 *
 	 * @param[in] origin Origin of the ray.
 	 * @param[in] dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
-	 * @param[out] tmin,tmax distance in the positive direction from the origin of the ray to the entry and exit points in 
+	 * @param[out] tmin,tmax distance in the positive direction from the origin of the ray to the entry and exit points in
 	 *	the bounding box. If the origin is inside the box, then this is counted as an intersection and one of @p tMin and @p tMax may be negative.
 	 *
 	 * @return true if the ray originating in @p origin and with unit direction vector @p dir intersects this AABB, false otherwise.

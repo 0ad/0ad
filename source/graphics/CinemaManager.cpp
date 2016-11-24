@@ -100,10 +100,10 @@ void CCinemaManager::SetEnabled(bool enabled)
 
 	// TODO: Enabling/Disabling does not work if the session GUI page is not the top page.
 	// This can happen in various situations, for example when the player wins/looses the game
-	// while the cinematic is running (a message box is the top page in this case). 
-	// It might be better to disable the whole GUI during the cinematic instead of a specific 
+	// while the cinematic is running (a message box is the top page in this case).
+	// It might be better to disable the whole GUI during the cinematic instead of a specific
 	// GUI object.
-	
+
 	// sn - session gui object
 	IGUIObject *sn = g_GUI->FindObjectByName("sn");
 	CmpPtr<ICmpRangeManager> cmpRangeManager(g_Game->GetSimulation2()->GetSimContext().GetSystemEntity());
@@ -166,13 +166,14 @@ void CCinemaManager::Update(const float deltaRealTime)
 
 	if (m_CinematicSimulationData.m_PathQueue.empty() || !m_CinematicSimulationData.m_Enabled || m_CinematicSimulationData.m_Paused)
 		return;
-	
+
 	if (HotkeyIsPressed("leave"))
 	{
 		// TODO: implement skip
 	}
-	
-	m_CinematicSimulationData.m_PathQueue.front().Play(deltaRealTime);
+
+	CCamera *camera = g_Game->GetView()->GetCamera();
+	m_CinematicSimulationData.m_PathQueue.front().Play(deltaRealTime, camera);
 }
 
 void CCinemaManager::Render()
@@ -182,7 +183,7 @@ void CCinemaManager::Render()
 		DrawBars();
 		return;
 	}
-	
+
 	if (!m_DrawPaths)
 		return;
 

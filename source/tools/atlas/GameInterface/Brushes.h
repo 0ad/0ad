@@ -30,7 +30,7 @@ struct Brush
 	~Brush();
 
 	void SetData(ssize_t w, ssize_t h, const std::vector<float>& data);
-	
+
 	void SetRenderEnabled(bool enabled); // initial state is disabled
 
 	void GetCentre(ssize_t& x, ssize_t& y) const;

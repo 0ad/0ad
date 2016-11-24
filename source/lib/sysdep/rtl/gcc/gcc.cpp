@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -70,11 +70,11 @@ void* rtl_AllocateAligned(size_t size, size_t align)
 	// least sizeof(void*) alignment.
 	if (align < 2*sizeof(void*))
 		align = 2*sizeof(void*);
-	
+
 	void* const malloc_ptr = malloc(size + align);
 	if (!malloc_ptr)
 		return NULL;
-	
+
 	// Round malloc_ptr up to the next aligned address, leaving some unused
 	// space before the pointer we'll return. The minimum alignment above
 	// ensures we'll have at least sizeof(void*) extra space.

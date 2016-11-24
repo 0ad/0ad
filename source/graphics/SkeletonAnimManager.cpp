@@ -47,7 +47,7 @@ CSkeletonAnimManager::~CSkeletonAnimManager()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// GetAnimation: return a given animation by filename; return null if filename 
+// GetAnimation: return a given animation by filename; return null if filename
 // doesn't refer to valid animation file
 CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 {

@@ -19,7 +19,7 @@
 
 #include "ps/CLogger.h"
 
-class TestCLogger : public CxxTest::TestSuite 
+class TestCLogger : public CxxTest::TestSuite
 {
 public:
 	void test_basic()

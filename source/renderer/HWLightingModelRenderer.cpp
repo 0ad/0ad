@@ -186,7 +186,7 @@ CModelRData* ShaderModelVertexRenderer::CreateModelData(const void* key, CModel*
 void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data, int updateflags)
 {
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);
-	
+
 	if (!m->cpuLighting && (updateflags & RENDERDATA_UPDATE_VERTICES))
 	{
 		// build vertices

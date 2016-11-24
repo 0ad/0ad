@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -93,12 +93,12 @@ private:
 };
 
 /**
- * Measures the time taken to execute code up until end of the current scope; 
+ * Measures the time taken to execute code up until end of the current scope;
  * displays it via debug_printf. Can safely be nested.
  * Useful for measuring time spent in a function or basic block.
  * <description> must remain valid over the lifetime of this object;
  * a string literal is safest.
- * 
+ *
  * Example usage:
  * 	void func()
  * 	{
@@ -114,13 +114,13 @@ private:
  * Useful for measuring several pieces of code within the same function/block.
  * <description> must remain valid over the lifetime of this object;
  * a string literal is safest.
- * 
+ *
  * Caveats:
  * - this wraps the code to be measured in a basic block, so any
  *   variables defined there are invisible to surrounding code.
  * - the description passed to END isn't inspected; you are responsible for
  *   ensuring correct nesting!
- * 
+ *
  * Example usage:
  * 	void func2()
  * 	{
@@ -155,7 +155,7 @@ private:
 // non-CPU bound activity may be skewed. this is ok because the timer is
 // only used for profiling; just be aware of the issue.
 // if this is a problem, disable CONFIG2_TIMER_ALLOW_RDTSC.
-// 
+//
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
 
@@ -369,12 +369,12 @@ private:
 };
 
 /**
- * Measure the time taken to execute code up until end of the current scope; 
+ * Measure the time taken to execute code up until end of the current scope;
  * bill it to the given TimerClient object. Can safely be nested.
  * Useful for measuring total time spent in a function or basic block over the
  * entire program.
  * `client' is an identifier registered via TIMER_ADD_CLIENT.
- * 
+ *
  * Example usage:
  * 	TIMER_ADD_CLIENT(client);
  *
@@ -383,7 +383,7 @@ private:
  * 		TIMER_ACCRUE(client);
  * 		// code to be measured
  * 	}
- * 
+ *
  * 	[later or at exit]
  * 	timer_DisplayClientTotals();
  **/

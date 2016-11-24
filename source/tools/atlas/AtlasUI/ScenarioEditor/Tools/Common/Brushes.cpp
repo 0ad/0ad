@@ -89,9 +89,9 @@ std::vector<float> Brush::GetData() const
 {
 	int width = GetWidth();
 	int height = GetHeight();
-	
+
 	std::vector<float> data (width*height);
-	
+
 	switch (m_Shape)
 	{
 	case CIRCLE:

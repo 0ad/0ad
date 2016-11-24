@@ -38,7 +38,7 @@ public:
 	{
 		return m_Script.CallRef("GetFullRepresentation",flushEvents, ret);
 	}
-	
+
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(AIInterfaceScripted)

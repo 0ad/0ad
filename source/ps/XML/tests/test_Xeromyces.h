@@ -21,7 +21,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "lib/file/vfs/vfs.h"
 
-class TestXeromyces : public CxxTest::TestSuite 
+class TestXeromyces : public CxxTest::TestSuite
 {
 public:
 	void setUp()

@@ -329,7 +329,7 @@ private:
 	bool ProcessReport()
 	{
 		PROFILE2("process report");
-		
+
 		shared_ptr<CUserReport> report;
 
 		{

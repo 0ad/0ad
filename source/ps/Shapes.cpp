@@ -82,7 +82,7 @@ bool CColor::ParseString(const CStr8& Value, int DefaultAlpha)
 
 bool CColor::operator == (const CColor &color) const
 {
-	return r==color.r && 
+	return r==color.r &&
 		   g==color.g &&
 		   b==color.b &&
 		   a==color.a;
@@ -90,8 +90,8 @@ bool CColor::operator == (const CColor &color) const
 
 /*************************************************************************/
 
-CRect::CRect() : 
-	left(0.f), top(0.f), right(0.f), bottom(0.f) 
+CRect::CRect() :
+	left(0.f), top(0.f), right(0.f), bottom(0.f)
 {
 }
 
@@ -177,19 +177,19 @@ CRect CRect::operator + (const CSize& a) const
 
 // -
 CRect CRect::operator - (const CRect& a) const
-{ 
+{
 	return CRect(left-a.left, top-a.top, right-a.right, bottom-a.bottom);
 }
 
 // -
 CRect CRect::operator - (const CPos& a) const
-{ 
+{
 	return CRect(left-a.x, top-a.y, right-a.x, bottom-a.y);
 }
 
 // -
 CRect CRect::operator - (const CSize& a) const
-{ 
+{
 	return CRect(left-a.cx, top-a.cy, right-a.cx, bottom-a.cy);
 }
 
@@ -247,7 +247,7 @@ void CRect::operator -=(const CSize& a)
 	bottom -= a.cy;
 }
 
-float CRect::GetWidth() const 
+float CRect::GetWidth() const
 {
 	return right-left;
 }
@@ -360,13 +360,13 @@ CPos CPos::operator + (const CSize& a) const
 
 // -
 CPos CPos::operator - (const CPos& a) const
-{ 
+{
 	return CPos(x-a.x, y-a.y);
 }
 
 // -
 CPos CPos::operator - (const CSize& a) const
-{ 
+{
 	return CPos(x-a.cx, y-a.cy);
 }
 
@@ -400,15 +400,15 @@ void CPos::operator -=(const CSize& a)
 
 /*************************************************************************/
 
-CSize::CSize() : cx(0.f), cy(0.f) 
+CSize::CSize() : cx(0.f), cy(0.f)
 {
 }
 
-CSize::CSize(const CRect &rect) : cx(rect.GetWidth()), cy(rect.GetHeight()) 
+CSize::CSize(const CRect &rect) : cx(rect.GetWidth()), cy(rect.GetHeight())
 {
 }
 
-CSize::CSize(const CPos &pos) : cx(pos.x), cy(pos.y) 
+CSize::CSize(const CPos &pos) : cx(pos.x), cy(pos.y)
 {
 }
 
@@ -456,7 +456,7 @@ CSize CSize::operator + (const CSize& a) const
 
 // -
 CSize CSize::operator - (const CSize& a) const
-{ 
+{
 	return CSize(cx-a.cx, cy-a.cy);
 }
 
@@ -468,7 +468,7 @@ CSize CSize::operator / (const float& a) const
 
 // *
 CSize CSize::operator * (const float& a) const
-{ 
+{
 	return CSize(cx*a, cy*a);
 }
 

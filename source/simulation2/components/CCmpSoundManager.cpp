@@ -68,7 +68,7 @@ public:
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 		int currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
 
-		if ( !cmpRangeManager || 
+		if ( !cmpRangeManager ||
 				( cmpRangeManager->GetLosVisibility(source, currentPlayer) != ICmpRangeManager::VIS_VISIBLE ) )
 			return;
 

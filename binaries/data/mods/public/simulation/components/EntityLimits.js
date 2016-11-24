@@ -67,7 +67,7 @@ const BUILD = "build";
 EntityLimits.prototype.Init = function()
 {
 	this.limit = {};
-	this.count = {};	// counts entities which change the limit of the given category 
+	this.count = {};	// counts entities which change the limit of the given category
 	this.changers = {};
 	this.removers = {};
 	this.classCount = {};	// counts entities with the given class, used in the limit removal
@@ -151,7 +151,7 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 	// Allow unspecified categories and those with no limit
 	if (this.count[category] === undefined || this.limit[category] === undefined)
 		return true;
-	
+
 	if (this.count[category] + count > this.limit[category])
 	{
 		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
@@ -173,17 +173,17 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 		}
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
-		
+
 		return false;
 	}
-	
+
 	return true;
 };
 
 EntityLimits.prototype.AllowedToBuild = function(category)
 {
 	// We pass count 0 as the creation of the building has already taken place and
-	// the ownership has been set (triggering OnGlobalOwnershipChanged) 
+	// the ownership has been set (triggering OnGlobalOwnershipChanged)
 	return this.AllowedToCreate(BUILD, category, 0);
 };
 
@@ -205,7 +205,7 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 		var modifier = -1;
 	else if (msg.to == cmpPlayer.GetPlayerID())
 		var modifier = 1;
-	else 
+	else
 		return;
 
 	// Update entity counts

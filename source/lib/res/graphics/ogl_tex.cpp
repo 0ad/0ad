@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -199,9 +199,9 @@ static bool q_flags_valid(int q_flags)
 // change default settings - these affect performance vs. quality.
 // may be overridden for individual textures via parameter to
 // ogl_tex_upload or ogl_tex_set_filter, respectively.
-// 
+//
 // pass 0 to keep the current setting; defaults and legal values are:
-// - q_flags: OGL_TEX_FULL_QUALITY; combination of OglTexQualityFlags 
+// - q_flags: OGL_TEX_FULL_QUALITY; combination of OglTexQualityFlags
 // - filter: GL_LINEAR; any valid OpenGL minification filter
 void ogl_tex_set_defaults(int q_flags, GLint filter)
 {

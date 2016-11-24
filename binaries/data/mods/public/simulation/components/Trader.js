@@ -226,7 +226,7 @@ Trader.prototype.GetGoods = function()
  */
 Trader.prototype.HasMarket = function(market)
 {
-	return this.markets.indexOf(market) != -1; 
+	return this.markets.indexOf(market) != -1;
 };
 
 /**

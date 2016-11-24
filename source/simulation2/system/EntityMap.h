@@ -91,7 +91,7 @@ public:
 		inline bool operator!=(_iter other) { return val != other.val; }
 		inline operator _iter<U const>() const { return _iter<U const>(val); }
 	};
-	
+
 	typedef _iter<value_type> iterator;
 	typedef _iter<value_type const> const_iterator;
 
@@ -129,7 +129,7 @@ public:
 			while (key >= newCapacity) newCapacity += 4096;
 			// always allocate +1 behind the scenes, because end() must have a 0xFFFFFFFF key
 			value_type* mem = (value_type*)realloc(m_Buffer, sizeof(value_type) * (newCapacity + 1));
-			if (!mem) 
+			if (!mem)
 			{
 				debug_warn("EntityMap::insert() realloc failed! Out of memory.");
 				throw std::bad_alloc(); // fail to expand and insert
@@ -169,7 +169,7 @@ fill_gaps:
 			item.second = value; // overwrite existing
 		}
 	}
-	
+
 	void erase(iterator it)
 	{
 		value_type* ptr = it.val;
@@ -256,7 +256,7 @@ struct SerializeEntityMap
 			VSerializer()(serialize, "value", it->second);
 			count++;
 		}
-		// test to see if the entityMap count wasn't wrong 
+		// test to see if the entityMap count wasn't wrong
 		// (which causes a crashing deserialisation)
 		ENSURE(count == len);
 	}

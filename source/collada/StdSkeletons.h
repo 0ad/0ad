@@ -85,7 +85,7 @@ public:
 	 * Initialises the global state with skeleton data loaded from the
 	 * given XML data.
 	 * @todo Stop using global state.
-	 * @param xmlData	 
+	 * @param xmlData
 	 * @param xmlLength
 	 * @param xmlErrors output - XML parser error messages; will be non-empty
 	 *		  on failure (and failure will always throw)

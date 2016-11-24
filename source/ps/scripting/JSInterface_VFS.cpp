@@ -88,7 +88,7 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 	const wchar_t* filter = 0;
 	if (!filterStr.empty())
 		filter = filterStr.c_str();
- 
+
 	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();

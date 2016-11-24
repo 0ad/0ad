@@ -65,10 +65,10 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 	// code duplicating for speed
 	if (type === "linear")
 	{
-		let str = strength / maxDist;	
+		let str = strength / maxDist;
 		for (let y = y0; y < y1; ++y)
 		{
-			let dy = y - cy;		
+			let dy = y - cy;
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
@@ -91,7 +91,7 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
 		{
-			let dy = y - cy;		
+			let dy = y - cy;
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
@@ -99,7 +99,7 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 				if (r2 >= maxDist2)
 					continue;
 				let quant = str * (maxDist2 - r2);
-				let w = x + y * this.width;				    
+				let w = x + y * this.width;
 				if (this.map[w] + quant < 0)
 					this.map[w] = 0;
 				else if (this.map[w] + quant > this.maxVal)
@@ -120,7 +120,7 @@ m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linea
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
-				let w = x + y * this.width;				
+				let w = x + y * this.width;
 				if (this.map[w] + strength < 0)
 					this.map[w] = 0;
 				else if (this.map[w] + strength > this.maxVal)

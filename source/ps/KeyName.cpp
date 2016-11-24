@@ -171,7 +171,7 @@ static const SKeycodeMapping keycodeMapping[] =
 	{ SDLK_LALT, "Left Alt", "LeftAlt" },
 
 	{ SDLK_LGUI, "Left Super", "LeftWin" },        /* "Windows" keys */
-	{ SDLK_RGUI, "Right Super", "RightWin" },        
+	{ SDLK_RGUI, "Right Super", "RightWin" },
 
 	{ SDLK_MODE, "Alt Gr", "AltGr" },
 

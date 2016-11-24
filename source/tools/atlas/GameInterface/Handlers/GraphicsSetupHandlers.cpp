@@ -44,7 +44,7 @@ const int g_InitFlags = INIT_HAVE_VMODE|INIT_NO_GUI;
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
-	
+
 	g_Quickstart = true;
 
 	// Mount mods if there are any specified as command line parameters
@@ -101,7 +101,7 @@ MESSAGEHANDLER(InitGraphics)
 MESSAGEHANDLER(Shutdown)
 {
 	UNUSED2(msg);
-	
+
 	// Empty the CommandProc, to get rid of its references to entities before
 	// we kill the EntityManager
 	GetCommandProc().Destroy();

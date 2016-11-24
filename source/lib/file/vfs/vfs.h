@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -106,7 +106,7 @@ struct IVFS
 	 * @param pathname
 	 * @param pfileInfo receives information about the file. Passing NULL
 	 *		  suppresses warnings if the file doesn't exist.
-	 * 
+	 *
 	 * @return Status.
 	 **/
 	virtual Status GetFileInfo(const VfsPath& pathname, CFileInfo* pfileInfo) const = 0;
@@ -148,9 +148,9 @@ struct IVFS
 
 	/**
 	 * Replace a file with the given contents.
-	 * 
+	 *
 	 * @see CreateFile
-	 * 
+	 *
 	 * Used to replace a file if it is already present (even if the file is not
 	 * in the attached vfs directory). Calls CreateFile if the file doesn't yet
 	 * exist.

@@ -35,7 +35,7 @@ class CMatrix3D
 public:
 	// the matrix data itself - accessible as either longhand names
 	// or via a flat or 2d array
-	// NOTE: _xy means row x, column y in the mathematical notation of this matrix, so don't be 
+	// NOTE: _xy means row x, column y in the mathematical notation of this matrix, so don't be
 	// fooled by the way they're listed below
 	union {
 		struct {
@@ -76,8 +76,8 @@ public:
 	}
 
 	// accessors to individual elements of matrix
-	// NOTE: in this function definition, 'col' and 'row' represent the column and row into the 
-	// internal element matrix which is the transposed of the mathematical notation, so the first 
+	// NOTE: in this function definition, 'col' and 'row' represent the column and row into the
+	// internal element matrix which is the transposed of the mathematical notation, so the first
 	// and second arguments here are actually the row and column into the mathematical notation.
 	float& operator()(int col, int row)
 	{

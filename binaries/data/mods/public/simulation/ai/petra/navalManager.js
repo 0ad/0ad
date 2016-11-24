@@ -14,7 +14,7 @@ var PETRA = function(m)
 m.NavalManager = function(Config)
 {
 	this.Config = Config;
-	
+
 	// ship subCollections. Also exist for land zones, idem, not caring.
 	this.seaShips = [];
 	this.seaTransportShips = [];
@@ -28,7 +28,7 @@ m.NavalManager = function(Config)
 	// needed NB per zone.
 	this.neededTransportShips = [];
 	this.neededWarShips = [];
-	
+
 	this.transportPlans = [];
 
 	// shore-line regions where we can load and unload units
@@ -42,7 +42,7 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	this.docks = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClassesOr(["Dock", "Shipyard"]),
 		API3.Filters.not(API3.Filters.isFoundation())));
 	this.docks.registerUpdates();
-	
+
 	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", "trader"))));
 	// note: those two can overlap (some transport ships are warships too and vice-versa).
 	this.transportShips = this.ships.filter(API3.Filters.and(API3.Filters.byCanGarrison(), API3.Filters.not(API3.Filters.byClass("FishingBoat"))));
@@ -53,7 +53,7 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	this.transportShips.registerUpdates();
 	this.warShips.registerUpdates();
 	this.fishShips.registerUpdates();
-	
+
 	let fishes = gameState.getFishableSupplies();
 	let availableFishes = {};
 	for (let fish of fishes.values())

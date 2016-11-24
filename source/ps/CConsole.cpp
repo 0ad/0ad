@@ -366,7 +366,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 				m_szBuffer[m_iBufferPos] = '\0';
 				m_iBufferLength = m_iBufferPos;
 			}
-			else 
+			else
 			{
 				// Delete just one char and move the others left
 				for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
@@ -484,7 +484,7 @@ void CConsole::InsertMessage(const std::string& message)
 	std::wstring newline(L"\n");
 	size_t oldNewline=0;
 	size_t distance;
-	
+
 	//make sure everything has been initialized
 	if ( m_charsPerPage != 0 )
 	{
@@ -547,7 +547,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	JSContext* cx = pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	
+
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;
 
@@ -558,7 +558,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	               // a crash it's a useful record.
 
 	// Process it as JavaScript
-	
+
 	JS::RootedValue rval(cx);
 	pScriptInterface->Eval(szLine, &rval);
 	if (!rval.isUndefined())

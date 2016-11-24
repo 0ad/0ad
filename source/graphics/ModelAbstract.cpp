@@ -88,5 +88,5 @@ void CModelAbstract::CalcSelectionBox()
 		// transform object-space axis-aligned bounds to world-space arbitrary-aligned box
 		objBounds.Transform(GetTransform(), m_SelectionBox);
 	}
-	
+
 }

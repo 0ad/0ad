@@ -43,7 +43,7 @@ class CSimulation2;
 #define MODELFLAG_IGNORE_LOS		(1<<4)
 
 ///////////////////////////////////////////////////////////////////////////////
-// CModel: basically, a mesh object - holds the texturing and skinning 
+// CModel: basically, a mesh object - holds the texturing and skinning
 // information for a model in game
 class CModel : public CModelAbstract
 {
@@ -58,7 +58,7 @@ public:
 		float m_MaxHeight;
 
 		/**
-		 * Location of the prop point within its parent model, relative to either a bone in the parent model or to the 
+		 * Location of the prop point within its parent model, relative to either a bone in the parent model or to the
 		 * parent model's origin. See the documentation for @ref SPropPoint for more details.
 		 * @see SPropPoint
 		 */
@@ -161,13 +161,13 @@ public:
 
 	virtual const CBoundingBoxAligned GetWorldBoundsRec();		// reimplemented here
 
-	/// Auxiliary method; calculates object space bounds of this model, based solely on vertex positions, and stores 
-	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcAnimatedObjectBounds) if it has been determined 
+	/// Auxiliary method; calculates object space bounds of this model, based solely on vertex positions, and stores
+	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcAnimatedObjectBounds) if it has been determined
 	/// that the object-space bounds are static.
 	void CalcStaticObjectBounds();
-	
-	/// Auxiliary method; calculate object-space bounds encompassing all vertex positions for given animation, and stores 
-	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcStaticBounds) if it has been determined that the 
+
+	/// Auxiliary method; calculate object-space bounds encompassing all vertex positions for given animation, and stores
+	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcStaticBounds) if it has been determined that the
 	/// object-space bounds need to take animations into account.
 	void CalcAnimatedObjectBounds(CSkeletonAnimDef* anim,CBoundingBoxAligned& result);
 
@@ -191,7 +191,7 @@ public:
 	bool IsSkinned() { return (m_BoneMatrices != NULL); }
 
 	// return the models bone matrices; 16-byte aligned for SSE reads
-	const CMatrix3D* GetAnimatedBoneMatrices() { 
+	const CMatrix3D* GetAnimatedBoneMatrices() {
 		ENSURE(m_PositionValid);
 		return m_BoneMatrices;
 	}
@@ -201,7 +201,7 @@ public:
 	 * animation specific to this model.
 	 * @param pathname animation file to load
 	 * @param name animation name (e.g. "idle")
-	 * @param frequency influences the random choices 
+	 * @param frequency influences the random choices
 	 * @param speed animation speed as a factor of the default animation speed
 	 * @param actionpos offset of 'action' event, in range [0, 1]
 	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
@@ -258,7 +258,7 @@ public:
 private:
 	// delete anything allocated by the model
 	void ReleaseData();
-	
+
 	// Needed for terrain aligned props
 	CSimulation2& m_Simulation;
 
@@ -276,13 +276,13 @@ private:
 	CSkeletonAnim* m_Anim;
 	// time (in MS) into the current animation
 	float m_AnimTime;
-	
+
 	/**
 	 * Current state of all bones on this model; null if associated modeldef isn't skeletal.
 	 * Props may attach to these bones by means of the SPropPoint::m_BoneIndex field; in this case their
-	 * transformation matrix held is relative to the bone transformation (see @ref SPropPoint and 
+	 * transformation matrix held is relative to the bone transformation (see @ref SPropPoint and
 	 * @ref CModel::ValidatePosition).
-	 * 
+	 *
 	 * @see SPropPoint
 	 */
 	CMatrix3D* m_BoneMatrices;

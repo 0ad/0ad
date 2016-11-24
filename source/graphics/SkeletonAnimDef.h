@@ -28,7 +28,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // CBoneState: structure describing state of a bone at some point
-class CBoneState 
+class CBoneState
 {
 public:
 	// translation of bone relative to root
@@ -39,7 +39,7 @@ public:
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// CSkeletonAnimDef: raw description - eg bonestates - of an animation that plays upon 
+// CSkeletonAnimDef: raw description - eg bonestates - of an animation that plays upon
 // a skeleton
 class CSkeletonAnimDef
 {
@@ -64,7 +64,7 @@ public:
 
 	// accessors: get a key for given bone at given time
 	Key& GetKey(size_t frame, size_t bone) { return m_Keys[frame*m_NumKeys+bone]; }
-	const Key& GetKey(size_t frame, size_t bone) const { return m_Keys[frame*m_NumKeys+bone]; }	
+	const Key& GetKey(size_t frame, size_t bone) const { return m_Keys[frame*m_NumKeys+bone]; }
 
 	// get duration of this anim, in ms
 	float GetDuration() const { return m_NumFrames*m_FrameTime; }

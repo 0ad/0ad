@@ -680,7 +680,7 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 	qry.Post();
 	if (!qry.exists)
 		return false;
-	
+
 	// Deactivate tools, so they don't carry forwards into the new CWorld
 	// and crash.
 	m_ToolManager.SetCurrentTool(_T(""));
@@ -736,9 +736,9 @@ void ScenarioEditor::OnImportHeightmap(wxCommandEvent& WXUNUSED(event))
 
 	if (dlg.ShowModal() != wxID_OK)
 		return;
-	
+
 	OpenFile(_T(""), _T("maps/scenarios/_default.xml"));
-	
+
 	std::wstring image(dlg.GetPath().wc_str());
 	POST_MESSAGE(ImportHeightmap, (image));
 

@@ -240,7 +240,7 @@ function FSM(spec)
 FSM.prototype.Init = function(obj, initialState)
 {
 	this.deferFromState = undefined;
-	
+
 	obj.fsmStateName = "";
 	obj.fsmNextState = undefined;
 	this.SwitchToNextState(obj, initialState);
@@ -306,7 +306,7 @@ FSM.prototype.DeferMessage = function(obj, msg)
 	var func = state[msg.type];
 	if (!func)
 		error("Failed to defer event '" + msg.type + "' from state '" + obj.fsmStateName + "'");
-	func.apply(obj, [msg]);	
+	func.apply(obj, [msg]);
 
 	// Restore the changes we made
 	this.deferFromState = old;
@@ -336,7 +336,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 {
 	var fromState = this.decompose[obj.fsmStateName];
 	var toState = this.decompose[nextStateName];
-	
+
 	if (!toState)
 		error("Tried to change to non-existent state '" + nextStateName + "'");
 
@@ -348,11 +348,11 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	for (var equalPrefix = 0; fromState[equalPrefix] && fromState[equalPrefix] === toState[equalPrefix]; ++equalPrefix)
 	{
 	}
-	
+
 	// Check if we should exit and enter the current state due to the reenter parameter. If so we go up 1 level
 	if (obj.fsmReenter && equalPrefix > 0 && equalPrefix === toState.length)
 		--equalPrefix;
-	
+
 	for (var i = fromState.length-1; i >= equalPrefix; --i)
 	{
 		var leave = this.states[fromState[i]].leave;
@@ -366,7 +366,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 			}
 		}
 	}
-	
+
 	for (var i = equalPrefix; i < toState.length; ++i)
 	{
 		var enter = this.states[toState[i]].enter;

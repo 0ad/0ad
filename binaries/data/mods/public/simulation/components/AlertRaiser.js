@@ -1,10 +1,10 @@
 function AlertRaiser() {}
 
-AlertRaiser.prototype.Schema = 	
+AlertRaiser.prototype.Schema =
 	"<element name='MaximumLevel'><data type='nonNegativeInteger'/></element>" +
 	"<element name='Range'><data type='nonNegativeInteger'/></element>";
 
-AlertRaiser.prototype.Init = function() 
+AlertRaiser.prototype.Init = function()
 {
 	this.level = 0;
 
@@ -39,7 +39,7 @@ AlertRaiser.prototype.SoundAlert = function()
 
 AlertRaiser.prototype.UpdateUnits = function(units)
 {
-	var level = this.GetLevel();	
+	var level = this.GetLevel();
 	for each (var unit in units)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
@@ -117,7 +117,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 			continue;
 
 		cmpUnitAI.ResetAlert();
-	
+
 		if (cmpUnitAI.HasWorkOrders())
 			cmpUnitAI.BackToWork();
 		else
@@ -136,7 +136,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 		// If the garrison building was destroyed, the unit is already ejected
 		if (!cmpGarrisonHolder || cmpGarrisonHolder.PerformEject([slot.unit], true))
 		{
-			cmpUnitAI.ResetAlert();				
+			cmpUnitAI.ResetAlert();
 			if (cmpUnitAI.HasWorkOrders())
 				cmpUnitAI.BackToWork();
 		}

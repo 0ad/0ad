@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -705,7 +705,7 @@ size_t Tex::img_size() const
 size_t tex_hdr_size(const VfsPath& filename)
 {
 	const ITexCodec* c;
-	
+
 	const OsPath extension = filename.Extension();
 	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);

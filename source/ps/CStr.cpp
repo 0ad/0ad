@@ -171,7 +171,7 @@ double CStr::ToDouble() const
 }
 
 
-// Search the string for another string 
+// Search the string for another string
 long CStr::Find(const CStr& Str) const
 {
 	size_t Pos = find(Str, 0);
@@ -182,7 +182,7 @@ long CStr::Find(const CStr& Str) const
 	return -1;
 }
 
-// Search the string for another string 
+// Search the string for another string
 long CStr::Find(const tchar chr) const
 {
 	size_t Pos = find(chr, 0);
@@ -193,7 +193,7 @@ long CStr::Find(const tchar chr) const
 	return -1;
 }
 
-// Search the string for another string 
+// Search the string for another string
 long CStr::Find(const int start, const tchar chr) const
 {
 	size_t Pos = find(chr, start);
@@ -220,7 +220,7 @@ long CStr::ReverseFind(const CStr& Str) const
 
 }
 
-// Lowercase and uppercase 
+// Lowercase and uppercase
 CStr CStr::LowerCase() const
 {
 	std::tstring NewString = *this;
@@ -240,7 +240,7 @@ CStr CStr::UpperCase() const
 }
 
 
-// Retrieve the substring of the first n characters 
+// Retrieve the substring of the first n characters
 CStr CStr::Left(size_t len) const
 {
 	ENSURE(len <= length());
@@ -298,24 +298,24 @@ CStr CStr::BeforeFirst(const CStr& Str, size_t startPos) const
 		return substr(0, pos);
 }
 
-// Remove all occurrences of some character or substring 
+// Remove all occurrences of some character or substring
 void CStr::Remove(const CStr& Str)
 {
 	size_t FoundAt = 0;
 	while (FoundAt != npos)
 	{
 		FoundAt = find(Str, 0);
-		
+
 		if (FoundAt != npos)
 			erase(FoundAt, Str.length());
 	}
 }
 
-// Replace all occurrences of some substring by another 
+// Replace all occurrences of some substring by another
 void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 {
 	size_t Pos = 0;
-	
+
 	while (Pos != npos)
 	{
 		Pos = find(ToReplace, Pos);
@@ -358,7 +358,7 @@ std::string CStr::EscapeToPrintableASCII() const
 CStr CStr::Trim(PS_TRIM_MODE Mode) const
 {
 	size_t Left = 0, Right = 0;
-	
+
 	switch (Mode)
 	{
 		case PS_TRIM_LEFT:
@@ -367,7 +367,7 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 				if (_istspace((*this)[Left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 		} break;
-		
+
 		case PS_TRIM_RIGHT:
 		{
 			Right = length();
@@ -375,7 +375,7 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 				if (_istspace((*this)[Right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
-		
+
 		case PS_TRIM_BOTH:
 		{
 			for (Left = 0; Left < length(); Left++)
@@ -402,7 +402,7 @@ CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
 
 	if (Length <= length())
 		return *this;
-	
+
 	// From here: Length-length() >= 1
 
 	switch (Mode)

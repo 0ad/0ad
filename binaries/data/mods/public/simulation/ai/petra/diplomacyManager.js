@@ -58,7 +58,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 					mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 				for (let k = 0; k < 2; ++k)
 				{
-					if (mostNeeded[k].type == res && mostNeeded[k].wanted > 0) 
+					if (mostNeeded[k].type == res && mostNeeded[k].wanted > 0)
 					{
 						this.nextTributeRequest.set("all", gameState.ai.elapsedTime + 90);
 						this.nextTributeRequest.set(res, gameState.ai.elapsedTime + 240);

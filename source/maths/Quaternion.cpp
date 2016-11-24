@@ -128,22 +128,22 @@ CVector3D CQuaternion::ToEulerAngles()
     float sqz = m_V.Z*m_V.Z;
 	float unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
 	float test = m_V.X*m_V.Y + m_V.Z*m_W;
-	if (test > (.5f-EPSILON)*unit) 
+	if (test > (.5f-EPSILON)*unit)
 	{ // singularity at north pole
 		heading = 2 * atan2( m_V.X, m_W);
 		attitude = (float)M_PI/2;
 		bank = 0;
 	}
-	else if (test < (-.5f+EPSILON)*unit) 
+	else if (test < (-.5f+EPSILON)*unit)
 	{ // singularity at south pole
 		heading = -2 * atan2(m_V.X, m_W);
 		attitude = -(float)M_PI/2;
 		bank = 0;
 	}
-	else 
+	else
 	{
 		heading = atan2(2.f * (m_V.X*m_V.Y + m_V.Z*m_W),(sqx - sqy - sqz + sqw));
-	    bank = atan2(2.f * (m_V.Y*m_V.Z + m_V.X*m_W),(-sqx - sqy + sqz + sqw));  
+	    bank = atan2(2.f * (m_V.Y*m_V.Z + m_V.X*m_W),(-sqx - sqy + sqz + sqw));
 		attitude = asin(-2.f * (m_V.X*m_V.Z - m_V.Y*m_W));
 	}
 	return CVector3D(bank, attitude, heading);
@@ -164,10 +164,10 @@ void CQuaternion::ToMatrix(CMatrix3D& result) const
 	xx = m_V.X * m_V.X * 2.f;
 	xy = m_V.X * m_V.Y * 2.f;
 	xz = m_V.X * m_V.Z * 2.f;
-	
+
 	yy = m_V.Y * m_V.Y * 2.f;
 	yz = m_V.Y * m_V.Z * 2.f;
-	
+
 	zz = m_V.Z * m_V.Z * 2.f;
 
 	wx = m_W * m_V.X * 2.f;
@@ -199,7 +199,7 @@ void CQuaternion::Slerp(const CQuaternion& from, const CQuaternion& to, float ra
 {
 	float to1[4];
 	float omega, cosom, sinom, scale0, scale1;
-	
+
 	// calc cosine
 	cosom = from.Dot(to);
 
@@ -232,7 +232,7 @@ void CQuaternion::Slerp(const CQuaternion& from, const CQuaternion& to, float ra
 	}
 	else
 	{
-		// "from" and "to" quaternions are very close 
+		// "from" and "to" quaternions are very close
 		//  ... so we can do a linear interpolation
 		scale0 = 1.0f - ratio;
 		scale1 = ratio;
@@ -301,7 +301,7 @@ CVector3D CQuaternion::Rotate(const CVector3D& vec) const
 {
 	// v' = q * v * q^-1
 	// (where v is the quat. with w=0, xyz=vec)
-	
+
 	return (*this * CQuaternion(vec.X, vec.Y, vec.Z, 0.f) * GetInverse()).m_V;
 }
 

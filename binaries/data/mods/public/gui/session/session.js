@@ -997,15 +997,25 @@ function getAllyStatTooltip(resource)
 {
 	let playersState = GetSimState().players;
 	let ret = "";
+
 	for (let player in playersState)
-		if (player != 0 && player != g_ViewedPlayer &&
-		    (g_IsObserver || playersState[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]))
+	{
+		if (player != 0 &&
+		    player != g_ViewedPlayer &&
+		    g_Players[player].state != "defeated" &&
+		    (g_IsObserver ||
+		       playersState[g_ViewedPlayer].hasSharedLos &&
+		       g_Players[player].isMutualAlly[g_ViewedPlayer]))
+		{
 			ret += "\n" + sprintf(translate("%(playername)s: %(statValue)s"),{
 				"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
 				"statValue": resource == "pop" ?
 					sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playersState[player]) :
 					Math.round(playersState[player].resourceCounts[resource])
 			});
+		}
+	}
+
 	return ret;
 }
 

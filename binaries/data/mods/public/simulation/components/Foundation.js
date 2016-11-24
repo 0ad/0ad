@@ -14,7 +14,7 @@ Foundation.prototype.Init = function()
 
 	this.builders = []; // builder entities
 	this.buildMultiplier = 1; // Multiplier for the amount of work builders do.
-	
+
 	this.previewEntity = INVALID_ENTITY;
 
 	// Penalty for multiple builders
@@ -43,7 +43,7 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 };
 
 /**
- * Moving the revelation logic from Build to here makes the building sink if 
+ * Moving the revelation logic from Build to here makes the building sink if
  * it is attacked.
  */
 Foundation.prototype.OnHealthChanged = function(msg)
@@ -52,7 +52,7 @@ Foundation.prototype.OnHealthChanged = function(msg)
 	var cmpPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
 	if (cmpPosition)
 		cmpPosition.SetConstructionProgress(this.GetBuildProgress());
-		
+
 	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
 };
 
@@ -173,7 +173,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// this won't happen much)
 	if (this.GetBuildProgress() == 1.0)
 		return;
-	
+
 	// If there's any units in the way, ask them to move away
 	// and return early from this method.
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
@@ -219,7 +219,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
 			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
 
-		// Call the related trigger event 
+		// Call the related trigger event
 		var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 		cmpTrigger.CallEvent("ConstructionStarted", {
 			"foundation": this.entity,
@@ -354,7 +354,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 			return;
 		}
 		cmpBuildingOwnership.SetOwner(owner);
-		
+
 		/*
 		Copy over the obstruction control group IDs from the foundation
 		entities. This is needed to ensure that when a foundation is completed
@@ -367,21 +367,21 @@ Foundation.prototype.Build = function(builderEnt, work)
 		new control group containing only itself, and will hence block
 		construction of any surrounding foundations that it was previously in
 		the same control group with.
-		
+
 		Note that this will result in the completed building entities having
 		control group IDs that equal entity IDs of old (and soon to be deleted)
 		foundation entities. This should not have any consequences, however,
 		since the control group IDs are only meant to be unique identifiers,
 		which is still true when reusing the old ones.
 		*/
-		
+
 		var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
 		if (cmpObstruction && cmpBuildingObstruction)
 		{
 			cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
 			cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
 		}
-		
+
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);

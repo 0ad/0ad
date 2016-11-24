@@ -91,7 +91,7 @@ AIInterface.prototype.GetNonEntityRepresentation = function()
 
 	// Return the same game state as the GUI uses
 	let state = cmpGuiInterface.GetSimulationState(-1);
-	
+
 	// Add some extra AI-specific data
 	// add custom events and reset them for the next turn
 	state.events = {};
@@ -132,7 +132,7 @@ AIInterface.prototype.GetRepresentation = function()
  * Intended to be called first, during the map initialization: no caching
  */
 AIInterface.prototype.GetFullRepresentation = function(flushEvents)
-{	
+{
 	let state = this.GetNonEntityRepresentation();
 
 	if (flushEvents)
@@ -146,7 +146,7 @@ AIInterface.prototype.GetFullRepresentation = function(flushEvents)
 	for (let id of Engine.GetEntitiesWithInterface(IID_AIProxy))
 		state.entities[id] = Engine.QueryInterface(id, IID_AIProxy).GetFullRepresentation();
 	Engine.ProfileStop();
-	
+
 	state.changedTemplateInfo = this.changedTemplateInfo;
 	this.changedTemplateInfo = {};
 	state.changedEntityTemplateInfo = this.changedEntityTemplateInfo;

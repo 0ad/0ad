@@ -85,7 +85,7 @@ void Brush::SetData(ssize_t w, ssize_t h, const std::vector<float>& data)
 	m_H = h;
 
 	m_Data = data;
-	
+
 	ENSURE(data.size() == (size_t)(w*h));
 }
 

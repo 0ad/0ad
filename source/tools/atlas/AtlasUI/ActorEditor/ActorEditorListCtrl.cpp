@@ -35,7 +35,7 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	#define COLOR(name, c0, c1) \
 	m_ListItemAttr_##name[0].SetBackgroundColour(wxColor c0); \
 	m_ListItemAttr_##name[1].SetBackgroundColour(wxColor c1)
-	
+
 	const int f=0xFF, e=0xEE, c=0xCC;
 	COLOR(Model,   (f,f,e), (f,f,c));
 	COLOR(Texture, (f,e,e), (f,c,c));

@@ -7,10 +7,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -23,16 +23,16 @@
 /**
  * @file
  * New profiler (complementing the older CProfileManager)
- * 
+ *
  * The profiler is designed for analysing framerate fluctuations or glitches,
  * and temporal relationships between threads.
  * This contrasts with CProfilerManager and most external profiling tools,
  * which are designed more for measuring average throughput over a number of
  * frames.
- * 
+ *
  * To view the profiler output, press F11 to enable the HTTP output mode
  * and then open source/tools/profiler2/profiler2.html in a web browser.
- * 
+ *
  * There is a single global CProfiler2 instance (g_Profiler2),
  * providing the API used by the rest of the game.
  * The game can record the entry/exit timings of a region of code
@@ -41,35 +41,35 @@
  * Regions and events can be annotated with arbitrary string attributes,
  * specified with printf-style format strings, using PROFILE2_ATTR
  * (e.g. PROFILE2_ATTR("frame: %d", m_FrameNum) ).
- * 
+ *
  * This is designed for relatively coarse-grained profiling, or for rare events.
  * Don't use it for regions that are typically less than ~0.1msecs, or that are
  * called hundreds of times per frame. (The old CProfilerManager is better
  * for that.)
- * 
+ *
  * New threads must call g_Profiler2.RegisterCurrentThread before any other
  * profiler functions.
- * 
+ *
  * The main thread should call g_Profiler2.RecordFrameStart at the start of
  * each frame.
  * Other threads should call g_Profiler2.RecordSyncMarker occasionally,
  * especially if it's been a long time since their last call to the profiler,
  * or if they've made thousands of calls since the last sync marker.
- * 
+ *
  * The profiler is implemented with thread-local fixed-size ring buffers,
  * which store a sequence of variable-length items indicating the time
  * of the event and associated data (pointers to names, attribute strings, etc).
  * An HTTP server provides access to the data: when requested, it will make
  * a copy of a thread's buffer, then parse the items and return them in JSON
  * format. The profiler2.html requests and processes and visualises this data.
- * 
+ *
  * The RecordSyncMarker calls are necessary to correct for time drift and to
  * let the buffer parser accurately detect the start of an item in the byte stream.
- * 
+ *
  * This design aims to minimise the performance overhead of recording data,
  * and to simplify the visualisation of the data by doing it externally in an
  * environment with better UI tools (i.e. HTML) instead of within the game engine.
- * 
+ *
  * The initial setup of g_Profiler2 must happen in the game's main thread.
  * RegisterCurrentThread and the Record functions may be called from any thread.
  * The HTTP server runs its own threads, which may call the ConstructJSON functions.
@@ -111,7 +111,7 @@ public:
 
 	/// An arbitrary number to help resyncing with the item stream when parsing.
 	static const u8 RESYNC_MAGIC[8];
-	
+
 	/**
 	 * An item with a relative time and an ID string pointer.
 	 */
@@ -136,7 +136,7 @@ private:
 	public:
 		ThreadStorage(CProfiler2& profiler, const std::string& name);
 		~ThreadStorage();
-	
+
 		enum { BUFFER_NORMAL, BUFFER_SPIKE, BUFFER_AGGREGATE };
 
 		void RecordSyncMarker(double t)
@@ -172,7 +172,7 @@ private:
 		}
 
 		void RecordAttribute(const char* fmt, va_list argp) VPRINTF_ARGS(2);
-		
+
 		void RecordAttributePrintf(const char* fmt, ...) PRINTF_ARGS(2)
 		{
 			va_list argp;
@@ -257,7 +257,7 @@ private:
 		// outside the range Pos1 <= x < Pos0 are safe to use. (Any in that range might
 		// be half-written and corrupted.) (All ranges are modulo BUFFER_SIZE.)
 		// Outside of Write(), these will always be equal.
-		// 
+		//
 		// TODO: does this attempt at synchronisation (plus use of COMPILER_FENCE etc)
 		// actually work in practice?
 		u32 m_BufferPos0;
@@ -446,9 +446,9 @@ private:
 	bool m_Initialised;
 
 	int m_FrameNumber;
-	
+
 	mg_context* m_MgContext;
-	
+
 	pthread_key_t m_TLS;
 
 	CProfiler2GPU* m_GPU;

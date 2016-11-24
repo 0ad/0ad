@@ -55,7 +55,7 @@ public:
 	{
 		return m_Radius;
 	}
-	
+
 	/**
 	 * Check if the ray, defined by an origin point and a direction unit vector
 	 * interesects with the sphere

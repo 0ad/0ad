@@ -357,7 +357,7 @@ namespace JSI_L10n
 	 */
 	std::string GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
-	
+
 	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& locale);
 
 	/**

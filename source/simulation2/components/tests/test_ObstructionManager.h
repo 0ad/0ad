@@ -33,7 +33,7 @@ class TestCmpObstructionManager : public CxxTest::TestSuite
 	entity_id_t ent1g1, ent1g2, ent2g, ent3g; // control groups
 
 	tag_t shape1, shape2, shape3;
-	
+
 	ICmpObstructionManager* cmp;
 	ComponentTestHelper* testHelper;
 
@@ -44,7 +44,7 @@ public:
 		CxxTest::setAbortTestOnFail(true);
 
 		// set up a simple scene with some predefined obstruction shapes
-		// (we can't position shapes on the origin because the world bounds must range 
+		// (we can't position shapes on the origin because the world bounds must range
 		// from 0 to X, so instead we'll offset things by, say, 10).
 
 		ent1 = 1;
@@ -102,10 +102,10 @@ public:
 	{
 		std::vector<entity_id_t> out;
 		NullObstructionFilter nullFilter;
-		
+
 		// Collision-test a simple shape nested inside shape3 against all shapes in the scene. Since the tested shape
 		// overlaps only with shape 3, we should find only shape 3 in the result.
-		
+
 		cmp->TestUnitShape(nullFilter, ent3x, ent3z, fixed::FromInt(1), &out);
 		TS_ASSERT_EQUALS(1U, out.size());
 		TS_ASSERT_EQUALS(ent3, out[0]);
@@ -118,7 +118,7 @@ public:
 
 		// Similarly, collision-test a simple shape nested inside both shape1 and shape2. Since the tested shape overlaps
 		// only with shapes 1 and 2, those are the only ones we should find in the result.
-		
+
 		cmp->TestUnitShape(nullFilter, ent2x, ent2z, ent2c/2, &out);
 		TS_ASSERT_EQUALS(2U, out.size());
 		TS_ASSERT_VECTOR_CONTAINS(out, ent1);
@@ -169,7 +169,7 @@ public:
 		std::vector<entity_id_t> out;
 
 		// Collision test a scene-covering shape against all shapes in the scene, but skipping shapes that are moving,
-		// i.e. shapes that have the MOVING flag. Since only shape 1 is flagged as moving, we should find 
+		// i.e. shapes that have the MOVING flag. Since only shape 1 is flagged as moving, we should find
 		// shapes 2 and 3 in each case.
 
 		StationaryOnlyObstructionFilter ignoreMoving;
@@ -188,7 +188,7 @@ public:
 	}
 
 	/**
-	 * Verifies the behaviour of the SkipTagObstructionFilter. Tests with this filter will be performed against 
+	 * Verifies the behaviour of the SkipTagObstructionFilter. Tests with this filter will be performed against
 	 * all registered shapes that do not have the specified tag set.
 	 */
 	void test_filter_skip_tag()
@@ -255,9 +255,9 @@ public:
 
 		// And if we now do the same test yet again, but specify an empty set of flags, then it becomes impossible for
 		// any shape to have at least one of the required flags, and we should hence find no shapes in the result.
-		
+
 		SkipTagRequireFlagsObstructionFilter skipShape1RejectAll(shape1, 0U);
-		
+
 		cmp->TestUnitShape(skipShape1RejectAll, ent1x, ent1z, fixed::FromInt(10), &out);
 		TS_ASSERT_EQUALS(0U, out.size());
 		out.clear();
@@ -268,7 +268,7 @@ public:
 	}
 
 	/**
-	 * Verifies the behaviour of SkipControlGroupsRequireFlagObstructionFilter. Tests with this filter will be performed 
+	 * Verifies the behaviour of SkipControlGroupsRequireFlagObstructionFilter. Tests with this filter will be performed
 	 * against all registered shapes that are members of neither specified control groups, and that have at least one of
 	 * the specified flags set.
 	 */
@@ -277,9 +277,9 @@ public:
 		std::vector<entity_id_t> out;
 
 		// Collision-test a shape that overlaps the entire scene, but ignoring shapes from shape1's control group
-		// (which also includes shape 2), and requiring that either the BLOCK_FOUNDATION or the 
+		// (which also includes shape 2), and requiring that either the BLOCK_FOUNDATION or the
 		// BLOCK_CONSTRUCTION flag is set, or both. Since shape 1 and shape 2 both belong to shape 1's control
-		// group, and shape 3 has the BLOCK_FOUNDATION flag (but not BLOCK_CONSTRUCTION), we should find only 
+		// group, and shape 3 has the BLOCK_FOUNDATION flag (but not BLOCK_CONSTRUCTION), we should find only
 		// shape 3 in the result.
 
 		SkipControlGroupsRequireFlagObstructionFilter skipGroup1ReqFoundConstr(ent1g1, INVALID_ENTITY,
@@ -298,7 +298,7 @@ public:
 		// Perform the same test, but now also exclude shape 3's control group (in addition to shape 1's control
 		// group). Despite shape 3 having at least one of the required flags set, it should now also be ignored,
 		// yielding an empty result set.
-		
+
 		SkipControlGroupsRequireFlagObstructionFilter skipGroup1And3ReqFoundConstr(ent1g1, ent3g,
 			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION | ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
 
@@ -311,9 +311,9 @@ public:
 		out.clear();
 
 		// Same test, but this time excluding only shape 3's control group, and requiring any of the available flags
-		// to be set. Since both shape 1 and shape 2 have at least one flag set and are both in a different control 
+		// to be set. Since both shape 1 and shape 2 have at least one flag set and are both in a different control
 		// group, we should find them in the result.
-		
+
 		SkipControlGroupsRequireFlagObstructionFilter skipGroup3RequireAnyFlag(ent3g, INVALID_ENTITY,
 			(ICmpObstructionManager::flags_t) -1);
 
@@ -346,9 +346,9 @@ public:
 		// ------------------------------------------------------------------------------------
 
 		// In the tests up until this point, the shapes have all been filtered out based on their primary control group.
-		// Now, to verify that shapes are also filtered out based on their secondary control groups, add a fourth shape 
-		// with arbitrarily-chosen dual control groups, and also change shape 1's secondary control group to another 
-		// arbitrarily-chosen control group. Then, do a scene-covering collision test while filtering out a combination 
+		// Now, to verify that shapes are also filtered out based on their secondary control groups, add a fourth shape
+		// with arbitrarily-chosen dual control groups, and also change shape 1's secondary control group to another
+		// arbitrarily-chosen control group. Then, do a scene-covering collision test while filtering out a combination
 		// of shape 1's secondary control group, and one of shape 4's control groups. We should find neither ent1 nor ent4
 		// in the result.
 
@@ -384,10 +384,10 @@ public:
 		TS_ASSERT_VECTOR_CONTAINS(out, ent3);
 		out.clear();
 
-		// Same as the above, but now exclude shape 1's secondary and shape 4's primary control group, while still requiring 
-		// any available flag to be set. (Note that the test above used shape 4's secondary control group). Results should 
+		// Same as the above, but now exclude shape 1's secondary and shape 4's primary control group, while still requiring
+		// any available flag to be set. (Note that the test above used shape 4's secondary control group). Results should
 		// remain the same.
-		
+
 		SkipControlGroupsRequireFlagObstructionFilter skipGroup1SecAnd4PrimRequireAny(ent1g2_new, ent4g1,
 			(ICmpObstructionManager::flags_t) -1);
 
@@ -416,7 +416,7 @@ public:
 
 		// Collision-test a shape that is perfectly adjacent to shape3. This should be counted as a hit according to
 		// the code at the time of writing.
-		
+
 		entity_angle_t ent4a = fixed::FromDouble(M_PI); // rotated 180 degrees, should not affect collision test
 		entity_pos_t ent4w = fixed::FromInt(2),
 		             ent4h = fixed::FromInt(1),

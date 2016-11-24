@@ -20,7 +20,7 @@
 #include "ps/CLogger.h"
 #include "ps/Shapes.h"
 
-class TestCColor : public CxxTest::TestSuite 
+class TestCColor : public CxxTest::TestSuite
 {
 public:
 	void test_parse()
@@ -64,7 +64,7 @@ public:
 		CHECK_CCOLOR_FAIL("1 2 xxxx");
 
 		// Not enough parameters
-		CHECK_CCOLOR_FAIL(""); 
+		CHECK_CCOLOR_FAIL("");
 		CHECK_CCOLOR_FAIL("124");
 		CHECK_CCOLOR_FAIL("0 55");
 
