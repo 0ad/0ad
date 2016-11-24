@@ -44,7 +44,6 @@ CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istrea
 
 CStdDeserializer::~CStdDeserializer()
 {
-	FreeScriptBackrefs();
 	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
 }
 
@@ -121,23 +120,6 @@ void CStdDeserializer::GetScriptBackref(u32 tag, JS::MutableHandleObject ret)
 	ret.set(m_ScriptBackrefs[tag]);
 }
 
-u32 CStdDeserializer::ReserveScriptBackref()
-{
-	m_ScriptBackrefs.push_back(JS::Heap<JSObject*>(m_dummyObject));
-	return m_ScriptBackrefs.size()-1;
-}
-
-void CStdDeserializer::SetReservedScriptBackref(u32 tag, JS::HandleObject obj)
-{
-	ENSURE(m_ScriptBackrefs[tag] == m_dummyObject);
-	m_ScriptBackrefs[tag] = JS::Heap<JSObject*>(obj);
-}
-
-void CStdDeserializer::FreeScriptBackrefs()
-{
-	m_ScriptBackrefs.clear();
-}
-
 ////////////////////////////////////////////////////////////////
 
 jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
@@ -202,6 +184,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 			if (hasCustomDeserialize)
 			{
+				AddScriptBackref(obj);
+
 				JS::RootedValue serialize(cx);
 				if (!JS_GetProperty(cx, obj, "Serialize", &serialize))
 					throw PSERROR_Serialize_ScriptError("JS_GetProperty failed");
@@ -214,8 +198,6 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 				JS::RootedValue objVal(cx, JS::ObjectValue(*obj));
 				m_ScriptInterface.CallFunctionVoid(objVal, "Deserialize", data);
-
-				AddScriptBackref(obj);
 
 				return JS::ObjectValue(*obj);
 			}
@@ -352,7 +334,8 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		NumberU32_Unbounded("length", length);
 
 		// To match the serializer order, we reserve the typed array's backref tag here
-		u32 arrayTag = ReserveScriptBackref();
+		JS::RootedObject arrayObj(cx);
+		AddScriptBackref(arrayObj);
 
 		// Get buffer object
 		JS::RootedValue bufferVal(cx, ReadScriptVal("buffer", JS::NullPtr()));
@@ -364,7 +347,6 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!JS_IsArrayBufferObject(bufferObj))
 			throw PSERROR_Deserialize_ScriptError("js_IsArrayBuffer failed");
 
-		JS::RootedObject arrayObj(cx);
 		switch(arrayType)
 		{
 		case SCRIPT_TYPED_ARRAY_INT8:
@@ -400,8 +382,6 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 		if (!arrayObj)
 			throw PSERROR_Deserialize_ScriptError("js_CreateTypedArrayWithBuffer failed");
 
-		SetReservedScriptBackref(arrayTag, arrayObj);
-
 		return JS::ObjectValue(*arrayObj);
 	}
 	case SCRIPT_TYPE_ARRAY_BUFFER:
@@ -423,11 +403,10 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 	case SCRIPT_TYPE_OBJECT_MAP:
 	{
 		JS::RootedObject obj(cx, JS::NewMapObject(cx));
+		AddScriptBackref(obj);
+
 		u32 mapSize;
 		NumberU32_Unbounded("map size", mapSize);
-
-		// To match the serializer order, we reserve the map's backref tag here
-		u32 mapTag = ReserveScriptBackref();
 
 		for (u32 i=0; i<mapSize; ++i)
 		{
@@ -435,26 +414,26 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 			JS::RootedValue value(cx, ReadScriptVal("map value", JS::NullPtr()));
 			JS::MapSet(cx, obj, key, value);
 		}
-		SetReservedScriptBackref(mapTag, obj);
+
 		return JS::ObjectValue(*obj);
 	}
 	case SCRIPT_TYPE_OBJECT_SET:
 	{
-		u32 setSize;
-		NumberU32_Unbounded("set size", setSize);
 		JS::RootedValue setVal(cx);
 		m_ScriptInterface.Eval("(new Set())", &setVal);
 
-		// To match the serializer order, we reserve the set's backref tag here
-		u32 setTag = ReserveScriptBackref();
+		JS::RootedObject setObj(cx, &setVal.toObject());
+		AddScriptBackref(setObj);
+
+		u32 setSize;
+		NumberU32_Unbounded("set size", setSize);
 
 		for (u32 i=0; i<setSize; ++i)
 		{
 			JS::RootedValue value(cx, ReadScriptVal("set value", JS::NullPtr()));
 			m_ScriptInterface.CallFunctionVoid(setVal, "add", value);
 		}
-		JS::RootedObject setObj(cx, &setVal.toObject());
-		SetReservedScriptBackref(setTag, setObj);
+
 		return setVal;
 	}
 	default:

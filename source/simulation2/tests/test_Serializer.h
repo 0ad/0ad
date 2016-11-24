@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -673,7 +673,7 @@ public:
 		);
 
 		helper_script_roundtrip("Nested maps using backrefs",
-			"var a = new Map(); var b = new Map(); b.set(1, a); b.set(2, a); b",
+			"var a = new Map(); var b = new Map(); a.set(1, b); a.set(2, b); a",
 		/* expected: */
 			"({})",
 		/* expected stream: */
@@ -689,7 +689,7 @@ public:
 			"\x05" // SCRIPT_TYPE_INT
 			"\x02\0\0\0" // 2
 			"\x08" // SCRIPT_TYPE_BACKREF
-			"\x02\0\0\0" // ref. to object #2, i.e. "a", with #1 being "b"
+			"\x02\0\0\0" // ref. to object #2, i.e. "b", with #1 being "a"
 		);
 	}
 
