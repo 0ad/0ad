@@ -36,11 +36,6 @@ EndGameManager.prototype.GetGameTypeSettings = function()
 	return this.gameTypeSettings;
 };
 
-EndGameManager.prototype.CheckGameType = function(type)
-{
-	return this.gameType == type;
-};
-
 EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
 {
 	this.gameType = newGameType;
