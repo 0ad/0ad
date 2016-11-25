@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-18 09:02+0100\n"
-"PO-Revision-Date: 2016-11-18 08:31+0000\n"
+"POT-Creation-Date: 2016-11-21 09:01+0100\n"
+"PO-Revision-Date: 2016-11-21 09:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -21,34 +21,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:205
-msgctxt "withinSentence"
-msgid "Food"
-msgstr "Makanan"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:207
-msgctxt "withinSentence"
-msgid "Wood"
-msgstr "Kayu"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:209
-msgctxt "withinSentence"
-msgid "Metal"
-msgstr "Logam"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/ai/common-api/shared.js:211
-msgctxt "withinSentence"
-msgid "Stone"
-msgstr "Batu"
 
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
@@ -715,42 +687,26 @@ msgstr "Batas pelatihan %(category)s sebanyak %(limit)s dicapai"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Batas %(category)s sebanyak %(limit)s dicapai"
 
-#: simulation/components/Player.js:48
-msgid "Food"
-msgstr "Makanan"
-
-#: simulation/components/Player.js:49
-msgid "Wood"
-msgstr "Kayu"
-
-#: simulation/components/Player.js:50
-msgid "Metal"
-msgstr "Logam"
-
-#: simulation/components/Player.js:51
-msgid "Stone"
-msgstr "Batu"
-
-#: simulation/components/Player.js:271
+#: simulation/components/Player.js:264
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:273
+#: simulation/components/Player.js:266
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:275
+#: simulation/components/Player.js:268
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:277
+#: simulation/components/Player.js:270
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -758,11 +714,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Sumberdaya kurang - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:400
+#: simulation/components/ProductionQueue.js:402
 msgid "The production queue is full."
 msgstr "Antrian produksi penuh."
 
-#: simulation/components/ProductionQueue.js:777
+#: simulation/components/ProductionQueue.js:781
 msgid "Can't find free space to spawn trained units"
 msgstr "Tidak dapat menemukan area kosong untuk tempat unit yang dilatih"
 
