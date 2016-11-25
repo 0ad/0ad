@@ -5,10 +5,11 @@ function selectDescription()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
 	let gameID = gameSelection.list_data[gameSelection.selected];
+	Engine.GetGUIObjectByName("deleteGameButton").enabled = !!gameID;
+
 	if (!gameID)
 		return;
 
-	Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
 	Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
 }
 
@@ -20,7 +21,6 @@ function init(data)
 	g_SavedGameData.states = simulationState.players.map(pState => pState.state);
 
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 
 	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
 	if (!savedGames.length)

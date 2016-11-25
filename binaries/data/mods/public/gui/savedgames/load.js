@@ -14,9 +14,6 @@ function init()
 	{
 		gameSelection.list = [translate("No saved games found")];
 		gameSelection.selected = -1;
-		selectionChanged();
-		Engine.GetGUIObjectByName("loadGameButton").enabled = false;
-		Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 		return;
 	}
 
@@ -43,6 +40,8 @@ function selectionChanged()
 	let metadata = g_SavedGamesMetadata[Engine.GetGUIObjectByName("gameSelection").selected];
 	Engine.GetGUIObjectByName("invalidGame").hidden = !!metadata;
 	Engine.GetGUIObjectByName("validGame").hidden = !metadata;
+	Engine.GetGUIObjectByName("loadGameButton").enabled = !!metadata;
+	Engine.GetGUIObjectByName("deleteGameButton").enabled = !!metadata;
 
 	if (!metadata)
 		return;
