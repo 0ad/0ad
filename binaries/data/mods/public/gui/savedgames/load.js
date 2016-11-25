@@ -8,8 +8,8 @@ const g_CivData = loadCivData();
 function init()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-
 	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+	gameSelection.enabled = !!savedGames.length;
 	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];

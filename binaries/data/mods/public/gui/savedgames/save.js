@@ -20,9 +20,11 @@ function init(data)
 	g_SavedGameData.timeElapsed = simulationState.timeElapsed;
 	g_SavedGameData.states = simulationState.players.map(pState => pState.state);
 
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-
 	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	gameSelection.enabled = savedGames.length;
+
 	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];
