@@ -160,25 +160,3 @@ function reallyLoadGame(gameId)
 		"savedGUIData": metadata.gui
 	});
 }
-
-function deleteGame()
-{
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let gameID = gameSelection.list_data[gameSelection.selected];
-
-	if (!gameID)
-		return;
-
-	if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
-		reallyDeleteGame(gameID);
-	else
-		messageBox(
-			500, 200,
-			sprintf(translate("\"%(label)s\""), {
-				"label": gameSelection.list[gameSelection.selected]
-			}) + "\n" + translate("Saved game will be permanently deleted, are you sure?"),
-			translate("DELETE"),
-			[translate("No"), translate("Yes")],
-			[null, function(){ reallyDeleteGame(gameID); }]
-		);
-}

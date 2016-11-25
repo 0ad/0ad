@@ -80,22 +80,6 @@ function closeSave()
 	Engine.PopGuiPageCB(0);
 }
 
-function deleteGame()
-{
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let gameLabel = gameSelection.list[gameSelection.selected];
-	let gameID = gameSelection.list_data[gameSelection.selected];
-
-	messageBox(
-		500, 200,
-		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
-			translate("Saved game will be permanently deleted, are you sure?"),
-		translate("DELETE"),
-		[translate("No"), translate("Yes")],
-		[null, function(){ reallyDeleteGame(gameID); }]
-	);
-}
-
 // HACK: Engine.SaveGame* expects this function to be defined on the current page.
 // That's why we have to pass the data to this page even if we don't need it.
 function getSavedGameData()

@@ -39,7 +39,7 @@
 			<action on="Press">closeSave(true);</action>
 		</object>
 
-		<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton">
+		<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" hotkey="session.savedgames.delete">
 			<translatableAttribute id="caption">Delete</translatableAttribute>
 			<action on="Press">deleteGame();</action>
 		</object>
