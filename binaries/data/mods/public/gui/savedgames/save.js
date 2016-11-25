@@ -4,10 +4,10 @@ var g_SavedGameData;
 function selectDescription()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	if (gameSelection.selected == -1)
+	let gameID = gameSelection.list_data[gameSelection.selected];
+	if (!gameID)
 		return;
 
-	let gameID = gameSelection.list_data[gameSelection.selected];
 	Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
 	Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
 }
@@ -49,7 +49,7 @@ function saveGame()
 	let desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
 	let name = gameID || "savegame";
 
-	if (gameSelection.selected == -1)
+	if (!gameID)
 	{
 		reallySaveGame(name, desc, true);
 		return;

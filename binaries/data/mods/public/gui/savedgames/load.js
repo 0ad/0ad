@@ -40,15 +40,12 @@ function init()
 
 function selectionChanged()
 {
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let selectionEmpty = gameSelection.selected == -1;
-	Engine.GetGUIObjectByName("invalidGame").hidden = !selectionEmpty;
-	Engine.GetGUIObjectByName("validGame").hidden = selectionEmpty;
+	let metadata = g_SavedGamesMetadata[Engine.GetGUIObjectByName("gameSelection").selected];
+	Engine.GetGUIObjectByName("invalidGame").hidden = !!metadata;
+	Engine.GetGUIObjectByName("validGame").hidden = !metadata;
 
-	if (selectionEmpty)
+	if (!metadata)
 		return;
-
-	let metadata = g_SavedGamesMetadata[gameSelection.selected];
 
 	Engine.GetGUIObjectByName("savedMapName").caption = translate(metadata.initAttributes.settings.Name);
 	let mapData = getMapDescriptionAndPreview(metadata.initAttributes.mapType, metadata.initAttributes.map);
