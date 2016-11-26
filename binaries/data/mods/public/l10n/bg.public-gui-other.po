@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-18 09:01+0100\n"
-"PO-Revision-Date: 2016-11-18 09:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-11-21 09:01+0100\n"
+"PO-Revision-Date: 2016-11-21 08:51+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,7 +380,7 @@ msgstr "Измами"
 
 #: gui/common/gamedescription.js:324 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
-#: gui/common/tooltips.js:348 gui/common/tooltips.js:624
+#: gui/common/tooltips.js:370 gui/common/tooltips.js:646
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -395,205 +395,23 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "изключено"
 
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:4
-msgctxt "firstWord"
-msgid "Food"
-msgstr "Храна"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:6
-msgctxt "firstWord"
-msgid "Meat"
-msgstr "Месо"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:8
-msgctxt "firstWord"
-msgid "Metal"
-msgstr "Метал"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:10
-msgctxt "firstWord"
-msgid "Ore"
-msgstr "Руда"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:12
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Скала"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:14
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Останки"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:16
-msgctxt "firstWord"
-msgid "Stone"
-msgstr "Камък"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:18
-msgctxt "firstWord"
-msgid "Treasure"
-msgstr "Съкровище"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:20
-msgctxt "firstWord"
-msgid "Tree"
-msgstr "Дърво"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:22
-msgctxt "firstWord"
-msgid "Wood"
-msgstr "Дървесина"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:24
-msgctxt "firstWord"
-msgid "Fruit"
-msgstr "Плод"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:26
-msgctxt "firstWord"
-msgid "Grain"
-msgstr "Зърно"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: gui/common/l10n.js:28
-msgctxt "firstWord"
-msgid "Fish"
-msgstr "Риба"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:32
-msgctxt "withinSentence"
-msgid "Food"
-msgstr "храна"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:34
-msgctxt "withinSentence"
-msgid "Meat"
-msgstr "месо"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:36
-msgctxt "withinSentence"
-msgid "Metal"
-msgstr "метал"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:38
-msgctxt "withinSentence"
-msgid "Ore"
-msgstr "руда"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:40
-msgctxt "withinSentence"
-msgid "Rock"
-msgstr "скала"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:42
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "останки"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:44
-msgctxt "withinSentence"
-msgid "Stone"
-msgstr "камък"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:46
-msgctxt "withinSentence"
-msgid "Treasure"
-msgstr "съкровище"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:48
-msgctxt "withinSentence"
-msgid "Tree"
-msgstr "дърво"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:50
-msgctxt "withinSentence"
-msgid "Wood"
-msgstr "дървесина"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:52
-msgctxt "withinSentence"
-msgid "Fruit"
-msgstr "плод"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:54
-msgctxt "withinSentence"
-msgid "Grain"
-msgstr "зърно"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: gui/common/l10n.js:56
-msgctxt "withinSentence"
-msgid "Fish"
-msgstr "риба"
-
-#: gui/common/l10n.js:82
+#: gui/common/l10n.js:13
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/common/l10n.js:90
+#: gui/common/l10n.js:21
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s и %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:92 gui/common/network.js:141 gui/common/tooltips.js:118
+#: gui/common/l10n.js:23 gui/common/network.js:141 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
-#: gui/common/tooltips.js:503 gui/common/tooltips.js:537
-#: gui/common/tooltips.js:591 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:525 gui/common/tooltips.js:559
+#: gui/common/tooltips.js:613 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:122
 msgid ", "
@@ -848,7 +666,7 @@ msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:70 gui/common/tooltips.js:239
 #: gui/common/tooltips.js:288 gui/common/tooltips.js:302
-#: gui/common/tooltips.js:535
+#: gui/common/tooltips.js:557
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
@@ -904,7 +722,7 @@ msgstr "%(damageType)s: %(damage)s"
 msgid "Interval:"
 msgstr "Период:"
 
-#: gui/common/tooltips.js:152 gui/common/tooltips.js:533
+#: gui/common/tooltips.js:152 gui/common/tooltips.js:555
 msgid "Rate:"
 msgstr "Скорост:"
 
@@ -926,7 +744,7 @@ msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)s"
 
-#: gui/common/tooltips.js:181 gui/common/tooltips.js:528
+#: gui/common/tooltips.js:181 gui/common/tooltips.js:550
 msgid "Range:"
 msgstr "Обхват:"
 
@@ -937,7 +755,7 @@ msgid_plural "%(range)s %(meters)s"
 msgstr[0] "%(range)s %(meters)s"
 msgstr[1] "%(range)s %(meters)s"
 
-#: gui/common/tooltips.js:185 gui/common/tooltips.js:530
+#: gui/common/tooltips.js:185 gui/common/tooltips.js:552
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "метър"
@@ -987,7 +805,7 @@ msgstr "Максимален гарнизон:"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:236 gui/common/tooltips.js:522
+#: gui/common/tooltips.js:236 gui/common/tooltips.js:544
 msgid "Heal:"
 msgstr "Лечение:"
 
@@ -1039,79 +857,79 @@ msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgid "Build Rate:"
 msgstr "Бързина на строеж:"
 
-#: gui/common/tooltips.js:335 gui/common/tooltips.js:474
+#: gui/common/tooltips.js:335 gui/common/tooltips.js:496
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:349
+#: gui/common/tooltips.js:371
 msgid "Gather Rates:"
 msgstr "Бързина на събиране:"
 
-#: gui/common/tooltips.js:352
+#: gui/common/tooltips.js:374
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:401
+#: gui/common/tooltips.js:423
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s до %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:430
+#: gui/common/tooltips.js:452
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Стени:  %(costs)s"
 
-#: gui/common/tooltips.js:431
+#: gui/common/tooltips.js:453
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Кули:  %(costs)s"
 
-#: gui/common/tooltips.js:445
+#: gui/common/tooltips.js:467
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Изисква %(technology)s"
 
-#: gui/common/tooltips.js:457
+#: gui/common/tooltips.js:479
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:458
+#: gui/common/tooltips.js:480
 msgid "Population Bonus:"
 msgstr "Допълнително население:"
 
-#: gui/common/tooltips.js:480
+#: gui/common/tooltips.js:502
 msgid "Insufficient resources:"
 msgstr "Недостатъчно ресурси:"
 
-#: gui/common/tooltips.js:496
+#: gui/common/tooltips.js:518
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:497
+#: gui/common/tooltips.js:519
 msgid "Speed:"
 msgstr "Скорост:"
 
-#: gui/common/tooltips.js:499 gui/common/tooltips.js:504
+#: gui/common/tooltips.js:521 gui/common/tooltips.js:526
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:501
+#: gui/common/tooltips.js:523
 msgid "Walk"
 msgstr "Ходене"
 
-#: gui/common/tooltips.js:506
+#: gui/common/tooltips.js:528
 msgid "Run"
 msgstr "Бягане"
 
-#: gui/common/tooltips.js:521 gui/common/tooltips.js:527
-#: gui/common/tooltips.js:532
+#: gui/common/tooltips.js:543 gui/common/tooltips.js:549
+#: gui/common/tooltips.js:554
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1120,46 +938,46 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:525
+#: gui/common/tooltips.js:547
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "ЖТ"
 msgstr[1] "ЖТ"
 
-#: gui/common/tooltips.js:546
+#: gui/common/tooltips.js:568
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:547
+#: gui/common/tooltips.js:569
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:563
+#: gui/common/tooltips.js:585
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:575
+#: gui/common/tooltips.js:597
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:590
+#: gui/common/tooltips.js:612
 msgid "Classes:"
 msgstr "Класове:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:618
+#: gui/common/tooltips.js:640
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:625
+#: gui/common/tooltips.js:647
 msgid "Loot:"
 msgstr "Плячка:"
 
@@ -1481,14 +1299,14 @@ msgstr "Запазената игра ще бъде презаписана, си
 msgid "OVERWRITE SAVE"
 msgstr "ПРЕЗАПИСВАНЕ"
 
-#: gui/structree/load.js:171
+#: gui/structree/load.js:132
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s до %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
-#: gui/summary/layout.js:97 gui/summary/layout.js:140
-#: gui/summary/layout.js:161 gui/summary/summary.xml:(caption):104
+#: gui/summary/layout.js:97 gui/summary/layout.js:142
+#: gui/summary/layout.js:172 gui/summary/summary.xml:(caption):104
 msgid "Player name"
 msgstr "Име на играч"
 
@@ -1508,7 +1326,7 @@ msgstr "Точки за разузнаване"
 msgid "Total score"
 msgstr "Общ резултат"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:102
+#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:103
 msgid "Total"
 msgstr "Общо"
 
@@ -1600,117 +1418,91 @@ msgstr "обучени"
 msgid "Killed"
 msgstr "убити"
 
-#: gui/summary/layout.js:98
-msgid "Food"
-msgstr "Храна"
-
-#: gui/summary/layout.js:99
-msgid "Wood"
-msgstr "Дърва"
-
-#: gui/summary/layout.js:100
-msgid "Stone"
-msgstr "Камъни"
-
-#: gui/summary/layout.js:101
-msgid "Metal"
-msgstr "Метал"
-
-#: gui/summary/layout.js:104
+#: gui/summary/layout.js:105
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "Дарове\n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:106
+#: gui/summary/layout.js:107
 msgid "Sent"
 msgstr "изпратени"
 
-#: gui/summary/layout.js:107
+#: gui/summary/layout.js:108
 msgid "Received"
 msgstr "получени"
 
-#: gui/summary/layout.js:112
+#: gui/summary/layout.js:113
 msgid "Treasures collected"
 msgstr "Събрани съкровища"
 
-#: gui/summary/layout.js:113
+#: gui/summary/layout.js:114
 msgid "Loot"
 msgstr "Плячка"
 
-#: gui/summary/layout.js:117
+#: gui/summary/layout.js:118
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Статистика за ресурсите (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:119
+#: gui/summary/layout.js:120
 msgid "Gathered"
 msgstr "събрани"
 
-#: gui/summary/layout.js:120
+#: gui/summary/layout.js:121
 msgid "Used"
 msgstr "изразходени"
 
-#: gui/summary/layout.js:141
-msgid "Food exchanged"
-msgstr "Разменена храна"
+#. Translation: use %(resourceWithinSentence)s if needed
+#: gui/summary/layout.js:147
+#, javascript-format
+msgid "%(resourceFirstWord)s exchanged"
+msgstr "Разменено: %(resourceFirstWord)s"
 
-#: gui/summary/layout.js:142
-msgid "Wood exchanged"
-msgstr "Разменена дървесина"
-
-#: gui/summary/layout.js:143
-msgid "Stone exchanged"
-msgstr "Разменени камъни"
-
-#: gui/summary/layout.js:144
-msgid "Metal exchanged"
-msgstr "Разменен метал"
-
-#: gui/summary/layout.js:145
+#: gui/summary/layout.js:155
 msgid "Barter efficiency"
 msgstr "Полза от размените"
 
-#: gui/summary/layout.js:146
+#: gui/summary/layout.js:156
 msgid "Trade income"
 msgstr "Приход от търговия"
 
-#: gui/summary/layout.js:162
+#: gui/summary/layout.js:173
 msgid ""
 "Vegetarian\n"
 "ratio"
 msgstr "Процент\nвегетарианци"
 
-#: gui/summary/layout.js:163
+#: gui/summary/layout.js:174
 msgid "Feminization"
 msgstr "Феминизация"
 
-#: gui/summary/layout.js:164
+#: gui/summary/layout.js:175
 msgid ""
 "Kill / Death\n"
 "ratio"
 msgstr "Съотношение\nубийства / смъртност"
 
-#: gui/summary/layout.js:165
+#: gui/summary/layout.js:176
 msgid ""
 "Map\n"
 "exploration"
 msgstr "Разузнаване на\nкартата"
 
-#: gui/summary/layout.js:166
+#: gui/summary/layout.js:177
 msgid "At peak"
 msgstr "На върха"
 
-#: gui/summary/layout.js:167
+#: gui/summary/layout.js:178
 msgid "At finish"
 msgstr "Накрая"
 
-#: gui/summary/layout.js:170
+#: gui/summary/layout.js:181
 msgid "Map control"
 msgstr "Контрол над картата"
 
-#: gui/summary/layout.js:315
+#: gui/summary/layout.js:326
 msgid "Team total"
 msgstr "Общо за отбора"
 
@@ -1774,7 +1566,7 @@ msgstr "Избор на цивилизация"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):88
-#: gui/structree/structree.xml:(caption):120
+#: gui/structree/structree.xml:(caption):124
 msgid "Close"
 msgstr "Затваряне"
 
@@ -2253,7 +2045,7 @@ msgstr "Известни проблеми (в Интернет)"
 msgid "Civilization:"
 msgstr "Цивилизация:"
 
-#: gui/structree/structree.xml:(caption):93
+#: gui/structree/structree.xml:(caption):97
 msgid "Trainer Units"
 msgstr "Обучаващи единици"
 
@@ -2803,6 +2595,176 @@ msgstr "Ограничаване на кадрите в секунда до 50 �
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "Limit FPS in Menus"
 msgstr "Огранич. на к/сек в менютата"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonname
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Храна"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/food.jsonname
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "храна"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Риба"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "риба"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Плод"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "плод"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Зърно"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "зърно"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Месо"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "месо"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonname
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Метал"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/metal.jsonname
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "метал"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Руда"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "руда"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonname
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Камък"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/stone.jsonname
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "камък"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Останки"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "останки"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Скала"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "скала"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonname
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Дървесина"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/wood.jsonname
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "дървесина"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Дърво"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "дърво"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

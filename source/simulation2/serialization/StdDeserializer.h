@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,9 +54,6 @@ private:
 
 	virtual void AddScriptBackref(JS::HandleObject obj);
 	virtual void GetScriptBackref(u32 tag, JS::MutableHandleObject ret);
-	virtual u32 ReserveScriptBackref();
-	virtual void SetReservedScriptBackref(u32 tag, JS::HandleObject obj);
-	void FreeScriptBackrefs();
 	std::vector<JS::Heap<JSObject*> > m_ScriptBackrefs;
 	JS::PersistentRooted<JSObject*> m_dummyObject;
 

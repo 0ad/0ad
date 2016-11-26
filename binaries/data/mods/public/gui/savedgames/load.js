@@ -8,15 +8,12 @@ const g_CivData = loadCivData();
 function init()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-
 	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+	gameSelection.enabled = !!savedGames.length;
 	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];
 		gameSelection.selected = -1;
-		selectionChanged();
-		Engine.GetGUIObjectByName("loadGameButton").enabled = false;
-		Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
 		return;
 	}
 
@@ -40,15 +37,14 @@ function init()
 
 function selectionChanged()
 {
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let selectionEmpty = gameSelection.selected == -1;
-	Engine.GetGUIObjectByName("invalidGame").hidden = !selectionEmpty;
-	Engine.GetGUIObjectByName("validGame").hidden = selectionEmpty;
+	let metadata = g_SavedGamesMetadata[Engine.GetGUIObjectByName("gameSelection").selected];
+	Engine.GetGUIObjectByName("invalidGame").hidden = !!metadata;
+	Engine.GetGUIObjectByName("validGame").hidden = !metadata;
+	Engine.GetGUIObjectByName("loadGameButton").enabled = !!metadata;
+	Engine.GetGUIObjectByName("deleteGameButton").enabled = !!metadata;
 
-	if (selectionEmpty)
+	if (!metadata)
 		return;
-
-	let metadata = g_SavedGamesMetadata[gameSelection.selected];
 
 	Engine.GetGUIObjectByName("savedMapName").caption = translate(metadata.initAttributes.settings.Name);
 	let mapData = getMapDescriptionAndPreview(metadata.initAttributes.mapType, metadata.initAttributes.map);
@@ -159,26 +155,4 @@ function reallyLoadGame(gameId)
 		},
 		"savedGUIData": metadata.gui
 	});
-}
-
-function deleteGame()
-{
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let gameID = gameSelection.list_data[gameSelection.selected];
-
-	if (!gameID)
-		return;
-
-	if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
-		reallyDeleteGame(gameID);
-	else
-		messageBox(
-			500, 200,
-			sprintf(translate("\"%(label)s\""), {
-				"label": gameSelection.list[gameSelection.selected]
-			}) + "\n" + translate("Saved game will be permanently deleted, are you sure?"),
-			translate("DELETE"),
-			[translate("No"), translate("Yes")],
-			[null, function(){ reallyDeleteGame(gameID); }]
-		);
 }

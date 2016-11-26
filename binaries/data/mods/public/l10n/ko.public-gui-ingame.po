@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-18 09:01+0100\n"
-"PO-Revision-Date: 2016-11-18 09:12+0000\n"
+"POT-Creation-Date: 2016-11-21 09:00+0100\n"
+"PO-Revision-Date: 2016-11-21 09:22+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -43,151 +43,151 @@ msgstr[0] "추가 사정 거리: %(range)s 미터"
 msgid "Cannot build wall here!"
 msgstr "여기에는 장벽을 세울 수 없습니다!"
 
-#: gui/session/menu.js:115
+#: gui/session/menu.js:112
 msgid "Are you sure you want to resign?"
 msgstr "정말 항복하시겠습니까?"
 
-#: gui/session/menu.js:116 gui/session/menu.js:148 gui/session/menu.js:159
+#: gui/session/menu.js:113 gui/session/menu.js:145 gui/session/menu.js:156
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/session/menu.js:117 gui/session/menu.js:149 gui/session/menu.js:182
-#: gui/session/session.js:714 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
+#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "아니오"
 
-#: gui/session/menu.js:117 gui/session/menu.js:149 gui/session/menu.js:182
-#: gui/session/session.js:714 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
+#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "예"
 
-#: gui/session/menu.js:129
+#: gui/session/menu.js:126
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "정말 나가시겠습니까? 다른 유저들과 연결이 끊길 것입니다."
 
-#: gui/session/menu.js:133 gui/session/menu.js:137
+#: gui/session/menu.js:130 gui/session/menu.js:134
 msgid "Are you sure you want to quit?"
 msgstr "정말 나가시겠습니까?"
 
-#: gui/session/menu.js:158
+#: gui/session/menu.js:155
 msgid "Do you want to resign or will you return soon?"
 msgstr "그만두시겠습니까 아니면 다시 돌아오시겠습니까?"
 
-#: gui/session/menu.js:160
+#: gui/session/menu.js:157
 msgid "I will return"
 msgstr "돌아오겠습니다."
 
-#: gui/session/menu.js:160
+#: gui/session/menu.js:157
 msgid "I resign"
 msgstr "그만두겠습니다."
 
-#: gui/session/menu.js:180
+#: gui/session/menu.js:177
 msgid "Destroy everything currently selected?"
 msgstr "지금 선택한 것을 모두 부술까요?"
 
-#: gui/session/menu.js:181
+#: gui/session/menu.js:178
 msgid "Delete"
 msgstr "없애기"
 
-#: gui/session/menu.js:277
+#: gui/session/menu.js:288
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/session/menu.js:343
+#: gui/session/menu.js:353
 msgctxt "team"
 msgid "None"
 msgstr "없음"
 
-#: gui/session/menu.js:347 gui/session/messages.js:148
+#: gui/session/menu.js:357 gui/session/messages.js:148
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "우리편"
 
-#: gui/session/menu.js:348 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:358 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "중립"
 
-#: gui/session/menu.js:348 gui/session/messages.js:149
+#: gui/session/menu.js:358 gui/session/messages.js:149
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "적"
 
-#: gui/session/menu.js:360
+#: gui/session/menu.js:370
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:426
+#: gui/session/menu.js:448
 msgid "Request your allies to attack this enemy"
 msgstr "동맹에게 적을 공격해달라고 요청합니다."
 
-#: gui/session/menu.js:546
+#: gui/session/menu.js:591
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, 과 %(garrisonedString)s."
 
-#: gui/session/menu.js:547
+#: gui/session/menu.js:592
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, 과 %(inactiveString)s."
 
-#: gui/session/menu.js:550 gui/session/menu.js:621
+#: gui/session/menu.js:595 gui/session/menu.js:666
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:551 gui/session/menu.js:620
+#: gui/session/menu.js:596 gui/session/menu.js:665
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, 과 %(inactiveString)s."
 
-#: gui/session/menu.js:556
+#: gui/session/menu.js:601
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:557
+#: gui/session/menu.js:602
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, 과 %(inactiveString)s."
 
-#: gui/session/menu.js:560 gui/session/menu.js:624
+#: gui/session/menu.js:605 gui/session/menu.js:669
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "%(inactiveString)s 명 있습니다."
 
-#: gui/session/menu.js:561
+#: gui/session/menu.js:606
 msgid "There are no land traders."
 msgstr "보부상이 아무도 없습니다."
 
-#: gui/session/menu.js:569
+#: gui/session/menu.js:614
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s 명의 보부상이 거래중입니다."
 
-#: gui/session/menu.js:578
+#: gui/session/menu.js:623
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s 명이 쉬고 있음"
 
-#: gui/session/menu.js:583
+#: gui/session/menu.js:628
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s 명의 보부상이 쉬고 있습니다."
 
-#: gui/session/menu.js:592
+#: gui/session/menu.js:637
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s 명이 무역선에 타고 있습니다."
 
-#: gui/session/menu.js:597
+#: gui/session/menu.js:642
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -197,58 +197,58 @@ msgid_plural ""
 " ship"
 msgstr[0] "%(numberGarrisoned)s 명의 보부상들이 무역선에 타고 있습니다."
 
-#: gui/session/menu.js:625
+#: gui/session/menu.js:670
 msgid "There are no merchant ships."
 msgstr "무역선이 하나도 없습니다."
 
-#: gui/session/menu.js:632
+#: gui/session/menu.js:677
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s 채의 무역선이 거래중입니다."
 
-#: gui/session/menu.js:641
+#: gui/session/menu.js:686
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s 명 쉬고 있음"
 
-#: gui/session/menu.js:646
+#: gui/session/menu.js:691
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s 채의 무역선이 쉬고 있음."
 
-#: gui/session/menu.js:822
+#: gui/session/menu.js:867
 msgid "Resume"
 msgstr "다시 하기"
 
-#: gui/session/menu.js:822 gui/session/menu.xml:(caption):75
+#: gui/session/menu.js:867 gui/session/menu.xml:(caption):75
 msgid "Pause"
 msgstr "멈춤"
 
-#: gui/session/menu.js:826
+#: gui/session/menu.js:871
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "플레이어에 의해 일시중지 됨."
 
-#: gui/session/menu.js:827
+#: gui/session/menu.js:872
 msgid ", "
 msgstr ","
 
-#: gui/session/menu.js:840 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:885 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "안내서"
 
-#: gui/session/menu.js:856
+#: gui/session/menu.js:901
 msgid "The Developer Overlay was closed."
 msgstr "개발자용 덧판이 닫혔습니다."
 
-#: gui/session/menu.js:857
+#: gui/session/menu.js:902
 msgid "The Developer Overlay was opened."
 msgstr "개발자용 덧판이 열렸습니다."
 
-#: gui/session/menu.js:880
+#: gui/session/menu.js:925
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -330,7 +330,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "팀"
 
-#: gui/session/messages.js:150 gui/session/session.js:283
+#: gui/session/messages.js:150 gui/session/session.js:287
 msgid "Observer"
 msgstr "관찰자"
 
@@ -446,7 +446,7 @@ msgctxt "chat addressee"
 msgid "Observers"
 msgstr "관찰자들"
 
-#: gui/session/messages.js:706 gui/session/selection_details.js:80
+#: gui/session/messages.js:706 gui/session/selection_details.js:82
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[비접속] %(player)s"
@@ -509,79 +509,79 @@ msgstr "%(attacker)s 에게 공격받고 있습니다!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:52 gui/session/selection_details.js:363
-#: gui/session/selection_details.js:395 gui/session/session.js:846
+#: gui/session/selection_details.js:54 gui/session/selection_details.js:367
+#: gui/session/selection_details.js:399 gui/session/session.js:867
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
 
-#: gui/session/selection_details.js:53 gui/session/selection_details.js:364
+#: gui/session/selection_details.js:55 gui/session/selection_details.js:368
 msgid "Hitpoints:"
 msgstr "체력:"
 
-#: gui/session/selection_details.js:69
+#: gui/session/selection_details.js:71
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — 함께"
 
-#: gui/session/selection_details.js:85
+#: gui/session/selection_details.js:87
 #, javascript-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s 순위"
 
-#: gui/session/selection_details.js:112
+#: gui/session/selection_details.js:114
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
 msgstr[0] "이 건축물은 %(seconds)s 초 후에 완성될 것 입니다."
 
-#: gui/session/selection_details.js:117
+#: gui/session/selection_details.js:119
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:147
+#: gui/session/selection_details.js:149
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:163
+#: gui/session/selection_details.js:165
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:164 gui/session/selection_details.js:170
+#: gui/session/selection_details.js:166 gui/session/selection_details.js:172
 msgid "Experience:"
 msgstr "전적:"
 
-#: gui/session/selection_details.js:169
+#: gui/session/selection_details.js:171
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:179
+#: gui/session/selection_details.js:181
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:180 gui/session/selection_details.js:211
-#: gui/session/selection_details.js:258
+#: gui/session/selection_details.js:182 gui/session/selection_details.js:214
+#: gui/session/selection_details.js:261
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:193
+#: gui/session/selection_details.js:194
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:226 gui/session/unit_actions.js:569
+#: gui/session/selection_details.js:229 gui/session/unit_actions.js:569
 #: gui/session/unit_actions.js:578 gui/session/unit_actions.js:592
 #: gui/session/unit_actions.js:910
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "얻음: %(gain)s"
 
-#: gui/session/selection_details.js:240
+#: gui/session/selection_details.js:243
 #, javascript-format
 msgid ""
 "Number of builders.\n"
@@ -591,353 +591,353 @@ msgid_plural ""
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
 msgstr[0] "만드는 유닛의 숫자\n이 건축물을 만드는데 다른 유닛을 추가시키면 %(speedup)s 초 만큼 제작 속도가 빨라집니다."
 
-#: gui/session/selection_details.js:243 gui/session/selection_details.js:251
+#: gui/session/selection_details.js:246 gui/session/selection_details.js:254
 msgid "Number of builders."
 msgstr "만드는 유닛의 숫자"
 
-#: gui/session/selection_details.js:262
+#: gui/session/selection_details.js:265
 msgid "Current/max gatherers"
 msgstr "현재/최대 채취자수"
 
-#: gui/session/selection_details.js:274
+#: gui/session/selection_details.js:277
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:396
+#: gui/session/selection_details.js:400
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "캡쳐 점수"
 
-#: gui/session/selection_details.js:407
+#: gui/session/selection_details.js:411
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr ""
 
-#: gui/session/selection_details.js:408
+#: gui/session/selection_details.js:412
 msgid "Carrying:"
 msgstr ""
 
-#: gui/session/selection_details.js:410 gui/session/selection_details.js:418
+#: gui/session/selection_details.js:415 gui/session/selection_details.js:424
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr ""
 
-#: gui/session/selection_details.js:415
+#: gui/session/selection_details.js:420
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/session/selection_details.js:416
+#: gui/session/selection_details.js:421
 msgid "Loot:"
 msgstr ""
 
-#: gui/session/selection_panels.js:78
+#: gui/session/selection_panels.js:80
 msgid "Raise an alert!"
 msgstr "비상 사태!"
 
-#: gui/session/selection_panels.js:82
+#: gui/session/selection_panels.js:84
 msgid "Increase the alert level to protect more units"
 msgstr "더 많은 유닛을 지키기 위해 경고 수준 높이기"
 
-#: gui/session/selection_panels.js:85
+#: gui/session/selection_panels.js:87
 msgid "End of alert."
 msgstr "비상 상황이 끝났습니다."
 
-#: gui/session/selection_panels.js:140
+#: gui/session/selection_panels.js:144
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "%(resource)s를 삽니다"
 
-#: gui/session/selection_panels.js:141
+#: gui/session/selection_panels.js:145
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "%(resource)s를 팝니다"
 
-#: gui/session/selection_panels.js:464
+#: gui/session/selection_panels.js:468
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)s 를 내립니다"
 
-#: gui/session/selection_panels.js:466
+#: gui/session/selection_panels.js:470
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "1개 내리려면 1번 누르세요. Shift를 누르고 클릭하면 같은 타입의 유닛이 모두 내립니다."
 
-#: gui/session/selection_panels.js:469
+#: gui/session/selection_panels.js:473
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "플레이어: %(playername)s"
 
-#: gui/session/selection_panels.js:504
+#: gui/session/selection_panels.js:508
 msgid "Lock Gate"
 msgstr "문 닫기"
 
-#: gui/session/selection_panels.js:510
+#: gui/session/selection_panels.js:514
 msgid "Unlock Gate"
 msgstr "문 열기"
 
-#: gui/session/selection_panels.js:583
+#: gui/session/selection_panels.js:587
 msgid "Pack"
 msgstr "짐싸기"
 
-#: gui/session/selection_panels.js:591
+#: gui/session/selection_panels.js:595
 msgid "Unpack"
 msgstr "짐풀기"
 
-#: gui/session/selection_panels.js:599
+#: gui/session/selection_panels.js:603
 msgid "Cancel Packing"
 msgstr "짐싸기 취소"
 
-#: gui/session/selection_panels.js:607
+#: gui/session/selection_panels.js:611
 msgid "Cancel Unpacking"
 msgstr "짐풀기 취소"
 
-#: gui/session/selection_panels.js:690
+#: gui/session/selection_panels.js:694
 msgid "Insufficient population capacity:"
 msgstr "인구 용량이 부족합니다."
 
-#: gui/session/selection_panels.js:691
+#: gui/session/selection_panels.js:695
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:832
+#: gui/session/selection_panels.js:836
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "%(number)s 개 더 지어야 합니다."
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1140
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "%(name)s으로 업그레이드 합니다. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1141
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "%(name)s으로 업그레이드 합니다."
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1161
 msgid "Cancel Upgrading"
 msgstr "업그레이드 취소"
 
-#: gui/session/selection_panels.js:1162
+#: gui/session/selection_panels.js:1166
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "이미 업그레이드 하고 있으므로, 또 업그레이드 할 수 없습니다."
 
-#: gui/session/selection_panels_helpers.js:33
+#: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
 msgid "Violent"
 msgstr "잔인하게"
 
-#: gui/session/selection_panels_helpers.js:35
+#: gui/session/selection_panels_helpers.js:28
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "공격적인"
 
-#: gui/session/selection_panels_helpers.js:37
+#: gui/session/selection_panels_helpers.js:30
 msgctxt "stance"
 msgid "Defensive"
 msgstr "방어모드"
 
-#: gui/session/selection_panels_helpers.js:39
+#: gui/session/selection_panels_helpers.js:32
 msgctxt "stance"
 msgid "Passive"
 msgstr "반응하는"
 
-#: gui/session/selection_panels_helpers.js:41
+#: gui/session/selection_panels_helpers.js:34
 msgctxt "stance"
 msgid "Standground"
 msgstr "서있기"
 
-#: gui/session/selection_panels_helpers.js:53
+#: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "근처의 적을 공격하고, 공격자에 주목하며, 보이는 한도 내에서 추적하라."
 
-#: gui/session/selection_panels_helpers.js:55
+#: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "근처의 적을 공격하라."
 
-#: gui/session/selection_panels_helpers.js:57
+#: gui/session/selection_panels_helpers.js:50
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "근처의 적을 공격하고, 짧은 거리를 추적하다가 원래의 위치로 돌아오라."
 
-#: gui/session/selection_panels_helpers.js:59
+#: gui/session/selection_panels_helpers.js:52
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "공격받으면 도망가라."
 
-#: gui/session/selection_panels_helpers.js:61
+#: gui/session/selection_panels_helpers.js:54
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "범위 내의 적을 공격하되, 움직이지는 마라."
 
-#: gui/session/selection_panels_helpers.js:75
+#: gui/session/selection_panels_helpers.js:68
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "지금 갯수: %(count)s, 한계: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:89
+#: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s 가 %(change)s로 한계를 늘렸습니다."
 
-#: gui/session/selection_panels_helpers.js:90
+#: gui/session/selection_panels_helpers.js:83
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s 가 %(change)s로 한계를 줄였습니다."
 
-#: gui/session/selection_panels_helpers.js:123
+#: gui/session/selection_panels_helpers.js:116
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:139
+#: gui/session/selection_panels_helpers.js:132
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(number)s (%(fullBatch)s + %(remainderBatch)s)를 훈련하기 위해 %(action)s 남음"
 
-#: gui/session/selection_panels_helpers.js:141
+#: gui/session/selection_panels_helpers.js:134
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(number)s (%(fullBatch)s) 를 훈련하기 위해 %(action)s 가 필요함"
 
-#: gui/session/selection_panels_helpers.js:144
+#: gui/session/selection_panels_helpers.js:137
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(number)s를 훈련하기 위해 %(action)s가 필요함"
 
-#: gui/session/selection_panels_helpers.js:147
+#: gui/session/selection_panels_helpers.js:140
 msgid "Shift-click"
 msgstr "쉬프트 클릭"
 
-#: gui/session/session.js:267
+#: gui/session/session.js:268
 msgid "Gaia"
 msgstr "가이아"
 
-#: gui/session/session.js:328
+#: gui/session/session.js:332
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "보내야할 메시지를 입력하세요."
 
-#: gui/session/session.js:330
+#: gui/session/session.js:334
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr ""
 
-#: gui/session/session.js:333
+#: gui/session/session.js:337
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr ""
 
-#: gui/session/session.js:334
+#: gui/session/session.js:338
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr ""
 
-#: gui/session/session.js:339
+#: gui/session/session.js:343
 msgid "Find idle worker"
 msgstr "노는 사람 찾기"
 
-#: gui/session/session.js:342
+#: gui/session/session.js:346
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
 msgstr ""
 
-#: gui/session/session.js:344
+#: gui/session/session.js:348
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr ""
 
-#: gui/session/session.js:489
+#: gui/session/session.js:493
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - 트리형 구조"
 
-#: gui/session/session.js:703
+#: gui/session/session.js:724
 msgid "Do you want to quit?"
 msgstr "그만하시겠습니까?"
 
-#: gui/session/session.js:706
+#: gui/session/session.js:727
 msgid "Leaving will disconnect all other players."
 msgstr ""
 
-#: gui/session/session.js:712
+#: gui/session/session.js:733
 msgid "VICTORIOUS!"
 msgstr "이겼습니다!!"
 
-#: gui/session/session.js:713
+#: gui/session/session.js:734
 msgid "DEFEATED!"
 msgstr "졌습니다!"
 
-#: gui/session/session.js:765
+#: gui/session/session.js:786
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "리플레이가 끝났습니다. 종료하시겠습니까?"
 
-#: gui/session/session.js:766
+#: gui/session/session.js:787
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/session/session.js:767
+#: gui/session/session.js:788
 msgctxt "replayFinished"
 msgid "No"
 msgstr "아니요"
 
-#: gui/session/session.js:767
+#: gui/session/session.js:788
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "예"
 
-#: gui/session/session.js:847
+#: gui/session/session.js:868
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "건강:"
 
-#: gui/session/session.js:982
+#: gui/session/session.js:1003
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr ""
 
-#: gui/session/session.js:985
+#: gui/session/session.js:1006
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr ""
 
-#: gui/session/session.js:1003
+#: gui/session/session.js:1029
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr ""
 
-#: gui/session/session.js:1004
+#: gui/session/session.js:1030
 msgid "Population (current / limit)"
 msgstr "인구 (현재 / 제한)"
 
-#: gui/session/session.js:1005
+#: gui/session/session.js:1031
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "꽉찬 인구수 : %(popCap)s"
 
-#: gui/session/session.js:1157
+#: gui/session/session.js:1183
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "건물짓기: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1167
+#: gui/session/session.js:1193
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "참고: 시간여행 모드는 개발자용으로, 긴 시대에 걸쳐 사용하도록 만들어지지 않았습니다. 잘못 사용하는 경우 메모리가 부족하거나 게임이 다운될 수 있습니다."
 
-#: gui/session/session.js:1168
+#: gui/session/session.js:1194
 msgid "Time warp mode"
 msgstr "시간여행 모드"
 
@@ -1199,7 +1199,7 @@ msgstr "적"
 msgid "Tribute"
 msgstr "공헌"
 
-#: gui/session/diplomacy_window.xml:(caption):80
+#: gui/session/diplomacy_window.xml:(caption):75
 #: gui/session/objectives_window.xml:(caption):44
 #: gui/session/trade_window.xml:(caption):46
 msgid "Close"
@@ -1271,10 +1271,6 @@ msgstr "질문"
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
 msgstr "예 혹은 아니오?"
-
-#: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
-msgid "Exchange resources:"
-msgstr "자원 교환:"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):13
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29

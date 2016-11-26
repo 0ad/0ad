@@ -4,11 +4,12 @@ var g_SavedGameData;
 function selectDescription()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	if (gameSelection.selected == -1)
+	let gameID = gameSelection.list_data[gameSelection.selected];
+	Engine.GetGUIObjectByName("deleteGameButton").enabled = !!gameID;
+
+	if (!gameID)
 		return;
 
-	let gameID = gameSelection.list_data[gameSelection.selected];
-	Engine.GetGUIObjectByName("deleteGameButton").enabled = true;
 	Engine.GetGUIObjectByName("saveGameDesc").caption = g_Descriptions[gameID];
 }
 
@@ -19,10 +20,11 @@ function init(data)
 	g_SavedGameData.timeElapsed = simulationState.timeElapsed;
 	g_SavedGameData.states = simulationState.players.map(pState => pState.state);
 
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	Engine.GetGUIObjectByName("deleteGameButton").enabled = false;
-
 	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
+
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	gameSelection.enabled = savedGames.length;
+
 	if (!savedGames.length)
 	{
 		gameSelection.list = [translate("No saved games found")];
@@ -49,7 +51,7 @@ function saveGame()
 	let desc = Engine.GetGUIObjectByName("saveGameDesc").caption;
 	let name = gameID || "savegame";
 
-	if (gameSelection.selected == -1)
+	if (!gameID)
 	{
 		reallySaveGame(name, desc, true);
 		return;
@@ -78,22 +80,6 @@ function reallySaveGame(name, desc, nameIsPrefix)
 function closeSave()
 {
 	Engine.PopGuiPageCB(0);
-}
-
-function deleteGame()
-{
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let gameLabel = gameSelection.list[gameSelection.selected];
-	let gameID = gameSelection.list_data[gameSelection.selected];
-
-	messageBox(
-		500, 200,
-		sprintf(translate("\"%(label)s\""), { "label": gameLabel }) + "\n" +
-			translate("Saved game will be permanently deleted, are you sure?"),
-		translate("DELETE"),
-		[translate("No"), translate("Yes")],
-		[null, function(){ reallyDeleteGame(gameID); }]
-	);
 }
 
 // HACK: Engine.SaveGame* expects this function to be defined on the current page.

@@ -24,7 +24,6 @@ TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, true);
 cmpEndGameManager.SetAlliedVictory(true);
 TS_ASSERT_EQUALS(cmpEndGameManager.GetAlliedVictory(), true);
 cmpEndGameManager.SetGameType("wonder", { "wonderDuration": wonderDuration });
-TS_ASSERT_EQUALS(cmpEndGameManager.CheckGameType("regicide"), false);
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, false);
 TS_ASSERT(cmpEndGameManager.GetGameType() == "wonder");
 TS_ASSERT_EQUALS(cmpEndGameManager.GetGameTypeSettings().wonderDuration, wonderDuration);
