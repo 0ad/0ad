@@ -385,7 +385,7 @@ m.SharedScript.prototype.createResourceMaps = function()
 {
 	for (let resource of this.resourceInfo.codes)
 	{
-		if (this.resourceInfo.aiInfluenceGroups[resource] === 0)
+		if (!(this.resourceInfo.aiInfluenceGroups[resource] in this.normalizationFactor))
 			continue;
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (this.resourceMaps[resource])
@@ -422,7 +422,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 {
 	for (let resource of this.resourceInfo.codes)
 	{
-		if (this.resourceInfo.aiInfluenceGroups[resource] === 0)
+		if (!(this.resourceInfo.aiInfluenceGroups[resource] in this.normalizationFactor))
 			continue;
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (this.resourceMaps[resource])

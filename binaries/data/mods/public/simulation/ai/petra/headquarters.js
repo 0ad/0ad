@@ -852,10 +852,11 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
 			norm *= 0.5;
 
-		let val = 2*gameState.sharedScript.ccResourceMaps[resource].map[j] +
-			    gameState.sharedScript.ccResourceMaps.wood.map[j] +
-			    gameState.sharedScript.ccResourceMaps.stone.map[j] +
-			    gameState.sharedScript.ccResourceMaps.metal.map[j];
+		let val = 2*gameState.sharedScript.ccResourceMaps[resource].map[j];
+		for (let res in gameState.sharedScript.resourceMaps)
+			if (res !== "food")
+				val += gameState.sharedScript.ccResourceMaps[res].map[j];
+
 		val *= norm;
 
 		if (bestVal !== undefined && val < bestVal)
