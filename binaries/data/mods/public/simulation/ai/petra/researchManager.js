@@ -98,14 +98,15 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 /** Techs to be searched for as soon as they are available */
 m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 {
-	let available = gameState.currentPhase() === 1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
-	let numWorkers = gameState.currentPhase() === 1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
+	let phase1 = gameState.currentPhase() === 1;
+	let available = phase1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
+	let numWorkers = phase1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
 		let template = tech[1]._template;
-		if (gameState.currentPhase() === 1)
+		if (phase1)
 		{
 			let cost = template.cost;
 			let costMax = 0;
@@ -117,33 +118,34 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 		for (let i in template.modifications)
 		{
 			if (gameState.ai.HQ.navalMap && template.modifications[i].value === "ResourceGatherer/Rates/food.fish")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.fruit")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.grain")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": false };
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/wood.tree")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value.startsWith("ResourceGatherer/Capacities"))
-				return tech[0];
+				return { "name": tech[0], "increasePriority": false };
 			else if (template.modifications[i].value === "Attack/Ranged/MaxRange")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": false };
 		}
 	}
-	return false;
+	return null;
 };
 
 /** Techs to be searched for as soon as they are available, but only after phase 2 */
 m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 {
-	let available = gameState.currentPhase() === 2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
-	let numWorkers = gameState.currentPhase() === 2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
+	let phase2 = gameState.currentPhase() === 2;
+	let available = phase2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
+	let numWorkers = phase2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)
 			continue;
 		let template = tech[1]._template;
-	    	if (gameState.currentPhase() === 2)
+	    	if (phase2)
 		{
 			let cost = template.cost;
 			let costMax = 0;
@@ -155,18 +157,18 @@ m.ResearchManager.prototype.researchPreferredTechs = function(gameState, techs)
 		for (let i in template.modifications)
 		{
 			if (template.modifications[i].value === "ResourceGatherer/Rates/stone.rock")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/metal.ore")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value === "BuildingAI/DefaultArrowCount")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value === "Health/RegenRate")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": false };
 			else if (template.modifications[i].value === "Health/IdleRegenRate")
-				return tech[0];
+				return { "name": tech[0], "increasePriority": false };
 		}
 	}
-	return false;
+	return null;
 };
 
 m.ResearchManager.prototype.update = function(gameState, queues)
@@ -179,7 +181,15 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	let techName = this.researchWantedTechs(gameState, techs);
 	if (techName)
 	{
-		queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName));
+		if (techName.increasePriority)
+		{
+			gameState.ai.queueManager.changePriority("minorTech", 2*this.Config.priorities.minorTech);
+			let plan = new m.ResearchPlan(gameState, techName.name);
+			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("minorTech", gameState.ai.Config.priorities.minorTech); };
+			queues.minorTech.addPlan(plan);
+		}
+		else
+			queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName.name));
 		return;
 	}
 
@@ -189,7 +199,15 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	techName = this.researchPreferredTechs(gameState, techs);
 	if (techName)
 	{
-		queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName));
+		if (techName.increasePriority)
+		{
+			gameState.ai.queueManager.changePriority("minorTech", 2*this.Config.priorities.minorTech);
+			let plan = new m.ResearchPlan(gameState, techName.name);
+			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("minorTech", gameState.ai.Config.priorities.minorTech); };
+			queues.minorTech.addPlan(plan);
+		}
+		else
+			queues.minorTech.addPlan(new m.ResearchPlan(gameState, techName.name));
 		return;
 	}
 
@@ -220,6 +238,14 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	// randomly pick one. No worries about pairs in that case.
 	let p = Math.floor(Math.random()*techs.length);
 	queues.minorTech.addPlan(new m.ResearchPlan(gameState, techs[p][0]));
+};
+
+m.ResearchManager.prototype.CostSum = function(cost)
+{
+	let costSum = 0;
+	for (let res in cost)
+		costSum += cost[res];
+	return costSum;
 };
 
 m.ResearchManager.prototype.Serialize = function()
