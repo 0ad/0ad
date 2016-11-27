@@ -1786,7 +1786,7 @@ function colorizePlayernameByGUID(guid, username = "")
 
 function addChatMessage(msg)
 {
-	if (msg.text)
+	if (msg.type != "system" && msg.text)
 	{
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
 
