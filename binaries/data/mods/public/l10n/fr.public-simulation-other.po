@@ -13,14 +13,15 @@
 # Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
 # nicolas t <phidias2052@yahoo.fr>, 2016
+# Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # silure <silure@openmailbox.org>, 2014
 # Polakrity <sxk-fr@live.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 09:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-11-26 15:20+0000\n"
+"Last-Translator: Romain Mesnil <bnb6avekk6@protonmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,12 +132,12 @@ msgstr "J'ai atteint la %(phase)s."
 #: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s et moi sommes maintenant ennemis."
 
 #: simulation/ai/petra/chatHelper.js:135
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s et moi sommes maintenant alliés."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -740,7 +741,7 @@ msgstr "(Triche - contrôler toutes les unités)"
 
 #: simulation/helpers/Commands.js:140
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(Triche - révéler la carte)"
 
 #: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"

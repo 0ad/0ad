@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 08:29+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-11-26 23:50+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -259,8 +259,8 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:172
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gözlemci"
+msgstr[1] "Gözlemciler"
 
 #: gui/common/gamedescription.js:194
 #, javascript-format
@@ -282,11 +282,11 @@ msgstr "Bu maçın galibi belirlendiğinde, lobi puanı uyarlanır."
 
 #: gui/common/gamedescription.js:217
 msgid "Locked Teams"
-msgstr ""
+msgstr "Kilitli Takımlar"
 
 #: gui/common/gamedescription.js:218
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Oyuncular ilk takımları değiştiremezler."
 
 #: gui/common/gamedescription.js:222
 msgid "Diplomacy"
@@ -294,7 +294,7 @@ msgstr "Diplomasi"
 
 #: gui/common/gamedescription.js:223
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Oyuncular müttefikler üzerinde ittifaklar kurabilir ve savaş ilan edebilir."
 
 #: gui/common/gamedescription.js:228
 msgid "Last Man Standing"
@@ -314,7 +314,7 @@ msgstr "Müttefik Zaferi"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Bir oyuncu kazanırsa, müttefikleri de kazanır. Bir müttefik grubu kalırsa, kazanırlar."
 
 #: gui/common/gamedescription.js:240
 msgid "Ceasefire"
@@ -348,7 +348,7 @@ msgstr "Harita Açıklaması"
 
 #: gui/common/gamedescription.js:276
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Listeden bir haritayı rastgele seçer"
 
 #: gui/common/gamedescription.js:285
 msgid "Starting Resources"
@@ -365,11 +365,11 @@ msgstr "Nüfus Limiti"
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Hazineyi Devre Dışı Bırak"
 
 #: gui/common/gamedescription.js:309
 msgid "Revealed Map"
-msgstr ""
+msgstr "Açığa Çıkmış Harita"
 
 #: gui/common/gamedescription.js:314
 msgid "Explored Map"
@@ -459,7 +459,7 @@ msgstr "Geçersiz ağ protokol sürümü"
 
 #: gui/common/network.js:66
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Oyun yükleniyor, lütfen daha sonra tekrar deneyin"
 
 #: gui/common/network.js:67
 msgid "Game has already started, no observers allowed"
@@ -590,7 +590,7 @@ msgstr "Senaryo"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Yok"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
@@ -813,7 +813,7 @@ msgstr "İyileşme:"
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "Sağlık"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -1229,7 +1229,7 @@ msgstr "Oylanmamış oyunlar"
 
 #: gui/replaymenu/replay_menu.js:192
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr ""
+msgstr "Filtreler bir veya daha fazla, kısmi veya tam oyun adı yazarak tekrarlar."
 
 #: gui/replaymenu/replay_menu.js:303
 msgid "yyyy-MM-dd HH:mm"
@@ -1396,7 +1396,7 @@ msgstr "Şampiyon"
 
 #: gui/summary/layout.js:65
 msgid "Siege"
-msgstr ""
+msgstr "Kuşatma"
 
 #: gui/summary/layout.js:66
 msgid "Navy"
@@ -1424,7 +1424,7 @@ msgstr "Öldü"
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "Haraçlar\n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:107
 msgid "Sent"

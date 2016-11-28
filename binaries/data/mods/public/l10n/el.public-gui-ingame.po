@@ -12,6 +12,7 @@
 # Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2015
 # firespin <dartworldgr@hotmail.com>, 2014
 # George Charoupas <labaxp@gmail.com>, 2015
+# Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
 # malvanos <malvanos@gmail.com>, 2014
 # Natalia V <inactive+irida@transifex.com>, 2016
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:00+0100\n"
-"PO-Revision-Date: 2016-11-21 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-11-27 19:41+0000\n"
+"Last-Translator: Lampros Lampreas <marbiourd@hotmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -514,7 +515,7 @@ msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 #: gui/session/messages.js:894
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s ανταλλάσσονται με %(amountsBought)s για %(amountsSold)s."
 
 #: gui/session/messages.js:907
 #, javascript-format
@@ -636,7 +637,7 @@ msgstr "Πόντοι κατάκτησης:"
 #: gui/session/selection_details.js:411
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s⏎"
 
 #: gui/session/selection_details.js:412
 msgid "Carrying:"
@@ -645,12 +646,12 @@ msgstr "Κουβαλάει:"
 #: gui/session/selection_details.js:415 gui/session/selection_details.js:424
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:420
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:421
 msgid "Loot:"
@@ -735,12 +736,12 @@ msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 #: gui/session/selection_panels.js:1140
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Αναβάθμιση σε %(name). %(tooltip)"
 
 #: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Αναβάθμιση σε %(name)."
 
 #: gui/session/selection_panels.js:1161
 msgid "Cancel Upgrading"
@@ -748,7 +749,7 @@ msgstr "Ακύρωση αναβάθμισης"
 
 #: gui/session/selection_panels.js:1166
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "Αδυναμία αναβάθμισης όταν ήδη βρίσκεται σε φάση αναβάθμισης"
 
 #: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
@@ -853,17 +854,17 @@ msgstr "Πληκτρολογήστε το μήνυμα για την αποστ�
 #: gui/session/session.js:334
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Πάτησε %(hotkey) για τη συμμετοχή σε συζήτηση"
 
 #: gui/session/session.js:337
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Πάτησε %(hotkey)s για την παρακολούθηση συζήτησης."
 
 #: gui/session/session.js:338
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Πάτησε %(hotkey)s για την έναρξη συζήτησης με συμμάχους."
 
 #: gui/session/session.js:343
 msgid "Find idle worker"
@@ -873,12 +874,12 @@ msgstr "Εύρεση αδρανούς εργάτη"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Επέλεξε αρχικά ένα είδος αγαθών που επιθυμείς να ανταλλαχθούν και ύστερα χρησιμοποίησε με το βέλος τα αγαθά που επιθυμείς να αποκτήσεις."
 
 #: gui/session/session.js:348
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "Χρήση του %(hotkey)s θα αυξήσει τον επιλεγμένο πόρο στο 100%%."
 
 #: gui/session/session.js:493
 #, javascript-format
@@ -1011,7 +1012,7 @@ msgstr "Καταστροφή των επιλεγμένων μονάδων ή κ�
 #: gui/session/unit_actions.js:1068
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Χηση του %(hotkey)s για αποφυγή διαλόγου επιβεβαίωσης."
 
 #: gui/session/unit_actions.js:1100
 msgid "Abort the current order."
@@ -1031,7 +1032,7 @@ msgstr "Διέταξε τις επιλεγμένες μονάδες να επι�
 
 #: gui/session/unit_actions.js:1179
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Συγκέντρωση στο επιλεγμένο σημείο."
 
 #: gui/session/unit_actions.js:1204
 msgid "Back to Work"
@@ -1059,23 +1060,23 @@ msgstr "Επίθεση σε όλες τις εχθρικές μονάδες πο
 
 #: gui/session/unit_actions.js:1299
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Πληκτρολόγησε για να αποφύγουν οι σύμμαχοι αυτό το καθορισμένο σημείο "
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Πληκτρολόγησε για να επιτραπεί η χρήση του καθορισμένου σημείου από τους συμμάχους. "
 
 #: gui/session/unit_actions.js:1367
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Σου επιτρέπεται η χρήση του προκαθορισμένου σημείου."
 
 #: gui/session/unit_actions.js:1372
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Σου απαγορεύεται η χρήση του προκαθορισμένου σημείου."
 
 #: gui/session/unit_actions.js:1432
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "Η οντότητα πρέπει να εξουδετερωθεί ώστε να συλλεχθεί."
 
 #: gui/session/unit_actions.js:1435
 msgid ""
@@ -1084,7 +1085,7 @@ msgstr "Δεν μπορείς να καταστρέψεις αυτήν την ο
 
 #: gui/session/unit_actions.js:1438
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Η οντότητα δεν διαγράφεται."
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1099,7 +1100,7 @@ msgstr "%(gain)s (%(player)s)"
 #: gui/session/utility_functions.js:95 gui/session/utility_functions.js:101
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr "'"
+msgstr ", "
 
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
@@ -1137,7 +1138,7 @@ msgstr "Φιλτράρισε το ιστορικό συνομιλίας"
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Επέλεξε διεύθυνση συζήτησης."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1257,7 +1258,7 @@ msgstr "Έξοδος"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Στόχοι"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"

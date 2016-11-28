@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 09:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-11-26 23:32+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,12 +127,12 @@ msgstr "%(phase)s aşamasına ulaştım."
 #: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s ve ben şimdi düşmanız."
 
 #: simulation/ai/petra/chatHelper.js:135
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s ve ben şimdi müttefikiz."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -736,7 +736,7 @@ msgstr "(Hile - tüm birimleri yönet)"
 
 #: simulation/helpers/Commands.js:140
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(Hile - Haritayı açığa çıkar)"
 
 #: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"
@@ -750,7 +750,7 @@ msgstr "Mesafe gereksinimleri doğrulanmadığından veya arazinin engellendiği
 
 #: simulation/helpers/Commands.js:702
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "Garnizon bir varlığı yükseltemezsiniz."
 
 #: simulation/helpers/Commands.js:748
 #, javascript-format
@@ -851,7 +851,7 @@ msgstr "Hızlı İlerle (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
-msgstr ""
+msgstr "Kazanmak için tüm rakiplerini yen."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -859,7 +859,7 @@ msgstr "Fethet"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all enemy structures to win."
-msgstr ""
+msgstr "Kazanmak için tüm düşman yapılarını yok et."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -867,7 +867,7 @@ msgstr "Fetih Yapıları"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
-msgstr ""
+msgstr "Kazanmak için tüm düşman birimlerini öldür."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -875,17 +875,17 @@ msgstr "Fetih Birimleri"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "Rakiplerini kahramanlarını öldürerek yen."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "Kralı öldürme"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
 "Be the first to build or capture a wonder and keep it for a certain time to "
 "win the game."
-msgstr ""
+msgstr "Bir şaşkınlık yaratan veya yakalayan ilk kişi olun ve oyunu kazanmak için belli bir süre tutun."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
