@@ -672,8 +672,7 @@ function joinButton()
 	else
 		messageBox(
 			400, 200,
-			translate("The game has already started.") + "\n" +
-				translate("Do you want to join as observer?"),
+			translate("The game has already started. Do you want to join as observer?"),
 			translate("Confirmation"),
 			[translate("No"), translate("Yes")],
 			[null, joinSelectedGame]
