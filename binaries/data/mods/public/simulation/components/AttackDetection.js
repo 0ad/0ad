@@ -163,6 +163,6 @@ function SquaredDistance(pos1, pos2)
 	var xs = pos2.x - pos1.x;
 	var zs = pos2.z - pos1.z;
 	return xs*xs + zs*zs;
-};
+}
 
 Engine.RegisterComponentType(IID_AttackDetection, "AttackDetection", AttackDetection);

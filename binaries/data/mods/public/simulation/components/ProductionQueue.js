@@ -255,7 +255,6 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits)
 	let cmpPlayer = QueryOwnerInterface(this.entity);
-	let resCodes = Resources.GetCodes();
 
 	if (this.queue.length < MAX_QUEUE_SIZE)
 	{
