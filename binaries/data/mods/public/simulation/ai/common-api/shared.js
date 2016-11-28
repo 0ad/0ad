@@ -184,14 +184,14 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	// Setup resources
 	this.resourceInfo = state.resources;
 	m.Resources.prototype.types = state.resources.codes;
-	// Resource types: 0 = not used for resource maps
-	//                 1 = abundant resource with small amount each
-	//                 2 = spare resource, but huge amount each
+	// Resource types: ignore = not used for resource maps
+	//                 abundant = abundant resource with small amount each
+	//                 sparse = sparse resource, but huge amount each
 	// The following maps are defined in TerrainAnalysis.js and are used for some building placement (cc, dropsites)
 	// They are updated by checking for create and destroy events for all resources
-	this.normalizationFactor = { "1": 50, "2": 90 };
-	this.influenceRadius = { "1": 36, "2": 48 };
-	this.ccInfluenceRadius = { "1": 60, "2": 120 };
+	this.normalizationFactor = { "abundant": 50, "sparse": 90 };
+	this.influenceRadius = { "abundant": 36, "sparse": 48 };
+	this.ccInfluenceRadius = { "abundant": 60, "sparse": 120 };
 	this.resourceMaps = {};   // Contains maps showing the density of resources
 	this.ccResourceMaps = {}; // Contains maps showing the density of resources, optimized for CC placement.
 	this.createResourceMaps();
