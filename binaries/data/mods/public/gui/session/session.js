@@ -720,11 +720,16 @@ function confirmExit()
 
 	closeOpenDialogs();
 
-	let subject = g_PlayerStateMessages[g_ConfirmExit] + "\n" +
-		translate("Do you want to quit?");
+	// Don't ask for exit if other humans are still playing
+	let isHost = g_IsController && g_IsNetworked;
+	let askExit = !isHost || isHost && g_Players.every((player, i) =>
+		i == 0 ||
+		player.state != "active" ||
+		g_GameAttributes.settings.PlayerData[i].AI != "");
 
-	if (g_IsNetworked && g_IsController)
-		subject += "\n" + translate("Leaving will disconnect all other players.");
+	let subject = g_PlayerStateMessages[g_ConfirmExit];
+	if (askExit)
+		subject += "\n" + translate("Do you want to quit?")
 
 	messageBox(
 		400, 200,
@@ -732,8 +737,8 @@ function confirmExit()
 		g_ConfirmExit == "won" ?
 			translate("VICTORIOUS!") :
 			translate("DEFEATED!"),
-		[translate("No"), translate("Yes")],
-		[resumeGame, leaveGame]
+		askExit ? [translate("No"), translate("Yes")] : [translate("Ok")],
+		askExit ? [resumeGame, leaveGame] : [resumeGame]
 	);
 
 	g_ConfirmExit = false;
