@@ -17,7 +17,7 @@ const g_DamageTypes = {
 	"crush": translate("Crush"),
 };
 
-function costIcon(resource)
+function resourceIcon(resource)
 {
 	return '[icon="icon_' + resource + '"]';
 }
@@ -333,7 +333,7 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 		// Population bonus is shown in the tooltip
 		if (type != "populationBonus" && totalCosts[type])
 			costs.push(sprintf(translate("%(component)s %(cost)s"), {
-				"component": costIcon(type),
+				"component": resourceIcon(type),
 				"cost": totalCosts[type]
 			}));
 
@@ -372,7 +372,7 @@ function getGatherTooltip(template)
 		"details":
 			Object.keys(rates).map(
 				type => sprintf(translate("%(resourceIcon)s %(rate)s"), {
-					"resourceIcon": costIcon(type),
+					"resourceIcon": resourceIcon(type),
 					"rate": rates[type]
 				})
 			).join("  ")
@@ -421,7 +421,7 @@ function getWallPieceTooltip(wallTypes)
 			// Translation: This string is part of the resources cost string on
 			// the tooltip for wall structures.
 			out.push(sprintf(translate("%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"), {
-				"resourceIcon": costIcon(resource),
+				"resourceIcon": resourceIcon(resource),
 				"minimum": Math.min.apply(Math, resourceCount[resource]),
 				"maximum": Math.max.apply(Math, resourceCount[resource])
 			}));
@@ -494,7 +494,7 @@ function getNeededResourcesTooltip(resources)
 	let formatted = [];
 	for (let resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
-			"component": '[font="sans-12"]' + costIcon(resource) + '[/font]',
+			"component": '[font="sans-12"]' + resourceIcon(resource) + '[/font]',
 			"cost": resources[resource]
 		}));
 
@@ -638,7 +638,7 @@ function getLootTooltip(template)
 
 		// Translation: %(component) will be the icon for the loot type and %(loot) will be the value.
 		lootLabels.push(sprintf(translate("%(component)s %(loot)s"), {
-			"component": costIcon(type),
+			"component": resourceIcon(type),
 			"loot": loot
 		}));
 	}

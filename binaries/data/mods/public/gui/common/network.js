@@ -39,6 +39,8 @@ var g_NetworkWarningTexts = {
 var g_NetworkCommands = {
 	"/kick": argument => kickPlayer(argument, false),
 	"/ban": argument => kickPlayer(argument, true),
+	"/kickspecs": argument => kickObservers(false),
+	"/banspecs": argument => kickObservers(true),
 	"/list": argument => addChatMessage({ "type": "clientlist" }),
 	"/clear": argument => clearChatMessages()
 };
@@ -95,17 +97,33 @@ function reportDisconnect(reason, wasConnected)
 	);
 }
 
+function kickError()
+{
+	addChatMessage({
+		"type": "system",
+		"text": translate("Only the host can kick clients!")
+	});
+}
+
 function kickPlayer(username, ban)
 {
 	if (g_IsController)
 		Engine.KickPlayer(username, ban);
 	else
-		addChatMessage({
-			"type": "system",
-			"text": sprintf(ban ? translate("Could not ban %(name)s.") : translate("Could not kick %(name)s."), {
-				"name": username
-			})
-		});
+		kickError();
+}
+
+function kickObservers(ban)
+{
+	if (!g_IsController)
+	{
+		kickError();
+		return;
+	}
+
+	for (let guid in g_PlayerAssignments)
+		if (g_PlayerAssignments[guid].player == -1)
+			Engine.KickPlayer(g_PlayerAssignments[guid].name, ban);
 }
 
 /**

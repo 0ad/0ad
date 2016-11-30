@@ -67,7 +67,7 @@ const g_FormatChatMessage = {
 const g_MapFilters = [
 	{
 		"id": "default",
-		"name": translate("Default"),
+		"name": translateWithContext("map filter", "Default"),
 		"filter": mapKeywords => mapKeywords.every(keyword => ["naval", "demo", "hidden"].indexOf(keyword) == -1)
 	},
 	{
@@ -1391,7 +1391,7 @@ function updateGUIObjects()
 	}
 
 	// Can be visible to both host and clients
-	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.Name[mapSizeIdx] : translate("Default");
+	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.Name[mapSizeIdx] : translateWithContext("map size", "Default");
 	Engine.GetGUIObjectByName("numPlayersText").caption = numPlayers;
 	Engine.GetGUIObjectByName("victoryConditionText").caption = g_VictoryConditions.Title[victoryIdx];
 	Engine.GetGUIObjectByName("wonderDurationText").caption = g_WonderDurations.Title[wonderDurationIdx];
@@ -1786,7 +1786,7 @@ function colorizePlayernameByGUID(guid, username = "")
 
 function addChatMessage(msg)
 {
-	if (msg.text)
+	if (msg.type != "system" && msg.text)
 	{
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 10:10+0000\n"
+"POT-Creation-Date: 2016-11-25 09:01+0100\n"
+"PO-Revision-Date: 2016-11-26 08:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/wildfire-games/0ad/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -58,9 +58,10 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
+#: simulation/templates/template_unit_dog.xml:43
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:49
+#: simulation/templates/template_unit_hero_elephant_melee.xml:35
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
@@ -119,9 +120,9 @@ msgstr "clagunta xirsoi"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:59
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:48
@@ -352,20 +353,20 @@ msgstr ""
 msgid "Ship"
 msgstr "brablo"
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
 msgid "Light Warship"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:59
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
 msgid "Warship"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_bireme.xml:50
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:50
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:51
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:58
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Garrison units for transport and to increase firepower."
 msgstr ""
@@ -410,11 +411,11 @@ msgstr ""
 msgid "Trader"
 msgstr "canja"
 
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:56
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 msgid "Heavy Warship"
 msgstr ""
 
-#: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium Warship"
 msgstr ""
 
@@ -678,7 +679,7 @@ msgstr ""
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:21
+#: simulation/templates/units/spart_champion_infantry_sword.xml:22
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -750,6 +751,7 @@ msgstr ""
 msgid "Peltastḗs Thrâx"
 msgstr ""
 
+#: simulation/templates/units/athen_infantry_javelinist_b.xml:25
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:22
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:16
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
@@ -760,10 +762,13 @@ msgstr ""
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/mace_infantry_javelinist_b.xml:16
 #: simulation/templates/units/merc_black_cloak.xml:16
 #: simulation/templates/units/merc_thorakites.xml:26
 #: simulation/templates/units/merc_thrace_swordsman.xml:10
 #: simulation/templates/units/merc_thureophoros.xml:17
+#: simulation/templates/units/pers_kardakes_hoplite.xml:15
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:15
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:15
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:8
 #: simulation/templates/units/ptol_infantry_archer_b.xml:23
@@ -1075,7 +1080,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_hannibal.xml:10
 msgid ""
-"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
+"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
 "Can run amok."
 msgstr ""
 
@@ -1204,11 +1209,11 @@ msgstr ""
 msgid "Gallic Brihent"
 msgstr ""
 
-#: simulation/templates/units/gaul_champion_fanatic.xml:16
+#: simulation/templates/units/gaul_champion_fanatic.xml:19
 msgid "Naked Fanatic"
 msgstr ""
 
-#: simulation/templates/units/gaul_champion_fanatic.xml:17
+#: simulation/templates/units/gaul_champion_fanatic.xml:20
 msgid "Gaesata"
 msgstr ""
 
@@ -1818,19 +1823,19 @@ msgstr "bevri badgai"
 msgid "Sparabara"
 msgstr ""
 
-#: simulation/templates/units/pers_kardakes_hoplite.xml:5
+#: simulation/templates/units/pers_kardakes_hoplite.xml:11
 msgid "Cardaces Hoplite"
 msgstr ""
 
-#: simulation/templates/units/pers_kardakes_hoplite.xml:6
+#: simulation/templates/units/pers_kardakes_hoplite.xml:12
 msgid "Hoplites Kardakes"
 msgstr ""
 
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:5
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:11
 msgid "Cardaces Skirmisher"
 msgstr ""
 
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:6
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:12
 msgid "Peltastes Kardakes"
 msgstr ""
 
@@ -2413,11 +2418,11 @@ msgstr ""
 msgid "Spartiátēs"
 msgstr ""
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:19
+#: simulation/templates/units/spart_champion_infantry_sword.xml:20
 msgid "Skiritai Commando"
 msgstr ""
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:20
+#: simulation/templates/units/spart_champion_infantry_sword.xml:21
 msgid "Ékdromos Skirítēs"
 msgstr ""
 

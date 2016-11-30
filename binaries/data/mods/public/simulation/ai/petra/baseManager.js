@@ -340,16 +340,11 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		if (i < 0)  // no room around
 			continue;
 
-		// we add 3 times the needed resource and once the other two (not food)
-		let total = 0;
+		// we add 3 times the needed resource and once the others (except food)
+		let total = 2*gameState.sharedScript.resourceMaps[resource].map[j];
 		for (let res in gameState.sharedScript.resourceMaps)
-		{
-			if (res === "food")
-				continue;
-			total += gameState.sharedScript.resourceMaps[res].map[j];
-			if (res === resource)
-				total += 2*gameState.sharedScript.resourceMaps[res].map[j];
-		}
+			if (res !== "food")
+				total += gameState.sharedScript.resourceMaps[res].map[j];
 
 		total = 0.7*total;   // Just a normalisation factor as the locateMap is limited to 255
 		if (total <= bestVal)

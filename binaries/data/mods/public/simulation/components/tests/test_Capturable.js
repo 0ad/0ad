@@ -93,7 +93,7 @@ testCapturable(testData, cmpCapturable => {
 		TS_ASSERT_UNEVAL_EQUALS(message, { "regenerating": true, "regenRate": cmpCapturable.GetRegenRate() , "territoryDecay": 0 });
 	};
 	cmpCapturable.OnOwnershipChanged({ "from": -1, "to": testData.playerID });
-	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 3000, 0, 0])
+	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 3000, 0, 0]);
 });
 
 // Tests if the message is sent when capture points change

@@ -160,7 +160,7 @@ GuiInterface.prototype.GetSimulationState = function()
 		"aiInfluenceGroups": {}
 	};
 	for (let res of ret.resources.codes)
-		ret.resources.aiInfluenceGroups[res] = Resources.GetResource(res).aiAnalysisInfluenceGroup || 0;
+		ret.resources.aiInfluenceGroups[res] = Resources.GetResource(res).aiAnalysisInfluenceGroup;
 
 	// Add basic statistics to each player
 	for (let i = 0; i < numPlayers; ++i)

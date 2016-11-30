@@ -49,7 +49,7 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		GetCurrentTemplateName: function(ent) { return "formations/line_closed"},
+		GetCurrentTemplateName: function(ent) { return "formations/line_closed"; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -193,10 +193,10 @@ function TestMoveIntoFormationWhileAttacking()
 		ResetActiveQuery: function(id) { return [enemy]; },
 		DisableActiveQuery: function(id) { },
 		GetEntityFlagMask: function(identifier) { },
-	});;
+	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		GetCurrentTemplateName: function(ent) { return "formations/line_closed"},
+		GetCurrentTemplateName: function(ent) { return "formations/line_closed"; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -288,7 +288,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 	AddMock(controller, IID_Attack, {
 		GetRange: function() { return {"max":10, "min": 0}; },
-		CanAttackAsFormation: function() { return false },
+		CanAttackAsFormation: function() { return false; },
 	});
 
 	controllerAI.OnCreate();

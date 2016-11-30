@@ -6,7 +6,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "statue_face_stone.png",
 	"researchTime": 60,
-	"tooltip": "Civic centers +100% health and capture points and double default arrows.",
+	"tooltip": "Civic centers +100% health and capture points, double default arrows.",
 	"modifications": [
 		{"value": "BuildingAI/DefaultArrowCount", "multiply": 2.0},
 		{"value": "Capturable/CapturePoints", "multiply": 2.0},
