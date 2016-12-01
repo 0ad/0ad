@@ -1,4 +1,5 @@
 var g_CurrentCampaign = null;
+var g_CampaignData = null;
 
 function loadCurrentCampaign()
 {
@@ -25,5 +26,15 @@ function loadCampaign(campaign)
 	g_CurrentCampaign = campaign;
 
 	let campaignData = Engine.LoadCampaign(g_CurrentCampaign);
-	warn(uneval(campaignData));
+	if (!campaignData)
+	{
+		warn("Campaign failed to load properly. Quitting campaign mode.")
+		ExitCampaignMode();
+	}
+	g_CampaignData = campaignData.campaign_state;
+}
+
+function ExitCampaignMode()
+{
+
 }
