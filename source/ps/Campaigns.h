@@ -55,6 +55,31 @@ Status Save(ScriptInterface& scriptInterface, const CStrW& name, const shared_pt
 Status Load(ScriptInterface& scriptInterface, const std::wstring& name, JS::MutableHandleValue campaignData);
 
 /**
+ * Load the campaign template located at "campaign/campaign.xml"
+ *
+ * This is useful for modders to easily create new campaigns by simply changing a few elements in the xml
+ * Instead of having to change javascript files.
+ *
+ * @param scriptInterface
+ * @param[out] object containing the XML information.
+ * @return INFO::OK if successfully loaded, else an error Status
+
+ */
+Status LoadTemplateXML(ScriptInterface& scriptInterface, JS::MutableHandleValue campaignData);
+
+/**
+ * Load the campaign template located at "campaign/campaign.json"
+ *
+ * Provided because maybe more flexible than the xml for those that know JSON?
+ *
+ * @param scriptInterface
+ * @param[out] object containing the XML information.
+ * @return INFO::OK if successfully loaded, else an error Status
+
+ */
+Status LoadTemplateJSON(ScriptInterface& scriptInterface, JS::MutableHandleValue campaignData);
+
+/**
  * Get list of saved games for GUI script usage
  *
  * @param scriptInterface the ScriptInterface in which to create the return data.

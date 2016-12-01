@@ -268,8 +268,36 @@ JS::Value LoadCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstrin
 	Status err = Campaigns::Load(*(pCxPrivate->pScriptInterface), campaignName, &campaignData);
 	if (err < 0)
 		return JS::UndefinedValue();
+
 	return campaignData;
-	
+}
+
+JS::Value LoadCampaignTemplateXML(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue campaignTemplate(cx);
+	Status err = Campaigns::LoadTemplateXML(*(pCxPrivate->pScriptInterface), &campaignTemplate);
+	if (err < 0)
+		return JS::UndefinedValue();
+
+	// TODO: freeze this?
+	return campaignTemplate;
+}
+
+JS::Value LoadCampaignTemplateJSON(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue campaignTemplate(cx);
+	Status err = Campaigns::LoadTemplateJSON(*(pCxPrivate->pScriptInterface), &campaignTemplate);
+	if (err < 0)
+		return JS::UndefinedValue();
+
+	// TODO: freeze this?
+	return campaignTemplate;
 }
 
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -1079,6 +1107,8 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Campaigns
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SaveCampaign>("SaveCampaign");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &LoadCampaign>("LoadCampaign");
+	scriptInterface.RegisterFunction<JS::Value, &LoadCampaignTemplateXML>("LoadCampaignTemplateXML");
+	scriptInterface.RegisterFunction<JS::Value, &LoadCampaignTemplateJSON>("LoadCampaignTemplateJSON");
 
 	// Saved games
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");

@@ -30,6 +30,7 @@
 #include "ps/Game.h"
 #include "ps/Mod.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
@@ -111,4 +112,45 @@ Status Campaigns::Load(ScriptInterface& scriptInterface, const std::wstring& nam
 	return INFO::OK;
 }
 
+Status Campaigns::LoadTemplateXML(ScriptInterface& scriptInterface, JS::MutableHandleValue campaignData)
+{
+	const VfsPath filename(L"campaign/campaign.xml");
+
+	if (g_VFS->GetFileInfo(filename, 0) != INFO::OK)
+	{
+		LOGWARNING("Attempting to load non-existing campaign template data at campaign/campaign.xml");
+		return ERR::FAIL;
+	}
+
+	CXeromyces xero;
+	PSRETURN ok = xero.Load(g_VFS, filename);
+	if (ok != PSRETURN_OK)
+		return ERR::FAIL; // (Xeromyces already logged an error with the full filename)
+
+	// TODO: validate?
+
+	// Load the new file
+	CParamNode ret;
+	CParamNode::LoadXML(ret, xero);
+
+	// TODO: should we use cache?
+	ret.ToJSVal(scriptInterface.GetContext(), false, campaignData);
+
+	return INFO::OK;
+}
+
+Status Campaigns::LoadTemplateJSON(ScriptInterface& scriptInterface, JS::MutableHandleValue campaignData)
+{
+	const VfsPath filename(L"campaign/campaign.json");
+
+	if (g_VFS->GetFileInfo(filename, 0) != INFO::OK)
+	{
+		LOGWARNING("Attempting to load non-existing campaign template data at campaign/campaign.json");
+		return ERR::FAIL;
+	}
+
+	scriptInterface.ReadJSONFile(filename, campaignData);
+	
+	return INFO::OK;
+}
 

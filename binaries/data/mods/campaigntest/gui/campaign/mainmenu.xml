@@ -22,7 +22,7 @@
 			<!-- Main Menu Button -->
 			<object type="button" style="StoneButton" size="25 0 17%+25 100%">
 				<translatableAttribute id="caption">Quit Campaign</translatableAttribute>
-				<action on="Press">ExitCampaignMode()</action>
+				<action on="Press">exitCampaignMode()</action>
 			</object>
 
 			<!-- Start Campaign Button -->
