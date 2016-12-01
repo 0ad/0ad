@@ -42,6 +42,10 @@ function init(initData, hotloadData)
 		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
 	}
+
+	// Enable campaign button if we have a page_campaignsetup.xml file loaded
+	if (Engine.FileExists("gui/page_campaignsetup.xml"))
+		Engine.GetGUIObjectByName("subMenuCampaignButton").enabled = true;
 }
 
 function getHotloadData()
