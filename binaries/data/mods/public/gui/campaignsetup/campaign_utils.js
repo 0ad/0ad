@@ -1,4 +1,7 @@
+// ID of the current campaign. This is the name of the mod folder (not the "human readable" name)
 var g_CurrentCampaign = null;
+
+// This stores current campaign state.
 var g_CampaignData = null;
 
 function loadCurrentCampaign()
@@ -36,5 +39,11 @@ function loadCampaign(campaign)
 
 function ExitCampaignMode()
 {
-
+	// TODO: save campaign state ?
+	
+	// TODO: might be safer to check all mods and remove all with type "campaign"
+	let mods = getExistingModsFromConfig();
+	mods.filter(mod => mod != g_CurrentCampaign);
+	Engine.SetMods(mods);
+	Engine.RestartEngine();
 }

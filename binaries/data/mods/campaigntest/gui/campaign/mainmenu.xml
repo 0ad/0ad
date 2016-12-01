@@ -5,6 +5,8 @@
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
 
+	<script file="gui/modmod/modutils.js"/>
+
 	<script file="gui/campaignsetup/campaign_utils.js"/>
 	<script file="gui/campaign/mainmenu.js"/>
 
@@ -20,7 +22,7 @@
 			<!-- Main Menu Button -->
 			<object type="button" style="StoneButton" size="25 0 17%+25 100%">
 				<translatableAttribute id="caption">Quit Campaign</translatableAttribute>
-				<action on="Press"></action>
+				<action on="Press">ExitCampaignMode()</action>
 			</object>
 
 			<!-- Start Campaign Button -->
