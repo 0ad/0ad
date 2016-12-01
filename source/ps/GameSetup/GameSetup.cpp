@@ -499,6 +499,8 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	// We mount these dirs last as otherwise writing could result in files being placed in a mod's dir.
 	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
 	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
+	g_VFS->Mount(L"campaignsaves/", paths.UserData()/"campaignsaves"/"");
+
 	// Mounting with highest priority, so that a mod supplied user.cfg is harmless
 	g_VFS->Mount(L"config/", readonlyConfig, 0, (size_t)-1);
 	if(readonlyConfig != paths.Config())

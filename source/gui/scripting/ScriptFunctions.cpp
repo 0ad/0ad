@@ -39,6 +39,7 @@
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 #include "network/NetServer.h"
+#include "ps/Campaigns.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
@@ -249,6 +250,13 @@ void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
+}
+
+void SaveCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, JS::HandleValue metadata)
+{
+	shared_ptr<ScriptInterface::StructuredClone> metadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(metadata);
+	if (Campaigns::Save(*(pCxPrivate->pScriptInterface), filename, metadataClone) < 0)
+		LOGERROR("Failed to save campaign state");
 }
 
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -1054,6 +1062,9 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
+
+	// Campaigns
+	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SaveCampaign>("SaveCampaign");
 
 	// Saved games
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");
