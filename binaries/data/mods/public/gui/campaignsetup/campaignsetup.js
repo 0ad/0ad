@@ -3,7 +3,7 @@
  */
 const g_EngineInfo = Engine.GetEngineInfo();
 
-var g_CampaignsAvailable = []; // folder names
+var g_CampaignsAvailable = {}; // folder names
 
 /*
  * Initializes the campaign window.
@@ -31,14 +31,17 @@ function LoadCampaignMods(data)
 				return;
 			}
 		// skip non-campaign mods
-		if (mods[k].type && mods[k].type != "campaign")
+		if (!mods[k].type || mods[k].type != "campaign")
 			return;
 		g_CampaignsAvailable[k] = mods[k];
 	});
 
 	let modsEnabled = getExistingModsFromConfig();
 
-	if (Object.keys(g_CampaignsAvailable).filter(function(i) { return modsEnabled.indexOf(i) !== -1; }))
+	warn ("mods enabled " + uneval(modsEnabled))
+	warn ("mods available " + uneval(g_CampaignsAvailable))
+
+	if (Object.keys(g_CampaignsAvailable).some(foldername => modsEnabled.indexOf(foldername) !== -1))
 		warn("Warning: a campaign mod is already loaded. Loading another one is undefined behavior.");
 
 	GenerateCampaignList();
@@ -47,21 +50,30 @@ function LoadCampaignMods(data)
 function GenerateCampaignList()
 {
 	// Remember previously selected
-	let oldSelection = Engine.GetGUIObjectByName("campaignSelection");
+	let selection = Engine.GetGUIObjectByName("campaignSelection");
 	//if (oldSelection.selected != -1)
 	//	g_SelectedReplayDirectory = g_ReplaysFiltered[replaySelection.selected].directory;
 
 	warn(uneval(g_CampaignsAvailable));
-/*
-	let list = g_CampaignsAvailable.map(camp => {
-		return {
-			"directories": replay.directory,
-			"months": greyout(getReplayDateTime(replay), works),
-			"popCaps": greyout(translatePopulationCapacity(replay.attribs.settings.PopulationCap), works),
-			"mapNames": greyout(getReplayMapName(replay), works),
-			"mapSizes": greyout(translateMapSize(replay.attribs.settings.Size), works),
-			"durations": greyout(getReplayDuration(replay), works),
-			"playerNames": greyout(getReplayPlayernames(replay), works)
-		};
-	});*/
+
+	let list = [];
+	for (let key in g_CampaignsAvailable)
+		list.push({ "directories" : key, "name" : g_CampaignsAvailable[key].name, "difficulty" : "TODO" });
+
+	// change array of object into object of array.
+	list = prepareForDropdown(list);
+
+	// Push to GUI
+	selection.selected = -1;
+	selection.list_name = list.name || [];
+	selection.list_difficulty = list.difficulty || [];
+
+	// Change these last, otherwise crash
+	selection.list = list.directories || [];
+	selection.list_data = list.directories || [];
+
+	warn(uneval(list))
+//	replaySelection.selected = replaySelection.list.findIndex(directory => directory == g_SelectedReplayDirectory);
+
+//	displayReplayDetails();
 }
