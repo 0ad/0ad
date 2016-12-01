@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<!-- Used to display game info. -->
+	<script file="gui/common/color.js" />
+	<script file="gui/common/functions_civinfo.js" />
+	<script file="gui/common/functions_utility.js" />
+	<script file="gui/common/gamedescription.js"/>
+	<script file="gui/common/settings.js" />
+
+	<!-- Used to display message boxes. -->
+	<script file="gui/common/functions_global_object.js" />
+
+	<!-- Used for engine + mod version checks and deleteTooltip. -->
+	<script file="gui/common/functions_utility_loadsave.js" />
+
+	<script file="gui/common/functions_utility_loadsave.js" />
+
+	<!-- Some useful functions to get the mods -->
+	<script file="gui/modmod/modutils.js" />
+
+	<script file="gui/campaignsetup/campaignsetup.js" />
+
+	<!-- Everything displayed in the campaign menu. -->
+	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignWindow">
+
+		<!-- Title -->
+		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
+			<translatableAttribute id="caption">Campaigns</translatableAttribute>
+		</object>
+
+		<object name="leftPanel" size="3% 5% 100%-255 100%-80">
+			<!-- List of campaigns -->
+			<object name="campaignSelection"
+				size="0 35 100% 100%"
+				style="ModernList"
+				type="olist"
+				sortable="true"
+				selected_column="months"
+				selected_column_order="-1"
+				sprite_asc="ModernArrowDown"
+				sprite_desc="ModernArrowUp"
+				sprite_not_sorted="ModernNotSorted"
+				font="sans-stroke-13"
+			>
+
+				<!--<action on="SelectionChange">displayReplayDetails();</action>
+				<action on="SelectionColumnChange">displayReplayList();</action>
+				<action on="mouseleftdoubleclickitem">startReplay();</action>
+	-->
+				<!-- Columns -->
+				<column id="name" color="172 172 212" width="70%">
+					<translatableAttribute id="heading" context="campaignsetup">Name</translatableAttribute>
+				</column>
+
+				<column id="players" color="192 192 192" width="20%">
+					<translatableAttribute id="heading" context="campaignsetup">Difficulty</translatableAttribute>
+				</column>
+
+				<column id="mapName" color="192 192 192" width="10%">
+					<translatableAttribute id="heading" context="campaignsetup">Progress</translatableAttribute>
+				</column>
+
+			</object>	</object>
+
+	</object>
+</objects>

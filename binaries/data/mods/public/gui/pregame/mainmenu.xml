@@ -217,16 +217,12 @@
 					style="StoneButtonFancy"
 					size="0 32 100% 60"
 					tooltip_style="pgToolTip"
-					enabled="false"
 				>
 					<translatableAttribute id="caption">Campaigns</translatableAttribute>
-					<translatableAttribute id="tooltip">Relive history through historical military campaigns. \[NOT YET IMPLEMENTED]</translatableAttribute>
+					<translatableAttribute id="tooltip">Relive history through historical military campaigns. \[WIP]</translatableAttribute>
 					<action on="Press">
-					closeMenu();
-						<![CDATA[
-							// Open Campaigns window.
-							// NOT IMPLEMENTED YET
-						]]>
+						closeMenu();
+						Engine.PushGuiPage("page_campaignsetup.xml", { type: "offline" });
 					</action>
 				</object>
 

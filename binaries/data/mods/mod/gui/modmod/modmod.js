@@ -51,11 +51,13 @@ function init()
 				log("Skipping mod '"+k+"'. Missing property '"+keys[i]+"'.");
 				return;
 			}
-
+		// skip campaign mods
+		if (mods[k].type && mods[k].type == "campaign")
+			return;
 		g_mods[k] = mods[k];
 	});
 
-	g_modsEnabled = getExistingModsFromConfig();
+	g_modsEnabled = getExistingModsFromConfig(g_mods);
 	g_modsAvailable = Object.keys(g_mods).filter(function(i) { return g_modsEnabled.indexOf(i) === -1; });
 
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
@@ -97,23 +99,6 @@ function startMods()
 	sortMods();
 	Engine.SetMods(["mod"].concat(g_modsEnabled));
 	Engine.RestartEngine();
-}
-
-function getExistingModsFromConfig()
-{
-	var existingMods = [];
-
-	var mods = [];
-	var cfgMods = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
-	if (cfgMods.length > 0)
-		mods = cfgMods.split(/\s+/);
-
-	mods.forEach(function(mod) {
-		if (mod in g_mods)
-			existingMods.push(mod);
-	});
-
-	return existingMods;
 }
 
 /**
