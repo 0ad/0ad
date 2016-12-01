@@ -7,6 +7,9 @@ var g_CurrentCampaign = null;
 // (optional) campaign data loaded from XML or JSON, to make modder's life easier.
 var g_CampaignTemplate = null;
 
+// saves mods, for convenience on continue
+var g_CampaignMods = null;
+
 // This stores current campaign state.
 var g_CampaignData = null;
 
@@ -16,23 +19,36 @@ var g_CampaignData = null;
  * Other things
  */
 
-
-function loadCurrentCampaign()
+function canLoadCurrentCampaign(verbose = false)
 {
 	let campaign = Engine.ConfigDB_GetValue("user", "currentcampaign");
 
 	if (!campaign)
 	{
-		warn("No campaign chosen, currentcampaign is not defined in user.cfg. Quitting campaign mode.")
-		exitCampaignMode();
+		if (verbose)
+			warn("No campaign chosen, currentcampaign is not defined in user.cfg. Quitting campaign mode.")
+		return false;
+	}
+
+	if (!Engine.FileExists("campaignsaves/" + campaign + ".0adcampaign"))
+	{
+		if (verbose)
+			warn("Current campaign not found. Quitting campaign mode.");
+		return false;
 	}
 
 	// TODO: check proper mods are loaded, proper version and so on (see savegame/load.js)	
-	loadCampaign(campaign);
+
+	return true;
 }
 
-function loadCampaign(campaign)
+function loadCurrentCampaignState()
 {
+	let campaign = Engine.ConfigDB_GetValue("user", "currentcampaign");
+
+	if (!canLoadCurrentCampaign(true))
+		exitCampaignMode();
+
 	if (g_CurrentCampaign)
 	{
 		warn("Campaign already loaded");
@@ -46,8 +62,9 @@ function loadCampaign(campaign)
 		warn("Campaign failed to load properly. Quitting campaign mode.")
 		exitCampaignMode();
 	}
-	g_CampaignData = campaignData.campaign_state;
 
+	g_CampaignData = campaignData.campaign_state;
+	g_CampaignMods = campaignData.mods;
 	g_CurrentCampaignID = g_CampaignData.campaign;
 
 	loadCampaignTemplate();
