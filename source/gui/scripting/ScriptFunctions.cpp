@@ -259,6 +259,19 @@ void SaveCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fi
 		LOGERROR("Failed to save campaign state");
 }
 
+JS::Value LoadCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& campaignName)
+{
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue campaignData(cx);
+	Status err = Campaigns::Load(*(pCxPrivate->pScriptInterface), campaignName, &campaignData);
+	if (err < 0)
+		return JS::UndefinedValue();
+	return campaignData;
+	
+}
+
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	ENSURE(g_NetClient);
@@ -1065,6 +1078,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Campaigns
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SaveCampaign>("SaveCampaign");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &LoadCampaign>("LoadCampaign");
 
 	// Saved games
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");

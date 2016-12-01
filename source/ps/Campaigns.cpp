@@ -65,9 +65,7 @@ Status Campaigns::Save(ScriptInterface& scriptInterface, const CStrW& name, cons
 	try
 	{
 		CFilePacker packer(CAMPAIGN_VERSION, "CSST");
-		packer.PackRaw(dataString.c_str(), dataString.length());
-		std::cout << dataString << std::endl;
-		std::cout << filename.string8() << std::endl;
+		packer.PackString(dataString);
 		packer.Write(filename);
 	}
 	catch (PSERROR_File_WriteFailed&)
@@ -81,4 +79,36 @@ Status Campaigns::Save(ScriptInterface& scriptInterface, const CStrW& name, cons
 
 	return INFO::OK;
 }
+
+Status Campaigns::Load(ScriptInterface& scriptInterface, const std::wstring& name, JS::MutableHandleValue campaignData)
+{
+	// Determine the filename to load
+	const VfsPath basename(L"campaignsaves/" + name);
+	const VfsPath filename = basename.ChangeExtension(L".0adcampaign");
+
+	if (!VfsFileExists(filename))
+		return ERR::FILE_NOT_FOUND;
+
+	CFileUnpacker unpacker;
+	unpacker.Read(filename, "CSST");
+
+	if (unpacker.GetVersion() < CAMPAIGN_VERSION)
+	{
+		LOGWARNING("Campaign file is too old, version %i, current version %i", unpacker.GetVersion(), CAMPAIGN_VERSION);
+		return ERR::FAIL;
+	}
+
+	CStr datastream;
+	unpacker.UnpackString(datastream);
+
+
+	if (!scriptInterface.ParseJSON(datastream, campaignData))
+	{
+		LOGERROR("Error parsing campaign JSON.");
+		return ERR::FAIL;
+	}
+
+	return INFO::OK;
+}
+
 

@@ -36,6 +36,7 @@ namespace Campaigns
 /**
  * Create new campaign file with given name and metadata
  *
+ * @param scriptInterface
  * @param name Name of the campaign
  * @param MetadataClone Actual campaign Metadata
  * @return INFO::OK if successfully saved, else an error Status
@@ -43,17 +44,15 @@ namespace Campaigns
 Status Save(ScriptInterface& scriptInterface, const CStrW& name, const shared_ptr<ScriptInterface::StructuredClone>& metadataClone);
 
 /**
- * Load saved game archive with the given name
+ * Load campaign with the given name
  *
- * @param name filename of saved game (without path or extension)
  * @param scriptInterface
+ * @param name filename of campaign game (without path or extension)
  * @param[out] metadata object containing metadata associated with saved game,
  *	parsed from metadata.json inside the archive.
- * @param[out] savedState serialized simulation state stored as string of bytes,
- *	loaded from simulation.dat inside the archive.
  * @return INFO::OK if successfully loaded, else an error Status
- *
-Status Load(const std::wstring& name, ScriptInterface& scriptInterface, JS::MutableHandleValue metadata, std::string& savedState);
+ */
+Status Load(ScriptInterface& scriptInterface, const std::wstring& name, JS::MutableHandleValue campaignData);
 
 /**
  * Get list of saved games for GUI script usage
