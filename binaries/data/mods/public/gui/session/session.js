@@ -401,7 +401,11 @@ function selectViewPlayer(playerID)
 	g_IsObserver = isPlayerObserver(Engine.GetPlayerID());
 
 	if (g_IsObserver || g_DevSettings.changePerspective)
+	{
+		if (g_ViewedPlayer != playerID)
+			clearSelection();
 		g_ViewedPlayer = playerID;
+	}
 
 	if (g_DevSettings.changePerspective)
 	{
@@ -410,7 +414,6 @@ function selectViewPlayer(playerID)
 	}
 
 	Engine.SetViewedPlayer(g_ViewedPlayer);
-
 	updateTopPanel();
 	updateChatAddressees();
 	updateHotkeyTooltips();

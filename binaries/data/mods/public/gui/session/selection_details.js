@@ -413,7 +413,7 @@ function displayMultiple(entStates)
 			"details": bodyFont(Object.keys(totalCarrying).filter(
 				res => totalCarrying[res] != 0).map(
 				res => sprintf(translate("%(type)s %(amount)s"),
-					{ "type": costIcon(res), "amount": totalCarrying[res] })).join("  "))
+					{ "type": resourceIcon(res), "amount": totalCarrying[res] })).join("  "))
 		});
 
 	if (Object.keys(totalLoot).length)
@@ -422,7 +422,7 @@ function displayMultiple(entStates)
 			"details": bodyFont(Object.keys(totalLoot).filter(
 				res => totalLoot[res] != 0).map(
 				res => sprintf(translate("%(type)s %(amount)s"),
-					{ "type": costIcon(res), "amount": totalLoot[res] })).join("  "))
+					{ "type": resourceIcon(res), "amount": totalLoot[res] })).join("  "))
 		});
 
 	// Unhide Details Area
