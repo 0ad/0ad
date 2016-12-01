@@ -89,6 +89,7 @@ function saveMods()
 {
 	// always sort mods before saving
 	sortMods();
+	generateModsList("modsEnabledList", g_modsEnabled);
 	Engine.ConfigDB_CreateValue("user", "mod.enabledmods", ["mod"].concat(g_modsEnabled).join(" "));
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 }
@@ -97,6 +98,7 @@ function startMods()
 {
 	// always sort mods before starting
 	sortMods();
+	generateModsList("modsEnabledList", g_modsEnabled);
 	Engine.SetMods(["mod"].concat(g_modsEnabled));
 	Engine.RestartEngine();
 }
@@ -235,6 +237,7 @@ function disableMod()
 	// Sort them, so we know which ones can depend on the removed mod
 	// TODO: Find position where the removed mod would have fit (for now assume idx 0)
 	sortMods();
+	generateModsList("modsEnabledList", g_modsEnabled);
 	for (var i = 0; i < g_modsEnabled.length; ++i)
 	{
 		if (!areDependenciesMet(g_modsEnabled[i]))

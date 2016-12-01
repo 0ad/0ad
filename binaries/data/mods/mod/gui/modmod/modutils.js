@@ -108,3 +108,32 @@ function versionSatisfied(version, op, requirement)
 	return false;
 }
 
+function sortMods(mods = null, modsEnabled = null)
+{
+	if (!modsEnabled)
+		modsEnabled = g_modsEnabled;
+	if (!mods)
+		mods = g_mods;
+
+	// store the list of dependencies per mod, but strip the version numbers
+	var deps = {};
+	for (var mod of modsEnabled)
+	{
+		deps[mod] = [];
+		if (!mods[mod].dependencies)
+			continue;
+		deps[mod] = mods[mod].dependencies.map(function(d) { return d.split(/(<=|>=|<|>|=)/)[0]; });
+	}
+	var sortFunction = function(mod1, mod2)
+	{
+		var name1 = mods[mod1].name;
+		var name2 = mods[mod2].name;
+		if (deps[mod1].indexOf(name2) != -1)
+			return 1;
+		if (deps[mod2].indexOf(name1) != -1)
+			return -1;
+		return 0;
+	}
+	modsEnabled.sort(sortFunction);
+}
+

@@ -16,4 +16,14 @@ function startCampaign()
 function realStartCampaign(name, campaign)
 {
 	Engine.SaveCampaign(name, {"name" : name, "campaign" : campaign});
+
+	// inform user config that we are playing this campaign
+	Engine.ConfigDB_CreateValue("user", "currentcampaign", name);
+	Engine.ConfigDB_WriteValueToFile("user", "currentcampaign", name, "config/user.cfg");
+
+	// load up the campaign mod and restart.
+	// TODO: make sure getExistingModsFromConfig returns mod in proper dependency order (though it ought to)
+	let mods = getExistingModsFromConfig().concat(campaign);
+	Engine.SetMods(mods);
+	Engine.RestartEngine();
 }
