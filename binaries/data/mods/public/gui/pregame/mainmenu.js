@@ -49,6 +49,7 @@ function init(initData, hotloadData)
 		Engine.GetGUIObjectByName("subMenuNewCampaignButton").enabled = true;
 		// TODO
 		// Engine.GetGUIObjectByName("subMenuLoadCampaignButton").enabled = true;
+		// Continue if it seems we would be able to.
 		if (canLoadCurrentCampaign())
 			Engine.GetGUIObjectByName("subMenuContinueCampaignButton").enabled = true;
 	}

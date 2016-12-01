@@ -4,11 +4,14 @@
 	<script file="gui/common/music.js"/>
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
+	<script file="gui/common/settings.js"/>
 
 	<script file="gui/modmod/modutils.js"/>
 
 	<script file="gui/campaignsetup/campaign_utils.js"/>
 	<script file="gui/campaign/mainmenu.js"/>
+	<script file="gui/campaign/gamesetup.js"/>
+	<script file="gui/campaign/utilities.js"/>
 
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignMenuWindow">
 
@@ -19,15 +22,15 @@
 
 		<object name="leftPanel" size="3% 5% 100%-500 100%-80">
 			<!-- List of available scenarios -->
-			<object name="campaignSelection"
+			<object name="scenarioSelection"
 				size="0 35 100% 100%"
 				style="ModernList"
 				type="olist"
 				font="sans-stroke-16"
 				>
 
-				<!--<action on="SelectionChange">displayCampaignDetails();</action>
-				<action on="SelectionColumnChange">displayReplayList();</action>
+				<action on="SelectionChange">displayScenarioDetails();</action>
+				<!--<action on="SelectionColumnChange">displayReplayList();</action>
 				<action on="mouseleftdoubleclickitem">startCampaign();</action>-->
 
 			<!-- Columns -->
@@ -43,6 +46,23 @@
 				<translatableAttribute id="heading" context="campaignscenariolist">Status</translatableAttribute>
 			</column>
 			</object>
+		</object>
+
+		<object name="rightPanel" size="100%-496 5% 97% 100%-80">
+			<!-- Scenario Image -->
+			<object type="image" sprite="ModernDarkBoxGold" name="scenarioPreviewBox" size="5 5 100%-5 305">
+				<object type="image" sprite="snScenarioPreview" size="1 1 401 294" name="mapPreview"/>
+			</object>
+
+			<!-- Name and description -->
+			<!-- TODO: sort this all out. -->
+			<object size="5 315 100%-5 100%-10">
+				<object name="scenarioName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
+				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
+					<object name="scenarioDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
+				</object>
+			</object>
+
 		</object>
 
 		<object name="bottomPanel" size="25 100%-55 100%-5 100%-25" >
@@ -61,7 +81,9 @@
 			<!-- Start Campaign Button -->
 			<object name="startCampButton" type="button" style="StoneButton" size="83%-25 0 100%-25 100%" enabled="false">
 				<translatableAttribute id="caption">Start Campaign</translatableAttribute>
-				<action on="Press"></action>
+				<action on="Press">
+					launchGame(g_SelectedScenario);
+				</action>
 			</object>
 
 		</object>
