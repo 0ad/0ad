@@ -17,11 +17,44 @@
 			<translatableAttribute id="caption">Test Campaign</translatableAttribute>
 		</object>
 
+		<object name="leftPanel" size="3% 5% 100%-500 100%-80">
+			<!-- List of available scenarios -->
+			<object name="campaignSelection"
+				size="0 35 100% 100%"
+				style="ModernList"
+				type="olist"
+				font="sans-stroke-16"
+				>
+
+				<!--<action on="SelectionChange">displayCampaignDetails();</action>
+				<action on="SelectionColumnChange">displayReplayList();</action>
+				<action on="mouseleftdoubleclickitem">startCampaign();</action>-->
+
+			<!-- Columns -->
+			<column id="ID" color="172 172 212" width="5%">
+				<translatableAttribute id="heading" context="campaignscenariolist">ID</translatableAttribute>
+			</column>
+
+			<column id="name" color="172 172 212" width="80%">
+				<translatableAttribute id="heading" context="campaignscenariolist">Scenario Name</translatableAttribute>
+			</column>
+
+			<column id="status" color="192 192 192" width="15%">
+				<translatableAttribute id="heading" context="campaignscenariolist">Status</translatableAttribute>
+			</column>
+			</object>
+		</object>
+
 		<object name="bottomPanel" size="25 100%-55 100%-5 100%-25" >
 
-			<!-- Main Menu Button -->
+			<!-- Exit & Back to Main Menu -->
 			<object type="button" style="StoneButton" size="25 0 17%+25 100%">
-				<translatableAttribute id="caption">Quit Campaign</translatableAttribute>
+				<translatableAttribute id="caption">Exit Game</translatableAttribute>
+				<action on="Press">exitCampaignMode(true);</action>
+			</object>
+
+			<object type="button" style="StoneButton" size="20%+25 0 37%+25 100%">
+				<translatableAttribute id="caption">Back to Main Menu</translatableAttribute>
 				<action on="Press">exitCampaignMode()</action>
 			</object>
 
