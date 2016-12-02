@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-26 23:50+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2016-11-28 09:00+0100\n"
+"PO-Revision-Date: 2016-11-28 09:33+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,12 +136,41 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:82
+#: gui/common/functions_utility_loadsave.js:83 gui/savedgames/save.js:62
+#, javascript-format
+msgid "\"%(label)s\""
+msgstr "\"%(label)s\""
+
+#: gui/common/functions_utility_loadsave.js:85
+msgid "Saved game will be permanently deleted, are you sure?"
+msgstr "Kayıtlı oyun kalıcı olarak silinecek, emin misiniz?"
+
+#: gui/common/functions_utility_loadsave.js:86
+msgid "DELETE"
+msgstr "SİL"
+
+#: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:128 gui/savedgames/save.js:65
+#: gui/summary/summary.js:156
+msgid "No"
+msgstr "Hayır"
+
+#: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:128 gui/savedgames/save.js:65
+#: gui/summary/summary.js:156
+msgid "Yes"
+msgstr "Evet"
+
+#: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr ""
 
-#: gui/common/functions_utility_loadsave.js:87
+#: gui/common/functions_utility_loadsave.js:109
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr ""
@@ -408,13 +437,13 @@ msgstr "%(previousAmounts)s ve %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:141 gui/common/tooltips.js:118
+#: gui/common/l10n.js:23 gui/common/network.js:159 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:525 gui/common/tooltips.js:559
 #: gui/common/tooltips.js:613 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:122
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:59
+#: gui/savedgames/load.js:115 gui/savedgames/load.js:118
 msgid ", "
 msgstr ","
 
@@ -438,85 +467,79 @@ msgstr "Sunucuya kötü bağlantı (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Kötü bağlantı %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:64
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Bilinmeyen sebep"
 
-#: gui/common/network.js:63
+#: gui/common/network.js:65
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
 msgstr "Bu çoğunlukla, ana bilgisayar tarafında, güvenlik duvarı veya anti-virüs yazılımı tarafından yönlendirilen 20595 UDP bağlantı noktası nedeniyle oluşur"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 msgid "The host has ended the game"
 msgstr "Bu oyunda konuk sona erdi"
 
-#: gui/common/network.js:65
+#: gui/common/network.js:67
 msgid "Incorrect network protocol version"
 msgstr "Geçersiz ağ protokol sürümü"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:68
 msgid "Game is loading, please try again later"
 msgstr "Oyun yükleniyor, lütfen daha sonra tekrar deneyin"
 
-#: gui/common/network.js:67
+#: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
 msgstr "Oyun zaten başladı, izleyicilere izin verilmemektedir"
 
-#: gui/common/network.js:68
+#: gui/common/network.js:70
 msgid "You have been kicked"
 msgstr "Atıldın"
 
-#: gui/common/network.js:69
+#: gui/common/network.js:71
 msgid "You have been banned"
 msgstr "Yasaklandın"
 
-#: gui/common/network.js:70
+#: gui/common/network.js:72
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Kullanıcı adı kullanılıyor. Eğer bağlantı kesildiyse, birkaç saniye sonra tekrar dene."
 
-#: gui/common/network.js:71
+#: gui/common/network.js:73
 msgid "Server full"
 msgstr "Sunucu dolu"
 
-#: gui/common/network.js:74
+#: gui/common/network.js:76
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Geçersiz değer %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:86
+#: gui/common/network.js:88
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Sebep: %(reason)s."
 
-#: gui/common/network.js:91
+#: gui/common/network.js:93
 msgid "Lost connection to the server."
 msgstr "Sunucuya bağlantı kaybedildi."
 
-#: gui/common/network.js:92
+#: gui/common/network.js:94
 msgid "Failed to connect to the server."
 msgstr "Sunucuya bağlanırken Hata oluştu"
 
-#: gui/common/network.js:94
+#: gui/common/network.js:96
 msgid "Disconnected"
 msgstr "Bağlatı kesildi"
 
-#: gui/common/network.js:105
-#, javascript-format
-msgid "Could not ban %(name)s."
-msgstr "%(name)s engellenemez."
-
-#: gui/common/network.js:105
-#, javascript-format
-msgid "Could not kick %(name)s."
-msgstr "%(name)s atılamaz."
+#: gui/common/network.js:104
+msgid "Only the host can kick clients!"
+msgstr ""
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:140
+#: gui/common/network.js:158
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Kullanıcılar (%(num)s): %(users)s"
@@ -776,22 +799,6 @@ msgstr "Sıçrama hasarı"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Dost Ateşi: %(enabled)s"
 
-#: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
-#: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:132
-#: gui/savedgames/load.js:181 gui/savedgames/save.js:63
-#: gui/savedgames/save.js:94 gui/summary/summary.js:156
-msgid "Yes"
-msgstr "Evet"
-
-#: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
-#: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:132
-#: gui/savedgames/load.js:181 gui/savedgames/save.js:63
-#: gui/savedgames/save.js:94 gui/summary/summary.js:156
-msgid "No"
-msgstr "Hayır"
-
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
@@ -1008,7 +1015,7 @@ msgid ""
 msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:131
+#: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -1108,12 +1115,12 @@ msgstr "Kılavuz"
 msgid "You don't have the same mods active as the replay does."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:118
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:114
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Gerekli: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:121
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:117
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Aktif: %(mods)s"
@@ -1239,64 +1246,50 @@ msgstr "yyyy-AA-gg SS:dd"
 msgid "yyyy-MM"
 msgstr "yyyy-AA"
 
-#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:30
 msgid "No saved games found"
 msgstr "Kaydedilmiş oyun yok"
 
-#: gui/savedgames/load.js:63
+#: gui/savedgames/load.js:59
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Modlar: %(mods)s"
 
-#: gui/savedgames/load.js:93
+#: gui/savedgames/load.js:89
 msgid "This saved game may not be compatible:"
 msgstr "Bu kayıtlı oyun uyumlu olmayabilir:"
 
-#: gui/savedgames/load.js:98
+#: gui/savedgames/load.js:94
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "O 0 A.D. %(requiredVersion)s sürümüne ihtiyaç duyuyor, çalışan sürüm ise %(currentVersion)s dür."
 
-#: gui/savedgames/load.js:103
+#: gui/savedgames/load.js:99
 msgid "It needs an older version of 0 A.D."
 msgstr "O, 0 A.D.'nin eski sürümüne ihtiyaç duyuyor."
 
-#: gui/savedgames/load.js:107
+#: gui/savedgames/load.js:103
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "O 0 A.D. %(requiredVersion)s kayıtlı oyun sürümüne ihtiyaç duyuyor, çalışan kayıtlı oyun sürüm ise %(currentVersion)s dür."
 
-#: gui/savedgames/load.js:117
+#: gui/savedgames/load.js:113
 msgid "The savegame needs a different set of mods:"
 msgstr ""
 
-#: gui/savedgames/load.js:126
+#: gui/savedgames/load.js:122
 msgid "Do you still want to proceed?"
 msgstr "Hala devam etmek istiyor musunuz?"
 
-#: gui/savedgames/load.js:177 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:91
-#, javascript-format
-msgid "\"%(label)s\""
-msgstr "\"%(label)s\""
-
-#: gui/savedgames/load.js:179 gui/savedgames/save.js:92
-msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Kayıtlı oyun kalıcı olarak silinecek, emin misiniz?"
-
-#: gui/savedgames/load.js:180 gui/savedgames/save.js:93
-msgid "DELETE"
-msgstr "SİL"
-
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:63
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Kayıtlı oyunun üzerine yazılacak, emin misiniz?"
 
-#: gui/savedgames/save.js:62
+#: gui/savedgames/save.js:64
 msgid "OVERWRITE SAVE"
 msgstr "ÜZERİNE YAZ KAYDET"
 
@@ -2926,8 +2919,8 @@ msgid "- Increases firepower with garrisoned infantry."
 msgstr "Garnizon piyadeleri ile ateş gücü artar."
 
 #: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Diğer triremesler gibi, çakma yapamazsın, ancak daha fazla sağlık ve zırhla yapılır."
+msgid "- Cannot ram, like other triremes, but has greater health and armor."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3365,8 +3358,8 @@ msgid "- All ships are built faster while he lives."
 msgstr "- O yaşarken bütün gemiler daha hızlı inşa edilir."
 
 #: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside moves much faster."
-msgstr "- Garnizon içerisinde olan gemi çok daha hızlı hareket eder."
+msgid "- The ship he is garrisoned inside sails much faster."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
