@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-26 09:00+0200\n"
-"PO-Revision-Date: 2016-09-26 08:57+0000\n"
+"POT-Creation-Date: 2016-11-28 09:00+0100\n"
+"PO-Revision-Date: 2016-11-28 09:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -86,9 +86,10 @@ msgstr "* %(username)s está pronto!"
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s não está pronto."
 
-#: gui/gamesetup/gamesetup.js:70 gui/gamesetup/gamesetup.js:1396
+#: gui/gamesetup/gamesetup.js:70
+msgctxt "map filter"
 msgid "Default"
-msgstr "Predefinição"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:75
 msgid "Naval Maps"
@@ -141,60 +142,65 @@ msgctxt "team"
 msgid "None"
 msgstr "Nenhum(a)"
 
-#: gui/gamesetup/gamesetup.js:1304
+#: gui/gamesetup/gamesetup.js:1302
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1466
+#: gui/gamesetup/gamesetup.js:1394
+msgctxt "map size"
+msgid "Default"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1464
 msgid "Loading..."
 msgstr "A carregar..."
 
-#: gui/gamesetup/gamesetup.js:1599
+#: gui/gamesetup/gamesetup.js:1597
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1604
+#: gui/gamesetup/gamesetup.js:1602
 msgid "Unassigned"
 msgstr "Não atribuído"
 
-#: gui/gamesetup/gamesetup.js:1764
+#: gui/gamesetup/gamesetup.js:1762
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s "
 
-#: gui/gamesetup/gamesetup.js:1771
+#: gui/gamesetup/gamesetup.js:1769
 msgid "Unknown Player"
 msgstr "Jogador desconhecido"
 
-#: gui/gamesetup/gamesetup.js:1807
+#: gui/gamesetup/gamesetup.js:1805
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1808
+#: gui/gamesetup/gamesetup.js:1806
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1807
 msgid "HH:mm"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1859
+#: gui/gamesetup/gamesetup.js:1857
 msgid "I'm not ready!"
 msgstr "Não estou pronto"
 
-#: gui/gamesetup/gamesetup.js:1860
+#: gui/gamesetup/gamesetup.js:1858
 msgid "I'm ready"
 msgstr "Estou pronto!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1861
 msgid "State that you are not ready to play."
 msgstr "Informa que tu não estás pronto para jogar."
 
-#: gui/gamesetup/gamesetup.js:1864
+#: gui/gamesetup/gamesetup.js:1862
 msgid "State that you are ready to play!"
 msgstr "Informa que tu estás pronto para jogar!"
 
@@ -243,12 +249,12 @@ msgstr ""
 msgid "%(playername)s's game"
 msgstr "Jogo de %(playername)s"
 
-#: gui/loading/loading.js:49
+#: gui/loading/loading.js:48
 #, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "A carregar “%(map)s”"
 
-#: gui/loading/loading.js:53
+#: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "A gerar \"%(map)s\""

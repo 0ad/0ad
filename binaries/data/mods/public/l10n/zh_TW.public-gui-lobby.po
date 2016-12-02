@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-08-15 09:00+0200\n"
-"PO-Revision-Date: 2016-08-15 13:16+0000\n"
+"POT-Creation-Date: 2016-11-28 09:00+0100\n"
+"PO-Revision-Date: 2016-11-28 11:06+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -18,186 +18,183 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/lobby/lobby.js:54
+#: gui/lobby/lobby.js:49
 msgid "Online"
 msgstr "上線"
 
-#: gui/lobby/lobby.js:55
+#: gui/lobby/lobby.js:50
 msgid "Away"
 msgstr "離開"
 
-#: gui/lobby/lobby.js:56
+#: gui/lobby/lobby.js:51
 msgid "Busy"
 msgstr "忙碌"
 
-#: gui/lobby/lobby.js:57
+#: gui/lobby/lobby.js:52
 msgid "Offline"
 msgstr "離線"
 
-#: gui/lobby/lobby.js:58
+#: gui/lobby/lobby.js:53
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/lobby/lobby.js:132
+#: gui/lobby/lobby.js:127
 msgid "Disconnected."
 msgstr "已中斷連線。"
 
-#: gui/lobby/lobby.js:150
+#: gui/lobby/lobby.js:145
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s 已加入。"
 
-#: gui/lobby/lobby.js:159
+#: gui/lobby/lobby.js:154
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s 已離開。"
 
-#: gui/lobby/lobby.js:169
+#: gui/lobby/lobby.js:164
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s 現在改稱作 %(newnick)s。"
 
-#: gui/lobby/lobby.js:238
+#: gui/lobby/lobby.js:235
 msgctxt "map size"
 msgid "Any"
 msgstr "任意"
 
-#: gui/lobby/lobby.js:243
+#: gui/lobby/lobby.js:240
 msgctxt "player number"
 msgid "Any"
 msgstr "任意"
 
-#: gui/lobby/lobby.js:247
+#: gui/lobby/lobby.js:244
 msgctxt "map"
 msgid "Any"
 msgstr "任意"
 
-#: gui/lobby/lobby.js:426
+#: gui/lobby/lobby.js:423
 msgid "Moderator"
 msgstr "主持人"
 
-#: gui/lobby/lobby.js:426
+#: gui/lobby/lobby.js:423
 msgid "Player"
 msgstr "玩家"
 
+#: gui/lobby/lobby.js:424 gui/lobby/lobby.js:425 gui/lobby/lobby.js:426
 #: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
-#: gui/lobby/lobby.js:430 gui/lobby/lobby.js:431 gui/lobby/lobby.js:432
 msgid "N/A"
 msgstr "N/A"
 
-#: gui/lobby/lobby.js:442
+#: gui/lobby/lobby.js:439
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:631
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/lobby.js:628
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "遊戲開始於 %(time)s"
 
-#: gui/lobby/lobby.js:632 gui/lobby/lobby.js:994
+#: gui/lobby/lobby.js:629 gui/lobby/lobby.js:990
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:636
+#: gui/lobby/lobby.js:633
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "玩家：%(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:678
-msgid "The game has already started."
-msgstr "遊戲已經開始。"
+#: gui/lobby/lobby.js:675
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "遊戲已啟動，您想要以觀察者身份加入嗎？"
 
-#: gui/lobby/lobby.js:679
-msgid "Do you want to join as observer?"
-msgstr "您想要以觀察者身份加入嗎？"
-
-#: gui/lobby/lobby.js:680
+#: gui/lobby/lobby.js:676
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/lobby/lobby.js:681
+#: gui/lobby/lobby.js:677
 msgid "No"
 msgstr "否"
 
-#: gui/lobby/lobby.js:681
+#: gui/lobby/lobby.js:677
 msgid "Yes"
 msgstr "是"
 
-#: gui/lobby/lobby.js:700
+#: gui/lobby/lobby.js:696
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "此遊戲的位址「%(ip)s」似乎無效。"
 
-#: gui/lobby/lobby.js:819
+#: gui/lobby/lobby.js:815
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "我們很抱歉，「%(cmd)s」指令尚未支援。"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:901
+#: gui/lobby/lobby.js:897
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:906
+#: gui/lobby/lobby.js:902
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:915 gui/lobby/lobby.js:936 gui/lobby/lobby.js:962
+#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:932 gui/lobby/lobby.js:958
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:920 gui/lobby/lobby.js:941 gui/lobby/lobby.js:967
+#: gui/lobby/lobby.js:916 gui/lobby/lobby.js:937 gui/lobby/lobby.js:963
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:930
+#: gui/lobby/lobby.js:926
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:956
+#: gui/lobby/lobby.js:952
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:958
+#: gui/lobby/lobby.js:954
 msgid "Private"
 msgstr "私人"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:997
+#: gui/lobby/lobby.js:993
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1002
+#: gui/lobby/lobby.js:998
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1063
+#: gui/lobby/lobby.js:1059
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "請不要散播垃圾訊息。您已被封鎖 30 秒。"
 
-#: gui/lobby/lobby.js:1130
+#: gui/lobby/lobby.js:1126
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1132
+#: gui/lobby/lobby.js:1128
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
@@ -262,119 +259,119 @@ msgstr "服務條款"
 msgid "Terms of Use"
 msgstr "使用條款"
 
-#: gui/lobby/lobby.xml:(caption):17 gui/lobby/prelobby.xml:(caption):18
+#: gui/lobby/lobby.xml:(caption):18 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
 msgstr "多人遊戲大廳"
 
-#: gui/lobby/lobby.xml:(caption):51 gui/lobby/lobby.xml:(caption):303
+#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):325
 msgid "Current Rank:"
 msgstr "目前等級："
 
-#: gui/lobby/lobby.xml:(caption):55 gui/lobby/lobby.xml:(caption):307
+#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):329
 msgid "Highest Rating:"
 msgstr "最高排行："
 
-#: gui/lobby/lobby.xml:(caption):59 gui/lobby/lobby.xml:(caption):311
+#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):333
 msgid "Total Games:"
 msgstr "遊戲總數："
 
-#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):315
+#: gui/lobby/lobby.xml:(caption):75 gui/lobby/lobby.xml:(caption):337
 msgid "Wins:"
 msgstr "勝利："
 
-#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):319
+#: gui/lobby/lobby.xml:(caption):79 gui/lobby/lobby.xml:(caption):341
 msgid "Losses:"
 msgstr "失敗："
 
-#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):323
+#: gui/lobby/lobby.xml:(caption):83 gui/lobby/lobby.xml:(caption):345
 msgid "Win Rate:"
 msgstr "勝利排行："
 
-#: gui/lobby/lobby.xml:(caption):80 gui/lobby/lobby.xml:(caption):251
+#: gui/lobby/lobby.xml:(caption):92 gui/lobby/lobby.xml:(caption):273
 msgid "Leaderboard"
 msgstr "排行榜"
 
-#: gui/lobby/lobby.xml:(caption):89 gui/lobby/lobby.xml:(caption):286
+#: gui/lobby/lobby.xml:(caption):101 gui/lobby/lobby.xml:(caption):308
 msgid "User Profile Lookup"
 msgstr "使用者檔案查詢"
 
-#: gui/lobby/lobby.xml:(caption):118
+#: gui/lobby/lobby.xml:(caption):130
 msgid "Map Type:"
 msgstr "地圖類型："
 
-#: gui/lobby/lobby.xml:(caption):130
+#: gui/lobby/lobby.xml:(caption):142
 msgid "Map Size:"
 msgstr "地圖大小："
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):155
+#: gui/lobby/lobby.xml:(caption):167
 msgid "Join Game"
 msgstr "加入遊戲"
 
-#: gui/lobby/lobby.xml:(caption):161
+#: gui/lobby/lobby.xml:(caption):173
 msgid "Host Game"
 msgstr "主創遊戲"
 
-#: gui/lobby/lobby.xml:(caption):168
+#: gui/lobby/lobby.xml:(caption):180
 msgid "Main Menu"
 msgstr "主選單"
 
-#: gui/lobby/lobby.xml:(caption):223
+#: gui/lobby/lobby.xml:(caption):245
 msgid "Show full games"
 msgstr "顯示全部的遊戲"
 
-#: gui/lobby/lobby.xml:(caption):271 gui/lobby/lobby.xml:(caption):333
+#: gui/lobby/lobby.xml:(caption):293 gui/lobby/lobby.xml:(caption):355
 msgid "Back"
 msgstr "返回"
 
-#: gui/lobby/lobby.xml:(caption):279
+#: gui/lobby/lobby.xml:(caption):301
 msgid "Update"
 msgstr "更新"
 
-#: gui/lobby/lobby.xml:(caption):289
+#: gui/lobby/lobby.xml:(caption):311
 msgid "Enter username:"
 msgstr "輸入使用者名稱"
 
-#: gui/lobby/lobby.xml:(caption):295
+#: gui/lobby/lobby.xml:(caption):317
 msgid "View Profile"
 msgstr "查看檔案"
 
-#: gui/lobby/lobby.xml:(caption):328
+#: gui/lobby/lobby.xml:(caption):350
 msgid "Player not found."
 msgstr "找不到玩家。"
 
-#: gui/lobby/lobby.xml:(heading):28
+#: gui/lobby/lobby.xml:(heading):40
 msgid "Status"
 msgstr "狀態"
 
-#: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):180
-#: gui/lobby/lobby.xml:(heading):261
+#: gui/lobby/lobby.xml:(heading):43 gui/lobby/lobby.xml:(heading):203
+#: gui/lobby/lobby.xml:(heading):283
 msgid "Name"
 msgstr "名稱"
 
-#: gui/lobby/lobby.xml:(heading):34 gui/lobby/lobby.xml:(heading):264
+#: gui/lobby/lobby.xml:(heading):46 gui/lobby/lobby.xml:(heading):286
 msgid "Rating"
 msgstr "排行"
 
-#: gui/lobby/lobby.xml:(heading):184
+#: gui/lobby/lobby.xml:(heading):206
 msgid "Map Name"
 msgstr "地圖名稱"
 
-#: gui/lobby/lobby.xml:(heading):187
+#: gui/lobby/lobby.xml:(heading):209
 msgctxt "map"
 msgid "Size"
 msgstr "大小"
 
-#: gui/lobby/lobby.xml:(heading):190
+#: gui/lobby/lobby.xml:(heading):212
 msgctxt "map"
 msgid "Type"
 msgstr "類型"
 
-#: gui/lobby/lobby.xml:(heading):193
+#: gui/lobby/lobby.xml:(heading):215
 msgid "Players"
 msgstr "玩家"
 
-#: gui/lobby/lobby.xml:(heading):258
+#: gui/lobby/lobby.xml:(heading):280
 msgid "Rank"
 msgstr "等級"
 

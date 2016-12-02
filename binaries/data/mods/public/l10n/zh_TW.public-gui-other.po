@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 11:14+0000\n"
+"POT-Creation-Date: 2016-11-28 09:00+0100\n"
+"PO-Revision-Date: 2016-11-28 11:10+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -128,12 +128,41 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:82
+#: gui/common/functions_utility_loadsave.js:83 gui/savedgames/save.js:62
+#, javascript-format
+msgid "\"%(label)s\""
+msgstr "「%(label)s」"
+
+#: gui/common/functions_utility_loadsave.js:85
+msgid "Saved game will be permanently deleted, are you sure?"
+msgstr "儲存的遊戲將永遠刪除，您是否確定？"
+
+#: gui/common/functions_utility_loadsave.js:86
+msgid "DELETE"
+msgstr "刪除"
+
+#: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:128 gui/savedgames/save.js:65
+#: gui/summary/summary.js:156
+msgid "No"
+msgstr "否"
+
+#: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:128 gui/savedgames/save.js:65
+#: gui/summary/summary.js:156
+msgid "Yes"
+msgstr "是"
+
+#: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr "使用 %(hotkey)s 刪除選定的項目。"
 
-#: gui/common/functions_utility_loadsave.js:87
+#: gui/common/functions_utility_loadsave.js:109
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "按住 %(hotkey)s 以不經確認就刪除。"
@@ -397,13 +426,13 @@ msgstr "%(previousAmounts)s 和 %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:141 gui/common/tooltips.js:118
+#: gui/common/l10n.js:23 gui/common/network.js:159 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:525 gui/common/tooltips.js:559
 #: gui/common/tooltips.js:613 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:122
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:59
+#: gui/savedgames/load.js:115 gui/savedgames/load.js:118
 msgid ", "
 msgstr "，"
 
@@ -427,85 +456,79 @@ msgstr "伺服器連線不佳（%(milliseconds)s 毫秒）"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "連線至 %(player)s 不佳（%(milliseconds)s 毫秒）"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:64
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "未知原因"
 
-#: gui/common/network.js:63
+#: gui/common/network.js:65
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
 msgstr "這通常是因為主機端未轉發 UDP 20595 埠所造成的，可能是由防火牆或防毒軟體阻擋。"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 msgid "The host has ended the game"
 msgstr "主機已結束遊戲"
 
-#: gui/common/network.js:65
+#: gui/common/network.js:67
 msgid "Incorrect network protocol version"
 msgstr "網路協定版本不正確"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:68
 msgid "Game is loading, please try again later"
 msgstr "遊戲載入中，請稍後再試"
 
-#: gui/common/network.js:67
+#: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
 msgstr "遊戲已經開始，不允許觀察者"
 
-#: gui/common/network.js:68
+#: gui/common/network.js:70
 msgid "You have been kicked"
 msgstr "您已被踢出"
 
-#: gui/common/network.js:69
+#: gui/common/network.js:71
 msgid "You have been banned"
 msgstr "您已被封禁"
 
-#: gui/common/network.js:70
+#: gui/common/network.js:72
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "玩家名使用中。若您曾經斷線，請等待數秒再重試"
 
-#: gui/common/network.js:71
+#: gui/common/network.js:73
 msgid "Server full"
 msgstr "伺服器已滿"
 
-#: gui/common/network.js:74
+#: gui/common/network.js:76
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[無效的值 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:86
+#: gui/common/network.js:88
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因：%(reason)s。"
 
-#: gui/common/network.js:91
+#: gui/common/network.js:93
 msgid "Lost connection to the server."
 msgstr "失去與伺服器的連線。"
 
-#: gui/common/network.js:92
+#: gui/common/network.js:94
 msgid "Failed to connect to the server."
 msgstr "連線至伺服器失敗。"
 
-#: gui/common/network.js:94
+#: gui/common/network.js:96
 msgid "Disconnected"
 msgstr "已中斷連線"
 
-#: gui/common/network.js:105
-#, javascript-format
-msgid "Could not ban %(name)s."
-msgstr "無法封禁 %(name)s。"
-
-#: gui/common/network.js:105
-#, javascript-format
-msgid "Could not kick %(name)s."
-msgstr "無法踢出 %(name)s。"
+#: gui/common/network.js:104
+msgid "Only the host can kick clients!"
+msgstr "只有主持人可以踢出玩家！"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:140
+#: gui/common/network.js:158
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "使用者 (%(num)s)：%(users)s"
@@ -757,22 +780,6 @@ msgstr "擴散傷害："
 msgid "Friendly Fire: %(enabled)s"
 msgstr "友軍火力：%(enabled)s"
 
-#: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
-#: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:132
-#: gui/savedgames/load.js:181 gui/savedgames/save.js:63
-#: gui/savedgames/save.js:94 gui/summary/summary.js:156
-msgid "Yes"
-msgstr "是"
-
-#: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
-#: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:132
-#: gui/savedgames/load.js:181 gui/savedgames/save.js:63
-#: gui/savedgames/save.js:94 gui/summary/summary.js:156
-msgid "No"
-msgstr "否"
-
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
@@ -987,7 +994,7 @@ msgid ""
 msgstr "重置選項將會抹除您儲存的設定。您想要繼續嗎？"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:131
+#: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "警告"
 
@@ -1087,12 +1094,12 @@ msgstr "手冊"
 msgid "You don't have the same mods active as the replay does."
 msgstr "您沒有與重播相同的 mod。"
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:118
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:114
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "需要：%(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:121
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:117
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "啟用：%(mods)s"
@@ -1216,64 +1223,50 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:30
 msgid "No saved games found"
 msgstr "找不到遊戲存檔"
 
-#: gui/savedgames/load.js:63
+#: gui/savedgames/load.js:59
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods：%(mods)s"
 
-#: gui/savedgames/load.js:93
+#: gui/savedgames/load.js:89
 msgid "This saved game may not be compatible:"
 msgstr "此遊戲存檔可能不相容於："
 
-#: gui/savedgames/load.js:98
+#: gui/savedgames/load.js:94
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "它需要0 A.D. 版本 %(requiredVersion)s ，然而您執行的是 %(currentVersion)s 。"
 
-#: gui/savedgames/load.js:103
+#: gui/savedgames/load.js:99
 msgid "It needs an older version of 0 A.D."
 msgstr "它需要較舊版本的 0 A.D."
 
-#: gui/savedgames/load.js:107
+#: gui/savedgames/load.js:103
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "它需要0 A.D. 儲存遊戲版本 %(requiredVersion)s ，然而您的儲存遊戲版本為 %(currentVersion)s 。"
 
-#: gui/savedgames/load.js:117
+#: gui/savedgames/load.js:113
 msgid "The savegame needs a different set of mods:"
 msgstr "儲存的遊戲需要一套不同的 mod："
 
-#: gui/savedgames/load.js:126
+#: gui/savedgames/load.js:122
 msgid "Do you still want to proceed?"
 msgstr "您仍要繼續嗎？"
 
-#: gui/savedgames/load.js:177 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:91
-#, javascript-format
-msgid "\"%(label)s\""
-msgstr "「%(label)s」"
-
-#: gui/savedgames/load.js:179 gui/savedgames/save.js:92
-msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "儲存的遊戲將永遠刪除，您是否確定？"
-
-#: gui/savedgames/load.js:180 gui/savedgames/save.js:93
-msgid "DELETE"
-msgstr "刪除"
-
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:63
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "儲存的遊戲將被永遠覆蓋，您是否確定？"
 
-#: gui/savedgames/save.js:62
+#: gui/savedgames/save.js:64
 msgid "OVERWRITE SAVE"
 msgstr "覆蓋儲存"
 
@@ -2903,7 +2896,7 @@ msgid "- Increases firepower with garrisoned infantry."
 msgstr "- 駐守步兵，增強火力。"
 
 #: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgid "- Cannot ram, like other triremes, but has greater health and armor."
 msgstr "- 不像其他的三列槳戰船，它無法進行撞擊，但有著優越的生命值及護甲。"
 
 #: gui/text/tips/civic_centres.txt:1
@@ -3342,7 +3335,7 @@ msgid "- All ships are built faster while he lives."
 msgstr "- 在他活著的時候，所有船艦都建造的較快。"
 
 #: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside moves much faster."
+msgid "- The ship he is garrisoned inside sails much faster."
 msgstr "- 有他駐守的船隻會移動的更快。"
 
 #: gui/text/tips/triremes.txt:1

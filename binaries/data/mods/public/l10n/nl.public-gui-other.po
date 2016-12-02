@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 08:30+0000\n"
+"POT-Creation-Date: 2016-11-28 09:00+0100\n"
+"PO-Revision-Date: 2016-11-28 09:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -144,12 +144,41 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:82
+#: gui/common/functions_utility_loadsave.js:83 gui/savedgames/save.js:62
+#, javascript-format
+msgid "\"%(label)s\""
+msgstr "\"%(label)s\""
+
+#: gui/common/functions_utility_loadsave.js:85
+msgid "Saved game will be permanently deleted, are you sure?"
+msgstr "Dit spel zal permanent verwijderd worden, ben je zeker?"
+
+#: gui/common/functions_utility_loadsave.js:86
+msgid "DELETE"
+msgstr "VERWIJDER"
+
+#: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:128 gui/savedgames/save.js:65
+#: gui/summary/summary.js:156
+msgid "No"
+msgstr "Nee"
+
+#: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
+#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/savedgames/load.js:128 gui/savedgames/save.js:65
+#: gui/summary/summary.js:156
+msgid "Yes"
+msgstr "Ja"
+
+#: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
 msgstr "Verwijder de geselecteerde ingave met %(hotkey)s."
 
-#: gui/common/functions_utility_loadsave.js:87
+#: gui/common/functions_utility_loadsave.js:109
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Houd %(hotkey)s ingedrukt om te verwijderen zonder bevestiging."
@@ -416,13 +445,13 @@ msgstr "%(previousAmounts)s en %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:141 gui/common/tooltips.js:118
+#: gui/common/l10n.js:23 gui/common/network.js:159 gui/common/tooltips.js:118
 #: gui/common/tooltips.js:132 gui/common/tooltips.js:214
 #: gui/common/tooltips.js:243 gui/common/tooltips.js:276
 #: gui/common/tooltips.js:525 gui/common/tooltips.js:559
 #: gui/common/tooltips.js:613 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:63
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:122
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:59
+#: gui/savedgames/load.js:115 gui/savedgames/load.js:118
 msgid ", "
 msgstr ", "
 
@@ -446,85 +475,79 @@ msgstr "Slechte verbinding met de server (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Slechte verbinding met %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:62
+#: gui/common/network.js:64
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Ongekende reden"
 
-#: gui/common/network.js:63
+#: gui/common/network.js:65
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
 msgstr "Dit wordt vaak veroorzaakt door een antivirus programma, een firewall, of het ontbreken van een forward-rule voor UDP poort 20595 op de host computer."
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 msgid "The host has ended the game"
 msgstr "De host heeft het spel beëindigd."
 
-#: gui/common/network.js:65
+#: gui/common/network.js:67
 msgid "Incorrect network protocol version"
 msgstr "Onjuiste versie van het netwerkprotocol"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:68
 msgid "Game is loading, please try again later"
 msgstr "Spel is aan het laden, probeer het later nog eens"
 
-#: gui/common/network.js:67
+#: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
 msgstr "Het spel is al begonnen, geen waarnemers toegestaan"
 
-#: gui/common/network.js:68
+#: gui/common/network.js:70
 msgid "You have been kicked"
 msgstr "Je werd uitgesloten"
 
-#: gui/common/network.js:69
+#: gui/common/network.js:71
 msgid "You have been banned"
 msgstr "Je werd verbannen"
 
-#: gui/common/network.js:70
+#: gui/common/network.js:72
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Deze naam wordt al gebruikt. Indien je een vroegere verbinding met het spel probeert te herstellen, probeer opnieuw binnen enkele seconden."
 
-#: gui/common/network.js:71
+#: gui/common/network.js:73
 msgid "Server full"
 msgstr "Server is vol"
 
-#: gui/common/network.js:74
+#: gui/common/network.js:76
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Ongeldige waarde %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:86
+#: gui/common/network.js:88
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Reden: %(reason)s."
 
-#: gui/common/network.js:91
+#: gui/common/network.js:93
 msgid "Lost connection to the server."
 msgstr "Verbinding met de server verloren."
 
-#: gui/common/network.js:92
+#: gui/common/network.js:94
 msgid "Failed to connect to the server."
 msgstr "Verbinden met de server mislukt."
 
-#: gui/common/network.js:94
+#: gui/common/network.js:96
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
 
-#: gui/common/network.js:105
-#, javascript-format
-msgid "Could not ban %(name)s."
-msgstr "%(name)s verbannen is niet gelukt."
-
-#: gui/common/network.js:105
-#, javascript-format
-msgid "Could not kick %(name)s."
-msgstr "%(name)s uitsluiten niet gelukt."
+#: gui/common/network.js:104
+msgid "Only the host can kick clients!"
+msgstr ""
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:140
+#: gui/common/network.js:158
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Gebruikers (%(num)s): %(users)s"
@@ -784,22 +807,6 @@ msgstr "Omgevingsschade:"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Eigen Vuur: %(enabled)s"
 
-#: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
-#: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:132
-#: gui/savedgames/load.js:181 gui/savedgames/save.js:63
-#: gui/savedgames/save.js:94 gui/summary/summary.js:156
-msgid "Yes"
-msgstr "Ja"
-
-#: gui/common/tooltips.js:212 gui/options/options.js:275
-#: gui/options/options.js:342 gui/pregame/mainmenu.js:256
-#: gui/replaymenu/replay_actions.js:159 gui/savedgames/load.js:132
-#: gui/savedgames/load.js:181 gui/savedgames/save.js:63
-#: gui/savedgames/save.js:94 gui/summary/summary.js:156
-msgid "No"
-msgstr "Nee"
-
 #: gui/common/tooltips.js:227
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
@@ -1016,7 +1023,7 @@ msgid ""
 msgstr "Opties resetten zal de opgeslagen instellingen verwijderen. Ben je zeker dat je verder wilt?"
 
 #: gui/options/options.js:274 gui/options/options.js:341
-#: gui/savedgames/load.js:131
+#: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -1116,12 +1123,12 @@ msgstr "Handleiding"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Je hebt niet dezelfde mods actief als deze herhaling."
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:118
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:114
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Vereist %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:121
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:117
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Actief: %(mods)s"
@@ -1247,64 +1254,50 @@ msgstr "dd-MM-tutu HH:mm"
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
 
-#: gui/savedgames/load.js:15 gui/savedgames/save.js:28
+#: gui/savedgames/load.js:15 gui/savedgames/save.js:30
 msgid "No saved games found"
 msgstr "Geen opgeslagen spellen gevonden"
 
-#: gui/savedgames/load.js:63
+#: gui/savedgames/load.js:59
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods: %(mods)s"
 
-#: gui/savedgames/load.js:93
+#: gui/savedgames/load.js:89
 msgid "This saved game may not be compatible:"
 msgstr "Het opgeslagen spel is mogelijks niet compatibel:"
 
-#: gui/savedgames/load.js:98
+#: gui/savedgames/load.js:94
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Dit vereist 0 A.D. versie %(requiredVersion)s, terwijl je werkt op versie %(currentVersion)s."
 
-#: gui/savedgames/load.js:103
+#: gui/savedgames/load.js:99
 msgid "It needs an older version of 0 A.D."
 msgstr "Hiervoor is een oudere versie van 0 A.D. nodig."
 
-#: gui/savedgames/load.js:107
+#: gui/savedgames/load.js:103
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Hiervoor is versie %(requiredVersion)s van 0 A.D. vereist, jij hebt versie %(currentVersion)s."
 
-#: gui/savedgames/load.js:117
+#: gui/savedgames/load.js:113
 msgid "The savegame needs a different set of mods:"
 msgstr "Dit opgeslagen spel vereist een andere selectie mods:"
 
-#: gui/savedgames/load.js:126
+#: gui/savedgames/load.js:122
 msgid "Do you still want to proceed?"
 msgstr "Wil je verder gaan?"
 
-#: gui/savedgames/load.js:177 gui/savedgames/save.js:60
-#: gui/savedgames/save.js:91
-#, javascript-format
-msgid "\"%(label)s\""
-msgstr "\"%(label)s\""
-
-#: gui/savedgames/load.js:179 gui/savedgames/save.js:92
-msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Dit spel zal permanent verwijderd worden, ben je zeker?"
-
-#: gui/savedgames/load.js:180 gui/savedgames/save.js:93
-msgid "DELETE"
-msgstr "VERWIJDER"
-
-#: gui/savedgames/save.js:61
+#: gui/savedgames/save.js:63
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Opgeslagen spel zal permanent overschreven worden, ben je zeker?"
 
-#: gui/savedgames/save.js:62
+#: gui/savedgames/save.js:64
 msgid "OVERWRITE SAVE"
 msgstr "OVERSCHRIJF OPGESLAGEN SPEL"
 
@@ -2934,8 +2927,8 @@ msgid "- Increases firepower with garrisoned infantry."
 msgstr "- Verhoog de vuurkracht m.b.v. extra infanteriebemanning."
 
 #: gui/text/tips/celtic_war_barge.txt:10
-msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr "- Heeft geen ram functie (zoals andere triremes), maar is sterker en heeft meer bewapening."
+msgid "- Cannot ram, like other triremes, but has greater health and armor."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3373,8 +3366,8 @@ msgid "- All ships are built faster while he lives."
 msgstr "- Alle schepen worden sneller gebouwd tijdens zijn leven."
 
 #: gui/text/tips/themistocles.txt:6
-msgid "- The ship he is garrisoned inside moves much faster."
-msgstr "- Het schip waarin hij zich bevindt kan sneller varen."
+msgid "- The ship he is garrisoned inside sails much faster."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
