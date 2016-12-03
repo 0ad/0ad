@@ -644,6 +644,13 @@ function leaveGame(willRejoin)
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
 	let simData = getReplayMetadata();
 
+	let campaignData = null;
+	if (Engine.GetInitAttributes().campaignData)
+	{
+		campaignData = Engine.GetInitAttributes().campaignData;
+		campaignData.endGameData = Engine.GuiInterfaceCall("GetEndGameCampaignData");
+	}
+
 	Engine.EndGame();
 
 	if (g_IsController && Engine.HasXmppClient())
@@ -657,7 +664,8 @@ function leaveGame(willRejoin)
 			"isReplay": g_IsReplay,
 			"replayDirectory": !g_HasRejoined && replayDirectory,
 			"replaySelectionData": g_ReplaySelectionData
-		}
+		},
+		"campaignData" : campaignData || undefined
 	});
 }
 

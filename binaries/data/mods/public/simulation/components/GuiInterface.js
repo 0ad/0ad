@@ -200,6 +200,17 @@ GuiInterface.prototype.GetExtendedSimulationState = function()
 	return ret;
 };
 
+GuiInterface.prototype.GetEndGameCampaignData = function(player)
+{
+	// TODO here: return some relevant information, possibly based on initial attributes + some trigger data?
+
+	// return whether player lost or won at the very least.
+	let cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	let status = cmpPlayer.GetState();
+
+	return {"status" : status};
+}
+
 GuiInterface.prototype.GetRenamedEntities = function(player)
 {
 	if (this.miragedEntities[player])
@@ -1960,6 +1971,7 @@ let exposedFunctions = {
 
 	"GetSimulationState": 1,
 	"GetExtendedSimulationState": 1,
+	"GetEndGameCampaignData": 1,
 	"GetRenamedEntities": 1,
 	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,

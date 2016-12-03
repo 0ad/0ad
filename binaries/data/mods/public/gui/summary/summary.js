@@ -160,6 +160,8 @@ function continueButton()
 		});
 	else if (Engine.HasXmppClient())
 		Engine.SwitchGuiPage("page_lobby.xml");
+	else if (g_GameData.campaignData)
+		CampaignGameEnded(g_GameData.campaignData);
 	else
 		Engine.SwitchGuiPage("page_pregame.xml");
 }

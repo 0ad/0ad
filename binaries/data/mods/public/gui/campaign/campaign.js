@@ -9,3 +9,39 @@ var g_CampaignSave = null;
 
 // Current campaign state, to be saved in/loaded from the above file
 var g_CampaignData = null;
+
+var CampaignGameEnded = function(data)
+{
+	g_CampaignID = data.ID;
+	g_CampaignTemplate = data.template;
+	g_CampaignSave = data.save;
+	g_CampaignData = data.data;
+
+	Engine.SwitchGuiPage(g_CampaignTemplate.Interface, {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData});
+}
+
+function hasRequirements(scenario)
+{
+	if (!scenario.Requires)
+		return true;
+
+	if (!g_CampaignData.completed)
+		return false;
+
+	if (scenario.Requires.some(req => g_CampaignData.completed.indexOf(req) === -1))
+		return false;
+
+	return true;
+}
+
+function hasCompleted(scenario)
+{
+	if (!g_CampaignData.completed)
+		return false;
+
+	if (g_CampaignData.completed.indexOf(scenario.ID) === -1)
+		return false;
+
+	return true;
+}
+
