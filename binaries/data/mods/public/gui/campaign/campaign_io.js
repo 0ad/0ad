@@ -35,12 +35,12 @@ function loadCurrentCampaignState()
 	let campaign = Engine.ConfigDB_GetValue("user", "currentcampaign");
 
 	if (!canLoadCurrentCampaign(true))
-		exitCampaignMode();
+		return false;
 
 	if (g_CurrentCampaign)
 	{
 		warn("Campaign already loaded");
-		return;
+		return false;
 	}
 	g_CurrentCampaign = campaign;
 
@@ -48,14 +48,17 @@ function loadCurrentCampaignState()
 	if (!campaignData)
 	{
 		warn("Campaign failed to load properly. Quitting campaign mode.")
-		exitCampaignMode();
+		return false;
 	}
 
 	g_CampaignData = campaignData.campaign_state;
 	g_CampaignMods = campaignData.mods;
 	g_CurrentCampaignID = g_CampaignData.campaign;
 
-	loadCampaignTemplate();
+	if (!loadCampaignTemplate())
+		return false;
+
+	return true;
 }
 
 // to easily create new campaigns without going in the nitty gritty of the JS, an XML/JSON file may be provided.
@@ -68,15 +71,17 @@ function loadCampaignTemplate()
 	else if (Engine.FileExists("campaign/campaign.json"))
 		ret = Engine.LoadCampaignTemplateJSON();
 	else
-		return;
+		return true;
 
 	if (!ret)
 	{
 		warn("Campaign template could not be loaded");
-		return;
+		return false;
 	}
 
 	g_CampaignTemplate = ret;
+
+	return true;
 }
 
 function saveCampaign()
@@ -84,8 +89,10 @@ function saveCampaign()
 	if (!g_CurrentCampaign)
 	{
 		warn("Cannot save campaign, no campaign is currently loaded");
-		return;
+		return false;
 	}
 
 	Engine.SaveCampaign(g_CurrentCampaign, g_CampaignData);
+
+	return true;
 }
