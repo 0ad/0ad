@@ -11,7 +11,7 @@ var g_CampaignSave = null;
 var g_CampaignData = null;
 
 // this function is called by session.js at the end of a game. It should save the campaign save state immediately.
-var CampaignGameEnded = function(data)
+function campaignGameEnded(data)
 {
 	g_CampaignID = data.ID;
 	g_CampaignTemplate = data.template;

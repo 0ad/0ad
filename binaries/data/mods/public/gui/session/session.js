@@ -649,7 +649,7 @@ function leaveGame(willRejoin)
 	{
 		campaignData = Engine.GetInitAttributes().campaignData;
 		campaignData.endGameData = Engine.GuiInterfaceCall("GetEndGameCampaignData");
-		CampaignGameEnded(campaignData);
+		campaignGameEnded(campaignData);
 	}
 
 	Engine.EndGame();
