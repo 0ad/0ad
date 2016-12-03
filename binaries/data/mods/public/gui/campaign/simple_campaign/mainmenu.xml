@@ -19,7 +19,7 @@
 			<translatableAttribute id="caption">Test Campaign</translatableAttribute>
 		</object>
 
-		<object name="leftPanel" size="3% 5% 100%-500 100%-80">
+		<object name="leftPanel" size="3% 5% 100%-500 100%-340">
 			<!-- List of available scenarios -->
 			<object name="scenarioSelection"
 				size="0 35 100% 100%"
@@ -47,7 +47,7 @@
 			</object>
 		</object>
 
-		<object name="rightPanel" size="100%-496 5% 97% 100%-80">
+		<object name="rightPanel" size="100%-496 5% 97% 100%-340">
 			<!-- Scenario Image -->
 			<object type="image" sprite="ModernDarkBoxGold" name="scenarioPreviewBox" size="5 5 100%-5 305">
 				<object type="image" sprite="snScenarioPreview" size="1 1 401 294" name="mapPreview"/>
@@ -62,6 +62,30 @@
 				</object>
 			</object>
 
+		</object>
+
+		<object name="savePanel" size="3% 100%-330 97% 100%-85">
+			
+			<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
+				<translatableAttribute id="caption">Saved Games</translatableAttribute>
+			</object>
+
+			<object name="saveSelection"
+				size="0 35 100% 100%"
+				style="ModernList"
+				type="olist"
+				font="sans-stroke-13"
+				>
+
+				<!--<action on="SelectionChange">displayScenarioDetails();</action>
+				<action on="SelectionColumnChange">displayReplayList();</action>
+				<action on="mouseleftdoubleclickitem">startCampaign();</action>-->
+
+			<!-- Columns -->
+			<column id="name" color="172 172 212" width="100%">
+				<translatableAttribute id="heading" context="campaignsavelist">TODO: have saves here</translatableAttribute>
+			</column>
+			</object>		
 		</object>
 
 		<object name="bottomPanel" size="25 100%-55 100%-5 100%-25" >
