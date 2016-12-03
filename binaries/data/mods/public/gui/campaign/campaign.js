@@ -10,6 +10,7 @@ var g_CampaignSave = null;
 // Current campaign state, to be saved in/loaded from the above file
 var g_CampaignData = null;
 
+// this function is called by session.js at the end of a game. It should save the campaign save state immediately.
 var CampaignGameEnded = function(data)
 {
 	g_CampaignID = data.ID;
@@ -17,7 +18,17 @@ var CampaignGameEnded = function(data)
 	g_CampaignSave = data.save;
 	g_CampaignData = data.data;
 
-	Engine.SwitchGuiPage(g_CampaignTemplate.Interface, {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData});
+	// TODO: Deal with the endGameData
+
+	if (data.endGameData.status !== "won")
+	{
+		if (!g_CampaignData.completed)
+			g_CampaignData.completed = [];
+		if (g_CampaignData.completed.indexOf(data.scenario) == -1)
+			g_CampaignData.completed.push(data.scenario);
+	}
+
+	saveCampaign();
 }
 
 function hasRequirements(scenario)

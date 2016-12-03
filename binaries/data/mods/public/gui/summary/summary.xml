@@ -14,8 +14,9 @@
 	<!-- Needs the colors from summary.js -->
 	<script file="gui/summary/layout.js"/>
 
-	<!-- If this was a campaign game, we need to tell the campaign -->
+	<!-- Load the campaign screen if this was a campaign -->
 	<script file="gui/campaign/campaign.js"/>
+	<script file="gui/campaign/campaign_io.js"/>
 
 	<object name="summaryWindow"
 		type="image"

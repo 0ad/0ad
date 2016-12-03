@@ -73,7 +73,7 @@ function launchGame(scenario)
 	// TODO: player should be defined in the scenario or the campaign at the least.
 	let playerID = 1;
 
-	g_GameAttributes.campaignData = {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData};
+	g_GameAttributes.campaignData = {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData, "scenario" : scenario.ID};
 
 	Engine.StartGame(g_GameAttributes, playerID);
 	Engine.SwitchGuiPage("page_loading.xml", {

@@ -649,6 +649,7 @@ function leaveGame(willRejoin)
 	{
 		campaignData = Engine.GetInitAttributes().campaignData;
 		campaignData.endGameData = Engine.GuiInterfaceCall("GetEndGameCampaignData");
+		CampaignGameEnded(campaignData);
 	}
 
 	Engine.EndGame();
@@ -665,7 +666,7 @@ function leaveGame(willRejoin)
 			"replayDirectory": !g_HasRejoined && replayDirectory,
 			"replaySelectionData": g_ReplaySelectionData
 		},
-		"campaignData" : campaignData || undefined
+		"campaignData" : campaignData
 	});
 }
 
