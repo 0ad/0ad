@@ -51,13 +51,11 @@ function init()
 				log("Skipping mod '"+k+"'. Missing property '"+keys[i]+"'.");
 				return;
 			}
-		// skip campaign mods
-		if (mods[k].type && mods[k].type == "campaign")
-			return;
+
 		g_mods[k] = mods[k];
 	});
 
-	g_modsEnabled = getExistingModsFromConfig(g_mods);
+	g_modsEnabled = getExistingModsFromConfig();
 	g_modsAvailable = Object.keys(g_mods).filter(function(i) { return g_modsEnabled.indexOf(i) === -1; });
 
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
@@ -89,7 +87,6 @@ function saveMods()
 {
 	// always sort mods before saving
 	sortMods();
-	generateModsList("modsEnabledList", g_modsEnabled);
 	Engine.ConfigDB_CreateValue("user", "mod.enabledmods", ["mod"].concat(g_modsEnabled).join(" "));
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 }
@@ -98,9 +95,25 @@ function startMods()
 {
 	// always sort mods before starting
 	sortMods();
-	generateModsList("modsEnabledList", g_modsEnabled);
 	Engine.SetMods(["mod"].concat(g_modsEnabled));
 	Engine.RestartEngine();
+}
+
+function getExistingModsFromConfig()
+{
+	var existingMods = [];
+
+	var mods = [];
+	var cfgMods = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
+	if (cfgMods.length > 0)
+		mods = cfgMods.split(/\s+/);
+
+	mods.forEach(function(mod) {
+		if (mod in g_mods)
+			existingMods.push(mod);
+	});
+
+	return existingMods;
 }
 
 /**
@@ -237,7 +250,6 @@ function disableMod()
 	// Sort them, so we know which ones can depend on the removed mod
 	// TODO: Find position where the removed mod would have fit (for now assume idx 0)
 	sortMods();
-	generateModsList("modsEnabledList", g_modsEnabled);
 	for (var i = 0; i < g_modsEnabled.length; ++i)
 	{
 		if (!areDependenciesMet(g_modsEnabled[i]))
