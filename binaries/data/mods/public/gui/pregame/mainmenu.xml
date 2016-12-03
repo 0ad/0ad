@@ -262,11 +262,12 @@
 					style="StoneButtonFancy"
 					size="0 128 100% 156"
 					tooltip_style="pgToolTip"
-					enabled="false"
 				>
 					<translatableAttribute id="caption">Load Campaign</translatableAttribute>
 					<translatableAttribute id="tooltip">Click here to resume an existing campaign.</translatableAttribute>
 					<action on="Press">
+						closeMenu();
+						Engine.PushGuiPage("page_loadcampaign.xml", { type: "offline" });
 					</action>
 				</object>
 			</object>

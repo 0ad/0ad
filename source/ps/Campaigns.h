@@ -55,21 +55,12 @@ Status Save(ScriptInterface& scriptInterface, const CStrW& name, const shared_pt
 Status Load(ScriptInterface& scriptInterface, const std::wstring& name, JS::MutableHandleValue campaignData);
 
 /**
- * Permanently deletes the saved game archive with the given name
+ * Permanently deletes the saved campaign run with the given name
  *
- * @param name filename of saved game (without path or extension)
+ * @param name filename of saved campaign (without path or extension)
  * @return true if deletion was successful, or false on error
- *
-bool DeleteSavedGame(const std::wstring& name);
-
-/**
- * Gets info (version and mods loaded) on the running engine
- *
- * @param scriptInterface the ScriptInterface in which to create the return data.
- * @return list of objects containing saved game data
- *
-JS::Value GetEngineInfo(ScriptInterface& scriptInterface);
-*/
+ */
+bool DeleteGame(const std::wstring& name);
 }
 
 #endif // INCLUDED_CAMPAIGNS

@@ -112,3 +112,25 @@ Status Campaigns::Load(ScriptInterface& scriptInterface, const std::wstring& nam
 	return INFO::OK;
 }
 
+bool Campaigns::DeleteGame(const std::wstring& name)
+{
+	const VfsPath basename(L"campaignsaves/" + name);
+	const VfsPath filename = basename.ChangeExtension(L".0adcampaign");
+	OsPath realpath;
+
+	// Make sure it exists in VFS and find its real path
+	if (!VfsFileExists(filename) || g_VFS->GetRealPath(filename, realpath) != INFO::OK)
+		return false; // Error
+
+	// Remove from VFS
+	if (g_VFS->RemoveFile(filename) != INFO::OK)
+		return false; // Error
+
+	// Delete actual file
+	if (wunlink(realpath) != 0)
+		return false; // Error
+
+	// Successfully deleted file
+	return true;
+}
+

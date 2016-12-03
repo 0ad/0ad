@@ -272,6 +272,11 @@ JS::Value LoadCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstrin
 	return campaignData;
 }
 
+bool DeleteCampaignGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
+{
+	return Campaigns::DeleteGame(name);
+}
+
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	ENSURE(g_NetClient);
@@ -354,6 +359,16 @@ void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& 
 	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
+}
+
+JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
+}
+
+bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
+{
+	return SavedGames::DeleteSavedGame(name);
 }
 
 void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1)
@@ -485,16 +500,6 @@ void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int messag
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
-}
-
-JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
-}
-
-bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
-{
-	return SavedGames::DeleteSavedGame(name);
 }
 
 void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& url)
@@ -1079,6 +1084,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Campaigns
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SaveCampaign>("SaveCampaign");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &LoadCampaign>("LoadCampaign");
+	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteCampaignGame>("DeleteCampaignGame");
 
 	// Saved games
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");
