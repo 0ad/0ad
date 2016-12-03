@@ -81,7 +81,7 @@
 			<object name="startCampButton" type="button" style="StoneButton" size="83%-25 0 100%-25 100%" enabled="false">
 				<translatableAttribute id="caption">Start Campaign</translatableAttribute>
 				<action on="Press">
-					launchGame(g_SelectedScenario);
+					startScenario(g_SelectedScenario);
 				</action>
 			</object>
 

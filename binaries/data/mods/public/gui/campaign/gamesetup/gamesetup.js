@@ -67,7 +67,6 @@ function launchGame(scenario)
 	g_GameAttributes.settings.Seed = Math.floor(Math.random() * Math.pow(2, 32));
 	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * Math.pow(2, 32));
 
-	// TODO: we'll use this I guess to record which savegame we're in? Check.
 	g_GameAttributes.matchID = Engine.GetMatchID();
 
 	// TODO: player should be defined in the scenario or the campaign at the least.
@@ -81,4 +80,5 @@ function launchGame(scenario)
 		"isNetworked" : false,
 		"playerAssignments": {}
 	});
+	return g_GameAttributes.matchID;
 }
