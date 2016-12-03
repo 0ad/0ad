@@ -9,7 +9,9 @@
 	<!-- Some useful functions to get the mods -->
 	<script file="gui/modmod/modutils.js" />
 
-	<script file="gui/campaignsetup/newcampaign_modal.js" />
+	<script file="gui/campaign/campaign.js" />
+	<script file="gui/campaign/campaign_io.js" />
+	<script file="gui/campaign/newcampaign_modal.js" />
 
 	<!-- Add a translucent black background to fade out the page -->
 	<object type="image" z="0" sprite="ModernFade"/>

@@ -2,8 +2,16 @@ var g_SelectedScenario = null;
 
 function init(data)
 {
-	// from public mod campaignsetup/campaign_utils.js, this loads the campaign file and sets g_CurrentCampaign and g_CampaignData
-	loadCurrentCampaignState();
+	if (!data)
+	{
+		warn("Loading campaign menu without a campaign loaded")
+		return false;
+	}
+
+	g_CampaignID = data.ID;
+	g_CampaignTemplate = data.template;
+	g_CampaignSave = data.save;
+	g_CampaignData = data.data;
 
 	generateScenarioList();
 }
@@ -14,11 +22,11 @@ function generateScenarioList()
 	let selection = Engine.GetGUIObjectByName("scenarioSelection");
 
 	let list = [];
-	for (let key in g_CampaignTemplate.Campaign.Scenarios)
+	for (let key in g_CampaignTemplate.Scenarios)
 	{
-		let scenario = g_CampaignTemplate.Campaign.Scenarios[key];
+		let scenario = g_CampaignTemplate.Scenarios[key];
 
-		if (!("ShowUnavailable" in g_CampaignTemplate.Campaign) && !hasRequirements(scenario))
+		if (!("ShowUnavailable" in g_CampaignTemplate) && !hasRequirements(scenario))
 			continue;
 
 		let status = hasRequirements(scenario) ? "available" : "unavailable";
@@ -56,7 +64,7 @@ function displayScenarioDetails()
 	if (selection.selected === -1)
 		return;
 
-	let scenario = g_CampaignTemplate.Campaign.Scenarios[selection.list[selection.selected]];
+	let scenario = g_CampaignTemplate.Scenarios[selection.list[selection.selected]];
 
 	if (!hasRequirements(scenario))
 	{

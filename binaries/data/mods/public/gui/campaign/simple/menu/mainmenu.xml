@@ -8,10 +8,13 @@
 
 	<script file="gui/modmod/modutils.js"/>
 
-	<script file="gui/campaignsetup/campaign_utils.js"/>
-	<script file="gui/campaign/mainmenu.js"/>
-	<script file="gui/campaign/gamesetup.js"/>
+	<script file="gui/campaign/campaign.js"/>
+	<script file="gui/campaign/campaign_io.js"/>
 	<script file="gui/campaign/utilities.js"/>
+	<script file="gui/campaign/gamesetup/gamesetup.js"/>
+
+	<script file="gui/campaign/simple/menu/mainmenu.js"/>
+	<script file="gui/campaign/simple/utilities.js"/>
 
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignMenuWindow">
 

@@ -1,14 +1,11 @@
-// ID of the current campaign. This is the name of the mod folder (not the "human readable" name)
-var g_CurrentCampaignID = null;
+// ID of the current campaign. This is the name of the json file (not the "human readable" name)
+var g_CampaignID = null;
 
-// name of the campaign file currently loaded
-var g_CurrentCampaign = null;
-
-// (optional) campaign data loaded from XML or JSON, to make modder's life easier.
+// Campaign template data from the JSON file.
 var g_CampaignTemplate = null;
 
-// saves mods, for convenience on continue
-var g_CampaignMods = null;
+// name of the file we're saving campaign data in
+var g_CampaignSave = null;
 
-// This stores current campaign state.
+// Current campaign state, to be saved in/loaded from the above file
 var g_CampaignData = null;

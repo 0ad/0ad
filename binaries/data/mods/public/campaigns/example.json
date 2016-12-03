@@ -1,0 +1,24 @@
+{
+	"Name" : "Example Campaign",
+	"Description" : "Lorem Ipsum and so on and so on",
+	"Difficulty" : "Easy",
+	"Interface" : "campaign/simple/page_menu.xml",
+	"ShowUnavailable" : true,
+	"Scenarios" : {
+		"Example_1" : {
+			"ID" : 1,
+			"ReadableID" : 1,
+			"Name" : "Example 1",
+			"Description" : "Whatever",
+			"Map" : "maps/scenarios/Serengeti.xml"
+		},
+		"Example_2" : {
+			"ID" : 2,
+			"ReadableID" : 2,
+			"Name" : "Example 2",
+			"Description" : "None",
+			"Map" : "",
+			"Requires" : [1]
+		}
+	}
+}

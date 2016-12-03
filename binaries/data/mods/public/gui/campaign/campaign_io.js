@@ -7,6 +7,28 @@
  * Other things
  */
 
+function LoadAvailableCampaigns()
+{
+	let campaigns = Engine.BuildDirEntList("campaigns/", "*.json", false);
+
+	let ret = {};
+
+	for (let filename of campaigns)
+	{
+		let data = Engine.ReadJSONFile(filename);
+		if (!data)
+			continue;
+
+		// TODO: sanity checks, probably in their own function?
+		if (!data.Name)
+			continue;
+
+		ret[filename.replace("campaigns/","").replace(".json","")] = data;
+	}
+
+	return ret;
+}
+
 function canLoadCurrentCampaign(verbose = false)
 {
 	let campaign = Engine.ConfigDB_GetValue("user", "currentcampaign");
@@ -25,26 +47,26 @@ function canLoadCurrentCampaign(verbose = false)
 		return false;
 	}
 
-	// TODO: check proper mods are loaded, proper version and so on (see savegame/load.js)	
+	// TODO: load up the file and do some checks?
 
 	return true;
 }
 
-function loadCurrentCampaignState()
+function loadCurrentCampaignSave()
 {
 	let campaign = Engine.ConfigDB_GetValue("user", "currentcampaign");
 
 	if (!canLoadCurrentCampaign(true))
 		return false;
 
-	if (g_CurrentCampaign)
+	if (g_CampaignSave)
 	{
 		warn("Campaign already loaded");
 		return false;
 	}
-	g_CurrentCampaign = campaign;
+	g_CampaignSave = campaign;
 
-	let campaignData = Engine.LoadCampaign(g_CurrentCampaign);
+	let campaignData = Engine.LoadCampaign(g_CampaignSave);
 	if (!campaignData)
 	{
 		warn("Campaign failed to load properly. Quitting campaign mode.")
@@ -52,47 +74,41 @@ function loadCurrentCampaignState()
 	}
 
 	g_CampaignData = campaignData.campaign_state;
-	g_CampaignMods = campaignData.mods;
-	g_CurrentCampaignID = g_CampaignData.campaign;
+	g_CampaignID = g_CampaignData.campaign;
 
-	if (!loadCampaignTemplate())
+	if (!loadCampaignTemplate(g_CampaignID))
 		return false;
+
+	// actually fetch the menu
+	Engine.SwitchGuiPage(g_CampaignTemplate.Interface, {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData});
 
 	return true;
 }
 
-// to easily create new campaigns without going in the nitty gritty of the JS, an XML/JSON file may be provided.
-// This functions loads that to g_CampaignTemplate.
-function loadCampaignTemplate()
+function loadCampaignTemplate(name)
 {
-	let ret;
-	if (Engine.FileExists("campaign/campaign.xml"))
-		ret = Engine.LoadCampaignTemplateXML();
-	else if (Engine.FileExists("campaign/campaign.json"))
-		ret = Engine.LoadCampaignTemplateJSON();
-	else
-		return true;
+	let data = Engine.ReadJSONFile("campaigns/" + name + ".json");
 
-	if (!ret)
+	if (!data)
 	{
-		warn("Campaign template could not be loaded");
+		warn("Could not parse campaign data.");
 		return false;
 	}
-
-	g_CampaignTemplate = ret;
+	
+	g_CampaignTemplate = data;
 
 	return true;
 }
 
 function saveCampaign()
 {
-	if (!g_CurrentCampaign)
+	if (!g_CampaignSave)
 	{
 		warn("Cannot save campaign, no campaign is currently loaded");
 		return false;
 	}
 
-	Engine.SaveCampaign(g_CurrentCampaign, g_CampaignData);
+	Engine.SaveCampaign(g_CampaignSave, g_CampaignData);
 
 	return true;
 }

@@ -1,66 +1,32 @@
-/**
- * Used for checking replay compatibility.
- */
-const g_EngineInfo = Engine.GetEngineInfo();
-
-var g_CampaignsAvailable = {}; // folder names
+var g_CampaignsAvailable = {}; // "name of JSON file/ID of campaign" : data as parsed JSON
 
 var g_SelectedCampaign = null;
 
-warn("totoro");
-
 /*
  * Initializes the campaign window.
- * Loads all compatible campaign mods
+ * Loads all campaigns
  * Allows you to start them.
  */
 
-// TODO: make sure we don't load two campaign mods
-// TODO: tell the campaign mod its own name
+// TODO: Should we support mods?
 
 function init(data)
 {
-	LoadCampaignMods(data);
-}
-
-function LoadCampaignMods(data)
-{
-	let mods = Engine.GetAvailableMods();
-	let keys = ["name", "label", "description", "dependencies", "version"];
-	Object.keys(mods).forEach(function(k) {
-		for (let i = 0; i < keys.length; ++i)
-			if (!keys[i] in mods[k])
-			{
-				log("Skipping mod '"+k+"'. Missing property '"+keys[i]+"'.");
-				return;
-			}
-		// skip non-campaign mods
-		if (!mods[k].type || mods[k].type != "campaign")
-			return;
-		g_CampaignsAvailable[k] = mods[k];
-	});
-
-	let modsEnabled = getExistingModsFromConfig();
-
-	warn ("mods enabled " + uneval(modsEnabled))
-	warn ("mods available " + uneval(g_CampaignsAvailable))
-
-	if (Object.keys(g_CampaignsAvailable).some(foldername => modsEnabled.indexOf(foldername) !== -1))
-		warn("Warning: a campaign mod is already loaded. Loading another one is undefined behavior.");
+	g_CampaignsAvailable = LoadAvailableCampaigns();
 
 	GenerateCampaignList();
 }
 
 function GenerateCampaignList()
 {
-	// Remember previously selected
+	// TODO: Remember previously selected
 	let selection = Engine.GetGUIObjectByName("campaignSelection");
 	//if (oldSelection.selected != -1)
 	//	g_SelectedReplayDirectory = g_ReplaysFiltered[replaySelection.selected].directory;
 
 	let list = [];
 	for (let key in g_CampaignsAvailable)
-		list.push({ "directories" : key, "name" : g_CampaignsAvailable[key].name, "difficulty" : "TODO" });
+		list.push({ "directories" : key, "name" : g_CampaignsAvailable[key].Name, "difficulty" : g_CampaignsAvailable[key].Difficulty });
 
 	// change array of object into object of array.
 	list = prepareForDropdown(list);
@@ -89,12 +55,10 @@ function displayCampaignDetails()
 
 	g_SelectedCampaign = selection.list[selection.selected];
 
-	warn(uneval(g_SelectedCampaign));
-
 	Engine.GetGUIObjectByName("startCampButton").enabled = true;
 }
 
 function startCampaign()
 {
-	Engine.PushGuiPage("page_newcampaign.xml", { "campaign" : g_SelectedCampaign });
+	Engine.PushGuiPage("page_newcampaign.xml", { "campaignID" : g_SelectedCampaign, "campaignData" : g_CampaignsAvailable[g_SelectedCampaign] });
 }

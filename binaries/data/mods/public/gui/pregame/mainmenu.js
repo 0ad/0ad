@@ -43,8 +43,8 @@ function init(initData, hotloadData)
 		guiObj.z = i;
 	}
 
-	// Enable campaign button if we have a page_campaignsetup.xml file loaded
-	if (Engine.FileExists("gui/page_campaignsetup.xml"))
+	// Enable campaign button if we have campaigns available
+	if (Object.keys(LoadAvailableCampaigns()).length !== 0)
 	{
 		Engine.GetGUIObjectByName("subMenuNewCampaignButton").enabled = true;
 		// TODO

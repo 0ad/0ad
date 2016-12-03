@@ -5,6 +5,7 @@
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
 	<script file="gui/pregame/mainmenu.js"/>
+	<script file="gui/campaign/campaign.js"/>
 	<script file="gui/campaign/campaign_io.js"/>
 	<script directory="gui/pregame/backgrounds/"/>
 
@@ -237,9 +238,7 @@
 					<translatableAttribute id="caption">Continue Campaign</translatableAttribute>
 					<translatableAttribute id="tooltip">Click here to load your latest campaign.</translatableAttribute>
 					<action on="Press">
-						loadCurrentCampaignState();
-						Engine.SetMods(g_CampaignMods);
-						Engine.RestartEngine();
+						loadCurrentCampaignSave();
 					</action>
 				</object>
 
@@ -254,7 +253,7 @@
 					<translatableAttribute id="tooltip">Relive history through historical military campaigns. \[WIP]</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						Engine.PushGuiPage("page_campaignsetup.xml", { type: "offline" });
+						Engine.PushGuiPage("page_campaignsetup_simple.xml", { type: "offline" });
 					</action>
 				</object>
 

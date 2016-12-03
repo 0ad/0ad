@@ -14,10 +14,5 @@ function exitCampaignMode(exitGame = false)
 		);
 		return;
 	}
-
-	// TODO: might be safer to check all mods and remove all with type "campaign"
-	let mods = getExistingModsFromConfig();
-	mods.filter(mod => mod != g_CurrentCampaignID);
-	Engine.SetMods(mods);
-	Engine.RestartEngine();
+	Engine.SwitchGuiPage("page_pregame.xml", {});
 }

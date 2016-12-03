@@ -15,9 +15,7 @@
 	<!-- Used for engine + mod version checks and deleteTooltip. -->
 	<script file="gui/common/functions_utility_loadsave.js" />
 
-	<!-- Some useful functions to get the mods -->
-	<script file="gui/modmod/modutils.js" />
-
+	<script file="gui/campaign/campaign_io.js" />
 	<script file="gui/campaign/simple/setup/campaignsetup.js" />
 
 	<!-- Everything displayed in the campaign menu. -->
