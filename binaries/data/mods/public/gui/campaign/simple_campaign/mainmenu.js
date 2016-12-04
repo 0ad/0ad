@@ -26,7 +26,7 @@ function generateLevelList()
 	{
 		let level = g_CampaignTemplate.Levels[key];
 
-		if (!("ShowUnavailable" in g_CampaignTemplate) && !hasRequirements(level))
+		if (!("ShowUnavailable" in g_CampaignTemplate) || !g_CampaignTemplate.ShowUnavailable && !hasRequirements(level))
 			continue;
 
 		let status = hasRequirements(level) ? "available" : "unavailable";
