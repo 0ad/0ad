@@ -12,7 +12,7 @@ var g_CampaignData = null;
 
 function startLevel(level)
 {
-	let matchID = launchGame(level);
+	let matchID = launchGame(g_CampaignTemplate.Levels[level], level);
 
 	g_CampaignData.currentlyPlaying = matchID;
 

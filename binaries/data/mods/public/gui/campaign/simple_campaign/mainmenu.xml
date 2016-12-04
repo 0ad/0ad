@@ -2,9 +2,13 @@
 
 <objects>
 	<script file="gui/common/music.js"/>
+	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
+	<script file="gui/common/functions_utility_loadsave.js"/>
 	<script file="gui/common/settings.js"/>
+
+	<script file="gui/savedgames/load.js"/>
 
 	<script file="gui/campaign/campaign.js"/>
 	<script file="gui/campaign/campaign_io.js"/>
@@ -28,7 +32,7 @@
 				font="sans-stroke-16"
 				>
 
-				<action on="SelectionChange">displayLevelDetails();</action>
+				<action on="SelectionChange">selectionChanged();</action>
 				<!--<action on="SelectionColumnChange">displayReplayList();</action>
 				<action on="mouseleftdoubleclickitem">startCampaign();</action>-->
 
@@ -68,22 +72,10 @@
 				<translatableAttribute id="caption">Saved Games</translatableAttribute>
 			</object>
 
-			<object name="saveSelection"
-				size="0 45 100% 100%"
-				style="ModernList"
-				type="olist"
-				font="sans-stroke-13"
-				>
-
-				<!--<action on="SelectionChange">displayScenarioDetails();</action>
-				<action on="SelectionColumnChange">displayReplayList();</action>
-				<action on="mouseleftdoubleclickitem">startCampaign();</action>-->
-
-			<!-- Columns -->
-			<column id="name" color="172 172 212" width="100%">
-				<translatableAttribute id="heading" context="campaignsavelist">TODO: have saves here</translatableAttribute>
-			</column>
-			</object>		
+			<object name="gameSelection" style="ModernList" type="list" size="0 50 100% 100%">
+				<action on="SelectionChange">saveSelectionChanged();</action>
+			</object>
+	
 		</object>
 
 		<object name="bottomPanel" size="30 100%-55 100%-5 100%-25" >
@@ -103,6 +95,12 @@
 				<translatableAttribute id="caption">Start Scenario</translatableAttribute>
 				<action on="Press">
 					startLevel(g_SelectedLevel);
+				</action>
+			</object>
+			<object name="loadSavedButton" type="button" style="StoneButtonFancy" size="83%-25 0 100%-25 100%" hidden="true">
+				<translatableAttribute id="caption">Resume Saved Game</translatableAttribute>
+				<action on="Press">
+					loadGame();
 				</action>
 			</object>
 

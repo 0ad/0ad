@@ -25,7 +25,7 @@ function sanitizePlayerData(playerData)
 
 // TODO: this is a minimalist patchwork from gamesetup.Js and only attempts to barely support levels.
 
-function launchGame(level)
+function launchGame(level, levelID)
 {
 	if (!level.Map)
 	{
@@ -72,7 +72,7 @@ function launchGame(level)
 	// TODO: player should be defined in the map or the campaign at the least.
 	let playerID = 1;
 
-	g_GameAttributes.campaignData = {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData, "level" : level.ID};
+	g_GameAttributes.campaignData = {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData, "level" : levelID};
 
 	Engine.StartGame(g_GameAttributes, playerID);
 	Engine.SwitchGuiPage("page_loading.xml", {
