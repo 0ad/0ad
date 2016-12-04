@@ -15,14 +15,14 @@
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignMenuWindow">
 
 		<!-- Title -->
-		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
-			<translatableAttribute id="caption">Test Campaign</translatableAttribute>
+		<object style="ModernLabelText" name="CampaignTitle" type="text" size="50%-128 4 50%+128 36">
+			<translatableAttribute id="caption">Campaign Name</translatableAttribute>
 		</object>
 
-		<object name="leftPanel" size="3% 5% 100%-500 100%-340">
+		<object name="leftPanel" size="30 50 100%-447 100%-340">
 			<!-- List of available levels -->
 			<object name="levelSelection"
-				size="0 35 100% 100%"
+				size="0 0 100% 100%"
 				style="ModernList"
 				type="olist"
 				font="sans-stroke-16"
@@ -43,31 +43,33 @@
 			</object>
 		</object>
 
-		<object name="rightPanel" size="100%-496 5% 97% 100%-340">
+		<object name="rightPanel" size="100%-432 50 100%-30 100%-340">
 			<!-- Scenario Image -->
-			<object type="image" sprite="ModernDarkBoxGold" name="levelPreviewBox" size="5 5 100%-5 305">
-				<object type="image" sprite="snLevelPreview" size="1 1 401 294" name="mapPreview"/>
+			<object type="image" sprite="ModernDarkBoxGold" name="levelPreviewBox" size="0 0 100% 302">
+				<object type="image" sprite="snLevelPreview" size="1 1 100%-1 301" name="mapPreview"/>
 			</object>
 
 			<!-- Name and description -->
-			<!-- TODO: sort this all out. -->
-			<object size="5 315 100%-5 100%-10">
-				<object name="scenarioName" type="text" style="ModernLeftLabelText" size="0 0 100%-120 30"/>
+			<!-- TODO: figure out if we want an options button here too. -->
+			<object size="0 315 100% 100%">
+				<object name="scenarioName" type="text" style="ScenarioNameText" size="0 0 100% 30">
+					<translatableAttribute id="caption">No scenario selected</translatableAttribute>
+				</object>
 				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
-					<object name="scenarioDescription" type="text" style="ModernText" size="0 0 100% 100%"/>
+					<object name="scenarioDesc" type="text" style="ModernText" size="10 10 100%-10 100%-10"/>
 				</object>
 			</object>
 
 		</object>
 
-		<object name="savePanel" size="3% 100%-330 97% 100%-85">
+		<object name="savePanel" size="30 100%-330 100%-30 100%-85">
 			
 			<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
 				<translatableAttribute id="caption">Saved Games</translatableAttribute>
 			</object>
 
 			<object name="saveSelection"
-				size="0 35 100% 100%"
+				size="0 45 100% 100%"
 				style="ModernList"
 				type="olist"
 				font="sans-stroke-13"
@@ -84,22 +86,21 @@
 			</object>		
 		</object>
 
-		<object name="bottomPanel" size="25 100%-55 100%-5 100%-25" >
+		<object name="bottomPanel" size="30 100%-55 100%-5 100%-25" >
 
 			<!-- Exit & Back to Main Menu -->
-			<object type="button" style="StoneButton" size="25 0 17%+25 100%">
-				<translatableAttribute id="caption">Exit Game</translatableAttribute>
-				<action on="Press">exitCampaignMode(true);</action>
-			</object>
-
-			<object type="button" style="StoneButton" size="20%+25 0 37%+25 100%">
+			<object type="button" style="StoneButton" size="0 0 17% 100%">
 				<translatableAttribute id="caption">Back to Main Menu</translatableAttribute>
 				<action on="Press">exitCampaignMode()</action>
 			</object>
 
-			<!-- Start Campaign Button -->
-			<object name="startCampButton" type="button" style="StoneButton" size="83%-25 0 100%-25 100%" enabled="false">
-				<translatableAttribute id="caption">Start Campaign</translatableAttribute>
+			<object type="button" style="StoneButton" size="17%+20 0 34%+20 100%">
+				<translatableAttribute id="caption">Exit Game</translatableAttribute>
+				<action on="Press">exitCampaignMode(true);</action>
+			</object>
+
+			<object name="startButton" type="button" style="StoneButtonFancy" size="83%-25 0 100%-25 100%" enabled="false">
+				<translatableAttribute id="caption">Start Scenario</translatableAttribute>
 				<action on="Press">
 					startLevel(g_SelectedLevel);
 				</action>

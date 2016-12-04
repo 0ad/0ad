@@ -14,6 +14,11 @@ function init(data)
 	g_CampaignData = data.data;
 
 	generateLevelList();
+	displayLevelDetails();
+
+	Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:" + 400/512 + "," + 300/512 + ":session/icons/mappreview/nopreview.png";
+
+	Engine.GetGUIObjectByName("CampaignTitle").caption = translate(g_CampaignTemplate.Name);
 }
 
 function generateLevelList()
@@ -29,9 +34,14 @@ function generateLevelList()
 		if (!("ShowUnavailable" in g_CampaignTemplate) || !g_CampaignTemplate.ShowUnavailable && !hasRequirements(level))
 			continue;
 
-		let status = hasRequirements(level) ? "available" : "unavailable";
-
-		list.push({ "ID" : key, "name" : level.Name, "status" : status });
+		let status = "";
+		let name = level.Name;
+		if (!hasRequirements(level))
+		{
+			status = "not unlocked yet";
+			name = "[color=\"gray\"]" + name + "[/color]";
+		}
+		list.push({ "ID" : key, "name" : name, "status" : status });
 	}
 	list.sort((a, b) => g_CampaignTemplate.Order.indexOf(a.ID) - g_CampaignTemplate.Order.indexOf(b.ID));
 
@@ -60,18 +70,32 @@ function displayLevelDetails()
 	let selection = Engine.GetGUIObjectByName("levelSelection");
 
 	if (selection.selected === -1)
-		return;
-
-	let level = g_CampaignTemplate.Levels[selection.list[selection.selected]];
-
-	if (!hasRequirements(level))
 	{
-		Engine.GetGUIObjectByName("startCampButton").enabled = false;
+		Engine.GetGUIObjectByName("startButton").enabled = false;
 		return;
 	}
 
-	Engine.GetGUIObjectByName("startCampButton").enabled = true;
+	let level = g_CampaignTemplate.Levels[selection.list[selection.selected]];
+
+	// TODO: load from map file if not present
+	Engine.GetGUIObjectByName("scenarioName").caption = translate(level.Name);
+	Engine.GetGUIObjectByName("scenarioDesc").caption = translate(level.Description);
+
+	// todo: ibidem
+	if (level.Preview)
+		Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:" + 400/512 + "," + 300/512 + ":" + level.Preview;
+	else
+		Engine.GetGUIObjectByName("mapPreview").sprite = "cropped:" + 400/512 + "," + 300/512 + ":session/icons/mappreview/nopreview.png";
+
 	g_SelectedLevel = level;
+
+	if (!hasRequirements(level))
+	{
+		Engine.GetGUIObjectByName("startButton").enabled = false;
+		return;
+	}
+
+	Engine.GetGUIObjectByName("startButton").enabled = true;
 }
 
 function exitCampaignMode(exitGame = false)
