@@ -18,7 +18,7 @@ function init()
 		return;
 	}
 
-	gameSelection.list = campaigns.map(path => generateLabel(path));
+	gameSelection.list = campaigns.map(path => generateLabel(pathToGame(path)));
 	gameSelection.list_data = campaigns.map(path => pathToGame(path));
 
 	if (gameSelection.selected == -1)
@@ -34,17 +34,16 @@ function pathToGame(path)
 	return path.replace("campaignsaves/","").replace(".0adcampaign","");
 }
 
-function generateLabel(path)
+function generateLabel(game)
 {
-	let campaignData = Engine.ReadJSONFile(path);
-	let game = pathToGame(path);
+	let campaignData = loadCampaignSave(game);
 	if (!campaignData)
 		return "Incompatible - " + game;
 
 	if (!loadCampaignTemplate(campaignData.campaign))
 		return "Incompatible - " + game;
 
-	return game + " - " + g_CampaignTemplate.Name;
+	return campaignData.userDescription + " - " + g_CampaignTemplate.Name;
 }
 
 function selectionChanged()

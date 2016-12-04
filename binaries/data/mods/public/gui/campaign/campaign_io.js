@@ -66,7 +66,7 @@ function loadCurrentCampaignSave()
 	}
 	g_CampaignSave = campaign;
 
-	let campaignData = Engine.ReadJSONFile("campaignsaves/" + g_CampaignSave + ".0adcampaign");
+	let campaignData = loadCampaignSave(g_CampaignSave);
 	if (!campaignData)
 	{
 		warn("Campaign failed to load properly. Quitting campaign mode.")
@@ -100,15 +100,33 @@ function loadCampaignTemplate(name)
 	return true;
 }
 
-function saveCampaign()
+function saveCurrentCampaign()
 {
 	if (!g_CampaignSave)
 	{
-		warn("Cannot save campaign, no campaign is currently loaded");
+		warn("Cannot save current campaign, no campaign is currently loaded.");
 		return false;
 	}
 
-	Engine.WriteJSONFile("campaignsaves/" + g_CampaignSave + ".0adcampaign", g_CampaignData);
+	return saveCampaign(g_CampaignSave, g_CampaignData);
+}
+
+function saveCampaign(filename, data)
+{
+	Engine.WriteJSONFile("campaignsaves/" + filename + ".0adcampaign", data);
 
 	return true;
 }
+
+function loadCampaignSave(filename)
+{
+	let campaignData = Engine.ReadJSONFile("campaignsaves/" + filename + ".0adcampaign");
+	if (!campaignData)
+	{
+		error("Campaign " + filename + " failed to load properly.");
+		return undefined;
+	}
+
+	return campaignData;
+}
+

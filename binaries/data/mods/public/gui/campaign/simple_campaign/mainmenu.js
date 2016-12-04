@@ -77,7 +77,7 @@ function displayLevelDetails()
 function exitCampaignMode(exitGame = false)
 {
 	// TODO: should this be here?
-	saveCampaign();
+	saveCurrentCampaign();
 
 	if (exitGame)
 	{

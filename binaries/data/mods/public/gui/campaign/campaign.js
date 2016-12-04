@@ -16,7 +16,7 @@ function startLevel(level)
 
 	g_CampaignData.currentlyPlaying = matchID;
 
-	saveCampaign();
+	saveCurrentCampaign();
 }
 
 // this function is called by session.js at the end of a game. It should save the campaign save state immediately.
@@ -43,7 +43,7 @@ function campaignGameEnded(data)
 			g_CampaignData.completed.push(data.level);
 	}
 
-	saveCampaign();
+	saveCurrentCampaign();
 }
 
 // returns true if the level "level" is available.

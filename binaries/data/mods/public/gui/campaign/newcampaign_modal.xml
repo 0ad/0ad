@@ -20,7 +20,7 @@
 			<translatableAttribute id="caption">New Campaign</translatableAttribute>
 		</object>
 
-		<object name="gameSelection" style="ModernList" type="list" size="24 12 100%-24 100%-90">
+		<object name="gameSelection" style="ModernList" type="list" size="24 22 100%-24 100%-130">
 			<action on="SelectionChange">selectionChanged();</action>
 		</object>
 
@@ -29,7 +29,7 @@
 		</object>
 
 		<object name="saveGameDesc" size="24 100%-96 100%-24 100%-72" type="input" style="ModernInput">
-			<action on="Press">saveGame();</action>
+			<action on="Press">startCampaign();</action>
 		</object>
 
 		<object name="saveButton" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
@@ -39,7 +39,7 @@
 
 		<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton">
 			<translatableAttribute id="caption">Delete</translatableAttribute>
-			<action on="Press">Engine.PopGuiPage();//deleteGame();</action>
+			<action on="Press">deleteCampaign();</action>
 		</object>
 
 		<object type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">

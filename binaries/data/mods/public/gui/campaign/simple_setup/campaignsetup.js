@@ -19,10 +19,9 @@ function init(data)
 
 function GenerateCampaignList()
 {
-	// TODO: Remember previously selected
 	let selection = Engine.GetGUIObjectByName("campaignSelection");
-	//if (oldSelection.selected != -1)
-	//	g_SelectedReplayDirectory = g_ReplaysFiltered[replaySelection.selected].directory;
+	if (selection.selected !== -1)
+	 displayCampaignDetails();
 
 	let list = [];
 	for (let key in g_CampaignsAvailable)
@@ -47,7 +46,6 @@ function GenerateCampaignList()
 
 function displayCampaignDetails()
 {
-	// TODO: basically all of it.
 	let selection = Engine.GetGUIObjectByName("campaignSelection");
 	if (selection.selected === -1)
 		return;
@@ -55,6 +53,14 @@ function displayCampaignDetails()
 	g_SelectedCampaign = selection.list[selection.selected];
 
 	Engine.GetGUIObjectByName("startCampButton").enabled = true;
+	Engine.GetGUIObjectByName("campaignOptionsButton").enabled = true;
+
+	Engine.GetGUIObjectByName("CampaignTitle").caption = translate(g_CampaignsAvailable[g_SelectedCampaign].Name);	
+	Engine.GetGUIObjectByName("campaignDesc").caption = translate(g_CampaignsAvailable[g_SelectedCampaign].Description);	
+
+	if (g_CampaignsAvailable[g_SelectedCampaign].Image)
+		Engine.GetGUIObjectByName("campaignImage").sprite = g_CampaignsAvailable[g_SelectedCampaign].Image;
+
 }
 
 function startCampaign()

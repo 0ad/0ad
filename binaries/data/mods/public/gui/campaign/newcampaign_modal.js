@@ -14,12 +14,15 @@ function init(data)
 		gameSelection.list = [translate("No ongoing campaigns.")];
 	else
 	{
-		gameSelection.list = campaigns.map(path => path.replace("campaignsaves/",""));
+		gameSelection.list = campaigns.map(path => generateLabel(pathToGame(path)));
 		gameSelection.list_data = campaigns.map(path => pathToGame(path));
 	}
 
-	g_CampaignID = data.campaignID;
-	g_CampaignData = data.campaignData;
+	if (data)
+	{
+		g_CampaignID = data.campaignID;
+		g_CampaignData = data.campaignData;
+	}
 }
 
 function selectionChanged()
@@ -28,7 +31,7 @@ function selectionChanged()
 	if (gameSelection.selected === -1)
 		return;
 
-	Engine.GetGUIObjectByName("saveGameDesc").caption = gameSelection.list_data[gameSelection.selected];
+	// TODO: do something?
 }
 
 function startCampaign()
@@ -39,9 +42,31 @@ function startCampaign()
 	realStartCampaign(Engine.GetGUIObjectByName("saveGameDesc").caption);
 }
 
-function realStartCampaign(name)
+function realStartCampaign(desc)
 {
-	Engine.WriteJSONFile("campaignsaves/" + name + ".0adcampaign", {"name" : name, "campaign" : g_CampaignID});
+	let name = g_CampaignID + "_1";
+	// if file already exists, pick the number above the existing ones. Don't bother making it dense.
+	if (Engine.FileExists("campaignsaves/" + name + ".0adcampaign"))
+	{
+		// get other campaigns following that template
+		let campaigns = Engine.BuildDirEntList("campaignsaves/", g_CampaignID + "_*.0adcampaign", false);
+		let max = 1;
+		for (let camp of campaigns)
+		{
+			let nb = camp.replace("campaignsaves/" + g_CampaignID + "_","").replace(".0adcampaign","");
+			if (+nb > max)
+				max = +nb;
+		}
+		name = g_CampaignID + "_" + (max+1);
+		// sanity check
+		if (Engine.FileExists("campaignsaves/" + name + ".0adcampaign"))
+		{
+			error("tell wraitii he can't code");
+			return;
+		}
+	}
+
+	saveCampaign(name, {"userDescription" : desc, "campaign" : g_CampaignID})
 
 	// inform user config that we are playing this campaign
 	Engine.ConfigDB_CreateValue("user", "currentcampaign", name);

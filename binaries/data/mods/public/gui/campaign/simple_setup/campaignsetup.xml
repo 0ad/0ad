@@ -26,10 +26,10 @@
 			<translatableAttribute id="caption">Campaigns</translatableAttribute>
 		</object>
 
-		<object name="leftPanel" size="3% 5% 100%-255 100%-80">
+		<object name="leftPanel" size="30 50 100%-515 100%-80">
 			<!-- List of campaigns -->
 			<object name="campaignSelection"
-				size="0 35 100% 100%"
+				size="0 0 100% 100%"
 				style="ModernList"
 				type="olist"
 				sortable="true"
@@ -38,17 +38,33 @@
 				sprite_asc="ModernArrowDown"
 				sprite_desc="ModernArrowUp"
 				sprite_not_sorted="ModernNotSorted"
-				font="sans-stroke-13"
+				font="sans-stroke-16"
 				>
 
 				<action on="SelectionChange">displayCampaignDetails();</action>
 				<!--<action on="SelectionColumnChange">displayReplayList();</action>-->
 				<action on="mouseleftdoubleclickitem">startCampaign();</action>
 
-			<!-- Columns -->
-			<column id="name" color="172 172 212" width="90%">
+			<column id="name" color="172 172 212" width="99%">
 				<translatableAttribute id="heading" context="campaignsetup">Name</translatableAttribute>
 			</column>
+			</object>
+		</object>
+
+		<object name="rightPanel" size="100%-485 50 100%-30 100%-80">
+			<object type="image" sprite="ModernDarkBoxGold" size="0 0 100% 342">
+				<object name="CampaignImage" type="image" sprite="snCampaignImage" size="1 1 100%-1 100%-1">
+				</object>
+			</object>
+			<object type="text" name="CampaignTitle" style="CampaignNameText" size="0 360 100% 390">
+				<translatableAttribute id="caption">No campaign selected</translatableAttribute>
+			</object>
+			<object type="image" sprite="ModernDarkBoxGold" name="campaignDescBox" size="0 400 100% 100%-50" hidden="false">
+				<object type="text" name="campaignDesc" style="LeftButtonText" font="sans-16" size="10 10 100%-10 100%-10">
+				</object>
+			</object>
+			<object type="button" name="campaignOptionsButton" style="ModernButtonRed" size="100%-140 100%-30 100% 100%-0" enabled="false">
+				<translatableAttribute id="caption">Options</translatableAttribute>
 			</object>
 		</object>
 	</object>
@@ -62,7 +78,7 @@
 		</object>
 
 		<!-- Start Campaign Button -->
-		<object name="startCampButton" type="button" style="StoneButton" size="83%-25 0 100%-25 100%" enabled="false">
+		<object name="startCampButton" type="button" style="StoneButtonFancy" size="83%-25 0 100%-25 100%" enabled="false">
 			<translatableAttribute id="caption">Start Campaign</translatableAttribute>
 			<action on="Press">startCampaign();</action>
 		</object>
