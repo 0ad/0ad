@@ -23,7 +23,7 @@ function sanitizePlayerData(playerData)
 }
 
 
-// TODO: this is a minimalist patchwork from gamesetup.Js and only attempts to barely support levels.
+// TODO: this is a minimalist patchwork from gamesetup.Js and only barely attempts to work.
 
 function launchGame(level, levelID)
 {
@@ -38,7 +38,7 @@ function launchGame(level, levelID)
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
 
-	let mapData = Engine.LoadMapSettings(level.Map);
+	let mapData = Engine.LoadMapSettings("maps/" + level.Map);
 	if (!mapData)
 	{
 		warn("Could not load map");
@@ -51,7 +51,7 @@ function launchGame(level, levelID)
 		sanitizePlayerData(mapSettings.PlayerData);
 
 	// Copy any new settings
-	g_GameAttributes.map = level.Map;
+	g_GameAttributes.map = "maps/" + level.Map;
 	g_GameAttributes.script = mapSettings.Script;
 
 	for (let prop in mapSettings)

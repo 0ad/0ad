@@ -14,6 +14,8 @@ function init(data)
 {
 	g_CampaignsAvailable = LoadAvailableCampaigns();
 
+	Engine.GetGUIObjectByName("CampaignImage").sprite = "cropped:" + 400/512 + "," + 300/512 + ":session/icons/mappreview/nopreview.png";
+
 	GenerateCampaignList();
 }
 
@@ -59,7 +61,9 @@ function displayCampaignDetails()
 	Engine.GetGUIObjectByName("campaignDesc").caption = translate(g_CampaignsAvailable[g_SelectedCampaign].Description);	
 
 	if (g_CampaignsAvailable[g_SelectedCampaign].Image)
-		Engine.GetGUIObjectByName("campaignImage").sprite = g_CampaignsAvailable[g_SelectedCampaign].Image;
+		Engine.GetGUIObjectByName("CampaignImage").sprite = "stretched:" + g_CampaignsAvailable[g_SelectedCampaign].Image;
+	else
+		Engine.GetGUIObjectByName("CampaignImage").sprite = "cropped:" + 400/512 + "," + 300/512 + ":session/icons/mappreview/nopreview.png";
 
 }
 
