@@ -8,6 +8,7 @@
 
 	<script file="gui/campaign/campaign.js" />
 	<script file="gui/campaign/campaign_io.js" />
+	<script file="gui/campaign/load.js" />
 	<script file="gui/campaign/newcampaign_modal.js" />
 
 	<!-- Add a translucent black background to fade out the page -->
@@ -19,14 +20,8 @@
 			<translatableAttribute id="caption">New Campaign</translatableAttribute>
 		</object>
 
-		<object name="campaignSelection"
-			style="ModernList"
-			type="list"
-
-			size="24 24 100%-24 100%-124">
-			<action on="selectionchange">
-				selectDescription();
-			</action>
+		<object name="gameSelection" style="ModernList" type="list" size="24 12 100%-24 100%-90">
+			<action on="SelectionChange">selectionChanged();</action>
 		</object>
 
 		<object size="24 100%-124 100%-24 100%-100" name="descLabel" type="text" style="ModernLeftLabelText">

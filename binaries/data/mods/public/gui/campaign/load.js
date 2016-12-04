@@ -18,7 +18,7 @@ function init()
 		return;
 	}
 
-	gameSelection.list = campaigns.map(path => generateLabel(pathToGame(path)));
+	gameSelection.list = campaigns.map(path => generateLabel(path));
 	gameSelection.list_data = campaigns.map(path => pathToGame(path));
 
 	if (gameSelection.selected == -1)
@@ -34,13 +34,14 @@ function pathToGame(path)
 	return path.replace("campaignsaves/","").replace(".0adcampaign","");
 }
 
-function generateLabel(game)
+function generateLabel(path)
 {
-	let campaignData = Engine.LoadCampaign(game);
+	let campaignData = Engine.ReadJSONFile(path);
+	let game = pathToGame(path);
 	if (!campaignData)
 		return "Incompatible - " + game;
 
-	if (!loadCampaignTemplate(campaignData.campaign_state.campaign))
+	if (!loadCampaignTemplate(campaignData.campaign))
 		return "Incompatible - " + game;
 
 	return game + " - " + g_CampaignTemplate.Name;
@@ -79,9 +80,14 @@ function selectionChanged()
 	*/
 }
 
-function loadGame()
+function loadCampaign()
 {
 	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+
+	let campaign = gameSelection.list_data[gameSelection.selected];
+	reallyLoadCampaign(campaign);
+
+	// TODO: compatibility checks cf saved games
 /*
 	// Check compatibility before really loading it
 	let sameMods = hasSameMods(metadata, engineInfo);
@@ -117,9 +123,12 @@ function loadGame()
 	);*/
 }
 
-function reallyLoadGame(gameId)
+function reallyLoadCampaign(name)
 {
-	
+	Engine.ConfigDB_CreateValue("user", "currentcampaign", name);
+	Engine.ConfigDB_WriteValueToFile("user", "currentcampaign", name, "config/user.cfg");
+
+	loadCurrentCampaignSave();
 }
 
 function deleteCampaign()
@@ -145,6 +154,16 @@ function reallyDeleteCampaign(name)
 {
 	if (!Engine.DeleteCampaignGame(name))
 		error("Could not delete campaign game " + name);
+
+	if (Engine.ConfigDB_GetValue("user", "currentcampaign") === name)
+	{
+		Engine.ConfigDB_RemoveValue("user", "currentcampaign");
+		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+
+		// TODO: this doesn't seem to work.
+		if (Engine.GetGUIObjectByName("subMenuContinueCampaignButton"))
+			Engine.GetGUIObjectByName("subMenuContinueCampaignButton").enabled = false;
+	}
 
 	// re-run init to refresh.
 	init();

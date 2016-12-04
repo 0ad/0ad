@@ -20,37 +20,33 @@
 		</object>
 
 		<object name="leftPanel" size="3% 5% 100%-500 100%-340">
-			<!-- List of available scenarios -->
-			<object name="scenarioSelection"
+			<!-- List of available levels -->
+			<object name="levelSelection"
 				size="0 35 100% 100%"
 				style="ModernList"
 				type="olist"
 				font="sans-stroke-16"
 				>
 
-				<action on="SelectionChange">displayScenarioDetails();</action>
+				<action on="SelectionChange">displayLevelDetails();</action>
 				<!--<action on="SelectionColumnChange">displayReplayList();</action>
 				<action on="mouseleftdoubleclickitem">startCampaign();</action>-->
 
 			<!-- Columns -->
-			<column id="ID" color="172 172 212" width="5%">
-				<translatableAttribute id="heading" context="campaignscenariolist">ID</translatableAttribute>
-			</column>
-
 			<column id="name" color="172 172 212" width="80%">
-				<translatableAttribute id="heading" context="campaignscenariolist">Scenario Name</translatableAttribute>
+				<translatableAttribute id="heading" context="campaignLevelList">Scenario Name</translatableAttribute>
 			</column>
 
-			<column id="status" color="192 192 192" width="15%">
-				<translatableAttribute id="heading" context="campaignscenariolist">Status</translatableAttribute>
+			<column id="status" color="192 192 192" width="20%">
+				<translatableAttribute id="heading" context="campaignLevelList">Status</translatableAttribute>
 			</column>
 			</object>
 		</object>
 
 		<object name="rightPanel" size="100%-496 5% 97% 100%-340">
 			<!-- Scenario Image -->
-			<object type="image" sprite="ModernDarkBoxGold" name="scenarioPreviewBox" size="5 5 100%-5 305">
-				<object type="image" sprite="snScenarioPreview" size="1 1 401 294" name="mapPreview"/>
+			<object type="image" sprite="ModernDarkBoxGold" name="levelPreviewBox" size="5 5 100%-5 305">
+				<object type="image" sprite="snLevelPreview" size="1 1 401 294" name="mapPreview"/>
 			</object>
 
 			<!-- Name and description -->
@@ -105,7 +101,7 @@
 			<object name="startCampButton" type="button" style="StoneButton" size="83%-25 0 100%-25 100%" enabled="false">
 				<translatableAttribute id="caption">Start Campaign</translatableAttribute>
 				<action on="Press">
-					startScenario(g_SelectedScenario);
+					startLevel(g_SelectedLevel);
 				</action>
 			</object>
 

@@ -1,4 +1,4 @@
-var g_SelectedScenario = null;
+var g_SelectedLevel = null;
 
 function init(data)
 {
@@ -13,42 +13,40 @@ function init(data)
 	g_CampaignSave = data.save;
 	g_CampaignData = data.data;
 
-	generateScenarioList();
+	generateLevelList();
 }
 
-function generateScenarioList()
+function generateLevelList()
 {
 	// TODO: remember old selection?
-	let selection = Engine.GetGUIObjectByName("scenarioSelection");
+	let selection = Engine.GetGUIObjectByName("levelSelection");
 
 	let list = [];
-	for (let key in g_CampaignTemplate.Scenarios)
+	for (let key in g_CampaignTemplate.Levels)
 	{
-		let scenario = g_CampaignTemplate.Scenarios[key];
+		let level = g_CampaignTemplate.Levels[key];
 
-		if (!("ShowUnavailable" in g_CampaignTemplate) && !hasRequirements(scenario))
+		if (!("ShowUnavailable" in g_CampaignTemplate) && !hasRequirements(level))
 			continue;
 
-		let status = hasRequirements(scenario) ? "available" : "unavailable";
+		let status = hasRequirements(level) ? "available" : "unavailable";
 
-		list.push({ "xmlName" : key, "RID" : scenario.ReadableID, "name" : scenario.Name, "order" : scenario.ID, "status" : status });
+		list.push({ "ID" : key, "name" : level.Name, "status" : status });
 	}
-
-	list.sort((a, b) => a.order - b.order);
+	list.sort((a, b) => g_CampaignTemplate.Order.indexOf(a.ID) - g_CampaignTemplate.Order.indexOf(b.ID));
 
 	// change array of object into object of array.
 	list = prepareForDropdown(list);
 
 	// Push to GUI
 	selection.selected = -1;
-	selection.list_ID = list.RID || [];
 	selection.list_name = list.name || [];
 	selection.list_status = list.status || [];
 
 	// Change these last, otherwise crash
 	// TODO: do we need both of those? I'm unsure.
-	selection.list = list.xmlName || [];
-	selection.list_data = list.xmlName || [];
+	selection.list = list.ID || [];
+	selection.list_data = list.ID || [];
 
 //	replaySelection.selected = replaySelection.list.findIndex(directory => directory == g_SelectedReplayDirectory);
 
@@ -56,24 +54,24 @@ function generateScenarioList()
 
 }
 
-function displayScenarioDetails()
+function displayLevelDetails()
 {
 	// TODO: actually update description on the right-hand side
-	let selection = Engine.GetGUIObjectByName("scenarioSelection");
+	let selection = Engine.GetGUIObjectByName("levelSelection");
 
 	if (selection.selected === -1)
 		return;
 
-	let scenario = g_CampaignTemplate.Scenarios[selection.list[selection.selected]];
+	let level = g_CampaignTemplate.Levels[selection.list[selection.selected]];
 
-	if (!hasRequirements(scenario))
+	if (!hasRequirements(level))
 	{
 		Engine.GetGUIObjectByName("startCampButton").enabled = false;
 		return;
 	}
 
 	Engine.GetGUIObjectByName("startCampButton").enabled = true;
-	g_SelectedScenario = scenario;
+	g_SelectedLevel = level;
 }
 
 function exitCampaignMode(exitGame = false)

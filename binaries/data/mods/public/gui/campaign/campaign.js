@@ -10,9 +10,9 @@ var g_CampaignSave = null;
 // Current campaign state, to be saved in/loaded from the above file
 var g_CampaignData = null;
 
-function startScenario(scenario)
+function startLevel(level)
 {
-	let matchID = launchGame(scenario);
+	let matchID = launchGame(level);
 
 	g_CampaignData.currentlyPlaying = matchID;
 
@@ -39,33 +39,36 @@ function campaignGameEnded(data)
 	{
 		if (!g_CampaignData.completed)
 			g_CampaignData.completed = [];
-		if (g_CampaignData.completed.indexOf(data.scenario) == -1)
-			g_CampaignData.completed.push(data.scenario);
+		if (g_CampaignData.completed.indexOf(data.level) == -1)
+			g_CampaignData.completed.push(data.level);
 	}
 
 	saveCampaign();
 }
 
-function hasRequirements(scenario)
+// returns true if the level "level" is available.
+function hasRequirements(level)
 {
-	if (!scenario.Requires)
+	if (!level.Requires)
 		return true;
 
 	if (!g_CampaignData.completed)
 		return false;
 
-	if (scenario.Requires.some(req => g_CampaignData.completed.indexOf(req) === -1))
+	// reuse class matching system, supporting "or", "+" and "!"
+	if (!MatchesClassList(g_CampaignData.completed, level.Requires))
 		return false;
 
 	return true;
 }
 
-function hasCompleted(scenario)
+// return true if the player has completed the level with ID "level"
+function hasCompleted(level)
 {
 	if (!g_CampaignData.completed)
 		return false;
 
-	if (g_CampaignData.completed.indexOf(scenario.ID) === -1)
+	if (g_CampaignData.completed.indexOf(level.ID) === -1)
 		return false;
 
 	return true;

@@ -23,11 +23,11 @@ function sanitizePlayerData(playerData)
 }
 
 
-// TODO: this is a minimalist patchwork from gamesetup.Js and only attempts to barely support scenarios.
+// TODO: this is a minimalist patchwork from gamesetup.Js and only attempts to barely support levels.
 
-function launchGame(scenario)
+function launchGame(level)
 {
-	if (!scenario.Map)
+	if (!level.Map)
 	{
 		warn("cannot start scenario: no maps specified.");
 		return;
@@ -38,7 +38,7 @@ function launchGame(scenario)
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
 
-	let mapData = Engine.LoadMapSettings(scenario.Map);
+	let mapData = Engine.LoadMapSettings(level.Map);
 	if (!mapData)
 	{
 		warn("Could not load map");
@@ -51,7 +51,7 @@ function launchGame(scenario)
 		sanitizePlayerData(mapSettings.PlayerData);
 
 	// Copy any new settings
-	g_GameAttributes.map = scenario.Map;
+	g_GameAttributes.map = level.Map;
 	g_GameAttributes.script = mapSettings.Script;
 
 	for (let prop in mapSettings)
@@ -69,10 +69,10 @@ function launchGame(scenario)
 
 	g_GameAttributes.matchID = Engine.GetMatchID();
 
-	// TODO: player should be defined in the scenario or the campaign at the least.
+	// TODO: player should be defined in the map or the campaign at the least.
 	let playerID = 1;
 
-	g_GameAttributes.campaignData = {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData, "scenario" : scenario.ID};
+	g_GameAttributes.campaignData = {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData, "level" : level.ID};
 
 	Engine.StartGame(g_GameAttributes, playerID);
 	Engine.SwitchGuiPage("page_loading.xml", {

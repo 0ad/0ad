@@ -1,24 +1,38 @@
 {
 	"Name" : "Example Campaign",
 	"Description" : "Lorem Ipsum and so on and so on",
-	"Difficulty" : "Easy",
 	"Interface" : "campaign/simple_campaign/page_menu.xml",
-	"ShowUnavailable" : true,
-	"Scenarios" : {
+	"Levels" : {
 		"Example_1" : {
-			"ID" : 1,
-			"ReadableID" : 1,
 			"Name" : "Example 1",
-			"Description" : "Whatever",
-			"Map" : "maps/scenarios/Serengeti.xml"
+			"Map" : "maps/scenarios/Serengeti.xml",
+			"Description" : "Whatever"
 		},
 		"Example_2" : {
-			"ID" : 2,
-			"ReadableID" : 2,
 			"Name" : "Example 2",
-			"Description" : "None",
 			"Map" : "",
-			"Requires" : [1]
+			"Description" : "None",
+			"Requires" : "Example_1"
+		},
+		"Example_3" : {
+			"Name" : "This one requires 1 and 2",
+			"Map" : "",
+			"Description" : "None",
+			"Requires" : "Example_1+Example_2"
+		},
+		"Example_4" : {
+			"Name" : "This one requires 2 or 3",
+			"Map" : "",
+			"Description" : "None",
+			"Requires" : "Example_2 Example_3"
+		},
+		"Example_5" : {
+			"Name" : "This one unavailable if 1",
+			"Map" : "",
+			"Description" : "None",
+			"Requires" : "!Example_1"
 		}
-	}
+	},
+	"Order" : ["Example_1", "Example_2", "Example_3", "Example_4", "Example_5"],
+	"ShowUnavailable" : true
 }

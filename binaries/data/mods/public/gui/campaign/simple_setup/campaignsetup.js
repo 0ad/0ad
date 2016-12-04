@@ -26,7 +26,7 @@ function GenerateCampaignList()
 
 	let list = [];
 	for (let key in g_CampaignsAvailable)
-		list.push({ "directories" : key, "name" : g_CampaignsAvailable[key].Name, "difficulty" : g_CampaignsAvailable[key].Difficulty });
+		list.push({ "directories" : key, "name" : g_CampaignsAvailable[key].Name });
 
 	// change array of object into object of array.
 	list = prepareForDropdown(list);
@@ -34,7 +34,6 @@ function GenerateCampaignList()
 	// Push to GUI
 	selection.selected = -1;
 	selection.list_name = list.name || [];
-	selection.list_difficulty = list.difficulty || [];
 
 	// Change these last, otherwise crash
 	// TODO: do we need both of those? I'm unsure.

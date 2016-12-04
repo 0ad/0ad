@@ -66,14 +66,14 @@ function loadCurrentCampaignSave()
 	}
 	g_CampaignSave = campaign;
 
-	let campaignData = Engine.LoadCampaign(g_CampaignSave);
+	let campaignData = Engine.ReadJSONFile("campaignsaves/" + g_CampaignSave + ".0adcampaign");
 	if (!campaignData)
 	{
 		warn("Campaign failed to load properly. Quitting campaign mode.")
 		return false;
 	}
 
-	g_CampaignData = campaignData.campaign_state;
+	g_CampaignData = campaignData;
 	g_CampaignID = g_CampaignData.campaign;
 
 	if (!loadCampaignTemplate(g_CampaignID))
@@ -108,7 +108,7 @@ function saveCampaign()
 		return false;
 	}
 
-	Engine.SaveCampaign(g_CampaignSave, g_CampaignData);
+	Engine.WriteJSONFile("campaignsaves/" + g_CampaignSave + ".0adcampaign", g_CampaignData);
 
 	return true;
 }
