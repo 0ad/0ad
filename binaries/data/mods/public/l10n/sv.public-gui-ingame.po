@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:00+0100\n"
-"PO-Revision-Date: 2016-11-21 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-12-02 09:00+0100\n"
+"PO-Revision-Date: 2016-12-03 11:35+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,12 +57,12 @@ msgid "Confirmation"
 msgstr "Bekräfta"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nej"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -524,7 +524,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:54 gui/session/selection_details.js:367
-#: gui/session/selection_details.js:399 gui/session/session.js:867
+#: gui/session/selection_details.js:399 gui/session/session.js:875
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -589,9 +589,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:569
-#: gui/session/unit_actions.js:578 gui/session/unit_actions.js:592
-#: gui/session/unit_actions.js:910
+#: gui/session/selection_details.js:229 gui/session/unit_actions.js:574
+#: gui/session/unit_actions.js:583 gui/session/unit_actions.js:597
+#: gui/session/unit_actions.js:915
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Vinst: %(gain)s"
@@ -679,7 +679,7 @@ msgstr "Lasta av %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klicka för att lasta av 1. Skift+klicka för att lasta av alla av denna sort."
 
-#: gui/session/selection_panels.js:473
+#: gui/session/selection_panels.js:473 gui/session/selection_panels.js:948
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Spelare: %(playername)s"
@@ -724,21 +724,21 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Kvar att bygga: %(number)s"
 msgstr[1] "Kvar att bygga: %(number)s"
 
-#: gui/session/selection_panels.js:1140
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Uppgradera till %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Uppgradera till %(name)s."
 
-#: gui/session/selection_panels.js:1161
+#: gui/session/selection_panels.js:1166
 msgid "Cancel Upgrading"
 msgstr "Avbryt Uppgradering"
 
-#: gui/session/selection_panels.js:1166
+#: gui/session/selection_panels.js:1171
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Kan inte uppgradera när enheten redan uppgraderas."
 
@@ -872,209 +872,209 @@ msgstr "Välj en sorts vara som ursprung av handeln, använd sedan pilarna vid a
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Använd %(hotkey)s för att sätta den valda resursen på 100%%."
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strukturträd"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:735
 msgid "Do you want to quit?"
 msgstr "Vill du avsluta?"
 
-#: gui/session/session.js:727
-msgid "Leaving will disconnect all other players."
-msgstr "Avslut kommer att koppla ner alla spelare."
-
-#: gui/session/session.js:733
+#: gui/session/session.js:741
 msgid "VICTORIOUS!"
 msgstr "SEGRARE!"
 
-#: gui/session/session.js:734
+#: gui/session/session.js:742
 msgid "DEFEATED!"
 msgstr "BESEGRAD!"
 
-#: gui/session/session.js:786
+#: gui/session/session.js:743
+msgid "Ok"
+msgstr "Ok"
+
+#: gui/session/session.js:794
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Replayen är över. Vill du avsluta?"
 
-#: gui/session/session.js:787
+#: gui/session/session.js:795
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
-#: gui/session/session.js:788
+#: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nej"
 
-#: gui/session/session.js:788
+#: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:868
+#: gui/session/session.js:876
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Hälsa:"
 
-#: gui/session/session.js:1003
+#: gui/session/session.js:1018
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1006
+#: gui/session/session.js:1021
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1029
+#: gui/session/session.js:1047
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1030
+#: gui/session/session.js:1048
 msgid "Population (current / limit)"
 msgstr "Befolkning (nuvarande / gräns)"
 
-#: gui/session/session.js:1031
+#: gui/session/session.js:1049
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximal befolkning: %(popCap)s"
 
-#: gui/session/session.js:1183
+#: gui/session/session.js:1201
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1193
+#: gui/session/session.js:1211
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "OBS: Time Warp Läge är ett utvecklaralternativ och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att kräva för mycket minne och crasha."
 
-#: gui/session/session.js:1194
+#: gui/session/session.js:1212
 msgid "Time warp mode"
 msgstr "Time warp läge"
 
-#: gui/session/unit_actions.js:567
+#: gui/session/unit_actions.js:572
 msgid "Origin trade market."
 msgstr "Ursprungsmarknad."
 
-#: gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:578
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Högerklicka på en annan marknad för att ange den som målmarknad."
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:582
 msgid "Destination trade market."
 msgstr "Målmarknad."
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:589
 msgid "Right-click to set as origin trade market"
 msgstr "Högerklicka för att ange som ursprungsmarknad"
 
-#: gui/session/unit_actions.js:591
+#: gui/session/unit_actions.js:596
 msgid "Right-click to set as destination trade market."
 msgstr "Högerklicka för att ange som målmarknad."
 
-#: gui/session/unit_actions.js:645 gui/session/unit_actions.js:860
+#: gui/session/unit_actions.js:650 gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nuvarande garnison: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:907
+#: gui/session/unit_actions.js:912
 msgid "Right-click to establish a default route for new traders."
 msgstr "Högerklicka för att skapa en standardrutt för nya handelsmän."
 
-#: gui/session/unit_actions.js:911
+#: gui/session/unit_actions.js:916
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Du förväntas få: %(gain)s"
 
-#: gui/session/unit_actions.js:1044 gui/session/unit_actions.js:1346
+#: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
 msgid "Unload All."
 msgstr "Lasta av allt."
 
-#: gui/session/unit_actions.js:1066
+#: gui/session/unit_actions.js:1071
 msgid "Destroy the selected units or buildings."
 msgstr "Förstör de valda enheter och byggnader."
 
-#: gui/session/unit_actions.js:1068
+#: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Använd %(hotkey)s för att undvika bekräftelsedialogen."
 
-#: gui/session/unit_actions.js:1100
+#: gui/session/unit_actions.js:1105
 msgid "Abort the current order."
 msgstr "Avbryt den akutella ordern."
 
-#: gui/session/unit_actions.js:1120
+#: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Skicka de utvalda enheterna för att garnisonera en byggnad eller enhet."
 
-#: gui/session/unit_actions.js:1142
+#: gui/session/unit_actions.js:1147
 msgid "Unload"
 msgstr "Lasta av"
 
-#: gui/session/unit_actions.js:1160
+#: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Skicka de utvalda enheterna för att reparera en byggnad eller mekanisk enhet."
 
-#: gui/session/unit_actions.js:1179
+#: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
 msgstr "Fokus på samlingsplats."
 
-#: gui/session/unit_actions.js:1204
+#: gui/session/unit_actions.js:1209
 msgid "Back to Work"
 msgstr "Tillbaka till arbetet"
 
-#: gui/session/unit_actions.js:1223
+#: gui/session/unit_actions.js:1228
 msgid "Order the selected units to guard a building or unit."
 msgstr "Skicka de utvalda enheterna för att vakta en byggnad eller enhet."
 
-#: gui/session/unit_actions.js:1241
+#: gui/session/unit_actions.js:1246
 msgid "Remove guard"
 msgstr "Ta bort vakt"
 
-#: gui/session/unit_actions.js:1258
+#: gui/session/unit_actions.js:1263
 msgid "Select trading goods"
 msgstr "Välj handelsvaror"
 
-#: gui/session/unit_actions.js:1275
+#: gui/session/unit_actions.js:1280
 msgid "Patrol"
 msgstr "Patrullera"
 
-#: gui/session/unit_actions.js:1276
+#: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Attackera alla fientliga enheter men undvik byggnader."
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Tryck för att förhindra allierade från att använda detta insamlingsställe"
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1309
 msgid "Press to allow allies to use this dropsite"
 msgstr "Tryck för att låta allierade använda detta insamlingsställe"
 
-#: gui/session/unit_actions.js:1367
+#: gui/session/unit_actions.js:1372
 msgid "You are allowed to use this dropsite"
 msgstr "Du får använda detta insamlingsställe"
 
-#: gui/session/unit_actions.js:1372
+#: gui/session/unit_actions.js:1377
 msgid "The use of this dropsite is prohibited"
 msgstr "Det är förbjudet att använda detta insamlingsställe"
 
-#: gui/session/unit_actions.js:1432
+#: gui/session/unit_actions.js:1437
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Enheten måste dödas innan det kan samlas från den"
 
-#: gui/session/unit_actions.js:1435
+#: gui/session/unit_actions.js:1440
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Du kan inte förstöra denna enhet för att du äger mindre än hälften av enhetens erövringspoäng"
 
-#: gui/session/unit_actions.js:1438
+#: gui/session/unit_actions.js:1443
 msgid "This entity is undeletable"
 msgstr "Denna enhet kan inte tas bort"
 
@@ -1290,11 +1290,11 @@ msgid "Yes or no?"
 msgstr "Ja eller nej?"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):13
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
+#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):30
 msgid "Hitpoints"
 msgstr "Hälsopoäng"
 
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
+#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
 msgstr "Erövringspoäng"
 

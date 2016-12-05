@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:00+0100\n"
-"PO-Revision-Date: 2016-11-21 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-12-02 09:00+0100\n"
+"PO-Revision-Date: 2016-12-05 07:27+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,12 +52,12 @@ msgid "Confirmation"
 msgstr "Потвърждаване"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Не"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Да"
 
@@ -519,7 +519,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:54 gui/session/selection_details.js:367
-#: gui/session/selection_details.js:399 gui/session/session.js:867
+#: gui/session/selection_details.js:399 gui/session/session.js:875
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -584,9 +584,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:569
-#: gui/session/unit_actions.js:578 gui/session/unit_actions.js:592
-#: gui/session/unit_actions.js:910
+#: gui/session/selection_details.js:229 gui/session/unit_actions.js:574
+#: gui/session/unit_actions.js:583 gui/session/unit_actions.js:597
+#: gui/session/unit_actions.js:915
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Печалба: %(gain)s"
@@ -674,7 +674,7 @@ msgstr "Премахване на %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Натиснете веднъж за премахване на 1. Шифт + щракване за премахване на всички от този вид."
 
-#: gui/session/selection_panels.js:473
+#: gui/session/selection_panels.js:473 gui/session/selection_panels.js:948
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Играч: %(playername)s"
@@ -719,21 +719,21 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Остава: %(number)s за построяване."
 msgstr[1] "Остават: %(number)s за построяване."
 
-#: gui/session/selection_panels.js:1140
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Надграждане до %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Надграждане до %(name)s."
 
-#: gui/session/selection_panels.js:1161
+#: gui/session/selection_panels.js:1166
 msgid "Cancel Upgrading"
 msgstr "Спиране на надграждането"
 
-#: gui/session/selection_panels.js:1166
+#: gui/session/selection_panels.js:1171
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Не можете да надградите нещо, което вече се надгражда."
 
@@ -867,209 +867,209 @@ msgstr "Изберете една от стоките като източник 
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Ако натиснете %(hotkey)s докато избирате, стоката ще получи 100%%."
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s — Дърво на сградите"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:735
 msgid "Do you want to quit?"
 msgstr "Искате ли да излезете?"
 
-#: gui/session/session.js:727
-msgid "Leaving will disconnect all other players."
-msgstr "Напускането ви ще разкачи всички останали играчи."
-
-#: gui/session/session.js:733
+#: gui/session/session.js:741
 msgid "VICTORIOUS!"
 msgstr "ПОБЕДИТЕЛ!"
 
-#: gui/session/session.js:734
+#: gui/session/session.js:742
 msgid "DEFEATED!"
 msgstr "ПОБЕДЕН!"
 
-#: gui/session/session.js:786
+#: gui/session/session.js:743
+msgid "Ok"
+msgstr "Добре"
+
+#: gui/session/session.js:794
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Записът свърши. Искате ли да излезете?"
 
-#: gui/session/session.js:787
+#: gui/session/session.js:795
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Потвърждаване"
 
-#: gui/session/session.js:788
+#: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Не"
 
-#: gui/session/session.js:788
+#: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Да"
 
-#: gui/session/session.js:868
+#: gui/session/session.js:876
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Здраве:"
 
-#: gui/session/session.js:1003
+#: gui/session/session.js:1018
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1006
+#: gui/session/session.js:1021
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1029
+#: gui/session/session.js:1047
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1030
+#: gui/session/session.js:1048
 msgid "Population (current / limit)"
 msgstr "Население (текущо / максимално)"
 
-#: gui/session/session.js:1031
+#: gui/session/session.js:1049
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Максимално население: %(popCap)s"
 
-#: gui/session/session.js:1183
+#: gui/session/session.js:1201
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версия: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1193
+#: gui/session/session.js:1211
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Бележка: Изкривяването на времето е предназначено за разработчици и не може да се използва твърде продължително. Неправилната употреба може да изчерпа паметта или да предизвика срив."
 
-#: gui/session/session.js:1194
+#: gui/session/session.js:1212
 msgid "Time warp mode"
 msgstr "Изкривяване на времето"
 
-#: gui/session/unit_actions.js:567
+#: gui/session/unit_actions.js:572
 msgid "Origin trade market."
 msgstr "Начален пазар."
 
-#: gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:578
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Натиснете с десен бутон върху друг пазар, за да го зададете като целеви."
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:582
 msgid "Destination trade market."
 msgstr "Целеви пазар."
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:589
 msgid "Right-click to set as origin trade market"
 msgstr "Натиснете с десен бутон, за да го зададете като начален пазар."
 
-#: gui/session/unit_actions.js:591
+#: gui/session/unit_actions.js:596
 msgid "Right-click to set as destination trade market."
 msgstr "Натиснете с десен бутон, за да го отбележите като целеви пазар."
 
-#: gui/session/unit_actions.js:645 gui/session/unit_actions.js:860
+#: gui/session/unit_actions.js:650 gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Текущ гарнизон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:907
+#: gui/session/unit_actions.js:912
 msgid "Right-click to establish a default route for new traders."
 msgstr "Натиснете с десен бутон, за да установите път по подразбиране за новите търговци."
 
-#: gui/session/unit_actions.js:911
+#: gui/session/unit_actions.js:916
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Очаквана печалба: %(gain)s"
 
-#: gui/session/unit_actions.js:1044 gui/session/unit_actions.js:1346
+#: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
 msgid "Unload All."
 msgstr "Премахване всички."
 
-#: gui/session/unit_actions.js:1066
+#: gui/session/unit_actions.js:1071
 msgid "Destroy the selected units or buildings."
 msgstr "Унищожаване на избраните единици или сгради"
 
-#: gui/session/unit_actions.js:1068
+#: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Използвайте %(hotkey)s, за да не се показва прозорецът за потвърждение."
 
-#: gui/session/unit_actions.js:1100
+#: gui/session/unit_actions.js:1105
 msgid "Abort the current order."
 msgstr "Отмяна на текущата заповед."
 
-#: gui/session/unit_actions.js:1120
+#: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Поставяне на избраните единици на гарнизон в сграда или единица."
 
-#: gui/session/unit_actions.js:1142
+#: gui/session/unit_actions.js:1147
 msgid "Unload"
 msgstr "Премахване"
 
-#: gui/session/unit_actions.js:1160
+#: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Нареждане на избраните единици да поправят сграда или механична единица."
 
-#: gui/session/unit_actions.js:1179
+#: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
 msgstr "Центриране върху сборната точка."
 
-#: gui/session/unit_actions.js:1204
+#: gui/session/unit_actions.js:1209
 msgid "Back to Work"
 msgstr "Обратно на работа"
 
-#: gui/session/unit_actions.js:1223
+#: gui/session/unit_actions.js:1228
 msgid "Order the selected units to guard a building or unit."
 msgstr "Нареждане на избраните единици да пазят сграда или единица."
 
-#: gui/session/unit_actions.js:1241
+#: gui/session/unit_actions.js:1246
 msgid "Remove guard"
 msgstr "Спиране на пазенето"
 
-#: gui/session/unit_actions.js:1258
+#: gui/session/unit_actions.js:1263
 msgid "Select trading goods"
 msgstr "Изберете стока за търгуване"
 
-#: gui/session/unit_actions.js:1275
+#: gui/session/unit_actions.js:1280
 msgid "Patrol"
 msgstr "Патрулиране"
 
-#: gui/session/unit_actions.js:1276
+#: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Нападане на всички срещнати единици, но не и на сградите."
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Щракнете, за да забраните на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1309
 msgid "Press to allow allies to use this dropsite"
 msgstr "Щракнете, за да позволите на съюзниците да използват това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1367
+#: gui/session/unit_actions.js:1372
 msgid "You are allowed to use this dropsite"
 msgstr "Вие можете да използвате това място за събиране на ресурси"
 
-#: gui/session/unit_actions.js:1372
+#: gui/session/unit_actions.js:1377
 msgid "The use of this dropsite is prohibited"
 msgstr "Използването на това място за събиране на ресурси е забранено."
 
-#: gui/session/unit_actions.js:1432
+#: gui/session/unit_actions.js:1437
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Този обект рябва да бъде убит, преди да може да добивате ресурси от него"
 
-#: gui/session/unit_actions.js:1435
+#: gui/session/unit_actions.js:1440
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Този обект не може да бъде унищожен, защото притежавате по-малко от половината пленителни точки"
 
-#: gui/session/unit_actions.js:1438
+#: gui/session/unit_actions.js:1443
 msgid "This entity is undeletable"
 msgstr "Този обект не може да бъде изтрит"
 
@@ -1285,11 +1285,11 @@ msgid "Yes or no?"
 msgstr "Да или не?"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):13
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
+#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):30
 msgid "Hitpoints"
 msgstr "Жизнени точки"
 
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
+#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
 msgstr "Пленителни точки"
 
