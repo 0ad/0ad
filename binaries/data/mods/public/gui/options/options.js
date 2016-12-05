@@ -21,6 +21,7 @@ function init(data)
 			let config = option.parameters.config;
 			g_Controls[config] = {
 				"control": setupControl(option, i, category),
+				"label": label,
 				"type": option.type,
 				"dependencies": option.dependencies || undefined,
 				"parameters": option.parameters
@@ -247,7 +248,10 @@ function updateOptionPanel()
 			continue;
 
 		for (let dependency of control.dependencies)
+		{
 			g_Controls[dependency].control.enabled = control.control.checked;
+			g_Controls[dependency].label.enabled = control.control.checked;
+		}
 	}
 
 	// And main buttons

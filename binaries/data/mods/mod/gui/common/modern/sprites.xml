@@ -199,6 +199,22 @@
 			size = "0 1 100% 100%-1"
 		/>
 	</sprite>
+	<sprite name="ModernDarkBoxGoldDisabled">
+		<effect grayscale=""/>
+		<!-- borders -->
+		<image texture = "global/modern/gold-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 0 100% 1"
+		/>
+		<image texture = "global/modern/gold-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 100%-1 100% 100%"
+		/>
+		<!-- background -->
+		<image backcolor = "12 12 12 100"
+			size = "0 1 100% 100%-1"
+		/>
+	</sprite>
 	<sprite name="ModernDarkBoxWhite">
 		<!-- borders -->
 		<image texture = "global/modern/white-separator.png"
@@ -723,6 +739,14 @@
 	==========================================
 	-->
 	<sprite name = "ModernDropDownArrow">
+		<image texture = "global/modern/dropdown-arrow.png"
+			real_texture_placement = "0 0 16 16"
+			texture_size="0 0 16 16"
+			size="0 6 16 22"
+		/>
+	</sprite>
+	<sprite name = "ModernDropDownArrowDisabled">
+		<effect grayscale=""/>
 		<image texture = "global/modern/dropdown-arrow.png"
 			real_texture_placement = "0 0 16 16"
 			texture_size="0 0 16 16"
