@@ -577,14 +577,6 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 	vertexes.push_back(end);
 	const size_t GOAL_VERTEX_ID = 1;
 
-	// Add terrain obstructions
-	{
-		u16 i0, j0, i1, j1;
-		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
-		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
-		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, passClass, *m_TerrainOnlyGrid);
-	}
-
 	// Find all the obstruction squares that might affect us
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	std::vector<ICmpObstructionManager::ObstructionSquare> squares;
@@ -623,9 +615,17 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		vert.quadInward = QUADRANT_NONE;
 		vert.quadOutward = QUADRANT_ALL;
 		vert.p.X = center.X - hd0.Dot(u); vert.p.Y = center.Y + hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 		vert.p.X = center.X - hd1.Dot(u); vert.p.Y = center.Y + hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 		vert.p.X = center.X + hd0.Dot(u); vert.p.Y = center.Y - hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 		vert.p.X = center.X + hd1.Dot(u); vert.p.Y = center.Y - hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 
 		// Add the edges:
 
@@ -648,6 +648,14 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 
 		// TODO: should clip out vertexes and edges that are outside the range,
 		// to reduce the search space
+	}
+
+	// Add terrain obstructions
+	{
+		u16 i0, j0, i1, j1;
+		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, passClass, *m_TerrainOnlyGrid);
 	}
 
 	// Clip out vertices that are inside an edgeSquare (i.e. trivially unreachable)
@@ -829,19 +837,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 					continue;
 			}
 
-			bool visible = true;
-			u16 i, j;
-			Pathfinding::NearestNavcell(vertexes[curr.id].p.X, vertexes[curr.id].p.Y, i, j, m_Grid->m_W, m_Grid->m_H);
-			if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
-			{
-				Pathfinding::NearestNavcell(npos.X, npos.Y, i, j, m_Grid->m_W, m_Grid->m_H);
-				// Do not allow path between two impassable vertexes to prevent cases
-				// where a path along an obstruction will end up in an impassable region
-				if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
-					visible = false;
-			}
-
-			visible = visible &&
+			bool visible =
 				CheckVisibilityLeft(vertexes[curr.id].p, npos, edgesLeft) &&
 				CheckVisibilityRight(vertexes[curr.id].p, npos, edgesRight) &&
 				CheckVisibilityBottom(vertexes[curr.id].p, npos, edgesBottom) &&
