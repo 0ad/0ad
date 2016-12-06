@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Gaul Storehouse Ore">
+      <textures>
+        <texture file="props/rome_sb_turf.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="a">
+      <mesh>props/gaul_storehouse_ore_a.dae</mesh>
+    </variant>
+    <variant name="b">
+      <mesh>props/gaul_storehouse_ore_b.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
