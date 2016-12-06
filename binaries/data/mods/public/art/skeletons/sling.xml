@@ -1,0 +1,38 @@
+<skeletons>
+	<standard_skeleton title="Sling" id="sling">
+		<bone name="anchor_1">
+			<bone name="anchor_2">
+				<bone name="anchor_3">
+					<bone name="toggle_1">
+						<bone name="toggle_2">
+							<bone name="toggle_3">
+								<bone name="toggle_4">
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="Sling" target="sling">
+		<identifier>
+			<root>Sling</root>
+		</identifier>
+		<bone name="anchor_1"><target>anchor_1</target>
+			<bone name="anchor_2"><target>anchor_2</target>
+				<bone name="anchor_3"><target>anchor_3</target>
+					<bone name="toggle_1"><target>toggle_1</target>
+						<bone name="toggle_2"><target>toggle_2</target>
+							<bone name="toggle_3"><target>toggle_3</target>
+								<bone name="toggle_4"><target>toggle_4</target>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
+</skeletons>

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Albert, 2016
 # Ancel0 <ancel0@openmailbox.org>, 2013
 # Spartan2411 <andyyosoy@hotmail.com>, 2015
 # blvebird <doomsamurai@hotmail.com>, 2014
@@ -43,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:00+0100\n"
-"PO-Revision-Date: 2016-11-21 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-12-02 09:00+0100\n"
+"PO-Revision-Date: 2016-12-03 12:16+0000\n"
+"Last-Translator: Albert\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,12 +81,12 @@ msgid "Confirmation"
 msgstr "Confirmar decisión"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "No"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:735 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Sí"
 
@@ -547,7 +548,7 @@ msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
 #: gui/session/selection_details.js:54 gui/session/selection_details.js:367
-#: gui/session/selection_details.js:399 gui/session/session.js:867
+#: gui/session/selection_details.js:399 gui/session/session.js:875
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
 msgstr "%(label)s %(current)s / %(max)s"
@@ -612,9 +613,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:569
-#: gui/session/unit_actions.js:578 gui/session/unit_actions.js:592
-#: gui/session/unit_actions.js:910
+#: gui/session/selection_details.js:229 gui/session/unit_actions.js:574
+#: gui/session/unit_actions.js:583 gui/session/unit_actions.js:597
+#: gui/session/unit_actions.js:915
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Ganancia: %(gain)s"
@@ -702,7 +703,7 @@ msgstr "Desalojar %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Un solo clic para desalojar una unidad. Mayús-clic para desalojar a todos los del mismo tipo."
 
-#: gui/session/selection_panels.js:473
+#: gui/session/selection_panels.js:473 gui/session/selection_panels.js:948
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Jugador: %(playername)s"
@@ -747,21 +748,21 @@ msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Queda: %(number)s por construir."
 msgstr[1] "Quedan: %(number)s por construir."
 
-#: gui/session/selection_panels.js:1140
+#: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Mejorar a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1145
+#: gui/session/selection_panels.js:1150
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Mejorar a %(name)s."
 
-#: gui/session/selection_panels.js:1161
+#: gui/session/selection_panels.js:1166
 msgid "Cancel Upgrading"
 msgstr "Cancelar mejora"
 
-#: gui/session/selection_panels.js:1166
+#: gui/session/selection_panels.js:1171
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Espera a que termine la mejora actual."
 
@@ -895,209 +896,209 @@ msgstr "Elige uno de los tipos de bienes como origen de los intercambios, despu�
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
 msgstr "Al presionar %(hotkey)s pondrás el recurso seleccionado al 100%%."
 
-#: gui/session/session.js:493
+#: gui/session/session.js:496
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Árbol de estructuras"
 
-#: gui/session/session.js:724
+#: gui/session/session.js:735
 msgid "Do you want to quit?"
 msgstr "¿Seguro que quieres salir?"
 
-#: gui/session/session.js:727
-msgid "Leaving will disconnect all other players."
-msgstr "Al salir desconectarás a los demás jugadores."
-
-#: gui/session/session.js:733
+#: gui/session/session.js:741
 msgid "VICTORIOUS!"
 msgstr "¡VICTORIA!"
 
-#: gui/session/session.js:734
+#: gui/session/session.js:742
 msgid "DEFEATED!"
 msgstr "¡DERROTA!"
 
-#: gui/session/session.js:786
+#: gui/session/session.js:743
+msgid "Ok"
+msgstr "De acuerdo"
+
+#: gui/session/session.js:794
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "La repetición ha terminado ¿Quieres salir?"
 
-#: gui/session/session.js:787
+#: gui/session/session.js:795
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmación"
 
-#: gui/session/session.js:788
+#: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "No"
 msgstr "No"
 
-#: gui/session/session.js:788
+#: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/session/session.js:868
+#: gui/session/session.js:876
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Salud:"
 
-#: gui/session/session.js:1003
+#: gui/session/session.js:1018
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1006
+#: gui/session/session.js:1021
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1029
+#: gui/session/session.js:1047
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1030
+#: gui/session/session.js:1048
 msgid "Population (current / limit)"
 msgstr "Población (actual / límite)"
 
-#: gui/session/session.js:1031
+#: gui/session/session.js:1049
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Población máxima: %(popCap)s"
 
-#: gui/session/session.js:1183
+#: gui/session/session.js:1201
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versión: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1193
+#: gui/session/session.js:1211
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: La distorsión temporal es una opción de desarrollo, y no está preparada para ser usada durante largos periodos de tiempo. Utilizarla de forma incorrecta puede bloquear el juego o hacer que se quede sin memoria."
 
-#: gui/session/session.js:1194
+#: gui/session/session.js:1212
 msgid "Time warp mode"
 msgstr "Distorsión temporal"
 
-#: gui/session/unit_actions.js:567
+#: gui/session/unit_actions.js:572
 msgid "Origin trade market."
 msgstr "Origen del intercambio comercial."
 
-#: gui/session/unit_actions.js:573
+#: gui/session/unit_actions.js:578
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Clic derecho sobre otro mercado para configurarlo como lugar de destino."
 
-#: gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:582
 msgid "Destination trade market."
 msgstr "Destino del intercambio comercial."
 
-#: gui/session/unit_actions.js:584
+#: gui/session/unit_actions.js:589
 msgid "Right-click to set as origin trade market"
 msgstr "Clic derecho para configurarlo como mercado de procedencia"
 
-#: gui/session/unit_actions.js:591
+#: gui/session/unit_actions.js:596
 msgid "Right-click to set as destination trade market."
 msgstr "Clic derecho para establecerlo como mercado de destino."
 
-#: gui/session/unit_actions.js:645 gui/session/unit_actions.js:860
+#: gui/session/unit_actions.js:650 gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Guarnición actual: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:907
+#: gui/session/unit_actions.js:912
 msgid "Right-click to establish a default route for new traders."
 msgstr "Clic derecho para establecer una ruta por defecto para nuevos mercaderes."
 
-#: gui/session/unit_actions.js:911
+#: gui/session/unit_actions.js:916
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Ganancia esperada: %(gain)s"
 
-#: gui/session/unit_actions.js:1044 gui/session/unit_actions.js:1346
+#: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
 msgid "Unload All."
 msgstr "Desalojar a todos."
 
-#: gui/session/unit_actions.js:1066
+#: gui/session/unit_actions.js:1071
 msgid "Destroy the selected units or buildings."
 msgstr "Destruye los edificios o unidades seleccionadas."
 
-#: gui/session/unit_actions.js:1068
+#: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Presiona %(hotkey)s para evitar el diálogo de confirmación."
 
-#: gui/session/unit_actions.js:1100
+#: gui/session/unit_actions.js:1105
 msgid "Abort the current order."
 msgstr "Cancelar la orden actual."
 
-#: gui/session/unit_actions.js:1120
+#: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Ordenar a las unidades seleccionadas guarnecerse en un edificio o unidad."
 
-#: gui/session/unit_actions.js:1142
+#: gui/session/unit_actions.js:1147
 msgid "Unload"
 msgstr "Desalojar"
 
-#: gui/session/unit_actions.js:1160
+#: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Ordenar a las unidades seleccionadas reparar un edificio o unidad mecánica."
 
-#: gui/session/unit_actions.js:1179
+#: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
 msgstr "Ir al punto de encuentro."
 
-#: gui/session/unit_actions.js:1204
+#: gui/session/unit_actions.js:1209
 msgid "Back to Work"
 msgstr "Volver al trabajo"
 
-#: gui/session/unit_actions.js:1223
+#: gui/session/unit_actions.js:1228
 msgid "Order the selected units to guard a building or unit."
 msgstr "Ordenar a las unidades seleccionadas proteger un edificio o unidad."
 
-#: gui/session/unit_actions.js:1241
+#: gui/session/unit_actions.js:1246
 msgid "Remove guard"
 msgstr "Desproteger"
 
-#: gui/session/unit_actions.js:1258
+#: gui/session/unit_actions.js:1263
 msgid "Select trading goods"
 msgstr "Elige los bienes a comerciar"
 
-#: gui/session/unit_actions.js:1275
+#: gui/session/unit_actions.js:1280
 msgid "Patrol"
 msgstr "Patrullar"
 
-#: gui/session/unit_actions.js:1276
+#: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Ataca a los enemigos que se encuentren por el camino, evitando edificios."
 
-#: gui/session/unit_actions.js:1299
+#: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Pulsa para evitar que los aliados utilicen este punto de descarga"
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1309
 msgid "Press to allow allies to use this dropsite"
 msgstr "Pulsa para que los aliados utilicen este punto de descarga"
 
-#: gui/session/unit_actions.js:1367
+#: gui/session/unit_actions.js:1372
 msgid "You are allowed to use this dropsite"
 msgstr "Puedes utilizar este punto de descarga"
 
-#: gui/session/unit_actions.js:1372
+#: gui/session/unit_actions.js:1377
 msgid "The use of this dropsite is prohibited"
 msgstr "No puedes utilizar este punto de descarga."
 
-#: gui/session/unit_actions.js:1432
+#: gui/session/unit_actions.js:1437
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Hay que acabar con esta entidad para recolectar sus recursos."
 
-#: gui/session/unit_actions.js:1435
+#: gui/session/unit_actions.js:1440
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "No puedes destruir esta entidad al no controlar más de la mitad de los puntos de captura"
 
-#: gui/session/unit_actions.js:1438
+#: gui/session/unit_actions.js:1443
 msgid "This entity is undeletable"
 msgstr "No se puede borrar esta entidad"
 
@@ -1313,11 +1314,11 @@ msgid "Yes or no?"
 msgstr "¿Sí o no?"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):13
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
+#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):30
 msgid "Hitpoints"
 msgstr "Puntos de vida:"
 
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
+#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
 msgstr "Puntos de captura"
 

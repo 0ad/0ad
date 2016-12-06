@@ -59,8 +59,10 @@
 		text_valign="center"
 
 		sprite="ModernDarkBoxGold"
+		sprite_disabled="ModernDarkBoxGoldDisabled"
 		button_width="16"
 		sprite2="ModernDropDownArrow"
+		sprite2_disabled="ModernDropDownArrowDisabled"
 		sprite2_pressed="ModernDropDownArrowHighlight"
 
 		buffer_zone="8"
@@ -68,6 +70,7 @@
 		sprite_list="BlackBorderOnGray"
 		sprite_selectarea="ModernDarkBoxWhite"
 		textcolor_selected="white"
+		textcolor_disabled="140 140 140 255"
 
 		scrollbar="true"
 		scrollbar_style="ModernScrollBar"
@@ -79,6 +82,7 @@
 	<style name="ModernLabelText"
 		font="sans-bold-stroke-14"
 		textcolor="white"
+		textcolor_disabled="140 140 140 255"
 		text_align="center"
 		text_valign="center"
 	/>

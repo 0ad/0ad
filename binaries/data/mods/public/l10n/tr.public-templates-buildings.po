@@ -10,6 +10,7 @@
 # Ender Türsen <ado.ender@gmail.com>, 2014,2016
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
+# Ngokwanele Elenawkogn <ngokwanele@gmail.com>, 2016
 # sicey <sicey224@hotmail.com>, 2015
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # Taha Karadoğan <tahakaradogan@gmail.com>, 2016
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-18 09:02+0100\n"
-"PO-Revision-Date: 2016-11-26 23:46+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2016-12-03 17:51+0000\n"
+"Last-Translator: Ngokwanele Elenawkogn <ngokwanele@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +44,7 @@ msgstr "Şehir Merkezi"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "Bölgenin geniş  alanlarını elde etmek icin inşaa et . Yurttaşları çalıştır. Garnizon:20."
+msgstr "Bölgenin geniş alanlarına sahip olmak için inşa et . Yurttaşları çalıştır."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -69,11 +70,11 @@ msgstr "Saçak altı"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
-msgstr "Helen Kraliyet Saçak altı"
+msgstr "Helen Kraliyet Revağı"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
 msgid "Recruit special units."
-msgstr "Özel birimleri eğit"
+msgstr "Özel birimleri askere al."
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -115,7 +116,7 @@ msgstr "Ev"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr " "
+msgstr " Şifacı eğit. Garnizon birimlerinin hızlı bir şekilde iyileşmesini sağlar (saniyede 3 HP). Dinî gelişmeleri ve iyileşmeyi araştır."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
@@ -444,7 +445,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Kuşatma makineleri inşa et. Garnizon askerleri içeride savunma için destek verir."
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
@@ -1337,7 +1338,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Bu, diğer gruplar için Sivil Merkezlere benzer Ptolemaik genişleme binasıdır. Daha zayıf ve daha küçük bir toprak etkisi taşıyor, ancak daha ucuz ve daha hızlı inşa edilmiştir. Çeşitli uluslardan yerleşimcilere askerler eğitin."
+msgstr "Bu Ptolemaios genişleme binası, diğer ihtilaflardaki Şehir Merkezlerine benzer. Daha zayıftır ve daha küçük bir toprak nüfuzu taşır, ancak daha ucuzdur ve daha hızlı inşa edilmiştir. Çeşitli uluslardan yerleşimci-askerler eğitin."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1372,7 +1373,7 @@ msgstr "Zafer takı"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr "Özel İmparatorluk Roma binası."
+msgstr "Özel Emperyal Roma binası."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1386,7 +1387,7 @@ msgstr "Castra Vallum"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Harita üzerinde herhangi bir yere hatta düşman topraklarına inşa et. \nKuşatma silahları ve yetişmiş vatandaş-asker oluştur. Garnizon birimleri ni yavaş yavaş iyileştir."
+msgstr "Harita üzerinde herhangi bir yere hatta düşman topraklarına inşa et. Kuşatma silahları yap ve vatandaş-asker yetiştir. Garnizon birimlerini yavaş yavaş iyileştir."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1462,7 +1463,7 @@ msgstr "Murus Circummunitionis"
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr "Düşman ve tarafsız bölgede inşa edilebilir çim ve bir ağaçtan çit."
+msgstr "Ağaçtan yapılma çayırlık çit, tarafsız veya düşman bölgelere inşa edilebilir."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
@@ -1502,7 +1503,7 @@ msgstr "Aedes Vestae"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
-msgstr "çadır"
+msgstr "Çadır"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
@@ -1579,7 +1580,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr "Bu, diğer hizipler için Sivil Toplum Merkezlerine benzer Seleukeşe genişleme binası. Daha zayıf ve daha küçük bir toprak etkisi taşıyor, ancak daha ucuz ve daha hızlı inşa edilmiştir. Çeşitli uluslardan yerleşimcilere askerler eğitin."
+msgstr "Bu, Seleukos genişleme binası, diğer ihtilaflardaki Şehir Merkezlerine benzer. Daha zayıftır ve daha küçük bir toprak nüfuzu taşır, ancak daha ucuzdur ve daha hızlı inşa edilmiştir. Çeşitli uluslardan yerleşimci-askerler eğitin."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1587,11 +1588,11 @@ msgstr "Prophylax"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
-msgstr "Tapınak"
+msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr "Pythian apollo tapınağı"
+msgstr "Pythialı Apollo tapınağı"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"

@@ -37,7 +37,8 @@ CDropDown::CDropDown()
 	AddSetting(GUIST_CStrW,					"sound_enter");
 	AddSetting(GUIST_CStrW,					"sound_leave");
 	AddSetting(GUIST_CStrW,					"sound_opened");
-//	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
+	AddSetting(GUIST_CGUISpriteInstance,	"sprite_disabled");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_list");			// Background of the drop down list
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");				// Button that sits to the right
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2_over");
@@ -48,7 +49,8 @@ CDropDown::CDropDown()
 	// Add these in CList! And implement TODO
 	//AddSetting(GUIST_CColor,				"textcolor_over");
 	//AddSetting(GUIST_CColor,				"textcolor_pressed");
-	//AddSetting(GUIST_CColor,				"textcolor_disabled");
+	AddSetting(GUIST_CColor,				"textcolor_selected");
+	AddSetting(GUIST_CColor,				"textcolor_disabled");
 
 	// Scrollbar is forced to be true.
 	GUI<bool>::SetSetting(this, "scrollbar", true);
@@ -440,16 +442,15 @@ void CDropDown::Draw()
 	int cell_id, selected = 0;
 	CColor color;
 
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite2);
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
-	GUI<int>::GetSetting(this, "selected", selected);
-	GUI<CColor>::GetSetting(this, "textcolor", color);
-
-
 	bool enabled;
 	GUI<bool>::GetSetting(this, "enabled", enabled);
 
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite2", sprite2);
+	GUI<int>::GetSetting(this, "cell_id", cell_id);
+	GUI<int>::GetSetting(this, "selected", selected);
+	GUI<CColor>::GetSetting(this, enabled ? "textcolor_selected" : "textcolor_disabled", color);
+
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, enabled ? "sprite" : "sprite_disabled", sprite);
 	GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
 
 	if (button_width > 0.f)
