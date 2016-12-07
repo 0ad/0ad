@@ -77,7 +77,7 @@ Vector2D.prototype.rotate = function(a)
 	this.x = x;
 	this.y = y;
 	return this;
-}
+};
 
 // Numeric 2D info functions (non-mutating)
 //

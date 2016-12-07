@@ -85,7 +85,7 @@ function getDisconnectReason(id, wasConnected)
 function reportDisconnect(reason, wasConnected)
 {
 	// Translation: States the reason why the client disconnected from the server.
-	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(reason, wasConnected) })
+	let reasonText = sprintf(translate("Reason: %(reason)s."), { "reason": getDisconnectReason(reason, wasConnected) });
 
 	messageBox(
 		400, 200,

@@ -57,7 +57,7 @@ Resources.prototype.BuildSchema = function(datatype, additional = [], subtypes =
 				"</optional>";
 
 	return "<interleave>" + schema + "</interleave>";
-}
+};
 
 /**
  * Builds the value choices for a RelaxNG `<choice></choice>` object, based on currently valid resources.
@@ -88,6 +88,6 @@ Resources.prototype.BuildChoicesSchema = function(subtypes = false, treasure = f
 		}
 
 	return "<choice>" + schema + "</choice>";
-}
+};
 
 Resources = new Resources();
