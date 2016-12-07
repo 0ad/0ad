@@ -67,13 +67,24 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
 	InReaction ret = IN_PASS;
 
-	if (ev->ev.type == SDL_HOTKEYDOWN)
+	if (ev->ev.type == SDL_HOTKEYDOWN || ev->ev.type == SDL_HOTKEYUP)
 	{
 		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
+
 		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
 		if (it != m_HotkeyObjects.end())
 			for (IGUIObject* const& obj : it->second)
-				obj->SendEvent(GUIM_PRESSED, "press");
+			{
+				// Update hotkey status before sending the event,
+				// else the status will be outdated when processing the GUI event.
+				HotkeyInputHandler(ev);
+				ret = IN_HANDLED;
+
+				if (ev->ev.type == SDL_HOTKEYDOWN)
+					obj->SendEvent(GUIM_PRESSED, "press");
+				else
+					obj->SendEvent(GUIM_RELEASED, "release");
+			}
 	}
 
 	else if (ev->ev.type == SDL_MOUSEMOTION)
