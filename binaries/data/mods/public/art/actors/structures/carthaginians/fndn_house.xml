@@ -2,8 +2,26 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="foundation 3x3 a">
-      <mesh>structural/found_3x3_a.dae</mesh>
+    <variant frequency="1" name="foundation 3x3 a"/>
+  </group>
+  <group>
+    <variant name="House A">
+      <mesh>structural/kart_house_a_foundation.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kart_house_a_scaffolding_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant name="House B">
+      <mesh>structural/kart_house_b_foundation.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kart_house_b_scaffolding_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant name="House C">
+      <mesh>structural/kart_house_c_foundation.dae</mesh>
+      <textures>
+        <texture file="structural/ao/kart_house_c_scaffolding_AO.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -24,9 +42,11 @@
   <group>
     <variant frequency="1">
       <textures>
-        <texture file="structural/foundation.dds" name="baseTex"/>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

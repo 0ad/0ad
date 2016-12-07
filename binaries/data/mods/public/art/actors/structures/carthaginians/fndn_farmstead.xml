@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="foundation 3x3 a">
-      <mesh>structural/found_3x3_a.dae</mesh>
+      <mesh>structural/kart_farmstead_foundation.dae</mesh>
     </variant>
   </group>
   <group>
@@ -28,5 +28,5 @@
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
