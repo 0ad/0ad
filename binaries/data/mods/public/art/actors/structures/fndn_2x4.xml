@@ -11,6 +11,21 @@
       <props>
         <prop actor="props/structures/decals/dirt_2x4.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator001" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator002" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator003" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator004" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile001" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick001" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick002" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick003" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick_Pile_Big1.xml" attachpoint="brickpilebig001" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/Brick_Pile_Big2.xml" attachpoint="brickpilebig002" maxheight="20" minheight="-20"/>
+
+		<prop actor="props/special/eyecandy/Brick_Pile_Big3.xml" attachpoint="brickpilebig004" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/wood_1_a.xml" attachpoint="woodlog001" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/wood_1_a.xml" attachpoint="woodlog002" maxheight="20" minheight="-20"/>		
       </props>
     </variant>
   </group>

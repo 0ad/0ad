@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.69.0 r60995</authoring_tool>
+    </contributor>
+    <created>2014-03-06T19:55:51</created>
+    <modified>2014-03-06T19:55:51</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Object14_Pivot001Mesh_005-mesh" name="Object14_Pivot001Mesh.005">
+      <mesh>
+        <source id="Object14_Pivot001Mesh_005-mesh-positions">
+          <float_array id="Object14_Pivot001Mesh_005-mesh-positions-array" count="24">0.2346827 0.2243934 2.749642 -0.2071542 0.2243775 2.749642 -0.2071552 -0.2174485 2.749642 0.2346857 -0.2174516 2.749642 0.2346827 0.2243934 0 -0.2071542 0.2243775 0 -0.2071552 -0.2174485 0 0.2346857 -0.2174516 0</float_array>
+          <technique_common>
+            <accessor source="#Object14_Pivot001Mesh_005-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object14_Pivot001Mesh_005-mesh-normals">
+          <float_array id="Object14_Pivot001Mesh_005-mesh-normals-array" count="30">0 0 1 0 0 1 -3.61537e-5 1 0 -3.61537e-5 1 0 -1 2.15848e-6 0 -1 2.15848e-6 0 -7.01483e-6 -1 0 -7.01483e-6 -1 0 1 6.74497e-6 0 1 6.74497e-6 0</float_array>
+          <technique_common>
+            <accessor source="#Object14_Pivot001Mesh_005-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object14_Pivot001Mesh_005-mesh-map-0">
+          <float_array id="Object14_Pivot001Mesh_005-mesh-map-0-array" count="60">0.712383 0.381111 0.753448 0.381111 0.753448 0.295875 0.753448 0.295875 0.712383 0.295875 0.712383 0.381111 0.911797 0.144594 0.956603 0.144594 0.956603 0.955917 0.956603 0.955917 0.911797 0.955917 0.911797 0.144594 0.762152 0.02674895 0.806958 0.02674895 0.806958 0.838071 0.806958 0.838071 0.762152 0.838071 0.762152 0.02674895 0.911797 0.144594 0.956603 0.144594 0.956603 0.955917 0.956603 0.955917 0.911797 0.955917 0.911797 0.144594 0.762152 0.02674895 0.806958 0.02674895 0.806958 0.838071 0.806958 0.838071 0.762152 0.838071 0.762152 0.02674895</float_array>
+          <technique_common>
+            <accessor source="#Object14_Pivot001Mesh_005-mesh-map-0-array" count="30" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object14_Pivot001Mesh_005-mesh-vertices">
+          <input semantic="POSITION" source="#Object14_Pivot001Mesh_005-mesh-positions"/>
+        </vertices>
+        <polylist count="10">
+          <input semantic="VERTEX" source="#Object14_Pivot001Mesh_005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Object14_Pivot001Mesh_005-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Object14_Pivot001Mesh_005-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 1 0 1 2 0 2 2 1 3 3 1 4 0 1 5 4 2 6 5 2 7 1 2 8 1 3 9 0 3 10 4 3 11 5 4 12 6 4 13 2 4 14 2 5 15 1 5 16 5 5 17 6 6 18 7 6 19 3 6 20 3 7 21 2 7 22 6 7 23 7 8 24 4 8 25 0 8 26 0 9 27 3 9 28 7 9 29</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Object14_Pivot001_001" name="Object14_Pivot001_001" type="NODE">
+        <matrix sid="transform">0.9717941 0 0 0 0 0.9717941 -4.24785e-8 0 0 4.24785e-8 0.9717941 0 0 0 0 1</matrix>
+        <instance_geometry url="#Object14_Pivot001Mesh_005-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

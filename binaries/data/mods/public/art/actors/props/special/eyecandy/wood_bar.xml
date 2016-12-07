@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="foundation 4x2 A">
+      <mesh>props/wrld_wood_a.dae</mesh>
+	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+    </variant>
+    <variant frequency="1" name="foundation 4x2 B">
+      <mesh>props/wrld_wood_b.dae</mesh>
+	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+    </variant>
+    <variant frequency="1" name="foundation 4x2 A">
+      <mesh>props/wrld_wood_c.dae</mesh>
+	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+    </variant>
+    <variant frequency="1" name="foundation 4x2 B">
+      <mesh>props/wrld_wood_d.dae</mesh>
+	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+    </variant>
+  </group>
+
+</actor>

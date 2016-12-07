@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2014-03-12T15:19:43Z</created><keywords></keywords><modified>2014-03-12T15:19:43Z</modified><revision></revision><subject></subject><title></title><unit meter="0.025400" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="Map__301_image-image" name="Map__301_image"><init_from>file://C:\Users\Michael\Wildfire</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="_01___Default" name="_01___Default">
+      <instance_effect url="#_01___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_01___Default-fx" name="_01___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__301_image-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object005-lib" name="Object005Mesh">
+      <mesh>
+        <source id="Object005-POSITION">
+          <float_array id="Object005-POSITION-array" count="24">
+5.899123 -10.105858 0.000000
+9.910472 -10.105858 0.000000
+5.899121 -9.006644 0.000000
+9.910471 -9.006644 0.000000
+5.899123 -10.105858 0.056700
+9.910472 -10.105858 0.056700
+5.899121 -9.006644 0.056700
+9.910471 -9.006644 0.056700
+</float_array>
+          <technique_common>
+            <accessor source="#Object005-POSITION-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object005-Normal0">
+          <float_array id="Object005-Normal0-array" count="90">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000001 0.000000
+1.000000 0.000001 0.000000
+1.000000 0.000001 0.000000
+1.000000 0.000001 0.000000
+1.000000 0.000001 0.000000
+1.000000 0.000001 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-1.000000 -0.000002 0.000000
+-1.000000 -0.000002 0.000000
+-1.000000 -0.000002 0.000000
+-1.000000 -0.000002 0.000000
+-1.000000 -0.000002 0.000000
+-1.000000 -0.000002 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Object005-Normal0-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object005-UV0">
+          <float_array id="Object005-UV0-array" count="24">
+0.710142 0.966316
+0.710142 0.735720
+0.701249 0.966316
+0.701249 0.735720
+0.672409 0.966316
+0.672409 0.277529
+0.666277 0.966316
+0.666277 0.277529
+0.710142 0.966316
+0.710142 0.277529
+0.666277 0.966316
+0.666277 0.277529
+</float_array>
+          <technique_common>
+            <accessor source="#Object005-UV0-array" count="12" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object005-VERTEX">
+          <input semantic="POSITION" source="#Object005-POSITION"/>
+        </vertices>
+        <polylist count="10" material="_01___Default"><input semantic="VERTEX" offset="0" source="#Object005-VERTEX"/><input semantic="NORMAL" offset="1" source="#Object005-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#Object005-UV0"/><vcount>3 3 3 3 3 3 3 3 3 3 </vcount><p> 4 0 8 5 1 9 7 2 11 7 3 11 6 4 10 4 5 8 0 6 4 1 7 5 5 8 7 5 9 7 4 10 6 0 11 4 1 12 0 3 13 1 7 14 3 7 15 3 5 16 2 1 17 0 3 18 4 2 19 5 6 20 7 6 21 7 7 22 6 3 23 4 2 24 0 0 25 1 4 26 3 4 27 3 6 28 2 2 29 0</p></polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plank_big" name="plank_big">
+      <node name="Object005" id="Object005" sid="Object005"><translate sid="translate">0.000000 0.028350 -0.000000</translate><rotate sid="jointOrientX">1 0 0 -90.000000</rotate><rotate sid="rotateZ">0 0 1 -90.000016</rotate><node id="Object005-Pivot" name="Object005-Pivot"><translate>-7.904798 9.556252 -0.028350</translate><rotate>0.000000 0.000000 0.000000 0.000000</rotate><instance_geometry url="#Object005-lib"><bind_material><technique_common><instance_material symbol="_01___Default" target="#_01___Default"/></technique_common></bind_material></instance_geometry></node><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <extra><technique profile="MAX3D"><frame_rate>30.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.000000</start_time><end_time>3.333333</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plank_big"></instance_visual_scene>
+  </scene>
+</COLLADA>
