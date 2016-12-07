@@ -24,6 +24,7 @@
 
 // Types - when including them into the engine.
 #include "CButton.h"
+#include "CChart.h"
 #include "CCheckBox.h"
 #include "CDropDown.h"
 #include "CImage.h"
@@ -312,6 +313,7 @@ void CGUI::Initialize()
 	AddObjectType("olist",			&COList::ConstructObject);
 	AddObjectType("dropdown",		&CDropDown::ConstructObject);
 	AddObjectType("tooltip",		&CTooltip::ConstructObject);
+	AddObjectType("chart",			&CChart::ConstructObject);
 }
 
 void CGUI::Draw()

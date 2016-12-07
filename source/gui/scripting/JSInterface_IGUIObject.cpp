@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2016 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -298,6 +298,35 @@ bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 			break;
 		}
 
+		case GUIST_CGUISeries:
+		{
+			CGUISeries value;
+			GUI<CGUISeries>::GetSetting(e, propName, value);
+
+			JS::RootedObject obj(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+			vp.setObject(*obj);
+
+			for (u32 i = 0; i < value.m_Series.size(); ++i)
+			{
+				JS::RootedObject inner_obj(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+				for (u32 j = 0; j < value.m_Series[i].size(); ++j)
+				{
+					JS::RootedObject val(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
+
+					JS::RootedValue val_x(cx), val_y(cx);
+					ScriptInterface::ToJSVal(cx, &val_x, value.m_Series[i][j].X);
+					ScriptInterface::ToJSVal(cx, &val_y, value.m_Series[i][j].Y);
+					JS_SetElement(cx, val, 0, val_x);
+					JS_SetElement(cx, val, 1, val_y);
+
+					JS_SetElement(cx, inner_obj, j, val);
+				}
+				JS_SetElement(cx, obj, i, inner_obj);
+			}
+
+			break;
+		}
+
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
 			DEBUG_WARN_ERR(ERR::LOGIC);
@@ -585,6 +614,69 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 		}
 
 		GUI<CGUIList>::SetSetting(e, propName, list);
+		break;
+	}
+
+	case GUIST_CGUISeries:
+	{
+		u32 length;
+		if (!vp.isObject() || !JS_GetArrayLength(cx, vpObj, &length))
+		{
+			JS_ReportError(cx, "Table only accepts a GUISeries object");
+			return false;
+		}
+
+		CGUISeries series;
+		series.m_Series.resize(length);
+		for (u32 i = 0; i < length; ++i)
+		{
+			JS::RootedValue data_value(cx);
+			if (!JS_GetElement(cx, vpObj, i, &data_value))
+			{
+				JS_ReportError(cx, "Failed to get a data of series");
+				return false;
+			}
+
+			JS::RootedObject data(cx, data_value.toObjectOrNull());
+			u32 data_length;
+			if (!JS_GetArrayLength(cx, data, &data_length))
+			{
+				JS_ReportError(cx, "Series only accepts a chart data");
+				return false;
+			}
+
+			series.m_Series[i].resize(data_length);
+			for (u32 j = 0; j < data_length; ++j)
+			{
+				JS::RootedValue element_value(cx);
+				if (!JS_GetElement(cx, data, j, &element_value))
+				{
+					JS_ReportError(cx, "Failed to get a chart data element");
+					return false;
+				}
+
+				JS::RootedObject element(cx, element_value.toObjectOrNull());
+				u32 element_length;
+				if (!JS_GetArrayLength(cx, element, &element_length) || element_length < 2)
+				{
+					JS_ReportError(cx, "Chart data only accepts a point");
+					return false;
+				}
+
+				JS::RootedValue element_x(cx), element_y(cx);
+				if (!JS_GetElement(cx, element, 0, &element_x) || !JS_GetElement(cx, element, 1, &element_y))
+				{
+					JS_ReportError(cx, "Failed to get a chart point");
+					return false;
+				}
+
+				if (!ScriptInterface::FromJSVal(cx, element_x, series.m_Series[i][j].X) ||
+					!ScriptInterface::FromJSVal(cx, element_y, series.m_Series[i][j].Y))
+					return false;
+			}
+		}
+
+		GUI<CGUISeries>::SetSetting(e, propName, series);
 		break;
 	}
 

@@ -15,29 +15,50 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-This file is used by all bits of GUI code that need to repeat some code
-for a variety of types (to avoid repeating the list of types in half a dozen
-places, and to make it much easier to add a new type). Just do
-		#define TYPE(T) your_code_involving_T;
-		#include "GUItypes.h"
-		#undef TYPE
-to handle every possible type.
-*/
+#ifndef INCLUDED_CCHART
+#define INCLUDED_CCHART
 
-TYPE(bool)
-TYPE(int)
-TYPE(float)
-TYPE(CColor)
-TYPE(CClientArea)
-TYPE(CGUIString)
-#ifndef GUITYPE_IGNORE_CGUISpriteInstance
-TYPE(CGUISpriteInstance)
-#endif
-TYPE(CStr)
-TYPE(CStrW)
-TYPE(EAlign)
-TYPE(EVAlign)
-TYPE(CPos)
-TYPE(CGUIList)
-TYPE(CGUISeries)
+#include "GUI.h"
+#include "graphics/Color.h"
+#include "maths/Vector2D.h"
+#include <vector>
+
+
+struct CChartData
+{
+	CColor m_Color;
+	std::vector<CVector2D> m_Points;
+};
+
+/**
+* Chart for a data visualization as lines or points
+*
+* @see IGUIObject
+*/
+class CChart : public IGUIObject
+{
+	GUI_OBJECT(CChart)
+
+public:
+	CChart();
+	virtual ~CChart();
+
+protected:
+	/**
+	* @see IGUIObject#HandleMessage()
+	*/
+	virtual void HandleMessage(SGUIMessage& Message);
+
+	/**
+	* Draws the Chart
+	*/
+	virtual void Draw();
+
+	virtual CRect GetChartRect() const;
+
+	void UpdateSeries();
+
+	std::vector<CChartData> m_Series;
+};
+
+#endif // INCLUDED_CCHART
