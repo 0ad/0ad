@@ -3468,14 +3468,20 @@ UnitAI.prototype.OnCreate = function()
 
 UnitAI.prototype.OnDiplomacyChanged = function(msg)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
 		this.SetupRangeQueries();
+
+	if (this.isGuardOf && !IsOwnedByMutualAllyOfEntity(this.entity, this.isGuardOf))
+		this.RemoveGuard();
 };
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
 	this.SetupRangeQueries();
+
+	if (this.isGuardOf && (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, this.isGuardOf)))
+		this.RemoveGuard();
 
 	// If the unit isn't being created or dying, reset stance and clear orders
 	if (msg.to != -1 && msg.from != -1)
@@ -4038,9 +4044,6 @@ UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 	}
 	if (changed)
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
-
-	if (this.isGuardOf && this.isGuardOf == msg.entity)
-		this.isGuardOf = msg.newentity;
 };
 
 UnitAI.prototype.OnAttacked = function(msg)
@@ -4995,14 +4998,14 @@ UnitAI.prototype.AddGuard = function(target)
 
 UnitAI.prototype.RemoveGuard = function()
 {
-	if (this.isGuardOf)
-	{
-		var cmpGuard = Engine.QueryInterface(this.isGuardOf, IID_Guard);
-		if (cmpGuard)
-			cmpGuard.RemoveGuard(this.entity);
-		this.guardRange = undefined;
-		this.isGuardOf = undefined;
-	}
+	if (!this.isGuardOf)
+		return;
+
+	let cmpGuard = Engine.QueryInterface(this.isGuardOf, IID_Guard);
+	if (cmpGuard)
+		cmpGuard.RemoveGuard(this.entity);
+	this.guardRange = undefined;
+	this.isGuardOf = undefined;
 
 	if (!this.order)
 		return;
@@ -5010,10 +5013,9 @@ UnitAI.prototype.RemoveGuard = function()
 	if (this.order.type == "Guard")
 		this.UnitFsm.ProcessMessage(this, {"type": "RemoveGuard"});
 	else
-		for (var i = 1; i < this.orderQueue.length; ++i)
+		for (let i = 1; i < this.orderQueue.length; ++i)
 			if (this.orderQueue[i].type == "Guard")
 				this.orderQueue.splice(i, 1);
-
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 

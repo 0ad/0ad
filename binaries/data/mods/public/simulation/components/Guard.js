@@ -10,11 +10,11 @@ Guard.prototype.Init = function()
 
 Guard.prototype.GetRange = function(entity)
 {
-	var range = 8;
-	var cmpFootprint = Engine.QueryInterface(entity, IID_Footprint);
+	let range = 8;
+	let cmpFootprint = Engine.QueryInterface(entity, IID_Footprint);
 	if (cmpFootprint)
 	{
-		var shape = cmpFootprint.GetShape();
+		let shape = cmpFootprint.GetShape();
 		if (shape.type == "square")
 			range += Math.sqrt(shape.depth*shape.depth + shape.width*shape.width)*2/3;
 		else if (shape.type == "circle")
@@ -42,64 +42,54 @@ Guard.prototype.AddGuard = function(ent)
 
 Guard.prototype.RemoveGuard = function(ent)
 {
-	var index = this.entities.indexOf(ent);
+	let index = this.entities.indexOf(ent);
 	if (index != -1)
 		this.entities.splice(index, 1);
 };
 
+Guard.prototype.RenameGuard = function(oldent, newent)
+{
+	let index = this.entities.indexOf(oldent);
+	if (index != -1)
+		this.entities[index] = newent;
+};
+
 Guard.prototype.OnAttacked = function(msg)
 {
-	for each (var ent in this.entities)
+	for (let ent of this.entities)
 		Engine.PostMessage(ent, MT_GuardedAttacked, { "guarded": this.entity, "data": msg });
 };
 
 /**
- * Update list of guarding/escorting entities if one gets renamed (e.g. by promotion)
+ * If an entity is captured, or about to be killed (so its owner
+ * changes to '-1') or if diplomacy changed, update the guards list
  */
-Guard.prototype.OnGlobalEntityRenamed = function(msg)
+Guard.prototype.OnOwnershipChanged = function(msg)
 {
-	var entityIndex = this.entities.indexOf(msg.entity);
-	if (entityIndex != -1)
-		this.entities[entityIndex] = msg.newentity;
+	if (!this.entities.length)
+		return;
+	this.CheckGuards(msg.to == -1);
 };
 
-/**
- * If an entity is captured, or about to be killed (so its owner
- * changes to '-1'), update the guards list
- */
-Guard.prototype.OnGlobalOwnershipChanged = function(msg)
+Guard.prototype.OnDiplomacyChanged = function(msg)
 {
-	// the ownership change may be on the guarded
-	if (this.entity == msg.entity)
-	{
-		var entities = this.GetEntities();
-		for each (var entity in entities)
-		{
-			if (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, entity))
-			{
-				var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
-				if (cmpUnitAI && cmpUnitAI.IsGuardOf() && cmpUnitAI.IsGuardOf() == this.entity)
-					cmpUnitAI.RemoveGuard();
-				else
-					this.RemoveGuard(entity);
-			}
-		}
-		this.entities = entities;
+	if (!this.entities.length)
 		return;
-	}
+	this.CheckGuards();
+};
 
-	// or on some of its guards
-	if (this.entities.indexOf(msg.entity) != -1)
+Guard.prototype.CheckGuards = function(force = false)
+{
+	let entities = this.GetEntities();
+	for (let ent of entities)
 	{
-		if (msg.to == -1)
-			this.RemoveGuard(msg.entity);
-		else if(!IsOwnedByMutualAllyOfEntity(this.entity, msg.entity))
+		if (force || !IsOwnedByMutualAllyOfEntity(this.entity, ent))
 		{
-			var cmpUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
-			if (cmpUnitAI)
+			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI && cmpUnitAI.IsGuardOf() && cmpUnitAI.IsGuardOf() == this.entity)
 				cmpUnitAI.RemoveGuard();
 			else
-				this.RemoveGuard(msg.entity);
+				this.RemoveGuard(ent);
 		}
 	}
 };

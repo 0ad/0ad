@@ -63,14 +63,35 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		if (cmpUnitAI.GetStanceName())
 			cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
 		cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
-		cmpNewUnitAI.SetGuardOf(cmpUnitAI.IsGuardOf());
+		if (cmpUnitAI.IsGuardOf())
+		{
+			let guarded = cmpUnitAI.IsGuardOf();
+			let cmpGuard = Engine.QueryInterface(guarded, IID_UnitAI)
+			if (cmpGuard)
+			{
+				cmpGuard.RenameGuard(oldEnt, newEnt);
+				cmpNewUnitAI.SetGuardOf(guarded);
+			}
+		}
 	}
 
 	// Maintain the list of guards
-	var cmpGuard = Engine.QueryInterface(oldEnt, IID_Guard);
-	var cmpNewGuard = Engine.QueryInterface(newEnt, IID_Guard);
+	let cmpGuard = Engine.QueryInterface(oldEnt, IID_Guard);
+	let cmpNewGuard = Engine.QueryInterface(newEnt, IID_Guard);
 	if (cmpGuard && cmpNewGuard)
-		cmpNewGuard.SetEntities(cmpGuard.GetEntities());
+	{
+		let entities = cmpGuard.GetEntities();
+		if (entities.length)
+		{
+			cmpNewGuard.SetEntities(entities);
+			for (let ent of entities)
+			{
+				let cmpEntUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+				if (cmpEntUnitAI)
+					cmpEntUnitAI.SetGuardOf(NewEnt);
+			}
+		}
+	}
 
 	TransferGarrisonedUnits(oldEnt, newEnt);
 
