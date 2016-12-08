@@ -164,6 +164,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		CSkeletonAnim* anim = model->BuildAnimation(
 			it->second.m_FileName,
 			name,
+			it->second.m_ID,
 			it->second.m_Frequency,
 			it->second.m_Speed,
 			it->second.m_ActionPos,
@@ -178,6 +179,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		CSkeletonAnim* anim = new CSkeletonAnim();
 		anim->m_Name = "idle";
+		anim->m_ID = "";
 		anim->m_AnimDef = NULL;
 		anim->m_Frequency = 0;
 		anim->m_Speed = 0.f;
@@ -253,9 +255,9 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	return true;
 }
 
-CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName) const
+CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName, const CStr& ID) const
 {
-	std::vector<CSkeletonAnim*> anims = GetAnimations(animationName);
+	std::vector<CSkeletonAnim*> anims = GetAnimations(animationName, ID);
 
 	int totalFreq = 0;
 	for (CSkeletonAnim* anim : anims)
@@ -271,11 +273,10 @@ CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName) const
 		if (r < 0)
 			return anim;
 	}
-	LOGERROR("No animation found for name %s", animationName);
 	return NULL;
 }
 
-std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationName) const
+std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationName, const CStr& ID) const
 {
 	std::vector<CSkeletonAnim*> anims;
 
@@ -283,12 +284,10 @@ std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationNam
 	SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound(animationName);
 
 	for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
-		anims.push_back(it->second);
-
-	if (anims.empty())
-		for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
-			if (anim.second->m_Frequency > 0)
-				anims.push_back(anim.second);
+	{
+		if (ID.empty() || it->second->m_ID == ID)
+			anims.push_back(it->second);
+	}
 
 	if (anims.empty())
 	{

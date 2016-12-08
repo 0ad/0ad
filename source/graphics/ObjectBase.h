@@ -45,6 +45,8 @@ public:
 		Anim() : m_Frequency(0), m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f), m_SoundPos(-1.f) {}
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
+		// ID of the animation: if not empty, something specific to sync with props.
+		CStr m_ID = "";
 		int m_Frequency;
 		// filename of the animation - manidle.psa, manrun.psa, etc
 		VfsPath m_FileName;

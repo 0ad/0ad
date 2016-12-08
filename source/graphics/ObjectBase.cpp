@@ -60,6 +60,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 	AT(event);
 	AT(file);
 	AT(frequency);
+	AT(id);
 	AT(load);
 	AT(maxheight);
 	AT(minheight);
@@ -163,6 +164,8 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 				{
 					if (ae.Name == at_name)
 						anim.m_AnimName = ae.Value;
+					else if (ae.Name == at_id)
+						anim.m_ID = ae.Value;
 					else if (ae.Name == at_frequency)
 						anim.m_Frequency = ae.Value.ToInt();
 					else if (ae.Name == at_file)

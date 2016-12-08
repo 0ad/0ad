@@ -201,6 +201,7 @@ public:
 	 * animation specific to this model.
 	 * @param pathname animation file to load
 	 * @param name animation name (e.g. "idle")
+	 * @param ID specific ID of the animation, to sync with props
 	 * @param frequency influences the random choices
 	 * @param speed animation speed as a factor of the default animation speed
 	 * @param actionpos offset of 'action' event, in range [0, 1]
@@ -208,7 +209,7 @@ public:
 	 * @param sound offset of 'sound' event, in range [0, 1]
 	 * @return new animation, or NULL on error
 	 */
-	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, int frequency, float speed, float actionpos, float actionpos2, float soundpos);
+	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, const CStr& ID, int frequency, float speed, float actionpos, float actionpos2, float soundpos);
 
 	/**
 	 * Add a prop to the model on the given point.

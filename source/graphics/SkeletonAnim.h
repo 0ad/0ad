@@ -34,6 +34,8 @@ class CSkeletonAnim
 public:
 	// the name of the action which uses this animation (e.g. "idle")
 	CStr m_Name;
+	// the ID of this animation, to sync between props.
+	CStr m_ID = "";
 	// frequency of the animation
 	int m_Frequency;
 	// the raw animation frame data; may be NULL if this is a static 'animation'
