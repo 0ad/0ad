@@ -95,7 +95,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	if (cmpCurrentUnitAI.IsGuardOf())
 	{
 		let guarded = cmpCurrentUnitAI.IsGuardOf();
-		let cmpGuard = Engine.QueryInterface(guarded, IID_UnitAI)
+		let cmpGuard = Engine.QueryInterface(guarded, IID_Guard);
 		if (cmpGuard)
 		{
 			cmpGuard.RenameGuard(this.entity, promotedUnitEntity);

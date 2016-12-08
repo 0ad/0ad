@@ -66,7 +66,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		if (cmpUnitAI.IsGuardOf())
 		{
 			let guarded = cmpUnitAI.IsGuardOf();
-			let cmpGuard = Engine.QueryInterface(guarded, IID_UnitAI)
+			let cmpGuard = Engine.QueryInterface(guarded, IID_Guard);
 			if (cmpGuard)
 			{
 				cmpGuard.RenameGuard(oldEnt, newEnt);
