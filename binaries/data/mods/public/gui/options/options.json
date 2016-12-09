@@ -28,7 +28,7 @@
 		{
 			"type": "boolean",
 			"label": "Disable Welcome Screen",
-			"tooltip": "If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu.",
+			"tooltip": "When disabled, the welcome screen will nevertheless be shown once when a new version is available and you can always launch it from the main menu.",
 			"parameters": { "config": "splashscreendisable" }
 		},
 		{
