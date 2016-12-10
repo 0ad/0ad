@@ -94,6 +94,9 @@
                       <interleave>
                         <attribute name="name"/>
                         <optional>
+                          <attribute name="id"/>
+                        </optional>
+                        <optional>
                           <attribute name="frequency">
                             <data type="nonNegativeInteger"/>
                           </attribute>

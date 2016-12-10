@@ -41,7 +41,7 @@ static float DesyncSpeed(float speed, float desync)
 }
 
 CUnitAnimation::CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* object)
-	: m_Entity(ent), m_State("idle"), m_AnimationName("idle"), m_Looping(true),
+	: m_Entity(ent), m_State("idle"), m_Looping(true),
 	  m_Speed(1.f), m_SyncRepeatTime(0.f), m_OriginalSpeed(1.f), m_Desync(0.f)
 {
 	ReloadUnit(model, object);
@@ -58,7 +58,7 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 
 	state.model = model;
 	state.object = object;
-	state.anim = object->GetRandomAnimation(m_State);
+	state.anim = object->GetRandomAnimation(m_State, m_AnimationID);
 	state.time = 0.f;
 	state.pastLoadPos = false;
 	state.pastActionPos = false;
@@ -108,7 +108,7 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	if (name != m_State)
 	{
 		m_State = name;
-		m_AnimationName = name;
+		UpdateAnimationID();
 
 		ReloadUnit(m_Model, m_Object);
 	}
@@ -236,23 +236,17 @@ void CUnitAnimation::Update(float time)
 			{
 				// we're handling the root model
 				// choose animations from the complete state
-				anim = it->object->GetRandomAnimation(m_State);
-				// if we use a new animation name,
-				// update the animations of all non-root models
-				// sync with the root model, unless the root model could
-				// only resort to the "idle" state.
-				if (anim->m_Name != "idle")
-					m_AnimationName = anim->m_Name;
-				else
-					m_AnimationName = m_State;
-				if (it->anim->m_Name != m_AnimationName)
+				CStr oldID = m_AnimationID;
+				UpdateAnimationID();
+				anim = it->object->GetRandomAnimation(m_State, m_AnimationID);
+				if (oldID != m_AnimationID)
 					for (SModelAnimState animState : m_AnimStates)
 						if (animState.model != m_Model)
-							animState.model->SetAnimation(animState.object->GetRandomAnimation(m_AnimationName));
+							animState.model->SetAnimation(animState.object->GetRandomAnimation(m_State, m_AnimationID));
 			}
 			else
 				// choose animations that match the root
-				anim = it->object->GetRandomAnimation(m_AnimationName);
+				anim = it->object->GetRandomAnimation(m_State, m_AnimationID);
 
 			if (anim != it->anim)
 			{
@@ -279,4 +273,10 @@ void CUnitAnimation::Update(float time)
 			}
 		}
 	}
+}
+
+void CUnitAnimation::UpdateAnimationID()
+{
+	CStr& ID = m_Object->GetRandomAnimation(m_State)->m_ID;
+	m_AnimationID = ID;
 }

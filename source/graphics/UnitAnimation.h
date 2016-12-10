@@ -92,6 +92,12 @@ public:
 	void ReloadUnit(CModel* model, const CObjectEntry* object);
 
 private:
+
+	/**
+	 * Picks a new animation ID from our current state
+	 */
+	void UpdateAnimationID();
+
 	struct SModelAnimState
 	{
 		CModel* model;
@@ -117,7 +123,7 @@ private:
 	CModel* m_Model;
 	const CObjectEntry* m_Object;
 	CStr m_State;
-	CStr m_AnimationName;
+	CStr m_AnimationID = "";
 	bool m_Looping;
 	float m_OriginalSpeed;
 	float m_Speed;

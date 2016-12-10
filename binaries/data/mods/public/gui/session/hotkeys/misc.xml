@@ -62,6 +62,16 @@
 		<action on="Press">backToWork();</action>
 	</object>
 
+	<object hotkey="session.batchtrain">
+		<action on="Press">updateSelectionDetails();</action>
+		<action on="Release">updateSelectionDetails();</action>
+	</object>
+
+	<object hotkey="session.massbarter">
+		<action on="Press">updateSelectionDetails();</action>
+		<action on="Release">updateSelectionDetails();</action>
+	</object>
+
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
 		<action on="Press">findIdleUnit(g_MilitaryTypes);</action>

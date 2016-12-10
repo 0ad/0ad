@@ -6,10 +6,22 @@
       <mesh>structural/found_1x3.dae</mesh>
       <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
+  </group>
+  <group>
     <variant>
       <props>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodPile001" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator001" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator002" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator003" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator004" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/wood_stick.xml" attachpoint="woodStick001" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/wood_stick.xml" attachpoint="woodStick002" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/wood_stick.xml" attachpoint="woodStick003" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>				
       </props>
     </variant>
   </group>
+  
 </actor>

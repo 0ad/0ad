@@ -732,7 +732,7 @@ function confirmExit()
 
 	let subject = g_PlayerStateMessages[g_ConfirmExit];
 	if (askExit)
-		subject += "\n" + translate("Do you want to quit?")
+		subject += "\n" + translate("Do you want to quit?");
 
 	messageBox(
 		400, 200,

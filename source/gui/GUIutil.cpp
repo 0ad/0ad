@@ -253,6 +253,11 @@ bool __ParseString<CGUIList>(const CStrW& UNUSED(Value), CGUIList& UNUSED(Output
 	return false;
 }
 
+template <>
+bool __ParseString<CGUISeries>(const CStrW& UNUSED(Value), CGUISeries& UNUSED(Output))
+{
+	return false;
+}
 
 //--------------------------------------------------------
 

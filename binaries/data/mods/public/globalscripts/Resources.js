@@ -47,7 +47,7 @@ function Resources()
 		this.resourceCodes.push(data.code);
 		this.resourceNames[data.code] = data.name;
 		for (let subres in data.subtypes)
-			this.resourceNames[subres] = data.subtypes[subres]
+			this.resourceNames[subres] = data.subtypes[subres];
 	}
 
 	// Sort arrays by specified order
@@ -60,7 +60,7 @@ function Resources()
 		this.resourceData.find(resource => resource.code == a),
 		this.resourceData.find(resource => resource.code == b)
 	));
-};
+}
 
 /**
  * Returns the objects defined in the JSON files for all availbale resources,

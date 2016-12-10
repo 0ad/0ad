@@ -64,20 +64,18 @@ public:
 	std::wstring m_ProjectileModelName;
 
 	/**
-	 * Returns a randomly-chosen animation matching the given name.
+	 * Returns a randomly-chosen animation matching the given ID, or animationName if ID is empty.
 	 * The chosen animation is picked randomly from the GetAnimations list
 	 * with the frequencies as weights (if there are any defined).
 	 * This method should always return an animation
 	 */
-	CSkeletonAnim* GetRandomAnimation(const CStr& animationName) const;
+	CSkeletonAnim* GetRandomAnimation(const CStr& animationName, const CStr& ID = "") const;
 
 	/**
-	 * Returns all the animations matching the given name.
-	 * - Prefers the animations names like the animationName
-	 * - Second choice are animations with a frequency
-	 * - Last choice are the Idle animations (which are always added)
+	 * Returns all the animations matching the given ID or animationName if ID is empty.
+	 * If none found returns Idle animations (which are always added)
 	 */
-	std::vector<CSkeletonAnim*> GetAnimations(const CStr& animationName) const;
+	std::vector<CSkeletonAnim*> GetAnimations(const CStr& animationName, const CStr& ID = "") const;
 
 	// corresponding model
 	CModelAbstract* m_Model;
@@ -87,6 +85,7 @@ public:
 	bool m_Outdated;
 
 private:
+
 	CSimulation2& m_Simulation;
 
 	typedef std::multimap<CStr, CSkeletonAnim*> SkeletonAnimMap;

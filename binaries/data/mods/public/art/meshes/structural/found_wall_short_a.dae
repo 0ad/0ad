@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2014-03-19T17:04:56Z</created><keywords></keywords><modified>2014-03-19T17:04:56Z</modified><revision></revision><subject></subject><title></title><unit meter="0.025400" name="centimeter"></unit><up_axis>Z_UP</up_axis></asset>
+  <library_geometries>
+    <geometry id="base-lib" name="baseMesh">
+      <mesh>
+        <source id="base-POSITION">
+          <float_array id="base-POSITION-array" count="9">
+0.924551 -1.327757 0.000000
+-0.924551 -1.327757 0.000000
+0.924551 1.327757 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#base-POSITION-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="base-Normal0">
+          <float_array id="base-Normal0-array" count="9">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#base-Normal0-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="base-UV0">
+          <float_array id="base-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#base-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="base-VERTEX">
+          <input semantic="POSITION" source="#base-POSITION"/>
+        </vertices>
+        <triangles count="1"><input semantic="VERTEX" offset="0" source="#base-VERTEX"/><input semantic="NORMAL" offset="1" source="#base-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#base-UV0"/><p> 1 0 2 0 1 1 2 2 3</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="found_wall_med_a" name="found_wall_med_a">
+      <node name="base" id="base" sid="base"><matrix sid="matrix">-1.000000 0.000000 0.000000 0.000000 -0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 -3.937008 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#base-lib"/><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="prop_brick001" id="prop_brick001" sid="prop_brick001"><matrix sid="matrix">0.087155 0.996195 0.000000 -5.667988 -0.996195 0.087155 0.000000 -3.462683 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_box001" id="prop_box001" sid="prop_box001"><matrix sid="matrix">-0.965926 0.258818 0.000000 2.447984 -0.258818 -0.965926 0.000000 4.353326 0.000000 0.000000 1.000000 3.921021 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_brickpile001" id="prop_brickpile001" sid="prop_brickpile001"><matrix sid="matrix">-1.000000 -0.000001 0.000000 7.592388 0.000001 -1.000000 0.000000 3.027944 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_woodpile001" id="prop_woodpile001" sid="prop_woodpile001"><matrix sid="matrix">-0.642788 0.766044 0.000000 4.871658 -0.766044 -0.642788 0.000000 -2.553545 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_delimitator004" id="prop_delimitator004" sid="prop_delimitator004"><matrix sid="matrix">0.000000 -1.000000 0.000000 -10.000004 1.000000 0.000000 0.000000 -4.803147 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_delimitator003" id="prop_delimitator003" sid="prop_delimitator003"><matrix sid="matrix">-1.000000 -0.000001 0.000000 9.999992 0.000001 -1.000000 0.000000 -4.803152 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_delimitator002" id="prop_delimitator002" sid="prop_delimitator002"><matrix sid="matrix">-0.000000 1.000000 0.000000 10.000008 -1.000000 -0.000000 0.000000 4.803148 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_delimitator001" id="prop_delimitator001" sid="prop_delimitator001"><matrix sid="matrix">1.000000 -0.000000 0.000000 -9.999996 0.000000 1.000000 0.000000 4.803153 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_brickpile002" id="prop_brickpile002" sid="prop_brickpile002"><matrix sid="matrix">1.000000 0.000001 0.000000 -2.011675 -0.000001 1.000000 0.000000 4.698862 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_brickpile003" id="prop_brickpile003" sid="prop_brickpile003"><matrix sid="matrix">0.258818 0.965926 0.000000 0.346369 -0.965926 0.258818 0.000000 -4.907951 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node><node name="prop_brickpile004" id="prop_brickpile004" sid="prop_brickpile004"><matrix sid="matrix">-1.000000 -0.000001 0.000000 -8.686749 0.000001 -1.000000 0.000000 -0.791911 0.000000 0.000000 1.000000 3.937008 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>30.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.000000</start_time><end_time>0.333333</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#found_wall_med_a"></instance_visual_scene>
+  </scene>
+</COLLADA>

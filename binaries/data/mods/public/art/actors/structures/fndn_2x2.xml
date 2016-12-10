@@ -11,12 +11,24 @@
       <props>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="Delimitator004" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="wood_pile001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick_Pile_Big1.xml" attachpoint="brickpile001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick_Pile_Big2.xml" attachpoint="brickpile002" maxheight="20" minheight="-20"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1">
-      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/foundation.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>

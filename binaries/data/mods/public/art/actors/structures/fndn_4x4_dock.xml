@@ -3,13 +3,24 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="foundation dock 6x4">
+    <variant frequency="1" name="foundation dock 4x4">
       <mesh>structural/found_dock_4x4.dae</mesh>
       <props>
         <prop actor="props/structures/construction/found_dock_4x4_chains.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator001" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator002" maxheight="20" minheight="-20"/>	
+		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick001" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick_Pile_Big4.xml" attachpoint="brickpile004" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick_Pile_Big2.xml" attachpoint="brickpile003" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick_Pile_Big1.xml" attachpoint="brickpile002" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/Brick_Pile_Big1.xml" attachpoint="brickpile001" maxheight="20" minheight="-20"/>
+		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile001" maxheight="20" minheight="-20"/>	
       </props>
       <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
-  </group>
+</group>
 </actor>
+
+

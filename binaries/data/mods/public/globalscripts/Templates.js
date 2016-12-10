@@ -370,7 +370,7 @@ function GetTechnologyDataHelper(template, civ, resources)
 
 	ret.icon = template.icon ? "technologies/" + template.icon : null;
 
-	ret.cost = { "time": template.researchTime ? +template.researchTime : 0 }
+	ret.cost = { "time": template.researchTime ? +template.researchTime : 0 };
 	for (let type of resources.GetCodes())
 		ret.cost[type] = template.cost ? +template.cost[type] : 0;
 

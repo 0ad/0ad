@@ -40,6 +40,7 @@ GUI Inclusion file
 #include "ps/CStr.h"
 
 #include "CGUIList.h"
+#include "CGUISeries.h"
 #include "GUIbase.h"
 #include "GUItext.h"
 #include "GUIutil.h"

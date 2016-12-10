@@ -7,4 +7,13 @@
       <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
+   <group>
+    <variant frequency="1">
+      <props>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+		<prop actor="props/special/eyecandy/awning_wood_large.xml" attachpoint="shed" maxheight="20" minheight="-20"/>		
+		<prop actor="props/special/eyecandy/object_pile.xml" attachpoint="stuff" maxheight="20" minheight="-20"/>			
+      </props>
+    </variant>
+  </group>
 </actor>
