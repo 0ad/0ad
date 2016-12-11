@@ -11,6 +11,7 @@ Trigger.prototype.eventNames =
 	"CinemaPathEnded",
 	"CinemaQueueEnded",
 	"ConstructionStarted",
+	"InitGame",
 	"Interval",
 	"OwnershipChanged",
 	"PlayerCommand",
@@ -217,6 +218,11 @@ Trigger.prototype.CallEvent = function(event, data)
 	for (let action in this[eventString])
 		if (this[eventString][action].enabled)
 			this.DoAction({ "action": action, "data":data });
+};
+
+Trigger.prototype.OnGlobalInitGame = function(msg)
+{
+	this.CallEvent("InitGame", {});
 };
 
 Trigger.prototype.OnGlobalConstructionFinished = function(msg)
