@@ -3,7 +3,6 @@
 <Scenario version="6">
 	<Terrain patches="16" texture="grass1_spring" priority="0" height="16384"/>
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
 		<SunColor r="0.749020" g="0.749020" b="0.749020"/>
 		<SunElevation angle="0.785398"/>
@@ -15,12 +14,9 @@
 				<Type>ocean</Type>
 				<Color r="0.3" g="0.35" b="0.7"/>
 				<Height>5</Height>
-				<Shininess>150</Shininess>
 				<Waviness>4.0</Waviness>
 				<Murkiness>0.45</Murkiness>
 				<Tint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>

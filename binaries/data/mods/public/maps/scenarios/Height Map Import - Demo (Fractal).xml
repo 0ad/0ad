@@ -2,7 +2,6 @@
 
 <Scenario version="6">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>sunset 2</SkySet>
 		<SunColor r="1.72995" g="1.46537" b="0.929424"/>
 		<SunElevation angle="0.143341"/>
@@ -14,12 +13,9 @@
 				<Type>ocean</Type>
 				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>15.7377</Height>
-				<Shininess>150</Shininess>
 				<Waviness>2.0</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.584314" g="0.47451" b="0.27451"/>
-				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>

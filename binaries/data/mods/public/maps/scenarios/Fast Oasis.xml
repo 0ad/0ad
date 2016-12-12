@@ -2,7 +2,6 @@
 
 <Scenario version="6">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>sunny 1</SkySet>
 		<SunColor r="0.756863" g="0.729412" b="0.521569"/>
 		<SunElevation angle="1.03697"/>
@@ -14,12 +13,9 @@
 				<Type>clap</Type>
 				<Color r="0.0627451" g="0.168627" b="0.25098"/>
 				<Height>21.823</Height>
-				<Shininess>0</Shininess>
 				<Waviness>2.0</Waviness>
 				<Murkiness>0.355469</Murkiness>
 				<Tint r="0.384314" g="0.835294" b="0.870588"/>
-				<ReflectionTint r="0.603922" g="0.556863" b="0.392157"/>
-				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>

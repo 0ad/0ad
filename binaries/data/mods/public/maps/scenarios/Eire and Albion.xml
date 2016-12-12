@@ -2,7 +2,6 @@
 
 <Scenario version="6">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>stormy</SkySet>
 		<SunColor r="1.27799" g="1.08716" b="0.688151"/>
 		<SunElevation angle="0.291456"/>
@@ -14,12 +13,9 @@
 				<Type>ocean</Type>
 				<Color r="0.298039" g="0.34902" b="0.698039"/>
 				<Height>7.44919</Height>
-				<Shininess>150</Shininess>
 				<Waviness>2.7</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.396078" g="0.47451" b="0.654902"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
