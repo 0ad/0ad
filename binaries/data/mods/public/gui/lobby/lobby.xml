@@ -319,7 +319,7 @@
 			</object>
 			<object name="profileWindowPanel" size="25 95 100%-25 100%-60">
 			<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
-				<object name="profileWindowArea" size="0 0 100% 100%" hidden="false">
+				<object name="profileWindowArea" size="0 0 100% 100%" hidden="true">
 					<object name="profileUsernameText" size="0 0 100% 25" type="text" style="ModernLabelText" text_align="center" font="sans-bold-16" />
 					<object size="0 30 40%+40 50" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Current Rank:</translatableAttribute>
@@ -346,8 +346,8 @@
 					</object>
 					<object name="profileRatioText" size="40%+45 130 100% 150" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
 				</object>
-				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-13" hidden="true">
-					<translatableAttribute id="caption">Player not found.</translatableAttribute>
+				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-13" hidden="false">
+					<translatableAttribute id="caption">Please enter a player name.</translatableAttribute>
 				</object>
 			</object>
 			</object>
