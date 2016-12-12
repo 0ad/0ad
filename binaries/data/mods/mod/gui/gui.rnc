@@ -71,6 +71,7 @@ ex_settings =
   attribute scrollbar { bool }?&
   attribute scrollbar_style { text }?&
   attribute scroll_bottom { bool }?&
+  attribute scroll_top { bool }?&
   attribute selected_column { text }?&
   attribute selected_column_order { text }?&
   attribute sortable { bool }?&

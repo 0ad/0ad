@@ -4,7 +4,7 @@ var disabledTemplates = (civ) => [
 	"structures/" + civ + "_farmstead",
 	"structures/" + civ + "_field",
 	"structures/" + civ + "_storehouse",
-	"structures/brit_rotarymill",
+	"structures/" + civ + "_rotarymill",
 	"units/maur_support_elephant",
 
 	// Expansions
@@ -225,7 +225,7 @@ Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 	cmpTrigger.playerCivicCenter = {};
-	cmpTrigger.DoAfterDelay(0, "InitGame", {});
 	cmpTrigger.DoAfterDelay(1000, "InitializeEnemyWaves", {});
+	cmpTrigger.RegisterTrigger("OnInitGame", "InitGame", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "DefeatPlayerOnceCCIsDestroyed", { "enabled": true });
 }

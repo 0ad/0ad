@@ -290,6 +290,11 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="scroll_top">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="selected_column"/>
       </optional>
       <optional>

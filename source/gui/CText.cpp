@@ -34,6 +34,7 @@ CText::CText()
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_bool,					"scroll_bottom");
+	AddSetting(GUIST_bool,					"scroll_top");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_EAlign,				"text_align");
 	AddSetting(GUIST_EVAlign,				"text_valign");
@@ -97,15 +98,16 @@ void CText::SetupText()
 	// Setup scrollbar
 	if (scrollbar)
 	{
-		bool scrollbottom = false;
-		GUI<bool>::GetSetting(this, "scroll_bottom", scrollbottom);
+		bool scroll_top = false, scroll_bottom = false;
+		GUI<bool>::GetSetting(this, "scroll_bottom", scroll_bottom);
+		GUI<bool>::GetSetting(this, "scroll_top", scroll_top);
 
 		// If we are currently scrolled to the bottom of the text,
 		// then add more lines of text, update the scrollbar so we
 		// stick to the bottom.
 		// (Use 1.5px delta so this triggers the first time caption is set)
 		bool bottom = false;
-		if (scrollbottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
+		if (scroll_bottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
 			bottom = true;
 
 		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0]->m_Size.cy);
@@ -118,6 +120,8 @@ void CText::SetupText()
 
 		if (bottom)
 			GetScrollBar(0).SetPos(GetScrollBar(0).GetMaxPos());
+		if (scroll_top)
+			GetScrollBar(0).SetPos(0.0f);
 	}
 }
 
