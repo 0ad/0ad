@@ -86,12 +86,6 @@
         </attribute>
         <element name="Environment">
           <interleave>
-            <optional>
-              <element name="LightingModel">
-                <text/>
-              </element>
-            </optional>
-            <!-- Deprecated -->
             <element name="SkySet">
               <text/>
             </element>
@@ -144,12 +138,6 @@
                   <element name="Height">
                     <data type="decimal"/>
                   </element>
-                  <optional>
-                    <element name="Shininess">
-                      <data type="decimal"/>
-                    </element>
-                  </optional>
-                  <!-- Deprecated -->
                   <element name="Waviness">
                     <data type="decimal"/>
                   </element>
@@ -158,12 +146,6 @@
                   </element>
                   <element name="Tint">
                     <ref name="color_rgb"/>
-                  </element>
-                  <element name="ReflectionTint">
-                    <ref name="color_rgb"/>
-                  </element>
-                  <element name="ReflectionTintStrength">
-                    <data type="decimal"/>
                   </element>
                 </interleave>
               </element>

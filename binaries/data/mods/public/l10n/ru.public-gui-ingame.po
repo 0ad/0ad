@@ -54,8 +54,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-02 09:00+0100\n"
-"PO-Revision-Date: 2016-12-03 10:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-11 10:09+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -430,17 +430,17 @@ msgstr "Чат союзников"
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Чат соперников"
+msgstr "Чат врагов"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Чат наблюдателей"
+msgstr "Чат зрителей"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr "Личная переписка"
+msgstr "Личный чат"
 
 #: gui/session/messages.js:231
 msgid "You have won!"
@@ -561,7 +561,7 @@ msgstr "%(player)s передал вам %(amounts)s."
 #: gui/session/messages.js:894
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr "%(player)s обменял %(amountsBought)s для %(amountsSold)s."
+msgstr "%(player)s обменял %(amountsBought)s на %(amountsSold)s."
 
 #: gui/session/messages.js:907
 #, javascript-format
@@ -906,12 +906,12 @@ msgstr "Введите сообщение для отправки."
 #: gui/session/session.js:334
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Нажмите %(hotkey)s для открытия общего чата."
+msgstr "Нажмите %(hotkey)s, чтобы открыть общий чат."
 
 #: gui/session/session.js:337
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Нажмите %(hotkey)s для открытия чата наблюдателей."
+msgstr "Нажмите %(hotkey)s для открытия чата зрителей."
 
 #: gui/session/session.js:338
 #, javascript-format
@@ -926,7 +926,7 @@ msgstr "Найти свободных рабочих"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr "Выберите один основной тип продуктов для обмена, затем с помощью стрелок выбрать тип продукта для обмена."
+msgstr "Выберите тип продукта для источника обмена, затем с помощью стрелок выберите тип продукта для цели обмена."
 
 #: gui/session/session.js:348
 #, javascript-format
@@ -1108,7 +1108,7 @@ msgstr "Патруль"
 
 #: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr "Атаковать всех вражеских юнитов, с которыми сталкиваются, избегая при этом здания."
+msgstr "Атаковать всех вражеских юнитов при столкновении, избегая при этом нападений на здания."
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
@@ -1185,12 +1185,12 @@ msgstr "Отправить"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Фильтровать историю чата."
+msgstr "Отфильтровать историю чата."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "Выберите чат адресата."
+msgstr "Выберите адресата чата."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"

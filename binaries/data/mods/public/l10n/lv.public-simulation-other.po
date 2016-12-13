@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Beāte Lakševica <tava.unochka@inbox.lv>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 09:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-11 08:07+0000\n"
+"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Es sāku masīvu militāru kampaņu pret %(_player_)s, nāc pievienojies man."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
@@ -31,7 +32,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "Es tikko nosūtīju armiju pret %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
@@ -55,7 +56,7 @@ msgstr ""
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Piedod, man pašlaik nav pietiekami daudz karavīru, bet mana nākamā uzbrukuma mērķis būs %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
@@ -65,7 +66,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
-msgstr ""
+msgstr "Es redzu ka tu esi sliktā siluācijā %(_player_)s, es ceru tas palīdzēs."
 
 #: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
@@ -77,7 +78,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Man ir nepieciešami %(resource)s, vai tu vari man palīdzēt? Es tev to atlīdzināšu."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -114,17 +115,17 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr ""
+msgstr "Esmu sasniedzis %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s un es tagad esam ienaidnieki."
 
 #: simulation/ai/petra/chatHelper.js:135
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s un es tagad esam sabiedrotie."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -158,7 +159,7 @@ msgstr ""
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Kad tavas pilsones ir pabeigušas apmācības, izmanto 4 lai tuvumā uzbūvētu māju."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
@@ -203,7 +204,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Izmanto vēl 2-3 pilsones lai izveidot lauku."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -342,7 +343,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "Galvenās lietas kas jāatceras:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -536,7 +537,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "%(name)s nevar tikt uzbūvēts nezināmas kļūdas dēļ"
 
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
@@ -572,14 +573,14 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "sabiedrots"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "nesavienots sabiedrotais"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -660,15 +661,15 @@ msgstr "ienaidnieks"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "Tu vari uzbrukt %(time)s"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr ""
+msgstr "Tu tagad vari uzbrukt!"
 
 #: simulation/components/EndGameManager.js:119
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "Pēdējais atlikušais spēlētājs uzvar."
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
@@ -769,51 +770,51 @@ msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Spēlētājs 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Spēlētājs 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Spēlētājs 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Spēlētājs 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Spēlētājs 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Spēlētājs 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Spēlētājs 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Spēlētājs 8"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Bruņurupucis (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Lēns (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Nesteidzīgs (0.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Atvieglots (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
@@ -829,7 +830,7 @@ msgstr "Ļoti Ātrs (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Ārprātīgs (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
@@ -845,7 +846,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
-msgstr ""
+msgstr "Sakauj visus pretiniekus lai uzvarētu."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -853,7 +854,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all enemy structures to win."
-msgstr ""
+msgstr "Lai uzvarētu iznīcini visas ienaidnieka konstrukcijas."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -861,7 +862,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
-msgstr ""
+msgstr "Lai uzvarētu nogalini visas ienaidnieka vienības."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -869,11 +870,11 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "Sakauj pretiniekus nogalinot viņu varoni."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "Karaļa Slepkavība"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
@@ -883,37 +884,37 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Brīnums"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Ļoti Zems"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Zems"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Vidēji"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Augsts"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Ļoti Augsts"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Cīņā uz Nāvi"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"

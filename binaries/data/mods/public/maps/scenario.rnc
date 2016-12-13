@@ -37,7 +37,6 @@ angle = attribute angle { xsd:float }
 Scenario = element Scenario {
     attribute version { xsd:positiveInteger } &
     element Environment {
-        element LightingModel { text }? & # Deprecated
         element SkySet { text } &
         element SunColor { suncolor_rgb } &
         element SunElevation { angle } &
@@ -58,12 +57,9 @@ Scenario = element Scenario {
                 element Type { text } & # Not implemented
                 element Color { color_rgb } &
                 element Height { xsd:decimal } &
-                element Shininess { xsd:decimal }? & # Deprecated
                 element Waviness { xsd:decimal } &
                 element Murkiness { xsd:decimal } &
-                element Tint { color_rgb } &
-                element ReflectionTint { color_rgb } &
-                element ReflectionTintStrength { xsd:decimal }
+                element Tint { color_rgb }
             }
         } &
         element Postproc {

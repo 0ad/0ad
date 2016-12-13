@@ -2,7 +2,6 @@
 
 <Scenario version="6">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
 		<SunColor r="0.85098" g="0.776471" b="0.631373"/>
 		<SunElevation angle="0.785398"/>
@@ -14,12 +13,9 @@
 				<Type>lake</Type>
 				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>5</Height>
-				<Shininess>150</Shininess>
 				<Waviness>4.0</Waviness>
 				<Murkiness>0.45</Murkiness>
 				<Tint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>

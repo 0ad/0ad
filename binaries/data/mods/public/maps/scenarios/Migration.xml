@@ -2,7 +2,6 @@
 
 <Scenario version="6">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
 		<SunColor r="0.835294" g="0.815686" b="0.678431"/>
 		<SunElevation angle="0.711767"/>
@@ -14,12 +13,9 @@
 				<Type>ocean</Type>
 				<Color r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>10.8066</Height>
-				<Shininess>4.39453</Shininess>
 				<Waviness>3.0</Waviness>
 				<Murkiness>0.813477</Murkiness>
 				<Tint r="0.203922" g="0.254902" b="0.356863"/>
-				<ReflectionTint r="0.129412" g="0.54902" b="0.866667"/>
-				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>

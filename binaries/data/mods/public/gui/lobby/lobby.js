@@ -448,7 +448,13 @@ function updateProfile()
 		Engine.GetGUIObjectByName("profileErrorText").hidden = profileFound;
 
 		if (!profileFound)
+		{
+			Engine.GetGUIObjectByName("profileErrorText").caption = sprintf(
+				translate("Player \"%(nick)s\" not found."),
+				{ "nick": attributes.player }
+			);
 			return;
+		}
 
 		Engine.GetGUIObjectByName("profileUsernameText").caption = user;
 		Engine.GetGUIObjectByName("profileRankText").caption = attributes.rank;

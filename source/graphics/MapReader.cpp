@@ -591,7 +591,6 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 {
 #define EL(x) int el_##x = xmb_file.GetElementID(#x)
 #define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
-	EL(lightingmodel);
 	EL(posteffect);
 	EL(skyset);
 	EL(suncolor);
@@ -605,12 +604,9 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(color);
 	EL(tint);
 	EL(height);
-	EL(shininess);	// for compatibility
 	EL(waviness);
 	EL(murkiness);
 	EL(windangle);
-	EL(reflectiontint);	// for compatibility
-	EL(reflectiontintstrength);	// for compatibility
 	EL(fog);
 	EL(fogcolor);
 	EL(fogfactor);
@@ -630,11 +626,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 		XMBAttributeList attrs = element.GetAttributes();
 
-		if (element_name == el_lightingmodel)
-		{
-			// NOP - obsolete.
-		}
-		else if (element_name == el_skyset)
+		if (element_name == el_skyset)
 		{
 			if (m_MapReader.pSkyMan)
 				m_MapReader.pSkyMan->SetSkySet(element.GetText().FromUTF8());
@@ -746,10 +738,6 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 							m_MapReader.pWaterMan->m_WaterType = L"ocean";
 						else
 							m_MapReader.pWaterMan->m_WaterType =  waterelement.GetText().FromUTF8();
-					}
-					else if (element_name == el_shininess || element_name == el_reflectiontint || element_name == el_reflectiontintstrength)
-					{
-						// deprecated.
 					}
 #define READ_COLOR(el, out) \
 					else if (element_name == el) \
@@ -1471,7 +1459,6 @@ int CMapReader::ParseEnvironment()
 		return 0;
 	}
 
-	//m_LightEnv.SetLightingModel("standard");
 	if (pPostproc)
 		pPostproc->SetPostEffect(L"default");
 
