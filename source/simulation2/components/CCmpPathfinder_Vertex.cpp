@@ -615,17 +615,25 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		vert.quadInward = QUADRANT_NONE;
 		vert.quadOutward = QUADRANT_ALL;
 		vert.p.X = center.X - hd0.Dot(u); vert.p.Y = center.Y + hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
+		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
+		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 		vert.p.X = center.X - hd1.Dot(u); vert.p.Y = center.Y + hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
+		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
+		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 		vert.p.X = center.X + hd0.Dot(u); vert.p.Y = center.Y - hd0.Dot(v); if (aa) vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
+		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
+		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 		vert.p.X = center.X + hd1.Dot(u); vert.p.Y = center.Y - hd1.Dot(v); if (aa) vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
-		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X; if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
-		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X; if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
+		if (vert.p.X < rangeXMin) rangeXMin = vert.p.X;
+		if (vert.p.Y < rangeZMin) rangeZMin = vert.p.Y;
+		if (vert.p.X > rangeXMax) rangeXMax = vert.p.X;
+		if (vert.p.Y > rangeZMax) rangeZMax = vert.p.Y;
 
 		// Add the edges:
 
