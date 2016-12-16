@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-10 17:38+0000\n"
-"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
+"PO-Revision-Date: 2016-12-15 20:36+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Nezināms"
 
 #: gui/lobby/lobby.js:127
 msgid "Disconnected."
-msgstr ""
+msgstr "Atslēgts."
 
 #: gui/lobby/lobby.js:145
 #, javascript-format
@@ -74,7 +75,7 @@ msgstr "Ikviens"
 
 #: gui/lobby/lobby.js:423
 msgid "Moderator"
-msgstr ""
+msgstr "Moderātors"
 
 #: gui/lobby/lobby.js:423
 msgid "Player"
@@ -83,12 +84,12 @@ msgstr "Spēlētājs"
 #: gui/lobby/lobby.js:424 gui/lobby/lobby.js:425 gui/lobby/lobby.js:426
 #: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
 msgid "N/A"
-msgstr ""
+msgstr "Nav pieejams"
 
 #: gui/lobby/lobby.js:439
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:628
@@ -135,37 +136,37 @@ msgstr ""
 #: gui/lobby/lobby.js:897
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:902
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:911 gui/lobby/lobby.js:932 gui/lobby/lobby.js:958
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:916 gui/lobby/lobby.js:937 gui/lobby/lobby.js:963
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:926
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/lobby.js:952
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:954
 msgid "Private"
@@ -176,13 +177,13 @@ msgstr "Privāts"
 #: gui/lobby/lobby.js:993
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:998
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1059
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -191,12 +192,12 @@ msgstr ""
 #: gui/lobby/lobby.js:1126
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:1128
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."

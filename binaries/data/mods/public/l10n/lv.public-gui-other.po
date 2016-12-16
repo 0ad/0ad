@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-10 17:53+0000\n"
-"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
+"POT-Creation-Date: 2016-12-12 09:00+0100\n"
+"PO-Revision-Date: 2016-12-15 20:34+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
-msgstr ""
+msgstr "Atvēruma lapa"
 
 #: gui/common/functions_global_object.js:72
 #, javascript-format
@@ -110,7 +111,7 @@ msgstr "SS:mm:ss"
 
 #: gui/common/functions_utility_error.js:12
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Ielāde pārtraukta"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -119,12 +120,12 @@ msgstr "gggg-MM-dd SS:mm:ss"
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:21
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:22
 #, javascript-format
@@ -134,7 +135,7 @@ msgstr "%(dateString)s %(map)s"
 #: gui/common/functions_utility_loadsave.js:83 gui/savedgames/save.js:62
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/common/functions_utility_loadsave.js:85
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -145,7 +146,7 @@ msgid "DELETE"
 msgstr "DZĒST"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -153,7 +154,7 @@ msgid "No"
 msgstr "Nē"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -163,12 +164,12 @@ msgstr "Jā"
 #: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Dzēst izvēlēto ierakstu lietojot %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:109
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Turiet %(hotkey)s lai dzēstu bez apstiprinājuma."
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -183,70 +184,70 @@ msgstr "Atvainojiet, apraksts nav pieejams."
 #: gui/common/gamedescription.js:70
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:73
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:79
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:82
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:92
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:95
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:102
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:109
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:112
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
@@ -264,12 +265,12 @@ msgstr "uzvarēja"
 
 #: gui/common/gamedescription.js:160
 msgid "No Team"
-msgstr ""
+msgstr "Bez komandas"
 
 #: gui/common/gamedescription.js:161
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Komanda %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -308,7 +309,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:217
 msgid "Locked Teams"
-msgstr ""
+msgstr "Slēgtas komandas"
 
 #: gui/common/gamedescription.js:218
 msgid "Players can't change the initial teams."
@@ -324,7 +325,7 @@ msgstr "Spēlētāji var veidot alianses un pasludināt karu sabiedrotajiem."
 
 #: gui/common/gamedescription.js:228
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Pēdējais palikušais dzīvs"
 
 #: gui/common/gamedescription.js:229
 msgid ""
@@ -384,19 +385,19 @@ msgstr "Sākuma Resursi"
 #: gui/common/gamedescription.js:286
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:296
 msgid "Population Limit"
-msgstr ""
+msgstr "Populācijas limits"
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Bez dārgumu lādēm."
 
 #: gui/common/gamedescription.js:309
 msgid "Revealed Map"
-msgstr ""
+msgstr "Atklāta karte"
 
 #: gui/common/gamedescription.js:314
 msgid "Explored Map"
@@ -404,7 +405,7 @@ msgstr "Izpētītā Karte"
 
 #: gui/common/gamedescription.js:319
 msgid "Cheats"
-msgstr ""
+msgstr "Cheats"
 
 #: gui/common/gamedescription.js:324 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -416,22 +417,22 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:327
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "iespējots"
 
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "atslēgts"
 
 #: gui/common/l10n.js:13
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:21
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s un %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -478,11 +479,11 @@ msgstr ""
 
 #: gui/common/network.js:66
 msgid "The host has ended the game"
-msgstr ""
+msgstr "Namatēvs beidza spēli"
 
 #: gui/common/network.js:67
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "Nekorekta tīkla protokola versija"
 
 #: gui/common/network.js:68
 msgid "Game is loading, please try again later"
@@ -494,11 +495,11 @@ msgstr "Spēle jau sākusies, novērotāji nav atļauti"
 
 #: gui/common/network.js:70
 msgid "You have been kicked"
-msgstr ""
+msgstr "Jūs izmeta"
 
 #: gui/common/network.js:71
 msgid "You have been banned"
-msgstr ""
+msgstr "Jums liedza turpmāku pieeju"
 
 #: gui/common/network.js:72
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -545,7 +546,7 @@ msgstr "Lietotāji ( %(num)s): %(users)s"
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Smilškaste"
 
 #: gui/common/settings.js:112
 msgctxt "aiDiff"
@@ -584,7 +585,7 @@ msgstr[2] ""
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Bez pamiera"
 
 #: gui/common/settings.js:174
 #, javascript-format
@@ -598,7 +599,7 @@ msgstr[2] ""
 #: gui/common/settings.js:188
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Sadursme"
 
 #: gui/common/settings.js:193
 msgctxt "map"
@@ -613,7 +614,7 @@ msgstr "Scenārijs"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Nekāds"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
@@ -621,7 +622,7 @@ msgstr "Nebeidzama spēle."
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
-msgstr ""
+msgstr "Neierobežots"
 
 #: gui/common/settings.js:318
 msgctxt "AI name"
@@ -641,7 +642,7 @@ msgstr "Nezināms"
 #: gui/common/settings.js:353
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Noklusējuma"
 
 #: gui/common/settings.js:365
 msgctxt "population capacity"
@@ -655,15 +656,15 @@ msgstr "Nezināms"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
-msgstr ""
+msgstr "Tuvcīņas uzbrukums:"
 
 #: gui/common/tooltips.js:10
 msgid "Ranged Attack:"
-msgstr ""
+msgstr "Uzbrukums no attāluma:"
 
 #: gui/common/tooltips.js:11
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Ieņemšanas uzbrukums:"
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
@@ -716,12 +717,12 @@ msgstr[2] ""
 #: gui/common/tooltips.js:84
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/common/tooltips.js:95
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:106
 msgid "Armor:"
@@ -841,7 +842,7 @@ msgstr ""
 #: gui/common/tooltips.js:268
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Noklusējuma"
 
 #: gui/common/tooltips.js:273
 msgctxt "projectiles"
@@ -995,7 +996,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:647
 msgid "Loot:"
-msgstr ""
+msgstr "Krājumi:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1016,18 +1017,18 @@ msgstr ""
 msgid "OK"
 msgstr "Labi"
 
-#: gui/options/options.js:273
+#: gui/options/options.js:277
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:274 gui/options/options.js:341
+#: gui/options/options.js:278 gui/options/options.js:345
 #: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "Brīdinājums"
 
-#: gui/options/options.js:340
+#: gui/options/options.js:344
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Jums ir nesaglabātas izmaiņas, vai vēlaties aizvērt šo logu?"
 
@@ -1605,7 +1606,7 @@ msgstr "Atcelt"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "Attīstīts"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -2301,8 +2302,8 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"If you disable this screen completely, you may miss important announcements.\n"
-"You can still launch it using the main menu."
+"When disabled, the welcome screen will nevertheless be shown once when a new"
+" version is available and you can always launch it from the main menu."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label

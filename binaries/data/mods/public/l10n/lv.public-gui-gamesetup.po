@@ -6,12 +6,13 @@
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
 # jabalv <janis@sunservice.lv>, 2014
 # Lafriks <lauris@nix.lv>, 2014
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-10 16:46+0000\n"
-"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
+"PO-Revision-Date: 2016-12-15 19:51+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr "Nekāds"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "Šim spēlētājam nebūs MI"
 
 #: gui/gamesetup/gamesetup.js:46
 msgid "Game settings have been changed"
@@ -45,12 +46,12 @@ msgstr "%(username)s pameta spēli"
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s tika izmests"
 
 #: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s tika izbanots"
 
 #: gui/gamesetup/gamesetup.js:51
 #, javascript-format
@@ -75,7 +76,7 @@ msgstr "%(username)s nav gatavs."
 #: gui/gamesetup/gamesetup.js:70
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Noklusējuma"
 
 #: gui/gamesetup/gamesetup.js:75
 msgid "Naval Maps"
@@ -91,7 +92,7 @@ msgstr "Jaunas Kartes"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Sprūda kartes"
 
 #: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
@@ -109,7 +110,7 @@ msgstr "Nejaušs"
 
 #: gui/gamesetup/gamesetup.js:272
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Atgriezties pie ieejas."
 
 #: gui/gamesetup/gamesetup.js:272
 msgid "Return to the main menu."
@@ -136,7 +137,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesetup/gamesetup.js:1394
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Noklusējuma"
 
 #: gui/gamesetup/gamesetup.js:1464
 msgid "Loading..."
@@ -154,7 +155,7 @@ msgstr "Nepiešķirts"
 #: gui/gamesetup/gamesetup.js:1762
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1769
 msgid "Unknown Player"
@@ -163,16 +164,16 @@ msgstr "Nezināms Spēlētājs"
 #: gui/gamesetup/gamesetup.js:1805
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1806
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:1807
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/gamesetup/gamesetup.js:1857
 msgid "I'm not ready!"
@@ -193,7 +194,7 @@ msgstr "Paziņot ka esi gatavs spēlēt!"
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s spēle"
 
 #: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
@@ -210,7 +211,7 @@ msgstr "Reģistrējas ar serveri..."
 
 #: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Spēle jau sākusies, pievienojos no jauna..."
 
 #: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
@@ -219,7 +220,7 @@ msgstr "Spēle ar šādu nosaukumu jau eksistē."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Nevar izvietot spēli: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
@@ -233,7 +234,7 @@ msgstr "Nevar pievienoties spēlei:  %(message)s."
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s spēle"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -243,7 +244,7 @@ msgstr "Ielādē  \"%(map)s\""
 #: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Ģenerē “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
@@ -251,11 +252,11 @@ msgstr "Virtuālā intelekta konfigurācija."
 
 #: gui/aiconfig/aiconfig.xml:(caption):21
 msgid "AI Player:"
-msgstr ""
+msgstr "MI spēlētājs:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):30
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "MI sarežģītība:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup_mp.xml:(caption):120
@@ -325,7 +326,7 @@ msgstr "Sūtīt"
 
 #: gui/gamesetup/gamesetup.xml:(caption):249
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Iespējota šmaukšanās."
 
 #: gui/gamesetup/gamesetup.xml:(caption):262
 msgid "Start game!"
@@ -350,11 +351,11 @@ msgstr "Uzvaras Nosacījumi:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Uzvara ar Brīnumu:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):341
 msgid "Population Cap:"
-msgstr ""
+msgstr "Populācijas griezti:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Starting Resources:"
@@ -374,27 +375,27 @@ msgstr "Atklāta Karte:"
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):381
 msgid "Explored Map:"
-msgstr ""
+msgstr "Atklāta karte:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):391
 msgid "Disable Treasures:"
-msgstr ""
+msgstr "Bez dārgumiem:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):401
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Slēgtas komandas:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):411
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "Līdz pēdējam izdzīvojušam:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):421
 msgid "Cheats:"
-msgstr ""
+msgstr "Šmaukšanās:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):431
 msgid "Rated Game:"
-msgstr ""
+msgstr "Novērtēta spēle:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):69
 msgid "View civilization info"
@@ -403,11 +404,11 @@ msgstr "Skatīties civilizāciju aprakstus"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Atiestatīt jebkuru izvēlētu civilizāciju uz noklusējumu (nejaušu)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Atiestatīt visas komandas uz noklusējumu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
@@ -423,11 +424,11 @@ msgstr "Konfigurēt mākslīgā intelekta iestatījumus."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):124
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Izvēlēties spēlētāja civilizāciju."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):128
 msgid "Select player's team."
-msgstr ""
+msgstr "Izvēlēties spēlētāja komandu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select a map type."
@@ -443,11 +444,11 @@ msgstr "Izvēlieties, karti kuru spēlēsiet."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):196
 msgid "Select number of players."
-msgstr ""
+msgstr "Izvēlēties spēlētāju skaitu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):200
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Izvēlēties kartes izmēru. (Lielāki izmēri prasīs lielāku jaudu.)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):263
 msgid "Start a new game with the current settings."
@@ -463,62 +464,62 @@ msgstr "Izvēlēties spēles ātrumu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select victory condition."
-msgstr ""
+msgstr "Izvēlēties uzvaras nosacījumus."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):335
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Minūšu skaits, cik ilgi spēlētājam jānotur Brīnums, lai uzvarētu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):345
 msgid "Select population cap."
-msgstr ""
+msgstr "Izvēlēties populācijas grieztus."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Izvēlēties spēles sākuma resursus."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Norādiet laiku, kamēr uzbrukumi nav iespējami."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):375
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Ieslēgt atvērtu karti (redzēt visu)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):385
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Ieslēgt atklātu karti (ieraudzīt sākotnējo)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):395
 msgid "Disable all treasures on the map."
-msgstr ""
+msgstr "Izslēgt kartē visus dārgumus."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):405
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Ieslēgt slēgtas komandas."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):415
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Ieslēgt vai uzvar pēdējais palikušais spēlētājs vai spēlētāju aliance."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):425
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Ieslēgt šmaukšanās kodu lietojamību."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):435
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Ieslēgt vai spēles vērtējums tiks ņemt vērā kopvērtējumā."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):449
 msgid "Close more game options window"
-msgstr ""
+msgstr "Aizvērt logu ar spēles papildus parametriem"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
@@ -535,16 +536,16 @@ msgstr "Spēlētāja vārds:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Servera vārds vai IP:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):50
 #: gui/gamesetup/gamesetup_mp.xml:(caption):97
 msgid "Server Port:"
-msgstr ""
+msgstr "Servera ports:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Iestatiet savu serveri spēles izmitināšanai:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
@@ -557,7 +558,7 @@ msgstr "Turpināt"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Atstājiet tukšu, lai lietotu noklusējuma portu."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

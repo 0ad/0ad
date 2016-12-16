@@ -8,13 +8,14 @@
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # Natalia V <inactive+irida@transifex.com>, 2016
 # Steven Gikas <stevengk123@gmail.com>, 2016
+# Vasilis Drosos <basilisd@gmail.com>, 2016
 # Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-12-02 15:37+0000\n"
-"Last-Translator: Lampros Lampreas <marbiourd@hotmail.com>\n"
+"PO-Revision-Date: 2016-12-13 12:46+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,7 +173,7 @@ msgstr "Αμυντικός"
 msgid ""
 "Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost. Effect "
 "Range: 50 meters"
-msgstr ""
+msgstr "Δίνει σε όλες τις μονάδες των Ιβήρων μέσα στην Αύρα +2 Κόψη και +3 Διάτρηση στην βελτίωση της επίθεσης. Περιοχή Δράσης: 50 μέτρα "
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -214,7 +215,7 @@ msgstr "Ευαγγελισμός Αύρα"
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid ""
 "All player and allied Temple technologies -50% cost and -50% research time."
-msgstr ""
+msgstr "Όλε οι τεχνολογίες του Ναού στον παίχτη και στους συμάχους έχουν -50% κόστος και -50% χρόνο έρευνας."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -223,7 +224,7 @@ msgstr "Διδάσκαλος Αύρα"
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
 msgid ""
 "Empower a building with -50% research time while he is garrisoned in it."
-msgstr ""
+msgstr "Ενδυνάμωσε ένα κτίριο με μείωση (-50%) του χρόνου έρευνας τοποθετώντας τον μέσα."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% walk speed."
@@ -283,7 +284,7 @@ msgstr "Πάτρων Μισθοφόρων Αύρα"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr ""
+msgstr "Οι Μισθοφόροι κοστίζουν -50% πόρους κατά τη διαρκεια της ζώης του."
 
 #: simulation/data/auras/rome_hero_marcellus.jsonauraName
 msgid "Sword of Rome Aura"
@@ -307,15 +308,15 @@ msgstr "Bonus στη γεωργία"
 
 #: simulation/data/auras/rotary_mill.jsonauraDescription
 msgid "Boosts nearby farming with +25% gathering rate."
-msgstr ""
+msgstr "Ενισχύει τις γειτονικές καλλιέργειες +25% στο ποσοστό συγκομιδής."
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès Aura"
-msgstr ""
+msgstr "Ιλάρχη Αύρα"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All Cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "Όλο το Ιππικό παίρνει +2 βαθμούς σε όλους τους τύπους πανοπλίας."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -325,15 +326,15 @@ msgstr "Κατάκτηση Αύρα"
 msgid ""
 "All nearby enemy Buildings, Siege engines, and Ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Σε όλα τα κοντινά Εχθρικά Κτήρια, Πολιορκητικές Μηχανές και Πλοία μειώνετε η ζωή τους κατά 20%."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
-msgstr ""
+msgstr "Ζωοίαρχου Αύρα"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr ""
+msgstr "Ενισχύει την επίθεση και την ταχύτητα των Πολεμικών Ελεφάντων κατά +20% μέσε στο πεδίο όρασής του."
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -350,7 +351,7 @@ msgstr "\"Ο τελευταίος που στέκεται\" Αύρα"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
 msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr ""
+msgstr "+20% Επίθεση και +1 Εχμαλοσία για τους κοντινούς Οπλίτες και Σπαρτιάτες."
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
@@ -382,13 +383,13 @@ msgstr "Αυξάνει το όριο του πληθυσμού κατά 10 αν�
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
-msgstr ""
+msgstr "Ένδοξη Επέκταση Αύρας"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
 "Further increase the population limit by 40 per Wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "Περαιτέρω αύξηση στο όριο του πληθυσμού κατά 40 ανά Θαύμα (απαιτείται η τεχνολογία \"Ένδοξη Επέκταση\" )."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -410,7 +411,7 @@ msgstr "Μισθοφόρος"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr ""
+msgstr "Μειώνει το κόστος για τους πολίτες-ακροβολιστές στρατιώτες κατά 20% για τους συμμάχους των Ιβοριανών παικτών."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
