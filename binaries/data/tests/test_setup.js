@@ -8,11 +8,11 @@
 function fail(msg)
 {
 	// Get a list of callers
-	var trace = (new Error).stack.split("\n");
+	let trace = (new Error).stack.split("\n");
 	// Remove the Error ctor and this function from the stack
 	trace = trace.splice(2);
-	print("Stack trace:\n" + trace.join("\n"));
-	Engine.TS_FAIL(msg);
+	trace = "Stack trace:\n" + trace.join("\n");
+	Engine.TS_FAIL(trace + msg);
 }
 
 global.TS_FAIL = function TS_FAIL(msg)
