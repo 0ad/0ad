@@ -42,7 +42,11 @@ Resources = {
 		"stone": "Stone",
 		"wood": "Wood"
 	}),
-	"GetResource": () => ({}),
+	"GetResource": resource => ({
+		"aiAnalysisInfluenceGroup":
+			resource == "food" ? "ignore" :
+			resource == "wood" ? "abundant" : "sparse"
+	}),
 };
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
@@ -357,10 +361,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			"wood": "Wood",
 		},
 		"aiInfluenceGroups": {
-			"food": 0,
-			"metal": 0,
-			"stone": 0,
-			"wood": 0,
+			"food": "ignore",
+			"metal": "sparse",
+			"stone": "sparse",
+			"wood": "abundant",
 		}
 	},
 });
@@ -495,10 +499,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"wood": "Wood",
 		},
 		"aiInfluenceGroups": {
-			"food": 0,
-			"metal": 0,
-			"stone": 0,
-			"wood": 0,
+			"food": "ignore",
+			"metal": "sparse",
+			"stone": "sparse",
+			"wood": "abundant",
 		}
 	},
 });
