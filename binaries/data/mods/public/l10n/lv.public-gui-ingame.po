@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-02 09:00+0100\n"
-"PO-Revision-Date: 2016-12-15 20:34+0000\n"
+"PO-Revision-Date: 2016-12-16 12:08+0000\n"
 "Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -28,17 +28,17 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pamata tālums: %(range)s metri"
+msgstr[1] "Pamata tālums: %(range)s metrs"
+msgstr[2] "Pamata tālums: %(range)s metri"
 
 #: gui/session/input.js:148
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vidējais papildu tālums: %(range)s metri"
+msgstr[1] "Vidējais papildu tālums: %(range)s metrs"
+msgstr[2] "Vidējais papildu tālums: %(range)s metri"
 
 #: gui/session/input.js:705
 msgid "Cannot build wall here!"
@@ -277,7 +277,7 @@ msgstr "Uzdāvini %(resourceAmount)s %(resourceType)s %(playerName)s. Turi SHIFT
 #: gui/session/messages.js:83
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s sācis pievienoties spēlei no jauna."
 
 #: gui/session/messages.js:87
 #, javascript-format
@@ -511,7 +511,7 @@ msgstr "%(player)s nosūtīja jums %(amounts)s."
 #: gui/session/messages.js:894
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s samainīja %(amountsBought)s par %(amountsSold)s."
 
 #: gui/session/messages.js:907
 #, javascript-format
@@ -552,9 +552,9 @@ msgstr "%(rank)s Rangs"
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Šī būvniecība tiks pabeigta pēc %(seconds)s sekundēm. "
+msgstr[1] "Šī būvniecība tiks pabeigta pēc %(seconds)s sekundes. "
+msgstr[2] "Šī būvniecība tiks pabeigta pēc %(seconds)s sekundēm. "
 
 #: gui/session/selection_details.js:119
 #, javascript-format
@@ -610,9 +610,9 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Būvnieku skaits.\nNorīkojot vienu papildus paātrinās šo būvniecības pabeigšanu par %(speedup)s sekundēm."
+msgstr[1] "Būvnieku skaits.\nNorīkojot vienu papildus paātrinās šo būvniecības pabeigšanu par %(speedup)s sekundi."
+msgstr[2] "Būvnieku skaits.\nNorīkojot vienu papildus paātrinās šo būvniecības pabeigšanu par %(speedup)s sekundēm."
 
 #: gui/session/selection_details.js:246 gui/session/selection_details.js:254
 msgid "Number of builders."
