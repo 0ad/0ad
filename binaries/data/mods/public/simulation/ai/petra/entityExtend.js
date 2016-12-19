@@ -81,6 +81,44 @@ m.getMaxStrength = function(ent, againstClass)
 	return strength * ent.maxHitpoints() / 100.0;
 };
 
+/** Get access and cache it in metadata if not already done */
+m.GetLandAccess = function(gameState, ent)
+{
+	let access = ent.getMetadata(PlayerID, "access");
+	if (!access)
+	{
+		access = gameState.ai.accessibility.getAccessValue(ent.position());
+		ent.setMetadata(PlayerID, "access", access);
+	}
+	return access;
+};
+
+m.GetSeaAccess = function(gameState, ent)
+{
+	let sea = ent.getMetadata(PlayerID, "sea");
+	if (!sea)
+	{
+		sea = gameState.ai.accessibility.getAccessValue(ent.position(), true);
+		if (sea < 2)	// pre-positioned docks are sometimes not well positionned
+		{
+			let entPos = ent.position();
+			let radius = ent.footprintRadius();
+			for (let i = 0; i < 16; ++i)
+			{
+				let pos = [ entPos[0] + radius*Math.cos(i*Math.PI/8),
+				            entPos[1] + radius*Math.sin(i*Math.PI/8) ];
+				sea = gameState.ai.accessibility.getAccessValue(pos, true);
+				if (sea >= 2)
+					break;
+			}
+		}
+		if (sea < 2)
+			API3.warn("ERROR in Petra GetSeaAccess because of dock position with index " + sea);
+		ent.setMetadata(PlayerID, "sea", sea);
+	}
+	return sea;
+};
+
 /** Decide if we should try to capture or destroy */
 m.allowCapture = function(ent, target)
 {

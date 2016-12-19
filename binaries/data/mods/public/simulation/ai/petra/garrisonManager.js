@@ -79,15 +79,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 			}
 			else
 			{
-				let ok = false;
-				for (let order of ent.unitAIOrderData())
-				{
-					if (!order.target || order.target != id)
-						continue;
-					ok = true;
-					break;
-				}
-				if (ok)
+				if (ent.unitAIOrderData().some(order => order.target && order.target == id))
 					continue;
 				if (ent.getMetadata(PlayerID, "garrisonHolder") == id)
 				{
