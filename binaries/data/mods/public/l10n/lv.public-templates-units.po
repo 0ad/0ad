@@ -5,12 +5,13 @@
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
 # Martins M <mednismartins@inbox.lv>, 2014
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-25 09:01+0100\n"
-"PO-Revision-Date: 2016-12-11 13:12+0000\n"
-"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
+"PO-Revision-Date: 2016-12-16 13:56+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: simulation/templates/template_unit_champion_cavalry.xml:27
 #: simulation/templates/template_unit_hero_cavalry.xml:26
 msgid "Cavalry"
-msgstr "Kavalērija"
+msgstr "Jātnieks"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_infantry.xml:63
@@ -76,7 +77,7 @@ msgstr "Tuvcīņa"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:19
 msgid "Melee Cavalry"
-msgstr ""
+msgstr "Tuvcīņas jātnieks"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
@@ -92,7 +93,7 @@ msgstr "Šķēps"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:17
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Šķēpmetējs jātnieks"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
@@ -105,11 +106,11 @@ msgstr "Zobens"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 msgid "Cavalry Swordsman"
-msgstr "Jātnieku zobenu bruņinieks"
+msgstr "Jātnieks ar zobenu"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "Šāvēju kavalērija"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -129,7 +130,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "Ranged"
-msgstr ""
+msgstr "Šāvēji"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -143,7 +144,7 @@ msgstr "Lokšāvējs"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "Lokšāvējs jātnieks"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
@@ -152,11 +153,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
-msgstr ""
+msgstr "Šķēps"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
-msgstr ""
+msgstr "Strēlnieks jātnieks"
 
 #: simulation/templates/template_unit_champion.xml:11
 msgid "Champion Unit"
@@ -168,23 +169,23 @@ msgstr "Čempions"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:26
 msgid "Champion Cavalry"
-msgstr "Čempionu Kavalērija"
+msgstr "Čempions jātnieks"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Čempions jātnieks lokšāvējs."
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:24
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Čempions Jātnieks Strēlnieks"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "Čempions Jātnieks ar šķēpu"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 msgid "Champion Cavalry Swordsman"
-msgstr ""
+msgstr "Čempions Jātnieks ar zobenu"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
@@ -203,11 +204,11 @@ msgstr "Kājnieki Čempioni"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr "Strēlnieki Čempioni"
+msgstr "Lokšāvēji Čempioni"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:27
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "Strēlnieki Čempioni"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -217,7 +218,7 @@ msgstr "Pīķis"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 msgid "Champion Pikeman"
-msgstr ""
+msgstr "Čempions ar pīķi"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
@@ -226,15 +227,15 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
-msgstr ""
+msgstr "Skaitās: 3x pret jātniekiem"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 msgid "Champion Spearman"
-msgstr ""
+msgstr "Čempions ar šķēpu"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
 msgid "Champion Swordsman"
-msgstr ""
+msgstr "Čempions ar zobenu"
 
 #: simulation/templates/template_unit_dog.xml:43
 msgid "Dog"
@@ -258,11 +259,11 @@ msgstr "Zivis"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:11
 msgid "Cetacean"
-msgstr ""
+msgstr "Cetacean"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:12
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "Nogalini, tad savāc pārtiku no šī dāsnā okeāniskā resursa."
 
 #: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_hero.xml:28
@@ -273,43 +274,43 @@ msgstr "Varonis"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr "Varoņu Kavalērija"
+msgstr "Varoņis jātnieks"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:27
 msgid "Hero Cavalry Archer"
-msgstr ""
+msgstr "Varonis jātnieks lokšāvējs"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
 msgid "Hero Cavalry Skirmisher"
-msgstr ""
+msgstr "Varonis jātnieks strēlnieks"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
-msgstr ""
+msgstr "Varonis jātnieks ar pīķi"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
 msgid "Hero Cavalry Swordsman"
-msgstr ""
+msgstr "Varonis jātnieks ar zobenu"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
-msgstr "Varonis Strēlnieks"
+msgstr "Varonis lokšāvējs"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
 msgid "Hero Skirmisher"
-msgstr ""
+msgstr "Varonis strēlnieks"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
-msgstr ""
+msgstr "Varonis ar pīķi"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 msgid "Hero Spearman"
-msgstr ""
+msgstr "Varonis ar šķēpu"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 msgid "Hero Swordsman"
-msgstr ""
+msgstr "Varonis ar zobenu"
 
 #: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_support_female_citizen.xml:47
@@ -319,7 +320,7 @@ msgstr "Strādnieks"
 
 #: simulation/templates/template_unit_infantry_melee.xml:17
 msgid "Melee Infantry"
-msgstr "Tuvcīņas Kājnieki"
+msgstr "Tuvcīņas Kājnieks"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
 msgid "Pikeman"
@@ -335,11 +336,11 @@ msgstr "Zobenu bruņinieks"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Skirmisher"
-msgstr ""
+msgstr "Strēlnieks"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
-msgstr ""
+msgstr "Lingotājs"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
@@ -357,7 +358,7 @@ msgstr "Kuģis"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
 msgid "Light Warship"
-msgstr ""
+msgstr "Vieglais kara kuģis"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
@@ -371,7 +372,7 @@ msgstr "Karakuģis"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Garrison units for transport and to increase firepower."
-msgstr ""
+msgstr "Novietojiet vienības uz klāja transportēšanai un šaušanas spēju uzlabošanai."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:32
 msgid "Fire Ship"
@@ -379,13 +380,13 @@ msgstr "Uguns kuģis"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
 msgid "Fireship"
-msgstr ""
+msgstr "Uguns kuģis"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Strauji atņem dzīvību ienaidnieka kuģiem. Lēnām zaudē dzīvību, jo pats deg, tā kā izmantojiet Uguns kuģi ātri."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -395,17 +396,17 @@ msgstr "Zvejas laiva"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr ""
+msgstr "Zvejo ūdenī pēc pārtikas. Novietojiet uz klāja atbalsta vai kājnieku vienību, lai uzlabotu nozveju."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
-msgstr ""
+msgstr "Tirgonis"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:28
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Tirgojās starp dokiem. Novietojiet uz klāja Tirgoni papildus peļņai (+20% par katru). Savāc ienesīgus ūdens dārgumus."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -415,11 +416,11 @@ msgstr "Tirgonis"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 msgid "Heavy Warship"
-msgstr ""
+msgstr "Smagais kara kuģis"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:48
 msgid "Medium Warship"
-msgstr ""
+msgstr "Vidējais kara kuģis"
 
 #: simulation/templates/template_unit_mechanical_siege.xml:17
 #: simulation/templates/template_unit_mechanical_siege.xml:18
@@ -432,7 +433,7 @@ msgstr "Bultu šāvējs"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "BoltShooter"
-msgstr ""
+msgstr "Bultu šāvējs"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:43
 msgid "Siege Catapult"
@@ -448,7 +449,7 @@ msgstr "Mūru dragājamā mašīna"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 msgid "Ram"
-msgstr ""
+msgstr "Rampa"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:47
 msgid "Siege Tower"
@@ -456,7 +457,7 @@ msgstr "Aplenkuma tornis"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "SiegeTower"
-msgstr ""
+msgstr "Aplenkuma tornis"
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -485,11 +486,11 @@ msgstr "Vergs"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Vācējs ar ierobežotu dzīvi. Priekšrocības raktuvēs un mežizstrādē."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Tirgojieties ar resursiem starp saviem un sabiedroto tirgiem."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -585,11 +586,11 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_a.xml:4
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "Attīstīts"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
-msgstr ""
+msgstr "Pródromos"
 
 #: simulation/templates/units/athen_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_e.xml:4
@@ -691,11 +692,11 @@ msgstr "Elitārs"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 msgid "Greek Cavalry"
-msgstr "Grieķu Kavalērija"
+msgstr "Grieķu jātnieks"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:8
 msgid "Hippeús"
-msgstr ""
+msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
 msgid "City Guard"
@@ -703,55 +704,55 @@ msgstr "Pilsētas sargs"
 
 #: simulation/templates/units/athen_champion_infantry.xml:7
 msgid "Epílektos"
-msgstr ""
+msgstr "Epílektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Athenian Marine"
-msgstr ""
+msgstr "Atēnu jūras kājinieks"
 
 #: simulation/templates/units/athen_champion_marine.xml:7
 msgid "Epibátēs Athēnaîos"
-msgstr ""
+msgstr "Epibátēs Athēnaîos"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Scythian Archer"
-msgstr ""
+msgstr "Skifu lokšāvējs"
 
 #: simulation/templates/units/athen_champion_ranged.xml:7
 msgid "Toxótēs Skythikós"
-msgstr ""
+msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:7
 msgid "Iphicrates"
-msgstr ""
+msgstr "Ifikrates"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:8
 msgid "Iphikratēs"
-msgstr ""
+msgstr "Iphikratēs"
 
 #: simulation/templates/units/athen_hero_pericles.xml:7
 msgid "Pericles"
-msgstr ""
+msgstr "Pericles"
 
 #: simulation/templates/units/athen_hero_pericles.xml:8
 msgid "Periklēs"
-msgstr ""
+msgstr "Periklēs"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:7
 msgid "Themistocles"
-msgstr ""
+msgstr "Themistocles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:8
 msgid "Themistoklês"
-msgstr ""
+msgstr "Themistoklês"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:23
 msgid "Thracian Peltast"
-msgstr ""
+msgstr "Traķiešu Peltasts"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:24
 msgid "Peltastḗs Thrâx"
-msgstr ""
+msgstr "Peltastḗs Thrâx"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:25
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:22
@@ -788,37 +789,37 @@ msgstr "Algotnis"
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:23
 #: simulation/templates/units/mace_infantry_archer_b.xml:20
 msgid "Cretan Mercenary Archer"
-msgstr ""
+msgstr "Krētas algotais lokšāvējs"
 
 #: simulation/templates/units/athen_infantry_marine_archer_b.xml:24
 #: simulation/templates/units/mace_infantry_archer_b.xml:21
 msgid "Toxótēs Krētikós"
-msgstr ""
+msgstr "Toxótēs Krētikós"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:16
 msgid "Athenian Slinger Militia"
-msgstr ""
+msgstr "Atēnu lingotāju zemessardze"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:17
 msgid "Psilòs Athēnaîos"
-msgstr ""
+msgstr "Psilòs Athēnaîos"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:21
 msgid "Athenian Hoplite"
-msgstr ""
+msgstr "Atēnu Hoplīts"
 
 #: simulation/templates/units/athen_infantry_spearman_b.xml:22
 msgid "Hoplítēs Athēnaîos"
-msgstr ""
+msgstr "Hoplítēs Athēnaîos"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
-msgstr ""
+msgstr "Pentekonters"
 
 #: simulation/templates/units/athen_ship_bireme.xml:6
 #: simulation/templates/units/spart_ship_bireme.xml:5
 msgid "Pentēkóntoros"
-msgstr ""
+msgstr "Pentēkóntoros"
 
 #: simulation/templates/units/athen_ship_fishing.xml:8
 #: simulation/templates/units/mace_ship_fishing.xml:5
@@ -826,7 +827,7 @@ msgstr ""
 #: simulation/templates/units/sele_ship_fishing.xml:5
 #: simulation/templates/units/spart_ship_fishing.xml:5
 msgid "Ploîon Halieutikón"
-msgstr ""
+msgstr "Ploîon Halieutikón"
 
 #: simulation/templates/units/athen_ship_merchant.xml:9
 #: simulation/templates/units/mace_ship_merchant.xml:9
@@ -834,19 +835,19 @@ msgstr ""
 #: simulation/templates/units/sele_ship_merchant.xml:9
 #: simulation/templates/units/spart_ship_merchant.xml:9
 msgid "Ploîon Phortēgikón"
-msgstr ""
+msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
-msgstr ""
+msgstr "Triḗrēs Athēnaía"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
-msgstr ""
+msgstr "Atēnu trirēma"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaía"
-msgstr ""
+msgstr "Gýnē Athēnaía"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
@@ -855,36 +856,36 @@ msgstr "Atēniete"
 #: simulation/templates/units/athen_support_healer_b.xml:7
 #: simulation/templates/units/spart_support_healer_b.xml:7
 msgid "Iatrós"
-msgstr ""
+msgstr "Iatrós"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 msgid "Doûlos"
-msgstr ""
+msgstr "Doûlos"
 
 #: simulation/templates/units/athen_support_trader.xml:10
 #: simulation/templates/units/mace_support_trader.xml:10
 #: simulation/templates/units/ptol_support_trader.xml:9
 #: simulation/templates/units/sele_support_trader.xml:10
 msgid "Émporos"
-msgstr ""
+msgstr "Émporos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
-msgstr ""
+msgstr "Gaisaredos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
-msgstr ""
+msgstr "Uzbrukuma jātnieks"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Epos"
-msgstr ""
+msgstr "Epos"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr ""
+msgstr "Ķeltu jātnieks"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:9
 #: simulation/templates/units/brit_hero_boudicca.xml:11
@@ -903,15 +904,15 @@ msgstr "Ķeltu Kaujas Rati"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:11
 msgid "Carbanto"
-msgstr ""
+msgstr "Carbanto"
 
 #: simulation/templates/units/brit_champion_infantry.xml:5
 msgid "Brythonic Longswordsman"
-msgstr ""
+msgstr "Brittu garo zebenu kājnieki"
 
 #: simulation/templates/units/brit_champion_infantry.xml:6
 msgid "Delamokludda"
-msgstr ""
+msgstr "Delamokludda"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:7
@@ -924,65 +925,65 @@ msgstr "Varone"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
-msgstr ""
+msgstr "Caratacos"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:6
 msgid "Cunobelin"
-msgstr ""
+msgstr "Cunobelin"
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:14
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:12
 msgid "Baguada"
-msgstr ""
+msgstr "Baguada"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:12
 msgid "Celtic Slinger"
-msgstr ""
+msgstr "Ķeltu lingotāji"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:15
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:13
 msgid "Iaosae"
-msgstr ""
+msgstr "Iaosae"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:14
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:12
 msgid "Gaeroa"
-msgstr ""
+msgstr "Gaeroa"
 
 #: simulation/templates/units/brit_infantry_spearman_b.xml:15
 msgid "Celtic Spearman"
-msgstr ""
+msgstr "Ķeltar šķēpu"
 
 #: simulation/templates/units/brit_mechanical_siege_ram.xml:9
 #: simulation/templates/units/gaul_mechanical_siege_ram.xml:9
 msgid "Reithe"
-msgstr ""
+msgstr "Reithe"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
 msgid "Manea"
-msgstr ""
+msgstr "Manea"
 
 #: simulation/templates/units/brit_ship_merchant.xml:9
 #: simulation/templates/units/gaul_ship_merchant.xml:9
 msgid "Curach"
-msgstr ""
+msgstr "Curach"
 
 #: simulation/templates/units/brit_ship_trireme.xml:18
 #: simulation/templates/units/gaul_ship_trireme.xml:18
 msgid "Venetic Ponti"
-msgstr ""
+msgstr "Venetic Ponti"
 
 #: simulation/templates/units/brit_ship_trireme.xml:19
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr ""
+msgstr "Transportē lielu karaspēku pāri jūrai"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
 msgid "Bodu"
-msgstr ""
+msgstr "Bodu"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:20
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
@@ -992,153 +993,153 @@ msgstr "Ķeltiete"
 #: simulation/templates/units/brit_support_healer_b.xml:6
 #: simulation/templates/units/gaul_support_healer_b.xml:6
 msgid "Druides"
-msgstr ""
+msgstr "Druīdi"
 
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
 msgid "Cyfnewidiwr"
-msgstr ""
+msgstr "Cyfnewidiwr"
 
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Coun"
-msgstr ""
+msgstr "Coun"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr ""
+msgstr "Numidiāņu jātnieks"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
-msgstr ""
+msgstr "Ḥayyāl Raḫūv Masili"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:13
 msgid "Italic Cavalry"
-msgstr "Itāļu Kavalērija"
+msgstr "Itāļu jātnieks"
 
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
-msgstr ""
+msgstr "Ḥayyāl Romaḥ Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
-msgstr ""
+msgstr "Gallu algotņu jātnieks"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:13
 msgid "Ḥayyāl Ḥerev Raḫūv"
-msgstr ""
+msgstr "Ḥayyāl Ḥerev Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:12
 msgid "Iberian Heavy Cavalry"
-msgstr ""
+msgstr "Ibēriešu smagais jātnieks"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr ""
+msgstr "Svētā pulka jātnieks"
 
 #: simulation/templates/units/cart_champion_cavalry.xml:6
 msgid "Sacred Band of Astarte"
-msgstr ""
+msgstr "Astartes Svētais Pulks"
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
-msgstr ""
+msgstr "Ziemeļāfrikas kara zilonis"
 
 #: simulation/templates/units/cart_champion_elephant.xml:6
 msgid "Pil Malḥamit"
-msgstr ""
+msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr ""
+msgstr "Svētā pulka kājnieki"
 
 #: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
-msgstr ""
+msgstr "Ba'al Svētais pulks"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr ""
+msgstr "Svētā pulka kājnieki ar pīķiem"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
-msgstr ""
+msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:6
 msgid "Ḥimelqart Baraq"
-msgstr ""
+msgstr "Ḥimelqart Baraq"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:7
 msgid "Hamilcar Barca"
-msgstr ""
+msgstr "Hamilcar Barca"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:6
 msgid "Hannibal Barca"
-msgstr ""
+msgstr "Hannibal Barca"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
-msgstr ""
+msgstr "Ḥannibaʿal Baraq"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:10
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
 "Can run amok."
-msgstr ""
+msgstr "\"Stratēģa\" spējas (TD): Spēlētājs var redzēt izmaiņas kara miglā kamēr Hanibāls ir dzīvs. \nVar skriet."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
-msgstr ""
+msgstr "Maharbal"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:7
 msgid "Maharbaʿal"
-msgstr ""
+msgstr "Maharbaʿal"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Mauritanian Archer"
-msgstr ""
+msgstr "Mauru lokšāvējs"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:16
 msgid "Qešet"
-msgstr ""
+msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr ""
+msgstr "Ibēriešu algotņu strēlnieks"
 
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:23
 msgid "Sǝḫīr Kidōn"
-msgstr ""
+msgstr "Sǝḫīr Kidōn"
 
 #: simulation/templates/units/cart_infantry_slinger_iber_b.xml:22
 msgid "Balearic Slinger"
-msgstr ""
+msgstr "Baleāru lingotājs"
 
 #: simulation/templates/units/cart_infantry_slinger_iber_b.xml:23
 msgid "Qallāʿ Ibušimi"
-msgstr ""
+msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
-msgstr ""
+msgstr "Lībijas šķēpmetējs"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
-msgstr ""
+msgstr "Sǝḫīr Ḥanīt"
 
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:21
 #: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:20
 msgid "Gallic Mercenary Swordsman"
-msgstr ""
+msgstr "Gallu algotnis ar zobenu"
 
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:22
 msgid "Seḫīr Ḥerev"
-msgstr ""
+msgstr "Seḫīr Ḥerev"
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
-msgstr ""
+msgstr "Suņņu kājnieks ar zobenu"
 
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:22
 msgid "Seḫīr Romaḥ"
@@ -1148,48 +1149,48 @@ msgstr "Seḫīr Romaḥ"
 #: simulation/templates/units/ptol_ship_bireme.xml:5
 #: simulation/templates/units/sele_ship_bireme.xml:5
 msgid "Bireme"
-msgstr ""
+msgstr "Bireme"
 
 #: simulation/templates/units/cart_ship_bireme.xml:10
 msgid "Du-Mašōt"
-msgstr ""
+msgstr "Du-Mašōt"
 
 #: simulation/templates/units/cart_ship_fishing.xml:5
 msgid "Noon-Mašōt"
-msgstr ""
+msgstr "Noon-Mašōt"
 
 #: simulation/templates/units/cart_ship_merchant.xml:9
 msgid "Seḥer"
-msgstr ""
+msgstr "Seḥer"
 
 #: simulation/templates/units/cart_ship_merchant.xml:11
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr ""
+msgstr "Tirgojās starp dokiem. Uzņem uz klāja tirgotāju papiluds peļņai (+20% par katru uz klāja). Savāc ienesīgus jūras dārgumus. Kārtagiešiem ir +25% jūras tirdzniecības bonuss."
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
-msgstr ""
+msgstr "Quinquereme"
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
-msgstr ""
+msgstr "Ḥameš-Mašōt"
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:5
 #: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
-msgstr ""
+msgstr "Trireme"
 
 #: simulation/templates/units/cart_ship_trireme.xml:6
 msgid "Tlat-Mašōt"
-msgstr ""
+msgstr "Tlat-Mašōt"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
-msgstr ""
+msgstr "Aštāh"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
@@ -1197,19 +1198,19 @@ msgstr "Kartāgiete"
 
 #: simulation/templates/units/cart_support_healer_b.xml:7
 msgid "Kehinit"
-msgstr ""
+msgstr "Kehinit"
 
 #: simulation/templates/units/cart_support_trader.xml:9
 msgid "Mekir"
-msgstr ""
+msgstr "Mekir"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr ""
+msgstr "Gallu cēlā kavalērija"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
 msgid "Gallic Brihent"
-msgstr ""
+msgstr "Gallu Brihent"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:19
 msgid "Naked Fanatic"
@@ -1217,61 +1218,61 @@ msgstr "Kails Fanātiķis"
 
 #: simulation/templates/units/gaul_champion_fanatic.xml:20
 msgid "Gaesata"
-msgstr ""
+msgstr "Gaesata"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Heavy Swordsman"
-msgstr ""
+msgstr "Smaga bruņojuma kājnieki ar zobeniem"
 
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Solduros"
-msgstr ""
+msgstr "Solduros"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:6
 msgid "Brennus"
-msgstr ""
+msgstr "Brennus"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:6
 msgid "Britomartus"
-msgstr ""
+msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:6
 msgid "Vercingetorix"
-msgstr ""
+msgstr "Vercingetorix"
 
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
-msgstr ""
+msgstr "Lembus"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
-msgstr ""
+msgstr "Kantabriako Zaldun"
 
 #: simulation/templates/units/iber_cavalry_spearman_b.xml:6
 msgid "Lantzari"
-msgstr ""
+msgstr "Lantzari"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:11
 msgid "Leial Zalduneria"
-msgstr ""
+msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:15
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Atšķirība: aizdzedzināti šķēpi. Labi pret celtnēm."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
-msgstr ""
+msgstr "Leial Ezpatari"
 
 #: simulation/templates/units/iber_hero_caros.xml:5
 msgid "Caros"
-msgstr ""
+msgstr "Caros"
 
 #: simulation/templates/units/iber_hero_caros.xml:7
 #: simulation/templates/units/iber_hero_indibil.xml:7
 #: simulation/templates/units/iber_hero_viriato.xml:7
 msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr ""
+msgstr "Varoņa Aura: \"Partizānu taktika.\" TD."
 
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
@@ -1279,27 +1280,27 @@ msgstr "Indibil"
 
 #: simulation/templates/units/iber_hero_viriato.xml:5
 msgid "Viriato"
-msgstr ""
+msgstr "Viriato"
 
 #: simulation/templates/units/iber_infantry_javelinist_b.xml:11
 msgid "Lusitano Ezpatari"
-msgstr ""
+msgstr "Lusitano Ezpatari"
 
 #: simulation/templates/units/iber_infantry_slinger_b.xml:11
 msgid "Habailari"
-msgstr ""
+msgstr "Habailari"
 
 #: simulation/templates/units/iber_infantry_spearman_b.xml:11
 msgid "Ezkutari"
-msgstr ""
+msgstr "Ezkutari"
 
 #: simulation/templates/units/iber_infantry_swordsman_b.xml:11
 msgid "Ezpatari"
-msgstr ""
+msgstr "Ezpatari"
 
 #: simulation/templates/units/iber_mechanical_siege_ram.xml:9
 msgid "Ahariburu"
-msgstr ""
+msgstr "Ahariburu"
 
 #: simulation/templates/units/iber_ship_fire.xml:5
 msgid "Iberian Fire Ship"
@@ -1307,19 +1308,19 @@ msgstr "Ibēriešu uguns kuģis"
 
 #: simulation/templates/units/iber_ship_fishing.xml:5
 msgid "Arrantza Ontzi"
-msgstr ""
+msgstr "Arrantza Ontzi"
 
 #: simulation/templates/units/iber_ship_merchant.xml:9
 msgid "Merkataritza Itsasontzi"
-msgstr ""
+msgstr "Merkataritza Itsasontzi"
 
 #: simulation/templates/units/iber_ship_trireme.xml:18
 msgid "Ponti"
-msgstr ""
+msgstr "Ponti"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:5
 msgid "Emazteki"
-msgstr ""
+msgstr "Emazteki"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:6
 msgid "Iberian Woman"
@@ -1327,52 +1328,52 @@ msgstr "Ibēriete"
 
 #: simulation/templates/units/iber_support_healer_b.xml:7
 msgid "Priestess of Ataekina"
-msgstr ""
+msgstr "Ataekina presteriene"
 
 #: simulation/templates/units/iber_support_healer_b.xml:8
 msgid "Emakumezko Apaiz de Ataekina"
-msgstr ""
+msgstr "Emakumezko Apaiz de Ataekina"
 
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
-msgstr ""
+msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Odrysian Skirmish Cavalry"
-msgstr ""
+msgstr "Odriziešu jātnieki strēlnieki"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 msgid "Hippakontistḕs Odrysós"
-msgstr ""
+msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:7
 msgid "Thessalian Lancer"
-msgstr ""
+msgstr "Thessalian Lancer"
 
 #: simulation/templates/units/mace_cavalry_spearman_b.xml:8
 msgid "Xystophóros Thessalikós"
-msgstr ""
+msgstr "Xystophóros Thessalikós"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:6
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:7
 msgid "Companion Cavalry"
-msgstr ""
+msgstr "Pavadošie jātnieki"
 
 #: simulation/templates/units/mace_champion_cavalry.xml:7
 msgid "Hetaîros"
-msgstr ""
+msgstr "Hetaîros"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:6
 msgid "Macedonian Shield Bearer"
-msgstr ""
+msgstr "Maķedoniešu vairoga nesējs"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:7
 msgid "Hypaspistḗs"
-msgstr ""
+msgstr "Hypaspistḗs"
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:11
 msgid "Hypaspistḗs Argyraspídi"
-msgstr ""
+msgstr "Hypaspistḗs Argyraspídi"
 
 #: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "Alexander The Great"
@@ -1380,31 +1381,31 @@ msgstr "Aleksandrs Lielais"
 
 #: simulation/templates/units/mace_hero_alexander.xml:23
 msgid "Mégās Aléxandros"
-msgstr ""
+msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/mace_hero_alexander.xml:24
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "\"Herocide\" Bonuss: +20% uzbrukuma bonuss pret ienaidnieka varoņiem."
 
 #: simulation/templates/units/mace_hero_craterus.xml:6
 msgid "Crateros"
-msgstr ""
+msgstr "Crateros"
 
 #: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Kraterós"
-msgstr ""
+msgstr "Kraterós"
 
 #: simulation/templates/units/mace_hero_craterus.xml:8
 msgid "Trusted general under Alexander the Great."
-msgstr ""
+msgstr "Uzticamais ģenerālis Aleksandra Lielā pakļautībā"
 
 #: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
-msgstr ""
+msgstr "Demetrius \"Aplencējs\""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:8
 msgid "Dēmḗtrios Poliorkḗtēs"
-msgstr ""
+msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/mace_hero_philip.xml:7
 msgid "Philip II of Macedon"
@@ -1412,67 +1413,67 @@ msgstr "Maķedonijas Filips II"
 
 #: simulation/templates/units/mace_hero_philip.xml:8
 msgid "Phílippos B' ho Makedṓn"
-msgstr ""
+msgstr "Phílippos B' ho Makedṓn"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:6
 msgid "Pyrrhus of Epirus"
-msgstr ""
+msgstr "Pyrrhus no Epirus"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:7
 msgid "Pyrrhos ton Epeiros"
-msgstr ""
+msgstr "Pyrrhos ton Epeiros"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr ""
+msgstr "\"Pira Uzvara\" Aura: TD."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
-msgstr ""
+msgstr "Agrianian Peltast"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:15
 msgid "Peltastḗs Agrías"
-msgstr ""
+msgstr "Peltastḗs Agrías"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:14
 msgid "Foot Companion"
-msgstr ""
+msgstr "Pavadošie kājnieki"
 
 #: simulation/templates/units/mace_infantry_pikeman_b.xml:15
 msgid "Pezétairos"
-msgstr ""
+msgstr "Pezétairos"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:14
 msgid "Rhodian Slinger"
-msgstr ""
+msgstr "Rodiešu lingotāji"
 
 #: simulation/templates/units/mace_infantry_slinger_b.xml:15
 msgid "Sphendonḗtēs Rhódios"
-msgstr ""
+msgstr "Sphendonḗtēs Rhódios"
 
 #: simulation/templates/units/mace_mechanical_siege_ram.xml:9
 #: simulation/templates/units/spart_mechanical_siege_ram.xml:9
 msgid "Poliorkitikós Kriós"
-msgstr ""
+msgstr "Poliorkitikós Kriós"
 
 #: simulation/templates/units/mace_mechanical_siege_tower.xml:5
 #: simulation/templates/units/ptol_mechanical_siege_tower.xml:5
 #: simulation/templates/units/sele_mechanical_siege_tower.xml:5
 msgid "Helépolis"
-msgstr ""
+msgstr "Helépolis"
 
 #: simulation/templates/units/mace_ship_bireme.xml:5
 msgid "Hemiolos"
-msgstr ""
+msgstr "Hemiolos"
 
 #: simulation/templates/units/mace_ship_trireme.xml:6
 #: simulation/templates/units/spart_ship_trireme.xml:6
 msgid "Triḗrēs"
-msgstr ""
+msgstr "Triḗrēs"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikḗ"
-msgstr ""
+msgstr "Gýnē Makedonikḗ"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
@@ -1481,23 +1482,23 @@ msgstr "Maķedoniete"
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/sele_support_healer_b.xml:7
 msgid "Hiereús"
-msgstr ""
+msgstr "Hiereús"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr ""
+msgstr "Indiešu vieglais jātnieks"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
-msgstr ""
+msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr ""
+msgstr "Indiešu uzbrukuma jātnieks"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
-msgstr ""
+msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur_champion_chariot.xml:10
 msgid "War Chariot"
@@ -1505,11 +1506,11 @@ msgstr "Kaujas rati"
 
 #: simulation/templates/units/maur_champion_chariot.xml:11
 msgid "Rath"
-msgstr ""
+msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:14
 msgid "Deals Trample Damage."
-msgstr ""
+msgstr "Nodara postījumus mīdot."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1518,7 +1519,7 @@ msgstr "Indiešu Kara Zilonis"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
-msgstr ""
+msgstr "Gajendra"
 
 #: simulation/templates/units/maur_champion_infantry.xml:15
 msgid "Warrior"
@@ -1526,32 +1527,32 @@ msgstr "Kareivis"
 
 #: simulation/templates/units/maur_champion_infantry.xml:16
 msgid "Yōddha"
-msgstr ""
+msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 msgid "Maiden Guard"
-msgstr ""
+msgstr "Jaunavas sardze"
 
 #: simulation/templates/units/maur_champion_maiden.xml:7
 #: simulation/templates/units/maur_champion_maiden_archer.xml:7
 msgid "Visha Kanya"
-msgstr ""
+msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:6
 msgid "Maiden Guard Archer"
-msgstr ""
+msgstr "Jaunavas sardzes lokšāvējs"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Elephant Archer"
-msgstr ""
+msgstr "Lokšāvējs uz ziloņa"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:16
 msgid "Vachii Gaja"
-msgstr ""
+msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:18
 msgid "Can run amok."
-msgstr ""
+msgstr "Var skriet "
 
 #: simulation/templates/units/maur_hero_ashoka.xml:10
 msgid "Ashoka the Great"
@@ -1559,17 +1560,17 @@ msgstr "Ashoka the Great"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:11
 msgid "Aśoka Devānāmpriya"
-msgstr ""
+msgstr "Aśoka Devānāmpriya"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:15
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr ""
+msgstr "Varoņa iezīme: \"Ašokas edikts\" - Ašokas Edikta Pilāri var tikt būvēti Ašokas dzīves laikā."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chanakya"
-msgstr ""
+msgstr "Acharya Chanakya"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:32
 msgid "Acharya Chāṇakya"
@@ -1582,32 +1583,32 @@ msgstr "Chandragupta Maurya"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
-msgstr ""
+msgstr "Gara loka šāvējs"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"
-msgstr ""
+msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:17
 msgid "Bamboo Spearman"
-msgstr ""
+msgstr "Bambusa šķēpmetējs"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:18
 msgid "Kauntika"
-msgstr ""
+msgstr "Kauntika"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:13
 msgid "Indian Swordsman"
-msgstr ""
+msgstr "Indiešu kājieks ar zobenu"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:14
 msgid "Khadagdhari"
-msgstr ""
+msgstr "Khadagdhari"
 
 #: simulation/templates/units/maur_ship_bireme.xml:5
 #: simulation/templates/units/maur_ship_trireme.xml:18
 msgid "Yudhpot"
-msgstr ""
+msgstr "Yudhpot"
 
 #: simulation/templates/units/maur_ship_fishing.xml:9
 msgid "Fisherman"
@@ -1615,7 +1616,7 @@ msgstr "Zvejnieks"
 
 #: simulation/templates/units/maur_ship_fishing.xml:10
 msgid "Matsyapalak"
-msgstr ""
+msgstr "Matsyapalak"
 
 #: simulation/templates/units/maur_ship_merchant.xml:9
 msgid "Trading Ship"
@@ -1623,7 +1624,7 @@ msgstr "Tirdzniecības kuģis"
 
 #: simulation/templates/units/maur_ship_merchant.xml:10
 msgid "Vanijyik Nauka"
-msgstr ""
+msgstr "Vanijyik Nauka"
 
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
@@ -1631,15 +1632,15 @@ msgstr "Darba Zilonis"
 
 #: simulation/templates/units/maur_support_elephant.xml:29
 msgid "Karmākara Gaja"
-msgstr ""
+msgstr "Karmākara Gaja"
 
 #: simulation/templates/units/maur_support_elephant.xml:31
 msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr ""
+msgstr "Mobīlā nodošanas vieta. Var palīdzēt celtņu būvē."
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
-msgstr ""
+msgstr "Naari"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:6
 msgid "Indian Woman"
@@ -1647,119 +1648,119 @@ msgstr "Indiete"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
-msgstr ""
+msgstr "Brahmin Priesteris"
 
 #: simulation/templates/units/maur_support_healer_b.xml:7
 msgid "Brāhmaṇa Pujari"
-msgstr ""
+msgstr "Brāhmaṇa Pujari"
 
 #: simulation/templates/units/maur_support_trader.xml:9
 msgid "Vaishya"
-msgstr ""
+msgstr "Vaishya"
 
 #: simulation/templates/units/merc_black_cloak.xml:13
 msgid "Thracian Black Cloak"
-msgstr ""
+msgstr "Traķiešu Melnais Apmetnis"
 
 #: simulation/templates/units/merc_black_cloak.xml:14
 msgid "Rhomphaiaphoros"
-msgstr ""
+msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/merc_thorakites.xml:21
 msgid "Armored Swordsman"
-msgstr ""
+msgstr "Bruniņieks ar zobenu"
 
 #: simulation/templates/units/merc_thorakites.xml:22
 msgid "Thōrakitēs"
-msgstr ""
+msgstr "Thōrakitēs"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:5
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:14
 msgid "Thracian Mercenary Swordsman"
-msgstr ""
+msgstr "Traķiešu algotnis ar zobenu"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:6
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
-msgstr ""
+msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thureophoros.xml:12
 msgid "Heavy Skirmisher"
-msgstr ""
+msgstr "Smagais strēlnieks"
 
 #: simulation/templates/units/merc_thureophoros.xml:13
 msgid "Thyreophóros"
-msgstr ""
+msgstr "Thyreophóros"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
-msgstr ""
+msgstr "Mankar Cirya"
 
 #: simulation/templates/units/pers_arstibara.xml:12
 msgid "Persian Apple Bearer"
-msgstr ""
+msgstr "Persiešu ābolu nesējs"
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
-msgstr ""
+msgstr "Arštibara"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:11
 msgid "Babylonian Scythed Chariot"
-msgstr ""
+msgstr "Babilonas \"pļaušanas\" kaujas rati"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:12
 msgid "Babiruviya Ratha"
-msgstr ""
+msgstr "Babiruviya Ratha"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:15
 msgid "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Nodara mīdīšanas postījumus ienaidnieka vienībām."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:7
 msgid "Median Light Cavalry"
-msgstr ""
+msgstr "Mediānas vieglais jātnieks"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:10
 msgid "Mada Asabara"
-msgstr ""
+msgstr "Mada Asabara"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:6
 msgid "Cappadocian Cavalry"
-msgstr ""
+msgstr "Cappadocianas jātnieks"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:7
 msgid "Katpaduka Asabara"
-msgstr ""
+msgstr "Katpaduka Asabara"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:12
 msgid "Hyrcanian Cavalry"
-msgstr ""
+msgstr "Hirkaniānas jātnieks"
 
 #: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:13
 msgid "Varkaniya Asabara"
-msgstr ""
+msgstr "Varkaniya Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:5
 msgid "Bactrian Heavy Lancer"
-msgstr ""
+msgstr "Baktriānas smagais lingotājs"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:6
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:6
 msgid "Bakhtrish Asabara"
-msgstr ""
+msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:5
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr ""
+msgstr "Baktriānas smagais jātnieks lokšāvējs"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
-msgstr ""
+msgstr "Hinduya Pila"
 
 #: simulation/templates/units/pers_champion_infantry.xml:5
 msgid "Persian Immortal"
@@ -1767,7 +1768,7 @@ msgstr "Persiešu Nemirstīgais"
 
 #: simulation/templates/units/pers_champion_infantry.xml:6
 msgid "Anusiya"
-msgstr ""
+msgstr "Anusiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:6
 msgid "Cyrus II The Great"
@@ -1789,7 +1790,7 @@ msgstr "Darayavahush I"
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
-msgstr ""
+msgstr "Varoņa Aura: \"Impērijas Tirgotājs\". Palielina ienesīgumu no tirdzniecības viņa dzīves laikā (TD),"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:6
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:11
@@ -1803,109 +1804,109 @@ msgstr "Xsayarsa I"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:15
 msgid "Sogdian Archer"
-msgstr ""
+msgstr "Sogdiānas lokšāvējs"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:16
 msgid "Sugda Vaçabara"
-msgstr ""
+msgstr "Sugda Vaçabara"
 
 #: simulation/templates/units/pers_infantry_javelinist_b.xml:15
 msgid "Anatolian Auxiliary"
-msgstr ""
+msgstr "Anatolian Auxiliary"
 
 #: simulation/templates/units/pers_infantry_javelinist_b.xml:16
 msgid "Spardiya Takabara"
-msgstr ""
+msgstr "Spardiya Takabara"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:15
 msgid "Shieldbearer"
-msgstr ""
+msgstr "Vairognesis"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:16
 msgid "Sparabara"
-msgstr ""
+msgstr "Sparabara"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:11
 msgid "Cardaces Hoplite"
-msgstr ""
+msgstr "Kārtagiešu Hoplaits"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:12
 msgid "Hoplites Kardakes"
-msgstr ""
+msgstr "Hoplites Kardakes"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:11
 msgid "Cardaces Skirmisher"
-msgstr ""
+msgstr "Kārtagiešu strēlnieks"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:12
 msgid "Peltastes Kardakes"
-msgstr ""
+msgstr "Peltastes Kardakes"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:17
 msgid "Assyrian Siege Ram"
-msgstr ""
+msgstr "Asīriešu aplenkuma rampa"
 
 #: simulation/templates/units/pers_mechanical_siege_ram.xml:18
 msgid "Athuriya Hamaranakuba"
-msgstr ""
+msgstr "Athuriya Hamaranakuba"
 
 #: simulation/templates/units/pers_ship_bireme.xml:9
 msgid "Cypriot Galley"
-msgstr ""
+msgstr "Kipriešu galēra"
 
 #: simulation/templates/units/pers_ship_bireme.xml:10
 msgid "Hamaraniyanava"
-msgstr ""
+msgstr "Hamaraniyanava"
 
 #: simulation/templates/units/pers_ship_fishing.xml:5
 msgid "Masiyakara"
-msgstr ""
+msgstr "Masiyakara"
 
 #: simulation/templates/units/pers_ship_merchant.xml:9
 msgid "Ionian Trade Ship"
-msgstr ""
+msgstr "Joniešu tirgošanas kuģis"
 
 #: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Yaunash Nav"
-msgstr ""
+msgstr "Yaunash Nav"
 
 #: simulation/templates/units/pers_ship_trireme.xml:9
 msgid "Phoenician Trireme"
-msgstr ""
+msgstr "Feniķiešu trirēma"
 
 #: simulation/templates/units/pers_ship_trireme.xml:10
 msgid "Vazarka Hamaraniyanava"
-msgstr ""
+msgstr "Vazarka Hamaraniyanava"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
-msgstr ""
+msgstr "Banu Miyanrudani"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
 msgid "Mesopotamian Woman"
-msgstr ""
+msgstr "Mesopotāmijas sieviete"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
-msgstr ""
+msgstr "Median Magus"
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
-msgstr ""
+msgstr "Maguš Mada"
 
 #: simulation/templates/units/pers_support_trader.xml:9
 msgid "Aramaean Merchant"
-msgstr ""
+msgstr "Aramiešu tirgotājs"
 
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Tamkarum Arami"
-msgstr ""
+msgstr "Tamkarum Arami"
 
 #: simulation/templates/units/pers_support_trader.xml:13
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr ""
+msgstr "Tirgojieties ar resursiem starp saviem un sabiedroto tirgiem. Persiešiem ir +25% sauszemes tirgošanās priekšrocība."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 msgid "Camel"
@@ -1913,51 +1914,51 @@ msgstr "Kamielis"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
-msgstr ""
+msgstr "Nabatiešu lokšāvējs uz kamieļa"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
-msgstr ""
+msgstr "Mutsābiq Gamal Nabatu"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:13
 msgid "Tarantine Settler Cavalry"
-msgstr ""
+msgstr "Tarantīnas kolonists jātnieks"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 msgid "Hippeús Tarantînos"
-msgstr ""
+msgstr "Hippeús Tarantînos"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
-msgstr ""
+msgstr "Maķedoniešu kolonists jātnieks"
 
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
-msgstr ""
+msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr ""
+msgstr "Karaliskās sardzes jātnieks"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
-msgstr ""
+msgstr "Ágēma Basiléōs"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
-msgstr ""
+msgstr "Kara zilonis ar torni"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:6
 msgid "Polémou Eléphantos"
-msgstr ""
+msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"
-msgstr ""
+msgstr "Iznīcinošais spēks"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:21
 msgid "Tessarakonterēs"
-msgstr ""
+msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:7
 msgid "Cleopatra VII"
@@ -1965,13 +1966,13 @@ msgstr "Kleopatra VII"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:8
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Kleopatra H' Philopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:9
 msgid ""
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
 "vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "\"Konsorcija\" Aura (TD): Palielināta sabiedroto varoņu efektivitāte viņas pārraudzībā. Samazināta - ienaidnieka varoņiem. "
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
@@ -1979,76 +1980,76 @@ msgstr "Ptolemajs I \"Glābējs\""
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:7
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaios A' Soter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:6
 msgid "Ptolemy IV \"Father Loving\""
-msgstr ""
+msgstr "Ptolemy IV \"Mīlošais Tēvs\""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:7
 msgid "Ptolemaios D' Philopator"
-msgstr ""
+msgstr "Ptolemaios D' Philopator"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:25
 msgid "Nubian Mercenary Archer"
-msgstr ""
+msgstr "Nūbiešu algotnis lokšāvējs"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Kousít Misthophóros Toxótēs"
-msgstr ""
+msgstr "Kousít Misthophóros Toxótēs"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:14
 msgid "Mercenary Thureos Skirmisher"
-msgstr ""
+msgstr "Cureos algotnis strēlnieks"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Thureophóros Akrobolistḗs"
-msgstr ""
+msgstr "Thureophóros Akrobolistḗs"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:14
 msgid "Egyptian Pikeman"
-msgstr ""
+msgstr "Ēģiptiešu kājnieks ar pīķi"
 
 #: simulation/templates/units/ptol_infantry_pikeman_b.xml:15
 msgid "Phalaggomákhimos"
-msgstr ""
+msgstr "Phalaggomákhimos"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:14
 msgid "Judean Slinger"
-msgstr ""
+msgstr "Ēbrēju lingotājs"
 
 #: simulation/templates/units/ptol_infantry_slinger_b.xml:15
 msgid "Hebraikós Sphendonḗtēs"
-msgstr ""
+msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:21
 msgid "Mercenary Thureos Spearman"
-msgstr ""
+msgstr "Cureos algotnis ar šķēpu"
 
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
 msgid "Thureophóros Misthophóros"
-msgstr ""
+msgstr "Thureophóros Misthophóros"
 
 #: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:21
 msgid "Gallikós Mistophorós"
-msgstr ""
+msgstr "Gallikós Mistophorós"
 
 #: simulation/templates/units/ptol_ship_bireme.xml:6
 #: simulation/templates/units/sele_ship_bireme.xml:6
 msgid "Dierēs"
-msgstr ""
+msgstr "Dierēs"
 
 #: simulation/templates/units/ptol_ship_quinquereme.xml:5
 msgid "Octḗrēs"
-msgstr ""
+msgstr "Octḗrēs"
 
 #: simulation/templates/units/ptol_ship_trireme.xml:5
 msgid "Pentḗrēs"
-msgstr ""
+msgstr "Pentḗrēs"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:5
 msgid "Gýnē Aigýptia"
-msgstr ""
+msgstr "Gýnē Aigýptia"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:6
 msgid "Egyptian Woman"
@@ -2060,23 +2061,23 @@ msgstr "Ēģiptiešu Priesteris"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
-msgstr ""
+msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
-msgstr ""
+msgstr "Itāļu sabiedroto jātnieks"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:8
 msgid "Eques Socius"
-msgstr ""
+msgstr "Eques Socius"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:7
 msgid "Roman Cavalry"
-msgstr ""
+msgstr "Romiešu jātnieks"
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:8
 msgid "Eques Romanus"
-msgstr ""
+msgstr "Eques Romanus"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:14
 msgid "Roman Centurion"
@@ -2084,27 +2085,27 @@ msgstr "Romiešu Centurions"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:15
 msgid "Centurio Legionarius"
-msgstr ""
+msgstr "Centurio Legionarius"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:6
 msgid "Eques Consularis"
-msgstr ""
+msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_cavalry.xml:7
 msgid "Consular Bodyguard"
-msgstr ""
+msgstr "Konsula miessargs"
 
 #: simulation/templates/units/rome_champion_infantry.xml:6
 msgid "Italic Heavy Infantry"
-msgstr ""
+msgstr "Itāļu smagie kājnieki"
 
 #: simulation/templates/units/rome_champion_infantry.xml:7
 msgid "Extraordinarius"
-msgstr ""
+msgstr "Extraordinarius"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:7
 msgid "Marcus Claudius Marcellus"
-msgstr ""
+msgstr "Marcus Claudius Marcellus"
 
 #: simulation/templates/units/rome_hero_maximus.xml:7
 msgid "Quintus Fabius Maximus"
@@ -2118,19 +2119,19 @@ msgstr "Scīpions Afrikānis"
 msgid ""
 "\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
 "for 500 Metal. (Not implemented)"
-msgstr ""
+msgstr "\"Sadali un valdi\" iespēja: Pārvērš ienaidnieka vienību grupas savā pusē par 500 metāla. (nav realizēts)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:17
 msgid "Roman Skirmisher"
-msgstr ""
+msgstr "Romas strēlnieks"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:18
 msgid "Veles"
-msgstr ""
+msgstr "Veles"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:17
 msgid "Veteran Spearman"
-msgstr ""
+msgstr "Veterāns ar pīķi"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:18
 msgid "Triarius"
@@ -2138,11 +2139,11 @@ msgstr "Triārijs"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:17
 msgid "Roman Swordsman"
-msgstr ""
+msgstr "Romas Paukotājs"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:18
 msgid "Hastatus"
-msgstr ""
+msgstr "Hastatus"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:11
 msgid "Roman Legionnaire"
@@ -2150,15 +2151,15 @@ msgstr "Romiešu Leģionārs"
 
 #: simulation/templates/units/rome_legionnaire_imperial.xml:12
 msgid "Legionarius Romanus"
-msgstr ""
+msgstr "Legionarius Romanus"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:6
 msgid "Marian Legionaire"
-msgstr ""
+msgstr "Marian Legionaire"
 
 #: simulation/templates/units/rome_legionnaire_marian.xml:7
 msgid "Marian Legionarius"
-msgstr ""
+msgstr "Marian Legionarius"
 
 #: simulation/templates/units/rome_mechanical_siege_ram.xml:14
 msgid "Aries"
@@ -2166,35 +2167,35 @@ msgstr "Auns"
 
 #: simulation/templates/units/rome_ship_bireme.xml:5
 msgid "Liburnus"
-msgstr ""
+msgstr "Liburnus"
 
 #: simulation/templates/units/rome_ship_fishing.xml:5
 msgid "Navicula Piscatoria"
-msgstr ""
+msgstr "Navicula Piscatoria"
 
 #: simulation/templates/units/rome_ship_merchant.xml:9
 msgid "Corbita"
-msgstr ""
+msgstr "Corbita"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:5
 msgid "Quinqueremis Romana"
-msgstr ""
+msgstr "Quinqueremis Romana"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
-msgstr ""
+msgstr "Romiešu četru klāju galēra"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Triremis Romana"
-msgstr ""
+msgstr "Triremis Romana"
 
 #: simulation/templates/units/rome_ship_trireme.xml:9
 msgid "Roman Trireme"
-msgstr ""
+msgstr "Romiešu trirēma"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Romana"
-msgstr ""
+msgstr "Romiešu"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:7
 msgid "Roman Woman"
@@ -2214,127 +2215,127 @@ msgstr "Plebeju Tirgotājs"
 
 #: simulation/templates/units/rome_support_trader.xml:11
 msgid "Mercator Plebeius"
-msgstr ""
+msgstr "Mercator Plebeius"
 
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
-msgstr ""
+msgstr "Suņņu strēlnieks"
 
 #: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "(Samnite Skirmisher)"
-msgstr ""
+msgstr "(Sumnītu strēlnieks)"
 
 #: simulation/templates/units/samnite_skirmisher.xml:7
 msgid ""
 "Mercenary skirmisher.\n"
 "Bonus vs. Archers and Spearmen."
-msgstr ""
+msgstr "Algotnis strēlnieks.\nPriekšrocība pret lokšāvējiem un šķēpnešiem."
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr ""
+msgstr "Suņņu šķēpmetējs"
 
 #: simulation/templates/units/samnite_spearman.xml:6
 msgid "(Samnite Spearman)"
-msgstr ""
+msgstr "(Sumnīts ar šķēpu)"
 
 #: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
 "Mercenary spearman.\n"
 "Bonus vs. All Cavalry Units."
-msgstr ""
+msgstr "Algotnis ar šķēpu.\nPriekšrocība pret visām jātnieku vienībām."
 
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
-msgstr ""
+msgstr "(Sumnīts ar zobenu)"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr ""
+msgstr "Dahae lokšāvējs uz zirga"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
-msgstr ""
+msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:7
 msgid "Militia Cavalry"
-msgstr ""
+msgstr "Zemessardes jātnieks"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:8
 msgid "Hippakontistès Politès"
-msgstr ""
+msgstr "Hippakontistès Politès"
 
 #: simulation/templates/units/sele_cavalry_javelinist_b.xml:8
 msgid "Hippeus Medikos"
-msgstr ""
+msgstr "Hippeus Medikos"
 
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:8
 msgid "Hippos Hetairike"
-msgstr ""
+msgstr "Hippos Hetairike"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:6
 msgid "Seleucid Cataphract"
-msgstr ""
+msgstr "Sīriešu bruniņieks"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:7
 msgid "Seleukidón Kataphraktos"
-msgstr ""
+msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele_champion_chariot.xml:11
 msgid "Scythed Chariot"
-msgstr ""
+msgstr "Skifu kaujas rati"
 
 #: simulation/templates/units/sele_champion_chariot.xml:12
 msgid "Drepanèphoros"
-msgstr ""
+msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr ""
+msgstr "Bruņots Kara Zilonis"
 
 #: simulation/templates/units/sele_champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"
-msgstr ""
+msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Silver Shield Pikeman"
-msgstr ""
+msgstr "Sudraba vairoga kājnieks ar pīķi"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Argyraspis"
-msgstr ""
+msgstr "Phalangitès Argyraspis"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Romanized Heavy Swordsman"
-msgstr ""
+msgstr "Romiešu smagais kājnieks ar zobenu"
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:7
 msgid "Thorakitès Rhomaïkós"
-msgstr ""
+msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:7
 msgid "Antiochus III \"The Great\""
-msgstr ""
+msgstr "Antiokus III \"Lielais\""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:8
 msgid "Antiokhos G' Mégās"
-msgstr ""
+msgstr "Antiokhos G' Mégās"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:7
 msgid "Antiochus IV \"The Righteous\""
-msgstr ""
+msgstr "Antiochus IV \"The Righteous\""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:8
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "Antiokhos D' Epiphanes"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:7
 msgid "Seleucus I \"The Victor\""
-msgstr ""
+msgstr "Seleucus I \"Uzvarētājs\""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:8
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "Seleukos A' Nikator"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:14
 msgid "Syrian Archer"
@@ -2342,47 +2343,47 @@ msgstr "Sīriešu Strēlnieks"
 
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:15
 msgid "Toxótēs Syrías"
-msgstr ""
+msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Arab Javelineer"
-msgstr ""
+msgstr "Arābu šķēpmetējs"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:15
 msgid "Pezakontistès Aravikós"
-msgstr ""
+msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:14
 msgid "Bronze Shield Pikeman"
-msgstr ""
+msgstr "Bronzas vairoga kājnieks ar pīķi"
 
 #: simulation/templates/units/sele_infantry_pikeman_b.xml:15
 msgid "Chalkaspides"
-msgstr ""
+msgstr "Chalkaspides"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Militia Thureos Spearman"
-msgstr ""
+msgstr "Thureos Zemessargs ar šķēpu"
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Thureophóros Politès"
-msgstr ""
+msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
-msgstr ""
+msgstr "Pentères"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
-msgstr ""
+msgstr "Seleukidó̱n Triērēs"
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
-msgstr ""
+msgstr "Seleucid Trireme"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:6
 msgid "Syrías Gýnē"
-msgstr ""
+msgstr "Syrías Gýnē"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
@@ -2390,56 +2391,56 @@ msgstr "Sīriete"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"
-msgstr ""
+msgstr "Periklu jātnieks"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:8
 msgid "Pródromos Perioïkós"
-msgstr ""
+msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Greek Allied Cavalry"
-msgstr ""
+msgstr "Grieķu sabiedroto jātnieks"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
-msgstr ""
+msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Spartan Pikeman"
-msgstr ""
+msgstr "Spartiešu kājnieks ar pīķi"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:7
 msgid "Phalangites Spartiatis"
-msgstr ""
+msgstr "Phalangites Spartiatis"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:6
 msgid "Spartan Hoplite"
-msgstr ""
+msgstr "Spartiešu hoplaits"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Spartiátēs"
-msgstr ""
+msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:20
 msgid "Skiritai Commando"
-msgstr ""
+msgstr "Skiritai Commando"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:21
 msgid "Ékdromos Skirítēs"
-msgstr ""
+msgstr "Ékdromos Skirítēs"
 
 #: simulation/templates/units/spart_hero_agis.xml:9
 msgid "Agis III"
-msgstr ""
+msgstr "Agis III"
 
 #: simulation/templates/units/spart_hero_agis.xml:10
 msgid "Agis"
-msgstr ""
+msgstr "Agis"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:7
 #: simulation/templates/units/spart_hero_brasidas.xml:8
 msgid "Brasidas"
-msgstr ""
+msgstr "Brasidas"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:7
 msgid "Leonidas I"
@@ -2447,23 +2448,23 @@ msgstr "Leonīds I"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:8
 msgid "Leōnídēs"
-msgstr ""
+msgstr "Leōnídēs"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:15
 msgid "Helot Skirmisher"
-msgstr ""
+msgstr "Vergu strēlnieks"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Akontistḗs Heílōs"
-msgstr ""
+msgstr "Akontistḗs Heílōs"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:15
 msgid "Perioikoi Hoplite"
-msgstr ""
+msgstr "Perikla hoplaits"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:16
 msgid "Hoplítēs Períoikos"
-msgstr ""
+msgstr "Hoplítēs Períoikos"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartan Woman"
@@ -2471,40 +2472,40 @@ msgstr "Spartiete"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:27
 msgid "Spartiâtis"
-msgstr ""
+msgstr "Spartiâtis"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Períoikos"
-msgstr ""
+msgstr "Émporos Períoikos"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
 msgid "Fire Raiser"
-msgstr ""
+msgstr "Dedzinātājs"
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:23
 msgid "Pyrobolos"
-msgstr ""
+msgstr "Pyrobolos"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Theban Sacred Band Hoplite"
-msgstr ""
+msgstr "Tēbu svētā pulka hoplaits"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Hieroû Thebaíou Lókhou Hoplítai"
-msgstr ""
+msgstr "Hieroû Thebaíou Lókhou Hoplítai"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:9
 msgid "Champion Spearman."
-msgstr ""
+msgstr "Čempions ar pīķi"
 
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Thespian Black Cloak"
-msgstr ""
+msgstr "Kaspijas melnais apmetnis"
 
 #: simulation/templates/units/thespian_melanochitones.xml:7
 msgid "Melanochitones"
-msgstr ""
+msgstr "Melanochitones"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
-msgstr ""
+msgstr "Garā laiva"

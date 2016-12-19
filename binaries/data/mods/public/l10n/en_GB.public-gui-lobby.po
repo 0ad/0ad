@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-03 09:19+0000\n"
+"POT-Creation-Date: 2016-12-16 09:00+0100\n"
+"PO-Revision-Date: 2016-12-18 18:22+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -94,110 +94,115 @@ msgstr "N/A"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
+#: gui/lobby/lobby.js:453
+#, javascript-format
+msgid "Player \"%(nick)s\" not found."
+msgstr "Player \"%(nick)s\" not found."
+
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:628
+#: gui/lobby/lobby.js:634
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Game started at %(time)s"
 
-#: gui/lobby/lobby.js:629 gui/lobby/lobby.js:990
+#: gui/lobby/lobby.js:635 gui/lobby/lobby.js:996
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:633
+#: gui/lobby/lobby.js:639
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Players: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:675
+#: gui/lobby/lobby.js:681
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "The game has already started. Do you want to join as observer?"
 
-#: gui/lobby/lobby.js:676
+#: gui/lobby/lobby.js:682
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: gui/lobby/lobby.js:677
+#: gui/lobby/lobby.js:683
 msgid "No"
 msgstr "No"
 
-#: gui/lobby/lobby.js:677
+#: gui/lobby/lobby.js:683
 msgid "Yes"
 msgstr "Yes"
 
-#: gui/lobby/lobby.js:696
+#: gui/lobby/lobby.js:702
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "This game's address '%(ip)s' does not appear to be valid."
 
-#: gui/lobby/lobby.js:815
+#: gui/lobby/lobby.js:821
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "We're sorry, the '%(cmd)s' command is not supported."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:897
+#: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:902
+#: gui/lobby/lobby.js:908
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:932 gui/lobby/lobby.js:958
+#: gui/lobby/lobby.js:917 gui/lobby/lobby.js:938 gui/lobby/lobby.js:964
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:916 gui/lobby/lobby.js:937 gui/lobby/lobby.js:963
+#: gui/lobby/lobby.js:922 gui/lobby/lobby.js:943 gui/lobby/lobby.js:969
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:926
+#: gui/lobby/lobby.js:932
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:952
+#: gui/lobby/lobby.js:958
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:954
+#: gui/lobby/lobby.js:960
 msgid "Private"
 msgstr "Private"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:993
+#: gui/lobby/lobby.js:999
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:998
+#: gui/lobby/lobby.js:1004
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1059
+#: gui/lobby/lobby.js:1065
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Please do not spam. You have been blocked for thirty seconds."
 
-#: gui/lobby/lobby.js:1126
+#: gui/lobby/lobby.js:1132
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1128
+#: gui/lobby/lobby.js:1134
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
@@ -340,8 +345,8 @@ msgid "View Profile"
 msgstr "View Profile"
 
 #: gui/lobby/lobby.xml:(caption):350
-msgid "Player not found."
-msgstr "Player not found."
+msgid "Please enter a player name."
+msgstr "Please enter a player name."
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"

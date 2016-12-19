@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-11-28 09:33+0000\n"
+"POT-Creation-Date: 2016-12-12 09:00+0100\n"
+"PO-Revision-Date: 2016-12-12 09:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgid "DELETE"
 msgstr "消去"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -151,7 +151,7 @@ msgid "No"
 msgstr "いいえ"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -988,18 +988,18 @@ msgstr "<無効>"
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:273
+#: gui/options/options.js:277
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:274 gui/options/options.js:341
+#: gui/options/options.js:278 gui/options/options.js:345
 #: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:340
+#: gui/options/options.js:344
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -2269,9 +2269,9 @@ msgstr "フォーカス外で休止"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"If you disable this screen completely, you may miss important announcements.\n"
-"You can still launch it using the main menu."
-msgstr "このスクリーン表示を完全に無効にすると、重要な告知を見逃す可能性があります。\nその場合もメインメニューから表示させることができます。"
+"When disabled, the welcome screen will nevertheless be shown once when a new"
+" version is available and you can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"

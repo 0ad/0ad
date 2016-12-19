@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-11-28 11:10+0000\n"
+"POT-Creation-Date: 2016-12-12 09:00+0100\n"
+"PO-Revision-Date: 2016-12-13 14:17+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgid "DELETE"
 msgstr "刪除"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -150,7 +150,7 @@ msgid "No"
 msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -987,18 +987,18 @@ msgstr "<無效>"
 msgid "OK"
 msgstr "確定"
 
-#: gui/options/options.js:273
+#: gui/options/options.js:277
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置選項將會抹除您儲存的設定。您想要繼續嗎？"
 
-#: gui/options/options.js:274 gui/options/options.js:341
+#: gui/options/options.js:278 gui/options/options.js:345
 #: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:340
+#: gui/options/options.js:344
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未儲存的變更，您想要關閉這個視窗嗎？"
 
@@ -2268,9 +2268,9 @@ msgstr "背景暫停"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"If you disable this screen completely, you may miss important announcements.\n"
-"You can still launch it using the main menu."
-msgstr "如果您完全停用此畫面，您可能會錯過一些重要公告。\n您仍然可以從主選單中開啟它。"
+"When disabled, the welcome screen will nevertheless be shown once when a new"
+" version is available and you can always launch it from the main menu."
+msgstr "當停用時，歡迎畫面僅會在有新版可用時出現，但您仍然可以從主選單中啟動它。"
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"

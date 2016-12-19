@@ -8,8 +8,9 @@
 # Dimitrios Pappas <dvpappas@msn.com>, 2015
 # crippledmoon <domas392@in.gr>, 2016
 # MasterWord, 2015
-# LOUKAS SKOUROLIAKOS, 2015
+# LOUKAS SKOUROLIAKOS, 2015-2016
 # Markos G. <marx-kolaiti@hotmail.gr>, 2016
+# Vasilis Drosos <basilisd@gmail.com>, 2016
 # Xenophon Sp <nohponex@gmail.com>, 2015
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
 # Steven Gikas <stevengk123@gmail.com>, 2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-18 22:22+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -305,7 +306,7 @@ msgstr "Φολιδωτή  Πανοπλία Σώματος"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
-msgstr ""
+msgstr "Λόρικα Σκουαμάτα (θώρακας)"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
@@ -395,7 +396,7 @@ msgstr "Χρυσή Ασπίδα"
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "Μόνο οι πιο φημισμένοι στρατιώτες είχαν ασπίδες με ασήμι, όπως έκανε και το περίφημο σύνταγμα «Ασημασπίδες» στο στρατό του Μέγα Αλέξανδρου."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -415,29 +416,29 @@ msgstr "ασημένια ασπίδα"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr ""
+msgstr "Η επικάλυψη μόλυβδα προστατεύει το κύτος του πλοίου."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Η επικάλυψη μόλυβδα προστατεύει το κύτος του πλοίου. +2 βαθμούς σε όλων των τύπων θωράκισης του πλοίου."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr ""
+msgstr "Επένδυση κύτους με μόλυβδο"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Τα υποζώματα ενισχύουν τη δομή του πλοίου."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "Τα υποζώματα ενισχύουν τη δομή του πλοίου. +2 βαθμούς σε όλων των τύπων θωράκισης του πλοίου."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Το περιζώνουν υποζώματα"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -446,7 +447,7 @@ msgstr "Ξύλινα δοκάρια ενίσχυσης για το κύτος τ
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Ξύλινα δοκάρια ενίσχυσης για το κύτος. +2 βαθμούς σε όλων των τύπων θωράκισης του πλοίου."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -472,7 +473,7 @@ msgstr "Ένα μακρύ δόρυ φτιαγμένο ειδικά για το �
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr ""
+msgstr "Εξοπλίζει το εκ συστάδην ιππικό με καλλίτερα όπλα. +2 Επίθεση Τομής στο Εκ Συστάδην Ιππικό."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -484,7 +485,7 @@ msgstr "Λόγχη Ιππικού"
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.athen
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 msgid "Xystón"
-msgstr ""
+msgstr "Χιστόν"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
@@ -492,15 +493,15 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr ""
+msgstr "Άστα"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr ""
+msgstr "Η εκπαίδευση αυξάνει την επίθεση εκ του συστάδην."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr ""
+msgstr "+20% επίθεση στον ιππικό εκ του συστάδην."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -723,7 +724,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr ""
+msgstr "Πολεμίστρες"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1426,7 +1427,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "Κήπος Σπιτιού"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -2453,15 +2454,15 @@ msgstr ""
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "+25% Πεδίο οράσεως σε όλες τις μονάδες."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr ""
+msgstr "Σιψυλλικά Βιβλία"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr ""
+msgstr "Σιψυλλικά Βιβλία"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
@@ -2494,7 +2495,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
-msgstr ""
+msgstr "Παρέλαση με Δάφνες"
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
@@ -2505,7 +2506,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr ""
+msgstr "Όλο το ιππικό +20% υγεία."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -2513,7 +2514,7 @@ msgstr "Πολεμικά άλογα από την Νίσαια"
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
-msgstr ""
+msgstr "Νήσιοι"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The reform army of the Seleucids."
@@ -2553,4 +2554,4 @@ msgstr ""
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr ""
+msgstr "Σύνταγμα Αργυρασπίδων"

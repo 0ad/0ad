@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-11-28 09:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-12-12 09:00+0100\n"
+"PO-Revision-Date: 2016-12-18 18:15+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,7 +149,7 @@ msgid "DELETE"
 msgstr "DELETE (Ta bort)"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -157,7 +157,7 @@ msgid "No"
 msgstr "Nej"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
-#: gui/options/options.js:275 gui/options/options.js:342
+#: gui/options/options.js:279 gui/options/options.js:346
 #: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
@@ -534,7 +534,7 @@ msgstr "Nedkopplad"
 
 #: gui/common/network.js:104
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Bara värden kan sparka ut klienter!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -898,7 +898,7 @@ msgstr "Torn: %(costs)s"
 #: gui/common/tooltips.js:467
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Erfordrar %(technology)s"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -1007,18 +1007,18 @@ msgstr "<invalid>"
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:273
+#: gui/options/options.js:277
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Återställning av optionerna raderar dina sparade inställningar. Vill du fortsätta?"
 
-#: gui/options/options.js:274 gui/options/options.js:341
+#: gui/options/options.js:278 gui/options/options.js:345
 #: gui/savedgames/load.js:127
 msgid "Warning"
 msgstr "Varning"
 
-#: gui/options/options.js:340
+#: gui/options/options.js:344
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Du har osparade ändringar, vill du stänga detta fönster?"
 
@@ -1451,7 +1451,7 @@ msgstr "Använd"
 #: gui/summary/layout.js:147
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s utbytt"
 
 #: gui/summary/layout.js:155
 msgid "Barter efficiency"
@@ -2290,9 +2290,9 @@ msgstr "Bakgrundspaus"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"If you disable this screen completely, you may miss important announcements.\n"
-"You can still launch it using the main menu."
-msgstr "Om du inaktiverar denna skärm kan du missa viktiga informationer.\nDu kan fortfarande starta den från huvudmenyn."
+"When disabled, the welcome screen will nevertheless be shown once when a new"
+" version is available and you can always launch it from the main menu."
+msgstr "När inaktiverad kommer välkomstskärmen ändå visas en gång när en ny version finns tillgänglig och du kan alltid starta den från huvudmenyn. "
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
@@ -2919,7 +2919,7 @@ msgstr "- Ökar eldkraften med garnisonerat infanteri."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr ""
+msgstr "- Kan inte ramma som andra triremer, men har mer hälsa och rustning."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3358,7 +3358,7 @@ msgstr "- Alla skepp byggs snabbare under hans livstid."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "- Skeppet som han är garnisonerad i seglar mycket snabbare."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
