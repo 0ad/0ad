@@ -90,6 +90,7 @@ m.Worker.prototype.update = function(gameState, ent)
 				let supplyId = ent.unitAIOrderData()[0].target;
 				let supply = gameState.getEntityById(supplyId);
 				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal") &&
+					supply.resourceSupplyType().generic !== "treasure" &&
 					supplyId !== ent.getMetadata(PlayerID, "supply"))
 				{
 					let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
@@ -782,6 +783,8 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 	let access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 	for (let treasure of gameState.ai.HQ.treasures.values())
 	{
+		if (m.IsSupplyFull(gameState, treasure))
+			continue;
 		// let some time for the previous gatherer to reach the treasure befor trying again
 		let lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
 		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
