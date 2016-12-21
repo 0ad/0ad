@@ -3,8 +3,9 @@
 	"radius": 75,
 	"affects": ["Trader"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.20 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.20 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.20 }
 	],
-	"auraDescription": "All traders in range +20% walk speed.",
+	"auraDescription": "All traders in range +20% Speed.",
 	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
 }

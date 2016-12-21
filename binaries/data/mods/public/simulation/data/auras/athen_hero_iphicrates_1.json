@@ -5,8 +5,9 @@
 		{ "value": "Armour/Pierce", "add": 1 },
 		{ "value": "Armour/Hack", "add": 1 },
 		{ "value": "Armour/Crush", "add": 1 },
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 }
 	],
 	"auraName": "Formation Reforms",
-	"auraDescription": "All units in his formation +15% speed and +1 armor."
+	"auraDescription": "All Soldiers in his formation +15% Speed and +1 Armor."
 }

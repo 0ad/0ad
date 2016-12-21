@@ -3,8 +3,9 @@
 	"affects": ["Ship"],
 	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.5 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.5 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.5 }
 	],
 	"auraName": "Naval Commander Aura",
-	"auraDescription": "When garrisoned in a ship, his ship is +50% faster."
+	"auraDescription": "When garrisoned in a ship, his Ship is +50% faster."
 }

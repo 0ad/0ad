@@ -3,11 +3,15 @@
 	"radius": 60,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-		{ "value": "Attack/Ranged/Pierce", "add": 2 },
-		{ "value": "Attack/Melee/Hack", "add": 2 },
+		{ "value": "Attack/Melee/Hack", "multiply": 1.20 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.20 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.20 },
+		{ "value": "Attack/Ranged/Hack", "multiply": 1.20 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.20 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.20 },
 		{ "value": "Attack/Capture/Value", "add": 1 }
 	],
 	"auraName": "Hero Aura",
-	"auraDescription": "+2 Attack and +1 Capture for all units within his aura.",
+	"auraDescription": "+20% Attack and +1 Capture for all Soldiers and Siege engines within his aura.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

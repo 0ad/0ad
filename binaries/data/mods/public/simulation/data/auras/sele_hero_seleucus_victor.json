@@ -1,13 +1,14 @@
 {
 	"type": "range",
 	"radius": 80,
-	"affects": ["Elephant"],
+	"affects": ["Elephant Champion"],
 	"modifications": [
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.2 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Crush", "multiply": 1.2 }
 	],
 	"auraName": "Zooiarchos Aura",
-	"auraDescription": "Boosts War Elephant attack and speed +20% within his vision.",
+	"auraDescription": "Boosts War Elephant Attack and Speed +20% within his aura.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

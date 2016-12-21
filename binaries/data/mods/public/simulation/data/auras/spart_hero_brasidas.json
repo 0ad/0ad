@@ -1,14 +1,14 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Javelin"],
+	"affects": ["Javelin Infantry"],
 	"modifications": [
-		{ "value": "Attack/Ranged/Pierce", "add": 2 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.20 },
 		{ "value": "Armour/Pierce", "add": 1 },
 		{ "value": "Armour/Hack", "add": 1 },
 		{ "value": "Armour/Crush", "add": 1 }
 	],
 	"auraName": "Helot Reforms",
-	"auraDescription": "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.",
+	"auraDescription": "Javelin Infantry in his aura gains +20% Attack and +1 all Armor types.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

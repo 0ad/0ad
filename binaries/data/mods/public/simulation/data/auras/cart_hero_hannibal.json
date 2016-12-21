@@ -4,11 +4,15 @@
 	"affects": ["Soldier", "Siege"],
 	"affectedPlayers": ["Ally"],
 	"modifications": [
-		{ "value": "Attack/Ranged/Pierce", "add": 2 },
-		{ "value": "Attack/Melee/Hack", "add": 2 },
+		{ "value": "Attack/Melee/Hack", "multiply": 1.20 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.20 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.20 },
+		{ "value": "Attack/Ranged/Hack", "multiply": 1.20 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.20 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.20 },
 		{ "value": "Attack/Capture/Value", "add": 1 }
 	],
 	"auraName": "Tactician Aura",
-	"auraDescription": "All allied units +2 Attack and +1 Capture within his vision range.",
+	"auraDescription": "All allied Soldiers and Siege engines +20% Attack and +1 Capture within his vision range.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

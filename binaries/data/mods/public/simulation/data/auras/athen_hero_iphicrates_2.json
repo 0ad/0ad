@@ -1,9 +1,10 @@
 {
 	"type": "global",
-	"affects": ["Javelin"],
+	"affects": ["Javelin Infantry"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 }
 	],
 	"auraName": "Peltast Reforms",
-	"auraDescription": "All Peltasts +15% speed."
+	"auraDescription": "All Javelin Infantry +15% Speed."
 }
