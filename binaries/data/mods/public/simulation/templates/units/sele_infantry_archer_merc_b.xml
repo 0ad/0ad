@@ -7,6 +7,12 @@
       structures/sele_wonder
     </Entities>
   </Builder>
+  <Cost>
+    <Resources>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>

@@ -9,6 +9,12 @@
       structures/{civ}_wonder
     </Entities>
   </Builder>
+  <Cost>
+    <Resources>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>cart</Civ>
     <SelectionGroupName>units/cart_infantry_archer_b</SelectionGroupName>

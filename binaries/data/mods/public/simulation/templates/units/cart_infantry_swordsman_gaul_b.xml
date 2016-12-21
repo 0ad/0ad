@@ -11,8 +11,8 @@
   </Builder>
   <Cost>
     <Resources>
-      <food>25</food>
-      <metal>50</metal>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
     </Resources>
   </Cost>
   <Identity>

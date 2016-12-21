@@ -2,8 +2,8 @@
 <Entity parent="template_unit_cavalry_melee_swordsman">
   <Cost>
     <Resources>
-      <food>75</food>
-      <metal>35</metal>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
     </Resources>
   </Cost>
   <Identity>
