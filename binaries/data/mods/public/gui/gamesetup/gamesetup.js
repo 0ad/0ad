@@ -303,6 +303,8 @@ function initGUIObjects()
 
 	if (g_IsNetworked)
 		Engine.GetGUIObjectByName("chatInput").focus();
+	else
+		initSPTips();
 
 	if (g_IsController)
 	{
@@ -338,6 +340,23 @@ function initMapFilters()
 	if (g_IsController)
 		mapFilters.selected = 0;
 	g_GameAttributes.mapFilter = "default";
+}
+
+function initSPTips()
+{
+	if (Engine.ConfigDB_GetValue("user", "gui.gamesetup.enabletips") !== "true")
+		return;
+
+	Engine.GetGUIObjectByName("spTips").hidden = false;
+	Engine.GetGUIObjectByName("displaySPTips").checked = true;
+	Engine.GetGUIObjectByName("aiTips").caption = Engine.TranslateLines(Engine.ReadFile("gui/gamesetup/ai.txt"));
+}
+
+function saveSPTipsSetting()
+{
+	let enabled = String(Engine.GetGUIObjectByName("displaySPTips").checked);
+	Engine.ConfigDB_CreateValue("user", "gui.gamesetup.enabletips", enabled);
+	Engine.ConfigDB_WriteValueToFile("user", "gui.gamesetup.enabletips", enabled, "config/user.cfg");
 }
 
 /**
