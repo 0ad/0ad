@@ -3,15 +3,15 @@
 	"radius": 60,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
-		{ "value": "Attack/Melee/Hack", "multiply": 1.25 },
-		{ "value": "Attack/Melee/Pierce", "multiply": 1.25 },
-		{ "value": "Attack/Melee/Crush", "multiply": 1.25 },
-		{ "value": "Attack/Ranged/Hack", "multiply": 1.25 },
-		{ "value": "Attack/Ranged/Pierce", "multiply": 1.25 },
-		{ "value": "Attack/Ranged/Crush", "multiply": 1.25 },
+		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.2 },
 		{ "value": "Attack/Capture/Value", "add": 2 }
 	],
 	"auraName": "Sword of Rome Aura",
-	"auraDescription": "+25% Attack and +2 Capture for Roman Soldiers and Siege engines within his range.",
+	"auraDescription": "+20% attack and +2 capture for Roman soldiers and siege engines within his range.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

@@ -2,12 +2,12 @@
 	"type": "global",
 	"affects": ["Siege"],
 	"modifications": [
-		{ "value": "Attack/Melee/Crush", "add": 10 },
-		{ "value": "Attack/Ranged/Crush", "add": 10 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.1 },
 		{ "value": "Attack/Ranged/MaxRange", "multiply": 1.15 },
 		{ "value": "Vision/Range", "multiply": 1.15 }
 	],
 	"auraName": "Besieger Aura",
-	"auraDescription": "+15% Range and +10 Crush Attack for Siege Engines.",
+	"auraDescription": "+15% range and +10% crush attack for siege engines.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }
