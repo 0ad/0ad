@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-12-15 20:05+0000\n"
-"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
+"PO-Revision-Date: 2016-12-20 20:26+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Es sāku masīvu militāru kampaņu pret %(_player_)s, nāc pievienojies
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Es izvēršu uzbrukumu pret %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:13
 #, javascript-format
@@ -37,19 +38,19 @@ msgstr "Es tikko nosūtīju armiju pret %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr ""
+msgstr "Ļauj man pārgrupēt savu armiju un es esmu ar tevi pret %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
-msgstr ""
+msgstr "Es veicu pēdējos sagatavošanas darbus un uzbrukšu %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:38
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, as I have another"
 " attack foreseen against %(_player_2)s."
-msgstr ""
+msgstr "Es pagaidām nevaru tev palīdzēt pret %(_player_)s, jo man ir padomā cits uzbrukums pret %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
@@ -61,7 +62,7 @@ msgstr "Piedod, man pašlaik nav pietiekami daudz karavīru, bet mana nākamā u
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr ""
+msgstr "Lūk ir dāvana %(_player_)s, lai noder!"
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
@@ -73,7 +74,7 @@ msgstr "Es redzu ka tu esi sliktā siluācijā %(_player_)s, es ceru tas palīdz
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
-msgstr ""
+msgstr "%(_player_)s, šoreiz es tev palīdzēšu, bet pacenties nākotnē iekrāt vairāk resursus!  "
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
@@ -85,13 +86,13 @@ msgstr "Man ir nepieciešami %(resource)s, vai tu vari man palīdzēt? Es tev to
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Es varētu efektīvāk piedalīties mūsu kopējā karā, ja tu varētu man veltīt nedaudz %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr ""
+msgstr "Ja tev ir %(resource)s pārpalikumi, tas ļautu man stiprināt manu armiju."
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
@@ -110,7 +111,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
-msgstr ""
+msgstr "Es attīstos uz %(phase)s."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
@@ -131,29 +132,29 @@ msgstr "%(_player_)s un es tagad esam sabiedrotie."
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr ""
+msgstr "Uzmanību. Šī ir attīstīta līmeņa apmācība un norit diezgan ātri. Ja jums neizdodas turēt līdzi, vienkārši restartējie un sāciet atkal. Caur praksi uz izcilību!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Sāksim! Vispirms apmāciet 5 sieviešu pilsoņu grupu (shift+klikšķis) CC (civilajā centrā)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Tagad norīkojiet sievietes pilsones vākt ogas, savu jātnieku medīt vistas un pilsoņus kareivjus cirst kokus!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Tagad uzstādiet sava civilā centra satikšanās vietu uz ogām."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Ielieciet apmācību rindā pēc sievietēm pilsonēm dažus lingotājus, jums nepietiks resursu grupai."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
@@ -165,15 +166,15 @@ msgstr "Kad tavas pilsones ir pabeigušas apmācības, izmanto 4 lai tuvumā uzb
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Uzstādiet CC satikšanās vietu uz tuvējiem kokiem, ielieciet rindā vēl lingotājus, šobrīd jums nepieciešams apmācīt 6."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr ""
+msgstr "Ielieciet rindā 5 sieviešu pilsoņu grupu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Lietojiet shift-klikšķis ieliktu rindā vēl vienu māju 4 celtniekiem."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
@@ -190,11 +191,11 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Ielieciet rindā vēl 5 sieviešu pilsoņus."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Izmantojiet sievieti pilsoni, lai iekārtotu lauku blakus jūsu CC."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
@@ -212,7 +213,7 @@ msgstr "Izmanto vēl 2-3 pilsones lai izveidot lauku."
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Pievienot rindai vēl vienu māju."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
@@ -222,7 +223,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr ""
+msgstr "Ielieciet rindā vēl 5 sievietes pilsoņes, kurām būs iegūt akmeņus."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
@@ -238,11 +239,11 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr ""
+msgstr "Pievieno būvniecības rindai vēl vienu māju."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr ""
+msgstr "Ielieciet rindā papildus 5 sievietes pilsoņes, kurām būs iegūt koku."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
@@ -258,19 +259,19 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
+msgstr "Ielieciet rindā vēl 5 sieviešu pilsoņu grupu. Viņas iegūs koku."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr ""
+msgstr "Ielieciet rindā šķēpnešu grupu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr ""
+msgstr "Pētiet akmeņu iegūšanas tehnoloģiju glabātuvē."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
-msgstr ""
+msgstr "Ielieciet rindā lingotāju grupu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:158
 msgid ""
@@ -287,11 +288,11 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
-msgstr ""
+msgstr "Ielieciet rindā šķēpnešu grupu, kuriem būs iegūt koku."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:178
 msgid "Next queue a batch of slingers."
-msgstr ""
+msgstr "Tālāk ielieciet rindā lingotāju grupu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:183
 msgid ""
@@ -300,18 +301,18 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
-msgstr ""
+msgstr "Sāciet 2. fāzes izpēti."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
-msgstr ""
+msgstr "Ielieciet rindā dažus lingotājus."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
 msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr ""
+msgstr "Kad esat attīstījušies, izmantojiet vienu pilsoni kareivi un ielieciet pamatus kazarmām. Tad izmantojiet visas pilsones sievietes, kas nav iesaistītas pārtikās iegūšanā vai māju būvniecībā, lai to uzbūvētu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
@@ -333,13 +334,13 @@ msgstr ""
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
-msgstr ""
+msgstr "Šajā brīdī jums jābūt spējīgiem izmantot abas apmācību būves, turpiniet norīkot vienības ekonomikas darbā, lai turpinātu augt ātrāk un ātrāk."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
-msgstr ""
+msgstr "No šī brīža jums ir labs pamats, lai uzbūvētu armiju un iznīcinātu opozīciju."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
@@ -349,19 +350,19 @@ msgstr "Galvenās lietas kas jāatceras:"
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr ""
+msgstr "- Neatstājiet vienības bez darba! Darbu sarindošana ar shift klikšķi un satikšanās vietas ir ļoti noderīgas."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
-msgstr ""
+msgstr "- Izmantojiet visus savus resursus, resursu noliktavās ir to izniekošana, pārāk daudzu resursu ir izšķērdība."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr ""
+msgstr "- Izmantojiet piemērotas vienības atbilstošiem uzdevumiem - sievietes pilsontes gādā pārtiku, jātnieki medī, pilsoņi kareivji dara pārējo. Taču ņemiet vērā sieviešu auru un izmaksas resursu trūkuma apstākļos..."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
@@ -372,13 +373,13 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
+msgstr "- Uzbūvējiet pietiekami daudz mājas, jūsu CC jābūt aizņemtam ar apmācībām cik ilgi vien iespējams."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr ""
+msgstr "- Sievietes pilsones ir lētas, tā kā vairākas no tām var apmācīt un tādējādi iegūt vēl vairāk resursu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
@@ -463,13 +464,13 @@ msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr ""
+msgstr "Pavēliet saviem nenodarbinātiem strēlniekiem būvēt priekšposteni jūsu teritorijas ziemeļaustrumu stūrī. Šī būs piektā ciemata līmeņa būve ko uzbūvēsiet, ļaujot jums attīstīties līdz Pilsētas fāzei."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr ""
+msgstr "Atkal izvēlēties civilo centru un attīstīties līdz Pilsētas fāzei klikšķinot uz 'II' ikonas. Tas ļaujs jums būvēt Pilsētas fāzes būves."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
@@ -481,41 +482,41 @@ msgstr ""
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr ""
+msgstr "Uzbūvējiet tuvumā Kazarmas. Tiklīt ir sasniegts jūsu populācijas limits, uzbūvējiet papildus māju, izmantojot pieejamās būvnieku vienības."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
 "Prepare for an attack by an enemy player. Build more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr ""
+msgstr "Sagatavojieties ienaidnieka spēlētāja uzbrukumam. Apmāciet vairāk karavīru kazarmās, un pavēliet brīvajiem kareivjiem uzbūvēt Aizsardzības torni netālu no jūsu priekšposteņa."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr ""
+msgstr "Uzbūvējiet kalēja darbnīcu un pēties Kājnieku apmācību tehnoloģiju (zobena ikona), lai uzlabotu kājnieku ciršanas uzbrukumu."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Ienaidnieks nāk! Apmāciet vairāk karavīrus cīņai ar ienaidniekiem!"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
 "The enemy's attack has been defeated. Now build a market and temple while "
 "assigning new units to gather any required resources."
-msgstr ""
+msgstr "Ienaidnieka uzbrukums ir atvairīts. Tagad uzbūvējiet tirgu un templi, kamēr norīkojat jaunas vienības kāda nepieciešama resursa iegūšanai."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:104
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr ""
+msgstr "Tagad, kad Lielpilsētas fāze priekšnosacījumi ir izpildīti, izvēlieties savu Civilo centru un attīstīties līdz Lielpilsētas fāzei."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr ""
+msgstr "Tagad, kad esat Lielpilsētas fāzē, uzbūvējiet tuvumā cietoksni un lietojiet to 2 mūru dragājamo ierīču būvei."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
@@ -528,11 +529,11 @@ msgstr ""
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr ""
+msgstr "Ir atklāta ienaidnieka bāze, sūtiet savus aplenkuma mehānismus un visus atlikušos kareivjus tās iznīcināšanai."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "Ienaidnieks uzvarēts. Tagad visi apmācību uzdevumi izpildīti..."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
@@ -542,17 +543,17 @@ msgstr "%(name)s nevar tikt uzbūvēts nezināmas kļūdas dēļ"
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr ""
+msgstr "%(name)s nevar tikt uzbūvēts neatklātā vietā"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr ""
+msgstr "%(name)s nevar tikt būvēts virsū citai būvei vai resursam"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr ""
+msgstr "%(name)s nevar tikt būvēts uz neatbilstoša reljefa"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -566,7 +567,7 @@ msgstr "savs"
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "atslēdza savējo"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -601,12 +602,12 @@ msgstr "ienaidnieks"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr ""
+msgstr "%(name)s nevar tikt būvēts %(territoryType)s teritorijā. Derīgas teritorijas: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:253
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr ""
+msgstr "%(name)s jābūvē uz derīgas piekrastes"
 
 #: simulation/components/BuildRestrictions.js:277
 #, javascript-format
@@ -616,9 +617,9 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(name)s pārāk tuvu pie %(category)s, jābūt vismaz %(distance)s metru attālumā"
+msgstr[1] "%(name)s pārāk tuvu pie %(category)s, jābūt vismaz %(distance)s metra attālumā"
+msgstr[2] "%(name)s pārāk tuvu pie %(category)s, jābūt vismaz %(distance)s metru attālumā"
 
 #: simulation/components/BuildRestrictions.js:299
 #, javascript-format
@@ -626,9 +627,9 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(name)s pārāk tālu no %(category)s, jābūt ne tālāk par %(distance)s metriem"
+msgstr[1] "%(name)s pārāk tālu no %(category)s, jābūt ne tālāk par %(distance)s metru"
+msgstr[2] "%(name)s pārāk tālu no %(category)s, jābūt ne tālāk par %(distance)s metriem"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -674,36 +675,36 @@ msgstr "Pēdējais atlikušais spēlētājs uzvar."
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s būvju skaita limits %(limit)s sasniegts "
 
 #: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s vienību limits %(limit)s sasniegts"
 
 #: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s limits %(limit)s sasniegts"
 
 #: simulation/components/Player.js:264
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:266
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:268
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:270
 #, javascript-format
@@ -711,31 +712,31 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Nepietiek resursu - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:402
 msgid "The production queue is full."
-msgstr ""
+msgstr "Ražošanas rinda ir pilna."
 
 #: simulation/components/ProductionQueue.js:781
 msgid "Can't find free space to spawn trained units"
-msgstr ""
+msgstr "Nevar atrast brīvu vietu, kur iznākt apmācītām vienībām"
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Jums jāizvēlas būve, kas apmāca vienības."
 
 #: simulation/helpers/Commands.js:128
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Šmaukšanās - kontrolēt visas vienības)"
 
 #: simulation/helpers/Commands.js:140
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(Šmaukšanās - atklāt karti)"
 
 #: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Šmaukšanās - paaugstinātas vienības)"
 
 #: simulation/helpers/Commands.js:692
 msgid ""
@@ -745,24 +746,24 @@ msgstr ""
 
 #: simulation/helpers/Commands.js:702
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "Nevar uzlabot vienību garnizonā."
 
 #: simulation/helpers/Commands.js:748
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Pieprasīts uzbrukums pret %(_player_)s."
 
 #: simulation/helpers/Commands.js:785
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Nav iespējams izvest garnizona vienību(-as)"
 
 #: simulation/helpers/Commands.js:799
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "Daža(s) vienība(s) nevar atgriezties pie darba"
 
 #: simulation/helpers/Commands.js:1054
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Būves tehnoloģisks priekšnosacījums nav sasniegts."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -834,15 +835,15 @@ msgstr "Ārprātīgs (2x)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Tīt uz priekšu (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Tīt uz priekšu (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Tīt uz priekšu (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -850,7 +851,7 @@ msgstr "Sakauj visus pretiniekus lai uzvarētu."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Pilnīga uzvara"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all enemy structures to win."
@@ -858,7 +859,7 @@ msgstr "Lai uzvarētu iznīcini visas ienaidnieka konstrukcijas."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Būvju uzvara"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
@@ -866,7 +867,7 @@ msgstr "Lai uzvarētu nogalini visas ienaidnieka vienības."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Vienību uzvara"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
@@ -874,13 +875,13 @@ msgstr "Sakauj pretiniekus nogalinot viņu varoni."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr "Karaļa Slepkavība"
+msgstr "Varoņa slepkavība"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
 "Be the first to build or capture a wonder and keep it for a certain time to "
 "win the game."
-msgstr ""
+msgstr "Esiet pirmais kas uzbūvē vai ieņem brīnumu un patur to noteiktu laiku, lai uzvarētu."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -946,21 +947,21 @@ msgstr "Gigantiska"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "MI Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra ir 0 A.D. noklusējuma MI robots. Lūdzu ziņojiet par problēmām Wildfire Games (skatīt saiti galvenajā izvēlnē).\n\nMI ir samazināta/palielināta resursu ieguve (gan iegūšanas ātrumam, gan tirdzniecības peļņai) atkarībā no līmeņa sākot ar 0.5 Smilškastei līdz 1.6 Ļoti grūtajā (Vidējais = 1.0). Papildus tam Smilškastes līmenī MI nepaplašinās un neuzbrūk."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
-msgstr ""
+msgstr "Konsultācijas MI"
 
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "Apmācību MI jātiek lietotajm tikai \"Ievadapmācību\" scenārijā."

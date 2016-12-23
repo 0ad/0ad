@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-12 09:00+0100\n"
-"PO-Revision-Date: 2016-12-16 14:03+0000\n"
+"PO-Revision-Date: 2016-12-20 13:34+0000\n"
 "Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -305,7 +305,7 @@ msgstr "Vērtējama spēle."
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Kad izpēles uzvarētājs tiks noskaidrots, tad pie ieejas tiks saskaitīti punkti."
+msgstr "Kad izpēles uzvarētājs tiks noskaidrots, tad priekšnamā tiks saskaitīti punkti."
 
 #: gui/common/gamedescription.js:217
 msgid "Locked Teams"
@@ -335,7 +335,7 @@ msgstr "Tikai viens spēlētājs var uzvarēt spēli. Ja atlikušie spēlētāji
 
 #: gui/common/gamedescription.js:233
 msgid "Allied Victory"
-msgstr "Sabiedroto Uzvara"
+msgstr "Sabiedroto uzvara"
 
 #: gui/common/gamedescription.js:234
 msgid ""
@@ -364,7 +364,7 @@ msgstr "Kartes Nosaukums"
 
 #: gui/common/gamedescription.js:257
 msgid "Map Type"
-msgstr "Kartes Veids"
+msgstr "Kartes veids"
 
 #: gui/common/gamedescription.js:266
 msgid "Map Size"
@@ -372,7 +372,7 @@ msgstr "Kartes Izmērs"
 
 #: gui/common/gamedescription.js:273
 msgid "Map Description"
-msgstr "Kartes Apraksts"
+msgstr "Kartes apraksts"
 
 #: gui/common/gamedescription.js:276
 msgid "Randomly selects a map from the list"
@@ -380,7 +380,7 @@ msgstr "Nejauši izvēlēta karte no saraksta"
 
 #: gui/common/gamedescription.js:285
 msgid "Starting Resources"
-msgstr "Sākuma Resursi"
+msgstr "Sākotnējs resursu līmenis"
 
 #: gui/common/gamedescription.js:286
 #, javascript-format
@@ -405,7 +405,7 @@ msgstr "Izpētītā Karte"
 
 #: gui/common/gamedescription.js:319
 msgid "Cheats"
-msgstr "Cheats"
+msgstr "Šmaukšanās"
 
 #: gui/common/gamedescription.js:324 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -668,19 +668,19 @@ msgstr "Ieņemšanas uzbrukums:"
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
-msgstr "Cirst"
+msgstr "Ciršanas"
 
 #: gui/common/tooltips.js:16
 msgid "Pierce"
-msgstr "Durt"
+msgstr "Duršanas"
 
 #: gui/common/tooltips.js:17
 msgid "Crush"
-msgstr "Dragāt"
+msgstr "Dragāšanas"
 
 #: gui/common/tooltips.js:59
 msgid "Health:"
-msgstr "Veselība"
+msgstr "Veselība:"
 
 #: gui/common/tooltips.js:68
 #, javascript-format
@@ -985,7 +985,7 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:612
 msgid "Classes:"
-msgstr "Klases"
+msgstr "Klases:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
@@ -1010,7 +1010,7 @@ msgstr "Nekāds"
 
 #: gui/locale/locale_advanced.js:92
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1101,7 +1101,7 @@ msgstr "Apstiprinājums"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Scenāriju redaktors nav pieejams vai neveiksmīgi ielādējies. Skatiet spēles žurnālus papildus informācijai."
 
 #: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
 msgid "Error"
@@ -1109,7 +1109,7 @@ msgstr "Kļūda"
 
 #: gui/pregame/mainmenu.js:277
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Ienākt vairāku spēlētāju priekšnamā. \\[Atslēgts ar būvējumu]"
 
 #: gui/pregame/mainmenu.js:282 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
@@ -1122,7 +1122,7 @@ msgstr "Rokasgrāmata"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Jums nav aktīvi tie paši modi kā atkārtojumam."
 
 #: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:114
 #, javascript-format
@@ -1132,11 +1132,11 @@ msgstr "Nepieciešams: %(mods)s"
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:117
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Aktīvi: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Atkārtojums nav savietojams ar jūsu spēles versiju."
 
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
@@ -1150,19 +1150,19 @@ msgstr "Nepieciešamā versija: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Nesavietojams atkārtojums"
 
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
-msgstr ""
+msgstr "Nav pieejami kopsavilkuma dati."
 
 #: gui/replaymenu/replay_actions.js:157
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Vai tiešām vēlaties izdzēst šo atkārtojumu pavisam?"
 
 #: gui/replaymenu/replay_actions.js:158
 msgid "Delete replay"
-msgstr ""
+msgstr "Dzēst atkārtojumu"
 
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
@@ -1218,15 +1218,15 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr "Vienspēlētāja un vairāku"
+msgstr "Viena un vairāku spēlētāju"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
-msgstr "Vienspēlētāja"
+msgstr "Viena spēlētāja"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
-msgstr "Vairākspēlētāju"
+msgstr "Vairāki spēlētāji"
 
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
@@ -1247,7 +1247,7 @@ msgstr "Nevērtētas spēles"
 
 #: gui/replaymenu/replay_menu.js:192
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr ""
+msgstr "Filtrēt atkārtojumu rakstot vienu vai vairākus, daļējus vai pilnus spēlētāju vārdus."
 
 #: gui/replaymenu/replay_menu.js:303
 msgid "yyyy-MM-dd HH:mm"
@@ -1268,7 +1268,7 @@ msgstr "Modi: %(mods)s"
 
 #: gui/savedgames/load.js:89
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Šī saglabātā spēle var nebūt savietojama:"
 
 #: gui/savedgames/load.js:94
 #, javascript-format
@@ -1286,11 +1286,11 @@ msgstr "Tam ir nepieciešama vecāka 0 A.D. versija."
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "0 A.D. saglabātai spēlei nepieciešama versija %(requiredVersion)s, kamēr jūsu saglabātas spēles versija ir %(currentVersion)s."
 
 #: gui/savedgames/load.js:113
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Saglabātai spēlei nepieciešama cita modu kopa:"
 
 #: gui/savedgames/load.js:122
 msgid "Do you still want to proceed?"
@@ -1298,16 +1298,16 @@ msgstr "Vai jūs vēl vēlaties turpināt?"
 
 #: gui/savedgames/save.js:63
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "Saglabāta spēle tiks neatgriezēniski pārrakstīta, vai esat pārliecināti!"
 
 #: gui/savedgames/save.js:64
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "PĀRRAKSTĪT SAGLABĀTO"
 
 #: gui/structree/load.js:132
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
-msgstr ""
+msgstr "%(val1)s līdz %(val2)s"
 
 #: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
 #: gui/summary/layout.js:97 gui/summary/layout.js:142
@@ -1388,7 +1388,7 @@ msgstr "Zaudētas"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
-msgstr "Kājinieki"
+msgstr "Kājnieks"
 
 #: gui/summary/layout.js:62
 msgid "Cavalry"
@@ -1521,7 +1521,7 @@ msgstr "Sakauts"
 
 #: gui/summary/summary.js:154
 msgid "Are you sure you want to quit the lobby?"
-msgstr "Vai tiešām iziet no ieejas?"
+msgstr "Vai tiešām iziet no priekšnama?"
 
 #: gui/summary/summary.js:205
 msgid "Current Scores"
@@ -1577,7 +1577,7 @@ msgstr "Aizvērt"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr "0 A.D. kredīti"
+msgstr "0 A.D. pateicības"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1670,7 +1670,7 @@ msgstr "Skaņas iestatījumi"
 
 #: gui/options/options.xml:(caption):61
 msgid "Lobby Settings"
-msgstr ""
+msgstr "Priekšnama iestatījumi"
 
 #: gui/options/options.xml:(caption):73
 msgid "Reset"
@@ -1686,7 +1686,7 @@ msgstr "Saglabāt"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Atiestatīt lietotāja iestatījumus uz spēles noklusētajiem"
 
 #: gui/options/options.xml:(tooltip):79
 msgid "Reverts to previous saved settings"
@@ -1708,7 +1708,7 @@ msgstr "Palīdzi uzlabot 0 A.D.!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Jūs varat automātiski sūtīt mums anonīmas atsauksmes, kas mums palīdzēs izlabot kļūdas un uzlabot spēles ātrdarbību un saderību."
+msgstr "Jūs varat automātiski sūtīt mums anonīmas atgriezēniskās saites atsauksmes, kas mums palīdzēs izlabot kļūdas un uzlabot spēles ātrdarbību un saderību."
 
 #: gui/pregame/mainmenu.xml:90
 msgid "Thank you for helping improve 0 A.D.!"
@@ -1716,7 +1716,7 @@ msgstr "Paldies par palīdzību 0 A.D. uzlabošanā!"
 
 #: gui/pregame/mainmenu.xml:92
 msgid "Anonymous feedback is currently enabled."
-msgstr "šobrīd ir aktivizēta anonīmu atsauksmju sūtīšana."
+msgstr "Šobrīd aktivizēta anonīmu atgriezēniskās saites atsauksmju sūtīšana."
 
 #: gui/pregame/mainmenu.xml:94
 msgid "Status: $status."
@@ -1734,11 +1734,11 @@ msgstr "BRĪDINĀJUMS: Šī spēle ir agrīnā izstrādes stadijā. Daudzas no i
 
 #: gui/pregame/mainmenu.xml:(caption):68
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Iespējot atsauksmes"
 
 #: gui/pregame/mainmenu.xml:(caption):99
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Atslēgt atsauksmes"
 
 #: gui/pregame/mainmenu.xml:(caption):166
 #: gui/structree/structree.xml:(caption):18
@@ -1751,7 +1751,7 @@ msgstr "Vēsture"
 
 #: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
-msgstr "Spēles"
+msgstr "Spēlēt"
 
 #: gui/pregame/mainmenu.xml:(caption):222
 msgid "Campaigns"
@@ -1759,7 +1759,7 @@ msgstr "Kampaņas"
 
 #: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
-msgstr "Turpināt saglabātu spēli"
+msgstr "Ielādēt saglabātu spēli"
 
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):262
@@ -1768,11 +1768,11 @@ msgstr "Pievienoties spēlei"
 
 #: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
-msgstr ""
+msgstr "Izmitināt spēli"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
-msgstr ""
+msgstr "Spēles priekšnams"
 
 #: gui/pregame/mainmenu.xml:(caption):322
 msgid "Options"
@@ -1780,7 +1780,7 @@ msgstr "Opcijas"
 
 #: gui/pregame/mainmenu.xml:(caption):355
 msgid "Replays"
-msgstr ""
+msgstr "Atkārtojumi"
 
 #: gui/pregame/mainmenu.xml:(caption):369
 msgid "Scenario Editor"
@@ -1836,7 +1836,7 @@ msgstr "Atvērt 0 A.D. Spēles Rokasgrāmatu."
 
 #: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Parādīt 0 A.D. civilizāciju būvju koku."
 
 #: gui/pregame/mainmenu.xml:(tooltip):184
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1844,29 +1844,29 @@ msgstr "Uzzini par daudzajām civilizācijām, kas ir pieejamas spēlē 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):209
 msgid "Click here to start a new single player game."
-msgstr "Nospiediet šeit, lai sāktu jaunu vienspēlētāja spēli."
+msgstr "Nospiediet šeit, lai sāktu jaunu viena spēlētāja spēli."
 
 #: gui/pregame/mainmenu.xml:(tooltip):223
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr ""
+msgstr "Piedzīvojiet vēsturi caur vēsturiskām militārām kampaņām. \\[VĒL NAV REALIZĒTS]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Click here to load a saved game."
-msgstr "Nospiediet šeit, lai turpinātu saglabāto spēli."
+msgstr "Nospiediet šeit, lai ielādēt saglabāto spēli."
 
 #: gui/pregame/mainmenu.xml:(tooltip):263
 msgid "Joining an existing multiplayer game."
-msgstr "Pievienoties eksistējošai vairākspēlētāju spēlei."
+msgstr "Pievienoties eksistējošai vairāku spēlētāju spēlei."
 
 #: gui/pregame/mainmenu.xml:(tooltip):278
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr ""
+msgstr "Izmitināt vairāku spēlētāju spēli.\\n\\nNepieciešams lai UDP ports 20595 būtu atvērts."
 
 #: gui/pregame/mainmenu.xml:(tooltip):293
 msgid "Launch the multiplayer lobby."
-msgstr ""
+msgstr "Ienākt vairāku spēlētāju priekšnamā. "
 
 #: gui/pregame/mainmenu.xml:(tooltip):323
 msgid "Adjust game settings."
@@ -1878,7 +1878,7 @@ msgstr "Izvēlēties spēles valodu."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
-msgstr ""
+msgstr "Skatiet iepriekšējo spēļu atkārtojumus novērotāju režīmā."
 
 #: gui/pregame/mainmenu.xml:(tooltip):370
 msgid ""
@@ -1892,13 +1892,13 @@ msgstr "Parādīt Sagaidīšanas Ekrānu. Noderīgi ja to kļūdas pēc noslēpi
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr ""
+msgstr "Izvēlēties modu izmantošanai."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
-msgstr ""
+msgstr "Mācieties spēlēt, atklājiet tehnoloģiju kokus un civilizāciju vēsturi."
 
 #: gui/pregame/mainmenu.xml:(tooltip):468
 msgid "Challenge the computer player to a single player match."
@@ -1928,7 +1928,7 @@ msgstr "Nospiediet, lai atvērtu 0 A.D. IRC tērzētavu savā tīmekļa pārlūk
 
 #: gui/pregame/mainmenu.xml:(tooltip):572
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klikšķiniet un apmeklējiet 0 A.D. Trac, lai ziņotu par kļūdu, sabrukšanu vai nepilnību."
 
 #: gui/pregame/mainmenu.xml:(tooltip):584
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -1936,20 +1936,20 @@ msgstr "Nospied lai atvērtu 0 A.D. tulkošanas lapu savā interneta pārlūkā.
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Klikšķiniet un skatiet 0 A.D. pateicības."
 
 #: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
-msgstr ""
+msgstr "Spēļu atkārtojumi"
 
 #: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Filtrēt savietojamus atkārtojumus"
 
 #: gui/replaymenu/replay_menu.xml:(caption):164
 #: gui/savedgames/load.xml:(caption):58
 msgid "Map Type:"
-msgstr "Kartes Veids:"
+msgstr "Kartes veids:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):179
 #: gui/savedgames/load.xml:(caption):62
@@ -1986,7 +1986,7 @@ msgstr "Pārskats"
 
 #: gui/replaymenu/replay_menu.xml:(caption):262
 msgid "Start Replay"
-msgstr ""
+msgstr "Sākt atkārtojumu"
 
 #: gui/replaymenu/replay_menu.xml:(heading):86
 msgctxt "replay"
@@ -2028,7 +2028,7 @@ msgstr "Spēlētais laiks:"
 
 #: gui/savedgames/save.xml:(caption):16
 msgid "Save Game"
-msgstr "Saglabāt Spēli"
+msgstr "Saglabāt spēli"
 
 #: gui/savedgames/save.xml:(caption):30
 msgid "Description:"
@@ -2036,15 +2036,15 @@ msgstr "Apraksts:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr ""
+msgstr "Laipni lūgti!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Rādīt šo paziņojumu nākotnē"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Zināmas problēmas (tīmeklī)"
 
 #: gui/structree/structree.xml:(caption):30
 msgid "Civilization:"
@@ -2080,7 +2080,7 @@ msgstr "Dažādi"
 
 #: gui/summary/summary.xml:(caption):156
 msgid "Replay"
-msgstr ""
+msgstr "Parādīt atkārtojumu"
 
 #: gui/summary/summary.xml:(caption):161
 msgid "Continue"
@@ -2088,11 +2088,11 @@ msgstr "Turpināt"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Vadošais mākslinieks"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Skaņas pārvaldnieks"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
@@ -2100,23 +2100,23 @@ msgstr "Komponists"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Mākslinieciskie pārvaldnieki"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Mapju veidošana"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Nejaušu karšu skripti"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D māksla"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D māksla"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2202,19 +2202,19 @@ msgstr "Ziedotāji"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Vadītājs"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
-msgstr ""
+msgstr "Vēstures atsauces"
 
 #: gui/credits/texts/misc.jsonContent[1].Title
 msgid "Community and Management"
-msgstr ""
+msgstr "Kopiena un pārvaldība"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Programmēšanas vadītāji"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
@@ -2222,11 +2222,11 @@ msgstr "Īpašas Pateicības"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "Programmēšana"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "Pieminot"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
@@ -2238,7 +2238,7 @@ msgstr "Projektu Vadītāji"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Līdzvadošie dizaineri"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -2254,7 +2254,7 @@ msgstr "Nevienam vēsturniekam netika nodarīts kaitējums šī projekta attīst
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr ""
+msgstr "Īpašas pateicības"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
@@ -2270,35 +2270,35 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
-msgstr ""
+msgstr "Kā jūs uzrunāt viena spēlētaja spēlēs."
 
 #: gui/options/options.jsongeneralSetting[0].label
 msgid "Playername (Single Player)"
-msgstr ""
+msgstr "Spēlētāja vārds (Viena lietotāja)"
 
 #: gui/options/options.jsongeneralSetting[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Kā jūs uzrunāt vairāku spēlētāju spēlēs (izņemot priekšnamu)."
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Playername (Multiplayer)"
-msgstr ""
+msgstr "Spēlētāja vārds (Vairāku spēlētāju)"
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Palaist 0 A.D. logā"
 
 #: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Loga režīms"
 
 #: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"
-msgstr ""
+msgstr "Uzlikt viena spēlētāja spēli uz pauzi, kad logs zaudē fokusu"
 
 #: gui/options/options.jsongeneralSetting[3].label
 msgid "Background Pause"
-msgstr ""
+msgstr "Fona pārtraukums"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
@@ -2308,7 +2308,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Atslēgt Laipni lūgti ekrānu"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid ""
@@ -2317,11 +2317,11 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Detalizēti iznirstošie padomi"
 
 #: gui/options/options.jsongeneralSetting[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Parādīt kuram spēlētājam ir slikts savienojums vairāku spēlētāju spēlēs. "
 
 #: gui/options/options.jsongeneralSetting[6].label
 msgid "Network Warnings"
@@ -2329,7 +2329,7 @@ msgstr "Tīkla Brīdinājumi"
 
 #: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "Rādīt kadrus sekundē augšējā labējā stūrī."
 
 #: gui/options/options.jsongeneralSetting[7].label
 msgid "FPS Overlay"
@@ -2337,7 +2337,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "Rādīt pašreizējo sistēmas laiku augšējā labējā stūrī."
 
 #: gui/options/options.jsongeneralSetting[8].label
 msgid "Realtime Overlay"
@@ -2345,7 +2345,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "Rādīt pašreizējo simulācijas laiku augšējā labējā stūrī."
 
 #: gui/options/options.jsongeneralSetting[9].label
 msgid "Gametime Overlay"
@@ -2362,19 +2362,19 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[11].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
-msgstr ""
+msgstr "Saglabājiet un atjaunojiet matča iestatījumus ātrai atkal izmantošanai izmitinot nākamo spēli"
 
 #: gui/options/options.jsongeneralSetting[11].label
 msgid "Persist Match Settings"
-msgstr ""
+msgstr "Saglabāt matča iestatījumus"
 
 #: gui/options/options.jsongeneralSetting[12].tooltip
 msgid "Allow observers to join the game after it started"
-msgstr ""
+msgstr "Ļaut noverotājiem pievienoties spēlei pēc tās sākuma"
 
 #: gui/options/options.jsongeneralSetting[12].label
 msgid "Late Observer Joins"
-msgstr ""
+msgstr "Novērotāju vēlāka pievienošanās"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
@@ -2386,11 +2386,11 @@ msgstr "Novērotāju Limits"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Number of units trained per batch"
-msgstr ""
+msgstr "Grupas apmācību vienību skaits"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Batch Training Size"
-msgstr ""
+msgstr "Grupas apmācību izmērs"
 
 #: gui/options/options.jsongeneralSetting[15].tooltip
 msgid ""
@@ -2479,15 +2479,15 @@ msgstr "Augsts"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Grafikas kvalitāte. NEPIECIEŠAMS SPĒLES RESTARTS"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Graphics quality"
-msgstr ""
+msgstr "Grafikas kvalitāte"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
-msgstr ""
+msgstr "Iespējot ēnas"
 
 #: gui/options/options.jsongraphicsSetting[3].label
 msgid "Shadows"
@@ -2507,15 +2507,15 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[5].label
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Vienību silueti"
 
 #: gui/options/options.jsongraphicsSetting[6].tooltip
 msgid "Enable particles"
-msgstr ""
+msgstr "Iespējot daļinas"
 
 #: gui/options/options.jsongraphicsSetting[6].label
 msgid "Particles"
-msgstr ""
+msgstr "Daļinas"
 
 #: gui/options/options.jsongraphicsSetting[7].tooltip
 msgid ""
@@ -2547,11 +2547,11 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[10].tooltip
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "Iespēju spoguļ atspulgus ūdenī"
 
 #: gui/options/options.jsongraphicsSetting[10].label
 msgid "Water Reflections"
-msgstr ""
+msgstr "Ūdens atspulgi"
 
 #: gui/options/options.jsongraphicsSetting[11].tooltip
 msgid "Use a real water refraction map and not transparency"
@@ -2563,7 +2563,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[12].tooltip
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "Mest ēnas uz ūdens"
 
 #: gui/options/options.jsongraphicsSetting[12].label
 msgid "Shadows on Water"
@@ -2579,7 +2579,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Render Sky"
-msgstr ""
+msgstr "Renderēt debesis"
 
 #: gui/options/options.jsongraphicsSetting[14].label
 msgid "Show Sky"
@@ -2591,15 +2591,15 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[15].label
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr ""
+msgstr "Ierobežot kadrus sekundē (FPS) līdz 50 visās izvelnēs enerģijas taupīšanai."
 
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "Limit FPS in Menus"
-msgstr ""
+msgstr "Ierobežot FPS izvelnēs"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -2774,7 +2774,7 @@ msgstr "Koks"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  Paldies, ka uzstādījāt 0 A.D. diženo impēriju!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -2815,7 +2815,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- Būvē aplenkuma mehānismus un apmāca pilsoņus-kareivjus."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
@@ -2831,11 +2831,11 @@ msgstr "KAZARMAS"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- Apmāca visa veida pilsoņus-kareivjus. Dažas tautas var atvērt arī čempionu apmācības."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- Pēta militāras katrai tautai unikālas tehnoloģijas."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
@@ -2845,7 +2845,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- Būvējiet bāzes priekšpuse, lai apgādātu savus uzbrukumus ar svagiem spēkiem."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -2853,11 +2853,11 @@ msgstr "KALĒJS"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr ""
+msgstr "- Pētniecības būve visām tautām."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "- Pēta ieroču un bruņu uzlabojumus jūsu vienībām."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid ""
@@ -2935,11 +2935,11 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "CIVILIE CENTRI"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr ""
+msgstr "- Jūsu jaunās kolonijas \"pamats\"."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -2959,7 +2959,7 @@ msgstr "VĒSTNIECĪBAS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr ""
+msgstr "- Īpašas \"Kazarmas\" pieejamas Kartāgiešu tautai."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
@@ -2985,7 +2985,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "- Zvejošana ir ātrāka nekā pārtikas audzēšana laukos."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
@@ -2995,7 +2995,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- Uzmanīgi! Zivis nav neizsmeļams resurss! "
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -3041,7 +3041,7 @@ msgstr ""
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "- Jo augstāka ir Pilsoņu-Kareivju pakāpe (Attīstīta, Elites), jo labāk tie cīnās, taču mazāk efektīvi iegūst resursus."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3059,7 +3059,7 @@ msgstr ""
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr ""
+msgstr "- Strēlnieki kustas ātrāk kamēr viņs dzīvo."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3071,11 +3071,11 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- Lēti, par 80 kokiem."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "- Tos var ātri uzbūvēt, bet tie ir vāji."
 
 #: gui/text/tips/outposts.txt:8
 msgid ""
@@ -3122,7 +3122,7 @@ msgstr "PERSIEŠU ARHITEKTŪRA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- Īpašā Persiešu tehnoloģija."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
@@ -3303,7 +3303,7 @@ msgstr ""
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- Tik pat kā neievainojama no priekšpuses."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
@@ -3315,7 +3315,7 @@ msgstr "TEMPĻI"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr ""
+msgstr "- Pilsētas fāzes būve."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -3378,12 +3378,12 @@ msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- Vidēja lieluma kara kuģis."
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- Pieejams Romiešiem, Kartāgiešiem, Helēnu tautām un Persiešiem."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
@@ -3391,7 +3391,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "- Novietojiet vienības uz klāja šaušanas spēju uzlabošanai."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
@@ -3421,7 +3421,7 @@ msgstr ""
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- Ātri pārvietojas un var pārslēgties no zobena uz liesmojošo šķēpu."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
@@ -3445,7 +3445,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "- Neizturīgi pret kājnieku strelniekiem."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."

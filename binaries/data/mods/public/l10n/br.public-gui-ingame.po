@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
-# Wanibzh29 <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-02 09:00+0100\n"
-"PO-Revision-Date: 2016-12-18 22:09+0000\n"
-"Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
+"PO-Revision-Date: 2016-12-22 22:52+0000\n"
+"Last-Translator: Yann-Vari Gwiader <yannvari.gwiader@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,33 +49,33 @@ msgstr "Kadarnadenn"
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
 #: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
 #: gui/session/session.js:743 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: gui/session/menu.js:126
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ha sur oc'h e fell deoc'h kuitaat? En ur vont kuit e vo digevreet ar c'hoarierien all."
 
 #: gui/session/menu.js:130 gui/session/menu.js:134
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Ha sur oc'h e fell deoc'h kuitaat?"
 
 #: gui/session/menu.js:155
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Daoust hag-eñ ho peus c'hoant da zizerc'hel pe emaoc'h o vont da zistreiñ a-benn nebeut?"
 
 #: gui/session/menu.js:157
 msgid "I will return"
-msgstr ""
+msgstr "Distreiñ a rin"
 
 #: gui/session/menu.js:157
 msgid "I resign"
-msgstr ""
+msgstr "Dizerc'hel a ran"
 
 #: gui/session/menu.js:177
 msgid "Destroy everything currently selected?"
@@ -105,11 +107,11 @@ msgstr ""
 #: gui/session/menu.js:358 gui/session/messages.js:149
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr ""
+msgstr "Enebour"
 
 #: gui/session/menu.js:370
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:448
 msgid "Request your allies to attack this enemy"
@@ -236,7 +238,7 @@ msgstr ""
 
 #: gui/session/menu.js:872
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:885 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -275,12 +277,12 @@ msgstr ""
 #: gui/session/messages.js:97
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s a zo bet skarzhet kuit"
 
 #: gui/session/messages.js:98
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s en deus dilezet"
 
 #: gui/session/messages.js:120
 msgid "Connection to the server has been authenticated."
@@ -330,7 +332,7 @@ msgstr ""
 
 #: gui/session/messages.js:147 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
-msgstr ""
+msgstr "Skipailh"
 
 #: gui/session/messages.js:150 gui/session/session.js:287
 msgid "Observer"
@@ -363,7 +365,7 @@ msgstr ""
 #: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Flapva an Enebour"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
@@ -386,7 +388,7 @@ msgstr ""
 #: gui/session/messages.js:240
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "Kevredet emaoc'h diwar-vremañ gant %(player)s."
 
 #: gui/session/messages.js:241
 #, javascript-format
@@ -436,17 +438,17 @@ msgstr ""
 #: gui/session/messages.js:667
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Kevredidi"
 
 #: gui/session/messages.js:671
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Enebourien"
 
 #: gui/session/messages.js:677
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Arsellerien"
 
 #: gui/session/messages.js:706 gui/session/selection_details.js:82
 #, javascript-format
@@ -564,7 +566,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:181
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:182 gui/session/selection_details.js:214
 #: gui/session/selection_details.js:261
@@ -733,7 +735,7 @@ msgstr ""
 #: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Feuls"
 
 #: gui/session/selection_panels_helpers.js:28
 msgctxt "stance"
@@ -879,7 +881,7 @@ msgstr ""
 
 #: gui/session/session.js:743
 msgid "Ok"
-msgstr ""
+msgstr "Mat eo"
 
 #: gui/session/session.js:794
 msgctxt "replayFinished"
@@ -894,17 +896,17 @@ msgstr "Kadarnadenn"
 #: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: gui/session/session.js:796
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: gui/session/session.js:876
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
-msgstr ""
+msgstr "Yec'hed :"
 
 #: gui/session/session.js:1018
 #, javascript-format
@@ -1068,7 +1070,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/utility_functions.js:89 gui/session/utility_functions.js:95
 #: gui/session/utility_functions.js:101
@@ -1079,7 +1081,7 @@ msgstr ""
 #: gui/session/utility_functions.js:95 gui/session/utility_functions.js:101
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
@@ -1094,20 +1096,20 @@ msgstr ""
 #: gui/session/chat_window.xml:(caption):58
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Testenn :"
 
 #: gui/session/chat_window.xml:(caption):78
 msgid "Cancel"
-msgstr ""
+msgstr "Nullañ"
 
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Istor"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
-msgstr ""
+msgstr "Kas"
 
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
@@ -1182,7 +1184,7 @@ msgstr "Anv"
 
 #: gui/session/diplomacy_window.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "Sevenadur"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
@@ -1190,15 +1192,15 @@ msgstr ""
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: gui/session/diplomacy_window.xml:(caption):31
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: gui/session/diplomacy_window.xml:(caption):35
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: gui/session/diplomacy_window.xml:(caption):39
 msgid "Tribute"
@@ -1212,11 +1214,11 @@ msgstr "Serriñ"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
-msgstr ""
+msgstr "Flap"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
-msgstr ""
+msgstr "Enrollañ"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Summary"
@@ -1237,7 +1239,7 @@ msgstr ""
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Palioù"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1275,7 +1277,7 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Ya pe get ?"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):13
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):30

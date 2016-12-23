@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wanibzh29 <allannkorh@yahoo.fr>, 2016
+# Anton Bretéché <antonabbreizh@gmail.com>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-18 22:05+0000\n"
-"Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
+"PO-Revision-Date: 2016-12-22 22:44+0000\n"
+"Last-Translator: Anton Bretéché <antonabbreizh@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,11 +59,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Ar Greked o deus graet kalz a berzh en ur Hellenisaat meur a estren. E-pad ar mare hellenistek, ar grekeg a oa lingua franca an hen-bed, komzet e oa kalz etre Bro-Spagn ha Bro-India."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "25% buanoc'h e vez graet al listri."
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -72,21 +75,21 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Un tammig goude an trec'hoù-bras war vor e Salamis ha Mykale, ar c'hêrioù-stad Grek o deus lakaet e-plas Kevre anvet Kevre Delian e 478 a raok J.K., a oa e ball boutañ er maez ar Bersed eus ar rannvro Ejean. Kas a rae ar Stadoù Kevredet listri hag arc'hant tra ma roe an Anteniz holl o morlu."
 
 #: simulation/data/civs/athen.jsonAINames[0]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
-msgstr ""
+msgstr "Temistokles"
 
 #: simulation/data/civs/athen.jsonAINames[1]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].Name
 msgid "Pericles"
-msgstr ""
+msgstr "Perikles"
 
 #: simulation/data/civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Simon"
 
 #: simulation/data/civs/athen.jsonAINames[3]
 msgid "Aristides"
@@ -94,7 +97,7 @@ msgstr ""
 
 #: simulation/data/civs/athen.jsonAINames[4]
 msgid "Xenophon"
-msgstr ""
+msgstr "Xenofon\n"
 
 #: simulation/data/civs/athen.jsonAINames[5]
 msgid "Hippias"
@@ -118,11 +121,11 @@ msgstr ""
 
 #: simulation/data/civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Kleon"
 
 #: simulation/data/civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Kleofon"
 
 #: simulation/data/civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
@@ -131,11 +134,11 @@ msgstr ""
 #: simulation/data/civs/athen.jsonAINames[13]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
-msgstr ""
+msgstr "Ifikrates"
 
 #: simulation/data/civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Demostenes"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
@@ -153,7 +156,7 @@ msgstr ""
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr ""
+msgstr "Mogerioù hir"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -172,7 +175,7 @@ msgstr ""
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr ""
+msgstr "Otismos"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -256,7 +259,7 @@ msgstr ""
 
 #: simulation/data/civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr ""
+msgstr "Stummit harozed ha grit an enklaskoù teknologiezh evit an harozed."
 
 #: simulation/data/civs/athen.jsonStructures[2].History
 msgid ""
@@ -275,7 +278,7 @@ msgstr ""
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Brezhoned"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
@@ -315,7 +318,7 @@ msgstr ""
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
-msgstr ""
+msgstr "Drouized"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
@@ -337,7 +340,7 @@ msgstr ""
 #: simulation/data/civs/brit.jsonAINames[2]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
-msgstr ""
+msgstr "Boudika"
 
 #: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
@@ -353,11 +356,11 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Kommius"
 
 #: simulation/data/civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Komuks"
 
 #: simulation/data/civs/brit.jsonAINames[8]
 msgid "Adminius"
@@ -369,7 +372,7 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
@@ -392,7 +395,7 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -496,7 +499,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr ""
+msgstr "Ammianus Marcellinus en deus diskrivet penaos e oa diaes ha kallet d'ur strollad estrenien da enebiñ ouzh ur C'helt ma c’houlenne sikour digant e wreg. Kalz kreñvoc'h e oa evit na oa he gwaz hag e oa gouest da skeiñ evel ar glav gant kreñvder ur winterezh. Boudika, rouanez an Isened, a oa diskrivet evel-hen « bras-kenañ ha spontus he neuz, raouiet e oa he mouezh hag un dolzennad-vras a vlev rous a ziskenne war he divskoaz. Gwisket e oa gant un doneg lies-liv a oa ur pezh mantell-dev staget gant ur spilhenn warni. Boudika hag he gwaz Prasutagos, roue an Isened, a oa bet, da gentañ, tud kevredet ouzh ar romaned. Prasutagos a oa bet ur c'hevread tost goude un emsavadeg-verr, doujet e veze outañ evit e furnez, ha gant e enebourien gozh dezhañ zoken, a oa deuet da vezañ kevredet dezhañ, ar Romaned. Frank e oa da ren e rouantelezh diouzh hengounioù e bobl dezhañ, war-bouez un netraig. Prasutagos, o verzhout e oa o vont da vervel, gant asant e wreg hag ec'h isurzhied, a felle dezho ez afe hêrezh e c'halloud gant e verc'hed, ha dindan ren Boudika, betek ma teufent d'an oad. Impalaerour Roma a vefe bet an aotroniezh gantañ, en ur zastum an tailhoù ha da vezañ aotreet da c'houlenn da gaout ur skoazell vilourel. Pezh a gloke tamm pe damm d'an emglev en doa bet. Nemet ne veze ket anavezet gant ar Romaned ar maouezed evit bezañ pennher, dre-se o deus kadarnaet, goude marv Prasutagos, ne oa nemet c'hoantoù an impalaer war ar rouantelezh Isenian hag a oa gwir. Ouzhpennet o doa evit neuze an hengoun Roman a lavare e chome ar rouantelezhioù isurzhiet dizalc'h e-pad buhez ar roue orin hepken, evel ma oa c'hoarvezet en Galatie. An impalaeriezh a stagas da vat ar rouantelezh, hag e krogas kerkent da sevel tailhoù-kriz kalet, oc'h arguzenniñ e oa Prasutagos dleour d'ar Romaned, rak n'en devoa ket daskoret meur a amprest en devoa graet a-hed e vuhez. Klemm a reas Boudika a-enep d'an doare-se da ober hag ivez an dispriz a oa graet ouzh c'hoantoù he gwaz, aet da gornog, hag eo bet degemeret en un doare kriz: soudarded  roman a skourjezas anezhi hag he merc'hed, he bugale nemetañ, pallforzhet. En em sevel a reas Boudika hag he sujidi diwar ar vezhekaat-mañ graet d'ar rouanez ha d'he merc'hed. Gouarnour Breizh a oa oc'h en em gannañ ouzh Drouizhed e Kambri, Bro-Gembre a-hiziv, pezh a roas evit neuze an tu da zegas da vBoudika un niver bras a soudarded er maez eus an Isenianed, ha ne oa ket ar meuriad nemetañ e breizh a oa bet disouezhet gant an aloubadeg hag ar bezañs Roman. Boudika hag hec'h arme a raskas teir gêr, a roas lamm d'ul lejion roman, hag e c'houlennet sikour gant eñvor Arminius, ur German anezhañ a oa bet skarzhet gantañ ar Romaned deus e zouaroù, hag o hendadoù dezho o devoa enebet ouzh Sezar war-dro ur c'hantved en o-raok. Boudika a zo bet roet lamm dezhi abalamour d'ur fazi taktik bras e-kerzh emgann Watling Street, pezh a zegasas da beurzistrujidigezh ul lodenn vat eus he nerzhioù na oa ket gouest da vont war-gil. Tec'hout a reas Boudika neuze, hag e lazhas e seizh flac'h, hag ec'h en em lazhas, evit chom hep kaout ur vezhekaadenn all eus perzh ar Romaned."
 
 #: simulation/data/civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -504,7 +507,7 @@ msgstr ""
 
 #: simulation/data/civs/brit.jsonStructures[0].Name
 msgid "Kennel"
-msgstr ""
+msgstr "Loch"
 
 #: simulation/data/civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
@@ -530,7 +533,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
-msgstr ""
+msgstr "Mogerioù tripl"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
@@ -572,33 +575,33 @@ msgstr ""
 #: simulation/data/civs/cart.jsonAINames[0]
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[0].Name
 msgid "Hannibal Barca"
-msgstr ""
+msgstr "Hannibal Barka"
 
 #: simulation/data/civs/cart.jsonAINames[1]
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[1].Name
 msgid "Hamilcar Barca"
-msgstr ""
+msgstr "Hamilcar Barka"
 
 #: simulation/data/civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Hasdrubal Barka"
 
 #: simulation/data/civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "Hasdrubal Gisko"
 
 #: simulation/data/civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
-msgstr ""
+msgstr "Hanno an henañ"
 
 #: simulation/data/civs/cart.jsonAINames[5]
 #: simulation/data/civs/cart.jsonFactions[0].Heroes[2].Name
 msgid "Maharbal"
-msgstr ""
+msgstr "Maharbal"
 
 #: simulation/data/civs/cart.jsonAINames[6]
 msgid "Mago Barca"
-msgstr ""
+msgstr "Mago Barka"
 
 #: simulation/data/civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
@@ -606,11 +609,11 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
-msgstr ""
+msgstr "Hanno ar Bras"
 
 #: simulation/data/civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "Himilko"
 
 #: simulation/data/civs/cart.jsonAINames[10]
 msgid "Hampsicora"
@@ -618,11 +621,11 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Hannibal Gisko"
 
 #: simulation/data/civs/cart.jsonAINames[12]
 msgid "Dido"
-msgstr ""
+msgstr "Dido"
 
 #: simulation/data/civs/cart.jsonAINames[13]
 msgid "Xanthippus"
@@ -642,7 +645,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
-msgstr ""
+msgstr "Dizoloiñ"
 
 #: simulation/data/civs/cart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -709,7 +712,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "Kannati Keltiek"
 
 #: simulation/data/civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
@@ -736,7 +739,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
-msgstr ""
+msgstr "Kannati Iberian"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
@@ -895,7 +898,7 @@ msgstr ""
 
 #: simulation/data/civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
-msgstr ""
+msgstr "Meloñs"
 
 #: simulation/data/civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
@@ -1081,7 +1084,7 @@ msgstr ""
 
 #: simulation/data/civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Gur Oroigarri"
 
 #: simulation/data/civs/iber.jsonStructures[0].Special
 msgid ""
@@ -1336,7 +1339,7 @@ msgstr ""
 #: simulation/data/civs/ptol.jsonStructures[0].Name
 #: simulation/data/civs/sele.jsonStructures[0].Name
 msgid "Library"
-msgstr ""
+msgstr "Levraoueg"
 
 #: simulation/data/civs/mace.jsonStructures[1].Special
 msgid ""
@@ -1519,7 +1522,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
-msgstr ""
+msgstr "Krevier olifanted"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid ""
@@ -1552,7 +1555,7 @@ msgstr ""
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
-msgstr ""
+msgstr "Persianed"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid ""
@@ -2023,7 +2026,7 @@ msgstr ""
 
 #: simulation/data/civs/rome.jsonName
 msgid "Romans"
-msgstr ""
+msgstr "Romaned"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
@@ -2106,7 +2109,7 @@ msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
-msgstr ""
+msgstr "Aulus Manlius Capitolinus"
 
 #: simulation/data/civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
@@ -2232,7 +2235,7 @@ msgstr ""
 #: simulation/data/civs/sele.jsonName
 #: simulation/data/civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
-msgstr ""
+msgstr "Seleukided"
 
 #: simulation/data/civs/sele.jsonCivBonuses[0].Description
 msgid ""

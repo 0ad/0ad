@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-12-15 21:57+0000\n"
-"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
+"PO-Revision-Date: 2016-12-20 15:24+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr ""
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
-msgstr ""
+msgstr "Uzbrukums no slēpņa"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -466,7 +467,7 @@ msgstr ""
 
 #: maps/random/new_rms_test.jsonsettings.Description
 msgid "A basic test of the random map generator - not playable."
-msgstr ""
+msgstr "Vienkāršs nejaušas kartes ģeneratora tests - nav spēlējams."
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
@@ -645,7 +646,7 @@ msgstr ""
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
-msgstr ""
+msgstr "Cietoksnis"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
@@ -719,16 +720,16 @@ msgstr ""
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
-msgstr ""
+msgstr "Sienu demo"
 
 #: maps/random/survivalofthefittest_triggers.js:127
 msgid "An enemy wave is attacking!"
-msgstr ""
+msgstr "Ienaidnieka uzbrukuma vilnis!"
 
 #: maps/random/survivalofthefittest_triggers.js:197
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
-msgstr ""
+msgstr "Pirmais vilnis sāksies pēc %(time)s!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -752,19 +753,19 @@ msgstr "Saki drīzāk nē"
 
 #: maps/scenarios/treasure_islands.js:10
 msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr ""
+msgstr "Savāciet dārgums pirms pretinieka! Lai uzvar labākais!"
 
 #: maps/scenarios/treasure_islands.js:29
 msgid "No winner yet, prepare for battle!"
-msgstr ""
+msgstr "Vēl nav uzvarētja, sagatavojieties kaujai!"
 
 #: maps/scenarios/treasure_islands.js:41
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr ""
+msgstr "Tavu ienaidnieku dārgumu glabātāva ir pilna līdz malām, tu zaudēji!"
 
 #: maps/scenarios/treasure_islands.js:46
 msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr ""
+msgstr "Tava dārgumu glabātāva ir pilna līdz malām, tu uzvarēji!"
 
 #: maps/scenarios/treasure_islands.js:58
 msgid "Hurry up! Your enemy is close to victory!"
@@ -773,11 +774,11 @@ msgstr "Pasteidzies! Tavs ienaidnieks ir tuvu uzvarai!"
 #: maps/scenarios/treasure_islands.js:69
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr ""
+msgstr "Atlicis sāvākt dārgumus līdz uzvarai:  %(remainingTreasures)s!"
 
 #: maps/scenarios/treasure_islands.js:77
 msgid "You have collected a treasure!"
-msgstr ""
+msgstr "Jūs savācāt dārgumu!"
 
 #: maps/scenarios/treasure_islands.js:89
 msgid "Defeat your enemy to win!"
@@ -947,7 +948,7 @@ msgstr "Ķelti"
 
 #: maps/scenarios/Azure Coast(2).xml:Name:31
 msgid "Azure Coast 2"
-msgstr ""
+msgstr "Gaiši zila piekraste 2"
 
 #: maps/scenarios/Azure Coast(4).xml:PlayerData[0].Name:31
 msgid "East"
@@ -967,43 +968,43 @@ msgstr "Ziemeļi"
 
 #: maps/scenarios/Azure Coast(4).xml:Name:31
 msgid "Azure Coast 3"
-msgstr ""
+msgstr "Gaiši zila piekraste 3"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[0].Name:41
 msgid "Antipolis"
-msgstr ""
+msgstr "Antipolis"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[1].Name:41
 msgid "Nikaia"
-msgstr ""
+msgstr "Nikaia"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[2].Name:41
 msgid "Massalia"
-msgstr ""
+msgstr "Massalia"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[3].Name:41
 msgid "Olbia"
-msgstr ""
+msgstr "Olbia"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[4].Name:41
 msgid "Deciates"
-msgstr ""
+msgstr "Deciates"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[5].Name:41
 msgid "Salluvii"
-msgstr ""
+msgstr "Salluvii"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[6].Name:41
 msgid "Cavares"
-msgstr ""
+msgstr "Cavares"
 
 #: maps/scenarios/Azure Coast.xml:PlayerData[7].Name:41
 msgid "Verguni"
-msgstr ""
+msgstr "Verguni"
 
 #: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
-msgstr ""
+msgstr "Gaiši zila piekraste 1"
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -1017,12 +1018,12 @@ msgstr "Roma"
 
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[1].Name:31
 msgid "Veii"
-msgstr ""
+msgstr "Veii"
 
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[2].Name:31
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[3].Name:31
 msgid "Gallic Invaders"
-msgstr ""
+msgstr "Gallu iebrucēji"
 
 #: maps/scenarios/Battle for the Tiber.xml:Name:31
 msgid "Battle for the Tiber"
@@ -1038,7 +1039,7 @@ msgstr ""
 
 #: maps/scenarios/Bridge_demo.xml:PlayerData[0].Name:31
 msgid "Bridge Demo"
-msgstr ""
+msgstr "Tiltu demo"
 
 #: maps/scenarios/Bridge_demo.xml:PlayerData[1].Name:31
 msgid "Other"
@@ -1050,7 +1051,7 @@ msgstr ""
 
 #: maps/scenarios/Bridge_demo.xml:Name:31
 msgid "Bridge demo"
-msgstr ""
+msgstr "Tiltu demo"
 
 #: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:42
 msgid "Campaign Map - Test"
@@ -1072,19 +1073,19 @@ msgstr "Tēbas"
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[2].Name:42
 #: maps/scenarios/Peloponnese.xml:PlayerData[5].Name:41
 msgid "Thessaly"
-msgstr ""
+msgstr "Thessaly"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[3].Name:42
 msgid "Megara"
-msgstr ""
+msgstr "Megara"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[4].Name:42
 msgid "Eretria"
-msgstr ""
+msgstr "Eretria"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[5].Name:42
 msgid "Chalcis"
-msgstr ""
+msgstr "Chalcis"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[6].Name:42
 msgid "Peloponnesian League"
@@ -1100,7 +1101,7 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
-msgstr ""
+msgstr "Cīņas demo"
 
 #: maps/scenarios/Combat_demo.xml:Description:30
 msgid ""
@@ -1110,11 +1111,11 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo_(huge).xml:Name:77
 msgid "Combat Demo (Huge)"
-msgstr ""
+msgstr "Cīņas demo (milzīgs)"
 
 #: maps/scenarios/Combat_demo_(huge).xml:Description:77
 msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr ""
+msgstr "1296 vienības. Ļoti lēns (mums vajag vairāk optimizācijas)."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
 msgid ""
@@ -1126,7 +1127,7 @@ msgstr ""
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
 msgid "Invasion Force"
-msgstr ""
+msgstr "Iebrukuma spēks"
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
@@ -1161,15 +1162,15 @@ msgstr "Spēlētājs 3"
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
 msgid "Death Canyon - Invasion Force"
-msgstr ""
+msgstr "Nāves kanjons - Iebrukuma spēks"
 
 #: maps/scenarios/Demo_Trading.xml:Description:31
 msgid "A demonstration of the new trading feature."
-msgstr ""
+msgstr "Jaunās tirgošanās iespējas demonstrācija."
 
 #: maps/scenarios/Demo_Trading.xml:Name:31
 msgid "Trading Demo"
-msgstr ""
+msgstr "Tirgošanās demo"
 
 #: maps/scenarios/Eire and Albion.xml:Description:31
 msgid ""
@@ -1217,7 +1218,7 @@ msgstr ""
 
 #: maps/scenarios/Fishing_demo.xml:Name:31
 msgid "Fishing Demo"
-msgstr ""
+msgstr "Zvejas demo"
 
 #: maps/scenarios/Fishing_demo.xml:Description:31
 msgid "Test out fishing with a fishing boat. Still in development."
@@ -1225,19 +1226,19 @@ msgstr ""
 
 #: maps/scenarios/Flight_demo.xml:Description:31
 msgid "Has some experimental fighter plane prototypes."
-msgstr ""
+msgstr "Ir daži eksperimenāli iznīcinātāju lidmašīnu prototipi."
 
 #: maps/scenarios/Flight_demo.xml:Name:31
 msgid "Flight Demo"
-msgstr ""
+msgstr "Lidošanas demo"
 
 #: maps/scenarios/Flight_demo_2.xml:Description:31
 msgid "Fly some Mustangs."
-msgstr ""
+msgstr "Palidojiet ar dažiem Mustangiem"
 
 #: maps/scenarios/Flight_demo_2.xml:Name:31
 msgid "Flight Demo 2"
-msgstr ""
+msgstr "Lidošanas demo 2"
 
 #: maps/scenarios/Gold_Rush.xml:Description:31
 msgid ""
@@ -1289,11 +1290,11 @@ msgstr ""
 
 #: maps/scenarios/Introductory Tutorial.xml:Description:42
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Šī ir vienkārša apmācību misija, kas palīdzēs jums uzsākt spēlēt 0 A.D."
 
 #: maps/scenarios/Introductory Tutorial.xml:Name:42
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Ievadapmācību misija"
 
 #: maps/scenarios/Laconia 01.xml:Description:31
 msgid ""
@@ -1304,7 +1305,7 @@ msgstr ""
 
 #: maps/scenarios/Laconia 01.xml:Name:31
 msgid "Laconia"
-msgstr ""
+msgstr "Laconia"
 
 #: maps/scenarios/Migration.xml:Description:31
 msgid ""
@@ -1316,7 +1317,7 @@ msgstr ""
 #: maps/scenarios/Miletus.xml:PlayerData[0].Name:31
 #: maps/scenarios/Miletus.xml:Name:31
 msgid "Miletus"
-msgstr ""
+msgstr "Miletus"
 
 #: maps/scenarios/Miletus.xml:PlayerData[1].Name:31 maps/scenarios/Sandbox -
 #: Ptolemies 2.xml:PlayerData[1].Name:41
@@ -1325,11 +1326,11 @@ msgstr "Romieši"
 
 #: maps/scenarios/Miletus.xml:Description:31
 msgid "A sandbox scenario for one player."
-msgstr ""
+msgstr "Smilškastes scenārijs vienam lietotājam."
 
 #: maps/scenarios/Multiplayer_demo.xml:Name:31
 msgid "Multiplayer Demo"
-msgstr ""
+msgstr "Vairāku spēlētāju demo"
 
 #: maps/scenarios/Multiplayer_demo.xml:Description:31
 msgid ""
@@ -1350,11 +1351,11 @@ msgstr "Nekropole"
 
 #: maps/scenarios/Pathfinding_demo.xml:Description:41
 msgid "A map for testing unit movement algorithms."
-msgstr ""
+msgstr "Karte vienību pārvietošanas algoritmu testēšanai."
 
 #: maps/scenarios/Pathfinding_demo.xml:Name:41
 msgid "Pathfinding Demo"
-msgstr ""
+msgstr "Navigācijas demo"
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:Name:31
 msgid "Pathfinding Terrain Demo"
@@ -1368,7 +1369,7 @@ msgstr ""
 
 #: maps/scenarios/Peloponnese.xml:Description:41
 msgid "A real-world map of the Greek homeland."
-msgstr ""
+msgstr "Īstas Grieķu dzimtenes karte"
 
 #: maps/scenarios/Peloponnese.xml:PlayerData[0].Name:41
 msgid "Athens"
@@ -1392,15 +1393,15 @@ msgstr "Peloponēsiešu Kari"
 
 #: maps/scenarios/Polynesia.xml:Description:42
 msgid "Demo map for new fancy water effects."
-msgstr ""
+msgstr "Demo karte dažiem izsmalcinātiem ūdens efektiem."
 
 #: maps/scenarios/Polynesia.xml:PlayerData[0].Name:42
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: maps/scenarios/Polynesia.xml:PlayerData[1].Name:42
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: maps/scenarios/Polynesia.xml:Name:42
 msgid "Polynesia"
@@ -1408,11 +1409,11 @@ msgstr "Polinēzija"
 
 #: maps/scenarios/Resource_demo.xml:Name:31
 msgid "Resource demo"
-msgstr ""
+msgstr "Resursu demo"
 
 #: maps/scenarios/Resource_demo.xml:Description:31
 msgid "Demo map for resource gathering."
-msgstr ""
+msgstr "Demo karte resursu iegūšanai."
 
 #: maps/scenarios/Saharan Oases.xml:Description:31
 msgid ""
@@ -1429,7 +1430,7 @@ msgstr ""
 
 #: maps/scenarios/Sahel.xml:PlayerData[0].Name:42
 msgid "Aulus Manlius Capitolinus"
-msgstr ""
+msgstr "Aulus Manlius Capitolinus"
 
 #: maps/scenarios/Sahel.xml:PlayerData[1].Name:42
 msgid "Hasdrubal the Fair"
@@ -1446,7 +1447,7 @@ msgstr "Tautalus"
 #: maps/scenarios/Sandbox - Athenians.xml:Description:42
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Spēlējiet ar Atēniešu tautu nekaitīgajā smilškastes vidē."
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[0].Name:42
 msgid "The Athenians"
@@ -1473,25 +1474,25 @@ msgstr "Galli"
 
 #: maps/scenarios/Sandbox - Athenians.xml:Name:42
 msgid "Sandbox - The Athenians"
-msgstr ""
+msgstr "Smilškaste - Atēnieši"
 
 #: maps/scenarios/Sandbox - Britons.xml:Description:41 maps/scenarios/Sandbox
 #: - Gauls.xml:Description:41
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr ""
+msgstr "Spēlējieties ar Gallu tautu idilles smilškastes vidē."
 
 #: maps/scenarios/Sandbox - Britons.xml:PlayerData[3].Name:41
 #: maps/scenarios/Sandbox - Gauls.xml:PlayerData[3].Name:41
 msgid "Roman Interlopers"
-msgstr ""
+msgstr "Romiešu kontrabandisti"
 
 #: maps/scenarios/Sandbox - Britons.xml:Name:41
 msgid "Sandbox - The Britons"
-msgstr ""
+msgstr "Smilškaste - Briti"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Description:41
 msgid "Explore the Carthaginian Buildings and Units."
-msgstr ""
+msgstr "Atklāj Kartāgiešu būves un vienības."
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[0].Name:41
 #: maps/scenarios/Serengeti.xml:PlayerData[0].Name:31
@@ -1501,28 +1502,28 @@ msgstr "Kartāga"
 #: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[1].Name:41
 #: maps/scenarios/Sandbox - Persians.xml:PlayerData[1].Name:41
 msgid "Creeps"
-msgstr ""
+msgstr "Rāpo"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Name:41
 msgid "Sandbox - The Carthaginians"
-msgstr ""
+msgstr "Smilškaste - Kartāgieši"
 
 #: maps/scenarios/Sandbox - Gauls.xml:Name:41
 msgid "Sandbox - The Gauls"
-msgstr ""
+msgstr "Smilškaste - Galli"
 
 #: maps/scenarios/Sandbox - Iberians.xml:Description:42
 msgid "A demo map for the Iberians."
-msgstr ""
+msgstr "Ibēriešu demo karte"
 
 #: maps/scenarios/Sandbox - Iberians.xml:Name:42
 msgid "Sandbox - The Iberians"
-msgstr ""
+msgstr "Smilškaste - Ibērieši"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Description:41
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Spēlējiet ar Maķedoniešu tautu nekaitīgajā smilškastes vidē."
 
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[0].Name:41
 msgid "The Macedonians"
@@ -1530,7 +1531,7 @@ msgstr "Maķedonieši"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Name:41
 msgid "Sandbox - The Macedonians"
-msgstr ""
+msgstr "Smilškaste - Maķedonieši"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:Description:42
 msgid "Mauryan Indian faction showcase map."
@@ -1538,7 +1539,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[0].Name:42
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "Mauritāņu indieši"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[1].Name:42
 msgid "Enemy"
@@ -1546,7 +1547,7 @@ msgstr "Ienaidnieks"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:Name:42
 msgid "Sandbox - The Mauryans"
-msgstr ""
+msgstr "Smilškaste - Mauritānieši"
 
 #: maps/scenarios/Sandbox - Persians.xml:Description:41
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
@@ -1558,7 +1559,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Persians.xml:Name:41
 msgid "Sandbox - The Persians"
-msgstr ""
+msgstr "Smilškaste - Persieši"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Description:41
 msgid ""
@@ -1575,7 +1576,7 @@ msgstr "Seleikīdi "
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[3].Name:41
 msgid "Libyans"
-msgstr ""
+msgstr "Lībieši"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Name:41
 msgid "Sandbox - The Ptolemaic Egyptians 2"
@@ -1600,19 +1601,19 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Romans.xml:Description:42
 msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr ""
+msgstr "Smilškastes scenārijs ļauj spēlētājiem izmēģināt Romiešu civilizāciju."
 
 #: maps/scenarios/Sandbox - Romans.xml:Name:42
 msgid "Sandbox - The Republican Romans"
-msgstr ""
+msgstr "Smilškaste - Republikāņu romieši"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:Description:41
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
-msgstr ""
+msgstr "Smilškastes scenārijs ļauj spēlētājiem izmēģināt Sīriešu civilizāciju."
 
 #: maps/scenarios/Sandbox - Seleucids.xml:PlayerData[0].Name:41
 msgid "The Seleucids"
-msgstr ""
+msgstr "Sīrieši"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:PlayerData[1].Name:41
 msgid "The Ptolemies"
@@ -1620,16 +1621,16 @@ msgstr "Ptolemaji"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:Name:41
 msgid "Sandbox - The Seleucids"
-msgstr ""
+msgstr "Smilškaste - Sīrieši"
 
 #: maps/scenarios/Sandbox - Spartans.xml:Description:41
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Spēlējiet ar Spartiešu tautu nekaitīgajā smilškastes vidē."
 
 #: maps/scenarios/Sandbox - Spartans.xml:Name:41
 msgid "Sandbox - The Spartans"
-msgstr ""
+msgstr "Smilškaste - Spartieši"
 
 #: maps/scenarios/Savanna Ravine.xml:Name:42
 msgid "Savanna Ravine"
@@ -1673,7 +1674,7 @@ msgstr "Kuģi"
 
 #: maps/scenarios/Ship Formations.xml:Name:31
 msgid "Ship Formations"
-msgstr ""
+msgstr "Kuģu izvietojumi"
 
 #: maps/scenarios/Siwa Oasis.xml:Description:31
 msgid ""
@@ -1687,11 +1688,11 @@ msgstr ""
 
 #: maps/scenarios/Territory Demo.xml:Description:31
 msgid "A demo map showing the territory effects of each type of structure."
-msgstr ""
+msgstr "Demo karte, kas parāda teritorijas ietekmi katram būves tipam."
 
 #: maps/scenarios/Territory Demo.xml:Name:31
 msgid "Territory Demo"
-msgstr ""
+msgstr "Teritorijas demo"
 
 #: maps/scenarios/The Massacre of Delphi.xml:Description:41
 msgid ""
@@ -1776,7 +1777,7 @@ msgstr ""
 
 #: maps/scenarios/Tropical Island.xml:Description:41
 msgid "Multiplayer map. A tropical paradise."
-msgstr ""
+msgstr "Vairāku spēlētāju karte. Tropiskā paradīze."
 
 #: maps/scenarios/Tropical Island.xml:Name:41
 msgid "Tropical Island"
@@ -1784,7 +1785,7 @@ msgstr "Tropiskā sala"
 
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
-msgstr ""
+msgstr "Vienību demo"
 
 #: maps/scenarios/Units_demo.xml:Description:92
 msgid "Every unit in the game."
@@ -1799,7 +1800,7 @@ msgstr "Izveido interesantu aprakstu savai kartei."
 
 #: maps/scenarios/WallTest.xml:Name:31
 msgid "WallTest"
-msgstr ""
+msgstr "Sienu tests"
 
 #: maps/scenarios/Walls.xml:Description:31
 msgid "Walls."
@@ -1815,7 +1816,7 @@ msgstr "Mēs Esam Leģions"
 
 #: maps/scenarios/We are Legion.xml:Description:31
 msgid "A quick battle demo map using Roman legionnaires."
-msgstr ""
+msgstr "Ātras demo cīņas karte, izmantojot Romiešu leģionārus."
 
 #: maps/scenarios/_default.xml:Name:32
 msgid "Unnamed map"
@@ -1839,7 +1840,7 @@ msgstr ""
 
 #: maps/scenarios/shipattacks.xml:Description:31
 msgid "Move ships around. Attack other ships."
-msgstr ""
+msgstr "Pārvietojiet kuģus apkārt. Uzbrūciet citiem kuģiem."
 
 #: maps/scenarios/shipattacks.xml:Name:31
 msgid "Ships Demo"
@@ -1924,7 +1925,7 @@ msgstr ""
 
 #: maps/skirmishes/Belgian Bog (2).xml:Name:41
 msgid "Belgian Bog (2)"
-msgstr ""
+msgstr "Beļģu purvs (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Description:42
 msgid ""
@@ -1973,11 +1974,11 @@ msgstr ""
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[0].Name:41
 msgid "Samos"
-msgstr ""
+msgstr "Samos"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[1].Name:41
 msgid "Lesbos"
-msgstr ""
+msgstr "Lesbos"
 
 #: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[2].Name:41
 msgid "Delos"
@@ -2043,7 +2044,7 @@ msgstr ""
 
 #: maps/skirmishes/Gallic Fields (3).xml:Name:41
 msgid "Gallic Fields (3)"
-msgstr ""
+msgstr "Gallu lauki (3)"
 
 #: maps/skirmishes/Gambia River (3).xml:Description:42
 msgid ""
@@ -2259,7 +2260,7 @@ msgstr "Savannas upe (2)"
 
 #: maps/skirmishes/Sicilia (2).xml:Description:41
 msgid "The large Mediterranean island of Sicily is open for conquest."
-msgstr ""
+msgstr "Liela Vidusjūras sala Sicīlija ir pieejama iekarošanai."
 
 #: maps/skirmishes/Sicilia (2).xml:Name:41
 msgid "Sicilia (2)"
@@ -2288,11 +2289,11 @@ msgstr ""
 
 #: maps/skirmishes/Skirmish Demo.xml:Description:42
 msgid "A demo Skirmish map."
-msgstr ""
+msgstr "Strēlnieku demo karte."
 
 #: maps/skirmishes/Skirmish Demo.xml:Name:42
 msgid "Skirmish Demo"
-msgstr ""
+msgstr "Strēlnieku demo"
 
 #: maps/skirmishes/Sporades Islands (2).xml:Name:42
 msgid "Sporades Islands (2)"
@@ -2318,7 +2319,7 @@ msgstr ""
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:Name:42
 msgid "Team Oasis (2v2)"
-msgstr ""
+msgstr "Komandu oāze (2 pret 2)"
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Description:41
 msgid ""

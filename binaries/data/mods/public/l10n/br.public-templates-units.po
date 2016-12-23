@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wanibzh29 <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-25 09:01+0100\n"
-"PO-Revision-Date: 2016-12-18 22:08+0000\n"
-"Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
+"PO-Revision-Date: 2016-12-22 16:41+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,11 +89,11 @@ msgstr "Marc'hegerezh Stourmadeg"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spear"
-msgstr ""
+msgstr "Goafer"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:17
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Marc'hegerezh Goafer"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
@@ -104,11 +106,11 @@ msgstr "Kleze"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 msgid "Cavalry Swordsman"
-msgstr ""
+msgstr "Marc'hegerezh Klezeour"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:21
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "Hed-Tenn ar Varc'hegerezh"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -128,7 +130,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "Ranged"
-msgstr ""
+msgstr "A-bell"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -138,11 +140,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:28
 msgid "Archer"
-msgstr ""
+msgstr "Gwareger"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "Gwareger War-Varc'h"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
@@ -171,7 +173,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Gwareger Kampion War-Varc'h"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:24
 msgid "Champion Cavalry Skirmisher"
@@ -268,23 +270,23 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry.xml:24
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Hero"
-msgstr "Harroz"
+msgstr "Haroz"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "Haroz Marc'heger"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:27
 msgid "Hero Cavalry Archer"
-msgstr ""
+msgstr "Haroz Gwareger War-Varc'h"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
 msgid "Hero Cavalry Skirmisher"
-msgstr ""
+msgstr " Skouadron a Harozed Marc'heg"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
 msgid "Hero Cavalry Spearman"
-msgstr ""
+msgstr "Haroz Marc'heger Goafer"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
 msgid "Hero Cavalry Swordsman"
@@ -388,7 +390,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
-msgstr ""
+msgstr "Bag pesketa"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -480,7 +482,7 @@ msgstr ""
 #: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
-msgstr ""
+msgstr "Sklav"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
@@ -722,7 +724,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:7
 msgid "Iphicrates"
-msgstr ""
+msgstr "Ifikrates"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:8
 msgid "Iphikratēs"
@@ -730,7 +732,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_pericles.xml:7
 msgid "Pericles"
-msgstr ""
+msgstr "Perikles"
 
 #: simulation/templates/units/athen_hero_pericles.xml:8
 msgid "Periklēs"
@@ -738,7 +740,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:7
 msgid "Themistocles"
-msgstr ""
+msgstr "Temistokles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:8
 msgid "Themistoklês"
@@ -898,7 +900,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_champion_cavalry.xml:10
 msgid "Celtic Chariot"
-msgstr ""
+msgstr "Karr keltiek"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:11
 msgid "Carbanto"
@@ -915,7 +917,7 @@ msgstr ""
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:7
 msgid "Boudicca"
-msgstr ""
+msgstr "Boudika"
 
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:8
 msgid "Heroine"
@@ -986,12 +988,12 @@ msgstr ""
 #: simulation/templates/units/brit_support_female_citizen.xml:20
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
 msgid "Celtic Woman"
-msgstr ""
+msgstr "Maouez geltiek"
 
 #: simulation/templates/units/brit_support_healer_b.xml:6
 #: simulation/templates/units/gaul_support_healer_b.xml:6
 msgid "Druides"
-msgstr ""
+msgstr "Drouized"
 
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/gaul_support_trader.xml:9
@@ -1069,11 +1071,11 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:7
 msgid "Hamilcar Barca"
-msgstr ""
+msgstr "Hamilcar Barka"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:6
 msgid "Hannibal Barca"
-msgstr ""
+msgstr "Hannibal Barka"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
@@ -1087,7 +1089,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
-msgstr ""
+msgstr "Maharbal"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:7
 msgid "Maharbaʿal"
@@ -1606,7 +1608,7 @@ msgstr ""
 #: simulation/templates/units/maur_ship_bireme.xml:5
 #: simulation/templates/units/maur_ship_trireme.xml:18
 msgid "Yudhpot"
-msgstr ""
+msgstr "Yudhpot"
 
 #: simulation/templates/units/maur_ship_fishing.xml:9
 msgid "Fisherman"
@@ -1754,7 +1756,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:5
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr ""
+msgstr "Gwareger Baktrian Ponner War-Varc'h"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"

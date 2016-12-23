@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wanibzh29 <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-12 09:00+0100\n"
-"PO-Revision-Date: 2016-12-18 22:09+0000\n"
-"Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
+"PO-Revision-Date: 2016-12-22 22:54+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,27 +44,27 @@ msgstr "Teknologiezh Ispisial"
 #: gui/civinfo/civinfo.js:117
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Savadur Ispisial"
+msgstr[1] "Savadurioù Ispisial"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
 msgid "Heroes"
-msgstr ""
+msgstr "Harozed"
 
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Istor ar sevenadur %(civilization)s"
 
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Pouezit war %(hotkey)s a-benn klokaat en un doare emgefreek anv ar c'hoarierien."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -72,7 +75,7 @@ msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
-msgstr ""
+msgstr "O tigeriñ ur bajenn"
 
 #: gui/common/functions_global_object.js:72
 #, javascript-format
@@ -147,7 +150,7 @@ msgstr ""
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:212
 #: gui/options/options.js:279 gui/options/options.js:346
@@ -155,7 +158,7 @@ msgstr ""
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:156
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
@@ -261,7 +264,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:160
 msgid "No Team"
-msgstr ""
+msgstr "Skipailh ebet"
 
 #: gui/common/gamedescription.js:161
 #, javascript-format
@@ -329,7 +332,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:233
 msgid "Allied Victory"
-msgstr ""
+msgstr "Trec'h ar Gevreded"
 
 #: gui/common/gamedescription.js:234
 msgid ""
@@ -353,15 +356,15 @@ msgstr[1] ""
 
 #: gui/common/gamedescription.js:252
 msgid "Map Name"
-msgstr ""
+msgstr "Anv ar gartenn"
 
 #: gui/common/gamedescription.js:257
 msgid "Map Type"
-msgstr ""
+msgstr "Doare Kartenn"
 
 #: gui/common/gamedescription.js:266
 msgid "Map Size"
-msgstr ""
+msgstr "Ment ar gartenn"
 
 #: gui/common/gamedescription.js:273
 msgid "Map Description"
@@ -437,7 +440,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:59
 #: gui/savedgames/load.js:115 gui/savedgames/load.js:118
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -500,7 +503,7 @@ msgstr ""
 
 #: gui/common/network.js:73
 msgid "Server full"
-msgstr ""
+msgstr "Leun eo ar servijer"
 
 #: gui/common/network.js:76
 #, javascript-format
@@ -544,35 +547,35 @@ msgstr ""
 #: gui/common/settings.js:112
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Aes tre"
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Aes"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Krenn"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Diaes"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Diaes-tre"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "wonder victory"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s vunudenn"
+msgstr[1] "%(min)s munudenn"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -600,7 +603,7 @@ msgstr ""
 #: gui/common/settings.js:197
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Senario"
 
 #: gui/common/settings.js:228
 msgctxt "victory condition"
@@ -633,7 +636,7 @@ msgstr "Dianav"
 #: gui/common/settings.js:353
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Dre Ziouer"
 
 #: gui/common/settings.js:365
 msgctxt "population capacity"
@@ -671,7 +674,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:59
 msgid "Health:"
-msgstr ""
+msgstr "Yec'hed :"
 
 #: gui/common/tooltips.js:68
 #, javascript-format
@@ -812,7 +815,7 @@ msgstr ""
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "Yec'hed"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -827,7 +830,7 @@ msgstr ""
 #: gui/common/tooltips.js:268
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Dre Ziouer"
 
 #: gui/common/tooltips.js:273
 msgctxt "projectiles"
@@ -913,7 +916,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:519
 msgid "Speed:"
-msgstr ""
+msgstr "Tizh :"
 
 #: gui/common/tooltips.js:521 gui/common/tooltips.js:526
 #, javascript-format
@@ -922,11 +925,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:523
 msgid "Walk"
-msgstr ""
+msgstr "Kerzh"
 
 #: gui/common/tooltips.js:528
 msgid "Run"
-msgstr ""
+msgstr "Red"
 
 #: gui/common/tooltips.js:543 gui/common/tooltips.js:549
 #: gui/common/tooltips.js:554
@@ -941,8 +944,8 @@ msgstr[1] ""
 #: gui/common/tooltips.js:547
 msgid "HP"
 msgid_plural "HP"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "PB"
+msgstr[1] "PB"
 
 #: gui/common/tooltips.js:568
 #, javascript-format
@@ -998,7 +1001,7 @@ msgstr ""
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
-msgstr ""
+msgstr "Mad eo"
 
 #: gui/options/options.js:277
 msgid ""
@@ -1009,7 +1012,7 @@ msgstr ""
 #: gui/options/options.js:278 gui/options/options.js:345
 #: gui/savedgames/load.js:127
 msgid "Warning"
-msgstr ""
+msgstr "Hoc'h evezh"
 
 #: gui/options/options.js:344
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1040,7 +1043,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:106
 msgid "unknown"
-msgstr ""
+msgstr "dianav"
 
 #: gui/pregame/mainmenu.js:146
 #, javascript-format
@@ -1150,27 +1153,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1207,7 +1210,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
-msgstr ""
+msgstr "Lies-c'hoarier"
 
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
@@ -1583,7 +1586,7 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:(caption):65
 #: gui/savedgames/load.xml:(caption):29 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
-msgstr ""
+msgstr "Nullañ"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1663,7 +1666,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):83 gui/savedgames/save.xml:(caption):48
 msgid "Save"
-msgstr ""
+msgstr "Enrollañ"
 
 #: gui/options/options.xml:(tooltip):74
 msgid "Resets user settings to their game default"
@@ -1728,7 +1731,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):183
 msgid "History"
-msgstr ""
+msgstr "Istor"
 
 #: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
@@ -1789,11 +1792,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):547
 msgid "Website"
-msgstr ""
+msgstr "Lec'hienn web"
 
 #: gui/pregame/mainmenu.xml:(caption):559
 msgid "Chat"
-msgstr ""
+msgstr "Flap"
 
 #: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
@@ -1930,7 +1933,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):164
 #: gui/savedgames/load.xml:(caption):58
 msgid "Map Type:"
-msgstr ""
+msgstr "Doare kartenn:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):179
 #: gui/savedgames/load.xml:(caption):62
@@ -1977,17 +1980,17 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):90
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "C'hoarierien"
 
 #: gui/replaymenu/replay_menu.xml:(heading):94
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Anv ar gartenn"
 
 #: gui/replaymenu/replay_menu.xml:(heading):98
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Ment"
 
 #: gui/replaymenu/replay_menu.xml:(heading):102
 msgctxt "replay"
@@ -2448,15 +2451,15 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Izel"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Krenn"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Uhel"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
@@ -2715,14 +2718,14 @@ msgstr ""
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Roc'h"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Roc'h"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

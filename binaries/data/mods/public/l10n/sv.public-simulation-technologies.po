@@ -5,7 +5,7 @@
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2016
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016
-# Jacob Carlsson <yejcob@gmail.com>, 2015
+# Jacob Carlsson <yejcob@gmail.com>, 2015-2016
 # Jonatan Nyberg <jonatan@autistici.org>, 2016
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016
 # Marco tom Suden, 2014
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-12-18 18:15+0000\n"
-"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
+"PO-Revision-Date: 2016-12-19 14:34+0000\n"
+"Last-Translator: Jacob Carlsson <yejcob@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -765,7 +765,7 @@ msgstr "Pilskyttar"
 
 #: simulation/data/technologies/attack_tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
-msgstr ""
+msgstr "En nattvakt ökar vaksamhet."
 
 #: simulation/data/technologies/attack_tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to towers."
@@ -789,7 +789,7 @@ msgstr "Vigiles"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr "Användning av stenskärv reducerar kostnad och byggtid för väggar."
+msgstr "Användning av stenskärv reducerar kostnad och byggtid för murar"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
@@ -996,7 +996,7 @@ msgstr "Schaktgruvor"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr ""
+msgstr "Hitta en ven av ädel silver. +50% metall insamlings hastighet."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -1004,11 +1004,11 @@ msgstr "Silverbrytning"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
-msgstr "Krenides Minor"
+msgstr "Krenides gruvor"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
-msgstr "Laureions Minor"
+msgstr "Laureions gruvor"
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
@@ -1027,7 +1027,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "Utrusta dina arbetare med användbara verktyg. +15% metall insamlings hastighet."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1245,11 +1245,11 @@ msgstr "Kvinnor vs. Befolkning"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
-msgstr ""
+msgstr "Sido vapen vs Irregulars"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr ""
+msgstr "Spjutkrigare vs skärmytslingar"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
@@ -1607,7 +1607,7 @@ msgstr "Marknad +10% internationell bonus."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
-msgstr ""
+msgstr "Kommersiell Fördrag"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."

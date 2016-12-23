@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Wanibzh29 <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-18 22:09+0000\n"
-"Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
+"PO-Revision-Date: 2016-12-21 23:15+0000\n"
+"Last-Translator: Yann-Vari Gwiader <yannvari.gwiader@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,27 +52,27 @@ msgstr "%(nick)s a gemer-perzh bremañ."
 #: gui/lobby/lobby.js:154
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s en deus dilezet."
 
 #: gui/lobby/lobby.js:164
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s a zo anavezet bremañ evel %(newnick)s."
 
 #: gui/lobby/lobby.js:235
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/lobby/lobby.js:240
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/lobby/lobby.js:244
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Hini ebet"
 
 #: gui/lobby/lobby.js:423
 msgid "Moderator"
@@ -78,7 +80,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:423
 msgid "Player"
-msgstr ""
+msgstr "C'hoarier"
 
 #: gui/lobby/lobby.js:424 gui/lobby/lobby.js:425 gui/lobby/lobby.js:426
 #: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
@@ -120,11 +122,11 @@ msgstr "Kadarnadenn"
 
 #: gui/lobby/lobby.js:683
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: gui/lobby/lobby.js:683
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: gui/lobby/lobby.js:702
 #, javascript-format
@@ -196,7 +198,7 @@ msgstr ""
 #: gui/lobby/lobby.js:1132
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:1134
 #, javascript-format
@@ -301,7 +303,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):130
 msgid "Map Type:"
-msgstr ""
+msgstr "Doare kartenn:"
 
 #: gui/lobby/lobby.xml:(caption):142
 msgid "Map Size:"
@@ -346,7 +348,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"
-msgstr ""
+msgstr "Statud"
 
 #: gui/lobby/lobby.xml:(heading):43 gui/lobby/lobby.xml:(heading):203
 #: gui/lobby/lobby.xml:(heading):283
@@ -359,12 +361,12 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(heading):206
 msgid "Map Name"
-msgstr ""
+msgstr "Anv ar gartenn"
 
 #: gui/lobby/lobby.xml:(heading):209
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Ment"
 
 #: gui/lobby/lobby.xml:(heading):212
 msgctxt "map"
@@ -373,7 +375,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(heading):215
 msgid "Players"
-msgstr ""
+msgstr "C'hoarierien"
 
 #: gui/lobby/lobby.xml:(heading):280
 msgid "Rank"
@@ -413,7 +415,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
-msgstr ""
+msgstr "Nullañ"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-16 10:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-20 11:24+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:453
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Spēlētājs \"%(nick)s\" nav atrasts."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:634
@@ -130,12 +130,12 @@ msgstr "Jā"
 #: gui/lobby/lobby.js:702
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Spēles adrese '%(ip)s' šķiet ir nederīga."
 
 #: gui/lobby/lobby.js:821
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "Atvainojamies, komanda '%(cmd)s' netiek atbalstīta."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:903
@@ -246,7 +246,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:171
 msgid "Registered"
-msgstr ""
+msgstr "Reģistrēts"
 
 #: gui/lobby/prelobby.js:233
 msgid "Register"
@@ -266,7 +266,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):18 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Vairāku spēlētāju priekšnams"
 
 #: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):325
 msgid "Current Rank:"
@@ -278,7 +278,7 @@ msgstr "Augstākais Novērtējums:"
 
 #: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):333
 msgid "Total Games:"
-msgstr ""
+msgstr "Pavisam spēles:"
 
 #: gui/lobby/lobby.xml:(caption):75 gui/lobby/lobby.xml:(caption):337
 msgid "Wins:"
@@ -290,7 +290,7 @@ msgstr "Zaudējumi:"
 
 #: gui/lobby/lobby.xml:(caption):83 gui/lobby/lobby.xml:(caption):345
 msgid "Win Rate:"
-msgstr ""
+msgstr "Uzvaru proporcija:"
 
 #: gui/lobby/lobby.xml:(caption):92 gui/lobby/lobby.xml:(caption):273
 msgid "Leaderboard"
@@ -315,7 +315,7 @@ msgstr "Pievienoties spēlei"
 
 #: gui/lobby/lobby.xml:(caption):173
 msgid "Host Game"
-msgstr ""
+msgstr "Izmitināt spēli"
 
 #: gui/lobby/lobby.xml:(caption):180
 msgid "Main Menu"
@@ -343,7 +343,7 @@ msgstr "Apskatīt Profilu"
 
 #: gui/lobby/lobby.xml:(caption):350
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Lūdzu ievadiet spēlētāja vārdu."
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"
@@ -390,7 +390,7 @@ msgstr "Pieslēgties esošā kontā"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Pieslēgties spēles priekšnamam"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
@@ -418,7 +418,7 @@ msgstr "Atcelt"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "0 A.D. impērijas augstākā vairāku spēlētāju priekšnama pakalpojumu noteikumi"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -428,7 +428,7 @@ msgstr "Definīcijas:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* \"serviss\" ir 0 A.D. impērijas augstākais vairāku spēlētāju priekšnams ko nodrošina Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -516,7 +516,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. impērijas augstākā vairāku spēlētāju priekšnama lietošanas noteikumi"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""

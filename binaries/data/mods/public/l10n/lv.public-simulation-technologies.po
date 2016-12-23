@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-12-18 19:01+0000\n"
+"PO-Revision-Date: 2016-12-20 20:39+0000\n"
 "Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -629,7 +629,7 @@ msgstr "Apmācība palielina ievainojumus no šaušanas kājnieku vienībām."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr "+20% šaušanas kājieku uzbrukumam."
+msgstr "+20% šaušanas kājnieku uzbrukumam."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
@@ -719,7 +719,7 @@ msgstr "Crenellations"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "Nostiprina pamatus gatavojoties uzbrukumam."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armor level of the defense tower by 2 levels."
@@ -783,7 +783,7 @@ msgstr "Lietojot laukakmeņu materiālus samazina sienu izmaksas un izbūves lai
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Pilsētas sienām -20% izbūves laikam, bet -1 graušanas bruņu līmenim."
+msgstr "Pilsētas sienām -20% izbūves laikam, bet -1 dragāšanas bruņu līmenim."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -877,7 +877,7 @@ msgstr "Zirga vilktais instrument, lai grieztu pāri velēnus."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Aprīkojiet savu strādniekus ar dzelzs kapļiem. +15% zemkopības ātrumam."
+msgstr "Aprīkojiet savu strādniekus ar dzelzs arkliem. +15% zemkopības ātrumam."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -982,7 +982,7 @@ msgstr "Attīsta ieguvi ar cērtēm. +15% metāla ieguves ātrumam."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
-msgstr "Iegūšana no šahtām"
+msgstr "Iegūšana ar cērtēm"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
@@ -1158,11 +1158,11 @@ msgstr "Kaujas Lauka Medicīna"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr ""
+msgstr "Lietojot ģeometrisku mūrniecību palielina aizsardzības mūru izturību."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Pilsētas sienām +2 graušanas bruņu līmenim, bet +10% izbūves laikam."
+msgstr "Pilsētas sienām +2 dragāšanas bruņu līmenim, bet +10% izbūves laikam."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1246,7 +1246,7 @@ msgstr "Cīņas ar šķēpiem pret strelniekiem"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr ""
+msgstr "Kājnieku ciršanas bruņas pret Šķēpnešu duršanas bruņām"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1276,14 +1276,14 @@ msgstr "Mūru būvēšanas laiks pret Veselību"
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr ""
+msgstr "Attīstība no rosīgas pilsētas līdz īstenai metropolei, pilnai ar moderno tehnoloģiju brīnumiem."
 
 #: simulation/data/technologies/phase_city.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Attīstieties līdz Lielpilsēas fāzei, kas atver vairāk būvju un vienību. Civilo centru teritorijas radius palielinās par papildus +50%. Pilsoņu kareivju maksimālā veselība palielinās par +10%. Visām būvēm +9 garnizona atkopšanas ātrumam."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1306,7 +1306,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Attīstība no rosīgas pilsētas līdz īstenai metropolei, pilnai ar moderno tehnoloģiju brīnumiem. Šī ir Atēniešu Lielpilsētas fāze, kad metāla iegūšanas ātrumi tiek uzlaboti, pateicoties 'Sudraba pūču' priekšrocībai."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1314,7 +1314,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Attīstieties līdz Lielpilsēas fāzei, kas atver vairāk būvju un vienību. Civilo centru teritorijas radius palielinās par papildus +50%. Sudraba pūču civilizācijas priekšrocība dod papildus +10% metāla iegūšanas ātrumam visiem strādniekiem. Pilsoņu kareivju maksimālā veselība palielinās par +10%. Visām būvēm +9 garnizona atkopšanas ātrumam."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1326,7 +1326,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Attīstieties līdz pilsētas fāzei, ka atvēr vairāk būvju un vienību. Teritorijas radius civilajiem centriem palielinās par +30%. Pilsoņu kareivjiem maksimāla veselība palielinās par +20%. Visām būvēm +7 garnizona atkopšanas ātrumam."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1350,7 +1350,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Attīstība no neliela ciemata līdz rosīgai pilsētai, gatavi strauji paplašināties. Šī ir Atēniešu pilsētas fāze, kad metāla iegūšanas ātrumi tiek uzlaboti pateicoties 'Sudraba pūču' priekšrocībai."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1358,7 +1358,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Attīstieties līdz pilsētas fāzei, ka atvēr vairāk būvju un vienību. Teritorijas radius civilajiem centriem palielinās par +30%. \"Sudraba pūču\" civilizācijas bonuss dod papildus +10% metāla iegūšanas ātrumam visem strādnikiem. Pilsoņu kareivjiem maksimāla veselība palielinās par +20%. Visām būvēm +7 garnizona atkopšanas ātrumam."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1368,7 +1368,7 @@ msgstr "Ciemata Fāze"
 msgid ""
 "The state or tribe would often construct a dining hall for public feasts or "
 "to receive foreign emissaries."
-msgstr ""
+msgstr "Valsts vai cilts bieži uzbuvē ēdamzāli publiskiem mielastiem vai ārzemju pārstāvju uzņemšanai."
 
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
@@ -1418,7 +1418,7 @@ msgstr "Mājām papildus +20% pie populācijas grieztiem"
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr "Mājas Darzs"
+msgstr "Mājas dārzs"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -1461,7 +1461,7 @@ msgstr "Brīnums piesaista jūsu civilizācijai daudz vairāk cilvēku."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Iespējo Slaveno ekspansiju. Vēl vairāk palielina populācijas limitu par 40 uz katru savu Brīnumu."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1512,7 +1512,7 @@ msgstr "Attīstītas tehnoloģijas uzlabo aplenkuma efektivitāti"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr "Visiem aplenkuma ieročiem +25% pie graušanas bojājuma."
+msgstr "Visiem aplenkuma ieročiem +25% pie dragāšanas bojājuma."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1556,11 +1556,11 @@ msgstr "Artilērijas instruktori"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr ""
+msgstr "Nekustīgi aplenkuma mehānismi tiek salikti un izjaukti ātrāk"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% sakravāšanas un izkavāšanas laikam nekustīgiem aplenkuma mehānismiem."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1615,16 +1615,16 @@ msgstr "Tirgoņu konvojs"
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr ""
+msgstr "Palielina tirgoņu pārvietošanas ātrumu, kas savukārt palielina tirdzniecības ienākumus."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr ""
+msgstr "Tirgoņiem +25% gaitas ātrumam, kas strauji palielina ienākumus no tirdzniecības."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "Amatniecības progress palielina tirdzniecības peļņu."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
@@ -1647,12 +1647,12 @@ msgstr "Attīstīta amatniecība"
 msgid ""
 "Significantly increase training speed of soldiers at the barracks by "
 "training them in large batches or battalions."
-msgstr ""
+msgstr "Ievērojumi palielina kareivju apmācību ātrumu kazarmās, apmācot tos lielās grupās vai bataljonos."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr ""
+msgstr "Kazarmām ātrāka grupu apmācība."
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -1663,42 +1663,42 @@ msgstr "Iesaukšana"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr ""
+msgstr "Kara laikā iesaucot jātniekus karaklausībā palīdz papildināt karaļa armijas rindas."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr ""
+msgstr "Visiem jātniekiem -20% apmācību laikam, bet arī -10 veselībai. Atver Iesaukumu."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "Levi kavalērija"
+msgstr "Iesauktie jātnieki"
 
 #: simulation/data/technologies/training_levy_infantry.jsondescription
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr ""
+msgstr "Kara laikā iesaucot kājniekus karaklausībā palīdz papildināt karaļa armijas rindas."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr ""
+msgstr "Visiem kājniekiem -10% apmācību laikam, bet arī -5 veselībai. Atver Iesaukumu."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "Levi kājnieki"
+msgstr "Iesauktie kājnieki"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr ""
+msgstr "Ievērojimi paātrina doka kuģu grupu izbūvi."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr ""
+msgstr "Dokiem palielinās grupas būvniecības priekšrocība."
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
@@ -1708,7 +1708,7 @@ msgstr "Jūras arhitekti"
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr ""
+msgstr "Sardzes vienības (čempioni) ir professionāļi, kas nesāja labākos ieroču un kuriem bija vislabākā apmācība."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the barracks."
@@ -1789,14 +1789,14 @@ msgstr "Kartogrāfija"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-jātniekus līdz Attīstītai pakāpei."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-jātniekus līdz Attīstītai pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. Atver Elites pilsoņu-jātnieku  tehnoloģiju."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -1804,14 +1804,14 @@ msgstr "Attīstīti pilsoņu jātnieki"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-kājniekus līdz Attīstītai pakāpei."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-kājniekus līdz Attīstītai pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. Atver Elites pilsoņu-kājnieku  tehnoloģiju."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
@@ -1828,7 +1828,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-jātniekus līdz Elites pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. "
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1836,14 +1836,14 @@ msgstr "Elitāra Pilsoņu Kavalērija"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-kājniekus līdz Elites pakāpei."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr ""
+msgstr "Paaugstiniet visus savus pilsoņus-kājniekus līdz Elites pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. "
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
@@ -1889,7 +1889,7 @@ msgstr "Ķeltu algotņi samazina savas metāla izmaksas."
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Noalgojiet Ķeltu algotņu kapteini, lai samazinātu Ķeltu algotņu metāla izmaksas par -20."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
@@ -1899,7 +1899,7 @@ msgstr "Ķeltu Algotņu Kapteinis"
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Noalgojiet Gallu algotņu kapteini, lai samazinātu Gallu algotņu metāla izmaksas par -20."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
@@ -1914,46 +1914,46 @@ msgstr "Ibēriešu algotņi samazina savas metāla izmaksas."
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr ""
+msgstr "Noalgojiet Lusitāņu algotņu kapteini, lai samazinātu Luzitāņu algotņu metāla izmaksas par -20."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
-msgstr ""
+msgstr "Luzitāņu algotņu kapteinis"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr ""
+msgstr "Noalgojiet Ķeltu-Ibēriešu algotņu ģenerāli, lai samazinātu Ibēriešu algotņu metāla izmaksas par -20."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
-msgstr ""
+msgstr "Ķeltu-Ibēriešu algotņu ģenerālis"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "Itāliešu algotņi samazina savas metāla izmaksas."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Noalgojiet Itāliešu algotņu kapteini, lai samazinātu Itāliešu algotņu metāla izmaksas par -20."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
-msgstr ""
+msgstr "Itāliešu algotņu kapteinis"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsontooltip
 msgid ""
 "Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Noalgojiet Itāliešu algotņu ģenerāli, lai samazinātu Itāliešu algotņu metāla izmaksas par -20."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
-msgstr ""
+msgstr "Gallu algotņu ģenerālis"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
@@ -1989,7 +1989,7 @@ msgstr ""
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr ""
+msgstr "Kartāgieši bija kolonizētāji. Civilajiem centriem, tempļiem un mājām -25% būvniecības laikam."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -2004,7 +2004,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Kartāgieši bija atklājēji. Visiem tirgoņiem un kurģiem +25% redzamības tālumam."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
@@ -2013,11 +2013,11 @@ msgstr "Atklāšana"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr ""
+msgstr "Ievērojimi paātrina kuģu būvētavas kuģi grupu izbūvi."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "Kuģu būvētava uzlabo grubu izbūves ātruma priekšrocības. "
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
@@ -2026,12 +2026,12 @@ msgstr "Feniķiešu jūras arhitekti"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr ""
+msgstr "Ķeltu algotņiem samazinājās apmācību laiks."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Biedrojies ar Ķeltu pilsētām, lai samazinātu Ķeltu algotņu nolīgšanas laiku par -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -2040,21 +2040,21 @@ msgstr "Ķeltu Alianse"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Pakļaujiet Gallu ciltis, lai samazinātu Ķeltu algotņu nolīgšanas laiku par -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
-msgstr ""
+msgstr "Gallu hegemonija"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr ""
+msgstr "Ibēriešu algotņiem samazinājās apmācību laiks."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
 "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "Biedrojies ar Ibēriešu pilsētām, lai samazinātu Ibēriešu algotņu nolīgšanas laiku par -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
@@ -2063,7 +2063,7 @@ msgstr "Ibēriešu Alianse"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "Pakļaujiet Spāniju, lai samazinātu Ibēriešu algotņu nolīgšanas laiku par -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -2072,13 +2072,13 @@ msgstr "Ibēriešu Hegemonija"
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their train time decreased."
-msgstr ""
+msgstr "Itāliešu algotņiem samazinājās apmācību laiks."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
 msgid ""
 "Ally with Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Biedrojies ar Italiote pilsētām, lai samazinātu Itāliešu algotņu nolīgšanas laiku par -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
@@ -2088,7 +2088,7 @@ msgstr "Italiotu aliance"
 msgid ""
 "Subjugate Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Pakļaujiet Italiote pilsētas, lai samazinātu Itāliešu algotņu nolīgšanas laiku par -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
@@ -2096,14 +2096,14 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr ""
+msgstr "Paaugstiniet visus savus Ķeltu algotņus līdz Attīstītai pakāpei."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr ""
+msgstr "Paaugstiniet visus savus Ķeltu algotņus līdz Attīstītai pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. Atver Elites Ķeltu algotņu tehnoloģiju."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2111,14 +2111,14 @@ msgstr "Attīstīti Ķeltu algotņi"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr ""
+msgstr "Paaugstiniet visus savus Iberiešu algotņus līdz Attīstītai pakāpei."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr ""
+msgstr "Paaugstiniet visus savus Iberiešu algotņus līdz Attīstītai pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. Atver Elites Iberiešu algotņu tehnoloģiju."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2126,14 +2126,14 @@ msgstr "Attīstīti Ibēriešu algotņi"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr ""
+msgstr "Paaugstiniet visus savus Italiote algotņus līdz Attīstītai pakāpei."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr ""
+msgstr "Paaugstiniet visus savus Italiote algotņus līdz Attīstītai pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. Atver Elites Italiote algotņu tehnoloģiju."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -2147,7 +2147,7 @@ msgstr "Paaugstina visus jūsu Ķeltu algotņus līdz elitārajai pakāpei."
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Paaugstiniet visus savus Ķeltu algotņus līdz Elites pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. "
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2161,7 +2161,7 @@ msgstr "Paaugstina visus jūsu Ibēriešu algotņus līdz elitārajai pakāpei"
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Paaugstiniet visus savus Ibēriešu algotņus līdz Elites pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. "
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2176,7 +2176,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Paaugstiniet visus savus Italiote algotņus līdz Elites pakāpei. Tas palielinās to militāro spēku, taču samazinās resursu iegūšanas ātrumu par -25%. "
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2195,7 +2195,7 @@ msgstr "Koka Konstrukcija"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "Apmācība cīņais uz šķēpiem palielina šķēpu kājnieku vienību kaitējumu."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2213,7 +2213,7 @@ msgstr "Doratismós"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "Grieķi lietojuši mūra konstrukcijas no agrīnajiem Mikēniešu laikiem."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2239,7 +2239,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "+25% veselības šķēpu kājniekiem, bet arī +10% apmācību laikam."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2253,11 +2253,11 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Atēniešu triremas var apmācīt jūras kājniekus un Krētas lokšāvējus algotņus."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
-msgstr ""
+msgstr "Ifikrateona reformas"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsondescription
 msgid ""
@@ -2297,14 +2297,14 @@ msgstr "Chakravarti Samrāt"
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
-msgstr ""
+msgstr "Indiešiem bija prasmīgu lokšāvēju tradīcijas un tieksme masīvi izmantot lokšāvējus cīņās."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units train time -20%, but "
 "also -20% health."
-msgstr ""
+msgstr "Ar lokiem aprīkotām vienībām +10 metri tālumam. Lokšāvēju vienībām apmācību laikam -20%, bet arī -20% veselībai."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
@@ -2324,7 +2324,7 @@ msgstr "Koka Mūri"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
-msgstr "Diženā Karaļa Nodeva"
+msgstr "Diženā Karaļa mobilizācija"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2340,11 +2340,11 @@ msgstr ""
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "Ansusiešu kājnieki čempioni tiek apmācīti divtik ātri, taču nedaudz zaudē no maksimālas veselības."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr ""
+msgstr "Anusiešu kājniekiem čempioniem -50% apmācību laikam, bet arī -20 veselībai. "
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2362,7 +2362,7 @@ msgstr ""
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr ""
+msgstr "Visām Persiešu būvēm +25% veselībai un ieņemšanas punktiem, taču arī +20% uzbūves laikam."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2372,7 +2372,7 @@ msgstr "Persiešu Arhitektūra"
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Persiešiem bija prasmīgu lokšāvēju tradīcijas un tieksme masīvi izmantot lokšāvējus cīņās."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2387,7 +2387,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr ""
+msgstr "Feniķiešu trirēmas iegūst iespēju apmācīt jātnieku vienības."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2397,11 +2397,11 @@ msgstr "Ekviniešu transports"
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "Ievērojumi palielina jātnieku apmācību ātrumu staļļos, apmācot tos lielās grupās vai bataljonos."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Ātrāka grupu apmācība staļļiem."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2409,19 +2409,19 @@ msgstr "Jātnieku karaklausība"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr "Kājieku karaklausība"
+msgstr "Kājnieku karaklausība"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Visiem jātniekiem -20% apmācību laikam, bet arī -10 veselībai. Atver jātnieku Iesaukumu."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Visiem kājniekiem -10% apmācību laikam, bet arī -5 veselībai. Atver kājnieku Iesaukumu."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2468,7 +2468,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Civiliem centriem +100% veselībai un ieņemšanas punktiem, dubulto noklusējuma bultas."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2478,11 +2478,11 @@ msgstr "Helēnistiskā Metropole "
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr ""
+msgstr "Ievērojumi palielina aplenkuma mehānismu un čempionu apmācību ātrumu cietoksnī, apmācot tos lielās grupās vai bataljonos."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Ātrāka grupu apmācība cietoksnim."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -2535,7 +2535,7 @@ msgstr "Tradicionāla Armija"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Sudraba vairogi, vai Argyraspidai, bija Maķedoniešu armijas elitāras smagās kājnieku vienības."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""

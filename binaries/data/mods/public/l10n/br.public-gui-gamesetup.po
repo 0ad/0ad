@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
-# Wanibzh29 <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-18 22:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-22 22:54+0000\n"
+"Last-Translator: Yann-Vari Gwiader <yannvari.gwiader@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,49 +46,49 @@ msgstr "%(username)s en deus kuitaet"
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s en deus paouezet ganti"
 
 #: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s a zo bet skarzhet kuit"
 
 #: gui/gamesetup/gamesetup.js:51
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:52
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:55
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s a zo prest!"
 
 #: gui/gamesetup/gamesetup.js:58
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s n'eo ket prest."
 
 #: gui/gamesetup/gamesetup.js:70
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Dre Ziouer"
 
 #: gui/gamesetup/gamesetup.js:75
 msgid "Naval Maps"
-msgstr ""
+msgstr "Kartennoù Arme-Vor"
 
 #: gui/gamesetup/gamesetup.js:80
 msgid "Demo Maps"
-msgstr ""
+msgstr "Kartenn Diskouez"
 
 #: gui/gamesetup/gamesetup.js:85
 msgid "New Maps"
-msgstr ""
+msgstr "Kartennoù nevez"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
@@ -116,11 +118,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:599
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: gui/gamesetup/gamesetup.js:599
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: gui/gamesetup/gamesetup.js:638
 msgctxt "team"
@@ -135,7 +137,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1394
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Dre Ziouer"
 
 #: gui/gamesetup/gamesetup.js:1464
 msgid "Loading..."
@@ -175,11 +177,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1857
 msgid "I'm not ready!"
-msgstr ""
+msgstr "N'on ket prest !"
 
 #: gui/gamesetup/gamesetup.js:1858
 msgid "I'm ready"
-msgstr ""
+msgstr "Prest on"
 
 #: gui/gamesetup/gamesetup.js:1861
 msgid "State that you are not ready to play."
@@ -259,12 +261,12 @@ msgstr ""
 #: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
-msgstr ""
+msgstr "Nullañ"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
 #: gui/gamesetup/gamesetup.xml:(caption):448
 msgid "OK"
-msgstr ""
+msgstr "Mad eo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):21
 msgid "Match Setup"
@@ -284,7 +286,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
 msgid "Color"
-msgstr ""
+msgstr "Liv"
 
 #: gui/gamesetup/gamesetup.xml:(caption):55
 msgid "Player Placement"
@@ -292,15 +294,15 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):59
 msgid "Civilization"
-msgstr ""
+msgstr "Sevenadurezh"
 
 #: gui/gamesetup/gamesetup.xml:(caption):87
 msgid "Team"
-msgstr ""
+msgstr "Skipailh"
 
 #: gui/gamesetup/gamesetup.xml:(caption):140
 msgid "Map Type:"
-msgstr ""
+msgstr "Doare kartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):143
 msgid "Map Filter:"
@@ -320,7 +322,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Send"
-msgstr ""
+msgstr "Kas"
 
 #: gui/gamesetup/gamesetup.xml:(caption):249
 msgid "Cheats enabled."
@@ -361,7 +363,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Ceasefire:"
-msgstr ""
+msgstr "Harz-tennañ :"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -521,7 +523,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
-msgstr ""
+msgstr "Lies-c'hoarier"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
@@ -547,7 +549,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
-msgstr ""
+msgstr "Anv ar servijer :"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
