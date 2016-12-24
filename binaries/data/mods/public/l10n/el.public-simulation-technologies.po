@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-12-18 22:22+0000\n"
+"PO-Revision-Date: 2016-12-22 14:34+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -505,7 +505,7 @@ msgstr "+20% επίθεση στον ιππικό εκ του συστάδην."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr ""
+msgstr "Εκπαίδευση Ιππικού Μάχης Σώμα με Σώμα"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
@@ -528,7 +528,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
 msgid "Xyston"
-msgstr ""
+msgstr "Χίστόν"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -538,7 +538,7 @@ msgstr "Αντικαθιστά τα χάλκινα όπλα με σιδερέν�
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "Εξοπλίζει το εκ συστάδην ιππικό με καλλίτερα όπλα. +20% επίθεση στο εκ συστάδην ιππικό."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -548,20 +548,20 @@ msgstr "Σιδερένια Όπλα"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr ""
+msgstr "Η εκπαίδευση αυξάνει την επίθεση εξ αποστάσεως."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "+20% επίθεση στον ιππικό εξ αποστάσεως."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "Εκπαίδευση Ιππικού Μάχης Εξ Αποστάσεως"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Εξοπλίζει το εξ αποστάσεως ιππικό με καλλίτερα όπλα. +20% επίθεση στο εξ αποστάσεως ιππικό."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -594,12 +594,12 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr ""
+msgstr "Συχνά, ένας πεζικάριος φέρει και ένα δευτερεύον όπλο, εκτός από το κύριο όπλο της επιλογής του, που το χρησιμοποιεί όταν το κύριο όπλο έχει αχρηστευτεί ή έχει σπάσει."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "+20% επίθεση στον πεζικό εκ του συστάδην."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -632,18 +632,18 @@ msgstr "H xρήση σιδήρου αντί του χαλκού έδωσε στ�
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "Η εκπαίδευση αυξάνει την ζημιά που προκαλούν οι εξ αποστάσεως πεζικάριοι."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "+20% επίθεση στον πεζικό εξ αποστάσεως."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "Εξ Αποστάσεως Πεζικό Ατάκτων"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
@@ -665,7 +665,7 @@ msgstr "Άτακτοι"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Εξ Αποστάσεως Πεζικό Τακτικών"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -674,7 +674,7 @@ msgstr "Η θέληση για μάχη είναι καθοριστικής ση
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr ""
+msgstr "Ενθαρρύνετε τα στρατεύματά σας με υψηλότερες αποδοχές. Σε όλες τις χερσαίες και ναυτικές δυνάμεις +25% επίθεση."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -692,7 +692,7 @@ msgstr "Δύναμη"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr ""
+msgstr "Μυστικές τεχνικές στη χαλυβουργία δίνουν στις λεπίδες των σπαθιών διακριτικά και όμορφες επιγραφές. Και όχι μόνο αυτό, αλλά η σκληρότητα του χάλυβα είναι απαράμιλλη."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
@@ -700,11 +700,11 @@ msgstr "+2 επίθεση για όλους τους ξιφομάχους."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr ""
+msgstr "Χαλυβουργία"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
-msgstr ""
+msgstr "Ατσάλι Γουτζ"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
@@ -714,13 +714,13 @@ msgstr "Ατσάλι Τολέδου"
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "Οι πολεμίστρες στις επάλξεις δίνουν στους στρατιώτες ευρύτερο βεληνεκές στην διατήρηση της υπεράσπισης."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsontooltip
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr ""
+msgstr "Εγκαταστήστε πολεμίστρες και ταμπούρια για να έχετε 40% περισσότερο ρίψη στα βέλη ανά φρουρό."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -728,35 +728,35 @@ msgstr "Πολεμίστρες"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "Ενισχύει τις βάσεις για την προετοιμασία μιας επίθεσης."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armor level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Αυξάνει το επίπεδο θωράκισης της άμυνας του πύργου κατά 2 βαθμούς."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
-msgstr ""
+msgstr "Γερές Βάσεις"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Τα ταμπούρια επιτρέπουν να χτυπηθούν οι εχθροί στη βάση του πύργου."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
-msgstr ""
+msgstr "Αφαιρεί από τον αμυντικό πύργο το ελάχιστο βεληνεκές."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "Ταμπούρια"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
+msgstr "Οι τοξότες αυξάνουν το μέγιστο βεληνεκές των φλεγόμενων βέλων."
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "Αυξάνει στους αμυντικούς πύργους το μέγιστο βεληνεκές κατά 8 μέτρα."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -768,7 +768,7 @@ msgstr "Η νυκτοφυλακή αυξάνει την επαγρύπνηση"
 
 #: simulation/data/technologies/attack_tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to towers."
-msgstr ""
+msgstr "Τοποθέτησε φρουρούς για να προσθέσεις ένα βέλος στους πύργους."
 
 #: simulation/data/technologies/attack_tower_watch.jsongenericName
 msgid "Sentries"
@@ -788,11 +788,11 @@ msgstr "Φύλακες"
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
-msgstr ""
+msgstr "Χρησιμοποιώντας υλικά από μπάζα μειώνετε το κόστος και ο χρόνος οικοδόμησης των τοίχων."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr ""
+msgstr "Στα τείχη της πόλης -20% στο χρόνο κατασκευής, αλλά -1 βαθμό στη θωράκιση συνθλίψεως."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -804,7 +804,7 @@ msgstr "Οι Προφυλακές επιβιώνουν για διπλάσιο �
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "Ρυθμός απώλειας εδάφους -50% για τα φυλάκια."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -826,11 +826,11 @@ msgstr "Κτηνοτροφία"
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid "Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Αύξηση της ποσότητας μετακίνησης όλων των πόρων."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "Οι εργάτες χρησιμοποιούν καλάθια. +5 ποσότητα μετακίνησης για όλους τους πόρους."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -838,31 +838,31 @@ msgstr "Καλάθια"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr ""
+msgstr "Οι εργάτες χρησιμοποιούν ιππήλατα αμαξίδια. +10 ποσότητα μετακίνησης για όλους τους πόρους."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
-msgstr ""
+msgstr "Ιππήλατα Αμαξίδια"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr ""
+msgstr "Το πάστωμα επιτρέπει τη διατήρηση των ψαριών περισσότερο."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr ""
+msgstr "+20 ποσότητα τροφής στα Ψαράδικα."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr ""
+msgstr "Πάστωμα Ψαριών"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr ""
+msgstr "Ξεκλειδώνει στην Φάση Κωμόπολη. Χρειάζεται Δίχτυ Ψαρέματος."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "Οι εργάτες χρησιμοποιούν χειράμαξες. +5 ποσότητα μετακίνησης για όλους τους πόρους."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -870,7 +870,7 @@ msgstr "Χειράμαξα"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr ""
+msgstr "Επιπλέον θρεπτικά συστατικά για τα αγροκτήματα."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
@@ -882,11 +882,11 @@ msgstr "Λίπασμα"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid "A horse drawn instrument to turn the sod."
-msgstr ""
+msgstr "Ένα εργαλείο αλόγου που οργώνει τα χορτάρια."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr ""
+msgstr "Εξόπλισε τους εργάτες με σιδερένια άροτρα. +15% στο ποσοστό γεωργίας."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -894,7 +894,7 @@ msgstr "Σιδερένιο Άροτρο"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "Εκπαιδεύει τους εργάτες για να αυξήσει τη ταχύτητα συγκομιδής από τα αγροκτήματα."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
@@ -911,7 +911,7 @@ msgstr "Το δίχτυ αυξάνει την αλίευση ψαριών."
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
 "Use nets on your Fishing Boats. +30% fishing rate. Unlocks Salting Fish."
-msgstr ""
+msgstr "Χρησιμοποίησε δίκτυα στα Ψαράδικα. +30% στο ρυθμό ψαρέματος. Ξεκλειδώνει το Πάστωμα Ψαριών."
 
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
@@ -963,11 +963,11 @@ msgstr "Δουλοπάροικοι"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
 msgid "Heílōtes"
-msgstr ""
+msgstr "Είλωτες"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Μίσθωση εργατών για την εξόρυξη πέτρας. Δεν υπάρχουν απαιτήσεις. +15% στο ποσοστό εξόρυξης πέτρας."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -1026,7 +1026,7 @@ msgstr "Ανδράποδα"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr ""
+msgstr "Εξόπλισε τους εργάτες με βοηθητικά εργαλεία. +15% στο ποσοστό εξόρυξης μετάλλου."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1059,12 +1059,12 @@ msgstr "Συνθήκες Διαβίωσης"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr ""
+msgstr "Αυξάνει την ακτίνα θεραπείας και το πεδίο οράσεως όλων των θεραπευτών."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
-msgstr ""
+msgstr "Θεραπευτές +5 Ακτίνα Θεραπείας και Πεδίο Οράσεως."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1143,7 +1143,7 @@ msgid ""
 "settlement. Women of the household were taught from a young age how to weave"
 " on the loom, and subsequently spent a large  share of their lives working "
 "with it."
-msgstr ""
+msgstr "Ο αργαλειός επέτρεψε την δημιουργία καλλιτέρων ρούχων για να ντύνονται οι πολίτες στον οικισμό. Οι νοικοκυρές διδάσκονταν από νεαρή ηλικία πώς να υφαίνουν στον αργαλειό και στη συνέχεια αφιέρωναν ένα μεγάλο μέρος της ζωής τους απασχολούμενες με αυτόν."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1159,7 +1159,7 @@ msgstr "Ξεκλείδωστε αναζωογώνηση ζωής για τις �
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "Οι οργανικές μονάδες θα αναγεννηθούν την υγεία του σιγά-σιγά με την πάροδο του χρόνου όταν είναι σε αδράνεια."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -1167,11 +1167,11 @@ msgstr "Ιατρική στο πεδίο της μάχης."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr ""
+msgstr "Χρησιμοποιώντας γεωμετρική τοιχοποιία αυξάνετε η ανθεκτικότητα του αμυντικού τείχους."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr ""
+msgstr "Στα τείχη τη πόλης +2 βαθμούς στη θωράκιση κατά της σύνθλιψης, αλλά +10% στο χρόνο κατασκευής."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1179,19 +1179,19 @@ msgstr "Γεωμετρική Δόμηση."
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr ""
+msgstr "Στο πεζικό εκ του συστάδην +1 επίθεση κοψίματος."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr ""
+msgstr "H xρήση σιδήρου αντί του χαλκού έδωσε στα ακόντια επιπλέον δύναμη διάτρησης."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr ""
+msgstr "Σε όλες τις Λογχοφόρες μονάδες+2 επίθεση κοψίματος."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr ""
+msgstr "Σιδερένιες Αιχμές Δοράτων"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
@@ -1199,31 +1199,31 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.athen
 msgid "Sidḗreai Aikhmaí"
-msgstr ""
+msgstr "Σιδερά Ακμή"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
-msgstr ""
+msgstr "Λόγχη εναντίον Περικεφαλαίας Αλόγου"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr ""
+msgstr "Πρωταθλητές εναντίον Προσωρινών"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
-msgstr ""
+msgstr "Υπηρέτες εναντίoν Σφύρας και Άκμονος"
 
 #: simulation/data/technologies/pair_gather_02.jsongenericName
 msgid "Serfs vs. Shaft Mining"
-msgstr ""
+msgstr "Δουλοπάρικοι εναντίoν Φρεάτιου Ορυχείου"
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
-msgstr ""
+msgstr "Σκλάβοι εναντίoν Εξόρυξης Ασημιού"
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
-msgstr ""
+msgstr "Ξυδεροπέλεκις εναντίoν Χειράμαξας"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
@@ -1235,27 +1235,27 @@ msgstr "Ακτίνα και ρυθμός θεραπείας #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr ""
+msgstr "Προστατευμένη Θεραπεία εναντίον Αυτοίασης"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
-msgstr ""
+msgstr "Γυναίκες εναντίων Πληθυσμού"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
-msgstr ""
+msgstr "Ξίφη εναντίον Ατάκτων"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr ""
+msgstr "Μάχη με Λόγχες εναντίον Αψιμαχίας"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr ""
+msgstr "Πανοπλία Πεζικού κατά του κοψίματος εναντίον Πανοπλίας Λογχοφόρων κατά της διάτρησης"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1263,36 +1263,36 @@ msgstr "Επιστρατευμένο Πεζικό εναντίον Επιστρ�
 
 #: simulation/data/technologies/pair_siege_attack_cost.jsongenericName
 msgid "Attack vs. Cost"
-msgstr ""
+msgstr "Επίθεση εναντίον Κόστους"
 
 #: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
 msgid "Attack vs. Packing"
-msgstr ""
+msgstr "Επίθεση εναντίον Συσκευασίας"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr ""
+msgstr "Κόστος εναντίον Πανοπλίας"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
-msgstr ""
+msgstr "Νυχτοφύλακας εναντίον Πολεμίστρας"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
-msgstr ""
+msgstr "Χρόνος Οικοδόμησης Τειχών εναντίον Υγείας"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr ""
+msgstr "Εξελίσσετε από μια πολυσύχναστη πόλη σε μια πραγματική μητρόπολη, γεμάτη από τα θαύματα της σύγχρονης τεχνολογίας."
 
 #: simulation/data/technologies/phase_city.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1308,14 +1308,14 @@ msgstr "Απαιτούνται 4 νέες δομές Φάσης Κωμόπολη
 #: simulation/data/technologies/phase_city.jsonspecificName.spart
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 msgid "Megalópolis"
-msgstr ""
+msgstr "Μεγαλόπολη"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Εξελίσσετε από μια πολυσύχναστη πόλη σε μια πραγματική μητρόπολη, γεμάτη από τα θαύματα της σύγχρονης τεχνολογίας. Αυτή είναι η φάση τη Αθηναϊκής πόλης, όπου τα ποσοστά συλλογής μετάλλων ενισχύθηκαν λόγω του μπόνους από τις \"Ασημένιες Κουκουβάγιες\"."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1323,19 +1323,19 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Οι Ασημένιες Κουκουβάγιες δίνουν επιπλέον +10% στο ρυθμό συλλογής μετάλλου για όλους τους εργάτες. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr ""
+msgstr "Εξελίσσεται από ένα μικρό χωριό σε μια πολυσύχναστη πόλη, έτοιμη να επεκταθεί με ταχείς ρυθμούς."
 
 #: simulation/data/technologies/phase_town.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται κατά +30%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1346,7 +1346,7 @@ msgstr "Φάση Κωμόπολη"
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr ""
+msgstr "Απαιτούνται 5 Κτίρια Φάσης Χωριού (εκτός από Περιφράγματα και Αγροκτήματα)."
 
 #: simulation/data/technologies/phase_town.jsonspecificName.mace
 #: simulation/data/technologies/phase_town.jsonspecificName.spart
@@ -1359,7 +1359,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Εξελίσσεται από ένα μικρό χωριό σε μια πολυσύχναστη πόλη, έτοιμη να επεκταθεί με ταχείς ρυθμούς. Αυτή είναι η φάση τη Αθηναϊκής πόλης, όπου τα ποσοστά συλλογής μετάλλων ενισχύθηκαν λόγω του μπόνους από τις \"Ασημένιες Κουκουβάγιες\"."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1367,7 +1367,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Προχωρήσετε στην Φάση Κωμόπολη, η οποία ξεκλειδώνει περισσότερα κτήρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +30%. Οι \"Ασημένιες Κουκουβάγιες\" δίνουν επιπλέον +10% στο ρυθμό συλλογής μετάλλου για όλους τους εργάτες. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1377,12 +1377,12 @@ msgstr "Φάση Χωριό"
 msgid ""
 "The state or tribe would often construct a dining hall for public feasts or "
 "to receive foreign emissaries."
-msgstr ""
+msgstr "Το κράτος ή η φυλή συχνά κατασκευάζουν μια αίθουσα συνεστιάσεων για τις δημόσιες γιορτές ή για να υποδέχονται τους ξένους απεσταλμένους."
 
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr ""
+msgstr "Στα Δημοτικά Κέντρα +5 βαθμοί στο όριο του πληθυσμού."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1390,7 +1390,7 @@ msgstr "Τραπεζαρία"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Thólos"
-msgstr ""
+msgstr "Θόλος"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
 msgid ""
@@ -1400,30 +1400,30 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr ""
+msgstr "Ο Δημόσιος χώρος συνέλευσης ήταν συχνά το κέντρο της πολιτικής ζωής για τις αρχαίες κοινωνίες. Η Αθήνα είχε την Εκκλησία, η συνέλευση των πολιτών συγκεντρωνόταν στο Λόφο της Πνύκας κοντά στην αγορά με πλήρη θέα την Ακρόπολη. Οι Ρωμαίοι είχαν τη συνέλευσή τους σε μια θέση ανοικτού χώρου στο μεγάλο Ρωμαϊκό Φόρουμ που ονομαζόταν Κομίτιο. Εδώ οι πολίτες μπορούσαν να εκθέσουν τα παράπονά τους και να υποβάλουν τα αιτήματά τους στου πατρικίους πολιτικούς που κυβερνούσαν την πόλη μέσα από τη Γερουσία."
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
-msgstr ""
+msgstr "Συνέλευση του Δήμου"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
-msgstr ""
+msgstr "Κομίτιο"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklēsía"
-msgstr ""
+msgstr "Εκκλησία του Δήμου"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr ""
+msgstr "Οι οικιακοί κήποι κυμαίνονταν από μια απλή περιφραγμένη περιοχή μέχρι ένα μεγάλο περιποιημένο με κιονοστοιχίες περίβλημα."
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr ""
+msgstr "Στα Σπίτια +20% επιπλέων στο όριο του πληθυσμού."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1452,44 +1452,44 @@ msgstr "Παράδεισος"
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
-msgstr ""
+msgstr "Τα σπίτια έχουν την τάση να επεκτείνονται ανάλογα τον πλούτο και το πληθυσμό ενός οικισμού που αναπτύσσεται."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
-msgstr ""
+msgstr "Αρχοντικά"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr ""
+msgstr "Οικισμός"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Το θαύμα προσελκύει πολλούς περισσότερους ανθρώπους στον πολιτισμό σας."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Ενεργοποίηση της Ένδοξης Επέκτασης. Αυξάνει περαιτέρω το όριο του πληθυσμού κατά 40 ανά Θαύμα που κατέχεται."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Ένδοξη Επέκταση"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
 "The javelin thong (the Greeks also called them loops, or bronkhos) increased"
 " the fulcrum action of the throwing arm mid-throw, increasing speed and "
 "range of the javelin."
-msgstr ""
+msgstr "Το λουρί στο ακόντιο (οι Έλληνες το αποκαλούσαν βρόχο) αύξανε την υπομόχλιο δράση του βραχίονα ρίψης μέσων βολών, αυξάνοντας την ταχύτητα και το βεληνεκές του ακοντίου."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr ""
+msgstr "Σε όλες τις μονάδες Ακοντιστών +2 επίθεση διάτρησης και +4 στο βεληνεκές."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
-msgstr ""
+msgstr "Λουρί στο Ακόντιο"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
@@ -1497,11 +1497,11 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.athen
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Himás"
-msgstr ""
+msgstr "Ιμάντας"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
-msgstr ""
+msgstr "Λωρίον"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
@@ -1509,7 +1509,7 @@ msgstr "Αύξησε την πανοπλία στα όπλα πολιορκία�
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr ""
+msgstr "Σε όλα τα Πολιορκητικά Όπλα +2 επίπεδα στη πανοπλία κοψίματος."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1517,11 +1517,11 @@ msgstr "Επιμετάλλωση πανοπλίας"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency"
-msgstr ""
+msgstr "Οι προηγμένες τεχνολογίες βελτιώνουν την αποδοτικότητα της πολιορκίας"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr ""
+msgstr "Σε όλα τα Πολιορκητικά Όπλα +25% ζημιά Σύνθλιψης."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1533,15 +1533,15 @@ msgstr "Βελτίωση στην ακρίβεια βλήματος"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Η ακρίβεια του κοχλία ρίψης αυξήθηκε κατά 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
-msgstr ""
+msgstr "Κοχλίας Ακρίβειας"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr ""
+msgstr "Οι πολιορκητικές μηχανές χρειάζονται λιγότερη ποσότητα μετάλλου"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
@@ -1557,7 +1557,7 @@ msgstr "Οι πολιορκητικές μηχανές κοστίζουν λιγ
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege weapons cost 20% less wood"
-msgstr ""
+msgstr "Οι πολιορκητικές μηχανές κοστίζουν 20% λιγότερο ξύλο"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1565,11 +1565,11 @@ msgstr "Εκπαιδευτές πυροβολικού"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr ""
+msgstr "Οι στάσιμες πολιορκητικές μηχανές συναρμολογούνται και αποσυναρμολογούνται πιο γρήγορα"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% στο χρόνο τοποθέτησης και μαζέματος των στάσιμων πολιορκιτικών μηχανών."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1577,36 +1577,36 @@ msgstr "Στρατιωτικοί Μηχανικοί"
 
 #: simulation/data/technologies/speed_cavalry_01.jsondescription
 msgid "Breed the fastest horses."
-msgstr ""
+msgstr "Εκτρέφει τα ταχύτερα άλογα."
 
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr ""
+msgstr "+10% στην ταχύτητα βαδίσματος του ιππικού."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "Εκτροφή Ιππικού"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr ""
+msgstr "Εκπαιδεύει τα άλογα σας να κινηθούν ταχύτερα."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr ""
+msgstr "Εκπαίδευση Ταχύτητας Ιππικού"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
-msgstr ""
+msgstr "Βελτίωση του διεθνούς εμπορικού κέρδους."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Market +10% International Bonus."
-msgstr ""
+msgstr "Στην Αγορά +10% Διεθνές Μπόνους."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
-msgstr ""
+msgstr "Εμπορική Συνθήκη"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
@@ -1614,7 +1614,7 @@ msgstr "Αυξάνει την αμυντική ικανότητα των εμπ�
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr ""
+msgstr "Σε όλους τους Εμπόρους +2 επίπεδα στη πανοπλία κοψίματος και διάτρησης."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1624,44 +1624,44 @@ msgstr "Εμπορικά Καραβάνια"
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr ""
+msgstr "Αυξάνει την ταχύτητα μετακίνησης των εμπόρων, η οποία με τη σειρά της αυξάνει εμπορικό εισόδημα."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr ""
+msgstr "Στους Εμπόρους +25% Ταχύτητα Κίνησης, η οποία αυξάνει γρήγορα το εμπορικό εισόδημα."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "Η πρόοδος στη χειροτεχνία βελτιώνει το εμπορικό κέρδος."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
-msgstr ""
+msgstr "Οι έμποροι +10% κέρδος."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
-msgstr ""
+msgstr "Χειροτεχνία"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% gain."
-msgstr ""
+msgstr "Οι έμποροι +15% κέρδος."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
-msgstr ""
+msgstr "Προηγμένη Χειροτεχνία"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
 "Significantly increase training speed of soldiers at the barracks by "
 "training them in large batches or battalions."
-msgstr ""
+msgstr "Σημαντική αύξηση της ταχύτητας εκπαίδευσης των στρατιωτών στο στρατώνα από την κατάρτισή τους σε μεγάλες ομάδες ή τάγματα."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
 msgid "Faster batch training speed for the Barracks."
-msgstr ""
+msgstr "Γρηγορότερη ταχύτητα εκπαίδευσης ομάδας για τους Στρατώνες."
 
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
@@ -1672,12 +1672,12 @@ msgstr "Στρατολόγηση"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr ""
+msgstr "Δυνατότητα προσκλήσεως να συνεισφέρει το ιππικό σε καιρό πολέμου βοηθά στην ενίσχυση των τάξεων του στρατού του βασιλιά."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr ""
+msgstr "Σε όλο το ιππικό -20% χρόνος εκπαίδευσης, αλλά και -10 υγεία. Ξεκλειδώνει την Επίταξη."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1689,12 +1689,12 @@ msgstr "Επιστρατευμένο Ιππικό"
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr ""
+msgstr "Δυνατότητα προσκλήσεως να συνεισφέρει το πεζικό σε καιρό πολέμου βοηθά στην ενίσχυση των τάξεων του στρατού του βασιλιά."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr ""
+msgstr "Σε όλο το πεζικό -10% χρόνος εκπαίδευσης, αλλά και -5 υγεία. Ξεκλειδώνει την Επίταξη."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -1703,11 +1703,11 @@ msgstr "Επιστρατευμένο Πεζικό "
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr ""
+msgstr "Σημαντική αύξηση της ναυπήγησης σε ομάδες πλοίων στη προκυμαία."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr ""
+msgstr "Οι προκυμαίες αυξάνουν το μπόνους ταχύτητας στη ναυπήγηση ομάδων."
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
@@ -1731,11 +1731,11 @@ msgstr "Ξεκλειδώστε Πρωταθλητές."
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Ágēma"
-msgstr ""
+msgstr "Άγημα"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
-msgstr ""
+msgstr "Συγκρότημα της Χώρας"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1753,7 +1753,7 @@ msgstr "Γιορτή Γονιμότητας"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophória"
-msgstr ""
+msgstr "Θεσμοφόρια"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1764,32 +1764,32 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Η επέκταση του εμπορίου οδηγεί στη μόνιμη εγκατάσταση των καταστηματαρχών και των οικογενειών τους σε ξένες χώρες, επιτρέποντάς τους να εκμεταλλευτούν τον πλούτο των χωρών αυτών."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr ""
+msgstr "Επιτρέπετε στους συμμάχους να χρησιμοποιούν το εναποθετήριο."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "Διασπορά"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
-msgstr ""
+msgstr "Χρειάζονται 3 Έμποροι"
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "Δια μέσου του εμπορίου και των ταξιδιών οι άνθρωποι εξερεύνησαν πέρα από τα όρια των εδαφών τους και επέστησαν χάρτες από αυτά έτσι ώστε να μοιραστούν και να απομνημονεύσουν τις ανακαλύψεις τους."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Δείτε τι βλέπουν οι σύμμαχοί σας, περιηγηθείτε περιληπτικά και να ελέγξτε τους πόρους τους και καταμετρήστε τον πληθυσμού τους στην κορυφή του πίνακα."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1798,71 +1798,71 @@ msgstr "Χαρτογραφία"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr ""
+msgstr "Προάγετε όλους τους ιππείς πολίτες-οπλίτες σας σε Ανώτερο βαθμό."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr ""
+msgstr "Προάγετε όλους τους ιππείς πολίτες-οπλίτες σας σε Ανώτερο βαθμό. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει κατά -25% το ποσοστό συλλογής κρέατος. Ξεκλειδώνει την τεχνολογία Εκλεκτός Πολίτης-Ιππέας."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr ""
+msgstr "Προαγωγή Πολίτη-Ιππέα"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους πεζικάριους πολίτες-οπλίτες σας σε Ανώτερο βαθμό."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr ""
+msgstr "Προάγετε όλους τους πεζικάριους πολίτες-οπλίτες σας σε Προχωρημένο βαθμό. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει κατά -25% το ποσοστό συλλογής πώρων. Ξεκλειδώνει την τεχνολογία Εκλεκτός Πολίτης-Πεζικάριος."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr ""
+msgstr "Προαγωγή Πολίτη-Πεζικάριου"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
-msgstr ""
+msgstr "Ζευγίται"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Προάγετε όλους του ιππείς πολίτες-οπλίτες σας στο βαθμό των Εκλεκτών. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει επιπλέον -25% το ποσοστό συλλογής κρέατος."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr ""
+msgstr "Εκλεκτός Πολίτης-Ιππέας"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους πεζικάριους πολίτες-οπλίτες σας στο βαθμό των Εκλεκτών."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr ""
+msgstr "Προάγετε όλους τους πεζικάριους πολίτες-οπλίτες σας στο βαθμό των Εκλεκτών. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει επιπλέον -25% το ποσοστό συλλογής πόρων."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr ""
+msgstr "Εκλεκτός Πολίτης-Πεζικάριος"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
-msgstr ""
+msgstr "Πεντακοσιομέδιμνοι"
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
@@ -1870,7 +1870,7 @@ msgstr "Οι Προφυλακές αποκτούν μεγαλύτερη ακτί
 
 #: simulation/data/technologies/vision_outpost.jsontooltip
 msgid "Vision Range +50% for Outposts."
-msgstr ""
+msgstr "+50% Πεδίο Οράσεως στα Φυλάκια."
 
 #: simulation/data/technologies/vision_outpost.jsongenericName
 msgid "Carrier Pigeons"
@@ -1883,7 +1883,7 @@ msgid ""
 "was via the city's harbor, not by storming its walls. Consequently, "
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Οι Καρχηδόνιοι κατασκεύαζαν τα τείχη της πόλης τους σε τρεις ομόκεντρους κύκλους. Αυτά τα τείχη ποτέ δεν είχαν εκπορθεί. Ακόμα και όταν η πόλη λήφθηκε από τους Ρωμαίους, ήταν μέσω του λιμανιού της πόλης, και όχι από έφοδο στα τείχη της. Κατά συνέπεια, Τα Καρχηδόνια τείχη, οι πύλες και πύργοι του τείχους έχουν 3x στην αντοχή από ένα τυπικό τείχος, αλλά διπλάσιο κόστος και παίρνει διπλάσιο χρόνο για να χτίσει."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -1898,7 +1898,7 @@ msgstr "Οι Κέλτες μισθοφόροι αποκτούν μειωμένο
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Στρατολογήστε ένα Κέλτη μισθοφόρο λοχαγό για να μειωθεί κατά -20 το κόστος σε μέταλλο για τους Κέλτες μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
@@ -1908,22 +1908,22 @@ msgstr "Λοχαγός Κέλτης Μισθοφόρος"
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Στρατολογήστε ένα Γαλάτη μισθοφόρο στρατηγό για να μειωθεί κατά -20 το κόστος σε μέταλλο για τους Κέλτες μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
-msgstr ""
+msgstr "Γαλάτης Μισθοφόρος Στρατηγός"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "Οι Ίβηρες μισθοφόροι αποκτούν μειωμένο κόστος σε μέταλλο."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsontooltip
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr ""
+msgstr "Στρατολογήστε ένα Λουζιτανό μισθοφόρο λοχαγό για να μειωθεί κατά -20 το κόστος σε μέταλλο για τους Ίβηρες μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
@@ -1933,7 +1933,7 @@ msgstr "Λουσιτάνος Μισθοφόρος Λοχαγός"
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr ""
+msgstr "Στρατολογήστε ένα Κελτοϊβήριο μισθοφόρο αρχηγό για να μειωθεί κατά -20 το κόστος σε μέταλλο για τους Ίβηρες μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
@@ -1942,13 +1942,13 @@ msgstr "Κελτο-Ίβηρας Μισθοφόρος Στρατηγός"
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "Οι Ιταλοί μισθοφόροι αποκτούν μειωμένο κόστος σε μέταλλο."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Στρατολογήστε ένα Ιταλό μισθοφόρο λοχαγό για να μειωθεί κατά -20 το κόστος σε μέταλλο για τους Ιταλιάνους μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
@@ -1958,7 +1958,7 @@ msgstr "Ιταλιώτης Μισθοφόρος Λοχαγός"
 msgid ""
 "Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Στρατολογήστε ένα Ιταλό μισθοφόρο στρατηγό για να μειωθεί κατά -20 το κόστος σε μέταλλο για τους Ιταλιάνους μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
@@ -1966,27 +1966,27 @@ msgstr "Ιταλιώτης Μισθοφόρος Στρατηγός"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr ""
+msgstr "Κόστος Κέλτη μισθοφόρου έναντι χρόνου στρατολόγησης  #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr ""
+msgstr "Κόστος Κέλτη μισθοφόρου έναντι χρόνου στρατολόγησης  #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "Κόστος Ιβήριου μισθοφόρου έναντι χρόνου στρατολόγησης  #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "Κόστος Ιβήριου μισθοφόρου έναντι χρόνου στρατολόγησης  #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "Κόστος Ιταλού μισθοφόρου έναντι χρόνου στρατολόγησης  #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "Κόστος Ιταλού μισθοφόρου έναντι χρόνου στρατολόγησης  #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -2013,7 +2013,7 @@ msgstr "Κανείς δεν ήξερε καλύτερα πού βρίσκοντ�
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Οι Καρχηδόνιοι ήταν εξερευνητές. Όλα τα πλοία και οι έμποροι +25% εμβέλεια όρασης."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
@@ -2022,15 +2022,15 @@ msgstr "Εξερεύνηση"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr ""
+msgstr "Σημαντική αύξηση της ναυπήγησης σε ομάδες πλοίων στο Ναυπηγείο."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "Τα ναυπηγεία αυξάνουν το μπόνους ταχύτητας στη ναυπήγηση ομάδων."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
-msgstr ""
+msgstr "Φοίνικες Ναυτικοί Αρχιτέκτονες"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
@@ -2040,7 +2040,7 @@ msgstr "Οι Κέλτες μισθοφόροι αποκτούν μειωμένο
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Συμμάχησε με τις Κέλτικες πόλεις για να μειώσεις τον χρόνο στρατολόγησης -20% για τους Κέλτες μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -2049,7 +2049,7 @@ msgstr "Κέλτικη Συμμαχία"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Υπέταξε Γαλατικά φύλα για να μειώσεις τον χρόνο στρατολόγησης -20% για τους Κέλτες μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
@@ -2072,11 +2072,11 @@ msgstr "Ιβηρική Συμμαχία"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "Υπέταξε την Ισπάνια για να μειώσεις τον χρόνο στρατολόγησης -20% για τους Ίβηρους μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr ""
+msgstr "Ιβηρική Ηγεμονία"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
@@ -2087,7 +2087,7 @@ msgstr "Οι Ιταλοί μισθοφόροοι σποκτούν μειωμέν
 msgid ""
 "Ally with Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Συμμάχησε με τις Ιταλικές πόλεις για να μειώσεις τον χρόνο στρατολόγησης -20% για τους Ιταλιάνους μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
@@ -2097,7 +2097,7 @@ msgstr "Ιταλική Συμμαχία"
 msgid ""
 "Subjugate Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "Υπέταξε Ιταλικές πόλεις για να μειώσεις τον χρόνο στρατολόγησης -20% για τους Ιταλιάνους μισθοφόρους."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
@@ -2105,58 +2105,58 @@ msgstr "Ιταλιώτικη Ηγεμονία"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους Κέλτες μισθοφόρους σας σε Ανώτερο βαθμό."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr ""
+msgstr "Προάγετε όλους τους Κέλτες μισθοφόρους σας σε Ανώτερο βαθμό. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει κατά -25% το ποσοστό συλλογής πώρων. Ξεκλειδώνει την τεχνολογία Εκλεκτός Κέλτης Μισθοφόρος."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
-msgstr ""
+msgstr "Προαγωγή Κέλτη Μισθοφόρου"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους Ίβηρες μισθοφόρους σας σε Ανώτερο βαθμό."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr ""
+msgstr "Προάγετε όλους του Ίβηρες μισθοφόρους σας σε Ανώτερο βαθμό. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει κατά -25% το ποσοστό συλλογής πώρων. Ξεκλειδώνει την τεχνολογία Εκλεκτός Ίβηρος Μισθοφόρος."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
-msgstr ""
+msgstr "Προαγωγή Ίβηρα Μισθοφόρου"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους Ιταλιάνους μισθοφόρους σας σε Ανώτερο βαθμό."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr ""
+msgstr "Προάγετε όλους τους Ιταλιάνους μισθοφόρους σας σε Ανώτερο βαθμό. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει κατά -25% το ποσοστό συλλογής πώρων. Ξεκλειδώνει την τεχνολογία Εκλεκτός Ιταλιάνος Μισθοφόρος."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
-msgstr ""
+msgstr "Προαγωγή Ιταλιάνου Μισθοφόρου"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους Κέλτες Μισθοφόρους σας στο βαθμό των Εκλεκτών."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Προάγετε όλους τους Κέλτες μισθοφόρους σας στο βαθμό των Εκλεκτών. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει επιπλέον -25% το ποσοστό συλλογής πόρων."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2164,13 +2164,13 @@ msgstr "Ελίτ Κέλτες Μισθοφόροι"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους Ίβηρες Μισθοφόρους σας στο βαθμό των Εκλεκτών."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Προάγετε όλους τους Ίβηρες μισθοφόρους σας στο βαθμό των Εκλεκτών. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει επιπλέον -25% το ποσοστό συλλογής πόρων."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2178,14 +2178,14 @@ msgstr "Ελίτ Ίβηρες Μισθοφόροι"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr ""
+msgstr "Αναβαθμίστε όλους τους Ιταλιάνους Μισθοφόρους σας στο βαθμό των Εκλεκτών."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Προάγετε όλους τους Ιταλιάνους μισθοφόρους σας στο βαθμό των Εκλεκτών. Αυτό αυξάνει την στρατιωτική τους δύναμη αλλά μειώνει επιπλέον -25% το ποσοστό συλλογής πόρων."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2196,7 +2196,7 @@ msgid ""
 "Celtic structures were mostly made of wood with rubble foundations. "
 "Consequently, their structures have less health than other cultures do, but "
 "they also construct faster."
-msgstr ""
+msgstr "Οι Κέλτικες κατασκευές αποτελούνταν κυρίως από ξύλο με θεμέλια μπάζα. Κατά συνέπεια, οι κατασκευές τους έχουν λιγότερη αντοχή από ό, τι σε άλλους πολιτισμούς, αλλά επίσης κατασκευάζονται πιο γρήγορα."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2204,15 +2204,15 @@ msgstr "Ξύλινη Κατασκευή"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "Η εκπαίδευση των λογχοφόρων στη μάχη αυξάνει τη ζημιά που προκαλούν οι λογχοφόρες μονάδες πεζικού."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr ""
+msgstr "Στους Λογχοφόρους +2 επίθεση κοψίματος."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
-msgstr ""
+msgstr "Μαχητικότητα Λογχοφόρου Πεζικάριου"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.spart
@@ -2222,7 +2222,7 @@ msgstr "Δορατισμός"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "Οι Έλληνες χρησιμοποιούσαν πέτρινες κατασκευές από νωρίς στη Μυκηναϊκή εποχή."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2230,7 +2230,7 @@ msgstr "Ελληνική Αρχιτεκτονική"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
-msgstr ""
+msgstr "Ασθενέστεροι"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2238,13 +2238,13 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr ""
+msgstr "Οι Σπαρτιάτες δεν είχαν το μεγαλύτερο στρατό στον κόσμο, αλλά είχαν τον καλύτερο στρατό στον κόσμο για την εποχή τους. Αυτό που δεν είχαν σε ποσότητα, το αντικατέστησαν με την ποιότητα. Είχε λεχθεί ότι η Σπάρτη δεν χρειαζόταν ισχυρά τείχη για την πόλη της, γιατί οι άνδρες της ήταν τα τείχη της."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr ""
+msgstr "Οι Σπαρτιάτες στρατολογούνταν και εκπαιδεύονταν από νεαρή ηλικία ώστε να είναι εξαιρετικοί πολεμιστές και να υπομείνουν κάθε δυσκολία που μια στρατιωτική ζωή μπορεί να τους δώσει."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
@@ -2258,11 +2258,11 @@ msgstr "Η Αγωγή"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Οι Αθηναϊκές τριήρεις μπορούν να εκπαιδεύσουν ναύτες (Αθηναίοι Επιβάτες) και Κρητικούς Μισθοφόρους Τοξότες (Κριτικοί Τοξότες)."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Οι Αθηναϊκές τριήρεις μπορούν να εκπαιδεύσουν Ναύτες και Κρητικούς Μισθοφόρους Τοξότες."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -2282,7 +2282,7 @@ msgstr "Χτίσε πέτρινα τείχη σε ουδέτερο έδαφος.
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr ""
+msgstr "Αθηναϊκά Μακρά Τείχη"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
 msgid ""
@@ -2292,7 +2292,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr ""
+msgstr "Η Αυτοκρατορία των Μαουρύα περιελάμβανε δεκάδες πρώην ανεξάρτητα βασίλεια σε μια έκταση 5 εκατομμυρίων τετραγωνικών χιλιομέτρων, με πληθυσμό κοντά στα 60 εκατομμύρια ανθρώπους. Οι Μαουρύα αντιβασιλείς κράτησαν τον τίτλο του Αυτοκράτορα των Αυτοκρατόρων και διοικούσαν έναν μόνιμο στρατό από 600.000 πεζικό, 9.000 ελέφαντες, 8.000 άρματα και 30.000 ιππικό, καθιστώντας αναμφισβήτητα το μεγαλύτερο στρατό της εποχής του."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2300,20 +2300,20 @@ msgstr "Αυτοκράτορας των Αυτοκρατόρων"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
-msgstr ""
+msgstr "Μεγάλος Αυτοκράτορας"
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
-msgstr ""
+msgstr "Οι Ινδοί είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units train time -20%, but "
 "also -20% health."
-msgstr ""
+msgstr "Το Βεληνεκές +10 μέτρα για τις μονάδες που χειρίζονται τόξο. -20% στο χρόνο εκπαιδεύσεις μονάδων τοξωτών, αλλά και -20% στην υγεία."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
@@ -2325,7 +2325,7 @@ msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health and "
 "-20% build time."
-msgstr ""
+msgstr "Οι Μαουρύοι έχτιζαν τα τείχη της πόλης τους από ξύλο, έναν πλούσιο φυσικό πόρο της Ινδίας. Κατά συνέπεια, τα Μαούρυα τείχη της πόλης έχουν στο χρόνο κατασκευής -20% και -20% για την υγεία."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2343,17 +2343,17 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρώσει έναν μεγάλο αριθμό πεζικού κατά τη διάρκεια του πολέμου, λόγω του μεγάλου μεγέθους της αυτοκρατορία των Αχαιμενιδών και τον τρόπο με τον οποίο ήταν οργανωμένη. Σε γενικές γραμμές το περσικό πεζικό ήταν καλά εκπαιδευμένο και πολεμούσαν με μεγάλη επιμονή. Ωστόσο, η αλήθεια ήταν ότι το πεζικό ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "Ο πεζικάριος πρωταθλητής Ανασούγια εκπαιδεύετε δύο φορές πιο γρήγορα, αλλά μειώνετε λίγο η μέγιστη υγεία του."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr ""
+msgstr "Στο Πεζικάριο Πρωταθλητή Ανασούγια -50% στο χρόνο εκπαίδευσης, αλλά και -20 στην υγεία."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2365,13 +2365,13 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Οι Πέρσες έχτισαν την υπέροχη Βασιλική Εθνική Οδό μήκους  2.698 χιλιόμετρα από τις Σάρδεις στα Σούσα, Ο Δαρείος ο Μέγας και ο Ξέρξης έκτισαν την υπέροχη Περσέπολη, Ο Κύρος ο Μέγας βελτίωσε σημαντικά την Εκβάτανα και ουσιαστικά \"ξαναχτίστηκε\" η παλιά Ελαμιτική πρωτεύουσα της Σούσας."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr ""
+msgstr "Όλα τα περσικά κτίσματα +25% αντοχή και πόντοι κατάληψης, αλλά επίσης και +20% χρόνος αποπεράτωσης."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2381,7 +2381,7 @@ msgstr "Περσική Αρχιτεκτονική"
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Οι Πέρσες είχαν μια παράδοση στη κατασκευή εκλεκτών τόξων και μια τάση για χρήση μαζικών τοξοβόλων στη μάχη."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2392,7 +2392,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "Οι πρώτοι κυβερνήτες των Αχαιμενιδών έδρασαν προς την κατεύθυνση να κάνουν την Περσία την πρώτη μεγάλη ασιατική αυτοκρατορία που ελέγχει τις θάλασσες. Ο Μεγάλος Βασιλιάς συμπεριφέρθηκε ευνοϊκά προς διάφορου θαλάσσιους λαούς, προκειμένου να εξασφαλίσει τις υπηρεσίες τους, αλλά και πραγματοποίησε διάφορες θαλάσσιες πρωτοβουλίες. Κατά τη διάρκεια της βασιλείας του Δαρείου του Μεγάλου, για παράδειγμα, ένα κανάλι χτίστηκε στην Αίγυπτο και ένα Περσικό ναυτικό στάλθηκε για την εξερεύνηση του ποταμού Ινδού. Σύμφωνα με τον Ηρόδοτο, περίπου 300 πλοία του Περσικού ναυτικού είχαν κατασκευαστεί για να μεταφέρουν τα άλογα και τους αναβάτες τους."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
@@ -2406,11 +2406,11 @@ msgstr " Ιππικές Μεταφορές"
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "Σημαντική αύξηση της ταχύτητας εκπαίδευσης του ιππικού στο στάβλο από την κατάρτισή τους σε μεγάλες ομάδες ή τάγματα."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Γρηγορότερη ταχύτητα εκπαίδευσης ομάδας για τους Στάβλους."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2424,13 +2424,13 @@ msgstr "Στρατολόγηση πεζικού"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Σε όλο το ιππικό -20% χρόνος εκπαίδευσης, αλλά και -10 υγεία. Ξεκλειδώνει την Επίταξη Ιππικού."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Σε όλο το πεζικό -10% χρόνος εκπαίδευσης, αλλά και -5 υγεία. Ξεκλειδώνει την Επίταξη Πεζικού."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2438,7 +2438,7 @@ msgstr "Οι Ρωμαίοι ήταν κυρίαρχοι στον εφοδιασ�
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr ""
+msgstr "Η διάβρωση στα Εδραιωμένα Στρατόπεδα και Πολιορκητικά Τείχη είναι 50% πιο αργή."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2450,7 +2450,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr ""
+msgstr "Τα Σιβυλλικά Βιβλία ήταν μια συλλογή από μαντικές δηλώσεις, που ήταν γραμμένες στο ελληνικό εξάμετρο, τα αγόρασε από έναν σίβυλλα ο τελευταίος βασιλιά της Ρώμης, ο Λεύκιος Ταρκύνιος ο Υπερήφανος και τα συμβουλευόταν σε όλες τι κρίσιμες αποφάσεις στην ιστορία της Δημοκρατίας και της Αυτοκρατορίας."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2473,11 +2473,11 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr ""
+msgstr "Ξεκινώντας με τον Αλέξανδρο, οι Ελληνιστικοί μονάρχες ίδρυσαν πολλές πόλεις σε όλη την αυτοκρατορίας τους, όπου η Ελληνική κουλτούρα και η τέχνη αναμειγνύονταν με τα τοπικά έθιμα για να δημιουργηθεί ένας ετερόκλητος Ελληνιστικός πολιτισμός."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Αστικά κέντρα +100% υγεία και πόντοι κατάληψης, διπλά βασικά βέλη."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2487,11 +2487,11 @@ msgstr "Ελληνιστική Μητρόπολη"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr ""
+msgstr "Σημαντική αύξηση της ταχύτητας εκπαίδευσης των πρωταθλητών και των πολιορκιτικών μηχανών στο κάστρο από την κατάρτισή τους σε μεγάλες ομάδες ή τάγματα."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Γρηγορότερη ταχύτητα εκπαίδευσης ομάδας για τα Κάστρα."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -2502,7 +2502,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr ""
+msgstr "Η εξαφανισμένη τώρα Νίσια φυλή των αλόγων ήταν ένα από τα μεγαλύτερα και ισχυρότερα άλογα των αρχαίων χρόνων. Ήταν περιζήτητα από τους Σελευκίδες και τους Πέρσες, τόσο ο αναβάτης όσο και ο ίππος απέκτησαν βαριά πανοπλία καθώς ο χρόνος προχωρούσε."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
@@ -2522,7 +2522,7 @@ msgstr "Ο μεταρρυθμισμένος στρατός των Σελευκι
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr ""
+msgstr "Ξεκλειδώστε τον Εκρωμαϊσθέντα Βαρύ Ξιφομάχο και τον Κατάφρακτο Σελευκίδη."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -2534,7 +2534,7 @@ msgstr "Ο παραδοσιακός στρατός των Σελευκιδών."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "Ξεκλειδώστε τον Δορατοφόρο με την Ασημένια Ασπίδα και το Δρεπανηφόρο Άρμα."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -2544,13 +2544,13 @@ msgstr "Παραδοσιακός Στρατός"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Οι Ασημένιες Ασπίδες ή Αργυράσπιδες, ήταν το εκλεκτό βαρύ πεζικό του Μακεδονικού στρατού."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr ""
+msgstr "Αναβάθμισε τον Φέρασπις Πρωταθλητή Πεζικάριο σε Ασημένιες Ασπίδες, με πολύ μεγάλη υγεία και πανοπλία."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-15 19:51+0000\n"
+"PO-Revision-Date: 2016-12-20 12:24+0000\n"
 "Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:6
 msgctxt "ai"
 msgid "None"
-msgstr "Nekāds"
+msgstr "Nekāda"
 
 #: gui/aiconfig/aiconfig.js:7
 msgid "AI will be disabled for this player."
@@ -101,16 +101,16 @@ msgstr "Visas kartes"
 #: gui/gamesetup/gamesetup.js:144
 msgctxt "map selection"
 msgid "Random"
-msgstr "Nejaušs"
+msgstr "Nejauša"
 
 #: gui/gamesetup/gamesetup.js:149
 msgctxt "civilization"
 msgid "Random"
-msgstr "Nejaušs"
+msgstr "Nejauša"
 
 #: gui/gamesetup/gamesetup.js:272
 msgid "Return to the lobby."
-msgstr "Atgriezties pie ieejas."
+msgstr "Atgriezties uz priekšnamu."
 
 #: gui/gamesetup/gamesetup.js:272
 msgid "Return to the main menu."
@@ -146,7 +146,7 @@ msgstr "Ielādē..."
 #: gui/gamesetup/gamesetup.js:1597
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "Virtuālais intelekts: %(ai)s"
+msgstr "Mākslīgais intelekts: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1602
 msgid "Unassigned"
@@ -256,7 +256,7 @@ msgstr "MI spēlētājs:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):30
 msgid "AI Difficulty:"
-msgstr "MI sarežģītība:"
+msgstr "MI līmenis:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup_mp.xml:(caption):120
@@ -306,19 +306,19 @@ msgstr "Kartes tips:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):143
 msgid "Map Filter:"
-msgstr "Kartes filtrs:"
+msgstr "Karšu filtrs:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):146
 msgid "Select Map:"
-msgstr "Atlasīt karti:"
+msgstr "Izvēlēties karti:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):149
 msgid "Number of Players:"
-msgstr "Spēlētāju Skaits:"
+msgstr "Spēlētāju skaits:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):152
 msgid "Map Size:"
-msgstr "Kartes Izmērs:"
+msgstr "Kartes izmērs:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):231
 msgid "Send"
@@ -343,11 +343,11 @@ msgstr "Papildus Iespējas"
 
 #: gui/gamesetup/gamesetup.xml:(caption):311
 msgid "Game Speed:"
-msgstr "Spēles Ātrums:"
+msgstr "Spēles ātrums:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "Victory Condition:"
-msgstr "Uzvaras Nosacījumi:"
+msgstr "Uzvaras nosacījumi:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):331
 msgid "Wonder Victory:"
@@ -359,17 +359,17 @@ msgstr "Populācijas griezti:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):351
 msgid "Starting Resources:"
-msgstr "Sākuma resursi:"
+msgstr "Sākotnējie resursi:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):361
 msgid "Ceasefire:"
-msgstr "Pamiers"
+msgstr "Pamiers:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "Revealed Map:"
-msgstr "Atklāta Karte:"
+msgstr "Atvērta karte:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -416,7 +416,7 @@ msgstr "Izvēlies krāsu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
-msgstr "Atlasīt spēlētāju."
+msgstr "Izvēlēties spēlētāju."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):121
 msgid "Configure AI settings."
@@ -432,11 +432,11 @@ msgstr "Izvēlēties spēlētāja komandu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):169
 msgid "Select a map type."
-msgstr "Atlasīt kartes tipu."
+msgstr "Izvēlēties kartes tipu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):177
 msgid "Select a map filter."
-msgstr "Atlasīt karšu filtru."
+msgstr "Izvēlēties karšu filtru."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):186
 msgid "Select a map to play on."
@@ -460,7 +460,7 @@ msgstr "Apskatīt papildus spēles opcijas"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):315
 msgid "Select game speed."
-msgstr "Izvēlēties spēles ātrumu."
+msgstr "Izvēlieties spēles ātrumu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):325
 msgid "Select victory condition."
@@ -477,7 +477,7 @@ msgstr "Izvēlēties populācijas grieztus."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):355
 msgid "Select the game's starting resources."
-msgstr "Izvēlēties spēles sākuma resursus."
+msgstr "Izvēlēties spēles sākuma resursu līmeni."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):365
 msgid "Set time where no attacks are possible."
@@ -523,7 +523,7 @@ msgstr "Aizvērt logu ar spēles papildus parametriem"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
-msgstr "Vairākspēlētāju"
+msgstr "Vairāki spēlētāji"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
@@ -683,7 +683,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "\"Spartieši nejautā cik daudz, tikai kur ir ienaidnieks.\" - Agis II no Spartas"
 
 #: gui/text/quotes.txt:26
 msgid ""

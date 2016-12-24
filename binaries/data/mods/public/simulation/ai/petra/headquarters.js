@@ -1093,11 +1093,11 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		{
 			if (isNavalMarket && market.hasClass("NavalMarket"))
 			{
-				if (this.navalManager.getDockIndex(gameState, market, true) !== gameState.ai.accessibility.getAccessValue(pos, true))
+				if (m.GetSeaAccess(gameState, market) !== gameState.ai.accessibility.getAccessValue(pos, true))
 					continue;
 				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			}
-			else if (gameState.ai.accessibility.getAccessValue(market.position()) === index)
+			else if (m.GetLandAccess(gameState, market) === index)
 				gainMultiplier = traderTemplatesGains.landGainMultiplier;
 			else
 				continue;

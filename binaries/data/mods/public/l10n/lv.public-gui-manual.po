@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Martins M <mednismartins@inbox.lv>, 2014
+# Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-21 09:56+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +32,11 @@ msgstr "Skatīt tiešsaistē"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. instrukcija spēlē"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -60,7 +61,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spēles gaita"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -104,7 +105,7 @@ msgstr "[font=\"sans-bold-16\"]Režīmi"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"] Galvenā izvelne dod piekļuvi pie diviem spēles režīmiem:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -119,7 +120,7 @@ msgstr ""
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Vairāku spēlētāju[font=\"sans-14\"] — spēlēt pret cilvēkiem caur internetu."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -131,35 +132,35 @@ msgstr ""
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spēles iestatījumi"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Vairāku spēlētāju spēlē tikai izmitinātājs var mainīt spēles iestatījumu izvēles."
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "Vispirms izvēlieties kādu kartes tipu jūs gribētu spēlēt: "
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Nejauša karte[font=\"sans-14\"] — automātiski ar skriptu izveidotā karte"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scenārija karte[font=\"sans-14\"] — Karšu dizaineru izveidotā mape ar fiksētām civilizācijām."
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Sadursmju karte[font=\"sans-14\"] — Karšu dizaineru izveidotā mape, kur civilizācijas var tikt izvēlētas"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -181,19 +182,19 @@ msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr ""
+msgstr "Kad esat gatavi sākt, klikšķiniet pogu \"Sākt spēli\"."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Ātrie taustiņi:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Globāls"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Aizvērt spēli bez apstiprinājuma"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -233,7 +234,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:53
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Spēlē"
 
 #: gui/manual/intro.txt:54
 msgid ""
@@ -265,7 +266,7 @@ msgstr "Shift + F5: Ātrā saglabāšana"
 
 #: gui/manual/intro.txt:59
 msgid "Shift + F8: Quickload"
-msgstr ""
+msgstr "Shift + F8: Quickload"
 
 #: gui/manual/intro.txt:60
 msgid "F10: Open/close menu"
@@ -273,15 +274,15 @@ msgstr "F10: Atvērt/Aizvērt izvēli"
 
 #: gui/manual/intro.txt:61
 msgid "F12: Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12: Parādīt/paslēpt pagājušā laika skaitītāju"
 
 #: gui/manual/intro.txt:62
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Aizvērt visus dialogus (terzēšana, izvēlnes) vai atiestatīt vienību izvēli"
 
 #: gui/manual/intro.txt:63
 msgid "Enter/return: Open/send chat"
-msgstr ""
+msgstr "Enter: Atvērt terzēšanu/nosūtīt ziņu"
 
 #: gui/manual/intro.txt:64
 msgid "T: Send team chat"
@@ -289,137 +290,137 @@ msgstr "T: Komandas tērzētava"
 
 #: gui/manual/intro.txt:65
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: Pārtraukt/atsākt spēli"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Dzēst: Dzēst pašreiz izvēlēto vienību/būvi"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift + Delete: Pazudināt šobrīd izvēlētas vienības/būves bez pārjautāšanas"
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (slīpsvītra uz priekšu): Izvēlēties brīvu cīnītāju"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: pievienot brīvu cīnītāju pie izvēlētajiem"
 
 #: gui/manual/intro.txt:70
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (punkts): Izvēlēties brīvu strādnieku (ieskaitot pilsoņus kareivjus)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: pievienot brīvu strādnieku pie izvēlētajiem (ieskaitot pilsoņus kareivjus)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: Apturēt pašlaik izvēlētas vienības."
 
 #: gui/manual/intro.txt:73
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Y: Vienība atgriezīsies pie darba"
 
 #: gui/manual/intro.txt:74
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: Izvest vienības no izvēlēto būvju garnizona"
 
 #: gui/manual/intro.txt:75
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr ""
+msgstr "Ctrl + 1, 2, ..., 9 vai 0: Izveidot atbilstošo kontroles grupu no izvēlētajām vienībām/būvēm "
 
 #: gui/manual/intro.txt:76
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr ""
+msgstr "1, 2, ..., 9 vai 0: Izvēlēties vienības/būves atbilstošajā kontroles grupā "
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift + 1, 2, ..., 9, 0: Pievienot atbilstošo kontroles grupu pie izvēlētajām vienībām/būvēm"
 
 #: gui/manual/intro.txt:78
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ctrl + F5, F6, F8 vai F8: Atzīmēt pašreizējo kameras pozīciju, lai pārlēktu uz to vēlāk."
 
 #: gui/manual/intro.txt:79
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr ""
+msgstr "F5, F6, F7 un F8: Pārvietot kameru uz atzīmētu pozīciju. Pārlēkt uz pēdējo pozīciju, ja kamera jau ir uz atzīmētas pozīcijas."
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N vai M: Kamēr izvēlēta apmācību būve/s. Pievienot pie apmācību rindas 1., 2., utt. ikonas vienību visās izvēlētajā/s būvē/s"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "PgUp kamēr izvēlētas vienības: Parādīt vienības/būves, ko apsargā izvēlētie"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "PgDown kamēr izvēlētas vienības: Parādīt vienības, kas apsargā izvēlēto/ās"
 
 #: gui/manual/intro.txt:83
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: Redzēt visas statusa joslas (kas parādīs arī būvniecības progresu)"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ietekmē darbības ar peli"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + labais klikšķis uz būves: Pievienoties garnizonam"
 
 #: gui/manual/intro.txt:87
 msgid "J + Right Click on building: Repair"
-msgstr ""
+msgstr "J + labais klikšķis uz būves: Remontēt"
 
 #: gui/manual/intro.txt:88
 msgid "P + Right Click: Patrol"
-msgstr ""
+msgstr "P + labais klikšķis: Patrulēt"
 
 #: gui/manual/intro.txt:89
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + labais klikšķis: ielikt rindā kustību/būvniecību/ieguvi/u.c. pavēli"
 
 #: gui/manual/intro.txt:90
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr ""
+msgstr "Shft + Kreisais klikšķis, kad apmāca vienības: Pievienot rindai vienību grupu, parasti no pieciem"
 
 #: gui/manual/intro.txt:91
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + Kreisais klikšķis vai vilkt ar kreiso pāri vienībāi uz kartes: Pievienot vienību pie izvēlētajām"
 
 #: gui/manual/intro.txt:92
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + Kreisais klikšķis vai vilkt ar kreiso pāri vienībāi uz kartes: Izslēgt vienību no izvēlētajām"
 
 #: gui/manual/intro.txt:93
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + Vilkt ar kreiso pāri vieībām uz kartes: Izvēlēties tikai militāras vienības"
 
 #: gui/manual/intro.txt:94
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + Vilkt ar kreiso pār vienībām uz kartes: Izvēlēties tikai brīvas vienības"
 
 #: gui/manual/intro.txt:95
 msgid ""
@@ -434,17 +435,17 @@ msgstr ""
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + Right Click with units selected:"
-msgstr ""
+msgstr "Ctrl + labais klikšķis, kamēr izvēlētas vienības:"
 
 #: gui/manual/intro.txt:98
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- Ja kursors ir virs sabiedroto būves: ieiet garnizonā"
 
 #: gui/manual/intro.txt:99
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr ""
+msgstr "- Ja kursors ir uz pretinieka vienības: Uzbrukt,  būves: Ieņemt (nevis vākt)"
 
 #: gui/manual/intro.txt:100
 msgid ""
@@ -475,121 +476,121 @@ msgstr ""
 #: gui/manual/intro.txt:106
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr ""
+msgstr "Alt + S: Iesl./Izsl. vienību siluetus (var dot nelielu ātrdabības pieaugumu)"
 
 #: gui/manual/intro.txt:107
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt + Z: Iesl./Izsl. debesis"
 
 #: gui/manual/intro.txt:109
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kameras manipulācija"
 
 #: gui/manual/intro.txt:110
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W vai \\[up]: Pabīdīt ekrānu uz augšu"
 
 #: gui/manual/intro.txt:111
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S vai \\[down]: Pabīdīt ekrānu uz leju"
 
 #: gui/manual/intro.txt:112
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A vai \\[left]: Pabīdīt ekrānu pa kreisi"
 
 #: gui/manual/intro.txt:113
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D vai \\[right]: Pabīdīt ekrānu pa labi"
 
 #: gui/manual/intro.txt:114
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W vai \\[up]: Pagriezt kameru ar skatu uz augšu"
 
 #: gui/manual/intro.txt:115
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S vai \\[down]: Pagriezt kameru ar skatu uz leju"
 
 #: gui/manual/intro.txt:116
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A vai \\[left]: Pagriezt kameru pulksteņrādītāja virzienā ap teritoriju"
 
 #: gui/manual/intro.txt:117
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D vai \\[right]: Pagriezt kameru pretēji pulksteņrādītāja virzienam ap teritoriju"
 
 #: gui/manual/intro.txt:118
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: Pagriezt kameru pulksteņrādītāja virzienā ap teritoriju"
 
 #: gui/manual/intro.txt:119
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "E: Pagriezt kameru pretēji pulksteņrādītāja virzienam ap teritoriju"
 
 #: gui/manual/intro.txt:120
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Peles rulīti rotēt uz augšu: Pagriezt kameru pulksteņrādītāja virzienā ap teritoriju"
 
 #: gui/manual/intro.txt:121
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + Peles rulīti rotēt uz leju: Pagriezt kameru pretēji pulksteņrādītāja virzienam ap teritoriju"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Sekot izvēlētajai vienībai (pakustiniet kameru, lai pārtrauktu kameras sekošanau vienībai/ām)"
 
 #: gui/manual/intro.txt:123
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: Atiestatīt kameras tuvinājumu/orientāciju"
 
 #: gui/manual/intro.txt:124
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: Pietuvinēt (turēt nospiestu pietuvināšanas turpinājumam)"
 
 #: gui/manual/intro.txt:125
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: Attālināt (turēt nospiestu attālināšanas turpinājumam)"
 
 #: gui/manual/intro.txt:126
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: Pārslēgties star karkasa režīmiem"
 
 #: gui/manual/intro.txt:127
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "Vidējais peles taustiņš: Turiet nospiestu un kustiniet peli, lai bidītu ekrānu pa teritoriju"
 
 #: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Būvniecības uzsākšanas laikā"
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"]\\[: Pagriezt būvniecību 15 grādus pretēji pulksteņrādītāja virzienam"
 
 #: gui/manual/intro.txt:131
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]: Pagriezt būvniecību 15 grādus pulksteņrādītāja virzienā"
 
 #: gui/manual/intro.txt:132
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Vilkt ar kreiso: Pagriezt būvniecību lietojot peli (pamati tiks ielikti atlaižot peles taustiņu)"
 
 #: gui/manual/intro.txt:134
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kad ielādē saglabātu spēli"
 
 #: gui/manual/intro.txt:135
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Delete: dzēst izvēlēto saglabāto spēli jautājot apstiprinājumu"
 
 #: gui/manual/intro.txt:136
 msgid "Shift: do not ask confirmation when deleting a saved game"
-msgstr ""
+msgstr "Shift: neprasīt apstiprinājumu, kad dzēš saglabāto spēli"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -602,7 +603,7 @@ msgstr ""
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "Šādi dati tiks nosūtīti uz mūsu serveri:"
 
 #: gui/manual/userreport.txt:5
 msgid ""

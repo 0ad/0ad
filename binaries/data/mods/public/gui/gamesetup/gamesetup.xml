@@ -133,6 +133,17 @@
 				</object>
 			</object>
 			<object size="24 64 100%-460 358" type="image" sprite="CoverFillDark" name="playerAssignmentsPanelCover" hidden="true"/>
+
+			<object name="spTips" size="24 370 560 520" type="image" hidden="true">
+				<object size="4 10 28 34" type="image" sprite="ModernGear"/>
+				<object name="aiTips" size="32 0 100%-20 100%-32" type="text" style="ModernLeftLabelText"/>
+				<object size="30 100%-30 100% 100%-8" type="text" style="ModernLeftLabelText">
+					<translatableAttribute id="caption">Show this message in the future</translatableAttribute>
+				</object>
+				<object name="displaySPTips" size="8 100%-30 28 100%-8" type="checkbox" style="ModernTickBox">
+					<action on="Press">saveSPTipsSetting();</action>
+				</object>
+			</object>
 			<!-- Map selection -->
 
 			<object size="100%-425 355 100%-285 470" name="mapTypeTooltip">

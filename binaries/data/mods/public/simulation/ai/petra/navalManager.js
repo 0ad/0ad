@@ -171,7 +171,7 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	for (let ship of this.ships.values())
 		this.setShipIndex(gameState, ship);
 	for (let dock of this.docks.values())
-		this.setDockIndex(gameState, dock);
+		this.SetAccessIndices(gameState, dock);
 };
 
 m.NavalManager.prototype.updateFishingBoats = function(sea, num)
@@ -188,52 +188,16 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 		this.wantedFishShips.fill(0);
 };
 
+m.NavalManager.prototype.SetAccessIndices = function(gameState, ent)
+{
+	m.GetLandAccess(gameState, ent);
+	m.GetSeaAccess(gameState, ent);
+};
+
 m.NavalManager.prototype.setShipIndex = function(gameState, ship)
 {
 	let sea = gameState.ai.accessibility.getAccessValue(ship.position(), true);
 	ship.setMetadata(PlayerID, "sea", sea);
-};
-
-m.NavalManager.prototype.setDockIndex = function(gameState, dock)
-{
-	let land = dock.getMetadata(PlayerID, "access");
-	if (land === undefined)
-	{
-		land = this.getDockIndex(gameState, dock, false);
-		dock.setMetadata(PlayerID, "access", land);
-	}
-	let sea = dock.getMetadata(PlayerID, "sea");
-	if (sea === undefined)
-	{
-		sea = this.getDockIndex(gameState, dock, true);
-		dock.setMetadata(PlayerID, "sea", sea);
-	}
-};
-
-/**
- * get the indices for our starting docks and those of our allies
- * land index when onWater=false, sea indes when true
- */
-m.NavalManager.prototype.getDockIndex = function(gameState, dock, onWater)
-{
-	let index = gameState.ai.accessibility.getAccessValue(dock.position(), onWater);
-	if (index < 2)
-	{
-		// pre-positioned docks are sometimes not well positionned
-		let dockPos = dock.position();
-		let radius = dock.footprintRadius();
-		for (let i = 0; i < 16; i++)
-		{
-			let pos = [ dockPos[0] + radius*Math.cos(i*Math.PI/8), dockPos[1] + radius*Math.sin(i*Math.PI/8)];
-
-			index = gameState.ai.accessibility.getAccessValue(pos, onWater);
-			if (index >= 2)
-				break;
-		}
-	}
-	if (index < 2)
-		API3.warn("ERROR in Petra navalManager because of dock position (onWater=" + onWater + ") index " + index);
-	return index;
 };
 
 /** get the list of seas (or lands) around this region not connected by a dock */
@@ -259,7 +223,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let entity = gameState.getEntityById(evt.newentity);
 		if (entity && entity.hasClass("Dock") && entity.isOwn(PlayerID))
-			this.setDockIndex(gameState, entity);
+			this.SetAccessIndices(gameState, entity);
 	}
 
 	for (let evt of events.TrainingFinished)
@@ -326,7 +290,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		{
 			let ent = gameState.getEntityById(evt.entity);
 			if (ent && ent.hasClass("Dock"))
-				this.setDockIndex(gameState, ent);
+				this.setAccessIndices(gameState, ent);
 		}
 	}
 };

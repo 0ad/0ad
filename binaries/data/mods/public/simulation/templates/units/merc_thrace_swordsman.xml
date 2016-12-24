@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_swordsman">
+  <Cost>
+    <Resources>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>merc</Civ>
     <GenericName>Thracian Mercenary Swordsman</GenericName>
@@ -11,12 +17,6 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion disable=""/>
-  <UnitMotion>
-    <WalkSpeed>8</WalkSpeed>
-    <Run>
-      <Speed>13.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/mercenaries/thracian_swordsman.xml</Actor>
   </VisualActor>

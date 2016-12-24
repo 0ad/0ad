@@ -128,8 +128,8 @@ function onTick()
 	{
 		g_ShowSplashScreens = false;
 
-		if (Engine.ConfigDB_GetValue("user", "splashscreendisable") !== "true" ||
-		    Engine.ConfigDB_GetValue("user", "splashscreenversion") < Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"))
+		if (Engine.ConfigDB_GetValue("user", "gui.splashscreen.enable") === "true" ||
+		    Engine.ConfigDB_GetValue("user", "gui.splashscreen.version") < Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"))
 			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
 		else
 			ShowRenderPathMessage();
