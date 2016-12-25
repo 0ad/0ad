@@ -826,7 +826,7 @@ public:
 
 		g_VFS = CreateVfs(20 * MiB);
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/"cache"));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 
 		// Need some stuff for terrain movement costs:
 		// (TODO: this ought to be independent of any graphics code)
@@ -879,6 +879,7 @@ public:
 		// Shut down the world
 		delete &g_TexMan;
 		g_VFS.reset();
+		DeleteDirectory(DataDir()/"_testcache");
 		CXeromyces::Terminate();
 	}
 
