@@ -603,7 +603,7 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 	let index = gameState.ai.accessibility.getAccessValue(target.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	let garrisonArrowClasses = target.getGarrisonArrowClasses();
-	let units = gameState.getOwnUnits().filter(ent => MatchesClassList(garrisonArrowClasses, ent.classes())).filterNearest(target.position());
+	let units = gameState.getOwnUnits().filter(ent => MatchesClassList(ent.classes(), garrisonArrowClasses)).filterNearest(target.position());
 	for (let ent of units.values())
 	{
 		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
@@ -634,7 +634,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	gameState.getAllyStructures().forEach(function(ent) {
-		if (!MatchesClassList(ent.garrisonableClasses(), unit.classes()))
+		if (!MatchesClassList(unit.classes(), ent.garrisonableClasses()))
 			return;
 		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
 			return;
@@ -668,7 +668,7 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 	gameState.getAllyStructures().forEach(function(ent) {
 		if (!ent.buffHeal())
 			return;
-		if (!MatchesClassList(ent.garrisonableClasses(), unit.classes()))
+		if (!MatchesClassList(unit.classes(), ent.garrisonableClasses()))
 			return;
 		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
 			return;

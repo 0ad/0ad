@@ -215,11 +215,10 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 	case 'trade':		// trader garrisoned in ship
 		return true;
 	case 'protection':	// hurt unit for healing or infantry for defense
-		if (ent.needsHeal() && holder.buffHeal())
-			return true;
-		if (enemiesAround && (ent.hasClass("Support") || MatchesClassList(holder.getGarrisonArrowClasses(), ent.classes())))
-			return true;
-		return false;
+		return ent.needsHeal() && holder.buffHeal() ||
+		       enemiesAround && (ent.hasClass("Support") ||
+			       MatchesClassList(ent.classes(), holder.getGarrisonArrowClasses()) ||
+			       MatchesClassList(ent.classes(), "Siege+!Melee"));
 	case 'decay':
 		return this.decayingStructures.has(holder.id());
 	default:
