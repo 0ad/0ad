@@ -29,11 +29,11 @@ Resources = ["food", "wood", "stone", "metal"]
 # The way this works is it tries all generic templates
 # But only loads those who have one of the following parents
 # EG adding "template_unit.xml" will load all units.
-LoadTemplatesIfParent = ["template_unit_infantry.xml", "template_unit_cavalry.xml", "template_unit_champion.xml"];
+LoadTemplatesIfParent = ["template_unit_infantry.xml", "template_unit_cavalry.xml", "template_unit_champion.xml", "template_unit_hero.xml"];
 
 # Those describe Civs to analyze.
 # The script will load all entities that derive (to the nth degree) from one of the above templates.
-Civs = ["athen", "mace", "spart", "sele", "cart", "rome", "pers", "maur", "brit", "gaul", "iber"]
+Civs = ["athen", "brit", "cart", "gaul", "iber", "mace", "maur", "pers", "ptol", "rome", "sele", "spart"]
 
 # Remote Civ templates with those strings in their name.
 FilterOut = ["marian", "thureophoros", "thorakites", "kardakes"]
@@ -41,7 +41,7 @@ FilterOut = ["marian", "thureophoros", "thorakites", "kardakes"]
 # Sorting parameters for the "roster variety" table
 ComparativeSortByCav = True
 ComparativeSortByChamp = True
-SortTypes = ["Support","Pike","Spear","Sword", "Archer","Javelin","Sling","Elephant"]	# Classes
+SortTypes = ["Support", "Pike", "Spear", "Sword", "Archer", "Javelin", "Sling", "Elephant"]	# Classes
 
 # Disable if you want the more compact basic data. Enable to allow filtering and sorting in-place.
 AddSortingOverlay = True
