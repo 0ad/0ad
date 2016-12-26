@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-12-22 15:59+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2016-12-23 11:17+0100\n"
+"PO-Revision-Date: 2016-12-26 01:14+0000\n"
+"Last-Translator: Envel PICHON <envel_ras@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,24 +25,24 @@ msgid "Formation Reforms"
 msgstr "Adurzhiañ ar stummidigezh"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
-msgid "All units in his formation +15% speed and +1 armor."
-msgstr "An holl unanennoù e-barzh ar stummadenn-mañ +15% a dizh ha +1 a houarnwisk."
+msgid "All soldiers in his formation +15% speed and +1 armor."
+msgstr "An holl soudarded en e stummidigezh +15% a dizh ha +1% a houarnwisk."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
 msgstr "Adstummoù Peltast"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
-msgid "All Peltasts +15% speed."
-msgstr "+15% a dizh evit an holl b/Peltasted."
+msgid "All javelin infantry +15% speed."
+msgstr "An holl soudarded war-droad gant speg +15% a dizh."
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
 msgstr "Aora ar Savidigezh"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
-msgid "Buildings construct 15% faster within his vision."
-msgstr "Savet e vez 15% buanoc'h ar savadurioù e-barzh e sell."
+msgid "Buildings construct 15% faster within his aura."
+msgstr "Ar savadurioù a sav 15% buanoc'h e-kreiz e aora."
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -72,23 +73,22 @@ msgid "Champion Army"
 msgstr "Kampion an Arme"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
-msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr "+5 a Dagusted, +2 a Bakusted ha +25% a Dizh evit an Unanennoù Kampion."
+msgid "+20% attack, +2 capture and +25% speed for champion units."
+msgstr ""
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
 #: simulation/data/auras/gaul_hero_brennus.jsonauraName
 #: simulation/data/auras/gaul_hero_britomartus.jsonauraName
 #: simulation/data/auras/gaul_hero_vercingetorix.jsonauraName
-#: simulation/data/auras/mace_hero_demetrius.jsonauraName
 #: simulation/data/auras/mace_hero_philip.jsonauraName
 msgid "Hero Aura"
 msgstr "Aora Heroikel"
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
-msgid "All Units +15% speed."
-msgstr "+15% a Dizh evit an Holl Unanennoù."
+msgid "All soldiers and siege engines +15% speed."
+msgstr ""
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
@@ -103,24 +103,26 @@ msgid "Tactician Aura"
 msgstr "Aora an Taktisian"
 
 #: simulation/data/auras/cart_hero_hannibal.jsonauraDescription
-msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr "+2 a Dagusted ha +1 a Bakusted evit Holl Unanennoù ar re gevreded e-barzh e hed-sell."
+msgid ""
+"All allied soldiers and siege engines +20% attack and +1 capture within his "
+"vision range."
+msgstr ""
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
 msgstr "Aora ar C'homandant"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
-msgid "+5 Cavalry melee attack within vision range of him."
-msgstr "+5 a Dagusted gant ar Varc'hegerezh er veskadeg e-barzh e hed-sell dezhañ."
+msgid "+20% cavalry melee attack within his aura."
+msgstr ""
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
 msgstr "O kempenn aora al Lestr"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 3 HP per second."
-msgstr "Kempenn al listri a zo e gwarnizonoù da 3 FB an eilenn."
+msgid "Heals garrisoned ship at 10 HP per second."
+msgstr ""
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -136,8 +138,8 @@ msgid "Inspiration Aura"
 msgstr "Aora an Awen"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
-msgid "Nearby males work 10% faster."
-msgstr "Ar wazed e-kichen a labour 10% buanoc'h."
+msgid "Nearby citizen soldiers work 10% faster."
+msgstr ""
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -148,8 +150,10 @@ msgid "Gathering rates increased with +15% during his lifetime."
 msgstr "Kreskiñ a ra ar feurioù dastum eus +15% e-pad e vuhez."
 
 #: simulation/data/auras/gaul_hero_vercingetorix.jsonauraDescription
-msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr "+2 a Dagusted ha +1 a Bakusted evit an holl unanennoù en e aora."
+msgid ""
+"+20% attack and +1 capture for all soldiers and siege engines within his "
+"aura."
+msgstr ""
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -157,9 +161,9 @@ msgstr "Aora Pakadur ar Gwarnizonoù"
 
 #: simulation/data/auras/hero_garrison.jsonauraDescription
 msgid ""
-"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
-"capture points recovery rate."
-msgstr "Pa vez e gwanizon en ur savadur pe ur mekanik seziz e vez roet gant an haroz ur bonuz feurel +2 a adpakusted eus ar poentoù pakadur."
+"When garrisoned in a structure or a siege engine, the hero gives it a bonus "
+"of +2 capture points recovery rate."
+msgstr ""
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
@@ -167,9 +171,9 @@ msgstr "Aora Difenn"
 
 #: simulation/data/auras/iber_monument.jsonauraDescription
 msgid ""
-"Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost. Effect "
-"Range: 50 meters"
-msgstr "Reiñ a ra d'an holl unanennoù Iberian en Aora +2 a Droc'husted ha +3 a Doullusted Tagañ. Levezon an efed : 50 metrad."
+"Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
+"meters"
+msgstr ""
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -177,16 +181,16 @@ msgstr "Aora al Levraoueg"
 
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
-"Reduce the cost and research time of technologies by 10% per Library owned."
-msgstr "Lakaat da zigreskiñ ar c'houst hag amzer enklask an teknologiezhioù eus 10% dre Levraoueg a zo pec'hennet ganeoc'h."
+"Reduce the cost and research time of technologies by 10% per library owned."
+msgstr ""
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
 msgstr "Aora ar Fealded"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
-msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
-msgstr "An holl savadurioù e-barzh o hed-tenn a wel o feur astiñvañ fealded gwarnizon kreskaet eus 1,5x."
+msgid "All structures in range +50% garrisoned loyalty regeneration rate."
+msgstr ""
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -196,22 +200,25 @@ msgstr "Aora an Impalaerouriezh"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% eus un efed tiriadel evit an holl savadurioù keit m'emañ o vevañ."
 
+#: simulation/data/auras/mace_hero_demetrius.jsonauraName
+msgid "Besieger Aura"
+msgstr ""
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
-msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr "+15% a Hed-tenn ha +10% a Dagusted Flastrañ evit ar Mekanikoù Seziz."
+msgid "+15% range and +10% crush attack for siege engines."
+msgstr ""
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
-msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr "+5 a Dagusted ha +2 a Bakusted evit an Unanennoù Kampion."
+msgid "+20% attack and +2 capture for champion units."
+msgstr ""
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
-msgid "Evangelism Aura"
-msgstr "Aora an Avielouriezh"
+msgid "Buddhism Aura"
+msgstr ""
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid ""
-"All player and allied Temple technologies -50% cost and -50% research time."
-msgstr "An holl c'hoarierien hag ar re gevredet outo teknologiezhioù an Templ -50% eus ar c'houst ha -50% eus an amzer enklask."
+msgid "All player temple technologies -50% cost and -50% research time."
+msgstr ""
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -223,56 +230,57 @@ msgid ""
 msgstr "Digreskiñ eus -50% amzer enklask an teknologiezhioù er savadur lec'h ma vez lakaet e gwarnizon."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
-msgid "All traders in range +20% walk speed."
-msgstr "An holl genwerzhourien en hed-sell a gerzh +20% buanoc'h."
+msgid "All traders in range +20% speed."
+msgstr ""
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
 msgstr "Merañ eus Aora an Dalbenn"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
-msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr "+2 a Dagusted ha +1 a Bakusted evit an unanennoù marc'hegerezh tost."
+msgid "+20% attack and +1 capture for nearby cavalry units."
+msgstr ""
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
 msgstr "Aora ar Gourc'hemenn"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
-msgid "+15% Movement Speed for all units."
-msgstr "+15% a Dizh Fiñvadennoù evit an holl unanennoù."
+msgid "+15% movement speed for all soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
 msgstr "Aora ar Merour"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
-msgid "+15% Gather Rate and Build Rate of nearby units."
-msgstr "+15% a Feur Dastum ha Feur Sevel an unanennoù tost."
+msgid "+15% gather rate and build rate of nearby workers."
+msgstr ""
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
 msgid "Patriot Aura"
 msgstr "Aora ar Brogarour"
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
-msgid "Egyptian units fight 25% faster in her vision range."
-msgstr "25% buanoc'h ec'h en em gann an Unanennoù Ejipsian en he hed-sell dezhi."
+msgid ""
+"-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
+msgstr ""
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
 msgstr "Aora ar Rafia"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr "Ar Pikeromoù Ejipsian o deus ur yec'hed gwelloc'h eus 40% a-hed e vuhez."
+msgid "Egyptian pikemen have 40% greater health during his lifetime."
+msgstr ""
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Construction Aura"
 msgstr "Aora ar Savidigezh"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "Buildings construct 10% faster within his vision."
-msgstr "Savet e vez ar savadurioù 10% buanoc'h en e hed-sell."
+msgid "Buildings construct 10% faster within his aura."
+msgstr ""
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron Aura"
@@ -287,8 +295,10 @@ msgid "Sword of Rome Aura"
 msgstr "Aora Kleze Roma"
 
 #: simulation/data/auras/rome_hero_marcellus.jsonauraDescription
-msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr "+5 a Dagusted ha +2 a Bakusted evit an unanennoù Roman en e hed-sell dezhañ."
+msgid ""
+"+20% attack and +2 capture for Roman soldiers and siege engines within his "
+"range."
+msgstr ""
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -311,8 +321,8 @@ msgid "Ilarchès Aura"
 msgstr "Aora Llarches"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
-msgid "All Cavalry gains +2 levels of all armor types."
-msgstr "An holl c'hounidoù marc'hegerezh +2 live evit an holl zoareoù houarnwisk."
+msgid "All cavalry gains +2 levels of all armor types."
+msgstr ""
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -320,34 +330,33 @@ msgstr "Aora an Alouberezh"
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraDescription
 msgid ""
-"All nearby enemy Buildings, Siege engines, and Ships have their health "
+"All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr "Holl Savadurioù, Mekanikoù Seziz, ha Bigi enebour tost a zo bet digresket o yec'hed eus 20%."
+msgstr ""
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
 msgstr "Aora Zooiarkos"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
-msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr "Gwellaat a ra tagusted an Olifanted-Brezel hag o zizh eus +20% en e hed-sell."
+msgid "Boosts war elephant attack and speed +20% within his aura."
+msgstr ""
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
 msgstr "Adstummoù Hiloted"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
-msgid ""
-"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr "An dennerien Helot a c'hounez en e hed-sell +2 a Dagusted ha +1 evit an holl doareoù houarnwisk."
+msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
+msgstr ""
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
 msgstr "Aora an Hini Diwezhañ War-Sav"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
-msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr "+20% a Dagusted ha +1 a Bakusted evit an Hoplited hag ar Spartiz tost."
+msgid "+20% attack and +1 capture for nearby Spearmen."
+msgstr ""
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
@@ -358,24 +367,24 @@ msgid "Hellenization."
 msgstr "Hellenegerezh."
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% per Theatron owned."
-msgstr "Lakaat da greskiñ al levezon war an tiriad eus 20% dre C'hoariva perc'hennet."
+msgid "Increase territory influence by 20% per theatron owned."
+msgstr ""
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
 msgstr "Moger Wareziñ"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
-msgid "Units on walls have 3 extra Armor levels and higher vision."
-msgstr "Unanennoù war ar mogerioù o deus 3 live dreist Houarnwisk hag un hed-sell brasoc'h."
+msgid "Soldiers on walls have +3 armor and higher vision."
+msgstr ""
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
 msgstr "Aora ar Varzenn"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 per Wonder owned."
-msgstr "Lakaat da greskiñ bevenn ar boblañs eus 10 dre Varzenn perc'hennet."
+msgid "Increase the population limit by 10 per wonder owned."
+msgstr ""
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -383,9 +392,9 @@ msgstr "Aora an Aztenn C'hlorius"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 per Wonder owned (requires "
+"Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr "Lakaat da greskiñ muioc'h bevenn ar boblañs eus 40 dre Varzenn perc'hennet (rekiset eo an deknologiezh \"Aztenn C'hlorius\")."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

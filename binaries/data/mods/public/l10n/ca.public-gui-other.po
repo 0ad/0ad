@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-12 09:00+0100\n"
-"PO-Revision-Date: 2016-12-17 15:53+0000\n"
-"Last-Translator: Juanjo\n"
+"POT-Creation-Date: 2016-12-23 11:16+0100\n"
+"PO-Revision-Date: 2016-12-24 09:03+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2296,97 +2296,105 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
-msgid "Disable Welcome Screen"
-msgstr "Desactiva la pantalla de benvinguda"
+msgid "Enable Welcome Screen"
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
+msgid "Show tips when setting a game."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[5].label
+msgid "Enable Game Setting Tips"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Mostra indicadors de funció detallats per a les unitats als edificis que recluten unitats."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Detailed Tooltips"
 msgstr "Indicadors de funció detallats"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Mostra quin jugador té una mala connexió en el mode multijugador."
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "Network Warnings"
 msgstr "Advertències de connexió"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Mostra els fotogrames per segon a la cantonada superior dreta."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "FPS Overlay"
 msgstr "Mostra FPS"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Mostra l'hora del sistema a la cantonada superior dreta."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Realtime Overlay"
 msgstr "Mostra l'hora actual"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Mostra el temps de joc a la cantonada superior dreta."
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Gametime Overlay"
 msgstr "Mostra el temps de joc"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Mostra sempre el temps d'alto el foc restant."
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Ceasefire Time Overlay"
 msgstr "Mostra el temps d'alto el foc"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Desa i restaura les opcions de la partida per fer-les servir quan comenceu una altra partida multijugador"
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Persist Match Settings"
 msgstr "Desa les opcions de la partida"
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr "Permet que s'afegeixin observadors un cop ha començat la partida"
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Late Observer Joins"
 msgstr "Incorporació tardana d'observadors"
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr "Evita que s'afegeixin observadors si s'arriba al límit"
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
 msgstr "Límit d'observadors"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Number of units trained per batch"
 msgstr "Nombre d'unitats que es recluten per grup"
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Batch Training Size"
 msgstr "Mida dels grups de reclutament"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Mostra el temps que els missatges es publiquen al vestíbul, la configuració de joc i el xat."
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Chat Timestamp"
 msgstr "Data i hora del xat"
 
@@ -2759,6 +2767,16 @@ msgstr "Arbre"
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "arbre"
+
+#: gui/gamesetup/ai.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players before they master the basic mechanisms of"
+" the game. It is advised to start by playing against a lower level (sandbox "
+"or very easy) when beginning with the game. Changing the AI level is done by"
+" clicking on the gear icon next to each AI player in the player selection "
+"panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

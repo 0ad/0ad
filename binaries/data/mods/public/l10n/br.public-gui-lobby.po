@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Envel PICHON <envel_ras@hotmail.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-21 23:15+0000\n"
-"Last-Translator: Yann-Vari Gwiader <yannvari.gwiader@gmail.com>\n"
+"PO-Revision-Date: 2016-12-26 01:09+0000\n"
+"Last-Translator: Envel PICHON <envel_ras@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +86,7 @@ msgstr "C'hoarier"
 #: gui/lobby/lobby.js:424 gui/lobby/lobby.js:425 gui/lobby/lobby.js:426
 #: gui/lobby/lobby.js:427 gui/lobby/lobby.js:428 gui/lobby/lobby.js:429
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: gui/lobby/lobby.js:439
 #, javascript-format
@@ -101,16 +102,16 @@ msgstr ""
 #: gui/lobby/lobby.js:634
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "C'hoariadenn kroget da %(time)s"
 
 #: gui/lobby/lobby.js:635 gui/lobby/lobby.js:996
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/lobby/lobby.js:639
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "C'hoarierien: %(current)s/ %(total)s"
 
 #: gui/lobby/lobby.js:681
 msgid "The game has already started. Do you want to join as observer?"
@@ -142,54 +143,54 @@ msgstr ""
 #: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:908
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:917 gui/lobby/lobby.js:938 gui/lobby/lobby.js:964
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:922 gui/lobby/lobby.js:943 gui/lobby/lobby.js:969
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:932
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/lobby.js:958
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:960
 msgid "Private"
-msgstr ""
+msgstr "Prevez"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
 #: gui/lobby/lobby.js:999
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:1004
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1065
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -203,11 +204,11 @@ msgstr "-"
 #: gui/lobby/lobby.js:1134
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "O kevreañ..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
@@ -215,7 +216,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
-msgstr ""
+msgstr "Mar plij, skrivit hoc'h anv-implijer."
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
@@ -307,16 +308,16 @@ msgstr "Doare kartenn:"
 
 #: gui/lobby/lobby.xml:(caption):142
 msgid "Map Size:"
-msgstr ""
+msgstr "Ment ar gartenn:"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:(caption):167
 msgid "Join Game"
-msgstr ""
+msgstr "Emezelañ er C'hoariadenn"
 
 #: gui/lobby/lobby.xml:(caption):173
 msgid "Host Game"
-msgstr ""
+msgstr "Herbrec'hiañ ur C'hoariadenn"
 
 #: gui/lobby/lobby.xml:(caption):180
 msgid "Main Menu"
@@ -340,7 +341,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):317
 msgid "View Profile"
-msgstr ""
+msgstr "Gwelet ar Profil"
 
 #: gui/lobby/lobby.xml:(caption):350
 msgid "Please enter a player name."
@@ -379,11 +380,11 @@ msgstr "C'hoarierien"
 
 #: gui/lobby/lobby.xml:(heading):280
 msgid "Rank"
-msgstr ""
+msgstr "Renk"
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr ""
+msgstr "Krouiñ ur gont nevez"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
@@ -395,19 +396,19 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
-msgstr ""
+msgstr "Kevreañ:"
 
 #: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
 msgid "Password:"
-msgstr ""
+msgstr "Ger-kuzh:"
 
 #: gui/lobby/prelobby.xml:(caption):59
 msgid "Registration"
-msgstr ""
+msgstr "Inskrivadur"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr ""
+msgstr "Ger-kuzh adarre:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"

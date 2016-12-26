@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-12 09:00+0100\n"
-"PO-Revision-Date: 2016-12-12 12:06+0000\n"
+"POT-Creation-Date: 2016-12-23 11:16+0100\n"
+"PO-Revision-Date: 2016-12-24 13:55+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -2294,97 +2294,105 @@ msgid ""
 msgstr "Aunque se desactive, la pantalla de bienvenida se mostrará tras actualizar. Siempre puedes acceder a ella desde el menú principal."
 
 #: gui/options/options.jsongeneralSetting[4].label
-msgid "Disable Welcome Screen"
-msgstr "Desactivar pantalla de bienvenida"
+msgid "Enable Welcome Screen"
+msgstr "Activar pantalla de bienvenida"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
+msgid "Show tips when setting a game."
+msgstr "Muestra consejos al configurar una partida nueva."
+
+#: gui/options/options.jsongeneralSetting[5].label
+msgid "Enable Game Setting Tips"
+msgstr "Activar consejos al configurar partida"
+
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Mostrar textos de ayuda emergente con detalles sobre las unidades que se pueden reclutar en edificios de producción de unidades."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Detailed Tooltips"
 msgstr "Ayuda detallada"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Muestra qué jugadores tienen mala conexión en juegos por Internet."
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "Network Warnings"
 msgstr "Advertencias de red"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Mostrar los fotogramas por segundo en la esquina superior derecha."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "FPS Overlay"
 msgstr "Mostrar FPS"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Mostrar la hora del sistema en la esquina superior derecha."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Realtime Overlay"
 msgstr "Mostrar hora actual"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Muestra el tiempo dentro de la partida en la esquina superior derecha."
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Gametime Overlay"
 msgstr "Mostrar tiempo de juego"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Mostrar siempre el tiempo restante de alto al fuego."
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Ceasefire Time Overlay"
 msgstr "Mostrar temporizador del alto al fuego"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Guarda y restaura los ajustes de partida cuando seas el anfitrión de futuros encuentros."
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Persist Match Settings"
 msgstr "Ajustes de partida persistentes"
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr "Dejar que los espectadores se unan a la partida ya empezada."
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Late Observer Joins"
 msgstr "Espectadores tardíos:"
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr "Evita que se unan a la partida demasiados observadores una vez sobrepasado el límite."
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
 msgstr "Límite de observadores"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Number of units trained per batch"
 msgstr "Número de unidades reclutadas por grupos."
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Batch Training Size"
 msgstr "Tamaño de reclutamiento por grupos."
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Muestra cuando se publicaron los mensajes en el chat de la Sala multijugador, en la formación de partida y durante el juego."
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Chat Timestamp"
 msgstr "Mostrar fecha y hora"
 
@@ -2757,6 +2765,16 @@ msgstr "Árbol"
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Árbol"
+
+#: gui/gamesetup/ai.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players before they master the basic mechanisms of"
+" the game. It is advised to start by playing against a lower level (sandbox "
+"or very easy) when beginning with the game. Changing the AI level is done by"
+" clicking on the gear icon next to each AI player in the player selection "
+"panel above."
+msgstr "Aunque sea razonablemente fácil para el jugador experto, el nivel de la IA supone todo un reto para jugadores nuevos que todavía desconozcan los rudimentos del juego.\n\nEs recomendable bajar el nivel (a «de prueba» o «fácil») en las primeras partidas. Puedes cambiarlo haciendo clic sobre cada botón con engranaje en el panel de selección de jugadores, encima de este mensaje."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
