@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-12 11:30+0100\n"
-"PO-Revision-Date: 2016-11-13 10:14+0000\n"
+"POT-Creation-Date: 2016-12-23 11:17+0100\n"
+"PO-Revision-Date: 2016-12-25 21:25+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -29,24 +29,24 @@ msgid "Formation Reforms"
 msgstr "Formationsreformen"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
-msgid "All units in his formation +15% speed and +1 armor."
-msgstr "Helden-Aura: Alle Einheiten in seiner Formation erhalten +15% Geschwindigkeit und +1 Rüstung."
+msgid "All soldiers in his formation +15% speed and +1 armor."
+msgstr "Alle Einheiten in seiner Formation erhalten +15% Geschwindigkeit und +1 Rüstung."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
 msgstr "Peltastenreformen"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
-msgid "All Peltasts +15% speed."
-msgstr "Alle Peltasten +15% Geschwindigkeit."
+msgid "All javelin infantry +15% speed."
+msgstr ""
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
 msgstr "Baumeisteraura"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
-msgid "Buildings construct 15% faster within his vision."
-msgstr "Gebäude in seiner Sichtweite werden 15% schneller erbaut."
+msgid "Buildings construct 15% faster within his aura."
+msgstr "Gebäude werden in seiner Sichtweite 15% schneller erbaut."
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -77,23 +77,22 @@ msgid "Champion Army"
 msgstr "Gardearmee"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
-msgid "+5 Attack, +2 Capture and +25% Speed for Champion Units."
-msgstr "+5 Angriff, +2 Eroberung und +25% Geschwindigkeit für Gardisten."
+msgid "+20% attack, +2 capture and +25% speed for champion units."
+msgstr "+20% Angriff, +2 Eroberung und +25% Geschwindigkeit für Gardisten."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
 #: simulation/data/auras/gaul_hero_brennus.jsonauraName
 #: simulation/data/auras/gaul_hero_britomartus.jsonauraName
 #: simulation/data/auras/gaul_hero_vercingetorix.jsonauraName
-#: simulation/data/auras/mace_hero_demetrius.jsonauraName
 #: simulation/data/auras/mace_hero_philip.jsonauraName
 msgid "Hero Aura"
 msgstr "Heldenaura"
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
-msgid "All Units +15% speed."
-msgstr "Alle Einheiten +15% Geschwindigkeit."
+msgid "All soldiers and siege engines +15% speed."
+msgstr ""
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
@@ -108,24 +107,26 @@ msgid "Tactician Aura"
 msgstr "Taktikeraura"
 
 #: simulation/data/auras/cart_hero_hannibal.jsonauraDescription
-msgid "All allied units +2 Attack and +1 Capture within his vision range."
-msgstr "Alle verbündeten Einheiten +2 Angriff und +1 Eroberung in seinem Sichtbereich."
+msgid ""
+"All allied soldiers and siege engines +20% attack and +1 capture within his "
+"vision range."
+msgstr ""
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
 msgstr "Kommandantenaura"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
-msgid "+5 Cavalry melee attack within vision range of him."
-msgstr "+5 Nahkampfangriff für Kavalerie in seinem Sichtradius."
+msgid "+20% cavalry melee attack within his aura."
+msgstr ""
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
 msgstr "Schiffsreperaturaura"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 3 HP per second."
-msgstr "Lässt einquartierte Schiffe 3 Trefferpunkte pro Sekunde regenerieren."
+msgid "Heals garrisoned ship at 10 HP per second."
+msgstr "Lässt einquartierte Schiffe 10 Trefferpunkte pro Sekunde regenerieren."
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -141,7 +142,7 @@ msgid "Inspiration Aura"
 msgstr "Inspirationsaura"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
-msgid "Nearby males work 10% faster."
+msgid "Nearby citizen soldiers work 10% faster."
 msgstr "In der Nähe befindliche Männer arbeiten 10% schneller."
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
@@ -153,8 +154,10 @@ msgid "Gathering rates increased with +15% during his lifetime."
 msgstr "Zu seinen Lebzeiten ist die Sammlerausbeute um +15% erhöht."
 
 #: simulation/data/auras/gaul_hero_vercingetorix.jsonauraDescription
-msgid "+2 Attack and +1 Capture for all units within his aura."
-msgstr "+2 Angriff und +1 Eroberung für alle Einheiten in seiner Aura."
+msgid ""
+"+20% attack and +1 capture for all soldiers and siege engines within his "
+"aura."
+msgstr "+20% Angriff und +1 Eroberung für alle Einheiten in seiner Aura."
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -162,8 +165,8 @@ msgstr "Garnisons-Erobereraura"
 
 #: simulation/data/auras/hero_garrison.jsonauraDescription
 msgid ""
-"When garrisoned in a structure or a siege, the hero gives it a bonus of +2 "
-"capture points recovery rate."
+"When garrisoned in a structure or a siege engine, the hero gives it a bonus "
+"of +2 capture points recovery rate."
 msgstr "Wenn in einem Gebäude oder einer Belagerung einquartiert, erhöht der Held die Eroberungspunkte-Erholungsrate um +2."
 
 #: simulation/data/auras/iber_monument.jsonauraName
@@ -172,9 +175,9 @@ msgstr "Defensivaura"
 
 #: simulation/data/auras/iber_monument.jsonauraDescription
 msgid ""
-"Gives all Iberian units in Aura +2 Hack and +3 Pierce Attack boost. Effect "
-"Range: 50 meters"
-msgstr "Gibt allen iberischen Einheiten innerhalb der Aura einen Bonus von +2 auf Hiebattacken und +3 auf Stichattacken. Effektreichweite: 50 Meter"
+"Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
+"meters"
+msgstr "Gibt allen iberischen Einheiten innerhalb der Aura einen Bonus von +20% auf Angriffsgeschwindigkeit. Effektreichweite: 50 Meter"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -182,7 +185,7 @@ msgstr "Bibliotheksaura"
 
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
-"Reduce the cost and research time of technologies by 10% per Library owned."
+"Reduce the cost and research time of technologies by 10% per library owned."
 msgstr "Verringert die Kosten und Forschungszeit für Technologien um 10% für jede Bibliothek in deinem Besitz."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
@@ -190,8 +193,8 @@ msgid "Loyalty Aura"
 msgstr "Loyalitätsaura"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
-msgid "All structures in range 1.5x garrisoned loyalty regeneration rate."
-msgstr "Alle Gebäude innerhalb der Reichweite werden eine 1,5-fache Loyalitätsregenerierungsrate haben."
+msgid "All structures in range +50% garrisoned loyalty regeneration rate."
+msgstr "Alle Gebäude innerhalb der Reichweite werden eine +50% Loyalitätsregenerierungsrate haben."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -201,22 +204,25 @@ msgstr "Imperialismusaura"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% Gebietseffekt für alle Gebäude, solange er lebt."
 
+#: simulation/data/auras/mace_hero_demetrius.jsonauraName
+msgid "Besieger Aura"
+msgstr "Belagerer Aura"
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
-msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr "+15% Reichweite und +10 Angriff von Belagerungswaffen."
+msgid "+15% range and +10% crush attack for siege engines."
+msgstr "+15% Reichweite und +10% Angriff von Belagerungswaffen."
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
-msgid "+5 Attack and +2 Capture for Champion Units."
-msgstr "+5 Angriff und +2 Eroberung für Gardisten."
+msgid "+20% attack and +2 capture for champion units."
+msgstr "+20% Angriff und +2 Eroberung für Gardisten."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
-msgid "Evangelism Aura"
-msgstr "Evangelismusaura"
+msgid "Buddhism Aura"
+msgstr "Buddhismus Aura"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid ""
-"All player and allied Temple technologies -50% cost and -50% research time."
-msgstr "Alle Spieler und verbündete Tempel-Technologien -50% Kosten und -50% Forschungszeit."
+msgid "All player temple technologies -50% cost and -50% research time."
+msgstr "Alle Spieler Tempel-Technologien -50% Kosten und -50% Forschungszeit."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -228,7 +234,7 @@ msgid ""
 msgstr "Verbessert ein Gebäude mit um eine um -50% reduzierte Forschungszeit, wenn besetzt."
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
-msgid "All traders in range +20% walk speed."
+msgid "All traders in range +20% speed."
 msgstr "Alle Händler in Reichweite +20% Laufgeschwindigkeit."
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
@@ -236,23 +242,23 @@ msgid "Lead from the Front Aura"
 msgstr "Aura des wahren Anführers"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
-msgid "+2 Attack and +1 Capture for nearby cavalry units."
-msgstr "+2 Angriff und +1 Eroberung für Kavallerieeinheiten in der Nähe."
+msgid "+20% attack and +1 capture for nearby cavalry units."
+msgstr "+20% Angriff und +1 Eroberung für Kavallerieeinheiten in der Nähe."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
 msgstr "Führungsaura"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
-msgid "+15% Movement Speed for all units."
-msgstr "+15% Bewegungsgeschwindigkeit für alle Einheiten."
+msgid "+15% movement speed for all soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
 msgstr "Administratorenaura"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
-msgid "+15% Gather Rate and Build Rate of nearby units."
+msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% Sammel- und Baurate von in der Nähe befindlichen Einheiten."
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
@@ -260,15 +266,16 @@ msgid "Patriot Aura"
 msgstr "Patriotenaura"
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
-msgid "Egyptian units fight 25% faster in her vision range."
-msgstr "Ägyptische Einheiten kämpfen in ihrem Sichtbereich 25% schneller."
+msgid ""
+"-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
+msgstr ""
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
 msgstr "Raphia-Aura"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Egyptian Pikemen have 40% greater health during his lifetime."
+msgid "Egyptian pikemen have 40% greater health during his lifetime."
 msgstr "Ägyptische Pikeniere haben 40% mehr Gesundheit zu seinen Lebzeiten."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
@@ -276,7 +283,7 @@ msgid "Construction Aura"
 msgstr "Konstruktionsaura"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "Buildings construct 10% faster within his vision."
+msgid "Buildings construct 10% faster within his aura."
 msgstr "Gebäude werden in seiner Sichtweite 10% schneller erbaut."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
@@ -292,8 +299,10 @@ msgid "Sword of Rome Aura"
 msgstr "Aura des Schwertes von Rom"
 
 #: simulation/data/auras/rome_hero_marcellus.jsonauraDescription
-msgid "+5 Attack and +2 Capture for Roman units within his vision range."
-msgstr "+5 Angriff und +2 Eroberung für römische Einheiten in seinem Sichtradius."
+msgid ""
+"+20% attack and +2 capture for Roman soldiers and siege engines within his "
+"range."
+msgstr ""
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -316,7 +325,7 @@ msgid "Ilarchès Aura"
 msgstr "Ilarchès-Aura"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
-msgid "All Cavalry gains +2 levels of all armor types."
+msgid "All cavalry gains +2 levels of all armor types."
 msgstr "Alle Kavallerie gewinnen +2 Level aller Rüstungstypen."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
@@ -325,7 +334,7 @@ msgstr "Eroberungsaura"
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraDescription
 msgid ""
-"All nearby enemy Buildings, Siege engines, and Ships have their health "
+"All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
 msgstr "Alle in der Nähe befindlichen gegnerischen Gebäude, Belagerungsmaschinen und Schiffe haben um 20% reduzierte Gesundheit."
 
@@ -334,7 +343,7 @@ msgid "Zooiarchos Aura"
 msgstr "Zooiarchos-Aura"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
-msgid "Boosts War Elephant attack and speed +20% within his vision."
+msgid "Boosts war elephant attack and speed +20% within his aura."
 msgstr "Steigert Angriffsstärke und Geschwindigkeit von Kriegselefanten um +20% innerhalb seiner Sichtweite."
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
@@ -342,17 +351,16 @@ msgid "Helot Reforms"
 msgstr "Helot-Reformen"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
-msgid ""
-"Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr "Helot-Plänkler in Sichtweite, gewährt ihm +2 Angriff und +1 auf alle Rüstungstypen."
+msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
+msgstr "Wurfspeer Infanterie in seiner Aura erhält +20% Angriff und +1 auf alle Rüstungen."
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
 msgstr "Aura des letzten Gefechts"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
-msgid "+20% Attack and +1 Capture for nearby Hoplites and Spartiates."
-msgstr "+20% Angriff und +1 Eroberung für Hopliten und Spartiaten in der Nähe."
+msgid "+20% attack and +1 capture for nearby Spearmen."
+msgstr "+20% Angriff und +1 Eroberung für Kavallerieeinheiten in der Nähe."
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
@@ -363,7 +371,7 @@ msgid "Hellenization."
 msgstr "Hellenisierung"
 
 #: simulation/data/auras/theatron.jsonauraDescription
-msgid "Increase territory influence by 20% per Theatron owned."
+msgid "Increase territory influence by 20% per theatron owned."
 msgstr "Erhöht deinen Gebietseinfluss um 20% für jedes Theatron in deinem Besitz."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
@@ -371,15 +379,15 @@ msgid "Wall Protection"
 msgstr "Mauerschutz"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
-msgid "Units on walls have 3 extra Armor levels and higher vision."
-msgstr "Einheiten auf Mauern haben 3 zusätzliche Rüstungslevel und höhere Sichtweite."
+msgid "Soldiers on walls have +3 armor and higher vision."
+msgstr "Einheiten auf Mauern haben +3 zusätzliche Rüstungslevel und höhere Sichtweite."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
 msgstr "Wunderaura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
-msgid "Increase the population limit by 10 per Wonder owned."
+msgid "Increase the population limit by 10 per wonder owned."
 msgstr "Erhöht das Bevölkerungslimit um 10 für jedes Wunder in deinem Besitz."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
@@ -388,7 +396,7 @@ msgstr "Aura der glorreichen Expansion"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraDescription
 msgid ""
-"Further increase the population limit by 40 per Wonder owned (requires "
+"Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Erhöht das Bevölkerungslimit um weitere 40 für jedes Wunder in deinem Besitz (erfordert \"Glorreiche Expansion\")."
 

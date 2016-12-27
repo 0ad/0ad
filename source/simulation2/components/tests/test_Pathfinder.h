@@ -37,7 +37,7 @@ public:
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"", DataDir()/"mods"/"mod", VFS_MOUNT_MUST_EXIST);
 		g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST, 1); // ignore directory-not-found errors
-		g_VFS->Mount(L"cache/", DataDir() / "cache");
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 
 		CXeromyces::Startup();
 
@@ -52,6 +52,7 @@ public:
 		delete &g_TexMan;
 		CXeromyces::Terminate();
 		g_VFS.reset();
+		DeleteDirectory(DataDir()/"_testcache");
 	}
 
 	void test_namespace()

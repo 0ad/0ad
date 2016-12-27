@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Envel PICHON <envel_ras@hotmail.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-12 09:00+0100\n"
-"PO-Revision-Date: 2016-12-22 22:54+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2016-12-23 11:16+0100\n"
+"PO-Revision-Date: 2016-12-26 01:24+0000\n"
+"Last-Translator: Envel PICHON <envel_ras@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "O tigoriñ %(url)s\n gant ar merdeer dre ziouer. Gortozit mar plij...."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -98,11 +99,11 @@ msgstr ""
 #: gui/common/functions_utility.js:121
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Dre-zegouezh"
 
 #: gui/common/functions_utility.js:132
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:134
 msgid "HH:mm:ss"
@@ -389,7 +390,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Diweredekaat an Teñzor"
 
 #: gui/common/gamedescription.js:309
 msgid "Revealed Map"
@@ -487,7 +488,7 @@ msgstr ""
 
 #: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Ar c'hoariadenn he deus kroget dija, difennet eo da sellet outi."
 
 #: gui/common/network.js:70
 msgid "You have been kicked"
@@ -598,7 +599,7 @@ msgstr ""
 #: gui/common/settings.js:193
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Dre-zegouezh"
 
 #: gui/common/settings.js:197
 msgctxt "map"
@@ -712,7 +713,7 @@ msgstr ""
 #: gui/common/tooltips.js:95
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:106
 msgid "Armor:"
@@ -1356,7 +1357,7 @@ msgstr ""
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "Savet"
 
 #: gui/summary/layout.js:36
 msgid "Destroyed"
@@ -1380,7 +1381,7 @@ msgstr "Marc'hegerezh"
 
 #: gui/summary/layout.js:63
 msgid "Champion"
-msgstr ""
+msgstr "Kampion"
 
 #: gui/summary/layout.js:65
 msgid "Siege"
@@ -1424,7 +1425,7 @@ msgstr ""
 
 #: gui/summary/layout.js:113
 msgid "Treasures collected"
-msgstr ""
+msgstr "Teñzorioù Dastumet"
 
 #: gui/summary/layout.js:114
 msgid "Loot"
@@ -1748,11 +1749,11 @@ msgstr ""
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):262
 msgid "Join Game"
-msgstr ""
+msgstr "Emezelañ er C'hoariadenn"
 
 #: gui/pregame/mainmenu.xml:(caption):277
 msgid "Host Game"
-msgstr ""
+msgstr "Herbrec'hiañ ur C'hoariadenn"
 
 #: gui/pregame/mainmenu.xml:(caption):292
 msgid "Game Lobby"
@@ -1938,7 +1939,7 @@ msgstr "Doare kartenn:"
 #: gui/replaymenu/replay_menu.xml:(caption):179
 #: gui/savedgames/load.xml:(caption):62
 msgid "Map Size:"
-msgstr ""
+msgstr "Ment ar gartenn:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):194
 #: gui/savedgames/load.xml:(caption):66
@@ -2291,97 +2292,105 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
-msgid "Disable Welcome Screen"
+msgid "Enable Welcome Screen"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
+msgid "Show tips when setting a game."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[5].label
+msgid "Enable Game Setting Tips"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Detailed Tooltips"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "Network Warnings"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "FPS Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Realtime Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Gametime Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Ceasefire Time Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Persist Match Settings"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Late Observer Joins"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Number of units trained per batch"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Batch Training Size"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Chat Timestamp"
 msgstr ""
 
@@ -2754,6 +2763,16 @@ msgstr "Gwezenn"
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Gwezenn"
+
+#: gui/gamesetup/ai.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players before they master the basic mechanisms of"
+" the game. It is advised to start by playing against a lower level (sandbox "
+"or very easy) when beginning with the game. Changing the AI level is done by"
+" clicking on the gear icon next to each AI player in the player selection "
+"panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

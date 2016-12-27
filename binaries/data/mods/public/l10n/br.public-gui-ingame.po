@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Envel PICHON <envel_ras@hotmail.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-02 09:00+0100\n"
-"PO-Revision-Date: 2016-12-22 22:52+0000\n"
-"Last-Translator: Yann-Vari Gwiader <yannvari.gwiader@gmail.com>\n"
+"PO-Revision-Date: 2016-12-26 02:18+0000\n"
+"Last-Translator: Envel PICHON <envel_ras@hotmail.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +89,7 @@ msgstr ""
 #: gui/session/menu.js:288
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:353
 msgctxt "team"
@@ -98,7 +99,7 @@ msgstr "Hini ebet"
 #: gui/session/menu.js:357 gui/session/messages.js:148
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr ""
+msgstr "Kevredad"
 
 #: gui/session/menu.js:358 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
@@ -272,7 +273,7 @@ msgstr ""
 #: gui/session/messages.js:91
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s a zo erruet e-barzh ar c'hoariadenn."
 
 #: gui/session/messages.js:97
 #, javascript-format
@@ -340,7 +341,7 @@ msgstr ""
 
 #: gui/session/messages.js:151
 msgid "Private"
-msgstr ""
+msgstr "Prevez"
 
 #: gui/session/messages.js:187
 msgctxt "chat history filter"
@@ -458,11 +459,11 @@ msgstr ""
 #: gui/session/messages.js:783
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:784
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:828
 msgid "Unknown Player"
@@ -680,7 +681,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:514
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Divorailhañ an nor."
 
 #: gui/session/selection_panels.js:587
 msgid "Pack"
@@ -1298,7 +1299,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Rank"
-msgstr ""
+msgstr "Renk"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"

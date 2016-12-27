@@ -11,6 +11,15 @@ case "`uname -s`" in
     ;;
 esac
 
+# Check the preserve-libs CL option
+preserve_libs=false
+
+for i in "$@"; do
+  case "$i" in
+    --preserve-libs ) preserve_libs=true ;;
+  esac
+done
+
 # (We don't attempt to clean up every last file here - output in
 # binaries/system/ will still be there, etc. This is mostly just
 # to quickly fix problems in the bundled dependencies.)
@@ -18,19 +27,19 @@ esac
 cd "$(dirname $0)"
 # Now in build/workspaces/ (where we assume this script resides)
 
-# We don't want to clean bundled libs on OS X
-if [ "`uname -s`" != "Darwin" ]; then
+if [ "$preserve_libs" != "true" ]; then
   echo "Cleaning bundled third-party dependencies..."
 
   (cd ../../libraries/source/fcollada/src && rm -rf ./output)
+  (cd ../../libraries/source/nvtt/src && rm -rf ./build)
   (cd ../../libraries/source/spidermonkey && rm -f .already-built)
   (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-38.0.0)
-# Still delete the directory of the previous SpiderMonkey version to
-# avoid wasting disk space if people clean workspaces after updating.
-  (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs31)
-  (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
-  (cd ../../libraries/source/nvtt/src && rm -rf ./build)
 fi
+
+# Still delete the directory of previous SpiderMonkey versions to
+# avoid wasting disk space if people clean workspaces after updating.
+(cd ../../libraries/source/spidermonkey && rm -rf ./mozjs31)
+(cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
 
 (cd ../premake/premake4/build/gmake.bsd && ${MAKE} clean)
 (cd ../premake/premake4/build/gmake.macosx && ${MAKE} clean)

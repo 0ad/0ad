@@ -1790,7 +1790,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 		let template = gameState.getTemplate(trainable);
 		if (!template || !template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
 			continue;
-		if (autogarrison && !MatchesClassList(garrisonArrowClasses, template.classes()))
+		if (autogarrison && !MatchesClassList(template.classes(), garrisonArrowClasses))
 			continue;
 		if (!total.canAfford(new API3.Resources(template.cost())))
 			continue;

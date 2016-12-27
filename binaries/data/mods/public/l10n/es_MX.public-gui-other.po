@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-12 09:00+0100\n"
-"PO-Revision-Date: 2016-12-12 09:43+0000\n"
+"POT-Creation-Date: 2016-12-23 11:16+0100\n"
+"PO-Revision-Date: 2016-12-24 09:03+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -2289,97 +2289,105 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
-msgid "Disable Welcome Screen"
-msgstr "Desactivar Pantalla de Bienvenida"
+msgid "Enable Welcome Screen"
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
+msgid "Show tips when setting a game."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[5].label
+msgid "Enable Game Setting Tips"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Mostrar informacion detallada para las unidades en los edificios de produccion."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.jsongeneralSetting[6].label
 msgid "Detailed Tooltips"
 msgstr "Informacion Detallada"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.jsongeneralSetting[7].label
 msgid "Network Warnings"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.jsongeneralSetting[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Mostrar cuadros por segundo en la esquina superior derecha."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.jsongeneralSetting[8].label
 msgid "FPS Overlay"
 msgstr "FPS Overlay"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Mostrar la hora actual del sistema en la esquina superior derecha."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.jsongeneralSetting[9].label
 msgid "Realtime Overlay"
 msgstr "Mostrar hora actual"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.jsongeneralSetting[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Muestra el tiempo dentro de la partida en la esquina superior derecha."
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.jsongeneralSetting[10].label
 msgid "Gametime Overlay"
 msgstr "Mostrar tiempo de juego"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.jsongeneralSetting[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Mostrar siempre el tiempo restante del cese al fuego."
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.jsongeneralSetting[11].label
 msgid "Ceasefire Time Overlay"
 msgstr "Mostrar temporizador del cese al fuego"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.jsongeneralSetting[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Guarda y restaura los ajustes de la partida para volverlos a usar cuando la vuelves a crear."
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.jsongeneralSetting[12].label
 msgid "Persist Match Settings"
 msgstr "Los ajustes de partidas se guardan"
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.jsongeneralSetting[13].tooltip
 msgid "Allow observers to join the game after it started"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.jsongeneralSetting[13].label
 msgid "Late Observer Joins"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observer from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Number of units trained per batch"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Batch Training Size"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Chat Timestamp"
 msgstr "Mostrar fecha y hora en el chat"
 
@@ -2752,6 +2760,16 @@ msgstr "Árbol"
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Árbol"
+
+#: gui/gamesetup/ai.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players before they master the basic mechanisms of"
+" the game. It is advised to start by playing against a lower level (sandbox "
+"or very easy) when beginning with the game. Changing the AI level is done by"
+" clicking on the gear icon next to each AI player in the player selection "
+"panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

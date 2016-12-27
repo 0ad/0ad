@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-20 12:24+0000\n"
-"Last-Translator: Vladimirs Kuzmins\n"
+"POT-Creation-Date: 2016-12-23 11:16+0100\n"
+"PO-Revision-Date: 2016-12-24 09:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,78 +116,78 @@ msgstr "Atgriezties uz priekšnamu."
 msgid "Return to the main menu."
 msgstr "Atgriezties uz galveno izvēli."
 
-#: gui/gamesetup/gamesetup.js:599
+#: gui/gamesetup/gamesetup.js:618
 msgid "Yes"
 msgstr "Jā"
 
-#: gui/gamesetup/gamesetup.js:599
+#: gui/gamesetup/gamesetup.js:618
 msgid "No"
 msgstr "Nē"
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:657
 msgctxt "team"
 msgid "None"
 msgstr "Nekāds"
 
-#: gui/gamesetup/gamesetup.js:1302
+#: gui/gamesetup/gamesetup.js:1321
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1394
+#: gui/gamesetup/gamesetup.js:1413
 msgctxt "map size"
 msgid "Default"
 msgstr "Noklusējuma"
 
-#: gui/gamesetup/gamesetup.js:1464
+#: gui/gamesetup/gamesetup.js:1483
 msgid "Loading..."
 msgstr "Ielādē..."
 
-#: gui/gamesetup/gamesetup.js:1597
+#: gui/gamesetup/gamesetup.js:1616
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Mākslīgais intelekts: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1602
+#: gui/gamesetup/gamesetup.js:1621
 msgid "Unassigned"
 msgstr "Nepiešķirts"
 
-#: gui/gamesetup/gamesetup.js:1762
+#: gui/gamesetup/gamesetup.js:1781
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1769
+#: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
 msgstr "Nezināms Spēlētājs"
 
-#: gui/gamesetup/gamesetup.js:1805
+#: gui/gamesetup/gamesetup.js:1824
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1806
+#: gui/gamesetup/gamesetup.js:1825
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1807
+#: gui/gamesetup/gamesetup.js:1826
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/gamesetup/gamesetup.js:1857
+#: gui/gamesetup/gamesetup.js:1876
 msgid "I'm not ready!"
 msgstr "Es neesmu gatavs!"
 
-#: gui/gamesetup/gamesetup.js:1858
+#: gui/gamesetup/gamesetup.js:1877
 msgid "I'm ready"
 msgstr "Esmu gatavs"
 
-#: gui/gamesetup/gamesetup.js:1861
+#: gui/gamesetup/gamesetup.js:1880
 msgid "State that you are not ready to play."
 msgstr "Paziņot ka tu neesi gatavs spēlēt."
 
-#: gui/gamesetup/gamesetup.js:1862
+#: gui/gamesetup/gamesetup.js:1881
 msgid "State that you are ready to play!"
 msgstr "Paziņot ka esi gatavs spēlēt!"
 
@@ -264,7 +264,7 @@ msgid "Cancel"
 msgstr "Atcelt"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):448
+#: gui/gamesetup/gamesetup.xml:(caption):459
 msgid "OK"
 msgstr "Labi"
 
@@ -300,100 +300,104 @@ msgstr "Civilizācija"
 msgid "Team"
 msgstr "Komanda"
 
-#: gui/gamesetup/gamesetup.xml:(caption):140
+#: gui/gamesetup/gamesetup.xml:(caption):141
+msgid "Show this message in the future"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Type:"
 msgstr "Kartes tips:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):143
+#: gui/gamesetup/gamesetup.xml:(caption):154
 msgid "Map Filter:"
 msgstr "Karšu filtrs:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):146
+#: gui/gamesetup/gamesetup.xml:(caption):157
 msgid "Select Map:"
 msgstr "Izvēlēties karti:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):149
+#: gui/gamesetup/gamesetup.xml:(caption):160
 msgid "Number of Players:"
 msgstr "Spēlētāju skaits:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):152
+#: gui/gamesetup/gamesetup.xml:(caption):163
 msgid "Map Size:"
 msgstr "Kartes izmērs:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):231
+#: gui/gamesetup/gamesetup.xml:(caption):242
 msgid "Send"
 msgstr "Sūtīt"
 
-#: gui/gamesetup/gamesetup.xml:(caption):249
+#: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Cheats enabled."
 msgstr "Iespējota šmaukšanās."
 
-#: gui/gamesetup/gamesetup.xml:(caption):262
+#: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Start game!"
 msgstr "Sākt spēli!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):280
+#: gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Back"
 msgstr "Atpakaļ"
 
-#: gui/gamesetup/gamesetup.xml:(caption):294
-#: gui/gamesetup/gamesetup.xml:(caption):306
+#: gui/gamesetup/gamesetup.xml:(caption):305
+#: gui/gamesetup/gamesetup.xml:(caption):317
 msgid "More Options"
 msgstr "Papildus Iespējas"
 
-#: gui/gamesetup/gamesetup.xml:(caption):311
+#: gui/gamesetup/gamesetup.xml:(caption):322
 msgid "Game Speed:"
 msgstr "Spēles ātrums:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):321
+#: gui/gamesetup/gamesetup.xml:(caption):332
 msgid "Victory Condition:"
 msgstr "Uzvaras nosacījumi:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):331
+#: gui/gamesetup/gamesetup.xml:(caption):342
 msgid "Wonder Victory:"
 msgstr "Uzvara ar Brīnumu:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):341
+#: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
 msgstr "Populācijas griezti:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):351
+#: gui/gamesetup/gamesetup.xml:(caption):362
 msgid "Starting Resources:"
 msgstr "Sākotnējie resursi:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):361
+#: gui/gamesetup/gamesetup.xml:(caption):372
 msgid "Ceasefire:"
 msgstr "Pamiers:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):382
 msgid "Revealed Map:"
 msgstr "Atvērta karte:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(caption):381
+#: gui/gamesetup/gamesetup.xml:(caption):392
 msgid "Explored Map:"
 msgstr "Atklāta karte:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):391
+#: gui/gamesetup/gamesetup.xml:(caption):402
 msgid "Disable Treasures:"
 msgstr "Bez dārgumiem:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):401
+#: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Teams Locked:"
 msgstr "Slēgtas komandas:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):411
+#: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Last Man Standing:"
 msgstr "Līdz pēdējam izdzīvojušam:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):421
+#: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Cheats:"
 msgstr "Šmaukšanās:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):431
+#: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Rated Game:"
 msgstr "Novērtēta spēle:"
 
@@ -430,94 +434,94 @@ msgstr "Izvēlēties spēlētāja civilizāciju."
 msgid "Select player's team."
 msgstr "Izvēlēties spēlētāja komandu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):169
+#: gui/gamesetup/gamesetup.xml:(tooltip):180
 msgid "Select a map type."
 msgstr "Izvēlēties kartes tipu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):177
+#: gui/gamesetup/gamesetup.xml:(tooltip):188
 msgid "Select a map filter."
 msgstr "Izvēlēties karšu filtru."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):186
+#: gui/gamesetup/gamesetup.xml:(tooltip):197
 msgid "Select a map to play on."
 msgstr "Izvēlieties, karti kuru spēlēsiet."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):196
+#: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Select number of players."
 msgstr "Izvēlēties spēlētāju skaitu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):200
+#: gui/gamesetup/gamesetup.xml:(tooltip):211
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Izvēlēties kartes izmēru. (Lielāki izmēri prasīs lielāku jaudu.)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):263
+#: gui/gamesetup/gamesetup.xml:(tooltip):274
 msgid "Start a new game with the current settings."
 msgstr "Sākt jaunu spēli ar pašreizējiem iestatījumiem."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):295
+#: gui/gamesetup/gamesetup.xml:(tooltip):306
 msgid "See more game options"
 msgstr "Apskatīt papildus spēles opcijas"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):315
+#: gui/gamesetup/gamesetup.xml:(tooltip):326
 msgid "Select game speed."
 msgstr "Izvēlieties spēles ātrumu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):325
+#: gui/gamesetup/gamesetup.xml:(tooltip):336
 msgid "Select victory condition."
 msgstr "Izvēlēties uzvaras nosacījumus."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):335
+#: gui/gamesetup/gamesetup.xml:(tooltip):346
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
 msgstr "Minūšu skaits, cik ilgi spēlētājam jānotur Brīnums, lai uzvarētu."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):345
+#: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
 msgstr "Izvēlēties populācijas grieztus."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):355
+#: gui/gamesetup/gamesetup.xml:(tooltip):366
 msgid "Select the game's starting resources."
 msgstr "Izvēlēties spēles sākuma resursu līmeni."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):365
+#: gui/gamesetup/gamesetup.xml:(tooltip):376
 msgid "Set time where no attacks are possible."
 msgstr "Norādiet laiku, kamēr uzbrukumi nav iespējami."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):375
+#: gui/gamesetup/gamesetup.xml:(tooltip):386
 msgid "Toggle revealed map (see everything)."
 msgstr "Ieslēgt atvērtu karti (redzēt visu)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):385
+#: gui/gamesetup/gamesetup.xml:(tooltip):396
 msgid "Toggle explored map (see initial map)."
 msgstr "Ieslēgt atklātu karti (ieraudzīt sākotnējo)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):395
+#: gui/gamesetup/gamesetup.xml:(tooltip):406
 msgid "Disable all treasures on the map."
 msgstr "Izslēgt kartē visus dārgumus."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):405
+#: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Toggle locked teams."
 msgstr "Ieslēgt slēgtas komandas."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):415
+#: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Ieslēgt vai uzvar pēdējais palikušais spēlētājs vai spēlētāju aliance."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):425
+#: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid "Toggle the usability of cheats."
 msgstr "Ieslēgt šmaukšanās kodu lietojamību."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):435
+#: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Ieslēgt vai spēles vērtējums tiks ņemt vērā kopvērtējumā."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):449
+#: gui/gamesetup/gamesetup.xml:(tooltip):460
 msgid "Close more game options window"
 msgstr "Aizvērt logu ar spēles papildus parametriem"
 
