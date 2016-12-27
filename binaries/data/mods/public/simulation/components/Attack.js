@@ -438,20 +438,6 @@ Attack.prototype.GetAttackBonus = function(type, target)
 	return attackBonus;
 };
 
-// Returns a 2d random distribution scaled for a spread of scale 1.
-// The current implementation is a 2d gaussian with sigma = 1
-Attack.prototype.GetNormalDistribution = function(){
-
-	// Use the Box-Muller transform to get a gaussian distribution
-	let a = Math.random();
-	let b = Math.random();
-
-	let c = Math.sqrt(-2*Math.log(a)) * Math.cos(2*Math.PI*b);
-	let d = Math.sqrt(-2*Math.log(a)) * Math.sin(2*Math.PI*b);
-
-	return [c, d];
-};
-
 /**
  * Attack the target entity. This should only be called after a successful range check,
  * and should only be called after GetTimers().repeat msec has passed since the last
@@ -513,7 +499,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		let elevationAdaptedMaxRange = cmpRangeManager.GetElevationAdaptedRange(selfPosition, cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
 		let distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
 
-		let randNorm = this.GetNormalDistribution();
+		let randNorm = randomNormal2D();
 		let offsetX = randNorm[0] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
 		let offsetZ = randNorm[1] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
 
