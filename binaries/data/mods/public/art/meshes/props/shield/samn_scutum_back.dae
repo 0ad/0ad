@@ -1,251 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.77.1 commit date:2016-06-15, commit time:23:47, hash:4cae0cb</authoring_tool>
     </contributor>
-    <created>2011-07-25T21:49:16Z</created>
-    <modified>2011-07-25T21:49:16Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <created>2016-12-27T01:41:33</created>
+    <modified>2016-12-27T01:41:33</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__2-image" name="Map__2">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\shield\rome_imp_scutum_back.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_02___Default" name="_02___Default">
-      <instance_effect url="#_02___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_02___Default-fx" name="_02___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__2-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_images/>
   <library_geometries>
-    <geometry id="Mesh-lib" name="MeshMesh">
+    <geometry id="MeshMesh-mesh" name="MeshMesh">
       <mesh>
-        <source id="Mesh-lib-Position">
-          <float_array id="Mesh-lib-Position-array" count="54">
-0.508600 1.069800 -0.186100
-0.621600 1.007500 -0.228100
-0.444400 -1.022700 0.129900
-0.360700 -1.066900 0.190700
-0.671500 0.872500 -0.273700
-0.476900 -0.911500 0.040900
-0.011900 1.115100 -0.094100
-0.371800 1.107400 -0.137800
-0.255200 -1.086000 0.249000
-0.010200 -1.078300 0.292700
--0.601300 1.007500 -0.228100
--0.511400 1.069800 -0.186100
--0.347000 -1.066900 0.190700
--0.425900 -1.022700 0.129900
--0.261700 -1.086000 0.249000
--0.387200 1.107400 -0.137800
--0.456500 -0.911500 0.040900
--0.652000 0.872500 -0.273700
-</float_array>
+        <source id="MeshMesh-mesh-positions">
+          <float_array id="MeshMesh-mesh-positions-array" count="54">0.5086001 0.01600474 1.085748 0.6216 0.06725633 1.030807 0.4444001 0.03211224 -1.030416 0.3607 -0.02100265 -1.083606 0.6715001 0.133466 0.9046297 0.4769001 0.1025696 -0.9066337 0.01189994 -0.08196157 1.116058 0.3718 -0.03759473 1.115307 0.2552 -0.07558542 -1.111613 0.01019996 -0.1199523 -1.110863 -0.6013001 0.06725633 1.030807 -0.5114001 0.01600474 1.085748 -0.347 -0.02100265 -1.083606 -0.4259001 0.03211224 -1.030416 -0.2617 -0.07558542 -1.111613 -0.3872001 -0.03759473 1.115307 -0.4565001 0.1025696 -0.9066337 -0.6520001 0.133466 0.9046297</float_array>
           <technique_common>
-            <accessor source="#Mesh-lib-Position-array" count="18" stride="3">
+            <accessor source="#MeshMesh-mesh-positions-array" count="18" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh-lib-Normal0">
-          <float_array id="Mesh-lib-Normal0-array" count="144">
--0.433302 -0.127537 -0.892148
--0.582385 -0.092624 -0.807611
--0.555284 -0.099002 -0.825739
--0.555284 -0.099002 -0.825739
--0.429182 -0.128635 -0.893979
--0.433302 -0.127537 -0.892148
--0.582385 -0.092624 -0.807611
--0.853511 -0.008667 -0.520951
--0.853511 -0.008667 -0.520951
--0.853511 -0.008667 -0.520951
--0.555284 -0.099002 -0.825739
--0.582385 -0.092624 -0.807611
--0.007141 -0.169927 -0.985412
--0.274880 -0.153172 -0.949187
--0.263619 -0.154576 -0.952147
--0.263619 -0.154576 -0.952147
--0.007019 -0.169927 -0.985412
--0.007141 -0.169927 -0.985412
--0.274880 -0.153172 -0.949187
--0.433302 -0.127537 -0.892148
--0.429182 -0.128635 -0.893979
--0.429182 -0.128635 -0.893979
--0.263619 -0.154576 -0.952147
--0.274880 -0.153172 -0.949187
-0.620808 -0.083407 -0.779504
-0.485977 -0.117069 -0.866054
-0.481765 -0.118229 -0.868282
-0.481765 -0.118229 -0.868282
-0.599353 -0.088778 -0.795526
-0.620808 -0.083407 -0.779504
-0.277169 -0.151646 -0.948759
-0.481765 -0.118229 -0.868282
-0.485977 -0.117069 -0.866054
-0.485977 -0.117069 -0.866054
-0.293649 -0.149480 -0.944121
-0.277169 -0.151646 -0.948759
-0.620808 -0.083407 -0.779504
-0.599353 -0.088778 -0.795526
-0.856533 -0.007691 -0.515976
-0.856533 -0.007691 -0.515976
-0.856533 -0.007691 -0.515976
-0.620808 -0.083407 -0.779504
-0.293649 -0.149480 -0.944121
--0.007141 -0.169927 -0.985412
--0.007019 -0.169927 -0.985412
--0.007019 -0.169927 -0.985412
-0.277169 -0.151646 -0.948759
-0.293649 -0.149480 -0.944121
-</float_array>
+        <source id="MeshMesh-mesh-normals">
+          <float_array id="MeshMesh-mesh-normals-array" count="54">-0.3831098 0.923608 0.0132454 -0.5010237 0.8648357 0.03216654 -0.6442012 0.764081 0.03442573 -0.4894341 0.8719294 0.01391667 -0.7312631 0.6788011 0.06695842 -0.9473156 0.3110516 0.07642 -0.00802654 0.9998689 -0.01406931 -0.2427509 0.9700881 -0.001129209 -0.3037906 0.9527257 -0.00500518 -0.01150548 0.9998505 -0.01290935 0.55646 0.8301885 0.0337544 0.4342007 0.9007216 0.01306229 0.5535573 0.8322892 0.02948153 0.6702955 0.7407646 0.04440557 0.3311959 0.943536 0.0070194 0.2526085 0.9675542 -0.005279839 0.9543311 0.2887714 0.07657229 0.7266882 0.6837174 0.06674504</float_array>
           <technique_common>
-            <accessor source="#Mesh-lib-Normal0-array" count="48" stride="3">
+            <accessor source="#MeshMesh-mesh-normals-array" count="18" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh-lib-UV0">
-          <float_array id="Mesh-lib-UV0-array" count="64">
-0.129100 0.950200
-0.045100 0.927700
-0.146000 0.071200
-0.214000 0.048700
-0.045100 0.927700
-0.008000 0.875800
-0.119600 0.123100
-0.146000 0.071200
-0.497900 0.962100
-0.230600 0.962100
-0.299800 0.036700
-0.498900 0.036700
-0.230600 0.962100
-0.129100 0.950200
-0.214000 0.048700
-0.299800 0.036700
-0.953300 0.927700
-0.886500 0.950200
-0.789200 0.048700
-0.853400 0.071200
-0.719900 0.036700
-0.789200 0.048700
-0.886500 0.950200
-0.794300 0.962100
-0.953300 0.927700
-0.853400 0.071200
-0.878200 0.123100
-0.991000 0.875800
-0.794300 0.962100
-0.497900 0.962100
-0.498900 0.036700
-0.719900 0.036700
-</float_array>
+        <source id="MeshMesh-mesh-map-0">
+          <float_array id="MeshMesh-mesh-map-0-array" count="96">0.1291 0.9502 0.04509997 0.9277 0.146 0.07119995 0.146 0.07119995 0.214 0.04869997 0.1291 0.9502 0.04509997 0.9277 0.007999956 0.8758 0.1195999 0.1231 0.1195999 0.1231 0.146 0.07119995 0.04509997 0.9277 0.4979 0.9621 0.2305999 0.9621 0.2998 0.03669995 0.2998 0.03669995 0.4989 0.03669995 0.4979 0.9621 0.2305999 0.9621 0.1291 0.9502 0.214 0.04869997 0.214 0.04869997 0.2998 0.03669995 0.2305999 0.9621 0.9533 0.9277 0.8865 0.9502 0.7892 0.04869997 0.7892 0.04869997 0.8534 0.07119995 0.9533 0.9277 0.7199 0.03669995 0.7892 0.04869997 0.8865 0.9502 0.8865 0.9502 0.7943 0.9621 0.7199 0.03669995 0.9533 0.9277 0.8534 0.07119995 0.8782 0.1231 0.8782 0.1231 0.991 0.8758 0.9533 0.9277 0.7943 0.9621 0.4979 0.9621 0.4989 0.03669995 0.4989 0.03669995 0.7199 0.03669995 0.7943 0.9621</float_array>
           <technique_common>
-            <accessor source="#Mesh-lib-UV0-array" count="32" stride="2">
+            <accessor source="#MeshMesh-mesh-map-0-array" count="48" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Mesh-lib-Vertex">
-          <input semantic="POSITION" source="#Mesh-lib-Position"/>
+        <vertices id="MeshMesh-mesh-vertices">
+          <input semantic="POSITION" source="#MeshMesh-mesh-positions"/>
         </vertices>
-        <polygons material="_02___Default" count="16">
-          <input semantic="VERTEX" offset="0" source="#Mesh-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Mesh-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Mesh-lib-UV0"/>
-          <p>0 0 0 1 1 1 2 2 2</p>
-          <p>2 3 2 3 4 3 0 5 0</p>
-          <p>1 6 4 4 7 5 5 8 6</p>
-          <p>5 9 6 2 10 7 1 11 4</p>
-          <p>6 12 8 7 13 9 8 14 10</p>
-          <p>8 15 10 9 16 11 6 17 8</p>
-          <p>7 18 12 0 19 13 3 20 14</p>
-          <p>3 21 14 8 22 15 7 23 12</p>
-          <p>10 24 16 11 25 17 12 26 18</p>
-          <p>12 27 18 13 28 19 10 29 16</p>
-          <p>14 30 20 12 31 21 11 32 22</p>
-          <p>11 33 22 15 34 23 14 35 20</p>
-          <p>10 36 24 13 37 25 16 38 26</p>
-          <p>16 39 26 17 40 27 10 41 24</p>
-          <p>15 42 28 6 43 29 9 44 30</p>
-          <p>9 45 30 14 46 31 15 47 28</p>
-        </polygons>
+        <polylist count="16">
+          <input semantic="VERTEX" source="#MeshMesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#MeshMesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#MeshMesh-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 0 1 1 1 2 2 2 2 2 3 3 3 4 0 0 5 1 1 6 4 4 7 5 5 8 5 5 9 2 2 10 1 1 11 6 6 12 7 7 13 8 8 14 8 8 15 9 9 16 6 6 17 7 7 18 0 0 19 3 3 20 3 3 21 8 8 22 7 7 23 10 10 24 11 11 25 12 12 26 12 12 27 13 13 28 10 10 29 14 14 30 12 12 31 11 11 32 11 11 33 15 15 34 14 14 35 10 10 36 13 13 37 16 16 38 16 16 39 17 17 40 10 10 41 15 15 42 6 6 43 9 9 44 9 9 45 14 14 46 15 15 47</p>
+        </polylist>
       </mesh>
     </geometry>
   </library_geometries>
+  <library_controllers/>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="Mesh" name="Mesh">
-        <matrix sid="matrix">0.984104 0.000000 0.000000 -0.005756 0.000000 0.984104 -0.000000 -0.009668 0.000000 0.000000 0.984104 -0.011779 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#Mesh-lib">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="_02___Default" target="#_02___Default"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Mesh" name="Mesh" type="NODE">
+        <matrix sid="transform">0.984104 0 0 -0.005756 0 0.984104 0 0.011779 0 0 0.984104 -0.009667999 0 0 0 1</matrix>
+        <instance_geometry url="#MeshMesh-mesh" name="Mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
-
