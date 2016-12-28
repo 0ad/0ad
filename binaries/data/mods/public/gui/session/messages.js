@@ -80,17 +80,27 @@ var g_NetMessageTypes = {
 var g_FormatChatMessage = {
 	"system": msg => msg.text,
 	"connect": msg =>
-		sprintf(translate("%(player)s is starting to rejoin the game."), {
-			"player": colorizePlayernameByGUID(msg.guid)
-		}),
+		sprintf(
+			g_PlayerAssignments[msg.guid].player != -1 ?
+				// Translation: A player that left the game joins again
+				translate("%(player)s is starting to rejoin the game.") :
+				// Translation: A player joins the game the for first time
+				translate("%(player)s is starting to join the game."),
+			{ "player": colorizePlayernameByGUID(msg.guid) }
+		),
 	"disconnect": msg =>
 		sprintf(translate("%(player)s has left the game."), {
 			"player": colorizePlayernameByGUID(msg.guid)
 		}),
 	"rejoined": msg =>
-		sprintf(translate("%(player)s has rejoined the game."), {
-			"player": colorizePlayernameByGUID(msg.guid)
-		}),
+		sprintf(
+			g_PlayerAssignments[msg.guid].player != -1 ?
+				// Translation: A player that left the game joins again
+				translate("%(player)s has rejoined the game.") :
+				// Translation: A player joins the game the for first time
+				translate("%(player)s has joined the game."),
+			{ "player": colorizePlayernameByGUID(msg.guid) }
+		),
 	"kicked": msg =>
 		sprintf(
 			msg.banned ?
