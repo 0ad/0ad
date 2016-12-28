@@ -171,7 +171,7 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	for (let ship of this.ships.values())
 		this.setShipIndex(gameState, ship);
 	for (let dock of this.docks.values())
-		this.SetAccessIndices(gameState, dock);
+		this.setAccessIndices(gameState, dock);
 };
 
 m.NavalManager.prototype.updateFishingBoats = function(sea, num)
@@ -188,7 +188,7 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 		this.wantedFishShips.fill(0);
 };
 
-m.NavalManager.prototype.SetAccessIndices = function(gameState, ent)
+m.NavalManager.prototype.setAccessIndices = function(gameState, ent)
 {
 	m.GetLandAccess(gameState, ent);
 	m.GetSeaAccess(gameState, ent);
@@ -223,7 +223,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 		let entity = gameState.getEntityById(evt.newentity);
 		if (entity && entity.hasClass("Dock") && entity.isOwn(PlayerID))
-			this.SetAccessIndices(gameState, entity);
+			this.setAccessIndices(gameState, entity);
 	}
 
 	for (let evt of events.TrainingFinished)
