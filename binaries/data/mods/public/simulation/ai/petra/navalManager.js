@@ -54,15 +54,13 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	this.warShips.registerUpdates();
 	this.fishShips.registerUpdates();
 
-	let fishes = gameState.getFishableSupplies();
 	let availableFishes = {};
-	for (let fish of fishes.values())
+	for (let fish of gameState.getFishableSupplies().values())
 	{
-		let sea = gameState.ai.accessibility.getAccessValue(fish.position(), true);
-		fish.setMetadata(PlayerID, "sea", sea);
-		if (availableFishes[sea])
+		let sea = this.getFishSea(gameState, fish);
+		if (sea && availableFishes[sea])
 			availableFishes[sea] += fish.resourceSupplyAmount();
-		else
+		else if (sea)
 			availableFishes[sea] = fish.resourceSupplyAmount();
 	}
 
@@ -198,6 +196,71 @@ m.NavalManager.prototype.setShipIndex = function(gameState, ship)
 {
 	let sea = gameState.ai.accessibility.getAccessValue(ship.position(), true);
 	ship.setMetadata(PlayerID, "sea", sea);
+};
+
+/** Get the sea, cache it if not yet done and check if in opensea */
+m.NavalManager.prototype.getFishSea = function(gameState, fish)
+{
+	let sea = fish.getMetadata(PlayerID, "sea");
+	if (sea)
+		return sea;
+	const ntry = 4;
+	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+	let pos = gameState.ai.accessibility.gamePosToMapPos(fish.position());
+	let width = gameState.ai.accessibility.width;
+	let k = pos[0] + pos[1]*width;
+	sea = gameState.ai.accessibility.navalPassMap[k];
+	fish.setMetadata(PlayerID, "sea", sea);
+	let radius = 120 / gameState.ai.accessibility.cellSize / ntry;
+	if (around.every(a =>
+		{
+			for (let t = 0; t < ntry; ++t)
+			{
+				let i = pos[0] + Math.round(a[0]*radius*(ntry-t));
+				let j = pos[1] + Math.round(a[1]*radius*(ntry-t));
+				if (i < 0 || i >= width || j < 0 || j >= width)
+					continue;
+				if (gameState.ai.accessibility.landPassMap[i + j*width] === 1)
+				{
+					let navalPass = gameState.ai.accessibility.navalPassMap[i + j*width];
+					if (navalPass === sea)
+						return true;
+					else if (navalPass === 1)  // we could be outside the map
+						continue;
+				}
+				return false;
+			}
+			return true;
+		}))
+		fish.setMetadata(PlayerID, "opensea", true);
+	return sea;
+};
+
+/** check if we can safely fish at the fish position */
+m.NavalManager.prototype.canFishSafely = function(gameState, fish)
+{
+	if (fish.getMetadata(PlayerID, "opensea"))
+		return true;
+	const ntry = 4;
+	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+	let territoryMap = gameState.ai.HQ.territoryMap;
+	let width = territoryMap.width;
+	let radius = 140 / territoryMap.cellSize / ntry;
+	let pos = territoryMap.gamePosToMapPos(fish.position());
+	return around.every(a =>
+		{
+			for (let t = 0; t < ntry; ++t)
+			{
+				let i = pos[0] + Math.round(a[0]*radius*t);
+				let j = pos[1] + Math.round(a[1]*radius*t);
+				if (i < 0 || i >= width || j < 0 || j >= width)
+					break;
+				let owner = territoryMap.getOwnerIndex(i + j*width);
+				if (owner !== 0 && gameState.isPlayerEnemy(owner))
+					return false;
+			}
+			return true;
+		});
 };
 
 /** get the list of seas (or lands) around this region not connected by a dock */

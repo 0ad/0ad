@@ -666,9 +666,7 @@ m.Worker.prototype.startFishing = function(gameState)
 			return;
 
 		// check that it is accessible
-		if (!supply.getMetadata(PlayerID, "sea"))
-			supply.setMetadata(PlayerID, "sea", gameState.ai.accessibility.getAccessValue(supply.position(), true));
-		if (supply.getMetadata(PlayerID, "sea") !== fisherSea)
+		if (gameState.ai.HQ.navalManager.getFishSea(gameState, supply) !== fisherSea)
 			return;
 
 		exhausted = false;
@@ -680,18 +678,13 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
-		// measure the distance to the resource
-		let dist = API3.SquareVectorDistance(entPosition, supply.position());
-		if (dist > nearestSupplyDist)
-			return;
-
 		// Avoid ennemy territory
-		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
-		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+		if (!gameState.ai.HQ.navalManager.canFishSafely(gameState, supply))
 			return;
 
-		let dropsiteDist = nearestDropsiteDist(supply);
-		if (dropsiteDist > 35000)
+		// measure the distance from the resource to the nearest dropsite
+		let dist = nearestDropsiteDist(supply);
+		if (dist > nearestSupplyDist)
 			return;
 
 		nearestSupplyDist = dist;
