@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.77.1 commit date:2016-06-15, commit time:23:47, hash:4cae0cb</authoring_tool>
     </contributor>
-    <created>2016-12-28T03:24:09</created>
-    <modified>2016-12-28T03:24:09</modified>
+    <created>2016-12-28T03:30:52</created>
+    <modified>2016-12-28T03:30:52</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -62,6 +62,9 @@
       <node id="round_m_f" name="round_m_f" type="NODE">
         <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
         <instance_geometry url="#round_m_f-Geometry_001-mesh" name="round_m_f"/>
+        <node id="prop_back" name="prop_back" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
