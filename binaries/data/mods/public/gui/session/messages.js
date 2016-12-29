@@ -84,7 +84,7 @@ var g_FormatChatMessage = {
 			g_PlayerAssignments[msg.guid].player != -1 ?
 				// Translation: A player that left the game joins again
 				translate("%(player)s is starting to rejoin the game.") :
-				// Translation: A player joins the game the for first time
+				// Translation: A player joins the game for the first time
 				translate("%(player)s is starting to join the game."),
 			{ "player": colorizePlayernameByGUID(msg.guid) }
 		),
@@ -97,7 +97,7 @@ var g_FormatChatMessage = {
 			g_PlayerAssignments[msg.guid].player != -1 ?
 				// Translation: A player that left the game joins again
 				translate("%(player)s has rejoined the game.") :
-				// Translation: A player joins the game the for first time
+				// Translation: A player joins the game for the first time
 				translate("%(player)s has joined the game."),
 			{ "player": colorizePlayernameByGUID(msg.guid) }
 		),
