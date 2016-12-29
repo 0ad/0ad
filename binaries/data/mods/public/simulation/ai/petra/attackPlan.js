@@ -592,13 +592,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	{
 		for (let ent of gameState.getOwnUnits().values())
 		{
-			if (!ent.position())
-				continue;
-			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-				continue;
-			if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
-				continue;
-			if (ent.getMetadata(PlayerID, "allied"))
+			if (ent.getMetadata(PlayerID, "allied") || !this.isAvailableUnit(gameState, ent))
 				continue;
 			ent.setMetadata(PlayerID, "plan", plan);
 			this.unitCollection.updateEnt(ent);
@@ -613,13 +607,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		let num = 0;
 		for (let ent of gameState.getOwnUnits().values())
 		{
-			if (!ent.hasClass("Cavalry"))
-				continue;
-			if (!ent.position())
-				continue;
-			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-				continue;
-			if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
+			if (!ent.hasClass("Cavalry") || !this.isAvailableUnit(gameState, ent))
 				continue;
 			if (num++ < 2)
 				continue;
@@ -633,17 +621,9 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	// Assign all units without specific role
 	for (let ent of gameState.getOwnEntitiesByRole(undefined, true).values())
 	{
-		if (!ent.hasClass("Unit"))
-			continue;
-		if (!ent.position())
-			continue;
-		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-			continue;
-		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
+		if (!ent.hasClass("Unit") || !this.isAvailableUnit(gameState, ent))
 			continue;
 		if (ent.hasClass("Ship") || ent.hasClass("Support") || ent.attackTypes() === undefined)
-			continue;
-		if (gameState.getGameType() === "regicide" && ent.hasClass("Hero") && (this.overseas || ent.healthLevel() < 0.8))
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
 		this.unitCollection.updateEnt(ent);
@@ -652,9 +632,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	// Add units previously in a plan, but which left it because needed for defense or attack finished
 	for (let ent of gameState.ai.HQ.attackManager.outOfPlan.values())
 	{
-		if (!ent.position())
-			continue;
-		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
+		if (!this.isAvailableUnit(gameState, ent))
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
 		this.unitCollection.updateEnt(ent);
@@ -669,13 +647,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	let keep = this.type === "Rush" ? Math.round(this.Config.popScaling * (12 + 4*this.Config.personality.defensive)) : 6;
 	for (let ent of gameState.getOwnEntitiesByRole("worker", true).values())
 	{
-		if (!ent.position())
-			continue;
-		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-			continue;
-		if (ent.getMetadata(PlayerID, "transport") !== undefined)
-			continue;
-		if (!ent.hasClass("CitizenSoldier"))
+		if (!ent.hasClass("CitizenSoldier") || !this.isAvailableUnit(gameState, ent))
 			continue;
 		let baseID = ent.getMetadata(PlayerID, "base");
 		if (baseID)
@@ -695,6 +667,19 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		added = true;
 	}
 	return added;
+};
+
+m.AttackPlan.prototype.isAvailableUnit = function(gameState, ent)
+{
+	if (!ent.position())
+		return false;
+	if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1 ||
+	    ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
+		return false;
+	// TODO if more than one hero in regicide, prevent only the "right one" from being affected
+	if (gameState.getGameType() === "regicide" && ent.hasClass("Hero") && (this.overseas || ent.healthLevel() < 0.8))
+		return false;
+	return true;
 };
 
 /** Reassign one (at each turn) Cav unit to fasten raid preparation. */
@@ -849,11 +834,11 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
 	let targets;
 	if (gameState.getGameType() === "wonder")
-	{
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
-		if (targets.hasEntities())
-			return targets;
-	}
+	else if (gameState.getGameType() === "regicide")
+		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero"));
+	if (targets && targets.hasEntities())
+		return targets;
 
 	targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("CivCentre"));
 	if (!targets.hasEntities())

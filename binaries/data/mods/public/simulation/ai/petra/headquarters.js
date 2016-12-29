@@ -51,6 +51,7 @@ m.HQ = function(Config)
 	this.researchManager = new m.ResearchManager(this.Config);
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
+	this.gameTypeManager = new m.GameTypeManager();
 };
 
 /** More initialisation for stuff that needs the gameState */
@@ -161,20 +162,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			{
 				builders.forEach(function (worker) {
 					worker.setMetadata(PlayerID, "base", newbase.ID);
-					worker.setMetadata(PlayerID, "subrole", "builder");
-					worker.setMetadata(PlayerID, "target-foundation", ent.id());
-				});
-			}
-		}
-		else if (ent.hasClass("Wonder") && gameState.getGameType() === "wonder")
-		{
-			// Let's get a few units from other bases there to build this.
-			let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-			let builders = this.bulkPickWorkers(gameState, base, 10);
-			if (builders !== false)
-			{
-				builders.forEach(function (worker) {
-					worker.setMetadata(PlayerID, "base", base.ID);
 					worker.setMetadata(PlayerID, "subrole", "builder");
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
 				});
@@ -1609,20 +1596,6 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_blacksmith"));
 };
 
-m.HQ.prototype.buildWonder = function(gameState, queues)
-{
-	if (queues.wonder && queues.wonder.hasQueuedUnits())
-		return;
-	if (gameState.getOwnEntitiesByClass("Wonder", true).hasEntities())
-		return;
-	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
-		return;
-
-	if (!queues.wonder)
-		gameState.ai.queueManager.addQueue("wonder", 1000);
-	queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
-};
-
 /**
  * Deals with constructing military buildings (barracks, stables…)
  * They are mostly defined by Config.js. This is unreliable since changes could be done easily.
@@ -2140,9 +2113,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		m.chatNewPhase(gameState, phaseName, false);
 	}
 
-	if (gameState.getGameType() === "wonder")
-		this.buildWonder(gameState, queues);
-
 	if (this.numActiveBase() > 0)
 	{
 		this.trainMoreWorkers(gameState, queues);
@@ -2201,6 +2171,8 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.diplomacyManager.update(gameState, events);
 
+	this.gameTypeManager.update(gameState, events, queues);
+
 	Engine.ProfileStop();
 };
 
@@ -2248,6 +2220,7 @@ m.HQ.prototype.Serialize = function()
 		API3.warn(" researchManager " + uneval(this.researchManager.Serialize()));
 		API3.warn(" diplomacyManager " + uneval(this.diplomacyManager.Serialize()));
 		API3.warn(" garrisonManager " + uneval(this.garrisonManager.Serialize()));
+		API3.warn(" gameTypeManager " + uneval(this.gameTypeManager.Serialize()));
 	}
 
 	return {
@@ -2261,6 +2234,7 @@ m.HQ.prototype.Serialize = function()
 		"researchManager": this.researchManager.Serialize(),
 		"diplomacyManager": this.diplomacyManager.Serialize(),
 		"garrisonManager": this.garrisonManager.Serialize(),
+		"gameTypeManager": this.gameTypeManager.Serialize(),
 	};
 };
 
@@ -2304,6 +2278,9 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 
 	this.garrisonManager = new m.GarrisonManager();
 	this.garrisonManager.Deserialize(data.garrisonManager);
+
+	this.gameTypeManager = new m.GameTypeManager();
+	this.gameTypeManager.Deserialize(data.gameTypeManager);
 };
 
 return m;
