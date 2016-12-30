@@ -6,16 +6,18 @@
 # François Poirotte <clicky@erebot.net>, 2016
 # Loki <tontonloul@hotmail.fr>, 2016
 # Louis Parramon <taonasb@live.fr>, 2016
+# Inperpetuammemoriam, 2016
 # Micky Jault <micky037@hotmail.fr>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2016
 # nicolas t <phidias2052@yahoo.fr>, 2016
+# polien delamarque <m.oleil@laposte.net>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-24 10:00+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-30 00:46+0000\n"
+"Last-Translator: polien delamarque <m.oleil@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +31,7 @@ msgstr "Réformes des formations"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Tous les soldats dans sa formation gagnent +15% de vitesse et +1 point d'armure."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -45,7 +47,7 @@ msgstr "Aura de construction"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
 msgid "Buildings construct 15% faster within his aura."
-msgstr ""
+msgstr "Les bâtiments se construisent 15% plus rapidement dans son halo."
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -77,7 +79,7 @@ msgstr "Armée championne"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "+20% points d'attaque, +5 points de capture et +25% de vitesse pour les unités championnes."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -91,7 +93,7 @@ msgstr "Aura héroïque"
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "Tous les soldats et tous les engins de siège gagnent +15% de vitesse."
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
@@ -109,7 +111,7 @@ msgstr "Aura du tacticien"
 msgid ""
 "All allied soldiers and siege engines +20% attack and +1 capture within his "
 "vision range."
-msgstr ""
+msgstr "Tous les soldats alliés et tous les engins de siège gagnent +20% points d'attaque et +1 point de capture dans son champ de vision."
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
@@ -117,7 +119,7 @@ msgstr "Aura du commandant"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid "+20% cavalry melee attack within his aura."
-msgstr ""
+msgstr "+20% points d'attaque de mêlée pour la cavalerie dans son aura."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -125,7 +127,7 @@ msgstr "Aura de réparation des navires."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Répare les bateaux stationnés de 10 PV par seconde."
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -142,7 +144,7 @@ msgstr "Aura d'inspiration"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby citizen soldiers work 10% faster."
-msgstr ""
+msgstr "Les citoyens à proximité travaillent 10% plus rapidement."
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -156,7 +158,7 @@ msgstr "Le taux de récolte augmente de +15% pendant sa durée de vie."
 msgid ""
 "+20% attack and +1 capture for all soldiers and siege engines within his "
 "aura."
-msgstr ""
+msgstr "+20% points d'attaque et +1 point de capture pour tous les soldats et tous les engins de siège dans son aura."
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -166,7 +168,7 @@ msgstr "Aura de capture de garnison"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr ""
+msgstr "Quand il est stationné dans une structure ou un engin de siège, le héros lui donne un bonus de taux de récupération des points de capture de +2."
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
@@ -185,7 +187,7 @@ msgstr "Aura éducative"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "Réduit le coût et le temps de recherche de toutes les technologies de 10% pour chaque librairie détenuee."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -193,7 +195,7 @@ msgstr "Aura de loyauté"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "Toutes les structures proches voient leur taux de regénération de loyauté de garnison augmenté de +50%."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -217,7 +219,7 @@ msgstr ""
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr ""
+msgstr "Aura du Bouddhisme"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "All player temple technologies -50% cost and -50% research time."
@@ -267,7 +269,7 @@ msgstr "Aura du patriote"
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr ""
+msgstr "-20% de d'attaques répétées dans le temps pour les soldats Égyptiens et les engins de siège dans leur aura."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -275,7 +277,7 @@ msgstr "Aura \"Raphia\""
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Le lancier Égyptien à 40% de santé en plus pendant sa durée de vie."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Construction Aura"
@@ -283,7 +285,7 @@ msgstr "Aura de construction"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Buildings construct 10% faster within his aura."
-msgstr ""
+msgstr "Les bâtiments se construisent 10% plus vite avec cette aura."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron Aura"
@@ -301,7 +303,7 @@ msgstr "Aura du glaive de Rome"
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr ""
+msgstr "+20% d'attaques et +2 captures pour les soldats romains et les engins de siège dans ce périmètre."
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -325,7 +327,7 @@ msgstr "Aura \"Ilarchès\""
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "Toute la cavalerie gagne +2 niveaux pour tout types d'armure."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -335,7 +337,7 @@ msgstr "Aura de conquête"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Tout les bâtiments, machines de guerre et bateaux ennemis ont leur santé réduite de 20%."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -343,7 +345,7 @@ msgstr "Aura \"Zooiarchos\""
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr ""
+msgstr "Booste l'attaque et la vitesse de l'éléphant de guerre de +20% dans son aura."
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -351,7 +353,7 @@ msgstr "Réformes hilotiques"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
 msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr ""
+msgstr "L'infanterie à javelot dans son aura gagne +20% d'attaque et +1 armure de tout types."
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
@@ -359,7 +361,7 @@ msgstr "Aura du dernier debout"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr ""
+msgstr "+20% d'attaque et +1 capture de lancier proche."
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
@@ -371,7 +373,7 @@ msgstr "Hellénisation."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr ""
+msgstr "Augmente l'influence du territoire de 20% par théâtre possédé."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -379,7 +381,7 @@ msgstr "Mur protecteur"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr ""
+msgstr "Les soldats des remparts ont +3 de résistance et une vision accrue."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
@@ -387,7 +389,7 @@ msgstr "Aura de la merveille"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr ""
+msgstr "Augmente la limite de population par 10 pour chaque merveille possédée."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -397,7 +399,7 @@ msgstr "Aura de l'expansion glorieuse"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "Augmente d'avantage la limite de population de 40 par merveille possédée (requiert \"Expansion Glorieuse\" tech)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

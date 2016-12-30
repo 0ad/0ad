@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# amirrezaw hosseini <amirrezaw15@yahoo.com>, 2016
 # hamed farri <hamed.farri@gmail.com>, 2016
 # Hessam Shahpouri, 2014
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-02 09:00+0100\n"
-"PO-Revision-Date: 2016-12-03 10:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-29 09:21+0000\n"
+"Last-Translator: amirrezaw hosseini <amirrezaw15@yahoo.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
+msgstr[0] "محدوده شلیک: %(range)s متر"
 
 #: gui/session/input.js:148
 #, javascript-format
@@ -58,7 +59,7 @@ msgstr "بله"
 #: gui/session/menu.js:126
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "آیا مطمئن هستید که می خواهید خارج شوید؟ خروج شما باعث قطع ارتباط همه دیگر بازیکن ها می شود."
 
 #: gui/session/menu.js:130 gui/session/menu.js:134
 msgid "Are you sure you want to quit?"
@@ -87,7 +88,7 @@ msgstr "حذف"
 #: gui/session/menu.js:288
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:353
 msgctxt "team"
@@ -135,17 +136,17 @@ msgstr "%(openingTradingString)s."
 #: gui/session/menu.js:596 gui/session/menu.js:665
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s و  %(inactiveString)s "
 
 #: gui/session/menu.js:601
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s"
 
 #: gui/session/menu.js:602
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s و %(inactiveString)s "
 
 #: gui/session/menu.js:605 gui/session/menu.js:669
 #, javascript-format
@@ -173,7 +174,7 @@ msgstr[0] "%(numberOfLandTraders)s غیر فعال"
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s تاجر زمینی غیرفعال هستند."
 
 #: gui/session/menu.js:637
 #, javascript-format
@@ -189,29 +190,29 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
+msgstr[0] "%(numberGarrisoned)s نفر در کشتی تجاری قرار دارند."
 
 #: gui/session/menu.js:670
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "هیچ کشتی تجاری وجود ندارد."
 
 #: gui/session/menu.js:677
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
+msgstr[0] "%(numberTrading)s کشتی تجاری وجود دارد."
 
 #: gui/session/menu.js:686
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)sکشتی تاجران غیرفعال است"
 
 #: gui/session/menu.js:691
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s کشتی تاجران غیرفعال است"
 
 #: gui/session/menu.js:867
 msgid "Resume"
@@ -224,11 +225,11 @@ msgstr "توقف بازی"
 #: gui/session/menu.js:871
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "بازی متوقف شد توسط %(players)s"
 
 #: gui/session/menu.js:872
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:885 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -1068,7 +1069,7 @@ msgstr ""
 #: gui/session/utility_functions.js:95 gui/session/utility_functions.js:101
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"

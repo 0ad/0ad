@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-16 10:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-27 15:58+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +103,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:453
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Gracz \"%(nick)s\" nie został znaleziony."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:634
@@ -352,7 +352,7 @@ msgstr "Pokaż Profil"
 
 #: gui/lobby/lobby.xml:(caption):350
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Wpisz nazwę gracza."
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"
