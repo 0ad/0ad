@@ -215,7 +215,7 @@ m.GarrisonManager.prototype.cancelGarrison = function(ent)
 {
 	ent.stopMoving();
 	this.leaveGarrison(ent);
-	let holderId = ent.getMetadata(PlayerId, "garrisonHolder");
+	let holderId = ent.getMetadata(PlayerID, "garrisonHolder");
 	if (!holderId || !this.holders.has(holderId))
 		return;
 	let list = this.holders.get(holderId);

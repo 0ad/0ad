@@ -51,7 +51,7 @@ m.HQ = function(Config)
 	this.researchManager = new m.ResearchManager(this.Config);
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
-	this.gameTypeManager = new m.GameTypeManager();
+	this.gameTypeManager = new m.GameTypeManager(this.Config);
 };
 
 /** More initialisation for stuff that needs the gameState */
@@ -1268,7 +1268,8 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 		gameState.getOwnEntitiesByClass("Temple", true).hasEntities() ||
 		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
-	if (gameState.currentPhase() < 3)
+	// Try to build a temple earlier if in regicide to recruit healer guards
+	if (gameState.currentPhase() < 3 && gameState.getGameType() !== "regicide")
 	{
 		if (gameState.currentPhase() < 2 || this.econState !== "cityPhasing")
 			return;
@@ -2279,7 +2280,7 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.garrisonManager = new m.GarrisonManager();
 	this.garrisonManager.Deserialize(data.garrisonManager);
 
-	this.gameTypeManager = new m.GameTypeManager();
+	this.gameTypeManager = new m.GameTypeManager(this.Config);
 	this.gameTypeManager.Deserialize(data.gameTypeManager);
 };
 
