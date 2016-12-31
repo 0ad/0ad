@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/iber_healer_staff.dae</mesh>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <props>
+        <prop actor="props/units/weapons/iber_healer_staff_skull.xml" attachpoint="skull"/>
+      </props>          
+    </variant>
+
+  </group>
+</actor>
