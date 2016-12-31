@@ -35,7 +35,7 @@ If something goes wrong, read `/var/log/ejabberd/ejabberd.log`
 
 Ejabberd configuration
 ======================
-A web administration inteface is avaliable at http://localhost:5280/admin. Use the admin user credentials (full JID (user@domain)) to log in. Changing settings there is also possible, but some those might not persist on restart.
+A web administration inteface is avaliable at http://localhost:5280/admin. Use the admin user credentials (full JID (user@domain)) to log in. Changing settings there is also possible, but some of those might not persist on restart.
 
 The rest of this section should be done by editing `/etc/ejabberd/ejabberd.cfg`.
 
@@ -52,7 +52,7 @@ The bot also needs to be able to get the IPs of users hosting a match, which is 
 Create an ACL for the bot (or bots):
     {acl, bots, {user, "wfgbot", "lobby.wildfiregames.com"}}.
 
-Add an access rule (name it `ipbots` since that it was the module expects:
+Add an access rule (name it `ipbots` since that is what the module expects):
     {access, ipbots, [{allow, bots}]}.
 
 MUC room setup
@@ -84,3 +84,7 @@ If everything is fine you should see something along these lines in your console
     INFO     XpartaMuPP started
 
 Congratulations, you are running XpartaMuPP - the 0ad Multiplayer Game Manager.
+
+Rating bot
+==========
+TODO
