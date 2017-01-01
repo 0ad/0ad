@@ -1,0 +1,13 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/new/idle_relax_generic.dae" name="Idle" id="idle1" speed="30"/>
+    <animation file="biped/new/idle_relax_generic.dae" name="Idle" id="idle2" speed="31"/>
+    <animation file="biped/new/idle_relax_generic.dae" name="Idle" id="idle3" speed="32"/>
+    <animation file="biped/new/walk_relax_generic.dae" name="Walk" id="walk1" speed="20"/>
+    <animation file="biped/new/walk_relax_generic.dae" name="Walk" id="walk2" speed="18"/>
+    <animation file="biped/new/run_generic.dae" name="Run" id="run1" speed="4"/>
+    <animation file="biped/new/run_generic.dae" name="Run" id="run2" speed="5"/>
+    <animation file="biped/new/run_generic.dae" name="Run" id="run3" speed="6"/>
+	<animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
+  </animations>
+</variant>

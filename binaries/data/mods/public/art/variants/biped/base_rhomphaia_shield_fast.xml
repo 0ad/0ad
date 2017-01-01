@@ -1,0 +1,15 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/new/2h_idle_relax.dae" name="Idle" id="idle1" speed="30"/>
+    <animation file="biped/new/2h_idle_relax.dae" name="Idle" id="idle2" speed="31"/>
+    <animation file="biped/new/2h_idle_relax.dae" name="Idle" id="idle3" speed="32"/>
+    <animation file="biped/new/sword_shield_jog_relax.dae" name="Walk" id="walk1" speed="12"/>
+    <animation file="biped/new/sword_shield_jog_relax.dae" name="Walk" id="walk2" speed="14"/>
+    <animation file="biped/new/sword_shield_run_ready.dae" name="Run" id="run1" speed="8"/>
+    <animation file="biped/new/sword_shield_run_ready.dae" name="Run" id="run2" speed="9"/>
+    <animation event="0.5" file="biped/new/sword_shield_attack_a.dae" name="attack_melee" id="attack1" speed="120"/>
+    <animation event="0.5" file="biped/new/sword_shield_attack_b.dae" name="attack_melee" id="attack2" speed="100"/>
+    <animation event="0.5" file="biped/new/sword_shield_attack_c.dae" name="attack_melee" id="attack3" speed="80"/>
+	<animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
+  </animations>
+</variant>

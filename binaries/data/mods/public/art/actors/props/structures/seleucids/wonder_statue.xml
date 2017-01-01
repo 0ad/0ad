@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="pediment">
+    <variant name="apollo">
       <mesh>props/sele_wonder_statue.dae</mesh>
       <textures>
         <texture file="structural/sele_apollo_gold.png" name="baseTex"/>
-        <texture file="null_white.dds" name="specTex"/>
+        <texture file="structural/sele_apollo_gold_spec.png" name="specTex"/>
         <texture file="structural/ao/sele_wonder_statue_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>basic_spec.xml</material>
 </actor>

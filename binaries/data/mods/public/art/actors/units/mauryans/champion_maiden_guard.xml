@@ -2,41 +2,46 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="female/f_run_01.dae" name="Run" speed="6"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_melee" speed="150"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="attack_melee" speed="80"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_d.psa" name="attack_melee" speed="120"/>
-        <animation file="female/f_death_01.dae" name="Death" speed="130"/>
-      </animations>
+    <variant file="biped/base_swordsman_shield_relax.xml">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_female_maur_champ.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_female_test.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_maiden_big_turban.xml" attachpoint="helmet"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+        <prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/maur_tall_roundtop_maiden.xml" attachpoint="shield"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Skirt-Short">
-      <mesh>skeletal/f_tunic.dae</mesh>
       <textures>
-        <texture file="skeletal/maur_maiden_guard_1.png" name="baseTex"/>
-        <texture file="skeletal/maur_maiden_guard_spec.png" name="specTex"/>
+        <texture file="skeletal/maur_fem_d.png" name="baseTex"/>
+        <texture file="skeletal/maur_fem_d_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

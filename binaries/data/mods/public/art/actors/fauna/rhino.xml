@@ -17,7 +17,10 @@
   </group>
   <group>
     <variant frequency="1" name="standard">
-      <textures><texture file="skeletal/animal_rhino.png" name="baseTex"/></textures>
+      <textures>
+		<texture file="skeletal/animal_rhino.png" name="baseTex"/>
+		<texture file="skeletal/animal_rhino_spec.png" name="specTex"/>
+	  </textures>
     </variant>
   </group>
   <group>
@@ -28,4 +31,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_specmap.xml</material>
 </actor>

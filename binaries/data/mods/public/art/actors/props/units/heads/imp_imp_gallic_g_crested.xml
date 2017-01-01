@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="helmet-Imperial Gallic G - crest">
+      <mesh>props/helmet/rome_imp_g_crest.dae</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-Imperial Gallic G - crest and feathers">
+      <mesh>props/helmet/rome_imp_g_crest_feathers.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <textures>
+	    <texture file="props/helmet/rome_gallic_g_cent.dds" name="baseTex"/>
+	    <texture file="props/helmet/rome_gallic_g_cent_spec.png" name="specTex"/>		
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec_helmet.xml</material>
+</actor>

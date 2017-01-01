@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="290"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="280"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="275"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="375"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="45"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="122"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="130"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="118"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="attack_melee" speed="200"/>
+        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="attack_melee" speed="200"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_cataphract_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="horse-1">
+      <textures>
+        <texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="horse-2">
+      <textures>
+        <texture file="skeletal/horse_pers_csw_e_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="horse-3">
+      <textures>
+        <texture file="skeletal/horse_pers_csw_e_3.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse-color-black">
+      <color>41 41 41</color>
+    </variant>
+    <variant frequency="1" name="horse-color-biege">
+      <color>247 213 111</color>
+    </variant>
+    <variant frequency="1" name="horse-color-gray">
+      <color>253 253 253</color>
+    </variant>
+    <variant frequency="1" name="horse-color-brown">
+      <color>211 123 44</color>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

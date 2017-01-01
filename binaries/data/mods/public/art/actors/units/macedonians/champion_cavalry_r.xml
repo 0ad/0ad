@@ -15,19 +15,19 @@
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/heads/mace_hetairoi.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="armor-linen linothorax">
-      <textures><texture file="skeletal/hele_hetairoi_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi_3.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="armor-scale mail">
-      <textures><texture file="skeletal/hele_hetairoi_b.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="armor-bronze cuirass">
-      <textures><texture file="skeletal/hele_hetairoi_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

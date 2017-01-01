@@ -3,14 +3,37 @@
   <Formation>
     <Icon>formations/phalanx.png</Icon>
     <RequiredMemberCount>10</RequiredMemberCount>
-    <DisabledTooltip>10 melee infantry units required</DisabledTooltip>
+    <DisabledTooltip>10 hoplite infantry required</DisabledTooltip>
     <FormationName>Phalanx</FormationName>
-    <UnitSeparationWidthMultiplier>0.75</UnitSeparationWidthMultiplier>
-    <UnitSeparationDepthMultiplier>0.75</UnitSeparationDepthMultiplier>
+    <UnitSeparationWidthMultiplier>0.6</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.6</UnitSeparationDepthMultiplier>
     <WidthDepthRatio>4</WidthDepthRatio>
     <MinColumns>5</MinColumns>
     <MaxColumns>20</MaxColumns>
-    <MaxRows>6</MaxRows>
+    <MaxRows>8</MaxRows>
+	<SpeedMultiplier>0.9</SpeedMultiplier>
+    <Animations>
+      <idle>
+        1..2,1..-1: phalanx_idle;
+        3..4,1..-1: phalanx_idle;
+        5..6,1..-1: phalanx_idle_back
+      </idle>
+      <walk>
+        1..2,1..-1: phalanx_walk;
+        3..4,1..-1: phalanx_walk;
+        5..6,1..-1: phalanx_walk
+      </walk>
+      <run>
+        1..2,1..-1: phalanx_run;
+        3..4,1..-1: phalanx_run;
+        5..6,1..-1: phalanx_run
+      </run>
+      <attack>
+        1..2,1..-1: phalanx_attack;
+        3..4,1..-1: phalanx_attack;
+        5..6,1..-1: phalanx_idle
+      </attack>
+    </Animations>  
   </Formation>
   <FormationAttack>
     <CanAttackAsFormation>true</CanAttackAsFormation>

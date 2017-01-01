@@ -2,20 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
-        <animation file="female/f_walk_01.dae" name="Walk" speed="25"/>
-        <animation file="female/f_run_01.dae" name="Run" speed="6"/>
-        <animation file="female/f_death_01.dae" name="Death" speed="130"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="250"/>
-      </animations>
-      <mesh>skeletal/f_dress.dae</mesh>
+    <variant file="biped/base_archer_relax_fem.xml">
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_ptol_cleopatra.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/heads/new/head_ptol_cleopatra.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/quiver_back.xml" attachpoint="back"/>
       </props>
       <textures>
@@ -24,12 +17,31 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/female_death.xml"/>
+    <variant file="biped/female_gather_tree.xml"/>
+    <variant file="biped/female_gather_grain.xml"/>
+    <variant file="biped/female_gather_fruit.xml"/>
+    <variant file="biped/female_gather_meat.xml"/>
+    <variant file="biped/female_gather_rock.xml"/>
+    <variant file="biped/female_gather_ore.xml"/>
+    <variant file="biped/female_gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/female_build.xml"/>
+    <variant file="biped/female_build_farm.xml"/>
+    <variant file="biped/female_carry_food.xml"/>
+    <variant file="biped/female_carry_meat.xml"/>
+    <variant file="biped/female_carry_wood.xml"/>
+    <variant file="biped/female_carry_stone.xml"/>
+    <variant file="biped/female_carry_metal.xml"/>
+    <variant file="biped/female_carry_food_idle.xml"/>
+    <variant file="biped/female_carry_meat_idle.xml"/>
+    <variant file="biped/female_carry_wood_idle.xml"/>
+    <variant file="biped/female_carry_stone_idle.xml"/>
+    <variant file="biped/female_carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

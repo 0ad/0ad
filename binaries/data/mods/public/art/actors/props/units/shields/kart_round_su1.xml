@@ -11,17 +11,33 @@
   </group>
   <group>
     <variant frequency="1" name="kart-shield-tanit-1">
-      <textures><texture file="props/shield/kart_round_z.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_z.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="kart-shield-tanit-2">
-      <textures><texture file="props/shield/kart_round_y.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_y.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="kart-shield-palm">
-      <textures><texture file="props/shield/kart_round_l_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_l_2.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="kart-shield-double star">
-      <textures><texture file="props/shield/kart_round_ah.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_ah.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

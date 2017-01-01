@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Helmet-Crest">
+      <mesh>props/helmet/hele_corinthian_pushed.dae</mesh>
+      <textures><texture file="props/helmet/hele_su1_laurel.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

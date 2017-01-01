@@ -11,23 +11,35 @@
   </group>
   <group>
     <variant frequency="1" name="shield-a-snake">
-      <textures><texture file="props/shield/hele_round_a.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_a.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-j-tripod">
-      <textures><texture file="props/shield/hele_round_j.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_j.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-p-eye">
-      <textures><texture file="props/shield/hele_round_p.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_p.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-r-raven">
-      <textures><texture file="props/shield/hele_round_r.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_r.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-u-trident">
-      <textures><texture file="props/shield/hele_round_u.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_u.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-x-herakles club">
-      <textures><texture file="props/shield/hele_round_x.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_x.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

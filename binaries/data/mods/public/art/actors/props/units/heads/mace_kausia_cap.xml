@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Kausia Cap 1">
+      <mesh>props/helmet/kausia_cap.dae</mesh>
+      <textures>
+        <texture file="props/helmet/kausia_cap.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Kausia Cap 2">
+      <mesh>props/helmet/kausia_cap.dae</mesh>
+      <textures>
+        <texture file="props/helmet/kausia_cap_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

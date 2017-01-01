@@ -2,43 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="carry_meat" speed="100"/>
-      </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+    <variant file="biped/base_archer_chariot_ready.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_pers_tiara.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/quiver_hip.xml" attachpoint="l_hip"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/quiver_hip.xml" attachpoint="sheath_L"/>
       </props>
       <textures><texture file="skeletal/pers_car_b_r_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="attack_ranged">
-      <props>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant name="carry_meat"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

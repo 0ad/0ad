@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="blacksmith struct">
+      <mesh>structural/maur_big_stupa_struct_dome.dae</mesh>
+      <textures>
+		<texture file="structural/maur_dome.png" name="baseTex"/>
+		<texture file="structural/maur_dome_spec.png" name="specTex"/>
+		<texture file="structural/maur_dome_norm.png" name="normTex"/>
+		<texture file="structural/ao/maur_big_stupa_ao.png" name="aoTex"/>
+	</textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

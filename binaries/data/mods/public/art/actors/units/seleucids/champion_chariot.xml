@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <animations>
+        <animation file="mechanical/pers_chariot_e_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="12"/>
+        <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="20"/>
+      </animations>
+      <mesh>structural/pers_chariot_e.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_chariot_h1.xml" attachpoint="horse1"/>
+        <prop actor="units/seleucids/champion_chariot_h2.xml" attachpoint="horse2"/>
+        <prop actor="units/seleucids/champion_chariot_h3.xml" attachpoint="horse3"/>
+        <prop actor="units/seleucids/champion_chariot_h4.xml" attachpoint="horse4"/>
+        <prop actor="units/seleucids/champion_chariot_rider.xml" attachpoint="rider1"/>
+        <prop actor="units/seleucids/champion_chariot_driver.xml" attachpoint="rider2"/>
+      </props>
+      <textures><texture file="structural/pers_chariot_e.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

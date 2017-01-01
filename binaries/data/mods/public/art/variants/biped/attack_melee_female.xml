@@ -1,8 +1,8 @@
 <variant name="attack_melee">
   <animations>
-    <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="250"/>
+    <animation event="0.5" file="biped/new/sword_shield_attack_b.dae" name="attack_melee" speed="100"/>
   </animations>
   <props>
-    <prop actor="props/units/weapons/knife.xml" attachpoint="r_hand"/>
+    <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
   </props>
 </variant>

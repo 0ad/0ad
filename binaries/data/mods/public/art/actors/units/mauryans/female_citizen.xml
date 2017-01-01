@@ -4,30 +4,51 @@
   <group>
     <variant file="biped/female_base.xml">
       <props>
-        <prop actor="props/units/heads/head_maur_fem.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_maur_fem.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Skirt-Short">
-      <mesh>skeletal/f_tunic.dae</mesh>
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/maur_fem.png" name="baseTex"/>
         <texture file="skeletal/maur_fem_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Skirt-Long">
-      <mesh>skeletal/f_dress.dae</mesh>
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/maur_fem_b.png" name="baseTex"/>
         <texture file="skeletal/maur_fem_b_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Skirt-Short-Beads">
-      <mesh>skeletal/f_tunic.dae</mesh>
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/maur_fem_d.png" name="baseTex"/>
         <texture file="skeletal/maur_fem_d_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Skirt-Very-Short-Beads">
+      <mesh>skeletal/new/f_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/maur_fem_d.png" name="baseTex"/>
+        <texture file="skeletal/maur_fem_d_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="Skirt-Short-Bare">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/maur_fem_c.png" name="baseTex"/>
+        <texture file="skeletal/maur_fem_c_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="Skirt-Very-Short-Bare">
+      <mesh>skeletal/new/f_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/maur_fem_c.png" name="baseTex"/>
+        <texture file="skeletal/maur_fem_c_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -43,12 +64,19 @@
     <variant file="biped/female_gather_rock.xml"/>
     <variant file="biped/female_gather_ore.xml"/>
     <variant file="biped/female_gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/female_build.xml"/>
+    <variant file="biped/female_build_farm.xml"/>
     <variant file="biped/female_carry_food.xml"/>
     <variant file="biped/female_carry_meat.xml"/>
     <variant file="biped/female_carry_wood.xml"/>
     <variant file="biped/female_carry_stone.xml"/>
     <variant file="biped/female_carry_metal.xml"/>
+    <variant file="biped/female_carry_food_idle.xml"/>
+    <variant file="biped/female_carry_meat_idle.xml"/>
+    <variant file="biped/female_carry_wood_idle.xml"/>
+    <variant file="biped/female_carry_stone_idle.xml"/>
+    <variant file="biped/female_carry_metal_idle.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

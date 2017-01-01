@@ -1,10 +1,5 @@
 <variant name="attack_capture">
   <animations>
-    <animation event="0.4" file="infantry/sword/attack/isw_s_def_01.psa" name="attack_capture" speed="100"/>
-    <animation event="0.4" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_capture" speed="100"/>
-    <animation event="0.2" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_capture" speed="100"/>
+	<animation file="biped/new/capturing_a.dae" name="attack_capture" speed="100"/>
   </animations>
-  <props>
-    <prop actor="props/units/tools/pitchfork.xml" attachpoint="r_hand"/>
-  </props>
 </variant>

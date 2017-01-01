@@ -2,21 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Elephant Pikeman">
+    <variant frequency="1" name="Base">
       <animations>
-        <animation file="biped/not used/inf_phalanx_a.psa" name="Idle" speed="100"/>
-        <animation file="biped/not used/inf_phalanx_b.psa" name="Walk" speed="10"/>
-        <animation file="biped/inf_phalanx_c.psa" name="run" speed="2"/>
-        <animation file="biped/inf_phalanx_atk_a.psa" name="attack_melee" speed="350"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+        <animation file="biped/new/inf_sarissa_rest.dae" name="Idle" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/armor/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/heads/mace_bronzeshield_a.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/heads/ptol_thureophoros_e.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
@@ -26,9 +20,44 @@
         <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor linen">
+    <variant frequency="5" name="armor linen">
       <textures>
         <texture file="skeletal/mace_thorakites_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-2">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-3">
+      <textures>
+        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-4">
+      <textures>
+        <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-5">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-7">
+      <textures>
+        <texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-8">
+      <textures>
+        <texture file="skeletal/hele_xenophon.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-10">
+      <textures>
+        <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>

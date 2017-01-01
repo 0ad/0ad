@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Trader Cart">
+      <animations>
+        <animation file="mechanical/trader_cart_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/trader_cart_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/trader_cart_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>skeletal/trader_cart.dae</mesh>
+      <props>
+        <prop actor="units/macedonians/trader_h.xml" attachpoint="horse"/>
+        <prop actor="units/macedonians/trader_r.xml" attachpoint="trader"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="goodsa"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="goodsb"/>
+      </props>
+      <textures><texture file="structural/rome_ram.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

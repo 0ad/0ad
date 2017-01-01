@@ -2,65 +2,54 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Bronze Shield Pikeman">
-      <animations>
-        <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
-        <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="140"/>
-        <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="140"/>
-        <animation event="0.5" file="biped/inf_syntagma_front_attack.dae" name="attack_melee" speed="100"/>
-        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="attack_slaughter" speed="350"/>
-        <animation file="biped/inf_syntagma_front_idle.dae" name="syntagma_front_idle" speed="100"/>
-        <animation file="biped/inf_syntagma_front_walk.dae" name="syntagma_front_walk" speed="50"/>
-        <animation file="biped/inf_syntagma_front_run.dae" name="syntagma_front_run" speed="50"/>
-        <animation file="biped/inf_syntagma_med_idle.dae" name="syntagma_med_idle" speed="100"/>
-        <animation file="biped/inf_syntagma_med_walk.dae" name="syntagma_med_walk" speed="50"/>
-        <animation file="biped/inf_syntagma_med_run.dae" name="syntagma_med_run" speed="50"/> 
-        <animation file="biped/inf_syntagma_back_idle.dae" name="syntagma_back_idle" speed="100"/>
-        <animation file="biped/inf_syntagma_back_walk.dae" name="syntagma_back_walk" speed="50"/>
-        <animation file="biped/inf_syntagma_back_run.dae" name="syntagma_back_run" speed="50"/>            
-        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
-        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
-        <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
-        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="300"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-      </animations>
+    <variant file="biped/pikeman_base.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/sele_silvershield.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/sele_silvershield.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/heads/mace_su1.xml" attachpoint="helmet"/>
-        <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/cape_animated_pikeman.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor short">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="armor silver cuirass sash">
       <textures>
         <texture file="skeletal/mace_su1_hypaspist_2.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="armor silver agis">
+      <textures>
+        <texture file="skeletal/spart_agis.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

@@ -2,26 +2,17 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="1"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="1"/>
-        <animation file="female/f_death_01.dae" name="Death" speed="130"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="250"/>
-      </animations>
+    <variant file="biped/base_driver_chariot.xml">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_female_maur_champ.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/heads/new/head_female_test.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_maiden_big_turban.xml" attachpoint="helmet"/>
         <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Skirt-Short">
-      <mesh>skeletal/f_tunic.dae</mesh>
       <textures>
         <texture file="skeletal/maur_maiden_guard_1.png" name="baseTex"/>
         <texture file="skeletal/maur_maiden_guard_spec.png" name="specTex"/>
@@ -30,12 +21,10 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant name="carry_meat"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

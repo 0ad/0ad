@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="mesh">
+      <mesh>props/new/head_beard_small.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-a">
+      <textures><texture file="props/head/celt_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-b">
+      <textures><texture file="props/head/celt_b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-c">
+      <textures><texture file="props/head/celt_c.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-d">
+      <textures><texture file="props/head/celt_d.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-g">
+      <textures><texture file="props/head/celt_g.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-j">
+      <textures><texture file="props/head/celt_j.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hair-dark brown">
+      <color>75 61 38</color>
+    </variant>
+    <variant frequency="1" name="hair-brown">
+      <color>99 82 53</color>
+    </variant>
+    <variant frequency="1" name="hair-medium brown">
+      <color>138 110 61</color>
+    </variant>
+    <variant frequency="1" name="hair-dark blonde">
+      <color>186 154 92</color>
+    </variant>
+    <variant frequency="1" name="hair-blonde">
+      <color>255 194 78</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

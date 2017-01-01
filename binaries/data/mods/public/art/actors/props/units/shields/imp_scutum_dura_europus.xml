@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1">
+      <mesh>props/shield/scutum_l_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/rome_scutum_imp_back2.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield-scutum-e (Dura Europus)">
+      <textures>
+	    <texture file="props/shield/rome_imp_scutum_e.dds" name="baseTex"/>
+	    <texture file="props/shield/rome_imp_scutum_e_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

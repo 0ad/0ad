@@ -5,18 +5,26 @@
     <variant frequency="100" name="Base">
       <mesh>skeletal/pig.dae</mesh>
       <props>
-        <prop actor="particle/flame_catapult.xml" attachpoint="root"/>
-        <prop actor="particle/smoke.xml" attachpoint="root"/>
+        <prop actor="particle/flame_pig.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="skeletal/animal_pig_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant name="healthy" frequency="1">
+      <textures><texture file="skeletal/animal_pig_b.png" name="baseTex"/></textures>
+    </variant>
+    <variant name="lightDamage">
+      <textures><texture file="skeletal/animal_pig_c.png" name="baseTex"/></textures>
+    </variant>
+    <variant name="mediumDamage">
+      <textures><texture file="skeletal/animal_pig_d.png" name="baseTex"/></textures>
+    </variant>
+    <variant name="heavyDamage">
+      <textures><texture file="skeletal/animal_pig_e.png" name="baseTex"/></textures>
+    </variant>
     <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
+      <textures><texture file="skeletal/animal_pig_e.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_hunt_passive">
-  <Footprint>
-    <Square width="1.1" depth="2.2"/>
-    <Height>2.5</Height>
-  </Footprint>
+<Entity parent="template_unit_fauna_herd_domestic">
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <food>25</food>
+    </Resources>
+  </Cost>
   <Health>
-    <Max>5</Max>
+    <Max>10</Max>
   </Health>
   <Identity>
     <Civ>gaia</Civ>
-    <SpecificName>Peacock</SpecificName>
+	<GenericName>Peacock</GenericName>
+    <SpecificName>Pavo cristatus</SpecificName>
     <Icon>gaia/fauna_peacock.png</Icon>
   </Identity>
+  <ResourceSupply>
+    <Amount>50</Amount>
+    <Type>food.meat</Type>
+    <MaxGatherers>5</MaxGatherers>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/peacock_call.xml</select>
+      <order_walk>actor/fauna/animal/peacock_call.xml</order_walk>
+      <death>actor/fauna/animal/peacock_call.xml</death>
+      <trained>actor/fauna/animal/peacock_call.xml</trained>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed>2.0</WalkSpeed>
     <Run>
@@ -20,6 +36,15 @@
       <RangeMin>5.0</RangeMin>
     </Run>
   </UnitMotion>
+  <UnitAI>
+	<NaturalBehaviour>domestic</NaturalBehaviour>
+    <RoamDistance>4.0</RoamDistance>
+    <FleeDistance>12.0</FleeDistance>
+    <RoamTimeMin>2000</RoamTimeMin>
+    <RoamTimeMax>8000</RoamTimeMax>
+    <FeedTimeMin>10000</FeedTimeMin>
+    <FeedTimeMax>40000</FeedTimeMax>
+  </UnitAI>
   <VisualActor>
     <Actor>fauna/peacock.xml</Actor>
   </VisualActor>

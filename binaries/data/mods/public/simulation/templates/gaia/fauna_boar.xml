@@ -9,13 +9,14 @@
       <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
-  <Footprint>
-    <Square width="1.5" depth="3.0"/>
-    <Height>1.5</Height>
+  <Footprint replace="">
+    <Circle radius="1.0"/>
+    <Height>3.5</Height>
   </Footprint>
   <Identity>
     <Civ>gaia</Civ>
-    <SpecificName>Boar</SpecificName>
+	<GenericName>Wild Boar</GenericName>
+    <SpecificName>Sus scrofa</SpecificName>
     <Icon>gaia/fauna_boar.png</Icon>
   </Identity>
   <Position>

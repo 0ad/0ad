@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_driver_chariot.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/ptol_thureophoros_a_1.png" name="baseTex"/>
+        <texture file="skeletal/ptol_thureophoros_a_1_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/heads/spartan_phalangite_helmet.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

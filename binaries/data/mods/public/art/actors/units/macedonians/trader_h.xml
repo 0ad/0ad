@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="150"/>
+        <animation file="quadraped/horse_walk.psa" name="Run" speed="100"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="250"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse 1">
+      <textures><texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="horse 2">
+      <textures><texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="horse 3">
+      <textures><texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="15" name="white">
+      <color>255 255 255</color>
+    </variant>
+    <variant frequency="16" name="black">
+      <color>44 39 37</color>
+    </variant>
+    <variant frequency="17" name="brown">
+      <color>115 89 55</color>
+    </variant>
+    <variant frequency="16" name="chestnut">
+      <color>204 138 94</color>
+    </variant>
+    <variant frequency="17" name="dun">
+      <color>210 185 138</color>
+    </variant>
+    <variant frequency="17" name="gray">
+      <color>138 138 138</color>
+    </variant>
+    <variant frequency="17" name="tan">
+      <color>171 157 107</color>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

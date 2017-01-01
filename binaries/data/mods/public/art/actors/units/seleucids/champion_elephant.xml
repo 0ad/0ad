@@ -17,8 +17,8 @@
       </animations>
       <mesh>skeletal/sele_champion_elephant.dae</mesh>
       <props>
-        <prop actor="units/mauryans/champion_elephant_driver.xml" attachpoint="rider"/>
-        <prop actor="props/units/turret_ptol_champ_ele.xml" attachpoint="turret"/>
+        <prop actor="units/seleucids/champion_elephant_driver.xml" attachpoint="rider"/>
+        <prop actor="props/units/turret_sele_champ_ele.xml" attachpoint="turret"/>
       </props>
       <textures>
         <texture file="skeletal/sele_champion_elephant.png" name="baseTex"/>

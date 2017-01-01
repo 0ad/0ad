@@ -2,45 +2,36 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="85"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="50"/>
-        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="110"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="111"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="122"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="38"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="35"/>
-        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="36"/>
-        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="35"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-      </animations>
+    <variant file="biped/base_swordsman_shield_relax.xml">
+      <mesh>skeletal/new/m_armor_pants_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/ptol_thureos_galatian_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spatha.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/weapons/spatha.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/cape_animated_swordsman_shield_relax_celt.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Body Armour-1">
-      <mesh>skeletal/m_pants.dae</mesh>
-      <textures><texture file="skeletal/kart_isw_e_01.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="chainmail-1">
+      <textures><texture file="skeletal/celt_isw_e_01.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="Body Armour-2">
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+    <variant frequency="1" name="chainmail-2">
       <textures><texture file="skeletal/celt_isw_e_02.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="leather-1">
+      <textures><texture file="skeletal/celt_leather_01.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="leather-2">
+      <textures><texture file="skeletal/celt_leather_02.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="linothorax-1">
+      <textures><texture file="skeletal/celt_linothorax_01.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_melee_swordsman.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
@@ -50,13 +41,20 @@
     <variant file="biped/gather_rock.xml"/>
     <variant file="biped/gather_ore.xml"/>
     <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
-    <variant file="biped/infantry_death.xml"/>
+    <variant file="biped/build_farm.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

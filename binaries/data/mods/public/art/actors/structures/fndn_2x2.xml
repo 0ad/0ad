@@ -30,5 +30,20 @@
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Idle">
+      <props>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="scaffold">
+      <props>
+        <prop actor="props/structures/construction/scaffold.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>basic_trans.xml</material>
 </actor>

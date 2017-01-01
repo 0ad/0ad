@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="hair-bun">
+      <mesh>props/new/dudette_head_a.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="100" name="hair-bun-b">
+      <mesh>props/new/dudette_head_b.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="50" name="hair-shoulder">
+      <mesh>props/new/head_female_d.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-a">
+      <textures>
+        <texture file="props/head/maur_fem_a.dds" name="baseTex"/>
+        <texture file="props/head/maur_fem_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="5" name="hair-black">
+      <color>0 0 0</color>
+    </variant>
+  </group>
+  <material>objectcolor_specmap.xml</material>
+</actor>

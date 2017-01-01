@@ -6,6 +6,7 @@
       <mesh>structural/maur_big_stupa_struct.dae</mesh>
 	  <props>
 		<prop actor="props/structures/mauryans/stupa_big_gates.xml" attachpoint="root"/>
+		<prop actor="props/structures/mauryans/stupa_dome.xml" attachpoint="root"/>
 	  </props>
       <textures>
 		<texture file="structural/maur_struct.png" name="baseTex"/>

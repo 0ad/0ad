@@ -1,10 +1,10 @@
 <variant name="carry_food">
   <animations>
-    <animation file="female/f_walk_01.dae" name="carry_food" speed="25"/>
+    <animation file="biped/new/fem_carry_grain.dae" name="carry_food" speed="25"/>
   </animations>
   <props>
 	<prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
-	<prop attachpoint="l_hand"/>
-	<prop attachpoint="r_hand"/>
+	<prop attachpoint="weapon_L"/>
+	<prop attachpoint="weapon_R"/>
   </props>
 </variant>

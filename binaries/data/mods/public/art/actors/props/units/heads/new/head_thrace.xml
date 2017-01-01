@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Beard-Small">
+      <mesh>props/new/head_beard_small.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Beard-Large">
+      <mesh>props/new/head_beard_large.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Beard-Wide">
+      <mesh>props/new/head_beard_wide.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <textures><texture file="props/head/celt_c.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="medium blonde">
+      <color>208 188 119</color>
+    </variant>
+    <variant frequency="1" name="brown">
+      <color>149 116 72</color>
+    </variant>
+    <variant frequency="1" name="light blonde">
+      <color>244 213 117</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

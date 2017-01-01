@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/taka_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/taka_a_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="pelta-a">
+      <textures><texture file="props/shield/hele_pelta_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-b">
+      <textures><texture file="props/shield/hele_pelta_b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-c">
+      <textures><texture file="props/shield/hele_pelta_c.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-e">
+      <textures><texture file="props/shield/hele_pelta_e.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-f">
+      <textures><texture file="props/shield/hele_pelta_f.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-g">
+      <textures><texture file="props/shield/hele_pelta_f.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-h">
+      <textures><texture file="props/shield/hele_pelta_h.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-j">
+      <textures><texture file="props/shield/hele_pelta_j.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-k">
+      <textures><texture file="props/shield/hele_pelta_k.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="pelta-l">
+      <textures><texture file="props/shield/hele_pelta_l.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

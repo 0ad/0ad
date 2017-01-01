@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Maur face a">
+      <textures>
+        <texture file="props/helmet/maur_face_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Maur face b">
+      <textures>
+        <texture file="props/helmet/maur_face_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Maur face c">
+      <textures>
+        <texture file="props/helmet/maur_face_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Maur face d">
+      <textures>
+        <texture file="props/helmet/maur_face_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="tall hair">
+      <mesh>props/new/head_mauryan_tall_hair.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="No earrings">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Earrings">
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

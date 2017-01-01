@@ -1,16 +1,18 @@
 <variant name="Base" frequency="1">
   <animations>
-    <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
-    <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="140"/>
-    <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="140"/>
-    <animation file="biped/inf_syntagma_front_idle.dae" name="syntagma_front_idle" speed="100"/>
-    <animation file="biped/inf_syntagma_front_walk.dae" name="syntagma_front_walk" speed="50"/>
-    <animation file="biped/inf_syntagma_front_run.dae" name="syntagma_front_run" speed="50"/>
-    <animation file="biped/inf_syntagma_med_idle.dae" name="syntagma_med_idle" speed="100"/>
-    <animation file="biped/inf_syntagma_med_walk.dae" name="syntagma_med_walk" speed="50"/>
-    <animation file="biped/inf_syntagma_med_run.dae" name="syntagma_med_run" speed="50"/> 
-    <animation file="biped/inf_syntagma_back_idle.dae" name="syntagma_back_idle" speed="100"/>
-    <animation file="biped/inf_syntagma_back_walk.dae" name="syntagma_back_walk" speed="50"/>
-    <animation file="biped/inf_syntagma_back_run.dae" name="syntagma_back_run" speed="50"/>
+    <animation file="biped/new/pike_idle_relax.dae" name="Idle" speed="30"/>
+    <animation file="biped/new/pike_walk_relax_b.dae" name="Walk" speed="30"/>
+    <animation file="biped/new/pike_jog_relax.dae" name="run" speed="10"/>
+    <animation file="biped/new/pike_idle_ready.dae" name="syntagma_front_idle" speed="30"/>
+    <animation file="biped/new/pike_walk_ready.dae" name="syntagma_front_walk" speed="30"/>
+    <animation file="biped/new/pike_run_ready.dae" name="syntagma_front_run" speed="10"/>
+    <animation file="biped/new/pike_idle_relax.dae" name="syntagma_med_idle" speed="30"/>
+    <animation file="biped/new/pike_walk_syntagma.dae" name="syntagma_med_walk" speed="30"/>
+    <animation file="biped/new/pike_run_ready.dae" name="syntagma_med_run" speed="10"/> 
+    <animation file="biped/new/pike_idle_relax.dae" name="syntagma_back_idle" speed="30"/>
+    <animation file="biped/new/pike_walk_relax.dae" name="syntagma_back_walk" speed="30"/>
+    <animation file="biped/new/pike_jog_relax.dae" name="syntagma_back_run" speed="10"/>
+	<animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
+    <animation event="0.5" file="biped/new/pike_attack_a.dae" name="attack_melee" id="attack1" speed="10"/>
   </animations>
 </variant>

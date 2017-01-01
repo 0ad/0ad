@@ -1,0 +1,12 @@
+<variant name="Build_farm">
+  <animations>
+	<animation event="0.5" file="biped/new/build.dae" name="Build_farm" speed="100"/>
+  </animations>
+  <props>
+	<prop attachpoint="shield"/>
+	<prop attachpoint="shield_arm"/>
+	<prop attachpoint="helmet"/>
+    <prop attachpoint="weapon_L"/>
+	<prop actor="props/units/tools/mallet.xml" attachpoint="weapon_R"/>
+  </props>
+</variant>

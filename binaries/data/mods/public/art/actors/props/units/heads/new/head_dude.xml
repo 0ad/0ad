@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/new/dude_head.dae</mesh>
+      <textures>
+        <texture file="props/head/generic_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-young">
+      <textures><texture file="props/head/hele_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-shaven">
+      <textures><texture file="props/head/hele_b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-whiskers">
+      <textures><texture file="props/head/hele_h.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-grit-teeth">
+      <textures><texture file="props/head/hele_i.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-generic">
+      <textures><texture file="props/head/generic_a.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hair-dark brown">
+      <color>184 151 98</color>
+    </variant>
+    <variant frequency="1" name="hair-brown">
+      <color>255 205 125</color>
+    </variant>
+    <variant frequency="1" name="hair-brown black">
+      <color>153 145 129</color>
+    </variant>
+    <variant frequency="1" name="hair-blue black">
+      <color>129 152 153</color>
+    </variant>
+    <variant frequency="1" name="hair-black">
+      <color>8 8 8</color>
+    </variant>
+    <variant frequency="1" name="hair-red">
+      <color>250 130 78</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

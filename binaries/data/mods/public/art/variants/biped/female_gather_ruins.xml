@@ -1,9 +1,9 @@
 <variant name="gather_ruins">
   <animations>
-    <animation file="female/f_mine_01.dae" name="gather_ruins" speed="150"/>
+    <animation event="0.4" file="biped/new/gather_mine.dae" name="gather_ruins" speed="100"/>
   </animations>
   <props>
-    <prop attachpoint="r_hand"/>
-	<prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+    <prop attachpoint="weapon_R"/>
+	<prop actor="props/units/tools/pick.xml" attachpoint="weapon_L"/>
   </props>
 </variant>

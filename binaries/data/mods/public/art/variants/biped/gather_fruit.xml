@@ -1,12 +1,14 @@
 <variant name="gather_fruit">
   <animations>
-	<animation file="infantry/general/forage.psa" frequency="1" speed="125"/>
+	<animation file="biped/new/male_gather_fruit.dae" name="gather_fruit" speed="100"/>
   </animations>
   <props>
-	<prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-    <prop attachpoint="r_hand"/>
-	<prop attachpoint="l_hand"/>
+	<prop actor="props/units/tools/basket_berries.xml" attachpoint="root"/>
+    <prop attachpoint="weapon_R"/>
+	<prop attachpoint="weapon_L"/>
     <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
 	<prop attachpoint="helmet"/>
+	<prop attachpoint="ammo"/>
   </props>
 </variant>

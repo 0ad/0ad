@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain>
-        <textures>
-                <texture name="baseTex" file="types/tropic_grass_c.png"/>
-        </textures>
-	<props angle="45.0" size="48.0"/>
-        <material>terrain_base.xml</material>
+	<textures>
+		<texture name="baseTex" file="types/tropic_grass_c.png"/>
+		<texture name="normTex" file="types/tropic_grass_a_norm.png"/>
+		<texture name="specTex" file="types/tropic_grass_a_spec.png"/>
+	</textures>
+	<material>terrain_norm_spec.xml</material>
 </terrain>

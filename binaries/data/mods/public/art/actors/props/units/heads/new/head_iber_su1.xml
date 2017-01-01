@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>props/new/dude_head.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-1">
+      <textures><texture file="props/head/iber_adv_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-2">
+      <textures><texture file="props/head/iber_adv_b.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="30"/>
+        <animation file="quadraped/horse_attack_a.psa" name="attack_melee" speed="20"/>
+        <animation file="quadraped/horse_attack_b.psa" name="attack_melee" speed="22"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="235"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/macedonians/champion_cavalry_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse-roan">
+      <colour>242 219 164</colour>
+    </variant>
+    <variant frequency="1" name="horse-brown">
+      <colour>255 148 89</colour>
+    </variant>
+    <variant frequency="1" name="horse-rust">
+      <colour>228 187 101</colour>
+    </variant>
+    <variant frequency="1" name="horse-black">
+      <colour>81 81 81</colour>
+    </variant>
+    <variant frequency="1" name="horse-gray">
+      <colour>164 164 164</colour>
+    </variant>
+    <variant frequency="1" name="horse-white">
+      <colour>255 255 255</colour>
+    </variant>
+    <variant frequency="1" name="horse-chocolate">
+      <colour>98 68 58</colour>
+    </variant>
+    <variant frequency="1" name="horse-liver">
+      <colour>172 95 68</colour>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="saddle-leopard-1">
+      <textures>
+        <texture file="skeletal/horse_mace_su2_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="4" name="saddle-lion-1">
+      <textures>
+        <texture file="skeletal/horse_hele_g.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="saddle-leopard-a">
+      <props>
+        <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/hele_saddle_fr1.xml" attachpoint="fr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_fl1.xml" attachpoint="fl_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rr1.xml" attachpoint="rr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rl1.xml" attachpoint="rl_quarter"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse_hele_j.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="saddle-leopard-b">
+      <props>
+        <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/hele_saddle_fr1.xml" attachpoint="fr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_fl1.xml" attachpoint="fl_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rr1.xml" attachpoint="rr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rl1.xml" attachpoint="rl_quarter"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse_hele_h.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="saddle-lion-a">
+      <props>
+        <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/hele_saddle_fr2.xml" attachpoint="fr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_fl2.xml" attachpoint="fl_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rr2.xml" attachpoint="rr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rl2.xml" attachpoint="rl_quarter"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse_hele_i.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="saddle-lion-b">
+      <props>
+        <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/hele_saddle_fr2.xml" attachpoint="fr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_fl2.xml" attachpoint="fl_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rr2.xml" attachpoint="rr_quarter"/>
+        <prop actor="props/units/horse/hele_saddle_rl2.xml" attachpoint="rl_quarter"/>
+      </props>
+      <textures>
+        <texture file="skeletal/horse_hele_g.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

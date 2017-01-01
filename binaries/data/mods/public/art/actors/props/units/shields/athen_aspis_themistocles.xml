@@ -7,8 +7,12 @@
       <props>
         <prop actor="props/units/shields/hele_aspis_back_black.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/shield/athen_aspis_themistocles.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/athen_aspis_themistocles.png" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

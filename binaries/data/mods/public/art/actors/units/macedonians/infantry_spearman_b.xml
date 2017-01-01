@@ -3,22 +3,18 @@
   <castshadow/>
   <group>
     <variant file="biped/pikeman_base.xml">
-      <animations>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/heads/hele_hoplite_b.xml" attachpoint="helmet"/>
-        <prop actor="props/units/shields/mace_pez_basic.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/mace_pez_basic.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
       <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant name="Idle" frequency="1"/>
-    <variant file="biped/attack_melee_pikeman.xml"/>
+    <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
@@ -28,13 +24,20 @@
     <variant file="biped/gather_rock.xml"/>
     <variant file="biped/gather_ore.xml"/>
     <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
-    <variant file="biped/infantry_death.xml"/>
+    <variant file="biped/build_farm.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

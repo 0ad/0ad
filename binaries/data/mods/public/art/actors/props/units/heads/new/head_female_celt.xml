@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Hair-Bun">
+      <mesh>props/new/dudette_head_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Hair-Long">
+      <mesh>props/new/head_boudicca.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Hair-Short">
+      <mesh>props/new/head_female_d.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Face-01">
+      <textures><texture file="props/head/celt_fem_b.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="Face-02">
+      <textures><texture file="props/head/celt_fem_boudicca_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="Face-03">
+      <textures><texture file="props/head/celt_fem_c.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="color-blonde">
+      <color>232 205 123</color>
+    </variant>
+    <variant frequency="1" name="color-red">
+      <color>224 120 16</color>
+    </variant>
+    <variant frequency="3" name="color-brown">
+      <color>120 114 35</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

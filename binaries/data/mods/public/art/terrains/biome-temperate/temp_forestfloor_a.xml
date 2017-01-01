@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain>
-        <textures>
-                <texture name="baseTex" file="types/temp_forestfloor_a.dds"/>
-        </textures>
+	<textures>
+		<texture name="baseTex" file="types/temp_forestfloor_a.dds"/>
+		<texture name="normTex" file="types/temp_forestfloor_a_norm.png"/>
+		<texture name="specTex" file="types/temp_forestfloor_a_spec.png"/>
+	</textures>
 	<props angle="45.0" size="24.0"/>
-        <material>terrain_base.xml</material>
+	<material>terrain_norm_spec.xml</material>
 </terrain>

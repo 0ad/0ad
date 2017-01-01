@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/aspis_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/mace_silvershield_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Chaonian Shield A">
+      <textures>
+        <texture file="props/shield/mace_round_a_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_round_a_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_round_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Chaonian Shield B">
+      <textures>
+        <texture file="props/shield/mace_round_i_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_round_i_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_round_i_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Chaonian Shield C">
+      <textures>
+        <texture file="props/shield/mace_round_h_bronze_player.png" name="baseTex"/>
+        <texture file="props/shield/mace_round_h_norm.png" name="normTex"/>
+        <texture file="props/shield/mace_round_h_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

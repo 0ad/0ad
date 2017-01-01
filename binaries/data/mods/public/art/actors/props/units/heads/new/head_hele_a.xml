@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>props/new/head_beard_small.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="head-c">
+      <textures><texture file="props/head/hele_c.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="head-d">
+      <textures><texture file="props/head/hele_d.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="dark brown">
+      <color>184 151 98</color>
+    </variant>
+    <variant frequency="1" name="brown">
+      <color>255 205 125</color>
+    </variant>
+    <variant frequency="1" name="brown black">
+      <color>153 145 129</color>
+    </variant>
+    <variant frequency="1" name="blue black">
+      <color>129 152 153</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

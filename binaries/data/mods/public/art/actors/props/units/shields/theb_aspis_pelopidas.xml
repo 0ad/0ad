@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <mesh>props/shield/aspis_sm_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/hele_round_back_purple.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/hele_aspis_cape.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Shield: Theban Sphinx">
+      <textures>
+        <texture file="props/shield/hele_thespian_c.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,13 @@
+<variant name="carry_wood_idle">
+  <animations>
+	<animation file="biped/new/male_carry_wood.dae" name="carry_wood_idle" speed="20"/>
+  </animations>
+  <props>
+	<prop actor="props/units/shuttle_wood.xml" attachpoint="weapon_R"/>
+	<prop attachpoint="weapon_L"/>
+	<prop attachpoint="helmet"/>
+	<prop attachpoint="shield"/>
+	<prop attachpoint="shield_arm"/>
+	<prop attachpoint="ammo"/>
+  </props>
+</variant>

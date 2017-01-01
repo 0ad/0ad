@@ -4,7 +4,7 @@
     epic_temple_heal
   </Auras>
   <Footprint>
-    <Square width="24.0" depth="44.0"/>
+    <Square width="46.0" depth="54.0"/>
     <Height>12.0</Height>
   </Footprint>
   <GarrisonHolder>
@@ -16,10 +16,10 @@
     <Tooltip>Bring glory to your civilization and add large tracts of land to your empire. Garrison units to heal them at an extremely quick rate.</Tooltip>
   </Identity>
   <Obstruction>
-    <Static width="20.0" depth="40.0"/>
+    <Static width="42.0" depth="50.0"/>
   </Obstruction>
   <VisualActor>
-    <FoundationActor>structures/fndn_4x6.xml</FoundationActor>
-    <Actor>structures/romans/temple_mars.xml</Actor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/romans/capitoline.xml</Actor>
   </VisualActor>
 </Entity>

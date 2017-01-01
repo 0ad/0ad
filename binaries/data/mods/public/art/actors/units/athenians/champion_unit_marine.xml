@@ -2,58 +2,34 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="idle" speed="91"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="idle" speed="85"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="idle" speed="69"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="idle" speed="99"/>
-        <animation file="biped/inf_sword_ready_b.dae" name="idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_c.dae" name="idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="105"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
-        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="95"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="140"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="145"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="attack_melee" speed="100"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Walk" speed="44"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="25"/>
-        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
-        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="30"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
+    <variant file="biped/base_swordsman_shieldarm_fast.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/hele_su2.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/athen_round_marine.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/athen_round_marine.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_capture.xml"/>
-  </group>
-  <group>
-    <variant frequency="1" name="Ekdromos-Chiton-01">
+    <variant frequency="1" name="Texture-Chiton-01">
       <textures><texture file="skeletal/hele_su1_01.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="Ekdromos-Chiton-02">
+    <variant frequency="1" name="Texture-Chiton-02">
       <textures><texture file="skeletal/hele_su1_02.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="Ekdromos-Chiton-03">
+    <variant frequency="1" name="Texture-Chiton-03">
       <textures><texture file="skeletal/hele_su1_03.dds" name="baseTex"/></textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_melee_swordsman_shieldarm.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

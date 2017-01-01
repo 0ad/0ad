@@ -11,11 +11,19 @@
   </group>
   <group>
     <variant name="shield-lamtha-a">
-      <textures><texture file="props/shield/hele_spartan_v1.dds" name="baseTex"/></textures>
+      <textures>
+	    <texture file="props/shield/hele_spartan_v1.dds" name="baseTex"/>
+	    <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+	    <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+	  </textures>
     </variant>
     <variant name="shield-lamtha-b">
-      <textures><texture file="props/shield/hele_spartan_v2.dds" name="baseTex"/></textures>
+      <textures>
+	    <texture file="props/shield/hele_spartan_v2.dds" name="baseTex"/>
+	    <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+	    <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+	  </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

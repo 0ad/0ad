@@ -1,0 +1,13 @@
+<variant name="carry_meat_idle">
+  <animations>
+	<animation file="biped/new/male_carry_meat_idle.dae" name="carry_meat_idle" speed="20"/>
+  </animations>
+  <props>
+	<prop actor="props/units/shuttle_meat_male_R.xml" attachpoint="weapon_R"/>
+	<prop actor="props/units/shuttle_meat_male_L.xml" attachpoint="weapon_L"/>
+	<prop attachpoint="helmet"/>
+	<prop attachpoint="shield"/>
+	<prop attachpoint="shield_arm"/>
+	<prop attachpoint="ammo"/>
+  </props>
+</variant>

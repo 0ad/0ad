@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/new/dudette_head_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="African-Female-Face-01">
+      <textures>
+        <texture file="props/head/african_fem_a.png" name="baseTex"/>
+        <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_specmap.xml</material>
+</actor>
