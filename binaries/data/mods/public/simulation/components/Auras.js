@@ -428,7 +428,7 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 
 Auras.prototype.OnPlayerDefeated = function(msg)
 {
-  this.Clean();
+	this.Clean();
 };
 
 Engine.RegisterComponentType(IID_Auras, "Auras", Auras);

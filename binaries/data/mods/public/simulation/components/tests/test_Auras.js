@@ -128,5 +128,5 @@ testAuras("formation", (name, cmpAuras) => {
 
 playerState = "defeated";
 testAuras("global", (name, cmpAuras) => {
-  TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 5);
+	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 5);
 });
