@@ -1,6 +1,7 @@
 {
 	"type": "global",
 	"affects": ["Temple"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
 	"modifications": [
 		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.5 },
 		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.5 },
@@ -11,7 +12,6 @@
 		{ "value": "Cost/Resources/stone", "multiply": 0.5 },
 		{ "value": "Cost/Resources/wood", "multiply": 0.5 }
 	],
-	"auraDescription": "Temples and temple technologies -50% cost, in resources and time.",
-	"auraName": "Buddhism Aura",
-	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
+	"auraName": "Ashoka's Religious Support",
+	"auraDescription": "Allied temples and temple technologies -50% cost, in resources and time."
 }

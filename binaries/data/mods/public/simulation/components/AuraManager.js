@@ -9,6 +9,21 @@ AuraManager.prototype.Init = function()
 	this.modifications = new Map();
 	this.templateModificationsCache = new Map();
 	this.templateModifications = new Map();
+
+	this.globalAuraSources = [];
+};
+
+AuraManager.prototype.RegisterGlobalAuraSource = function(ent)
+{
+	if (this.globalAuraSources.indexOf(ent) == -1)
+		this.globalAuraSources.push(ent);
+};
+
+AuraManager.prototype.UnregisterGlobalAuraSource = function(ent)
+{
+	let idx = this.globalAuraSources.indexOf(ent);
+	if (idx != -1)
+		this.globalAuraSources.splice(idx, 1);
 };
 
 AuraManager.prototype.ensureExists = function(name, value, id, key, defaultData)
@@ -228,6 +243,16 @@ AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, pl
 		}
 	}
 	return value * multiply + add;
+};
+
+AuraManager.prototype.OnGlobalOwnershipChanged = function(msg)
+{
+	for (let ent of this.globalAuraSources)
+	{
+		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		if (cmpAuras)
+			cmpAuras.RegisterGlobalOwnershipChanged(msg);
+	}
 };
 
 Engine.RegisterSystemComponentType(IID_AuraManager, "AuraManager", AuraManager);
