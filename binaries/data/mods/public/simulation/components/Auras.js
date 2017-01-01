@@ -86,7 +86,7 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	if (!cmpPlayer)
 		cmpPlayer = QueryOwnerInterface(this.entity);
-	if (!cmpPlayer)
+	if (!cmpPlayer || cmpPlayer.GetState() == "defeated")
 		return;
 
 	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
@@ -424,6 +424,11 @@ Auras.prototype.OnGlobalResearchFinished = function(msg)
 			return;
 		}
 	}
+};
+
+Auras.prototype.OnPlayerDefeated = function(msg)
+{
+  this.Clean();
 };
 
 Engine.RegisterComponentType(IID_Auras, "Auras", Auras);

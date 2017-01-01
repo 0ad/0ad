@@ -8,6 +8,7 @@ Engine.LoadComponentScript("AuraManager.js");
 
 let playerID = [0, 1, 2];
 let playerEnt = [10, 11, 12];
+let playerState = "active";
 let giverEnt = 20;
 let targetEnt = 30;
 let auraRange = 40;
@@ -51,7 +52,8 @@ function testAuras(name, test_function)
 	AddMock(playerEnt[1], IID_Player, {
 		"IsAlly": id => id == 1,
 		"IsEnemy": id => id != 1,
-		"GetPlayerID": () => playerID[1]
+		"GetPlayerID": () => playerID[1],
+		"GetState": () => playerState
 	});
 
 	AddMock(targetEnt, IID_Identity, {
@@ -122,4 +124,9 @@ testAuras("formation", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
 	cmpAuras.RemoveFormationBonus([targetEnt]);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 5);
+});
+
+playerState = "defeated";
+testAuras("global", (name, cmpAuras) => {
+  TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 5);
 });
