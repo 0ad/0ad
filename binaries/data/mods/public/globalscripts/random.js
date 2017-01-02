@@ -10,7 +10,7 @@ function randomNormal2D()
 		a = 2 * Math.random() - 1;
 		b = 2 * Math.random() - 1;
 		s = a * a + b * b;
-	} while (s>=1 || s==0)
+	} while (s>=1 || s==0);
 	s = Math.sqrt(-2 * Math.log(s) / s);
 	return [a * s, b * s];
 }

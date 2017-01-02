@@ -651,7 +651,6 @@ m.Worker.prototype.startFishing = function(gameState)
 	let nearestSupplyDist = Math.min();
 	let nearestSupply;
 
-	let entPosition = this.ent.position();
 	let fisherSea = this.ent.getMetadata(PlayerID, "sea");
 	let fishDropsites = (gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food")).filter(API3.Filters.byClass("Dock")).toEntityArray();
 
