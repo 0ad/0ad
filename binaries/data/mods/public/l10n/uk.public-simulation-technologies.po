@@ -12,15 +12,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-31 17:38+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -381,17 +389,17 @@ msgstr "Облицьований бронзовий щит"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 msgid "Khalkaspís"
-msgstr ""
+msgstr "Халкаспис"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Khrysaspís"
-msgstr ""
+msgstr "Хрисаспис"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
 "Only the most celebrated soldiers had shields faced with silver, as did the "
 "famous 'Silver Shields' regiment in Alexander the Great's army."
-msgstr ""
+msgstr "Лише найславетніші воїни мали посріблені щити, як відзнаку \"Срібних Щитів\" у армії Александра Великого."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
@@ -407,7 +415,7 @@ msgstr "Срібні щити"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.spart
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.athen
 msgid "Argyraspís"
-msgstr ""
+msgstr "Аргираспис"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -415,7 +423,7 @@ msgstr "Свинцева обшивка захищає корпуса суден
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr ""
+msgstr "Свинцева обшивка захищає корпуса суден. +2 рівня до усіх типів корабельної броні."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -446,7 +454,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr ""
+msgstr "Посилений корпус"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
@@ -803,6 +811,14 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
+msgstr ""
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
 msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
@@ -1875,7 +1891,11 @@ msgstr ""
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
 msgstr ""
@@ -2187,10 +2207,13 @@ msgid "Elite Italiote Mercenaries"
 msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
 msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
@@ -2219,12 +2242,14 @@ msgstr ""
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr ""
 
-#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
-msgid "Hellenic Architecture"
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
 msgstr ""
 
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
+msgid "Hellenic Architecture"
 msgstr ""
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
@@ -2233,6 +2258,14 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
 msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
@@ -2289,6 +2322,10 @@ msgid ""
 "time."
 msgstr "Імперія Маур'їв охоплювала десятки раніше незалежних царств на площі понад 5 мільйонів квадратних кілометрів з населенням близько 60 мільйонів осіб. Правителі Маур'їв носили титул \"імператора імператорів\" і керували регулярною армією з 600000 піхотинців, 9000 слонів, 8000 колісниць, і 30000 кінноти, що робить її, мабуть, найбільшою армією свого часу."
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Цар серед царів"
@@ -2318,17 +2355,16 @@ msgstr "Традиції стрільби з лука"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
 msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Дерев'яні стіни"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Великий королівський податок."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2339,6 +2375,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "Перси могли і користувалися можливістю набирати велику кількість піхоти під час військових дій через величезні розміри Ахеменідської імперії та її організації. В цілому перська піхота була добре натренована і билася з великим завзяттям. Незважаючи на це, піхота була погано підготовлена для близького бою. Також за винятком елітних полків перська піхота не відносилася до професійних військ."
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "Великий королівський податок."
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

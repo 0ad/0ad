@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015-2016
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-11-21 09:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-01 12:51+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "Я створив новий маршрут з %(_player_)s. Торгі�
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr ""
+msgstr "Новий торговий маршрут створений з %(_player_)s. Візьміть свою частку прибутку"
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
@@ -122,12 +123,12 @@ msgstr "Я вже досягнув %(phase)s."
 #: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s та Я відтепер вороги."
 
 #: simulation/ai/petra/chatHelper.js:135
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s та Я відтепер союзники."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -575,7 +576,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "союзний"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -733,11 +734,11 @@ msgstr "(Шахрайство - контролювати всі юніти)"
 
 #: simulation/helpers/Commands.js:140
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(Шахрайство - розкрити карту)"
 
 #: simulation/helpers/Commands.js:582
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Шахрайство - вдосконалити юніти)"
 
 #: simulation/helpers/Commands.js:692
 msgid ""
@@ -756,11 +757,11 @@ msgstr "Запропонували атаку проти %(_player_)s."
 
 #: simulation/helpers/Commands.js:785
 msgid "Unable to ungarrison unit(s)"
-msgstr ""
+msgstr "Неможливо вивести юніт(и) з гарнізону"
 
 #: simulation/helpers/Commands.js:799
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "Деякі юніт(и) не можуть повернутись до роботи"
 
 #: simulation/helpers/Commands.js:1054
 msgid "The building's technology requirements are not met."
@@ -848,7 +849,7 @@ msgstr "Швидке перемотування (20x)"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
-msgstr ""
+msgstr "Розгромити всіх супротивників."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -856,7 +857,7 @@ msgstr "Завоювання"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all enemy structures to win."
-msgstr ""
+msgstr "Знищіть всі ворожі будівлі для перемоги."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -864,7 +865,7 @@ msgstr "Завоювати будівлі"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
-msgstr ""
+msgstr "Вбити усі ворожі підрозділи для перемоги."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -872,7 +873,7 @@ msgstr "Завоювати підрозділи"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "Завдати поразки суперникам вбивши їхнього героя."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
@@ -955,7 +956,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Петра - основний бот зі штучним інтелектом гри 0AD. Будь ласка надсилайте свої пропозиції до Wildfire Games (дивіться посилання в головному меню).\n\nШтучний Інтелект має malus-bonus зі збору ресурсів (або рейтинг збору або з торгівлі припасами), що коливається у межах від 0.5 для рівня Пісочниця до 1.6 для Дуже важкого (Середній = 1.0). Крім того, рівень Пісочниця не впливає на атаку."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

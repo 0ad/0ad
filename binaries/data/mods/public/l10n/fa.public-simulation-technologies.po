@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-28 09:54+0000\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-30 09:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -799,6 +807,14 @@ msgstr ""
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "پی سنگی"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1870,10 +1886,14 @@ msgstr "کبوتران نامه بر"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "کارتاژی ها دیوار های شهر های خود را در سه لایه هم مرکز می ساختند. هیچ وقت دشمنی نتوانست به این دیوار ها نفوذ کند. حتی زمانی که شهر کارتاژ توسط رومیان فتح شد، حمله از طریق بندرگاه شهر صورت گرفته بود نه از دیوار ها. به همین دلیل، سلامتی دیوار ها، دروازه ها و برج های دیوار های کارتاژی 3 برابر سلامتی یک دیوار عادیست. در عوض هزینه و زمان ساخت آن ها دو برابر است."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2182,11 +2202,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "مزدوران برجسته ی ایتالیایی"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "ساختمان های کلتی عموما از چوب بر روی یک پی قلوه سنگی ساخته می شدند. برای همین، ساختمان های آنها در مقایسه با باقی تمدن ها ضعیف ترند، اما سریع تر ساخته می شوند."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2214,13 +2237,15 @@ msgstr ""
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "یونانی از از ابتدای دوران میکنایی ساختمان های سنگی می ساختند."
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "معماری یونان"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "زیر دستان"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2229,6 +2254,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "زیر دستان"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2284,6 +2317,10 @@ msgid ""
 "time."
 msgstr ""
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "امپراتور امپراتوران"
@@ -2313,17 +2350,16 @@ msgstr "سنت کمانداری"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
 msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "دیوار های چوبی"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "سربازگیری پادشاه بزرگ"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2334,6 +2370,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "سربازگیری پادشاه بزرگ"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

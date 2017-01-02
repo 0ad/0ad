@@ -13,15 +13,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-12-23 21:20+0000\n"
-"Last-Translator: Peter Tuharsky <peter.tuharsky@gmail.com>\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-30 09:23+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -805,6 +813,14 @@ msgstr "Rýchlosť rozpadu teritória -50% pre rozhľadne."
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Kamenné základy"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1876,10 +1892,14 @@ msgstr "Poštové holuby"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartáginci budovali svoje mestské hradby ako tri sústredné okruhy. Takéto hradby neboli nikdy prelomené. Dokonca aj keď bolo mesto ovládnuté Rimanmi, podarilo sa im to cez mestský prístav a nie ostreľovaním hradieb. Preto kartáginské hradby, brány a veže majú 3x toľko zdravia čo klasické hradby, avšak stoja dvojnásobok ich ceny a taktiež aj doba ich výstavby je dvojnásobná."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2188,11 +2208,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "Elitní italickí žoldnieri"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "Keltské stavby boli väčšinou postavené z dreva a mali základy z lámaných kameňov. Preto majú menej zdravia ako stavby ostatných kultúr, ale zato sa aj budujú rýchlejšie."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2220,13 +2243,15 @@ msgstr "Doratismós"
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Gréci využívali kamenné stavby už od skorých mykénskych čias."
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Helénska architektúra"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Outsideri"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2235,6 +2260,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr "Sparťania síce nemali najväčšiu armádu na svete, ale napriek tomu bola najlepšia. Čo nemali v kvantite, dohnali v kvalite. Hovorilo sa, že Sparta nepotrebovala silné mestské hradby, tie totižto tvorili jej muži."
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "Outsideri"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2290,6 +2323,10 @@ msgid ""
 "time."
 msgstr "Maurská ríša sa skladala z mnohých predtým nezávislých kráľovstiev na ploche vyše 5 miliónov kilometrov štvorcových, s počtom obyvateľov blížiacim sa k 60 miliónom. Maurskí vladári držali titul Cisárov cisárov a velili stálej armáde pozostávajúcej z 600,000 pechoty, 9000 slonov, 8000 povozov a 30,000 jazdy, čo ju robilo pravdepodobne najväčšou armádou svojich čias."
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Cisár cisárov"
@@ -2319,17 +2356,16 @@ msgstr "Lukostrelecká tradícia"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
-msgstr "Maurovia budovali svoje mestské hradby z dreva, v Indii sa hojne vyskytujúcej prírodnej suroviny. Maurské mestské hradby preto majú -20% zdravia, ale stavajú sa o 20% rýchlejšie."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Drevené hradby"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Branná povinnosť Veľkokráľa"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2340,6 +2376,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "Peržania mohli a aj odviedli obrovské množstvo pešiakov počas vojny vzhľadom k samotnej veľkosti Achajmenskej ríše a spôsobu jej zriadenia. Vo všeobecnosti perzská pechota bola dobre trénovaná a bojovala s veľkou húževnatosťou. Avšak aj napriek tomu jej členovia boli slabí v boji nablízko. Navyše, s výnimkou elitných plukov, táto pechota nebola stálou profesionálnou silou."
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "Branná povinnosť Veľkokráľa"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

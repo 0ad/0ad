@@ -17,15 +17,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-30 20:48+0000\n"
-"Last-Translator: Me Lazzi\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-30 09:23+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -809,6 +817,14 @@ msgstr "Tasso di decadimento del territorio -50% per gli avamposti."
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Fondazioni di Pietra"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1880,10 +1896,14 @@ msgstr "Piccioni Viaggiatori"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "I Cartaginesi costruirono le loro mura in tre circuiti concentrici. Queste mura non furono mai violate. Anche quando la città fu presa dai Romani, avvenne tramite il porto della città, non per l'assalto alle sue mura. Di conseguenza, le mura cartaginesi, porte e torri di cinta hanno 3x la salute rispetto a una parete standard, ma costano il doppio e il necessitano il doppio del tempo per costruirle."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2192,11 +2212,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "Mercenari Italioti Elite"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "Le strutture celtiche erano per lo più realizzate in legno con l'uso di macerie. Di conseguenza, le loro strutture hanno meno resistenza di quelle di altre culture, ma vengono costruite più velocemente."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2224,13 +2247,15 @@ msgstr "Doratismós"
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "I Greci usavano costruzioni in pietra fin dai tempi Micenei."
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Architettura Ellenistica"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Perdente"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2239,6 +2264,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr "Gli Spartani non ebbero il più grande esercito del mondo, ma il miglior esercito del mondo di quel tempo. Quello che non fecero grazie alla superiorità numerica, lo fecero con la qualità dell'addestramento militare. Si diceva che Sparta non avesse bisogno di forti mura a difesa della città, i suoi uomini erano le sue mura."
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "Perdente"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2294,6 +2327,10 @@ msgid ""
 "time."
 msgstr "L'impero Maurya comprendeva decine di regni precedentemente indipendenti estesi su una superficie di 5 milioni di chilometri quadrati, con una popolazione di quasi 60 milioni di persone. I reggenti Maurya ottennero il titolo di Imperatore degli Imperatori e comandarono un esercito permanente di 600.000 fanti, 9000 elefanti, 8000 carri, e 30.000 cavallieri, probabilmente il più grande esercito del tempo."
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Imperatore di Imperi"
@@ -2323,17 +2360,16 @@ msgstr "Tradizione Arciera"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
-msgstr "I Mauryani costruivano le mura delle loro città con il legno, una risorsa abbondante in India. Di conseguenza le mura delle città Maurytiane hanno -20% di salute e -20% di tempo di costruzione."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Mura di Legno"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Reale Leva Generale"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2344,6 +2380,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "I Persiani potevano disporre di un gran numero di fanti in tempo di guerra a causa della vastità dell'Impero Achemenide e per come era stato concepito. In generale, la fanteria persiana era ben addestrata e combatteva con grande tenacia. Tuttavia, era vero che la fanteria era carente nel corpo a corpo, trovandosi vicino agli avversari. Inoltre, con l'eccezione dei reggimenti d'elite, la fanteria persiana non era una forza professionale permanente."
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "Reale Leva Generale"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
