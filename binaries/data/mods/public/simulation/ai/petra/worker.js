@@ -182,7 +182,7 @@ m.Worker.prototype.update = function(gameState, ent)
 		else
 		{
 			let access = gameState.ai.accessibility.getAccessValue(ent.position());
-			let goalAccess = m.GetLandAccess(gameState, target);
+			let goalAccess = m.getLandAccess(gameState, target);
 			if (access === goalAccess)
 				ent.repair(target, target.hasClass("House"));  // autocontinue=true for houses
 			else
@@ -469,7 +469,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			return false;
 		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
 		{
-			let foundationAccess = m.GetLandAccess(gameState, foundation);
+			let foundationAccess = m.getLandAccess(gameState, foundation);
 			if (navalManager.requireTransport(gameState, this.ent, access, foundationAccess, foundation.position()))
 			{
 				if (foundation.getMetadata(PlayerID, "base") !== this.baseID)
@@ -562,7 +562,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 			// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
 			if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
 				continue;
-			if (access !== m.GetLandAccess(gameState, dropsite))
+			if (access !== m.getLandAccess(gameState, dropsite))
 				continue;
 			distMin = Math.min(distMin, API3.SquareVectorDistance(pos, dropsite.position()));
 		}
@@ -666,7 +666,7 @@ m.Worker.prototype.startFishing = function(gameState)
 			// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
 			if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
 				continue;
-			if (fisherSea !== m.GetSeaAccess(gameState, dropsite))
+			if (fisherSea !== m.getSeaAccess(gameState, dropsite))
 				continue;
 			distMin = Math.min(distMin, API3.SquareVectorDistance(pos, dropsite.position()));
 		}
@@ -796,7 +796,7 @@ m.Worker.prototype.gatherTreasure = function(gameState)
 		let lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
 		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
 			continue;
-		if (access !== m.GetLandAccess(gameState, treasure))
+		if (access !== m.getLandAccess(gameState, treasure))
 			continue;
 		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
 		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))

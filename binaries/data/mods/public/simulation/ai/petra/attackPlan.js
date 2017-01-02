@@ -80,7 +80,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 			}
 			else if (!this.overseas)
 			{
-				let sea = gameState.ai.HQ.getSeaIndex(gameState, rallyAccess, access);
+				let sea = gameState.ai.HQ.getSeaBetweenIndices(gameState, rallyAccess, access);
 				if (!sea)
 					continue;
 				this.overseas = sea;
@@ -765,7 +765,7 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 		{
 			rallyIndex = gameState.ai.accessibility.getAccessValue(rallyDiff);
 			this.rallyPoint = rallyDiff;
-			this.overseas = gameState.ai.HQ.getSeaIndex(gameState, rallyIndex, targetIndex);
+			this.overseas = gameState.ai.HQ.getSeaBetweenIndices(gameState, rallyIndex, targetIndex);
 			if (this.overseas)
 				gameState.ai.HQ.navalManager.setMinimalTransportShips(gameState, this.overseas, this.neededShips);
 			else

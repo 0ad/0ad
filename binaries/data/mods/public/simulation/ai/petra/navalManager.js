@@ -188,8 +188,8 @@ m.NavalManager.prototype.resetFishingBoats = function(gameState, sea)
 
 m.NavalManager.prototype.setAccessIndices = function(gameState, ent)
 {
-	m.GetLandAccess(gameState, ent);
-	m.GetSeaAccess(gameState, ent);
+	m.getLandAccess(gameState, ent);
+	m.getSeaAccess(gameState, ent);
 };
 
 m.NavalManager.prototype.setShipIndex = function(gameState, ship)

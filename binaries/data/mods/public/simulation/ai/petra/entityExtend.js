@@ -82,7 +82,7 @@ m.getMaxStrength = function(ent, againstClass)
 };
 
 /** Get access and cache it in metadata if not already done */
-m.GetLandAccess = function(gameState, ent)
+m.getLandAccess = function(gameState, ent)
 {
 	let access = ent.getMetadata(PlayerID, "access");
 	if (!access)
@@ -93,7 +93,7 @@ m.GetLandAccess = function(gameState, ent)
 	return access;
 };
 
-m.GetSeaAccess = function(gameState, ent)
+m.getSeaAccess = function(gameState, ent)
 {
 	let sea = ent.getMetadata(PlayerID, "sea");
 	if (!sea)
@@ -113,7 +113,7 @@ m.GetSeaAccess = function(gameState, ent)
 			}
 		}
 		if (sea < 2)
-			API3.warn("ERROR in Petra GetSeaAccess because of dock position with index " + sea);
+			API3.warn("ERROR in Petra getSeaAccess because of position with sea index " + sea);
 		ent.setMetadata(PlayerID, "sea", sea);
 	}
 	return sea;

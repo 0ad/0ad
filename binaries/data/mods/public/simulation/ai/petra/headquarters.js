@@ -112,7 +112,7 @@ m.HQ.prototype.postinit = function(gameState)
  * otherwise return undefined
  * for the moment, only the case land-sea-land is supported
  */
-m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
+m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
 {
 	let path = gameState.ai.accessibility.getTrajectToIndex(index1, index2);
 	if (path && path.length == 3 && gameState.ai.accessibility.regionType[path[1]] === "water")
@@ -874,7 +874,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	{
 		if (!base.anchor || base.accessIndex === indexIdx)
 			continue;
-		let sea = this.getSeaIndex(gameState, base.accessIndex, indexIdx);
+		let sea = this.getSeaBetweenIndices(gameState, base.accessIndex, indexIdx);
 		if (sea !== undefined)
 			this.navalManager.setMinimalTransportShips(gameState, sea, 1);
 	}
@@ -1016,7 +1016,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	{
 		if (!base.anchor || base.accessIndex === indexIdx)
 			continue;
-		let sea = this.getSeaIndex(gameState, base.accessIndex, indexIdx);
+		let sea = this.getSeaBetweenIndices(gameState, base.accessIndex, indexIdx);
 		if (sea !== undefined)
 			this.navalManager.setMinimalTransportShips(gameState, sea, 1);
 	}
@@ -1080,11 +1080,11 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		{
 			if (isNavalMarket && market.hasClass("NavalMarket"))
 			{
-				if (m.GetSeaAccess(gameState, market) !== gameState.ai.accessibility.getAccessValue(pos, true))
+				if (m.getSeaAccess(gameState, market) !== gameState.ai.accessibility.getAccessValue(pos, true))
 					continue;
 				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			}
-			else if (m.GetLandAccess(gameState, market) === index)
+			else if (m.getLandAccess(gameState, market) === index)
 				gainMultiplier = traderTemplatesGains.landGainMultiplier;
 			else
 				continue;
@@ -1269,6 +1269,7 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 	// Try to build a temple earlier if in regicide to recruit healer guards
+	// or if we are ready to switch to city phase but miss some town phase structure
 	if (gameState.currentPhase() < 3 && gameState.getGameType() !== "regicide")
 	{
 		if (gameState.currentPhase() < 2 || this.econState !== "cityPhasing")

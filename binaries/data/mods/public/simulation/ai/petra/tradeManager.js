@@ -412,16 +412,16 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	{
 		if (!m1.position())
 			continue;
-		let access1 = m.GetLandAccess(gameState, m1);
-		let sea1 = m1.hasClass("NavalMarket") ? m.GetSeaAccess(gameState, m1) : undefined;
+		let access1 = m.getLandAccess(gameState, m1);
+		let sea1 = m1.hasClass("NavalMarket") ? m.getSeaAccess(gameState, m1) : undefined;
 		for (let m2 of market2)
 		{
 			if (m1.id() === m2.id())
 				continue;
 			if (!m2.position())
 				continue;
-			let access2 = m.GetLandAccess(gameState, m2);
-			let sea2 = m2.hasClass("NavalMarket") ? m.GetSeaAccess(gameState, m2) : undefined;
+			let access2 = m.getLandAccess(gameState, m2);
+			let sea2 = m2.hasClass("NavalMarket") ? m.getSeaAccess(gameState, m2) : undefined;
 			let land = access1 == access2 ? access1 : undefined;
 			let sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
 			if (!land && !sea)

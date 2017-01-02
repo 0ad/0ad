@@ -608,7 +608,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 			return;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			return;
-		if (m.GetLandAccess(gameState, ent) !== unitAccess)
+		if (m.getLandAccess(gameState, ent) !== unitAccess)
 			return;
 		let dist = API3.SquareVectorDistance(ent.position(), unit.position());
 		if (dist > distmin)
@@ -642,7 +642,7 @@ m.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, emer
 			continue;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			continue;
-		if (m.GetLandAccess(gameState, ent) !== unitAccess)
+		if (m.getLandAccess(gameState, ent) !== unitAccess)
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), unit.position());
 		if (dist > distmin)
