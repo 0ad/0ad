@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/new/head_m_ponytail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Face a ">
+      <textures><texture file="props/head/mauritanian_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="Face b">
+      <textures><texture file="props/head/mauritanian_b.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

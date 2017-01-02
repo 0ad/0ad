@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Walk" speed="18"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="8"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="attack_melee" speed="50"/>
+      </animations>
+      <mesh>skeletal/m_tights.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/mace_pelta_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/hele_hoplite_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="tunic 3">
+      <textures>
+	    <texture file="skeletal/hele_isp_b_3.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

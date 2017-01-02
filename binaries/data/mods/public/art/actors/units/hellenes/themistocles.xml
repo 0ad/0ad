@@ -2,41 +2,23 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="85"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="50"/>
-        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="110"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="111"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="attack_melee" speed="80"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="80"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="attack_melee" speed="50"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_d.psa" name="attack_melee" speed="80"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
+    <variant file="biped/base_swordsman_shieldarm.xml">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/hele_themistocles.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/hele_round_themistocles.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/new/head_corinthian.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/athen_aspis_themistocles.xml" attachpoint="shield_arm"/>
       </props>
       <textures><texture file="skeletal/hele_themistocles.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

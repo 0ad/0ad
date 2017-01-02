@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="priestess head">
+      <color>29 28 24</color>
+      <mesh>props/new/head_iber_healer.dae</mesh>
+      <textures><texture file="props/head/hele_fem_b_cin.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

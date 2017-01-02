@@ -261,8 +261,7 @@ var g_Commands = {
 	"train": function(player, cmd, data)
 	{
 		// Check entity limits
-		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-		var template = cmpTempMan.GetTemplate(cmd.template);
+		var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(cmd.template);
 		var unitCategory = null;
 		if (template.TrainingRestrictions)
 			unitCategory = template.TrainingRestrictions.Category;
@@ -270,7 +269,7 @@ var g_Commands = {
 		// Verify that the building(s) can be controlled by the player
 		if (data.entities.length <= 0)
 		{
-			 if (g_DebugCommands)
+			if (g_DebugCommands)
 				warn("Invalid command: training building(s) cannot be controlled by player "+player+": "+uneval(cmd));
 			return;
 		}
@@ -967,8 +966,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	}
 
 	// If it's a dock, get the right angle.
-	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTemplateMgr.GetTemplate(cmd.template);
+	var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(cmd.template);
 	var angle = cmd.angle;
 	if (template.BuildRestrictions.Category === "Dock")
 	{
@@ -1566,8 +1564,7 @@ function ClusterEntities(ents, separationDistance)
 
 function GetFormationRequirements(formationTemplate)
 {
-	var cmpTempManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTempManager.GetTemplate(formationTemplate);
+	var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(formationTemplate);
 	if (!template.Formation)
 		return false;
 

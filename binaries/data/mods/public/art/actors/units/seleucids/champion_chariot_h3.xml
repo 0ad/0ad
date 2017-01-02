@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="45"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="45"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="200"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation file="quadraped/horse_attack_a.psa" name="attack_ranged" speed="135"/>
+        <animation file="quadraped/horse_attack_b.psa" name="attack_ranged" speed="75"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse3a">
+      <textures><texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="horse3b">
+      <textures><texture file="skeletal/horse_pers_csw_e_3.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="3brown">
+      <color>91 60 38</color>
+    </variant>
+    <variant frequency="1" name="3beige">
+      <color>196 175 115</color>
+    </variant>
+    <variant frequency="1" name="3gray">
+      <color>129 133 135</color>
+    </variant>
+    <variant frequency="1" name="3black">
+      <color>26 26 26</color>
+    </variant>
+    <variant frequency="1" name="3white">
+      <color>255 255 255</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

@@ -10,6 +10,7 @@
         <prop actor="props/structures/hellenes/blacksmith_rooftiles.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/blacksmith_shield_back.xml" attachpoint="root"/>
         <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+		<prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
         <prop actor="particle/flame.xml" attachpoint="fire"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/blacksmith_bucket.xml" attachpoint="greekbucket"/>
@@ -24,10 +25,42 @@
       </props>
       <textures>
         <texture file="structural/hele_struct_b.dds" name="baseTex"/>
-<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+		<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
 	    <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
         <texture file="structural/ao/hele_blacksmith.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/blacksmith_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/blacksmith_struct.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/blacksmith_rooftiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/blacksmith_shield_back.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/blacksmith_bucket.xml" attachpoint="greekbucket"/>
+        <prop actor="props/structures/hellenes/blacksmith_bucket_water.xml" attachpoint="greekbucket"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="greekbarrel"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel.xml" attachpoint="barrelshield"/>
+        <prop actor="props/structures/hellenes/blacksmith_barrel_shield.xml" attachpoint="barrelshield"/>
+        <prop actor="props/structures/hellenes/blacksmith_shield1.xml" attachpoint="greekshield"/>
+        <prop actor="props/structures/hellenes/blacksmith_shields.xml" attachpoint="greekshields"/>
+        <prop actor="props/structures/hellenes/blacksmith_spears.xml" attachpoint="greekspears"/>
+        <prop actor="props/structures/hellenes/blacksmith_swords.xml" attachpoint="greekswords"/>
+      </props>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

@@ -16,11 +16,13 @@
         <prop actor="props/units/heads/sele_cataphract_helmet.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/sele_cataphract_mask.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
       <textures>
         <texture file="skeletal/sele_hero_antiochus.png" name="baseTex"/>
+        <texture file="skeletal/sele_hero_antiochus_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

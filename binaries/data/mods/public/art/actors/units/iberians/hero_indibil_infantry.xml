@@ -2,40 +2,42 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="indibil-chainmail">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="85"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
-        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="10"/>
-        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="10"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="120"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="300"/>
-        <animation file="infantry/general/death/inf_02.psa" name="death" speed="300"/>
-        <animation file="infantry/general/death/inf_03.psa" name="death" speed="300"/>
-        <animation file="infantry/general/death/inf_04.psa" name="death" speed="300"/>
-        <animation file="infantry/general/death/inf_06.psa" name="death" speed="300"/>
-        <animation file="infantry/general/death/inf_07.psa" name="death" speed="300"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_spearman_ready.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/iber_helmet_hero_03.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
       </props>
       <textures><texture file="skeletal/iber_hero_indibil.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

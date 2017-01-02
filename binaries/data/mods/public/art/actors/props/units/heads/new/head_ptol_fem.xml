@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="egypt_hair">
+      <mesh>props/new/head_ptol_female.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="100" name="egypt_long_hair">
+      <mesh>props/new/head_ptol_female_2.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
+    </variant>	
+  </group>
+  <group>
+    <variant frequency="1" name="face-a">
+      <textures>
+        <texture file="props/head/maur_fem_a.dds" name="baseTex"/>
+        <texture file="props/head/maur_fem_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="5" name="hair-black">
+      <color>0 0 0</color>
+    </variant>
+  </group>
+  <material>objectcolor_specmap.xml</material>
+</actor>

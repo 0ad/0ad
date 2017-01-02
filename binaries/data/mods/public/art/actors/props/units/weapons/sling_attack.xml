@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/weap_sling_attack.dae</mesh>
+      <textures>
+	    <texture file="props/prop_weap.dds" name="baseTex"/>
+	  </textures>
+      <animations>
+		<animation event="0.50" file="mechanical/weap_sling_attack.dae" load="0.75" name="attack_ranged" speed="100"/>
+      </animations>
+    </variant>
+  </group>
+</actor>

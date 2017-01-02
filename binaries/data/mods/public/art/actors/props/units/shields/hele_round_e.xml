@@ -6,41 +6,60 @@
       <mesh>props/shield/aspis_sm_f.dae</mesh>
       <props>
         <prop actor="props/units/shields/hele_round_back.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/hele_aspis_cape.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="shield-e-ship">
-      <textures><texture file="props/shield/hele_round_e.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_e.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-f-gorgon">
-      <textures><texture file="props/shield/hele_round_f.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_f.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-s-rays">
-      <textures><texture file="props/shield/hele_round_s.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_s.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-w2-fancy laurel">
-      <textures><texture file="props/shield/hele_round_w_2.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_w_2.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-y-pegasus">
-      <textures><texture file="props/shield/hele_round_y.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_y.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ab-fancy snake">
-      <textures><texture file="props/shield/hele_round_ab.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_ab.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ac-fancy eye">
-      <textures><texture file="props/shield/hele_round_ac.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_ac.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ad-octopus">
-      <textures><texture file="props/shield/hele_round_ad.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_ad.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ae-helmet">
-      <textures><texture file="props/shield/hele_round_ae.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_ae.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-af-winged creatures">
-      <textures><texture file="props/shield/hele_round_af.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_af.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

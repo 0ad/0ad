@@ -2,16 +2,16 @@
 <SoundGroup>
 	<Omnipresent>1</Omnipresent>
 	<HeardBy>owner</HeardBy>
-	<Gain>0.1</Gain>
+	<Gain>1</Gain>
 	<Priority>100</Priority>
 	<ConeGain>1</ConeGain>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>1</RandGain>
-	<GainUpper>0.1</GainUpper>
-	<GainLower>0.08</GainLower>
+	<GainUpper>1.1</GainUpper>
+	<GainLower>0.9</GainLower>
 	<RandPitch>1</RandPitch>
 	<Threshold>1</Threshold>
 	<Path>audio/interface/alarm/</Path>
-	<Sound>alarmvictory_1.ogg</Sound>
+	<Sound>alarmresearchphase_1.ogg</Sound>
 </SoundGroup>

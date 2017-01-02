@@ -2,33 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_e.dae" name="Idle" speed="111"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="25"/>
-        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
-        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="30"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_spearman_relax.xml">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/iber_scutum_isp.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Scutarius-Body-Texture-1">
       <props>
-        <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/heads/iber_helmet_04.xml" attachpoint="helmet"/>
       </props>
       <textures><texture file="skeletal/iber_isp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Scutarius-Body-Texture-2">
       <props>
-        <prop actor="props/units/heads/head_iber_adv_hood_1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_iber_adv_hood_1.xml" attachpoint="head"/>
         <prop actor="props/units/heads/iber_helmet_yellow_ridges.xml" attachpoint="helmet"/>
       </props>
       <textures><texture file="skeletal/iber_isp_a_2.dds" name="baseTex"/></textures>
@@ -36,7 +28,6 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_melee_spearman.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
@@ -46,13 +37,20 @@
     <variant file="biped/gather_rock.xml"/>
     <variant file="biped/gather_ore.xml"/>
     <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
-    <variant file="biped/infantry_death.xml"/>
+    <variant file="biped/build_farm.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

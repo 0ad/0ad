@@ -2,29 +2,46 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_swordsman_shieldarm.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/mace_craterus.xml" attachpoint="helmet"/>
-        <prop actor="props/units/shields/mace_round_craterus.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/shields/mace_round_craterus.xml" attachpoint="shield_arm"/>
       </props>
       <textures>
         <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
-        <texture file="skeletal/mace_hero_craterus_spec.png" name="specTex"/>
         <texture file="skeletal/mace_hero_craterus_norm.png" name="normTex"/>
+        <texture file="skeletal/mace_hero_craterus_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

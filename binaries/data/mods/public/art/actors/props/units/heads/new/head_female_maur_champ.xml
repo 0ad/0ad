@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="short-haired female head">
+      <mesh>props/new/head_female_e.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_2.xml" attachpoint="root"/>
+        <prop actor="props/units/heads/maur_maiden_big_turban.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/head/maur_fem_b.png" name="baseTex"/>
+        <texture file="props/head/maur_fem_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

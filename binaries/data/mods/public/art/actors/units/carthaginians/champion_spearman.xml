@@ -2,77 +2,39 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="100"/>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="90"/>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="85"/>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="50"/>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="110"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="135"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="125"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="130"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="38"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
-        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="attack_melee" speed="100"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="attack_slaughter" speed="100"/>
-        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
-        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
-        <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
-        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="300"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-      </animations>
+    <variant file="biped/base_hoplite.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/kart_round_spearman.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/kart_round_spearman.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/heads/kart_thracian_su1.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/cape_animated_hoplite.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Carth-Sacred Band-ShortSleeve">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Armor-1">
       <textures>
         <texture file="skeletal/kart_su1_sacredband_1.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Carth-Sacred Band-LongSleeve">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Armor-2">
       <textures>
         <texture file="skeletal/kart_su1_sacredband_2.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Carth-Sacred Band-LongSleeve-dirty">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
-      <textures>
-        <texture file="skeletal/kart_su1_sacredband_4.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Carth-Sacred Band-Brown">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Armor-3">
       <textures>
         <texture file="skeletal/kart_su1_sacredband_3.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="Carth-Sacred Band-Yellow">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Armor-4">
+      <textures>
+        <texture file="skeletal/kart_su1_sacredband_4.dds" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Armor-5">
       <textures>
         <texture file="skeletal/kart_su1_sacredband_5.dds" name="baseTex"/>
       </textures>
@@ -81,6 +43,28 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

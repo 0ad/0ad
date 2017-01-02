@@ -2,20 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="biped/inf_staff_walk_a.dae" name="Run" speed="40"/>
-        <animation file="female/f_salute_01.dae" name="Heal" speed="30"/>
-      </animations>
-      <mesh>skeletal/m_dress_cuffs.dae</mesh>
+    <variant file="biped/base_healer.xml">
+      <mesh>skeletal/new/m_dress_sleeves.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_celt_su3.xml" attachpoint="head"/>
-        <prop actor="props/units/cape_m_long.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/heads/new/head_celt_su3.xml" attachpoint="head"/>
         <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
-        <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/staff.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/cape_animated_druid.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

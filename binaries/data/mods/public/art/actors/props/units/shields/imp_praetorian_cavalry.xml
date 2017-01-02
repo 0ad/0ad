@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="shield-hex-back">
+      <props>
+        <prop actor="props/units/shields/hex_a_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield-praetorian-scorpion-01">
+      <mesh>props/shield/hex_b_f.dae</mesh>
+      <textures>
+	    <texture file="props/shield/rome_imp_cavalry_praetorian_01.png" name="baseTex"/>
+	    <texture file="props/shield/rome_imp_cavalry_praetorian_01_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

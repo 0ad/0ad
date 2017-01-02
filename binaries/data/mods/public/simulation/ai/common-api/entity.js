@@ -745,6 +745,8 @@ m.Entity = m.Class({
 	garrisoned: function() { return this._entity.garrisoned; },
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 
+	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },
+
 	move: function(x, z, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;
@@ -928,6 +930,16 @@ m.Entity = m.Class({
 		for (let item of queue)
 			if (item.progress < percentToStopAt)
 				Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": item.id });
+		return this;
+	},
+
+	"guard": function(target, queued = false) {
+		Engine.PostCommand(PlayerID, { "type": "guard", "entities": [this.id()], "target": target.id(), "queued": queued });
+		return this;
+	},
+
+	"removeGuard": function() {
+		Engine.PostCommand(PlayerID, { "type": "remove-guard", "entities": [this.id()] });
 		return this;
 	}
 });

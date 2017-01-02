@@ -2,46 +2,40 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/cav_chariot_rider_idle_a.dae" name="Idle" speed="20"/>
-        <animation file="biped/cav_chariot_rider_idle_a.dae" name="Walk" speed="20"/>
-        <animation file="biped/cav_chariot_rider_run_a.dae" name="Run" speed="2"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
-      </animations>
+    <variant file="biped/base_driver_chariot_celt.xml">
       <props>
-        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/heads/celt_helmet_a.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="d-Tattoos-1">
-      <mesh>skeletal/m_tights.dae</mesh>
+    <variant frequency="2" name="d-Tattoos-1">
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <textures><texture file="skeletal/celt_ijv_e_01.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="d-Tattoos-2">
-      <mesh>skeletal/m_tights.dae</mesh>
+    <variant frequency="2" name="d-Tattoos-2">
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <textures><texture file="skeletal/celt_ijv_e_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="d-Tattoos-3">
-      <mesh>skeletal/m_tights.dae</mesh>
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <textures><texture file="skeletal/kart_isw_a_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="d-Tattoos-4">
-      <mesh>skeletal/m_tights.dae</mesh>
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <textures><texture file="skeletal/kart_isw_a_02.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="10" name="d-Trousers-1">
-      <mesh>skeletal/m_pants.dae</mesh>
+    <variant frequency="5" name="d-Trousers-1">
+      <mesh>skeletal/new/m_pants.dae</mesh>
       <textures><texture file="skeletal/kart_isw_a_03.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="10" name="d-Trousers-2">
-      <mesh>skeletal/m_pants.dae</mesh>
+    <variant frequency="5" name="d-Trousers-2">
+      <mesh>skeletal/new/m_pants.dae</mesh>
       <textures><texture file="skeletal/kart_isw_a_04.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="20" name="d-Trousers-3">
-      <mesh>skeletal/m_pants.dae</mesh>
+    <variant frequency="10" name="d-Trousers-3">
+      <mesh>skeletal/new/m_pants.dae</mesh>
       <textures><texture file="skeletal/kart_isw_a_05.dds" name="baseTex"/></textures>
     </variant>
   </group>

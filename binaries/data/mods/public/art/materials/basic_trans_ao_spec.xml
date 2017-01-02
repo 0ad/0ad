@@ -4,22 +4,13 @@
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
     <alternative material="basic_trans_ao.xml" quality="3"/>
-    <alternative material="alphatest_ao_parallax_spec.xml" if="CFG_FORCE_ALPHATEST"/>
 
-    <!--<conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
-    <conditional_define name="USE_HQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_HQ_DIST"/>
-    <conditional_define name="USE_VHQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_VHQ_DIST"/>
-    <define name="USE_NORMAL_MAP" value="1"/>-->
-
-    <!-- <define name="USE_SELF_LIGHT" value="1"/> -->
-
-
+    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
     <!-- Settings for effects above:
      First value: Normal mapping intensity.
 	 Second value: Specular power.
 	 Third value: Parallax scale.
 	 Fourth value: AO amount. -->
-    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
 	
 	<required_texture name="baseTex"/>
 	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>

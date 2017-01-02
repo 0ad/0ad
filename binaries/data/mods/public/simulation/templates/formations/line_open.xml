@@ -2,10 +2,11 @@
 <Entity parent="template_formation">
   <Formation>
     <Icon>formations/line_open.png</Icon>
-    <FormationName>Line Open</FormationName>
-    <ShiftRows>true</ShiftRows>
-    <UnitSeparationWidthMultiplier>2</UnitSeparationWidthMultiplier>
-    <WidthDepthRatio>3</WidthDepthRatio>
+    <FormationName>Open Order</FormationName>
+    <UnitSeparationWidthMultiplier>1.5</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>1.5</UnitSeparationDepthMultiplier>
+    <WidthDepthRatio>4</WidthDepthRatio>
     <MinColumns>3</MinColumns>
+    <Sloppyness>0.5</Sloppyness>
   </Formation>
 </Entity>

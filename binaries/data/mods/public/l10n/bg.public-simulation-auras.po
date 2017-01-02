@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-24 10:00+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-30 08:07+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr "Реформи във формациите"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "+15% бързина и +1 защита за всички во̀ини във формацията му."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -31,7 +31,7 @@ msgstr "Пелтаски реформи"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr ""
+msgstr "+15% бързина за всички пехотни копиехвъргачи."
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
@@ -39,7 +39,7 @@ msgstr "Строителна аура"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
 msgid "Buildings construct 15% faster within his aura."
-msgstr ""
+msgstr "Сградите се строят 15% по-бързо, когато са в аурата му."
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -71,7 +71,7 @@ msgstr "Гвардия"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "+20 атака, +2 пленяване и +25% бързина за гвардейските единици."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -85,7 +85,7 @@ msgstr "Геройска аура"
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "+15% бързина за всички во̀ини и обсадни машини."
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
@@ -103,7 +103,7 @@ msgstr "Тактическа аура"
 msgid ""
 "All allied soldiers and siege engines +20% attack and +1 capture within his "
 "vision range."
-msgstr ""
+msgstr "+20 атака и +1 завладяване за всички съюзнически во̀ини и обсадни машини, когато са в полезрението му."
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
@@ -111,7 +111,7 @@ msgstr "Командирска аура"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid "+20% cavalry melee attack within his aura."
-msgstr ""
+msgstr "+20% близкобойна атака за конниците в обхвата на аурата му."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -119,7 +119,7 @@ msgstr "Аура за поправка на кораби"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Лекува кораба на гарнизон с 10 ЖТ в секунда."
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -136,7 +136,7 @@ msgstr "Вдъхновяваща аура"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby citizen soldiers work 10% faster."
-msgstr ""
+msgstr "Гражданите-во̀ини в близост работят 10% по-бързо."
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -150,7 +150,7 @@ msgstr "+15% бързина на събиране на ресурси, дока�
 msgid ""
 "+20% attack and +1 capture for all soldiers and siege engines within his "
 "aura."
-msgstr ""
+msgstr "+20 атака и +1 пленяване за всички во̀ини и обсадни машини в обхвата на аурата му."
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -160,7 +160,7 @@ msgstr "Гарнизонна пленителна аура"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr ""
+msgstr "Когато е поставен на гарнизон в сграда или обсадна машина, героят ѝ дава +2 бързина на възстановяване на пленителните точки."
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
@@ -170,7 +170,7 @@ msgstr "Защитна аура"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "+20% подсилена атака за всички иберски единици. Обхват на действие: 50 метра"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -179,7 +179,7 @@ msgstr "Книжовна аура"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "Намалява цената и времето за проучване на всички технологии с 10% за всяка притежавана библиотека."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -187,7 +187,7 @@ msgstr "Аура на верността"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "Увеличава възстановяването на верността на всички сгради в обхвата с 50%."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -199,23 +199,23 @@ msgstr "+10% териториален обхват за всички сград�
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
-msgstr ""
+msgstr "Обсадна аура"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr ""
+msgstr "+15% обхват и +10 разбиваща атака за всички обсадни машини."
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr ""
+msgstr "+20% атака и +2 пленяване за гвардейските единици."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr ""
+msgstr "Будистка аура"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "All player temple technologies -50% cost and -50% research time."
-msgstr ""
+msgstr "Времето за проучване и цената на технологиите в храмовете се намаляват с 50%."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -228,7 +228,7 @@ msgstr "Намалява времето за извършване на проу�
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."
-msgstr ""
+msgstr "+20% бързина за всички търговци в обхвата."
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
@@ -244,7 +244,7 @@ msgstr "Предводителска аура"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr ""
+msgstr "+15% бързина на придвижване на всички во̀ини и обсадни машини."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -261,7 +261,7 @@ msgstr "Патриотска аура"
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr ""
+msgstr "-20% време за повторение на атаката за всички египетски во̀ини и обсадни машини в обхвата на аурата ѝ."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -295,7 +295,7 @@ msgstr "Аурата на римския меч"
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr ""
+msgstr "+20 атака и +2 пленяване за всички римски во̀ини и обсадни машини в обхвата му."
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -329,7 +329,7 @@ msgstr "Завладяваща аура"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Здравето на всички околни вражески сгради, обсадни оръжия и кораби се намалява с 20%."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"

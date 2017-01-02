@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Auxiliary Spearman">
+      <mesh>props/shield/oval_s_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_s_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Auxiliary Oval A">
+      <textures>
+        <texture file="props/shield/imp_aux_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

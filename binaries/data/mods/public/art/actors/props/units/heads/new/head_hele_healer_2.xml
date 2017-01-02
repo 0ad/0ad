@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="beard">
+      <mesh>props/new/head_beard_small.dae</mesh>
+    </variant>
+    <variant frequency="1" name="beard-wide">
+      <mesh>props/new/head_beard_wide.dae</mesh>
+    </variant>
+    <variant frequency="1" name="beard-long">
+      <mesh>props/new/head_beard_large.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="healer-face">
+      <textures><texture file="props/head/hele_healer_a.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+</actor>

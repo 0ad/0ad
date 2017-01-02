@@ -24,14 +24,9 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="attack_melee">
-      <props>
-        <prop attachpoint="r_hand"/>
-      </props>
-    </variant>
     <variant name="gather_meat">
       <props>
-        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="carry_meat">

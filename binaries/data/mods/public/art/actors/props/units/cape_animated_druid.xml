@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_healer.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Cape long">
+      <mesh>props/new/capes/m_cape_long.dae</mesh>
+      <textures><texture file="props/cape_hero.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/round_m_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/mace_pez_back.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="props/shield/epir_white_shield_01.png" name="baseTex"/>
+        <texture file="props/shield/pelte_round_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax.xml</material>
+</actor>

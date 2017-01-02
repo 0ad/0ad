@@ -1,9 +1,10 @@
 <variant name="attack_ranged">
   <animations>
-    <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="attack_ranged" speed="75"/>
+    <animation event="0.50" file="biped/new/javelin_attack_a.dae" load="0.75" name="attack_ranged" speed="100"/>
   </animations>
   <props>
-    <prop attachpoint="r_hand"/>
-    <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
+    <prop attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-weapon_R"/>
+    <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
   </props>
 </variant>

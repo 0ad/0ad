@@ -2,34 +2,43 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="attack_melee" speed="100"/>
-        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="attack_melee" speed="100"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="300"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="300"/>
-      </animations>
-      <mesh>skeletal/m_hero_cape.dae</mesh>
+    <variant file="biped/base_spearman_ready.xml">
+      <mesh>skeletal/new/m_hero_tunic.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_britomartus.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/celt_helmet_raven.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_britomartus.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_britomartus.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear_gold.xml" attachpoint="r_hand"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
-        <prop actor="props/units/heads/celt_helmet_brito.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/spear_gold.xml" attachpoint="weapon_R"/>
+        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
       </props>
       <textures><texture file="skeletal/celt_britomartus.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="Death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

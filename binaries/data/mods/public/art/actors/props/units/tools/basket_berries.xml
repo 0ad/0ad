@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="berry basket">
+      <mesh>props/berry_basket.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <textures>
+	    <texture file="props/basket_rome_1.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+  </group>
+</actor>

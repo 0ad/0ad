@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations/>
+      <mesh>props/new/head_hero_chanakya.dae</mesh>
+      <props/>
+      <textures>
+        <texture file="props/head/maur_priest.png" name="baseTex"/>
+        <texture file="skeletal/maur_hero_chanakya_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+<material>player_trans_spec.xml</material>
+</actor>

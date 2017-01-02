@@ -3,7 +3,6 @@
     <shader effect="model_transparent"/>
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
-    <define name="USE_PARALLAX" value="1"/>
     <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
 	
     <renderquery name="sim_time"/>

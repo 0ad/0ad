@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="10" name="Base">
+      <mesh>props/new/head_lime.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="head e">
+      <textures><texture file="props/head/celt_e.dds" name="baseTex"/></textures>
+    </variant>
+    <variant name="head f">
+      <textures><texture file="props/head/celt_f.dds" name="baseTex"/></textures>
+    </variant>
+    <variant name="head g">
+      <textures><texture file="props/head/celt_g.dds" name="baseTex"/></textures>
+    </variant>
+    <variant name="head h">
+      <textures><texture file="props/head/celt_h.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="dark brown">
+      <color>75 61 38</color>
+    </variant>
+    <variant name="brown">
+      <color>99 82 53</color>
+    </variant>
+    <variant name="medium brown">
+      <color>138 110 61</color>
+    </variant>
+    <variant name="dark blonde">
+      <color>186 154 92</color>
+    </variant>
+    <variant name="blonde">
+      <color>255 194 78</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

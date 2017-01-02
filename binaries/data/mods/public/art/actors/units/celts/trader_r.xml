@@ -2,16 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_pack_idle.dae" name="Idle" speed="200"/>
-        <animation file="biped/inf_pack_walk.dae" name="Walk" speed="30"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-      </animations>
-      <mesh>skeletal/m_pants_tunic.dae</mesh>
+    <variant file="biped/base_trader.xml">
+      <mesh>skeletal/new/m_pants_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/backpack_celt.xml" attachpoint="back"/>
+        <prop actor="props/units/weapons/trader_staff.xml" attachpoint="weapon_L"/>
       </props>
       <textures><texture file="skeletal/celt_trader_01.dds" name="baseTex"/></textures>
     </variant>

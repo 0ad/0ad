@@ -2,30 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="85"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="50"/>
-        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="110"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="85"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="95"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="90"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="attack_melee" speed="100"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+    <variant file="biped/base_swordsman_shieldarm.xml">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/thespian.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/weapon_thespian.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/thespian.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_hd_black.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/heads/new/head_corinthian.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/thespian.xml" attachpoint="shield_arm"/>
+		<prop actor="props/units/cape_animated_thespian_black.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -42,6 +26,32 @@
     <variant frequency="1" name="Armour: White">
       <textures><texture file="skeletal/hele_isp_a_1.dds" name="baseTex"/></textures>
     </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/carry_food_idle.xml"/>
+    <variant file="biped/carry_meat_idle.xml"/>
+    <variant file="biped/carry_wood_idle.xml"/>
+    <variant file="biped/carry_stone_idle.xml"/>
+    <variant file="biped/carry_metal_idle.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

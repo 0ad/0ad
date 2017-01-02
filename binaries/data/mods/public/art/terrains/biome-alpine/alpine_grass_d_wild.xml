@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/alpine_grass_d_wild.png"/>
+		<texture name="normTex" file="types/temp_grass_1_norm.png"/>
+		<texture name="specTex" file="types/temp_grass_1_spec.png"/>
+	</textures>
+	<material>terrain_norm_spec.xml</material>
+</terrain>

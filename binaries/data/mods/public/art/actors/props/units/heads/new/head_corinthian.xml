@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Head for Corinthian helmet">
+      <mesh>props/new/corinthian_head.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-e">
+      <textures><texture file="props/head/hele_e.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-f">
+      <textures><texture file="props/head/hele_f.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="face-g">
+      <textures><texture file="props/head/hele_g.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="dark brown">
+      <color>184 151 98</color>
+    </variant>
+    <variant frequency="1" name="brown">
+      <color>255 205 125</color>
+    </variant>
+    <variant frequency="1" name="brown black">
+      <color>153 145 129</color>
+    </variant>
+    <variant frequency="1" name="blue black">
+      <color>129 152 153</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

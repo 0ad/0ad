@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# amirrezaw hosseini <amirrezaw15@yahoo.com>, 2016
 # hamed farri <hamed.farri@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2016-12-24 09:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-29 09:26+0000\n"
+"Last-Translator: amirrezaw hosseini <amirrezaw15@yahoo.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s گیم پلی"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
@@ -53,19 +54,19 @@ msgstr ""
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "کلید %(hotkey)s را برای خودکار کردن اسم بازیکن ها فشار دهید."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "برگه"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "در حال باز کردن %(url)s در مرورگر پیشفرض شما.لطفا صبر کنید..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -74,7 +75,7 @@ msgstr "صفحه را باز کنید ."
 #: gui/common/functions_global_object.js:72
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -431,7 +432,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:59
 #: gui/savedgames/load.js:115 gui/savedgames/load.js:118
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/common/network.js:17
 #, javascript-format

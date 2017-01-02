@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <color>234 234 234</color>
+      <mesh>props/new/dude_head.dae</mesh>
+      <textures><texture file="props/head/rome_veteran.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="hair-color-brown">
+      <color>255 205 125</color>
+    </variant>
+    <variant name="hair-color-brunette">
+      <color>184 151 98</color>
+    </variant>
+    <variant name="hair-color-black">
+      <color>8 8 8</color>
+    </variant>
+    <variant name="hair-color-blond">
+      <color>255 250 187</color>
+    </variant>
+    <variant name="hair-color-red">
+      <color>250 130 78</color>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="death">
+      <textures><texture file="props/head/rome_veteran_bloodied.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

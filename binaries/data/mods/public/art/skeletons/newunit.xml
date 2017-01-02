@@ -9,6 +9,12 @@
 								<bone name="helmet"></bone>
 							</bone>
 						</bone>
+
+						<bone name="cape1">
+							<bone name="cape2">
+								<bone name="cape3"></bone>
+							</bone>
+						</bone>
 					
 						<bone name="shoulder_L">
 							<bone name="arm_L">
@@ -71,6 +77,13 @@
 								<bone name="helmet"><target>helmet</target></bone>
 							</bone>
 						</bone>
+
+						<bone name="cape1"><target>cape1</target>
+							<bone name="cape2"><target>cape2</target>
+								<bone name="cape3"><target>cape3</target></bone>
+							</bone>
+						</bone>
+
 					
 						<bone name="shoulder_L"><target>shoulder_L</target>
 							<bone name="arm_L"><target>arm_L</target>

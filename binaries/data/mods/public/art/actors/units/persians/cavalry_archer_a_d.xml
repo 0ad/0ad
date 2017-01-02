@@ -2,36 +2,20 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation file="biped/inf_salute_a.psa" name="attack_ranged" speed="250"/>
-        <animation file="biped/inf_salute_b.psa" name="attack_ranged" speed="250"/>
-        <animation file="biped/inf_salute_d.psa" name="attack_ranged" speed="250"/>
-        <animation file="biped/inf_salute_e.psa" name="attack_ranged" speed="250"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
-        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="450"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="carry_meat" speed="100"/>
-      </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+    <variant file="biped/base_driver_chariot.xml">
+      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_tied_yellow.xml" attachpoint="helmet"/>
       </props>
       <textures><texture file="skeletal/pers_car_b_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="carry_meat"/>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

@@ -1,0 +1,10 @@
+<variant name="carry_food_idle">
+  <animations>
+    <animation file="biped/new/fem_carry_grain_idle.dae" name="carry_food_idle" speed="25"/>
+  </animations>
+  <props>
+	<prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
+	<prop attachpoint="weapon_L"/>
+	<prop attachpoint="weapon_R"/>
+  </props>
+</variant>

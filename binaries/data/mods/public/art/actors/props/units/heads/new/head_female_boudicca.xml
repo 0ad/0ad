@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/new/head_boudicca.dae</mesh>
+      <textures>
+        <texture file="props/head/celt_fem_boudicca_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="red">
+      <color>129 40 3</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

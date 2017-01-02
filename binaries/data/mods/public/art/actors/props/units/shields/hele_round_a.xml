@@ -11,23 +11,35 @@
   </group>
   <group>
     <variant frequency="1" name="shield-c-dolphin">
-      <textures><texture file="props/shield/hele_round_c.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_c.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-d-dog">
-      <textures><texture file="props/shield/hele_round_d.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_d.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-g-trident">
-      <textures><texture file="props/shield/hele_round_g.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_g.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-i-lion">
-      <textures><texture file="props/shield/hele_round_i.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_i.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-t-bird">
-      <textures><texture file="props/shield/hele_round_t.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_t.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ag-jar">
-      <textures><texture file="props/shield/hele_round_ag.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_ag.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

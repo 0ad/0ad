@@ -4,49 +4,49 @@
   <group>
     <variant file="biped/female_base.xml">
       <props>
-        <prop actor="props/units/heads/dudette_head.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_female_e.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="2" name="Dress-Light Brown">
-      <mesh>skeletal/f_dress.dae</mesh>
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_a.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Dress-Dark Brown">
-      <mesh>skeletal/f_dress.dae</mesh>
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_b.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Dress-Gold">
-      <mesh>skeletal/f_dress.dae</mesh>
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_c.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Dress-Player Tint">
-      <mesh>skeletal/f_dress.dae</mesh>
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_d.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Dress-linen">
-      <mesh>skeletal/f_dress.dae</mesh>
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_e.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="Dress-Chiton">
-      <mesh>skeletal/f_tunic.dae</mesh>
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_chiton.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Dress-Chiton-Linen">
-      <mesh>skeletal/f_tunic.dae</mesh>
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/hele_fem_chiton_linen.dds" name="baseTex"/>
       </textures>
@@ -64,12 +64,19 @@
     <variant file="biped/female_gather_rock.xml"/>
     <variant file="biped/female_gather_ore.xml"/>
     <variant file="biped/female_gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/female_build.xml"/>
+    <variant file="biped/female_build_farm.xml"/>
     <variant file="biped/female_carry_food.xml"/>
     <variant file="biped/female_carry_meat.xml"/>
     <variant file="biped/female_carry_wood.xml"/>
     <variant file="biped/female_carry_stone.xml"/>
     <variant file="biped/female_carry_metal.xml"/>
+    <variant file="biped/female_carry_food_idle.xml"/>
+    <variant file="biped/female_carry_meat_idle.xml"/>
+    <variant file="biped/female_carry_wood_idle.xml"/>
+    <variant file="biped/female_carry_stone_idle.xml"/>
+    <variant file="biped/female_carry_metal_idle.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>

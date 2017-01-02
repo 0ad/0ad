@@ -1,10 +1,10 @@
 <variant name="gather_fruit">
   <animations>
-    <animation file="female/f_gather_01.dae" name="gather_fruit" speed="25"/>
+    <animation file="biped/new/fem_gather_fruit.dae" name="gather_fruit" speed="100"/>
   </animations>
   <props>
-	<prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-    <prop attachpoint="r_hand"/>
-	<prop attachpoint="l_hand"/>
+	<prop actor="props/units/shuttle_basket.xml" attachpoint="back"/>
+    <prop attachpoint="weapon_R"/>
+	<prop attachpoint="weapon_L"/>
   </props>
 </variant>

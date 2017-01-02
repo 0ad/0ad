@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/new/dudette_head_a.dae</mesh>
+      <textures>
+        <texture file="props/head/maur_fem_b.png" name="baseTex"/>
+        <texture file="props/head/maur_fem_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_specmap.xml</material>
+</actor>

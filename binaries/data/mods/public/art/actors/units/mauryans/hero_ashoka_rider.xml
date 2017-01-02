@@ -2,26 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="200"/>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Walk" speed="1"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="attack_ranged" speed="90"/>
-        <animation file="infantry/spear/idle/isp_01.psa" name="Run" speed="1"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
-      </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
+    <variant file="biped/base_archer_chariot_ready.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_maur_ashoka.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_maur_ashoka.xml" attachpoint="head"/>
         <prop actor="props/units/heads/maur_hero_big_turban.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/maur_earrings_2.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_long_indian.xml" attachpoint="weapon_L"/>
         <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
       <textures>
@@ -31,27 +19,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="attack_ranged">
-      <props>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

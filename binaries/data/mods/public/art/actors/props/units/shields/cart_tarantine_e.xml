@@ -11,29 +11,45 @@
   </group>
   <group>
     <variant frequency="2" name="shield-b">
-      <textures><texture file="props/shield/hele_round_b.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_b.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-q">
-      <textures><texture file="props/shield/hele_round_q.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_q.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-v">
-      <textures><texture file="props/shield/hele_round_v.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/hele_round_v.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="5" name="shield-af-star-fancy">
-      <textures><texture file="props/shield/kart_round_af.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/kart_round_af.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-ag-horse head">
-      <textures><texture file="props/shield/kart_round_ag.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/kart_round_ag.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-ai-double star">
-      <textures><texture file="props/shield/kart_round_ai.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/kart_round_ai.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-q-dolphin">
-      <textures><texture file="props/shield/kart_round_q.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/kart_round_q.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
     <variant frequency="4" name="shield-an-wreath">
-      <textures><texture file="props/shield/kart_round_an.dds" name="baseTex"/></textures>
+      <textures><texture file="props/shield/kart_round_an.dds" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/></textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Seleucids Thyreos Shield Elite">
+      <mesh>props/shield/ptol_thureos_curved.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="Thyreos A Anchor x1">
+      <textures>
+        <texture file="props/shield/sele_thyreos_a.png" name="baseTex"/>
+        <texture file="props/shield/ptol_thureos_a_wood_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Thyreos B Anchor x2">
+      <textures>
+        <texture file="props/shield/sele_thyreos_b.png" name="baseTex"/>
+        <texture file="props/shield/ptol_thureos_a_wood_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Thyreos 05 three stars">
+      <textures>
+        <texture file="props/shield/ptol_thureos_05.png" name="baseTex"/>
+        <texture file="props/shield/ptol_thureos_a_metalcap_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Thureos 04 four stars">
+      <textures>
+        <texture file="props/shield/ptol_thureos_04.png" name="baseTex"/>
+        <texture file="props/shield/ptol_thureos_a_wood_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

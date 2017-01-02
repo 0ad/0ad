@@ -57,8 +57,15 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1">
+    <variant frequency="1" name="Idle">
       <props>
+        <prop actor="props/structures/decals/dirt_6x4.xml" attachpoint="root"/>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="scaffold">
+      <props>
+        <prop actor="props/structures/construction/scaf_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_6x4.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>

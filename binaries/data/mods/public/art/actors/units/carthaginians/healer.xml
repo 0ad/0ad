@@ -2,22 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation file="female/f_idle_01.dae" name="Idle" speed="200"/>
-        <animation file="female/f_walk_01.dae" name="Walk" speed="30"/>
-        <animation file="female/f_walk_01.dae" name="Run" speed="45"/>
-        <animation file="female/f_death_01.dae" name="Death" speed="100"/>
-        <animation file="female/f_salute_01.dae" name="Heal" speed="30"/>
-      </animations>
+    <variant file="biped/base_healer_female.xml">
+      <mesh>skeletal/new/f_dress.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_kart_priestess.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_kart_priestess.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/kart_healer_staff.xml" attachpoint="weapon_L"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Peplos-DarkBrown">
-      <mesh>skeletal/f_dress.dae</mesh>
       <textures><texture file="skeletal/kart_fem_01.dds" name="baseTex"/></textures>
     </variant>
   </group>

@@ -52,10 +52,24 @@ m.Worker.prototype.update = function(gameState, ent)
 	let unitAIStateOrder = unitAIState.split(".")[1];
 	// If we're fighting or hunting, let's not start gathering
 	// but for fishers where UnitAI must have made us target a moving whale.
+	// Also, if we are attacking, do not capture
 	if (unitAIStateOrder === "COMBAT")
 	{
 		if (subrole === "fisher")
 			this.startFishing(gameState);
+		else if (unitAIState === "INDIVIDUAL.COMBAT.ATTACKING" && ent.unitAIOrderData().length &&
+			!ent.getMetadata(PlayerID, "PartOfArmy"))
+		{
+			let orderData = ent.unitAIOrderData()[0];
+			if (orderData && orderData.target && orderData.attackType && orderData.attackType === "Capture")
+			{
+				// If we are here, an enemy structure must have targeted one of our workers
+				// and UnitAI sent it fight back with allowCapture=true
+				let target = gameState.getEntityById(orderData.target);
+				if (target && target.owner() > 0 && !gameState.isPlayerAlly(target.owner()))
+					ent.attack(orderData.target, false);
+			}
+		}
 		return;
 	}
 
@@ -666,9 +680,7 @@ m.Worker.prototype.startFishing = function(gameState)
 			return;
 
 		// check that it is accessible
-		if (!supply.getMetadata(PlayerID, "sea"))
-			supply.setMetadata(PlayerID, "sea", gameState.ai.accessibility.getAccessValue(supply.position(), true));
-		if (supply.getMetadata(PlayerID, "sea") !== fisherSea)
+		if (gameState.ai.HQ.navalManager.getFishSea(gameState, supply) !== fisherSea)
 			return;
 
 		exhausted = false;
@@ -680,18 +692,13 @@ m.Worker.prototype.startFishing = function(gameState)
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
-		// measure the distance to the resource
-		let dist = API3.SquareVectorDistance(entPosition, supply.position());
-		if (dist > nearestSupplyDist)
-			return;
-
 		// Avoid ennemy territory
-		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
-		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
+		if (!gameState.ai.HQ.navalManager.canFishSafely(gameState, supply))
 			return;
 
-		let dropsiteDist = nearestDropsiteDist(supply);
-		if (dropsiteDist > 35000)
+		// measure the distance from the resource to the nearest dropsite
+		let dist = nearestDropsiteDist(supply);
+		if (dist > nearestSupplyDist)
 			return;
 
 		nearestSupplyDist = dist;

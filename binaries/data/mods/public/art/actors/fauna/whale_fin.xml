@@ -5,14 +5,14 @@
   <group>
     <variant frequency="100" name="Mesh">
       <animations>
-        <animation file="other/whale_fin_idle_a.dae" name="Idle" speed="5"/>
-        <animation file="other/whale_fin_idle_a.dae" name="Idle" speed="6"/>
-        <animation file="other/whale_fin_idle_b.dae" name="Idle" speed="5"/>
-        <animation file="other/whale_fin_idle_b.dae" name="Idle" speed="5"/>
-        <animation file="other/whale_fin_idle_c.dae" name="Idle" speed="5"/>
-        <animation file="other/whale_fin_idle_c.dae" name="Idle" speed="7"/>
-        <animation file="other/whale_fin_idle_d.dae" name="Idle" speed="6"/>
-        <animation file="other/whale_fin_idle_d.dae" name="Idle" speed="5"/>
+        <animation file="other/whale_fin_idle_a.dae" name="Idle" speed="2"/>
+        <animation file="other/whale_fin_idle_a.dae" name="Idle" speed="3"/>
+        <animation file="other/whale_fin_idle_b.dae" name="Idle" speed="2"/>
+        <animation file="other/whale_fin_idle_b.dae" name="Idle" speed="3"/>
+        <animation file="other/whale_fin_idle_c.dae" name="Idle" speed="2"/>
+        <animation file="other/whale_fin_idle_c.dae" name="Idle" speed="3"/>
+        <animation file="other/whale_fin_idle_d.dae" name="Idle" speed="3"/>
+        <animation file="other/whale_fin_idle_d.dae" name="Idle" speed="2"/>
       </animations>
       <mesh>skeletal/whale_fin.dae</mesh>
     </variant>

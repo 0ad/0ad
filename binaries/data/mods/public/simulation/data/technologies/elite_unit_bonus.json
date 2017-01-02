@@ -1,5 +1,7 @@
 {
 	"autoResearch": true,
+	"icon": "upgrade_elite.png",
+	"tooltip": "Units trained to the elite class gain a lot of quality: 20% extra health, 1 extra armour level of every type, 20% extra attack for melee units, extra range and better precision for ranged units, faster movement speeds and extra heal speed and range for healers.",
 	"modifications": [
 		{"value": "Health/Max",                 "multiply": 1.2                        },
 		{"value": "Armour/Hack",                "add":      1                          },

@@ -2,26 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="foundation wall">
+    <variant frequency="1" name="foundation wall">
       <mesh>structural/found_wall_long_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle">
       <props>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator001" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator002" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator003" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator004" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick001" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick002" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile001" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Brick_Pile_Big3.xml" attachpoint="brickpile001" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick_Pile_Big1.xml" attachpoint="brickpile002" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick_Pile_Big2.xml" attachpoint="brickpile003" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick_Pile_Big4.xml" attachpoint="brickpile004" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Brick_Pile_Big2.xml" attachpoint="brickpile005" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick_Pile_Big3.xml" attachpoint="brickpile006" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Brick_Pile_Big3.xml" attachpoint="brickpile007" maxheight="20" minheight="-20"/>		
       </props>
+    </variant>
+    <variant name="scaffold">
+      <props>
+        <prop actor="props/structures/construction/scaffold.xml" attachpoint="root"/>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1">
       <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
   </group>

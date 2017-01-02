@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Ptolemaic elephant champion howdah gray">
+      <mesh>props/ptol_howdah.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield2"/>
+      </props>
+      <textures>
+        <texture file="props/ptol_howdah_a.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>
+        <texture file="props/ptol_howdah_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="Seleucid elephant champion howdah brown">
+      <mesh>props/ptol_howdah.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield2"/>
+      </props>
+      <textures>
+        <texture file="props/ptol_howdah_b.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_b_norm.png" name="normTex"/>
+        <texture file="props/ptol_howdah_b_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Seleucid elephant champion howdah white">
+      <mesh>props/ptol_howdah.dae</mesh>
+      <props>
+        <prop actor="units/seleucids/champion_elephant_rider1.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield2"/>
+      </props>
+      <textures>
+        <texture file="props/ptol_howdah_c.png" name="baseTex"/>
+        <texture file="props/ptol_howdah_a_norm.png" name="normTex"/>
+        <texture file="props/ptol_howdah_a_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

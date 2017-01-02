@@ -1,0 +1,16 @@
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/new/2h_idle_relax.dae" name="idle" id="idle1" speed="100"/>
+    <animation file="biped/new/2h_idle_relax.dae" name="idle" id="idle2" speed="90"/>
+    <animation file="biped/new/spear_walk_relax.dae" name="Walk" id="walk1" speed="30"/>
+    <animation file="biped/new/spear_walk_relax.dae" name="Walk" id="walk2" speed="29"/>
+    <animation file="biped/new/spear_walk_relax.dae" name="Walk" id="walk3" speed="28"/>
+    <animation file="biped/new/2h_run_relax.dae" name="Run" id="run1" speed="8"/>
+    <animation file="biped/new/2h_run_relax.dae" name="Run" id="run2" speed="9"/>
+    <animation file="biped/new/2h_run_relax.dae" name="Run" id="run3" speed="10"/>
+    <animation event="0.5" file="biped/new/2h_attack_a.dae" name="attack_melee" id="attack1" speed="100"/>
+    <animation event="0.5" file="biped/new/2h_attack_b.dae" name="attack_melee" id="attack2" speed="100"/>
+    <animation event="0.5" file="biped/new/2h_attack_c.dae" name="attack_melee" id="attack3" speed="100"/>
+	<animation file="biped/new/promotion.dae" name="promotion" speed="80"/>
+  </animations>
+</variant>

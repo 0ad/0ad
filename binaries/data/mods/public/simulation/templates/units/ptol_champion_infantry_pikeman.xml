@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_pikeman">
+  <Identity>
+    <Civ>ptol</Civ>
+	<Lang>greek</Lang>
+	<GenericName>Royal Guard Infantry</GenericName>
+    <SpecificName>Phalangitès Agema</SpecificName>
+    <History>Unlike their rivals the Seleucids, the Ptolemies maintained a relatively small force of full-time soldiers to act as a Royal Guard around the sovereign. These were drawn from the Macedonian and Greek kleruchs, settled in Egypt by the first Ptolemy. This consisted of a lance-armed (xystophoroi) cavalry Royal Guard (possibly Hetairoi) 700 strong; and an infantry Royal Guard (Basilikon Agema) 3,000 strong. The infantry guard were phalangites, though a 1,000 man unit within the Agema may have been able to fight as more traditional hypaspists or as thorakitai (spear or spear-and-javelin armed, fast moving heavy infantry).</History>
+    <Icon>units/ptol_champion_infantry.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/ptolemies/champion_infantry.xml</Actor>
+  </VisualActor>
+</Entity>

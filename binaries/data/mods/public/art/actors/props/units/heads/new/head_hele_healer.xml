@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="beard">
+      <mesh>props/new/head_beard.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="head-bare">
+      <textures><texture file="props/head/hele_healer_a.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="head-wreath">
+      <textures><texture file="props/head/hele_healer_b.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+</actor>

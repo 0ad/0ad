@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_archer_chariot_ready.xml">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_maur_tall_hair.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_inf_tall_wrap.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Scale Iron">
+      <textures>
+        <texture file="skeletal/maur_champion_infantry.png" name="baseTex"/>
+        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Scale Gold">
+      <textures>
+        <texture file="skeletal/maur_champion_infantry_2.png" name="baseTex"/>
+        <texture file="skeletal/maur_champion_infantry_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

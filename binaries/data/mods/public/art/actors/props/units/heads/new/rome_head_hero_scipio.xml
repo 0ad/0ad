@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <color>234 234 234</color>
+      <mesh>props/new/dude_head.dae</mesh>
+      <textures><texture file="props/head/rome_hero_scipio.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>
