@@ -150,7 +150,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 	if (!landIndex)
 	{
-		let civ = gameState.civ();
+		let civ = gameState.getPlayerCiv();
 		for (let ent of gameState.getOwnEntities().values())
 		{
 			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))

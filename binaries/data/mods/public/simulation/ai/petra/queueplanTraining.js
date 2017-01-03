@@ -127,7 +127,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 
 	if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
 		this.metadata.base = this.trainers[0].getMetadata(PlayerID, "base");
-	this.trainers[0].train(gameState.civ(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
+	this.trainers[0].train(gameState.getPlayerCiv(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
 
 	this.onStart(gameState);
 };

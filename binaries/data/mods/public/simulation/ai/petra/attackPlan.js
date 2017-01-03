@@ -338,7 +338,7 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	// no minsize as we don't want the plan to fail at the last minute though.
 	let stat = { "priority": 1, "minSize": 0, "targetSize": 4, "batchSize": 2, "classes": ["Siege"],
 		"interests": [ ["siegeStrength", 3], ["cost",1] ] };
-	if (gameState.civ() === "maur")
+	if (gameState.getPlayerCiv() === "maur")
 		stat.classes = ["Elephant", "Champion"];
 	if (this.Config.difficulty < 2)
 		stat.targetSize = 1;
@@ -430,9 +430,10 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			if (!this.unitStat.Siege)
 			{
 				let numSiegeBuilder = 0;
-				if (gameState.civ() !== "mace" && gameState.civ() !== "maur")
+				let playerCiv = gameState.getPlayerCiv();
+				if (playerCiv !== "mace" && playerCiv !== "maur")
 					numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
-				if (gameState.civ() === "mace" || gameState.civ() === "maur" || gameState.civ() === "rome")
+				if (playerCiv === "mace" || playerCiv === "maur" || playerCiv === "rome")
 					numSiegeBuilder += gameState.countEntitiesByType(gameState.ai.HQ.bAdvanced[0], true);
 				if (numSiegeBuilder > 0)
 					this.addSiegeUnits(gameState);
@@ -544,8 +545,8 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 		// find the actual queue we want
 		let queue = this.queue;
 		if (firstOrder[3].classes.indexOf("Siege") !== -1 ||
-			(gameState.civ() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 &&
-			                              firstOrder[3].classes.indexOf("Champion") !== -1))
+			(gameState.getPlayerCiv() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 &&
+			                                       firstOrder[3].classes.indexOf("Champion") !== -1))
 			queue = this.queueSiege;
 		else if (firstOrder[3].classes.indexOf("Hero") !== -1)
 			queue = this.queueSiege;

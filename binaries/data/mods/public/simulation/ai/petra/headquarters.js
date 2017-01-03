@@ -1629,7 +1629,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
 		}
 		else if (barrackNb == 3 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 50 &&
-			(gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber"))
+			(gameState.getPlayerCiv() === "gaul" || gameState.getPlayerCiv() === "brit" || gameState.getPlayerCiv() === "iber"))
 		{
 			let preferredBase = this.findBestBaseForMilitary(gameState);
 			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
@@ -1700,7 +1700,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	if (gameState.ai.queues.emergency.hasQueuedUnits())
 		return false;
 
-	let civ = gameState.civ();
+	let civ = gameState.getPlayerCiv();
 	// find nearest base anchor
 	let distcut = 20000;
 	let nearestAnchor;
@@ -1822,7 +1822,8 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	{
 		this.stopBuilding.set(type, Infinity);
 		if (this.Config.debug > 0)
-			API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found.");
+			API3.warn("Petra error: trying to build " + structure + " for civ " + 
+			          gameState.getPlayerCiv() + " but no template found.");
 	}
 	if (!template || !template.available(gameState))
 		return false;

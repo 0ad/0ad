@@ -105,7 +105,7 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	}
 
 	// load units and buildings from the config files
-	let civ = gameState.civ();
+	let civ = gameState.getPlayerCiv();
 	if (civ in this.Config.buildings.naval)
 		this.bNaval = this.Config.buildings.naval[civ];
 	else
@@ -667,7 +667,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 /** goal can be either attack (choose ship with best arrowCount) or transport (choose ship with best capacity) */
 m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 {
-	let civ = gameState.civ();
+	let civ = gameState.getPlayerCiv();
 	let trainableShips = [];
 	gameState.getOwnTrainingFacilities().filter(API3.Filters.byMetadata(PlayerID, "sea", sea)).forEach(function(ent) {
 		let trainables = ent.trainableEntities(civ);

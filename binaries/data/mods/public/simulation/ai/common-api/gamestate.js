@@ -30,7 +30,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	let cctemplate = this.getTemplate(this.applyCiv("structures/{civ}_civil_centre"));
 	if (!cctemplate)
 		return;
-	let techs = cctemplate.researchableTechs(this.civ());
+	let techs = cctemplate.researchableTechs(this.getPlayerCiv());
 	for (let i = 0; i < this.phases.length; ++i)
 	{
 		let k = techs.indexOf(this.phases[i].name);
@@ -146,9 +146,9 @@ m.GameState.prototype.applyCiv = function(str)
 	return str.replace(/\{civ\}/g, this.playerData.civ);
 };
 
-m.GameState.prototype.civ = function()
+m.GameState.prototype.getPlayerCiv = function(player)
 {
-	return this.playerData.civ;
+	return player !== undefined ? this.sharedScript.playersData[player].civ : this.playerData.civ;
 };
 
 m.GameState.prototype.currentPhase = function()

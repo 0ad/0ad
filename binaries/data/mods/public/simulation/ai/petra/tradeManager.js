@@ -104,7 +104,8 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 	if (!gameState.getTemplate(template))
 	{
 		if (this.Config.debug > 0)
-			API3.warn("Petra error: trying to train " + template + " for civ " + gameState.civ() + " but no template found.");
+			API3.warn("Petra error: trying to train " + template + " for civ " +
+			          gameState.getPlayerCiv() + " but no template found.");
 		return;
 	}
 	queues.trader.addPlan(new m.TrainingPlan(gameState, template, metadata, 1, 1));

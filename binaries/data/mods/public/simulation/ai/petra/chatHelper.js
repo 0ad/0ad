@@ -1,6 +1,18 @@
 var PETRA = function(m)
 {
 
+m.chatNewDiplomacyMessages = {
+	"ally": [
+		markForTranslation("%(_player_)s and I are now allies.")
+	],
+	"neutral": [
+		markForTranslation("%(_player_)s and I are now neutral.")
+	],
+	"enemy": [
+		markForTranslation("%(_player_)s and I are now enemies.")
+	]
+};
+
 m.chatLaunchAttack = function(gameState, player, type)
 {
 	let message;
@@ -128,18 +140,14 @@ m.chatNewPhase = function(gameState, phase, started)
 	});
 };
 
-m.chatNewDiplomacy = function(gameState, player, enemy)
+m.chatNewDiplomacy = function(gameState, player, newDiplomaticStance)
 {
-	let message = enemy ?
-		markForTranslation("%(_player_)s and I are now enemies.") :
-		markForTranslation("%(_player_)s and I are now allies.");
-
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
-		"message": message,
+		"message": API3.PickRandom(this.chatNewDiplomacyMessages[newDiplomaticStance]),
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
-		"parameters": {"_player_": player}
+		"parameters": { "_player_": player }
 	});
 };
 
