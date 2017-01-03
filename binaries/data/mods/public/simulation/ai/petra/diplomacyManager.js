@@ -181,15 +181,18 @@ m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
 	}
 
 	if (playerToTurnAgainst)
-	{
-		Engine.PostCommand(PlayerID, { "type": "diplomacy", "player": playerToTurnAgainst, "to": "enemy" });
-		if (this.Config.debug > 1)
-			API3.warn("player " + playerToTurnAgainst + " is now an enemy");
-		if (this.Config.chat)
-			m.chatNewDiplomacy(gameState, playerToTurnAgainst, true);
-	}
+		this.changePlayerDiplomacy(gameState, playerToTurnAgainst, "enemy");
 	this.betrayLapseTime = -1;
 	this.waitingToBetray = false;
+};
+
+m.DiplomacyManager.prototype.changePlayerDiplomacy = function(gameState, player, newDiplomaticStance)
+{
+	Engine.PostCommand(PlayerID, { "type": "diplomacy", "player": player, "to": newDiplomaticStance });
+	if (this.Config.debug > 1)
+		API3.warn("diplomacy stance with player " + player + " is now " + newDiplomaticStance);
+	if (this.Config.chat)
+		m.chatNewDiplomacy(gameState, player, newDiplomaticStance);
 };
 
 m.DiplomacyManager.prototype.update = function(gameState, events)

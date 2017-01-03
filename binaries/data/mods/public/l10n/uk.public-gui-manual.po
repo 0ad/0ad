@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
 # marinik_00 <tsiurik@gmail.com>, 2014
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # SkiDo <skidoster@gmail.com>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2016-12-31 17:02+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -195,7 +196,7 @@ msgstr "[font=\"sans-bold-16\"]Гарячі клавіші:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Загальний"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -329,7 +330,7 @@ msgstr "H: Зупинити виділених юнітів."
 
 #: gui/manual/intro.txt:73
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Клавіша Y: юніт повернеться до роботи"
 
 #: gui/manual/intro.txt:74
 msgid "U: Unload the garrisoned units of the selected buildings"
@@ -373,17 +374,17 @@ msgstr "Z, X, C, V, B, N, M: При вибраних будівлях додас
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "Клавіша PageUp з обраними юнітами: Виділяє юніти/будівлі для охорони."
 
 #: gui/manual/intro.txt:82
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "Клавіша PageDown з виділеними юнітами/будівлями: Підсвічує юнітів, які їх охороняють."
 
 #: gui/manual/intro.txt:83
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Клавіша Tab: Переглянути всі рядки стану (які також показують прогрес, будівництво)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -399,7 +400,7 @@ msgstr "J + Права кнопка миші на будівлі: Поремно
 
 #: gui/manual/intro.txt:88
 msgid "P + Right Click: Patrol"
-msgstr ""
+msgstr "Клавіша Р + Права кнопка миші: Патрулювання."
 
 #: gui/manual/intro.txt:89
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -615,7 +616,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• Випадковий ідентифікатор користувача (збережений в %APPDATA%\\0ad\\config\\user.cfg в Windows, ~/.config/0ad/config/user.cfg в Unix), який дозволяє визначити повторні звіти від даного користувача."
 
 #: gui/manual/userreport.txt:6
 msgid ""

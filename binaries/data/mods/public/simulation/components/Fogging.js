@@ -33,11 +33,10 @@ Fogging.prototype.Activate = function()
 	{
 		// Load a mirage for each player who has already seen the entity
 		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		for (let player = 0; player < numPlayers; ++player)
-		{
-			if (this.seen[player])
+			if (this.seen[player] && cmpRangeManager.GetLosVisibility(this.entity, player) != "visible")
 				this.LoadMirage(player);
-		}
 	}
 };
 

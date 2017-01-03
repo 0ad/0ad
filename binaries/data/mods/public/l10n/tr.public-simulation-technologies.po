@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-28 09:54+0000\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-30 09:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -813,6 +821,14 @@ msgstr "Sınırlardaki çürüme oranı, karakollar için% -50'dir."
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Taş Temeller"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1884,10 +1900,14 @@ msgstr "Posta Güvercinleri"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartacalılar şehir duvarlarını aynı merkezli iç içe geçmiş çemberler şeklinde inşa etmişlerdir. Bu duvarlar hiçbir zaman aşılamadı. Romalılar bile şehri ancak liman üzerinden ele geçirebildiler, duvarlara saldırarak değil. Sonuç olarak, Kartaca duvarları, kapıları ve duvar kuleleri standart bir duvardan 3 kat fazla cana sahiptir ama aynı zamanda maliyetleri ve inşaat süreleri iki kat daha fazladır."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2196,11 +2216,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "Seçkin İtalyan Paralı askerleri"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "Kelt binaları çoğunlukla yığma bina tekniği ile odundan yapılmıştır. Sonuç olarak binaları diğer kültürlere göre daha az dayanaklıdır, ama daha hızlı inşa edilirler."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2228,13 +2251,15 @@ msgstr "Doratismós"
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Miken zamanlarının başlarında Yunanlar inşaat için taş kullanırdı."
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Eski Yunan Mimarisi"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Mazlumlar"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2243,6 +2268,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr "Spartalılar dünyanın en büyük ordusuna sahip değillerdi, ama kendi zamanlarının en iyi ordusuna sahiptiler. Sayı dezavantajını nitelik ile kapattılar. Denir ki Spartalı erkekler duvar gibi oldukları için Sparta güçlü şehir duvarlarına ihtiyaç duymamıştır."
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "Mazlumlar"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2298,6 +2331,10 @@ msgid ""
 "time."
 msgstr "Maurya İmparatorluğu önceden bağımsız olan düzinelerce krallığı bünyesine katarak 60 milyon insanın yaşadığı 5 milyon kilometre karelik bir alana hakim olmuştur. Maurya hükümdarları İmparatorların İmparatoru unvanını taşırdı ve 600,000 piyade, 9000 fil, 8000 savaş arabası ve 30,000 süvariden oluşan zamanının en büyük ordusu sayılabilecek bir güce komuta ederdi."
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "İmparatorlar İmparatoru"
@@ -2327,17 +2364,16 @@ msgstr "Okçuluk Geleneği"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
-msgstr "Mauryalılar kent duvarlarını ahşaptan çıkardı, Hindistan'da bol miktarda doğal bir kaynaktı. Sonuç olarak, Mauryan şehir surlarının % -20 sağlık ve % -20 inşa süresi var."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Ahşap Duvarlar"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Great King'in Vergisi"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2348,6 +2384,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "Ahameniş Hanedanlığı imparatorluğun yapısı ve büyüklüğü sebebiyle savaş zamanları çok büyük miktarlarda askere alma imkanına sahipti ve öyle de yaptı. Genellikle Pers piyadeleri iyi eğitimliydi ve yüksek cesaretle savaşırlardı. Ancak, yine de yakın dövüşte zayıf kalıyorlardı. Ayrıca, seçkin birlikler haricinde, Pers piyadeleri sürekli silah altında tutulan kuvvetler değildi."
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "Great King'in Vergisi"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

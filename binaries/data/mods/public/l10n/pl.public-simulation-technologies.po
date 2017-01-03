@@ -27,15 +27,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-12-27 16:00+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-30 09:23+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -819,6 +827,14 @@ msgstr "Zmniejsza szybkość niszczenia Posterunków na utraconym terytorium o -
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Kamienne fundamenty"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1890,10 +1906,14 @@ msgstr "Gołębie pocztowe"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr ""
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "Kartagińczycy budowali mury miejskie w trzech koncentrycznych obwodach. Mury te nigdy nie były przełamane. Nawet gdy miasto zajęli Rzymianie, zrobili to przez port, nie zaś przez szturmowanie murów. Konsekwentnie, Kartagińskie mury, bramy i wieże na murach mają 3-krotną wytrzymałość zwykłych murów, ale za to kosztują dwa razy więcej i dwa razy dłużej powstają."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2202,11 +2222,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "Elitarni Italioccy najemnicy"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "Celtowie przeważnie wznosili drewniane konstrukcje postawione na gruzowisku. Z tego powodu ich budynki są mniej wytrzymałe w porównaniu do innych cywilizacji, lecz jednocześnie ich stawianie trwa krócej."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2234,13 +2257,15 @@ msgstr "Doratismós"
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Grecy używali kamiennych konstrukcji od czasów wczesnomykeńskich."
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Architektura hellenistyczna"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Słabi"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2249,6 +2274,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr "Spartanie nie mieli największej armii na świecie, mieli za to najlepszą armię świata swoich czasów. Czego brakowało im w ilości, nadrabiali w jakości. Mówiono, że Sparta nie potrzebuje potężnych murów miejskich, bo ich wojsko pełni tą rolę."
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "Słabi"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2304,6 +2337,10 @@ msgid ""
 "time."
 msgstr "Imperium Mauryjskie zawierało tuziny uprzednio niepodległych królestw na obszarze 5 milionów kilometrów kwadratowych, z populacją liczącą blisko 60 milionów ludzi. Mauryjscy regenci otrzymywali tytuł Cesarza cesarza i zarządzali armią 600,000 piechoty, 9000 słoni, 8000 rydwanów i 30,000 kawalerii, co składało się na prawdopodobnie największą armię tamtych czasów."
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Cesarz cesarzy"
@@ -2333,17 +2370,16 @@ msgstr "Tradycja łucznicza"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
-msgstr "Maurjowie budowali mury miejskie z drewna, powszechnie dostępnego surowca w Indii. Konsekwentnie, Mauryjskie mury miejskie mają o -20% mniej wytrzymałości, ale czas ich budowania jest o 20% szybszy."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Drewniane mury"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Pobór Wielkiego króla"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2354,6 +2390,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "Persjanie mogli i powołali w czasie wojny ogromną liczbę piechoty z powodu samej tylko wielkości i rozlokowania Achemenidzkiego Imperium. Zasadniczo, Perska piechota była dobrze wyszkolona i walczyła z wielką wytrwałością. Jednakże, choć było to prawdą, składała się ona z biednych, walczących wręcz wojowników. Piechota Perska, wyłączając elitarne pułki, nie składała się z profesjonalnych sił zbrojnych."
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "Pobór Wielkiego króla"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""

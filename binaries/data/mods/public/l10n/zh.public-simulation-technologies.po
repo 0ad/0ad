@@ -7,20 +7,29 @@
 # helinb <1696060289@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # Mysterelee <8161525@qq.com>, 2014
+# Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
 # yhcvb <yhcvb@126.com>, 2014
 # 李武军 <lwj7863439@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-28 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2016-12-30 16:18+0000\n"
+"Last-Translator: Siwei Chen <chensiwei@tsinghua.edu.cn>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr "单位升级可获得：生命值增加20%，所有护具可额外提升1级，可建筑范围扩大4米，视野提升5%，移动速度提升，医者的治疗速度提升和治疗范围扩大。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -669,7 +678,7 @@ msgstr "士气是制胜的关键。"
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr ""
+msgstr "用更高的薪酬激励你的军队，所有陆上和海上军队攻击力+25%"
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -804,6 +813,14 @@ msgstr "前哨站领地腐化率 -50%。"
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "石头地基"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr "将单位训练至精英级别可获得：生命值提升20%，所有护具可额外提升1级，作战单位攻击力提升20%，视野扩大，医者治疗速度提升、治疗范围扩大。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1875,10 +1892,14 @@ msgstr "信鸽"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr "迦太基人把他们的城墙修筑成三堵同心圆结构，这些城墙构筑的防线从未被攻破过。即使当罗马人攻占他们的城市时，也是通过城市的港口，而不是城墙发起进攻的。"
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "迦太基人建造三个同心圆的城墙围住他们的城市。这些城墙从未被破坏。就算城市被罗马人攻击时，也是透过城市的港口而非强攻城墙。因此,迦太基城墙、城门、墙塔有正常生命值的3倍,但建造花费也变为两倍且需花两倍。"
+msgstr "迦太基的城墙、城门和塔楼的生命值是普通同类建筑的3倍，但所需造价和建造时间也为同类建筑的2倍。"
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2187,11 +2208,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "精锐意大利佣兵"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr "凯尔特建筑大多为建造在碎石地基上的木制结构。"
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "凯尔特人的建筑物多半以碎石为地基并以木头盖成。因此，他们的建筑物比起其他文明只有较低的生命值,但也建造的较快。"
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr "凯尔特建筑生命值偏低20%，但花费和建造时间相应缩短20%。"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2219,13 +2243,15 @@ msgstr "Doratismós"
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "希腊人使用来自于早期迈锡尼时代的石头建筑。"
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr "所有建筑生命值和分数均偏高10%，但建造时间需相应延长10%。"
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "古希腊建筑"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "败北"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2234,6 +2260,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr "斯巴达人并不具有世界上最大型的军队,但他们在当时却有著世界上最好的军队。他们重质不重量。有人说,斯巴达并不需要坚固的城墙,它的军队就是铜墙铁壁。"
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr "斯巴达人人口上限减少10%。"
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "败北"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2289,6 +2323,10 @@ msgid ""
 "time."
 msgstr "孔雀王朝涵盖了数十个原先独立的王国,其领土面积约有5百万平方公里，人口总数约6千万人。孔雀王朝的统治者有著万王之王的称号，并指挥著60万名步兵、9000头大象、8000辆双轮战车、以及3万名骑兵，使其可以说是当时最大型的军队。"
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr "孔雀王朝人口上限增加10%。"
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "万王之王"
@@ -2318,17 +2356,16 @@ msgstr "箭术传统"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
-msgstr "印度拥有丰富的天然木材资源，而孔雀王朝以木材建造城墙。因此，孔雀王朝的城墙生命值 -20%，但建造时间也 -20%。"
+"resource in India."
+msgstr "孔雀王朝使用印度当地丰富的自然资源——木头来修筑他们的城墙。"
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgstr "孔雀王朝城市的生命值偏低20%，建造时间缩短20%。"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "木墙"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "伟大国王的征召"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2339,6 +2376,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精英部队以外，波斯步兵不是职业的常备军。"
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr "波斯人人口上限增加10%。"
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "伟大国王的征召"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -2472,7 +2517,7 @@ msgstr "自亚历山大大帝开始，希腊的文化逐渐变为整个帝国的
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "城镇中心的生命值和得分+100%，默认防御弓箭数量翻倍。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

@@ -145,7 +145,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
 
-			if (template.hasClass("DefenseTower") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
+			if (template.hasClass("DefenseTower") || gameState.getPlayerCiv() === "mace" || gameState.getPlayerCiv() === "maur" ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true) > 0 ||
 				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
 				return false;

@@ -49,7 +49,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 	}
 	else
 	{
-		this.sea = gameState.ai.HQ.getSeaIndex(gameState, startIndex, endIndex);
+		this.sea = gameState.ai.HQ.getSeaBetweenIndices(gameState, startIndex, endIndex);
 		if (!this.sea)
 		{
 			this.failed = true;

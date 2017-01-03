@@ -150,7 +150,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	}
 	if (!landIndex)
 	{
-		let civ = gameState.civ();
+		let civ = gameState.getPlayerCiv();
 		for (let ent of gameState.getOwnEntities().values())
 		{
 			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))
@@ -185,7 +185,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		{
 			if (landIndex)
 			{
-				let sea = this.getSeaIndex(gameState, landIndex, i);
+				let sea = this.getSeaBetweenIndices(gameState, landIndex, i);
 				if (sea && (accessibility.regionSize[i] > minLandSize || accessibility.regionSize[sea] > minWaterSize))
 				{
 					this.navalMap = true;

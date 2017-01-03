@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-02 09:00+0100\n"
-"PO-Revision-Date: 2016-12-17 18:34+0000\n"
+"POT-Creation-Date: 2016-12-30 09:01+0100\n"
+"PO-Revision-Date: 2016-12-30 17:51+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/session/menu.js:357 gui/session/messages.js:148
+#: gui/session/menu.js:357 gui/session/messages.js:158
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Σύμμαχ"
@@ -125,7 +125,7 @@ msgstr "Σύμμαχ"
 msgid "Neutral"
 msgstr "Ουδέτερος"
 
-#: gui/session/menu.js:358 gui/session/messages.js:149
+#: gui/session/menu.js:358 gui/session/messages.js:159
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Εχθρός"
@@ -280,256 +280,270 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Φόρος υποτέλειας %(resourceAmount)s %(resourceType)s σε \n %(playerName)s. Shift-κλικ για να αποδώσουν %(greaterAmount)s."
 
-#: gui/session/messages.js:83
+#. Translation: A player that left the game joins again
+#: gui/session/messages.js:86
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s ξεκινά σύνδεση στο παιχνίδι."
 
-#: gui/session/messages.js:87
+#. Translation: A player joins the game for the first time
+#: gui/session/messages.js:88
+#, javascript-format
+msgid "%(player)s is starting to join the game."
+msgstr "Ο %(player)s συνδέεται στο παιχνίδι."
+
+#: gui/session/messages.js:92
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s αποχώρησε από το παιχνίδι."
 
-#: gui/session/messages.js:91
+#. Translation: A player that left the game joins again
+#: gui/session/messages.js:99
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s εχει επανασυνδεθεί στο παιχνίδι."
 
-#: gui/session/messages.js:97
+#. Translation: A player joins the game for the first time
+#: gui/session/messages.js:101
+#, javascript-format
+msgid "%(player)s has joined the game."
+msgstr "Ο %(player)s συνδέθηκε στο παιχνίδι."
+
+#: gui/session/messages.js:107
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "Στον παίκτη %(username)s απαγορεύτηκε η πρόσβαση"
 
-#: gui/session/messages.js:98
+#: gui/session/messages.js:108
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "Ο παίκτης %(username)s εκδιώχθηκε από το παιχνίδι."
 
-#: gui/session/messages.js:120
+#: gui/session/messages.js:130
 msgid "Connection to the server has been authenticated."
 msgstr "Η σύνδεση με το διακομιστή έχει επικυρωθεί."
 
-#: gui/session/messages.js:121
+#: gui/session/messages.js:131
 msgid "Connected to the server."
 msgstr "Σύνδεση με διακομιστή."
 
-#: gui/session/messages.js:122
+#: gui/session/messages.js:132
 msgid "Connection to the server has been lost."
 msgstr "Η σύνδεση με το διακομιστή χάθηκε."
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:124
+#: gui/session/messages.js:134
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Αιτία: %(reason)s."
 
-#: gui/session/messages.js:127
+#: gui/session/messages.js:137
 msgid "Waiting for other players to connect..."
 msgstr "Αναμονή για τη σύνδεση άλλων παιχτών."
 
-#: gui/session/messages.js:128
+#: gui/session/messages.js:138
 msgid "Synchronising gameplay with other players..."
 msgstr "Συγχρονισμός παιχνιδιού με άλλους παίκτες ..."
 
-#: gui/session/messages.js:137
+#: gui/session/messages.js:147
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:138
+#: gui/session/messages.js:148
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:141
+#: gui/session/messages.js:151
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:142
+#: gui/session/messages.js:152
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:147 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:157 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Ομάδα"
 
-#: gui/session/messages.js:150 gui/session/session.js:287
+#: gui/session/messages.js:160 gui/session/session.js:287
 msgid "Observer"
 msgstr "Παρατηρητής"
 
-#: gui/session/messages.js:151
+#: gui/session/messages.js:161
 msgid "Private"
 msgstr "Ιδιωτικό"
 
-#: gui/session/messages.js:187
+#: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Chat and notifications"
 msgstr "Συνομιλία και ειδοποιήσεις"
 
-#: gui/session/messages.js:192
+#: gui/session/messages.js:202
 msgctxt "chat history filter"
 msgid "Chat messages"
 msgstr "Μηνύματα συνομιλίας"
 
-#: gui/session/messages.js:197
+#: gui/session/messages.js:207
 msgctxt "chat history filter"
 msgid "Players chat"
 msgstr "Συνομιλία παικτών"
 
-#: gui/session/messages.js:204
+#: gui/session/messages.js:214
 msgctxt "chat history filter"
 msgid "Ally chat"
 msgstr "Συνομιλία συμμάχων"
 
-#: gui/session/messages.js:211
+#: gui/session/messages.js:221
 msgctxt "chat history filter"
 msgid "Enemy chat"
 msgstr "Συνομιλία εχθρών"
 
-#: gui/session/messages.js:218
+#: gui/session/messages.js:228
 msgctxt "chat history filter"
 msgid "Observer chat"
 msgstr "Συνομιλία παρατηρητών"
 
-#: gui/session/messages.js:225
+#: gui/session/messages.js:235
 msgctxt "chat history filter"
 msgid "Private chat"
 msgstr "Ιδιωτική συνομιλία"
 
-#: gui/session/messages.js:231
+#: gui/session/messages.js:241
 msgid "You have won!"
 msgstr "Κερδίσατε !"
 
-#: gui/session/messages.js:232
+#: gui/session/messages.js:242
 msgid "You have been defeated!"
 msgstr "Ηττηθήκατε..."
 
-#: gui/session/messages.js:240
+#: gui/session/messages.js:250
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Είσαι τώρα σύμμαχος με %(player)s."
 
-#: gui/session/messages.js:241
+#: gui/session/messages.js:251
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Είσαι τώρα σε πόλεμο με %(player)s."
 
-#: gui/session/messages.js:242
+#: gui/session/messages.js:252
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Είσαι τώρα ουδέτερος με %(player)s."
 
-#: gui/session/messages.js:245
+#: gui/session/messages.js:255
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s είναι τώρα σε συμμαχία με εσένα."
 
-#: gui/session/messages.js:246
+#: gui/session/messages.js:256
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s είναι τώρα σε πόλεμο με εσένα."
 
-#: gui/session/messages.js:247
+#: gui/session/messages.js:257
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s είναι τώρα ουδέτερα με εσένα."
 
-#: gui/session/messages.js:250
+#: gui/session/messages.js:260
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον σύμμαχος με τον %(player2)s."
 
-#: gui/session/messages.js:251
+#: gui/session/messages.js:261
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον σε πόλεμο με τον %(player2)s"
 
-#: gui/session/messages.js:252
+#: gui/session/messages.js:262
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον ουδέτερος με τον %(player2)s."
 
-#: gui/session/messages.js:659
+#: gui/session/messages.js:669
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Όλοι"
 
-#: gui/session/messages.js:667
+#: gui/session/messages.js:677
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Σύμμαχοι"
 
-#: gui/session/messages.js:671
+#: gui/session/messages.js:681
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Εχθροί"
 
-#: gui/session/messages.js:677
+#: gui/session/messages.js:687
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Παρατηρητές"
 
-#: gui/session/messages.js:706 gui/session/selection_details.js:82
+#: gui/session/messages.js:716 gui/session/selection_details.js:82
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "[ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ] %(player)s"
 
-#: gui/session/messages.js:783
+#: gui/session/messages.js:793
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:784
+#: gui/session/messages.js:794
 msgid "HH:mm"
 msgstr "ΩΩ:λλ"
 
-#: gui/session/messages.js:828
+#: gui/session/messages.js:838
 msgid "Unknown Player"
 msgstr "Άγνωστος παίκτης"
 
-#: gui/session/messages.js:835
+#: gui/session/messages.js:845
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s παραιτήθηκε."
 
-#: gui/session/messages.js:836
+#: gui/session/messages.js:846
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s ηττήθηκε."
 
-#: gui/session/messages.js:843
+#: gui/session/messages.js:853
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "%(player)s νίκησε"
 
-#: gui/session/messages.js:872
+#: gui/session/messages.js:882
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s έστειλε %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:874
+#: gui/session/messages.js:884
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 
-#: gui/session/messages.js:894
+#: gui/session/messages.js:904
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s ανταλλάσσονται με %(amountsBought)s για %(amountsSold)s."
 
-#: gui/session/messages.js:907
+#: gui/session/messages.js:917
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Η κτηνοτροφία σου δέχεται επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:908
+#: gui/session/messages.js:918
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Δέχθηκες επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:959
+#: gui/session/messages.js:969
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -738,7 +752,7 @@ msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 #: gui/session/selection_panels.js:1145
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr "Αναβάθμιση σε %(name). %(tooltip)"
+msgstr "Αναβάθμιση σε %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1150
 #, javascript-format
@@ -856,7 +870,7 @@ msgstr "Πληκτρολογήστε το μήνυμα για την αποστ�
 #: gui/session/session.js:334
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Πάτησε %(hotkey) για τη συμμετοχή σε συζήτηση"
+msgstr "Πάτησε %(hotkey)s για τη συμμετοχή σε συζήτηση."
 
 #: gui/session/session.js:337
 #, javascript-format
@@ -951,7 +965,7 @@ msgstr "Πληθυσμός (τρέχων / όριο)"
 #: gui/session/session.js:1049
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr "Μέγιστος πληθυσμοού: %(popCap)s"
+msgstr "Μέγιστος πληθυσμός: %(popCap)s"
 
 #: gui/session/session.js:1201
 #, javascript-format

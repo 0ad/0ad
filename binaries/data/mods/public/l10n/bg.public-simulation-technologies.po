@@ -8,12 +8,12 @@
 # Любомир Василев, 2016
 # Radoslav Mitev <darkinaatrox@gmail.com>, 2016
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
-# Любомир Василев, 2016
+# Любомир Василев, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:01+0100\n"
-"PO-Revision-Date: 2016-11-28 11:21+0000\n"
+"POT-Creation-Date: 2016-12-30 09:02+0100\n"
+"PO-Revision-Date: 2017-01-02 07:55+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/technologies/advanced_unit_bonus.jsontooltip
+msgid ""
+"Units promoted to the advanced class gain a lot of quality: 20% extra "
+"health, 1 extra armour level of every type, 20% extra attack for melee "
+"units, 4m extra range and 5% better precision for ranged units, faster "
+"movement speeds and extra heal speed and range for healers."
+msgstr "Единиците, които бъдат повишени до напреднал клас, получават доста подобрения: 20% допълнително здраве, по 1 допълнително ниво защита от всеки вид, 20% допълнителна атака за близкобойните единици, 4 метра допълнителен обхват и 5% по-добра точност за далекобойните единици, по-бърза скорост на придвижване и допълнителна скорост на лечение и по-голям обхват за лечителите."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -804,6 +812,14 @@ msgstr "Свиването на територията се забавя с -50%
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
 msgstr "Каменни основи"
+
+#: simulation/data/technologies/elite_unit_bonus.jsontooltip
+msgid ""
+"Units trained to the elite class gain a lot of quality: 20% extra health, 1 "
+"extra armour level of every type, 20% extra attack for melee units, extra "
+"range and better precision for ranged units, faster movement speeds and "
+"extra heal speed and range for healers."
+msgstr "Единиците, които бъдат обучени до елитен клас, получават доста подобрения: 20% допълнително здраве, по 1 допълнително ниво защита от всеки вид, 20% допълнителна атака за близкобойните единици, допълнителен обхват и по-добра точност за далекобойните единици, по-бърза скорост на придвижване и допълнителна скорост на лечение и по-голям обхват за лечителите."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1875,10 +1891,14 @@ msgstr "Пощенски гълъби"
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls. Consequently, "
+"was via the city's harbor, not by storming its walls."
+msgstr "Картагенците строели стените си в три концентрични окръжности. Тези стени никога не били разбити. Дори когато градът бил превзет от римляните, това станало чрез градското пристанище, а не чрез пробив в стените."
+
+#: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
+msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "Картагенците строели стените си в три концентрични окръжности. Тези стени никога не били разбити. Дори когато градът бил превзет от римляните, това станало чрез градското пристанище, а не чрез пробив в стените. Следователно, картагенските стени, порти и градски кули имат 3 пъти повече здраве от стандартните, но също така струват два пъти повече и отнемат два пъти повече време за строеж."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2187,11 +2207,14 @@ msgid "Elite Italiote Mercenaries"
 msgstr "Елитни италийски наемници"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr ""
+
+#: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
-"Celtic structures were mostly made of wood with rubble foundations. "
-"Consequently, their structures have less health than other cultures do, but "
-"they also construct faster."
-msgstr "Келтските сгради били строени основно от дървесина върху основа от чакъл. Следователно, сградите им имат по-малко здраве от тези на другите култури, но пък се строят по-бързо."
+"Celtic buildings have 20% less health, but are also 20% cheaper and faster "
+"to construct."
+msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2219,13 +2242,15 @@ msgstr "Доратисмо̀с"
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr "Гърците използвали каменни конструкции от ранните микенски времена."
 
+#: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
+msgid ""
+"All structures have 10% more health and capture points, but also take 10% "
+"longer to build."
+msgstr ""
+
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
 msgstr "Елинска архитектура"
-
-#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
-msgid "Underdogs"
-msgstr "Необлагодетелствани"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsondescription
 msgid ""
@@ -2234,6 +2259,14 @@ msgid ""
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
 msgstr "Спартанците не разполагали с най-голямата армия на света, но пък тя била най-добрата за своето време. Това, което им липсвало количествено, те наваксвали с качество. Хората казвали, че на Спарта не ѝ трябвали здрави стени, защото нейни стени били мъжете ѝ."
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
+msgid "Spartans have 10% less maximum population"
+msgstr ""
+
+#: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
+msgid "Underdogs"
+msgstr "Необлагодетелствани"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
@@ -2289,6 +2322,10 @@ msgid ""
 "time."
 msgstr "Империята Маурия обединила множество независими дотогава царства на територия от над 5 милиона кв. км, с почти 60 милиона население. Маурските регенти носели званието Император на императорите и управлявали армия от 600 000 пехотинци, 9000 слона, 8000 колесници и 30 000 конници, което почти сигурно е била най-голямата армия за времето си."
 
+#: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
+msgid "Mauryans have a 10% higher maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
 msgstr "Император на императорите"
@@ -2318,17 +2355,16 @@ msgstr "Традиции в стрелбата"
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
-"resource in India. Consequently, Mauryan city walls have -20% health and "
-"-20% build time."
-msgstr "Маурците строели градските си стени с дървесина, изобилен ресурс в Индия. Съответно, маурските градски стени имат -20% здраве и -20% време за строеж."
+"resource in India."
+msgstr ""
+
+#: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
+msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
 msgstr "Дървени стени"
-
-#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
-msgid "Great King's Levy"
-msgstr "Налогът на великия цар"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2339,6 +2375,14 @@ msgid ""
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "Персийците можели и събирали голям брой пехотинци по време на война, поради големия размера на Ахеменидското царство и начина, по който то било уредено. Персийската пехота като цяло била добре обучена и се биела упорито. Въпреки това, пехотинците не били особено добри в близък бой. Също така, с изключение на елитните полкове, персийската пехота не била професионална армия."
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
+msgid "Persians have a 10% higher maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
+msgid "Great King's Levy"
+msgstr "Налогът на великия цар"
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
