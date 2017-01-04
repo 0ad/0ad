@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,9 +34,9 @@ public:
 	 */
 	virtual int DoWhatever(int x, int y) = 0;
 
-    // ...
+	// ...
 
-    DECLARE_INTERFACE_TYPE(Example)
+	DECLARE_INTERFACE_TYPE(Example)
 };
 
 #endif // INCLUDED_ICMPEXAMPLE
