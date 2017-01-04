@@ -252,26 +252,6 @@ JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
 }
 
-void SaveCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, JS::HandleValue metadata)
-{
-	shared_ptr<ScriptInterface::StructuredClone> metadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(metadata);
-	if (Campaigns::Save(*(pCxPrivate->pScriptInterface), filename, metadataClone) < 0)
-		LOGERROR("Failed to save campaign state");
-}
-
-JS::Value LoadCampaign(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& campaignName)
-{
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue campaignData(cx);
-	Status err = Campaigns::Load(*(pCxPrivate->pScriptInterface), campaignName, &campaignData);
-	if (err < 0)
-		return JS::UndefinedValue();
-
-	return campaignData;
-}
-
 bool DeleteCampaignGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
 {
 	return Campaigns::DeleteGame(name);
@@ -1082,8 +1062,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 
 	// Campaigns
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SaveCampaign>("SaveCampaign");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &LoadCampaign>("LoadCampaign");
 	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteCampaignGame>("DeleteCampaignGame");
 
 	// Saved games

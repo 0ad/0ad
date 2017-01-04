@@ -24,43 +24,38 @@ class CGUIManager;
 
 /**
  * @file
- * Contains functions for managing campaign archives.
- *
- * A saved game is a simple *.0adcampaign file
- * which is a binary JSON file containing the campaign metadata
+ * Contains functions for deleting a campaign save
  */
 
 namespace Campaigns
 {
-
-/**
- * Create new campaign file with given name and metadata
- *
- * @param scriptInterface
- * @param name Name of the campaign
- * @param MetadataClone Actual campaign Metadata
- * @return INFO::OK if successfully saved, else an error Status
- */
-Status Save(ScriptInterface& scriptInterface, const CStrW& name, const shared_ptr<ScriptInterface::StructuredClone>& metadataClone);
-
-/**
- * Load campaign with the given name
- *
- * @param scriptInterface
- * @param name filename of campaign game (without path or extension)
- * @param[out] metadata object containing metadata associated with saved game,
- *	parsed from metadata.json inside the archive.
- * @return INFO::OK if successfully loaded, else an error Status
- */
-Status Load(ScriptInterface& scriptInterface, const std::wstring& name, JS::MutableHandleValue campaignData);
-
 /**
  * Permanently deletes the saved campaign run with the given name
  *
  * @param name filename of saved campaign (without path or extension)
  * @return true if deletion was successful, or false on error
  */
-bool DeleteGame(const std::wstring& name);
+bool DeleteGame(const std::wstring& name)
+{
+	const VfsPath basename(L"campaignsaves/" + name);
+	const VfsPath filename = basename.ChangeExtension(L".0adcampaign");
+	OsPath realpath;
+
+	// Make sure it exists in VFS and find its real path
+	if (!VfsFileExists(filename) || g_VFS->GetRealPath(filename, realpath) != INFO::OK)
+		return false; // Error
+
+	// Remove from VFS
+	if (g_VFS->RemoveFile(filename) != INFO::OK)
+		return false; // Error
+
+	// Delete actual file
+	if (wunlink(realpath) != 0)
+		return false; // Error
+
+	// Successfully deleted file
+	return true;
+}
 }
 
 #endif // INCLUDED_CAMPAIGNS
