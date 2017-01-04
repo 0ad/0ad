@@ -484,10 +484,9 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		let horizDistance = targetPosition.horizDistanceTo(selfPosition);
 
-		// This is an approximation of the time ot the target, it assumes that the target has a constant radial
-		// velocity, but since units move in straight lines this is not true.  The exact value would be more
-		// difficult to calculate and I think this is sufficiently accurate.  (I tested and for cavalry it was
-		// about 5% of the units radius out in the worst case)
+		// This is an approximation of the time to reach the target, it assumes that the target has a constant radial
+		// velocity, but since units move in straight lines this is not true. The exact value would be more
+		// difficult to calculate and this is sufficiently accurate.
 		let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
 
 		// Predict where the unit is when the missile lands.
