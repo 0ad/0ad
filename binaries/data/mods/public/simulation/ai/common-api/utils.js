@@ -54,13 +54,6 @@ m.AssocArraytoArray = function(assocArray)
 	return endArray;
 };
 
-/** Picks a random element from an array */
-m.PickRandom = function(list)
-{
-	return list.length ? list[Math.floor(Math.random()*list.length)] : undefined;
-};
-
-
 /** Utility functions for conversions of maps of different sizes */
 
 /**
