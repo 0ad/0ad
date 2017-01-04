@@ -552,7 +552,7 @@ var unitActions =
 		"getActionInfo": function(entState, targetState)
 		{
 			if (targetState.foundation || !entState.trader || !targetState.market ||
-			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
+			    playerCheck(entState, targetState, ["Enemy"]) ||
 			    !(targetState.market.land && hasClass(entState, "Organic") ||
 			      targetState.market.naval && hasClass(entState, "Ship")))
 				return false;
