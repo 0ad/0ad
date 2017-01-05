@@ -67,7 +67,7 @@ m.chatLaunchAttack = function(gameState, player, type)
 {
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
-		"message": "/allies " + pickRandom(this.launchAttackMessages[type === "HugeAttack" ? type : "other"]),
+		"message": "/allies " + pickRandom(this.launchAttackMessages[type === "HugeAttack" ? "hugeAttack" : "other"]),
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": { "_player_": player }
