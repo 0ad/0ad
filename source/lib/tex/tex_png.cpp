@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -306,7 +306,6 @@ TIMER_ACCRUE(tc_png_decode);
 // limitation: palette images aren't supported
 Status TexCodecPng::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 {
-	Status ret = ERR::FAIL;
 	png_infop info_ptr = 0;
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
@@ -315,19 +314,21 @@ Status TexCodecPng::encode(Tex* RESTRICT t, DynArray* RESTRICT da) const
 		WARN_RETURN(ERR::FAIL);
 	info_ptr = png_create_info_struct(png_ptr);
 	if(!info_ptr)
-		goto fail;
-
+	{
+		png_destroy_write_struct(&png_ptr, &info_ptr);
+		WARN_RETURN(ERR::NO_MEM);
+	}
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 		// libpng longjmps here after an error
-		goto fail;
+		png_destroy_write_struct(&png_ptr, &info_ptr);
+		WARN_RETURN(ERR::FAIL);
 	}
 
-	ret = png_encode_impl(t, png_ptr, info_ptr, da);
+	Status ret = png_encode_impl(t, png_ptr, info_ptr, da);
 
-	// shared cleanup
-fail:
 	png_destroy_write_struct(&png_ptr, &info_ptr);
+
 	return ret;
 }

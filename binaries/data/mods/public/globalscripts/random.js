@@ -14,3 +14,11 @@ function randomNormal2D()
 	s = Math.sqrt(-2 * Math.log(s) / s);
 	return [a * s, b * s];
 }
+
+/**
+ * Return a random element of the source array
+ */
+function pickRandom(source)
+{
+	return source.length ? source[Math.floor(source.length * Math.random())] : undefined;
+}

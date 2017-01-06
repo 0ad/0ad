@@ -28,14 +28,6 @@
       <trained>actor/fauna/animal/peacock_call.xml</trained>
     </SoundGroups>
   </Sound>
-  <UnitMotion>
-    <WalkSpeed>2.0</WalkSpeed>
-    <Run>
-      <Speed>5.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <UnitAI>
     <NaturalBehaviour>domestic</NaturalBehaviour>
     <RoamDistance>4.0</RoamDistance>
@@ -45,6 +37,14 @@
     <FeedTimeMin>10000</FeedTimeMin>
     <FeedTimeMax>40000</FeedTimeMax>
   </UnitAI>
+  <UnitMotion>
+    <WalkSpeed>2.0</WalkSpeed>
+    <Run>
+      <Speed>5.0</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/peacock.xml</Actor>
   </VisualActor>

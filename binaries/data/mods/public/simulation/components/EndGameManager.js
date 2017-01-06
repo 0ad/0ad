@@ -24,6 +24,8 @@ EndGameManager.prototype.Init = function()
 	this.skipAlliedVictoryCheck = true;
 
 	this.lastManStandingMessage = undefined;
+
+	this.endlessGame = false;
 };
 
 EndGameManager.prototype.GetGameType = function()
@@ -41,6 +43,7 @@ EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
 	this.gameType = newGameType;
 	this.gameTypeSettings = newSettings;
 	this.skipAlliedVictoryCheck = false;
+	this.endlessGame = newGameType == "endless";
 
 	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
@@ -78,7 +81,7 @@ EndGameManager.prototype.GetAlliedVictory = function()
 
 EndGameManager.prototype.AlliedVictoryCheck = function()
 {
-	if (this.skipAlliedVictoryCheck)
+	if (this.skipAlliedVictoryCheck || this.endlessGame)
 		return;
 
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);

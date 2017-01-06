@@ -692,7 +692,7 @@ function updateChatAddressees()
 	let guids = sortGUIDsByPlayerID();
 	for (let guid of guids)
 	{
-		if (guid == Engine.GetPlayerGUID() || guid == "local")
+		if (guid == Engine.GetPlayerGUID())
 			continue;
 
 		let playerID = g_PlayerAssignments[guid].player;
@@ -953,7 +953,7 @@ function formatChatCommand(msg)
 	{
 		msg.text = escapeText(msg.text);
 
-		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
+		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
 
 		if (userName != g_PlayerAssignments[msg.guid].name)
 			notifyUser(userName, msg.text);
@@ -990,7 +990,7 @@ function parseChatAddressee(msg)
 	// Chat messages sent by the simulation (AI) come with the playerID.
 	let senderID = msg.player ? msg.player : (g_PlayerAssignments[msg.guid] || msg).player;
 
-	let isSender = msg.guid && msg.guid != "local" ?
+	let isSender = msg.guid ?
 		msg.guid == Engine.GetPlayerGUID() :
 		senderID == Engine.GetPlayerID();
 

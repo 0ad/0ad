@@ -408,14 +408,14 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 m.HQ.prototype.OnTownPhase = function(gameState)
 {
 	let phaseName = gameState.getTemplate(gameState.townPhase()).name();
-	m.chatNewPhase(gameState, phaseName, true);
+	m.chatNewPhase(gameState, phaseName, "started");
 };
 
 /** Called by the "city phase" research plan once it's started */
 m.HQ.prototype.OnCityPhase = function(gameState)
 {
 	let phaseName = gameState.getTemplate(gameState.cityPhase()).name();
-	m.chatNewPhase(gameState, phaseName, true);
+	m.chatNewPhase(gameState, phaseName, "started");
 };
 
 /** This code trains citizen workers, trying to keep close to a ratio of worker/soldiers */
@@ -2113,7 +2113,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		else if (this.currentPhase == 3)
 			phaseName = gameState.getTemplate(gameState.cityPhase()).name();
 
-		m.chatNewPhase(gameState, phaseName, false);
+		m.chatNewPhase(gameState, phaseName, "completed");
 	}
 
 	if (this.numActiveBase() > 0)

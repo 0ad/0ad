@@ -51,7 +51,7 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 	for (let evt of events.PlayerDefeated)
 		this.defeated[evt.playerId] = true;
 
-	let answer = false;
+	let answer = "decline";
 	let other;
 	let targetPlayer;
 	for (let evt of events.AttackRequest)
@@ -94,8 +94,10 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 					attack.requested = true;
 				}
 			}
-			answer = true;
+			answer = "join";
 		}
+		else if (other !== undefined)
+			answer = "other";
 		break;  // take only the first attack request into account
 	}
 	if (targetPlayer !== undefined)

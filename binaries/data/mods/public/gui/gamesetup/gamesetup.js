@@ -1807,7 +1807,7 @@ function addChatMessage(msg)
 {
 	if (msg.type != "system" && msg.text)
 	{
-		let userName = g_PlayerAssignments[Engine.GetPlayerGUID() || "local"].name;
+		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
 
 		if (userName != g_PlayerAssignments[msg.guid].name)
 			notifyUser(userName, msg.text);
