@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2017-01-02 07:55+0000\n"
+"PO-Revision-Date: 2017-01-02 08:34+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -1898,7 +1898,7 @@ msgstr "Картагенците строели стените си в три к
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Следователно, картагенските стени, порти и стенни кули имат 3 пъти повече здраве от стандартните стени, но също така струват два пъти повече и отнемат два пъти повече време за строеж."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2208,13 +2208,13 @@ msgstr "Елитни италийски наемници"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Келтските сгради били направени основно от дърво, с основи от чакъл."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "Келтските сгради имат 20% по-малко здраве, но пък са 20% по-евтини и отнемат 20% по-малко време за строеж."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2246,7 +2246,7 @@ msgstr "Гърците използвали каменни конструкци�
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "10% повече здраве и пленителни точки за всички сгради, но и 10% по-дълго време за строеж."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2262,7 +2262,7 @@ msgstr "Спартанците не разполагали с най-голям�
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population"
-msgstr ""
+msgstr "Спартанците имат 10% по-малко максимално население."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2324,7 +2324,7 @@ msgstr "Империята Маурия обединила множество н
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Маурите имат 10% по-голямо максимално население."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2356,11 +2356,11 @@ msgstr "Традиции в стрелбата"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "Маурците строели градските си стени с дървесина, изобилен ресурс в Индия."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr ""
+msgstr "Маурските градски стени имат 20% по-малко здраве и отнемат 20% по-малко време за строеж."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2378,7 +2378,7 @@ msgstr "Персийците можели и събирали голям бро�
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Персийците имат 10% по-голямо максимално население."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"

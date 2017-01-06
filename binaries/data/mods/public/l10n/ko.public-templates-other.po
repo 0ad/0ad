@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# aksidion kreimben <aksidionkreimben@gmail.com>, 2016
+# Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Kevin Min <gr326887@graded.br>, 2015
 # YongNam Kim <darkgem11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 08:24+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-02 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "보물"
 msgid "A treasure that can be quickly gathered."
 msgstr "빨리 채취할 수 있는 보물"
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
 msgstr "구조물"
 
@@ -202,8 +202,8 @@ msgid "Box"
 msgstr "박스"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
-msgstr "기둥이 닫혔습니다."
+msgid "Forced March"
+msgstr ""
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -218,20 +218,20 @@ msgid "Flank"
 msgstr "측면"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr "라인이 닫혔습니다."
+msgid "Close Order"
+msgstr ""
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr "라인이 열렸습니다."
+msgid "Open Order"
+msgstr ""
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "없음"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
-msgstr "10명의 근접 보병 유닛이 필요합니다."
+msgid "10 hoplite infantry required"
+msgstr ""
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -250,10 +250,10 @@ msgid "Skirmish"
 msgstr "접전지역"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr "9개의 단창 보병 유닛이 필요함"
+msgid "16 pike infantry units required"
+msgstr ""
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
 msgstr "구성"
 
@@ -266,8 +266,8 @@ msgid "Testudo"
 msgstr "바다거북이"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
-msgstr "3개의 기병 유닛이 필요함"
+msgid "6 cavalry units required"
+msgstr ""
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -278,8 +278,12 @@ msgid "Bear"
 msgstr "곰"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
-msgstr "멧돼지"
+msgid "Wild Boar"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -367,13 +371,25 @@ msgstr "암사자"
 msgid "Muskox"
 msgstr "사향소"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
 msgstr "공작새"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "돼지"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"

@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Albert, 2016
-# Swyter <Swyterzone@gmail.com>, 2016
+# Swyter <Swyterzone@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-24 13:46+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-02 15:47+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -215,8 +215,8 @@ msgid "Buddhism Aura"
 msgstr "Aura budista"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid "All player temple technologies -50% cost and -50% research time."
-msgstr "Las tecnologías de templos propios reducen en un -50% su coste y tiempo de investigación. "
+msgid "Temples and temple technologies -50% cost, in resources and time."
+msgstr "Los templos propios y sus tecnologías reducen en un -50% su coste y tiempo de investigación. "
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -415,6 +415,15 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Reduce el coste de los ciudadanos soldado un 20% para los aliados de los íberos."
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
+msgid "Ashoka's Religious Support"
+msgstr "Apoyo religioso de Asóka"
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
+msgid ""
+"Allied temples and temple technologies -50% cost, in resources and time."
+msgstr "Las tecnologías de templos propios y aliados reducen en un -50% su coste y tiempo de investigación. "
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

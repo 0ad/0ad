@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Любомир Василев, 2016
+# Любомир Василев, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-30 08:11+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-03 08:16+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -214,8 +214,8 @@ msgid "Buddhism Aura"
 msgstr "Будистка аура"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid "All player temple technologies -50% cost and -50% research time."
-msgstr "Времето за проучване и цената на технологиите в храмовете се намаляват с 50%."
+msgid "Temples and temple technologies -50% cost, in resources and time."
+msgstr "Времето за проучване и цената на храмовете и технологиите в тях се намаляват с 50%."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -414,6 +414,15 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Цената на стрелците се намалява с 20% за съюзниците на играчите, играещи с иберите"
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
+msgid "Ashoka's Religious Support"
+msgstr "Религиозната подкрепа на Ашока"
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
+msgid ""
+"Allied temples and temple technologies -50% cost, in resources and time."
+msgstr "Времето за проучване и цената на съюзническите храмове и технологиите в тях се намаляват с 50%."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

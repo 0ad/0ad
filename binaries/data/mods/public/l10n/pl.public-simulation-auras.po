@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Kamil Łapiński <k.lapinski@onet.pl>, 2016
-# Marcin S <dzidek1003@o2.pl>, 2016
+# Marcin S <dzidek1003@o2.pl>, 2016-2017
 # Michał Karol, 2016
 # Tomasz Goljat <goljat@protonmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-27 15:49+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-04 16:30+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgstr "Naprawa Statku Aura"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Zdrowie garnizonu statku podnosi się 10 PZ na sekundę."
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -139,7 +139,7 @@ msgstr "Aura Inspiracji"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby citizen soldiers work 10% faster."
-msgstr ""
+msgstr "Mężczyźni w pobliżu pracują 10% szybciej."
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -153,7 +153,7 @@ msgstr "W czasie jego życia szybkość zbierania żywności rośnie o +15%."
 msgid ""
 "+20% attack and +1 capture for all soldiers and siege engines within his "
 "aura."
-msgstr ""
+msgstr "+20 atak i +1 pojmanie dla wszystkich jednostek w zasięgu jego aury."
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -190,7 +190,7 @@ msgstr "Aura Lojalności"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "Wszystkie budowle zwiększają +50 tempo regeneracji garnizonu."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -206,18 +206,18 @@ msgstr ""
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr ""
+msgstr "+15 zasięgu oraz +10 ataku miażdżącego dla maszyn oblężniczych."
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr ""
+msgstr "+20 ataku i +2 przejmowanie dla elitarnych jednostek."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
 msgstr "Aura Buddystów"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid "All player temple technologies -50% cost and -50% research time."
+msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr ""
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
@@ -231,7 +231,7 @@ msgstr "Upoważnia budynek do -50% czasu badania, podczas gdy jest w nim garnizo
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."
-msgstr ""
+msgstr "Wszystkie podmioty w zakresie gospodarki +20 do prędkości."
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
@@ -239,7 +239,7 @@ msgstr "Aura Dowodzenia z Frontu"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr ""
+msgstr "+20 ataku i +1 pojmanie dla pobliskich jednostek kawalerii."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -247,7 +247,7 @@ msgstr "Aura Przywództwa"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr ""
+msgstr "+15% do prędkości ruchu wszystkich jednostek. "
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -255,7 +255,7 @@ msgstr "Aura Zarządcy"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate of nearby workers."
-msgstr ""
+msgstr "+15% szybkości gromadzenia zasobów i budowania dla jednostek znajdujących się w pobliżu"
 
 #: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
 msgid "Patriot Aura"
@@ -280,7 +280,7 @@ msgstr "Aura - konstrukcja"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Buildings construct 10% faster within his aura."
-msgstr ""
+msgstr "Budynki konstruowane są 10% szybciej w zasięgu jego wzroku."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron Aura"
@@ -376,7 +376,7 @@ msgstr "Ochrona muru"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr ""
+msgstr "Armia znajdująca się na murach otrzymuje +3 poziomy pancerza i wyższą wizję."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
@@ -384,7 +384,7 @@ msgstr "Cud Aury"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr ""
+msgstr "Zwiększ limit populacji o 10 na Cud."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -394,7 +394,7 @@ msgstr "Wspaniała Rozszerzona Aura"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "Podnieś limit populacji o 40 na cud (wymaga technologii \"Zdumiewająca Ekspansja\")"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -417,6 +417,15 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Redukuje koszty mieszkańca-żołnierza piechura o 20% dla Iberyjskich sojuszników."
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
+msgid "Ashoka's Religious Support"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
+msgid ""
+"Allied temples and temple technologies -50% cost, in resources and time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

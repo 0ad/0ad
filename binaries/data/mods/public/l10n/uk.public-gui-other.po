@@ -5,6 +5,7 @@
 # Translators:
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
 # Oleg Adept <adeptoleg@gmail.com>, 2016
+# Антон Курило, 2017
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
 # Victor Ptah, 2015
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2016-12-31 17:38+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"PO-Revision-Date: 2017-01-03 11:44+0000\n"
+"Last-Translator: Антон Курило\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -313,11 +314,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:217
 msgid "Locked Teams"
-msgstr ""
+msgstr "Закриті гурти"
 
 #: gui/common/gamedescription.js:218
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Гравці не можуть змінювати початкові гурти"
 
 #: gui/common/gamedescription.js:222
 msgid "Diplomacy"
@@ -329,7 +330,7 @@ msgstr "Гравці можуть укладати союзи та оголош�
 
 #: gui/common/gamedescription.js:228
 msgid "Last Man Standing"
-msgstr ""
+msgstr "До останнього гравця"
 
 #: gui/common/gamedescription.js:229
 msgid ""
@@ -339,7 +340,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:233
 msgid "Allied Victory"
-msgstr ""
+msgstr "Перемога союзників"
 
 #: gui/common/gamedescription.js:234
 msgid ""
@@ -349,7 +350,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:240
 msgid "Ceasefire"
-msgstr ""
+msgstr "Припинити бій"
 
 #: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -364,7 +365,7 @@ msgstr[2] ""
 
 #: gui/common/gamedescription.js:252
 msgid "Map Name"
-msgstr ""
+msgstr "Назва мапи"
 
 #: gui/common/gamedescription.js:257
 msgid "Map Type"
@@ -372,19 +373,19 @@ msgstr "Тип Мапи"
 
 #: gui/common/gamedescription.js:266
 msgid "Map Size"
-msgstr ""
+msgstr "Розмір мапи"
 
 #: gui/common/gamedescription.js:273
 msgid "Map Description"
-msgstr ""
+msgstr "Опис мапи"
 
 #: gui/common/gamedescription.js:276
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Випадковий вибір мапи зі списку"
 
 #: gui/common/gamedescription.js:285
 msgid "Starting Resources"
-msgstr ""
+msgstr "Початкові ресурси"
 
 #: gui/common/gamedescription.js:286
 #, javascript-format
@@ -397,7 +398,7 @@ msgstr "Ліміт населення"
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Вимкнути скарб"
 
 #: gui/common/gamedescription.js:309
 msgid "Revealed Map"
@@ -405,11 +406,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:314
 msgid "Explored Map"
-msgstr ""
+msgstr "Досліджена мапа"
 
 #: gui/common/gamedescription.js:319
 msgid "Cheats"
-msgstr ""
+msgstr "Чіти"
 
 #: gui/common/gamedescription.js:324 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -491,7 +492,7 @@ msgstr "Неправильна версія мережевого протоко�
 
 #: gui/common/network.js:68
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Гра завантажується, будь ласка, спробуйте знову пізніше"
 
 #: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
@@ -545,7 +546,7 @@ msgstr ""
 #: gui/common/network.js:158
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Користувачі (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -618,11 +619,11 @@ msgstr "Сценарій"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Немає"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Безкінечна гра"
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -910,7 +911,7 @@ msgstr "Башти: %(costs)s"
 #: gui/common/tooltips.js:467
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Потрібно %(technology)s"
 
 #: gui/common/tooltips.js:479
 #, javascript-format

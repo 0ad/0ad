@@ -5,16 +5,17 @@
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2016
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2016-12-29 19:23+0000\n"
-"Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
+"PO-Revision-Date: 2017-01-05 16:27+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Kemmet eo bet dibarzhioù ar c'hoari"
 #: gui/gamesetup/gamesetup.js:47
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s a gemer-perzh bremañ"
+msgstr "%(username)s a zo o paouez kemer-perzh"
 
 #: gui/gamesetup/gamesetup.js:48
 #, javascript-format
@@ -48,12 +49,12 @@ msgstr "%(username)s en deus kuitaet"
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s en deus paouezet ganti"
+msgstr "%(username)s a zo stlepet kuit"
 
 #: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s a zo bet skarzhet kuit"
+msgstr "%(username)s a zo bet skarzhet kuit da viken"
 
 #: gui/gamesetup/gamesetup.js:51
 #, javascript-format
@@ -94,7 +95,7 @@ msgstr "Kartennoù nevez"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
-msgstr "Kc’hrtennoù distenn"
+msgstr "Kartennoù distenn"
 
 #: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
@@ -148,11 +149,11 @@ msgstr "O kargañ..."
 #: gui/gamesetup/gamesetup.js:1616
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "NA: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1621
 msgid "Unassigned"
-msgstr ""
+msgstr "Nann-dereet"
 
 #: gui/gamesetup/gamesetup.js:1781
 #, javascript-format
@@ -161,7 +162,7 @@ msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
-msgstr ""
+msgstr "C'hoarier dianav"
 
 #: gui/gamesetup/gamesetup.js:1824
 #, javascript-format
@@ -187,42 +188,42 @@ msgstr "Prest on"
 
 #: gui/gamesetup/gamesetup.js:1880
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Lavarit n'emaoc'h ket prest da c'hoari."
 
 #: gui/gamesetup/gamesetup.js:1881
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Lavarit emaoc'h prest da c'hoari."
 
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "c'hoariadenn %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
-msgstr ""
+msgstr "O kevreañ d'ar servijer..."
 
 #: gui/gamesetup/gamesetup_mp.js:133
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Kemennadenn ar rouedad:  %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:202
 msgid "Registering with server..."
-msgstr ""
+msgstr "Marilhadur ouzh ar servijer..."
 
 #: gui/gamesetup/gamesetup_mp.js:208
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Kroget he deus ar c'hoariadenn dija, oc'h emezelañ..."
 
 #: gui/gamesetup/gamesetup_mp.js:276
 msgid "Game name already in use."
-msgstr ""
+msgstr "Anv ar c'hoariadenn a zo implijet dija."
 
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Dibosupl eo da herbrec'hiañ ur c'hoariadenn: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
@@ -231,34 +232,34 @@ msgstr "Fazi"
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Dibosupl eo da emezelañ ouzh ar c'hoariadenn: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "c'hoariadenn %(playername)s"
 
 #: gui/loading/loading.js:48
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "O kargañ “%(map)s”"
 
 #: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "O sevel “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
-msgstr ""
+msgstr "Kefluniadur an NA"
 
 #: gui/aiconfig/aiconfig.xml:(caption):21
 msgid "AI Player:"
-msgstr ""
+msgstr "C'hoarier NA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):30
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Diaester an NA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup_mp.xml:(caption):120
@@ -268,15 +269,15 @@ msgstr "Nullañ"
 #: gui/aiconfig/aiconfig.xml:(caption):46
 #: gui/gamesetup/gamesetup.xml:(caption):459
 msgid "OK"
-msgstr "Mad eo"
+msgstr "Mat eo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):21
 msgid "Match Setup"
-msgstr ""
+msgstr "Kefluniadur ar c'hrogad"
 
 #: gui/gamesetup/gamesetup.xml:(caption):27
 msgid "Loading"
-msgstr ""
+msgstr "O kargañ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):31
 msgid "Loading map data. Please wait..."
@@ -284,7 +285,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Player Name"
-msgstr ""
+msgstr "Anv ar c'hoarier"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
 msgid "Color"
@@ -292,7 +293,7 @@ msgstr "Liv"
 
 #: gui/gamesetup/gamesetup.xml:(caption):55
 msgid "Player Placement"
-msgstr ""
+msgstr "Lec'hiadur ar c'hoarier"
 
 #: gui/gamesetup/gamesetup.xml:(caption):59
 msgid "Civilization"
@@ -312,15 +313,15 @@ msgstr "Doare kartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):154
 msgid "Map Filter:"
-msgstr ""
+msgstr "Sil kartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):157
 msgid "Select Map:"
-msgstr ""
+msgstr "Dibab ur gartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):160
 msgid "Number of Players:"
-msgstr ""
+msgstr "Niver a c'hoarierien:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):163
 msgid "Map Size:"
@@ -332,40 +333,40 @@ msgstr "Kas"
 
 #: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Truchadurioù a zo gweredekaet."
 
 #: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Start game!"
-msgstr ""
+msgstr "Loc'hañ ar c'hoariadenn!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Back"
-msgstr ""
+msgstr "Distreiñ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):305
 #: gui/gamesetup/gamesetup.xml:(caption):317
 msgid "More Options"
-msgstr ""
+msgstr "Muioc'h a zDibarzhioù"
 
 #: gui/gamesetup/gamesetup.xml:(caption):322
 msgid "Game Speed:"
-msgstr ""
+msgstr "Tizh ar c'hoari:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):332
 msgid "Victory Condition:"
-msgstr ""
+msgstr "Amplegad an Trec'h:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Trec'h ar Varzenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
-msgstr ""
+msgstr "Bevenn ar Boblañs:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):362
 msgid "Starting Resources:"
-msgstr ""
+msgstr "Mammennoù el Loc'hañ:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):372
 msgid "Ceasefire:"
@@ -375,13 +376,13 @@ msgstr "Harz-tennañ :"
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):382
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Kartenn Dizoloet:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):392
 msgid "Explored Map:"
-msgstr ""
+msgstr "Kartenn Ergerzhet:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):402
 msgid "Disable Treasures:"
@@ -389,117 +390,117 @@ msgstr "Diweredekaat an Teñzorioù:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Skipailhoù Morailhet:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "An Den Diwezhañ War-Sav :"
 
 #: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Cheats:"
-msgstr ""
+msgstr "Truchadurioù:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Rated Game:"
-msgstr ""
+msgstr "C'hoariadenn renket:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):69
 msgid "View civilization info"
-msgstr ""
+msgstr "Gwelet titouroù ar Sevenadurezh"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Addereouekat an holl sevenadurezhioù diuzet d'o zalvoudegezh dre ziouer (dre zegouezh)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Adderaouekaat an holl skipailhoù d'o zalvoudegezh dre ziouer."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
-msgstr ""
+msgstr "Dibabit ul liv."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
-msgstr ""
+msgstr "Diuzit ur c'hoarier."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):121
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Keflunit dibarzhioù an NA."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):124
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Diuzit sevenadurezh ar c'hoarier."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):128
 msgid "Select player's team."
-msgstr ""
+msgstr "Diuzit skipailh ar c'hoarier."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):180
 msgid "Select a map type."
-msgstr ""
+msgstr "Diuzit un doare kartenn."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):188
 msgid "Select a map filter."
-msgstr ""
+msgstr "Diuzit ur sil kartenn."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):197
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Diuzit ur gartenn da c'hoari."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):207
 msgid "Select number of players."
-msgstr ""
+msgstr "Diuzit an niver a c'hoarierien."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):211
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Diuzit ment ar gartenn. (Ledanderioù brasañ a c'hallfe izelaat ar perzhioù.)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):274
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Kregiñ gant ur c'hoariadenn gant an arventennoù-red."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):306
 msgid "See more game options"
-msgstr ""
+msgstr "Gwelet muioc'h a dibarzhioù evit ar c'hoariadenn"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):326
 msgid "Select game speed."
-msgstr ""
+msgstr "Diuzit tizh ar c'hoari."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):336
 msgid "Select victory condition."
-msgstr ""
+msgstr "Dibabit amplegad an trec'h."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Niver a vunutennoù en deus ar c'hoarier evit derc'hel war e varzenn betek ma 'z afe ar maout gantañ."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
-msgstr ""
+msgstr "Diuzit bevenn ar boblañs."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):366
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Diuzit ar mammennoù hegerzus evit kregiñ gant ar c'hoariadenn."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):376
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "Dibabit e-pad pegeit amzer ez eo dibosupl d'ober tagadennoù."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):386
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Gwintañ pe get war-du dizoloiñ ar gartenn (gwelet kement-tra)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):396
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Gwintañ pe get war-du ur gartenn ergerzhet (gwelet ar gartenn deraouek)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):406
 msgid "Disable all treasures on the map."
@@ -507,25 +508,25 @@ msgstr "Diweredekaat holl deñzorioù ar gartenn."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Gwintañ pe get war-du skipailhoù morailhet."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Diskouez ma vez ar c'hoarier diwezhañ pe ar strollad tud kevredet da ziwezhañ o kaout ar maout ganto."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Gwintañ pe get ar gwir da implijout truchadurioù."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Dibab ma vo kemeret e kont ar c'hoariadenn-mañ e-barzh ar renkadur-hollek."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):460
 msgid "Close more game options window"
-msgstr ""
+msgstr "Serriñ prenestr dibarzhioù araokaet ar c'hoariadenn"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):20
 msgid "Multiplayer"
@@ -533,25 +534,25 @@ msgstr "Lies-c'hoarier"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):26
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Emezelañ ouzh ur c'hoariadenn a zo anezhi."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):30
 #: gui/gamesetup/gamesetup_mp.xml:(caption):72
 msgid "Player name:"
-msgstr ""
+msgstr "Anv ar c'hoarier:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):40
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Anv pe IP an Herbrec'h-servijer:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):50
 #: gui/gamesetup/gamesetup_mp.xml:(caption):97
 msgid "Server Port:"
-msgstr ""
+msgstr "Porzh ar Servijer:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Keflunit ho herbrec'h-servijer."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):85
 msgid "Server name:"
@@ -559,16 +560,16 @@ msgstr "Anv ar servijer :"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):115
 msgid "Continue"
-msgstr ""
+msgstr "Kenderc'hel"
 
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Laoskit goullo a-benn implijout ar servijer dre ziouer."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Arroudenn an Deiz:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
@@ -881,7 +882,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Taolet eo an diñs.\" - Gaius Julius Caesar"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -1027,7 +1028,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "\"Me zo Cyrus, roue ar bed...\" - Cyrus ar Vras"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
@@ -1414,7 +1415,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr "\" An niveroù a ren an Hollved.\" - Pitagoras"
+msgstr "\"An niveroù a ren an Hollved.\" - Pitagoras"
 
 #: gui/text/quotes.txt:162
 msgid ""

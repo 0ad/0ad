@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 08:24+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-02 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "tesouro"
 msgid "A treasure that can be quickly gathered."
 msgstr "Un tesouro que se pode recoller rapidamente."
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
 msgstr "Estrutura"
 
@@ -202,8 +202,8 @@ msgid "Box"
 msgstr "Cadrado"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
-msgstr "Columna pechada"
+msgid "Forced March"
+msgstr ""
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -218,20 +218,20 @@ msgid "Flank"
 msgstr "Flanco"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr "Liña pechada"
+msgid "Close Order"
+msgstr ""
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr "Liña aberta"
+msgid "Open Order"
+msgstr ""
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "Ningunha"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
-msgstr "Necesítanse 10 unidades de infantaría de contacto."
+msgid "10 hoplite infantry required"
+msgstr ""
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -250,10 +250,10 @@ msgid "Skirmish"
 msgstr "Escaramuza"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr "Necesítanse 9 unidades de infantaría de piqueiros."
+msgid "16 pike infantry units required"
+msgstr ""
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
 msgstr "Falanxe macedonia"
 
@@ -266,8 +266,8 @@ msgid "Testudo"
 msgstr "Tartaruga"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
-msgstr "Necesítanse 3 unidades de cabalaría."
+msgid "6 cavalry units required"
+msgstr ""
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -278,8 +278,12 @@ msgid "Bear"
 msgstr "Oso"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
-msgstr "Xabaril"
+msgid "Wild Boar"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -367,13 +371,25 @@ msgstr "Leoa"
 msgid "Muskox"
 msgstr "Boi almiscrado"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
 msgstr "Pavo"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Porco"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
