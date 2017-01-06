@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,8 +17,7 @@
 
 #include "precompiled.h"
 
-#include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptExtraHeaders.h" // for typed arrays
+#include "scriptinterface/ScriptConversions.h"
 
 #include "maths/Fixed.h"
 #include "maths/FixedVector2D.h"
@@ -299,21 +298,5 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	ret.setObject(*obj);
 }
 
-// TODO: This is copy-pasted from scriptinterface/ScriptConversions.cpp (#define VECTOR stuff), would be nice to remove the duplication
-template<> void ScriptInterface::ToJSVal<std::vector<CFixedVector2D> >(JSContext* cx, JS::MutableHandleValue ret, const std::vector<CFixedVector2D>& val)
-{
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewArrayObject(cx, 0));
-	if (!obj)
-	{
-		ret.setUndefined();
-		return;
-	}
-	for (size_t i = 0; i < val.size(); ++i)
-	{
-		JS::RootedValue el(cx);
-		ScriptInterface::ToJSVal<CFixedVector2D>(cx, &el, val[i]);
-		JS_SetElement(cx, obj, i, el);
-	}
-	ret.setObject(*obj);
-}
+// define vectors
+JSVAL_VECTOR(CFixedVector2D)
