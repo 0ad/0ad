@@ -384,6 +384,16 @@ m.GameState.prototype.getExclusiveAllies = function()
 	return ret;
 };
 
+m.GameState.prototype.getMutualAllies = function()
+{
+	let ret = [];
+	for (let i in this.playerData.isMutualAlly)
+		if (this.playerData.isMutualAlly[i] &&
+		    this.sharedScript.playersData[i].isMutualAlly[this.player])
+			ret.push(+i);
+	return ret;
+};
+
 m.GameState.prototype.isEntityAlly = function(ent)
 {
 	if (!ent)

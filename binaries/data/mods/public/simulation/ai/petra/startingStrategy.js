@@ -13,6 +13,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	this.attackManager.init(gameState);
 	this.navalManager.init(gameState);
 	this.tradeManager.init(gameState);
+	this.diplomacyManager.init(gameState);
 
 	// Make a list of buildable structures from the config file
 	this.structureAnalysis(gameState);
