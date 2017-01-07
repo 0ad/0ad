@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -330,16 +330,8 @@ const CParamNode& CTemplateLoader::GetTemplateFileData(const std::string& templa
 
 void CTemplateLoader::ConstructTemplateActor(const std::string& actorName, CParamNode& out)
 {
-	// Load the base actor template if necessary
-	const char* templateName = "special/actor";
-	if (!LoadTemplateFile(templateName, 0))
-	{
-		LOGERROR("Failed to load entity template '%s'", templateName);
-		return;
-	}
-
 	// Copy the actor template
-	out = m_TemplateFileData[templateName];
+	out = GetTemplateFileData("special/actor");
 
 	// Initialise the actor's name and make it an Atlas selectable entity.
 	std::wstring actorNameW = wstring_from_utf8(actorName);
