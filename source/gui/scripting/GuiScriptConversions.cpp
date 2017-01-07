@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,11 +17,12 @@
 
 #include "precompiled.h"
 
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
 
 #include "gui/IGUIObject.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/Hotkey.h"
+#include "maths/Vector2D.h"
 
 #define SET(obj, name, value) STMT(JS::RootedValue v_(cx); AssignOrToJSVal(cx, &v_, (value)); JS_SetProperty(cx, obj, (name), v_))
 	// ignore JS_SetProperty return value, because errors should be impossible
@@ -121,3 +122,23 @@ template<> void ScriptInterface::ToJSVal<IGUIObject*>(JSContext* UNUSED(cx), JS:
 	else
 		ret.setObject(*val->GetJSObject());
 }
+
+template<> void ScriptInterface::ToJSVal<CGUIString>(JSContext* cx, JS::MutableHandleValue ret, const CGUIString& val)
+{
+	ScriptInterface::ToJSVal(cx, ret, val.GetOriginalString());
+}
+
+template<> bool ScriptInterface::FromJSVal<CGUIString>(JSContext* cx, JS::HandleValue v, CGUIString& out)
+{
+	std::wstring val;
+	if (!ScriptInterface::FromJSVal(cx, v, val))
+		return false;
+	out.SetValue(val);
+	return true;
+}
+
+// define some vectors
+JSVAL_VECTOR(CVector2D)
+JSVAL_VECTOR(std::vector<CVector2D>)
+JSVAL_VECTOR(CGUIString)
+

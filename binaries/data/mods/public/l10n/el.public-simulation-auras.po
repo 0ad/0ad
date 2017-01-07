@@ -8,13 +8,13 @@
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # Natalia V <inactive+irida@transifex.com>, 2016
 # Steven Gikas <stevengk123@gmail.com>, 2016
-# Vasilis Drosos <basilisd@gmail.com>, 2016
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 # Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-28 19:31+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-02 17:01+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -220,8 +220,8 @@ msgid "Buddhism Aura"
 msgstr "Αύρα Βουδισμού"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid "All player temple technologies -50% cost and -50% research time."
-msgstr "Όλε οι τεχνολογίες του ναού του παίχτη έχουν -50% κόστος και -50% χρόνο έρευνας."
+msgid "Temples and temple technologies -50% cost, in resources and time."
+msgstr "Οι ναοί και οι τεχνολογίες των ναών στοιχίζουν -50% σε πόρους και χρόνο."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -420,6 +420,15 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Μειώνει το κόστος για τους πολίτες-ακροβολιστές στρατιώτες κατά 20% για τους συμμάχους των Ιβοριανών παικτών."
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
+msgid "Ashoka's Religious Support"
+msgstr "Θρησκευτικές Υποστηρίξεις του Ασόκα"
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
+msgid ""
+"Allied temples and temple technologies -50% cost, in resources and time."
+msgstr "Οι συμμαχικοί ναοί και οι τεχνολογίες των ναών στοιχίζουν -50% σε πόρους και χρόνο."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

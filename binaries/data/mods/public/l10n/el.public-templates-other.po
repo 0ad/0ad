@@ -7,12 +7,12 @@
 # LOUKAS SKOUROLIAKOS, 2015
 # Marinus Savoritias <msavorritias@gmail.com>, 2015-2016
 # TitanJack <titanjack.com@gmail.com>, 2015
-# Vasilis Drosos <basilisd@gmail.com>, 2016
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-12-14 20:23+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-02 16:59+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgstr "Θησαυρός"
 msgid "A treasure that can be quickly gathered."
 msgstr "Ενας θησαυρός που μπορεί να μαζευτεί γρήγορα."
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
 msgstr "Κατασκευή"
 
@@ -204,8 +204,8 @@ msgid "Box"
 msgstr "Κουτί"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
-msgstr "Κλειστή φάλαγγα"
+msgid "Forced March"
+msgstr "Γοργό Βάδην"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -220,20 +220,20 @@ msgid "Flank"
 msgstr "Πλευρό"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr "Κλειστή γραμμή"
+msgid "Close Order"
+msgstr "Κλειστή Φάλαγξ"
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr "Ανοιχτή γραμμή"
+msgid "Open Order"
+msgstr "Ανοικτή Φάλαγξ"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "Κανένα"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
-msgstr "Απαιτούνται 10 μονάδες πεζικού κοντινής εμβέλειας"
+msgid "10 hoplite infantry required"
+msgstr "Απαιτούνται 10 οπλίτες πεζικού"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -252,10 +252,10 @@ msgid "Skirmish"
 msgstr "Αψιμαχία"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr "απαιτούνται 9 μονάδες πεζικού με δόρυ"
+msgid "16 pike infantry units required"
+msgstr "Απαιτούνται 16 μονάδες πεζικού με δόρυ"
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
 msgstr "Σύνταγμα"
 
@@ -268,8 +268,8 @@ msgid "Testudo"
 msgstr "Χελώνα"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
-msgstr "Απαιτούνται 3 μονάδες ιππικού"
+msgid "6 cavalry units required"
+msgstr "Απαιτούνται 6 μονάδες ιππικού"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -280,8 +280,12 @@ msgid "Bear"
 msgstr "Αρκούδα"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
+msgid "Wild Boar"
 msgstr "Αγριόχοιρος"
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr "Αγριογούρουνο"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -369,13 +373,25 @@ msgstr " Λέαινα"
 msgid "Muskox"
 msgstr "Μοσχόβους"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
 msgstr "Παγώνι"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr "Ταώς ο λοφιοφόρος"
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Χοίρος"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr "Πύρινος Χοίρος"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr "Φωτιά κατοικίδιου χοίρου"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,15 @@ CChart::~CChart()
 void CChart::HandleMessage(SGUIMessage& Message)
 {
 	// TODO: implement zoom
+	switch (Message.type)
+	{
+	case GUIM_SETTINGS_UPDATED:
+	{
+		UpdateSeries();
+		break;
+	}
+	}
+
 }
 
 void CChart::Draw()
@@ -47,15 +56,13 @@ void CChart::Draw()
 	if (!GetGUI())
 		return;
 
-	UpdateSeries();
+	if (m_Series.empty())
+		return;
 
 	const float bz = GetBufferedZ();
 	CRect rect = GetChartRect();
 	const float width = rect.GetWidth();
 	const float height = rect.GetHeight();
-
-	if (m_Series.empty())
-		return;
 
 	// Disable depth updates to prevent apparent z-fighting-related issues
 	//  with some drivers causing units to get drawn behind the texture.
@@ -93,6 +100,7 @@ void CChart::Draw()
 			continue;
 
 		std::vector<float> vertices;
+		vertices.reserve(data.m_Points.size() * 3);
 		for (const CVector2D& point : data.m_Points)
 		{
 			vertices.push_back(rect.left + (point.X - leftBottom.X) * scale.X);
@@ -131,10 +139,10 @@ void CChart::UpdateSeries()
 	GUI<CGUIList>::GetSettingPointer(this, "series_color", pSeriesColor);
 
 	m_Series.clear();
+	m_Series.resize(pSeries->m_Series.size());
 	for (size_t i = 0; i < pSeries->m_Series.size(); ++i)
 	{
-		m_Series.resize(m_Series.size() + 1);
-		CChartData& data = m_Series.back();
+		CChartData& data = m_Series[i];
 
 		if (i < pSeriesColor->m_Items.size() && !GUI<int>::ParseColor(pSeriesColor->m_Items[i].GetOriginalString(), data.m_Color, 0))
 			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(pSeriesColor->m_Items[i].GetOriginalString()));

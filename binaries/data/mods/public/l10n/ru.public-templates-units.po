@@ -6,6 +6,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
+# Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Alex <yanebotan@ngs.ru>, 2015
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
@@ -36,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-24 08:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-03 11:11+0000\n"
+"Last-Translator: Alexey Solodovnikov <sklent@outlook.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -786,14 +787,12 @@ msgstr "Пельтастес Фракс"
 #: simulation/templates/units/cart_cavalry_spearman_ital_b.xml:15
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:15
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:15
-#: simulation/templates/units/cart_infantry_archer_b.xml:23
 #: simulation/templates/units/cart_infantry_javelinist_iber_b.xml:24
 #: simulation/templates/units/cart_infantry_slinger_iber_b.xml:24
 #: simulation/templates/units/cart_infantry_swordsman_gaul_b.xml:24
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
-#: simulation/templates/units/mace_infantry_javelinist_b.xml:22
 #: simulation/templates/units/merc_black_cloak.xml:16
 #: simulation/templates/units/merc_thorakites.xml:26
 #: simulation/templates/units/merc_thrace_swordsman.xml:16
@@ -917,7 +916,7 @@ msgid "Celtic Cavalry"
 msgstr "Кельтская кавалерия"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:9
-#: simulation/templates/units/brit_hero_boudicca.xml:11
+#: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
@@ -944,19 +943,41 @@ msgid "Delamokludda"
 msgstr "Деламоклудда"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:12
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:7
-msgid "Boudicca"
-msgstr "Боудикка"
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:11
+msgid "Female"
+msgstr "Женщина"
+
+#: simulation/templates/units/brit_hero_boudicca.xml:13
+msgid "Boudicca (Chariot)"
+msgstr ""
+
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
+msgid "Boadicea"
+msgstr "Боадицея"
+
+#: simulation/templates/units/brit_hero_boudicca.xml:22
+msgid "Unmount Boudicca so she can fight with a sword."
+msgstr ""
 
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:8
-msgid "Heroine"
-msgstr "Героиня"
+msgid "Boudicca (Sword)"
+msgstr ""
+
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:11
+msgid "Guerilla"
+msgstr ""
+
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:18
+msgid "Mount Boudicca onto her mighty chariot."
+msgstr ""
 
 #: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
 msgstr "Каратак"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:6
+#: simulation/templates/units/brit_hero_cunobelin_infantry.xml:6
 msgid "Cunobelin"
 msgstr "Кунобелин"
 
@@ -1124,11 +1145,11 @@ msgstr "Магарбал"
 msgid "Maharbaʿal"
 msgstr "Магарбаал"
 
-#: simulation/templates/units/cart_infantry_archer_b.xml:21
+#: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Mauritanian Archer"
 msgstr "Мавританский лучник"
 
-#: simulation/templates/units/cart_infantry_archer_b.xml:22
+#: simulation/templates/units/cart_infantry_archer_b.xml:16
 msgid "Qešet"
 msgstr "Кешет"
 
@@ -1438,10 +1459,12 @@ msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Деметриос Полиоркетес"
 
 #: simulation/templates/units/mace_hero_philip.xml:7
+#: simulation/templates/units/mace_hero_philip_pike.xml:7
 msgid "Philip II of Macedon"
 msgstr "Филипп II Македонский"
 
 #: simulation/templates/units/mace_hero_philip.xml:8
+#: simulation/templates/units/mace_hero_philip_pike.xml:8
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Филиппос Дейтерос хо Македон"
 
@@ -1457,11 +1480,11 @@ msgstr "Пиррхос тон Эпеирос"
 msgid "\"Pyrrhic Victory\" Aura: TBD."
 msgstr "Аура \"Пиррова победа\": пока не определено."
 
-#: simulation/templates/units/mace_infantry_javelinist_b.xml:20
+#: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
 msgstr "Агрианский пельтаст"
 
-#: simulation/templates/units/mace_infantry_javelinist_b.xml:21
+#: simulation/templates/units/mace_infantry_javelinist_b.xml:15
 msgid "Peltastḗs Agrías"
 msgstr "Пельтастес Агриас"
 
@@ -1981,6 +2004,14 @@ msgstr "Башенный боевой слон"
 #: simulation/templates/units/ptol_champion_elephant.xml:6
 msgid "Polémou Eléphantos"
 msgstr "Полему элефантос"
+
+#: simulation/templates/units/ptol_champion_infantry_pikeman.xml:6
+msgid "Royal Guard Infantry"
+msgstr ""
+
+#: simulation/templates/units/ptol_champion_infantry_pikeman.xml:7
+msgid "Phalangitès Agema"
+msgstr ""
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"

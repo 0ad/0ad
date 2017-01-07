@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Balázs Meskó <meskobalazs@gmail.com>, 2016
+# Balázs Meskó <meskobalazs@gmail.com>, 2016-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
-# Gellért Gyuris <gellert.gyuris@gmail.com>, 2014-2015
+# Gyuris Gellért <gellert.gyuris@gmail.com>, 2014-2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-10-01 16:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-03 00:45+0000\n"
+"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +119,7 @@ msgstr "Kincs"
 msgid "A treasure that can be quickly gathered."
 msgstr "Egy kincs, amely gyorsan begyűjthető."
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
 msgstr "Épület"
 
@@ -204,8 +204,8 @@ msgid "Box"
 msgstr "Doboz"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
-msgstr "Zárt oszlop"
+msgid "Forced March"
+msgstr "Erőltetett menet"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -220,20 +220,20 @@ msgid "Flank"
 msgstr "Szárny"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr "Zárt vonal"
+msgid "Close Order"
+msgstr "Összezárási parancs"
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr "Nyílt vonal"
+msgid "Open Order"
+msgstr "Szétnyílási parancs"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "Nincs"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
-msgstr "10 közelharci gyalogos egység szükséges"
+msgid "10 hoplite infantry required"
+msgstr "10 hoplita gyalogos szükséges"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -252,10 +252,10 @@ msgid "Skirmish"
 msgstr "Csatározás"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr "9 lándzsás gyalogos egység szükséges"
+msgid "16 pike infantry units required"
+msgstr "16 lándzsás gyalogos egység szükséges"
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
 msgstr "Szüntagma"
 
@@ -268,8 +268,8 @@ msgid "Testudo"
 msgstr "Teknős"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
-msgstr "3 lovas egység szükséges"
+msgid "6 cavalry units required"
+msgstr "6 lovassági egység szükséges"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -280,8 +280,12 @@ msgid "Bear"
 msgstr "Medve"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
+msgid "Wild Boar"
 msgstr "Vaddisznó"
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -369,13 +373,25 @@ msgstr "Nőstény oroszlán"
 msgid "Muskox"
 msgstr "Pézsmatulok"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
 msgstr "Páva"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr "Pavo cristatus"
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Disznó"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr "Égő malac"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr "Sus scrofa domesticus igne"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"

@@ -9,7 +9,7 @@ Engine.LoadComponentScript("AuraManager.js");
 let playerID = [0, 1, 2];
 let playerEnt = [10, 11, 12];
 let playerState = "active";
-let giverEnt = 20;
+let sourceEnt = 20;
 let targetEnt = 30;
 let auraRange = 40;
 let template = { "Identity" : { "Classes" : { "_string" : "CorrectClass OtherClass" } } };
@@ -50,9 +50,16 @@ function testAuras(name, test_function)
 	});
 
 	AddMock(playerEnt[1], IID_Player, {
-		"IsAlly": id => id == 1,
-		"IsEnemy": id => id != 1,
+		"IsAlly": id => id == playerID[1] || id == playerID[2],
+		"IsEnemy": id => id !=  playerID[1] || id != playerID[2],
 		"GetPlayerID": () => playerID[1],
+		"GetState": () => playerState
+	});
+
+	AddMock(playerEnt[2], IID_Player, {
+		"IsAlly": id => id == playerID[1] || id == playerID[2],
+		"IsEnemy": id => id != playerID[1] || id != playerID[2],
+		"GetPlayerID": () => playerID[2],
 		"GetState": () => playerState
 	});
 
@@ -60,25 +67,28 @@ function testAuras(name, test_function)
 		"GetClassesList": () => ["CorrectClass", "OtherClass"]
 	});
 
-	AddMock(giverEnt, IID_Position, {
+	AddMock(sourceEnt, IID_Position, {
 		"GetPosition2D": () => new Vector2D()
 	});
 
-	AddMock(targetEnt, IID_Position, {
-		"GetPosition2D": () => new Vector2D()
-	});
+	if (name != "player" || playerEnt.indexOf(targetEnt) == -1)
+	{
+		AddMock(targetEnt, IID_Position, {
+			"GetPosition2D": () => new Vector2D()
+		});
 
-	if (playerEnt.indexOf(giverEnt) == -1)
-		AddMock(giverEnt, IID_Ownership, {
+		AddMock(targetEnt, IID_Ownership, {
+			"GetOwner": () => playerID[1]
+		});
+	}
+
+	if (playerEnt.indexOf(sourceEnt) == -1)
+		AddMock(sourceEnt, IID_Ownership, {
 			"GetOwner": () => playerID[1]
 		});
 
-	AddMock(targetEnt, IID_Ownership, {
-		"GetOwner": () => playerID[1]
-	});
-
 	ConstructComponent(SYSTEM_ENTITY, "AuraManager", {});
-	let cmpAuras = ConstructComponent(giverEnt, "Auras", { "_string": name });
+	let cmpAuras = ConstructComponent(sourceEnt, "Auras", { "_string": name });
 	test_function(name, cmpAuras);
 }
 
@@ -87,14 +97,21 @@ testAuras("global", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 15);
 });
 
-giverEnt = 11;
+targetEnt = playerEnt[playerID[2]];
+testAuras("player", (name, cmpAuras) => {
+	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
+	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 15);
+});
+targetEnt = 30;
+
+// Test the case when the aura source is a player entity.
+sourceEnt = 11;
 testAuras("global", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);
 	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[1], template), 15);
 });
+sourceEnt = 20;
 
-// Test the case when the aura giver is a player entity.
-giverEnt = 20;
 testAuras("range", (name, cmpAuras) => {
 	cmpAuras.OnRangeUpdate({ "tag": 1, "added": [targetEnt], "removed": [] });
 	TS_ASSERT_EQUALS(ApplyValueModificationsToEntity("Component/Value", 5, targetEnt), 15);

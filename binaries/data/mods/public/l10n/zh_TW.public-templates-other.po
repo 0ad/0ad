@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2014-2016
+# Jeff Huang <s8321414@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 14:02+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-02 13:51+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgstr "寶藏"
 msgid "A treasure that can be quickly gathered."
 msgstr "可以快速收集的資源。"
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
 msgstr "建築物"
 
@@ -200,8 +200,8 @@ msgid "Box"
 msgstr "方陣"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
-msgstr "密集縱隊"
+msgid "Forced March"
+msgstr "強制進展"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -216,20 +216,20 @@ msgid "Flank"
 msgstr "翼形"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr "密集橫隊"
+msgid "Close Order"
+msgstr "關閉順序"
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr "分散橫隊"
+msgid "Open Order"
+msgstr "開放順序"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "無"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
-msgstr "需要10個近戰步兵單位"
+msgid "10 hoplite infantry required"
+msgstr "需要 10 個重裝步兵"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -248,10 +248,10 @@ msgid "Skirmish"
 msgstr "小規模戰鬥"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr "需要9個長槍步兵單位"
+msgid "16 pike infantry units required"
+msgstr "需要 16 個長槍兵"
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
 msgstr "馬其頓方陣"
 
@@ -264,8 +264,8 @@ msgid "Testudo"
 msgstr "龜甲陣"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
-msgstr "需要3個騎兵單位"
+msgid "6 cavalry units required"
+msgstr "需要 6 個騎兵"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -276,8 +276,12 @@ msgid "Bear"
 msgstr "熊"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
+msgid "Wild Boar"
 msgstr "野豬"
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -365,13 +369,25 @@ msgstr "母獅"
 msgid "Muskox"
 msgstr "麝牛"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
 msgstr "孔雀"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr "Pavo cristatus"
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "豬"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr "火焰豬"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr "Sus scrofa domesticus igne"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"

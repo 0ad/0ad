@@ -5,14 +5,15 @@
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2016
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:17+0100\n"
-"PO-Revision-Date: 2016-12-29 19:12+0000\n"
-"Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-05 10:46+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -202,7 +203,7 @@ msgstr "+10% eus un efed tiriadel evit an holl savadurioù keit m'emañ o vevañ
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
-msgstr "Sezisañ an aora"
+msgstr "Aora ar Seziser"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
@@ -217,12 +218,12 @@ msgid "Buddhism Aura"
 msgstr "Aora ar Voudaegezh"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
-msgid "All player temple technologies -50% cost and -50% research time."
-msgstr "-50% a enklask amzer ha -50% a goust evit teknologiezhioù pep c'hoarier an templ."
+msgid "Temples and temple technologies -50% cost, in resources and time."
+msgstr "Templ ha teknologiezhoù an templ -50% a goust e mamenn hag en amzer."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
-msgstr "Aora ar C'helenner"
+msgstr "Aora ar c'helenner"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
 msgid ""
@@ -243,7 +244,7 @@ msgstr "+20% a argad ha +1 a bakusted evit unvezioù marc'hegerien tost."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
-msgstr "Aora ar Gourc'hemenn"
+msgstr "Aora al Levierezh"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
@@ -418,6 +419,15 @@ msgid ""
 "Iberian players"
 msgstr "Digreskiñ ar c'houst evit ar geodedourien-soudarded-tennerien eus 20% evit ar re zo kevredet gant ar c'hoarierien Iberek"
 
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
+msgid "Ashoka's Religious Support"
+msgstr "Skoazell Relijiel Ashoka"
+
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
+msgid ""
+"Allied temples and temple technologies -50% cost, in resources and time."
+msgstr "Templ ar re gevredet ha teknologiezhioù an templ -50% a goust e mammenn hag e amzer."
+
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Grignol ar Morkreizdouarel"
@@ -428,7 +438,7 @@ msgstr "An holl re gevredet a c'hounez en un doare emgefreek ur buzad moan a vou
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr "Tetrapolis Sirian"
+msgstr "Tetrapolis sirian"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-12-23 16:38+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-05 17:23+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -77,14 +78,14 @@ msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "Dismantroù Generek"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr ""
+msgstr "Dismantroù"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
@@ -114,23 +115,23 @@ msgstr "Teñzor"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr ""
+msgstr "Un teñzor hag a c'hall bezañ dastumet fonnus."
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
-msgstr ""
+msgstr "Savadur"
 
 #: simulation/templates/template_unit.xml:40
 msgid "Unit"
-msgstr ""
+msgstr "Unanenn"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
-msgstr ""
+msgstr "Arme Alexandr ar Meur."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
-msgstr ""
+msgstr "Arme Alexandr ar Meur"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 #: simulation/templates/campaigns/army_mace_standard.xml:21
@@ -140,19 +141,19 @@ msgstr ""
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr ""
+msgstr "Arme Masedonia"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr ""
+msgstr "Arme Makedonia"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
-msgstr ""
+msgstr "Arme Leonidas I."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
-msgstr ""
+msgstr "Arme Leonidas I"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:25
 #: simulation/templates/campaigns/campaign_city_test.xml:25
@@ -166,19 +167,19 @@ msgstr "Trevadenn"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "Ker-stad gresian bihan"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city."
-msgstr ""
+msgstr "Ur gêr C'hresian vihan an hini eo."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "Kêr-stad gresian"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city."
-msgstr ""
+msgstr "Ur gêr C'hresian vras an hini eo."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -194,51 +195,51 @@ msgstr ""
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
-msgstr ""
+msgstr "4 unanenn a zo rekiset"
 
 #: simulation/templates/formations/box.xml:7
 msgid "Box"
-msgstr ""
+msgstr "Karrez"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
+msgid "Forced March"
 msgstr ""
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
-msgstr ""
+msgstr "Kolonenn Digor"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
-msgstr ""
+msgstr "8 unanenn a zo rekiset"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr ""
+msgstr "Kostez"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr ""
+msgid "Close Order"
+msgstr "Urzh Sarr"
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr ""
+msgid "Open Order"
+msgstr "Urzh Digor"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "Hini ebet"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
+msgid "10 hoplite infantry required"
 msgstr ""
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr ""
+msgstr "Falañs"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
-msgstr ""
+msgstr "Strewad"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
@@ -246,15 +247,15 @@ msgstr ""
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr ""
+msgstr "Emgannig"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
+msgid "16 pike infantry units required"
 msgstr ""
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
-msgstr ""
+msgstr "Syntagma"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
@@ -262,27 +263,31 @@ msgstr ""
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
-msgstr ""
+msgstr "Baot"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
+msgid "6 cavalry units required"
 msgstr ""
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
-msgstr ""
+msgstr "Korn"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
-msgstr ""
+msgstr "Arzh"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
-msgstr ""
+msgid "Wild Boar"
+msgstr "Hoc'h-gouez"
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
-msgstr ""
+msgstr "Kañval"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Chicken"
@@ -290,36 +295,36 @@ msgstr "Yar"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Krokodil an Nil"
 
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Deer"
-msgstr ""
+msgstr "Karv"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "Olifant eus ar Savanenn Afrikan"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr ""
+msgstr "Olifantig Afrikan (Yaouank)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:33
 msgid "Asian Elephant"
-msgstr ""
+msgstr "Olifant Azian"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr ""
+msgstr "Olifant Norzh-Afrikan"
 
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
 msgid "Tuna Fish"
-msgstr ""
+msgstr "Toun"
 
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
@@ -328,7 +333,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
-msgstr ""
+msgstr "Tilapia"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
@@ -336,107 +341,119 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
-msgstr ""
+msgstr "Gazelenn"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr ""
+msgstr "Jirafenn (Oadour)"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
-msgstr ""
+msgstr "Jirafenn (Yaouank)"
 
 #: simulation/templates/gaia/fauna_goat.xml:15
 msgid "Goat"
-msgstr ""
+msgstr " Gavr"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Horse"
-msgstr ""
+msgstr "Marc'h"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Lion"
-msgstr ""
+msgstr "Leon"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
-msgstr ""
+msgstr "Leonez"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "Ejen musket"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
-msgstr ""
+msgstr "Paun"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr "Pavo cristatus"
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
-msgstr ""
+msgstr "Pemoc'h"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr "Pemoc'h Entanet"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr "Sus scrofa domesticus igne"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
-msgstr ""
+msgstr "Lapin"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr ""
+msgstr "Frikorneg"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
-msgstr ""
+msgstr "Bleiz-mor Gwenn Bras"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Shark"
-msgstr ""
+msgstr "Bleiz-mor"
 
 #: simulation/templates/gaia/fauna_sheep.xml:15
 msgid "Sheep"
-msgstr ""
+msgstr "Dañvad"
 
 #: simulation/templates/gaia/fauna_tiger.xml:18
 msgid "Tiger"
-msgstr ""
+msgstr "Tigr"
 
 #: simulation/templates/gaia/fauna_walrus.xml:23
 msgid "Walrus"
-msgstr ""
+msgstr "Kole-mor"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:8
 msgid "Fin Whale"
-msgstr ""
+msgstr "Balum Boutin"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
-msgstr ""
+msgstr "Balum Tort"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "Gnou"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
-msgstr ""
+msgstr "Bleiz"
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
-msgstr ""
+msgstr "Bleiz an Erc'hegi"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
-msgstr ""
+msgstr "Zebr"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr ""
+msgstr "Brousgwez"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
-msgstr ""
+msgstr "Boued-chatal"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
-msgstr ""
+msgstr "Rezin"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
@@ -444,54 +461,54 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr ""
+msgstr "Brousgwezenn Deliaouek"
 
 #: simulation/templates/gaia/flora_tree_acacia.xml:4
 msgid "Acacia Tree"
-msgstr ""
+msgstr "Gwezenn Kasia"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
-msgstr ""
+msgstr "Gwezenn Pin Alepo"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
-msgstr ""
+msgstr "Gwezenn Avaloù"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 msgid "Baobab"
-msgstr ""
+msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
-msgstr ""
+msgstr "Gwezenn Karoubez"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr ""
+msgstr "Gwezenn Datez Kretan"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
-msgstr ""
+msgstr "Gwezenn Siprez"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
-msgstr ""
+msgstr "Gwezenn Datez"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
-msgstr ""
+msgstr "Gwezenn Varv"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
+msgstr "Gwezenn Faou Europat"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
-msgstr ""
+msgstr "Fiez"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
@@ -499,7 +516,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr ""
+msgstr "Gwezenn Palm Kreizdouarel"
 
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
@@ -507,44 +524,44 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_oak_dead.xml:4
 #: simulation/templates/gaia/flora_tree_oak_new.xml:4
 msgid "Oak Tree"
-msgstr ""
+msgstr "Gwezenn Derv"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "Gwezenn Derv Ledan"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "Gwezenn Olivez"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
-msgstr ""
+msgstr "Gwezenn Palm"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "Gwezenn Palm Trovanek"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine Tree"
-msgstr ""
+msgstr "Gwezenn Pin"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr ""
+msgstr "Gwezenn Elv"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "Gwezenn Elv Lombardia"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr ""
+msgstr "Gwezenn Palm Bro-Senegal"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr ""
+msgstr "Gwezenn Tamarisk"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -553,13 +570,13 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "Dismantroù Kozh"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
 msgid "Stone Ruins"
-msgstr ""
+msgstr "Dismantroù e Mein"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
@@ -572,7 +589,7 @@ msgstr ""
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
-msgstr ""
+msgstr "Delwennoù Roma"
 
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:10
 #: simulation/templates/gaia/special_treasure_food_bin.xml:10
@@ -597,7 +614,7 @@ msgstr "Teñzor Bouedel Persian"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
-msgstr ""
+msgstr "Kreoñ Aour"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
@@ -607,19 +624,19 @@ msgstr "Teñzor Metalel"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
-msgstr ""
+msgstr "Boest Kuzh"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr ""
+msgstr "Marc'hadourezhioù Persian"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
-msgstr ""
+msgstr "Tapisoù Persian"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
-msgstr ""
+msgstr "Pegasus"
 
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
@@ -632,21 +649,21 @@ msgstr "Teñzor Koadel"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
-msgstr ""
+msgstr "Bank"
 
 #: simulation/templates/other/bench.xml:21
 msgid "Wooden Bench"
-msgstr ""
+msgstr "Bank koad"
 
 #: simulation/templates/other/bridge_hele.xml:16
 #: simulation/templates/other/bridge_hele.xml:17
 msgid "Bridge"
-msgstr ""
+msgstr "Pont"
 
 #: simulation/templates/other/bridge_wooden.xml:16
 #: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
-msgstr ""
+msgstr "Pont koad"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -654,7 +671,7 @@ msgstr ""
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "Tophet"
 
 #: simulation/templates/other/cart_tophet.xml:24
 msgid "Train physicians and Sacred Band Cavalrymen."
@@ -662,48 +679,48 @@ msgstr ""
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
-msgstr ""
+msgstr "Foukenn"
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
-msgstr ""
+msgstr "Ti hir"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
 #: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Column"
-msgstr ""
+msgstr "Kolonenn"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr ""
+msgstr "Kolonenn dorikek"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr ""
+msgstr "Kolonenn dorikek kouezhet"
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
 msgid "Fence"
-msgstr ""
+msgstr "Sklotur"
 
 #: simulation/templates/other/fence_long.xml:22
 msgid "Long Wooden Fence"
-msgstr ""
+msgstr "Sklotur koad hir"
 
 #: simulation/templates/other/fence_short.xml:22
 msgid "Short Wooden Fence"
-msgstr ""
+msgstr "Sklotur koad berr"
 
 #: simulation/templates/other/fence_stone.xml:21
 #: simulation/templates/other/fence_stone.xml:22
 msgid "Stone Fence"
-msgstr ""
+msgstr "Sklotur men"
 
 #: simulation/templates/other/generic_field.xml:9
 msgid "Wheat Field"
-msgstr ""
+msgstr "Park ed"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:29
 msgid "Epic Temple"
@@ -711,7 +728,7 @@ msgstr ""
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Garrison units to heal them at a quick rate."
@@ -719,11 +736,11 @@ msgstr ""
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "Peuliaoueg"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
+msgstr "Propylaea"
 
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
@@ -731,19 +748,19 @@ msgstr "Stoa"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "Stoa hellenel"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
-msgstr ""
+msgstr "Harmya"
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
-msgstr ""
+msgstr "Obeliskenn"
 
 #: simulation/templates/other/obelisk.xml:21
 msgid "Egyptian Obelisk"
-msgstr ""
+msgstr "Obeliskenn ejiptek"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
@@ -755,7 +772,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
-msgstr ""
+msgstr "Kamm ar peulgae"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
@@ -763,7 +780,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
-msgstr ""
+msgstr "Fin ar peulgae"
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
@@ -771,7 +788,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
-msgstr ""
+msgstr "Kreñv ar peulgae"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Sentry Tower"
@@ -779,11 +796,11 @@ msgstr "Tour geder"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
-msgstr ""
+msgstr "Nor ar peulgae"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
-msgstr ""
+msgstr "Nor koad"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27
@@ -792,7 +809,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
-msgstr ""
+msgstr "Peulgae"
 
 #: simulation/templates/other/palisades_rocks_long.xml:28
 #: simulation/templates/other/palisades_rocks_medium.xml:28
@@ -801,7 +818,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
-msgstr ""
+msgstr "Moger koad"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
@@ -834,7 +851,7 @@ msgstr ""
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "Annez"
 
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
@@ -843,15 +860,15 @@ msgstr "Ti"
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
 msgid "Inn"
-msgstr ""
+msgstr "Ostaleri"
 
 #: simulation/templates/other/pers_warehouse.xml:12
 msgid "Warehouse"
-msgstr ""
+msgstr "Etrepaouez"
 
 #: simulation/templates/other/plane.xml:41
 msgid "P-51 Mustang"
-msgstr ""
+msgstr "P-51 Mustang"
 
 #: simulation/templates/other/plane.xml:43
 msgid "A World War 2 American fighter plane."
@@ -860,30 +877,30 @@ msgstr ""
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
 msgid "Pyramid"
-msgstr ""
+msgstr "Piramidenn"
 
 #: simulation/templates/other/pyramid_great.xml:10
 msgid "Great Pyramid"
-msgstr ""
+msgstr "Piramidenn vras"
 
 #: simulation/templates/other/pyramid_minor.xml:10
 msgid "Minor Pyramid"
-msgstr ""
+msgstr "Piramidenn vihan"
 
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
-msgstr ""
+msgstr "Kkolonennoù"
 
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
-msgstr ""
+msgstr " kolonennoù korinthianek"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr ""
+msgstr "Peñse"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
@@ -891,7 +908,7 @@ msgstr ""
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "Peñse ul lestr-karg "
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
@@ -909,21 +926,21 @@ msgstr ""
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "Kel bras"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "Kel krenn"
 
 #: simulation/templates/other/stall_small_a.xml:12
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "Kel bihan"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
 msgid "Table"
-msgstr ""
+msgstr "Taol"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
@@ -931,15 +948,15 @@ msgstr ""
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
+msgstr "Toal garrez"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr ""
+msgstr "Templ gresian ha n'eo ket achu"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
+msgstr "N'eo ket achu an templ-mañ hag eo aet da get"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -956,7 +973,7 @@ msgstr ""
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "Merker"
 
 #: simulation/templates/special/player.xml:56
 msgid "Player"
@@ -967,24 +984,24 @@ msgstr "C'hoarier"
 #: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
 msgid "Lithobólos"
-msgstr ""
+msgstr "Lithobólos"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybelḗs"
-msgstr ""
+msgstr "Oxybelḗs"
 
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
 msgid "Ballista"
-msgstr ""
+msgstr "Ballista"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr ""
+msgstr "Polybolos"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
 msgid "Scorpio"
-msgstr ""
+msgstr "Scorpio"

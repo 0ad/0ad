@@ -155,7 +155,12 @@ Auras.prototype.IsRangeAura = function(name)
 
 Auras.prototype.IsGlobalAura = function(name)
 {
-	return this.GetType(name) == "global";
+	return this.GetType(name) == "global" || this.GetType(name) == "player";
+};
+
+Auras.prototype.IsPlayerAura = function(name)
+{
+	return this.GetType(name) == "player";
 };
 
 /**
@@ -204,10 +209,7 @@ Auras.prototype.Clean = function()
 			for (let player of affectedPlayers)
 			{
 				this.ApplyTemplateBonus(name, affectedPlayers);
-				// When only Player class affected, we do not need a rangeQuery
-				// as applicable only to player entity and templates
-				// TODO maybe add a new type "player"
-				if (this.GetClasses(name).length == 1 && this.GetClasses(name)[0] == "Player")
+				if (this.IsPlayerAura(name))
 				{
 					let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 					let playerEnts = affectedPlayers.map(player => cmpPlayerManager.GetPlayerByID(player));

@@ -63,6 +63,28 @@ m.newDiplomacyMessages = {
 	]
 };
 
+m.answerAllyRequestMessages = {
+	"decline": [
+		markForTranslation("I cannot accept your offer to be allies %(_player_)s.")
+	],
+	"declineSuggestNeutral": [
+		markForTranslation("I will not ally with you %(_player_)s, but I will consider a neutrality pact.")
+	],
+	"declineRepeatedOffer": [
+		markForTranslation("%(_player_)s, our previous alliance did not work out, so I must decline your offer.")
+	],
+	"accept": [
+		markForTranslation("I will accept your offer to become allies %(_player_)s. We will both benefit from this alliance.")
+	],
+	"acceptWithTribute": [
+		markForTranslation("I will ally with you %(_player_)s, but only if you send me a tribute of %(_amount_)s %(_resource_)s."),
+		markForTranslation("%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for me to accept an alliance.")
+	],
+	"waitingForTribute": [
+		markForTranslation("%(_player_)s, my offer still stands. I will ally with you if you send me a tribute of %(_amount_)s %(_resource_)s.")
+	]
+};
+
 m.chatLaunchAttack = function(gameState, player, type)
 {
 	Engine.PostCommand(PlayerID, {
@@ -137,6 +159,20 @@ m.chatNewDiplomacy = function(gameState, player, newDiplomaticStance)
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": { "_player_": player }
+	});
+};
+
+m.chatAnswerRequestAlly = function(gameState, player, response, requiredTribute)
+{
+	Engine.PostCommand(PlayerID, {
+		"type": "aichat",
+		"message": "/msg " + gameState.sharedScript.playersData[player].name + " " +
+			pickRandom(this.answerAllyRequestMessages[response]),
+		"translateMessage": true,
+		"translateParameters": requiredTribute ? ["_amount_", "_resource_", "_player_"] : ["_player_"],
+		"parameters": requiredTribute ?
+			{ "_amount_": requiredTribute.wanted, "_resource_": requiredTribute.type, "_player_": player } :
+			{ "_player_": player }
 	});
 };
 

@@ -8,12 +8,12 @@
 # Любомир Василев, 2016
 # AccountKiller, 2015
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2015
-# Любомир Василев, 2016
+# Любомир Василев, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:01+0200\n"
-"PO-Revision-Date: 2016-09-30 09:55+0000\n"
+"POT-Creation-Date: 2017-01-02 09:05+0100\n"
+"PO-Revision-Date: 2017-01-03 08:21+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "Съкровище"
 msgid "A treasure that can be quickly gathered."
 msgstr "Съкровище, което лесно може да бъде взето."
 
-#: simulation/templates/template_structure.xml:55
+#: simulation/templates/template_structure.xml:60
 msgid "Structure"
 msgstr "Сграда"
 
@@ -205,8 +205,8 @@ msgid "Box"
 msgstr "Кутия"
 
 #: simulation/templates/formations/column_closed.xml:5
-msgid "Column Closed"
-msgstr "Затворена колона"
+msgid "Forced March"
+msgstr "Пресилен марш"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -221,20 +221,20 @@ msgid "Flank"
 msgstr "Фланг"
 
 #: simulation/templates/formations/line_closed.xml:5
-msgid "Line Closed"
-msgstr "Затворена линия"
+msgid "Close Order"
+msgstr "Затворена подредба"
 
 #: simulation/templates/formations/line_open.xml:5
-msgid "Line Open"
-msgstr "Отворена линия"
+msgid "Open Order"
+msgstr "Отворена подредба"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
 msgstr "Без"
 
 #: simulation/templates/formations/phalanx.xml:6
-msgid "10 melee infantry units required"
-msgstr "Нужни са 10 близкобойни пехотни единици"
+msgid "10 hoplite infantry required"
+msgstr "Нужни са 10 пехотни хоплити"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -253,10 +253,10 @@ msgid "Skirmish"
 msgstr "Стрелкова"
 
 #: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr "Нужни са 9 пехотни единици с пики"
+msgid "16 pike infantry units required"
+msgstr "Нужни са 16 пехотинци с копия"
 
-#: simulation/templates/formations/syntagma.xml:7
+#: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
 msgstr "Синтагма"
 
@@ -269,8 +269,8 @@ msgid "Testudo"
 msgstr "Костенурка"
 
 #: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
-msgstr "Нужни са 3 конни единици"
+msgid "6 cavalry units required"
+msgstr "Нужни са 6 конници"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -281,8 +281,12 @@ msgid "Bear"
 msgstr "Мечка"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
-msgid "Boar"
+msgid "Wild Boar"
 msgstr "Дива свиня"
+
+#: simulation/templates/gaia/fauna_boar.xml:19
+msgid "Sus scrofa"
+msgstr "Сус скрофа"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -370,13 +374,25 @@ msgstr "Лъвица"
 msgid "Muskox"
 msgstr "Овцебик"
 
-#: simulation/templates/gaia/fauna_peacock.xml:12
+#: simulation/templates/gaia/fauna_peacock.xml:14
 msgid "Peacock"
 msgstr "Паун"
+
+#: simulation/templates/gaia/fauna_peacock.xml:15
+msgid "Pavo cristatus"
+msgstr "Паво кристатус"
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"
 msgstr "Прасе"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:18
+msgid "Flaming Pig"
+msgstr "Горящо прасе"
+
+#: simulation/templates/gaia/fauna_pig_flaming.xml:19
+msgid "Sus scrofa domesticus igne"
+msgstr "Сус скрофа доместикус игне"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"

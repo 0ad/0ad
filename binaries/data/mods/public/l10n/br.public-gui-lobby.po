@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2017
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-26 01:09+0000\n"
-"Last-Translator: Envel PICHON <envel_ras@hotmail.fr>\n"
+"PO-Revision-Date: 2017-01-05 16:54+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +78,7 @@ msgstr "Hini ebet"
 
 #: gui/lobby/lobby.js:423
 msgid "Moderator"
-msgstr ""
+msgstr " Habaskaer "
 
 #: gui/lobby/lobby.js:423
 msgid "Player"
@@ -91,12 +92,12 @@ msgstr "N/A"
 #: gui/lobby/lobby.js:439
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:453
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "N'eo ket bet kavet ar c'hoarier \"%(nick)s\"."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:634
@@ -115,7 +116,7 @@ msgstr "C'hoarierien: %(current)s/ %(total)s"
 
 #: gui/lobby/lobby.js:681
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Kroget he deus ar c'hoariadenn dija. Ha c'hoant ho peus da emezelañ evel arseller?"
 
 #: gui/lobby/lobby.js:682
 msgid "Confirmation"
@@ -132,12 +133,12 @@ msgstr "Ya"
 #: gui/lobby/lobby.js:702
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Chomlec'h ar c'hoari  '%(ip)s' na seblant ket bezañ unan mat."
 
 #: gui/lobby/lobby.js:821
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "Digarezit ac'hanomp, an urzhiad '%(cmd)s' na vez ket skoret."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:903
@@ -194,7 +195,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1065
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Na strobit ket mar-plij. Stanket hoc'h bet evit tregont eilenn."
 
 #: gui/lobby/lobby.js:1132
 msgctxt "Used for an undefined winning rate"
@@ -212,7 +213,7 @@ msgstr "O kevreañ..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr ""
+msgstr "Oc'h enskrivañ..."
 
 #: gui/lobby/prelobby.js:92
 msgid "Please enter your username"
@@ -220,87 +221,87 @@ msgstr "Mar plij, skrivit hoc'h anv-implijer."
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "An anvioù-implijer n'hall ket enderc'hel \\[, ], unikodoù, esaouennoù pe skejoù"
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
-msgstr ""
+msgstr "Ebarzhit ho ker-kuzh mar plij"
 
 #: gui/lobby/prelobby.js:117
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Ebarzhit ho ker-kuzh adarre mar plij"
 
 #: gui/lobby/prelobby.js:123
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Ne klot ket ar gerioù-kuzh"
 
 #: gui/lobby/prelobby.js:129
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Lennit mar-plij Termenoù ar Servij"
 
 #: gui/lobby/prelobby.js:135
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Lennit mar-plij Termenoù an Implij"
 
 #: gui/lobby/prelobby.js:141
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Savit a-du gant Termenoù ar Servij ha Termenoù an Implij mar-plij"
 
 #: gui/lobby/prelobby.js:171
 msgid "Registered"
-msgstr ""
+msgstr "Enskrivet"
 
 #: gui/lobby/prelobby.js:233
 msgid "Register"
-msgstr ""
+msgstr "En em enskrivañ"
 
 #: gui/lobby/prelobby.js:239 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
-msgstr ""
+msgstr "Kevreañ"
 
 #: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termenoù ar Servij"
 
 #: gui/lobby/prelobby.js:258 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr ""
+msgstr "Termenoù an Implij"
 
 #: gui/lobby/lobby.xml:(caption):18 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Hall lies-c'hoarier"
 
 #: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):325
 msgid "Current Rank:"
-msgstr ""
+msgstr "Renk War-Red:"
 
 #: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):329
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Skor uhelañ:"
 
 #: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):333
 msgid "Total Games:"
-msgstr ""
+msgstr "Niver a C'hoariadennoù:"
 
 #: gui/lobby/lobby.xml:(caption):75 gui/lobby/lobby.xml:(caption):337
 msgid "Wins:"
-msgstr ""
+msgstr "Trec'hoù:"
 
 #: gui/lobby/lobby.xml:(caption):79 gui/lobby/lobby.xml:(caption):341
 msgid "Losses:"
-msgstr ""
+msgstr "Kolloù:"
 
 #: gui/lobby/lobby.xml:(caption):83 gui/lobby/lobby.xml:(caption):345
 msgid "Win Rate:"
-msgstr ""
+msgstr "Feur Trec'h:"
 
 #: gui/lobby/lobby.xml:(caption):92 gui/lobby/lobby.xml:(caption):273
 msgid "Leaderboard"
-msgstr ""
+msgstr "Rumadur"
 
 #: gui/lobby/lobby.xml:(caption):101 gui/lobby/lobby.xml:(caption):308
 msgid "User Profile Lookup"
-msgstr ""
+msgstr " Klask War-Lerc'h Profil un Implijer "
 
 #: gui/lobby/lobby.xml:(caption):130
 msgid "Map Type:"
@@ -321,23 +322,23 @@ msgstr "Herbrec'hiañ ur C'hoariadenn"
 
 #: gui/lobby/lobby.xml:(caption):180
 msgid "Main Menu"
-msgstr ""
+msgstr "Lañser Pennañ"
 
 #: gui/lobby/lobby.xml:(caption):245
 msgid "Show full games"
-msgstr ""
+msgstr "Diskouez ar C'hoariadennoù leun"
 
 #: gui/lobby/lobby.xml:(caption):293 gui/lobby/lobby.xml:(caption):355
 msgid "Back"
-msgstr ""
+msgstr "Distreiñ"
 
 #: gui/lobby/lobby.xml:(caption):301
 msgid "Update"
-msgstr ""
+msgstr "Hiziivadur"
 
 #: gui/lobby/lobby.xml:(caption):311
 msgid "Enter username:"
-msgstr ""
+msgstr "Ebarzhit hoc'h anv-implijer:"
 
 #: gui/lobby/lobby.xml:(caption):317
 msgid "View Profile"
@@ -345,7 +346,7 @@ msgstr "Gwelet ar Profil"
 
 #: gui/lobby/lobby.xml:(caption):350
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Skrivit hoc'h anv c'haorier."
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"
@@ -358,7 +359,7 @@ msgstr "Anv"
 
 #: gui/lobby/lobby.xml:(heading):46 gui/lobby/lobby.xml:(heading):286
 msgid "Rating"
-msgstr ""
+msgstr "Skor"
 
 #: gui/lobby/lobby.xml:(heading):206
 msgid "Map Name"
@@ -372,7 +373,7 @@ msgstr "Ment"
 #: gui/lobby/lobby.xml:(heading):212
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Doare"
 
 #: gui/lobby/lobby.xml:(heading):215
 msgid "Players"
@@ -388,11 +389,11 @@ msgstr "Krouiñ ur gont nevez"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Kevreañ gant ur gont a zo dija anezha"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Kevreañ ouzh hall ar c'hoari"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
@@ -412,7 +413,7 @@ msgstr "Ger-kuzh adarre:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Lennet em eus ha sevel a ran a-du gant Termenoù ar Servij ha Termenoù an Implij:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
@@ -420,93 +421,93 @@ msgstr "Nullañ"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "0 A.D. Impalaerezhioù O C'henel Liesc'hoarier Hall Termenoù ar Servij"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Termenadurioù:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr " * Ar \"servij\" a zo 0 A.D.  Impalaerezhioù O C'henel Liesc'hoarier Hall roet gant Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr " * Bez \"emaoc'h\" un implijer eus ar servij."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* Bez \"emaomp\" hollad an holl izili eus skipailh Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* Ar \"Skor\" a ra meneg d'ar prosesus analizañ diwar meur a stadeg eus an implijer gant ar pal da grouiñ ur skor hepken komprenus."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Habaskaat\" a dalvez ar prosesus da lakaat e-pleustr ar politikerezhioù implij."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "En ur implijout ar servij e savit a-du gant:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Heuliañ an holl politikerezhioù implij."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Reiñ an aotre da zastum statistikoù implijer hiniennel a-benn rummañ, ha da sevel statistikoù implijer hiniennel ha statistikoù kumuniezhel ivez."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Reiñ a reomp ivez ar gwir deoc'h da :"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Luskañ ar servij."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Kinnig tud all evit luskañ ar servij."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Stankit pe paouezit ar servij forzh peur gant pe hep kemenn kent ebet."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Kemm ar servij forzh peur vefe gant pe hep kemenn ebet."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Dilemel ul lodenn eus roadennoù ar servij forzh peur vefe gant pe hep kement ebet."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Dastum hollad pe ul lodenn eus statistikoù hiniennel an implijer forzh peur hep asant ebet evit :"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Dielfennadenn brevez gant izili skipailh Wildfire Games (WFG) hag ar re gevredet ganto."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Embannadurioù prevezaet gant izili skipailh Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -514,66 +515,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Kemm an teul-mañ e forzh peseurt mod a vefe; forzh peseurt mare; gant ma vo kelaouet eus ar cheñchamant implijer ar servij en un doare azaasaus (termenadur ar ger azasaus a vo termenet diwezhatoc'h gant ur strollad izili eus skipailh Wildfire Games (WFG) )."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. Impalaerezhioù O C'henel Liesc'hoarier Hall Termenoù an Implij"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"An treuzpiaouañ identelezh\" a dalvez  ar fed da glask implij identelezh unan bennak all evit e sac'h dezha."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* Ur \"Strob\" a zo ur c'hemennad hag a zo didalvoud pe n'eo ket jaojabl, ha kaset da galz a dud."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr " * Ar \"renkadur\" a dalvez ar skor klok hiniennel."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* Ar \"c'hoariadennom renket\" a dalvez ar c'hoariadennoù ez eo hizivaet ar statistikoù rankadur."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "A-du oc'h evit:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Na grouit nemet ur gont dre implijer war ar servij nemet e vefec'h aotreet gant un ezel eus Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Ne bostit na gomzioù gros, na fentigelloù gros, na endalc'had pornografek, na evezhiadenn gwallziforc'hus war ar servij."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Na izelit ket en un doare youlek implijerien all ar servij."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Na implijit ket ar servij evit ar brudwerzh a vadoù ispisial, a servijoù pe a broduioù."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Na dreuzpiaouit ket identelezh implijerien all ar servij."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Na strobit ket ar servij."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -581,13 +582,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Na glaskit ket keidañ en un doare artifisiel skor un implijer eus ar servij na statistik ebet o deus ur skog war ar re-mañ. (Da skouer : en ur drichañ e-pad ar c'hoariadennoù renket, dre kil-ijinouriezh ar servij, en ur brofitañ eus implijerien all eus ar servij. N'eo ket peurglok al  listenn-mañ.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Bezit prest da vezañ tennet kuit kerkent ma kav d'un habasker ne douj ket hoc'h emzalc'h ouzh ar reolennoù-mañ."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -595,4 +596,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Kemm an teul-mañ e forzh peseurt mod a vefe; forzh peseurt mare; gant ma vo kelaouet eus ar cheñchamant implijer ar servij en un doare azaasaus (termenadur ar ger azasaus a vo termenet diwezhatoc'h gant ur strollad izili eus skipailh Wildfire Games (WFG) )."
