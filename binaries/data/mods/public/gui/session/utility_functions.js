@@ -111,10 +111,10 @@ function getTradingTooltip(gain)
  */
 function getEntityOrHolder(ent)
 {
-	var entState = GetEntityState(ent);
+	let entState = GetEntityState(ent);
 	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length &&
 			(entState.unitAI.orders[0].type == "Garrison" || entState.unitAI.orders[0].type == "Autogarrison"))
-		return entState.unitAI.orders[0].data.target;
+		return getEntityOrHolder(entState.unitAI.orders[0].data.target);
 
 	return ent;
 }
