@@ -1,0 +1,12 @@
+{
+	"type": "range",
+	"radius": 30,
+	"affects": ["Hero"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+	  { "value": "Health/Max", "multiply": 1.1 }
+	],
+	"auraName": "Consort",
+	"auraDescription": "Allied heroes +10% health when near her.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}
