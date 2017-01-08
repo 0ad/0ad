@@ -658,19 +658,19 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 };
 
-GuiInterface.prototype.GetTechnologyData = function(player, name)
+GuiInterface.prototype.GetTechnologyData = function(player, data)
 {
 	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
-	let template = cmpDataTemplateManager.GetTechnologyTemplate(name);
+	let template = cmpDataTemplateManager.GetTechnologyTemplate(data.name);
 
 	if (!template)
 	{
-		warn("Tried to get data for invalid technology: " + name);
+		warn("Tried to get data for invalid technology: " + data.name);
 		return null;
 	}
 
 	let cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	return GetTechnologyDataHelper(template, cmpPlayer.GetCiv(), Resources);
+	return GetTechnologyDataHelper(template, data.civ || cmpPlayer.GetCiv(), Resources);
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)

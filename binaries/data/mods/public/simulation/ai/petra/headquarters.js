@@ -1274,11 +1274,12 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 	{
 		if (gameState.currentPhase() < 2 || this.econState !== "cityPhasing")
 			return;
-		let requirements = gameState.getPhaseRequirements(3);
-		if (!requirements || !requirements.number)
+		let requirements = gameState.getPhaseEntityRequirements(3);
+		if (!requirements.length)
 			return;
-		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements.number)
-			return;
+		for (let entityReq of requirements)
+			if (gameState.getOwnStructures().filter(API3.Filters.byClass(entityReq.class)).length >= entityReq.count)
+				return;
 	}
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
@@ -1388,7 +1389,7 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
  * build more houses if needed.
  * kinda ugly, lots of special cases to both build enough houses but not tooo many…
  */
-m.HQ.prototype.buildMoreHouses = function(gameState,queues)
+m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 {
 	if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 		return;
@@ -1418,35 +1419,45 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		queues.house.addPlan(plan);
 	}
 
-	if (numPlanned > 0 && this.econState == "townPhasing" && gameState.getPhaseRequirements(2))
+	if (numPlanned > 0 && this.econState == "townPhasing" && gameState.getPhaseEntityRequirements(2).length)
 	{
-		let requirements = gameState.getPhaseRequirements(2);
-		let count = gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length;
-		if (requirements && count < requirements.number && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
+		let houseTemplateName = gameState.applyCiv("structures/{civ}_house");
+		let houseTemplate = gameState.getTemplate(houseTemplateName);
+
+		let needed = 0;
+		for (let entityReq of gameState.getPhaseEntityRequirements(2))
 		{
-			if (this.Config.debug > 1)
-				API3.warn("no room to place a house ... try to be less restrictive");
-			this.stopBuilding.delete(gameState.applyCiv("structures/{civ}_house"));
-			this.requireHouses = true;
+			if (!houseTemplate.hasClass(entityReq.class))
+				continue;
+
+			let count = gameState.getOwnStructures().filter(API3.Filters.byClass(entityReq.class)).length;
+			if (count < entityReq.count && this.stopBuilding.has(houseTemplateName))
+			{
+				if (this.Config.debug > 1)
+					API3.warn("no room to place a house ... try to be less restrictive");
+				this.stopBuilding.delete(houseTemplateName);
+				this.requireHouses = true;
+			}
+			needed = Math.max(needed, entityReq.count - count);
 		}
+
 		let houseQueue = queues.house.plans;
 		for (let i = 0; i < numPlanned; ++i)
-		{
 			if (houseQueue[i].isGo(gameState))
-				++count;
-			else if (count < requirements.number)
+				--needed;
+			else if (needed > 0)
 			{
 				houseQueue[i].isGo = function () { return true; };
-				++count;
+				--needed;
 			}
-		}
 	}
 
 	if (this.requireHouses)
 	{
-		let requirements = gameState.getPhaseRequirements(2);
-		if (gameState.getOwnStructures().filter(API3.Filters.byClass(requirements["class"])).length >= requirements.number)
-			this.requireHouses = undefined;
+		let houseTemplate = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house"));
+			if (gameState.getPhaseEntityRequirements(2).every(req =>
+				!houseTemplate.hasClass(req.class) || gameState.getOwnStructures().filter(API3.Filters.byClass(req.class)).length >= req.count))
+				this.requireHouses = undefined;
 	}
 
 	// When population limit too tight

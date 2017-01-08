@@ -5,7 +5,7 @@
 	},
 	"description": "Advances from a small village to a bustling town, ready to expand rapidly. This is the Athenian town phase, where metal gathering rates are boosted because of the 'Silver Owls' bonus.",
 	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 0 },
-	"requirements": { "all": [{ "class": "Village", "number": 5 }, { "civ": "athen" }] },
+	"requirements": { "all": [{ "entity": { "class": "Village", "number": 5 } }, { "civ": "athen" }] },
 	"requirementsTooltip": "Requires 5 Village Phase structures (except Palisades and Farm Fields).",
 	"supersedes": "phase_village",
 	"replaces": ["phase_town"],

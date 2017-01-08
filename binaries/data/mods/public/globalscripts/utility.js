@@ -34,3 +34,13 @@ function shuffleArray(source)
 	}
 	return result;
 }
+
+/**
+ * Removes prefixing path from a path or filename, leaving just the file's name (with extension)
+ *
+ * ie. a/b/c/file.ext -> file.ext
+ */
+function basename(path)
+{
+	return path.slice(path.lastIndexOf("/") + 1);
+}

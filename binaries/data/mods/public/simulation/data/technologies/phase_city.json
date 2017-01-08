@@ -6,7 +6,7 @@
 	},
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
 	"cost": { "food": 0, "wood": 0, "stone": 750, "metal": 750 },
-	"requirements": { "all": [{ "class": "Town", "number": 4 }, { "notciv": "athen" }] },
+	"requirements": { "all": [{ "entity": { "class": "Town", "number": 4 } }, { "notciv": "athen" }] },
 	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civic Centers).",
 	"supersedes": "phase_town",
 	"icon": "city_phase.png",

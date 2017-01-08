@@ -162,7 +162,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 
 	// Remove any technologies that can't be researched by this civ
 	techs = techs.filter(tech => {
-		let reqs = cmpTechnologyManager.GetTechnologyTemplate(tech).requirements || null;
+		let reqs = DeriveTechnologyRequirements(cmpTechnologyManager.GetTechnologyTemplate(tech), cmpPlayer.GetCiv());
 		return cmpTechnologyManager.CheckTechnologyRequirements(reqs, true);
 	});
 

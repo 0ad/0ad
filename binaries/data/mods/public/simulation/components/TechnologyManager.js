@@ -97,16 +97,13 @@ TechnologyManager.prototype.IsTechnologyResearched = function(tech)
 // Checks the requirements for a technology to see if it can be researched at the current time
 TechnologyManager.prototype.CanResearch = function(tech)
 {
-	var template = this.GetTechnologyTemplate(tech);
+	let template = this.GetTechnologyTemplate(tech);
+
 	if (!template)
 	{
 		warn("Technology \"" + tech + "\" does not exist");
 		return false;
 	}
-
-	// The technology which this technology supersedes is required
-	if (template.supersedes && !this.IsTechnologyResearched(template.supersedes))
-		return false;
 
 	if (template.top && this.IsInProgress(template.top) ||
 	    template.bottom && this.IsInProgress(template.bottom))
@@ -121,50 +118,56 @@ TechnologyManager.prototype.CanResearch = function(tech)
 	if (this.IsTechnologyResearched(tech))
 		return false;
 
-	return this.CheckTechnologyRequirements(template.requirements || null);
+	return this.CheckTechnologyRequirements(DeriveTechnologyRequirements(template, Engine.QueryInterface(this.entity, IID_Player).GetCiv()));
 };
 
 /**
  * Private function for checking a set of requirements is met
- * @param reqs Object of technology requirements as given by the technology template
- * @param civonly A boolean set to true if only the civ requirement is checked
+ * @param {object} reqs - Technology requirements as derived from the technology template by globalscripts
+ * @param {boolean} civonly - True if only the civ requirement is to be checked
  *
- * @return true if the requirements are checked
- * false otherwise
+ * @return true if the requirements pass, false otherwise
  */
-TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs, civonly)
+TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs, civonly = false)
 {
-	// If there are no requirements then all requirements are met
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+
 	if (!reqs)
+		return false;
+
+	if (civonly || !reqs.length)
 		return true;
 
-	if (reqs.all)
-		return reqs.all.every(r => this.CheckTechnologyRequirements(r, civonly));
-	if (reqs.any)
-		return reqs.any.some(r => this.CheckTechnologyRequirements(r, civonly));
-	if (reqs.civ)
+	return reqs.some(req => {
+		return Object.keys(req).every(type => {
+			switch (type)
+			{
+			case "techs":
+				return req[type].every(this.IsTechnologyResearched, this);
+
+			case "entities":
+				return req[type].every(this.DoesEntitySpecPass, this);
+			}
+			return false;
+		});
+	});
+}
+
+TechnologyManager.prototype.DoesEntitySpecPass = function(entity)
+{
+	switch (entity.check)
 	{
-		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		return cmpPlayer && cmpPlayer.GetCiv() == reqs.civ;
+	case "count":
+		if (!this.classCounts[entity.class] || this.classCounts[entity.class] < entity.number)
+			return false;
+		break;
+
+	case "variants":
+		if (!this.typeCountsByClass[entity.class] || Object.keys(this.typeCountsByClass[entity.class]).length < entity.number)
+			return false;
+		break;
 	}
-	if (reqs.notciv)
-	{
-		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		return cmpPlayer && cmpPlayer.GetCiv() != reqs.notciv;
-	}
-	if (civonly)
-		return true;
-	if (reqs.tech)
-		return this.IsTechnologyResearched(reqs.tech);
-	if (reqs.class && reqs.numberOfTypes)
-		return this.typeCountsByClass[reqs.class] &&
-			Object.keys(this.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
-	if (reqs.class && reqs.number)
-		return this.classCounts[reqs.class] &&
-			this.classCounts[reqs.class] >= reqs.number;
-	// The technologies requirements are not a recognised format
-	error("Bad requirements " + uneval(reqs));
-	return false;
+	return true;
 };
 
 TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
