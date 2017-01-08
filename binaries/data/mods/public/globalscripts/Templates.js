@@ -351,17 +351,12 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
  */
 function GetTechnologyDataHelper(template, civ, resources)
 {
-	var ret = {};
+	let ret = {};
 
 	// Get specific name for this civ or else the generic specific name
-	var specific;
+	let specific;
 	if (template.specificName)
-	{
-		if (template.specificName[civ])
-			specific = template.specificName[civ];
-		else
-			specific = template.specificName['generic'];
-	}
+		specific = template.specificName[civ] || template.specificName.generic;
 
 	ret.name = {
 		"specific": specific,
@@ -377,19 +372,7 @@ function GetTechnologyDataHelper(template, civ, resources)
 	ret.tooltip = template.tooltip;
 	ret.requirementsTooltip = template.requirementsTooltip || "";
 
-	// TODO: This doesn't handle all types of requirements
-	if (template.requirements && template.requirements.class)
-		ret.classRequirements = {
-			"class": template.requirements.class,
-			"number": template.requirements.number
-		};
-	else if (template.requirements && template.requirements.all)
-		for (let req of template.requirements.all)
-			if (req.class)
-				ret.classRequirements = {
-					"class": req.class,
-					"number": req.number
-				};
+	ret.reqs = DeriveTechnologyRequirements(template, civ);
 
 	ret.description = template.description;
 

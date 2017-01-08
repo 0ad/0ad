@@ -350,7 +350,7 @@ g_SelectionPanels.Construction = {
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
 		tooltips.push(
 			formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
-			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology),
+			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
 			getNeededResourcesTooltip(neededResources));
 
 		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
@@ -794,12 +794,14 @@ g_SelectionPanels.Research = {
 		setPanelObjectPosition(pair, data.i, data.rowLength);
 
 		// Handle one or two techs (tech pair)
+		let player = data.player;
 		for (let i in techs)
 		{
 			let tech = techs[i];
+			let playerState = GetSimState().players[player];
 
 			// Don't change the object returned by GetTechnologyData
-			let template = clone(GetTechnologyData(tech));
+			let template = clone(GetTechnologyData(tech, playerState.civ));
 			if (!template)
 				return false;
 
@@ -808,12 +810,12 @@ g_SelectionPanels.Research = {
 
 			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": template.cost,
-				"player": data.player
+				"player": player
 			});
 
 			let requirementsPassed = Engine.GuiInterfaceCall("CheckTechnologyRequirements", {
 				"tech": tech,
-				"player": data.player
+				"player": player
 			});
 
 			let button = Engine.GetGUIObjectByName("unitResearchButton[" + position + "]");
@@ -828,13 +830,40 @@ g_SelectionPanels.Research = {
 			if (!requirementsPassed)
 			{
 				let tip = template.requirementsTooltip;
-				if (template.classRequirements)
+				let reqs = template.reqs;
+				for (let req of reqs)
 				{
-					let player = data.player;
-					let current = GetSimState().players[player].classCounts[template.classRequirements.class] || 0;
-					let remaining = template.classRequirements.number - current;
-					tip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), {
-						"number": remaining
+					if (!req.entities)
+						continue;
+
+					let entityCounts = [];
+					for (let entity of req.entities)
+					{
+						let current = 0;
+						switch (entity.check)
+						{
+						case "count":
+							current = playerState.classCounts[entity.class] || 0;
+							break;
+
+						case "variants":
+							current = playerState.typeCountsByClass[entity.class] ?
+								Object.keys(playerState.typeCountsByClass[entity.class]).length : 0;
+							break;
+						}
+
+						let remaining = entity.number - current;
+						if (remaining < 1)
+							continue;
+
+						entityCounts.push(sprintf(translatePlural("%(number)s entity of class %(class)s", "%(number)s entities of class %(class)s", remaining), {
+							"number": remaining,
+							"class": entity.class
+						}));
+					}
+
+					tip += " " + sprintf(translate("Remaining: %(entityCounts)s"), {
+						"entityCounts": entityCounts.join(translate(", "))
 					});
 				}
 				tooltips.push(tip);
@@ -1064,7 +1093,7 @@ g_SelectionPanels.Training = {
 			"[color=\"" + g_HotkeyColor + "\"]" +
 			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) +
 			"[/color]",
-			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology),
+			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
 			getNeededResourcesTooltip(neededResources));
 
 		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
@@ -1154,7 +1183,7 @@ g_SelectionPanels.Upgrade = {
 			tooltips.push(
 				getEntityCostTooltip(data.item),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
-				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology),
+				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
 				getNeededResourcesTooltip(neededResources));
 
 			tooltip = tooltips.filter(tip => tip).join("\n");

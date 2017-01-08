@@ -222,16 +222,19 @@ function GetTemplateDataWithoutLocalization(templateName)
 	return g_TemplateDataWithoutLocalization[templateName];
 }
 
-function GetTechnologyData(technologyName)
+function GetTechnologyData(technologyName, civ)
 {
-	if (!(technologyName in g_TechnologyData))
+	if (!g_TechnologyData[civ])
+		g_TechnologyData[civ] = {};
+
+	if (!(technologyName in g_TechnologyData[civ]))
 	{
-		let template = Engine.GuiInterfaceCall("GetTechnologyData", technologyName);
+		let template = Engine.GuiInterfaceCall("GetTechnologyData", { "name": technologyName, "civ": civ });
 		translateObjectKeys(template, ["specific", "generic", "description", "tooltip", "requirementsTooltip"]);
-		g_TechnologyData[technologyName] = template;
+		g_TechnologyData[civ][technologyName] = template;
 	}
 
-	return g_TechnologyData[technologyName];
+	return g_TechnologyData[civ][technologyName];
 }
 
 function init(initData, hotloadData)

@@ -61,18 +61,15 @@ function selectCiv(civCode)
 		"structures": [],
 		"techs": []
 	};
+	g_ParsedData.techs[civCode] = {};
 
 	// get initial units
-	var startStructs = [];
 	for (let entity of g_CivData[civCode].StartEntities)
 	{
 		if (entity.Template.slice(0, 5) == "units")
 			g_Lists.units.push(entity.Template);
 		else if (entity.Template.slice(0, 6) == "struct")
-		{
 			g_Lists.structures.push(entity.Template);
-			startStructs.push(entity.Template);
-		}
 	}
 
 	// Load units and structures
@@ -95,44 +92,52 @@ function selectCiv(civCode)
 	var techPairs = {};
 	for (let techcode of g_Lists.techs)
 	{
-		let realcode = depath(techcode);
+		let realcode = basename(techcode);
 
 		if (realcode.slice(0,4) == "pair" || realcode.indexOf("_pair") > -1)
 			techPairs[techcode] = loadTechnologyPair(techcode);
 		else if (realcode.slice(0,5) == "phase")
 			g_ParsedData.phases[techcode] = loadPhase(techcode);
 		else
-			g_ParsedData.techs[techcode] = loadTechnology(techcode);
+			g_ParsedData.techs[civCode][techcode] = loadTechnology(techcode);
 	}
 
 	// Expand tech pairs
 	for (let paircode in techPairs)
 	{
 		let pair = techPairs[paircode];
+		if (pair.reqs === false)
+			continue;
+
 		for (let techcode of pair.techs)
 		{
-			if (depath(techcode).slice(0, 5) === "phase")
+			if (basename(techcode).slice(0, 5) === "phase")
 				g_ParsedData.phases[techcode] = loadPhase(techcode);
 			else
 			{
 				let newTech = loadTechnology(techcode);
-				if (pair.req !== "")
-				{
-					if ("generic" in newTech.reqs)
-						newTech.reqs.generic.concat(techPairs[pair.req].techs);
-					else
-					{
-						for (let civkey of Object.keys(newTech.reqs))
-							newTech.reqs[civkey].concat(techPairs[pair.req].techs);
-					}
-				}
-				g_ParsedData.techs[techcode] = newTech;
+
+				if (!newTech.reqs)
+					newTech.reqs = {};
+				else if (newTech.reqs === false)
+					continue;
+
+				for (let option of pair.reqs)
+					for (let type in option)
+						for (let opt in newTech.reqs)
+						{
+							if (!newTech.reqs[opt][type])
+								newTech.reqs[opt][type] = [];
+							newTech.reqs[opt][type] = newTech.reqs[opt][type].concat(option[type]);
+						}
+
+				g_ParsedData.techs[civCode][techcode] = newTech;
 			}
 		}
 	}
 
 	// Establish phase order
-	g_ParsedData.phaseList = unravelPhases(g_ParsedData.techs);
+	g_ParsedData.phaseList = unravelPhases(g_ParsedData.techs[civCode]);
 	for (let phasecode of g_ParsedData.phaseList)
 	{
 		let phaseInfo = loadTechData(phasecode);
@@ -170,6 +175,7 @@ function selectCiv(civCode)
 	for (let structCode of g_Lists.structures)
 	{
 		let structInfo = g_ParsedData.structures[structCode];
+		structInfo.phase = GetPhaseOfTemplate(structInfo);
 		let structPhaseIdx = g_ParsedData.phaseList.indexOf(structInfo.phase);
 
 		// If this building is shared with another civ,
@@ -181,43 +187,20 @@ function selectCiv(civCode)
 		for (let prod of structInfo.production.technology)
 			if (prod in techPairs)
 				structInfo.production.technology.splice(
-					structInfo.production.technology.indexOf(prod), 1,
-					techPairs[prod].techs[0], techPairs[prod].techs[1]
+					structInfo.production.technology.indexOf(prod),
+					1, ...techPairs[prod].techs
 				);
 
 		// Sort techs by phase
 		let newProdTech = {};
 		for (let prod of structInfo.production.technology)
 		{
-			let phase = "";
+			let phase = GetPhaseOfTechnology(prod);
+			if (phase === false)
+				continue;
 
-			if (depath(prod).slice(0,5) === "phase")
-			{
-				phase = g_ParsedData.phaseList.indexOf(g_ParsedData.phases[prod].actualPhase);
-				if (phase > 0)
-					phase = g_ParsedData.phaseList[phase - 1];
-			}
-			else if (g_SelectedCiv in g_ParsedData.techs[prod].reqs)
-			{
-				for (let req of g_ParsedData.techs[prod].reqs[g_SelectedCiv])
-					if (depath(req).slice(0,5) === "phase")
-						phase = req;
-			}
-			else if ("generic" in g_ParsedData.techs[prod].reqs)
-			{
-				for (let req of g_ParsedData.techs[prod].reqs.generic)
-					if (depath(req).slice(0,5) === "phase")
-						phase = req;
-			}
-
-			if (depath(phase).slice(0,5) !== "phase" ||
-			    g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
-			{
-				if (structInfo.phase !== false)
-					phase = structInfo.phase;
-				else
-					phase = g_ParsedData.phaseList[0];
-			}
+			if (g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+				phase = structInfo.phase;
 
 			if (!(phase in newProdTech))
 				newProdTech[phase] = [];
@@ -225,46 +208,19 @@ function selectCiv(civCode)
 			newProdTech[phase].push(prod);
 		}
 
-		// Determine phase for units
+		// Sort units by phase
 		let newProdUnits = {};
 		for (let prod of structInfo.production.units)
 		{
 			if (!g_ParsedData.units[prod])
 				continue;
 
-			let unit = g_ParsedData.units[prod];
-			let phase = "";
+			let phase = GetPhaseOfTemplate(g_ParsedData.units[prod]);
+			if (phase === false)
+				continue;
 
-			if (unit.phase !== false)
-			{
-				if (g_ParsedData.phaseList.indexOf(unit.phase) < 0)
-					phase = g_ParsedData.phases[unit.phase].actualPhase;
-				else
-					phase = unit.phase;
-			}
-			else if (unit.required !== undefined)
-			{
-				if (g_ParsedData.phases[unit.required])
-					phase = g_ParsedData.phases[unit.required].actualPhase;
-				else if (g_ParsedData.techs[unit.required])
-				{
-					let reqs = g_ParsedData.techs[unit.required].reqs;
-					if (reqs[g_SelectedCiv])
-						phase = reqs[g_SelectedCiv][0];
-					else if (reqs.generic)
-						phase = reqs.generic[0];
-					else
-						warn("Empty requirements found on technology " + unit.required);
-				}
-				else
-					warn("Technology " + unit.required + " for " + prod + " not found.");
-			}
-
-			if (depath(phase).slice(0,5) !== "phase" || g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
-				if (structInfo.phase !== false)
-					phase = structInfo.phase;
-				else
-					phase = g_ParsedData.phaseList[0];
+			if (g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+				phase = structInfo.phase;
 
 			if (!(phase in newProdUnits))
 				newProdUnits[phase] = [];
@@ -279,20 +235,14 @@ function selectCiv(civCode)
 	}
 
 	// Determine the buildList for the civ (grouped by phase)
-	var buildList = {};
-	var trainerList = [];
+	let buildList = {};
+	let trainerList = [];
 	for (let pha of g_ParsedData.phaseList)
 		buildList[pha] = [];
 	for (let structCode of g_Lists.structures)
 	{
-		if (!g_ParsedData.structures[structCode].phase || startStructs.indexOf(structCode) > -1)
-			g_ParsedData.structures[structCode].phase = g_ParsedData.phaseList[0];
-
-		let myPhase = g_ParsedData.structures[structCode].phase;
-		if (g_ParsedData.phaseList.indexOf(myPhase) === -1)
-			myPhase = g_ParsedData.phases[myPhase].actualPhase;
-
-		buildList[myPhase].push(structCode);
+		let phase = g_ParsedData.structures[structCode].phase;
+		buildList[phase].push(structCode);
 	}
 	for (let unitCode of g_Lists.units)
 		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].production)

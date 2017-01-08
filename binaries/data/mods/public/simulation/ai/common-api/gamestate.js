@@ -36,7 +36,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 		let k = techs.indexOf(this.phases[i].name);
 		if (k !== -1)
 		{
-			this.phases[i].requirements = (this.getTemplate(techs[k]))._template.requirements;
+			this.phases[i].requirements = DeriveTechnologyRequirements(this.getTemplate(techs[k])._template, this.getPlayerCiv());
 			continue;
 		}
 		for (let tech of techs)
@@ -45,7 +45,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 			if (template.replaces && template.replaces.indexOf(this.phases[i].name) != -1)
 			{
 				this.phases[i].name = tech;
-				this.phases[i].requirements = template.requirements;
+				this.phases[i].requirements = DeriveTechnologyRequirements(template, this.getPlayerCiv());
 				break;
 			}
 		}
@@ -169,21 +169,24 @@ m.GameState.prototype.cityPhase = function()
 	return this.phases[2].name;
 };
 
-m.GameState.prototype.getPhaseRequirements = function(i)
+m.GameState.prototype.getPhaseEntityRequirements = function(i)
 {
-	if (!this.phases[i-1].requirements)
-		return undefined;
-	let requirements = this.phases[i-1].requirements;
-	if (requirements.number)
-		return requirements;
-	else if (requirements.all)
+	let entityReqs = [];
+
+	for (let requirement of this.phases[i-1].requirements)
 	{
-		for (let req of requirements.all)
-			if (req.number)
-				return req;
+		if (!requirement.entities)
+			continue;
+		for (let entity of requirement.entities)
+			if (entity.check == "count")
+				entityReqs.push({
+					"class": entity.class,
+					"count": entity.number
+				});
 	}
-	return undefined;
-};
+
+	return entityReqs;
+}
 
 m.GameState.prototype.isResearched = function(template)
 {
@@ -213,14 +216,6 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	if (noRequirementCheck === true)
 		return true;
 
-	// not already researched, check if we can.
-	// basically a copy of the function in technologyManager since we can't use it.
-	// Checks the requirements for a technology to see if it can be researched at the current time
-
-	// The technology which this technology supersedes is required
-	if (template.supersedes() && !this.playerData.researchedTechs[template.supersedes()])
-		return false;
-
 	// if this is a pair, we must check that the pair tech is not being researched
 	if (template.pair())
 	{
@@ -231,39 +226,52 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 			return false;
 	}
 
-	return this.checkTechRequirements(template.requirements());
+	return this.checkTechRequirements(template.requirements(this.playerData.civ));
 };
 
 /**
- * Private function for checking a set of requirements is met
- * basically copies TechnologyManager
+ * Private function for checking a set of requirements is met.
+ * Basically copies TechnologyManager, but compares against
+ * variables only available within the AI
  */
 m.GameState.prototype.checkTechRequirements = function(reqs)
 {
-	// If there are no requirements then all requirements are met
 	if (!reqs)
+		return false;
+
+	if (!reqs.length)
 		return true;
 
-	if (reqs.all)
-		return reqs.all.every(r => this.checkTechRequirements(r));
-	if (reqs.any)
-		return reqs.any.some(r => this.checkTechRequirements(r));
-	if (reqs.civ)
-		return this.playerData.civ == reqs.civ;
-	if (reqs.notciv)
-		return this.playerData.civ != reqs.notciv;
-	if (reqs.tech)
-		return this.playerData.researchedTechs[reqs.tech] !== undefined && this.playerData.researchedTechs[reqs.tech];
-	if (reqs.class && reqs.numberOfTypes)
-		return this.playerData.typeCountsByClass[reqs.class] &&
-			Object.keys(this.playerData.typeCountsByClass[reqs.class]).length >= reqs.numberOfTypes;
-	if (reqs.class && reqs.number)
-		return this.playerData.classCounts[reqs.class] &&
-			this.playerData.classCounts[reqs.class] >= reqs.number;
+	function doesEntitySpecPass(entity)
+	{
+		switch (entity.check)
+		{
+		case "count":
+			if (!this.playerData.classCounts[entity.class] || this.playerData.classCounts[entity.class] < entity.number)
+				return false;
+			break;
 
-	// The technologies requirements are not a recognised format
-	error("Bad requirements " + uneval(reqs));
-	return false;
+		case "variants":
+			if (!this.playerData.typeCountsByClass[entity.class] || Object.keys(this.playerData.typeCountsByClass[entity.class]).length < entity.number)
+				return false;
+			break;
+		}
+		return true;
+	};
+
+	return reqs.some(req => {
+		return Object.keys(req).every(type => {
+			switch (type)
+			{
+			case "techs":
+				return req[type].every(tech => !!this.playerData.researchedTechs[tech]);
+
+			case "entities":
+				return req[type].every(doesEntitySpecPass, this);
+			}
+			return false;
+		});
+	});
 };
 
 m.GameState.prototype.getMap = function()

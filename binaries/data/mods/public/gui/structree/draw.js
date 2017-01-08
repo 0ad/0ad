@@ -97,9 +97,9 @@ function draw()
 				if (stru.production.technology[prod_pha])
 					for (let prod of stru.production.technology[prod_pha])
 					{
-						prod = clone(depath(prod).slice(0,5) == "phase" ?
+						prod = clone(basename(prod).slice(0,5) == "phase" ?
 							g_ParsedData.phases[prod] :
-							g_ParsedData.techs[prod]);
+							g_ParsedData.techs[g_SelectedCiv][prod]);
 
 						for (let res in stru.techCostMultiplier)
 							if (prod.cost[res])
@@ -183,7 +183,7 @@ function draw()
 					prod = g_ParsedData.units[prod];
 					break;
 				case "techs":
-					prod = clone(g_ParsedData.techs[prod]);
+					prod = clone(g_ParsedData.techs[civCode][prod]);
 					for (let res in trainer.techCostMultiplier)
 						if (prod.cost[res])
 							prod.cost[res] *= trainer.techCostMultiplier[res];

@@ -459,13 +459,13 @@ function getEntityCostTooltip(template, trainNum, entity)
 	return "";
 }
 
-function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology)
+function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology, civ)
 {
 	if (technologyEnabled)
 		return "";
 
 	return sprintf(translate("Requires %(technology)s"), {
-		"technology": getEntityNames(GetTechnologyData(requiredTechnology))
+		"technology": getEntityNames(GetTechnologyData(requiredTechnology, civ))
 	});
 }
 
