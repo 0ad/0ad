@@ -4,7 +4,7 @@ var PETRA = function(m)
 m.launchAttackMessages = {
 	"hugeAttack": [
 		markForTranslation("I am starting a massive military campaign against %(_player_)s, come and join me."),
-		markForTranslation("I have set up an huge army to crush %(_player_)s. Join me and you will have your share of the loot.")
+		markForTranslation("I have set up a huge army to crush %(_player_)s. Join me and you will have your share of the loot.")
 	],
 	"other": [
 		markForTranslation("I am launching an attack against %(_player_)s."),
