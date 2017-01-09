@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-02 10:33+0000\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-06 11:10+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -407,6 +407,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Nem sokkal a szalamiszi és mükaléi nagy tengeri győzelmek után, a görög városállamok létrehozták az úgynevezett Déloszi szövetséget i. e. 478-ban, amely célja a perzsák kiűzése volt az Égei-tenger vidékéről. A szövetséges államok hajókkal és pénzzel járultak hozzá, az athéniak pedig a teljes flottájukkal."
 
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr "Kereskedőmesterek"
+
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "10% bónusz profit a szövetségesek nemzetközi kereskedelmi utaihoz."
+
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
@@ -425,6 +433,14 @@ msgstr "Asóka vallási támogatása"
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
 msgstr "Minden szövetséges templomnál és templomi technológiánál -50% költség, erőforrásból és időből is."
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr "A királyi út"
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Magasabb bevétel (+15%) a szövetséges kereskedők szárazföldi kereskeldelmi útvonalain."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

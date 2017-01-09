@@ -9,7 +9,7 @@
 # Alex <yanebotan@ngs.ru>, 2015
 # Boris Karalnik <eyesucker@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2017
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -41,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2016-12-30 09:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-07 04:34+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2242,7 +2242,7 @@ msgstr ""
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "Постройки кельтов имеют на 20% меньше прочности, но также на 20% дешевле и возводятся быстрее."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2290,7 +2290,7 @@ msgstr "У спартанцев была не самая большая арми
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population"
-msgstr ""
+msgstr "У спартанцев на 10% снижен лимит населения"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2406,7 +2406,7 @@ msgstr "Персы могли и пользовались возможность
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "У персов на 10% увеличен лимит населения."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
@@ -2544,7 +2544,7 @@ msgstr "Начиная с Александра, эллинские монарх�
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Городские центры получают +100% прочности и единицам захвата, а также удваивают базовое количество выпускаемых ими стрел."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"

@@ -7,6 +7,7 @@
 # Cem Aktas <cemwstone@gmail.com>, 2015
 # coolland <coolland10@gmail.com>, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
+# Ender Türsen <ado.ender@gmail.com>, 2017
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # reha ayhan <rehaayhan@gmail.com>, 2016
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-02 08:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 05:26+0000\n"
+"Last-Translator: Ender Türsen <ado.ender@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -897,7 +898,7 @@ msgid "Celtic Cavalry"
 msgstr "Kelt Süvarisi"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:9
-#: simulation/templates/units/brit_hero_boudicca.xml:12
+#: simulation/templates/units/brit_hero_boudicca.xml:10
 #: simulation/templates/units/maur_champion_chariot.xml:9
 #: simulation/templates/units/maur_hero_ashoka.xml:13
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
@@ -923,35 +924,22 @@ msgstr "Brythonic Büyükkılıçlı"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:12
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:11
+#: simulation/templates/units/brit_hero_boudicca.xml:10
 msgid "Female"
-msgstr ""
+msgstr "\n\n"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:13
+#: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
-msgstr ""
+msgstr "Boudicca (Savaş Arabası)"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:14
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
+#: simulation/templates/units/brit_hero_boudicca.xml:12
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:7
 msgid "Boadicea"
-msgstr ""
+msgstr "Boadicea"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:22
-msgid "Unmount Boudicca so she can fight with a sword."
-msgstr ""
-
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:6
 msgid "Boudicca (Sword)"
-msgstr ""
-
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:11
-msgid "Guerilla"
-msgstr ""
-
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:18
-msgid "Mount Boudicca onto her mighty chariot."
-msgstr ""
+msgstr "Boudicca (Kılıçlı)"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
@@ -1988,11 +1976,11 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:6
 msgid "Royal Guard Infantry"
-msgstr ""
+msgstr "Kraliyet Muhafız Piyadeleri\n"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Agema"
-msgstr ""
+msgstr "Elit Falanks\n\n\n"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"

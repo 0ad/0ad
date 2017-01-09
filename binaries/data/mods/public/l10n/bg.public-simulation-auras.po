@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-03 08:16+0000\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-06 11:37+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -405,6 +405,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Малко след големите военноморски победи при Саламин и Микале, гръцките градове-държави основали така наречения Делоски морски съюз през 478 г. пр.н.е, чиято цел била пропъждането на персийците от егейския регион. Държавите съюзници сътрудничели с кораби и пари, а атиняните предложили цялата си флота."
 
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr "Майсторски търговци"
+
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "+10% допълнителна печалба от търговията по съюзническите международни маршрути."
+
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Сарипеко"
@@ -423,6 +431,14 @@ msgstr "Религиозната подкрепа на Ашока"
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
 msgstr "Времето за проучване и цената на съюзническите храмове и технологиите в тях се намаляват с 50%."
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr "Царският път"
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Повишени приходи (+15%) от сухоземните търговски маршрути за съюзническите търговци."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

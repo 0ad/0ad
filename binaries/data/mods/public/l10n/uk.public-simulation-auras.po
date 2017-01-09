@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-03 12:30+0000\n"
-"Last-Translator: Антон Курило\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-07 10:30+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -410,6 +410,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Невдовзі після великих морських перемог на Саламіні і Мікале, в 478 році до н.е. грецькі міста-держави заснували так званий Делоський союз, метою якого було виштовхати персів з Егейського регіону. Союзні держави постачали кораблі та гроші, в той час як афіняни запропонували весь свій військово-морський флот."
 
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr "Експерти торгівлі"
+
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "Бонусні 10% до прибутку від торгівлі для союзника на міжнародних маршрутах."
+
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Саріпеко"
@@ -428,6 +436,14 @@ msgstr "Релігійна підтримка Ашоки"
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
 msgstr "-50% вартості ресурсів та часу для храмів та храмових технологій союзників"
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr "Царська дорога"
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Більш високий дохід (+15%) від землі на торговому шляху для союзних торгівців."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

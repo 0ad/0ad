@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-12-11 09:19+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-06 09:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,115 +34,127 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/petra/chatHelper.js:6
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Я начинаю масштабную военную кампанию против %(_player_)s, приходи и поддержи меня."
 
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/petra/chatHelper.js:7
+#, javascript-format
+msgid ""
+"I have set up an huge army to crush %(_player_)s. Join me and you will have "
+"your share of the loot."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Я начинаю атаку на %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Я только что направил войска против %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:31
+#: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Позволь мне перегруппировать свои войска и я присоединюсь к тебе в нападении на %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:33
+#: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Я занят последними приготовлениями для атаки на %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:38
-#, javascript-format
-msgid ""
-"I cannot help you against %(_player_)s for the time being, as I have another"
-" attack foreseen against %(_player_2)s."
-msgstr "До поры до времени я не смогу тебе помочь напасть на  %(_player_)s, поскольку моей целью является %(_player_2)s."
-
-#: simulation/ai/petra/chatHelper.js:40
+#: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Извини, сейчас у меня недостаточно воинов, но моей следующей целью станет %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:63
+#: simulation/ai/petra/chatHelper.js:24
+#, javascript-format
+msgid ""
+"I cannot help you against %(_player_)s for the time being, as I have another"
+" attack foreseen against %(_player_2)s."
+msgstr "До поры до времени я не смогу тебе помочь напасть на  %(_player_)s, поскольку моей целью является %(_player_2)s."
+
+#: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Вот подарок для %(_player_)s, используй с умом."
 
-#: simulation/ai/petra/chatHelper.js:65
+#: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Я вижу, ты в плохом положении %(_player_)s, надеюсь, это поможет."
 
-#: simulation/ai/petra/chatHelper.js:67
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "На этот раз я могу тебе помочь %(_player_)s, но постарайся собирать больше ресурсов в будущем."
 
-#: simulation/ai/petra/chatHelper.js:83
+#: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Мне нужно %(resource)s, сможешь помочь?"
 
-#: simulation/ai/petra/chatHelper.js:85
+#: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Я бы сражался за наше общее дело с большим усердием, если бы ты предоставил немного %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:87
+#: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Если у тебя найдётся излишек %(resource)s, это поможет усилить мою армию."
 
-#: simulation/ai/petra/chatHelper.js:103
+#: simulation/ai/petra/chatHelper.js:41
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Я создал новый маршрут с %(_player_)s. Торговля будет прибыльной для всех нас."
 
-#: simulation/ai/petra/chatHelper.js:105
+#: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
 msgstr "Создан новый торговый маршрут с %(_player_)s. Получите свою долю от прибыли."
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Я развился до  %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Я достиг %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:134
-#, javascript-format
-msgid "%(_player_)s and I are now enemies."
-msgstr "%(_player_)s и я теперь враги."
-
-#: simulation/ai/petra/chatHelper.js:135
+#: simulation/ai/petra/chatHelper.js:56
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
 msgstr "%(_player_)s и я теперь союзники."
+
+#: simulation/ai/petra/chatHelper.js:59
+#, javascript-format
+msgid "%(_player_)s and I are now neutral."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:62
+#, javascript-format
+msgid "%(_player_)s and I are now enemies."
+msgstr "%(_player_)s и я теперь враги."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -686,7 +698,7 @@ msgstr "Вы сможете атаковать через %(time)s"
 msgid "You can attack now!"
 msgstr "Вы можете атаковать прямо сейчас!"
 
-#: simulation/components/EndGameManager.js:119
+#: simulation/components/EndGameManager.js:117
 msgid "Last remaining player wins."
 msgstr "Последний оставшийся игрок выигрывает."
 
@@ -705,26 +717,26 @@ msgstr "%(category)s лимит обучения в количестве %(limit
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s лимит в количестве %(limit)s достигнут"
 
-#: simulation/components/Player.js:264
+#: simulation/components/Player.js:263
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Не хватает ресурса - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:266
+#: simulation/components/Player.js:265
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:268
+#: simulation/components/Player.js:267
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:270
+#: simulation/components/Player.js:269
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -732,11 +744,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Не хватает ресурсов - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:402
+#: simulation/components/ProductionQueue.js:395
 msgid "The production queue is full."
 msgstr "Очередь заполнена."
 
-#: simulation/components/ProductionQueue.js:781
+#: simulation/components/ProductionQueue.js:772
 msgid "Can't find free space to spawn trained units"
 msgstr "Невозможно найти свободное место для подготовленных юнитов"
 
@@ -752,34 +764,34 @@ msgstr "(Обман - управлять всеми юнитами)"
 msgid "(Cheat - reveal map)"
 msgstr "(Обман - открыть всю карту)"
 
-#: simulation/helpers/Commands.js:582
+#: simulation/helpers/Commands.js:581
 msgid "(Cheat - promoted units)"
 msgstr "(Обман - помогать юнитам)"
 
-#: simulation/helpers/Commands.js:692
+#: simulation/helpers/Commands.js:691
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Не удаётся улучшить, так как требования к расстоянию неверны или имеются препятствия на местности. "
 
-#: simulation/helpers/Commands.js:702
+#: simulation/helpers/Commands.js:701
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Невозможно добавить гарнизон"
 
-#: simulation/helpers/Commands.js:748
+#: simulation/helpers/Commands.js:747
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:785
+#: simulation/helpers/Commands.js:784
 msgid "Unable to ungarrison unit(s)"
 msgstr "Невозможно вывести гарнизон"
 
-#: simulation/helpers/Commands.js:799
+#: simulation/helpers/Commands.js:798
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1054
+#: simulation/helpers/Commands.js:1052
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 
