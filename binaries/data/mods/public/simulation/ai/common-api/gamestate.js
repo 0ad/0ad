@@ -186,7 +186,7 @@ m.GameState.prototype.getPhaseEntityRequirements = function(i)
 	}
 
 	return entityReqs;
-}
+};
 
 m.GameState.prototype.isResearched = function(template)
 {
@@ -257,7 +257,7 @@ m.GameState.prototype.checkTechRequirements = function(reqs)
 			break;
 		}
 		return true;
-	};
+	}
 
 	return reqs.some(req => {
 		return Object.keys(req).every(type => {

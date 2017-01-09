@@ -238,7 +238,7 @@ template.requirements = {
 		{ "all": [{ "tech": "tech_A" }, { "notciv": "maur" }] },
 		{ "tech": "tech_B" }
 	]
-}
+};
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "athen"), [{ "techs": ["tech_A", "tech_B"] }]);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "maur"), [{ "techs": ["tech_B"] }]);
 
