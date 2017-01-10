@@ -8,13 +8,13 @@
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
 # pilino1234 <mhilgendrf@aol.com>, 2015-2016
-# pilino1234 <mhilgendrf@aol.com>, 2016
+# pilino1234 <mhilgendrf@aol.com>, 2016-2017
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-21 09:01+0100\n"
-"PO-Revision-Date: 2016-12-03 09:18+0000\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-07 13:07+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -23,115 +23,127 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/ai/petra/chatHelper.js:9
+#: simulation/ai/petra/chatHelper.js:6
 #, javascript-format
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
 msgstr "Jag startar en massiv militär kampanj mot %(_player_)s, kom och hjälp mig."
 
-#: simulation/ai/petra/chatHelper.js:11
+#: simulation/ai/petra/chatHelper.js:7
+#, javascript-format
+msgid ""
+"I have set up an huge army to crush %(_player_)s. Join me and you will have "
+"your share of the loot."
+msgstr "Jag har byggt upp en stor armé för att krossa %(_player_)s. Gå med mig och du kommer att få din del av bytet."
+
+#: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Jag startar en attack mot %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:13
+#: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Jag har just skickat en armé mot %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:31
+#: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
 msgstr "Låt mig omgruppera min armé, sedan är jag med dig mot %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:33
+#: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am doing the final preparation and I will attack %(_player_)s."
 msgstr "Jag gör den slutliga beredningen och kommer att attackera %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:38
-#, javascript-format
-msgid ""
-"I cannot help you against %(_player_)s for the time being, as I have another"
-" attack foreseen against %(_player_2)s."
-msgstr "Jag kan inte hjälp dig mot %(_player_)s just nu, eftersom jag har planerat en annan attack mot %(_player_2)s."
-
-#: simulation/ai/petra/chatHelper.js:40
+#: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently, but my next attack will "
 "target %(_player_)s."
 msgstr "Tyvärr, jag har inte tillräckligt med soldater för närvarande, men min nästa attack kommer att rikta sig mot %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:63
+#: simulation/ai/petra/chatHelper.js:24
+#, javascript-format
+msgid ""
+"I cannot help you against %(_player_)s for the time being, as I have another"
+" attack foreseen against %(_player_2)s."
+msgstr "Jag kan inte hjälp dig mot %(_player_)s just nu, eftersom jag har planerat en annan attack mot %(_player_2)s."
+
+#: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
 msgstr "Här är en gåva för %(_player_)s, använd det på ett bra sätt."
 
-#: simulation/ai/petra/chatHelper.js:65
+#: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I see you are in a bad situation %(_player_)s, I hope this will help."
 msgstr "Jag ser att du är i en dålig situation %(_player_)s, Jag hoppas att det här hjälper."
 
-#: simulation/ai/petra/chatHelper.js:67
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid ""
 "I can help you this time %(_player_)s, but try to assemble more resources in"
 " the future."
 msgstr "Jag kan hjälp dig denna gången %(_player_)s, men försök att samla ihop fler resurser i framtiden."
 
-#: simulation/ai/petra/chatHelper.js:83
+#: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "Jag behöver %(resource)s, kan du hjälpa mig? Jag kommer gottgöra dig"
 
-#: simulation/ai/petra/chatHelper.js:85
+#: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "Jag skulle delta mer effektivt i vår gemensamma krigsinsats om du kunde förse mig med %(resource)s."
 
-#: simulation/ai/petra/chatHelper.js:87
+#: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
 msgstr "Om du har lite %(resource)s över åt mig skulle det hjälpa mig att bygga upp min armé."
 
-#: simulation/ai/petra/chatHelper.js:103
+#: simulation/ai/petra/chatHelper.js:41
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "Jag har byggt en ny handelsväg med %(_player_)s. Handeln kommer vara lönsam för oss alla."
 
-#: simulation/ai/petra/chatHelper.js:105
+#: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
 msgstr "En ny handelsvägen har satts upp med %(_player_)s.  Ta din andel av vinsten."
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid "I am advancing to the %(phase)s."
 msgstr "Jag avancerar till %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid "I have reached the %(phase)s."
 msgstr "Jag har nått %(phase)s."
 
-#: simulation/ai/petra/chatHelper.js:134
-#, javascript-format
-msgid "%(_player_)s and I are now enemies."
-msgstr "%(_player_)s och jag är fiender nu."
-
-#: simulation/ai/petra/chatHelper.js:135
+#: simulation/ai/petra/chatHelper.js:56
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
 msgstr "%(_player_)s och jag är allierade nu."
+
+#: simulation/ai/petra/chatHelper.js:59
+#, javascript-format
+msgid "%(_player_)s and I are now neutral."
+msgstr "%(_player_)s och jag är neutrala nu."
+
+#: simulation/ai/petra/chatHelper.js:62
+#, javascript-format
+msgid "%(_player_)s and I are now enemies."
+msgstr "%(_player_)s och jag är fiender nu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -671,7 +683,7 @@ msgstr "Du kan attackera om %(time)s"
 msgid "You can attack now!"
 msgstr "Du kan attackera nu!"
 
-#: simulation/components/EndGameManager.js:119
+#: simulation/components/EndGameManager.js:117
 msgid "Last remaining player wins."
 msgstr "Sista spelaren kvar vinner."
 
@@ -690,26 +702,26 @@ msgstr "%(category)s maximalt träningsantal %(limit)s nått"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s begränsning av %(limit)s nått"
 
-#: simulation/components/Player.js:264
+#: simulation/components/Player.js:263
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Otillräckliga resurser - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:266
+#: simulation/components/Player.js:265
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Otillräckliga resurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:268
+#: simulation/components/Player.js:267
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Otillräckliga resurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:270
+#: simulation/components/Player.js:269
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -717,11 +729,11 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Otillräckliga resurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:402
+#: simulation/components/ProductionQueue.js:395
 msgid "The production queue is full."
 msgstr "Produktionskön är full"
 
-#: simulation/components/ProductionQueue.js:781
+#: simulation/components/ProductionQueue.js:772
 msgid "Can't find free space to spawn trained units"
 msgstr "Kan inte hitta ledigt utrymme att placera tränade enheter"
 
@@ -737,34 +749,34 @@ msgstr "(Fusk - kontrollera alla enheter)"
 msgid "(Cheat - reveal map)"
 msgstr "(Fusk - visa karta)"
 
-#: simulation/helpers/Commands.js:582
+#: simulation/helpers/Commands.js:581
 msgid "(Cheat - promoted units)"
 msgstr "(Fusk - befordrade enheter)"
 
-#: simulation/helpers/Commands.js:692
+#: simulation/helpers/Commands.js:691
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan inte uppgradera eftersom distanskrav inte kan verifieras eller terrängen är skymd."
 
-#: simulation/helpers/Commands.js:702
+#: simulation/helpers/Commands.js:701
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Kan inte uppgradera en garnisonerad enhet."
 
-#: simulation/helpers/Commands.js:748
+#: simulation/helpers/Commands.js:747
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Attack mot %(_player_)s begärs."
 
-#: simulation/helpers/Commands.js:785
+#: simulation/helpers/Commands.js:784
 msgid "Unable to ungarrison unit(s)"
 msgstr "Kan inte ogarnisonera enhet(er)"
 
-#: simulation/helpers/Commands.js:799
+#: simulation/helpers/Commands.js:798
 msgid "Some unit(s) can't go back to work"
 msgstr "Några enhet(er) kan ej gå tillbaka till arbetet"
 
-#: simulation/helpers/Commands.js:1054
+#: simulation/helpers/Commands.js:1052
 msgid "The building's technology requirements are not met."
 msgstr "Byggnadens teknologikrav är inte uppfyllda"
 

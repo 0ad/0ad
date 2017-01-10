@@ -203,7 +203,7 @@ function InterpretTechRequirements(civ, operator, value)
 					for (let currReq of requirements)
 						for (let res of result)
 						{
-							let newReq = {}
+							let newReq = {};
 							for (let subtype in currReq)
 								newReq[subtype] = currReq[subtype];
 

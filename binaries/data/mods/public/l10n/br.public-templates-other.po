@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-05 17:23+0000\n"
+"PO-Revision-Date: 2017-01-07 17:07+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Gaia"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "Bured Generek"
+msgstr "Plant Generek"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -653,7 +653,7 @@ msgstr "Bank"
 
 #: simulation/templates/other/bench.xml:21
 msgid "Wooden Bench"
-msgstr "Bank koad"
+msgstr "Bank Koad"
 
 #: simulation/templates/other/bridge_hele.xml:16
 #: simulation/templates/other/bridge_hele.xml:17
@@ -663,7 +663,7 @@ msgstr "Pont"
 #: simulation/templates/other/bridge_wooden.xml:16
 #: simulation/templates/other/bridge_wooden.xml:17
 msgid "Wooden Bridge"
-msgstr "Pont koad"
+msgstr "Pont Koad"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -683,7 +683,7 @@ msgstr "Foukenn"
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
-msgstr "Ti hir"
+msgstr "Ti-hir"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -693,12 +693,12 @@ msgstr "Kolonenn"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr "Kolonenn dorikek"
+msgstr "Kolonenn Dorikek"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr "Kolonenn dorikek kouezhet"
+msgstr "Kolonenn Dorikek Kouezhet"
 
 #: simulation/templates/other/fence_long.xml:21
 #: simulation/templates/other/fence_short.xml:21
@@ -707,20 +707,20 @@ msgstr "Sklotur"
 
 #: simulation/templates/other/fence_long.xml:22
 msgid "Long Wooden Fence"
-msgstr "Sklotur koad hir"
+msgstr "Sklotur Hir e Koad"
 
 #: simulation/templates/other/fence_short.xml:22
 msgid "Short Wooden Fence"
-msgstr "Sklotur koad berr"
+msgstr "Sklotur Berr e Koad"
 
 #: simulation/templates/other/fence_stone.xml:21
 #: simulation/templates/other/fence_stone.xml:22
 msgid "Stone Fence"
-msgstr "Sklotur men"
+msgstr "Sklotur Vaen"
 
 #: simulation/templates/other/generic_field.xml:9
 msgid "Wheat Field"
-msgstr "Park ed"
+msgstr "Park Gwinizh-Gwenn"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:29
 msgid "Epic Temple"
@@ -748,7 +748,7 @@ msgstr "Stoa"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr "Stoa hellenel"
+msgstr "Stoa Hellenel"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
@@ -760,7 +760,7 @@ msgstr "Obeliskenn"
 
 #: simulation/templates/other/obelisk.xml:21
 msgid "Egyptian Obelisk"
-msgstr "Obeliskenn ejiptek"
+msgstr "Obeliskenn Ejipsian"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
@@ -772,7 +772,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
-msgstr "Kamm ar peulgae"
+msgstr "Peulgae-Kromm"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
@@ -780,7 +780,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
-msgstr "Fin ar peulgae"
+msgstr "Fin ar Peulgae"
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
@@ -788,7 +788,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:5
 msgid "Palisade Fort"
-msgstr "Kreñv ar peulgae"
+msgstr "Peulgae ar C'hreñvlec'h"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:6
 msgid "Sentry Tower"
@@ -796,11 +796,11 @@ msgstr "Tour geder"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
-msgstr "Nor ar peulgae"
+msgstr "Dor ar Peulgae"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:19
 msgid "Wooden Gate"
-msgstr "Nor koad"
+msgstr "Dor Goad"
 
 #: simulation/templates/other/palisades_rocks_long.xml:27
 #: simulation/templates/other/palisades_rocks_medium.xml:27
@@ -818,7 +818,7 @@ msgstr "Peulgae"
 #: simulation/templates/other/palisades_rocks_tower.xml:27
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
-msgstr "Moger koad"
+msgstr "Moger Goad"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
@@ -881,26 +881,26 @@ msgstr "Piramidenn"
 
 #: simulation/templates/other/pyramid_great.xml:10
 msgid "Great Pyramid"
-msgstr "Piramidenn vras"
+msgstr "Piramidenn Vras"
 
 #: simulation/templates/other/pyramid_minor.xml:10
 msgid "Minor Pyramid"
-msgstr "Piramidenn vihan"
+msgstr "Piramidenn Vihan"
 
 #: simulation/templates/other/sele_colonnade.xml:20
 msgid "Colonnade"
-msgstr "Kkolonennoù"
+msgstr "Kolonennoù"
 
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
-msgstr " kolonennoù korinthianek"
+msgstr "Kolonennoù Korinthianek"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr "Peñse"
+msgstr "Peñse ur vag"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
@@ -908,7 +908,7 @@ msgstr ""
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr "Peñse ul lestr-karg "
+msgstr "Peñse ul lestr-karg"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
@@ -926,16 +926,16 @@ msgstr ""
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr "Kel bras"
+msgstr "Kel Bras"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr "Kel krenn"
+msgstr "Kel Krenn"
 
 #: simulation/templates/other/stall_small_a.xml:12
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall"
-msgstr "Kel bihan"
+msgstr "Kel Bihan"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -948,15 +948,15 @@ msgstr ""
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr "Toal garrez"
+msgstr "Toal Garrez"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr "Templ gresian ha n'eo ket achu"
+msgstr "Templ Gresian Diechu"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr "N'eo ket achu an templ-mañ hag eo aet da get"
+msgstr "N'eo ket echu an templ-mañ hag eo aet da zismantroù."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

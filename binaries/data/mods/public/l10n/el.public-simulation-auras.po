@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-02 17:01+0000\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-07 05:08+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -411,6 +411,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Λίγο μετά τις μεγάλες ναυτικές νίκες στη Σαλαμίνα και τη Μυκάλη, οι ελληνικές πόλεις-κράτη σύστησαν τη λεγόμενη Δηλιακή Συμμαχία το 478 π.Χ., σκοπός της οποίας ήταν να διώξει τους Πέρσες έξω από την περιοχή του Αιγαίου  Τα συμμαχικά κράτη συνέβαλαν πλοία και χρήματα, ενώ οι Αθηναίοι προσέφεραν το σύνολο του στόλου τους."
 
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr "Μεγαλέμποροι"
+
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "10% επιπλέον εμπορικό κέρδος στις συμμαχικές διεθνείς διαδρομές."
+
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Μισθοφόρος"
@@ -429,6 +437,14 @@ msgstr "Θρησκευτικές Υποστηρίξεις του Ασόκα"
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
 msgstr "Οι συμμαχικοί ναοί και οι τεχνολογίες των ναών στοιχίζουν -50% σε πόρους και χρόνο."
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr "Η Βασιλική Οδός"
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Υψηλότερες απολαβές (+15%) από τους χερσαίους εμπορικούς δρόμους για τους εμπόρους των συμμάχων."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

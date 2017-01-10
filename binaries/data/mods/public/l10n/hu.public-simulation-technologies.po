@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2016
+# Balázs Meskó <meskobalazs@gmail.com>, 2015-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2014
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2016-12-30 09:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-06 12:42+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgid ""
 "health, 1 extra armour level of every type, 20% extra attack for melee "
 "units, 4m extra range and 5% better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "A fejlett osztályra képzett egységek a következő bónuszokat kapják: 20% további életerő, 1 további páncélszint minden típusból, 20% további támadás a közelharci egységeknek, 4 m további hatótávolság és 5%-kal jobb pontosság a távolsági egységeknek, gyorsabb mozgási sebesség és további gyógyítási sebesség és hatótáv a gyógyítóknak."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -825,7 +825,7 @@ msgid ""
 "extra armour level of every type, 20% extra attack for melee units, extra "
 "range and better precision for ranged units, faster movement speeds and "
 "extra heal speed and range for healers."
-msgstr ""
+msgstr "Az elit osztályra képzett egységek a következő bónuszokat kapják: 20% további életerő, 1 további páncélszint minden típusból, 20% további támadás a közelharci egységeknek, további hatótávolság és jobb pontosság a távolsági egységeknek, gyorsabb mozgási sebesség és további gyógyítási sebesség és hatótáv a gyógyítóknak."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1898,13 +1898,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "A karthágóiak a városfalaikat három koncentrikus körben építették. Ezeket a falakat sosem törték át. Amikor a rómaiak elfoglalták a várost, akkor is a város kikötőjén keresztül tették, és nem a falak ostromával."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "A karthágói falak, kapuk és tornyok háromszor olyan ellenállóak, mint a hagyományos falak, de kétszer annyiba kerülnek, és kétszer olyan sok idő alatt épülnek fel."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2214,13 +2214,13 @@ msgstr "Elit italióta zsoldosok"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "A kelta épületek többnyire fából készültek, terméskő alapokra."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "A kelta épületeknek 20%-kal kevesebb életerejük van, de 20%-kal olcsóbbak, és gyorsabban épülnek."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2252,7 +2252,7 @@ msgstr "A görögök kőépítményeket használtak a korai mükénei időktől.
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "Minden épületnek 10%-kal több életerő és foglalási pontja van, de 10%-kal hosszabb az építési idő is."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2268,7 +2268,7 @@ msgstr "A spártaiak hadserege nem a legnagyobb, de az akkori világ legjobbja v
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population"
-msgstr ""
+msgstr "A spártaiknak 10%-kal kisebb a maximális népességkorlátja"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2330,7 +2330,7 @@ msgstr "A Maurja birodalom több tucat, előzőleg független királyságot fogo
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "A maurjáknak 10%-kal nagyobb a maximális népességkorlátja."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2362,11 +2362,11 @@ msgstr "Íjászhagyomány"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "A maurják a városfalaikat fából építették, amely bőséges nyersanyag volt Indiában."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr ""
+msgstr "A maurja városfalaknak 20%-kal kevesebb az életerejük, és 20%-kal kevesebb idő alatt épülnek fel."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2384,7 +2384,7 @@ msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, 
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "A perzsáknak 10%-kal nagyobb a maximális népességkorlátja."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
@@ -2426,7 +2426,7 @@ msgstr "Perzsa építészet"
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr "A Perzsáknak tradicionális volt az íjászatuk és előszeretettel használták fel őket tömegesen a csatában."
+msgstr "A perzsák nagy íjászhagyománnyal rendelkeztek, és előszeretettel használtak íjászokat tömegesen a csatában."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
 msgid ""
@@ -2437,7 +2437,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "A krai óperzsa uralkodók az irányba tevékenykedtek, hogy Perzsia legyen az első nagy ázsiai birodalom, amely uralja a tengereket. A nagykirály különböző tengeri népek kedvére tevékenykedett, hogy biztosítsa szolgálataikat, de különféle tengeri kezdeményezései is voltak. Nagy Dárajavaus uralma alatt például egy csatorna épült Egyiptomban ás a perzsa flottát az Indus folyó felfedezésére küldték. Hérodotosz szerint körülbelül 300 perzsa hadihajó lett átépítve, hogy lovakat és lovasaikat szállítsák."
+msgstr "A korai óperzsa uralkodók az irányba tevékenykedtek, hogy Perzsia legyen az első nagy ázsiai birodalom, amely uralja a tengereket. A nagykirály különböző tengeri népek kedvére tevékenykedett, hogy biztosítsa szolgálataikat, de különféle tengeri kezdeményezései is voltak. Nagy Dárajavaus uralma alatt például egy csatorna épült Egyiptomban ás a perzsa flottát az Indus folyó felfedezésére küldték. Hérodotosz szerint körülbelül 300 perzsa hadihajó lett átépítve, hogy lovakat és lovasaikat szállítsák."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."

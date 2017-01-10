@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-01-05 17:23+0000\n"
+"PO-Revision-Date: 2017-01-07 17:11+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -504,7 +504,7 @@ msgstr ""
 
 #: gui/common/network.js:73
 msgid "Server full"
-msgstr "Leun eo ar servijer"
+msgstr "Leun emañ ar servijer"
 
 #: gui/common/network.js:76
 #, javascript-format
@@ -811,7 +811,7 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:544
 msgid "Heal:"
-msgstr "Pareañ :"
+msgstr "Pareañ:"
 
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
@@ -836,7 +836,7 @@ msgstr "Dre Ziouer"
 #: gui/common/tooltips.js:273
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr "Dre unanenn"
+msgstr "Dre Unanenn"
 
 #: gui/common/tooltips.js:284
 #, javascript-format
@@ -880,7 +880,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 #: gui/common/tooltips.js:423
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr "%(resourceIcon)s %(minimum)s da %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:452
 #, javascript-format
@@ -904,7 +904,7 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/common/tooltips.js:480
 msgid "Population Bonus:"
-msgstr "Bonuz evit ar boblañs :"
+msgstr "Bonuz ar boblañs:"
 
 #: gui/common/tooltips.js:502
 msgid "Insufficient resources:"
@@ -917,7 +917,7 @@ msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:519
 msgid "Speed:"
-msgstr "Tizh :"
+msgstr "Tizh:"
 
 #: gui/common/tooltips.js:521 gui/common/tooltips.js:526
 #, javascript-format
@@ -926,11 +926,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:523
 msgid "Walk"
-msgstr "Kerzh"
+msgstr "Kerzhout"
 
 #: gui/common/tooltips.js:528
 msgid "Run"
-msgstr "Red"
+msgstr "Redek"
 
 #: gui/common/tooltips.js:543 gui/common/tooltips.js:549
 #: gui/common/tooltips.js:554
@@ -972,7 +972,7 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:612
 msgid "Classes:"
-msgstr "Klasoù :"
+msgstr "Klasoù:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
@@ -983,7 +983,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:647
 msgid "Loot:"
-msgstr "Preizhadenn :"
+msgstr "Preizhadenn:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -997,12 +997,12 @@ msgstr "Hini ebet"
 
 #: gui/locale/locale_advanced.js:92
 msgid "<invalid>"
-msgstr "\n"
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
-msgstr "Mad eo"
+msgstr "Mat eo"
 
 #: gui/options/options.js:277
 msgid ""
@@ -1013,7 +1013,7 @@ msgstr ""
 #: gui/options/options.js:278 gui/options/options.js:345
 #: gui/savedgames/load.js:127
 msgid "Warning"
-msgstr "Hoc'h evezh"
+msgstr "Diwallit"
 
 #: gui/options/options.js:344
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1021,7 +1021,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
-msgstr "o kevreañ d'ar servijer"
+msgstr "o kevreañ ouzh ar servijer"
 
 #: gui/pregame/mainmenu.js:92
 #, javascript-format
@@ -1065,20 +1065,20 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
-msgstr "HOC'H EVEZH!"
+msgstr "DIWALLIT!"
 
 #: gui/pregame/mainmenu.js:157
 msgid "Read More"
-msgstr "Lenn muioc'h"
+msgstr "Lenn Muioc'h"
 
 #: gui/pregame/mainmenu.js:242
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Savidigezh : %(buildDate)s (%(revision)s)"
+msgstr "Stumm: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:254
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Sur oc'h ho peus c'hoant da guitaat 0 A.D. ?"
+msgstr "Ha sur oc'h ho peus c'hoant da guitaat 0 A.D. ?"
 
 #: gui/pregame/mainmenu.js:255 gui/summary/summary.js:155
 msgid "Confirmation"
@@ -1182,8 +1182,8 @@ msgstr "Hini ebet"
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] "< %(max)s munut"
-msgstr[1] "< %(max)s munut"
+msgstr[0] "< %(max)s munutenn"
+msgstr[1] "< %(max)s munutenn"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:125
@@ -1191,15 +1191,15 @@ msgstr[1] "< %(max)s munut"
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] "> %(min)s munut"
-msgstr[1] "> %(min)s munut"
+msgstr[0] "> %(min)s munutenn"
+msgstr[1] "> %(min)s munutenn"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:128
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr "%(min)s - %(max)s munut"
+msgstr "%(min)s - %(max)s munutenn"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
@@ -1207,7 +1207,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
 msgid "Single Player"
-msgstr "c'hoari en e unan"
+msgstr "C'hoari Solo"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):482
 msgid "Multiplayer"
@@ -1228,7 +1228,7 @@ msgstr "C'hoariadennoù renket"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr "C'hoariadennoù direnket"
+msgstr "C'hoariadennoù Nann-renket"
 
 #: gui/replaymenu/replay_menu.js:192
 msgid "Filter replays by typing one or more, partial or complete playernames."
@@ -1244,7 +1244,7 @@ msgstr "MM-yyyy"
 
 #: gui/savedgames/load.js:15 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr "N'eo ket bet kavet tamm c'hoari enrollet ebet"
+msgstr "C'hoariadenn enrollet ebet"
 
 #: gui/savedgames/load.js:59
 #, javascript-format
@@ -1298,7 +1298,7 @@ msgstr "%(val1)s da %(val2)s"
 #: gui/summary/layout.js:97 gui/summary/layout.js:142
 #: gui/summary/layout.js:172 gui/summary/summary.xml:(caption):104
 msgid "Player name"
-msgstr "Anv ar c'hoarier"
+msgstr "Anv ar C'hoarier"
 
 #: gui/summary/layout.js:5
 msgid "Economy score"
@@ -1310,7 +1310,7 @@ msgstr "Skor milourel"
 
 #: gui/summary/layout.js:7
 msgid "Exploration score"
-msgstr "Skor dizoloiñ"
+msgstr "Skor ergerzhadur"
 
 #: gui/summary/layout.js:8
 msgid "Total score"
@@ -1330,7 +1330,7 @@ msgstr "Ekonomiezh"
 
 #: gui/summary/layout.js:25
 msgid "Outposts"
-msgstr "Kampoù-araokaet"
+msgstr "Kampoù-Araokaet"
 
 #: gui/summary/layout.js:26
 msgid "Military"
@@ -1342,18 +1342,18 @@ msgstr "Kreñvlec'hioù"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
-msgstr "Kreizennoù geodedel"
+msgstr "Kreizennoù keodedel"
 
 #: gui/summary/layout.js:29
 msgid "Wonders"
-msgstr "Burzhudoù"
+msgstr "Marzennoù"
 
 #: gui/summary/layout.js:33
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr "Stadigoù ar savadurioù  (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
+msgstr "Statistikoù ar savadurioù (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:35
 msgid "Constructed"
@@ -1365,7 +1365,7 @@ msgstr "Distrujet"
 
 #: gui/summary/layout.js:37 gui/summary/layout.js:75
 msgid "Captured"
-msgstr "Tapet"
+msgstr "Paket"
 
 #: gui/summary/layout.js:38 gui/summary/layout.js:76
 msgid "Lost"
@@ -1373,7 +1373,7 @@ msgstr "Kollet"
 
 #: gui/summary/layout.js:60
 msgid "Infantry"
-msgstr "Troadeion"
+msgstr "Troadeien"
 
 #: gui/summary/layout.js:62
 msgid "Cavalry"
@@ -1393,12 +1393,12 @@ msgstr "Morlu"
 
 #: gui/summary/layout.js:67
 msgid "Traders"
-msgstr "Marc'hadourien"
+msgstr "Kenwerzhourien"
 
 #: gui/summary/layout.js:71
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr "Stadigoù diwar an unanennoù (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
+msgstr "Statistikoù war an Unanennoù (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:73
 msgid "Trained"
@@ -1434,7 +1434,7 @@ msgstr "Preizhadenn"
 #: gui/summary/layout.js:118
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr "Stadigoù an danvezioù (%(gathered)s / %(used)s)"
+msgstr "Statistikoù an Danvezioù (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:120
 msgid "Gathered"
@@ -1478,7 +1478,7 @@ msgstr ""
 msgid ""
 "Map\n"
 "exploration"
-msgstr "Dizoloiñ\nar gartenn"
+msgstr "Ergerzhadur\nar gartenn"
 
 #: gui/summary/layout.js:177
 msgid "At peak"
@@ -1494,7 +1494,7 @@ msgstr ""
 
 #: gui/summary/layout.js:326
 msgid "Team total"
-msgstr "Hollek ar skipailh"
+msgstr "Hollad ar skipailh"
 
 #: gui/summary/summary.js:125
 msgid "Victory"
@@ -1506,7 +1506,7 @@ msgstr ""
 
 #: gui/summary/summary.js:154
 msgid "Are you sure you want to quit the lobby?"
-msgstr "Sur oc'h ho peus c'hoant da guitaat an hall ?"
+msgstr "Sur oc'h ho peus c'hoant da guitaat an hall?"
 
 #: gui/summary/summary.js:205
 msgid "Current Scores"
@@ -1562,7 +1562,7 @@ msgstr "Serriñ"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr "Roll anvioù 0 A.D."
+msgstr "Kreditoù 0 A.D."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1573,7 +1573,7 @@ msgstr "Yezh"
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr "Yezh :"
+msgstr "Yezh:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special variant preferences that the user wants to see in their
@@ -1600,7 +1600,7 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr "Bro :"
+msgstr "Bro:"
 
 #: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
@@ -1639,7 +1639,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):18
 msgid "Game Options"
-msgstr "Dibaboù ar c'hoari"
+msgstr "Dibarzhioù ar C'hoari"
 
 #: gui/options/options.xml:(caption):22
 msgid "General"
@@ -1736,7 +1736,7 @@ msgstr "Istor"
 
 #: gui/pregame/mainmenu.xml:(caption):208
 msgid "Matches"
-msgstr "Matchoù"
+msgstr "Krogadoù"
 
 #: gui/pregame/mainmenu.xml:(caption):222
 msgid "Campaigns"
@@ -1744,7 +1744,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
-msgstr "Kargañ ar c'hoari"
+msgstr "Kargañ ur C'hoariadenn"
 
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:(caption):262
@@ -1773,7 +1773,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):382
 msgid "Welcome Screen"
-msgstr "Skramm degemer"
+msgstr "Skramm Degemer"
 
 #: gui/pregame/mainmenu.xml:(caption):397
 msgid "Mod Selection"
@@ -1781,11 +1781,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):452
 msgid "Learn To Play"
-msgstr "Desk c'hoari"
+msgstr "Deskiñ C'hoari"
 
 #: gui/pregame/mainmenu.xml:(caption):497
 msgid "Tools & Options"
-msgstr "Ostilhoù ha dibaboù"
+msgstr "Ostilhoù ha Dibarzhioù"
 
 #: gui/pregame/mainmenu.xml:(caption):512
 msgid "Exit"
@@ -1801,7 +1801,7 @@ msgstr "Flap"
 
 #: gui/pregame/mainmenu.xml:(caption):571
 msgid "Report a Bug"
-msgstr "Reiñ da c'houzout ur gudenn"
+msgstr "Reiñ da anavezout ur veugenn"
 
 #: gui/pregame/mainmenu.xml:(caption):583
 msgid "Translate the game"
@@ -1809,7 +1809,7 @@ msgstr "Treiñ ar c'hoari"
 
 #: gui/pregame/mainmenu.xml:(caption):595
 msgid "Credits"
-msgstr "Roll anvioù"
+msgstr "Kreditoù"
 
 #: gui/pregame/mainmenu.xml:(caption):624
 msgid "WILDFIRE GAMES"
@@ -1859,7 +1859,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
-msgstr "Dibab yezh ar c'hoari"
+msgstr "Dibab yezh ar c'hoari."
 
 #: gui/pregame/mainmenu.xml:(tooltip):356
 msgid "Playback previous games."
@@ -1877,7 +1877,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):398
 msgid "Select mods to use."
-msgstr "Dibab ar modoù da implij."
+msgstr "Diuziñ ar modoù da implij."
 
 #: gui/pregame/mainmenu.xml:(tooltip):453
 msgid ""
@@ -1899,7 +1899,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Exits the game."
-msgstr "Kuitaat ar c'hoari"
+msgstr "Kuitaat ar c'hoari."
 
 #: gui/pregame/mainmenu.xml:(tooltip):548
 msgid "Click to open play0ad.com in your web browser."
@@ -1921,7 +1921,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):596
 msgid "Click to see the 0 A.D. credits."
-msgstr "Klikit evit diskouez roll anvioù 0 A.D."
+msgstr "Klikit evit diskouez kreditoù 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
@@ -1944,12 +1944,12 @@ msgstr "Ment ar gartenn:"
 #: gui/replaymenu/replay_menu.xml:(caption):194
 #: gui/savedgames/load.xml:(caption):66
 msgid "Victory:"
-msgstr "Trec'h :"
+msgstr "Trec'h:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):215
 #: gui/savedgames/load.xml:(caption):50
 msgid "Players:"
-msgstr "C'hoarierien :"
+msgstr "C'hoarierien:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):232
 msgid "Spoiler"
@@ -1957,7 +1957,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):244
 msgid "Main Menu"
-msgstr "Meuziad kentañ"
+msgstr "Lañser Pennañ"
 
 #: gui/replaymenu/replay_menu.xml:(caption):250
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
@@ -2017,11 +2017,11 @@ msgstr ""
 
 #: gui/savedgames/save.xml:(caption):30
 msgid "Description:"
-msgstr "Diskrivadur :"
+msgstr "Diskrivadur:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome!"
-msgstr "Degemer mat !"
+msgstr "Degemer mat!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
@@ -2033,7 +2033,7 @@ msgstr ""
 
 #: gui/structree/structree.xml:(caption):30
 msgid "Civilization:"
-msgstr "Sevenadurezh :"
+msgstr "Sevenadurezh:"
 
 #: gui/structree/structree.xml:(caption):97
 msgid "Trainer Units"
@@ -2113,7 +2113,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
-msgstr "Flutenn"
+msgstr "Fleüt"
 
 #: gui/credits/texts/art.jsonContent[5].Content[4].Subtitle
 msgid "Djembe"
@@ -2133,7 +2133,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Celtic harp"
-msgstr "Telen keltiek"
+msgstr "Telenn Geltiek"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
@@ -2153,7 +2153,7 @@ msgstr "Son"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
-msgstr "Gresian"
+msgstr "Grek"
 
 #: gui/credits/texts/art.jsonContent[7].Content[1].Subtitle
 msgid "Latin"
@@ -2211,7 +2211,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr "E memor da"
+msgstr "In Memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
@@ -2239,11 +2239,11 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr "Roll anvioù ispisial"
+msgstr "Kreditoù Ispisial"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr "Troourien"
+msgstr "Troerien"
 
 #: gui/options/options.jsonlobbySetting[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2275,7 +2275,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
-msgstr "Mod prenestr"
+msgstr "Mod Prenestrel"
 
 #: gui/options/options.jsongeneralSetting[3].tooltip
 msgid "Pause single player games when window loses focus"

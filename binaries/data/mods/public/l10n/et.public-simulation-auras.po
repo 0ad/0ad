@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Sten Kaart <kaart626@gmail.com>, 2017
 # Tõnis Paluoja <dataplayer@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-02 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-06 14:26+0000\n"
+"Last-Translator: Sten Kaart <kaart626@gmail.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/wildfire-games/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +20,11 @@ msgstr ""
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
-msgstr ""
+msgstr "Formatsiooni Reformid"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Kõik sõdurid tema formatsioonis saavad +15% kiirust ja +1 kaitset. "
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -31,7 +32,7 @@ msgstr ""
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr ""
+msgstr "Kõik odaga jalaväed saavad +15% kiirust juurde."
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
@@ -39,7 +40,7 @@ msgstr "Ehitaja Aura"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
 msgid "Buildings construct 15% faster within his aura."
-msgstr ""
+msgstr "Tema auras toimub ehitamine 15% kiiremini."
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -47,11 +48,11 @@ msgstr "Akropoli aura"
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr ""
+msgstr "Templid on 50'ne kivi võrra odavamad tema elu ajal."
 
 #: simulation/data/auras/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander Aura"
-msgstr ""
+msgstr "Mereväe komandöri aura"
 
 #: simulation/data/auras/athen_hero_themistocles_1.jsonauraDescription
 msgid "When garrisoned in a ship, his ship is +50% faster."
@@ -63,15 +64,15 @@ msgstr ""
 
 #: simulation/data/auras/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time for ships during his lifespan."
-msgstr ""
+msgstr "Tema elu kestel toimub laevaehitus +20% kiirendatult."
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
-msgstr "Meistrite Armee"
+msgstr "Tšempionite Armee"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "+20% rünnak, +2 hõivamine ja +25% kiirust tšempioni üksustele."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -199,7 +200,7 @@ msgstr ""
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
-msgstr ""
+msgstr "Piiraja aura"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
@@ -211,7 +212,7 @@ msgstr ""
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr ""
+msgstr "Budismi aura"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
@@ -405,6 +406,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Varsti pärast suurvõite Salamise ja Mykale merelahingutes, moodustasid Kreeka linnriigid 478 eKr nn Delose Liidu, mille eesmärgiks oli pärslaste välja tõrjumine Egeuse merelt. Liitlasriigid panustasid laevu ja raha ning Ateena kogu oma mereväe."
 
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
+
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr ""
@@ -422,6 +431,14 @@ msgstr ""
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
+msgstr ""
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
+msgid "Higher income (+15%) from land trade routes for ally's traders."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName

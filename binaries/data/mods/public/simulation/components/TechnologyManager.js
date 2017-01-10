@@ -151,7 +151,7 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs, civonly
 			return false;
 		});
 	});
-}
+};
 
 TechnologyManager.prototype.DoesEntitySpecPass = function(entity)
 {

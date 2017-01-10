@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
+# Ender Türsen <ado.ender@gmail.com>, 2017
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Hasan Baran Kırmızı <hasanbaran98@gmail.com>, 2016
 # ozgur gursoy <lowopacity@gmail.com>, 2016
@@ -11,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-02 10:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-06 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 07:53+0000\n"
+"Last-Translator: Ender Türsen <ado.ender@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Formasyon Reformları"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Formasyonundaki tüm askerler +% 15 hız ve +1 zırh."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -43,7 +44,7 @@ msgstr "Güç Oluşturucu"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
 msgid "Buildings construct 15% faster within his aura."
-msgstr ""
+msgstr "Binaları  aura içinde %15 daha hızlı oluşturun."
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -75,7 +76,7 @@ msgstr "Şampiyon Ordu"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "Şampiyon birimleri için + % 20 saldırı, +2 yakalama ve + 25 hız."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -89,11 +90,11 @@ msgstr "Kahraman Gücü"
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "Tüm askerler ve kuşatma motorları + % 15 hız."
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
-msgstr "Tüm birimler için saniyede +1 HP"
+msgstr "Tüm birimler için saniyede +1 HP iyileşme menzili"
 
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraName
 msgid "Lightning Aura"
@@ -107,7 +108,7 @@ msgstr "Taktikci Gücü"
 msgid ""
 "All allied soldiers and siege engines +20% attack and +1 capture within his "
 "vision range."
-msgstr ""
+msgstr "Tüm müttefik askerler ve kuşatma motorları +% 20 saldırı ve +1 görüş alanındaki +1."
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
@@ -115,7 +116,7 @@ msgstr "Komutanlık Gücü"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid "+20% cavalry melee attack within his aura."
-msgstr ""
+msgstr "Aura'sında +% 20 süvari yakın düvüş saldırısı."
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -123,7 +124,7 @@ msgstr "Gemi aurasını onarmak"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Garnizon gemiyi saniyede 10 HP'de iyileştirir."
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -154,7 +155,7 @@ msgstr "Yaşamı boyunca toplama oranını %+15 oranında arttırır."
 msgid ""
 "+20% attack and +1 capture for all soldiers and siege engines within his "
 "aura."
-msgstr ""
+msgstr "Aura'sında tüm askerler ve kuşatma motorları için +% 20 saldırı ve +1 yakalama."
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -164,7 +165,7 @@ msgstr "Garnizon Yakalama Gücü"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr ""
+msgstr "Bir yapıda ya da bir kuşatma aracında görevlendirildiğinde, kahraman ona +2 yakalama noktası iyileşme oranı bonus verir."
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
@@ -174,7 +175,7 @@ msgstr "Savunma Gücü"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "Bütün iberi askerlere aura + yüzde  20 saldırı arttırma imkanı verir. Etki Aralığı: 50 metre"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -183,7 +184,7 @@ msgstr "Kütüphane Gücü"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "Teknolojinin maliyetini ve araştırma süresini sahip olunan kütüphane başına% 10 azaltın."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -207,11 +208,11 @@ msgstr ""
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr ""
+msgstr "Kuşatma araçlarıı için + 15 % menzil ve + 10 % çarpışma saldırısı."
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr ""
+msgstr "Şampiyon birimleri için +20 % saldırı ve +2 yakalama."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -240,7 +241,7 @@ msgstr "Ön Güç Öncülüğü"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr ""
+msgstr "Yakındaki süvari birliklerine +% 20 saldırı ve +1 yakalama."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -409,6 +410,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Salamis ve Mycale'deki zaferlerden kısa süre sonra, Yunan şehir devletleri M.Ö. 478'de amacı Persleri Ege Bölgesi'nden atmak olan  Delian Ligini kurdular. Atinalılar bütün donanmalarını seferber ederken müttefik devletler gemiler ve para ile katkıda bulundular."
 
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
+
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Saripeko"
@@ -421,12 +430,20 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ashoka'nın Dini Desteği"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Müttefik tapınak ve tapınak teknolojileri -50% maliyet, kaynak ve zaman."
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr "Kraliyet yolu"
+
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Müttefiklerin tüccarları için kara ticaret yollarından daha yüksek gelir + 15%."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
