@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_market">
   <Footprint>
-    <Square width="30.0" depth="23.0"/>
+    <Square width="30.0" depth="28.0"/>
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_6x4</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Šūq</SpecificName>
-    <History>Carthaginian markets were probably just big sheds or structures surrounding a ?market? area or in a wharf area of a port.</History>
+    <History>Carthaginian markets were probably just big sheds or structures surrounding a market area or in a wharf area of a port.</History>
   </Identity>
   <Market>
     <InternationalBonus op="add">0.1</InternationalBonus>
   </Market>
   <Obstruction>
-    <Static width="27.0" depth="20.0"/>
+    <Static width="30.0" depth="28.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/carthaginians/market.xml</Actor>
-    <FoundationActor>structures/fndn_6x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>
