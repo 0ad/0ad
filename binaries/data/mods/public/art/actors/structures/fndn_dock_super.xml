@@ -3,8 +3,15 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Idle">
+    <variant frequency="100" name="Super Dock Foundation">
       <mesh>structural/found_dock_super.dae</mesh>
+      <textures>
+        <texture file="structural/foundation.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group> 
+    <variant frequency="1" name="Idle">
       <props>
         <prop actor="props/structures/construction/found_dock_super_chains.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
@@ -18,9 +25,5 @@
       </props>
     </variant>
   </group>
-  <group>
-    <variant frequency="1">
-      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
+  <material>basic_trans.xml</material>
 </actor>

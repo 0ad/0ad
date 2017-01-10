@@ -3,20 +3,15 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Cape">
-      <textures><texture file="props/cape_hd.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="3" name="Cape-hd">
       <mesh>props/new/capes/cape_hd_long.dae</mesh>
-    </variant>
-  </group>
-  <group>
+      <textures>
+        <texture file="props/cape_hd.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/base_archer_chariot_ready.xml">
+    <variant file="biped/base_archer_chariot_ready.xml"/>
     <variant file="biped/attack_ranged_archer.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/gather_praise.xml"/>
