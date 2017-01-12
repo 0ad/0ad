@@ -499,8 +499,8 @@ Attack.prototype.PerformAttack = function(type, target)
 		let distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
 
 		let randNorm = randomNormal2D();
-		let offsetX = randNorm[0] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
-		let offsetZ = randNorm[1] * distanceModifiedSpread * (1 + targetVelocity.length() / 20);
+		let offsetX = randNorm[0] * distanceModifiedSpread;
+		let offsetZ = randNorm[1] * distanceModifiedSpread;
 
 		let realTargetPosition = new Vector3D(predictedPosition.x + offsetX, targetPosition.y, predictedPosition.z + offsetZ);
 
