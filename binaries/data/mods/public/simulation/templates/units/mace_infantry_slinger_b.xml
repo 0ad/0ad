@@ -7,12 +7,20 @@
       structures/mace_library
     </Entities>
   </Builder>
+  <Cost>
+    <Resources>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>
     <SelectionGroupName>units/mace_infantry_slinger_b</SelectionGroupName>
     <GenericName>Rhodian Slinger</GenericName>
     <SpecificName>Sphendonḗtēs Rhódios</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+    <History>The slingers from the island of Rhodes were the best slingers in and around the Aegean world, learning their craft from a young age. A lead Rhodian bullet had enough force to pierce armour and kill a man. They were hired by Macedon and the Hellenistic states (and Hellenic states before them) as mercenaries to augment the skirmishing capacity of their armies. In this, the Rhodian Sphendonêtês excelled brilliantly.</History>
     <Icon>units/hele_infantry_slinger.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

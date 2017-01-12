@@ -30,4 +30,7 @@
     <Max>2000</Max>
     <SpawnEntityOnDeath>rubble/rubble_stone_wall_medium</SpawnEntityOnDeath>
   </Health>
+  <VisualActor>
+    <FoundationActor>structures/fndn_wall_medium.xml</FoundationActor>
+  </VisualActor>
 </Entity>

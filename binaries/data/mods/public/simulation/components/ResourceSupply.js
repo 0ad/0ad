@@ -19,7 +19,7 @@ ResourceSupply.prototype.Schema =
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='DiminishingReturns' a:help='The relative rate of any new gatherer compared to the previous one (geometric sequence). Should be between 0 and 1 exclusives. Leave the element out for no diminishing returns.'>" +
+		"<element name='DiminishingReturns' a:help='The relative rate of any new gatherer compared to the previous one (geometric sequence). Leave the element out for no diminishing returns.'>" +
 			"<ref name='positiveDecimal'/>" +
 		"</element>" +
 	"</optional>";
@@ -91,7 +91,7 @@ ResourceSupply.prototype.GetDiminishingReturns = function()
 		{
 			let numGatherers = this.GetNumGatherers();
 			if (numGatherers > 1)
-				return (1. - Math.pow(diminishingReturns, numGatherers)) / (1. - diminishingReturns) / numGatherers;
+				return diminishingReturns == 1 ? 1 : (1. - Math.pow(diminishingReturns, numGatherers)) / (1. - diminishingReturns) / numGatherers;
 		}
 	}
 	return null;
