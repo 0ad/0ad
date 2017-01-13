@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-07 05:11+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 18:00+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Ξεκινάω μια τεράστια στρατιωτική εκστρ
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid ""
-"I have set up an huge army to crush %(_player_)s. Join me and you will have "
+"I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
 msgstr "Έχω φτιάξει ένα τεράστιο στρατό για να συνθλίψω των  %(_player_)s. Έλα μαζί μου και θα μοιραστούμε τα λάφυρα."
 
@@ -147,6 +147,53 @@ msgstr "Ο %(_player_)s και Εσύ τώρα είστε ουδέτεροι."
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "Ο %(_player_)s και Εσύ τώρα είστε εχθροί."
+
+#: simulation/ai/petra/chatHelper.js:68
+#, javascript-format
+msgid "I cannot accept your offer to be allies %(_player_)s."
+msgstr "Δεν μπορώ να δεχθώ την προσφορά σου να γίνω σύμμαχος με %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:71
+#, javascript-format
+msgid ""
+"I will not ally with you %(_player_)s, but I will consider a neutrality "
+"pact."
+msgstr "Δεν θα συμμαχήσω μαζί σου %(_player_)s, αλλά θα εξετάσω ένα σύμφωνο ουδετερότητας."
+
+#: simulation/ai/petra/chatHelper.js:74
+#, javascript-format
+msgid ""
+"%(_player_)s, our previous alliance did not work out, so I must decline your"
+" offer."
+msgstr "%(_player_)s, η προηγούμενη συμμαχία μας δεν δούλεψε, έτσι πρέπει να αρνηθώ τη προσφορά σου. "
+
+#: simulation/ai/petra/chatHelper.js:77
+#, javascript-format
+msgid ""
+"I will accept your offer to become allies %(_player_)s. We will both benefit"
+" from this alliance."
+msgstr "Θα δεχτώ την προσφορά σου για να γίνω σύμμαχος με %(_player_)s. Θα έχουμε και οι δύο όφελος από αυτή τη συμμαχία."
+
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I will ally with you %(_player_)s, but only if you send me a tribute of "
+"%(_amount_)s %(_resource_)s."
+msgstr "Θα συμμαχήσω μαζί σου %(_player_)s, αλλά μόνο αν μου στείλεις ως φόρο %(_amount_)s %(_resource_)s."
+
+#: simulation/ai/petra/chatHelper.js:81
+#, javascript-format
+msgid ""
+"%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
+"me to accept an alliance."
+msgstr "%(_player_)s, πρέπει να μου στείλεις ένα φόρο από %(_amount_)s %(_resource_)s για να αποδεχτώ τη συμμαχία."
+
+#: simulation/ai/petra/chatHelper.js:84
+#, javascript-format
+msgid ""
+"%(_player_)s, my offer still stands. I will ally with you if you send me a "
+"tribute of %(_amount_)s %(_resource_)s."
+msgstr "%(_player_)s, η προσφορά μου εξακολουθεί να ισχύει. Θα συμμαχήσω μαζί σου αν μου στείλεις ένα φόρο από %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""

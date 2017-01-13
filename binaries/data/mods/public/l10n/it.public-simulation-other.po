@@ -9,6 +9,7 @@
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2015
 # Fabrizio Morotti <famorot@tin.it>, 2016
 # Luca <kokonos@live.de>, 2015
+# Martin Falanga <iblaim97@hotmail.it>, 2017
 # Me Lazzi, 2014-2016
 # Nicola Jelmorini, 2015
 # Samuele Marazzita <samuelemarazzita@gmail.com>, 2016
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 09:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-11 12:07+0000\n"
+"Last-Translator: Martin Falanga <iblaim97@hotmail.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,9 +37,9 @@ msgstr "Sto cominciando una campagna militare massiccia contro %(_player_)s, uni
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid ""
-"I have set up an huge army to crush %(_player_)s. Join me and you will have "
+"I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "Ho preparato un' armata gigante per distruggere %(_player_)s. Unisciti a me ed avrai la tua parte di bottino."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -141,12 +142,59 @@ msgstr "%(_player_)s ed Io ora siamo alleati."
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr ""
+msgstr "%(_player_)s ed io siamo ora neutrali."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "%(_player_)s ed Io ora siamo nemici."
+
+#: simulation/ai/petra/chatHelper.js:68
+#, javascript-format
+msgid "I cannot accept your offer to be allies %(_player_)s."
+msgstr "Non posso accettare l'offerta di alleanza  %(_player_)s"
+
+#: simulation/ai/petra/chatHelper.js:71
+#, javascript-format
+msgid ""
+"I will not ally with you %(_player_)s, but I will consider a neutrality "
+"pact."
+msgstr "Non mi alleerò con te %(_player_)s, ma terrò in considerazione un patto di neutralità."
+
+#: simulation/ai/petra/chatHelper.js:74
+#, javascript-format
+msgid ""
+"%(_player_)s, our previous alliance did not work out, so I must decline your"
+" offer."
+msgstr "%(_player_)s, la nostra precedente alleanza non ha funzionato, quindi devo declinare la tua offerta."
+
+#: simulation/ai/petra/chatHelper.js:77
+#, javascript-format
+msgid ""
+"I will accept your offer to become allies %(_player_)s. We will both benefit"
+" from this alliance."
+msgstr "Accetterò la tua offerta di diventare alleati %(_player_)s. Ne beneficeremo entrambi da questa alleanza."
+
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I will ally with you %(_player_)s, but only if you send me a tribute of "
+"%(_amount_)s %(_resource_)s."
+msgstr "Mi alleerò con te %(_player_)s, ma solo se mi manderai un tributo di %(_amount_)s %(_resource_)s."
+
+#: simulation/ai/petra/chatHelper.js:81
+#, javascript-format
+msgid ""
+"%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
+"me to accept an alliance."
+msgstr "%(_player_)s, devi inviarmi un tributo di %(_amount_)s %(_resource_)s per farmi accettare un' alleanza."
+
+#: simulation/ai/petra/chatHelper.js:84
+#, javascript-format
+msgid ""
+"%(_player_)s, my offer still stands. I will ally with you if you send me a "
+"tribute of %(_amount_)s %(_resource_)s."
+msgstr "%(_player_)s, la mia offerta è ancora valida. Mi alleerò con te se mi invii un tributo di %(_amount_)s %(_resource_)s"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""

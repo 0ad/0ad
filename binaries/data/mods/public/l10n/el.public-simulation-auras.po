@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-07 05:08+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 18:08+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -203,6 +203,14 @@ msgstr "Αποικιοκρατία Αύρα"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% εδαφική επιρροή για όλα τα κτήρια όσο ζεί."
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Ταξιάρχης"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "Στο δοροφόρο πεζικό +20% επίθεση και +20% σύλληψη μέσα στο βεληνεκές του."
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "Αύρα Πολιορκητή"
@@ -214,6 +222,15 @@ msgstr "+15% εμβέλεια και +10% μετωπική επίθεση στι
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
 msgstr "+20% επίθεση και +2 αιχμαλωσία στις μονάδες πρωταθλητές."
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Πύρρειος Νίκη"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "Όλοι οι στρατιώτες +20% επίθεση όσο ο Πύρρος ζει, αλλά -15% υγεία."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -260,14 +277,27 @@ msgstr "Διοικητής Αύρα "
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% στο ρυθμό συλλογής και κατασκευής στους κοντινούς εργάτες."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Φιλόπατρις Αύρα"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "-20% στο χρόνο επανάληψης της επίθεσης για τους Αιγύπτιους στρατιώτες και τις πολιορκητικές μηχανές μέσα στην αύρα του."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "Σύζυγος"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "Οι συμμαχικοί ήρωες +10% υγεία όταν είναι κοντά της."
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "Οι εχθρικοί ήρωες -10% υγεία όταν είναι κοντά της."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-07 13:07+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 12:47+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Jag startar en massiv militär kampanj mot %(_player_)s, kom och hjälp 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid ""
-"I have set up an huge army to crush %(_player_)s. Join me and you will have "
+"I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
 msgstr "Jag har byggt upp en stor armé för att krossa %(_player_)s. Gå med mig och du kommer att få din del av bytet."
 
@@ -144,6 +144,53 @@ msgstr "%(_player_)s och jag är neutrala nu."
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "%(_player_)s och jag är fiender nu."
+
+#: simulation/ai/petra/chatHelper.js:68
+#, javascript-format
+msgid "I cannot accept your offer to be allies %(_player_)s."
+msgstr "Jag kan inte acceptera ditt erbjudande att vara allierade %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:71
+#, javascript-format
+msgid ""
+"I will not ally with you %(_player_)s, but I will consider a neutrality "
+"pact."
+msgstr "Jag kommer inte att alliera mig med dig %(_player_)s, men jag kommer att överväga en neutralitetspakt."
+
+#: simulation/ai/petra/chatHelper.js:74
+#, javascript-format
+msgid ""
+"%(_player_)s, our previous alliance did not work out, so I must decline your"
+" offer."
+msgstr "%(_player_)s, våran tidigare allians fungerade inte, så jag måste tacka nej till ditt erbjudande."
+
+#: simulation/ai/petra/chatHelper.js:77
+#, javascript-format
+msgid ""
+"I will accept your offer to become allies %(_player_)s. We will both benefit"
+" from this alliance."
+msgstr "Jag kommer acceptera ditt erbjudande att vara allierade, %(_player_)s. Vi kommer båda dra nytta av denna allians."
+
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I will ally with you %(_player_)s, but only if you send me a tribute of "
+"%(_amount_)s %(_resource_)s."
+msgstr "Jag kommer att alliera mig med dig %(_player_)s, men bara om du skickar mig en tribut av %(_amount_)s %(_resource_)s."
+
+#: simulation/ai/petra/chatHelper.js:81
+#, javascript-format
+msgid ""
+"%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
+"me to accept an alliance."
+msgstr "%(_player_)s, du måste skicka mig en tribut av %(_amount_)s %(_resource_)s för att jag skall acceptera en allians."
+
+#: simulation/ai/petra/chatHelper.js:84
+#, javascript-format
+msgid ""
+"%(_player_)s, my offer still stands. I will ally with you if you send me a "
+"tribute of %(_amount_)s %(_resource_)s."
+msgstr "%(_player_)s, mitt erbjudande kvarstår. Jag kommer att alliera mig med dig om du skickar mig en tribut av %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""

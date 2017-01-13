@@ -11,6 +11,7 @@
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2015-2016
 # Fabrizio Morotti <famorot@tin.it>, 2016
 # giangy <giancarlo.moi@tiscali.it>, 2014
+# Martin Falanga <iblaim97@hotmail.it>, 2017
 # Matteo Sechi <tomateschie@gmail.com>, 2016
 # Me Lazzi, 2014-2016
 # Michele Lasala <michi.android1012@gmail.com>, 2016
@@ -22,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2016-12-24 09:03+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:02+0100\n"
+"PO-Revision-Date: 2017-01-11 12:02+0000\n"
+"Last-Translator: Martin Falanga <iblaim97@hotmail.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1300,7 +1301,7 @@ msgstr "Il salvataggio verrà sovrascritto definitivamente, sei sicuro?"
 msgid "OVERWRITE SAVE"
 msgstr "SALVA SOVRASCRIVENDO"
 
-#: gui/structree/load.js:132
+#: gui/structree/load.js:114
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s a %(val2)s"
@@ -2304,15 +2305,15 @@ msgstr "Quando disabilitata, la schermata di benvenuto sarà comunque mostrato u
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "Abilita la schermata di benvenuto"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
-msgid "Show tips when setting a game."
-msgstr ""
+msgid "Show tips when setting up a game."
+msgstr "Mostra consigli quando prepari una partita"
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "Enable Game Setting Tips"
-msgstr ""
+msgstr "Abilita i consigli dei settaggi di gioco"
 
 #: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
@@ -2783,7 +2784,7 @@ msgid ""
 "or very easy) when beginning with the game. Changing the AI level is done by"
 " clicking on the gear icon next to each AI player in the player selection "
 "panel above."
-msgstr ""
+msgstr "Anche se ragionevolmente facile per un giocatore esperto, il livello standard dell' AI è abbastanza competitivo per i nuovi giocatori che non hanno padroneggiato i meccanismi base del gioco. Si consiglia di iniziare contro un livello più basso (sandbox o molto facile) quando si è ancora agli inizi del gioco. Il livello dell' AI si cambia cliccando l'icona arotella accanto ad ogni giocatore AI nel pannello di selezione dei giocatori sovrastante."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

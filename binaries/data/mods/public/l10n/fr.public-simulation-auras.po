@@ -3,7 +3,9 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Arnaud R <roches.arn@gmail.com>, 2017
 # François Poirotte <clicky@erebot.net>, 2016
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2017
 # Loki <tontonloul@hotmail.fr>, 2016
 # Louis Parramon <taonasb@live.fr>, 2016
 # Inperpetuammemoriam, 2016
@@ -16,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 10:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-12 18:55+0000\n"
+"Last-Translator: Arnaud R <roches.arn@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +42,7 @@ msgstr "Réformes des peltastes"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr ""
+msgstr "Tous les tirailleurs gagnent +15% de vitesse."
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
@@ -80,7 +82,7 @@ msgstr "Armée championne"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr "+20% points d'attaque, +5 points de capture et +25% de vitesse pour les unités championnes."
+msgstr "+20% points d'attaque, +2 points de capture et +25% de vitesse pour les unités championnes."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -179,7 +181,7 @@ msgstr "Aura défensive"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "Toutes les unités ibériennes à portée gagnent +20% de bonus d'attaque. Portée de l'Aura : 50 mètres."
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -206,17 +208,34 @@ msgstr "Aura de l'impérialisme"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% d'effet de territoire pour toutes les constructions pendant sa durée de vie."
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarque"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "Toutes les unités de piquier gagnent +20% d'attaque et +20% de capture à sa portée."
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "Aura de l'assiégeur"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr ""
+msgstr "+15% de portée et +10% d'attaque d'écrasement pour les Engins de siège."
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr ""
+msgstr "+20% d'attaque et +2 points de capture pour les unités de champion."
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Victoire à la Pyrrhus"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "Tant que Pyrrhus est en vie, tous les soldats ont +20% d'attaque, mais aussi -15% de points de vie."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -224,7 +243,7 @@ msgstr "Aura du Bouddhisme"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Les Temples et leurs technologies coûtent -50% en ressources et en temps."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -237,7 +256,7 @@ msgstr "Réduit de -50% le temps de recherche des technologies du bâtiment où 
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."
-msgstr ""
+msgstr "Tous les commerçants à portée ont +20% de vitesse."
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
@@ -245,7 +264,7 @@ msgstr "Aura \"Mener de l'avant\""
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr ""
+msgstr "+20% d'attaque et +1 point de capture pour toutes les unités de cavalerie à proximités."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -253,7 +272,7 @@ msgstr "Aura de meneur"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr ""
+msgstr "+15% de vitesse de déplacement pour tous les soldats et les engins de siège."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -261,16 +280,29 @@ msgstr "Aura d'administrateur"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate of nearby workers."
-msgstr ""
+msgstr "+15% de vitesse de ramassage et de construction pour les travailleurs proches."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Aura du patriote"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr "-20% de d'attaques répétées dans le temps pour les soldats Égyptiens et les engins de siège dans leur aura."
+msgstr "-20% d'attaques répétées dans le temps pour les soldats Égyptiens et les engins de siège dans son aura."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "Épouse royale"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "Les héros alliés ont +10% de points de vie lorsqu'ils ce trouvent à proximité d'elle."
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "Les héros ennemis ont -10% de points de vie lorsqu'ils ce trouvent à proximité d'elle."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -416,11 +448,11 @@ msgstr "Peu après les grandes victoires navales de Salamine et du Cap Mycale, l
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr ""
+msgstr "Maîtres marchands"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "10% de bonus de commerce pour les routes alliés internationales."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -434,20 +466,20 @@ msgstr "Réduit le coût des soldats tirailleurs citoyens de 20% pour les allié
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Soutien Religieux d'Ashoka"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Les Temples alliés et leurs technologies coûtent -50% en ressources et en temps."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "La Voie Royale"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Revenues augmentés (+15%) pour les marchands alliés sur les voies commerciales terrestres."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

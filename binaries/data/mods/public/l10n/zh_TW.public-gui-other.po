@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
-# Jeff Huang <s8321414@gmail.com>, 2014-2016
+# Jeff Huang <s8321414@gmail.com>, 2014-2017
 # ryat <mj0011@yopmail.com>, 2015
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2016-12-24 14:14+0000\n"
+"POT-Creation-Date: 2017-01-09 09:02+0100\n"
+"PO-Revision-Date: 2017-01-10 06:51+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1270,7 +1270,7 @@ msgstr "儲存的遊戲將被永遠覆蓋，您是否確定？"
 msgid "OVERWRITE SAVE"
 msgstr "覆蓋儲存"
 
-#: gui/structree/load.js:132
+#: gui/structree/load.js:114
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s 至 %(val2)s"
@@ -2277,7 +2277,7 @@ msgid "Enable Welcome Screen"
 msgstr "啟用歡迎畫面"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
-msgid "Show tips when setting a game."
+msgid "Show tips when setting up a game."
 msgstr "當設定遊戲時顯示提示。"
 
 #: gui/options/options.jsongeneralSetting[5].label

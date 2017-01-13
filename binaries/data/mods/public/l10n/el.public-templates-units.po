@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 09:08+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 10:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1287,12 +1287,6 @@ msgstr "Πιστός Ξιφομάχος"
 msgid "Caros"
 msgstr "Κάρος"
 
-#: simulation/templates/units/iber_hero_caros.xml:7
-#: simulation/templates/units/iber_hero_indibil.xml:7
-#: simulation/templates/units/iber_hero_viriato.xml:7
-msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr "Ικανότητα Ήρωα: \"Αντιστασιακή Τακτική\""
-
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
 msgstr "Ανδοβάλης"
@@ -1406,15 +1400,15 @@ msgstr "Μέγας Αλέξανδρος"
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "Μπονους \"Ηρωοκτονία\": +20% επιθετική ικανότητα εναντίον εχθρικών Ηρώων."
 
-#: simulation/templates/units/mace_hero_craterus.xml:6
+#: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Crateros"
 msgstr "Κρατερός"
 
-#: simulation/templates/units/mace_hero_craterus.xml:7
+#: simulation/templates/units/mace_hero_craterus.xml:8
 msgid "Kraterós"
 msgstr "Κρατερός"
 
-#: simulation/templates/units/mace_hero_craterus.xml:8
+#: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Trusted general under Alexander the Great."
 msgstr "Έμπιστος στρατηγός του Μέγα Αλέξανδρου"
 
@@ -1436,17 +1430,13 @@ msgstr "Φίλιππος Β' ο Μακεδών"
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Φίλιππος Β' ο Μακεδών"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:6
+#: simulation/templates/units/mace_hero_pyrrhus.xml:7
 msgid "Pyrrhus of Epirus"
 msgstr "Πύρρος της Ηπείρου"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:7
+#: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "Pyrrhos ton Epeiros"
 msgstr "Πύρρος της Ηπείρου"
-
-#: simulation/templates/units/mace_hero_pyrrhus.xml:8
-msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr "Ικανότητα: \"Πύρριος Νίκη\"."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
@@ -1997,12 +1987,6 @@ msgstr "Κλεοπάτρα Z'"
 msgid "Kleopatra H' Philopator"
 msgstr "Κλεοπάτρα Η' η Φιλοπάτηρ"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:9
-msgid ""
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
-"vision. Decreased effectiveness for enemy heroes."
-msgstr "Αύρα \"Σύζυγος\" (θα προσδιοριστεί): Αυξημένη αποτελεσματικότητα στην όρασή των συμμαχικών ηρώων. Μειωμένη αποτελεσματικότητα για τους ήρωες του εχθρού."
-
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "Πτολεμαίος Α' Σωτήρ"
@@ -2143,12 +2127,6 @@ msgstr "Φάβιος Μάξιμος ο πέμπτος "
 #: simulation/templates/units/rome_hero_scipio.xml:6
 msgid "Scipio Africanus"
 msgstr "Σκιπίων ο Αφρικανός"
-
-#: simulation/templates/units/rome_hero_scipio.xml:9
-msgid ""
-"\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
-"for 500 Metal. (Not implemented)"
-msgstr "\"Διαίρει και βασίλευε\" ικανότητα: Ανάγκασε ομάδες εχθρών να έρθουν με το μέρος σου για 500 μονάδες μετάλλου. (Δεν έχει εφαρμοστεί)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:17
 msgid "Roman Skirmisher"
