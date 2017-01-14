@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-08 09:25+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 10:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1284,12 +1284,6 @@ msgstr "Деял Езпатарі"
 msgid "Caros"
 msgstr "Карос"
 
-#: simulation/templates/units/iber_hero_caros.xml:7
-#: simulation/templates/units/iber_hero_indibil.xml:7
-#: simulation/templates/units/iber_hero_viriato.xml:7
-msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr "Геройська аура: \"Партизанська тактика\" TBD."
-
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
 msgstr "Індібіл"
@@ -1403,15 +1397,15 @@ msgstr "Мегас Александрос"
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "\"Геробійний\" бонус: +20% атаки проти ворожих героїв"
 
-#: simulation/templates/units/mace_hero_craterus.xml:6
+#: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Crateros"
 msgstr "Кратер"
 
-#: simulation/templates/units/mace_hero_craterus.xml:7
+#: simulation/templates/units/mace_hero_craterus.xml:8
 msgid "Kraterós"
 msgstr "Кратерос"
 
-#: simulation/templates/units/mace_hero_craterus.xml:8
+#: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Trusted general under Alexander the Great."
 msgstr "Довірений генерал Александра Великого"
 
@@ -1433,17 +1427,13 @@ msgstr "Філіп ІІ, Македонський"
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Філіпос Бі хо Македон"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:6
+#: simulation/templates/units/mace_hero_pyrrhus.xml:7
 msgid "Pyrrhus of Epirus"
 msgstr "Пірр Епірський"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:7
+#: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "Pyrrhos ton Epeiros"
 msgstr "Пірр тон Еперіос"
-
-#: simulation/templates/units/mace_hero_pyrrhus.xml:8
-msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr "Аура \"Піррова перемога\": TBD"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
@@ -1994,12 +1984,6 @@ msgstr "Клеопатра VII"
 msgid "Kleopatra H' Philopator"
 msgstr "Клеопатра Ха Філопатор"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:9
-msgid ""
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
-"vision. Decreased effectiveness for enemy heroes."
-msgstr "Аура \"подруги\" (TBD): збільшує ефективність союзних героїв у межах її видимості. Зменшує ефективність ворожих героїв."
-
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "Птолемей I \"Спаситель\""
@@ -2140,12 +2124,6 @@ msgstr "Квінт Фабій Максимус Веррукоз"
 #: simulation/templates/units/rome_hero_scipio.xml:6
 msgid "Scipio Africanus"
 msgstr "Сципіон Африканський"
-
-#: simulation/templates/units/rome_hero_scipio.xml:9
-msgid ""
-"\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
-"for 500 Metal. (Not implemented)"
-msgstr "Здатність \"Розділяй і володарюй\": Звертає групи ворожих підрозділів на його бік за 500 металу. (Не реалізовано)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:17
 msgid "Roman Skirmisher"

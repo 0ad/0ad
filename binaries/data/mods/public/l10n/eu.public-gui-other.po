@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-01-08 17:21+0000\n"
+"POT-Creation-Date: 2017-01-09 09:02+0100\n"
+"PO-Revision-Date: 2017-01-10 17:41+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1287,7 +1287,7 @@ msgstr "Gordetako partida behin betiko gainidatziko da, ziur zaude?"
 msgid "OVERWRITE SAVE"
 msgstr "PARTIDA GAINIDATZI"
 
-#: gui/structree/load.js:132
+#: gui/structree/load.js:114
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s hona %(val2)s"
@@ -2294,8 +2294,8 @@ msgid "Enable Welcome Screen"
 msgstr "Ongietorri pantaila gaitu"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
-msgid "Show tips when setting a game."
-msgstr "Aholkuak erakusten ditu partida berria prestatzean."
+msgid "Show tips when setting up a game."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "Enable Game Setting Tips"
@@ -2386,43 +2386,43 @@ msgstr "Taldeka erreklutatutakoen tamaina"
 #: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr ""
+msgstr "Jokalari anitzen Gelako txaten mezuak noiz argitaratu ziren erakusten du, partida sortzean eta jokoaren bitartean."
 
 #: gui/options/options.jsongeneralSetting[16].label
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "Eguna eta ordua erakutsi"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
-msgstr ""
+msgstr "Soinu orokorraren bolumena"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Gain"
-msgstr ""
+msgstr "Soinu orokorra"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
-msgstr ""
+msgstr "Jokoko musikaren bolumena"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Gain"
-msgstr ""
+msgstr "Musikaren bolumena"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "Inguruneko soinuen bolumena"
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Gain"
-msgstr ""
+msgstr "Inguruko bolumena"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "Joko unitateek sortzen duten soinuen bolumena"
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Gain"
-msgstr ""
+msgstr "Unitateen bolumena"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
@@ -2434,11 +2434,11 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr ""
+msgstr "Norbaitek zure izena aipatzen den bakoitzean soinu bat entzungo duzu."
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
-msgstr ""
+msgstr "Erabiltzailearen notifikazioa"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
@@ -2458,23 +2458,23 @@ msgstr "Post prozesatzea"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
 msgid "Low"
-msgstr ""
+msgstr "Baxua"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
 msgid "Medium"
-msgstr ""
+msgstr "Ertaina"
 
 #: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
 msgid "High"
-msgstr ""
+msgstr "Altua"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Irudien kalitatea. JOKOA BERRABIARAZI BEHAR DA"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Graphics quality"
-msgstr ""
+msgstr "Irudien kalitatea"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2516,13 +2516,13 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "Ur efektuak gaitu"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Ura marraztean ikusmen efektu konplexuenak erabiltzen ditu, kostaldeko olatuak barne, aparra itsasbazterrean eta itsasontzien estelak ur azalean."
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "HQ Water Effects"
@@ -2578,7 +2578,7 @@ msgstr "Bistaratu zerua"
 
 #: gui/options/options.jsongraphicsSetting[15].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
 
 #: gui/options/options.jsongraphicsSetting[15].label
 msgid "VSync"
@@ -2775,7 +2775,7 @@ msgstr ""
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  Eskerrik asko 0 A.D. Empires Ascendan instalatzeagatikt!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -2797,7 +2797,7 @@ msgstr "[imgleft=\"iconLag\"]Jokoak errendimendu arazoak izan ditzake, batez ere
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "[imgleft=\"iconFormation\"]Formazioak, garatzen ari den lan bat da, baina alda dezakezu formazioak eginez edo formazioak deseginez, nahi duzun eran."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -2812,17 +2812,17 @@ msgstr "- Eraiki mapan nonahi, etsaiaren lurraldean ere. Ona sekretupeko base ba
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Decays to the territory owner when built in non-allied territory"
-msgstr ""
+msgstr "- Jaitsi egiten da bere jabetza bertakoen eskuetan geratuz aliatuak ez diren lurraldetan."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- Setio armak eraiki eta hiritar-gudariak erreklutatu."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
 "- Garrison up to 40 units to slowly heal the units and protect the army camp"
 " from attacks and decay."
-msgstr ""
+msgstr "40 unitate artean babestu azkarrago sendatzeko eta kanpamentua erasoetatik eta utzikeriatik babesteko. "
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -2836,25 +2836,25 @@ msgstr "- Entrenatu soldadu hiritar guztiak. Fakzio batzuk aldezkariak entrenatz
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- Fakzio bakoitzarendako militar teknologia paregabeetan ikertu."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- Ahalik eta azkarren bat eraiki hiritar-gudariak erreklutatzeko zure faseko egonkortzean aurrera zoazela."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- Eraiki ezazu base aurreratu batean zure erasoei armada berriak emateko."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "BURDINOLA"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr ""
+msgstr "- Fakzio guztientzako ikerketa eraikina."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
@@ -2864,11 +2864,11 @@ msgstr "- Ikertu arma eta armaduren hobekuntzak zure unitateentzat."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr ""
+msgstr "- Gorde barruan hiritar-gudari bat azkarrago ikertzeko. (ORAINDIK EZ DAGO MARTXAN)"
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "KARTAGOTARREN BATAILOI SAKARATUA  "
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
@@ -2884,7 +2884,7 @@ msgstr "- Biak entrenatu daitezke tenplutik, ez gotorlekutik, beste aldezkari ge
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Lantzariak erabili Zalditeriaren kontrako infanteri gisa. Erabili Zalditeria setio Armen eta Gerrillarien kontrako txoke pieza gisa."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -2892,7 +2892,7 @@ msgstr "KATAPULTAK"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- Eraikinen kontrako eragin luzeko setio makinak."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""

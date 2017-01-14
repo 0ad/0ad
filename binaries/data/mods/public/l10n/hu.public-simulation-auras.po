@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 11:10+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 13:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -199,6 +199,14 @@ msgstr "Imperializmus aura"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% területhatás az összes épülethez, amíg él."
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarchès"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "A pikás gyalogságnak +20% támadás és +2 elfoglalás a hatótávolságán belül."
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "Ostromló aura"
@@ -210,6 +218,15 @@ msgstr "+15% hatótávolság és +10% zúzás támadás az ostromgépeknek."
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
 msgstr "+20% támadás és +2 elfoglalás a bajnok egységeknek."
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Pürrhoszi győzelem"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "Minden katonának +20% támadás, amíg Pürrhosz él, de -15% életerő."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -256,14 +273,27 @@ msgstr "Hivatalnok aura"
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% gyűjtési sebesség és építési sebesség a közeli munkásoknak."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Hazafi aura"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "-20% támadás ismétlési sebesség minden egyiptomi katonának és ostromgépnek az auráján belül."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "Hitvestárs"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "Minden szövetséges hősnek +10% életerő a közelében."
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "Minden ellenséges hősnek -10% életerő a közelében."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"

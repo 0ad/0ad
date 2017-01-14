@@ -5,6 +5,7 @@
 # Translators:
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2016-2017
+# Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Nergal Sham <sham-nergal@mail.ru>, 2016
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
@@ -15,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-07 04:28+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-12 16:30+0000\n"
+"Last-Translator: Ivan Korovin <i.d.korovin@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,6 +206,14 @@ msgstr "Аура империализма"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "Пока жив +10% к влиянию территории на здания."
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr ""
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr ""
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "Аура осаждающей стороны"
@@ -216,6 +225,15 @@ msgstr "+15% к расстоянию и +10% сокрушительности д
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
 msgstr "Чемпионы получают +20% к атаке и +2 к захвату."
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr ""
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr ""
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -262,14 +280,27 @@ msgstr "Аура управленца"
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% к скорости сбора и строительства для близлежащих работников."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Аура патриота"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "-20% к времени повторения атаки для Египетских воинов и осадных машин под его аурой."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr ""
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr ""
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -303,7 +334,7 @@ msgstr "Аура \"Меч Рима\""
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr ""
+msgstr "Римские солдаты и осадные орудия, находящиеся в поле его зрения, получают +20% к атаке и +2 к захвату "
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -415,11 +446,11 @@ msgstr "Вскоре после великих морских побед на С
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr ""
+msgstr "Мастера торговли"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "10% бонус к прибыли от торговли на союзнических международных маршрутах."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -442,7 +473,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "Царская дорога"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."

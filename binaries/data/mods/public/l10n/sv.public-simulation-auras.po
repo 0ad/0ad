@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-07 12:58+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 12:39+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -188,7 +188,7 @@ msgstr "Lojalitets-Aura"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr "Alla strukturer inom radien +50% garnisonerad lojalitets regenerationstakt."
+msgstr "Alla strukturer inom radien +50% garnisonerad lojalitetsregenerationstakt."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -197,6 +197,14 @@ msgstr "Imperialism-Aura"
 #: simulation/data/auras/mace_hero_alexander.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% territoriellt inflytande för alla byggnader medans han lever."
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarchès"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "Pikenerarinfanteri +20% attack och +20% erövring inom hans synhåll."
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
@@ -209,6 +217,15 @@ msgstr "+15% räckhåll och +10% krossningsattack för belägringsvapen."
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
 msgstr "+20% attack och +2 erövring för mästarenheter."
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Pyrrhusseger"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "Alla soldater +20% attack så länge Pyrrhos lever, men även -15% hälsa."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -255,14 +272,27 @@ msgstr "Administratör-Aura"
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% insamlings och byggtakt för arbetare i närheten."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Patriot-Aura"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "-20% attack upprepningstid för Egyptiska soldater och belägringsvapen i hennes aura."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "Sällskapa"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "Allierade hjältar +10% hälsa i hennes närhet."
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "Fientliga hjältar -10% hälsa i hennes närhet."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"

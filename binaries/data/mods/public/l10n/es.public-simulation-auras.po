@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Albert, 2017
 # Albert, 2016
 # Swyter <Swyterzone@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 11:49+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 12:38+0000\n"
+"Last-Translator: Albert\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,6 +199,14 @@ msgstr "Aura de imperialismo"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% de efecto sobre el territorio para todos los edificios mientras viva."
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarchès"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "Infantería de Pica +20% al ataque y +20% de captura a su alcance."
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "Aura de asedio"
@@ -209,6 +218,15 @@ msgstr "+15% de distancia y +10 de daño destructor para todas las armas de ased
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
 msgstr "+20% de ataque y +2 de captura para las unidades campeonas."
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Victoria pírrica"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "Todos los soldados +20% al ataque siempre que Pyrrhos viva, pero también -15% a la salud."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -255,14 +273,27 @@ msgstr "Aura de administrador"
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% de ritmo de recolección y construcción a los trabajadores cercanos."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Aura patriótica"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "-20% de tiempo de repetición de ataque para todos los soldados y máquinas de asedio egipcias dentro de su aura."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "Consorte"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "Héroes aliados +10% a la salud cuando estén cerca de ella."
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "Héroes enemigos -10% a la salud cuando estén cerca de ella."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"

@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 11:24+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 10:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1286,12 +1286,6 @@ msgstr "Leial Ezpatari"
 msgid "Caros"
 msgstr "Caros"
 
-#: simulation/templates/units/iber_hero_caros.xml:7
-#: simulation/templates/units/iber_hero_indibil.xml:7
-#: simulation/templates/units/iber_hero_viriato.xml:7
-msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr "Hős aura: „gerilla taktika”. TBD."
-
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
 msgstr "Indibil"
@@ -1405,15 +1399,15 @@ msgstr "Mégās Aléxandros"
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "„Hősgyilkosság” bónusz: +20% támadási bónusz az ellenséges hősök ellen."
 
-#: simulation/templates/units/mace_hero_craterus.xml:6
+#: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Crateros"
 msgstr "Kraterosz"
 
-#: simulation/templates/units/mace_hero_craterus.xml:7
+#: simulation/templates/units/mace_hero_craterus.xml:8
 msgid "Kraterós"
 msgstr "Kraterós"
 
-#: simulation/templates/units/mace_hero_craterus.xml:8
+#: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Trusted general under Alexander the Great."
 msgstr "Nagy Sándor bizalmas hadvezére."
 
@@ -1435,17 +1429,13 @@ msgstr "II. Philipposz makedón király"
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:6
+#: simulation/templates/units/mace_hero_pyrrhus.xml:7
 msgid "Pyrrhus of Epirus"
 msgstr "Pürrhosz Épeirosz"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:7
+#: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "Pyrrhos ton Epeiros"
 msgstr "Pyrrhos ton Epeiros"
-
-#: simulation/templates/units/mace_hero_pyrrhus.xml:8
-msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr "„Pürrhoszi győzelem” aura: TBD."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
@@ -1996,12 +1986,6 @@ msgstr "VII. Kleopátra"
 msgid "Kleopatra H' Philopator"
 msgstr "Kleopatra H' Philopator"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:9
-msgid ""
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
-"vision. Decreased effectiveness for enemy heroes."
-msgstr "„Hitvesi” aura (TBD): a szövetséges hősök hatékonysága megnövelve a látótávolságán belül. Az ellenséges hősök hatékonysága csökkentve."
-
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "I. Ptolemaiosz, a „Megmentő”"
@@ -2142,12 +2126,6 @@ msgstr "Quintus Fabius Maximus"
 #: simulation/templates/units/rome_hero_scipio.xml:6
 msgid "Scipio Africanus"
 msgstr "Scipio Africanus"
-
-#: simulation/templates/units/rome_hero_scipio.xml:9
-msgid ""
-"\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
-"for 500 Metal. (Not implemented)"
-msgstr "„Oszd meg és uralkodj” képesség: ellenséges egységek csoportjának átállítása a saját oldalára 500 fémért. (Nincs megvalósítva)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:17
 msgid "Roman Skirmisher"

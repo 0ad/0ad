@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 09:08+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 10:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -1278,12 +1278,6 @@ msgstr "Leial Ezpatari"
 msgid "Caros"
 msgstr "Caros"
 
-#: simulation/templates/units/iber_hero_caros.xml:7
-#: simulation/templates/units/iber_hero_indibil.xml:7
-#: simulation/templates/units/iber_hero_viriato.xml:7
-msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
-msgstr "Varoņa Aura: \"Partizānu taktika.\" TD."
-
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
 msgstr "Indibil"
@@ -1397,15 +1391,15 @@ msgstr "Mégās Aléxandros"
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "\"Herocide\" Bonuss: +20% uzbrukuma bonuss pret ienaidnieka varoņiem."
 
-#: simulation/templates/units/mace_hero_craterus.xml:6
+#: simulation/templates/units/mace_hero_craterus.xml:7
 msgid "Crateros"
 msgstr "Crateros"
 
-#: simulation/templates/units/mace_hero_craterus.xml:7
+#: simulation/templates/units/mace_hero_craterus.xml:8
 msgid "Kraterós"
 msgstr "Kraterós"
 
-#: simulation/templates/units/mace_hero_craterus.xml:8
+#: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Trusted general under Alexander the Great."
 msgstr "Uzticamais ģenerālis Aleksandra Lielā pakļautībā"
 
@@ -1427,17 +1421,13 @@ msgstr "Maķedonijas Filips II"
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:6
+#: simulation/templates/units/mace_hero_pyrrhus.xml:7
 msgid "Pyrrhus of Epirus"
 msgstr "Pyrrhus no Epirus"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:7
+#: simulation/templates/units/mace_hero_pyrrhus.xml:8
 msgid "Pyrrhos ton Epeiros"
 msgstr "Pyrrhos ton Epeiros"
-
-#: simulation/templates/units/mace_hero_pyrrhus.xml:8
-msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr "\"Pira Uzvara\" Aura: TD."
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Agrianian Peltast"
@@ -1988,12 +1978,6 @@ msgstr "Kleopatra VII"
 msgid "Kleopatra H' Philopator"
 msgstr "Kleopatra H' Philopator"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:9
-msgid ""
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
-"vision. Decreased effectiveness for enemy heroes."
-msgstr "\"Konsorcija\" Aura (TD): Palielināta sabiedroto varoņu efektivitāte viņas pārraudzībā. Samazināta - ienaidnieka varoņiem. "
-
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
 msgid "Ptolemy I \"Savior\""
 msgstr "Ptolemajs I \"Glābējs\""
@@ -2134,12 +2118,6 @@ msgstr "Quintus Fabius Maximus"
 #: simulation/templates/units/rome_hero_scipio.xml:6
 msgid "Scipio Africanus"
 msgstr "Scīpions Afrikānis"
-
-#: simulation/templates/units/rome_hero_scipio.xml:9
-msgid ""
-"\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
-"for 500 Metal. (Not implemented)"
-msgstr "\"Sadali un valdi\" iespēja: Pārvērš ienaidnieka vienību grupas savā pusē par 500 metāla. (nav realizēts)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:17
 msgid "Roman Skirmisher"

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 11:21+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 13:50+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Egy nagy hadjáratot indítok %(_player_)s ellen, gyere, csatlakozz."
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid ""
-"I have set up an huge army to crush %(_player_)s. Join me and you will have "
+"I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
 msgstr "Felállítottam egy nagy sereget, hogy eltapossam: %(_player_)s. Csatlakozz, és megkapod a részed a zsákmányból."
 
@@ -142,6 +142,53 @@ msgstr "%(_player_)s és én most már semlegesek vagyunk."
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "%(_player_)s és én most már ellenségek vagyunk."
+
+#: simulation/ai/petra/chatHelper.js:68
+#, javascript-format
+msgid "I cannot accept your offer to be allies %(_player_)s."
+msgstr "Nem fogadhatom el az ajánlatod %(_player_)s, hogy a szövetségesed legyek."
+
+#: simulation/ai/petra/chatHelper.js:71
+#, javascript-format
+msgid ""
+"I will not ally with you %(_player_)s, but I will consider a neutrality "
+"pact."
+msgstr "Nem leszek a szövetségesed %(_player_)s, de megfontolok egy semlegességi paktumot."
+
+#: simulation/ai/petra/chatHelper.js:74
+#, javascript-format
+msgid ""
+"%(_player_)s, our previous alliance did not work out, so I must decline your"
+" offer."
+msgstr "%(_player_)s, az előző szövetségünk nem működött, így vissza kell utasítanom az ajánlatod."
+
+#: simulation/ai/petra/chatHelper.js:77
+#, javascript-format
+msgid ""
+"I will accept your offer to become allies %(_player_)s. We will both benefit"
+" from this alliance."
+msgstr "Elfogadom az ajánlatod %(_player_)s, és a szövetségesed leszek. Mindkettőnknek hasznos lesz a szövetség."
+
+#: simulation/ai/petra/chatHelper.js:80
+#, javascript-format
+msgid ""
+"I will ally with you %(_player_)s, but only if you send me a tribute of "
+"%(_amount_)s %(_resource_)s."
+msgstr "Szövetségre lépek veled %(_player_)s, de csak akkor, ha %(_amount_)s %(_resource_)s sarcot fizetsz."
+
+#: simulation/ai/petra/chatHelper.js:81
+#, javascript-format
+msgid ""
+"%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
+"me to accept an alliance."
+msgstr "%(_player_)s, %(_amount_)s %(_resource_)s sarcot kell nekem fizetned, hogy elfogadjam a szövetséged."
+
+#: simulation/ai/petra/chatHelper.js:84
+#, javascript-format
+msgid ""
+"%(_player_)s, my offer still stands. I will ally with you if you send me a "
+"tribute of %(_amount_)s %(_resource_)s."
+msgstr "%(_player_)s, az ajánlatom még mindig áll. Szövetségre lépek veled, ha ha sarcként fizetsz %(_amount_)s %(_resource_)s nyersanyagot."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""

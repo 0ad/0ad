@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-07 15:44+0000\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-09 21:24+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -205,6 +205,14 @@ msgstr "Imperialismusaura"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% Gebietseffekt für alle Gebäude, solange er lebt."
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarchès"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "Pikeninfanterie +20% Angriff und +%20 Einnehmen innerhalb ihrer Reichweite."
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "Belagerer Aura"
@@ -217,13 +225,22 @@ msgstr "+15% Reichweite und +10% Angriff von Belagerungswaffen."
 msgid "+20% attack and +2 capture for champion units."
 msgstr "+20% Angriff und +2 Eroberung für Gardisten."
 
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Pyrrhussieg"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "+20% Angriff für alle Soldaten, so lange Pyrrhos lebt, aber auch -15% Gesundheit."
+
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
 msgstr "Buddhismus Aura"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Tempel und Tempeltechnologien haben um 50% reduzierte Ressourcenkosten und Bauzeit."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -262,14 +279,27 @@ msgstr "Administratorenaura"
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "+15% Sammel- und Baurate von in der Nähe befindlichen Einheiten."
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "Patriotenaura"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "-20% Angriffswiederholungszeit für ägyptische Soldaten und Belagerungswaffen in ihrer Nähe."
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "Gefährtin"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "+10% Gesundheit für verbündete Helden in ihrer Nähe."
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "-10% Gesundheit für feindliche Helden in ihrer Nähe."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -419,7 +449,7 @@ msgstr "Handelsmeister"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "10% Bonus auf den Handelsprofit für Internationale Routen von Verbündeten."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -433,20 +463,20 @@ msgstr "Reduziert die Kosten für Bürger-Soldaten-Plänkler um 20% für Verbün
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ashokas religiöse Unterstützung"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Verbündete Tempel und Tempeltechnologien kosten 50% weniger und haben eine um 50% reduzierte Bauzeit."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "Die königliche Straße"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Höheres Einkommen (+15%) von Landhandelsrouten für Händler von Verbündeten."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

@@ -4,13 +4,13 @@
 # 
 # Translators:
 # EriCSN Chang <ericsning@gmail.com>, 2016
-# Jeff Huang <s8321414@gmail.com>, 2016
+# Jeff Huang <s8321414@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-06 09:03+0100\n"
-"PO-Revision-Date: 2017-01-06 10:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-09 09:03+0100\n"
+"PO-Revision-Date: 2017-01-10 06:49+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,6 +198,14 @@ msgstr "帝國靈氣"
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "當他仍活著時，所有建築物 +10% 領土效果。"
 
+#: simulation/data/auras/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarchès"
+
+#: simulation/data/auras/mace_hero_craterus.jsonauraDescription
+msgid "Pike Infantry +20% attack and +20% capture within range of him."
+msgstr "在他靈氣範圍內的長槍兵 +20% 攻擊力與 +20% 捕獲。"
+
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
 msgstr "圍城者靈氣"
@@ -210,13 +218,22 @@ msgstr "攻城武器 +15% 射程且 +10 粉碎攻擊力。"
 msgid "+20% attack and +2 capture for champion units."
 msgstr "精英單位 +20% 攻擊力和 +2 捕獲。"
 
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "皮洛士式勝利"
+
+#: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
+msgid ""
+"All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
+msgstr "只要 Pyrrhos 還活著，所有士兵就 +20% 攻擊力但 -15% 生命值。"
+
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
 msgstr "佛教靈氣"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "神廟與神廟科技 -50% 資源與時間花費。"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -255,14 +272,27 @@ msgstr "管理人靈氣"
 msgid "+15% gather rate and build rate of nearby workers."
 msgstr "鄰近工人 +15% 採集速率及建造速率。"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
 msgstr "愛國者靈氣"
 
-#: simulation/data/auras/ptol_hero_cleopatra.jsonauraDescription
+#: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
 msgstr "在她的靈氣內的埃及士兵與攻城武器 -20% 攻擊間隔。"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
+msgid "Consort"
+msgstr "同調"
+
+#: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied heroes +10% health when near her."
+msgstr "在她附近的盟友英雄 +10% 生命值。"
+
+#: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
+msgid "Enemy heroes -10% health when near her."
+msgstr "在她附近的敵方英雄 -10% 生命值。"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -408,11 +438,11 @@ msgstr "在薩拉米斯及麥凱爾的海軍大勝利後不久，希臘城邦就
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr ""
+msgstr "貿易大師"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "盟友的國際貿易路線多 10% 貿易利潤。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -426,20 +456,20 @@ msgstr "伊比利玩家的盟友減少散兵士兵 20% 的花費。"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ashoka 的宗教支援"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "盟友的神廟與神廟科技 -50% 資源與時間花費。"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "皇家大道"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "盟友的商人可從陸地貿易取得較高的利潤 (+15%)。"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

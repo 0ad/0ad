@@ -78,8 +78,8 @@ def hasParentTemplate(UnitName, parentName):
 	return False
 
 def NumericStatProcess(unitValue, templateValue):
-   	if not "op" in templateValue.attrib:
-   		return float(templateValue.text)
+	if not "op" in templateValue.attrib:
+		return float(templateValue.text)
 	if (templateValue.attrib["op"] == "add"):
 		unitValue += float(templateValue.text)
 	elif (templateValue.attrib["op"] == "sub"):
