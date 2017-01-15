@@ -1805,16 +1805,16 @@ function colorizePlayernameByGUID(guid, username = "")
 
 function addChatMessage(msg)
 {
-	if (msg.type != "system" && msg.text)
+	if (!g_FormatChatMessage[msg.type])
+		return;
+
+	if (msg.type == "chat")
 	{
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
 
 		if (userName != g_PlayerAssignments[msg.guid].name)
 			notifyUser(userName, msg.text);
 	}
-
-	if (!g_FormatChatMessage[msg.type])
-		return;
 
 	let user = colorizePlayernameByGUID(msg.guid || -1, msg.username || "");
 
