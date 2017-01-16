@@ -508,8 +508,8 @@ void CCmpPathfinder::UpdateGrid()
 		ENSURE(m_Grid->m_W == m_ObstructionsDirty.dirtinessGrid.m_W && m_Grid->m_H == m_ObstructionsDirty.dirtinessGrid.m_H);
 		ENSURE(m_Grid->m_W == m_TerrainOnlyGrid->m_W && m_Grid->m_H == m_TerrainOnlyGrid->m_H);
 
-		for (u16 i = 0; i < m_ObstructionsDirty.dirtinessGrid.m_W; ++i)
-			for (u16 j = 0; j < m_ObstructionsDirty.dirtinessGrid.m_H; ++j)
+		for (u16 j = 0; j < m_ObstructionsDirty.dirtinessGrid.m_H; ++j)
+			for (u16 i = 0; i < m_ObstructionsDirty.dirtinessGrid.m_W; ++i)
 				if (m_ObstructionsDirty.dirtinessGrid.get(i, j) == 1)
 					m_Grid->set(i, j, m_TerrainOnlyGrid->get(i, j));
 	}
