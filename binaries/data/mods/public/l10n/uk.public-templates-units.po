@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 10:07+0000\n"
+"POT-Creation-Date: 2017-01-13 09:03+0100\n"
+"PO-Revision-Date: 2017-01-13 08:28+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -771,6 +771,7 @@ msgstr "Пельтастес Фракс"
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/mace_infantry_slinger_b.xml:22
 #: simulation/templates/units/merc_black_cloak.xml:16
 #: simulation/templates/units/merc_thorakites.xml:26
 #: simulation/templates/units/merc_thrace_swordsman.xml:16
@@ -1096,12 +1097,6 @@ msgstr "Ганнібал Барка"
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ханібаал Бакал"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:10
-msgid ""
-"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
-"Can run amok."
-msgstr "Здатність \"Стратег\" (TBD): гравець може побачити зміни в межах тумана війни, допоки Ганнібал живе.\nМоже лютувати."
-
 #: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
 msgstr "Маґарбал"
@@ -1405,10 +1400,6 @@ msgstr "Кратер"
 msgid "Kraterós"
 msgstr "Кратерос"
 
-#: simulation/templates/units/mace_hero_craterus.xml:9
-msgid "Trusted general under Alexander the Great."
-msgstr "Довірений генерал Александра Великого"
-
 #: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
 msgstr "Деметрій Завойовник"
@@ -1451,11 +1442,11 @@ msgstr "Піший супутник"
 msgid "Pezétairos"
 msgstr "Пезетар"
 
-#: simulation/templates/units/mace_infantry_slinger_b.xml:14
+#: simulation/templates/units/mace_infantry_slinger_b.xml:20
 msgid "Rhodian Slinger"
 msgstr "Родоський пращник"
 
-#: simulation/templates/units/mace_infantry_slinger_b.xml:15
+#: simulation/templates/units/mace_infantry_slinger_b.xml:21
 msgid "Sphendonḗtēs Rhódios"
 msgstr "Сфендонетес Родіос"
 

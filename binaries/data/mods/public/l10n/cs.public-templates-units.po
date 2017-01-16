@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
-# fri, 2014-2016
+# fri, 2014-2017
 # Petr Hála <halapetr@selfnet.cz>, 2015-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
 # ProfJackCZ <z.jan.honzik@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-13 09:03+0100\n"
+"PO-Revision-Date: 2017-01-15 08:20+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -767,6 +767,7 @@ msgstr "Peltastḗs Thrâx"
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/mace_infantry_slinger_b.xml:22
 #: simulation/templates/units/merc_black_cloak.xml:16
 #: simulation/templates/units/merc_thorakites.xml:26
 #: simulation/templates/units/merc_thrace_swordsman.xml:16
@@ -922,7 +923,7 @@ msgstr "Žena"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
-msgstr "Boudicca (Válečný vůz)"
+msgstr "Boudicca (válečný vůz)"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:7
@@ -931,7 +932,7 @@ msgstr "Boadicea"
 
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:6
 msgid "Boudicca (Sword)"
-msgstr "Boudicca (Meč)"
+msgstr "Boudicca (meč)"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
@@ -1091,12 +1092,6 @@ msgstr "Hannibal Barkas"
 #: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
-
-#: simulation/templates/units/cart_hero_hannibal.xml:10
-msgid ""
-"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
-"Can run amok."
-msgstr "Schopnost stratéga (TBD): Hráč může po dobu Hannibalova života vidět změny uvnitř válečné mlhy.\nMůže se splašit."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
@@ -1401,10 +1396,6 @@ msgstr "Krateros"
 msgid "Kraterós"
 msgstr "Kraterós"
 
-#: simulation/templates/units/mace_hero_craterus.xml:9
-msgid "Trusted general under Alexander the Great."
-msgstr "Spolehlivý generál pod Alexandrem Makedonským."
-
 #: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
 msgstr "Demetrius Obléhatel"
@@ -1447,11 +1438,11 @@ msgstr "Pěší druh ve zbrani"
 msgid "Pezétairos"
 msgstr "Pezétairos"
 
-#: simulation/templates/units/mace_infantry_slinger_b.xml:14
+#: simulation/templates/units/mace_infantry_slinger_b.xml:20
 msgid "Rhodian Slinger"
 msgstr "Rhodský prakovník"
 
-#: simulation/templates/units/mace_infantry_slinger_b.xml:15
+#: simulation/templates/units/mace_infantry_slinger_b.xml:21
 msgid "Sphendonḗtēs Rhódios"
 msgstr "Sphendonḗtēs Rhódios"
 

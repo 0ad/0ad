@@ -25,14 +25,15 @@
 # zyxist <nightstorm@tlen.pl>, 2014
 # Paulina <pafi2@onet.eu>, 2015
 # q <q@qq.qq>, 2015
+# Pitong, 2017
 # slodki12341 <slodki1234@gmail.com>, 2014
 # Voltinus <voltinusmail@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-13 09:03+0100\n"
+"PO-Revision-Date: 2017-01-15 15:00+0000\n"
+"Last-Translator: Pitong\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -786,6 +787,7 @@ msgstr "Peltastḗs Thrâx"
 #: simulation/templates/units/cart_infantry_swordsman_ital_b.xml:24
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
+#: simulation/templates/units/mace_infantry_slinger_b.xml:22
 #: simulation/templates/units/merc_black_cloak.xml:16
 #: simulation/templates/units/merc_thorakites.xml:26
 #: simulation/templates/units/merc_thrace_swordsman.xml:16
@@ -941,7 +943,7 @@ msgstr "Płeć Żeńska"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
-msgstr ""
+msgstr "Boudika (Rydwan)"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:7
@@ -1110,12 +1112,6 @@ msgstr "Hannibal Barkas"
 #: simulation/templates/units/cart_hero_hannibal.xml:7
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Barqa"
-
-#: simulation/templates/units/cart_hero_hannibal.xml:10
-msgid ""
-"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
-"Can run amok."
-msgstr "Umiejętność \"Strateg\" (DO USTALENIA): Gdy Hannibal żyje, gracz widzi zmiany w mgle wojny.\nMoże wpaść w szał bojowy."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:6
 msgid "Maharbal"
@@ -1420,10 +1416,6 @@ msgstr "Krateros"
 msgid "Kraterós"
 msgstr "Kraterós"
 
-#: simulation/templates/units/mace_hero_craterus.xml:9
-msgid "Trusted general under Alexander the Great."
-msgstr "Zaufany generał Aleksandra Wielkiego."
-
 #: simulation/templates/units/mace_hero_demetrius.xml:7
 msgid "Demetrius The Besieger"
 msgstr "Demetriusz I Poliorketes"
@@ -1466,11 +1458,11 @@ msgstr "Pieszy Towarzysz"
 msgid "Pezétairos"
 msgstr "Pezétairos"
 
-#: simulation/templates/units/mace_infantry_slinger_b.xml:14
+#: simulation/templates/units/mace_infantry_slinger_b.xml:20
 msgid "Rhodian Slinger"
 msgstr "Procarz Rodyjski"
 
-#: simulation/templates/units/mace_infantry_slinger_b.xml:15
+#: simulation/templates/units/mace_infantry_slinger_b.xml:21
 msgid "Sphendonḗtēs Rhódios"
 msgstr "Sphendonḗtēs Rhódios"
 
