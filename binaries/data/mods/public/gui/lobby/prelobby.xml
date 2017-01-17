@@ -105,7 +105,7 @@
 				}
 			</action>
 		</object>
-		<object name="continue" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed" enabled="false" hidden="true">
+		<object name="continue" hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed" enabled="false" hidden="true">
 			<translatableAttribute id="caption">Connect</translatableAttribute>
 			<action on="Press">
 				if (!Engine.GetGUIObjectByName("pageConnect").hidden)
