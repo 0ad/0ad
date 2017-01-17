@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -471,9 +471,7 @@ void CCmpPathfinder::UpdateGrid()
 		m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 
-		m_ObstructionsDirty.dirty = true;
-		m_ObstructionsDirty.globallyDirty = true;
-		m_ObstructionsDirty.globalRecompute = true;
+		m_ObstructionsDirty = { true, true, true, Grid<u8>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE) };
 
 		m_TerrainDirty = true;
 	}
