@@ -1045,7 +1045,7 @@ g_SelectionPanels.Training = {
 		});
 
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-			getTrainingBatchStatus(data.playerState, data.item, data.unitEntStates.map(status => status.id));
+			getTrainingStatus(data.playerState, data.item, data.unitEntStates.map(status => status.id));
 
 		let trainNum = buildingsCountToTrainFullBatch || 1;
 		if (Engine.HotkeyIsPressed("session.batchtrain"))

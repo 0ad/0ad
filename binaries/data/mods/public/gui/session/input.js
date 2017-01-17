@@ -1249,42 +1249,42 @@ function setJumpCamera(index)
 // Batch training:
 // When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING
 // When the user releases shift, or clicks on a different training button, we create the batched units
-var batchTrainingEntities;
-var batchTrainingType;
-var batchTrainingCount;
-var batchTrainingEntityAllowedCount;
+var g_BatchTrainingEntities;
+var g_BatchTrainingType;
+var g_BatchTrainingCount;
+var g_BatchTrainingEntityAllowedCount;
 
 function flushTrainingBatch()
 {
-	var appropriateBuildings = getBuildingsWhichCanTrainEntity(batchTrainingEntities, batchTrainingType);
-	// If training limits don't allow us to train batchTrainingCount in each appropriate building
-	if (batchTrainingEntityAllowedCount !== undefined &&
-		batchTrainingEntityAllowedCount < batchTrainingCount * appropriateBuildings.length)
+	var appropriateBuildings = getBuildingsWhichCanTrainEntity(g_BatchTrainingEntities, g_BatchTrainingType);
+	// If training limits don't allow us to train g_BatchTrainingCount in each appropriate building
+	if (g_BatchTrainingEntityAllowedCount !== undefined &&
+		g_BatchTrainingEntityAllowedCount < g_BatchTrainingCount * appropriateBuildings.length)
 	{
 		// Train as many full batches as we can
-		var buildingsCountToTrainFullBatch = Math.floor(batchTrainingEntityAllowedCount / batchTrainingCount);
+		var buildingsCountToTrainFullBatch = Math.floor(g_BatchTrainingEntityAllowedCount / g_BatchTrainingCount);
 		var buildingsToTrainFullBatch = appropriateBuildings.slice(0, buildingsCountToTrainFullBatch);
 		Engine.PostNetworkCommand({
 			"type": "train",
 			"entities": buildingsToTrainFullBatch,
-			"template": batchTrainingType,
-			"count": batchTrainingCount
+			"template": g_BatchTrainingType,
+			"count": g_BatchTrainingCount
 		});
 
 		// Train remainer in one more building
 		Engine.PostNetworkCommand({
 			"type": "train",
 			"entities": [ appropriateBuildings[buildingsCountToTrainFullBatch] ],
-			"template": batchTrainingType,
-			"count": batchTrainingEntityAllowedCount % batchTrainingCount
+			"template": g_BatchTrainingType,
+			"count": g_BatchTrainingEntityAllowedCount % g_BatchTrainingCount
 		});
 	}
 	else
 		Engine.PostNetworkCommand({
 			"type": "train",
 			"entities": appropriateBuildings,
-			"template": batchTrainingType,
-			"count": batchTrainingCount
+			"template": g_BatchTrainingType,
+			"count": g_BatchTrainingCount
 		});
 }
 
@@ -1370,32 +1370,32 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 		{
 			// Check if we are training in the same building(s) as the last batch
 			var sameEnts = false;
-			if (batchTrainingEntities.length == selection.length)
+			if (g_BatchTrainingEntities.length == selection.length)
 				// NOTE: We just check if the arrays are the same and if the order is the same
 				// If the order changed, we have a new selection and we should create a new batch.
-				for (var i = 0; i < batchTrainingEntities.length; ++i)
-					if (!(sameEnts = batchTrainingEntities[i] == selection[i]))
+				for (let i = 0; i < g_BatchTrainingEntities.length; ++i)
+					if (!(sameEnts = g_BatchTrainingEntities[i] == selection[i]))
 						break;
 			// If we're already creating a batch of this unit (in the same building(s)), then just extend it
 			// (if training limits allow)
-			if (sameEnts && batchTrainingType == trainEntType)
+			if (sameEnts && g_BatchTrainingType == trainEntType)
 			{
 				if (decrement)
 				{
-					batchTrainingCount -= batchIncrementSize;
-					if (batchTrainingCount <= 0)
+					g_BatchTrainingCount -= batchIncrementSize;
+					if (g_BatchTrainingCount <= 0)
 						inputState = INPUT_NORMAL;
 				}
 				else if (limits.canBeAddedCount == undefined ||
-					limits.canBeAddedCount > batchTrainingCount * appropriateBuildings.length)
+					limits.canBeAddedCount > g_BatchTrainingCount * appropriateBuildings.length)
 				{
 					if (Engine.GuiInterfaceCall("GetNeededResources", { "cost":
-						multiplyEntityCosts(template, batchTrainingCount + batchIncrementSize) }))
+						multiplyEntityCosts(template, g_BatchTrainingCount + batchIncrementSize) }))
 						return;
 
-					batchTrainingCount += batchIncrementSize;
+					g_BatchTrainingCount += batchIncrementSize;
 				}
-				batchTrainingEntityAllowedCount = limits.canBeAddedCount;
+				g_BatchTrainingEntityAllowedCount = limits.canBeAddedCount;
 				return;
 			}
 			// Otherwise start a new one
@@ -1412,10 +1412,10 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 			return;
 
 		inputState = INPUT_BATCHTRAINING;
-		batchTrainingEntities = selection;
-		batchTrainingType = trainEntType;
-		batchTrainingEntityAllowedCount = limits.canBeAddedCount;
-		batchTrainingCount = batchIncrementSize;
+		g_BatchTrainingEntities = selection;
+		g_BatchTrainingType = trainEntType;
+		g_BatchTrainingEntityAllowedCount = limits.canBeAddedCount;
+		g_BatchTrainingCount = batchIncrementSize;
 	}
 	else
 	{
@@ -1443,22 +1443,20 @@ function addResearchToQueue(entity, researchType)
  * Returns the number of units that will be present in a batch if the user clicks
  * the training button with shift down
  */
-function getTrainingBatchStatus(playerState, trainEntType, selection)
+function getTrainingStatus(playerState, trainEntType, selection)
 {
 	let batchIncrementSize = +Engine.ConfigDB_GetValue("user", "gui.session.batchtrainingsize");
 	var appropriateBuildings = [];
 	if (selection)
 		appropriateBuildings = getBuildingsWhichCanTrainEntity(selection, trainEntType);
 	var nextBatchTrainingCount = 0;
-	var currentBatchTrainingCount = 0;
 
 	var limits;
-	if (inputState == INPUT_BATCHTRAINING && batchTrainingType == trainEntType)
+	if (inputState == INPUT_BATCHTRAINING && g_BatchTrainingType == trainEntType)
 	{
-		nextBatchTrainingCount = batchTrainingCount;
-		currentBatchTrainingCount = batchTrainingCount;
+		nextBatchTrainingCount = g_BatchTrainingCount;
 		limits = {
-			"canBeAddedCount": batchTrainingEntityAllowedCount
+			"canBeAddedCount": g_BatchTrainingEntityAllowedCount
 		};
 	}
 	else
@@ -1480,7 +1478,7 @@ function getTrainingBatchStatus(playerState, trainEntType, selection)
 		remainderToTrain = limits.canBeAddedCount % nextBatchTrainingCount;
 	}
 
-	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain, currentBatchTrainingCount];
+	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain];
 }
 
 // Called by GUI when user clicks production queue item
