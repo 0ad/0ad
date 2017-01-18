@@ -96,7 +96,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner
 
 		// If the new attack is within suppression distance of this element,
 		// then check if the element should be updated and return
-		var dist = element.position.horizDistanceToSquared(event.position);
+		var dist = event.position.horizDistanceToSquared(element.position);
 		if (dist >= this.suppressionRangeSquared)
 			continue;
 
